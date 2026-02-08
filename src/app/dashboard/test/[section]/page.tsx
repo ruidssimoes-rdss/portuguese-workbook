@@ -1,23 +1,17 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Topbar } from "@/components/layout/topbar";
 import {
-  generateConjugationQuestion,
-  generateVocabularyQuestion,
-  computePlacementLevel,
-  getOverallScore,
-} from "@/lib/placement-test";
-import { getProgress, updateSectionProgress } from "@/lib/progress";
-import {
-  SUB_LEVEL_ORDER,
-  type TestQuestion,
-  type LevelsData,
-  type ConjugationSubLevel,
-  type VocabSubLevel,
-} from "@/types/levels";
+  generateConjugationQuestions,
+  generateVocabularyQuestions,
+  QUESTIONS_PER_TEST,
+} from "@/lib/test-generator";
+import { getProgress, saveLevelResult } from "@/lib/progress";
+import { getNextLevel, getLevelIndex, type TestQuestion } from "@/types/levels";
+import type { LevelsData, ConjugationSubLevel, VocabSubLevel } from "@/types/levels";
 import levelsDataRaw from "@/data/levels.json";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
@@ -28,39 +22,20 @@ const levelsData = levelsDataRaw as unknown as LevelsData;
 const verbs = verbData as unknown as VerbDataSet;
 const vocab = vocabData as unknown as VocabData;
 
-const TOTAL_QUESTIONS = 15;
-const placementTestConfig = (levelsDataRaw as Record<string, unknown>)?.placementTest as { adaptiveRules?: { startLevel?: string }; startLevel?: string } | undefined;
-const START_LEVEL = placementTestConfig?.adaptiveRules?.startLevel ?? placementTestConfig?.startLevel ?? "A1.3";
-const CORRECT_STREAK_TO_JUMP = 3;
-const INCORRECT_STREAK_TO_DROP = 2;
-
-const DEBUG = typeof process !== "undefined" && process.env.NODE_ENV === "development";
-function debugLog(...args: unknown[]) {
-  if (DEBUG) console.log("[PlacementTest]", ...args);
-}
-
 const SECTION_COLORS = {
   conjugations: "#3B82F6",
   vocabulary: "#22C55E",
   grammar: "#F59E0B",
 } as const;
 
-function parseQuestionText(
-  text: string,
-  sectionColor: string
-): React.ReactNode {
+function parseQuestionText(text: string, sectionColor: string): React.ReactNode {
   const parts = text.split(/\*\*(.*?)\*\*/g);
   return parts.map((p, i) =>
-    i % 2 === 1 ? (
-      <strong key={i} style={{ color: sectionColor }}>{p}</strong>
-    ) : (
-      p
-    )
+    i % 2 === 1 ? <strong key={i} style={{ color: sectionColor }}>{p}</strong> : p
   );
 }
 
-
-export default function PlacementTestPage() {
+export default function LevelTestPage() {
   const params = useParams();
   const section = params.section as string;
   const isConjugations = section === "conjugations";
@@ -68,165 +43,115 @@ export default function PlacementTestPage() {
   const isGrammar = section === "grammar";
 
   const [phase, setPhase] = useState<"start" | "question" | "results">("start");
+  const [questions, setQuestions] = useState<TestQuestion[]>([]);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [adaptiveLevelIndex, setAdaptiveLevelIndex] = useState(
-    SUB_LEVEL_ORDER.indexOf(START_LEVEL as (typeof SUB_LEVEL_ORDER)[number])
-  );
-  const [correctStreak, setCorrectStreak] = useState(0);
-  const [incorrectStreak, setIncorrectStreak] = useState(0);
-  const [answers, setAnswers] = useState<{ correct: boolean; levelKey: string }[]>([]);
-  const [currentQuestion, setCurrentQuestion] = useState<TestQuestion | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
-  const [resultLevel, setResultLevel] = useState<string | null>(null);
-  const [resultScore, setResultScore] = useState<number>(0);
-  const [resultAnswers, setResultAnswers] = useState<{ correct: boolean; levelKey: string }[]>([]);
-  const [previousLevel, setPreviousLevel] = useState<string | null>(null);
+  const [answers, setAnswers] = useState<{ correct: boolean }[]>([]);
+  const [resultAnswers, setResultAnswers] = useState<{ correct: boolean }[]>([]);
   const [questionTransition, setQuestionTransition] = useState(false);
 
-  const levelKey = SUB_LEVEL_ORDER[Math.max(0, Math.min(adaptiveLevelIndex, 14))];
-  const sectionLevels = useMemo(() => {
-    const data = levelsData[section as keyof typeof levelsData];
-    if (typeof data !== "object" || !data) return {};
-    return Object.fromEntries(
-      Object.entries(data).map(([k, v]) => [
-        k,
-        { targetAccuracy: (v as { targetAccuracy: number }).targetAccuracy },
-      ])
-    );
-  }, [section]);
+  const progress = typeof window !== "undefined" ? getProgress() : null;
+  const sectionProgress = progress?.[section as keyof typeof progress];
+  const currentLevel = sectionProgress?.currentLevel ?? "A1.1";
+  const levelInfo = useMemo(() => {
+    const data = levelsData[section as keyof LevelsData];
+    if (typeof data !== "object" || !data || !(currentLevel in data)) return null;
+    return (data as Record<string, { label: string; description: string; targetAccuracy?: number }>)[currentLevel];
+  }, [section, currentLevel]);
+  const targetAccuracy = levelInfo?.targetAccuracy ?? 70;
+  const nextLevel = getNextLevel(currentLevel);
+  const nextLevelInfo = useMemo(() => {
+    if (!nextLevel) return null;
+    const data = levelsData[section as keyof LevelsData];
+    if (typeof data !== "object" || !data || !(nextLevel in data)) return null;
+    return (data as Record<string, { label: string }>)[nextLevel];
+  }, [section, nextLevel]);
 
-  const generateQuestionForLevel = useCallback(
-    (lKey: string, qIndex: number): TestQuestion | null => {
-      if (isConjugations) {
-        const levelInfo = levelsData.conjugations[lKey] as ConjugationSubLevel | undefined;
-        if (!levelInfo) return null;
-        return generateConjugationQuestion(lKey, levelInfo, verbs, qIndex);
-      }
-      if (isVocabulary) {
-        const levelInfo = levelsData.vocabulary[lKey] as VocabSubLevel | undefined;
-        if (!levelInfo) return null;
-        return generateVocabularyQuestion(lKey, levelInfo, vocab, qIndex);
-      }
-      return null;
-    },
-    [isConjugations, isVocabulary]
-  );
+  const sectionColor = isConjugations ? SECTION_COLORS.conjugations : SECTION_COLORS.vocabulary;
+  const sectionLabel = section.charAt(0).toUpperCase() + section.slice(1);
 
-  const getQuestionWithFallback = useCallback(() => {
-    let q = generateQuestionForLevel(levelKey, questionIndex);
-    if (q) return q;
-    const currentIdx = SUB_LEVEL_ORDER.indexOf(levelKey as (typeof SUB_LEVEL_ORDER)[number]);
-    if (currentIdx < 0) return null;
-    for (let offset = 1; offset < 15; offset++) {
-      for (const sign of [-1, 1] as const) {
-        const nextIdx = currentIdx + sign * offset;
-        if (nextIdx < 0 || nextIdx >= 15) continue;
-        const tryKey = SUB_LEVEL_ORDER[nextIdx];
-        q = generateQuestionForLevel(tryKey, questionIndex);
-        if (q) return q;
+  const handleStart = () => {
+    if (isConjugations && levelInfo) {
+      const levelData = levelsData.conjugations[currentLevel] as ConjugationSubLevel | undefined;
+      if (levelData) {
+        const qs = generateConjugationQuestions(currentLevel, levelData, verbs);
+        setQuestions(qs.slice(0, QUESTIONS_PER_TEST));
+      } else {
+        setQuestions([]);
       }
+    } else if (isVocabulary && levelInfo) {
+      const levelData = levelsData.vocabulary[currentLevel] as VocabSubLevel | undefined;
+      if (levelData) {
+        const qs = generateVocabularyQuestions(currentLevel, levelData, vocab);
+        setQuestions(qs.slice(0, QUESTIONS_PER_TEST));
+      } else {
+        setQuestions([]);
+      }
+    } else {
+      setQuestions([]);
     }
-    return null;
-  }, [levelKey, questionIndex, generateQuestionForLevel]);
+    setQuestionIndex(0);
+    setSelectedIndex(null);
+    setRevealed(false);
+    setAnswers([]);
+    setPhase("question");
+  };
 
-  useEffect(() => {
-    if (phase === "question" && (isConjugations || isVocabulary)) {
-      const q = getQuestionWithFallback();
-      setCurrentQuestion(q);
-      setSelectedIndex(null);
-      setRevealed(false);
-      debugLog("question loaded", { questionIndex: questionIndex + 1, levelKey, hasQuestion: !!q });
-    }
-  }, [phase, questionIndex, adaptiveLevelIndex, isConjugations, isVocabulary, getQuestionWithFallback]);
-
-  const handleStart = () => setPhase("question");
+  const currentQuestion = questions[questionIndex] ?? null;
 
   const handleAnswer = (index: number) => {
     if (revealed || !currentQuestion) return;
-    if (answers.length >= TOTAL_QUESTIONS) return;
     setSelectedIndex(index);
     setRevealed(true);
     const correct = index === currentQuestion.correctIndex;
-    const newAnswers = [
-      ...answers,
-      { correct, levelKey: currentQuestion.levelKey },
-    ];
-    setAnswers(newAnswers);
-    debugLog("after answer", { questionIndex: questionIndex + 1, answersLength: newAnswers.length, correct });
-
-    if (correct) {
-      setCorrectStreak((s) => s + 1);
-      setIncorrectStreak(0);
-      if (correctStreak + 1 >= CORRECT_STREAK_TO_JUMP) {
-        setAdaptiveLevelIndex((i) => Math.min(14, i + 1));
-        setCorrectStreak(0);
-      }
-    } else {
-      setIncorrectStreak((s) => s + 1);
-      setCorrectStreak(0);
-      if (incorrectStreak + 1 >= INCORRECT_STREAK_TO_DROP) {
-        setAdaptiveLevelIndex((i) => Math.max(0, i - 1));
-        setIncorrectStreak(0);
-      }
-    }
+    setAnswers((a) => [...a, { correct }]);
   };
 
   const handleNext = () => {
     if (!currentQuestion) return;
-    const isLastQuestion = questionIndex === TOTAL_QUESTIONS - 1;
-    const lastAnswer = {
-      correct: selectedIndex === currentQuestion.correctIndex,
-      levelKey: currentQuestion.levelKey,
-    };
-    const allAnswers =
-      answers.length < TOTAL_QUESTIONS ? [...answers, lastAnswer] : answers;
-
-    debugLog("handleNext", { questionIndex: questionIndex + 1, isLastQuestion, answersLength: allAnswers.length });
-
-    if (isLastQuestion) {
-      const cappedAnswers = allAnswers.slice(0, TOTAL_QUESTIONS);
-      const finalLevel = computePlacementLevel(
-        cappedAnswers,
-        sectionLevels as Record<string, { targetAccuracy: number }>,
-        10
+    const isLast = questionIndex >= questions.length - 1;
+    if (isLast) {
+      const allAnswers =
+        answers.length < questions.length
+          ? [...answers, { correct: selectedIndex === currentQuestion.correctIndex }]
+          : answers;
+      setResultAnswers(allAnswers);
+      const correctCount = allAnswers.filter((a) => a.correct).length;
+      const score = Math.round((correctCount / questions.length) * 100);
+      const passed = score >= targetAccuracy;
+      saveLevelResult(
+        section as "conjugations" | "vocabulary" | "grammar",
+        currentLevel,
+        passed,
+        score
       );
-      const score = getOverallScore(cappedAnswers);
-      const progress = getProgress();
-      const prevSection = progress[section as "conjugations" | "vocabulary" | "grammar"];
-      setPreviousLevel(prevSection?.level ?? null);
-      setResultLevel(finalLevel);
-      setResultScore(score);
-      setResultAnswers(cappedAnswers);
       setPhase("results");
-      debugLog("transition to results", { finalLevel, score });
-      if (section === "conjugations" || section === "vocabulary") {
-        updateSectionProgress(
-          section as "conjugations" | "vocabulary",
-          finalLevel,
-          score
-        );
-      }
       return;
     }
-
     setQuestionTransition(true);
     setTimeout(() => {
-      const nextIndex = questionIndex + 1;
-      setQuestionIndex(nextIndex);
+      setQuestionIndex((i) => i + 1);
       setSelectedIndex(null);
       setRevealed(false);
       setQuestionTransition(false);
-      debugLog("advanced to question", nextIndex + 1);
     }, 150);
   };
+
+  const resultScore =
+    phase === "results" && resultAnswers.length > 0
+      ? Math.round((resultAnswers.filter((a) => a.correct).length / resultAnswers.length) * 100)
+      : 0;
+  const resultCorrect =
+    phase === "results" ? resultAnswers.filter((a) => a.correct).length : 0;
+  const passed = resultScore >= targetAccuracy;
 
   if (isGrammar || (!isConjugations && !isVocabulary)) {
     return (
       <>
         <Topbar />
         <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
-          <p className="text-text-2">Grammar placement test is not available yet.</p>
+          <p className="text-text-2">Level tests for grammar are not available yet.</p>
           <Link href="/dashboard" className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block">
             Back to Dashboard
           </Link>
@@ -235,16 +160,32 @@ export default function PlacementTestPage() {
     );
   }
 
-  const sectionLabel = section.charAt(0).toUpperCase() + section.slice(1);
-  const sectionColor = isConjugations
-    ? SECTION_COLORS.conjugations
-    : SECTION_COLORS.vocabulary;
-  const startSummary =
-    isConjugations
-      ? "You'll be tested on verb conjugations across tenses and persons."
-      : "You'll be tested on Portuguese words and their English meanings.";
-  const currentProgress = typeof window !== "undefined" ? getProgress()[section as "conjugations" | "vocabulary"] : null;
-  const hasTakenBefore = currentProgress?.completedAt && currentProgress?.testScore != null;
+  if (!levelInfo) {
+    return (
+      <>
+        <Topbar />
+        <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
+          <p className="text-text-2">Level not found.</p>
+          <Link href="/dashboard" className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block">
+            Back to Dashboard
+          </Link>
+        </main>
+      </>
+    );
+  }
+
+  const conjVerbs = isConjugations && levelInfo ? (levelInfo as ConjugationSubLevel).requiredVerbs : null;
+  const vocabCats = isVocabulary && levelInfo ? (levelInfo as VocabSubLevel).requiredCategories : null;
+  const testedOn =
+    conjVerbs === "all"
+      ? "All verbs in this level"
+      : Array.isArray(conjVerbs)
+        ? conjVerbs.join(", ")
+        : vocabCats === "all"
+          ? "All categories"
+          : Array.isArray(vocabCats)
+            ? vocabCats.join(", ")
+            : "";
 
   return (
     <>
@@ -253,38 +194,41 @@ export default function PlacementTestPage() {
         {phase === "start" && (
           <div className="max-w-[500px] mx-auto">
             <div
-              className="border rounded-xl bg-white overflow-hidden transition-all duration-150"
+              className="border rounded-[12px] bg-white overflow-hidden transition-all duration-150"
               style={{ borderWidth: 1, borderColor: sectionColor }}
             >
               <div className="p-6">
                 <h1 className="text-xl font-bold tracking-tight text-text">
-                  {sectionLabel} placement test
+                  Level {currentLevel} — {levelInfo.label}
                 </h1>
-                <p className="text-[15px] text-text-2 mt-3">
-                  {startSummary}
-                </p>
-                <div className="flex flex-wrap gap-4 mt-4 text-[13px] text-text-3">
-                  <span>15 questions</span>
-                  <span>Adaptive difficulty</span>
-                  <span>~3–5 minutes</span>
-                </div>
-                {hasTakenBefore && (
-                  <p className="mt-4 text-[13px] text-text-3">
-                    Your current level: {currentProgress!.level} ({Math.round(currentProgress!.testScore!)}%)
+                <p className="text-[15px] text-text-2 mt-3">{levelInfo.description}</p>
+                {testedOn && (
+                  <p className="text-[14px] text-text-2 mt-3">
+                    <span className="font-medium text-text">Tested on:</span> {testedOn}
                   </p>
                 )}
-                <div className="border-t border-border-l mt-5 pt-5">
+                <p className="text-[14px] text-text-2 mt-2">
+                  Score {targetAccuracy}% or higher to advance{nextLevel ? ` to ${nextLevel}` : ""}.
+                </p>
+                <p className="text-[13px] text-text-3 mt-2">{QUESTIONS_PER_TEST} questions</p>
+                {sectionProgress?.lastTestScore != null &&
+                  sectionProgress.lastTestScore < targetAccuracy && (
+                    <p className="text-[13px] text-text-3 mt-2">
+                      Previous attempt: {Math.round(sectionProgress.lastTestScore)}%
+                    </p>
+                  )}
+                <div className="mt-6 flex flex-col gap-3">
                   <button
                     type="button"
                     onClick={handleStart}
-                    className="w-full py-3 px-4 rounded-xl font-medium text-white hover:opacity-90 transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    className="w-full py-3 px-4 rounded-xl font-medium text-white transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
                     style={{ backgroundColor: sectionColor }}
                   >
                     Start Test
                   </button>
                   <Link
                     href="/dashboard"
-                    className="block text-center text-[14px] text-text-2 hover:text-text underline mt-4"
+                    className="text-center text-[14px] text-text-2 hover:text-text underline"
                   >
                     Back to Dashboard
                   </Link>
@@ -296,14 +240,20 @@ export default function PlacementTestPage() {
 
         {phase === "question" && (
           <div
-            className={questionTransition ? "opacity-0 transition-opacity duration-150" : "opacity-100 transition-opacity duration-150"}
+            className={
+              questionTransition
+                ? "opacity-0 transition-opacity duration-150"
+                : "opacity-100 transition-opacity duration-150"
+            }
           >
             <div className="flex justify-between text-[13px] text-text-2 mb-4">
-              <span>Question {questionIndex + 1} of {TOTAL_QUESTIONS}</span>
-              <span className="text-text-3">Testing: {currentQuestion?.levelKey ?? levelKey}</span>
+              <span>
+                Question {questionIndex + 1} of {QUESTIONS_PER_TEST}
+              </span>
+              <span className="text-text-3">Level {currentLevel}</span>
             </div>
             <div className="flex gap-0.5 mb-8">
-              {Array.from({ length: TOTAL_QUESTIONS }, (_, i) => (
+              {Array.from({ length: QUESTIONS_PER_TEST }, (_, i) => (
                 <div
                   key={i}
                   className="h-2 flex-1 min-w-0 rounded-sm transition-all duration-150"
@@ -333,31 +283,26 @@ export default function PlacementTestPage() {
                         disabled={revealed}
                         className={`group w-full text-left py-4 px-5 rounded-xl border text-[15px] transition-all duration-150 relative pl-10 ${
                           showCorrect
-                            ? "border-[#22C55E] bg-[#22C55E]/10"
+                            ? "border-green-500 bg-green-50"
                             : showWrong
-                              ? "border-[#EF4444] bg-[#EF4444]/10"
+                              ? "border-red-500 bg-red-50"
                               : "border-border bg-white text-text hover:border-[#ccc]"
-                        } ${!revealed ? "hover:bg-opacity-5" : ""} ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2`}
+                        } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2`}
                         style={
-                          !revealed
-                            ? { ["--tw-ring-color" as string]: sectionColor, backgroundColor: revealed ? undefined : "transparent" }
-                            : undefined
+                          !revealed ? { ["--tw-ring-color" as string]: sectionColor } : undefined
                         }
                       >
                         {showCorrect && (
-                          <span
-                            className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center"
-                            aria-hidden
-                          >
+                          <span className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center" aria-hidden>
                             <span
-                              className="block w-2.5 h-1.5 border-l-2 border-b-2 border-[#22C55E] -rotate-45 origin-center"
+                              className="block w-2.5 h-1.5 border-l-2 border-b-2 border-green-600 -rotate-45"
                               style={{ marginLeft: "1px", marginBottom: "2px" }}
                             />
                           </span>
                         )}
                         {showWrong && (
                           <span
-                            className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 border-2 border-[#EF4444] rounded-full flex items-center justify-center text-[#EF4444] text-base leading-none font-bold"
+                            className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 border-2 border-red-500 rounded-full flex items-center justify-center text-red-500 text-base leading-none font-bold"
                             aria-hidden
                           >
                             ×
@@ -365,7 +310,7 @@ export default function PlacementTestPage() {
                         )}
                         {!revealed && (
                           <span
-                            className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl transition-opacity duration-150 opacity-0 group-hover:opacity-100"
+                            className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity duration-150"
                             style={{ backgroundColor: sectionColor }}
                           />
                         )}
@@ -375,7 +320,11 @@ export default function PlacementTestPage() {
                             style={{ backgroundColor: `${sectionColor}0D` }}
                           />
                         )}
-                        <span className={`relative ${showCorrect ? "text-[#15803D]" : showWrong ? "text-[#DC2626]" : ""}`}>
+                        <span
+                          className={
+                            showCorrect ? "text-green-800" : showWrong ? "text-red-700" : ""
+                          }
+                        >
                           {opt}
                         </span>
                       </button>
@@ -397,7 +346,7 @@ export default function PlacementTestPage() {
                     className="mt-6 w-full py-3 px-4 rounded-xl font-medium border border-border text-text hover:bg-bg-s transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
                     style={{ ["--tw-ring-color" as string]: sectionColor }}
                   >
-                    {questionIndex + 1 >= TOTAL_QUESTIONS ? "See Results" : "Next"}
+                    {questionIndex >= questions.length - 1 ? "See Results" : "Next"}
                   </button>
                 )}
               </>
@@ -405,28 +354,20 @@ export default function PlacementTestPage() {
           </div>
         )}
 
-        {phase === "results" && resultLevel && (
+        {phase === "results" && (
           <div className="max-w-[500px] mx-auto">
-            <div className="border border-border rounded-xl bg-white overflow-hidden transition-all duration-150">
+            <div
+              className="border rounded-[12px] bg-white overflow-hidden transition-all duration-150"
+              style={{ borderWidth: 1, borderColor: sectionColor }}
+            >
               <div className="p-8">
-                <h1 className="text-2xl font-bold tracking-tight text-text">
-                  Test Complete
+                <h1 className="text-xl font-bold tracking-tight text-text">
+                  Level {currentLevel} — {levelInfo.label}
                 </h1>
-                <p className="text-[15px] text-text-3 mt-1 capitalize">
-                  {sectionLabel}
-                </p>
-
                 <div className="flex flex-col items-center mt-8">
                   <div className="relative w-[120px] h-[120px]">
                     <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
-                      <circle
-                        cx="60"
-                        cy="60"
-                        r="54"
-                        fill="none"
-                        stroke="#E5E7EB"
-                        strokeWidth="10"
-                      />
+                      <circle cx="60" cy="60" r="54" fill="none" stroke="#E5E7EB" strokeWidth="10" />
                       <circle
                         cx="60"
                         cy="60"
@@ -440,70 +381,78 @@ export default function PlacementTestPage() {
                       />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-2xl font-bold text-text" style={{ color: sectionColor }}>
+                      <span className="text-2xl font-bold" style={{ color: sectionColor }}>
                         {resultScore}%
                       </span>
                       <span className="text-[12px] text-text-3 mt-0.5">
-                        {Math.min(resultAnswers.filter((a) => a.correct).length, TOTAL_QUESTIONS)}/{Math.min(resultAnswers.length, TOTAL_QUESTIONS)}
+                        {resultCorrect}/{resultAnswers.length}
                       </span>
                     </div>
                   </div>
-                  <span
-                    className="mt-6 text-lg font-bold px-5 py-2 rounded-full text-white"
-                    style={{ backgroundColor: sectionColor }}
-                  >
-                    {resultLevel}
-                  </span>
-                </div>
-
-                {(() => {
-                  const sectionData = levelsData[section as "conjugations" | "vocabulary" | "grammar"];
-                  const levelInfo = sectionData && typeof sectionData === "object" && resultLevel in sectionData
-                    ? (sectionData as Record<string, { label: string; description: string }>)[resultLevel]
-                    : null;
-                  return levelInfo ? (
-                    <div className="mt-6 text-center">
-                      <p className="text-[15px] font-medium text-text">
-                        {levelInfo.label}
+                  {passed ? (
+                    <>
+                      <p className="mt-6 text-lg font-semibold text-green-600">PASSED</p>
+                      {nextLevel && nextLevelInfo && (
+                        <p className="mt-2 text-[15px] text-text-2 text-center">
+                          You&apos;ve unlocked {nextLevel}! — {nextLevelInfo.label}
+                        </p>
+                      )}
+                      <div className="mt-6 flex flex-col gap-3 w-full">
+                        <Link
+                          href="/dashboard"
+                          className="w-full text-center py-3 px-4 rounded-xl font-medium text-white transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
+                          style={{ backgroundColor: sectionColor }}
+                        >
+                          {nextLevel ? `Continue to ${nextLevel}` : "Back to Dashboard"}
+                        </Link>
+                        <Link
+                          href="/dashboard"
+                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-bg-s transition-colors duration-150"
+                          style={{ borderColor: sectionColor, color: sectionColor }}
+                        >
+                          Back to Dashboard
+                        </Link>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p className="mt-6 text-lg font-semibold text-amber-600">NOT YET</p>
+                      <p className="mt-2 text-[15px] text-text-2 text-center">
+                        You needed {targetAccuracy}%, you scored {resultScore}%.
                       </p>
-                      <p className="mt-1 text-[14px] text-text-2">
-                        {levelInfo.description}
-                      </p>
-                    </div>
-                  ) : null;
-                })()}
-
-                <div className="mt-6 text-center">
-                  {previousLevel && SUB_LEVEL_ORDER.indexOf(resultLevel as (typeof SUB_LEVEL_ORDER)[number]) > SUB_LEVEL_ORDER.indexOf(previousLevel as (typeof SUB_LEVEL_ORDER)[number]) && (
-                    <p className="text-[14px] text-[#22C55E] font-medium inline-flex items-center gap-1">
-                      <span className="inline-block w-0 h-0 border-l-[5px] border-r-[5px] border-b-[6px] border-l-transparent border-r-transparent border-b-[#22C55E]" style={{ marginBottom: "2px" }} />
-                      Up from {previousLevel}!
-                    </p>
+                      {questions.length > 0 && resultAnswers.some((a, i) => !a.correct) && (
+                        <div className="mt-4 p-3 rounded-lg bg-amber-50 border border-amber-200 text-left">
+                          <p className="text-[13px] font-medium text-amber-800 mb-2">Review</p>
+                          <ul className="text-[13px] text-amber-900 space-y-1">
+                            {resultAnswers.map((a, i) =>
+                              !a.correct && questions[i] ? (
+                                <li key={i}>
+                                  Q{i + 1}: correct answer was {questions[i].correctAnswer}
+                                </li>
+                              ) : null
+                            )}
+                          </ul>
+                        </div>
+                      )}
+                      <div className="mt-6 flex flex-col gap-3 w-full">
+                        <button
+                          type="button"
+                          onClick={handleStart}
+                          className="w-full py-3 px-4 rounded-xl font-medium text-white transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
+                          style={{ backgroundColor: sectionColor }}
+                        >
+                          Try Again
+                        </button>
+                        <Link
+                          href="/dashboard"
+                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-bg-s transition-colors duration-150"
+                          style={{ borderColor: sectionColor, color: sectionColor }}
+                        >
+                          Back to Dashboard
+                        </Link>
+                      </div>
+                    </>
                   )}
-                  {previousLevel && SUB_LEVEL_ORDER.indexOf(resultLevel as (typeof SUB_LEVEL_ORDER)[number]) === SUB_LEVEL_ORDER.indexOf(previousLevel as (typeof SUB_LEVEL_ORDER)[number]) && (
-                    <p className="text-[14px] text-text-3">Level maintained</p>
-                  )}
-                  {previousLevel && SUB_LEVEL_ORDER.indexOf(resultLevel as (typeof SUB_LEVEL_ORDER)[number]) < SUB_LEVEL_ORDER.indexOf(previousLevel as (typeof SUB_LEVEL_ORDER)[number]) && (
-                    <p className="text-[14px] text-[#F59E0B] font-medium">Down from {previousLevel}</p>
-                  )}
-                  {!previousLevel && <p className="text-[14px] text-text-3">First test</p>}
-                </div>
-
-                <div className="border-t border-border-l mt-8 pt-6 flex flex-col gap-3">
-                  <Link
-                    href="/dashboard"
-                    className="w-full text-center py-3 px-4 rounded-xl font-medium text-white hover:opacity-90 transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                    style={{ backgroundColor: sectionColor }}
-                  >
-                    Back to Dashboard
-                  </Link>
-                  <Link
-                    href={`/dashboard/test/${section}`}
-                    className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-opacity-5 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                    style={{ borderColor: sectionColor, color: sectionColor }}
-                  >
-                    Retake Test
-                  </Link>
                 </div>
               </div>
             </div>

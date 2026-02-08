@@ -40,3 +40,16 @@
 .animate-arrow-pulse {
   animation: pulse-arrow 1.2s ease-in-out infinite;
 }
+
+@keyframes pulse-segment {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-segment {
+  animation: pulse-segment 1.5s ease-in-out infinite;
+}

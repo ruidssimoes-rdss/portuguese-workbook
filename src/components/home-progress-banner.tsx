@@ -43,9 +43,9 @@ export function HomeProgressBanner() {
   if (progress === null) return null;
 
   const hasAnyTest =
-    progress.conjugations.completedAt ||
-    progress.vocabulary.completedAt ||
-    progress.grammar.completedAt;
+    progress.conjugations.totalTestsTaken > 0 ||
+    progress.vocabulary.totalTestsTaken > 0 ||
+    progress.grammar.totalTestsTaken > 0;
 
   if (hasAnyTest) {
     return (
@@ -55,13 +55,13 @@ export function HomeProgressBanner() {
           className="flex flex-wrap items-center justify-between gap-4 border border-border rounded-xl p-4 bg-white hover:border-[#ccc] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-3"
         >
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span className="text-[13px] text-text-3 font-medium">Your level:</span>
+            <span className="text-[13px] text-text-3 font-medium">Your progress:</span>
             <span className="flex items-center gap-2">
               <span
                 className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
                 style={{ backgroundColor: SECTION_COLORS.conjugations }}
               >
-                {progress.conjugations.level}
+                {progress.conjugations.currentLevel}
               </span>
               <span className="text-[13px] text-text-2">{SECTION_LABELS.conjugations}</span>
             </span>
@@ -70,7 +70,7 @@ export function HomeProgressBanner() {
                 className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
                 style={{ backgroundColor: SECTION_COLORS.vocabulary }}
               >
-                {progress.vocabulary.level}
+                {progress.vocabulary.currentLevel}
               </span>
               <span className="text-[13px] text-text-2">{SECTION_LABELS.vocabulary}</span>
             </span>
@@ -79,7 +79,7 @@ export function HomeProgressBanner() {
                 className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
                 style={{ backgroundColor: SECTION_COLORS.grammar }}
               >
-                {progress.grammar.level}
+                {progress.grammar.currentLevel}
               </span>
               <span className="text-[13px] text-text-2">{SECTION_LABELS.grammar}</span>
             </span>
@@ -98,7 +98,7 @@ export function HomeProgressBanner() {
         href="/dashboard"
         className="text-[13px] text-text-2 hover:text-text transition-colors duration-150 inline-flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-3 rounded"
       >
-        Discover your Portuguese level
+        Start your Portuguese journey
         <span className="inline-block animate-arrow-pulse">→</span>
       </Link>
     </section>
