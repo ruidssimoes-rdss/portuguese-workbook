@@ -6,3 +6,4 @@ node_modules
 
 # Env (keep example)
 .env*.local
+.DS_Store
