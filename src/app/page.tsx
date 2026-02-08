@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { Badge, cefrVariant, groupVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import type { VerbDataSet } from "@/types";
-import type { VocabData } from "@/types/vocab";
+import type { VocabData, VocabWord } from "@/types/vocab";
 
 const verbs = verbData as unknown as VerbDataSet;
 const vocab = vocabData as unknown as VocabData;
@@ -17,32 +18,46 @@ const totalVocabWords = vocab.categories.reduce(
   (sum, cat) => sum + (cat.words?.length ?? 0),
   0
 );
+const totalCategories = vocab.categories.length;
+
+// Flatten all vocab words with category title for daily pick
+const flatVocab: { word: VocabWord; categoryTitle: string }[] = [];
+vocab.categories.forEach((cat) => {
+  cat.words.forEach((word) => {
+    flatVocab.push({ word, categoryTitle: cat.title });
+  });
+});
+
+const dayIndex = Math.floor(Date.now() / 86400000);
+const wordOfDay =
+  flatVocab.length > 0 ? flatVocab[dayIndex % flatVocab.length] : null;
+const verbKey =
+  totalVerbs > 0 ? verbs.order[dayIndex % totalVerbs] : null;
+const verbOfDay = verbKey ? verbs.verbs[verbKey] : null;
+const presentRows =
+  verbOfDay?.conjugations?.filter((c) => c.Tense === "Present") ?? [];
 
 const sections = [
   {
     title: "Conjugations",
-    desc: `${totalVerbs} verbs across 6 tenses with examples and grammar notes.`,
     href: "/conjugations",
     count: `${totalConjugations.toLocaleString()} conjugations`,
     ready: true,
   },
   {
     title: "Vocabulary",
-    desc: "Essential words and phrases organized by theme and CEFR level.",
     href: "/vocabulary",
     count: `${totalVocabWords} words`,
     ready: true,
   },
   {
     title: "Grammar",
-    desc: "Tense explanations, rules, and tips for European Portuguese.",
     href: "/grammar",
     count: "Coming soon",
     ready: false,
   },
   {
     title: "Practice",
-    desc: "Quizzes, fill-in-the-blank, flashcards, and spaced repetition.",
     href: "/practice",
     count: "Coming soon",
     ready: false,
@@ -54,42 +69,162 @@ export default function Home() {
     <>
       <Topbar />
       <main className="max-w-[1100px] mx-auto px-6 md:px-10">
-        <section className="py-16 md:py-24">
-          <h1 className="text-4xl md:text-[44px] font-bold tracking-tight leading-[1.15] max-w-[600px]">
-            Learn European Portuguese
-          </h1>
-          <p className="text-base text-text-2 mt-3 max-w-[500px] leading-relaxed">
-            A comprehensive reference and practice platform. Conjugations,
-            vocabulary, grammar, and exercises — all in one place.
-          </p>
+        {/* Daily Focus — hero */}
+        <section className="pt-12 pb-16 md:pt-16 md:pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {/* Word of the Day */}
+            <div className="border border-border rounded-xl p-6 bg-white">
+              <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
+                Word of the Day
+              </p>
+              {wordOfDay ? (
+                <>
+                  <p className="text-2xl md:text-[28px] font-bold tracking-tight text-text">
+                    {wordOfDay.word.portuguese}
+                    {wordOfDay.word.gender && (
+                      <span className="text-lg font-normal text-text-2 ml-1">
+                        ({wordOfDay.word.gender === "m" ? "masc." : "fem."})
+                      </span>
+                    )}
+                  </p>
+                  <p className="text-[14px] text-text-2 mt-1">
+                    {wordOfDay.word.english}
+                  </p>
+                  {wordOfDay.word.example && (
+                    <>
+                      <p className="text-[13px] text-text-2 italic mt-3">
+                        {wordOfDay.word.example}
+                      </p>
+                      <p className="text-[12px] text-text-3 mt-0.5">
+                        {wordOfDay.word.exampleTranslation}
+                      </p>
+                    </>
+                  )}
+                  <div className="flex gap-1.5 mt-4">
+                    <Badge variant={cefrVariant[wordOfDay.word.cefr] || "gray"}>
+                      {wordOfDay.word.cefr}
+                    </Badge>
+                    <Badge variant="gray" className="capitalize">
+                      {wordOfDay.word.subcategory}
+                    </Badge>
+                  </div>
+                </>
+              ) : (
+                <p className="text-text-2 text-[14px]">No vocabulary data.</p>
+              )}
+            </div>
+
+            {/* Verb of the Day */}
+            <div className="border border-border rounded-xl p-6 bg-white">
+              <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
+                Verb of the Day
+              </p>
+              {verbKey && verbOfDay ? (
+                <>
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <p className="text-2xl md:text-[28px] font-bold tracking-tight text-text">
+                      {verbKey}
+                    </p>
+                    <span className="text-[14px] text-text-2">
+                      {verbOfDay.meta.english}
+                    </span>
+                    <Badge
+                      variant={
+                        groupVariant[verbOfDay.meta.group] || "gray"
+                      }
+                    >
+                      {verbOfDay.meta.group}
+                    </Badge>
+                    <Badge
+                      variant={
+                        cefrVariant[verbOfDay.meta.cefr] || "gray"
+                      }
+                    >
+                      {verbOfDay.meta.cefr}
+                    </Badge>
+                  </div>
+                  <div className="overflow-x-auto border border-border rounded-lg mt-3">
+                    <table className="w-full text-[12px] md:text-[13px] border-collapse">
+                      <thead>
+                        <tr>
+                          <th className="text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
+                            Person
+                          </th>
+                          <th className="text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
+                            Conjugation
+                          </th>
+                          <th className="text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
+                            Example
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {presentRows.map((row, i) => (
+                          <tr
+                            key={i}
+                            className="border-b border-border-l last:border-0"
+                          >
+                            <td className="px-2.5 py-1.5 text-text-2 whitespace-nowrap">
+                              {row.Person.split(" (")[0]}
+                            </td>
+                            <td className="px-2.5 py-1.5 font-semibold whitespace-nowrap">
+                              {row.Conjugation}
+                            </td>
+                            <td className="px-2.5 py-1.5 text-text-2 italic max-w-[180px] truncate">
+                              {row["Example Sentence"]}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <Link
+                    href={`/conjugations/${verbKey.toLowerCase()}`}
+                    className="inline-block mt-4 text-[13px] font-medium text-text-2 hover:text-text transition-colors"
+                  >
+                    View full conjugations →
+                  </Link>
+                </>
+              ) : (
+                <p className="text-text-2 text-[14px]">No verb data.</p>
+              )}
+            </div>
+          </div>
         </section>
 
-        <section className="pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {/* Section cards — 4-col desktop, 2x2 tablet, stacked mobile */}
+        <section className="pb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {sections.map((s) => (
               <Link
                 key={s.href}
                 href={s.ready ? s.href : "#"}
-                className={`group border border-border rounded-xl p-6 transition-all ${
+                className={`flex items-center justify-between gap-3 border border-border rounded-xl p-5 transition-all ${
                   s.ready
-                    ? "hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 cursor-pointer"
-                    : "opacity-50 cursor-not-allowed"
+                    ? "hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 cursor-pointer bg-white"
+                    : "opacity-50 cursor-not-allowed bg-white"
                 }`}
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h2 className="text-lg font-bold tracking-tight">
-                      {s.title}
-                    </h2>
-                    <p className="text-[13px] text-text-2 mt-1">{s.desc}</p>
-                  </div>
-                  <span className="text-[12px] text-text-3 font-medium whitespace-nowrap mt-1">
-                    {s.count}
-                  </span>
-                </div>
+                <h2 className="text-base font-bold tracking-tight text-text">
+                  {s.title}
+                </h2>
+                <span className="text-[12px] text-text-3 font-medium whitespace-nowrap">
+                  {s.count}
+                </span>
               </Link>
             ))}
           </div>
+        </section>
+
+        {/* Platform stats bar */}
+        <section className="pb-16 pt-2 text-center">
+          <p className="text-[13px] text-text-3">
+            {totalVerbs} verbs · {totalConjugations.toLocaleString()}{" "}
+            conjugations · {totalVocabWords} words · {totalCategories} categories
+          </p>
+          <p className="text-[12px] text-text-3 opacity-70 mt-1.5">
+            Progress tracking coming soon
+          </p>
         </section>
       </main>
     </>
