@@ -4,6 +4,9 @@ node_modules
 # Next.js
 .next/
 
+# TypeScript
+tsconfig.tsbuildinfo
+
 # Env (keep example)
 .env*.local
 .DS_Store

@@ -19,24 +19,42 @@ const levelsData = levelsDataRaw as unknown as LevelsData;
 
 const SECTION_COLORS = {
   conjugations: {
-    bg: "#F2F9FF",
-    border: "#80BCFF",
-    title: "#80BCFF",
-    track: "#3B82F6",
+    primary: "#3D6B9E",
+    light: "#7BA4D4",
+    bg: "#F0F5FF",
+    border: "#7BA4D4",
+    title: "#3D6B9E",
+    track: "#3D6B9E",
+    barTrack: "rgba(61,107,158,0.12)",
+    barGradient: "linear-gradient(90deg, #5A8EC0, #3D6B9E)",
   },
   vocabulary: {
-    bg: "#ECFBF0",
-    border: "#6DD49E",
-    title: "#6DD49E",
-    track: "#22C55E",
+    primary: "#5B4FA0",
+    light: "#8B7FC7",
+    bg: "#F0EEFF",
+    border: "#8B7FC7",
+    title: "#5B4FA0",
+    track: "#5B4FA0",
+    barTrack: "rgba(91,79,160,0.12)",
+    barGradient: "linear-gradient(90deg, #7B6FBF, #5B4FA0)",
   },
   grammar: {
-    bg: "#FFFBEB",
-    border: "#F5C542",
-    title: "#F5C542",
-    track: "#F59E0B",
+    primary: "#4B5563",
+    light: "#9CA3AF",
+    bg: "#F4F5F7",
+    border: "#9CA3AF",
+    title: "#4B5563",
+    track: "#4B5563",
+    barTrack: "rgba(75,85,99,0.12)",
+    barGradient: "linear-gradient(90deg, #7B8494, #4B5563)",
   },
 } as const;
+
+const BAND_TINTS = [
+  "rgba(74,157,232,0.06)",
+  "rgba(124,58,237,0.06)",
+  "rgba(75,85,99,0.06)",
+] as const;
 
 const SECTION_ORDER = ["conjugations", "vocabulary", "grammar"] as const;
 
@@ -138,7 +156,7 @@ export default function DashboardPage() {
                   const highestPassed = progress[sec].highestPassed;
                   const passedIdx = highestPassed ? getLevelIndex(highestPassed) : -1;
                   const currentIdx = getLevelIndex(currentLevel);
-                  const trackColor = SECTION_COLORS[sec].track;
+                  const colors = SECTION_COLORS[sec];
                   return (
                     <div key={sec} className="flex items-center gap-3">
                       <span className="text-[14px] font-medium text-text capitalize min-w-[120px] w-[120px] shrink-0">
@@ -146,7 +164,11 @@ export default function DashboardPage() {
                       </span>
                       <div className="flex flex-1 min-w-0 gap-2">
                         {[0, 1, 2].map((band) => (
-                          <div key={band} className="flex flex-1 gap-[3px] min-w-0">
+                          <div
+                            key={band}
+                            className="flex flex-1 gap-[3px] min-w-0 rounded"
+                            style={{ backgroundColor: BAND_TINTS[band] }}
+                          >
                             {SUB_LEVEL_ORDER.slice(band * 5, band * 5 + 5).map((levelKey, j) => {
                               const i = band * 5 + j;
                               const passed = i <= passedIdx;
@@ -161,9 +183,9 @@ export default function DashboardPage() {
                                   }`}
                                   style={{
                                     background: passed
-                                      ? `linear-gradient(to right, ${trackColor}CC, ${trackColor})`
+                                      ? colors.barGradient
                                       : isCurrent
-                                        ? `${trackColor}66`
+                                        ? `${colors.track}66`
                                         : "#F3F4F6",
                                   }}
                                   title={tooltip}
@@ -182,7 +204,7 @@ export default function DashboardPage() {
                       </div>
                       <span
                         className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white ml-3"
-                        style={{ backgroundColor: trackColor }}
+                        style={{ backgroundColor: colors.track }}
                       >
                         {currentLevel}
                       </span>
@@ -203,7 +225,7 @@ export default function DashboardPage() {
             const isComplete = highestPassed === "B1.5";
             const info = getLevelInfo(section, currentLevel);
             const targetAccuracy = info.targetAccuracy ?? 70;
-            const passedCount = highestPassed ? getLevelIndex(highestPassed) + 1 : 0;
+            const passedCount = getLevelIndex(currentLevel);
             const progressPct = Math.max(4, (passedCount / 15) * 100);
             const grammarDisabled = section === "grammar";
             const colors = SECTION_COLORS[section];
@@ -240,13 +262,13 @@ export default function DashboardPage() {
                 <div className="mt-4">
                   <div
                     className="h-1.5 rounded-full overflow-hidden"
-                    style={{ backgroundColor: `${colors.track}1A` }}
+                    style={{ backgroundColor: colors.barTrack }}
                   >
                     <div
                       className="h-full rounded-full transition-all duration-150"
                       style={{
                         width: `${progressPct}%`,
-                        backgroundColor: colors.track,
+                        background: colors.barGradient,
                       }}
                     />
                   </div>

@@ -7,9 +7,9 @@ import type { UserProgress } from "@/types/levels";
 import { PROGRESS_STORAGE_KEY } from "@/types/levels";
 
 const SECTION_COLORS = {
-  conjugations: "#3B82F6",
-  vocabulary: "#22C55E",
-  grammar: "#F59E0B",
+  conjugations: "#3D6B9E",
+  vocabulary: "#5B4FA0",
+  grammar: "#4B5563",
 } as const;
 
 const SECTION_LABELS = {

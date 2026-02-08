@@ -99,10 +99,13 @@ export interface LevelsData {
 /** A single test question. */
 export interface TestQuestion {
   questionText: string;
+  questionTextPt?: string;
   options: string[];
   correctAnswer: string;
   correctIndex: number;
   explanation?: string;
+  exampleSentence?: string;
+  exampleTranslation?: string;
   levelKey: string;
 }
 

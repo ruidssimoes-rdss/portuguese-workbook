@@ -17,6 +17,15 @@ const PERSONS = [
 
 const QUESTIONS_PER_TEST = 10;
 
+const TENSE_PT: Record<string, string> = {
+  Present: "Presente",
+  Preterite: "Pretérito Perfeito",
+  Imperfect: "Pretérito Imperfeito",
+  Future: "Futuro",
+  Conditional: "Condicional",
+  "Present Subjunctive": "Presente do Conjuntivo",
+};
+
 function shuffle<T>(arr: T[]): T[] {
   const out = [...arr];
   for (let i = out.length - 1; i > 0; i--) {
@@ -93,13 +102,17 @@ export function generateConjugationQuestions(
     const options = shuffle([correctAnswer, ...wrongs]);
     const correctIndex = options.indexOf(correctAnswer);
     const personShort = person.split(" (")[0];
+    const tensePt = TENSE_PT[tense] ?? tense;
 
     questions.push({
       questionText: `How do you conjugate **${verbKey}** for **${personShort}** in the **${tense}**?`,
+      questionTextPt: `Como se conjuga **${verbKey}** para **${personShort}** no **${tensePt}**?`,
       options,
       correctAnswer,
       correctIndex,
       explanation: correctRow.Notes || undefined,
+      exampleSentence: correctRow["Example Sentence"] || undefined,
+      exampleTranslation: correctRow["English Translation"] || undefined,
       levelKey,
     });
   }
@@ -137,11 +150,14 @@ export function generateVocabularyQuestions(
       .map((w) => (askInEnglish ? w.word.english : w.word.portuguese));
     const wrongs = shuffle([...new Set(others)]).slice(0, 3);
 
+    let questionTextPt: string;
     if (askInEnglish) {
       questionText = `What does **${portuguese}** mean in English?`;
+      questionTextPt = `O que significa **${portuguese}** em inglês?`;
       correctAnswer = english;
     } else {
       questionText = `How do you say **${english}** in Portuguese?`;
+      questionTextPt = `Como se diz **${english}** em português?`;
       correctAnswer = portuguese;
     }
 
@@ -151,10 +167,13 @@ export function generateVocabularyQuestions(
 
     questions.push({
       questionText,
+      questionTextPt,
       options: options.slice(0, 4),
       correctAnswer,
       correctIndex,
       explanation: word.example ? `${word.example} — ${word.exampleTranslation}` : undefined,
+      exampleSentence: word.example,
+      exampleTranslation: word.exampleTranslation,
       levelKey,
     });
   }

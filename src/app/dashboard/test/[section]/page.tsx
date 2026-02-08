@@ -23,9 +23,9 @@ const verbs = verbData as unknown as VerbDataSet;
 const vocab = vocabData as unknown as VocabData;
 
 const SECTION_COLORS = {
-  conjugations: "#3B82F6",
-  vocabulary: "#22C55E",
-  grammar: "#F59E0B",
+  conjugations: "#3D6B9E",
+  vocabulary: "#5B4FA0",
+  grammar: "#4B5563",
 } as const;
 
 function parseQuestionText(text: string, sectionColor: string): React.ReactNode {
@@ -76,7 +76,7 @@ export default function LevelTestPage() {
     return (data as Record<string, { label: string }>)[level];
   }, [section, testedLevel, currentLevel]);
 
-  const sectionColor = isConjugations ? SECTION_COLORS.conjugations : SECTION_COLORS.vocabulary;
+  const sectionColor = SECTION_COLORS[section as keyof typeof SECTION_COLORS] ?? SECTION_COLORS.conjugations;
   const sectionLabel = section.charAt(0).toUpperCase() + section.slice(1);
 
   const handleStart = () => {
@@ -277,9 +277,16 @@ export default function LevelTestPage() {
 
             {currentQuestion && (
               <>
-                <p className="text-[20px] text-text font-medium mb-8 leading-snug">
-                  {parseQuestionText(currentQuestion.questionText, sectionColor)}
-                </p>
+                <div className="mb-8">
+                  <p className="text-[20px] text-text font-medium leading-snug">
+                    {parseQuestionText(currentQuestion.questionText, sectionColor)}
+                  </p>
+                  {currentQuestion.questionTextPt && (
+                    <p className="mt-2 text-[16px] text-text-2 italic">
+                      {parseQuestionText(currentQuestion.questionTextPt, sectionColor)}
+                    </p>
+                  )}
+                </div>
                 <div className="space-y-3">
                   {currentQuestion.options.map((opt, i) => {
                     const isSelected = selectedIndex === i;
@@ -342,12 +349,26 @@ export default function LevelTestPage() {
                     );
                   })}
                 </div>
-                {revealed && currentQuestion.explanation && (
+                {revealed && (currentQuestion.explanation || currentQuestion.exampleSentence) && (
                   <div
-                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border italic text-[14px] text-text-2"
+                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border text-[14px] text-text-2"
                     style={{ borderWidth: 1, borderColor: sectionColor }}
                   >
-                    {currentQuestion.explanation}
+                    {currentQuestion.explanation && (
+                      <p className="italic">{currentQuestion.explanation}</p>
+                    )}
+                    {currentQuestion.exampleSentence && (
+                      <p className="mt-2">
+                        <span className="font-semibold not-italic">Exemplo:</span>{" "}
+                        <span className="italic">{currentQuestion.exampleSentence}</span>
+                        {currentQuestion.exampleTranslation && (
+                          <>
+                            <br />
+                            <span className="text-text-3">({currentQuestion.exampleTranslation})</span>
+                          </>
+                        )}
+                      </p>
+                    )}
                   </div>
                 )}
                 {revealed && (
