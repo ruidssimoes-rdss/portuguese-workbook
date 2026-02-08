@@ -41,25 +41,29 @@ const sections = [
   {
     title: "Conjugations",
     href: "/conjugations",
-    count: `${totalConjugations.toLocaleString()} conjugations`,
+    stat: `${totalVerbs} verbs · ${totalConjugations.toLocaleString()} conjugations`,
+    desc: "Explore all tenses with examples and notes",
     ready: true,
   },
   {
     title: "Vocabulary",
     href: "/vocabulary",
-    count: `${totalVocabWords} words`,
+    stat: `${totalVocabWords} words · ${totalCategories} categories`,
+    desc: "Words and phrases organized by theme",
     ready: true,
   },
   {
     title: "Grammar",
     href: "/grammar",
-    count: "Coming soon",
+    stat: "Coming soon",
+    desc: "Tense explanations, rules, and tips",
     ready: false,
   },
   {
     title: "Practice",
     href: "/practice",
-    count: "Coming soon",
+    stat: "Coming soon",
+    desc: "Quizzes, flashcards, and spaced repetition",
     ready: false,
   },
 ];
@@ -194,25 +198,50 @@ export default function Home() {
 
         {/* Section cards — 4-col desktop, 2x2 tablet, stacked mobile */}
         <section className="pb-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {sections.map((s) => (
-              <Link
-                key={s.href}
-                href={s.ready ? s.href : "#"}
-                className={`flex items-center justify-between gap-3 border border-border rounded-xl p-5 transition-all ${
-                  s.ready
-                    ? "hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 cursor-pointer bg-white"
-                    : "opacity-50 cursor-not-allowed bg-white"
-                }`}
-              >
-                <h2 className="text-base font-bold tracking-tight text-text">
-                  {s.title}
-                </h2>
-                <span className="text-[12px] text-text-3 font-medium whitespace-nowrap">
-                  {s.count}
-                </span>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+            {sections.map((s) => {
+              const cardContent = (
+                <>
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-lg font-bold tracking-tight text-text">
+                      {s.title}
+                    </h2>
+                    <p
+                      className={`text-[13px] mt-1 ${
+                        s.ready ? "text-text-2" : "text-text-3"
+                      }`}
+                    >
+                      {s.stat}
+                    </p>
+                    <p className="text-[12px] text-text-3 mt-1">{s.desc}</p>
+                  </div>
+                  {s.ready && (
+                    <span
+                      className="shrink-0 text-text-3 text-lg leading-none transition-transform duration-200 group-hover:translate-x-0.5"
+                      aria-hidden
+                    >
+                      →
+                    </span>
+                  )}
+                </>
+              );
+              return s.ready ? (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="group flex items-center gap-4 border border-border rounded-xl p-6 bg-white h-full transition-all duration-200 hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px cursor-pointer"
+                >
+                  {cardContent}
+                </Link>
+              ) : (
+                <div
+                  key={s.href}
+                  className="flex items-center gap-4 border border-border rounded-xl p-6 bg-white h-full opacity-50 cursor-not-allowed"
+                >
+                  {cardContent}
+                </div>
+              );
+            })}
           </div>
         </section>
 
