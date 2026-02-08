@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { HomeProgressBanner } from "@/components/home-progress-banner";
 import { Badge, cefrVariant, groupVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
@@ -195,6 +196,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <HomeProgressBanner />
 
         {/* Section cards — 4-col desktop, 2x2 tablet, stacked mobile */}
         <section className="pb-12">

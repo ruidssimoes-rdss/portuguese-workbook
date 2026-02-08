@@ -1,0 +1,366 @@
+{
+    "version": "1.0",
+    "description": "CEFR sub-level framework for Aula PT. Each sub-level defines what a learner should know at that point. Tracked independently per section: conjugations, vocabulary, grammar.",
+    "levels": ["A1", "A2", "B1"],
+    "subLevelsPerLevel": 5,
+    "totalSubLevels": 15,
+    "sections": ["conjugations", "vocabulary", "grammar"],
+  
+    "conjugations": {
+      "A1.1": {
+        "label": "First verbs",
+        "description": "Can conjugate SER and ESTAR in the present tense. Understands the difference between the two.",
+        "requiredVerbs": ["SER", "ESTAR"],
+        "requiredTenses": ["Present"],
+        "targetAccuracy": 70
+      },
+      "A1.2": {
+        "label": "Essential irregular verbs",
+        "description": "Can conjugate TER, IR, and FAZER in the present tense.",
+        "requiredVerbs": ["SER", "ESTAR", "TER", "IR", "FAZER"],
+        "requiredTenses": ["Present"],
+        "targetAccuracy": 70
+      },
+      "A1.3": {
+        "label": "Core irregular verbs",
+        "description": "Can conjugate PODER, QUERER, DIZER, VER, DAR in the present tense.",
+        "requiredVerbs": ["SER", "ESTAR", "TER", "IR", "FAZER", "PODER", "QUERER", "DIZER", "VER", "DAR"],
+        "requiredTenses": ["Present"],
+        "targetAccuracy": 75
+      },
+      "A1.4": {
+        "label": "Regular -AR verbs",
+        "description": "Understands the regular -AR conjugation pattern in the present tense. Can conjugate FALAR, MORAR, TRABALHAR, GOSTAR, COMPRAR, CHAMAR, AJUDAR, PENSAR.",
+        "requiredVerbs": ["FALAR", "MORAR", "TRABALHAR", "GOSTAR", "COMPRAR", "CHAMAR", "AJUDAR", "PENSAR"],
+        "requiredTenses": ["Present"],
+        "targetAccuracy": 80
+      },
+      "A1.5": {
+        "label": "Regular -ER/-IR and all present tense",
+        "description": "Understands -ER and -IR patterns. Can conjugate all verbs in the present tense with confidence.",
+        "requiredVerbs": ["COMER", "BEBER", "VIVER", "ESCREVER", "CORRER", "PERCEBER", "CONHECER", "APRENDER", "PARTIR", "ABRIR", "DECIDIR", "ASSISTIR"],
+        "requiredTenses": ["Present"],
+        "targetAccuracy": 80
+      },
+  
+      "A2.1": {
+        "label": "Past tense basics",
+        "description": "Can conjugate SER, ESTAR, TER, IR in the preterite (past simple).",
+        "requiredVerbs": ["SER", "ESTAR", "TER", "IR"],
+        "requiredTenses": ["Present", "Preterite"],
+        "targetAccuracy": 70
+      },
+      "A2.2": {
+        "label": "Preterite irregular verbs",
+        "description": "Can conjugate FAZER, DIZER, VER, DAR, SABER, VIR in the preterite.",
+        "requiredVerbs": ["FAZER", "DIZER", "VER", "DAR", "SABER", "VIR"],
+        "requiredTenses": ["Present", "Preterite"],
+        "targetAccuracy": 70
+      },
+      "A2.3": {
+        "label": "Preterite regular verbs",
+        "description": "Can form the preterite for all regular -AR, -ER, -IR verbs. Understands the patterns.",
+        "requiredVerbs": ["FALAR", "COMPRAR", "ESTUDAR", "PAGAR", "COMER", "ESCREVER", "PARTIR", "ABRIR"],
+        "requiredTenses": ["Present", "Preterite"],
+        "targetAccuracy": 75
+      },
+      "A2.4": {
+        "label": "Preterite confidence",
+        "description": "Can conjugate all available verbs in present and preterite. Can tell stories in the past.",
+        "requiredVerbs": "all",
+        "requiredTenses": ["Present", "Preterite"],
+        "targetAccuracy": 75
+      },
+      "A2.5": {
+        "label": "Present + Preterite mastery",
+        "description": "High accuracy on all verbs across present and preterite tenses. Ready for more complex tenses.",
+        "requiredVerbs": "all",
+        "requiredTenses": ["Present", "Preterite"],
+        "targetAccuracy": 85
+      },
+  
+      "B1.1": {
+        "label": "Imperfect introduction",
+        "description": "Can conjugate SER, ESTAR, TER, IR in the imperfect. Understands when to use imperfect vs preterite.",
+        "requiredVerbs": ["SER", "ESTAR", "TER", "IR"],
+        "requiredTenses": ["Present", "Preterite", "Imperfect"],
+        "targetAccuracy": 70
+      },
+      "B1.2": {
+        "label": "Imperfect + Future",
+        "description": "Can form the imperfect for all verb groups. Introduction to the future tense with regular verbs.",
+        "requiredVerbs": "all",
+        "requiredTenses": ["Present", "Preterite", "Imperfect", "Future"],
+        "targetAccuracy": 70
+      },
+      "B1.3": {
+        "label": "Conditional",
+        "description": "Can form and use the conditional tense. Understands polite requests and hypothetical situations.",
+        "requiredVerbs": "all",
+        "requiredTenses": ["Present", "Preterite", "Imperfect", "Future", "Conditional"],
+        "targetAccuracy": 70
+      },
+      "B1.4": {
+        "label": "Present Subjunctive",
+        "description": "Can form the present subjunctive. Understands common triggers (espero que, quero que, talvez).",
+        "requiredVerbs": "all",
+        "requiredTenses": ["Present", "Preterite", "Imperfect", "Future", "Conditional", "Present Subjunctive"],
+        "targetAccuracy": 70
+      },
+      "B1.5": {
+        "label": "All tenses mastery",
+        "description": "Can conjugate all verbs across all 6 tenses with high accuracy. Ready for B2 content.",
+        "requiredVerbs": "all",
+        "requiredTenses": ["Present", "Preterite", "Imperfect", "Future", "Conditional", "Present Subjunctive"],
+        "targetAccuracy": 85
+      }
+    },
+  
+    "vocabulary": {
+      "A1.1": {
+        "label": "First words",
+        "description": "Knows basic greetings: olá, bom dia, boa tarde, boa noite, adeus, obrigado, por favor, sim, não.",
+        "requiredCategories": ["everyday-basics"],
+        "requiredSubcategories": ["greetings"],
+        "targetWordCount": 10,
+        "targetAccuracy": 70
+      },
+      "A1.2": {
+        "label": "Numbers and colours",
+        "description": "Knows numbers 1-20, basic colours, and time words like hoje, amanhã, ontem.",
+        "requiredCategories": ["everyday-basics"],
+        "requiredSubcategories": ["greetings", "numbers", "colours"],
+        "targetWordCount": 25,
+        "targetAccuracy": 70
+      },
+      "A1.3": {
+        "label": "Time and basic expressions",
+        "description": "Knows time-related vocabulary (hora, manhã, semana, mês) and daily expressions.",
+        "requiredCategories": ["everyday-basics"],
+        "requiredSubcategories": ["greetings", "numbers", "colours", "time", "expressions"],
+        "targetWordCount": 45,
+        "targetAccuracy": 75
+      },
+      "A1.4": {
+        "label": "Food and drink essentials",
+        "description": "Knows basic food and drink vocabulary: água, café, pão, carne, fruta. Can order at a restaurant.",
+        "requiredCategories": ["everyday-basics", "food-drink"],
+        "requiredSubcategories": ["drinks", "food", "meals"],
+        "targetWordCount": 70,
+        "targetAccuracy": 75
+      },
+      "A1.5": {
+        "label": "Everyday A1 vocabulary complete",
+        "description": "Knows all A1 vocabulary across basics and food/drink. Can handle basic daily situations.",
+        "requiredCategories": ["everyday-basics", "food-drink"],
+        "requiredSubcategories": "all_A1",
+        "targetWordCount": 90,
+        "targetAccuracy": 80
+      },
+  
+      "A2.1": {
+        "label": "Getting around",
+        "description": "Knows basic travel words: aeroporto, comboio, autocarro, bilhete. Can ask for directions.",
+        "requiredCategories": ["everyday-basics", "food-drink", "travel-directions"],
+        "requiredSubcategories": ["transport", "directions"],
+        "targetWordCount": 110,
+        "targetAccuracy": 70
+      },
+      "A2.2": {
+        "label": "Places and accommodation",
+        "description": "Knows places (praia, museu, farmácia, banco) and hotel vocabulary (quarto, reserva, chave).",
+        "requiredCategories": ["travel-directions"],
+        "requiredSubcategories": ["transport", "directions", "accommodation", "places"],
+        "targetWordCount": 130,
+        "targetAccuracy": 70
+      },
+      "A2.3": {
+        "label": "Home and family",
+        "description": "Knows rooms (cozinha, sala, quarto), furniture, and family members (mãe, pai, irmão).",
+        "requiredCategories": ["home-family"],
+        "requiredSubcategories": ["home", "rooms", "furniture", "family"],
+        "targetWordCount": 160,
+        "targetAccuracy": 75
+      },
+      "A2.4": {
+        "label": "Daily routines and household",
+        "description": "Knows routine verbs (acordar, trabalhar, dormir) and household items (televisão, telemóvel, frigorífico).",
+        "requiredCategories": ["home-family"],
+        "requiredSubcategories": ["routine", "items", "family"],
+        "targetWordCount": 190,
+        "targetAccuracy": 75
+      },
+      "A2.5": {
+        "label": "All A2 vocabulary complete",
+        "description": "Knows all A1+A2 vocabulary across all four categories. Solid foundation for daily life.",
+        "requiredCategories": "all",
+        "requiredSubcategories": "all_A1_A2",
+        "targetWordCount": 210,
+        "targetAccuracy": 80
+      },
+  
+      "B1.1": {
+        "label": "Dining and cooking vocabulary",
+        "description": "Knows restaurant vocabulary (ementa, conta, guardanapo), cooking terms (cozinhar, ferver, assar), and flavour descriptions (picante, salgado, doce).",
+        "requiredCategories": ["food-drink"],
+        "requiredSubcategories": ["dining", "cooking"],
+        "targetWordCount": 220,
+        "targetAccuracy": 70
+      },
+      "B1.2": {
+        "label": "Travel and cultural vocabulary",
+        "description": "Knows travel concepts (saudade, estrangeiro, alfândega, embaixada) and cultural terms (imperial, petisco).",
+        "requiredCategories": ["travel-directions"],
+        "requiredSubcategories": ["travel", "help"],
+        "targetWordCount": 230,
+        "targetAccuracy": 70
+      },
+      "B1.3": {
+        "label": "Advanced home and expressions",
+        "description": "Knows B1 household vocabulary (aspirador, sótão, cave, renda) and informal expressions (fixe, pois, pronto).",
+        "requiredCategories": ["home-family", "everyday-basics"],
+        "requiredSubcategories": "all_B1",
+        "targetWordCount": 235,
+        "targetAccuracy": 75
+      },
+      "B1.4": {
+        "label": "Full vocabulary range",
+        "description": "Knows all available vocabulary across all categories and CEFR levels.",
+        "requiredCategories": "all",
+        "requiredSubcategories": "all",
+        "targetWordCount": 238,
+        "targetAccuracy": 75
+      },
+      "B1.5": {
+        "label": "Vocabulary mastery",
+        "description": "High accuracy on all 238 words. Can use words in context with correct gender and natural phrasing.",
+        "requiredCategories": "all",
+        "requiredSubcategories": "all",
+        "targetWordCount": 238,
+        "targetAccuracy": 90
+      }
+    },
+  
+    "grammar": {
+      "A1.1": {
+        "label": "Gender and articles",
+        "description": "Understands masculine/feminine nouns and definite/indefinite articles (o/a, um/uma).",
+        "topics": ["noun-gender", "articles"],
+        "targetAccuracy": 70
+      },
+      "A1.2": {
+        "label": "Subject pronouns and SER vs ESTAR",
+        "description": "Knows all subject pronouns. Understands when to use SER vs ESTAR.",
+        "topics": ["subject-pronouns", "ser-vs-estar"],
+        "targetAccuracy": 70
+      },
+      "A1.3": {
+        "label": "Present tense formation",
+        "description": "Understands how to form the present tense for -AR, -ER, -IR regular verbs.",
+        "topics": ["present-tense-ar", "present-tense-er", "present-tense-ir"],
+        "targetAccuracy": 75
+      },
+      "A1.4": {
+        "label": "Basic sentence structure",
+        "description": "Can form affirmative, negative, and question sentences. Understands word order.",
+        "topics": ["sentence-structure", "negation", "questions"],
+        "targetAccuracy": 75
+      },
+      "A1.5": {
+        "label": "Prepositions and contractions",
+        "description": "Knows common prepositions (de, em, a, para, com) and their contractions (do, no, ao, pelo).",
+        "topics": ["prepositions", "contractions"],
+        "targetAccuracy": 80
+      },
+  
+      "A2.1": {
+        "label": "Preterite tense formation",
+        "description": "Understands regular preterite formation for all verb groups. Knows common irregular preterite forms.",
+        "topics": ["preterite-regular", "preterite-irregular"],
+        "targetAccuracy": 70
+      },
+      "A2.2": {
+        "label": "Possessives and demonstratives",
+        "description": "Knows possessive adjectives (meu, teu, seu) and demonstratives (este, esse, aquele).",
+        "topics": ["possessives", "demonstratives"],
+        "targetAccuracy": 70
+      },
+      "A2.3": {
+        "label": "Direct and indirect object pronouns",
+        "description": "Understands object pronouns (me, te, o/a, lhe) and their placement in sentences.",
+        "topics": ["object-pronouns", "pronoun-placement"],
+        "targetAccuracy": 75
+      },
+      "A2.4": {
+        "label": "Reflexive verbs and comparatives",
+        "description": "Can use reflexive verbs (levantar-se, vestir-se). Understands comparatives (mais...do que, menos...do que).",
+        "topics": ["reflexive-verbs", "comparatives"],
+        "targetAccuracy": 75
+      },
+      "A2.5": {
+        "label": "A2 grammar mastery",
+        "description": "Confident with all A1+A2 grammar. Can construct varied sentences with correct pronouns, prepositions, and past tense.",
+        "topics": "all_A1_A2",
+        "targetAccuracy": 80
+      },
+  
+      "B1.1": {
+        "label": "Imperfect tense and preterite vs imperfect",
+        "description": "Understands imperfect formation and when to use preterite vs imperfect.",
+        "topics": ["imperfect-formation", "preterite-vs-imperfect"],
+        "targetAccuracy": 70
+      },
+      "B1.2": {
+        "label": "Future and conditional",
+        "description": "Can form the future and conditional tenses. Understands ir + infinitive vs synthetic future.",
+        "topics": ["future-tense", "conditional-tense", "ir-plus-infinitive"],
+        "targetAccuracy": 70
+      },
+      "B1.3": {
+        "label": "Present subjunctive",
+        "description": "Understands subjunctive triggers (espero que, é preciso que, talvez). Can form the present subjunctive.",
+        "topics": ["subjunctive-triggers", "present-subjunctive-formation"],
+        "targetAccuracy": 70
+      },
+      "B1.4": {
+        "label": "Relative pronouns and connectors",
+        "description": "Can use que, quem, onde, o qual. Knows connectors (porque, embora, enquanto, por isso).",
+        "topics": ["relative-pronouns", "connectors"],
+        "targetAccuracy": 75
+      },
+      "B1.5": {
+        "label": "B1 grammar mastery",
+        "description": "Confident with all grammar through B1. Can express opinions, describe experiences, and handle hypotheticals.",
+        "topics": "all",
+        "targetAccuracy": 85
+      }
+    },
+  
+    "placementTest": {
+      "description": "Each section has an adaptive placement test. Questions start at A1.3 difficulty and adjust based on accuracy. 15 questions per section, results map to a sub-level.",
+      "questionsPerTest": 15,
+      "adaptiveRules": {
+        "startLevel": "A1.3",
+        "correctStreak3": "jump up 1 sub-level",
+        "incorrectStreak2": "drop down 1 sub-level",
+        "minimumQuestions": 10
+      },
+      "resultMapping": {
+        "0-20%": "A1.1",
+        "21-35%": "A1.2",
+        "36-45%": "A1.3",
+        "46-55%": "A1.4",
+        "56-63%": "A1.5",
+        "64-70%": "A2.1",
+        "71-76%": "A2.2",
+        "77-82%": "A2.3",
+        "83-87%": "A2.4",
+        "88-91%": "A2.5",
+        "92-94%": "B1.1",
+        "95-96%": "B1.2",
+        "97%": "B1.3",
+        "98%": "B1.4",
+        "99-100%": "B1.5"
+      }
+    }
+  }
