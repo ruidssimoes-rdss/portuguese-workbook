@@ -29,9 +29,15 @@ const verbs = verbData as unknown as VerbDataSet;
 const vocab = vocabData as unknown as VocabData;
 
 const TOTAL_QUESTIONS = 15;
-const START_LEVEL = "A1.3";
+const placementTestConfig = (levelsDataRaw as Record<string, unknown>)?.placementTest as { adaptiveRules?: { startLevel?: string }; startLevel?: string } | undefined;
+const START_LEVEL = placementTestConfig?.adaptiveRules?.startLevel ?? placementTestConfig?.startLevel ?? "A1.3";
 const CORRECT_STREAK_TO_JUMP = 3;
 const INCORRECT_STREAK_TO_DROP = 2;
+
+const DEBUG = typeof process !== "undefined" && process.env.NODE_ENV === "development";
+function debugLog(...args: unknown[]) {
+  if (DEBUG) console.log("[PlacementTest]", ...args);
+}
 
 const SECTION_COLORS = {
   conjugations: "#3B82F6",
@@ -90,38 +96,49 @@ export default function PlacementTestPage() {
     );
   }, [section]);
 
-  const generateQuestion = useCallback(() => {
-    if (isConjugations) {
-      const levelInfo = levelsData.conjugations[levelKey] as ConjugationSubLevel | undefined;
-      if (!levelInfo) return null;
-      return generateConjugationQuestion(
-        levelKey,
-        levelInfo,
-        verbs,
-        questionIndex
-      );
-    }
-    if (isVocabulary) {
-      const levelInfo = levelsData.vocabulary[levelKey] as VocabSubLevel | undefined;
-      if (!levelInfo) return null;
-      return generateVocabularyQuestion(
-        levelKey,
-        levelInfo,
-        vocab,
-        questionIndex
-      );
+  const generateQuestionForLevel = useCallback(
+    (lKey: string, qIndex: number): TestQuestion | null => {
+      if (isConjugations) {
+        const levelInfo = levelsData.conjugations[lKey] as ConjugationSubLevel | undefined;
+        if (!levelInfo) return null;
+        return generateConjugationQuestion(lKey, levelInfo, verbs, qIndex);
+      }
+      if (isVocabulary) {
+        const levelInfo = levelsData.vocabulary[lKey] as VocabSubLevel | undefined;
+        if (!levelInfo) return null;
+        return generateVocabularyQuestion(lKey, levelInfo, vocab, qIndex);
+      }
+      return null;
+    },
+    [isConjugations, isVocabulary]
+  );
+
+  const getQuestionWithFallback = useCallback(() => {
+    let q = generateQuestionForLevel(levelKey, questionIndex);
+    if (q) return q;
+    const currentIdx = SUB_LEVEL_ORDER.indexOf(levelKey as (typeof SUB_LEVEL_ORDER)[number]);
+    if (currentIdx < 0) return null;
+    for (let offset = 1; offset < 15; offset++) {
+      for (const sign of [-1, 1] as const) {
+        const nextIdx = currentIdx + sign * offset;
+        if (nextIdx < 0 || nextIdx >= 15) continue;
+        const tryKey = SUB_LEVEL_ORDER[nextIdx];
+        q = generateQuestionForLevel(tryKey, questionIndex);
+        if (q) return q;
+      }
     }
     return null;
-  }, [isConjugations, isVocabulary, levelKey, questionIndex]);
+  }, [levelKey, questionIndex, generateQuestionForLevel]);
 
   useEffect(() => {
     if (phase === "question" && (isConjugations || isVocabulary)) {
-      const q = generateQuestion();
+      const q = getQuestionWithFallback();
       setCurrentQuestion(q);
       setSelectedIndex(null);
       setRevealed(false);
+      debugLog("question loaded", { questionIndex: questionIndex + 1, levelKey, hasQuestion: !!q });
     }
-  }, [phase, questionIndex, adaptiveLevelIndex, isConjugations, isVocabulary, generateQuestion]);
+  }, [phase, questionIndex, adaptiveLevelIndex, isConjugations, isVocabulary, getQuestionWithFallback]);
 
   const handleStart = () => setPhase("question");
 
@@ -136,6 +153,7 @@ export default function PlacementTestPage() {
       { correct, levelKey: currentQuestion.levelKey },
     ];
     setAnswers(newAnswers);
+    debugLog("after answer", { questionIndex: questionIndex + 1, answersLength: newAnswers.length, correct });
 
     if (correct) {
       setCorrectStreak((s) => s + 1);
@@ -155,17 +173,16 @@ export default function PlacementTestPage() {
   };
 
   const handleNext = () => {
+    if (!currentQuestion) return;
     const isLastQuestion = questionIndex === TOTAL_QUESTIONS - 1;
-    const lastAnswer = currentQuestion
-      ? {
-          correct: selectedIndex === currentQuestion.correctIndex,
-          levelKey: currentQuestion.levelKey,
-        }
-      : null;
+    const lastAnswer = {
+      correct: selectedIndex === currentQuestion.correctIndex,
+      levelKey: currentQuestion.levelKey,
+    };
     const allAnswers =
-      lastAnswer && answers.length < TOTAL_QUESTIONS
-        ? [...answers, lastAnswer]
-        : answers;
+      answers.length < TOTAL_QUESTIONS ? [...answers, lastAnswer] : answers;
+
+    debugLog("handleNext", { questionIndex: questionIndex + 1, isLastQuestion, answersLength: allAnswers.length });
 
     if (isLastQuestion) {
       const cappedAnswers = allAnswers.slice(0, TOTAL_QUESTIONS);
@@ -182,6 +199,7 @@ export default function PlacementTestPage() {
       setResultScore(score);
       setResultAnswers(cappedAnswers);
       setPhase("results");
+      debugLog("transition to results", { finalLevel, score });
       if (section === "conjugations" || section === "vocabulary") {
         updateSectionProgress(
           section as "conjugations" | "vocabulary",
@@ -194,10 +212,12 @@ export default function PlacementTestPage() {
 
     setQuestionTransition(true);
     setTimeout(() => {
-      setQuestionIndex((i) => i + 1);
+      const nextIndex = questionIndex + 1;
+      setQuestionIndex(nextIndex);
       setSelectedIndex(null);
       setRevealed(false);
       setQuestionTransition(false);
+      debugLog("advanced to question", nextIndex + 1);
     }, 150);
   };
 
@@ -233,8 +253,8 @@ export default function PlacementTestPage() {
         {phase === "start" && (
           <div className="max-w-[500px] mx-auto">
             <div
-              className="border border-border rounded-xl bg-white overflow-hidden transition-all duration-150"
-              style={{ borderTopWidth: 4, borderTopColor: sectionColor }}
+              className="border rounded-xl bg-white overflow-hidden transition-all duration-150"
+              style={{ borderWidth: 1, borderColor: sectionColor }}
             >
               <div className="p-6">
                 <h1 className="text-xl font-bold tracking-tight text-text">
@@ -280,7 +300,7 @@ export default function PlacementTestPage() {
           >
             <div className="flex justify-between text-[13px] text-text-2 mb-4">
               <span>Question {questionIndex + 1} of {TOTAL_QUESTIONS}</span>
-              <span className="text-text-3">Testing: {levelKey}</span>
+              <span className="text-text-3">Testing: {currentQuestion?.levelKey ?? levelKey}</span>
             </div>
             <div className="flex gap-0.5 mb-8">
               {Array.from({ length: TOTAL_QUESTIONS }, (_, i) => (
@@ -364,8 +384,8 @@ export default function PlacementTestPage() {
                 </div>
                 {revealed && currentQuestion.explanation && (
                   <div
-                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border-l-4 italic text-[14px] text-text-2"
-                    style={{ borderLeftColor: sectionColor }}
+                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border italic text-[14px] text-text-2"
+                    style={{ borderWidth: 1, borderColor: sectionColor }}
                   >
                     {currentQuestion.explanation}
                   </div>
