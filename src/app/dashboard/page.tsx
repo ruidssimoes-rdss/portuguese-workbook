@@ -45,8 +45,16 @@ function getLevelInfo(
 export default function DashboardPage() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
 
+  const refreshProgress = () => setProgress(getProgress());
+
   useEffect(() => {
-    setProgress(getProgress());
+    refreshProgress();
+  }, []);
+
+  useEffect(() => {
+    const onFocus = () => refreshProgress();
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
   }, []);
 
   if (progress === null) {
@@ -97,11 +105,16 @@ export default function DashboardPage() {
         {/* Progress track — 3 rows, 15 segments per row (A1 / A2 / B1 bands) */}
         <section className="pb-12">
           <div className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
-            <div className="min-w-[320px]">
-              <div className="flex justify-between text-[11px] font-semibold text-text-3 mb-3">
-                <span className="w-[33.33%] text-center">A1</span>
-                <span className="w-[33.33%] text-center">A2</span>
-                <span className="w-[33.33%] text-center">B1</span>
+            <div className="inline-flex flex-col min-w-0">
+              {/* Band labels: same width as label column, then 3 equal columns over the track */}
+              <div className="flex items-center mb-3 text-[11px] font-semibold text-text-3">
+                <span className="w-[6.5rem] min-w-[6.5rem] shrink-0" aria-hidden />
+                <div className="flex w-[388px] md:w-[628px] shrink-0">
+                  <span className="flex-1 text-center">A1</span>
+                  <span className="flex-1 text-center">A2</span>
+                  <span className="flex-1 text-center">B1</span>
+                </div>
+                <span className="w-12 shrink-0" aria-hidden />
               </div>
               <div className="space-y-4">
                 {SECTION_ORDER.map((sec) => {
@@ -112,10 +125,10 @@ export default function DashboardPage() {
                       key={sec}
                       className="flex items-center gap-3"
                     >
-                      <span className="text-[13px] font-medium text-text capitalize w-28 shrink-0">
+                      <span className="text-[13px] font-medium text-text capitalize w-[6.5rem] min-w-[6.5rem] shrink-0">
                         {sec}
                       </span>
-                      <div className="flex flex-1 gap-0.5 min-w-0">
+                      <div className="flex gap-0.5 w-[388px] md:w-[628px] shrink-0">
                         {SUB_LEVEL_ORDER.map((levelKey, i) => {
                           const filled = i <= currentIdx;
                           const info = getLevelInfo(sec, levelKey);
@@ -142,7 +155,7 @@ export default function DashboardPage() {
                         })}
                       </div>
                       <span
-                        className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white"
+                        className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white ml-3"
                         style={{ backgroundColor: color }}
                       >
                         {progress[sec].level}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getProgress } from "@/lib/progress";
 import type { UserProgress } from "@/types/levels";
+import { PROGRESS_STORAGE_KEY } from "@/types/levels";
 
 const SECTION_COLORS = {
   conjugations: "#3B82F6",
@@ -20,8 +21,23 @@ const SECTION_LABELS = {
 export function HomeProgressBanner() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
 
+  const refreshProgress = () => setProgress(getProgress());
+
   useEffect(() => {
-    setProgress(getProgress());
+    refreshProgress();
+  }, []);
+
+  useEffect(() => {
+    const onFocus = () => refreshProgress();
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === PROGRESS_STORAGE_KEY) refreshProgress();
+    };
+    window.addEventListener("focus", onFocus);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("storage", onStorage);
+    };
   }, []);
 
   if (progress === null) return null;
