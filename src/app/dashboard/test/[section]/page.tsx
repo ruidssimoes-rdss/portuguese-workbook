@@ -155,13 +155,19 @@ export default function PlacementTestPage() {
   };
 
   const handleNext = () => {
-    const lastAnswer = {
-      correct: selectedIndex === currentQuestion!.correctIndex,
-      levelKey: currentQuestion!.levelKey,
-    };
-    const allAnswers = answers.length < TOTAL_QUESTIONS ? [...answers, lastAnswer] : answers;
+    const isLastQuestion = questionIndex === TOTAL_QUESTIONS - 1;
+    const lastAnswer = currentQuestion
+      ? {
+          correct: selectedIndex === currentQuestion.correctIndex,
+          levelKey: currentQuestion.levelKey,
+        }
+      : null;
+    const allAnswers =
+      lastAnswer && answers.length < TOTAL_QUESTIONS
+        ? [...answers, lastAnswer]
+        : answers;
 
-    if (questionIndex + 1 >= TOTAL_QUESTIONS) {
+    if (isLastQuestion) {
       const cappedAnswers = allAnswers.slice(0, TOTAL_QUESTIONS);
       const finalLevel = computePlacementLevel(
         cappedAnswers,
@@ -183,15 +189,16 @@ export default function PlacementTestPage() {
           score
         );
       }
-    } else {
-      setQuestionTransition(true);
-      setTimeout(() => {
-        setQuestionIndex((i) => i + 1);
-        setSelectedIndex(null);
-        setRevealed(false);
-        setQuestionTransition(false);
-      }, 150);
+      return;
     }
+
+    setQuestionTransition(true);
+    setTimeout(() => {
+      setQuestionIndex((i) => i + 1);
+      setSelectedIndex(null);
+      setRevealed(false);
+      setQuestionTransition(false);
+    }, 150);
   };
 
   if (isGrammar || (!isConjugations && !isVocabulary)) {
@@ -370,7 +377,7 @@ export default function PlacementTestPage() {
                     className="mt-6 w-full py-3 px-4 rounded-xl font-medium border border-border text-text hover:bg-bg-s transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
                     style={{ ["--tw-ring-color" as string]: sectionColor }}
                   >
-                    {questionIndex + 1 >= TOTAL_QUESTIONS ? "See results" : "Next"}
+                    {questionIndex + 1 >= TOTAL_QUESTIONS ? "See Results" : "Next"}
                   </button>
                 )}
               </>

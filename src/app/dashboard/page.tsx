@@ -17,9 +17,24 @@ import levelsDataRaw from "@/data/levels.json";
 const levelsData = levelsDataRaw as unknown as LevelsData;
 
 const SECTION_COLORS = {
-  conjugations: { bg: "#EFF6FF", border: "#3B82F6", text: "#1D4ED8" },
-  vocabulary: { bg: "#F0FDF4", border: "#22C55E", text: "#15803D" },
-  grammar: { bg: "#FFFBEB", border: "#F59E0B", text: "#B45309" },
+  conjugations: {
+    bg: "#F2F9FF",
+    border: "#80BCFF",
+    title: "#80BCFF",
+    track: "#3B82F6",
+  },
+  vocabulary: {
+    bg: "#ECFBF0",
+    border: "#6DD49E",
+    title: "#6DD49E",
+    track: "#22C55E",
+  },
+  grammar: {
+    bg: "#FFFBEB",
+    border: "#F5C542",
+    title: "#F5C542",
+    track: "#F59E0B",
+  },
 } as const;
 
 const SECTION_ORDER = ["conjugations", "vocabulary", "grammar"] as const;
@@ -102,61 +117,66 @@ export default function DashboardPage() {
           </p>
         </header>
 
-        {/* Progress track — 3 rows, 15 segments per row (A1 / A2 / B1 bands) */}
+        {/* Progress track — 3 rows, 15 segments (5+5+5) with band gaps */}
         <section className="pb-12">
           <div className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
             <div className="inline-flex flex-col min-w-0">
-              {/* Band labels: same width as label column, then 3 equal columns over the track */}
-              <div className="flex items-center mb-3 text-[11px] font-semibold text-text-3">
-                <span className="w-[6.5rem] min-w-[6.5rem] shrink-0" aria-hidden />
-                <div className="flex w-[388px] md:w-[628px] shrink-0">
-                  <span className="flex-1 text-center">A1</span>
-                  <span className="flex-1 text-center">A2</span>
-                  <span className="flex-1 text-center">B1</span>
+              {/* Band labels: min-width 120px label column, then 3 groups over segments */}
+              <div className="flex items-center mb-3">
+                <span className="min-w-[120px] w-[120px] shrink-0" aria-hidden />
+                <div className="flex flex-1 min-w-0 gap-2">
+                  <span className="flex-1 text-center text-xs font-medium uppercase tracking-wide text-gray-400">A1</span>
+                  <span className="flex-1 text-center text-xs font-medium uppercase tracking-wide text-gray-400">A2</span>
+                  <span className="flex-1 text-center text-xs font-medium uppercase tracking-wide text-gray-400">B1</span>
                 </div>
                 <span className="w-12 shrink-0" aria-hidden />
               </div>
               <div className="space-y-4">
                 {SECTION_ORDER.map((sec) => {
                   const currentIdx = getLevelIndex(progress[sec].level);
-                  const color = SECTION_COLORS[sec].border;
+                  const trackColor = SECTION_COLORS[sec].track;
                   return (
                     <div
                       key={sec}
                       className="flex items-center gap-3"
                     >
-                      <span className="text-[13px] font-medium text-text capitalize w-[6.5rem] min-w-[6.5rem] shrink-0">
+                      <span className="text-[14px] font-medium text-text capitalize min-w-[120px] w-[120px] shrink-0">
                         {sec}
                       </span>
-                      <div className="flex gap-0.5 w-[388px] md:w-[628px] shrink-0">
-                        {SUB_LEVEL_ORDER.map((levelKey, i) => {
-                          const filled = i <= currentIdx;
-                          const info = getLevelInfo(sec, levelKey);
-                          const tooltip = `${levelKey} — ${info.label}`;
-                          return (
-                            <span
-                              key={levelKey}
-                              className="relative h-2 w-6 md:w-10 shrink-0 rounded-sm transition-all duration-150 group/seg"
-                              style={{
-                                background: filled
-                                  ? `linear-gradient(to right, ${color}, ${color}E6)`
-                                  : "#E5E7EB",
-                              }}
-                              title={tooltip}
-                            >
-                              <span
-                                className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 rounded text-[12px] text-white whitespace-nowrap opacity-0 group-hover/seg:opacity-100 transition-opacity duration-200 delay-200 z-10"
-                                style={{ backgroundColor: "#1F2937" }}
-                              >
-                                {tooltip}
-                              </span>
-                            </span>
-                          );
-                        })}
+                      <div className="flex flex-1 min-w-0 gap-2">
+                        {[0, 1, 2].map((band) => (
+                          <div key={band} className="flex flex-1 gap-[3px] min-w-0">
+                            {SUB_LEVEL_ORDER.slice(band * 5, band * 5 + 5).map((levelKey, j) => {
+                              const i = band * 5 + j;
+                              const filled = i <= currentIdx;
+                              const info = getLevelInfo(sec, levelKey);
+                              const tooltip = `${levelKey} — ${info.label}`;
+                              return (
+                                <span
+                                  key={levelKey}
+                                  className="relative flex-1 min-w-0 h-2 md:h-2.5 rounded transition-all duration-150 group/seg"
+                                  style={{
+                                    background: filled
+                                      ? `linear-gradient(to right, ${trackColor}CC, ${trackColor})`
+                                      : "#F3F4F6",
+                                  }}
+                                  title={tooltip}
+                                >
+                                  <span
+                                    className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 rounded-md text-[12px] text-white whitespace-nowrap opacity-0 group-hover/seg:opacity-100 transition-opacity duration-200 delay-200 z-10"
+                                    style={{ backgroundColor: "#1F2937" }}
+                                  >
+                                    {tooltip}
+                                  </span>
+                                </span>
+                              );
+                            })}
+                          </div>
+                        ))}
                       </div>
                       <span
                         className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white ml-3"
-                        style={{ backgroundColor: color }}
+                        style={{ backgroundColor: trackColor }}
                       >
                         {progress[sec].level}
                       </span>
@@ -168,8 +188,8 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Section cards */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-12">
+        {/* Section cards — Figma-style tinted cards */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-12 items-stretch">
           {SECTION_ORDER.map((section) => {
             const level = progress[section].level;
             const info = getLevelInfo(section, level);
@@ -182,77 +202,69 @@ export default function DashboardPage() {
             return (
               <div
                 key={section}
-                className="border border-border rounded-xl p-6 bg-white transition-all duration-150 overflow-hidden hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
+                className="rounded-[12px] border p-5 transition-all duration-150 hover:shadow-md flex flex-col"
                 style={{
-                  borderLeftWidth: 4,
-                  borderLeftColor: colors.border,
+                  backgroundColor: colors.bg,
+                  borderColor: colors.border,
+                  borderWidth: 1,
                 }}
               >
-                <div
-                  className="h-1 -mx-6 -mt-6 mb-4"
-                  style={{ background: `linear-gradient(to bottom, ${colors.border}0D, transparent)` }}
-                />
-                <h2 className="text-lg font-bold tracking-tight text-text capitalize">
+                <h2
+                  className="text-[17px] font-normal capitalize"
+                  style={{ color: colors.title }}
+                >
                   {section}
                 </h2>
-                <div className="flex items-center gap-2 mt-2 flex-wrap">
-                  <span
-                    className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
-                    style={{ backgroundColor: colors.border }}
-                  >
-                    {level}
-                  </span>
-                  {hasTested && progress[section].testScore != null && (
-                    <span className="text-[12px] text-text-3">
-                      {Math.round(progress[section].testScore!)}%
-                    </span>
-                  )}
-                  <span className="text-[13px] text-text-2">{info.label}</span>
-                </div>
-                <p className="text-[13px] text-text-2 mt-2">
+                <p
+                  className="mt-1 text-[15px]"
+                  style={{ color: colors.title, opacity: 0.5 }}
+                >
+                  {level} · {info.label}
+                </p>
+                <p
+                  className="mt-2 text-[14px]"
+                  style={{ color: colors.title, opacity: 0.5 }}
+                >
                   {info.description}
                 </p>
-                <div className="mt-3">
-                  <div className="h-1.5 bg-bg-s rounded-full overflow-hidden">
+                <div className="mt-4">
+                  <div
+                    className="h-1.5 rounded-full overflow-hidden"
+                    style={{ backgroundColor: `${colors.track}26` }}
+                  >
                     <div
                       className="h-full rounded-full transition-all duration-150"
                       style={{
                         width: `${progressPct}%`,
-                        backgroundColor: colors.border,
+                        backgroundColor: colors.track,
                       }}
                     />
                   </div>
-                  <p className="text-[11px] text-text-3 mt-1">
+                  <p className="text-[12px] text-text-3 mt-1">
                     {levelIdx + 1} / 15
                   </p>
                 </div>
-                <div className="border-t border-border-l mt-4 pt-4">
+                <div className="mt-5 pt-4 border-t border-border-l flex flex-col flex-1">
                   {!grammarDisabled ? (
                     <Link
                       href={`/dashboard/test/${section}`}
-                      className={`inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-xl transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                        hasTested
-                          ? "border-2 bg-transparent hover:bg-bg-s"
-                          : "text-white hover:opacity-90"
-                      }`}
-                      style={
-                        hasTested
-                          ? { borderColor: colors.border, color: colors.border }
-                          : { backgroundColor: colors.border }
-                      }
+                      className="inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-full text-white transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
+                      style={{ backgroundColor: colors.track }}
                     >
                       {hasTested ? "Retake Test" : "Take Placement Test"}
                     </Link>
                   ) : (
                     <div
-                      className="inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-xl border border-border text-text-3 cursor-not-allowed bg-bg-s"
+                      className="inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-full border cursor-not-allowed"
+                      style={{ borderColor: colors.border, color: colors.title }}
                       title="Coming soon — grammar content needed"
                     >
-                      Take Placement Test (coming soon)
+                      Coming soon
                     </div>
                   )}
-                  {hasTested && progress[section].completedAt && (
-                    <p className="text-[11px] text-text-3 mt-2">
+                  {hasTested && progress[section].completedAt && progress[section].testScore != null && (
+                    <p className="text-[12px] text-text-3 mt-2">
+                      Last score: {Math.round(progress[section].testScore!)}% ·{" "}
                       {new Date(
                         progress[section].completedAt!
                       ).toLocaleDateString("en-GB", {
@@ -268,39 +280,41 @@ export default function DashboardPage() {
           })}
         </section>
 
-        {/* Quick stats */}
+        {/* Quick stats — match section card aesthetic */}
         <section className="border-t border-border-l pt-8 pb-16">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div
-              className="border border-border rounded-xl p-4 bg-white"
-              style={{ borderTopWidth: 3, borderTopColor: SECTION_COLORS.conjugations.border }}
+              className="rounded-[12px] border p-5 transition-all duration-150"
+              style={{
+                backgroundColor: SECTION_COLORS[bestSection.key].bg,
+                borderColor: SECTION_COLORS[bestSection.key].border,
+                borderWidth: 1,
+              }}
             >
-              <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider">
+              <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Best Section
               </p>
-              <p className="text-[15px] font-semibold text-text mt-0.5 capitalize">
+              <p className="text-[18px] font-medium text-text mt-0.5 capitalize">
                 {bestSection.key} {progress[bestSection.key].level}
               </p>
             </div>
             <div
-              className="border border-border rounded-xl p-4 bg-white"
-              style={{ borderTopWidth: 3, borderTopColor: SECTION_COLORS.vocabulary.border }}
+              className="rounded-[12px] border border-[#E5E7EB] p-5 bg-[#F9FAFB] transition-all duration-150"
             >
-              <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider">
+              <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Total Tests Taken
               </p>
-              <p className="text-[15px] font-semibold text-text mt-0.5">
+              <p className="text-[18px] font-medium text-text mt-0.5">
                 {totalTests}
               </p>
             </div>
             <div
-              className="border border-border rounded-xl p-4 bg-white"
-              style={{ borderTopWidth: 3, borderTopColor: SECTION_COLORS.grammar.border }}
+              className="rounded-[12px] border border-[#E5E7EB] p-5 bg-[#F9FAFB] transition-all duration-150"
             >
-              <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider">
+              <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Last Tested
               </p>
-              <p className="text-[15px] font-semibold text-text mt-0.5">
+              <p className="text-[18px] font-medium text-text mt-0.5">
                 {lastTested ?? "Never"}
               </p>
             </div>
