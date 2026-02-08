@@ -33,12 +33,26 @@ const START_LEVEL = "A1.3";
 const CORRECT_STREAK_TO_JUMP = 3;
 const INCORRECT_STREAK_TO_DROP = 2;
 
-function parseQuestionText(text: string): React.ReactNode {
+const SECTION_COLORS = {
+  conjugations: "#3B82F6",
+  vocabulary: "#22C55E",
+  grammar: "#F59E0B",
+} as const;
+
+function parseQuestionText(
+  text: string,
+  sectionColor: string
+): React.ReactNode {
   const parts = text.split(/\*\*(.*?)\*\*/g);
   return parts.map((p, i) =>
-    i % 2 === 1 ? <strong key={i}>{p}</strong> : p
+    i % 2 === 1 ? (
+      <strong key={i} style={{ color: sectionColor }}>{p}</strong>
+    ) : (
+      p
+    )
   );
 }
+
 
 export default function PlacementTestPage() {
   const params = useParams();
@@ -60,7 +74,9 @@ export default function PlacementTestPage() {
   const [revealed, setRevealed] = useState(false);
   const [resultLevel, setResultLevel] = useState<string | null>(null);
   const [resultScore, setResultScore] = useState<number>(0);
+  const [resultAnswers, setResultAnswers] = useState<{ correct: boolean; levelKey: string }[]>([]);
   const [previousLevel, setPreviousLevel] = useState<string | null>(null);
+  const [questionTransition, setQuestionTransition] = useState(false);
 
   const levelKey = SUB_LEVEL_ORDER[Math.max(0, Math.min(adaptiveLevelIndex, 14))];
   const sectionLevels = useMemo(() => {
@@ -111,6 +127,7 @@ export default function PlacementTestPage() {
 
   const handleAnswer = (index: number) => {
     if (revealed || !currentQuestion) return;
+    if (answers.length >= TOTAL_QUESTIONS) return;
     setSelectedIndex(index);
     setRevealed(true);
     const correct = index === currentQuestion.correctIndex;
@@ -142,31 +159,38 @@ export default function PlacementTestPage() {
       correct: selectedIndex === currentQuestion!.correctIndex,
       levelKey: currentQuestion!.levelKey,
     };
-    const allAnswers = [...answers, lastAnswer];
+    const allAnswers = answers.length < TOTAL_QUESTIONS ? [...answers, lastAnswer] : answers;
 
     if (questionIndex + 1 >= TOTAL_QUESTIONS) {
+      const cappedAnswers = allAnswers.slice(0, TOTAL_QUESTIONS);
       const finalLevel = computePlacementLevel(
-        allAnswers,
+        cappedAnswers,
         sectionLevels as Record<string, { targetAccuracy: number }>,
         10
       );
+      const score = getOverallScore(cappedAnswers);
       const progress = getProgress();
       const prevSection = progress[section as "conjugations" | "vocabulary" | "grammar"];
       setPreviousLevel(prevSection?.level ?? null);
       setResultLevel(finalLevel);
-      setResultScore(getOverallScore(allAnswers));
+      setResultScore(score);
+      setResultAnswers(cappedAnswers);
       setPhase("results");
       if (section === "conjugations" || section === "vocabulary") {
         updateSectionProgress(
           section as "conjugations" | "vocabulary",
           finalLevel,
-          getOverallScore(allAnswers)
+          score
         );
       }
     } else {
-      setQuestionIndex((i) => i + 1);
-      setSelectedIndex(null);
-      setRevealed(false);
+      setQuestionTransition(true);
+      setTimeout(() => {
+        setQuestionIndex((i) => i + 1);
+        setSelectedIndex(null);
+        setRevealed(false);
+        setQuestionTransition(false);
+      }, 150);
     }
   };
 
@@ -185,56 +209,90 @@ export default function PlacementTestPage() {
   }
 
   const sectionLabel = section.charAt(0).toUpperCase() + section.slice(1);
+  const sectionColor = isConjugations
+    ? SECTION_COLORS.conjugations
+    : SECTION_COLORS.vocabulary;
+  const startSummary =
+    isConjugations
+      ? "You'll be tested on verb conjugations across tenses and persons."
+      : "You'll be tested on Portuguese words and their English meanings.";
+  const currentProgress = typeof window !== "undefined" ? getProgress()[section as "conjugations" | "vocabulary"] : null;
+  const hasTakenBefore = currentProgress?.completedAt && currentProgress?.testScore != null;
 
   return (
     <>
       <Topbar />
       <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
         {phase === "start" && (
-          <>
-            <h1 className="text-2xl font-bold tracking-tight text-text">
-              {sectionLabel} placement test
-            </h1>
-            <p className="text-text-2 mt-2 text-[15px]">
-              This test has 15 questions and adapts to your level. It takes about 3–5 minutes.
-            </p>
-            <div className="flex flex-col gap-3 mt-8">
-              <button
-                type="button"
-                onClick={handleStart}
-                className="w-full py-3 px-4 rounded-lg font-medium text-white bg-text hover:opacity-90 transition-opacity"
-              >
-                Start Test
-              </button>
-              <Link
-                href="/dashboard"
-                className="text-center text-[14px] text-text-2 hover:text-text underline"
-              >
-                Back to Dashboard
-              </Link>
+          <div className="max-w-[500px] mx-auto">
+            <div
+              className="border border-border rounded-xl bg-white overflow-hidden transition-all duration-150"
+              style={{ borderTopWidth: 4, borderTopColor: sectionColor }}
+            >
+              <div className="p-6">
+                <h1 className="text-xl font-bold tracking-tight text-text">
+                  {sectionLabel} placement test
+                </h1>
+                <p className="text-[15px] text-text-2 mt-3">
+                  {startSummary}
+                </p>
+                <div className="flex flex-wrap gap-4 mt-4 text-[13px] text-text-3">
+                  <span>15 questions</span>
+                  <span>Adaptive difficulty</span>
+                  <span>~3–5 minutes</span>
+                </div>
+                {hasTakenBefore && (
+                  <p className="mt-4 text-[13px] text-text-3">
+                    Your current level: {currentProgress!.level} ({Math.round(currentProgress!.testScore!)}%)
+                  </p>
+                )}
+                <div className="border-t border-border-l mt-5 pt-5">
+                  <button
+                    type="button"
+                    onClick={handleStart}
+                    className="w-full py-3 px-4 rounded-xl font-medium text-white hover:opacity-90 transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    style={{ backgroundColor: sectionColor }}
+                  >
+                    Start Test
+                  </button>
+                  <Link
+                    href="/dashboard"
+                    className="block text-center text-[14px] text-text-2 hover:text-text underline mt-4"
+                  >
+                    Back to Dashboard
+                  </Link>
+                </div>
+              </div>
             </div>
-          </>
+          </div>
         )}
 
         {phase === "question" && (
-          <>
-            <div className="flex justify-between text-[13px] text-text-2 mb-6">
+          <div
+            className={questionTransition ? "opacity-0 transition-opacity duration-150" : "opacity-100 transition-opacity duration-150"}
+          >
+            <div className="flex justify-between text-[13px] text-text-2 mb-4">
               <span>Question {questionIndex + 1} of {TOTAL_QUESTIONS}</span>
               <span className="text-text-3">Testing: {levelKey}</span>
             </div>
-            <div className="h-1.5 bg-bg-s rounded-full overflow-hidden mb-8">
-              <div
-                className="h-full bg-text rounded-full transition-all duration-300"
-                style={{ width: `${((questionIndex + 1) / TOTAL_QUESTIONS) * 100}%` }}
-              />
+            <div className="flex gap-0.5 mb-8">
+              {Array.from({ length: TOTAL_QUESTIONS }, (_, i) => (
+                <div
+                  key={i}
+                  className="h-2 flex-1 min-w-0 rounded-sm transition-all duration-150"
+                  style={{
+                    backgroundColor: i < questionIndex + 1 ? sectionColor : "#E5E7EB",
+                  }}
+                />
+              ))}
             </div>
 
             {currentQuestion && (
               <>
-                <p className="text-[17px] text-text font-medium mb-6">
-                  {parseQuestionText(currentQuestion.questionText)}
+                <p className="text-[20px] text-text font-medium mb-8 leading-snug">
+                  {parseQuestionText(currentQuestion.questionText, sectionColor)}
                 </p>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {currentQuestion.options.map((opt, i) => {
                     const isSelected = selectedIndex === i;
                     const isCorrect = i === currentQuestion.correctIndex;
@@ -246,80 +304,183 @@ export default function PlacementTestPage() {
                         type="button"
                         onClick={() => handleAnswer(i)}
                         disabled={revealed}
-                        className={`w-full text-left py-3 px-4 rounded-xl border text-[15px] transition-colors ${
+                        className={`group w-full text-left py-4 px-5 rounded-xl border text-[15px] transition-all duration-150 relative pl-10 ${
                           showCorrect
-                            ? "border-[#22C55E] bg-[#F0FDF4] text-[#15803D]"
+                            ? "border-[#22C55E] bg-[#22C55E]/10"
                             : showWrong
-                              ? "border-[#DC2626] bg-[#FEF2F2] text-[#DC2626]"
+                              ? "border-[#EF4444] bg-[#EF4444]/10"
                               : "border-border bg-white text-text hover:border-[#ccc]"
-                        } ${revealed ? "cursor-default" : "cursor-pointer"}`}
+                        } ${!revealed ? "hover:bg-opacity-5" : ""} ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2`}
+                        style={
+                          !revealed
+                            ? { ["--tw-ring-color" as string]: sectionColor, backgroundColor: revealed ? undefined : "transparent" }
+                            : undefined
+                        }
                       >
-                        {opt}
+                        {showCorrect && (
+                          <span
+                            className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center"
+                            aria-hidden
+                          >
+                            <span
+                              className="block w-2.5 h-1.5 border-l-2 border-b-2 border-[#22C55E] -rotate-45 origin-center"
+                              style={{ marginLeft: "1px", marginBottom: "2px" }}
+                            />
+                          </span>
+                        )}
+                        {showWrong && (
+                          <span
+                            className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 border-2 border-[#EF4444] rounded-full flex items-center justify-center text-[#EF4444] text-base leading-none font-bold"
+                            aria-hidden
+                          >
+                            ×
+                          </span>
+                        )}
+                        {!revealed && (
+                          <span
+                            className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl transition-opacity duration-150 opacity-0 group-hover:opacity-100"
+                            style={{ backgroundColor: sectionColor }}
+                          />
+                        )}
+                        {!revealed && (
+                          <span
+                            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-150"
+                            style={{ backgroundColor: `${sectionColor}0D` }}
+                          />
+                        )}
+                        <span className={`relative ${showCorrect ? "text-[#15803D]" : showWrong ? "text-[#DC2626]" : ""}`}>
+                          {opt}
+                        </span>
                       </button>
                     );
                   })}
                 </div>
                 {revealed && currentQuestion.explanation && (
-                  <p className="mt-4 text-[13px] text-text-2 italic border-l-2 border-border pl-4">
+                  <div
+                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border-l-4 italic text-[14px] text-text-2"
+                    style={{ borderLeftColor: sectionColor }}
+                  >
                     {currentQuestion.explanation}
-                  </p>
+                  </div>
                 )}
                 {revealed && (
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="mt-6 w-full py-3 px-4 rounded-lg font-medium border border-border text-text hover:bg-bg-s transition-colors"
+                    className="mt-6 w-full py-3 px-4 rounded-xl font-medium border border-border text-text hover:bg-bg-s transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    style={{ ["--tw-ring-color" as string]: sectionColor }}
                   >
                     {questionIndex + 1 >= TOTAL_QUESTIONS ? "See results" : "Next"}
                   </button>
                 )}
               </>
             )}
-          </>
+          </div>
         )}
 
         {phase === "results" && resultLevel && (
-          <>
-            <h1 className="text-2xl font-bold tracking-tight text-text">
-              Results
-            </h1>
-            <p className="text-[15px] text-text-2 mt-2">
-              {answers.filter((a) => a.correct).length} / {TOTAL_QUESTIONS} correct ({resultScore}%)
-            </p>
-            <div className="mt-6 flex items-center gap-2">
-              <span className="text-[13px] text-text-3">Your level:</span>
-              <span className="text-xl font-bold px-3 py-1 rounded-full bg-bg-h text-text">
-                {resultLevel}
-              </span>
+          <div className="max-w-[500px] mx-auto">
+            <div className="border border-border rounded-xl bg-white overflow-hidden transition-all duration-150">
+              <div className="p-8">
+                <h1 className="text-2xl font-bold tracking-tight text-text">
+                  Test Complete
+                </h1>
+                <p className="text-[15px] text-text-3 mt-1 capitalize">
+                  {sectionLabel}
+                </p>
+
+                <div className="flex flex-col items-center mt-8">
+                  <div className="relative w-[120px] h-[120px]">
+                    <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                      <circle
+                        cx="60"
+                        cy="60"
+                        r="54"
+                        fill="none"
+                        stroke="#E5E7EB"
+                        strokeWidth="10"
+                      />
+                      <circle
+                        cx="60"
+                        cy="60"
+                        r="54"
+                        fill="none"
+                        stroke={sectionColor}
+                        strokeWidth="10"
+                        strokeLinecap="round"
+                        strokeDasharray={`${(resultScore / 100) * 339.3} 339.3`}
+                        className="transition-all duration-300"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-2xl font-bold text-text" style={{ color: sectionColor }}>
+                        {resultScore}%
+                      </span>
+                      <span className="text-[12px] text-text-3 mt-0.5">
+                        {Math.min(resultAnswers.filter((a) => a.correct).length, TOTAL_QUESTIONS)}/{Math.min(resultAnswers.length, TOTAL_QUESTIONS)}
+                      </span>
+                    </div>
+                  </div>
+                  <span
+                    className="mt-6 text-lg font-bold px-5 py-2 rounded-full text-white"
+                    style={{ backgroundColor: sectionColor }}
+                  >
+                    {resultLevel}
+                  </span>
+                </div>
+
+                {(() => {
+                  const sectionData = levelsData[section as "conjugations" | "vocabulary" | "grammar"];
+                  const levelInfo = sectionData && typeof sectionData === "object" && resultLevel in sectionData
+                    ? (sectionData as Record<string, { label: string; description: string }>)[resultLevel]
+                    : null;
+                  return levelInfo ? (
+                    <div className="mt-6 text-center">
+                      <p className="text-[15px] font-medium text-text">
+                        {levelInfo.label}
+                      </p>
+                      <p className="mt-1 text-[14px] text-text-2">
+                        {levelInfo.description}
+                      </p>
+                    </div>
+                  ) : null;
+                })()}
+
+                <div className="mt-6 text-center">
+                  {previousLevel && SUB_LEVEL_ORDER.indexOf(resultLevel as (typeof SUB_LEVEL_ORDER)[number]) > SUB_LEVEL_ORDER.indexOf(previousLevel as (typeof SUB_LEVEL_ORDER)[number]) && (
+                    <p className="text-[14px] text-[#22C55E] font-medium inline-flex items-center gap-1">
+                      <span className="inline-block w-0 h-0 border-l-[5px] border-r-[5px] border-b-[6px] border-l-transparent border-r-transparent border-b-[#22C55E]" style={{ marginBottom: "2px" }} />
+                      Up from {previousLevel}!
+                    </p>
+                  )}
+                  {previousLevel && SUB_LEVEL_ORDER.indexOf(resultLevel as (typeof SUB_LEVEL_ORDER)[number]) === SUB_LEVEL_ORDER.indexOf(previousLevel as (typeof SUB_LEVEL_ORDER)[number]) && (
+                    <p className="text-[14px] text-text-3">Level maintained</p>
+                  )}
+                  {previousLevel && SUB_LEVEL_ORDER.indexOf(resultLevel as (typeof SUB_LEVEL_ORDER)[number]) < SUB_LEVEL_ORDER.indexOf(previousLevel as (typeof SUB_LEVEL_ORDER)[number]) && (
+                    <p className="text-[14px] text-[#F59E0B] font-medium">Down from {previousLevel}</p>
+                  )}
+                  {!previousLevel && <p className="text-[14px] text-text-3">First test</p>}
+                </div>
+
+                <div className="border-t border-border-l mt-8 pt-6 flex flex-col gap-3">
+                  <Link
+                    href="/dashboard"
+                    className="w-full text-center py-3 px-4 rounded-xl font-medium text-white hover:opacity-90 transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    style={{ backgroundColor: sectionColor }}
+                  >
+                    Back to Dashboard
+                  </Link>
+                  <Link
+                    href={`/dashboard/test/${section}`}
+                    className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-opacity-5 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    style={{ borderColor: sectionColor, color: sectionColor }}
+                  >
+                    Retake Test
+                  </Link>
+                </div>
+              </div>
             </div>
-            {previousLevel && SUB_LEVEL_ORDER.indexOf(resultLevel as (typeof SUB_LEVEL_ORDER)[number]) > SUB_LEVEL_ORDER.indexOf(previousLevel as (typeof SUB_LEVEL_ORDER)[number]) && (
-              <p className="mt-2 text-[14px] text-[#15803D] font-medium">
-                Up from {previousLevel}!
-              </p>
-            )}
-            {(() => {
-              const sectionData = levelsData[section as "conjugations" | "vocabulary" | "grammar"];
-              const levelInfo = sectionData && typeof sectionData === "object" && resultLevel in sectionData
-                ? (sectionData as Record<string, { label: string; description: string }>)[resultLevel]
-                : null;
-              return levelInfo ? (
-                <>
-                  <p className="mt-3 text-[15px] font-medium text-text">
-                    {levelInfo.label}
-                  </p>
-                  <p className="mt-1 text-[14px] text-text-2">
-                    {levelInfo.description}
-                  </p>
-                </>
-              ) : null;
-            })()}
-            <Link
-              href="/dashboard"
-              className="mt-8 inline-block w-full text-center py-3 px-4 rounded-lg font-medium border border-border text-text hover:bg-bg-s transition-colors"
-            >
-              Back to Dashboard
-            </Link>
-          </>
+          </div>
         )}
       </main>
     </>

@@ -11,6 +11,12 @@ const SECTION_COLORS = {
   grammar: "#F59E0B",
 } as const;
 
+const SECTION_LABELS = {
+  conjugations: "Conjugations",
+  vocabulary: "Vocabulary",
+  grammar: "Grammar",
+} as const;
+
 export function HomeProgressBanner() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
 
@@ -30,33 +36,41 @@ export function HomeProgressBanner() {
       <section className="pb-8">
         <Link
           href="/dashboard"
-          className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-text-2 hover:text-text transition-colors"
+          className="flex flex-wrap items-center justify-between gap-4 border border-border rounded-xl p-4 bg-white hover:border-[#ccc] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-3"
         >
-          <span>Your level:</span>
-          <span className="flex items-center gap-2">
-            <span
-              className="w-2 h-2 rounded-full shrink-0"
-              style={{ backgroundColor: SECTION_COLORS.conjugations }}
-            />
-            Conjugations {progress.conjugations.level}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="text-[13px] text-text-3 font-medium">Your level:</span>
+            <span className="flex items-center gap-2">
+              <span
+                className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
+                style={{ backgroundColor: SECTION_COLORS.conjugations }}
+              >
+                {progress.conjugations.level}
+              </span>
+              <span className="text-[13px] text-text-2">{SECTION_LABELS.conjugations}</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <span
+                className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
+                style={{ backgroundColor: SECTION_COLORS.vocabulary }}
+              >
+                {progress.vocabulary.level}
+              </span>
+              <span className="text-[13px] text-text-2">{SECTION_LABELS.vocabulary}</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <span
+                className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
+                style={{ backgroundColor: SECTION_COLORS.grammar }}
+              >
+                {progress.grammar.level}
+              </span>
+              <span className="text-[13px] text-text-2">{SECTION_LABELS.grammar}</span>
+            </span>
+          </div>
+          <span className="text-[13px] font-medium text-text-2 hover:text-text transition-colors duration-150">
+            View Dashboard →
           </span>
-          <span className="text-text-3">·</span>
-          <span className="flex items-center gap-2">
-            <span
-              className="w-2 h-2 rounded-full shrink-0"
-              style={{ backgroundColor: SECTION_COLORS.vocabulary }}
-            />
-            Vocabulary {progress.vocabulary.level}
-          </span>
-          <span className="text-text-3">·</span>
-          <span className="flex items-center gap-2">
-            <span
-              className="w-2 h-2 rounded-full shrink-0"
-              style={{ backgroundColor: SECTION_COLORS.grammar }}
-            />
-            Grammar {progress.grammar.level}
-          </span>
-          <span className="text-text-3 ml-1">→</span>
         </Link>
       </section>
     );
@@ -66,10 +80,10 @@ export function HomeProgressBanner() {
     <section className="pb-8">
       <Link
         href="/dashboard"
-        className="text-[13px] text-text-2 hover:text-text transition-colors inline-flex items-center gap-1"
+        className="text-[13px] text-text-2 hover:text-text transition-colors duration-150 inline-flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-3 rounded"
       >
-        Take a placement test to find your level
-        <span>→</span>
+        Discover your Portuguese level
+        <span className="inline-block animate-arrow-pulse">→</span>
       </Link>
     </section>
   );

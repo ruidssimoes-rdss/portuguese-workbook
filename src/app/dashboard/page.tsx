@@ -23,12 +23,6 @@ const SECTION_COLORS = {
 } as const;
 
 const SECTION_ORDER = ["conjugations", "vocabulary", "grammar"] as const;
-const BAND_LABELS = ["A1", "A2", "B1"] as const;
-const BAND_RANGES = [
-  { start: 0, end: 5 },
-  { start: 5, end: 10 },
-  { start: 10, end: 15 },
-];
 
 function getLevelIndex(level: string): number {
   const i = SUB_LEVEL_ORDER.indexOf(level as (typeof SUB_LEVEL_ORDER)[number]);
@@ -100,99 +94,62 @@ export default function DashboardPage() {
           </p>
         </header>
 
-        {/* Level track — 15 sub-levels, 3 section dots per position */}
+        {/* Progress track — 3 rows, 15 segments per row (A1 / A2 / B1 bands) */}
         <section className="pb-12">
-          <div className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth">
-            <div className="min-w-[520px] md:min-w-0">
-              <div className="flex justify-between text-[11px] font-semibold text-text-3 mb-2">
-                {BAND_LABELS.map((band, i) => (
-                  <span
-                    key={band}
-                    style={{
-                      width: `${((BAND_RANGES[i].end - BAND_RANGES[i].start) / 15) * 100}%`,
-                    }}
-                    className="text-center"
-                  >
-                    {band}
-                  </span>
-                ))}
+          <div className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+            <div className="min-w-[320px]">
+              <div className="flex justify-between text-[11px] font-semibold text-text-3 mb-3">
+                <span className="w-[33.33%] text-center">A1</span>
+                <span className="w-[33.33%] text-center">A2</span>
+                <span className="w-[33.33%] text-center">B1</span>
               </div>
-              <div className="flex rounded-lg overflow-hidden border border-border">
-                {BAND_RANGES.map((range, bandIdx) => (
-                  <div
-                    key={BAND_LABELS[bandIdx]}
-                    className="flex items-center justify-between py-3 px-0.5 gap-0"
-                    style={{
-                      width: `${((range.end - range.start) / 15) * 100}%`,
-                      backgroundColor:
-                        bandIdx === 0
-                          ? "#EFF6FF"
-                          : bandIdx === 1
-                            ? "#F0FDF4"
-                            : "#FFFBEB",
-                    }}
-                  >
-                    {SUB_LEVEL_ORDER.slice(range.start, range.end).map(
-                      (levelKey, i) => {
-                        const globalIndex = range.start + i;
-                        return (
-                          <div
-                            key={levelKey}
-                            className="flex flex-col items-center"
-                          >
-                            <div className="flex gap-0.5">
-                              {SECTION_ORDER.map((sec) => {
-                                const currentIdx = getLevelIndex(
-                                  progress[sec].level
-                                );
-                                const filled =
-                                  globalIndex <= currentIdx;
-                                const color = SECTION_COLORS[sec];
-                                return (
-                                  <div
-                                    key={sec}
-                                    className="w-2 h-2 rounded-full border shrink-0"
-                                    style={{
-                                      backgroundColor: filled
-                                        ? color.border
-                                        : "transparent",
-                                      borderColor: color.border,
-                                      borderWidth: filled ? 0 : 1,
-                                    }}
-                                    title={`${sec}: ${progress[sec].level}`}
-                                  />
-                                );
-                              })}
-                            </div>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className="flex gap-6 mt-3 justify-center flex-wrap text-[12px] text-text-2">
-                <span className="flex items-center gap-1.5">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full shrink-0"
-                    style={{ backgroundColor: SECTION_COLORS.conjugations.border }}
-                  />
-                  Conjugations
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full shrink-0"
-                    style={{ backgroundColor: SECTION_COLORS.vocabulary.border }}
-                  />
-                  Vocabulary
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full shrink-0"
-                    style={{ backgroundColor: SECTION_COLORS.grammar.border }}
-                  />
-                  Grammar
-                </span>
+              <div className="space-y-4">
+                {SECTION_ORDER.map((sec) => {
+                  const currentIdx = getLevelIndex(progress[sec].level);
+                  const color = SECTION_COLORS[sec].border;
+                  return (
+                    <div
+                      key={sec}
+                      className="flex items-center gap-3"
+                    >
+                      <span className="text-[13px] font-medium text-text capitalize w-28 shrink-0">
+                        {sec}
+                      </span>
+                      <div className="flex flex-1 gap-0.5 min-w-0">
+                        {SUB_LEVEL_ORDER.map((levelKey, i) => {
+                          const filled = i <= currentIdx;
+                          const info = getLevelInfo(sec, levelKey);
+                          const tooltip = `${levelKey} — ${info.label}`;
+                          return (
+                            <span
+                              key={levelKey}
+                              className="relative h-2 w-6 md:w-10 shrink-0 rounded-sm transition-all duration-150 group/seg"
+                              style={{
+                                background: filled
+                                  ? `linear-gradient(to right, ${color}, ${color}E6)`
+                                  : "#E5E7EB",
+                              }}
+                              title={tooltip}
+                            >
+                              <span
+                                className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 rounded text-[12px] text-white whitespace-nowrap opacity-0 group-hover/seg:opacity-100 transition-opacity duration-200 delay-200 z-10"
+                                style={{ backgroundColor: "#1F2937" }}
+                              >
+                                {tooltip}
+                              </span>
+                            </span>
+                          );
+                        })}
+                      </div>
+                      <span
+                        className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white"
+                        style={{ backgroundColor: color }}
+                      >
+                        {progress[sec].level}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -212,31 +169,40 @@ export default function DashboardPage() {
             return (
               <div
                 key={section}
-                className="border border-border rounded-xl p-6 bg-white transition-all duration-200 hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
+                className="border border-border rounded-xl p-6 bg-white transition-all duration-150 overflow-hidden hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
                 style={{
                   borderLeftWidth: 4,
                   borderLeftColor: colors.border,
                 }}
               >
+                <div
+                  className="h-1 -mx-6 -mt-6 mb-4"
+                  style={{ background: `linear-gradient(to bottom, ${colors.border}0D, transparent)` }}
+                />
                 <h2 className="text-lg font-bold tracking-tight text-text capitalize">
                   {section}
                 </h2>
-                <div className="flex items-center gap-2 mt-2">
+                <div className="flex items-center gap-2 mt-2 flex-wrap">
                   <span
                     className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
                     style={{ backgroundColor: colors.border }}
                   >
                     {level}
                   </span>
+                  {hasTested && progress[section].testScore != null && (
+                    <span className="text-[12px] text-text-3">
+                      {Math.round(progress[section].testScore!)}%
+                    </span>
+                  )}
                   <span className="text-[13px] text-text-2">{info.label}</span>
                 </div>
-                <p className="text-[13px] text-text-2 mt-2 line-clamp-2">
+                <p className="text-[13px] text-text-2 mt-2">
                   {info.description}
                 </p>
                 <div className="mt-3">
                   <div className="h-1.5 bg-bg-s rounded-full overflow-hidden">
                     <div
-                      className="h-full rounded-full transition-all"
+                      className="h-full rounded-full transition-all duration-150"
                       style={{
                         width: `${progressPct}%`,
                         backgroundColor: colors.border,
@@ -247,42 +213,43 @@ export default function DashboardPage() {
                     {levelIdx + 1} / 15
                   </p>
                 </div>
-                {!grammarDisabled ? (
-                  <Link
-                    href={`/dashboard/test/${section}`}
-                    className={`mt-4 inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-lg transition-colors ${
-                      hasTested
-                        ? "border border-border text-text-2 hover:bg-bg-s"
-                        : "text-white hover:opacity-90"
-                    }`}
-                    style={
-                      hasTested
-                        ? {}
-                        : { backgroundColor: colors.border }
-                    }
-                  >
-                    {hasTested ? "Retake Test" : "Take Placement Test"}
-                  </Link>
-                ) : (
-                  <div
-                    className="mt-4 inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-lg border border-border text-text-3 cursor-not-allowed bg-bg-s"
-                    title="Coming soon — grammar content needed"
-                  >
-                    Take Placement Test (coming soon)
-                  </div>
-                )}
-                {hasTested && progress[section].testScore != null && (
-                  <p className="text-[12px] text-text-3 mt-2">
-                    Last score: {Math.round(progress[section].testScore!)}% ·{" "}
-                    {new Date(
-                      progress[section].completedAt!
-                    ).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </p>
-                )}
+                <div className="border-t border-border-l mt-4 pt-4">
+                  {!grammarDisabled ? (
+                    <Link
+                      href={`/dashboard/test/${section}`}
+                      className={`inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-xl transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                        hasTested
+                          ? "border-2 bg-transparent hover:bg-bg-s"
+                          : "text-white hover:opacity-90"
+                      }`}
+                      style={
+                        hasTested
+                          ? { borderColor: colors.border, color: colors.border }
+                          : { backgroundColor: colors.border }
+                      }
+                    >
+                      {hasTested ? "Retake Test" : "Take Placement Test"}
+                    </Link>
+                  ) : (
+                    <div
+                      className="inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-xl border border-border text-text-3 cursor-not-allowed bg-bg-s"
+                      title="Coming soon — grammar content needed"
+                    >
+                      Take Placement Test (coming soon)
+                    </div>
+                  )}
+                  {hasTested && progress[section].completedAt && (
+                    <p className="text-[11px] text-text-3 mt-2">
+                      {new Date(
+                        progress[section].completedAt!
+                      ).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
               </div>
             );
           })}
@@ -290,8 +257,11 @@ export default function DashboardPage() {
 
         {/* Quick stats */}
         <section className="border-t border-border-l pt-8 pb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div
+              className="border border-border rounded-xl p-4 bg-white"
+              style={{ borderTopWidth: 3, borderTopColor: SECTION_COLORS.conjugations.border }}
+            >
               <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider">
                 Best Section
               </p>
@@ -299,7 +269,10 @@ export default function DashboardPage() {
                 {bestSection.key} {progress[bestSection.key].level}
               </p>
             </div>
-            <div>
+            <div
+              className="border border-border rounded-xl p-4 bg-white"
+              style={{ borderTopWidth: 3, borderTopColor: SECTION_COLORS.vocabulary.border }}
+            >
               <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider">
                 Total Tests Taken
               </p>
@@ -307,7 +280,10 @@ export default function DashboardPage() {
                 {totalTests}
               </p>
             </div>
-            <div>
+            <div
+              className="border border-border rounded-xl p-4 bg-white"
+              style={{ borderTopWidth: 3, borderTopColor: SECTION_COLORS.grammar.border }}
+            >
               <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider">
                 Last Tested
               </p>
