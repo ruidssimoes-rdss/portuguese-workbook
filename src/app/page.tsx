@@ -13,8 +13,8 @@ const sections = [
     title: "Vocabulary",
     desc: "Essential words and phrases organized by theme and CEFR level.",
     href: "/vocabulary",
-    count: "Coming soon",
-    ready: false,
+    count: "238 words",
+    ready: true,
   },
   {
     title: "Grammar",
