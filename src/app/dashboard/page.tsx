@@ -203,9 +203,8 @@ export default function DashboardPage() {
             const isComplete = highestPassed === "B1.5";
             const info = getLevelInfo(section, currentLevel);
             const targetAccuracy = info.targetAccuracy ?? 70;
-            const progressPct = highestPassed
-              ? ((getLevelIndex(highestPassed) + 1) / 15) * 100
-              : 0;
+            const passedCount = highestPassed ? getLevelIndex(highestPassed) + 1 : 0;
+            const progressPct = Math.max(4, (passedCount / 15) * 100);
             const grammarDisabled = section === "grammar";
             const colors = SECTION_COLORS[section];
             const failedLast = s.lastTestScore != null && s.lastTestScore < targetAccuracy;
@@ -241,7 +240,7 @@ export default function DashboardPage() {
                 <div className="mt-4">
                   <div
                     className="h-1.5 rounded-full overflow-hidden"
-                    style={{ backgroundColor: `${colors.track}26` }}
+                    style={{ backgroundColor: `${colors.track}1A` }}
                   >
                     <div
                       className="h-full rounded-full transition-all duration-150"
@@ -252,7 +251,7 @@ export default function DashboardPage() {
                     />
                   </div>
                   <p className="text-[12px] text-text-3 mt-1">
-                    {highestPassed ? getLevelIndex(highestPassed) + 1 : 0} / 15
+                    {passedCount} / 15
                   </p>
                 </div>
                 {!isComplete && (

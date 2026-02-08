@@ -49,6 +49,7 @@ export default function LevelTestPage() {
   const [revealed, setRevealed] = useState(false);
   const [answers, setAnswers] = useState<{ correct: boolean }[]>([]);
   const [resultAnswers, setResultAnswers] = useState<{ correct: boolean }[]>([]);
+  const [testedLevel, setTestedLevel] = useState<string | null>(null);
   const [questionTransition, setQuestionTransition] = useState(false);
 
   const progress = typeof window !== "undefined" ? getProgress() : null;
@@ -60,13 +61,20 @@ export default function LevelTestPage() {
     return (data as Record<string, { label: string; description: string; targetAccuracy?: number }>)[currentLevel];
   }, [section, currentLevel]);
   const targetAccuracy = levelInfo?.targetAccuracy ?? 70;
-  const nextLevel = getNextLevel(currentLevel);
+  const levelForUnlock = phase === "results" && testedLevel ? testedLevel : currentLevel;
+  const nextLevel = getNextLevel(levelForUnlock);
   const nextLevelInfo = useMemo(() => {
     if (!nextLevel) return null;
     const data = levelsData[section as keyof LevelsData];
     if (typeof data !== "object" || !data || !(nextLevel in data)) return null;
     return (data as Record<string, { label: string }>)[nextLevel];
   }, [section, nextLevel]);
+  const resultsLevelInfo = useMemo(() => {
+    const level = testedLevel ?? currentLevel;
+    const data = levelsData[section as keyof LevelsData];
+    if (typeof data !== "object" || !data || !(level in data)) return null;
+    return (data as Record<string, { label: string }>)[level];
+  }, [section, testedLevel, currentLevel]);
 
   const sectionColor = isConjugations ? SECTION_COLORS.conjugations : SECTION_COLORS.vocabulary;
   const sectionLabel = section.charAt(0).toUpperCase() + section.slice(1);
@@ -95,6 +103,8 @@ export default function LevelTestPage() {
     setSelectedIndex(null);
     setRevealed(false);
     setAnswers([]);
+    setResultAnswers([]);
+    setTestedLevel(null);
     setPhase("question");
   };
 
@@ -117,6 +127,7 @@ export default function LevelTestPage() {
           ? [...answers, { correct: selectedIndex === currentQuestion.correctIndex }]
           : answers;
       setResultAnswers(allAnswers);
+      setTestedLevel(currentLevel);
       const correctCount = allAnswers.filter((a) => a.correct).length;
       const score = Math.round((correctCount / questions.length) * 100);
       const passed = score >= targetAccuracy;
@@ -362,7 +373,7 @@ export default function LevelTestPage() {
             >
               <div className="p-8">
                 <h1 className="text-xl font-bold tracking-tight text-text">
-                  Level {currentLevel} — {levelInfo.label}
+                  Level {testedLevel ?? currentLevel} — {resultsLevelInfo?.label ?? levelInfo?.label ?? ""}
                 </h1>
                 <div className="flex flex-col items-center mt-8">
                   <div className="relative w-[120px] h-[120px]">
