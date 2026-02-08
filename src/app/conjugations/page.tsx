@@ -102,7 +102,7 @@ export default function ConjugationsPage() {
               <Link
                 key={v}
                 href={`/conjugations/${v.toLowerCase()}`}
-                className="group bg-white border border-border rounded-xl p-5 flex flex-col min-h-[170px] transition-all hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-0.5"
+                className="group bg-white border border-border rounded-xl p-5 flex flex-col min-h-[170px] transition-all duration-200 hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
               >
                 <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] mb-2.5">
                   {v}

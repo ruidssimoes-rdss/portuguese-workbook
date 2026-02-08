@@ -53,3 +53,12 @@
 .animate-pulse-segment {
   animation: pulse-segment 1.5s ease-in-out infinite;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}

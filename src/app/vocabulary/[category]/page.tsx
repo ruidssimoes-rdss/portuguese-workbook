@@ -10,6 +10,10 @@ import type { VocabData } from "@/types/vocab";
 
 const data = vocabData as unknown as VocabData;
 
+function stripEmoji(s: string): string {
+  return s.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, "").replace(/\s+/g, " ").trim();
+}
+
 export default function VocabCategoryPage() {
   const params = useParams();
   const slug = params.category as string;
@@ -56,38 +60,26 @@ export default function VocabCategoryPage() {
       <Topbar />
       <main className="px-6 md:px-10">
         {/* Header */}
-        <div className="flex items-center justify-between gap-4 flex-wrap py-5">
-          <div className="flex items-center gap-2">
-            <Link
-              href="/vocabulary"
-              className="text-text-3 hover:text-text transition-colors"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </Link>
-            <span className="text-2xl">{category.emoji}</span>
-            <span className="text-[22px] font-bold tracking-tight">
-              {category.title}
-            </span>
-            <span className="text-[13px] text-text-3 ml-1">
-              · {category.words.length} words
-            </span>
-          </div>
-          <input
+        <div className="flex flex-col gap-2 py-5">
+          <Link
+            href="/vocabulary"
+            className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
+          >
+            ← {stripEmoji(category.title)}
+          </Link>
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <h1 className="text-[22px] font-bold tracking-tight">
+              {stripEmoji(category.title)}
+            </h1>
+            <input
             type="text"
             placeholder="Search words…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="px-3 py-1.5 border border-border rounded-lg text-[13px] bg-white text-text outline-none focus:border-[#999] w-[180px] transition-colors"
           />
+          </div>
+          <p className="text-[13px] text-text-3">{category.words.length} words</p>
         </div>
 
         {/* Filters */}
@@ -125,8 +117,50 @@ export default function VocabCategoryPage() {
           </div>
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto mb-12 border border-border rounded-xl bg-white">
+        {/* Mobile: card layout */}
+        <div className="md:hidden space-y-2 mb-12">
+          {filtered.length === 0 ? (
+            <p className="text-center py-12 text-text-3 text-[14px]">
+              No words match your filter.
+            </p>
+          ) : (
+            filtered.map((w, i) => (
+              <div
+                key={i}
+                className="border border-border-l rounded-lg p-4 bg-white"
+              >
+                <p className="text-[16px] font-bold tracking-tight text-text">
+                  {w.portuguese}
+                  {w.gender && (
+                    <span className="text-[13px] font-normal text-text-2 ml-1">
+                      ({w.gender === "m" ? "m." : "f."})
+                    </span>
+                  )}
+                </p>
+                <p className="text-[14px] text-text-2 mt-0.5">{w.english}</p>
+                {w.example && (
+                  <p className="text-[13px] text-text-2 italic mt-2">
+                    {w.example}
+                  </p>
+                )}
+                {w.exampleTranslation && (
+                  <p className="text-[12px] text-text-3 mt-0.5">
+                    {w.exampleTranslation}
+                  </p>
+                )}
+                <div className="flex gap-1.5 flex-wrap mt-2">
+                  <Badge variant={cefrVariant[w.cefr] || "gray"}>{w.cefr}</Badge>
+                  <Badge variant="gray" className="capitalize">
+                    {w.subcategory}
+                  </Badge>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Desktop: table */}
+        <div className="hidden md:block overflow-x-auto mb-12 border border-border rounded-xl bg-white">
           <table className="w-full text-[13px] border-collapse">
             <thead>
               <tr>

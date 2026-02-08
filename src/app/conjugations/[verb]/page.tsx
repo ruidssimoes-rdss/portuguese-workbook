@@ -103,8 +103,54 @@ export default function VerbPage() {
           ))}
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto mb-12 border border-border rounded-xl bg-white">
+        {/* Mobile: card layout */}
+        <div className="md:hidden space-y-2 mb-12">
+          {rows.map((r, i) => {
+            const person = r.Person.split(" (")[0];
+            return (
+              <div
+                key={i}
+                className="border border-border-l rounded-lg p-4 bg-white"
+              >
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <Badge variant={tenseVariant[r.Tense] || "gray"}>
+                    {r.Tense}
+                  </Badge>
+                  <span className="text-[13px] text-text-2">{person}</span>
+                </div>
+                <p className="text-[16px] font-bold tracking-tight text-text">
+                  {r.Conjugation}
+                </p>
+                {r["Example Sentence"] && (
+                  <p className="text-[13px] text-text-2 italic mt-1.5">
+                    {r["Example Sentence"]}
+                  </p>
+                )}
+                {r["English Translation"] && (
+                  <p className="text-[12px] text-text-3 mt-0.5">
+                    {r["English Translation"]}
+                  </p>
+                )}
+                {r.Notes && (
+                  <p className="text-[12px] text-text-3 mt-1 truncate" title={r.Notes}>
+                    {r.Notes}
+                  </p>
+                )}
+                <div className="flex gap-1.5 flex-wrap mt-2">
+                  <Badge variant={cefrVariant[r["CEFR (Tense)"]] || "gray"}>
+                    {r["CEFR (Tense)"]}
+                  </Badge>
+                  <Badge variant={r.Type === "Exception" ? "orange" : "green"}>
+                    {r.Type === "Exception" ? "Irreg." : "Reg."}
+                  </Badge>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop: table */}
+        <div className="hidden md:block overflow-x-auto mb-12 border border-border rounded-xl bg-white">
           <table className="w-full text-[13px] border-collapse">
             <thead>
               <tr>

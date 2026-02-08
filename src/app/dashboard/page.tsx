@@ -144,9 +144,9 @@ export default function DashboardPage() {
               <div className="flex items-center mb-3">
                 <span className="min-w-[120px] w-[120px] shrink-0" aria-hidden />
                 <div className="flex flex-1 min-w-0 gap-2">
-                  <span className="flex-1 text-center text-xs font-medium uppercase tracking-wide text-gray-400">A1</span>
-                  <span className="flex-1 text-center text-xs font-medium uppercase tracking-wide text-gray-400">A2</span>
-                  <span className="flex-1 text-center text-xs font-medium uppercase tracking-wide text-gray-400">B1</span>
+                  <span className="flex-1 text-center text-[12px] font-medium uppercase tracking-wide text-text-2">A1</span>
+                  <span className="flex-1 text-center text-[12px] font-medium uppercase tracking-wide text-text-2">A2</span>
+                  <span className="flex-1 text-center text-[12px] font-medium uppercase tracking-wide text-text-2">B1</span>
                 </div>
                 <span className="w-12 shrink-0" aria-hidden />
               </div>
@@ -166,7 +166,7 @@ export default function DashboardPage() {
                         {[0, 1, 2].map((band) => (
                           <div
                             key={band}
-                            className="flex flex-1 gap-[3px] min-w-0 rounded"
+                            className={`flex flex-1 gap-[3px] min-w-0 rounded ${band < 2 ? "border-r border-border-l" : ""}`}
                             style={{ backgroundColor: BAND_TINTS[band] }}
                           >
                             {SUB_LEVEL_ORDER.slice(band * 5, band * 5 + 5).map((levelKey, j) => {
@@ -234,7 +234,11 @@ export default function DashboardPage() {
             return (
               <div
                 key={section}
-                className="rounded-[12px] border p-5 transition-all duration-150 hover:shadow-md flex flex-col"
+                className={`rounded-[12px] border p-5 transition-all duration-150 flex flex-col ${
+                  !grammarDisabled
+                    ? "hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
+                    : ""
+                }`}
                 style={{
                   backgroundColor: colors.bg,
                   borderColor: colors.border,

@@ -8,6 +8,10 @@ import Link from "next/link";
 
 const data = vocabData as unknown as VocabData;
 
+function stripEmoji(s: string): string {
+  return s.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, "").replace(/\s+/g, " ").trim();
+}
+
 export default function VocabularyPage() {
   const totalWords = data.categories.reduce((s, c) => s + c.words.length, 0);
 
@@ -35,14 +39,13 @@ export default function VocabularyPage() {
               <Link
                 key={cat.id}
                 href={`/vocabulary/${cat.id}`}
-                className="group border border-border rounded-xl p-6 transition-all hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-0.5"
+                className="group border border-border rounded-xl p-6 transition-all duration-200 hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-3xl">{cat.emoji}</span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2">
                       <h2 className="text-lg font-bold tracking-tight">
-                        {cat.title}
+                        {stripEmoji(cat.title)}
                       </h2>
                       <span className="text-[12px] text-text-3 font-medium whitespace-nowrap">
                         {cat.words.length} words

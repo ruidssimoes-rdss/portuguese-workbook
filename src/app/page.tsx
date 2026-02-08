@@ -76,9 +76,9 @@ export default function Home() {
       <main className="max-w-[1100px] mx-auto px-6 md:px-10">
         {/* Daily Focus — hero */}
         <section className="pt-12 pb-16 md:pt-16 md:pb-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
             {/* Word of the Day */}
-            <div className="border border-border rounded-xl p-6 bg-white">
+            <div className="border border-border rounded-xl p-6 bg-white flex flex-col">
               <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
                 Word of the Day
               </p>
@@ -105,7 +105,7 @@ export default function Home() {
                       </p>
                     </>
                   )}
-                  <div className="flex gap-1.5 mt-4">
+                  <div className="flex gap-1.5 mt-4 mt-auto">
                     <Badge variant={cefrVariant[wordOfDay.word.cefr] || "gray"}>
                       {wordOfDay.word.cefr}
                     </Badge>
@@ -158,7 +158,7 @@ export default function Home() {
                           <th className="text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
                             Conjugation
                           </th>
-                          <th className="text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
+                          <th className="hidden sm:table-cell text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
                             Example
                           </th>
                         </tr>
@@ -175,7 +175,7 @@ export default function Home() {
                             <td className="px-2.5 py-1.5 font-semibold whitespace-nowrap">
                               {row.Conjugation}
                             </td>
-                            <td className="px-2.5 py-1.5 text-text-2 italic max-w-[180px] truncate">
+                            <td className="hidden sm:table-cell px-2.5 py-1.5 text-text-2 italic max-w-[180px] truncate">
                               {row["Example Sentence"]}
                             </td>
                           </tr>
@@ -239,24 +239,35 @@ export default function Home() {
               ) : (
                 <div
                   key={s.href}
-                  className="flex items-center gap-4 border border-border rounded-xl p-6 bg-white h-full opacity-50 cursor-not-allowed"
+                  className="flex items-center gap-4 border border-dashed border-border rounded-xl p-6 bg-bg-s h-full cursor-not-allowed"
                 >
-                  {cardContent}
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-lg font-bold tracking-tight text-text-2">
+                      {s.title}
+                    </h2>
+                    <p className="text-text-3 text-[12px] italic mt-1">
+                      Coming soon
+                    </p>
+                    <p className="text-[12px] text-text-3 mt-1">{s.desc}</p>
+                  </div>
                 </div>
               );
             })}
           </div>
         </section>
 
-        {/* Platform stats bar */}
+        {/* Platform stats bar + dashboard link */}
         <section className="pb-16 pt-2 text-center">
-          <p className="text-[13px] text-text-3">
+          <p className="text-[13px] text-text-2">
             {totalVerbs} verbs · {totalConjugations.toLocaleString()}{" "}
             conjugations · {totalVocabWords} words · {totalCategories} categories
           </p>
-          <p className="text-[12px] text-text-3 opacity-70 mt-1.5">
-            Progress tracking coming soon
-          </p>
+          <Link
+            href="/dashboard"
+            className="text-[13px] text-text-2 hover:text-text font-medium transition-colors mt-2 inline-block"
+          >
+            Track your progress →
+          </Link>
         </section>
       </main>
     </>
