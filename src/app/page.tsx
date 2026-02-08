@@ -1,19 +1,36 @@
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import verbData from "@/data/verbs.json";
+import vocabData from "@/data/vocab.json";
+import type { VerbDataSet } from "@/types";
+import type { VocabData } from "@/types/vocab";
+
+const verbs = verbData as unknown as VerbDataSet;
+const vocab = vocabData as unknown as VocabData;
+
+const totalVerbs = verbs.order.length;
+const totalConjugations = verbs.order.reduce(
+  (sum, key) => sum + (verbs.verbs[key]?.conjugations?.length ?? 0),
+  0
+);
+const totalVocabWords = vocab.categories.reduce(
+  (sum, cat) => sum + (cat.words?.length ?? 0),
+  0
+);
 
 const sections = [
   {
     title: "Conjugations",
-    desc: "20 essential verbs across 6 tenses with examples and grammar notes.",
+    desc: `${totalVerbs} verbs across 6 tenses with examples and grammar notes.`,
     href: "/conjugations",
-    count: "600 conjugations",
+    count: `${totalConjugations.toLocaleString()} conjugations`,
     ready: true,
   },
   {
     title: "Vocabulary",
     desc: "Essential words and phrases organized by theme and CEFR level.",
     href: "/vocabulary",
-    count: "238 words",
+    count: `${totalVocabWords} words`,
     ready: true,
   },
   {
