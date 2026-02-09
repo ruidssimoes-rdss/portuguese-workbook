@@ -36,7 +36,7 @@ export default function VerbPage() {
     return (
       <>
         <Topbar />
-        <main className="max-w-[1100px] mx-auto px-10 py-16">
+        <main className="w-full px-4 md:px-6 lg:px-10 py-16">
           <p className="text-text-2">Verb not found.</p>
           <Link href="/conjugations" className="text-text-2 underline mt-2 block">
             ← Back to all verbs
@@ -57,7 +57,7 @@ export default function VerbPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
+      <main className="w-full px-4 md:px-6 lg:px-10">
         {/* Compact header */}
         <div className="flex items-center justify-between gap-4 flex-wrap py-5">
           <div className="flex items-center gap-2 flex-wrap">
@@ -140,7 +140,7 @@ export default function VerbPage() {
                   </p>
                 )}
                 {r.Notes && (
-                  <p className={`text-[12px] mt-1 truncate ${r.Type === "Exception" ? "text-amber-800" : "text-text-3"}`} title={r.Notes}>
+                  <p className={`text-[12px] mt-1 break-words ${r.Type === "Exception" ? "text-amber-800" : "text-text-3"}`}>
                     {r.Notes}
                   </p>
                 )}
@@ -157,28 +157,37 @@ export default function VerbPage() {
           })}
         </div>
 
-        {/* Desktop: table */}
-        <div className="hidden md:block overflow-x-auto mb-12 border border-border rounded-lg bg-white">
-          <table className="w-full text-[13px] border-collapse">
+        {/* Desktop: table — full width, no scroll, text wraps; Notes only when a tense is selected */}
+        <div className="hidden md:block mb-12 border border-border rounded-lg bg-white">
+          <table className="w-full text-[13px] border-collapse table-auto">
             <thead>
               <tr>
-                {[
-                  "Tense",
-                  "Person",
-                  "Conjugation",
-                  "Example",
-                  "Translation",
-                  "Notes",
-                  "CEFR",
-                  "Type",
-                ].map((h) => (
-                  <th
-                    key={h}
-                    className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s sticky top-0 whitespace-nowrap"
-                  >
-                    {h}
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                  Tense
+                </th>
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                  Person
+                </th>
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                  Conjugation
+                </th>
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s min-w-0">
+                  Example
+                </th>
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s min-w-0">
+                  Translation
+                </th>
+                {tenseFilter !== "All" && (
+                  <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s min-w-0">
+                    Notes
                   </th>
-                ))}
+                )}
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                  CEFR
+                </th>
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                  Type
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -207,15 +216,17 @@ export default function VerbPage() {
                         <PronunciationButton text={r.Conjugation} size="sm" />
                       </div>
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 italic text-[12.5px] whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 italic text-[12.5px] min-w-0 break-words">
                       {r["Example Sentence"]}
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l text-text-3 text-[12px] whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-border-l text-text-3 text-[12px] min-w-0 break-words">
                       {r["English Translation"]}
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 text-[12px] whitespace-nowrap">
-                      {r.Notes}
-                    </td>
+                    {tenseFilter !== "All" && (
+                      <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 text-[12px] min-w-0 break-words">
+                        {r.Notes}
+                      </td>
+                    )}
                     <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
                       <Badge variant={cefrVariant[r["CEFR (Tense)"]] || "gray"}>
                         {r["CEFR (Tense)"]}
