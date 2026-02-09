@@ -10,10 +10,10 @@ import type { GrammarData, GrammarTopic } from "@/types/grammar";
 const data = grammarData as unknown as GrammarData;
 
 const GRAMMAR_COLORS = {
-  track: "#4B5563",
-  border: "#9CA3AF",
-  bg: "#F4F5F7",
-  title: "#4B5563",
+  track: "#5B4FA0",
+  border: "#A5B4FC",
+  bg: "#EEF2FF",
+  title: "#5B4FA0",
 };
 
 export default function GrammarTopicPage() {
@@ -79,24 +79,24 @@ export default function GrammarTopicPage() {
             {topic.rules.map((rule, i) => (
               <div
                 key={i}
-                className="rounded-xl border p-5"
+                className="rounded-lg border p-4 md:p-5"
                 style={{ backgroundColor: GRAMMAR_COLORS.bg, borderColor: GRAMMAR_COLORS.border }}
               >
-                <p className="font-medium text-text" style={{ color: GRAMMAR_COLORS.title }}>
-                  {rule.rule}
+                <p className="font-semibold text-text text-[15px]" style={{ color: GRAMMAR_COLORS.title }}>
+                  {i + 1}. {rule.rule}
                 </p>
                 <p className="text-[14px] italic text-text-2 mt-1">
                   {rule.rulePt}
                 </p>
                 {rule.examples.length > 0 && (
-                  <div className="mt-3">
+                  <div className="mt-3 pt-3 border-t border-indigo-200/50">
                     <p className="text-[12px] font-medium uppercase tracking-wide text-text-3 mb-1">Examples</p>
                     <ul className="list-disc list-inside text-[14px] text-text-2 space-y-0.5">
                       {rule.examples.map((ex, j) => (
                         <li key={j}>
-                          <span className="font-medium text-text">{ex.pt}</span>
+                          <span className="font-semibold text-text font-mono text-[13px]">{ex.pt}</span>
                           {" — "}
-                          {ex.en}
+                          <span className="text-text-2">{ex.en}</span>
                         </li>
                       ))}
                     </ul>

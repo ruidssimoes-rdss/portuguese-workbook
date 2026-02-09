@@ -47,7 +47,7 @@ export default function VocabCategoryPage() {
   return (
     <>
       <Topbar />
-      <main className="px-6 md:px-10">
+      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
         {/* Header */}
         <div className="flex flex-col gap-2 py-5">
           <Link
@@ -90,108 +90,52 @@ export default function VocabCategoryPage() {
           </div>
         </div>
 
-        {/* Mobile: card layout */}
-        <div className="md:hidden space-y-2 mb-12">
+        {/* Word cards — responsive grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {filtered.length === 0 ? (
-            <p className="text-center py-12 text-text-3 text-[14px]">
+            <p className="col-span-full text-center py-12 text-text-3 text-[14px]">
               No words match your filter.
             </p>
           ) : (
             filtered.map((w, i) => (
               <div
                 key={i}
-                className="border border-border-l rounded-lg p-4 bg-white"
+                className="border border-border rounded-lg p-4 bg-white min-h-[120px] flex flex-col transition-colors duration-200 hover:border-indigo-200"
               >
-                <p className="text-[16px] font-bold tracking-tight text-text">
+                <p className="text-[17px] font-bold tracking-tight text-text break-words">
                   {w.portuguese}
-                  {w.gender && (
-                    <span className="text-[13px] font-normal text-text-2 ml-1">
-                      ({w.gender === "m" ? "m." : "f."})
+                </p>
+                <p className="text-[14px] text-text-2 mt-0.5 break-words">
+                  {w.english}
+                </p>
+                {w.example && (
+                  <>
+                    <p className="text-[13px] text-text-2 italic mt-2 break-words">
+                      {w.example}
+                    </p>
+                    {w.exampleTranslation && (
+                      <p className="text-[12px] text-text-3 mt-0.5 break-words">
+                        {w.exampleTranslation}
+                      </p>
+                    )}
+                  </>
+                )}
+                <div className="flex gap-1.5 flex-wrap mt-3 mt-auto">
+                  <Badge variant={cefrVariant[w.cefr] || "gray"}>{w.cefr}</Badge>
+                  {w.gender === "m" && (
+                    <span className="inline-flex items-center text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+                      m
                     </span>
                   )}
-                </p>
-                <p className="text-[14px] text-text-2 mt-0.5">{w.english}</p>
-                {w.example && (
-                  <p className="text-[13px] text-text-2 italic mt-2">
-                    {w.example}
-                  </p>
-                )}
-                {w.exampleTranslation && (
-                  <p className="text-[12px] text-text-3 mt-0.5">
-                    {w.exampleTranslation}
-                  </p>
-                )}
-                <div className="flex gap-1.5 flex-wrap mt-2">
-                  <Badge variant={cefrVariant[w.cefr] || "gray"}>{w.cefr}</Badge>
+                  {w.gender === "f" && (
+                    <span className="inline-flex items-center text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-pink-100 text-pink-800 border border-pink-200">
+                      f
+                    </span>
+                  )}
                 </div>
               </div>
             ))
           )}
-        </div>
-
-        {/* Desktop: table */}
-        <div className="hidden md:block overflow-x-auto mb-12 border border-border rounded-xl bg-white">
-          <table className="w-full text-[13px] border-collapse">
-            <thead>
-              <tr>
-                {[
-                  "Portuguese",
-                  "English",
-                  "Gender",
-                  "Example",
-                  "Translation",
-                  "CEFR",
-                ].map((h) => (
-                  <th
-                    key={h}
-                    className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s sticky top-0 whitespace-nowrap"
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((w, i) => (
-                <tr key={i} className="hover:bg-bg-s">
-                  <td className="px-3.5 py-2.5 border-b border-border-l font-bold tracking-tight whitespace-nowrap">
-                    {w.portuguese}
-                  </td>
-                  <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 whitespace-nowrap">
-                    {w.english}
-                  </td>
-                  <td className="px-3.5 py-2.5 border-b border-border-l text-text-3 whitespace-nowrap">
-                    {w.gender === "m"
-                      ? "masc."
-                      : w.gender === "f"
-                        ? "fem."
-                        : "—"}
-                  </td>
-                  <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 italic text-[12.5px] whitespace-nowrap">
-                    {w.example}
-                  </td>
-                  <td className="px-3.5 py-2.5 border-b border-border-l text-text-3 text-[12px] whitespace-nowrap">
-                    {w.exampleTranslation}
-                  </td>
-                  <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
-                    <Badge variant={cefrVariant[w.cefr] || "gray"}>
-                      {w.cefr}
-                    </Badge>
-                  </td>
-                </tr>
-              ))}
-              {filtered.length === 0 && (
-                <tr>
-                  <td
-                    colSpan={6}
-                    className="text-center py-12 text-text-3 text-[14px]"
-                  >
-                    No words match your filter.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
         </div>
       </main>
     </>

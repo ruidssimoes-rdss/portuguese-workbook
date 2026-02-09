@@ -134,7 +134,7 @@ export default function DashboardPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-6 md:px-10">
+      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
         <header className="pt-12 pb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-text">
             Progress & Tests
@@ -240,7 +240,7 @@ export default function DashboardPage() {
             return (
               <div
                 key={section}
-                className="rounded-[12px] border p-5 transition-all duration-150 flex flex-col hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
+                className="rounded-lg border p-4 md:p-5 transition-all duration-200 flex flex-col hover:shadow-[0_4px_16px_rgba(91,79,160,0.08)] hover:-translate-y-px"
                 style={{
                   backgroundColor: colors.bg,
                   borderColor: colors.border,
@@ -336,7 +336,7 @@ export default function DashboardPage() {
         <section className="border-t border-border-l pt-8 pb-16">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div
-              className="rounded-[12px] border p-5 transition-all duration-150"
+              className="rounded-lg border p-4 md:p-5 transition-all duration-200"
               style={{
                 backgroundColor: SECTION_COLORS[focusSection].bg,
                 borderColor: SECTION_COLORS[focusSection].border,
@@ -350,7 +350,7 @@ export default function DashboardPage() {
                 {focusSection} · {progress[focusSection].currentLevel}
               </p>
             </div>
-            <div className="rounded-[12px] border border-[#E5E7EB] p-5 bg-[#F9FAFB] transition-all duration-150">
+            <div className="rounded-lg border border-border p-4 md:p-5 bg-bg-s transition-all duration-200">
               <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Levels Passed
               </p>
@@ -358,7 +358,7 @@ export default function DashboardPage() {
                 {levelsPassedTotal} / {totalLevels}
               </p>
             </div>
-            <div className="rounded-[12px] border border-[#E5E7EB] p-5 bg-[#F9FAFB] transition-all duration-150">
+            <div className="rounded-lg border border-border p-4 md:p-5 bg-bg-s transition-all duration-200">
               <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Last Tested
               </p>

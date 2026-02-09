@@ -84,7 +84,7 @@ export default function Home() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-6 md:px-10 pt-6">
+      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10 pt-6">
         {latestChangelog && (
           <ChangelogBanner
             version={latestChangelog.version}
@@ -94,32 +94,32 @@ export default function Home() {
           />
         )}
         {/* Daily Focus — hero */}
-        <section className="pt-12 pb-16 md:pt-16 md:pb-20">
+        <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
             {/* Word of the Day */}
-            <div className="border border-border rounded-xl p-6 bg-white flex flex-col">
+            <div className="border border-border rounded-lg p-4 md:p-6 bg-white flex flex-col min-h-0 overflow-hidden">
               <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
                 Word of the Day
               </p>
               {wordOfDay ? (
                 <>
-                  <p className="text-2xl md:text-[28px] font-bold tracking-tight text-text">
+                  <p className="text-xl md:text-2xl font-bold tracking-tight text-text break-words">
                     {wordOfDay.word.portuguese}
                     {wordOfDay.word.gender && (
-                      <span className="text-lg font-normal text-text-2 ml-1">
+                      <span className="text-base font-normal text-text-2 ml-1">
                         ({wordOfDay.word.gender === "m" ? "masc." : "fem."})
                       </span>
                     )}
                   </p>
-                  <p className="text-[14px] text-text-2 mt-1">
+                  <p className="text-[14px] text-text-2 mt-1 break-words">
                     {wordOfDay.word.english}
                   </p>
                   {wordOfDay.word.example && (
                     <>
-                      <p className="text-[13px] text-text-2 italic mt-3">
+                      <p className="text-[13px] text-text-2 italic mt-3 break-words">
                         {wordOfDay.word.example}
                       </p>
-                      <p className="text-[12px] text-text-3 mt-0.5">
+                      <p className="text-[12px] text-text-3 mt-0.5 break-words">
                         {wordOfDay.word.exampleTranslation}
                       </p>
                     </>
@@ -139,14 +139,14 @@ export default function Home() {
             </div>
 
             {/* Verb of the Day */}
-            <div className="border border-border rounded-xl p-6 bg-white">
+            <div className="border border-border rounded-lg p-4 md:p-6 bg-white flex flex-col min-h-0 overflow-hidden">
               <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
                 Verb of the Day
               </p>
               {verbKey && verbOfDay ? (
                 <>
                   <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <p className="text-2xl md:text-[28px] font-bold tracking-tight text-text">
+                    <p className="text-xl md:text-2xl font-bold tracking-tight text-text break-words">
                       {verbKey}
                     </p>
                     <span className="text-[14px] text-text-2">
@@ -167,7 +167,7 @@ export default function Home() {
                       {verbOfDay.meta.cefr}
                     </Badge>
                   </div>
-                  <div className="overflow-x-auto border border-border rounded-lg mt-3">
+                  <div className="overflow-x-auto border border-border rounded-lg mt-3 min-w-0 flex-1">
                     <table className="w-full text-[12px] md:text-[13px] border-collapse">
                       <thead>
                         <tr>
@@ -219,8 +219,8 @@ export default function Home() {
         <HomeProgressBanner />
 
         {/* Section cards — 4-col desktop, 2x2 tablet, stacked mobile */}
-        <section className="pb-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+        <section className="pb-12 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {sections.map((s) => {
               const cardContent = (
                 <>
@@ -251,14 +251,14 @@ export default function Home() {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="group flex items-center gap-4 border border-border rounded-xl p-6 bg-white h-full transition-all duration-200 hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px cursor-pointer"
+                  className="group flex items-center gap-4 border border-border rounded-lg p-4 md:p-6 bg-white h-full transition-all duration-200 hover:border-indigo-200 hover:shadow-[0_4px_16px_rgba(91,79,160,0.08)] hover:-translate-y-px cursor-pointer"
                 >
                   {cardContent}
                 </Link>
               ) : (
                 <div
                   key={s.href}
-                  className="flex items-center gap-4 border border-dashed border-border rounded-xl p-6 bg-bg-s h-full cursor-not-allowed"
+                  className="flex items-center gap-4 border border-dashed border-border rounded-lg p-4 md:p-6 bg-bg-s h-full cursor-not-allowed"
                 >
                   <div className="flex-1 min-w-0">
                     <h2 className="text-lg font-bold tracking-tight text-text-2">
@@ -279,7 +279,7 @@ export default function Home() {
         <section className="pb-16 pt-2 text-center">
           <p className="text-[13px] text-text-2">
             {totalVerbs} verbs · {totalConjugations.toLocaleString()}{" "}
-            conjugations · {totalVocabWords} words · {totalCategories} categories · {totalGrammarTopics} grammar topics
+            conjugations · {totalVocabWords.toLocaleString()} words · {totalCategories} categories · {totalGrammarTopics} grammar topics
           </p>
           <Link
             href="/dashboard"

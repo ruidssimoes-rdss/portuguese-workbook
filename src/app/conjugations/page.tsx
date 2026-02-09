@@ -54,7 +54,7 @@ export default function ConjugationsPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-6 md:px-10">
+      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
         <section className="py-12 md:py-16">
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div>
@@ -83,10 +83,10 @@ export default function ConjugationsPage() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-all whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
                   filter === f
-                    ? "bg-text text-white border-text"
-                    : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-[#ccc]"
+                    ? "bg-[#5B4FA0] text-white border-[#5B4FA0]"
+                    : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-gray-300"
                 }`}
               >
                 {f}
@@ -102,7 +102,7 @@ export default function ConjugationsPage() {
               <Link
                 key={v}
                 href={`/conjugations/${v.toLowerCase()}`}
-                className="group bg-white border border-border rounded-xl p-5 flex flex-col min-h-[170px] transition-all duration-200 hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
+                className="group bg-white border border-border rounded-lg p-4 md:p-5 flex flex-col min-h-[160px] transition-all duration-200 hover:border-indigo-200 hover:shadow-[0_4px_16px_rgba(91,79,160,0.08)] hover:-translate-y-px"
               >
                 <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] mb-2.5">
                   {v}

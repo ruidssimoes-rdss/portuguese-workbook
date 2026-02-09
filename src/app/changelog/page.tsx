@@ -22,7 +22,7 @@ function formatDate(iso: string): string {
   const d = new Date(iso);
   return d.toLocaleDateString("en-GB", {
     day: "numeric",
-    month: "short",
+    month: "long",
     year: "numeric",
   });
 }
@@ -33,7 +33,7 @@ export default function ChangelogPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-6 md:px-10 pb-16">
+      <main className="max-w-[896px] mx-auto px-4 md:px-6 lg:px-10 pb-16">
         <header className="pt-10 pb-8">
           <h1 className="text-2xl md:text-[28px] font-bold tracking-tight text-text">
             What&apos;s New
@@ -43,31 +43,31 @@ export default function ChangelogPage() {
           </p>
         </header>
 
-        <div className="relative pl-6 md:pl-8 border-l-2 space-y-0" style={{ borderColor: INDIGO }}>
+        <div className="relative pl-6 md:pl-8 space-y-0" style={{ borderLeftWidth: "2px", borderColor: INDIGO }}>
           {entries.map((entry) => (
-            <div key={entry.version} className="relative pb-10 last:pb-0">
-              {/* Dot on timeline */}
+            <div key={entry.version} className="relative pb-8 last:pb-0">
+              {/* Dot on timeline — 8px circle */}
               <div
-                className="absolute w-2.5 h-2.5 rounded-full border-2 border-white shadow-sm top-1 -left-[21px]"
-                style={{ backgroundColor: INDIGO }}
+                className="absolute rounded-full border-2 border-white shadow-sm top-1.5 -left-[21px] md:-left-[25px] box-content"
+                style={{ width: "8px", height: "8px", backgroundColor: INDIGO }}
               />
               <div className="flex flex-wrap items-baseline gap-2 mb-1.5">
-                <time className="text-[13px] text-text-3 font-medium">
+                <time className="text-sm text-gray-500">
                   {formatDate(entry.date)}
                 </time>
-                <span className="text-[12px] font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200">
+                <span className="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200">
                   v{entry.version}
                 </span>
               </div>
-              <h2 className="text-[17px] font-bold text-text mb-2">
+              <h2 className="text-lg font-semibold text-text mb-2">
                 {entry.title}
               </h2>
               {entry.summary ? (
-                <p className="text-[15px] text-text-2 font-medium mb-2 leading-snug">
+                <p className="text-base text-gray-600 mb-2 leading-snug">
                   {entry.summary}
                 </p>
               ) : null}
-              <ul className="list-disc list-inside space-y-1 text-[14px] text-text-2 pl-1">
+              <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 pl-1">
                 {entry.changes.map((change, j) => (
                   <li key={j}>{change}</li>
                 ))}

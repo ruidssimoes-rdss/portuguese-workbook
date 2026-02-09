@@ -10,10 +10,10 @@ import type { GrammarData, GrammarTopic } from "@/types/grammar";
 const data = grammarData as unknown as GrammarData;
 
 const GRAMMAR_COLORS = {
-  track: "#4B5563",
-  border: "#9CA3AF",
-  bg: "#F4F5F7",
-  title: "#4B5563",
+  track: "#5B4FA0",
+  border: "#A5B4FC",
+  bg: "#EEF2FF",
+  title: "#5B4FA0",
 };
 
 const CEFR_ORDER = ["A1", "A2", "B1"] as const;
@@ -53,7 +53,7 @@ export default function GrammarPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-6 md:px-10">
+      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
         <section className="py-12 md:py-16">
           <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-text">
             Grammar
@@ -67,7 +67,7 @@ export default function GrammarPage() {
               placeholder="Search topics…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full max-w-md px-4 py-2.5 rounded-lg border border-border text-[14px] text-text placeholder:text-text-3 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#9CA3AF]"
+              className="w-full max-w-md px-4 py-2.5 rounded-lg border border-border text-[14px] text-text placeholder:text-text-3 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#5B4FA0]"
               aria-label="Search grammar topics"
             />
           </div>
@@ -91,7 +91,7 @@ export default function GrammarPage() {
                     <Link
                       key={topic.id}
                       href={`/grammar/${topic.id}`}
-                      className="group border rounded-xl p-5 transition-all duration-200 hover:border-[#9CA3AF] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
+                      className="group border rounded-lg p-4 md:p-5 transition-all duration-200 hover:border-indigo-300 hover:shadow-[0_4px_16px_rgba(91,79,160,0.08)] hover:-translate-y-px"
                       style={{
                         backgroundColor: GRAMMAR_COLORS.bg,
                         borderColor: GRAMMAR_COLORS.border,

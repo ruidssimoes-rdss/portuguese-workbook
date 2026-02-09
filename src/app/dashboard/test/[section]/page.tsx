@@ -217,7 +217,7 @@ export default function LevelTestPage() {
         {phase === "start" && (
           <div className="max-w-[500px] mx-auto">
             <div
-              className="border rounded-[12px] bg-white overflow-hidden transition-all duration-150"
+              className="border rounded-lg bg-white overflow-hidden transition-all duration-200"
               style={{ borderWidth: 1, borderColor: sectionColor }}
             >
               <div className="p-6">
@@ -275,11 +275,11 @@ export default function LevelTestPage() {
               </span>
               <span className="text-text-3">Level {currentLevel}</span>
             </div>
-            <div className="flex gap-0.5 mb-8">
+                <div className="flex gap-0.5 mb-8">
               {Array.from({ length: QUESTIONS_PER_TEST }, (_, i) => (
                 <div
                   key={i}
-                  className="h-2 flex-1 min-w-0 rounded-sm transition-all duration-150"
+                  className="h-2 flex-1 min-w-0 rounded-sm transition-all duration-200"
                   style={{
                     backgroundColor: i < questionIndex + 1 ? sectionColor : "#E5E7EB",
                   }}
@@ -311,13 +311,13 @@ export default function LevelTestPage() {
                         type="button"
                         onClick={() => handleAnswer(i)}
                         disabled={revealed}
-                        className={`group w-full text-left py-4 px-5 rounded-xl border text-[15px] transition-all duration-150 relative pl-10 ${
+                        className={`group w-full text-left py-4 px-5 rounded-lg border text-[15px] transition-colors duration-200 relative pl-10 min-h-[44px] flex items-center ${
                           showCorrect
                             ? "border-green-500 bg-green-50"
                             : showWrong
                               ? "border-red-500 bg-red-50"
-                              : "border-border bg-white text-text hover:border-[#ccc]"
-                        } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2`}
+                              : "border-border bg-white text-text hover:border-indigo-200"
+                        } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5B4FA0]`}
                         style={
                           !revealed ? { ["--tw-ring-color" as string]: sectionColor } : undefined
                         }
@@ -401,7 +401,7 @@ export default function LevelTestPage() {
         {phase === "results" && (
           <div className="max-w-[500px] mx-auto">
             <div
-              className="border rounded-[12px] bg-white overflow-hidden transition-all duration-150"
+              className="border rounded-lg bg-white overflow-hidden transition-all duration-200"
               style={{ borderWidth: 1, borderColor: sectionColor }}
             >
               <div className="p-8">

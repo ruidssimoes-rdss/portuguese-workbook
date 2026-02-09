@@ -56,7 +56,7 @@ export default function VerbPage() {
   return (
     <>
       <Topbar />
-      <main className="px-6 md:px-10">
+      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
         {/* Compact header */}
         <div className="flex items-center justify-between gap-4 flex-wrap py-5">
           <div className="flex items-center gap-2">
@@ -92,10 +92,10 @@ export default function VerbPage() {
             <button
               key={t}
               onClick={() => setTenseFilter(t)}
-              className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-all whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
                 tenseFilter === t
-                  ? "bg-text text-white border-text"
-                  : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-[#ccc]"
+                  ? "bg-[#5B4FA0] text-white border-[#5B4FA0]"
+                  : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-gray-300"
               }`}
             >
               {t}
@@ -110,7 +110,7 @@ export default function VerbPage() {
             return (
               <div
                 key={i}
-                className="border border-border-l rounded-lg p-4 bg-white"
+                className={`border rounded-lg p-4 ${r.Type === "Exception" ? "border-amber-200 bg-amber-50" : "border-border-l bg-white"}`}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <Badge variant={tenseVariant[r.Tense] || "gray"}>
@@ -122,17 +122,17 @@ export default function VerbPage() {
                   {r.Conjugation}
                 </p>
                 {r["Example Sentence"] && (
-                  <p className="text-[13px] text-text-2 italic mt-1.5">
+                  <p className="text-[13px] text-text-2 italic mt-1.5 break-words">
                     {r["Example Sentence"]}
                   </p>
                 )}
                 {r["English Translation"] && (
-                  <p className="text-[12px] text-text-3 mt-0.5">
+                  <p className="text-[12px] text-text-3 mt-0.5 break-words">
                     {r["English Translation"]}
                   </p>
                 )}
                 {r.Notes && (
-                  <p className="text-[12px] text-text-3 mt-1 truncate" title={r.Notes}>
+                  <p className={`text-[12px] mt-1 truncate ${r.Type === "Exception" ? "text-amber-800" : "text-text-3"}`} title={r.Notes}>
                     {r.Notes}
                   </p>
                 )}
@@ -150,7 +150,7 @@ export default function VerbPage() {
         </div>
 
         {/* Desktop: table */}
-        <div className="hidden md:block overflow-x-auto mb-12 border border-border rounded-xl bg-white">
+        <div className="hidden md:block overflow-x-auto mb-12 border border-border rounded-lg bg-white">
           <table className="w-full text-[13px] border-collapse">
             <thead>
               <tr>

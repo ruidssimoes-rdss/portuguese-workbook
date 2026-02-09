@@ -63,19 +63,22 @@ export function Topbar() {
               Aula PT
             </Link>
             <nav className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-3 py-1.5 rounded-md text-[13px] font-medium transition-colors ${
-                    pathname?.startsWith(item.href)
-                      ? "bg-bg-h text-text"
-                      : "text-text-2 hover:text-text hover:bg-bg-s"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`px-3 py-1.5 rounded-md text-[13px] font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#5B4FA0] focus:ring-offset-1 ${
+                      isActive
+                        ? "bg-indigo-100 text-[#5B4FA0]"
+                        : "text-text-2 hover:text-text hover:bg-bg-s"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
           <div className="flex items-center gap-3">
@@ -133,20 +136,23 @@ export function Topbar() {
               </button>
             </div>
             <nav className="px-6 pb-6 pt-2 flex flex-col gap-0.5">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMobileMenu}
-                  className={`px-4 py-3 rounded-lg text-[15px] font-medium transition-colors ${
-                    pathname?.startsWith(item.href)
-                      ? "bg-bg-h text-text"
-                      : "text-text-2 hover:bg-bg-s hover:text-text"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className={`px-4 py-3 rounded-lg text-[15px] font-medium transition-colors duration-200 min-h-[44px] flex items-center ${
+                      isActive
+                        ? "bg-indigo-100 text-[#5B4FA0]"
+                        : "text-text-2 hover:bg-bg-s hover:text-text"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
         </div>

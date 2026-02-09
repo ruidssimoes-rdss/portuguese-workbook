@@ -45,7 +45,7 @@ export function ChangelogBanner({ version, title, summary, firstChange }: Props)
 
   return (
     <div
-      className="mt-6 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 flex items-center gap-3"
+      className="mt-6 mb-4 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 flex items-center gap-3"
       style={{ borderLeftWidth: "3px", borderLeftColor: "#5B4FA0" }}
     >
       <Link
@@ -73,7 +73,7 @@ export function ChangelogBanner({ version, title, summary, firstChange }: Props)
       <button
         type="button"
         onClick={dismiss}
-        className="shrink-0 p-1.5 rounded-md text-text-3 hover:text-text hover:bg-indigo-100 transition-colors"
+        className="shrink-0 p-1.5 rounded-md text-text-3 hover:text-text hover:bg-indigo-100 transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
         aria-label="Dismiss"
       >
         ×
