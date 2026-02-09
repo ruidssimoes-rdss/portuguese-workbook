@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { ProtectedRoute } from "@/components/protected-route";
-import { getProgress } from "@/lib/progress";
+import { MigrationBanner } from "@/components/migration-banner";
+import { useAuth } from "@/components/auth-provider";
+import { getProgress } from "@/lib/progress-service";
+import { PROGRESS_STORAGE_KEY } from "@/types/levels";
 import type { UserProgress } from "@/types/levels";
 import {
   SUB_LEVEL_ORDER,
@@ -74,26 +77,35 @@ function getLevelInfo(
 }
 
 export default function DashboardPage() {
+  const { user } = useAuth();
   const [progress, setProgress] = useState<UserProgress | null>(null);
 
-  const refreshProgress = () => setProgress(getProgress());
+  const refreshProgress = async () => {
+    const p = await getProgress(user?.id);
+    setProgress(p);
+  };
 
   useEffect(() => {
     refreshProgress();
-  }, []);
+  }, [user?.id]);
 
   useEffect(() => {
     const onFocus = () => refreshProgress();
     const onPageShow = (e: PageTransitionEvent) => {
       if (e.persisted) refreshProgress();
     };
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === PROGRESS_STORAGE_KEY && !user) refreshProgress();
+    };
     window.addEventListener("focus", onFocus);
     window.addEventListener("pageshow", onPageShow);
+    window.addEventListener("storage", onStorage);
     return () => {
       window.removeEventListener("focus", onFocus);
       window.removeEventListener("pageshow", onPageShow);
+      window.removeEventListener("storage", onStorage);
     };
-  }, []);
+  }, [user]);
 
   if (progress === null) {
     return (
@@ -139,6 +151,7 @@ export default function DashboardPage() {
       <Topbar />
       <ProtectedRoute>
         <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
+          <MigrationBanner onMigrationComplete={refreshProgress} />
           <header className="pt-12 pb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-text">
             Progress & Tests

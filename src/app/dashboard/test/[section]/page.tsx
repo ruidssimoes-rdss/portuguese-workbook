@@ -10,8 +10,10 @@ import {
   generateGrammarQuestions,
   QUESTIONS_PER_TEST,
 } from "@/lib/test-generator";
-import { getProgress, saveLevelResult } from "@/lib/progress";
-import { getNextLevel, getLevelIndex, type TestQuestion } from "@/types/levels";
+import { getProgress as getLocalProgress } from "@/lib/progress";
+import { getProgress, saveLevelResult } from "@/lib/progress-service";
+import { useAuth } from "@/components/auth-provider";
+import { getNextLevel, getLevelIndex, type TestQuestion, type UserProgress } from "@/types/levels";
 import type { LevelsData, ConjugationSubLevel, VocabSubLevel, GrammarSubLevel } from "@/types/levels";
 import levelsDataRaw from "@/data/levels.json";
 import verbData from "@/data/verbs.json";
@@ -55,8 +57,19 @@ export default function LevelTestPage() {
   const [resultAnswers, setResultAnswers] = useState<{ correct: boolean }[]>([]);
   const [testedLevel, setTestedLevel] = useState<string | null>(null);
   const [questionTransition, setQuestionTransition] = useState(false);
+  const [progress, setProgress] = useState<UserProgress | null>(null);
+  const [saveFallbackMessage, setSaveFallbackMessage] = useState(false);
+  const { user } = useAuth();
 
-  const progress = typeof window !== "undefined" ? getProgress() : null;
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const p = user?.id ? await getProgress(user.id) : (typeof window !== "undefined" ? getLocalProgress() : null);
+      if (!cancelled && p) setProgress(p);
+    })();
+    return () => { cancelled = true; };
+  }, [user?.id, section]);
+
   const sectionProgress = progress?.[section as keyof typeof progress];
   const currentLevel = sectionProgress?.currentLevel ?? "A1.1";
   const levelInfo = useMemo(() => {
@@ -130,7 +143,7 @@ export default function LevelTestPage() {
     setAnswers((a) => [...a, { correct }]);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!currentQuestion) return;
     const isLast = questionIndex >= questions.length - 1;
     if (isLast) {
@@ -143,12 +156,20 @@ export default function LevelTestPage() {
       const correctCount = allAnswers.filter((a) => a.correct).length;
       const score = Math.round((correctCount / questions.length) * 100);
       const passed = score >= targetAccuracy;
-      saveLevelResult(
+      const result = await saveLevelResult(
         section as "conjugations" | "vocabulary" | "grammar",
         currentLevel,
         passed,
-        score
+        score,
+        user?.id
       );
+      if (result.fallbackToLocal) setSaveFallbackMessage(true);
+      if (user?.id) {
+        const next = await getProgress(user.id);
+        if (next) setProgress(next);
+      } else {
+        setProgress(typeof window !== "undefined" ? getLocalProgress() : null);
+      }
       setPhase("results");
       return;
     }
@@ -400,6 +421,11 @@ export default function LevelTestPage() {
 
         {phase === "results" && (
           <div className="max-w-[500px] mx-auto">
+            {saveFallbackMessage && (
+              <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-800 text-[13px]">
+                Progresso guardado localmente. Será sincronizado quando a ligação for restabelecida.
+              </div>
+            )}
             <div
               className="border rounded-lg bg-white overflow-hidden transition-all duration-200"
               style={{ borderWidth: 1, borderColor: sectionColor }}
