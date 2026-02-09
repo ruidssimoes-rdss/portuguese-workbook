@@ -1049,6 +1049,7 @@
           "english": "water",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "AH-gwah",
           "example": "Uma garrafa de água, por favor.",
           "exampleTranslation": "A bottle of water, please."
         },
@@ -1057,6 +1058,7 @@
           "english": "coffee",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "kah-FEH",
           "example": "Quero um café com leite.",
           "exampleTranslation": "I want a coffee with milk."
         },
@@ -1065,6 +1067,7 @@
           "english": "tea",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "SHAH",
           "example": "Um chá de camomila.",
           "exampleTranslation": "A chamomile tea."
         },
@@ -1073,6 +1076,7 @@
           "english": "milk",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "LAY-tuh",
           "example": "Bebo leite ao pequeno-almoço.",
           "exampleTranslation": "I drink milk at breakfast."
         },
@@ -1081,6 +1085,7 @@
           "english": "juice",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "SOO-moo",
           "example": "Sumo de laranja natural.",
           "exampleTranslation": "Fresh orange juice."
         },
@@ -1089,6 +1094,7 @@
           "english": "beer",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "sehr-VAY-zhah",
           "example": "Uma cerveja, faz favor.",
           "exampleTranslation": "A beer, please."
         },
@@ -1097,6 +1103,7 @@
           "english": "wine",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "VEE-nyoo",
           "example": "Vinho tinto da casa.",
           "exampleTranslation": "House red wine."
         },
@@ -1105,6 +1112,7 @@
           "english": "draught beer (PT)",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "eem-puh-ree-AHL",
           "example": "Duas imperiais, por favor.",
           "exampleTranslation": "Two draught beers, please."
         },
@@ -1113,6 +1121,7 @@
           "english": "bread",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "POWNG",
           "example": "Pão fresco da padaria.",
           "exampleTranslation": "Fresh bread from the bakery."
         },
@@ -1121,6 +1130,7 @@
           "english": "cheese",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "KAY-zhoo",
           "example": "Queijo da Serra é delicioso.",
           "exampleTranslation": "Serra cheese is delicious."
         },
@@ -1129,6 +1139,7 @@
           "english": "meat",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "KAHR-nuh",
           "example": "Não como carne.",
           "exampleTranslation": "I don't eat meat."
         },
@@ -1137,6 +1148,7 @@
           "english": "chicken",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "FRAN-goo",
           "example": "Frango assado com batatas.",
           "exampleTranslation": "Roast chicken with potatoes."
         },
@@ -1145,6 +1157,7 @@
           "english": "fish",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "PAY-shuh",
           "example": "Em Portugal comemos muito peixe.",
           "exampleTranslation": "In Portugal we eat a lot of fish."
         },
@@ -1153,6 +1166,7 @@
           "english": "cod (salted)",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "bah-kah-LYOW",
           "example": "O bacalhau à Brás é típico.",
           "exampleTranslation": "Bacalhau à Brás is typical."
         },
@@ -1161,6 +1175,7 @@
           "english": "rice",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "ah-RROHSH",
           "example": "Arroz de marisco.",
           "exampleTranslation": "Seafood rice."
         },
@@ -1169,6 +1184,7 @@
           "english": "potato",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "bah-TAH-tah",
           "example": "Batatas fritas ou cozidas?",
           "exampleTranslation": "Fried or boiled potatoes?"
         },
@@ -1177,6 +1193,7 @@
           "english": "egg",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "OH-voo",
           "example": "Dois ovos estrelados.",
           "exampleTranslation": "Two fried eggs."
         },
@@ -1185,6 +1202,7 @@
           "english": "salad",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "sah-LAH-dah",
           "example": "Uma salada mista.",
           "exampleTranslation": "A mixed salad."
         },
@@ -1193,6 +1211,7 @@
           "english": "soup",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "SOH-pah",
           "example": "Sopa de legumes.",
           "exampleTranslation": "Vegetable soup."
         },
@@ -1201,6 +1220,7 @@
           "english": "fruit",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "FROO-tah",
           "example": "Como fruta todos os dias.",
           "exampleTranslation": "I eat fruit every day."
         },
@@ -1209,6 +1229,7 @@
           "english": "apple",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "mah-SAH",
           "example": "A maçã é a minha fruta preferida.",
           "exampleTranslation": "The apple is my favourite fruit."
         },
@@ -1217,6 +1238,7 @@
           "english": "orange",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "lah-RAHN-zhah",
           "example": "Laranjas do Algarve.",
           "exampleTranslation": "Oranges from the Algarve."
         },
@@ -1225,6 +1247,7 @@
           "english": "tomato",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "too-MAH-tuh",
           "example": "Salada de tomate e cebola.",
           "exampleTranslation": "Tomato and onion salad."
         },
@@ -1233,6 +1256,7 @@
           "english": "onion",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "suh-BOH-lah",
           "example": "Refoga a cebola em azeite.",
           "exampleTranslation": "Sauté the onion in olive oil."
         },
@@ -1241,6 +1265,7 @@
           "english": "garlic",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "AH-lyoo",
           "example": "Dois dentes de alho.",
           "exampleTranslation": "Two cloves of garlic."
         },
@@ -1249,6 +1274,7 @@
           "english": "olive oil",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "ah-ZAY-tuh",
           "example": "Azeite português é o melhor.",
           "exampleTranslation": "Portuguese olive oil is the best."
         },
@@ -1257,6 +1283,7 @@
           "english": "salt",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "SAHL",
           "example": "Passa-me o sal.",
           "exampleTranslation": "Pass me the salt."
         },
@@ -1265,6 +1292,7 @@
           "english": "sugar",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "ah-SOO-kahr",
           "example": "Sem açúcar, por favor.",
           "exampleTranslation": "Without sugar, please."
         },
@@ -1273,6 +1301,7 @@
           "english": "butter",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "mahn-TAY-gah",
           "example": "Pão com manteiga.",
           "exampleTranslation": "Bread with butter."
         },
@@ -1281,6 +1310,7 @@
           "english": "cured ham",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "pruh-ZOON-too",
           "example": "Uma tosta de presunto e queijo.",
           "exampleTranslation": "A toasted sandwich with ham and cheese."
         },
@@ -1289,6 +1319,7 @@
           "english": "custard tart",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "pahsh-TEHL duh NAH-tah",
           "example": "Os pastéis de nata de Belém.",
           "exampleTranslation": "The custard tarts from Belém."
         },
@@ -1297,6 +1328,7 @@
           "english": "dessert",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "soh-bruh-MAY-zah",
           "example": "Quer sobremesa?",
           "exampleTranslation": "Would you like dessert?"
         },
@@ -1305,6 +1337,7 @@
           "english": "breakfast",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "puh-KAY-noo ahl-MOH-soo",
           "example": "O pequeno-almoço está incluído.",
           "exampleTranslation": "Breakfast is included."
         },
@@ -1313,6 +1346,7 @@
           "english": "lunch",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "ahl-MOH-soo",
           "example": "Vamos almoçar juntos?",
           "exampleTranslation": "Shall we have lunch together?"
         },
@@ -1321,6 +1355,7 @@
           "english": "dinner",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "zhan-TAHR",
           "example": "O jantar é às oito.",
           "exampleTranslation": "Dinner is at eight."
         },
@@ -1329,6 +1364,7 @@
           "english": "snack / afternoon tea",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "LAHN-shuh",
           "example": "Hora do lanche!",
           "exampleTranslation": "Snack time!"
         },
@@ -1337,6 +1373,7 @@
           "english": "restaurant",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "rresh-tow-RAHN-tuh",
           "example": "Este restaurante é bom.",
           "exampleTranslation": "This restaurant is good."
         },
@@ -1345,6 +1382,7 @@
           "english": "menu",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ay-MEN-tah",
           "example": "Posso ver a ementa?",
           "exampleTranslation": "May I see the menu?"
         },
@@ -1353,6 +1391,7 @@
           "english": "bill / check",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "KON-tah",
           "example": "A conta, por favor.",
           "exampleTranslation": "The bill, please."
         },
@@ -1361,6 +1400,7 @@
           "english": "fork",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "GAHR-foo",
           "example": "Preciso de um garfo.",
           "exampleTranslation": "I need a fork."
         },
@@ -1369,6 +1409,7 @@
           "english": "knife",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "FAH-kah",
           "example": "A faca não corta.",
           "exampleTranslation": "The knife doesn't cut."
         },
@@ -1377,6 +1418,7 @@
           "english": "spoon",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "koo-LYEHR",
           "example": "Uma colher de sopa.",
           "exampleTranslation": "A soup spoon."
         },
@@ -1385,6 +1427,7 @@
           "english": "plate / dish",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "PRAH-too",
           "example": "O prato do dia.",
           "exampleTranslation": "The dish of the day."
         },
@@ -1393,6 +1436,7 @@
           "english": "glass",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "KOH-poo",
           "example": "Um copo de água.",
           "exampleTranslation": "A glass of water."
         },
@@ -1401,6 +1445,7 @@
           "english": "bottle",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "gah-RRAH-fah",
           "example": "Uma garrafa de vinho.",
           "exampleTranslation": "A bottle of wine."
         },
@@ -1409,6 +1454,7 @@
           "english": "napkin",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "gwahr-dah-NAH-poo",
           "example": "Tem guardanapos?",
           "exampleTranslation": "Do you have napkins?"
         },
@@ -1417,6 +1463,7 @@
           "english": "to cook",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "koo-zee-NYAHR",
           "example": "Gosto de cozinhar.",
           "exampleTranslation": "I like to cook."
         },
@@ -1425,6 +1472,7 @@
           "english": "to boil",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "fehr-VEHR",
           "example": "Deixa a água ferver.",
           "exampleTranslation": "Let the water boil."
         },
@@ -1433,6 +1481,7 @@
           "english": "to roast / bake",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "ah-SAHR",
           "example": "Vou assar o frango.",
           "exampleTranslation": "I'm going to roast the chicken."
         },
@@ -1441,6 +1490,7 @@
           "english": "to fry",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "free-TAHR",
           "example": "Não frites com muito óleo.",
           "exampleTranslation": "Don't fry with too much oil."
         },
@@ -1449,6 +1499,7 @@
           "english": "recipe",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "rruh-SAY-tah",
           "example": "Tens a receita do bolo?",
           "exampleTranslation": "Do you have the cake recipe?"
         },
@@ -1457,6 +1508,7 @@
           "english": "delicious",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "duh-lee-see-OH-zoo",
           "example": "A comida está deliciosa.",
           "exampleTranslation": "The food is delicious."
         },
@@ -1465,6 +1517,7 @@
           "english": "spicy",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "pee-KAHN-tuh",
           "example": "Este piri-piri é muito picante.",
           "exampleTranslation": "This piri-piri is very spicy."
         },
@@ -1473,6 +1526,7 @@
           "english": "salty / savoury",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "sahl-GAH-doo",
           "example": "A sopa está muito salgada.",
           "exampleTranslation": "The soup is too salty."
         },
@@ -1481,6 +1535,7 @@
           "english": "sweet",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "DOH-suh",
           "example": "Este bolo é muito doce.",
           "exampleTranslation": "This cake is very sweet."
         },
@@ -1489,6 +1544,7 @@
           "english": "bitter",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "ah-MAHR-goo",
           "example": "O café está amargo.",
           "exampleTranslation": "The coffee is bitter."
         },
@@ -1497,6 +1553,7 @@
           "english": "snack / appetiser (tapas-style)",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "puh-TEESH-koo",
           "example": "Vamos comer uns petiscos?",
           "exampleTranslation": "Shall we have some appetisers?"
         },
@@ -1505,6 +1562,7 @@
           "english": "seafood / shellfish",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "mah-REESH-koo",
           "example": "Portugal tem marisco excelente.",
           "exampleTranslation": "Portugal has excellent seafood."
         },
@@ -1513,6 +1571,7 @@
           "english": "grilled",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "gruh-LYAH-doo",
           "example": "Peixe grelhado com legumes.",
           "exampleTranslation": "Grilled fish with vegetables."
         },
@@ -1521,6 +1580,7 @@
           "english": "bakery",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "pah-dah-REE-ah",
           "example": "Compro pão na padaria.",
           "exampleTranslation": "I buy bread at the bakery."
         },
@@ -1529,6 +1589,7 @@
           "english": "vegetables",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "luh-GOO-mush",
           "example": "Como legumes ao jantar.",
           "exampleTranslation": "I eat vegetables at dinner."
         },
@@ -1537,6 +1598,7 @@
           "english": "beans",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "fay-ZHOWNG",
           "example": "Sopa de feijão com couve.",
           "exampleTranslation": "Bean soup with kale."
         },
@@ -1545,6 +1607,7 @@
           "english": "chickpeas",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "GROWNG",
           "example": "Salada de grão com atum.",
           "exampleTranslation": "Chickpea salad with tuna."
         },
@@ -1553,6 +1616,7 @@
           "english": "pasta",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "MAH-sah",
           "example": "Massa com molho de tomate.",
           "exampleTranslation": "Pasta with tomato sauce."
         },
@@ -1561,6 +1625,7 @@
           "english": "ham (cooked)",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "fee-AHM-bruh",
           "example": "Uma sandes de fiambre e queijo.",
           "exampleTranslation": "A ham and cheese sandwich."
         },
@@ -1569,6 +1634,7 @@
           "english": "yoghurt",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "yoh-GOOR-tuh",
           "example": "Como iogurte ao pequeno-almoço.",
           "exampleTranslation": "I eat yoghurt for breakfast."
         },
@@ -1577,6 +1643,7 @@
           "english": "cereal",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "suh-ray-AHL",
           "example": "Cereal com leite.",
           "exampleTranslation": "Cereal with milk."
         },
@@ -1585,6 +1652,7 @@
           "english": "cake",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "BOH-loo",
           "example": "O bolo de aniversário está na mesa.",
           "exampleTranslation": "The birthday cake is on the table."
         }
@@ -1600,6 +1668,7 @@
           "english": "airport",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "ah-eh-roo-POHR-too",
           "example": "O aeroporto de Lisboa.",
           "exampleTranslation": "The Lisbon airport."
         },
@@ -1608,6 +1677,7 @@
           "english": "aeroplane",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "ah-vee-OWNG",
           "example": "O avião parte às dez.",
           "exampleTranslation": "The plane departs at ten."
         },
@@ -1616,6 +1686,7 @@
           "english": "train",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "kom-BOY-oo",
           "example": "Apanhei o comboio para o Porto.",
           "exampleTranslation": "I caught the train to Porto."
         },
@@ -1624,6 +1695,7 @@
           "english": "bus",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "ow-too-KAH-rroo",
           "example": "O autocarro passa às nove.",
           "exampleTranslation": "The bus comes at nine."
         },
@@ -1632,6 +1704,7 @@
           "english": "metro / underground",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "MEH-troo",
           "example": "A estação de metro é aqui perto.",
           "exampleTranslation": "The metro station is nearby."
         },
@@ -1640,6 +1713,7 @@
           "english": "taxi",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "TAK-see",
           "example": "Chamei um táxi.",
           "exampleTranslation": "I called a taxi."
         },
@@ -1648,6 +1722,7 @@
           "english": "car",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "KAH-rroo",
           "example": "Vou de carro.",
           "exampleTranslation": "I'm going by car."
         },
@@ -1656,6 +1731,7 @@
           "english": "bicycle",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "bee-see-KLEH-tah",
           "example": "Ando de bicicleta todos os dias.",
           "exampleTranslation": "I ride a bicycle every day."
         },
@@ -1664,6 +1740,7 @@
           "english": "boat",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "BAHR-koo",
           "example": "Apanhamos o barco para Cacilhas.",
           "exampleTranslation": "We take the boat to Cacilhas."
         },
@@ -1672,6 +1749,7 @@
           "english": "tram",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "ay-LEK-tree-koo",
           "example": "O eléctrico 28 é famoso.",
           "exampleTranslation": "Tram 28 is famous."
         },
@@ -1680,6 +1758,7 @@
           "english": "ticket",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "bee-LYEH-tuh",
           "example": "Onde compro o bilhete?",
           "exampleTranslation": "Where do I buy the ticket?"
         },
@@ -1688,6 +1767,7 @@
           "english": "return / round trip",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "EE-dah ee VOHL-tah",
           "example": "Um bilhete de ida e volta.",
           "exampleTranslation": "A return ticket."
         },
@@ -1696,6 +1776,7 @@
           "english": "departure",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "pahr-TEE-dah",
           "example": "A hora de partida é às seis.",
           "exampleTranslation": "The departure time is at six."
         },
@@ -1704,6 +1785,7 @@
           "english": "arrival",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "shuh-GAH-dah",
           "example": "A chegada é ao meio-dia.",
           "exampleTranslation": "The arrival is at noon."
         },
@@ -1712,6 +1794,7 @@
           "english": "delay",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "ah-TRAH-zoo",
           "example": "O comboio tem vinte minutos de atraso.",
           "exampleTranslation": "The train is twenty minutes late."
         },
@@ -1720,6 +1803,7 @@
           "english": "street",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "RROO-ah",
           "example": "Vivo na Rua Augusta.",
           "exampleTranslation": "I live on Rua Augusta."
         },
@@ -1728,6 +1812,7 @@
           "english": "avenue",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ah-vuh-NEE-dah",
           "example": "A Avenida da Liberdade é bonita.",
           "exampleTranslation": "Avenida da Liberdade is beautiful."
         },
@@ -1736,6 +1821,7 @@
           "english": "square / plaza",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "PRAH-sah",
           "example": "Encontramo-nos na praça.",
           "exampleTranslation": "We'll meet at the square."
         },
@@ -1744,6 +1830,7 @@
           "english": "corner",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "shKEE-nah",
           "example": "Vira na esquina.",
           "exampleTranslation": "Turn at the corner."
         },
@@ -1752,6 +1839,7 @@
           "english": "right",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "dee-RAY-tah",
           "example": "Vira à direita.",
           "exampleTranslation": "Turn right."
         },
@@ -1760,6 +1848,7 @@
           "english": "left",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "shKEHR-dah",
           "example": "Vira à esquerda.",
           "exampleTranslation": "Turn left."
         },
@@ -1768,6 +1857,7 @@
           "english": "straight ahead",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ayng FREN-tuh",
           "example": "Segue em frente.",
           "exampleTranslation": "Go straight ahead."
         },
@@ -1776,6 +1866,7 @@
           "english": "near / close",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "PEHR-too",
           "example": "Fica perto daqui.",
           "exampleTranslation": "It's near here."
         },
@@ -1784,6 +1875,7 @@
           "english": "far",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "LON-zhuh",
           "example": "É longe a pé.",
           "exampleTranslation": "It's far on foot."
         },
@@ -1792,6 +1884,7 @@
           "english": "here",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ah-KEE",
           "example": "Estou aqui.",
           "exampleTranslation": "I'm here."
         },
@@ -1800,6 +1893,7 @@
           "english": "there (visible)",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ah-LEE",
           "example": "A farmácia é ali.",
           "exampleTranslation": "The pharmacy is over there."
         },
@@ -1808,6 +1902,7 @@
           "english": "map",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "MAH-pah",
           "example": "Tens um mapa da cidade?",
           "exampleTranslation": "Do you have a city map?"
         },
@@ -1816,6 +1911,7 @@
           "english": "hotel",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "oh-TEHL",
           "example": "Reservei um hotel no centro.",
           "exampleTranslation": "I booked a hotel in the centre."
         },
@@ -1824,6 +1920,7 @@
           "english": "room (hotel/bedroom)",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "KWAHR-too",
           "example": "Um quarto para duas noites.",
           "exampleTranslation": "A room for two nights."
         },
@@ -1832,6 +1929,7 @@
           "english": "reservation / booking",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "rruh-ZEHR-vah",
           "example": "Tenho uma reserva em nome de Silva.",
           "exampleTranslation": "I have a booking under the name Silva."
         },
@@ -1840,6 +1938,7 @@
           "english": "key",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "SHAH-vuh",
           "example": "A chave do quarto, por favor.",
           "exampleTranslation": "The room key, please."
         },
@@ -1848,6 +1947,7 @@
           "english": "lodging / accommodation",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "osh-puh-DAH-zhayng",
           "example": "A hospedagem inclui pequeno-almoço.",
           "exampleTranslation": "The accommodation includes breakfast."
         },
@@ -1856,6 +1956,7 @@
           "english": "beach",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "PRAH-yah",
           "example": "Vamos à praia amanhã.",
           "exampleTranslation": "Let's go to the beach tomorrow."
         },
@@ -1864,6 +1965,7 @@
           "english": "museum",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "moo-ZAY-oo",
           "example": "O museu abre às dez.",
           "exampleTranslation": "The museum opens at ten."
         },
@@ -1872,6 +1974,7 @@
           "english": "church",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ee-GRAY-zhah",
           "example": "A igreja é do século XV.",
           "exampleTranslation": "The church is from the 15th century."
         },
@@ -1880,6 +1983,7 @@
           "english": "castle",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "kahsh-TEH-loo",
           "example": "O Castelo de São Jorge.",
           "exampleTranslation": "The Castle of São Jorge."
         },
@@ -1888,6 +1992,7 @@
           "english": "garden / park",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "zhahr-DEENG",
           "example": "O jardim é muito bonito.",
           "exampleTranslation": "The garden is very beautiful."
         },
@@ -1896,6 +2001,7 @@
           "english": "market",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "mehr-KAH-doo",
           "example": "Vou ao mercado comprar fruta.",
           "exampleTranslation": "I'm going to the market to buy fruit."
         },
@@ -1904,6 +2010,7 @@
           "english": "pharmacy",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "fahr-MAH-see-ah",
           "example": "Onde é a farmácia mais próxima?",
           "exampleTranslation": "Where is the nearest pharmacy?"
         },
@@ -1912,6 +2019,7 @@
           "english": "hospital",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "osh-pee-TAHL",
           "example": "Levem-me ao hospital.",
           "exampleTranslation": "Take me to the hospital."
         },
@@ -1920,6 +2028,7 @@
           "english": "bank",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "BAHN-koo",
           "example": "Preciso de ir ao banco.",
           "exampleTranslation": "I need to go to the bank."
         },
@@ -1928,6 +2037,7 @@
           "english": "post office",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "koo-RRAY-oosh",
           "example": "Vou aos correios enviar uma carta.",
           "exampleTranslation": "I'm going to the post office to send a letter."
         },
@@ -1936,6 +2046,7 @@
           "english": "supermarket",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "soo-pehr-mehr-KAH-doo",
           "example": "Vou ao supermercado.",
           "exampleTranslation": "I'm going to the supermarket."
         },
@@ -1944,6 +2055,7 @@
           "english": "lost",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "pehr-DEE-doo",
           "example": "Estou perdido, pode ajudar-me?",
           "exampleTranslation": "I'm lost, can you help me?"
         },
@@ -1952,6 +2064,7 @@
           "english": "help",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "ah-ZHOO-dah",
           "example": "Preciso de ajuda.",
           "exampleTranslation": "I need help."
         },
@@ -1960,6 +2073,7 @@
           "english": "emergency",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ay-mehr-ZHEN-see-ah",
           "example": "Chame uma ambulância, é uma emergência!",
           "exampleTranslation": "Call an ambulance, it's an emergency!"
         },
@@ -1968,6 +2082,7 @@
           "english": "passport",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "pah-sah-POHR-tuh",
           "example": "O meu passaporte, por favor.",
           "exampleTranslation": "My passport, please."
         },
@@ -1976,6 +2091,7 @@
           "english": "luggage",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "bah-GAH-zhayng",
           "example": "A minha bagagem não chegou.",
           "exampleTranslation": "My luggage didn't arrive."
         },
@@ -1984,6 +2100,7 @@
           "english": "trip / journey",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "vee-AH-zhayng",
           "example": "Boa viagem!",
           "exampleTranslation": "Have a good trip!"
         },
@@ -1992,6 +2109,7 @@
           "english": "holidays / vacation",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "FEH-ree-ahsh",
           "example": "Estou de férias.",
           "exampleTranslation": "I'm on holiday."
         },
@@ -2000,6 +2118,7 @@
           "english": "longing / missing (untranslatable)",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "sow-DAH-duh",
           "example": "Tenho saudades de Portugal.",
           "exampleTranslation": "I miss Portugal."
         },
@@ -2008,6 +2127,7 @@
           "english": "foreigner / abroad",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "shTrahn-ZHAY-roo",
           "example": "Vivo no estrangeiro.",
           "exampleTranslation": "I live abroad."
         },
@@ -2016,6 +2136,7 @@
           "english": "customs",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "ahl-FAN-duh-gah",
           "example": "Passámos pela alfândega.",
           "exampleTranslation": "We went through customs."
         },
@@ -2024,6 +2145,7 @@
           "english": "embassy",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "aym-bah-ee-SAH-dah",
           "example": "A embaixada dos Países Baixos.",
           "exampleTranslation": "The Dutch embassy."
         },
@@ -2032,6 +2154,7 @@
           "english": "border",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "fron-TAY-rah",
           "example": "A fronteira com Espanha.",
           "exampleTranslation": "The border with Spain."
         },
@@ -2040,6 +2163,7 @@
           "english": "reception / front desk",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "rruh-sep-SOWNG",
           "example": "Pergunte na recepção.",
           "exampleTranslation": "Ask at reception."
         },
@@ -2048,6 +2172,7 @@
           "english": "exchange (money)",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "KAM-bee-oo",
           "example": "Qual é a taxa de câmbio?",
           "exampleTranslation": "What is the exchange rate?"
         },
@@ -2056,6 +2181,7 @@
           "english": "roundabout",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "rroo-TOON-dah",
           "example": "Na rotunda, toma a segunda saída.",
           "exampleTranslation": "At the roundabout, take the second exit."
         },
@@ -2064,6 +2190,7 @@
           "english": "pedestrian",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "pee-OWNG",
           "example": "Passadeira para peões.",
           "exampleTranslation": "Pedestrian crossing."
         }
@@ -2079,6 +2206,7 @@
           "english": "house / home",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "KAH-zah",
           "example": "A minha casa é pequena.",
           "exampleTranslation": "My house is small."
         },
@@ -2087,6 +2215,7 @@
           "english": "apartment / flat",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "ah-pahr-tah-MEN-too",
           "example": "Moro num apartamento.",
           "exampleTranslation": "I live in an apartment."
         },
@@ -2095,6 +2224,7 @@
           "english": "kitchen",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "koo-ZEE-nyah",
           "example": "A cozinha é grande.",
           "exampleTranslation": "The kitchen is big."
         },
@@ -2103,6 +2233,7 @@
           "english": "living room",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "SAH-lah",
           "example": "Estamos na sala.",
           "exampleTranslation": "We're in the living room."
         },
@@ -2111,6 +2242,7 @@
           "english": "bedroom",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "KWAHR-too",
           "example": "O quarto tem uma janela grande.",
           "exampleTranslation": "The bedroom has a big window."
         },
@@ -2119,6 +2251,7 @@
           "english": "bathroom",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "KAH-zah duh BAH-nyoo",
           "example": "Onde é a casa de banho?",
           "exampleTranslation": "Where is the bathroom?"
         },
@@ -2127,6 +2260,7 @@
           "english": "balcony",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "vah-RAN-dah",
           "example": "Tomo café na varanda.",
           "exampleTranslation": "I have coffee on the balcony."
         },
@@ -2135,6 +2269,7 @@
           "english": "garden",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "zhahr-DEENG",
           "example": "Temos um jardim pequeno.",
           "exampleTranslation": "We have a small garden."
         },
@@ -2143,6 +2278,7 @@
           "english": "garage",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "gah-RAH-zhayng",
           "example": "O carro está na garagem.",
           "exampleTranslation": "The car is in the garage."
         },
@@ -2151,6 +2287,7 @@
           "english": "stairs",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "shKAH-dahsh",
           "example": "Sobe as escadas.",
           "exampleTranslation": "Go up the stairs."
         },
@@ -2159,6 +2296,7 @@
           "english": "bed",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "KAH-mah",
           "example": "A cama é confortável.",
           "exampleTranslation": "The bed is comfortable."
         },
@@ -2167,6 +2305,7 @@
           "english": "table",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "MAY-zah",
           "example": "Põe a mesa para o jantar.",
           "exampleTranslation": "Set the table for dinner."
         },
@@ -2175,6 +2314,7 @@
           "english": "chair",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "kah-DAY-rah",
           "example": "Senta-te na cadeira.",
           "exampleTranslation": "Sit on the chair."
         },
@@ -2183,6 +2323,7 @@
           "english": "sofa / couch",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "soo-FAH",
           "example": "Vou sentar-me no sofá.",
           "exampleTranslation": "I'm going to sit on the sofa."
         },
@@ -2191,6 +2332,7 @@
           "english": "wardrobe / cupboard",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "ahr-MAH-ree-oo",
           "example": "A roupa está no armário.",
           "exampleTranslation": "The clothes are in the wardrobe."
         },
@@ -2199,6 +2341,7 @@
           "english": "mirror",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "shPEH-lyoo",
           "example": "Olha-te ao espelho.",
           "exampleTranslation": "Look at yourself in the mirror."
         },
@@ -2207,6 +2350,7 @@
           "english": "television",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "tuh-luh-vee-ZOWNG",
           "example": "Estou a ver televisão.",
           "exampleTranslation": "I'm watching television."
         },
@@ -2215,6 +2359,7 @@
           "english": "mobile phone",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "tuh-luh-MOH-vuhl",
           "example": "Esqueci o telemóvel em casa.",
           "exampleTranslation": "I forgot my phone at home."
         },
@@ -2223,6 +2368,7 @@
           "english": "key",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "SHAH-vuh",
           "example": "Onde estão as chaves?",
           "exampleTranslation": "Where are the keys?"
         },
@@ -2231,6 +2377,7 @@
           "english": "door",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "POHR-tah",
           "example": "Fecha a porta.",
           "exampleTranslation": "Close the door."
         },
@@ -2239,6 +2386,7 @@
           "english": "window",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "zhah-NEH-lah",
           "example": "Abre a janela.",
           "exampleTranslation": "Open the window."
         },
@@ -2247,6 +2395,7 @@
           "english": "light",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "LOOSH",
           "example": "Apaga a luz.",
           "exampleTranslation": "Turn off the light."
         },
@@ -2255,6 +2404,7 @@
           "english": "vacuum cleaner",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "ahsh-pee-rah-DOHR",
           "example": "Passa o aspirador na sala.",
           "exampleTranslation": "Vacuum the living room."
         },
@@ -2263,6 +2413,7 @@
           "english": "washing machine",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "MAH-kee-nah duh lah-VAHR",
           "example": "Põe a máquina de lavar a trabalhar.",
           "exampleTranslation": "Put the washing machine on."
         },
@@ -2271,6 +2422,7 @@
           "english": "fridge",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "free-goo-RREE-fee-koo",
           "example": "O leite está no frigorífico.",
           "exampleTranslation": "The milk is in the fridge."
         },
@@ -2279,6 +2431,7 @@
           "english": "stove / cooker",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "foo-GOWNG",
           "example": "Cuidado com o fogão.",
           "exampleTranslation": "Be careful with the stove."
         },
@@ -2287,6 +2440,7 @@
           "english": "rent",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "REN-dah",
           "example": "A renda é cara em Lisboa.",
           "exampleTranslation": "The rent is expensive in Lisbon."
         },
@@ -2295,6 +2449,7 @@
           "english": "move (house)",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "moo-DAN-sah",
           "example": "A mudança é no sábado.",
           "exampleTranslation": "The move is on Saturday."
         },
@@ -2303,6 +2458,7 @@
           "english": "attic",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "SOH-towng",
           "example": "As caixas estão no sótão.",
           "exampleTranslation": "The boxes are in the attic."
         },
@@ -2311,6 +2467,7 @@
           "english": "basement / cellar",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "KAH-vuh",
           "example": "O vinho está na cave.",
           "exampleTranslation": "The wine is in the cellar."
         },
@@ -2319,6 +2476,7 @@
           "english": "floor / storey",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "ahn-DAHR",
           "example": "Moro no terceiro andar.",
           "exampleTranslation": "I live on the third floor."
         },
@@ -2327,6 +2485,7 @@
           "english": "neighbourhood",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "vee-zee-NYAN-sah",
           "example": "A vizinhança é tranquila.",
           "exampleTranslation": "The neighbourhood is quiet."
         },
@@ -2335,6 +2494,7 @@
           "english": "pot / saucepan",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "pah-NEH-lah",
           "example": "Preciso de uma panela grande.",
           "exampleTranslation": "I need a big pot."
         },
@@ -2343,6 +2503,7 @@
           "english": "frying pan",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "free-zhee-DAY-rah",
           "example": "Frita o ovo na frigideira.",
           "exampleTranslation": "Fry the egg in the frying pan."
         },
@@ -2351,6 +2512,7 @@
           "english": "oven",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "FOHR-noo",
           "example": "Põe no forno a 180 graus.",
           "exampleTranslation": "Put it in the oven at 180 degrees."
         },
@@ -2359,6 +2521,7 @@
           "english": "microwave",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "MEE-kroo ON-dahsh",
           "example": "Aquece no micro-ondas.",
           "exampleTranslation": "Heat it in the microwave."
         },
@@ -2367,6 +2530,7 @@
           "english": "kitchen sink",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "LAH-vah loy-SAH",
           "example": "A loiça está no lava-loiça.",
           "exampleTranslation": "The dishes are in the sink."
         },
@@ -2375,6 +2539,7 @@
           "english": "drawer",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "gah-VAY-tah",
           "example": "Os talheres estão na gaveta.",
           "exampleTranslation": "The cutlery is in the drawer."
         },
@@ -2383,6 +2548,7 @@
           "english": "shelf",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "prah-tuh-LAY-rah",
           "example": "Os copos estão na prateleira.",
           "exampleTranslation": "The glasses are on the shelf."
         },
@@ -2391,6 +2557,7 @@
           "english": "cutlery",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "tah-LYEH-rrush",
           "example": "Onde estão os talheres?",
           "exampleTranslation": "Where is the cutlery?"
         },
@@ -2399,6 +2566,7 @@
           "english": "tablecloth",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "too-AH-lyah duh MAY-zah",
           "example": "Põe a toalha de mesa.",
           "exampleTranslation": "Put the tablecloth on."
         },
@@ -2407,6 +2575,7 @@
           "english": "apron",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "ah-ven-TAHL",
           "example": "Usa o avental para cozinhar.",
           "exampleTranslation": "Wear the apron for cooking."
         },
@@ -2415,6 +2584,7 @@
           "english": "towel",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "too-AH-lyah",
           "example": "Passa-me uma toalha.",
           "exampleTranslation": "Pass me a towel."
         },
@@ -2423,6 +2593,7 @@
           "english": "soap (bar)",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "sah-boo-NEH-tuh",
           "example": "O sabonete está ao lado do lavatório.",
           "exampleTranslation": "The soap is next to the sink."
         },
@@ -2431,6 +2602,7 @@
           "english": "shampoo",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "shahm-POH",
           "example": "Preciso de comprar champô.",
           "exampleTranslation": "I need to buy shampoo."
         },
@@ -2439,6 +2611,7 @@
           "english": "toothbrush",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "shKOH-vah duh DEN-tush",
           "example": "Onde está a minha escova de dentes?",
           "exampleTranslation": "Where is my toothbrush?"
         },
@@ -2447,6 +2620,7 @@
           "english": "toothpaste",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "PAHsh-tah duh DEN-tush",
           "example": "A pasta de dentes acabou.",
           "exampleTranslation": "The toothpaste ran out."
         },
@@ -2455,6 +2629,7 @@
           "english": "shower",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "DOO-shuh",
           "example": "Vou tomar um duche rápido.",
           "exampleTranslation": "I'm going to take a quick shower."
         },
@@ -2463,6 +2638,7 @@
           "english": "bathtub",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "bahn-YAY-rah",
           "example": "A casa de banho tem banheira.",
           "exampleTranslation": "The bathroom has a bathtub."
         },
@@ -2471,6 +2647,7 @@
           "english": "washbasin / sink",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "lah-vah-TOH-ree-oo",
           "example": "Lava as mãos no lavatório.",
           "exampleTranslation": "Wash your hands at the sink."
         },
@@ -2479,6 +2656,7 @@
           "english": "hair dryer",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "suh-kah-DOHR duh kah-BEH-loo",
           "example": "O secador de cabelo está na gaveta.",
           "exampleTranslation": "The hair dryer is in the drawer."
         },
@@ -2487,6 +2665,7 @@
           "english": "pillow",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ahl-moo-FAH-dah",
           "example": "Preciso de duas almofadas.",
           "exampleTranslation": "I need two pillows."
         },
@@ -2495,6 +2674,7 @@
           "english": "blanket",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "koo-behr-TOHR",
           "example": "No inverno uso um cobertor.",
           "exampleTranslation": "In winter I use a blanket."
         },
@@ -2503,6 +2683,7 @@
           "english": "bed sheet",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "len-SOHL",
           "example": "Mudei os lençóis hoje.",
           "exampleTranslation": "I changed the sheets today."
         },
@@ -2511,6 +2692,7 @@
           "english": "mattress",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "kool-SHOWNG",
           "example": "O colchão é novo.",
           "exampleTranslation": "The mattress is new."
         },
@@ -2519,6 +2701,7 @@
           "english": "bedside table",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "muh-ZEE-nyah duh kah-buh-SAY-rah",
           "example": "O livro está na mesinha de cabeceira.",
           "exampleTranslation": "The book is on the bedside table."
         },
@@ -2527,6 +2710,7 @@
           "english": "lamp",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "kahn-day-AY-roo",
           "example": "Acende o candeeiro.",
           "exampleTranslation": "Turn on the lamp."
         },
@@ -2535,6 +2719,7 @@
           "english": "curtain",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "koor-TEE-nah",
           "example": "Fecha as cortinas.",
           "exampleTranslation": "Close the curtains."
         },
@@ -2543,6 +2728,7 @@
           "english": "alarm clock",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "dish-pehr-tah-DOHR",
           "example": "O despertador toca às sete.",
           "exampleTranslation": "The alarm goes off at seven."
         },
@@ -2551,6 +2737,7 @@
           "english": "rug / carpet",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "tah-PEH-tuh",
           "example": "O tapete é novo.",
           "exampleTranslation": "The rug is new."
         },
@@ -2559,6 +2746,7 @@
           "english": "bookshelf",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "shTAN-tuh",
           "example": "Os livros estão na estante.",
           "exampleTranslation": "The books are on the bookshelf."
         },
@@ -2567,6 +2755,7 @@
           "english": "cushion",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ahl-moo-FAH-dah",
           "example": "As almofadas do sofá.",
           "exampleTranslation": "The sofa cushions."
         },
@@ -2575,6 +2764,7 @@
           "english": "remote control",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "koo-MAN-doo",
           "example": "Onde está o comando da televisão?",
           "exampleTranslation": "Where is the TV remote?"
         },
@@ -2583,6 +2773,7 @@
           "english": "painting / frame",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "KWAH-droo",
           "example": "O quadro na parede é bonito.",
           "exampleTranslation": "The painting on the wall is beautiful."
         },
@@ -2591,6 +2782,7 @@
           "english": "fireplace",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "lah-RAY-rah",
           "example": "Acende a lareira, está frio.",
           "exampleTranslation": "Light the fireplace, it's cold."
         }
@@ -2949,6 +3141,7 @@
           "english": "teacher",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "proo-fuh-SOHR / proo-fuh-SOH-rah",
           "example": "O meu professor de português é simpático.",
           "exampleTranslation": "My Portuguese teacher is friendly."
         },
@@ -2957,6 +3150,7 @@
           "english": "doctor",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "MEH-dee-koo / MEH-dee-kah",
           "example": "Preciso de ir ao médico.",
           "exampleTranslation": "I need to go to the doctor."
         },
@@ -2965,6 +3159,7 @@
           "english": "lawyer",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "ahd-voo-GAH-doo / ahd-voo-GAH-dah",
           "example": "O advogado aconselhou-me.",
           "exampleTranslation": "The lawyer advised me."
         },
@@ -2973,6 +3168,7 @@
           "english": "engineer",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "en-zhuh-NYAY-roo / en-zhuh-NYAY-rah",
           "example": "A minha irmã é engenheira.",
           "exampleTranslation": "My sister is an engineer."
         },
@@ -2981,6 +3177,7 @@
           "english": "nurse",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "en-fehr-MAY-roo / en-fehr-MAY-rah",
           "example": "A enfermeira tomou a tensão.",
           "exampleTranslation": "The nurse took my blood pressure."
         },
@@ -2989,6 +3186,7 @@
           "english": "police officer",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "poo-LEE-see-ah",
           "example": "Chamei a polícia.",
           "exampleTranslation": "I called the police."
         },
@@ -2997,6 +3195,7 @@
           "english": "cook / chef",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "koo-zee-NYAY-roo / koo-zee-NYAY-rah",
           "example": "O cozinheiro fez um prato excelente.",
           "exampleTranslation": "The chef made an excellent dish."
         },
@@ -3005,6 +3204,7 @@
           "english": "journalist",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "zhoor-nah-LEESH-tah",
           "example": "Ela é jornalista num jornal.",
           "exampleTranslation": "She is a journalist at a newspaper."
         },
@@ -3013,6 +3213,7 @@
           "english": "salesperson",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "ven-duh-DOHR / ven-duh-DOH-rah",
           "example": "O vendedor ajudou-me a escolher.",
           "exampleTranslation": "The salesperson helped me choose."
         },
@@ -3021,6 +3222,7 @@
           "english": "firefighter",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "bom-BAY-roo",
           "example": "Os bombeiros apagaram o fogo.",
           "exampleTranslation": "The firefighters put out the fire."
         },
@@ -3029,6 +3231,7 @@
           "english": "plumber",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "kah-nah-lee-zah-DOHR",
           "example": "Chamei o canalizador para a fuga.",
           "exampleTranslation": "I called the plumber for the leak."
         },
@@ -3037,6 +3240,7 @@
           "english": "electrician",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "ay-lek-tree-SEESH-tah",
           "example": "O electricista reparou a instalação.",
           "exampleTranslation": "The electrician fixed the wiring."
         },
@@ -3045,6 +3249,7 @@
           "english": "waiter",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "em-pruh-GAH-doo duh MAY-zah",
           "example": "O empregado de mesa trouxe a ementa.",
           "exampleTranslation": "The waiter brought the menu."
         },
@@ -3053,6 +3258,7 @@
           "english": "writer",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "shKree-TOHR / shKree-TOH-rah",
           "example": "Ela é uma escritora conhecida.",
           "exampleTranslation": "She is a well-known writer."
         },
@@ -3061,6 +3267,7 @@
           "english": "driver",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "moo-too-REESH-tah",
           "example": "O motorista do autocarro foi simpático.",
           "exampleTranslation": "The bus driver was friendly."
         },
@@ -3069,6 +3276,7 @@
           "english": "office",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "shKree-TOH-ree-oo",
           "example": "Trabalho num escritório no centro.",
           "exampleTranslation": "I work in an office in the centre."
         },
@@ -3077,6 +3285,7 @@
           "english": "company",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "em-PRAY-zah",
           "example": "A empresa tem cinquenta trabalhadores.",
           "exampleTranslation": "The company has fifty employees."
         },
@@ -3085,6 +3294,7 @@
           "english": "meeting",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "rreh-oo-nee-OWNG",
           "example": "Tenho uma reunião às dez.",
           "exampleTranslation": "I have a meeting at ten."
         },
@@ -3093,6 +3303,7 @@
           "english": "computer",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "kom-poo-TAH-dohr",
           "example": "O computador está avariado.",
           "exampleTranslation": "The computer is broken."
         },
@@ -3101,6 +3312,7 @@
           "english": "screen",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "eh-KRAN",
           "example": "O ecrã do portátil é grande.",
           "exampleTranslation": "The laptop screen is big."
         },
@@ -3109,6 +3321,7 @@
           "english": "keyboard",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "tuh-KLAH-doo",
           "example": "O teclado está em português.",
           "exampleTranslation": "The keyboard is in Portuguese."
         },
@@ -3117,6 +3330,7 @@
           "english": "printer",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "eem-pruh-SOH-rah",
           "example": "A impressora não tem tinta.",
           "exampleTranslation": "The printer has no ink."
         },
@@ -3125,6 +3339,7 @@
           "english": "email",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "ee-MAYL",
           "example": "Enviei-te um email.",
           "exampleTranslation": "I sent you an email."
         },
@@ -3133,6 +3348,7 @@
           "english": "email",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "koo-RRAY-oo ay-leht-RON-ee-koo",
           "example": "O correio eletrónico está cheio.",
           "exampleTranslation": "The email inbox is full."
         },
@@ -3141,6 +3357,7 @@
           "english": "colleague",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "koo-LEH-gah",
           "example": "Os meus colegas são simpáticos.",
           "exampleTranslation": "My colleagues are friendly."
         },
@@ -3149,6 +3366,7 @@
           "english": "boss",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "SHEH-fuh",
           "example": "O meu chefe aprovou o projeto.",
           "exampleTranslation": "My boss approved the project."
         },
@@ -3157,6 +3375,7 @@
           "english": "salary",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "sah-LAH-ree-oo",
           "example": "O salário é pago no fim do mês.",
           "exampleTranslation": "The salary is paid at the end of the month."
         },
@@ -3165,6 +3384,7 @@
           "english": "contract",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "kon-TRAH-too",
           "example": "Assinei o contrato de trabalho.",
           "exampleTranslation": "I signed the employment contract."
         },
@@ -3173,6 +3393,7 @@
           "english": "interview",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "en-truh-VEESH-tah",
           "example": "Tenho uma entrevista de emprego amanhã.",
           "exampleTranslation": "I have a job interview tomorrow."
         },
@@ -3181,6 +3402,7 @@
           "english": "CV / resume",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "koo-RREE-koo-loo",
           "example": "Enviei o meu currículo.",
           "exampleTranslation": "I sent my CV."
         },
@@ -3189,6 +3411,7 @@
           "english": "schedule / timetable",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "oh-RAH-ree-oo",
           "example": "Qual é o teu horário de trabalho?",
           "exampleTranslation": "What is your work schedule?"
         },
@@ -3197,6 +3420,7 @@
           "english": "school",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "shKOH-lah",
           "example": "Os miúdos vão à escola de autocarro.",
           "exampleTranslation": "The children go to school by bus."
         },
@@ -3205,6 +3429,7 @@
           "english": "university",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "oo-nee-vehr-see-DAH-duh",
           "example": "Estudei na Universidade de Lisboa.",
           "exampleTranslation": "I studied at the University of Lisbon."
         },
@@ -3213,6 +3438,7 @@
           "english": "class / lesson",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "OW-lah",
           "example": "A aula de português é às três.",
           "exampleTranslation": "The Portuguese class is at three."
         },
@@ -3221,6 +3447,7 @@
           "english": "exam",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "ee-ZAH-muh",
           "example": "Tenho um exame na sexta-feira.",
           "exampleTranslation": "I have an exam on Friday."
         },
@@ -3229,6 +3456,7 @@
           "english": "student",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ah-LOO-noo / ah-LOO-nah",
           "example": "Sou aluno de português.",
           "exampleTranslation": "I am a Portuguese student."
         },
@@ -3237,6 +3465,7 @@
           "english": "book",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "LEE-vroo",
           "example": "Comprei um livro novo.",
           "exampleTranslation": "I bought a new book."
         },
@@ -3245,6 +3474,7 @@
           "english": "notebook",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "kah-DEHR-noo",
           "example": "Escrevo as notas no caderno.",
           "exampleTranslation": "I write the notes in the notebook."
         },
@@ -3253,6 +3483,7 @@
           "english": "pen",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "kah-NEH-tah",
           "example": "Tens uma caneta para mim?",
           "exampleTranslation": "Do you have a pen for me?"
         },
@@ -3261,6 +3492,7 @@
           "english": "pencil",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "LAH-peesh",
           "example": "Preciso de um lápis.",
           "exampleTranslation": "I need a pencil."
         },
@@ -3269,6 +3501,7 @@
           "english": "backpack",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "moo-SHEE-lah",
           "example": "A mochila está na sala.",
           "exampleTranslation": "The backpack is in the living room."
         },
@@ -3277,6 +3510,7 @@
           "english": "library",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "bee-blee-oo-TEH-kah",
           "example": "Vou à biblioteca estudar.",
           "exampleTranslation": "I'm going to the library to study."
         },
@@ -3285,6 +3519,7 @@
           "english": "dictionary",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "dee-see-oo-NAH-ree-oo",
           "example": "Consulta o dicionário.",
           "exampleTranslation": "Look it up in the dictionary."
         },
@@ -3293,6 +3528,7 @@
           "english": "course",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "KOOR-soo",
           "example": "Fiz um curso de português.",
           "exampleTranslation": "I did a Portuguese course."
         },
@@ -3301,6 +3537,7 @@
           "english": "grade / mark",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "NOH-tah",
           "example": "Tive boa nota no exame.",
           "exampleTranslation": "I got a good grade in the exam."
         },
@@ -3309,6 +3546,7 @@
           "english": "homework",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "trah-BAH-lyoo duh KAH-zah",
           "example": "Já fiz o trabalho de casa.",
           "exampleTranslation": "I've already done my homework."
         },
@@ -3317,6 +3555,7 @@
           "english": "break / recess",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "rruh-KRAY-oo",
           "example": "No recreio jogamos à bola.",
           "exampleTranslation": "At break we play ball."
         },
@@ -3325,6 +3564,7 @@
           "english": "blackboard",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "KWAH-droo",
           "example": "O professor escreveu no quadro.",
           "exampleTranslation": "The teacher wrote on the blackboard."
         }
@@ -3340,6 +3580,7 @@
           "english": "head",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "kah-BAY-sah",
           "example": "Dói-me a cabeça.",
           "exampleTranslation": "My head hurts."
         },
@@ -3348,6 +3589,7 @@
           "english": "eye(s)",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "OH-lyoo / OH-lyoosh",
           "example": "Tenho os olhos castanhos.",
           "exampleTranslation": "I have brown eyes."
         },
@@ -3356,6 +3598,7 @@
           "english": "nose",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "nah-REESH",
           "example": "O nariz está entupido.",
           "exampleTranslation": "My nose is blocked."
         },
@@ -3364,6 +3607,7 @@
           "english": "mouth",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "BOH-kah",
           "example": "Abre a boca.",
           "exampleTranslation": "Open your mouth."
         },
@@ -3372,6 +3616,7 @@
           "english": "ear",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "oh-REH-lyah",
           "example": "Dói-me a orelha.",
           "exampleTranslation": "My ear hurts."
         },
@@ -3380,6 +3625,7 @@
           "english": "tooth",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "DEN-tuh",
           "example": "Tenho uma dor de dentes.",
           "exampleTranslation": "I have a toothache."
         },
@@ -3388,6 +3634,7 @@
           "english": "hair",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "kah-BEH-loo",
           "example": "O cabelo está molhado.",
           "exampleTranslation": "My hair is wet."
         },
@@ -3396,6 +3643,7 @@
           "english": "hand(s)",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "MOWNG / MOWNGSH",
           "example": "Lava as mãos.",
           "exampleTranslation": "Wash your hands."
         },
@@ -3404,6 +3652,7 @@
           "english": "arm",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "BRAH-soo",
           "example": "Parti o braço.",
           "exampleTranslation": "I broke my arm."
         },
@@ -3412,6 +3661,7 @@
           "english": "leg",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "PEHR-nah",
           "example": "Dói-me a perna.",
           "exampleTranslation": "My leg hurts."
         },
@@ -3420,6 +3670,7 @@
           "english": "foot / feet",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "PEH / PESH",
           "example": "Os pés estão frios.",
           "exampleTranslation": "My feet are cold."
         },
@@ -3428,6 +3679,7 @@
           "english": "back",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "KOHsh-tahsh",
           "example": "Tenho dores nas costas.",
           "exampleTranslation": "I have back pain."
         },
@@ -3436,6 +3688,7 @@
           "english": "chest",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "PAY-too",
           "example": "Dói-me o peito.",
           "exampleTranslation": "My chest hurts."
         },
@@ -3444,6 +3697,7 @@
           "english": "belly / stomach",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "bah-RREE-gah",
           "example": "Dói-me a barriga.",
           "exampleTranslation": "My stomach hurts."
         },
@@ -3452,6 +3706,7 @@
           "english": "finger / toe",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "DAY-doo",
           "example": "Cortei o dedo.",
           "exampleTranslation": "I cut my finger."
         },
@@ -3460,6 +3715,7 @@
           "english": "neck",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "puhsh-KOH-soo",
           "example": "Tenho dores no pescoço.",
           "exampleTranslation": "I have neck pain."
         },
@@ -3468,6 +3724,7 @@
           "english": "shoulder",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "OM-broo",
           "example": "O ombro está melhor.",
           "exampleTranslation": "My shoulder is better."
         },
@@ -3476,6 +3733,7 @@
           "english": "knee",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "zhoo-EH-lyoo",
           "example": "Machuquei o joelho.",
           "exampleTranslation": "I hurt my knee."
         },
@@ -3484,6 +3742,7 @@
           "english": "pain",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "DOHR",
           "example": "Tenho muita dor.",
           "exampleTranslation": "I'm in a lot of pain."
         },
@@ -3492,6 +3751,7 @@
           "english": "headache",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "DOHR duh kah-BAY-sah",
           "example": "Tenho uma dor de cabeça forte.",
           "exampleTranslation": "I have a bad headache."
         },
@@ -3500,6 +3760,7 @@
           "english": "fever",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "FEH-bruh",
           "example": "O miúdo tem febre.",
           "exampleTranslation": "The child has a fever."
         },
@@ -3508,6 +3769,7 @@
           "english": "cold (illness)",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "konsh-tee-pah-SOWNG",
           "example": "Estou com constipação.",
           "exampleTranslation": "I have a cold. (False friend: in Portuguese constipação means cold, not constipation.)"
         },
@@ -3516,6 +3778,7 @@
           "english": "flu",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "GREEP-uh",
           "example": "Apanhei uma gripe.",
           "exampleTranslation": "I caught the flu."
         },
@@ -3524,6 +3787,7 @@
           "english": "cough",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "TOH-suh",
           "example": "Tenho tosse há uma semana.",
           "exampleTranslation": "I've had a cough for a week."
         },
@@ -3532,6 +3796,7 @@
           "english": "allergy",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ah-lehr-ZHEE-ah",
           "example": "Tenho alergia a amendoins.",
           "exampleTranslation": "I'm allergic to peanuts."
         },
@@ -3540,6 +3805,7 @@
           "english": "prescription",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "rruh-SAY-tah MEH-dee-kah",
           "example": "Preciso de uma receita médica.",
           "exampleTranslation": "I need a prescription."
         },
@@ -3548,6 +3814,7 @@
           "english": "pill / tablet",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "kom-pree-MEE-doo",
           "example": "Tomo um comprimido por dia.",
           "exampleTranslation": "I take one pill a day."
         },
@@ -3556,6 +3823,7 @@
           "english": "medicine",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "muh-dee-kah-MEN-too",
           "example": "O medicamento está na farmácia.",
           "exampleTranslation": "The medicine is at the pharmacy."
         },
@@ -3564,6 +3832,7 @@
           "english": "sick / ill",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "doo-EN-tuh",
           "example": "Estou doente, não vou trabalhar.",
           "exampleTranslation": "I'm sick, I'm not going to work."
         },
@@ -3572,6 +3841,7 @@
           "english": "healthy",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "sow-DAH-vuhl",
           "example": "Como de forma saudável.",
           "exampleTranslation": "I eat healthily."
         },
@@ -3580,6 +3850,7 @@
           "english": "tired",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "kahn-SAH-doo / kahn-SAH-dah",
           "example": "Estou muito cansado.",
           "exampleTranslation": "I'm very tired."
         },
@@ -3588,6 +3859,7 @@
           "english": "appointment (medical)",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "kon-SOOL-tah",
           "example": "Tenho uma consulta no médico às três.",
           "exampleTranslation": "I have a doctor's appointment at three."
         },
@@ -3596,6 +3868,7 @@
           "english": "A&E / emergency room",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "oor-ZHEN-see-ah",
           "example": "Foi levado para a urgência.",
           "exampleTranslation": "He was taken to A&E."
         },
@@ -3604,6 +3877,7 @@
           "english": "test / analysis (medical)",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "ah-NAH-lee-zuh",
           "example": "Fiz análises ao sangue.",
           "exampleTranslation": "I had blood tests."
         },
@@ -3612,6 +3886,7 @@
           "english": "vaccine",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "vah-SEE-nah",
           "example": "Tomei a vacina da gripe.",
           "exampleTranslation": "I had the flu vaccine."
         },
@@ -3620,6 +3895,7 @@
           "english": "surgery / operation",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "oh-puh-rah-SOWNG",
           "example": "Precisa de uma operação.",
           "exampleTranslation": "He needs an operation."
         },
@@ -3628,6 +3904,7 @@
           "english": "it hurts",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "DOY",
           "example": "Dói-me aqui.",
           "exampleTranslation": "It hurts here."
         },
@@ -3636,6 +3913,7 @@
           "english": "to get better / improve",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "muh-lyoo-RAHR",
           "example": "Espero que melhores em breve.",
           "exampleTranslation": "I hope you get better soon."
         },
@@ -3644,6 +3922,7 @@
           "english": "prescription / recipe",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "rruh-SAY-tah",
           "example": "O médico passou-me uma receita.",
           "exampleTranslation": "The doctor gave me a prescription."
         },
@@ -3652,6 +3931,7 @@
           "english": "A&E / emergency room",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "oor-ZHEN-see-ahsh",
           "example": "Fui às urgências ontem à noite.",
           "exampleTranslation": "I went to A&E last night."
         },
@@ -3660,6 +3940,7 @@
           "english": "bandage / plaster",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "PEN-soo",
           "example": "Preciso de um penso rápido.",
           "exampleTranslation": "I need a plaster."
         },
@@ -3668,6 +3949,7 @@
           "english": "sore throat",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "DOHR duh gahr-GAN-tah",
           "example": "Tenho dor de garganta.",
           "exampleTranslation": "I have a sore throat."
         },
@@ -3676,6 +3958,7 @@
           "english": "backache",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "DOHR duh KOHsh-tahsh",
           "example": "Tenho muitas dores de costas.",
           "exampleTranslation": "I have a lot of backache."
         }
