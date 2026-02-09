@@ -46,7 +46,10 @@
         "CHEGAR",
         "ENCONTRAR",
         "LEVAR",
-        "TRAZER"
+        "TRAZER",
+        "DEIXAR",
+        "COMEÇAR",
+        "ACABAR"
     ],
     "verbs": {
         "SER": {
@@ -15492,7 +15495,1033 @@
                     "Notes": "Irregular stem: trag-."
                 }
             ]
+        },
+        "DEIXAR": {
+            "meta": {
+                "emoji": "🚪",
+                "english": "to let / to leave behind / to stop doing",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixo",
+                    "Example Sentence": "Deixo sempre a porta aberta.",
+                    "English Translation": "I always leave the door open.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixas",
+                    "Example Sentence": "Deixas o cão sozinho em casa?",
+                    "English Translation": "Do you leave the dog alone at home?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixa",
+                    "Example Sentence": "Ela não nos deixa sair.",
+                    "English Translation": "She doesn't let us go out.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixamos",
+                    "Example Sentence": "Deixamos gorjeta no restaurante.",
+                    "English Translation": "We leave a tip at the restaurant.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixam",
+                    "Example Sentence": "Não deixam entrar sem bilhete.",
+                    "English Translation": "They don't let you in without a ticket.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixei",
+                    "Example Sentence": "Deixei as chaves na mesa.",
+                    "English Translation": "I left the keys on the table.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixaste",
+                    "Example Sentence": "Deixaste de comer carne?",
+                    "English Translation": "Did you stop eating meat?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixou",
+                    "Example Sentence": "Ele deixou o emprego.",
+                    "English Translation": "He quit his job.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixámos",
+                    "Example Sentence": "Deixámos a mala no hotel.",
+                    "English Translation": "We left the suitcase at the hotel.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixaram",
+                    "Example Sentence": "Deixaram a porta aberta.",
+                    "English Translation": "They left the door open.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixava",
+                    "Example Sentence": "Deixava sempre tudo arrumado.",
+                    "English Translation": "I always used to leave everything tidy.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixavas",
+                    "Example Sentence": "Deixavas o carro na garagem?",
+                    "English Translation": "Did you used to leave the car in the garage?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixava",
+                    "Example Sentence": "A mãe não o deixava sair.",
+                    "English Translation": "His mother wouldn't let him go out.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixávamos",
+                    "Example Sentence": "Deixávamos as crianças na avó.",
+                    "English Translation": "We used to leave the children at grandma's.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixavam",
+                    "Example Sentence": "Deixavam a luz acesa.",
+                    "English Translation": "They used to leave the light on.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixarei",
+                    "Example Sentence": "Deixarei a chave na recepção.",
+                    "English Translation": "I will leave the key at reception.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixarás",
+                    "Example Sentence": "Deixarás o carro no aeroporto?",
+                    "English Translation": "Will you leave the car at the airport?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixará",
+                    "Example Sentence": "Deixará de chover amanhã.",
+                    "English Translation": "It will stop raining tomorrow.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixaremos",
+                    "Example Sentence": "Deixaremos tudo preparado.",
+                    "English Translation": "We will leave everything prepared.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixarão",
+                    "Example Sentence": "Deixarão a decisão para depois.",
+                    "English Translation": "They will leave the decision for later.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixaria",
+                    "Example Sentence": "Deixaria tudo para trás.",
+                    "English Translation": "I would leave everything behind.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixarias",
+                    "Example Sentence": "Deixarias os teus filhos ir?",
+                    "English Translation": "Would you let your children go?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixaria",
+                    "Example Sentence": "Deixaria de trabalhar se pudesse.",
+                    "English Translation": "He would stop working if he could.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixaríamos",
+                    "Example Sentence": "Deixaríamos uma nota.",
+                    "English Translation": "We would leave a note.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixariam",
+                    "Example Sentence": "Deixariam a porta aberta.",
+                    "English Translation": "They would leave the door open.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixe",
+                    "Example Sentence": "Espero que deixe de chover.",
+                    "English Translation": "I hope it stops raining.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixes",
+                    "Example Sentence": "Quero que deixes isso.",
+                    "English Translation": "I want you to leave that alone.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixe",
+                    "Example Sentence": "Talvez ela deixe o emprego.",
+                    "English Translation": "Maybe she'll quit her job.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixemos",
+                    "Example Sentence": "Esperamos que nos deixem entrar.",
+                    "English Translation": "We hope they let us in.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "deixem",
+                    "Example Sentence": "Quero que deixem de discutir.",
+                    "English Translation": "I want them to stop arguing.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
+        },
+        "COMEÇAR": {
+            "meta": {
+                "emoji": "▶️",
+                "english": "to start / to begin",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começo",
+                    "Example Sentence": "Começo a trabalhar às nove.",
+                    "English Translation": "I start working at nine.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começas",
+                    "Example Sentence": "Começas o curso quando?",
+                    "English Translation": "When do you start the course?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começa",
+                    "Example Sentence": "O filme começa às oito.",
+                    "English Translation": "The film starts at eight.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começamos",
+                    "Example Sentence": "Começamos a jantar.",
+                    "English Translation": "We're starting dinner.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começam",
+                    "Example Sentence": "As aulas começam em setembro.",
+                    "English Translation": "Classes start in September.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "comecei",
+                    "Example Sentence": "Comecei a aprender português em janeiro.",
+                    "English Translation": "I started learning Portuguese in January.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: ç→c before e. The cedilla (ç) is only needed before a, o, u to make the /s/ sound. Before e and i, plain c already makes /s/. Applies to all -ÇAR verbs."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começaste",
+                    "Example Sentence": "Começaste a correr?",
+                    "English Translation": "Did you start running?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começou",
+                    "Example Sentence": "Começou a chover.",
+                    "English Translation": "It started raining.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começámos",
+                    "Example Sentence": "Começámos o projeto na segunda.",
+                    "English Translation": "We started the project on Monday.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começaram",
+                    "Example Sentence": "Começaram a discutir.",
+                    "English Translation": "They started arguing.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começava",
+                    "Example Sentence": "Começava sempre cedo.",
+                    "English Translation": "I always used to start early.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começavas",
+                    "Example Sentence": "Começavas a que horas?",
+                    "English Translation": "What time did you used to start?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começava",
+                    "Example Sentence": "A aula começava às duas.",
+                    "English Translation": "The class used to start at two.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começávamos",
+                    "Example Sentence": "Começávamos pelo básico.",
+                    "English Translation": "We used to start with the basics.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começavam",
+                    "Example Sentence": "Começavam a trabalhar tarde.",
+                    "English Translation": "They used to start working late.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começarei",
+                    "Example Sentence": "Começarei amanhã.",
+                    "English Translation": "I will start tomorrow.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começarás",
+                    "Example Sentence": "Começarás a perceber.",
+                    "English Translation": "You will start to understand.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começará",
+                    "Example Sentence": "Começará a fazer calor.",
+                    "English Translation": "It will start getting hot.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começaremos",
+                    "Example Sentence": "Começaremos pela gramática.",
+                    "English Translation": "We will start with grammar.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começarão",
+                    "Example Sentence": "Começarão as férias na sexta.",
+                    "English Translation": "Their holidays will start on Friday.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começaria",
+                    "Example Sentence": "Começaria mais cedo se pudesse.",
+                    "English Translation": "I would start earlier if I could.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começarias",
+                    "Example Sentence": "Começarias por onde?",
+                    "English Translation": "Where would you start?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começaria",
+                    "Example Sentence": "Começaria pelo mais fácil.",
+                    "English Translation": "He would start with the easiest.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começaríamos",
+                    "Example Sentence": "Começaríamos de novo.",
+                    "English Translation": "We would start again.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "começariam",
+                    "Example Sentence": "Começariam amanhã.",
+                    "English Translation": "They would start tomorrow.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "comece",
+                    "Example Sentence": "Espero que comece bem.",
+                    "English Translation": "I hope it starts well.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: ç→c before e. The cedilla (ç) is only needed before a, o, u to make the /s/ sound. Before e and i, plain c already makes /s/. Applies to all -ÇAR verbs."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "comeces",
+                    "Example Sentence": "Quero que comeces já.",
+                    "English Translation": "I want you to start now.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: ç→c before e. The cedilla (ç) is only needed before a, o, u to make the /s/ sound. Before e and i, plain c already makes /s/. Applies to all -ÇAR verbs."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "comece",
+                    "Example Sentence": "Talvez comece a chover.",
+                    "English Translation": "Maybe it will start raining.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: ç→c before e. The cedilla (ç) is only needed before a, o, u to make the /s/ sound. Before e and i, plain c already makes /s/. Applies to all -ÇAR verbs."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "comecemos",
+                    "Example Sentence": "Esperamos que comecemos a tempo.",
+                    "English Translation": "We hope we start on time.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: ç→c before e. The cedilla (ç) is only needed before a, o, u to make the /s/ sound. Before e and i, plain c already makes /s/. Applies to all -ÇAR verbs."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "comecem",
+                    "Example Sentence": "Quero que comecem sem mim.",
+                    "English Translation": "I want them to start without me.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: ç→c before e. The cedilla (ç) is only needed before a, o, u to make the /s/ sound. Before e and i, plain c already makes /s/. Applies to all -ÇAR verbs."
+                }
+            ]
+        },
+        "ACABAR": {
+            "meta": {
+                "emoji": "🏁",
+                "english": "to finish / to end",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabo",
+                    "Example Sentence": "Acabo de chegar.",
+                    "English Translation": "I just arrived.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "ACABAR DE + infinitive = 'to have just done something'. Very common in EP."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabas",
+                    "Example Sentence": "Acabas o trabalho a que horas?",
+                    "English Translation": "What time do you finish work?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acaba",
+                    "Example Sentence": "A aula acaba às quatro.",
+                    "English Translation": "The class finishes at four.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabamos",
+                    "Example Sentence": "Acabamos de almoçar.",
+                    "English Translation": "We just had lunch.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "ACABAR DE + infinitive = 'to have just done something'. Very common in EP."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabam",
+                    "Example Sentence": "As obras acabam no verão.",
+                    "English Translation": "The construction finishes in summer.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabei",
+                    "Example Sentence": "Acabei o livro ontem.",
+                    "English Translation": "I finished the book yesterday.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabaste",
+                    "Example Sentence": "Acabaste o exame a tempo?",
+                    "English Translation": "Did you finish the exam in time?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabou",
+                    "Example Sentence": "O concerto acabou tarde.",
+                    "English Translation": "The concert ended late.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabámos",
+                    "Example Sentence": "Acabámos o projeto.",
+                    "English Translation": "We finished the project.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabaram",
+                    "Example Sentence": "Acabaram a comida toda.",
+                    "English Translation": "They finished all the food.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabava",
+                    "Example Sentence": "Acabava sempre tarde.",
+                    "English Translation": "I always used to finish late.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabavas",
+                    "Example Sentence": "Acabavas o jantar depressa.",
+                    "English Translation": "You used to finish dinner quickly.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabava",
+                    "Example Sentence": "O programa acabava à meia-noite.",
+                    "English Translation": "The programme used to end at midnight.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabávamos",
+                    "Example Sentence": "Acabávamos as aulas às cinco.",
+                    "English Translation": "We used to finish classes at five.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabavam",
+                    "Example Sentence": "Acabavam por concordar.",
+                    "English Translation": "They used to end up agreeing.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabarei",
+                    "Example Sentence": "Acabarei isto hoje.",
+                    "English Translation": "I will finish this today.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabarás",
+                    "Example Sentence": "Acabarás a tempo.",
+                    "English Translation": "You will finish in time.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabará",
+                    "Example Sentence": "Acabará por perceber.",
+                    "English Translation": "He will end up understanding.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabaremos",
+                    "Example Sentence": "Acabaremos antes do prazo.",
+                    "English Translation": "We will finish before the deadline.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabarão",
+                    "Example Sentence": "Acabarão as obras em breve.",
+                    "English Translation": "They will finish the works soon.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabaria",
+                    "Example Sentence": "Acabaria mais cedo se pudesse.",
+                    "English Translation": "I would finish earlier if I could.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabarias",
+                    "Example Sentence": "Acabarias o curso este ano?",
+                    "English Translation": "Would you finish the course this year?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabaria",
+                    "Example Sentence": "Acabaria por desistir.",
+                    "English Translation": "He would end up giving up.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabaríamos",
+                    "Example Sentence": "Acabaríamos tudo hoje.",
+                    "English Translation": "We would finish everything today.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabariam",
+                    "Example Sentence": "Acabariam a tempo.",
+                    "English Translation": "They would finish in time.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabe",
+                    "Example Sentence": "Espero que acabe bem.",
+                    "English Translation": "I hope it ends well.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabes",
+                    "Example Sentence": "Quero que acabes isso primeiro.",
+                    "English Translation": "I want you to finish that first.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabe",
+                    "Example Sentence": "Talvez acabe cedo hoje.",
+                    "English Translation": "Maybe it will finish early today.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabemos",
+                    "Example Sentence": "Esperamos que acabemos a tempo.",
+                    "English Translation": "We hope we finish on time.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "acabem",
+                    "Example Sentence": "Quero que acabem antes das seis.",
+                    "English Translation": "I want them to finish before six.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
         }
     },
-    "totalVerbs": 47
+    "totalVerbs": 50
 }

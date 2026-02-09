@@ -3985,6 +3985,126 @@
           "gender": "f",
           "example": "Preciso de paciência.",
           "exampleTranslation": "I need patience."
+        },
+        {
+          "portuguese": "ansioso",
+          "english": "anxious / eager",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Estou ansioso pelo concerto.",
+          "exampleTranslation": "I'm eager for the concert."
+        },
+        {
+          "portuguese": "frustrado",
+          "english": "frustrated",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Estou frustrado com a situação.",
+          "exampleTranslation": "I'm frustrated with the situation."
+        },
+        {
+          "portuguese": "aliviado",
+          "english": "relieved",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Fiquei aliviado com o resultado.",
+          "exampleTranslation": "I was relieved with the result."
+        },
+        {
+          "portuguese": "curioso",
+          "english": "curious",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Sou muito curioso por natureza.",
+          "exampleTranslation": "I'm very curious by nature."
+        },
+        {
+          "portuguese": "ciumento",
+          "english": "jealous",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Ele é muito ciumento.",
+          "exampleTranslation": "He is very jealous."
+        },
+        {
+          "portuguese": "generoso",
+          "english": "generous",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A minha avó é muito generosa.",
+          "exampleTranslation": "My grandmother is very generous."
+        },
+        {
+          "portuguese": "teimoso",
+          "english": "stubborn",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O meu pai é teimoso.",
+          "exampleTranslation": "My father is stubborn."
+        },
+        {
+          "portuguese": "honesto",
+          "english": "honest",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ela é sempre honesta.",
+          "exampleTranslation": "She is always honest."
+        },
+        {
+          "portuguese": "carinhoso",
+          "english": "affectionate / caring",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O cão é muito carinhoso.",
+          "exampleTranslation": "The dog is very affectionate."
+        },
+        {
+          "portuguese": "solitário",
+          "english": "lonely",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Sinto-me solitário às vezes.",
+          "exampleTranslation": "I feel lonely sometimes."
+        },
+        {
+          "portuguese": "culpa",
+          "english": "guilt / blame",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A culpa não é tua.",
+          "exampleTranslation": "It's not your fault."
+        },
+        {
+          "portuguese": "alegria",
+          "english": "joy / happiness",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Que alegria ver-te!",
+          "exampleTranslation": "What a joy to see you!"
+        },
+        {
+          "portuguese": "raiva",
+          "english": "rage / anger",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Sentiu muita raiva.",
+          "exampleTranslation": "He felt a lot of rage."
+        },
+        {
+          "portuguese": "vergonha",
+          "english": "shame / embarrassment",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Que vergonha!",
+          "exampleTranslation": "How embarrassing!"
+        },
+        {
+          "portuguese": "orgulho",
+          "english": "pride",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Tenho muito orgulho no meu filho.",
+          "exampleTranslation": "I'm very proud of my son."
         }
       ]
     }
