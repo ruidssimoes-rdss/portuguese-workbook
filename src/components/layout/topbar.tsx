@@ -9,7 +9,7 @@ const navItems = [
   { href: "/vocabulary", label: "Vocabulary" },
   { href: "/grammar", label: "Grammar" },
   { href: "/practice", label: "Practice" },
-  { href: "/dashboard", label: "Dashboard" },
+  { href: "/dashboard", label: "Progress & Tests" },
 ];
 
 export function Topbar() {

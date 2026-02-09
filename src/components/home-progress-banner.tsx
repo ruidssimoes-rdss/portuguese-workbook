@@ -85,7 +85,7 @@ export function HomeProgressBanner() {
             </span>
           </div>
           <span className="text-[13px] font-medium text-text-2 hover:text-text transition-colors duration-150">
-            View Dashboard →
+            View Progress & Tests →
           </span>
         </Link>
       </section>

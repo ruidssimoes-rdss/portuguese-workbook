@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+
+export const dynamic = "force-dynamic";
 import { HomeProgressBanner } from "@/components/home-progress-banner";
 import { Badge, cefrVariant, groupVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";

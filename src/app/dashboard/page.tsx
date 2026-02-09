@@ -83,8 +83,15 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const onFocus = () => refreshProgress();
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) refreshProgress();
+    };
     window.addEventListener("focus", onFocus);
-    return () => window.removeEventListener("focus", onFocus);
+    window.addEventListener("pageshow", onPageShow);
+    return () => {
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("pageshow", onPageShow);
+    };
   }, []);
 
   if (progress === null) {
@@ -130,7 +137,7 @@ export default function DashboardPage() {
       <main className="max-w-[1100px] mx-auto px-6 md:px-10">
         <header className="pt-12 pb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-text">
-            Your Progress
+            Progress & Tests
           </h1>
           <p className="text-text-2 mt-1 text-[15px]">
             Pass each level to unlock the next — A1.1 through B1.5
@@ -225,7 +232,7 @@ export default function DashboardPage() {
             const isComplete = highestPassed === "B1.5";
             const info = getLevelInfo(section, currentLevel);
             const targetAccuracy = info.targetAccuracy ?? 70;
-            const passedCount = getLevelIndex(currentLevel);
+            const passedCount = highestPassed != null ? getLevelIndex(highestPassed) + 1 : 0;
             const progressPct = Math.max(4, (passedCount / 15) * 100);
             const grammarDisabled = section === "grammar";
             const colors = SECTION_COLORS[section];

@@ -164,7 +164,7 @@ export default function LevelTestPage() {
         <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
           <p className="text-text-2">Level tests for grammar are not available yet.</p>
           <Link href="/dashboard" className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block">
-            Back to Dashboard
+            Back to Progress & Tests
           </Link>
         </main>
       </>
@@ -178,7 +178,7 @@ export default function LevelTestPage() {
         <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
           <p className="text-text-2">Level not found.</p>
           <Link href="/dashboard" className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block">
-            Back to Dashboard
+            Back to Progress & Tests
           </Link>
         </main>
       </>
@@ -241,7 +241,7 @@ export default function LevelTestPage() {
                     href="/dashboard"
                     className="text-center text-[14px] text-text-2 hover:text-text underline"
                   >
-                    Back to Dashboard
+                    Back to Progress & Tests
                   </Link>
                 </div>
               </div>
@@ -435,14 +435,14 @@ export default function LevelTestPage() {
                           className="w-full text-center py-3 px-4 rounded-xl font-medium text-white transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
                           style={{ backgroundColor: sectionColor }}
                         >
-                          {nextLevel ? `Continue to ${nextLevel}` : "Back to Dashboard"}
+                          {nextLevel ? `Continue to ${nextLevel}` : "Back to Progress & Tests"}
                         </Link>
                         <Link
                           href="/dashboard"
                           className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-bg-s transition-colors duration-150"
                           style={{ borderColor: sectionColor, color: sectionColor }}
                         >
-                          Back to Dashboard
+                          Back to Progress & Tests
                         </Link>
                       </div>
                     </>
@@ -480,7 +480,7 @@ export default function LevelTestPage() {
                           className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-bg-s transition-colors duration-150"
                           style={{ borderColor: sectionColor, color: sectionColor }}
                         >
-                          Back to Dashboard
+                          Back to Progress & Tests
                         </Link>
                       </div>
                     </>
