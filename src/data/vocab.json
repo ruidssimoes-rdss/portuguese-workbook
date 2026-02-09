@@ -3658,6 +3658,126 @@
           "gender": "f",
           "example": "A paisagem é deslumbrante.",
           "exampleTranslation": "The scenery is stunning."
+        },
+        {
+          "portuguese": "lobo",
+          "english": "wolf",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O lobo ibérico está em perigo.",
+          "exampleTranslation": "The Iberian wolf is endangered."
+        },
+        {
+          "portuguese": "raposa",
+          "english": "fox",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Vi uma raposa no campo.",
+          "exampleTranslation": "I saw a fox in the countryside."
+        },
+        {
+          "portuguese": "golfinho",
+          "english": "dolphin",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Há golfinhos na costa do Algarve.",
+          "exampleTranslation": "There are dolphins on the Algarve coast."
+        },
+        {
+          "portuguese": "tartaruga",
+          "english": "turtle / tortoise",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A tartaruga caminha devagar.",
+          "exampleTranslation": "The tortoise walks slowly."
+        },
+        {
+          "portuguese": "ovelha",
+          "english": "sheep",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O pastor leva as ovelhas ao monte.",
+          "exampleTranslation": "The shepherd takes the sheep to the hills."
+        },
+        {
+          "portuguese": "porco",
+          "english": "pig",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O porco preto alentejano é famoso.",
+          "exampleTranslation": "The Alentejo black pig is famous."
+        },
+        {
+          "portuguese": "formiga",
+          "english": "ant",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "As formigas trabalham muito.",
+          "exampleTranslation": "Ants work a lot."
+        },
+        {
+          "portuguese": "aranha",
+          "english": "spider",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho medo de aranhas.",
+          "exampleTranslation": "I'm afraid of spiders."
+        },
+        {
+          "portuguese": "pedra",
+          "english": "stone / rock",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Sentou-se numa pedra.",
+          "exampleTranslation": "He sat on a rock."
+        },
+        {
+          "portuguese": "areia",
+          "english": "sand",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A areia da praia é branca.",
+          "exampleTranslation": "The beach sand is white."
+        },
+        {
+          "portuguese": "onda",
+          "english": "wave",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "As ondas estão grandes hoje.",
+          "exampleTranslation": "The waves are big today."
+        },
+        {
+          "portuguese": "costa",
+          "english": "coast",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A costa portuguesa é linda.",
+          "exampleTranslation": "The Portuguese coast is beautiful."
+        },
+        {
+          "portuguese": "nascente",
+          "english": "spring (water source)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A água vem de uma nascente.",
+          "exampleTranslation": "The water comes from a spring."
+        },
+        {
+          "portuguese": "colina",
+          "english": "hill",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A aldeia fica numa colina.",
+          "exampleTranslation": "The village is on a hill."
+        },
+        {
+          "portuguese": "pôr do sol",
+          "english": "sunset",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O pôr do sol no Algarve é incrível.",
+          "exampleTranslation": "The sunset in the Algarve is incredible."
         }
       ]
     },

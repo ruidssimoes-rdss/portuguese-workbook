@@ -43,7 +43,10 @@
         "OUVIR",
         "FICAR",
         "PRECISAR",
-        "CHEGAR"
+        "CHEGAR",
+        "ENCONTRAR",
+        "LEVAR",
+        "TRAZER"
     ],
     "verbs": {
         "SER": {
@@ -14463,7 +14466,1033 @@
                     "Notes": "Subjunctive 3rd pl. g→gu."
                 }
             ]
+        },
+        "ENCONTRAR": {
+            "meta": {
+                "emoji": "🔍",
+                "english": "to find / to meet",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontro",
+                    "Example Sentence": "Nunca encontro as minhas chaves.",
+                    "English Translation": "I never find my keys.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontras",
+                    "Example Sentence": "Encontras sempre boas ofertas.",
+                    "English Translation": "You always find good deals.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontra",
+                    "Example Sentence": "Ela encontra-se comigo ao almoço.",
+                    "English Translation": "She's meeting me at lunch.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontramos",
+                    "Example Sentence": "Encontramos muitos turistas no centro.",
+                    "English Translation": "We find many tourists in the centre.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontram",
+                    "Example Sentence": "Encontram-se todos os sábados.",
+                    "English Translation": "They meet every Saturday.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrei",
+                    "Example Sentence": "Encontrei a carteira no chão.",
+                    "English Translation": "I found the wallet on the floor.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontraste",
+                    "Example Sentence": "Encontraste o que procuravas?",
+                    "English Translation": "Did you find what you were looking for?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrou",
+                    "Example Sentence": "Ele encontrou um emprego novo.",
+                    "English Translation": "He found a new job.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrámos",
+                    "Example Sentence": "Encontrámos um restaurante excelente.",
+                    "English Translation": "We found an excellent restaurant.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontraram",
+                    "Example Sentence": "Encontraram-se por acaso.",
+                    "English Translation": "They met by chance.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrava",
+                    "Example Sentence": "Encontrava sempre moedas na rua.",
+                    "English Translation": "I always used to find coins on the street.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontravas",
+                    "Example Sentence": "Encontravas dificuldades?",
+                    "English Translation": "Did you used to find difficulties?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrava",
+                    "Example Sentence": "Ela encontrava-se com as amigas às quartas.",
+                    "English Translation": "She used to meet her friends on Wednesdays.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrávamos",
+                    "Example Sentence": "Encontrávamos sempre lugar.",
+                    "English Translation": "We always used to find a spot.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontravam",
+                    "Example Sentence": "Encontravam-se no café.",
+                    "English Translation": "They used to meet at the café.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrarei",
+                    "Example Sentence": "Encontrarei uma solução.",
+                    "English Translation": "I will find a solution.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrarás",
+                    "Example Sentence": "Encontrarás o caminho.",
+                    "English Translation": "You will find the way.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrará",
+                    "Example Sentence": "Encontrará o que procura.",
+                    "English Translation": "He will find what he's looking for.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontraremos",
+                    "Example Sentence": "Encontraremos um lugar melhor.",
+                    "English Translation": "We will find a better place.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrarão",
+                    "Example Sentence": "Encontrarão a resposta.",
+                    "English Translation": "They will find the answer.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontraria",
+                    "Example Sentence": "Encontraria se tivesse mais tempo.",
+                    "English Translation": "I would find it if I had more time.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrarias",
+                    "Example Sentence": "Encontrarias isso na internet.",
+                    "English Translation": "You would find that on the internet.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontraria",
+                    "Example Sentence": "Encontraria trabalho facilmente.",
+                    "English Translation": "He would find work easily.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontraríamos",
+                    "Example Sentence": "Encontraríamos uma alternativa.",
+                    "English Translation": "We would find an alternative.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrariam",
+                    "Example Sentence": "Encontrariam ajuda no centro.",
+                    "English Translation": "They would find help in the centre.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontre",
+                    "Example Sentence": "Espero que encontre o que procuro.",
+                    "English Translation": "I hope I find what I'm looking for.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontres",
+                    "Example Sentence": "Quero que encontres um bom lugar.",
+                    "English Translation": "I want you to find a good spot.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontre",
+                    "Example Sentence": "Talvez ela encontre bilhetes.",
+                    "English Translation": "Maybe she will find tickets.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontremos",
+                    "Example Sentence": "Esperamos que encontremos solução.",
+                    "English Translation": "We hope we find a solution.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "encontrem",
+                    "Example Sentence": "Quero que encontrem a saída.",
+                    "English Translation": "I want them to find the exit.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
+        },
+        "LEVAR": {
+            "meta": {
+                "emoji": "🧳",
+                "english": "to take / to carry / to bring along",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levo",
+                    "Example Sentence": "Levo o cão a passear todas as manhãs.",
+                    "English Translation": "I take the dog for a walk every morning.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levas",
+                    "Example Sentence": "Levas o guarda-chuva?",
+                    "English Translation": "Are you taking the umbrella?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "leva",
+                    "Example Sentence": "Ela leva os filhos à escola.",
+                    "English Translation": "She takes the children to school.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levamos",
+                    "Example Sentence": "Levamos comida para o piquenique.",
+                    "English Translation": "We're taking food for the picnic.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levam",
+                    "Example Sentence": "Levam sempre muito tempo.",
+                    "English Translation": "They always take a long time.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levei",
+                    "Example Sentence": "Levei o bolo para a festa.",
+                    "English Translation": "I took the cake to the party.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levaste",
+                    "Example Sentence": "Levaste o casaco?",
+                    "English Translation": "Did you take the coat?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levou",
+                    "Example Sentence": "Levou uma hora a chegar.",
+                    "English Translation": "It took an hour to arrive.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levámos",
+                    "Example Sentence": "Levámos as crianças ao parque.",
+                    "English Translation": "We took the children to the park.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levaram",
+                    "Example Sentence": "Levaram tudo embora.",
+                    "English Translation": "They took everything away.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levava",
+                    "Example Sentence": "Levava sempre o almoço para o trabalho.",
+                    "English Translation": "I always used to take lunch to work.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levavas",
+                    "Example Sentence": "Levavas os miúdos à escola?",
+                    "English Translation": "Did you used to take the kids to school?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levava",
+                    "Example Sentence": "Levava duas horas de comboio.",
+                    "English Translation": "It used to take two hours by train.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levávamos",
+                    "Example Sentence": "Levávamos o cão à praia.",
+                    "English Translation": "We used to take the dog to the beach.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levavam",
+                    "Example Sentence": "Levavam muito peso.",
+                    "English Translation": "They used to carry a lot of weight.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levarei",
+                    "Example Sentence": "Levarei os documentos amanhã.",
+                    "English Translation": "I will take the documents tomorrow.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levarás",
+                    "Example Sentence": "Levarás o carro?",
+                    "English Translation": "Will you take the car?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levará",
+                    "Example Sentence": "Levará tempo a resolver.",
+                    "English Translation": "It will take time to resolve.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levaremos",
+                    "Example Sentence": "Levaremos tudo preparado.",
+                    "English Translation": "We will take everything prepared.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levarão",
+                    "Example Sentence": "Levarão a bagagem.",
+                    "English Translation": "They will take the luggage.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levaria",
+                    "Example Sentence": "Levaria se tivesse espaço no carro.",
+                    "English Translation": "I would take it if I had room in the car.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levarias",
+                    "Example Sentence": "Levarias o guarda-chuva se soubesses.",
+                    "English Translation": "You would take the umbrella if you knew.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levaria",
+                    "Example Sentence": "Levaria menos tempo de avião.",
+                    "English Translation": "It would take less time by plane.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levaríamos",
+                    "Example Sentence": "Levaríamos os amigos.",
+                    "English Translation": "We would take our friends.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levariam",
+                    "Example Sentence": "Levariam mais comida.",
+                    "English Translation": "They would take more food.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "leve",
+                    "Example Sentence": "Espero que leve pouco tempo.",
+                    "English Translation": "I hope it takes little time.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "leves",
+                    "Example Sentence": "Quero que leves o casaco.",
+                    "English Translation": "I want you to take the coat.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "leve",
+                    "Example Sentence": "Talvez ela leve o carro.",
+                    "English Translation": "Maybe she'll take the car.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levemos",
+                    "Example Sentence": "Esperamos que levemos tudo.",
+                    "English Translation": "We hope we take everything.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "levem",
+                    "Example Sentence": "Quero que levem comida.",
+                    "English Translation": "I want them to take food.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
+        },
+        "TRAZER": {
+            "meta": {
+                "emoji": "🎁",
+                "english": "to bring",
+                "group": "Irregular",
+                "priority": "Essential",
+                "difficulty": "Intermediate",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trago",
+                    "Example Sentence": "Trago sempre o almoço de casa.",
+                    "English Translation": "I always bring lunch from home.",
+                    "Type": "Exception",
+                    "Notes": "Irregular 1st person: trago (not *trazo)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trazes",
+                    "Example Sentence": "Trazes o teu portátil?",
+                    "English Translation": "Are you bringing your laptop?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Irregular 1st person: trago (not *trazo)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "traz",
+                    "Example Sentence": "Ela traz bolos para o escritório.",
+                    "English Translation": "She brings cakes to the office.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Irregular 1st person: trago (not *trazo)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trazemos",
+                    "Example Sentence": "Trazemos boas notícias.",
+                    "English Translation": "We bring good news.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Irregular 1st person: trago (not *trazo)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trazem",
+                    "Example Sentence": "Trazem os filhos à festa.",
+                    "English Translation": "They're bringing their children to the party.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Irregular 1st person: trago (not *trazo)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trouxe",
+                    "Example Sentence": "Trouxe flores para a minha mãe.",
+                    "English Translation": "I brought flowers for my mother.",
+                    "Type": "Exception",
+                    "Notes": "Highly irregular stem: trouxe. Completely different from infinitive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trouxeste",
+                    "Example Sentence": "Trouxeste o guarda-chuva?",
+                    "English Translation": "Did you bring the umbrella?",
+                    "Type": "Exception",
+                    "Notes": "Highly irregular stem: trouxe. Completely different from infinitive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trouxe",
+                    "Example Sentence": "Ela trouxe uma sobremesa.",
+                    "English Translation": "She brought a dessert.",
+                    "Type": "Exception",
+                    "Notes": "Highly irregular stem: trouxe. Completely different from infinitive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trouxemos",
+                    "Example Sentence": "Trouxemos vinho do Douro.",
+                    "English Translation": "We brought wine from the Douro.",
+                    "Type": "Exception",
+                    "Notes": "Highly irregular stem: trouxe. Completely different from infinitive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trouxeram",
+                    "Example Sentence": "Trouxeram presentes.",
+                    "English Translation": "They brought presents.",
+                    "Type": "Exception",
+                    "Notes": "Highly irregular stem: trouxe. Completely different from infinitive."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trazia",
+                    "Example Sentence": "Trazia sempre flores às sextas.",
+                    "English Translation": "I always used to bring flowers on Fridays.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect pattern with stem traz-."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trazias",
+                    "Example Sentence": "Trazias os livros para a aula?",
+                    "English Translation": "Did you used to bring the books to class?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect pattern with stem traz-."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trazia",
+                    "Example Sentence": "Trazia comida caseira.",
+                    "English Translation": "She used to bring homemade food.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect pattern with stem traz-."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trazíamos",
+                    "Example Sentence": "Trazíamos pão da padaria.",
+                    "English Translation": "We used to bring bread from the bakery.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect pattern with stem traz-."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "traziam",
+                    "Example Sentence": "Traziam sempre algo para partilhar.",
+                    "English Translation": "They always used to bring something to share.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect pattern with stem traz-."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trarei",
+                    "Example Sentence": "Trarei os documentos amanhã.",
+                    "English Translation": "I will bring the documents tomorrow.",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trarás",
+                    "Example Sentence": "Trarás a sobremesa?",
+                    "English Translation": "Will you bring the dessert?",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trará",
+                    "Example Sentence": "Trará o contrato assinado.",
+                    "English Translation": "He will bring the signed contract.",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "traremos",
+                    "Example Sentence": "Traremos comida suficiente.",
+                    "English Translation": "We will bring enough food.",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trarão",
+                    "Example Sentence": "Trarão as cadeiras.",
+                    "English Translation": "They will bring the chairs.",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "traria",
+                    "Example Sentence": "Traria vinho se soubesse.",
+                    "English Translation": "I would bring wine if I had known.",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trarias",
+                    "Example Sentence": "Trarias mais se pudesses?",
+                    "English Translation": "Would you bring more if you could?",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "traria",
+                    "Example Sentence": "Traria o carro se não chovesse.",
+                    "English Translation": "He would bring the car if it wasn't raining.",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "traríamos",
+                    "Example Sentence": "Traríamos ajuda.",
+                    "English Translation": "We would bring help.",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "trariam",
+                    "Example Sentence": "Trariam os amigos.",
+                    "English Translation": "They would bring their friends.",
+                    "Type": "Exception",
+                    "Notes": "Irregular shortened stem: trar- (not *trazer-)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "traga",
+                    "Example Sentence": "Espero que traga boa sorte.",
+                    "English Translation": "I hope it brings good luck.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: trag-."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tragas",
+                    "Example Sentence": "Quero que tragas o bolo.",
+                    "English Translation": "I want you to bring the cake.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: trag-."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "traga",
+                    "Example Sentence": "Talvez ela traga novidades.",
+                    "English Translation": "Maybe she'll bring news.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: trag-."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tragamos",
+                    "Example Sentence": "Esperamos que tragamos algo útil.",
+                    "English Translation": "We hope we bring something useful.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: trag-."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tragam",
+                    "Example Sentence": "Quero que tragam as crianças.",
+                    "English Translation": "I want them to bring the children.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: trag-."
+                }
+            ]
         }
     },
-    "totalVerbs": 44
+    "totalVerbs": 47
 }
