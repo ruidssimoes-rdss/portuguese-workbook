@@ -64,7 +64,10 @@
         "ESCOLHER",
         "ACREDITAR",
         "EXPLICAR",
-        "ENVIAR"
+        "ENVIAR",
+        "RECEBER",
+        "PARECER",
+        "PEDIR"
     ],
     "verbs": {
         "SER": {
@@ -21666,7 +21669,1033 @@
                     "Notes": "Regular -AR Present Subjunctive."
                 }
             ]
+        },
+        "RECEBER": {
+            "meta": {
+                "emoji": "📬",
+                "english": "to receive / to get / to welcome",
+                "group": "Regular -ER",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebo",
+                    "Example Sentence": "Recebo muitos emails por dia.",
+                    "English Translation": "I receive many emails per day.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebes",
+                    "Example Sentence": "Recebes o salário no fim do mês?",
+                    "English Translation": "Do you get your salary at the end of the month?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebe",
+                    "Example Sentence": "Ela recebe os clientes com um sorriso.",
+                    "English Translation": "She welcomes clients with a smile.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebemos",
+                    "Example Sentence": "Recebemos boas notícias.",
+                    "English Translation": "We received good news.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebem",
+                    "Example Sentence": "Recebem visitas ao domingo.",
+                    "English Translation": "They receive visitors on Sundays.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebi",
+                    "Example Sentence": "Recebi o pacote ontem.",
+                    "English Translation": "I received the package yesterday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebeste",
+                    "Example Sentence": "Recebeste a minha mensagem?",
+                    "English Translation": "Did you get my message?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebeu",
+                    "Example Sentence": "Recebeu um prémio.",
+                    "English Translation": "He received an award.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebemos",
+                    "Example Sentence": "Recebemos os amigos em casa.",
+                    "English Translation": "We hosted our friends at home.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberam",
+                    "Example Sentence": "Receberam uma multa.",
+                    "English Translation": "They received a fine.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebia",
+                    "Example Sentence": "Recebia cartas todas as semanas.",
+                    "English Translation": "I used to receive letters every week.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebias",
+                    "Example Sentence": "Recebias muitas visitas?",
+                    "English Translation": "Did you used to receive many visitors?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebia",
+                    "Example Sentence": "Recebia sempre elogios.",
+                    "English Translation": "He always used to receive compliments.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebíamos",
+                    "Example Sentence": "Recebíamos a família no Natal.",
+                    "English Translation": "We used to host the family at Christmas.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebiam",
+                    "Example Sentence": "Recebiam pouco pelo trabalho.",
+                    "English Translation": "They used to earn little for the work.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberei",
+                    "Example Sentence": "Receberei a resposta amanhã.",
+                    "English Translation": "I will receive the reply tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberás",
+                    "Example Sentence": "Receberás um desconto.",
+                    "English Translation": "You will receive a discount.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberá",
+                    "Example Sentence": "Receberá o resultado na segunda.",
+                    "English Translation": "He will receive the result on Monday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberemos",
+                    "Example Sentence": "Receberemos os convidados às oito.",
+                    "English Translation": "We will welcome the guests at eight.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberão",
+                    "Example Sentence": "Receberão uma surpresa.",
+                    "English Translation": "They will receive a surprise.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberia",
+                    "Example Sentence": "Receberia com prazer.",
+                    "English Translation": "I would welcome with pleasure.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberias",
+                    "Example Sentence": "Receberias mais se mudasses de emprego.",
+                    "English Translation": "You would earn more if you changed jobs.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberia",
+                    "Example Sentence": "Receberia uma compensação.",
+                    "English Translation": "He would receive compensation.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberíamos",
+                    "Example Sentence": "Receberíamos os amigos se tivéssemos espaço.",
+                    "English Translation": "We would host friends if we had space.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receberiam",
+                    "Example Sentence": "Receberiam uma resposta rápida.",
+                    "English Translation": "They would receive a quick reply.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receba",
+                    "Example Sentence": "Espero que receba boas notícias.",
+                    "English Translation": "I hope I receive good news.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebas",
+                    "Example Sentence": "Quero que recebas isto.",
+                    "English Translation": "I want you to receive this.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "receba",
+                    "Example Sentence": "Talvez ela receba uma promoção.",
+                    "English Translation": "Maybe she'll receive a promotion.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebamos",
+                    "Example Sentence": "Esperamos que recebamos a encomenda.",
+                    "English Translation": "We hope we receive the order.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "recebam",
+                    "Example Sentence": "Quero que recebam o convite.",
+                    "English Translation": "I want them to receive the invitation.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                }
+            ]
+        },
+        "PARECER": {
+            "meta": {
+                "emoji": "👀",
+                "english": "to seem / to look like / to appear",
+                "group": "Regular -ER (with spelling change in subjunctive)",
+                "priority": "Useful",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareço",
+                    "Example Sentence": "Pareço mais velho do que sou.",
+                    "English Translation": "I look older than I am.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareces",
+                    "Example Sentence": "Pareces cansado hoje.",
+                    "English Translation": "You look tired today.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parece",
+                    "Example Sentence": "Parece que vai chover.",
+                    "English Translation": "It looks like it's going to rain.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecemos",
+                    "Example Sentence": "Parecemos irmãos.",
+                    "English Translation": "We look like siblings.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecem",
+                    "Example Sentence": "Parecem satisfeitos.",
+                    "English Translation": "They seem satisfied.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareci",
+                    "Example Sentence": "Pareci surpreendido.",
+                    "English Translation": "I seemed surprised.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareceste",
+                    "Example Sentence": "Pareceste nervoso na entrevista.",
+                    "English Translation": "You seemed nervous at the interview.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareceu",
+                    "Example Sentence": "Pareceu-me boa ideia.",
+                    "English Translation": "It seemed like a good idea to me.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecemos",
+                    "Example Sentence": "Parecemos estranhos com aquela roupa.",
+                    "English Translation": "We looked weird in those clothes.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareceram",
+                    "Example Sentence": "Pareceram gostar.",
+                    "English Translation": "They seemed to like it.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecia",
+                    "Example Sentence": "Parecia impossível.",
+                    "English Translation": "It seemed impossible.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecias",
+                    "Example Sentence": "Parecias feliz naquela altura.",
+                    "English Translation": "You seemed happy at that time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecia",
+                    "Example Sentence": "Parecia que nunca mais acabava.",
+                    "English Translation": "It seemed like it would never end.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecíamos",
+                    "Example Sentence": "Parecíamos perdidos.",
+                    "English Translation": "We looked lost.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareciam",
+                    "Example Sentence": "Pareciam mais novos.",
+                    "English Translation": "They looked younger.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecerei",
+                    "Example Sentence": "Parecerei ridículo.",
+                    "English Translation": "I will look ridiculous.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecerás",
+                    "Example Sentence": "Parecerás um profissional.",
+                    "English Translation": "You will look like a professional.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecerá",
+                    "Example Sentence": "Parecerá estranho no início.",
+                    "English Translation": "It will seem strange at first.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareceremos",
+                    "Example Sentence": "Pareceremos organizados.",
+                    "English Translation": "We will seem organised.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecerão",
+                    "Example Sentence": "Parecerão diferentes.",
+                    "English Translation": "They will look different.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareceria",
+                    "Example Sentence": "Pareceria mal se não fosse.",
+                    "English Translation": "It would look bad if I didn't go.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "parecerias",
+                    "Example Sentence": "Parecerias mais novo com essa roupa.",
+                    "English Translation": "You would look younger in those clothes.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareceria",
+                    "Example Sentence": "Pareceria impossível.",
+                    "English Translation": "It would seem impossible.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareceríamos",
+                    "Example Sentence": "Pareceríamos tolos.",
+                    "English Translation": "We would look foolish.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareceriam",
+                    "Example Sentence": "Pareceriam satisfeitos.",
+                    "English Translation": "They would seem satisfied.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. PARECER = to seem/look like. parecer-se com = to resemble."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareça",
+                    "Example Sentence": "Embora pareça difícil, é possível.",
+                    "English Translation": "Although it seems difficult, it's possible.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→ç before a to preserve the /s/ sound."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareças",
+                    "Example Sentence": "Mesmo que pareças confiante, sei que estás nervoso.",
+                    "English Translation": "Even if you seem confident, I know you're nervous.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→ç before a to preserve the /s/ sound."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareça",
+                    "Example Sentence": "Ainda que pareça estranho...",
+                    "English Translation": "Even though it may seem strange...",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→ç before a to preserve the /s/ sound."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareçamos",
+                    "Example Sentence": "Mesmo que pareçamos preparados...",
+                    "English Translation": "Even if we seem prepared...",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→ç before a to preserve the /s/ sound."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pareçam",
+                    "Example Sentence": "Espero que pareçam bem nas fotos.",
+                    "English Translation": "I hope they look good in the photos.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→ç before a to preserve the /s/ sound."
+                }
+            ]
+        },
+        "PEDIR": {
+            "meta": {
+                "emoji": "🙋",
+                "english": "to ask for / to request / to order",
+                "group": "Irregular -IR",
+                "priority": "Essential",
+                "difficulty": "Intermediate",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "peço",
+                    "Example Sentence": "Peço sempre um café depois do almoço.",
+                    "English Translation": "I always order a coffee after lunch.",
+                    "Type": "Exception",
+                    "Notes": "Irregular 1st person: peço (stem change e→i, plus c→ç before o). PEDIR = to ask for/request/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedes",
+                    "Example Sentence": "Pedes a conta?",
+                    "English Translation": "Will you ask for the bill?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Present. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pede",
+                    "Example Sentence": "Ela pede ajuda quando precisa.",
+                    "English Translation": "She asks for help when she needs it.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Present. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedimos",
+                    "Example Sentence": "Pedimos desculpa pelo atraso.",
+                    "English Translation": "We apologise for the delay.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Present. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedem",
+                    "Example Sentence": "Pedem sempre a mesma coisa.",
+                    "English Translation": "They always order the same thing.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Present. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedi",
+                    "Example Sentence": "Pedi um bolo e um café.",
+                    "English Translation": "I ordered a cake and a coffee.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediste",
+                    "Example Sentence": "Pediste autorização?",
+                    "English Translation": "Did you ask for permission?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediu",
+                    "Example Sentence": "Pediu desculpa.",
+                    "English Translation": "He apologised.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedimos",
+                    "Example Sentence": "Pedimos a ementa.",
+                    "English Translation": "We asked for the menu.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediram",
+                    "Example Sentence": "Pediram um táxi.",
+                    "English Translation": "They ordered a taxi.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedia",
+                    "Example Sentence": "Pedia sempre sopa.",
+                    "English Translation": "I always used to order soup.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedias",
+                    "Example Sentence": "Pedias ajuda ao professor?",
+                    "English Translation": "Did you used to ask the teacher for help?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedia",
+                    "Example Sentence": "Pedia permissão antes de sair.",
+                    "English Translation": "He used to ask permission before leaving.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedíamos",
+                    "Example Sentence": "Pedíamos pizza às sextas.",
+                    "English Translation": "We used to order pizza on Fridays.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediam",
+                    "Example Sentence": "Pediam pouco.",
+                    "English Translation": "They used to ask for little.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedirei",
+                    "Example Sentence": "Pedirei uma opinião ao advogado.",
+                    "English Translation": "I will ask the lawyer for an opinion.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedirás",
+                    "Example Sentence": "Pedirás um aumento?",
+                    "English Translation": "Will you ask for a raise?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedirá",
+                    "Example Sentence": "Pedirá a transferência.",
+                    "English Translation": "He will request the transfer.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediremos",
+                    "Example Sentence": "Pediremos mais informação.",
+                    "English Translation": "We will ask for more information.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedirão",
+                    "Example Sentence": "Pedirão reforços.",
+                    "English Translation": "They will request reinforcements.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediria",
+                    "Example Sentence": "Pediria se tivesse coragem.",
+                    "English Translation": "I would ask if I had the courage.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pedirias",
+                    "Example Sentence": "Pedirias emprestado?",
+                    "English Translation": "Would you borrow (ask to borrow)?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediria",
+                    "Example Sentence": "Pediria desculpa se percebesse.",
+                    "English Translation": "He would apologise if he understood.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediríamos",
+                    "Example Sentence": "Pediríamos ajuda.",
+                    "English Translation": "We would ask for help.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "pediriam",
+                    "Example Sentence": "Pediriam um desconto.",
+                    "English Translation": "They would ask for a discount.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PEDIR = to ask for/order. Not PERGUNTAR (to ask a question)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "peça",
+                    "Example Sentence": "Espero que peça com educação.",
+                    "English Translation": "I hope he asks politely.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: peç- (with cedilla). Stem change from ped- to peç-. PEDIR = to ask for; PERGUNTAR = to ask a question."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "peças",
+                    "Example Sentence": "Quero que peças desculpa.",
+                    "English Translation": "I want you to apologise.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: peç- (with cedilla). Stem change from ped- to peç-. PEDIR = to ask for; PERGUNTAR = to ask a question."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "peça",
+                    "Example Sentence": "Talvez ela peça um aumento.",
+                    "English Translation": "Maybe she'll ask for a raise.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: peç- (with cedilla). Stem change from ped- to peç-. PEDIR = to ask for; PERGUNTAR = to ask a question."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "peçamos",
+                    "Example Sentence": "Esperamos que peçamos a tempo.",
+                    "English Translation": "We hope we ask in time.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: peç- (with cedilla). Stem change from ped- to peç-. PEDIR = to ask for; PERGUNTAR = to ask a question."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "peçam",
+                    "Example Sentence": "Quero que peçam ajuda.",
+                    "English Translation": "I want them to ask for help.",
+                    "Type": "Exception",
+                    "Notes": "Irregular stem: peç- (with cedilla). Stem change from ped- to peç-. PEDIR = to ask for; PERGUNTAR = to ask a question."
+                }
+            ]
         }
     },
-    "totalVerbs": 65
+    "totalVerbs": 68
 }

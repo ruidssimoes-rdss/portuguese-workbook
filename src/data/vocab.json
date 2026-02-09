@@ -587,6 +587,102 @@
           "gender": "m",
           "example": "O que vais fazer no fim de semana?",
           "exampleTranslation": "What are you going to do at the weekend?"
+        },
+        {
+          "portuguese": "uma vez",
+          "english": "once",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vou ao ginásio uma vez por semana.",
+          "exampleTranslation": "I go to the gym once a week."
+        },
+        {
+          "portuguese": "duas vezes",
+          "english": "twice",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tomo café duas vezes por dia.",
+          "exampleTranslation": "I have coffee twice a day."
+        },
+        {
+          "portuguese": "meia hora",
+          "english": "half an hour",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Esperei meia hora.",
+          "exampleTranslation": "I waited half an hour."
+        },
+        {
+          "portuguese": "um quarto de hora",
+          "english": "a quarter of an hour",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Chego num quarto de hora.",
+          "exampleTranslation": "I'll arrive in a quarter of an hour."
+        },
+        {
+          "portuguese": "madrugada",
+          "english": "early morning / small hours",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Chegámos de madrugada.",
+          "exampleTranslation": "We arrived in the early hours."
+        },
+        {
+          "portuguese": "meio-dia",
+          "english": "noon / midday",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O almoço é ao meio-dia.",
+          "exampleTranslation": "Lunch is at noon."
+        },
+        {
+          "portuguese": "meia-noite",
+          "english": "midnight",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "O filme acaba à meia-noite.",
+          "exampleTranslation": "The film ends at midnight."
+        },
+        {
+          "portuguese": "anteontem",
+          "english": "the day before yesterday",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Anteontem fui ao dentista.",
+          "exampleTranslation": "The day before yesterday I went to the dentist."
+        },
+        {
+          "portuguese": "depois de amanhã",
+          "english": "the day after tomorrow",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou viajar depois de amanhã.",
+          "exampleTranslation": "I'm travelling the day after tomorrow."
+        },
+        {
+          "portuguese": "quinzena",
+          "english": "fortnight / two weeks",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Voltamos daqui a uma quinzena.",
+          "exampleTranslation": "We'll be back in a fortnight."
+        },
+        {
+          "portuguese": "século",
+          "english": "century",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O castelo é do século XV.",
+          "exampleTranslation": "The castle is from the 15th century."
+        },
+        {
+          "portuguese": "feriado",
+          "english": "public holiday",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Amanhã é feriado.",
+          "exampleTranslation": "Tomorrow is a public holiday."
         }
       ]
     },

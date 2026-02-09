@@ -2,6 +2,17 @@
   "entries": [
     {
       "date": "2026-02-09",
+      "version": "1.0.0",
+      "title": "More verbs, time vocab, demonstratives grammar",
+      "changes": [
+        "Added 3 new verbs: RECEBER, PARECER, PEDIR (68 total)",
+        "Expanded Numbers & Time to ~51 words",
+        "Improved demonstratives grammar with three-way distance system and contractions",
+        "Total: 68 verbs, ~593 words, 13 categories"
+      ]
+    },
+    {
+      "date": "2026-02-09",
       "version": "0.9.0",
       "title": "More verbs, colloquial vocab, possessives grammar",
       "changes": [
