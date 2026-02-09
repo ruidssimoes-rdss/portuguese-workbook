@@ -642,6 +642,126 @@
           "gender": "f",
           "example": "A previsão do tempo diz que vai chover.",
           "exampleTranslation": "The weather forecast says it will rain."
+        },
+        {
+          "portuguese": "laranja",
+          "english": "orange (colour)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O pôr do sol está laranja.",
+          "exampleTranslation": "The sunset is orange."
+        },
+        {
+          "portuguese": "dourado",
+          "english": "gold / golden",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A luz dourada da tarde.",
+          "exampleTranslation": "The golden afternoon light."
+        },
+        {
+          "portuguese": "prateado",
+          "english": "silver",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O carro prateado é novo.",
+          "exampleTranslation": "The silver car is new."
+        },
+        {
+          "portuguese": "escuro",
+          "english": "dark",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O azul escuro é bonito.",
+          "exampleTranslation": "Dark blue is beautiful."
+        },
+        {
+          "portuguese": "claro",
+          "english": "light (colour)",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Prefiro verde claro.",
+          "exampleTranslation": "I prefer light green."
+        },
+        {
+          "portuguese": "nevoeiro",
+          "english": "fog",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Há muito nevoeiro de manhã.",
+          "exampleTranslation": "There's a lot of fog in the morning."
+        },
+        {
+          "portuguese": "tempestade",
+          "english": "storm",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Vem aí uma tempestade.",
+          "exampleTranslation": "A storm is coming."
+        },
+        {
+          "portuguese": "chuvisco",
+          "english": "drizzle",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Está só um chuvisco.",
+          "exampleTranslation": "It's just a drizzle."
+        },
+        {
+          "portuguese": "granizo",
+          "english": "hail",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Caiu granizo ontem.",
+          "exampleTranslation": "It hailed yesterday."
+        },
+        {
+          "portuguese": "primavera",
+          "english": "spring",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A primavera começa em março.",
+          "exampleTranslation": "Spring starts in March."
+        },
+        {
+          "portuguese": "verão",
+          "english": "summer",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "No verão vamos à praia.",
+          "exampleTranslation": "In summer we go to the beach."
+        },
+        {
+          "portuguese": "outono",
+          "english": "autumn",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O outono é a minha estação preferida.",
+          "exampleTranslation": "Autumn is my favourite season."
+        },
+        {
+          "portuguese": "inverno",
+          "english": "winter",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "No inverno faz muito frio.",
+          "exampleTranslation": "In winter it's very cold."
+        },
+        {
+          "portuguese": "estação do ano",
+          "english": "season",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Qual é a tua estação do ano preferida?",
+          "exampleTranslation": "What is your favourite season?"
+        },
+        {
+          "portuguese": "húmido",
+          "english": "humid / damp",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O clima em Lisboa é húmido.",
+          "exampleTranslation": "The climate in Lisbon is humid."
         }
       ]
     },
