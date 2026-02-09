@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Aula PT — Learn European Portuguese",
+  title: "Aula PT — European Portuguese",
   description:
-    "A comprehensive platform for learning European Portuguese. Conjugations, vocabulary, grammar, and practice exercises.",
+    "Aula PT: European Portuguese conjugations, vocabulary, grammar, and practice. Learn European Portuguese.",
+  openGraph: {
+    title: "Aula PT — European Portuguese",
+    description:
+      "Aula PT: European Portuguese conjugations, vocabulary, grammar, and practice.",
+  },
 };
 
 export default function RootLayout({
@@ -13,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-PT">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

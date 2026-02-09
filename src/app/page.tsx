@@ -97,25 +97,30 @@ export default function Home() {
         {/* Daily Focus — hero */}
         <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
-            {/* Word of the Day */}
+            {/* Word of the Day — Portuguese first */}
             <div className="border border-border rounded-lg p-4 md:p-6 bg-white flex flex-col min-h-0 overflow-hidden">
               <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
                 Word of the Day
               </p>
               {wordOfDay ? (
                 <>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <p className="text-xl md:text-2xl font-bold tracking-tight text-text break-words">
+                  <div className="flex flex-wrap items-baseline gap-2 mb-1">
+                    <p className="text-2xl md:text-3xl font-bold tracking-tight text-text break-words">
                       {wordOfDay.word.portuguese}
-                      {wordOfDay.word.gender && (
-                        <span className="text-base font-normal text-text-2 ml-1">
-                          ({wordOfDay.word.gender === "m" ? "masc." : "fem."})
-                        </span>
-                      )}
                     </p>
+                    {wordOfDay.word.gender && (
+                      <span className="text-base font-normal text-text-2">
+                        ({wordOfDay.word.gender === "m" ? "m." : "f."})
+                      </span>
+                    )}
                     <PronunciationButton text={wordOfDay.word.portuguese} size="md" className="shrink-0" />
                   </div>
-                  <p className="text-[14px] text-text-2 mt-1 break-words">
+                  {wordOfDay.word.pronunciation && (
+                    <p className="text-sm text-gray-400 font-mono mt-0.5 break-words">
+                      {wordOfDay.word.pronunciation}
+                    </p>
+                  )}
+                  <p className="text-base text-gray-600 mt-1 break-words">
                     {wordOfDay.word.english}
                   </p>
                   {wordOfDay.word.example && (
@@ -123,7 +128,7 @@ export default function Home() {
                       <p className="text-[13px] text-text-2 italic mt-3 break-words">
                         {wordOfDay.word.example}
                       </p>
-                      <p className="text-[12px] text-text-3 mt-0.5 break-words">
+                      <p className="text-[13px] text-gray-500 mt-0.5 break-words">
                         {wordOfDay.word.exampleTranslation}
                       </p>
                     </>
@@ -142,33 +147,32 @@ export default function Home() {
               )}
             </div>
 
-            {/* Verb of the Day */}
+            {/* Verb of the Day — Portuguese first */}
             <div className="border border-border rounded-lg p-4 md:p-6 bg-white flex flex-col min-h-0 overflow-hidden">
               <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
                 Verb of the Day
               </p>
               {verbKey && verbOfDay ? (
                 <>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <p className="text-xl md:text-2xl font-bold tracking-tight text-text break-words">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <p className="text-2xl md:text-3xl font-bold tracking-tight text-text break-words uppercase">
                       {verbKey}
                     </p>
                     <PronunciationButton text={verbKey} size="md" className="shrink-0" />
-                    <span className="text-[14px] text-text-2">
-                      {verbOfDay.meta.english}
-                    </span>
-                    <Badge
-                      variant={
-                        groupVariant[verbOfDay.meta.group] || "gray"
-                      }
-                    >
+                  </div>
+                  <p className="text-base text-gray-600 mt-0.5 break-words">
+                    {verbOfDay.meta.english}
+                  </p>
+                  {verbOfDay.meta.pronunciation && (
+                    <p className="text-sm text-gray-400 font-mono mt-0.5 break-words">
+                      {verbOfDay.meta.pronunciation}
+                    </p>
+                  )}
+                  <div className="flex gap-1.5 flex-wrap mt-2">
+                    <Badge variant={groupVariant[verbOfDay.meta.group] || "gray"}>
                       {verbOfDay.meta.group}
                     </Badge>
-                    <Badge
-                      variant={
-                        cefrVariant[verbOfDay.meta.cefr] || "gray"
-                      }
-                    >
+                    <Badge variant={cefrVariant[verbOfDay.meta.cefr] || "gray"}>
                       {verbOfDay.meta.cefr}
                     </Badge>
                   </div>
@@ -188,22 +192,31 @@ export default function Home() {
                         </tr>
                       </thead>
                       <tbody>
-                        {presentRows.map((row, i) => (
-                          <tr
-                            key={i}
-                            className="border-b border-border-l last:border-0"
-                          >
-                            <td className="px-2.5 py-1.5 text-text-2 whitespace-nowrap">
-                              {row.Person.split(" (")[0]}
-                            </td>
-                            <td className="px-2.5 py-1.5 font-semibold whitespace-nowrap">
-                              {row.Conjugation}
-                            </td>
-                            <td className="hidden sm:table-cell px-2.5 py-1.5 text-text-2 italic max-w-[180px] truncate">
-                              {row["Example Sentence"]}
-                            </td>
-                          </tr>
-                        ))}
+                        {presentRows.map((row, i) => {
+                          const personPt = row.Person.split(" (")[0].trim();
+                          const personShort =
+                            /^ele\/ela(\/você)?$/i.test(personPt)
+                              ? "ele/ela"
+                              : /^eles\/elas(\/vocês)?$/i.test(personPt)
+                                ? "eles/elas"
+                                : personPt;
+                          return (
+                            <tr
+                              key={i}
+                              className="border-b border-border-l last:border-0"
+                            >
+                              <td className="px-2.5 py-1.5 text-text-2 whitespace-nowrap">
+                                {personShort}
+                              </td>
+                              <td className="px-2.5 py-1.5 font-semibold whitespace-nowrap text-text">
+                                {row.Conjugation}
+                              </td>
+                              <td className="hidden sm:table-cell px-2.5 py-1.5 text-text-2 italic max-w-[180px] truncate">
+                                {row["Example Sentence"]}
+                              </td>
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>
