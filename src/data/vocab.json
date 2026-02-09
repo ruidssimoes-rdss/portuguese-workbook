@@ -156,6 +156,118 @@
           "gender": null,
           "example": "Pronto, já está.",
           "exampleTranslation": "Done, it's ready."
+        },
+        {
+          "portuguese": "como estás?",
+          "english": "how are you? (informal)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Olá, como estás?",
+          "exampleTranslation": "Hello, how are you?"
+        },
+        {
+          "portuguese": "tudo bem?",
+          "english": "everything okay? / how's it going?",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tudo bem? Há quanto tempo!",
+          "exampleTranslation": "How's it going? Long time no see!"
+        },
+        {
+          "portuguese": "tudo bem",
+          "english": "everything's fine / I'm good",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tudo bem, obrigado.",
+          "exampleTranslation": "I'm fine, thank you."
+        },
+        {
+          "portuguese": "até logo",
+          "english": "see you later",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Até logo, bom trabalho!",
+          "exampleTranslation": "See you later, good work!"
+        },
+        {
+          "portuguese": "até amanhã",
+          "english": "see you tomorrow",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Até amanhã, dorme bem.",
+          "exampleTranslation": "See you tomorrow, sleep well."
+        },
+        {
+          "portuguese": "até já",
+          "english": "see you in a moment",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vou ali, até já!",
+          "exampleTranslation": "I'm going over there, see you in a sec!"
+        },
+        {
+          "portuguese": "de nada",
+          "english": "you're welcome",
+          "cefr": "A1",
+          "gender": null,
+          "example": "De nada, foi um prazer.",
+          "exampleTranslation": "You're welcome, it was a pleasure."
+        },
+        {
+          "portuguese": "está bem",
+          "english": "okay / alright",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Está bem, eu faço isso.",
+          "exampleTranslation": "Okay, I'll do that."
+        },
+        {
+          "portuguese": "muito prazer",
+          "english": "nice to meet you",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Muito prazer, sou o Rui.",
+          "exampleTranslation": "Nice to meet you, I'm Rui."
+        },
+        {
+          "portuguese": "igualmente",
+          "english": "likewise",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Bom fim de semana! Igualmente!",
+          "exampleTranslation": "Good weekend! Likewise!"
+        },
+        {
+          "portuguese": "faz favor",
+          "english": "please (in requests)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Um café, faz favor.",
+          "exampleTranslation": "A coffee, please."
+        },
+        {
+          "portuguese": "se faz favor",
+          "english": "if you please (formal)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A conta, se faz favor.",
+          "exampleTranslation": "The bill, if you please."
+        },
+        {
+          "portuguese": "boa sorte",
+          "english": "good luck",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Boa sorte no exame!",
+          "exampleTranslation": "Good luck on the exam!"
+        },
+        {
+          "portuguese": "bom apetite",
+          "english": "enjoy your meal",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Bom apetite a todos!",
+          "exampleTranslation": "Enjoy your meal, everyone!"
         }
       ]
     },

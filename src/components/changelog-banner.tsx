@@ -1,0 +1,72 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const STORAGE_KEY = "aula-pt-changelog-dismissed";
+
+type Props = {
+  version: string;
+  title: string;
+  firstChange: string;
+};
+
+export function ChangelogBanner({ version, title, firstChange }: Props) {
+  const [dismissedVersion, setDismissedVersion] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    try {
+      setDismissedVersion(localStorage.getItem(STORAGE_KEY));
+    } catch {
+      setDismissedVersion(null);
+    }
+    setMounted(true);
+  }, []);
+
+  const show = mounted && dismissedVersion !== version;
+
+  const dismiss = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      localStorage.setItem(STORAGE_KEY, version);
+      setDismissedVersion(version);
+    } catch {
+      setDismissedVersion(version);
+    }
+  };
+
+  if (!show) return null;
+
+  return (
+    <div
+      className="mt-6 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 flex items-center gap-3"
+      style={{ borderLeftWidth: "3px", borderLeftColor: "#5B4FA0" }}
+    >
+      <Link
+        href="/changelog"
+        className="flex-1 min-w-0 flex items-center gap-2 text-[14px] text-text hover:text-text group"
+      >
+        <span className="shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 border border-indigo-200">
+          v{version}
+        </span>
+        <span className="font-medium truncate">
+          {title}
+          {firstChange ? ` — ${firstChange}` : ""}
+        </span>
+        <span className="shrink-0 text-indigo-600 group-hover:underline text-[13px]">
+          See all updates →
+        </span>
+      </Link>
+      <button
+        type="button"
+        onClick={dismiss}
+        className="shrink-0 p-1.5 rounded-md text-text-3 hover:text-text hover:bg-indigo-100 transition-colors"
+        aria-label="Dismiss"
+      >
+        ×
+      </button>
+    </div>
+  );
+}

@@ -3,6 +3,8 @@ import { Topbar } from "@/components/layout/topbar";
 
 export const dynamic = "force-dynamic";
 import { HomeProgressBanner } from "@/components/home-progress-banner";
+import { ChangelogBanner } from "@/components/changelog-banner";
+import changelogData from "@/data/changelog.json";
 import { Badge, cefrVariant, groupVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
@@ -35,6 +37,8 @@ vocab.categories.forEach((cat) => {
     flatVocab.push({ word, categoryTitle: cat.title });
   });
 });
+
+const latestChangelog = (changelogData as { entries: { date: string; version: string; title: string; changes: string[] }[] }).entries?.[0] ?? null;
 
 const dayIndex = Math.floor(Date.now() / 86400000);
 const wordOfDay =
@@ -80,7 +84,14 @@ export default function Home() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-6 md:px-10">
+      <main className="max-w-[1100px] mx-auto px-6 md:px-10 pt-6">
+        {latestChangelog && (
+          <ChangelogBanner
+            version={latestChangelog.version}
+            title={latestChangelog.title}
+            firstChange={latestChangelog.changes?.[0] ?? ""}
+          />
+        )}
         {/* Daily Focus — hero */}
         <section className="pt-12 pb-16 md:pt-16 md:pb-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">

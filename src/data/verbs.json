@@ -52,7 +52,10 @@
         "ACABAR",
         "ESPERAR",
         "VOLTAR",
-        "LEMBRAR"
+        "LEMBRAR",
+        "PERGUNTAR",
+        "RESPONDER",
+        "PASSAR"
     ],
     "verbs": {
         "SER": {
@@ -17550,7 +17553,1033 @@
                     "Notes": "Regular -AR Present Subjunctive. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
                 }
             ]
+        },
+        "PERGUNTAR": {
+            "meta": {
+                "emoji": "❓",
+                "english": "to ask a question",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "pergunto",
+                    "Example Sentence": "Pergunto porque quero saber.",
+                    "English Translation": "I ask because I want to know.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntas",
+                    "Example Sentence": "Perguntas sempre a mesma coisa.",
+                    "English Translation": "You always ask the same thing.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "pergunta",
+                    "Example Sentence": "Ela pergunta pelo preço.",
+                    "English Translation": "She asks about the price.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntamos",
+                    "Example Sentence": "Perguntamos ao professor.",
+                    "English Translation": "We ask the teacher.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntam",
+                    "Example Sentence": "Perguntam se podem entrar.",
+                    "English Translation": "They ask if they can come in.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntei",
+                    "Example Sentence": "Perguntei onde ficava a farmácia.",
+                    "English Translation": "I asked where the pharmacy was.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntaste",
+                    "Example Sentence": "Perguntaste ao empregado?",
+                    "English Translation": "Did you ask the waiter?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntou",
+                    "Example Sentence": "Perguntou se havia lugares.",
+                    "English Translation": "He asked if there were seats.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntámos",
+                    "Example Sentence": "Perguntámos pelo caminho.",
+                    "English Translation": "We asked for directions.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntaram",
+                    "Example Sentence": "Perguntaram pela ementa.",
+                    "English Translation": "They asked for the menu.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntava",
+                    "Example Sentence": "Perguntava sempre pela vizinha.",
+                    "English Translation": "I always used to ask about the neighbour.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntavas",
+                    "Example Sentence": "Perguntavas muito na aula.",
+                    "English Translation": "You used to ask a lot in class.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntava",
+                    "Example Sentence": "Perguntava tudo ao pai.",
+                    "English Translation": "He used to ask his father everything.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntávamos",
+                    "Example Sentence": "Perguntávamos antes de decidir.",
+                    "English Translation": "We used to ask before deciding.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntavam",
+                    "Example Sentence": "Perguntavam por ti.",
+                    "English Translation": "They used to ask about you.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntarei",
+                    "Example Sentence": "Perguntarei ao chefe amanhã.",
+                    "English Translation": "I will ask the boss tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntarás",
+                    "Example Sentence": "Perguntarás na recepção?",
+                    "English Translation": "Will you ask at reception?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntará",
+                    "Example Sentence": "Perguntará se pode sair.",
+                    "English Translation": "He will ask if he can leave.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntaremos",
+                    "Example Sentence": "Perguntaremos na reunião.",
+                    "English Translation": "We will ask at the meeting.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntarão",
+                    "Example Sentence": "Perguntarão pelo resultado.",
+                    "English Translation": "They will ask about the result.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntaria",
+                    "Example Sentence": "Perguntaria se tivesse coragem.",
+                    "English Translation": "I would ask if I had the courage.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntarias",
+                    "Example Sentence": "Perguntarias ao médico?",
+                    "English Translation": "Would you ask the doctor?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntaria",
+                    "Example Sentence": "Perguntaria à professora.",
+                    "English Translation": "He would ask the teacher.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntaríamos",
+                    "Example Sentence": "Perguntaríamos primeiro.",
+                    "English Translation": "We would ask first.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntariam",
+                    "Example Sentence": "Perguntariam ao guia.",
+                    "English Translation": "They would ask the guide.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "pergunte",
+                    "Example Sentence": "Espero que pergunte antes.",
+                    "English Translation": "I hope he asks first.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntes",
+                    "Example Sentence": "Quero que perguntes ao chefe.",
+                    "English Translation": "I want you to ask the boss.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "pergunte",
+                    "Example Sentence": "Talvez ela pergunte.",
+                    "English Translation": "Maybe she will ask.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntemos",
+                    "Example Sentence": "Esperamos que perguntemos a tempo.",
+                    "English Translation": "We hope we ask in time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "perguntem",
+                    "Example Sentence": "Quero que perguntem pelo preço.",
+                    "English Translation": "I want them to ask about the price.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. PERGUNTAR = to ask a question (information). PEDIR = to ask for/request something."
+                }
+            ]
+        },
+        "RESPONDER": {
+            "meta": {
+                "emoji": "💬",
+                "english": "to answer / to reply",
+                "group": "Regular -ER",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondo",
+                    "Example Sentence": "Respondo sempre aos emails de manhã.",
+                    "English Translation": "I always reply to emails in the morning.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondes",
+                    "Example Sentence": "Respondes rápido às mensagens.",
+                    "English Translation": "You reply quickly to messages.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responde",
+                    "Example Sentence": "Ela nunca responde ao telefone.",
+                    "English Translation": "She never answers the phone.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondemos",
+                    "Example Sentence": "Respondemos a todas as perguntas.",
+                    "English Translation": "We answer all the questions.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondem",
+                    "Example Sentence": "Não respondem aos comentários.",
+                    "English Translation": "They don't reply to comments.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondi",
+                    "Example Sentence": "Respondi ao email ontem.",
+                    "English Translation": "I replied to the email yesterday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondeste",
+                    "Example Sentence": "Respondeste à pergunta?",
+                    "English Translation": "Did you answer the question?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondeu",
+                    "Example Sentence": "Respondeu com um sorriso.",
+                    "English Translation": "He answered with a smile.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondemos",
+                    "Example Sentence": "Respondemos ao inquérito.",
+                    "English Translation": "We answered the survey.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderam",
+                    "Example Sentence": "Responderam que não.",
+                    "English Translation": "They answered no.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondia",
+                    "Example Sentence": "Respondia sempre com educação.",
+                    "English Translation": "I always used to answer politely.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondias",
+                    "Example Sentence": "Respondias em português?",
+                    "English Translation": "Did you used to answer in Portuguese?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondia",
+                    "Example Sentence": "Respondia a tudo rapidamente.",
+                    "English Translation": "He used to answer everything quickly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondíamos",
+                    "Example Sentence": "Respondíamos às cartas.",
+                    "English Translation": "We used to reply to the letters.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondiam",
+                    "Example Sentence": "Respondiam sempre a tempo.",
+                    "English Translation": "They always used to answer on time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderei",
+                    "Example Sentence": "Responderei amanhã.",
+                    "English Translation": "I will reply tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderás",
+                    "Example Sentence": "Responderás ao convite?",
+                    "English Translation": "Will you reply to the invitation?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderá",
+                    "Example Sentence": "Responderá quando puder.",
+                    "English Translation": "He will reply when he can.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderemos",
+                    "Example Sentence": "Responderemos na segunda.",
+                    "English Translation": "We will reply on Monday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderão",
+                    "Example Sentence": "Responderão em breve.",
+                    "English Translation": "They will reply soon.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderia",
+                    "Example Sentence": "Responderia se soubesse a resposta.",
+                    "English Translation": "I would answer if I knew the answer.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderias",
+                    "Example Sentence": "Responderias a isso?",
+                    "English Translation": "Would you respond to that?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderia",
+                    "Example Sentence": "Responderia mais cedo se pudesse.",
+                    "English Translation": "He would reply sooner if he could.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderíamos",
+                    "Example Sentence": "Responderíamos com prazer.",
+                    "English Translation": "We would reply with pleasure.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responderiam",
+                    "Example Sentence": "Responderiam se tivessem tempo.",
+                    "English Translation": "They would reply if they had time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responda",
+                    "Example Sentence": "Espero que responda a tempo.",
+                    "English Translation": "I hope I reply in time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondas",
+                    "Example Sentence": "Quero que respondas com sinceridade.",
+                    "English Translation": "I want you to answer honestly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "responda",
+                    "Example Sentence": "Talvez ela responda amanhã.",
+                    "English Translation": "Maybe she will reply tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondamos",
+                    "Example Sentence": "Esperamos que respondamos bem.",
+                    "English Translation": "We hope we answer well.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "respondam",
+                    "Example Sentence": "Quero que respondam ao inquérito.",
+                    "English Translation": "I want them to answer the survey.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. RESPONDER A = to answer/reply to. Always uses preposition 'a'."
+                }
+            ]
+        },
+        "PASSAR": {
+            "meta": {
+                "emoji": "⏱",
+                "english": "to pass / to spend time / to happen",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passo",
+                    "Example Sentence": "Passo por ali todos os dias.",
+                    "English Translation": "I pass by there every day.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. PASSAR: to pass, to spend (time), to happen (passar-se), to iron (passar a ferro)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passas",
+                    "Example Sentence": "Passas muito tempo ao telefone.",
+                    "English Translation": "You spend a lot of time on the phone.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passa",
+                    "Example Sentence": "O que se passa?",
+                    "English Translation": "What's going on?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passamos",
+                    "Example Sentence": "Passamos férias no Alentejo.",
+                    "English Translation": "We spend holidays in the Alentejo.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passam",
+                    "Example Sentence": "Passam a vida a queixar-se.",
+                    "English Translation": "They spend their lives complaining.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passei",
+                    "Example Sentence": "Passei o dia em casa.",
+                    "English Translation": "I spent the day at home.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passaste",
+                    "Example Sentence": "Passaste bem a noite?",
+                    "English Translation": "Did you have a good night?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passou",
+                    "Example Sentence": "O tempo passou depressa.",
+                    "English Translation": "Time passed quickly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passámos",
+                    "Example Sentence": "Passámos o verão no Algarve.",
+                    "English Translation": "We spent the summer in the Algarve.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passaram",
+                    "Example Sentence": "Passaram pelo Porto.",
+                    "English Translation": "They passed through Porto.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passava",
+                    "Example Sentence": "Passava horas a ler.",
+                    "English Translation": "I used to spend hours reading.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passavas",
+                    "Example Sentence": "Passavas por aqui muitas vezes.",
+                    "English Translation": "You used to pass by here a lot.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passava",
+                    "Example Sentence": "O tempo passava devagar.",
+                    "English Translation": "Time used to pass slowly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passávamos",
+                    "Example Sentence": "Passávamos os verões na aldeia.",
+                    "English Translation": "We used to spend summers in the village.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passavam",
+                    "Example Sentence": "Passavam a roupa a ferro aos domingos.",
+                    "English Translation": "They used to iron clothes on Sundays.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passarei",
+                    "Example Sentence": "Passarei por tua casa amanhã.",
+                    "English Translation": "I will pass by your house tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passarás",
+                    "Example Sentence": "Passarás um bom fim de semana.",
+                    "English Translation": "You will have a good weekend.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passará",
+                    "Example Sentence": "Passará em breve.",
+                    "English Translation": "It will pass soon.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passaremos",
+                    "Example Sentence": "Passaremos férias em Sintra.",
+                    "English Translation": "We will spend holidays in Sintra.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passarão",
+                    "Example Sentence": "Passarão por aqui.",
+                    "English Translation": "They will come by here.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passaria",
+                    "Example Sentence": "Passaria mais tempo contigo.",
+                    "English Translation": "I would spend more time with you.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passarias",
+                    "Example Sentence": "Passarias por cá se pudesses?",
+                    "English Translation": "Would you come by if you could?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passaria",
+                    "Example Sentence": "Passaria o dia na praia.",
+                    "English Translation": "He would spend the day at the beach.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passaríamos",
+                    "Example Sentence": "Passaríamos pelo mercado.",
+                    "English Translation": "We would stop by the market.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passariam",
+                    "Example Sentence": "Passariam férias cá.",
+                    "English Translation": "They would spend holidays here.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passe",
+                    "Example Sentence": "Espero que passe depressa.",
+                    "English Translation": "I hope it passes quickly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passes",
+                    "Example Sentence": "Quero que passes por cá.",
+                    "English Translation": "I want you to come by.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passe",
+                    "Example Sentence": "Talvez ela passe mais tarde.",
+                    "English Translation": "Maybe she'll come by later.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passemos",
+                    "Example Sentence": "Esperamos que passemos boas férias.",
+                    "English Translation": "We hope we have a good holiday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "passem",
+                    "Example Sentence": "Quero que passem um bom dia.",
+                    "English Translation": "I want them to have a good day.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
         }
     },
-    "totalVerbs": 53
+    "totalVerbs": 56
 }

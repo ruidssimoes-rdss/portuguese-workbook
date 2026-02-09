@@ -1,0 +1,80 @@
+{
+  "entries": [
+    {
+      "date": "2026-02-09",
+      "version": "0.6.0",
+      "title": "What's New page, changelog, more verbs, greetings vocab",
+      "changes": [
+        "New feature: What's New page with changelog and homepage banner",
+        "Added 3 new verbs: PERGUNTAR, RESPONDER, PASSAR (56 total)",
+        "Expanded Greetings & Expressions vocabulary",
+        "Improved questions grammar topic with 'é que' construction and porquê/por que/porque distinction",
+        "Navigation updated with What's New link"
+      ]
+    },
+    {
+      "date": "2026-02-09",
+      "version": "0.5.0",
+      "title": "Colloquial & Slang, more verbs, negation grammar",
+      "changes": [
+        "Added 3 new verbs: ESPERAR, VOLTAR, LEMBRAR (53 total)",
+        "New vocabulary category: Colloquial & Slang with 20 words",
+        "Improved negation grammar topic with double negatives and 22 test questions",
+        "Total: 53 verbs, 523 words, 13 categories"
+      ]
+    },
+    {
+      "date": "2026-02-09",
+      "version": "0.4.0",
+      "title": "Emotions, new verbs, noun gender grammar",
+      "changes": [
+        "Added 3 new verbs: DEIXAR, COMEÇAR, ACABAR (50 total)",
+        "Expanded Emotions & Personality to 40 words",
+        "Improved noun-gender grammar with tricky nouns and 18 test questions"
+      ]
+    },
+    {
+      "date": "2026-02-09",
+      "version": "0.3.0",
+      "title": "Nature & Animals, new verbs, articles grammar",
+      "changes": [
+        "Added 3 new verbs: ENCONTRAR, LEVAR, TRAZER (47 total)",
+        "Expanded Nature & Animals to 40 words",
+        "Improved articles grammar with contractions and 18 test questions"
+      ]
+    },
+    {
+      "date": "2026-02-09",
+      "version": "0.2.0",
+      "title": "Colours & Weather, new verbs, ser vs estar grammar",
+      "changes": [
+        "Added 3 new verbs: FICAR, PRECISAR, CHEGAR (44 total)",
+        "Expanded Colours & Weather to 35 words with seasons",
+        "Improved ser-vs-estar grammar with tricky pairs and 19 test questions"
+      ]
+    },
+    {
+      "date": "2026-02-09",
+      "version": "0.1.0",
+      "title": "Vocabulary restructure",
+      "changes": [
+        "Restructured vocabulary from 6 broad categories to 12 focused categories",
+        "Added 3 new categories: Shopping & Money, Nature & Animals, Emotions & Personality",
+        "Removed subcategory filters for cleaner navigation",
+        "Total: 41 verbs, 454 words, 12 categories"
+      ]
+    },
+    {
+      "date": "2026-02-08",
+      "version": "0.0.1",
+      "title": "Initial launch",
+      "changes": [
+        "Launched Aula PT with 41 verbs and 1,230 conjugations",
+        "Built vocabulary reference with 383 words across 6 categories",
+        "Added 27 grammar topics covering A1 to B1",
+        "Homepage with Word of the Day and Verb of the Day",
+        "Linear progression system with CEFR sub-levels A1.1 to B1.5"
+      ]
+    }
+  ]
+}
