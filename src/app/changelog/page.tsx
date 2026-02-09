@@ -8,6 +8,7 @@ type ChangelogEntry = {
   date: string;
   version: string;
   title: string;
+  summary?: string;
   changes: string[];
 };
 
@@ -61,6 +62,11 @@ export default function ChangelogPage() {
               <h2 className="text-[17px] font-bold text-text mb-2">
                 {entry.title}
               </h2>
+              {entry.summary ? (
+                <p className="text-[15px] text-text-2 font-medium mb-2 leading-snug">
+                  {entry.summary}
+                </p>
+              ) : null}
               <ul className="list-disc list-inside space-y-1 text-[14px] text-text-2 pl-1">
                 {entry.changes.map((change, j) => (
                   <li key={j}>{change}</li>

@@ -38,7 +38,7 @@ vocab.categories.forEach((cat) => {
   });
 });
 
-const latestChangelog = (changelogData as { entries: { date: string; version: string; title: string; changes: string[] }[] }).entries?.[0] ?? null;
+const latestChangelog = (changelogData as { entries: { date: string; version: string; title: string; summary?: string; changes: string[] }[] }).entries?.[0] ?? null;
 
 const dayIndex = Math.floor(Date.now() / 86400000);
 const wordOfDay =
@@ -89,6 +89,7 @@ export default function Home() {
           <ChangelogBanner
             version={latestChangelog.version}
             title={latestChangelog.title}
+            summary={latestChangelog.summary}
             firstChange={latestChangelog.changes?.[0] ?? ""}
           />
         )}

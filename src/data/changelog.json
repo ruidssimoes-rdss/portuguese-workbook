@@ -3,120 +3,17 @@
     {
       "date": "2026-02-09",
       "version": "1.1.0",
-      "title": "Final content session: more verbs, health vocab, -AR grammar polish",
+      "title": "Major content expansion — 10 updates",
+      "summary": "Massive content expansion day: restructured vocabulary, added 30 new verbs, created new categories, and polished 10 grammar topics.",
       "changes": [
-        "Added 3 new verbs: VIAJAR, PREFERIR, DEVER (71 total)",
-        "Expanded Health & Body with medical vocabulary (receita, urgências, penso, dor de garganta, dor de costas)",
-        "Improved present-tense-ar grammar with spelling change rules and progressive form",
-        "Content milestone: 71 verbs (2,130 conjugations), ~605 words, 13 categories, 10 grammar topics polished"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "1.0.0",
-      "title": "More verbs, time vocab, demonstratives grammar",
-      "changes": [
-        "Added 3 new verbs: RECEBER, PARECER, PEDIR (68 total)",
-        "Expanded Numbers & Time to ~51 words",
-        "Improved demonstratives grammar with three-way distance system and contractions",
-        "Total: 68 verbs, ~593 words, 13 categories"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.9.0",
-      "title": "More verbs, colloquial vocab, possessives grammar",
-      "changes": [
-        "Added 3 new verbs: ACREDITAR, EXPLICAR, ENVIAR (65 total)",
-        "Expanded Colloquial & Slang to 35 words with more everyday EP expressions",
-        "Improved possessives grammar with dele/dela construction and agreement rules",
-        "Total: 65 verbs, ~581 words, 13 categories"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.8.0",
-      "title": "New verbs, family vocab, reflexive verbs grammar",
-      "changes": [
-        "Added 3 new verbs: JOGAR, TOCAR, ESCOLHER (62 total)",
-        "Expanded Family & Daily Routine to ~43 words with in-laws, routines, and household tasks",
-        "Improved reflexive verbs grammar with EP pronoun placement rules and meaning-change pairs",
-        "Total: 62 verbs, ~567 words, 13 categories"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.7.0",
-      "title": "More verbs, shopping vocab, prepositions grammar",
-      "changes": [
-        "Added 3 new verbs: ENTRAR, MUDAR, ACONTECER (59 total)",
-        "Expanded Shopping & Money to ~40 words",
-        "Improved prepositions grammar with A vs PARA, POR vs PARA, and contractions",
-        "Total: 59 verbs, ~552 words, 13 categories"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.6.0",
-      "title": "What's New page, changelog, more verbs, greetings vocab",
-      "changes": [
-        "New feature: What's New page with changelog and homepage banner",
-        "Added 3 new verbs: PERGUNTAR, RESPONDER, PASSAR (56 total)",
-        "Expanded Greetings & Expressions vocabulary",
-        "Improved questions grammar topic with 'é que' construction and porquê/por que/porque distinction",
-        "Navigation updated with What's New link"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.5.0",
-      "title": "Colloquial & Slang, more verbs, negation grammar",
-      "changes": [
-        "Added 3 new verbs: ESPERAR, VOLTAR, LEMBRAR (53 total)",
-        "New vocabulary category: Colloquial & Slang with 20 words",
-        "Improved negation grammar topic with double negatives and 22 test questions",
-        "Total: 53 verbs, 523 words, 13 categories"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.4.0",
-      "title": "Emotions, new verbs, noun gender grammar",
-      "changes": [
-        "Added 3 new verbs: DEIXAR, COMEÇAR, ACABAR (50 total)",
-        "Expanded Emotions & Personality to 40 words",
-        "Improved noun-gender grammar with tricky nouns and 18 test questions"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.3.0",
-      "title": "Nature & Animals, new verbs, articles grammar",
-      "changes": [
-        "Added 3 new verbs: ENCONTRAR, LEVAR, TRAZER (47 total)",
-        "Expanded Nature & Animals to 40 words",
-        "Improved articles grammar with contractions and 18 test questions"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.2.0",
-      "title": "Colours & Weather, new verbs, ser vs estar grammar",
-      "changes": [
-        "Added 3 new verbs: FICAR, PRECISAR, CHEGAR (44 total)",
-        "Expanded Colours & Weather to 35 words with seasons",
-        "Improved ser-vs-estar grammar with tricky pairs and 19 test questions"
-      ]
-    },
-    {
-      "date": "2026-02-09",
-      "version": "0.1.0",
-      "title": "Vocabulary restructure",
-      "changes": [
-        "Restructured vocabulary from 6 broad categories to 12 focused categories",
-        "Added 3 new categories: Shopping & Money, Nature & Animals, Emotions & Personality",
-        "Removed subcategory filters for cleaner navigation",
-        "Total: 41 verbs, 454 words, 12 categories"
+        "Restructured vocabulary from 6 broad categories to 13 focused categories",
+        "Added 30 new verbs: FICAR, PRECISAR, CHEGAR, ENCONTRAR, LEVAR, TRAZER, DEIXAR, COMECAR, ACABAR, ESPERAR, VOLTAR, LEMBRAR, PERGUNTAR, RESPONDER, PASSAR, ENTRAR, MUDAR, ACONTECER, JOGAR, TOCAR, ESCOLHER, ACREDITAR, EXPLICAR, ENVIAR, RECEBER, PARECER, PEDIR, VIAJAR, PREFERIR, DEVER",
+        "Now 71 verbs with 2,130 conjugations across 6 tenses",
+        "Added 3 new vocabulary categories: Shopping & Money, Nature & Animals, Emotions & Personality",
+        "Added Colloquial & Slang category with 35 everyday EP expressions",
+        "Total vocabulary: ~605 words across 13 categories",
+        "Polished 10 grammar topics: ser-vs-estar, articles, noun-gender, negation, questions, prepositions, reflexive-verbs, possessives, demonstratives, present-tense-ar",
+        "New feature: What's New page with changelog and dismissable homepage banner"
       ]
     },
     {

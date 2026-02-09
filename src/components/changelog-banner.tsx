@@ -8,10 +8,13 @@ const STORAGE_KEY = "aula-pt-changelog-dismissed";
 type Props = {
   version: string;
   title: string;
-  firstChange: string;
+  /** If set, shown in banner instead of first change. Truncated on mobile. */
+  summary?: string;
+  /** Fallback when summary is not set (backward compatible). */
+  firstChange?: string;
 };
 
-export function ChangelogBanner({ version, title, firstChange }: Props) {
+export function ChangelogBanner({ version, title, summary, firstChange }: Props) {
   const [dismissedVersion, setDismissedVersion] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -25,6 +28,7 @@ export function ChangelogBanner({ version, title, firstChange }: Props) {
   }, []);
 
   const show = mounted && dismissedVersion !== version;
+  const bannerText = summary ?? (firstChange ? firstChange : "");
 
   const dismiss = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -53,7 +57,14 @@ export function ChangelogBanner({ version, title, firstChange }: Props) {
         </span>
         <span className="font-medium truncate">
           {title}
-          {firstChange ? ` — ${firstChange}` : ""}
+          {bannerText ? (
+            <span className="hidden sm:inline">
+              {" · "}
+              <span className="font-normal truncate max-w-[40ch] inline-block align-bottom">
+                {bannerText}
+              </span>
+            </span>
+          ) : null}
         </span>
         <span className="shrink-0 text-indigo-600 group-hover:underline text-[13px]">
           See all updates →
