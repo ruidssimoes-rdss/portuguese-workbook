@@ -4107,6 +4107,173 @@
           "exampleTranslation": "I'm very proud of my son."
         }
       ]
+    },
+    {
+      "id": "colloquial-slang",
+      "title": "Colloquial & Slang",
+      "description": "Informal expressions, fillers, and everyday slang used in spoken European Portuguese",
+      "words": [
+        {
+          "portuguese": "pá",
+          "english": "dude / mate",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Eh pá, que se passa?",
+          "exampleTranslation": "Hey dude, what's going on?"
+        },
+        {
+          "portuguese": "bora",
+          "english": "let's go",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Bora sair?",
+          "exampleTranslation": "Let's go out?"
+        },
+        {
+          "portuguese": "tá",
+          "english": "okay / alright",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tá, eu vou.",
+          "exampleTranslation": "Okay, I'll go."
+        },
+        {
+          "portuguese": "e aí?",
+          "english": "what's up? / so?",
+          "cefr": "A2",
+          "gender": null,
+          "example": "E aí, tudo bem?",
+          "exampleTranslation": "What's up, all good?"
+        },
+        {
+          "portuguese": "tranquilo",
+          "english": "no worries / chill",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tranquilo, não há problema.",
+          "exampleTranslation": "No worries, no problem."
+        },
+        {
+          "portuguese": "tens razão",
+          "english": "you're right",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tens razão, é melhor assim.",
+          "exampleTranslation": "You're right, it's better this way."
+        },
+        {
+          "portuguese": "tipo",
+          "english": "like (filler word)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Era tipo uma festa, sabes?",
+          "exampleTranslation": "It was like a party, you know?"
+        },
+        {
+          "portuguese": "ya",
+          "english": "yeah",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Ya, concordo contigo.",
+          "exampleTranslation": "Yeah, I agree with you."
+        },
+        {
+          "portuguese": "cena",
+          "english": "thing / stuff (informal)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Aquela cena foi estranha.",
+          "exampleTranslation": "That thing was weird."
+        },
+        {
+          "portuguese": "gajo / gaja",
+          "english": "guy / girl (informal)",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Conheces aquele gajo?",
+          "exampleTranslation": "Do you know that guy?"
+        },
+        {
+          "portuguese": "bacano",
+          "english": "cool / awesome",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O concerto foi bacano.",
+          "exampleTranslation": "The concert was cool."
+        },
+        {
+          "portuguese": "à vontade",
+          "english": "make yourself comfortable / go ahead",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Fica à vontade, estás em casa.",
+          "exampleTranslation": "Make yourself at home."
+        },
+        {
+          "portuguese": "não faz mal",
+          "english": "no worries / it's fine",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Não faz mal, acontece a todos.",
+          "exampleTranslation": "No worries, it happens to everyone."
+        },
+        {
+          "portuguese": "epá",
+          "english": "wow / come on (exclamation)",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Epá, não acredito!",
+          "exampleTranslation": "Come on, I can't believe it!"
+        },
+        {
+          "portuguese": "meu",
+          "english": "bro / dude (address)",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Eh meu, vamos ao café?",
+          "exampleTranslation": "Hey bro, shall we go to the café?"
+        },
+        {
+          "portuguese": "bué",
+          "english": "a lot / very (Lisbon slang)",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Aquilo é bué fixe.",
+          "exampleTranslation": "That's really cool."
+        },
+        {
+          "portuguese": "fica descansado",
+          "english": "don't worry about it",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Fica descansado, eu trato disso.",
+          "exampleTranslation": "Don't worry, I'll take care of it."
+        },
+        {
+          "portuguese": "chatear",
+          "english": "to annoy / to bother",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Não me chateies agora.",
+          "exampleTranslation": "Don't bother me now."
+        },
+        {
+          "portuguese": "curtir",
+          "english": "to enjoy / to like (informal)",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Curti bué o filme.",
+          "exampleTranslation": "I really enjoyed the film."
+        },
+        {
+          "portuguese": "fogo",
+          "english": "damn / jeez (exclamation)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Fogo, que calor!",
+          "exampleTranslation": "Damn, it's so hot!"
+        }
+      ]
     }
   ]
 }

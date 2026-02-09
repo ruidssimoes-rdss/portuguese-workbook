@@ -49,7 +49,10 @@
         "TRAZER",
         "DEIXAR",
         "COMEÇAR",
-        "ACABAR"
+        "ACABAR",
+        "ESPERAR",
+        "VOLTAR",
+        "LEMBRAR"
     ],
     "verbs": {
         "SER": {
@@ -16521,7 +16524,1033 @@
                     "Notes": "Regular -AR Present Subjunctive."
                 }
             ]
+        },
+        "ESPERAR": {
+            "meta": {
+                "emoji": "⏳",
+                "english": "to wait / to hope / to expect",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "espero",
+                    "Example Sentence": "Espero que estejas bem.",
+                    "English Translation": "I hope you're well.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperas",
+                    "Example Sentence": "Esperas há muito tempo?",
+                    "English Translation": "Have you been waiting a long time?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "espera",
+                    "Example Sentence": "Ela espera um bebé.",
+                    "English Translation": "She's expecting a baby.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperamos",
+                    "Example Sentence": "Esperamos boas notícias.",
+                    "English Translation": "We're hoping for good news.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperam",
+                    "Example Sentence": "Esperam na fila.",
+                    "English Translation": "They're waiting in the queue.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperei",
+                    "Example Sentence": "Esperei meia hora.",
+                    "English Translation": "I waited half an hour.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperaste",
+                    "Example Sentence": "Esperaste por mim?",
+                    "English Translation": "Did you wait for me?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperou",
+                    "Example Sentence": "Ele esperou até ao fim.",
+                    "English Translation": "He waited until the end.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperámos",
+                    "Example Sentence": "Esperámos o autocarro na chuva.",
+                    "English Translation": "We waited for the bus in the rain.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperaram",
+                    "Example Sentence": "Esperaram pacientemente.",
+                    "English Translation": "They waited patiently.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperava",
+                    "Example Sentence": "Esperava sempre no mesmo sítio.",
+                    "English Translation": "I always used to wait in the same spot.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperavas",
+                    "Example Sentence": "Esperavas o quê?",
+                    "English Translation": "What were you expecting?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperava",
+                    "Example Sentence": "Não esperava que chovesse.",
+                    "English Translation": "He wasn't expecting it to rain.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperávamos",
+                    "Example Sentence": "Esperávamos melhores resultados.",
+                    "English Translation": "We were expecting better results.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperavam",
+                    "Example Sentence": "Esperavam uma resposta.",
+                    "English Translation": "They were expecting an answer.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperarei",
+                    "Example Sentence": "Esperarei o tempo que for preciso.",
+                    "English Translation": "I will wait as long as needed.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperarás",
+                    "Example Sentence": "Esperarás em vão.",
+                    "English Translation": "You will wait in vain.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperará",
+                    "Example Sentence": "Esperará pela nossa decisão.",
+                    "English Translation": "He will wait for our decision.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperaremos",
+                    "Example Sentence": "Esperaremos cá fora.",
+                    "English Translation": "We will wait outside.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperarão",
+                    "Example Sentence": "Esperarão até amanhã.",
+                    "English Translation": "They will wait until tomorrow.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperaria",
+                    "Example Sentence": "Esperaria se valesse a pena.",
+                    "English Translation": "I would wait if it were worth it.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperarias",
+                    "Example Sentence": "Esperarias por mim?",
+                    "English Translation": "Would you wait for me?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperaria",
+                    "Example Sentence": "Esperaria mais tempo.",
+                    "English Translation": "He would wait longer.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperaríamos",
+                    "Example Sentence": "Esperaríamos com paciência.",
+                    "English Translation": "We would wait patiently.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperariam",
+                    "Example Sentence": "Esperariam uma semana.",
+                    "English Translation": "They would wait a week.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "espere",
+                    "Example Sentence": "Espero que espere por mim.",
+                    "English Translation": "I hope he waits for me.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperes",
+                    "Example Sentence": "Quero que esperes aqui.",
+                    "English Translation": "I want you to wait here.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "espere",
+                    "Example Sentence": "Talvez ela espere.",
+                    "English Translation": "Maybe she will wait.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperemos",
+                    "Example Sentence": "Esperamos que tudo corra bem.",
+                    "English Translation": "We hope everything goes well.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "esperem",
+                    "Example Sentence": "Quero que esperem lá fora.",
+                    "English Translation": "I want them to wait outside.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
+        },
+        "VOLTAR": {
+            "meta": {
+                "emoji": "🔙",
+                "english": "to return / to come back / to do again",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "volto",
+                    "Example Sentence": "Volto já, espera um momento.",
+                    "English Translation": "I'll be right back, wait a moment.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltas",
+                    "Example Sentence": "Voltas para casa a que horas?",
+                    "English Translation": "What time are you coming back home?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "volta",
+                    "Example Sentence": "Ela volta na segunda-feira.",
+                    "English Translation": "She comes back on Monday.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltamos",
+                    "Example Sentence": "Voltamos sempre ao mesmo restaurante.",
+                    "English Translation": "We always go back to the same restaurant.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltam",
+                    "Example Sentence": "Voltam de férias amanhã.",
+                    "English Translation": "They come back from holiday tomorrow.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltei",
+                    "Example Sentence": "Voltei a ligar mas não atendeu.",
+                    "English Translation": "I called again but he didn't answer.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "VOLTAR A + infinitive = 'to do something again'. Very common in EP."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltaste",
+                    "Example Sentence": "Voltaste cedo hoje.",
+                    "English Translation": "You came back early today.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltou",
+                    "Example Sentence": "Ele voltou para Portugal.",
+                    "English Translation": "He returned to Portugal.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltámos",
+                    "Example Sentence": "Voltámos ao hotel à noite.",
+                    "English Translation": "We returned to the hotel at night.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltaram",
+                    "Example Sentence": "Voltaram a tentar.",
+                    "English Translation": "They tried again.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltava",
+                    "Example Sentence": "Voltava sempre a pé.",
+                    "English Translation": "I always used to walk back.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltavas",
+                    "Example Sentence": "Voltavas tarde do trabalho.",
+                    "English Translation": "You used to come back late from work.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltava",
+                    "Example Sentence": "Voltava sempre ao mesmo café.",
+                    "English Translation": "He always used to go back to the same café.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltávamos",
+                    "Example Sentence": "Voltávamos todos os verões.",
+                    "English Translation": "We used to go back every summer.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltavam",
+                    "Example Sentence": "Voltavam a cometer os mesmos erros.",
+                    "English Translation": "They used to make the same mistakes again.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltarei",
+                    "Example Sentence": "Voltarei para o ano.",
+                    "English Translation": "I will come back next year.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltarás",
+                    "Example Sentence": "Voltarás a Portugal?",
+                    "English Translation": "Will you come back to Portugal?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltará",
+                    "Example Sentence": "Voltará em breve.",
+                    "English Translation": "He will be back soon.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltaremos",
+                    "Example Sentence": "Voltaremos com novidades.",
+                    "English Translation": "We will come back with news.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltarão",
+                    "Example Sentence": "Voltarão a tentar.",
+                    "English Translation": "They will try again.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltaria",
+                    "Example Sentence": "Voltaria se pudesse.",
+                    "English Translation": "I would come back if I could.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltarias",
+                    "Example Sentence": "Voltarias a fazer o mesmo?",
+                    "English Translation": "Would you do the same thing again?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltaria",
+                    "Example Sentence": "Voltaria para casa mais cedo.",
+                    "English Translation": "He would go back home earlier.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltaríamos",
+                    "Example Sentence": "Voltaríamos com prazer.",
+                    "English Translation": "We would come back with pleasure.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltariam",
+                    "Example Sentence": "Voltariam ao mesmo hotel.",
+                    "English Translation": "They would go back to the same hotel.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "volte",
+                    "Example Sentence": "Espero que volte a tempo.",
+                    "English Translation": "I hope I come back in time.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltes",
+                    "Example Sentence": "Quero que voltes depressa.",
+                    "English Translation": "I want you to come back quickly.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "volte",
+                    "Example Sentence": "Talvez ela volte amanhã.",
+                    "English Translation": "Maybe she'll come back tomorrow.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltemos",
+                    "Example Sentence": "Esperamos que voltemos cedo.",
+                    "English Translation": "We hope we come back early.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "voltem",
+                    "Example Sentence": "Quero que voltem em segurança.",
+                    "English Translation": "I want them to come back safely.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
+        },
+        "LEMBRAR": {
+            "meta": {
+                "emoji": "💭",
+                "english": "to remember / to remind",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembro",
+                    "Example Sentence": "Lembro-me bem desse dia.",
+                    "English Translation": "I remember that day well.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "LEMBRAR-SE DE = to remember (reflexive, standard EP). LEMBRAR = to remind (transitive)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembras",
+                    "Example Sentence": "Lembras-te do nome dela?",
+                    "English Translation": "Do you remember her name?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembra",
+                    "Example Sentence": "Isso lembra-me a minha infância.",
+                    "English Translation": "That reminds me of my childhood.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembramos",
+                    "Example Sentence": "Lembramo-nos sempre das férias.",
+                    "English Translation": "We always remember the holidays.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembram",
+                    "Example Sentence": "Não se lembram de nada.",
+                    "English Translation": "They don't remember anything.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrei",
+                    "Example Sentence": "Lembrei-me de telefonar.",
+                    "English Translation": "I remembered to call.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembraste",
+                    "Example Sentence": "Lembraste-te de trazer o bolo?",
+                    "English Translation": "Did you remember to bring the cake?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrou",
+                    "Example Sentence": "Lembrou-se tarde demais.",
+                    "English Translation": "He remembered too late.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrámos",
+                    "Example Sentence": "Lembrámo-nos do aniversário.",
+                    "English Translation": "We remembered the birthday.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembraram",
+                    "Example Sentence": "Lembraram-se da chave.",
+                    "English Translation": "They remembered the key.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrava",
+                    "Example Sentence": "Lembrava-me da casa antiga.",
+                    "English Translation": "I used to remember the old house.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembravas",
+                    "Example Sentence": "Lembravas-te das regras?",
+                    "English Translation": "Did you used to remember the rules?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrava",
+                    "Example Sentence": "Lembrava sempre a mãe.",
+                    "English Translation": "He always used to remind his mother.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrávamos",
+                    "Example Sentence": "Lembrávamo-nos dos verões.",
+                    "English Translation": "We used to remember the summers.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembravam",
+                    "Example Sentence": "Lembravam-se de tudo.",
+                    "English Translation": "They used to remember everything.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrarei",
+                    "Example Sentence": "Lembrar-me-ei para sempre.",
+                    "English Translation": "I will remember forever.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrarás",
+                    "Example Sentence": "Lembrar-te-ás deste dia.",
+                    "English Translation": "You will remember this day.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrará",
+                    "Example Sentence": "Lembrará com saudade.",
+                    "English Translation": "He will remember with longing.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembraremos",
+                    "Example Sentence": "Lembrar-nos-emos disto.",
+                    "English Translation": "We will remember this.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrarão",
+                    "Example Sentence": "Lembrarão o que dissemos.",
+                    "English Translation": "They will remember what we said.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembraria",
+                    "Example Sentence": "Lembrar-me-ia se pudesse.",
+                    "English Translation": "I would remember if I could.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrarias",
+                    "Example Sentence": "Lembrarias disto sem ajuda?",
+                    "English Translation": "Would you remember this without help?",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembraria",
+                    "Example Sentence": "Lembraria se tivesse prestado atenção.",
+                    "English Translation": "He would remember if he had paid attention.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembraríamos",
+                    "Example Sentence": "Lembrar-nos-íamos com uma foto.",
+                    "English Translation": "We would remember with a photo.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrariam",
+                    "Example Sentence": "Lembrariam com o tempo.",
+                    "English Translation": "They would remember with time.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Conditional. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembre",
+                    "Example Sentence": "Espero que me lembre da senha.",
+                    "English Translation": "I hope I remember the password.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembres",
+                    "Example Sentence": "Quero que te lembres disto.",
+                    "English Translation": "I want you to remember this.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembre",
+                    "Example Sentence": "Talvez ela se lembre.",
+                    "English Translation": "Maybe she will remember.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembremos",
+                    "Example Sentence": "Esperamos que nos lembremos.",
+                    "English Translation": "We hope we remember.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "lembrem",
+                    "Example Sentence": "Quero que se lembrem do combinado.",
+                    "English Translation": "I want them to remember the agreement.",
+                    "Type": "Regular Conjugation",
+                    "Notes": "Regular -AR Present Subjunctive. In formal EP, reflexive can use mesoclisis (lembrar-me-ei)."
+                }
+            ]
         }
     },
-    "totalVerbs": 50
+    "totalVerbs": 53
 }

@@ -13,6 +13,7 @@ const CARD_TINTS = [
   "bg-purple-50 border-purple-100",
   "bg-violet-50 border-violet-100",
   "bg-slate-50 border-slate-200",
+  "bg-fuchsia-50 border-fuchsia-100",
 ] as const;
 
 export default function VocabularyPage() {

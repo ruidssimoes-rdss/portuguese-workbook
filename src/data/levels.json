@@ -176,14 +176,14 @@
       },
       "A2.4": {
         "label": "Daily routines and household",
-        "description": "Knows routine verbs (acordar, trabalhar, dormir) and household items (televisão, telemóvel, frigorífico).",
-        "requiredCategories": ["home-rooms", "family-daily-routine", "work-education", "health-body"],
+        "description": "Knows routine verbs (acordar, trabalhar, dormir), household items, and informal basics (tá, bora, não faz mal).",
+        "requiredCategories": ["home-rooms", "family-daily-routine", "work-education", "health-body", "colloquial-slang"],
         "targetWordCount": 250,
         "targetAccuracy": 75
       },
       "A2.5": {
         "label": "All A2 vocabulary complete",
-        "description": "Knows all A1+A2 vocabulary across all twelve categories. Solid foundation for daily life.",
+        "description": "Knows all A1+A2 vocabulary across all thirteen categories. Solid foundation for daily life.",
         "requiredCategories": "all",
         "targetWordCount": 300,
         "targetAccuracy": 80
@@ -198,8 +198,8 @@
       },
       "B1.2": {
         "label": "Travel and cultural vocabulary",
-        "description": "Knows travel concepts (saudade, estrangeiro, alfândega, embaixada) and cultural terms (imperial, petisco).",
-        "requiredCategories": ["travel-directions"],
+        "description": "Knows travel concepts (saudade, estrangeiro, alfândega, embaixada), cultural terms (imperial, petisco), and colloquial slang (pá, tipo, cena, bué).",
+        "requiredCategories": ["travel-directions", "colloquial-slang"],
         "targetWordCount": 230,
         "targetAccuracy": 70
       },
