@@ -58,7 +58,10 @@
         "PASSAR",
         "ENTRAR",
         "MUDAR",
-        "ACONTECER"
+        "ACONTECER",
+        "JOGAR",
+        "TOCAR",
+        "ESCOLHER"
     ],
     "verbs": {
         "SER": {
@@ -19608,7 +19611,1033 @@
                     "Notes": "Exception: c→ç before a in Subjunctive to preserve the /s/ sound. ACONTECER → aconteça, aconteçam."
                 }
             ]
+        },
+        "JOGAR": {
+            "meta": {
+                "emoji": "⚽",
+                "english": "to play a game / to gamble",
+                "group": "Regular -AR (with spelling change)",
+                "priority": "Useful",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogo",
+                    "Example Sentence": "Jogo futebol aos sábados.",
+                    "English Translation": "I play football on Saturdays.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogas",
+                    "Example Sentence": "Jogas bem xadrez.",
+                    "English Translation": "You play chess well.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "joga",
+                    "Example Sentence": "Ele joga na equipa do Benfica.",
+                    "English Translation": "He plays for the Benfica team.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogamos",
+                    "Example Sentence": "Jogamos às cartas depois do jantar.",
+                    "English Translation": "We play cards after dinner.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogam",
+                    "Example Sentence": "Jogam ténis todas as semanas.",
+                    "English Translation": "They play tennis every week.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "joguei",
+                    "Example Sentence": "Joguei mal hoje.",
+                    "English Translation": "I played badly today.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: g→gu before e to preserve the /g/ sound. Applies to all -GAR verbs (jogar, pagar, chegar)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogaste",
+                    "Example Sentence": "Jogaste no Euromilhões?",
+                    "English Translation": "Did you play the EuroMillions?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogou",
+                    "Example Sentence": "Jogou a final ontem.",
+                    "English Translation": "He played the final yesterday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogámos",
+                    "Example Sentence": "Jogámos contra o Porto.",
+                    "English Translation": "We played against Porto.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogaram",
+                    "Example Sentence": "Jogaram muito bem.",
+                    "English Translation": "They played very well.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogava",
+                    "Example Sentence": "Jogava futebol na rua quando era miúdo.",
+                    "English Translation": "I used to play football in the street when I was a kid.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogavas",
+                    "Example Sentence": "Jogavas na escola?",
+                    "English Translation": "Did you used to play at school?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogava",
+                    "Example Sentence": "Jogava às escondidas.",
+                    "English Translation": "He used to play hide and seek.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogávamos",
+                    "Example Sentence": "Jogávamos todos os fins de semana.",
+                    "English Translation": "We used to play every weekend.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogavam",
+                    "Example Sentence": "Jogavam à bola no jardim.",
+                    "English Translation": "They used to play ball in the garden.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogarei",
+                    "Example Sentence": "Jogarei melhor da próxima vez.",
+                    "English Translation": "I will play better next time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogarás",
+                    "Example Sentence": "Jogarás na equipa?",
+                    "English Translation": "Will you play on the team?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogará",
+                    "Example Sentence": "Jogará no sábado.",
+                    "English Translation": "He will play on Saturday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogaremos",
+                    "Example Sentence": "Jogaremos juntos.",
+                    "English Translation": "We will play together.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogarão",
+                    "Example Sentence": "Jogarão a final em maio.",
+                    "English Translation": "They will play the final in May.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogaria",
+                    "Example Sentence": "Jogaria se não tivesse dores.",
+                    "English Translation": "I would play if I wasn't in pain.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogarias",
+                    "Example Sentence": "Jogarias comigo?",
+                    "English Translation": "Would you play with me?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogaria",
+                    "Example Sentence": "Jogaria profissionalmente.",
+                    "English Translation": "He would play professionally.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogaríamos",
+                    "Example Sentence": "Jogaríamos se tivéssemos campo.",
+                    "English Translation": "We would play if we had a pitch.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogariam",
+                    "Example Sentence": "Jogariam todos os dias.",
+                    "English Translation": "They would play every day.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. JOGAR = play (games/sports). Not BRINCAR (play/have fun) or TOCAR (instrument)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogue",
+                    "Example Sentence": "Espero que jogue bem.",
+                    "English Translation": "I hope I play well.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: g→gu before e to preserve the /g/ sound. Applies to all -GAR verbs (jogar, pagar, chegar)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogues",
+                    "Example Sentence": "Quero que jogues com fair play.",
+                    "English Translation": "I want you to play fair.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: g→gu before e to preserve the /g/ sound. Applies to all -GAR verbs (jogar, pagar, chegar)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "jogue",
+                    "Example Sentence": "Talvez ele jogue amanhã.",
+                    "English Translation": "Maybe he'll play tomorrow.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: g→gu before e to preserve the /g/ sound. Applies to all -GAR verbs (jogar, pagar, chegar)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "joguemos",
+                    "Example Sentence": "Esperamos que joguemos a final.",
+                    "English Translation": "We hope we play the final.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: g→gu before e to preserve the /g/ sound. Applies to all -GAR verbs (jogar, pagar, chegar)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "joguem",
+                    "Example Sentence": "Quero que joguem limpo.",
+                    "English Translation": "I want them to play clean.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: g→gu before e to preserve the /g/ sound. Applies to all -GAR verbs (jogar, pagar, chegar)."
+                }
+            ]
+        },
+        "TOCAR": {
+            "meta": {
+                "emoji": "🎸",
+                "english": "to touch / to play an instrument / to ring",
+                "group": "Regular -AR (with spelling change)",
+                "priority": "Useful",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "toco",
+                    "Example Sentence": "Toco piano desde os sete anos.",
+                    "English Translation": "I've played piano since I was seven.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocas",
+                    "Example Sentence": "Tocas algum instrumento?",
+                    "English Translation": "Do you play any instrument?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "toca",
+                    "Example Sentence": "O telefone toca sem parar.",
+                    "English Translation": "The phone rings non-stop.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocamos",
+                    "Example Sentence": "Tocamos numa banda.",
+                    "English Translation": "We play in a band.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocam",
+                    "Example Sentence": "Tocam fado no restaurante.",
+                    "English Translation": "They play fado at the restaurant.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "toquei",
+                    "Example Sentence": "Toquei guitarra no concerto.",
+                    "English Translation": "I played guitar at the concert.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (tocar, ficar, explicar)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocaste",
+                    "Example Sentence": "Tocaste à campainha?",
+                    "English Translation": "Did you ring the doorbell?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocou",
+                    "Example Sentence": "Tocou-me no ombro.",
+                    "English Translation": "He touched me on the shoulder.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocámos",
+                    "Example Sentence": "Tocámos juntos pela primeira vez.",
+                    "English Translation": "We played together for the first time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocaram",
+                    "Example Sentence": "Tocaram muito bem.",
+                    "English Translation": "They played very well.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocava",
+                    "Example Sentence": "Tocava violino na escola.",
+                    "English Translation": "I used to play violin at school.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocavas",
+                    "Example Sentence": "Tocavas flauta?",
+                    "English Translation": "Did you used to play the flute?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocava",
+                    "Example Sentence": "O sino tocava ao meio-dia.",
+                    "English Translation": "The bell used to ring at noon.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocávamos",
+                    "Example Sentence": "Tocávamos na igreja aos domingos.",
+                    "English Translation": "We used to play at church on Sundays.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocavam",
+                    "Example Sentence": "Tocavam música ao vivo.",
+                    "English Translation": "They used to play live music.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocarei",
+                    "Example Sentence": "Tocarei na festa.",
+                    "English Translation": "I will play at the party.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocarás",
+                    "Example Sentence": "Tocarás no concerto?",
+                    "English Translation": "Will you play at the concert?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocará",
+                    "Example Sentence": "Tocará uma peça nova.",
+                    "English Translation": "He will play a new piece.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocaremos",
+                    "Example Sentence": "Tocaremos às oito.",
+                    "English Translation": "We will play at eight.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocarão",
+                    "Example Sentence": "Tocarão no festival.",
+                    "English Translation": "They will play at the festival.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocaria",
+                    "Example Sentence": "Tocaria se tivesse o instrumento.",
+                    "English Translation": "I would play if I had the instrument.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocarias",
+                    "Example Sentence": "Tocarias em público?",
+                    "English Translation": "Would you play in public?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocaria",
+                    "Example Sentence": "Tocaria melhor com prática.",
+                    "English Translation": "He would play better with practice.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocaríamos",
+                    "Example Sentence": "Tocaríamos se nos convidassem.",
+                    "English Translation": "We would play if they invited us.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "tocariam",
+                    "Example Sentence": "Tocariam de graça.",
+                    "English Translation": "They would play for free.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. TOCAR = to touch, to play (instrument), to ring."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "toque",
+                    "Example Sentence": "Espero que toque bem.",
+                    "English Translation": "I hope I play well.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (tocar, ficar, explicar)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "toques",
+                    "Example Sentence": "Quero que toques uma canção.",
+                    "English Translation": "I want you to play a song.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (tocar, ficar, explicar)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "toque",
+                    "Example Sentence": "Talvez ela toque hoje.",
+                    "English Translation": "Maybe she'll play today.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (tocar, ficar, explicar)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "toquemos",
+                    "Example Sentence": "Esperamos que toquemos juntos.",
+                    "English Translation": "We hope we play together.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (tocar, ficar, explicar)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "toquem",
+                    "Example Sentence": "Quero que toquem fado.",
+                    "English Translation": "I want them to play fado.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (tocar, ficar, explicar)."
+                }
+            ]
+        },
+        "ESCOLHER": {
+            "meta": {
+                "emoji": "✅",
+                "english": "to choose / to pick / to select",
+                "group": "Regular -ER",
+                "priority": "Useful",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolho",
+                    "Example Sentence": "Escolho sempre o prato do dia.",
+                    "English Translation": "I always choose the dish of the day.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhes",
+                    "Example Sentence": "Escolhes tu o restaurante.",
+                    "English Translation": "You choose the restaurant.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhe",
+                    "Example Sentence": "Ela escolhe a roupa com cuidado.",
+                    "English Translation": "She chooses clothes carefully.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhemos",
+                    "Example Sentence": "Escolhemos o melhor caminho.",
+                    "English Translation": "We choose the best route.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhem",
+                    "Example Sentence": "Escolhem sempre os mesmos lugares.",
+                    "English Translation": "They always choose the same seats.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhi",
+                    "Example Sentence": "Escolhi o bolo de chocolate.",
+                    "English Translation": "I chose the chocolate cake.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolheste",
+                    "Example Sentence": "Escolheste bem!",
+                    "English Translation": "You chose well!",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolheu",
+                    "Example Sentence": "Escolheu o curso de medicina.",
+                    "English Translation": "He chose the medical course.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhemos",
+                    "Example Sentence": "Escolhemos esta casa pelo jardim.",
+                    "English Translation": "We chose this house for the garden.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolheram",
+                    "Example Sentence": "Escolheram ir de comboio.",
+                    "English Translation": "They chose to go by train.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhia",
+                    "Example Sentence": "Escolhia sempre o mesmo lugar.",
+                    "English Translation": "I always used to choose the same seat.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhias",
+                    "Example Sentence": "Escolhias depressa.",
+                    "English Translation": "You used to choose quickly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhia",
+                    "Example Sentence": "Escolhia com calma.",
+                    "English Translation": "He used to choose calmly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhíamos",
+                    "Example Sentence": "Escolhíamos juntos.",
+                    "English Translation": "We used to choose together.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhiam",
+                    "Example Sentence": "Escolhiam a dedo.",
+                    "English Translation": "They used to handpick.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolherei",
+                    "Example Sentence": "Escolherei amanhã.",
+                    "English Translation": "I will choose tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolherás",
+                    "Example Sentence": "Escolherás o que quiseres.",
+                    "English Translation": "You will choose whatever you want.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolherá",
+                    "Example Sentence": "Escolherá com cuidado.",
+                    "English Translation": "He will choose carefully.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolheremos",
+                    "Example Sentence": "Escolheremos na próxima semana.",
+                    "English Translation": "We will choose next week.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolherão",
+                    "Example Sentence": "Escolherão o vencedor.",
+                    "English Translation": "They will choose the winner.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolheria",
+                    "Example Sentence": "Escolheria o azul.",
+                    "English Translation": "I would choose the blue one.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolherias",
+                    "Example Sentence": "Escolherias de outra forma?",
+                    "English Translation": "Would you choose differently?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolheria",
+                    "Example Sentence": "Escolheria ficar em casa.",
+                    "English Translation": "He would choose to stay home.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolheríamos",
+                    "Example Sentence": "Escolheríamos ir ao campo.",
+                    "English Translation": "We would choose to go to the countryside.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolheriam",
+                    "Example Sentence": "Escolheriam a opção mais barata.",
+                    "English Translation": "They would choose the cheapest option.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolha",
+                    "Example Sentence": "Espero que escolha bem.",
+                    "English Translation": "I hope I choose well.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhas",
+                    "Example Sentence": "Quero que escolhas tu.",
+                    "English Translation": "I want you to choose.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolha",
+                    "Example Sentence": "Talvez ela escolha outra cor.",
+                    "English Translation": "Maybe she'll choose a different colour.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolhamos",
+                    "Example Sentence": "Esperamos que escolhamos certo.",
+                    "English Translation": "We hope we choose right.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "escolham",
+                    "Example Sentence": "Quero que escolham depressa.",
+                    "English Translation": "I want them to choose quickly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive."
+                }
+            ]
         }
     },
-    "totalVerbs": 59
+    "totalVerbs": 62
 }

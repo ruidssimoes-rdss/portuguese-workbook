@@ -2,6 +2,17 @@
   "entries": [
     {
       "date": "2026-02-09",
+      "version": "0.8.0",
+      "title": "New verbs, family vocab, reflexive verbs grammar",
+      "changes": [
+        "Added 3 new verbs: JOGAR, TOCAR, ESCOLHER (62 total)",
+        "Expanded Family & Daily Routine to ~43 words with in-laws, routines, and household tasks",
+        "Improved reflexive verbs grammar with EP pronoun placement rules and meaning-change pairs",
+        "Total: 62 verbs, ~567 words, 13 categories"
+      ]
+    },
+    {
+      "date": "2026-02-09",
       "version": "0.7.0",
       "title": "More verbs, shopping vocab, prepositions grammar",
       "changes": [

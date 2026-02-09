@@ -2654,6 +2654,126 @@
           "gender": null,
           "example": "O meu sobrinho fez dois anos.",
           "exampleTranslation": "My nephew turned two."
+        },
+        {
+          "portuguese": "sogro / sogra",
+          "english": "father-in-law / mother-in-law",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A minha sogra cozinha muito bem.",
+          "exampleTranslation": "My mother-in-law cooks very well."
+        },
+        {
+          "portuguese": "cunhado / cunhada",
+          "english": "brother-in-law / sister-in-law",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O meu cunhado é do Porto.",
+          "exampleTranslation": "My brother-in-law is from Porto."
+        },
+        {
+          "portuguese": "padrinho / madrinha",
+          "english": "godfather / godmother",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O meu padrinho deu-me um relógio.",
+          "exampleTranslation": "My godfather gave me a watch."
+        },
+        {
+          "portuguese": "neto / neta",
+          "english": "grandson / granddaughter",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A avó tem cinco netos.",
+          "exampleTranslation": "Grandma has five grandchildren."
+        },
+        {
+          "portuguese": "enteado / enteada",
+          "english": "stepson / stepdaughter",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Ela tem uma enteada de dez anos.",
+          "exampleTranslation": "She has a ten-year-old stepdaughter."
+        },
+        {
+          "portuguese": "solteiro",
+          "english": "single (unmarried)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ele é solteiro.",
+          "exampleTranslation": "He is single."
+        },
+        {
+          "portuguese": "casado",
+          "english": "married",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Sou casado há cinco anos.",
+          "exampleTranslation": "I've been married for five years."
+        },
+        {
+          "portuguese": "divorciado",
+          "english": "divorced",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ela é divorciada.",
+          "exampleTranslation": "She is divorced."
+        },
+        {
+          "portuguese": "pentear-se",
+          "english": "to comb one's hair",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Penteio-me em frente ao espelho.",
+          "exampleTranslation": "I comb my hair in front of the mirror."
+        },
+        {
+          "portuguese": "barbear-se",
+          "english": "to shave",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Barbeio-me todas as manhãs.",
+          "exampleTranslation": "I shave every morning."
+        },
+        {
+          "portuguese": "maquilhar-se",
+          "english": "to put on makeup",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Ela maquilha-se rapidamente.",
+          "exampleTranslation": "She puts on makeup quickly."
+        },
+        {
+          "portuguese": "fazer a cama",
+          "english": "to make the bed",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Faço a cama todos os dias.",
+          "exampleTranslation": "I make the bed every day."
+        },
+        {
+          "portuguese": "pôr a mesa",
+          "english": "to set the table",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Podes pôr a mesa?",
+          "exampleTranslation": "Can you set the table?"
+        },
+        {
+          "portuguese": "levantar a mesa",
+          "english": "to clear the table",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Quem levanta a mesa hoje?",
+          "exampleTranslation": "Who's clearing the table today?"
+        },
+        {
+          "portuguese": "passar a ferro",
+          "english": "to iron (clothes)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Odeio passar a ferro.",
+          "exampleTranslation": "I hate ironing."
         }
       ]
     },
