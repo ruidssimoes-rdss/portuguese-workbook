@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { AuthProvider } from "@/components/auth-provider";
 
 export const metadata: Metadata = {
   title: "Aula PT — European Portuguese",
@@ -31,7 +32,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-bg text-text min-h-screen">{children}</body>
+      <body className="bg-bg text-text min-h-screen">
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }
