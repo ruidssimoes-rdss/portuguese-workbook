@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SearchModal } from "@/components/search-modal";
 
 const navItems = [
   { href: "/conjugations", label: "Conjugations" },
@@ -17,6 +18,7 @@ export function Topbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [shortcutHint, setShortcutHint] = useState<string>("⌘K");
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
   const closeSearchModal = useCallback(() => setSearchModalOpen(false), []);
@@ -38,6 +40,37 @@ export function Topbar() {
     window.addEventListener("keydown", onEscape);
     return () => window.removeEventListener("keydown", onEscape);
   }, [searchModalOpen, closeSearchModal]);
+
+  useEffect(() => {
+    const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+    setShortcutHint(isMac ? "⌘K" : "Ctrl+K");
+  }, []);
+
+  // Global Cmd+K / Ctrl+K and "/" to open search (only "/" when not in an input)
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+      const mod = isMac ? e.metaKey : e.ctrlKey;
+      if (mod && e.key === "k") {
+        e.preventDefault();
+        setSearchModalOpen(true);
+        return;
+      }
+      if (e.key === "/" && !searchModalOpen) {
+        const target = e.target as Node;
+        if (
+          target instanceof HTMLInputElement ||
+          target instanceof HTMLTextAreaElement ||
+          (target instanceof HTMLElement && target.isContentEditable)
+        )
+          return;
+        e.preventDefault();
+        setSearchModalOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [searchModalOpen]);
 
   return (
     <>
@@ -85,7 +118,8 @@ export function Topbar() {
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 border border-border rounded-lg text-[13px] text-text-3 cursor-pointer min-w-[120px] md:min-w-[160px] transition-colors hover:border-[#999] hover:text-text-2"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 border border-gray-200 rounded-lg text-[13px] text-text-3 cursor-pointer w-12 md:w-48 transition-colors hover:border-gray-300 hover:text-text-2 justify-center md:justify-start"
+              aria-label="Search"
             >
               <svg
                 width="14"
@@ -99,9 +133,9 @@ export function Topbar() {
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
-              <span>Search…</span>
+              <span className="hidden md:inline">Search…</span>
               <kbd className="hidden md:inline ml-auto text-[11px] px-1.5 py-0.5 border border-border rounded text-text-3 font-sans">
-                ⌘K
+                {shortcutHint}
               </kbd>
             </button>
           </div>
@@ -158,30 +192,7 @@ export function Topbar() {
         </div>
       )}
 
-      {/* Search coming soon modal */}
-      {searchModalOpen && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          aria-modal="true"
-          role="dialog"
-          aria-label="Search"
-        >
-          <div
-            className="absolute inset-0 bg-black/20 backdrop-blur-[2px]"
-            onClick={closeSearchModal}
-          />
-          <div className="relative bg-white border border-border rounded-xl shadow-lg p-6 max-w-sm w-full animate-fade-in">
-            <p className="text-[15px] text-text text-center">Search is coming soon</p>
-            <button
-              type="button"
-              onClick={closeSearchModal}
-              className="mt-4 w-full py-2.5 rounded-lg border border-border text-[14px] font-medium text-text hover:bg-bg-s transition-colors"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      <SearchModal open={searchModalOpen} onClose={closeSearchModal} />
 
     </>
   );

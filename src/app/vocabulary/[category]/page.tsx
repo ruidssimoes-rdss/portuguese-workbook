@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { Badge, cefrVariant } from "@/components/ui/badge";
@@ -13,11 +13,15 @@ const data = vocabData as unknown as VocabData;
 
 export default function VocabCategoryPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const slug = params.category as string;
   const category = data.categories.find((c) => c.id === slug);
+  const highlightWord = searchParams.get("highlight");
+  const highlightedRef = useRef<HTMLDivElement>(null);
 
   const [search, setSearch] = useState("");
   const [cefrFilter, setCefrFilter] = useState("All");
+  const [flashHighlight, setFlashHighlight] = useState(false);
 
   if (!category) {
     return (
@@ -44,6 +48,20 @@ export default function VocabCategoryPage() {
       return false;
     return true;
   });
+
+  // Scroll to and flash highlight when ?highlight= is set
+  useEffect(() => {
+    if (!highlightWord || !category) return;
+    const decoded = decodeURIComponent(highlightWord);
+    const match = category.words.some(
+      (w) => w.portuguese === decoded || w.portuguese.startsWith(decoded + " ") || w.portuguese.includes(" " + decoded)
+    );
+    if (!match) return;
+    setFlashHighlight(true);
+    setTimeout(() => highlightedRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
+    const t = setTimeout(() => setFlashHighlight(false), 2000);
+    return () => clearTimeout(t);
+  }, [highlightWord, category]);
 
   return (
     <>
@@ -98,10 +116,18 @@ export default function VocabCategoryPage() {
               No words match your filter.
             </p>
           ) : (
-            filtered.map((w, i) => (
+            filtered.map((w, i) => {
+              const decodedHighlight = highlightWord ? decodeURIComponent(highlightWord) : "";
+              const isHighlight = decodedHighlight && w.portuguese === decodedHighlight;
+              return (
               <div
                 key={i}
-                className="border border-border rounded-lg p-4 bg-white min-h-[120px] flex flex-col transition-colors duration-200 hover:border-indigo-200"
+                ref={isHighlight ? highlightedRef : undefined}
+                className={`border rounded-lg p-4 min-h-[120px] flex flex-col transition-colors duration-200 hover:border-indigo-200 ${
+                  isHighlight && flashHighlight
+                    ? "border-indigo-300 bg-indigo-100"
+                    : "border-border bg-white"
+                }`}
               >
                 <div className="flex items-start gap-2">
                   <p className="text-[17px] font-bold tracking-tight text-text break-words">
@@ -148,7 +174,8 @@ export default function VocabCategoryPage() {
                   )}
                 </div>
               </div>
-            ))
+              );
+            })
           )}
         </div>
       </main>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import {
@@ -28,9 +28,33 @@ const tenses = [
 
 export default function VerbPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const slug = (params.verb as string).toUpperCase();
   const verb = data.verbs[slug];
-  const [tenseFilter, setTenseFilter] = useState("All");
+  const initialTense = searchParams.get("tense");
+  const highlightConjugation = searchParams.get("highlight");
+  const [tenseFilter, setTenseFilter] = useState(initialTense || "All");
+  const [flashHighlight, setFlashHighlight] = useState(false);
+  const highlightedRowRef = useRef<HTMLTableRowElement | HTMLDivElement | null>(null);
+
+  // Sync initial tense from URL (e.g. from search result)
+  useEffect(() => {
+    if (initialTense && tenses.includes(initialTense)) setTenseFilter(initialTense);
+  }, [initialTense]);
+
+  // Scroll to and flash conjugation row when ?highlight= is set
+  useEffect(() => {
+    if (!highlightConjugation || !verb) return;
+    setFlashHighlight(true);
+    const t = setTimeout(() => {
+      highlightedRowRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 100);
+    const t2 = setTimeout(() => setFlashHighlight(false), 2000);
+    return () => {
+      clearTimeout(t);
+      clearTimeout(t2);
+    };
+  }, [highlightConjugation, verb]);
 
   if (!verb) {
     return (
@@ -112,10 +136,14 @@ export default function VerbPage() {
         <div className="md:hidden space-y-2 mb-12">
           {rows.map((r, i) => {
             const person = r.Person.split(" (")[0];
+            const isHighlight = highlightConjugation && r.Conjugation === decodeURIComponent(highlightConjugation);
             return (
               <div
                 key={i}
-                className={`border rounded-lg p-4 ${r.Type === "Exception" ? "border-amber-200 bg-amber-50" : "border-border-l bg-white"}`}
+                ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLDivElement>) : undefined}
+                className={`border rounded-lg p-4 ${
+                  r.Type === "Exception" ? "border-amber-200 bg-amber-50" : "border-border-l bg-white"
+                } ${isHighlight && flashHighlight ? "ring-2 ring-indigo-400 bg-indigo-50" : ""}`}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <Badge variant={tenseVariant[r.Tense] || "gray"}>
@@ -196,11 +224,15 @@ export default function VerbPage() {
                   tenseFilter === "All" && r.Tense !== lastTense && lastTense !== "";
                 lastTense = r.Tense;
                 const person = r.Person.split(" (")[0];
+                const isHighlight = highlightConjugation && r.Conjugation === decodeURIComponent(highlightConjugation);
 
                 return (
                   <tr
                     key={i}
-                    className={`hover:bg-bg-s ${newTense ? "border-t-2 border-border" : ""}`}
+                    ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLTableRowElement>) : undefined}
+                    className={`hover:bg-bg-s ${newTense ? "border-t-2 border-border" : ""} ${
+                      isHighlight && flashHighlight ? "bg-indigo-100" : ""
+                    }`}
                   >
                     <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
                       <Badge variant={tenseVariant[r.Tense] || "gray"}>
