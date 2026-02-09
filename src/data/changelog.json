@@ -2,18 +2,18 @@
   "entries": [
     {
       "date": "2026-02-09",
-      "version": "1.2.0",
-      "title": "Major content expansion + pronunciation",
-      "summary": "Massive update: restructured vocabulary, added 30 new verbs, created new categories, polished 10 grammar topics, and added audio pronunciation with phonetic transcriptions.",
+      "version": "1.3.0",
+      "title": "Major content expansion + full pronunciation",
+      "summary": "Massive update: restructured vocabulary, added 30 new verbs, created new categories, polished 10 grammar topics, and added audio pronunciation with phonetic transcriptions for all words and verbs.",
       "changes": [
         "Restructured vocabulary from 6 broad categories to 13 focused categories",
         "Added 30 new verbs: 71 total with 2,130 conjugations across 6 tenses",
         "Total vocabulary: ~605 words across 13 categories",
         "New: Colloquial & Slang category with 35 everyday EP expressions",
         "Polished 10 grammar topics with improved rules and test questions",
-        "New: Audio pronunciation — tap the speaker icon to hear any word or phrase in European Portuguese",
-        "New: Phonetic transcriptions for 4 vocabulary categories and all 71 verb infinitives",
-        "New: What's New page with changelog and dismissable homepage banner",
+        "New: Audio pronunciation — tap the speaker icon to hear any word in European Portuguese",
+        "New: Phonetic transcriptions for ALL 605 vocabulary words and 71 verb infinitives",
+        "New: What's New page with changelog and daily digest banner",
         "UI polish pass — consistent spacing, typography, colours, and responsive design"
       ]
     },
