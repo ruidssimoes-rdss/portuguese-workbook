@@ -3563,6 +3563,118 @@
           "gender": "f",
           "example": "Há uma promoção esta semana.",
           "exampleTranslation": "There is a promotion this week."
+        },
+        {
+          "portuguese": "moeda",
+          "english": "coin",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Tens uma moeda de um euro?",
+          "exampleTranslation": "Do you have a one euro coin?"
+        },
+        {
+          "portuguese": "nota",
+          "english": "banknote",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Só tenho notas de vinte.",
+          "exampleTranslation": "I only have twenty euro notes."
+        },
+        {
+          "portuguese": "trocar",
+          "english": "to exchange / to swap",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Podes trocar-me dez euros?",
+          "exampleTranslation": "Can you give me change for ten euros?"
+        },
+        {
+          "portuguese": "devolver",
+          "english": "to return / to give back",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Quero devolver este casaco.",
+          "exampleTranslation": "I want to return this coat."
+        },
+        {
+          "portuguese": "experimentar",
+          "english": "to try on / to try",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Posso experimentar esta camisa?",
+          "exampleTranslation": "Can I try on this shirt?"
+        },
+        {
+          "portuguese": "tamanho",
+          "english": "size",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Qual é o seu tamanho?",
+          "exampleTranslation": "What is your size?"
+        },
+        {
+          "portuguese": "caixa",
+          "english": "till / cash register / box",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Paga na caixa, por favor.",
+          "exampleTranslation": "Pay at the till, please."
+        },
+        {
+          "portuguese": "saco",
+          "english": "bag",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Precisa de um saco?",
+          "exampleTranslation": "Do you need a bag?"
+        },
+        {
+          "portuguese": "oferta",
+          "english": "offer / gift",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Esta camisa está em oferta.",
+          "exampleTranslation": "This shirt is on offer."
+        },
+        {
+          "portuguese": "balanço",
+          "english": "balance (financial)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O balanço da conta está positivo.",
+          "exampleTranslation": "The account balance is positive."
+        },
+        {
+          "portuguese": "poupar",
+          "english": "to save (money)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Estou a poupar para as férias.",
+          "exampleTranslation": "I'm saving for the holidays."
+        },
+        {
+          "portuguese": "encomenda",
+          "english": "order (online/postal)",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A minha encomenda já chegou.",
+          "exampleTranslation": "My order has arrived."
+        },
+        {
+          "portuguese": "encomendar",
+          "english": "to order",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Encomendei um livro online.",
+          "exampleTranslation": "I ordered a book online."
+        },
+        {
+          "portuguese": "fiado",
+          "english": "on credit (informal)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Não vendemos fiado.",
+          "exampleTranslation": "We don't sell on credit."
         }
       ]
     },

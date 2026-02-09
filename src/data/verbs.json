@@ -55,7 +55,10 @@
         "LEMBRAR",
         "PERGUNTAR",
         "RESPONDER",
-        "PASSAR"
+        "PASSAR",
+        "ENTRAR",
+        "MUDAR",
+        "ACONTECER"
     ],
     "verbs": {
         "SER": {
@@ -18579,7 +18582,1033 @@
                     "Notes": "Regular -AR Present Subjunctive."
                 }
             ]
+        },
+        "ENTRAR": {
+            "meta": {
+                "emoji": "🚪",
+                "english": "to enter / to go in / to come in",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entro",
+                    "Example Sentence": "Entro no escritório às nove.",
+                    "English Translation": "I enter the office at nine.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ENTRAR EM = to enter/go into. Uses preposition 'em' (no, na). Opposite of SAIR."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entras",
+                    "Example Sentence": "Entras sem bater à porta?",
+                    "English Translation": "Do you come in without knocking?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entra",
+                    "Example Sentence": "Ela entra na loja e sai logo.",
+                    "English Translation": "She goes into the shop and leaves right away.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entramos",
+                    "Example Sentence": "Entramos pela porta principal.",
+                    "English Translation": "We enter through the main door.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entram",
+                    "Example Sentence": "Não entram sem autorização.",
+                    "English Translation": "They don't enter without authorisation.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrei",
+                    "Example Sentence": "Entrei no restaurante e sentei-me.",
+                    "English Translation": "I went into the restaurant and sat down.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entraste",
+                    "Example Sentence": "Entraste na universidade?",
+                    "English Translation": "Did you get into university?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrou",
+                    "Example Sentence": "A água entrou pela janela.",
+                    "English Translation": "Water came in through the window.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrámos",
+                    "Example Sentence": "Entrámos no museu às dez.",
+                    "English Translation": "We entered the museum at ten.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entraram",
+                    "Example Sentence": "Entraram sem pagar.",
+                    "English Translation": "They got in without paying.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrava",
+                    "Example Sentence": "Entrava sempre pela porta de trás.",
+                    "English Translation": "I always used to go in through the back door.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entravas",
+                    "Example Sentence": "Entravas cedo na escola?",
+                    "English Translation": "Did you used to go into school early?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrava",
+                    "Example Sentence": "O sol entrava pela janela.",
+                    "English Translation": "The sun used to come in through the window.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrávamos",
+                    "Example Sentence": "Entrávamos no café às oito.",
+                    "English Translation": "We used to go into the café at eight.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entravam",
+                    "Example Sentence": "Entravam sem pedir licença.",
+                    "English Translation": "They used to come in without asking permission.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrarei",
+                    "Example Sentence": "Entrarei pela porta lateral.",
+                    "English Translation": "I will enter through the side door.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrarás",
+                    "Example Sentence": "Entrarás no curso em setembro.",
+                    "English Translation": "You will start the course in September.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrará",
+                    "Example Sentence": "Entrará em vigor na segunda.",
+                    "English Translation": "It will come into effect on Monday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entraremos",
+                    "Example Sentence": "Entraremos juntos.",
+                    "English Translation": "We will go in together.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrarão",
+                    "Example Sentence": "Entrarão às dez.",
+                    "English Translation": "They will enter at ten.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entraria",
+                    "Example Sentence": "Entraria se a porta estivesse aberta.",
+                    "English Translation": "I would go in if the door was open.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrarias",
+                    "Example Sentence": "Entrarias naquele restaurante?",
+                    "English Translation": "Would you go into that restaurant?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entraria",
+                    "Example Sentence": "Entraria na empresa no verão.",
+                    "English Translation": "He would join the company in summer.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entraríamos",
+                    "Example Sentence": "Entraríamos mais cedo.",
+                    "English Translation": "We would go in earlier.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrariam",
+                    "Example Sentence": "Entrariam se pudessem.",
+                    "English Translation": "They would enter if they could.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entre",
+                    "Example Sentence": "Espero que entre a tempo.",
+                    "English Translation": "I hope I get in on time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entres",
+                    "Example Sentence": "Quero que entres devagar.",
+                    "English Translation": "I want you to come in slowly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entre",
+                    "Example Sentence": "Talvez ela entre na faculdade.",
+                    "English Translation": "Maybe she'll get into university.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entremos",
+                    "Example Sentence": "Esperamos que entremos no programa.",
+                    "English Translation": "We hope we get into the programme.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "entrem",
+                    "Example Sentence": "Quero que entrem em silêncio.",
+                    "English Translation": "I want them to come in quietly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ENTRAR EM = to enter/go into. Uses preposition 'em' (with contractions: no, na, nos, nas). Opposite of SAIR."
+                }
+            ]
+        },
+        "MUDAR": {
+            "meta": {
+                "emoji": "🔄",
+                "english": "to change / to move house",
+                "group": "Regular -AR",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudo",
+                    "Example Sentence": "Mudo de canal quando há anúncios.",
+                    "English Translation": "I change the channel when there are adverts.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. MUDAR DE = to change. MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudas",
+                    "Example Sentence": "Mudas de roupa muito depressa.",
+                    "English Translation": "You change clothes very quickly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "muda",
+                    "Example Sentence": "O tempo muda rapidamente.",
+                    "English Translation": "The weather changes quickly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudamos",
+                    "Example Sentence": "Mudamo-nos para o Porto no mês que vem.",
+                    "English Translation": "We're moving to Porto next month.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudam",
+                    "Example Sentence": "Mudam de assunto sempre que pergunto.",
+                    "English Translation": "They change the subject whenever I ask.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudei",
+                    "Example Sentence": "Mudei de ideias.",
+                    "English Translation": "I changed my mind.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudaste",
+                    "Example Sentence": "Mudaste de emprego?",
+                    "English Translation": "Did you change jobs?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudou",
+                    "Example Sentence": "Ela mudou-se para Lisboa.",
+                    "English Translation": "She moved to Lisbon.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudámos",
+                    "Example Sentence": "Mudámos de casa no verão.",
+                    "English Translation": "We moved house in summer.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudaram",
+                    "Example Sentence": "Mudaram o horário.",
+                    "English Translation": "They changed the schedule.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudava",
+                    "Example Sentence": "Mudava de penteado todos os meses.",
+                    "English Translation": "I used to change hairstyle every month.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudavas",
+                    "Example Sentence": "Mudavas de ideias facilmente.",
+                    "English Translation": "You used to change your mind easily.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudava",
+                    "Example Sentence": "Mudava de casa com frequência.",
+                    "English Translation": "He used to move house often.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudávamos",
+                    "Example Sentence": "Mudávamos de carro de dois em dois anos.",
+                    "English Translation": "We used to change car every two years.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudavam",
+                    "Example Sentence": "Mudavam sempre de planos.",
+                    "English Translation": "They always used to change plans.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudarei",
+                    "Example Sentence": "Mudarei de emprego para o ano.",
+                    "English Translation": "I will change jobs next year.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudarás",
+                    "Example Sentence": "Mudarás de opinião.",
+                    "English Translation": "You will change your mind.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudará",
+                    "Example Sentence": "Mudará para melhor.",
+                    "English Translation": "It will change for the better.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudaremos",
+                    "Example Sentence": "Mudar-nos-emos em março.",
+                    "English Translation": "We will move in March.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudarão",
+                    "Example Sentence": "Mudarão as regras.",
+                    "English Translation": "They will change the rules.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudaria",
+                    "Example Sentence": "Mudaria de vida se pudesse.",
+                    "English Translation": "I would change my life if I could.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudarias",
+                    "Example Sentence": "Mudarias alguma coisa?",
+                    "English Translation": "Would you change anything?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudaria",
+                    "Example Sentence": "Mudaria de cidade.",
+                    "English Translation": "He would move to another city.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudaríamos",
+                    "Example Sentence": "Mudaríamos a decoração.",
+                    "English Translation": "We would change the decoration.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudariam",
+                    "Example Sentence": "Mudariam de estratégia.",
+                    "English Translation": "They would change strategy.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mude",
+                    "Example Sentence": "Espero que mude para melhor.",
+                    "English Translation": "I hope it changes for the better.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudes",
+                    "Example Sentence": "Quero que mudes de atitude.",
+                    "English Translation": "I want you to change your attitude.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mude",
+                    "Example Sentence": "Talvez ela se mude.",
+                    "English Translation": "Maybe she'll move.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudemos",
+                    "Example Sentence": "Esperamos que mudemos de abordagem.",
+                    "English Translation": "We hope we change approach.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "mudem",
+                    "Example Sentence": "Quero que mudem o horário.",
+                    "English Translation": "I want them to change the schedule.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. MUDAR DE = to change (something specific). MUDAR-SE = to move house."
+                }
+            ]
+        },
+        "ACONTECER": {
+            "meta": {
+                "emoji": "📌",
+                "english": "to happen / to occur",
+                "group": "Regular -ER",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteço",
+                    "Example Sentence": "Aconteço estar livre amanhã.",
+                    "English Translation": "I happen to be free tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. ACONTECER is most commonly used in 3rd person."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteces",
+                    "Example Sentence": "Aconteces estar sempre no sítio certo.",
+                    "English Translation": "You always happen to be in the right place.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontece",
+                    "Example Sentence": "Acontece a toda a gente.",
+                    "English Translation": "It happens to everyone.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecemos",
+                    "Example Sentence": "Acontecemos estar na mesma cidade.",
+                    "English Translation": "We happen to be in the same city.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecem",
+                    "Example Sentence": "Estas coisas acontecem.",
+                    "English Translation": "These things happen.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteci",
+                    "Example Sentence": "Aconteci estar em casa nessa altura.",
+                    "English Translation": "I happened to be at home at that time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteceste",
+                    "Example Sentence": "O que te aconteceu?",
+                    "English Translation": "What happened to you?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteceu",
+                    "Example Sentence": "O que aconteceu ontem?",
+                    "English Translation": "What happened yesterday?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecemos",
+                    "Example Sentence": "Acontecemos estar no mesmo comboio.",
+                    "English Translation": "We happened to be on the same train.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteceram",
+                    "Example Sentence": "Aconteceram muitas coisas.",
+                    "English Translation": "Many things happened.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecia",
+                    "Example Sentence": "Acontecia-me muitas vezes esquecer.",
+                    "English Translation": "It often used to happen to me to forget.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecias",
+                    "Example Sentence": "Acontecia-te o mesmo?",
+                    "English Translation": "Did the same thing used to happen to you?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecia",
+                    "Example Sentence": "Acontecia sempre à sexta-feira.",
+                    "English Translation": "It always used to happen on Friday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecíamos",
+                    "Example Sentence": "Acontecia-nos chegar tarde.",
+                    "English Translation": "We used to happen to arrive late.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteciam",
+                    "Example Sentence": "Aconteciam acidentes naquela estrada.",
+                    "English Translation": "Accidents used to happen on that road.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecerei",
+                    "Example Sentence": "Se me acontecer alguma coisa, liga à minha mãe.",
+                    "English Translation": "If something happens to me, call my mother.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecerás",
+                    "Example Sentence": "Não te acontecerá nada.",
+                    "English Translation": "Nothing will happen to you.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecerá",
+                    "Example Sentence": "Acontecerá mais cedo ou mais tarde.",
+                    "English Translation": "It will happen sooner or later.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteceremos",
+                    "Example Sentence": "Acontecer-nos-á o mesmo.",
+                    "English Translation": "The same will happen to us.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecerão",
+                    "Example Sentence": "Acontecerão mudanças.",
+                    "English Translation": "Changes will happen.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteceria",
+                    "Example Sentence": "Nunca me aconteceria a mim.",
+                    "English Translation": "It would never happen to me.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acontecerias",
+                    "Example Sentence": "O que te aconteceria sem ajuda?",
+                    "English Translation": "What would happen to you without help?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteceria",
+                    "Example Sentence": "Aconteceria de qualquer forma.",
+                    "English Translation": "It would happen anyway.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteceríamos",
+                    "Example Sentence": "Acontecer-nos-ia o mesmo.",
+                    "English Translation": "The same would happen to us.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteceriam",
+                    "Example Sentence": "Aconteceriam problemas.",
+                    "English Translation": "Problems would happen.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. ACONTECER is most commonly used in 3rd person. O que aconteceu? = What happened?"
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteça",
+                    "Example Sentence": "Caso me aconteça algo, avisa a família.",
+                    "English Translation": "If something happens to me, notify the family.",
+                    "Type": "Exception",
+                    "Notes": "Exception: c→ç before a in Subjunctive to preserve the /s/ sound. ACONTECER → aconteça, aconteçam."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteças",
+                    "Example Sentence": "Espero que não te aconteça nada.",
+                    "English Translation": "I hope nothing happens to you.",
+                    "Type": "Exception",
+                    "Notes": "Exception: c→ç before a in Subjunctive to preserve the /s/ sound. ACONTECER → aconteça, aconteçam."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteça",
+                    "Example Sentence": "O que quer que aconteça.",
+                    "English Translation": "Whatever happens.",
+                    "Type": "Exception",
+                    "Notes": "Exception: c→ç before a in Subjunctive to preserve the /s/ sound. ACONTECER → aconteça, aconteçam."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteçamos",
+                    "Example Sentence": "Caso nos aconteça alguma coisa.",
+                    "English Translation": "If something happens to us.",
+                    "Type": "Exception",
+                    "Notes": "Exception: c→ç before a in Subjunctive to preserve the /s/ sound. ACONTECER → aconteça, aconteçam."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "aconteçam",
+                    "Example Sentence": "Espero que não aconteçam mais erros.",
+                    "English Translation": "I hope no more mistakes happen.",
+                    "Type": "Exception",
+                    "Notes": "Exception: c→ç before a in Subjunctive to preserve the /s/ sound. ACONTECER → aconteça, aconteçam."
+                }
+            ]
         }
     },
-    "totalVerbs": 56
+    "totalVerbs": 59
 }

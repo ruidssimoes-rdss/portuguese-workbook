@@ -2,6 +2,17 @@
   "entries": [
     {
       "date": "2026-02-09",
+      "version": "0.7.0",
+      "title": "More verbs, shopping vocab, prepositions grammar",
+      "changes": [
+        "Added 3 new verbs: ENTRAR, MUDAR, ACONTECER (59 total)",
+        "Expanded Shopping & Money to ~40 words",
+        "Improved prepositions grammar with A vs PARA, POR vs PARA, and contractions",
+        "Total: 59 verbs, ~552 words, 13 categories"
+      ]
+    },
+    {
+      "date": "2026-02-09",
       "version": "0.6.0",
       "title": "What's New page, changelog, more verbs, greetings vocab",
       "changes": [
