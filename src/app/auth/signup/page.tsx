@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { GoogleSignInButton } from "@/components/google-sign-in-button";
 
 const inputClass =
   "w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#5B4FA0] focus:border-[#5B4FA0] outline-none transition-colors";
@@ -89,6 +90,14 @@ export default function SignUpPage() {
               {error}
             </div>
           )}
+
+          <GoogleSignInButton />
+
+          <div className="flex items-center gap-4 my-6">
+            <div className="flex-1 border-t border-gray-200" />
+            <span className="text-sm text-gray-400">ou</span>
+            <div className="flex-1 border-t border-gray-200" />
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

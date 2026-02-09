@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { GoogleSignInButton } from "@/components/google-sign-in-button";
 
 const inputClass =
   "w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#5B4FA0] focus:border-[#5B4FA0] outline-none transition-colors";
@@ -73,6 +74,14 @@ function LoginForm() {
             </div>
           )}
 
+          <GoogleSignInButton />
+
+          <div className="flex items-center gap-4 my-6">
+            <div className="flex-1 border-t border-gray-200" />
+            <span className="text-sm text-gray-400">ou</span>
+            <div className="flex-1 border-t border-gray-200" />
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="login-email" className={labelClass}>
@@ -138,15 +147,6 @@ function LoginForm() {
             <Link href="/auth/signup" className="font-medium text-[#5B4FA0] hover:underline">
               Criar conta
             </Link>
-          </p>
-
-          <div className="mt-6 flex items-center gap-3">
-            <div className="flex-1 h-px bg-gray-200" />
-            <span className="text-[13px] text-gray-400">ou</span>
-            <div className="flex-1 h-px bg-gray-200" />
-          </div>
-          <p className="mt-4 text-center text-[13px] text-gray-400">
-            (Google e outros métodos em breve)
           </p>
         </div>
       </div>
