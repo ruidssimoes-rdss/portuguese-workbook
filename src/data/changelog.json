@@ -2,6 +2,17 @@
   "entries": [
     {
       "date": "2026-02-09",
+      "version": "1.1.0",
+      "title": "Final content session: more verbs, health vocab, -AR grammar polish",
+      "changes": [
+        "Added 3 new verbs: VIAJAR, PREFERIR, DEVER (71 total)",
+        "Expanded Health & Body with medical vocabulary (receita, urgências, penso, dor de garganta, dor de costas)",
+        "Improved present-tense-ar grammar with spelling change rules and progressive form",
+        "Content milestone: 71 verbs (2,130 conjugations), ~605 words, 13 categories, 10 grammar topics polished"
+      ]
+    },
+    {
+      "date": "2026-02-09",
       "version": "1.0.0",
       "title": "More verbs, time vocab, demonstratives grammar",
       "changes": [

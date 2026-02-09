@@ -67,7 +67,10 @@
         "ENVIAR",
         "RECEBER",
         "PARECER",
-        "PEDIR"
+        "PEDIR",
+        "VIAJAR",
+        "PREFERIR",
+        "DEVER"
     ],
     "verbs": {
         "SER": {
@@ -22695,7 +22698,1033 @@
                     "Notes": "Irregular stem: peç- (with cedilla). Stem change from ped- to peç-. PEDIR = to ask for; PERGUNTAR = to ask a question."
                 }
             ]
+        },
+        "VIAJAR": {
+            "meta": {
+                "emoji": "✈️",
+                "english": "to travel",
+                "group": "Regular -AR",
+                "priority": "Useful",
+                "difficulty": "Beginner",
+                "cefr": "A1"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajo",
+                    "Example Sentence": "Viajo muito por trabalho.",
+                    "English Translation": "I travel a lot for work.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajas",
+                    "Example Sentence": "Viajas sozinho?",
+                    "English Translation": "Do you travel alone?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viaja",
+                    "Example Sentence": "Ela viaja para Paris amanhã.",
+                    "English Translation": "She's travelling to Paris tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajamos",
+                    "Example Sentence": "Viajamos sempre nas férias de verão.",
+                    "English Translation": "We always travel in the summer holidays.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajam",
+                    "Example Sentence": "Viajam de comboio.",
+                    "English Translation": "They travel by train.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajei",
+                    "Example Sentence": "Viajei para o Japão no ano passado.",
+                    "English Translation": "I travelled to Japan last year.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajaste",
+                    "Example Sentence": "Viajaste de avião?",
+                    "English Translation": "Did you travel by plane?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajou",
+                    "Example Sentence": "Viajou por toda a Europa.",
+                    "English Translation": "He travelled all over Europe.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajamos",
+                    "Example Sentence": "Viajamos de carro até ao Algarve.",
+                    "English Translation": "We drove to the Algarve.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajaram",
+                    "Example Sentence": "Viajaram juntos.",
+                    "English Translation": "They travelled together.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajava",
+                    "Example Sentence": "Viajava muito quando era jovem.",
+                    "English Translation": "I used to travel a lot when I was young.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajavas",
+                    "Example Sentence": "Viajavas com a família?",
+                    "English Translation": "Did you used to travel with your family?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajava",
+                    "Example Sentence": "Viajava sempre de primeira classe.",
+                    "English Translation": "He always used to travel first class.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajávamos",
+                    "Example Sentence": "Viajávamos para o campo nos fins de semana.",
+                    "English Translation": "We used to travel to the countryside on weekends.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajavam",
+                    "Example Sentence": "Viajavam todos os verões.",
+                    "English Translation": "They used to travel every summer.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajarei",
+                    "Example Sentence": "Viajarei para os Açores.",
+                    "English Translation": "I will travel to the Azores.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajarás",
+                    "Example Sentence": "Viajarás comigo?",
+                    "English Translation": "Will you travel with me?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajará",
+                    "Example Sentence": "Viajará na próxima semana.",
+                    "English Translation": "He will travel next week.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajaremos",
+                    "Example Sentence": "Viajaremos de barco.",
+                    "English Translation": "We will travel by boat.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajarão",
+                    "Example Sentence": "Viajarão para a Madeira.",
+                    "English Translation": "They will travel to Madeira.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajaria",
+                    "Example Sentence": "Viajaria mais se tivesse dinheiro.",
+                    "English Translation": "I would travel more if I had money.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajarias",
+                    "Example Sentence": "Viajarias para onde?",
+                    "English Translation": "Where would you travel to?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajaria",
+                    "Example Sentence": "Viajaria pelo mundo inteiro.",
+                    "English Translation": "He would travel the whole world.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajaríamos",
+                    "Example Sentence": "Viajaríamos de comboio.",
+                    "English Translation": "We would travel by train.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajariam",
+                    "Example Sentence": "Viajariam se pudessem.",
+                    "English Translation": "They would travel if they could.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viaje",
+                    "Example Sentence": "Espero que viaje em segurança.",
+                    "English Translation": "I hope I travel safely.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajes",
+                    "Example Sentence": "Quero que viajes comigo.",
+                    "English Translation": "I want you to travel with me.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viaje",
+                    "Example Sentence": "Talvez ela viaje no verão.",
+                    "English Translation": "Maybe she'll travel in summer.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajemos",
+                    "Example Sentence": "Esperamos que viajemos juntos.",
+                    "English Translation": "We hope we travel together.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A1",
+                    "Conjugation": "viajem",
+                    "Example Sentence": "Quero que viajem de avião.",
+                    "English Translation": "I want them to travel by plane.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
+        },
+        "PREFERIR": {
+            "meta": {
+                "emoji": "👍",
+                "english": "to prefer",
+                "group": "Irregular -IR",
+                "priority": "Useful",
+                "difficulty": "Intermediate",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "prefiro",
+                    "Example Sentence": "Prefiro chá a café.",
+                    "English Translation": "I prefer tea to coffee.",
+                    "Type": "Exception",
+                    "Notes": "Stem change: e→i in 1st person (prefiro, not *prefero)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferes",
+                    "Example Sentence": "Preferes ir ao cinema ou ao teatro?",
+                    "English Translation": "Do you prefer going to the cinema or the theatre?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Present. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "prefere",
+                    "Example Sentence": "Ela prefere ficar em casa.",
+                    "English Translation": "She prefers to stay at home.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Present. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferimos",
+                    "Example Sentence": "Preferimos viajar de comboio.",
+                    "English Translation": "We prefer to travel by train.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Present. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferem",
+                    "Example Sentence": "Preferem comida caseira.",
+                    "English Translation": "They prefer homemade food.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Present. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferi",
+                    "Example Sentence": "Preferi ficar calado.",
+                    "English Translation": "I preferred to stay quiet.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferiste",
+                    "Example Sentence": "Preferiste o azul?",
+                    "English Translation": "Did you prefer the blue one?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferiu",
+                    "Example Sentence": "Preferiu não comentar.",
+                    "English Translation": "He preferred not to comment.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferimos",
+                    "Example Sentence": "Preferimos ir a pé.",
+                    "English Translation": "We preferred to walk.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferiram",
+                    "Example Sentence": "Preferiram esperar.",
+                    "English Translation": "They preferred to wait.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Preterite. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferia",
+                    "Example Sentence": "Preferia chocolate quando era miúdo.",
+                    "English Translation": "I used to prefer chocolate when I was a kid.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferias",
+                    "Example Sentence": "Preferias o campo ou a praia?",
+                    "English Translation": "Did you used to prefer the countryside or the beach?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferia",
+                    "Example Sentence": "Preferia trabalhar sozinho.",
+                    "English Translation": "He used to prefer to work alone.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferíamos",
+                    "Example Sentence": "Preferíamos jantar cedo.",
+                    "English Translation": "We used to prefer eating dinner early.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferiam",
+                    "Example Sentence": "Preferiam o verão.",
+                    "English Translation": "They used to prefer summer.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Imperfect. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferirei",
+                    "Example Sentence": "Preferirei esperar pela tua resposta.",
+                    "English Translation": "I will prefer to wait for your answer.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferirás",
+                    "Example Sentence": "Preferirás mudar de ideias.",
+                    "English Translation": "You will prefer to change your mind.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferirá",
+                    "Example Sentence": "Preferirá a opção mais barata.",
+                    "English Translation": "He will prefer the cheaper option.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferiremos",
+                    "Example Sentence": "Preferiremos ir no sábado.",
+                    "English Translation": "We will prefer to go on Saturday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferirão",
+                    "Example Sentence": "Preferirão ficar.",
+                    "English Translation": "They will prefer to stay.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Future. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferiria",
+                    "Example Sentence": "Preferiria não ir.",
+                    "English Translation": "I would prefer not to go.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferirias",
+                    "Example Sentence": "Preferirias outra cor?",
+                    "English Translation": "Would you prefer another colour?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferiria",
+                    "Example Sentence": "Preferiria algo mais simples.",
+                    "English Translation": "He would prefer something simpler.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "preferiríamos",
+                    "Example Sentence": "Preferiríamos adiar.",
+                    "English Translation": "We would prefer to postpone.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "prefeririam",
+                    "Example Sentence": "Prefeririam o hotel.",
+                    "English Translation": "They would prefer the hotel.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -IR Conditional. PREFERIR = to prefer (noun or infinitive)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "prefira",
+                    "Example Sentence": "Embora prefira ficar, vou sair.",
+                    "English Translation": "Although I prefer to stay, I'll go out.",
+                    "Type": "Exception",
+                    "Notes": "Stem change: e→i throughout (prefira, prefiras, etc.)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "prefiras",
+                    "Example Sentence": "O que quer que prefiras, está bem.",
+                    "English Translation": "Whatever you prefer, that's fine.",
+                    "Type": "Exception",
+                    "Notes": "Stem change: e→i throughout (prefira, prefiras, etc.)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "prefira",
+                    "Example Sentence": "Caso ela prefira outro dia...",
+                    "English Translation": "In case she prefers another day...",
+                    "Type": "Exception",
+                    "Notes": "Stem change: e→i throughout (prefira, prefiras, etc.)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "prefiramos",
+                    "Example Sentence": "Mesmo que prefiramos outra opção...",
+                    "English Translation": "Even if we prefer another option...",
+                    "Type": "Exception",
+                    "Notes": "Stem change: e→i throughout (prefira, prefiras, etc.)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "prefiram",
+                    "Example Sentence": "Espero que prefiram a nossa proposta.",
+                    "English Translation": "I hope they prefer our proposal.",
+                    "Type": "Exception",
+                    "Notes": "Stem change: e→i throughout (prefira, prefiras, etc.)."
+                }
+            ]
+        },
+        "DEVER": {
+            "meta": {
+                "emoji": "📌",
+                "english": "to must / to owe / should",
+                "group": "Regular -ER",
+                "priority": "Essential",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devo",
+                    "Example Sentence": "Devo ir ao médico.",
+                    "English Translation": "I should go to the doctor.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deves",
+                    "Example Sentence": "Deves ter mais cuidado.",
+                    "English Translation": "You should be more careful.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deve",
+                    "Example Sentence": "Deve estar a chover lá fora.",
+                    "English Translation": "It must be raining outside.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devemos",
+                    "Example Sentence": "Devemos chegar a tempo.",
+                    "English Translation": "We should arrive on time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devem",
+                    "Example Sentence": "Devem estar a dormir.",
+                    "English Translation": "They must be sleeping.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devi",
+                    "Example Sentence": "Devi ter sido eu.",
+                    "English Translation": "It must have been me.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deveste",
+                    "Example Sentence": "Deveste ficar preocupado.",
+                    "English Translation": "You must have been worried.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deveu",
+                    "Example Sentence": "Deveu-me vinte euros.",
+                    "English Translation": "He owed me twenty euros.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devemos",
+                    "Example Sentence": "Devemos ter errado o caminho.",
+                    "English Translation": "We must have taken the wrong way.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deveram",
+                    "Example Sentence": "Deveram muito dinheiro ao banco.",
+                    "English Translation": "They owed a lot of money to the bank.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Preterite. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devia",
+                    "Example Sentence": "Devia ter estudado mais.",
+                    "English Translation": "I should have studied more.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. DEVIA + infinitive = 'should have' (past advice/regret). Very common in EP: Devias ter vindo. (You should have come.)"
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devias",
+                    "Example Sentence": "Devias ter vindo.",
+                    "English Translation": "You should have come.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. DEVIA + infinitive = 'should have' (past advice/regret). Very common in EP: Devias ter vindo. (You should have come.)"
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devia",
+                    "Example Sentence": "Devia ser meia-noite quando chegámos.",
+                    "English Translation": "It must have been midnight when we arrived.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. DEVIA + infinitive = 'should have' (past advice/regret). Very common in EP: Devias ter vindo. (You should have come.)"
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devíamos",
+                    "Example Sentence": "Devíamos ter pedido ajuda.",
+                    "English Translation": "We should have asked for help.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. DEVIA + infinitive = 'should have' (past advice/regret). Very common in EP: Devias ter vindo. (You should have come.)"
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deviam",
+                    "Example Sentence": "Deviam ter avisado.",
+                    "English Translation": "They should have warned us.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Imperfect. DEVIA + infinitive = 'should have' (past advice/regret). Very common in EP: Devias ter vindo. (You should have come.)"
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deverei",
+                    "Example Sentence": "Deverei entregar o relatório amanhã.",
+                    "English Translation": "I will have to hand in the report tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deverás",
+                    "Example Sentence": "Deverás pagar antes do prazo.",
+                    "English Translation": "You will have to pay before the deadline.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deverá",
+                    "Example Sentence": "Deverá comparecer em tribunal.",
+                    "English Translation": "He will have to appear in court.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deveremos",
+                    "Example Sentence": "Deveremos decidir em breve.",
+                    "English Translation": "We will have to decide soon.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deverão",
+                    "Example Sentence": "Deverão apresentar os documentos.",
+                    "English Translation": "They will have to present the documents.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Future. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deveria",
+                    "Example Sentence": "Deveria ligar à minha mãe.",
+                    "English Translation": "I should call my mother.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. DEVERIA + infinitive = 'should' (polite advice). Deverias ir ao médico. (You should go to the doctor.)"
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deverias",
+                    "Example Sentence": "Deverias ir ao médico.",
+                    "English Translation": "You should go to the doctor.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. DEVERIA + infinitive = 'should' (polite advice). Deverias ir ao médico. (You should go to the doctor.)"
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deveria",
+                    "Example Sentence": "Deveria pedir desculpa.",
+                    "English Translation": "He should apologise.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. DEVERIA + infinitive = 'should' (polite advice). Deverias ir ao médico. (You should go to the doctor.)"
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deveríamos",
+                    "Example Sentence": "Deveríamos poupar mais.",
+                    "English Translation": "We should save more.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. DEVERIA + infinitive = 'should' (polite advice). Deverias ir ao médico. (You should go to the doctor.)"
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deveriam",
+                    "Example Sentence": "Deveriam ter mais cuidado.",
+                    "English Translation": "They should be more careful.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Conditional. DEVERIA + infinitive = 'should' (polite advice). Deverias ir ao médico. (You should go to the doctor.)"
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deva",
+                    "Example Sentence": "Caso deva pagar, avisa-me.",
+                    "English Translation": "If I have to pay, let me know.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devas",
+                    "Example Sentence": "Mesmo que devas partir, despede-te.",
+                    "English Translation": "Even if you must leave, say goodbye.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "deva",
+                    "Example Sentence": "Talvez deva esperar.",
+                    "English Translation": "Maybe he should wait.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devamos",
+                    "Example Sentence": "Caso devamos cancelar...",
+                    "English Translation": "In case we have to cancel...",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "devam",
+                    "Example Sentence": "Espero que devam pouco.",
+                    "English Translation": "I hope they owe little.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -ER Present Subjunctive. DEVER as modal: must/should (obligation/probability). DEVER as verb: to owe."
+                }
+            ]
         }
     },
-    "totalVerbs": 68
+    "totalVerbs": 71
 }

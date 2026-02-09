@@ -3572,6 +3572,46 @@
           "gender": null,
           "example": "Espero que melhores em breve.",
           "exampleTranslation": "I hope you get better soon."
+        },
+        {
+          "portuguese": "receita",
+          "english": "prescription / recipe",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O médico passou-me uma receita.",
+          "exampleTranslation": "The doctor gave me a prescription."
+        },
+        {
+          "portuguese": "urgências",
+          "english": "A&E / emergency room",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Fui às urgências ontem à noite.",
+          "exampleTranslation": "I went to A&E last night."
+        },
+        {
+          "portuguese": "penso",
+          "english": "bandage / plaster",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Preciso de um penso rápido.",
+          "exampleTranslation": "I need a plaster."
+        },
+        {
+          "portuguese": "dor de garganta",
+          "english": "sore throat",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho dor de garganta.",
+          "exampleTranslation": "I have a sore throat."
+        },
+        {
+          "portuguese": "dor de costas",
+          "english": "backache",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho muitas dores de costas.",
+          "exampleTranslation": "I have a lot of backache."
         }
       ]
     },
