@@ -145,8 +145,8 @@
         "label": "Food and drink essentials",
         "description": "Knows basic food and drink vocabulary: água, café, pão, carne, fruta. Can order at a restaurant.",
         "requiredCategories": ["everyday-basics", "food-drink"],
-        "requiredSubcategories": ["drinks", "food", "meals"],
-        "targetWordCount": 70,
+        "requiredSubcategories": ["drinks", "food", "meals", "weather", "days"],
+        "targetWordCount": 75,
         "targetAccuracy": 75
       },
       "A1.5": {
@@ -154,7 +154,7 @@
         "description": "Knows all A1 vocabulary across basics and food/drink. Can handle basic daily situations.",
         "requiredCategories": ["everyday-basics", "food-drink"],
         "requiredSubcategories": "all_A1",
-        "targetWordCount": 90,
+        "targetWordCount": 120,
         "targetAccuracy": 80
       },
   
@@ -177,25 +177,25 @@
       "A2.3": {
         "label": "Home and family",
         "description": "Knows rooms (cozinha, sala, quarto), furniture, and family members (mãe, pai, irmão).",
-        "requiredCategories": ["home-family"],
-        "requiredSubcategories": ["home", "rooms", "furniture", "family"],
-        "targetWordCount": 160,
+        "requiredCategories": ["home-family", "work-education", "health-body"],
+        "requiredSubcategories": ["home", "rooms", "furniture", "family", "kitchen", "bathroom", "bedroom", "living-room", "professions", "education", "body", "health"],
+        "targetWordCount": 200,
         "targetAccuracy": 75
       },
       "A2.4": {
         "label": "Daily routines and household",
         "description": "Knows routine verbs (acordar, trabalhar, dormir) and household items (televisão, telemóvel, frigorífico).",
-        "requiredCategories": ["home-family"],
-        "requiredSubcategories": ["routine", "items", "family"],
-        "targetWordCount": 190,
+        "requiredCategories": ["home-family", "work-education", "health-body"],
+        "requiredSubcategories": ["routine", "items", "family", "workplace"],
+        "targetWordCount": 250,
         "targetAccuracy": 75
       },
       "A2.5": {
         "label": "All A2 vocabulary complete",
-        "description": "Knows all A1+A2 vocabulary across all four categories. Solid foundation for daily life.",
+        "description": "Knows all A1+A2 vocabulary across all six categories. Solid foundation for daily life.",
         "requiredCategories": "all",
         "requiredSubcategories": "all_A1_A2",
-        "targetWordCount": 210,
+        "targetWordCount": 300,
         "targetAccuracy": 80
       },
   
@@ -228,15 +228,15 @@
         "description": "Knows all available vocabulary across all categories and CEFR levels.",
         "requiredCategories": "all",
         "requiredSubcategories": "all",
-        "targetWordCount": 238,
+        "targetWordCount": 383,
         "targetAccuracy": 75
       },
       "B1.5": {
         "label": "Vocabulary mastery",
-        "description": "High accuracy on all 238 words. Can use words in context with correct gender and natural phrasing.",
+        "description": "High accuracy on all vocabulary. Can use words in context with correct gender and natural phrasing.",
         "requiredCategories": "all",
         "requiredSubcategories": "all",
-        "targetWordCount": 238,
+        "targetWordCount": 383,
         "targetAccuracy": 90
       }
     },
