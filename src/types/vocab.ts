@@ -5,14 +5,12 @@ export interface VocabWord {
   gender: "m" | "f" | null;
   example: string;
   exampleTranslation: string;
-  subcategory: string;
 }
 
 export interface VocabCategory {
   id: string;
   title: string;
   description: string;
-  emoji: string;
   words: VocabWord[];
 }
 

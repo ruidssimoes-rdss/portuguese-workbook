@@ -120,49 +120,43 @@
       "A1.1": {
         "label": "First words",
         "description": "Knows basic greetings: olá, bom dia, boa tarde, boa noite, adeus, obrigado, por favor, sim, não.",
-        "requiredCategories": ["everyday-basics"],
-        "requiredSubcategories": ["greetings"],
+        "requiredCategories": ["greetings-expressions"],
         "targetWordCount": 10,
         "targetAccuracy": 70
       },
       "A1.2": {
         "label": "Numbers and colours",
         "description": "Knows numbers 1-20, basic colours, and time words like hoje, amanhã, ontem.",
-        "requiredCategories": ["everyday-basics"],
-        "requiredSubcategories": ["greetings", "numbers", "colours"],
+        "requiredCategories": ["greetings-expressions", "numbers-time", "colours-weather"],
         "targetWordCount": 25,
         "targetAccuracy": 70
       },
       "A1.3": {
         "label": "Time and basic expressions",
         "description": "Knows time-related vocabulary (hora, manhã, semana, mês) and daily expressions.",
-        "requiredCategories": ["everyday-basics"],
-        "requiredSubcategories": ["greetings", "numbers", "colours", "time", "expressions"],
+        "requiredCategories": ["greetings-expressions", "numbers-time", "colours-weather"],
         "targetWordCount": 45,
         "targetAccuracy": 75
       },
       "A1.4": {
         "label": "Food and drink essentials",
         "description": "Knows basic food and drink vocabulary: água, café, pão, carne, fruta. Can order at a restaurant.",
-        "requiredCategories": ["everyday-basics", "food-drink"],
-        "requiredSubcategories": ["drinks", "food", "meals", "weather", "days"],
+        "requiredCategories": ["numbers-time", "colours-weather", "food-drink"],
         "targetWordCount": 75,
         "targetAccuracy": 75
       },
       "A1.5": {
         "label": "Everyday A1 vocabulary complete",
         "description": "Knows all A1 vocabulary across basics and food/drink. Can handle basic daily situations.",
-        "requiredCategories": ["everyday-basics", "food-drink"],
-        "requiredSubcategories": "all_A1",
+        "requiredCategories": ["greetings-expressions", "numbers-time", "colours-weather", "food-drink"],
         "targetWordCount": 120,
         "targetAccuracy": 80
       },
-  
+
       "A2.1": {
         "label": "Getting around",
         "description": "Knows basic travel words: aeroporto, comboio, autocarro, bilhete. Can ask for directions.",
-        "requiredCategories": ["everyday-basics", "food-drink", "travel-directions"],
-        "requiredSubcategories": ["transport", "directions"],
+        "requiredCategories": ["greetings-expressions", "numbers-time", "colours-weather", "food-drink", "travel-directions"],
         "targetWordCount": 110,
         "targetAccuracy": 70
       },
@@ -170,40 +164,35 @@
         "label": "Places and accommodation",
         "description": "Knows places (praia, museu, farmácia, banco) and hotel vocabulary (quarto, reserva, chave).",
         "requiredCategories": ["travel-directions"],
-        "requiredSubcategories": ["transport", "directions", "accommodation", "places"],
         "targetWordCount": 130,
         "targetAccuracy": 70
       },
       "A2.3": {
         "label": "Home and family",
         "description": "Knows rooms (cozinha, sala, quarto), furniture, and family members (mãe, pai, irmão).",
-        "requiredCategories": ["home-family", "work-education", "health-body"],
-        "requiredSubcategories": ["home", "rooms", "furniture", "family", "kitchen", "bathroom", "bedroom", "living-room", "professions", "education", "body", "health"],
+        "requiredCategories": ["home-rooms", "family-daily-routine", "work-education", "health-body"],
         "targetWordCount": 200,
         "targetAccuracy": 75
       },
       "A2.4": {
         "label": "Daily routines and household",
         "description": "Knows routine verbs (acordar, trabalhar, dormir) and household items (televisão, telemóvel, frigorífico).",
-        "requiredCategories": ["home-family", "work-education", "health-body"],
-        "requiredSubcategories": ["routine", "items", "family", "workplace"],
+        "requiredCategories": ["home-rooms", "family-daily-routine", "work-education", "health-body"],
         "targetWordCount": 250,
         "targetAccuracy": 75
       },
       "A2.5": {
         "label": "All A2 vocabulary complete",
-        "description": "Knows all A1+A2 vocabulary across all six categories. Solid foundation for daily life.",
+        "description": "Knows all A1+A2 vocabulary across all twelve categories. Solid foundation for daily life.",
         "requiredCategories": "all",
-        "requiredSubcategories": "all_A1_A2",
         "targetWordCount": 300,
         "targetAccuracy": 80
       },
-  
+
       "B1.1": {
         "label": "Dining and cooking vocabulary",
         "description": "Knows restaurant vocabulary (ementa, conta, guardanapo), cooking terms (cozinhar, ferver, assar), and flavour descriptions (picante, salgado, doce).",
         "requiredCategories": ["food-drink"],
-        "requiredSubcategories": ["dining", "cooking"],
         "targetWordCount": 220,
         "targetAccuracy": 70
       },
@@ -211,15 +200,13 @@
         "label": "Travel and cultural vocabulary",
         "description": "Knows travel concepts (saudade, estrangeiro, alfândega, embaixada) and cultural terms (imperial, petisco).",
         "requiredCategories": ["travel-directions"],
-        "requiredSubcategories": ["travel", "help"],
         "targetWordCount": 230,
         "targetAccuracy": 70
       },
       "B1.3": {
         "label": "Advanced home and expressions",
-        "description": "Knows B1 household vocabulary (aspirador, sótão, cave, renda) and informal expressions (fixe, pois, pronto).",
-        "requiredCategories": ["home-family", "everyday-basics"],
-        "requiredSubcategories": "all_B1",
+        "description": "Knows B1 household vocabulary (aspirador, sótão, cave, renda) and informal expressions (fixe, pois, pronto). Shopping, nature, and emotions.",
+        "requiredCategories": ["home-rooms", "family-daily-routine", "greetings-expressions", "numbers-time", "colours-weather", "shopping-money", "nature-animals", "emotions-personality"],
         "targetWordCount": 235,
         "targetAccuracy": 75
       },
@@ -227,16 +214,14 @@
         "label": "Full vocabulary range",
         "description": "Knows all available vocabulary across all categories and CEFR levels.",
         "requiredCategories": "all",
-        "requiredSubcategories": "all",
-        "targetWordCount": 383,
+        "targetWordCount": 458,
         "targetAccuracy": 75
       },
       "B1.5": {
         "label": "Vocabulary mastery",
         "description": "High accuracy on all vocabulary. Can use words in context with correct gender and natural phrasing.",
         "requiredCategories": "all",
-        "requiredSubcategories": "all",
-        "targetWordCount": 383,
+        "targetWordCount": 458,
         "targetAccuracy": 90
       }
     },

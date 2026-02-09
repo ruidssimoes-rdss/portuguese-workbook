@@ -116,8 +116,8 @@ export default function Home() {
                     <Badge variant={cefrVariant[wordOfDay.word.cefr] || "gray"}>
                       {wordOfDay.word.cefr}
                     </Badge>
-                    <Badge variant="gray" className="capitalize">
-                      {wordOfDay.word.subcategory}
+                    <Badge variant="gray">
+                      {wordOfDay.categoryTitle}
                     </Badge>
                   </div>
                 </>

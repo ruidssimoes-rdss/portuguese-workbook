@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
@@ -10,10 +10,6 @@ import type { VocabData } from "@/types/vocab";
 
 const data = vocabData as unknown as VocabData;
 
-function stripEmoji(s: string): string {
-  return s.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, "").replace(/\s+/g, " ").trim();
-}
-
 export default function VocabCategoryPage() {
   const params = useParams();
   const slug = params.category as string;
@@ -21,7 +17,6 @@ export default function VocabCategoryPage() {
 
   const [search, setSearch] = useState("");
   const [cefrFilter, setCefrFilter] = useState("All");
-  const [subFilter, setSubFilter] = useState("All");
 
   if (!category) {
     return (
@@ -37,15 +32,9 @@ export default function VocabCategoryPage() {
     );
   }
 
-  const subcategories = useMemo(() => {
-    const subs = new Set(category.words.map((w) => w.subcategory));
-    return ["All", ...Array.from(subs).sort()];
-  }, [category]);
-
   const q = search.toLowerCase();
   const filtered = category.words.filter((w) => {
     if (cefrFilter !== "All" && w.cefr !== cefrFilter) return false;
-    if (subFilter !== "All" && w.subcategory !== subFilter) return false;
     if (
       q &&
       !w.portuguese.toLowerCase().includes(q) &&
@@ -65,11 +54,11 @@ export default function VocabCategoryPage() {
             href="/vocabulary"
             className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
           >
-            ← {stripEmoji(category.title)}
+            ← {category.title}
           </Link>
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <h1 className="text-[22px] font-bold tracking-tight">
-              {stripEmoji(category.title)}
+              {category.title}
             </h1>
             <input
             type="text"
@@ -96,22 +85,6 @@ export default function VocabCategoryPage() {
                 }`}
               >
                 {l}
-              </button>
-            ))}
-          </div>
-          <div className="w-px h-5 bg-border shrink-0" />
-          <div className="flex gap-1.5 flex-wrap">
-            {subcategories.map((s) => (
-              <button
-                key={s}
-                onClick={() => setSubFilter(s)}
-                className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-all whitespace-nowrap capitalize ${
-                  subFilter === s
-                    ? "bg-text text-white border-text"
-                    : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-[#ccc]"
-                }`}
-              >
-                {s}
               </button>
             ))}
           </div>
@@ -150,9 +123,6 @@ export default function VocabCategoryPage() {
                 )}
                 <div className="flex gap-1.5 flex-wrap mt-2">
                   <Badge variant={cefrVariant[w.cefr] || "gray"}>{w.cefr}</Badge>
-                  <Badge variant="gray" className="capitalize">
-                    {w.subcategory}
-                  </Badge>
                 </div>
               </div>
             ))
@@ -171,7 +141,6 @@ export default function VocabCategoryPage() {
                   "Example",
                   "Translation",
                   "CEFR",
-                  "Topic",
                 ].map((h) => (
                   <th
                     key={h}
@@ -209,15 +178,12 @@ export default function VocabCategoryPage() {
                       {w.cefr}
                     </Badge>
                   </td>
-                  <td className="px-3.5 py-2.5 border-b border-border-l text-text-3 text-[12px] capitalize whitespace-nowrap">
-                    {w.subcategory}
-                  </td>
                 </tr>
               ))}
               {filtered.length === 0 && (
                 <tr>
                   <td
-                    colSpan={7}
+                    colSpan={6}
                     className="text-center py-12 text-text-3 text-[14px]"
                   >
                     No words match your filter.

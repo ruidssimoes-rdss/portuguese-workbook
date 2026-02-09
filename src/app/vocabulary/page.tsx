@@ -8,9 +8,12 @@ import Link from "next/link";
 
 const data = vocabData as unknown as VocabData;
 
-function stripEmoji(s: string): string {
-  return s.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, "").replace(/\s+/g, " ").trim();
-}
+const CARD_TINTS = [
+  "bg-indigo-50 border-indigo-100",
+  "bg-purple-50 border-purple-100",
+  "bg-violet-50 border-violet-100",
+  "bg-slate-50 border-slate-200",
+] as const;
 
 export default function VocabularyPage() {
   const totalWords = data.categories.reduce((s, c) => s + c.words.length, 0);
@@ -28,24 +31,25 @@ export default function VocabularyPage() {
           </p>
         </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pb-16">
-          {data.categories.map((cat) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pb-16">
+          {data.categories.map((cat, i) => {
             const levels: Record<string, number> = {};
             cat.words.forEach((w) => {
               levels[w.cefr] = (levels[w.cefr] || 0) + 1;
             });
+            const tint = CARD_TINTS[i % CARD_TINTS.length];
 
             return (
               <Link
                 key={cat.id}
                 href={`/vocabulary/${cat.id}`}
-                className="group border border-border rounded-xl p-6 transition-all duration-200 hover:border-[#ccc] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
+                className={`group border rounded-xl p-6 transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px ${tint} hover:border-indigo-200`}
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2">
-                      <h2 className="text-lg font-bold tracking-tight">
-                        {stripEmoji(cat.title)}
+                      <h2 className="text-lg font-bold tracking-tight text-text">
+                        {cat.title}
                       </h2>
                       <span className="text-[12px] text-text-3 font-medium whitespace-nowrap">
                         {cat.words.length} words

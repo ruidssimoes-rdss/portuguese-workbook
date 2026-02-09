@@ -44,13 +44,9 @@ function getWordsForLevel(levelData: VocabSubLevel, vocab: VocabData): { word: V
       : vocab.categories.filter((c) =>
           (levelData.requiredCategories as string[]).includes(c.id)
         );
-  const subcats = levelData.requiredSubcategories;
-  const filterBySubcat = Array.isArray(subcats) && subcats.length > 0;
   for (const cat of categories) {
     for (const word of cat.words) {
-      if (!filterBySubcat || subcats.includes(word.subcategory)) {
-        out.push({ word, categoryTitle: cat.title });
-      }
+      out.push({ word, categoryTitle: cat.title });
     }
   }
   return out;

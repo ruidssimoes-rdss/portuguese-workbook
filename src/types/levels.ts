@@ -69,7 +69,8 @@ export interface VocabSubLevel {
   label: string;
   description: string;
   requiredCategories: string[] | "all";
-  requiredSubcategories: string[] | "all_A1" | "all_A1_A2" | "all_B1" | "all";
+  /** @deprecated No longer used; vocabulary has no subcategories. */
+  requiredSubcategories?: string[] | "all_A1" | "all_A1_A2" | "all_B1" | "all";
   targetWordCount?: number;
   targetAccuracy: number;
 }

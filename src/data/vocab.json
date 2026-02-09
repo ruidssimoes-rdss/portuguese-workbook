@@ -1,434 +1,3751 @@
 {
   "categories": [
     {
-      "id": "everyday-basics",
-      "title": "Everyday Basics",
-      "description": "Greetings, numbers, colours, time, and essential daily expressions",
-      "emoji": "👋",
+      "id": "greetings-expressions",
+      "title": "Greetings & Expressions",
+      "description": "Essential greetings, polite phrases, and common everyday expressions",
       "words": [
-        {"portuguese": "olá", "english": "hello", "cefr": "A1", "gender": null, "example": "Olá, como estás?", "exampleTranslation": "Hello, how are you?", "subcategory": "greetings"},
-        {"portuguese": "bom dia", "english": "good morning", "cefr": "A1", "gender": null, "example": "Bom dia, senhora.", "exampleTranslation": "Good morning, madam.", "subcategory": "greetings"},
-        {"portuguese": "boa tarde", "english": "good afternoon", "cefr": "A1", "gender": null, "example": "Boa tarde a todos.", "exampleTranslation": "Good afternoon everyone.", "subcategory": "greetings"},
-        {"portuguese": "boa noite", "english": "good evening / good night", "cefr": "A1", "gender": null, "example": "Boa noite, dorme bem.", "exampleTranslation": "Good night, sleep well.", "subcategory": "greetings"},
-        {"portuguese": "adeus", "english": "goodbye", "cefr": "A1", "gender": null, "example": "Adeus, até amanhã!", "exampleTranslation": "Goodbye, see you tomorrow!", "subcategory": "greetings"},
-        {"portuguese": "obrigado / obrigada", "english": "thank you (m/f)", "cefr": "A1", "gender": null, "example": "Muito obrigado pela ajuda.", "exampleTranslation": "Thank you very much for the help.", "subcategory": "greetings"},
-        {"portuguese": "por favor", "english": "please", "cefr": "A1", "gender": null, "example": "Um café, por favor.", "exampleTranslation": "A coffee, please.", "subcategory": "greetings"},
-        {"portuguese": "desculpe", "english": "excuse me / sorry", "cefr": "A1", "gender": null, "example": "Desculpe, onde fica o metro?", "exampleTranslation": "Excuse me, where is the metro?", "subcategory": "greetings"},
-        {"portuguese": "sim", "english": "yes", "cefr": "A1", "gender": null, "example": "Sim, eu quero.", "exampleTranslation": "Yes, I want it.", "subcategory": "greetings"},
-        {"portuguese": "não", "english": "no", "cefr": "A1", "gender": null, "example": "Não, obrigado.", "exampleTranslation": "No, thank you.", "subcategory": "greetings"},
-        {"portuguese": "um / uma", "english": "one", "cefr": "A1", "gender": null, "example": "Quero um bilhete.", "exampleTranslation": "I want one ticket.", "subcategory": "numbers"},
-        {"portuguese": "dois / duas", "english": "two", "cefr": "A1", "gender": null, "example": "Dois cafés, por favor.", "exampleTranslation": "Two coffees, please.", "subcategory": "numbers"},
-        {"portuguese": "três", "english": "three", "cefr": "A1", "gender": null, "example": "Tenho três irmãos.", "exampleTranslation": "I have three siblings.", "subcategory": "numbers"},
-        {"portuguese": "quatro", "english": "four", "cefr": "A1", "gender": null, "example": "São quatro horas.", "exampleTranslation": "It's four o'clock.", "subcategory": "numbers"},
-        {"portuguese": "cinco", "english": "five", "cefr": "A1", "gender": null, "example": "Cinco minutos, por favor.", "exampleTranslation": "Five minutes, please.", "subcategory": "numbers"},
-        {"portuguese": "dez", "english": "ten", "cefr": "A1", "gender": null, "example": "Custa dez euros.", "exampleTranslation": "It costs ten euros.", "subcategory": "numbers"},
-        {"portuguese": "vinte", "english": "twenty", "cefr": "A1", "gender": null, "example": "Tenho vinte anos.", "exampleTranslation": "I am twenty years old.", "subcategory": "numbers"},
-        {"portuguese": "cem", "english": "one hundred", "cefr": "A2", "gender": null, "example": "Cem gramas de queijo.", "exampleTranslation": "One hundred grams of cheese.", "subcategory": "numbers"},
-        {"portuguese": "mil", "english": "one thousand", "cefr": "A2", "gender": null, "example": "A renda é mil euros.", "exampleTranslation": "The rent is one thousand euros.", "subcategory": "numbers"},
-        {"portuguese": "primeiro", "english": "first", "cefr": "A2", "gender": "m", "example": "É o primeiro dia.", "exampleTranslation": "It's the first day.", "subcategory": "numbers"},
-        {"portuguese": "vermelho", "english": "red", "cefr": "A1", "gender": "m", "example": "O carro vermelho é meu.", "exampleTranslation": "The red car is mine.", "subcategory": "colours"},
-        {"portuguese": "azul", "english": "blue", "cefr": "A1", "gender": null, "example": "O céu está azul.", "exampleTranslation": "The sky is blue.", "subcategory": "colours"},
-        {"portuguese": "verde", "english": "green", "cefr": "A1", "gender": null, "example": "Gosto de verde.", "exampleTranslation": "I like green.", "subcategory": "colours"},
-        {"portuguese": "amarelo", "english": "yellow", "cefr": "A1", "gender": "m", "example": "A banana é amarela.", "exampleTranslation": "The banana is yellow.", "subcategory": "colours"},
-        {"portuguese": "branco", "english": "white", "cefr": "A1", "gender": "m", "example": "Vinho branco, por favor.", "exampleTranslation": "White wine, please.", "subcategory": "colours"},
-        {"portuguese": "preto", "english": "black", "cefr": "A1", "gender": "m", "example": "Café preto, sem açúcar.", "exampleTranslation": "Black coffee, no sugar.", "subcategory": "colours"},
-        {"portuguese": "castanho", "english": "brown", "cefr": "A2", "gender": "m", "example": "Ela tem olhos castanhos.", "exampleTranslation": "She has brown eyes.", "subcategory": "colours"},
-        {"portuguese": "cor-de-rosa", "english": "pink", "cefr": "A2", "gender": null, "example": "A camisa é cor-de-rosa.", "exampleTranslation": "The shirt is pink.", "subcategory": "colours"},
-        {"portuguese": "roxo", "english": "purple", "cefr": "A2", "gender": "m", "example": "As flores são roxas.", "exampleTranslation": "The flowers are purple.", "subcategory": "colours"},
-        {"portuguese": "cinzento", "english": "grey", "cefr": "A2", "gender": "m", "example": "O dia está cinzento.", "exampleTranslation": "The day is grey.", "subcategory": "colours"},
-        {"portuguese": "hora", "english": "hour / time", "cefr": "A1", "gender": "f", "example": "Que horas são?", "exampleTranslation": "What time is it?", "subcategory": "time"},
-        {"portuguese": "minuto", "english": "minute", "cefr": "A1", "gender": "m", "example": "Espera um minuto.", "exampleTranslation": "Wait a minute.", "subcategory": "time"},
-        {"portuguese": "hoje", "english": "today", "cefr": "A1", "gender": null, "example": "Hoje é segunda-feira.", "exampleTranslation": "Today is Monday.", "subcategory": "time"},
-        {"portuguese": "amanhã", "english": "tomorrow", "cefr": "A1", "gender": null, "example": "Amanhã vou ao médico.", "exampleTranslation": "Tomorrow I'm going to the doctor.", "subcategory": "time"},
-        {"portuguese": "ontem", "english": "yesterday", "cefr": "A1", "gender": null, "example": "Ontem choveu muito.", "exampleTranslation": "Yesterday it rained a lot.", "subcategory": "time"},
-        {"portuguese": "semana", "english": "week", "cefr": "A1", "gender": "f", "example": "A próxima semana.", "exampleTranslation": "Next week.", "subcategory": "time"},
-        {"portuguese": "mês", "english": "month", "cefr": "A1", "gender": "m", "example": "Este mês é janeiro.", "exampleTranslation": "This month is January.", "subcategory": "time"},
-        {"portuguese": "ano", "english": "year", "cefr": "A1", "gender": "m", "example": "Feliz ano novo!", "exampleTranslation": "Happy new year!", "subcategory": "time"},
-        {"portuguese": "manhã", "english": "morning", "cefr": "A1", "gender": "f", "example": "De manhã tomo café.", "exampleTranslation": "In the morning I have coffee.", "subcategory": "time"},
-        {"portuguese": "tarde", "english": "afternoon", "cefr": "A1", "gender": "f", "example": "À tarde vou correr.", "exampleTranslation": "In the afternoon I go running.", "subcategory": "time"},
-        {"portuguese": "noite", "english": "night / evening", "cefr": "A1", "gender": "f", "example": "À noite vejo televisão.", "exampleTranslation": "In the evening I watch television.", "subcategory": "time"},
-        {"portuguese": "agora", "english": "now", "cefr": "A1", "gender": null, "example": "Vamos agora.", "exampleTranslation": "Let's go now.", "subcategory": "time"},
-        {"portuguese": "depois", "english": "after / later", "cefr": "A1", "gender": null, "example": "Falamos depois.", "exampleTranslation": "We'll talk later.", "subcategory": "time"},
-        {"portuguese": "antes", "english": "before", "cefr": "A2", "gender": null, "example": "Antes do jantar.", "exampleTranslation": "Before dinner.", "subcategory": "time"},
-        {"portuguese": "sempre", "english": "always", "cefr": "A2", "gender": null, "example": "Ela chega sempre a horas.", "exampleTranslation": "She always arrives on time.", "subcategory": "time"},
-        {"portuguese": "nunca", "english": "never", "cefr": "A2", "gender": null, "example": "Nunca fui ao Brasil.", "exampleTranslation": "I've never been to Brazil.", "subcategory": "time"},
-        {"portuguese": "às vezes", "english": "sometimes", "cefr": "A2", "gender": null, "example": "Às vezes como fora.", "exampleTranslation": "Sometimes I eat out.", "subcategory": "time"},
-        {"portuguese": "cedo", "english": "early", "cefr": "A2", "gender": null, "example": "Acordei cedo hoje.", "exampleTranslation": "I woke up early today.", "subcategory": "time"},
-        {"portuguese": "tarde", "english": "late", "cefr": "A2", "gender": null, "example": "Cheguei tarde ao trabalho.", "exampleTranslation": "I arrived late to work.", "subcategory": "time"},
-        {"portuguese": "entretanto", "english": "meanwhile", "cefr": "B1", "gender": null, "example": "Entretanto, podes preparar a mesa.", "exampleTranslation": "Meanwhile, you can set the table.", "subcategory": "time"},
-        {"portuguese": "antigamente", "english": "in the old days", "cefr": "B1", "gender": null, "example": "Antigamente não havia telemóveis.", "exampleTranslation": "In the old days there were no mobile phones.", "subcategory": "time"},
-        {"portuguese": "talvez", "english": "maybe / perhaps", "cefr": "A2", "gender": null, "example": "Talvez vá ao cinema.", "exampleTranslation": "Maybe I'll go to the cinema.", "subcategory": "expressions"},
-        {"portuguese": "claro", "english": "of course / clear", "cefr": "A2", "gender": null, "example": "Claro que sim!", "exampleTranslation": "Of course!", "subcategory": "expressions"},
-        {"portuguese": "com certeza", "english": "certainly / for sure", "cefr": "A2", "gender": null, "example": "Com certeza, eu ajudo.", "exampleTranslation": "For sure, I'll help.", "subcategory": "expressions"},
-        {"portuguese": "com licença", "english": "excuse me (permission)", "cefr": "A2", "gender": null, "example": "Com licença, posso passar?", "exampleTranslation": "Excuse me, may I pass?", "subcategory": "expressions"},
-        {"portuguese": "parabéns", "english": "congratulations", "cefr": "A2", "gender": null, "example": "Parabéns pelo aniversário!", "exampleTranslation": "Happy birthday!", "subcategory": "expressions"},
-        {"portuguese": "saúde", "english": "cheers / bless you", "cefr": "A2", "gender": "f", "example": "Saúde! — quando alguém espirra.", "exampleTranslation": "Bless you! — when someone sneezes.", "subcategory": "expressions"},
-        {"portuguese": "pois", "english": "indeed / right / well", "cefr": "B1", "gender": null, "example": "Pois, tens razão.", "exampleTranslation": "Indeed, you're right.", "subcategory": "expressions"},
-        {"portuguese": "fixe", "english": "cool / great (informal)", "cefr": "B1", "gender": null, "example": "Que fixe! Adorei.", "exampleTranslation": "How cool! I loved it.", "subcategory": "expressions"},
-        {"portuguese": "pronto", "english": "ready / done / okay", "cefr": "B1", "gender": null, "example": "Pronto, já está.", "exampleTranslation": "Done, it's ready.", "subcategory": "expressions"},
-        {"portuguese": "sol", "english": "sun", "cefr": "A1", "gender": "m", "example": "Hoje está sol.", "exampleTranslation": "It's sunny today.", "subcategory": "weather"},
-        {"portuguese": "chuva", "english": "rain", "cefr": "A1", "gender": "f", "example": "Está a chover.", "exampleTranslation": "It's raining.", "subcategory": "weather"},
-        {"portuguese": "vento", "english": "wind", "cefr": "A1", "gender": "m", "example": "Está muito vento.", "exampleTranslation": "It's very windy.", "subcategory": "weather"},
-        {"portuguese": "frio", "english": "cold", "cefr": "A1", "gender": null, "example": "Está frio hoje.", "exampleTranslation": "It's cold today.", "subcategory": "weather"},
-        {"portuguese": "quente", "english": "hot", "cefr": "A1", "gender": null, "example": "Está muito quente.", "exampleTranslation": "It's very hot.", "subcategory": "weather"},
-        {"portuguese": "nuvem", "english": "cloud", "cefr": "A2", "gender": "f", "example": "O céu está cheio de nuvens.", "exampleTranslation": "The sky is full of clouds.", "subcategory": "weather"},
-        {"portuguese": "neve", "english": "snow", "cefr": "A2", "gender": "f", "example": "Nunca neva em Lisboa.", "exampleTranslation": "It never snows in Lisbon.", "subcategory": "weather"},
-        {"portuguese": "trovoada", "english": "thunderstorm", "cefr": "A2", "gender": "f", "example": "Há trovoada esta noite.", "exampleTranslation": "There's a thunderstorm tonight.", "subcategory": "weather"},
-        {"portuguese": "temperatura", "english": "temperature", "cefr": "A2", "gender": "f", "example": "A temperatura é de 25 graus.", "exampleTranslation": "The temperature is 25 degrees.", "subcategory": "weather"},
-        {"portuguese": "previsão do tempo", "english": "weather forecast", "cefr": "B1", "gender": "f", "example": "A previsão do tempo diz que vai chover.", "exampleTranslation": "The weather forecast says it will rain.", "subcategory": "weather"},
-        {"portuguese": "segunda-feira", "english": "Monday", "cefr": "A1", "gender": "f", "example": "Segunda-feira vou ao médico.", "exampleTranslation": "On Monday I'm going to the doctor.", "subcategory": "days"},
-        {"portuguese": "terça-feira", "english": "Tuesday", "cefr": "A1", "gender": "f", "example": "À terça-feira tenho aula de português.", "exampleTranslation": "On Tuesday I have Portuguese class.", "subcategory": "days"},
-        {"portuguese": "quarta-feira", "english": "Wednesday", "cefr": "A1", "gender": "f", "example": "Quarta-feira é dia de mercado.", "exampleTranslation": "Wednesday is market day.", "subcategory": "days"},
-        {"portuguese": "quinta-feira", "english": "Thursday", "cefr": "A1", "gender": "f", "example": "Na quinta-feira janto fora.", "exampleTranslation": "On Thursday I have dinner out.", "subcategory": "days"},
-        {"portuguese": "sexta-feira", "english": "Friday", "cefr": "A1", "gender": "f", "example": "Sexta-feira saio mais cedo.", "exampleTranslation": "On Friday I leave earlier.", "subcategory": "days"},
-        {"portuguese": "sábado", "english": "Saturday", "cefr": "A1", "gender": "m", "example": "Ao sábado vou à praia.", "exampleTranslation": "On Saturday I go to the beach.", "subcategory": "days"},
-        {"portuguese": "domingo", "english": "Sunday", "cefr": "A1", "gender": "m", "example": "Ao domingo descanso em casa.", "exampleTranslation": "On Sunday I rest at home.", "subcategory": "days"},
-        {"portuguese": "fim de semana", "english": "weekend", "cefr": "A1", "gender": "m", "example": "O que vais fazer no fim de semana?", "exampleTranslation": "What are you going to do at the weekend?", "subcategory": "days"}
+        {
+          "portuguese": "olá",
+          "english": "hello",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Olá, como estás?",
+          "exampleTranslation": "Hello, how are you?"
+        },
+        {
+          "portuguese": "bom dia",
+          "english": "good morning",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Bom dia, senhora.",
+          "exampleTranslation": "Good morning, madam."
+        },
+        {
+          "portuguese": "boa tarde",
+          "english": "good afternoon",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Boa tarde a todos.",
+          "exampleTranslation": "Good afternoon everyone."
+        },
+        {
+          "portuguese": "boa noite",
+          "english": "good evening / good night",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Boa noite, dorme bem.",
+          "exampleTranslation": "Good night, sleep well."
+        },
+        {
+          "portuguese": "adeus",
+          "english": "goodbye",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Adeus, até amanhã!",
+          "exampleTranslation": "Goodbye, see you tomorrow!"
+        },
+        {
+          "portuguese": "obrigado / obrigada",
+          "english": "thank you (m/f)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Muito obrigado pela ajuda.",
+          "exampleTranslation": "Thank you very much for the help."
+        },
+        {
+          "portuguese": "por favor",
+          "english": "please",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Um café, por favor.",
+          "exampleTranslation": "A coffee, please."
+        },
+        {
+          "portuguese": "desculpe",
+          "english": "excuse me / sorry",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Desculpe, onde fica o metro?",
+          "exampleTranslation": "Excuse me, where is the metro?"
+        },
+        {
+          "portuguese": "sim",
+          "english": "yes",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Sim, eu quero.",
+          "exampleTranslation": "Yes, I want it."
+        },
+        {
+          "portuguese": "não",
+          "english": "no",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Não, obrigado.",
+          "exampleTranslation": "No, thank you."
+        },
+        {
+          "portuguese": "talvez",
+          "english": "maybe / perhaps",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Talvez vá ao cinema.",
+          "exampleTranslation": "Maybe I'll go to the cinema."
+        },
+        {
+          "portuguese": "claro",
+          "english": "of course / clear",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Claro que sim!",
+          "exampleTranslation": "Of course!"
+        },
+        {
+          "portuguese": "com certeza",
+          "english": "certainly / for sure",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Com certeza, eu ajudo.",
+          "exampleTranslation": "For sure, I'll help."
+        },
+        {
+          "portuguese": "com licença",
+          "english": "excuse me (permission)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Com licença, posso passar?",
+          "exampleTranslation": "Excuse me, may I pass?"
+        },
+        {
+          "portuguese": "parabéns",
+          "english": "congratulations",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Parabéns pelo aniversário!",
+          "exampleTranslation": "Happy birthday!"
+        },
+        {
+          "portuguese": "saúde",
+          "english": "cheers / bless you",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Saúde! — quando alguém espirra.",
+          "exampleTranslation": "Bless you! — when someone sneezes."
+        },
+        {
+          "portuguese": "pois",
+          "english": "indeed / right / well",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Pois, tens razão.",
+          "exampleTranslation": "Indeed, you're right."
+        },
+        {
+          "portuguese": "fixe",
+          "english": "cool / great (informal)",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Que fixe! Adorei.",
+          "exampleTranslation": "How cool! I loved it."
+        },
+        {
+          "portuguese": "pronto",
+          "english": "ready / done / okay",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Pronto, já está.",
+          "exampleTranslation": "Done, it's ready."
+        }
+      ]
+    },
+    {
+      "id": "numbers-time",
+      "title": "Numbers & Time",
+      "description": "Counting, telling time, days of the week, and temporal expressions",
+      "words": [
+        {
+          "portuguese": "um / uma",
+          "english": "one",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quero um bilhete.",
+          "exampleTranslation": "I want one ticket."
+        },
+        {
+          "portuguese": "dois / duas",
+          "english": "two",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Dois cafés, por favor.",
+          "exampleTranslation": "Two coffees, please."
+        },
+        {
+          "portuguese": "três",
+          "english": "three",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tenho três irmãos.",
+          "exampleTranslation": "I have three siblings."
+        },
+        {
+          "portuguese": "quatro",
+          "english": "four",
+          "cefr": "A1",
+          "gender": null,
+          "example": "São quatro horas.",
+          "exampleTranslation": "It's four o'clock."
+        },
+        {
+          "portuguese": "cinco",
+          "english": "five",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Cinco minutos, por favor.",
+          "exampleTranslation": "Five minutes, please."
+        },
+        {
+          "portuguese": "dez",
+          "english": "ten",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Custa dez euros.",
+          "exampleTranslation": "It costs ten euros."
+        },
+        {
+          "portuguese": "vinte",
+          "english": "twenty",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tenho vinte anos.",
+          "exampleTranslation": "I am twenty years old."
+        },
+        {
+          "portuguese": "cem",
+          "english": "one hundred",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Cem gramas de queijo.",
+          "exampleTranslation": "One hundred grams of cheese."
+        },
+        {
+          "portuguese": "mil",
+          "english": "one thousand",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A renda é mil euros.",
+          "exampleTranslation": "The rent is one thousand euros."
+        },
+        {
+          "portuguese": "primeiro",
+          "english": "first",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "É o primeiro dia.",
+          "exampleTranslation": "It's the first day."
+        },
+        {
+          "portuguese": "hora",
+          "english": "hour / time",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Que horas são?",
+          "exampleTranslation": "What time is it?"
+        },
+        {
+          "portuguese": "minuto",
+          "english": "minute",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Espera um minuto.",
+          "exampleTranslation": "Wait a minute."
+        },
+        {
+          "portuguese": "hoje",
+          "english": "today",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Hoje é segunda-feira.",
+          "exampleTranslation": "Today is Monday."
+        },
+        {
+          "portuguese": "amanhã",
+          "english": "tomorrow",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Amanhã vou ao médico.",
+          "exampleTranslation": "Tomorrow I'm going to the doctor."
+        },
+        {
+          "portuguese": "ontem",
+          "english": "yesterday",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Ontem choveu muito.",
+          "exampleTranslation": "Yesterday it rained a lot."
+        },
+        {
+          "portuguese": "semana",
+          "english": "week",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A próxima semana.",
+          "exampleTranslation": "Next week."
+        },
+        {
+          "portuguese": "mês",
+          "english": "month",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Este mês é janeiro.",
+          "exampleTranslation": "This month is January."
+        },
+        {
+          "portuguese": "ano",
+          "english": "year",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Feliz ano novo!",
+          "exampleTranslation": "Happy new year!"
+        },
+        {
+          "portuguese": "manhã",
+          "english": "morning",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "De manhã tomo café.",
+          "exampleTranslation": "In the morning I have coffee."
+        },
+        {
+          "portuguese": "tarde",
+          "english": "afternoon",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "À tarde vou correr.",
+          "exampleTranslation": "In the afternoon I go running."
+        },
+        {
+          "portuguese": "noite",
+          "english": "night / evening",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "À noite vejo televisão.",
+          "exampleTranslation": "In the evening I watch television."
+        },
+        {
+          "portuguese": "agora",
+          "english": "now",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vamos agora.",
+          "exampleTranslation": "Let's go now."
+        },
+        {
+          "portuguese": "depois",
+          "english": "after / later",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Falamos depois.",
+          "exampleTranslation": "We'll talk later."
+        },
+        {
+          "portuguese": "antes",
+          "english": "before",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Antes do jantar.",
+          "exampleTranslation": "Before dinner."
+        },
+        {
+          "portuguese": "sempre",
+          "english": "always",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Ela chega sempre a horas.",
+          "exampleTranslation": "She always arrives on time."
+        },
+        {
+          "portuguese": "nunca",
+          "english": "never",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Nunca fui ao Brasil.",
+          "exampleTranslation": "I've never been to Brazil."
+        },
+        {
+          "portuguese": "às vezes",
+          "english": "sometimes",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Às vezes como fora.",
+          "exampleTranslation": "Sometimes I eat out."
+        },
+        {
+          "portuguese": "cedo",
+          "english": "early",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Acordei cedo hoje.",
+          "exampleTranslation": "I woke up early today."
+        },
+        {
+          "portuguese": "tarde",
+          "english": "late",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Cheguei tarde ao trabalho.",
+          "exampleTranslation": "I arrived late to work."
+        },
+        {
+          "portuguese": "entretanto",
+          "english": "meanwhile",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Entretanto, podes preparar a mesa.",
+          "exampleTranslation": "Meanwhile, you can set the table."
+        },
+        {
+          "portuguese": "antigamente",
+          "english": "in the old days",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Antigamente não havia telemóveis.",
+          "exampleTranslation": "In the old days there were no mobile phones."
+        },
+        {
+          "portuguese": "segunda-feira",
+          "english": "Monday",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Segunda-feira vou ao médico.",
+          "exampleTranslation": "On Monday I'm going to the doctor."
+        },
+        {
+          "portuguese": "terça-feira",
+          "english": "Tuesday",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "À terça-feira tenho aula de português.",
+          "exampleTranslation": "On Tuesday I have Portuguese class."
+        },
+        {
+          "portuguese": "quarta-feira",
+          "english": "Wednesday",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Quarta-feira é dia de mercado.",
+          "exampleTranslation": "Wednesday is market day."
+        },
+        {
+          "portuguese": "quinta-feira",
+          "english": "Thursday",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Na quinta-feira janto fora.",
+          "exampleTranslation": "On Thursday I have dinner out."
+        },
+        {
+          "portuguese": "sexta-feira",
+          "english": "Friday",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Sexta-feira saio mais cedo.",
+          "exampleTranslation": "On Friday I leave earlier."
+        },
+        {
+          "portuguese": "sábado",
+          "english": "Saturday",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Ao sábado vou à praia.",
+          "exampleTranslation": "On Saturday I go to the beach."
+        },
+        {
+          "portuguese": "domingo",
+          "english": "Sunday",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Ao domingo descanso em casa.",
+          "exampleTranslation": "On Sunday I rest at home."
+        },
+        {
+          "portuguese": "fim de semana",
+          "english": "weekend",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O que vais fazer no fim de semana?",
+          "exampleTranslation": "What are you going to do at the weekend?"
+        }
+      ]
+    },
+    {
+      "id": "colours-weather",
+      "title": "Colours & Weather",
+      "description": "Colours, weather conditions, and seasonal vocabulary",
+      "words": [
+        {
+          "portuguese": "vermelho",
+          "english": "red",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O carro vermelho é meu.",
+          "exampleTranslation": "The red car is mine."
+        },
+        {
+          "portuguese": "azul",
+          "english": "blue",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O céu está azul.",
+          "exampleTranslation": "The sky is blue."
+        },
+        {
+          "portuguese": "verde",
+          "english": "green",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Gosto de verde.",
+          "exampleTranslation": "I like green."
+        },
+        {
+          "portuguese": "amarelo",
+          "english": "yellow",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "A banana é amarela.",
+          "exampleTranslation": "The banana is yellow."
+        },
+        {
+          "portuguese": "branco",
+          "english": "white",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vinho branco, por favor.",
+          "exampleTranslation": "White wine, please."
+        },
+        {
+          "portuguese": "preto",
+          "english": "black",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Café preto, sem açúcar.",
+          "exampleTranslation": "Black coffee, no sugar."
+        },
+        {
+          "portuguese": "castanho",
+          "english": "brown",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ela tem olhos castanhos.",
+          "exampleTranslation": "She has brown eyes."
+        },
+        {
+          "portuguese": "cor-de-rosa",
+          "english": "pink",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A camisa é cor-de-rosa.",
+          "exampleTranslation": "The shirt is pink."
+        },
+        {
+          "portuguese": "roxo",
+          "english": "purple",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "As flores são roxas.",
+          "exampleTranslation": "The flowers are purple."
+        },
+        {
+          "portuguese": "cinzento",
+          "english": "grey",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O dia está cinzento.",
+          "exampleTranslation": "The day is grey."
+        },
+        {
+          "portuguese": "sol",
+          "english": "sun",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Hoje está sol.",
+          "exampleTranslation": "It's sunny today."
+        },
+        {
+          "portuguese": "chuva",
+          "english": "rain",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Está a chover.",
+          "exampleTranslation": "It's raining."
+        },
+        {
+          "portuguese": "vento",
+          "english": "wind",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Está muito vento.",
+          "exampleTranslation": "It's very windy."
+        },
+        {
+          "portuguese": "frio",
+          "english": "cold",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Está frio hoje.",
+          "exampleTranslation": "It's cold today."
+        },
+        {
+          "portuguese": "quente",
+          "english": "hot",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Está muito quente.",
+          "exampleTranslation": "It's very hot."
+        },
+        {
+          "portuguese": "nuvem",
+          "english": "cloud",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O céu está cheio de nuvens.",
+          "exampleTranslation": "The sky is full of clouds."
+        },
+        {
+          "portuguese": "neve",
+          "english": "snow",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Nunca neva em Lisboa.",
+          "exampleTranslation": "It never snows in Lisbon."
+        },
+        {
+          "portuguese": "trovoada",
+          "english": "thunderstorm",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Há trovoada esta noite.",
+          "exampleTranslation": "There's a thunderstorm tonight."
+        },
+        {
+          "portuguese": "temperatura",
+          "english": "temperature",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A temperatura é de 25 graus.",
+          "exampleTranslation": "The temperature is 25 degrees."
+        },
+        {
+          "portuguese": "previsão do tempo",
+          "english": "weather forecast",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A previsão do tempo diz que vai chover.",
+          "exampleTranslation": "The weather forecast says it will rain."
+        }
       ]
     },
     {
       "id": "food-drink",
       "title": "Food & Drink",
       "description": "Restaurants, grocery shopping, cooking, and common ingredients",
-      "emoji": "🍽️",
       "words": [
-        {"portuguese": "água", "english": "water", "cefr": "A1", "gender": "f", "example": "Uma garrafa de água, por favor.", "exampleTranslation": "A bottle of water, please.", "subcategory": "drinks"},
-        {"portuguese": "café", "english": "coffee", "cefr": "A1", "gender": "m", "example": "Quero um café com leite.", "exampleTranslation": "I want a coffee with milk.", "subcategory": "drinks"},
-        {"portuguese": "chá", "english": "tea", "cefr": "A1", "gender": "m", "example": "Um chá de camomila.", "exampleTranslation": "A chamomile tea.", "subcategory": "drinks"},
-        {"portuguese": "leite", "english": "milk", "cefr": "A1", "gender": "m", "example": "Bebo leite ao pequeno-almoço.", "exampleTranslation": "I drink milk at breakfast.", "subcategory": "drinks"},
-        {"portuguese": "sumo", "english": "juice", "cefr": "A1", "gender": "m", "example": "Sumo de laranja natural.", "exampleTranslation": "Fresh orange juice.", "subcategory": "drinks"},
-        {"portuguese": "cerveja", "english": "beer", "cefr": "A1", "gender": "f", "example": "Uma cerveja, faz favor.", "exampleTranslation": "A beer, please.", "subcategory": "drinks"},
-        {"portuguese": "vinho", "english": "wine", "cefr": "A1", "gender": "m", "example": "Vinho tinto da casa.", "exampleTranslation": "House red wine.", "subcategory": "drinks"},
-        {"portuguese": "imperial", "english": "draught beer (PT)", "cefr": "B1", "gender": "f", "example": "Duas imperiais, por favor.", "exampleTranslation": "Two draught beers, please.", "subcategory": "drinks"},
-        {"portuguese": "pão", "english": "bread", "cefr": "A1", "gender": "m", "example": "Pão fresco da padaria.", "exampleTranslation": "Fresh bread from the bakery.", "subcategory": "food"},
-        {"portuguese": "queijo", "english": "cheese", "cefr": "A1", "gender": "m", "example": "Queijo da Serra é delicioso.", "exampleTranslation": "Serra cheese is delicious.", "subcategory": "food"},
-        {"portuguese": "carne", "english": "meat", "cefr": "A1", "gender": "f", "example": "Não como carne.", "exampleTranslation": "I don't eat meat.", "subcategory": "food"},
-        {"portuguese": "frango", "english": "chicken", "cefr": "A1", "gender": "m", "example": "Frango assado com batatas.", "exampleTranslation": "Roast chicken with potatoes.", "subcategory": "food"},
-        {"portuguese": "peixe", "english": "fish", "cefr": "A1", "gender": "m", "example": "Em Portugal comemos muito peixe.", "exampleTranslation": "In Portugal we eat a lot of fish.", "subcategory": "food"},
-        {"portuguese": "bacalhau", "english": "cod (salted)", "cefr": "A2", "gender": "m", "example": "O bacalhau à Brás é típico.", "exampleTranslation": "Bacalhau à Brás is typical.", "subcategory": "food"},
-        {"portuguese": "arroz", "english": "rice", "cefr": "A1", "gender": "m", "example": "Arroz de marisco.", "exampleTranslation": "Seafood rice.", "subcategory": "food"},
-        {"portuguese": "batata", "english": "potato", "cefr": "A1", "gender": "f", "example": "Batatas fritas ou cozidas?", "exampleTranslation": "Fried or boiled potatoes?", "subcategory": "food"},
-        {"portuguese": "ovo", "english": "egg", "cefr": "A1", "gender": "m", "example": "Dois ovos estrelados.", "exampleTranslation": "Two fried eggs.", "subcategory": "food"},
-        {"portuguese": "salada", "english": "salad", "cefr": "A1", "gender": "f", "example": "Uma salada mista.", "exampleTranslation": "A mixed salad.", "subcategory": "food"},
-        {"portuguese": "sopa", "english": "soup", "cefr": "A1", "gender": "f", "example": "Sopa de legumes.", "exampleTranslation": "Vegetable soup.", "subcategory": "food"},
-        {"portuguese": "fruta", "english": "fruit", "cefr": "A1", "gender": "f", "example": "Como fruta todos os dias.", "exampleTranslation": "I eat fruit every day.", "subcategory": "food"},
-        {"portuguese": "maçã", "english": "apple", "cefr": "A1", "gender": "f", "example": "A maçã é a minha fruta preferida.", "exampleTranslation": "The apple is my favourite fruit.", "subcategory": "food"},
-        {"portuguese": "laranja", "english": "orange", "cefr": "A1", "gender": "f", "example": "Laranjas do Algarve.", "exampleTranslation": "Oranges from the Algarve.", "subcategory": "food"},
-        {"portuguese": "tomate", "english": "tomato", "cefr": "A1", "gender": "m", "example": "Salada de tomate e cebola.", "exampleTranslation": "Tomato and onion salad.", "subcategory": "food"},
-        {"portuguese": "cebola", "english": "onion", "cefr": "A2", "gender": "f", "example": "Refoga a cebola em azeite.", "exampleTranslation": "Sauté the onion in olive oil.", "subcategory": "food"},
-        {"portuguese": "alho", "english": "garlic", "cefr": "A2", "gender": "m", "example": "Dois dentes de alho.", "exampleTranslation": "Two cloves of garlic.", "subcategory": "food"},
-        {"portuguese": "azeite", "english": "olive oil", "cefr": "A2", "gender": "m", "example": "Azeite português é o melhor.", "exampleTranslation": "Portuguese olive oil is the best.", "subcategory": "food"},
-        {"portuguese": "sal", "english": "salt", "cefr": "A1", "gender": "m", "example": "Passa-me o sal.", "exampleTranslation": "Pass me the salt.", "subcategory": "food"},
-        {"portuguese": "açúcar", "english": "sugar", "cefr": "A1", "gender": "m", "example": "Sem açúcar, por favor.", "exampleTranslation": "Without sugar, please.", "subcategory": "food"},
-        {"portuguese": "manteiga", "english": "butter", "cefr": "A2", "gender": "f", "example": "Pão com manteiga.", "exampleTranslation": "Bread with butter.", "subcategory": "food"},
-        {"portuguese": "presunto", "english": "cured ham", "cefr": "A2", "gender": "m", "example": "Uma tosta de presunto e queijo.", "exampleTranslation": "A toasted sandwich with ham and cheese.", "subcategory": "food"},
-        {"portuguese": "pastel de nata", "english": "custard tart", "cefr": "A2", "gender": "m", "example": "Os pastéis de nata de Belém.", "exampleTranslation": "The custard tarts from Belém.", "subcategory": "food"},
-        {"portuguese": "sobremesa", "english": "dessert", "cefr": "A2", "gender": "f", "example": "Quer sobremesa?", "exampleTranslation": "Would you like dessert?", "subcategory": "food"},
-        {"portuguese": "pequeno-almoço", "english": "breakfast", "cefr": "A1", "gender": "m", "example": "O pequeno-almoço está incluído.", "exampleTranslation": "Breakfast is included.", "subcategory": "meals"},
-        {"portuguese": "almoço", "english": "lunch", "cefr": "A1", "gender": "m", "example": "Vamos almoçar juntos?", "exampleTranslation": "Shall we have lunch together?", "subcategory": "meals"},
-        {"portuguese": "jantar", "english": "dinner", "cefr": "A1", "gender": "m", "example": "O jantar é às oito.", "exampleTranslation": "Dinner is at eight.", "subcategory": "meals"},
-        {"portuguese": "lanche", "english": "snack / afternoon tea", "cefr": "A2", "gender": "m", "example": "Hora do lanche!", "exampleTranslation": "Snack time!", "subcategory": "meals"},
-        {"portuguese": "restaurante", "english": "restaurant", "cefr": "A1", "gender": "m", "example": "Este restaurante é bom.", "exampleTranslation": "This restaurant is good.", "subcategory": "dining"},
-        {"portuguese": "ementa", "english": "menu", "cefr": "A2", "gender": "f", "example": "Posso ver a ementa?", "exampleTranslation": "May I see the menu?", "subcategory": "dining"},
-        {"portuguese": "conta", "english": "bill / check", "cefr": "A1", "gender": "f", "example": "A conta, por favor.", "exampleTranslation": "The bill, please.", "subcategory": "dining"},
-        {"portuguese": "garfo", "english": "fork", "cefr": "A2", "gender": "m", "example": "Preciso de um garfo.", "exampleTranslation": "I need a fork.", "subcategory": "dining"},
-        {"portuguese": "faca", "english": "knife", "cefr": "A2", "gender": "f", "example": "A faca não corta.", "exampleTranslation": "The knife doesn't cut.", "subcategory": "dining"},
-        {"portuguese": "colher", "english": "spoon", "cefr": "A2", "gender": "f", "example": "Uma colher de sopa.", "exampleTranslation": "A soup spoon.", "subcategory": "dining"},
-        {"portuguese": "prato", "english": "plate / dish", "cefr": "A2", "gender": "m", "example": "O prato do dia.", "exampleTranslation": "The dish of the day.", "subcategory": "dining"},
-        {"portuguese": "copo", "english": "glass", "cefr": "A2", "gender": "m", "example": "Um copo de água.", "exampleTranslation": "A glass of water.", "subcategory": "dining"},
-        {"portuguese": "garrafa", "english": "bottle", "cefr": "A2", "gender": "f", "example": "Uma garrafa de vinho.", "exampleTranslation": "A bottle of wine.", "subcategory": "dining"},
-        {"portuguese": "guardanapo", "english": "napkin", "cefr": "A2", "gender": "m", "example": "Tem guardanapos?", "exampleTranslation": "Do you have napkins?", "subcategory": "dining"},
-        {"portuguese": "cozinhar", "english": "to cook", "cefr": "A2", "gender": null, "example": "Gosto de cozinhar.", "exampleTranslation": "I like to cook.", "subcategory": "cooking"},
-        {"portuguese": "ferver", "english": "to boil", "cefr": "A2", "gender": null, "example": "Deixa a água ferver.", "exampleTranslation": "Let the water boil.", "subcategory": "cooking"},
-        {"portuguese": "assar", "english": "to roast / bake", "cefr": "A2", "gender": null, "example": "Vou assar o frango.", "exampleTranslation": "I'm going to roast the chicken.", "subcategory": "cooking"},
-        {"portuguese": "fritar", "english": "to fry", "cefr": "A2", "gender": null, "example": "Não frites com muito óleo.", "exampleTranslation": "Don't fry with too much oil.", "subcategory": "cooking"},
-        {"portuguese": "receita", "english": "recipe", "cefr": "A2", "gender": "f", "example": "Tens a receita do bolo?", "exampleTranslation": "Do you have the cake recipe?", "subcategory": "cooking"},
-        {"portuguese": "delicioso", "english": "delicious", "cefr": "A2", "gender": "m", "example": "A comida está deliciosa.", "exampleTranslation": "The food is delicious.", "subcategory": "cooking"},
-        {"portuguese": "picante", "english": "spicy", "cefr": "B1", "gender": null, "example": "Este piri-piri é muito picante.", "exampleTranslation": "This piri-piri is very spicy.", "subcategory": "cooking"},
-        {"portuguese": "salgado", "english": "salty / savoury", "cefr": "B1", "gender": "m", "example": "A sopa está muito salgada.", "exampleTranslation": "The soup is too salty.", "subcategory": "cooking"},
-        {"portuguese": "doce", "english": "sweet", "cefr": "A2", "gender": null, "example": "Este bolo é muito doce.", "exampleTranslation": "This cake is very sweet.", "subcategory": "cooking"},
-        {"portuguese": "amargo", "english": "bitter", "cefr": "B1", "gender": "m", "example": "O café está amargo.", "exampleTranslation": "The coffee is bitter.", "subcategory": "cooking"},
-        {"portuguese": "petisco", "english": "snack / appetiser (tapas-style)", "cefr": "B1", "gender": "m", "example": "Vamos comer uns petiscos?", "exampleTranslation": "Shall we have some appetisers?", "subcategory": "dining"},
-        {"portuguese": "marisco", "english": "seafood / shellfish", "cefr": "B1", "gender": "m", "example": "Portugal tem marisco excelente.", "exampleTranslation": "Portugal has excellent seafood.", "subcategory": "food"},
-        {"portuguese": "grelhado", "english": "grilled", "cefr": "B1", "gender": "m", "example": "Peixe grelhado com legumes.", "exampleTranslation": "Grilled fish with vegetables.", "subcategory": "cooking"},
-        {"portuguese": "padaria", "english": "bakery", "cefr": "A2", "gender": "f", "example": "Compro pão na padaria.", "exampleTranslation": "I buy bread at the bakery.", "subcategory": "dining"},
-        {"portuguese": "legumes", "english": "vegetables", "cefr": "A1", "gender": "m", "example": "Como legumes ao jantar.", "exampleTranslation": "I eat vegetables at dinner.", "subcategory": "food"},
-        {"portuguese": "feijão", "english": "beans", "cefr": "A2", "gender": "m", "example": "Sopa de feijão com couve.", "exampleTranslation": "Bean soup with kale.", "subcategory": "food"},
-        {"portuguese": "grão", "english": "chickpeas", "cefr": "A2", "gender": "m", "example": "Salada de grão com atum.", "exampleTranslation": "Chickpea salad with tuna.", "subcategory": "food"},
-        {"portuguese": "massa", "english": "pasta", "cefr": "A1", "gender": "f", "example": "Massa com molho de tomate.", "exampleTranslation": "Pasta with tomato sauce.", "subcategory": "food"},
-        {"portuguese": "fiambre", "english": "ham (cooked)", "cefr": "A2", "gender": "m", "example": "Uma sandes de fiambre e queijo.", "exampleTranslation": "A ham and cheese sandwich.", "subcategory": "food"},
-        {"portuguese": "iogurte", "english": "yoghurt", "cefr": "A1", "gender": "m", "example": "Como iogurte ao pequeno-almoço.", "exampleTranslation": "I eat yoghurt for breakfast.", "subcategory": "food"},
-        {"portuguese": "cereal", "english": "cereal", "cefr": "A1", "gender": "m", "example": "Cereal com leite.", "exampleTranslation": "Cereal with milk.", "subcategory": "food"},
-        {"portuguese": "bolo", "english": "cake", "cefr": "A1", "gender": "m", "example": "O bolo de aniversário está na mesa.", "exampleTranslation": "The birthday cake is on the table.", "subcategory": "food"}
+        {
+          "portuguese": "água",
+          "english": "water",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Uma garrafa de água, por favor.",
+          "exampleTranslation": "A bottle of water, please."
+        },
+        {
+          "portuguese": "café",
+          "english": "coffee",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Quero um café com leite.",
+          "exampleTranslation": "I want a coffee with milk."
+        },
+        {
+          "portuguese": "chá",
+          "english": "tea",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Um chá de camomila.",
+          "exampleTranslation": "A chamomile tea."
+        },
+        {
+          "portuguese": "leite",
+          "english": "milk",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Bebo leite ao pequeno-almoço.",
+          "exampleTranslation": "I drink milk at breakfast."
+        },
+        {
+          "portuguese": "sumo",
+          "english": "juice",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Sumo de laranja natural.",
+          "exampleTranslation": "Fresh orange juice."
+        },
+        {
+          "portuguese": "cerveja",
+          "english": "beer",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Uma cerveja, faz favor.",
+          "exampleTranslation": "A beer, please."
+        },
+        {
+          "portuguese": "vinho",
+          "english": "wine",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vinho tinto da casa.",
+          "exampleTranslation": "House red wine."
+        },
+        {
+          "portuguese": "imperial",
+          "english": "draught beer (PT)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Duas imperiais, por favor.",
+          "exampleTranslation": "Two draught beers, please."
+        },
+        {
+          "portuguese": "pão",
+          "english": "bread",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Pão fresco da padaria.",
+          "exampleTranslation": "Fresh bread from the bakery."
+        },
+        {
+          "portuguese": "queijo",
+          "english": "cheese",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Queijo da Serra é delicioso.",
+          "exampleTranslation": "Serra cheese is delicious."
+        },
+        {
+          "portuguese": "carne",
+          "english": "meat",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Não como carne.",
+          "exampleTranslation": "I don't eat meat."
+        },
+        {
+          "portuguese": "frango",
+          "english": "chicken",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Frango assado com batatas.",
+          "exampleTranslation": "Roast chicken with potatoes."
+        },
+        {
+          "portuguese": "peixe",
+          "english": "fish",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Em Portugal comemos muito peixe.",
+          "exampleTranslation": "In Portugal we eat a lot of fish."
+        },
+        {
+          "portuguese": "bacalhau",
+          "english": "cod (salted)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O bacalhau à Brás é típico.",
+          "exampleTranslation": "Bacalhau à Brás is typical."
+        },
+        {
+          "portuguese": "arroz",
+          "english": "rice",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Arroz de marisco.",
+          "exampleTranslation": "Seafood rice."
+        },
+        {
+          "portuguese": "batata",
+          "english": "potato",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Batatas fritas ou cozidas?",
+          "exampleTranslation": "Fried or boiled potatoes?"
+        },
+        {
+          "portuguese": "ovo",
+          "english": "egg",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Dois ovos estrelados.",
+          "exampleTranslation": "Two fried eggs."
+        },
+        {
+          "portuguese": "salada",
+          "english": "salad",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Uma salada mista.",
+          "exampleTranslation": "A mixed salad."
+        },
+        {
+          "portuguese": "sopa",
+          "english": "soup",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Sopa de legumes.",
+          "exampleTranslation": "Vegetable soup."
+        },
+        {
+          "portuguese": "fruta",
+          "english": "fruit",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Como fruta todos os dias.",
+          "exampleTranslation": "I eat fruit every day."
+        },
+        {
+          "portuguese": "maçã",
+          "english": "apple",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A maçã é a minha fruta preferida.",
+          "exampleTranslation": "The apple is my favourite fruit."
+        },
+        {
+          "portuguese": "laranja",
+          "english": "orange",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Laranjas do Algarve.",
+          "exampleTranslation": "Oranges from the Algarve."
+        },
+        {
+          "portuguese": "tomate",
+          "english": "tomato",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Salada de tomate e cebola.",
+          "exampleTranslation": "Tomato and onion salad."
+        },
+        {
+          "portuguese": "cebola",
+          "english": "onion",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Refoga a cebola em azeite.",
+          "exampleTranslation": "Sauté the onion in olive oil."
+        },
+        {
+          "portuguese": "alho",
+          "english": "garlic",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Dois dentes de alho.",
+          "exampleTranslation": "Two cloves of garlic."
+        },
+        {
+          "portuguese": "azeite",
+          "english": "olive oil",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Azeite português é o melhor.",
+          "exampleTranslation": "Portuguese olive oil is the best."
+        },
+        {
+          "portuguese": "sal",
+          "english": "salt",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Passa-me o sal.",
+          "exampleTranslation": "Pass me the salt."
+        },
+        {
+          "portuguese": "açúcar",
+          "english": "sugar",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Sem açúcar, por favor.",
+          "exampleTranslation": "Without sugar, please."
+        },
+        {
+          "portuguese": "manteiga",
+          "english": "butter",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Pão com manteiga.",
+          "exampleTranslation": "Bread with butter."
+        },
+        {
+          "portuguese": "presunto",
+          "english": "cured ham",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Uma tosta de presunto e queijo.",
+          "exampleTranslation": "A toasted sandwich with ham and cheese."
+        },
+        {
+          "portuguese": "pastel de nata",
+          "english": "custard tart",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os pastéis de nata de Belém.",
+          "exampleTranslation": "The custard tarts from Belém."
+        },
+        {
+          "portuguese": "sobremesa",
+          "english": "dessert",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Quer sobremesa?",
+          "exampleTranslation": "Would you like dessert?"
+        },
+        {
+          "portuguese": "pequeno-almoço",
+          "english": "breakfast",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O pequeno-almoço está incluído.",
+          "exampleTranslation": "Breakfast is included."
+        },
+        {
+          "portuguese": "almoço",
+          "english": "lunch",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vamos almoçar juntos?",
+          "exampleTranslation": "Shall we have lunch together?"
+        },
+        {
+          "portuguese": "jantar",
+          "english": "dinner",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O jantar é às oito.",
+          "exampleTranslation": "Dinner is at eight."
+        },
+        {
+          "portuguese": "lanche",
+          "english": "snack / afternoon tea",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Hora do lanche!",
+          "exampleTranslation": "Snack time!"
+        },
+        {
+          "portuguese": "restaurante",
+          "english": "restaurant",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Este restaurante é bom.",
+          "exampleTranslation": "This restaurant is good."
+        },
+        {
+          "portuguese": "ementa",
+          "english": "menu",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Posso ver a ementa?",
+          "exampleTranslation": "May I see the menu?"
+        },
+        {
+          "portuguese": "conta",
+          "english": "bill / check",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A conta, por favor.",
+          "exampleTranslation": "The bill, please."
+        },
+        {
+          "portuguese": "garfo",
+          "english": "fork",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Preciso de um garfo.",
+          "exampleTranslation": "I need a fork."
+        },
+        {
+          "portuguese": "faca",
+          "english": "knife",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A faca não corta.",
+          "exampleTranslation": "The knife doesn't cut."
+        },
+        {
+          "portuguese": "colher",
+          "english": "spoon",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Uma colher de sopa.",
+          "exampleTranslation": "A soup spoon."
+        },
+        {
+          "portuguese": "prato",
+          "english": "plate / dish",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O prato do dia.",
+          "exampleTranslation": "The dish of the day."
+        },
+        {
+          "portuguese": "copo",
+          "english": "glass",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Um copo de água.",
+          "exampleTranslation": "A glass of water."
+        },
+        {
+          "portuguese": "garrafa",
+          "english": "bottle",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Uma garrafa de vinho.",
+          "exampleTranslation": "A bottle of wine."
+        },
+        {
+          "portuguese": "guardanapo",
+          "english": "napkin",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tem guardanapos?",
+          "exampleTranslation": "Do you have napkins?"
+        },
+        {
+          "portuguese": "cozinhar",
+          "english": "to cook",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Gosto de cozinhar.",
+          "exampleTranslation": "I like to cook."
+        },
+        {
+          "portuguese": "ferver",
+          "english": "to boil",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Deixa a água ferver.",
+          "exampleTranslation": "Let the water boil."
+        },
+        {
+          "portuguese": "assar",
+          "english": "to roast / bake",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou assar o frango.",
+          "exampleTranslation": "I'm going to roast the chicken."
+        },
+        {
+          "portuguese": "fritar",
+          "english": "to fry",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Não frites com muito óleo.",
+          "exampleTranslation": "Don't fry with too much oil."
+        },
+        {
+          "portuguese": "receita",
+          "english": "recipe",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tens a receita do bolo?",
+          "exampleTranslation": "Do you have the cake recipe?"
+        },
+        {
+          "portuguese": "delicioso",
+          "english": "delicious",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A comida está deliciosa.",
+          "exampleTranslation": "The food is delicious."
+        },
+        {
+          "portuguese": "picante",
+          "english": "spicy",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Este piri-piri é muito picante.",
+          "exampleTranslation": "This piri-piri is very spicy."
+        },
+        {
+          "portuguese": "salgado",
+          "english": "salty / savoury",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "A sopa está muito salgada.",
+          "exampleTranslation": "The soup is too salty."
+        },
+        {
+          "portuguese": "doce",
+          "english": "sweet",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Este bolo é muito doce.",
+          "exampleTranslation": "This cake is very sweet."
+        },
+        {
+          "portuguese": "amargo",
+          "english": "bitter",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O café está amargo.",
+          "exampleTranslation": "The coffee is bitter."
+        },
+        {
+          "portuguese": "petisco",
+          "english": "snack / appetiser (tapas-style)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Vamos comer uns petiscos?",
+          "exampleTranslation": "Shall we have some appetisers?"
+        },
+        {
+          "portuguese": "marisco",
+          "english": "seafood / shellfish",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Portugal tem marisco excelente.",
+          "exampleTranslation": "Portugal has excellent seafood."
+        },
+        {
+          "portuguese": "grelhado",
+          "english": "grilled",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Peixe grelhado com legumes.",
+          "exampleTranslation": "Grilled fish with vegetables."
+        },
+        {
+          "portuguese": "padaria",
+          "english": "bakery",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Compro pão na padaria.",
+          "exampleTranslation": "I buy bread at the bakery."
+        },
+        {
+          "portuguese": "legumes",
+          "english": "vegetables",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Como legumes ao jantar.",
+          "exampleTranslation": "I eat vegetables at dinner."
+        },
+        {
+          "portuguese": "feijão",
+          "english": "beans",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Sopa de feijão com couve.",
+          "exampleTranslation": "Bean soup with kale."
+        },
+        {
+          "portuguese": "grão",
+          "english": "chickpeas",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Salada de grão com atum.",
+          "exampleTranslation": "Chickpea salad with tuna."
+        },
+        {
+          "portuguese": "massa",
+          "english": "pasta",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Massa com molho de tomate.",
+          "exampleTranslation": "Pasta with tomato sauce."
+        },
+        {
+          "portuguese": "fiambre",
+          "english": "ham (cooked)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Uma sandes de fiambre e queijo.",
+          "exampleTranslation": "A ham and cheese sandwich."
+        },
+        {
+          "portuguese": "iogurte",
+          "english": "yoghurt",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Como iogurte ao pequeno-almoço.",
+          "exampleTranslation": "I eat yoghurt for breakfast."
+        },
+        {
+          "portuguese": "cereal",
+          "english": "cereal",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Cereal com leite.",
+          "exampleTranslation": "Cereal with milk."
+        },
+        {
+          "portuguese": "bolo",
+          "english": "cake",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O bolo de aniversário está na mesa.",
+          "exampleTranslation": "The birthday cake is on the table."
+        }
       ]
     },
     {
       "id": "travel-directions",
       "title": "Travel & Directions",
       "description": "Transport, hotels, asking for help, and getting around",
-      "emoji": "✈️",
       "words": [
-        {"portuguese": "aeroporto", "english": "airport", "cefr": "A1", "gender": "m", "example": "O aeroporto de Lisboa.", "exampleTranslation": "The Lisbon airport.", "subcategory": "transport"},
-        {"portuguese": "avião", "english": "aeroplane", "cefr": "A1", "gender": "m", "example": "O avião parte às dez.", "exampleTranslation": "The plane departs at ten.", "subcategory": "transport"},
-        {"portuguese": "comboio", "english": "train", "cefr": "A1", "gender": "m", "example": "Apanhei o comboio para o Porto.", "exampleTranslation": "I caught the train to Porto.", "subcategory": "transport"},
-        {"portuguese": "autocarro", "english": "bus", "cefr": "A1", "gender": "m", "example": "O autocarro passa às nove.", "exampleTranslation": "The bus comes at nine.", "subcategory": "transport"},
-        {"portuguese": "metro", "english": "metro / underground", "cefr": "A1", "gender": "m", "example": "A estação de metro é aqui perto.", "exampleTranslation": "The metro station is nearby.", "subcategory": "transport"},
-        {"portuguese": "táxi", "english": "taxi", "cefr": "A1", "gender": "m", "example": "Chamei um táxi.", "exampleTranslation": "I called a taxi.", "subcategory": "transport"},
-        {"portuguese": "carro", "english": "car", "cefr": "A1", "gender": "m", "example": "Vou de carro.", "exampleTranslation": "I'm going by car.", "subcategory": "transport"},
-        {"portuguese": "bicicleta", "english": "bicycle", "cefr": "A1", "gender": "f", "example": "Ando de bicicleta todos os dias.", "exampleTranslation": "I ride a bicycle every day.", "subcategory": "transport"},
-        {"portuguese": "barco", "english": "boat", "cefr": "A2", "gender": "m", "example": "Apanhamos o barco para Cacilhas.", "exampleTranslation": "We take the boat to Cacilhas.", "subcategory": "transport"},
-        {"portuguese": "eléctrico", "english": "tram", "cefr": "A2", "gender": "m", "example": "O eléctrico 28 é famoso.", "exampleTranslation": "Tram 28 is famous.", "subcategory": "transport"},
-        {"portuguese": "bilhete", "english": "ticket", "cefr": "A1", "gender": "m", "example": "Onde compro o bilhete?", "exampleTranslation": "Where do I buy the ticket?", "subcategory": "transport"},
-        {"portuguese": "ida e volta", "english": "return / round trip", "cefr": "A2", "gender": null, "example": "Um bilhete de ida e volta.", "exampleTranslation": "A return ticket.", "subcategory": "transport"},
-        {"portuguese": "partida", "english": "departure", "cefr": "A2", "gender": "f", "example": "A hora de partida é às seis.", "exampleTranslation": "The departure time is at six.", "subcategory": "transport"},
-        {"portuguese": "chegada", "english": "arrival", "cefr": "A2", "gender": "f", "example": "A chegada é ao meio-dia.", "exampleTranslation": "The arrival is at noon.", "subcategory": "transport"},
-        {"portuguese": "atraso", "english": "delay", "cefr": "B1", "gender": "m", "example": "O comboio tem vinte minutos de atraso.", "exampleTranslation": "The train is twenty minutes late.", "subcategory": "transport"},
-        {"portuguese": "rua", "english": "street", "cefr": "A1", "gender": "f", "example": "Vivo na Rua Augusta.", "exampleTranslation": "I live on Rua Augusta.", "subcategory": "directions"},
-        {"portuguese": "avenida", "english": "avenue", "cefr": "A2", "gender": "f", "example": "A Avenida da Liberdade é bonita.", "exampleTranslation": "Avenida da Liberdade is beautiful.", "subcategory": "directions"},
-        {"portuguese": "praça", "english": "square / plaza", "cefr": "A2", "gender": "f", "example": "Encontramo-nos na praça.", "exampleTranslation": "We'll meet at the square.", "subcategory": "directions"},
-        {"portuguese": "esquina", "english": "corner", "cefr": "A2", "gender": "f", "example": "Vira na esquina.", "exampleTranslation": "Turn at the corner.", "subcategory": "directions"},
-        {"portuguese": "direita", "english": "right", "cefr": "A1", "gender": "f", "example": "Vira à direita.", "exampleTranslation": "Turn right.", "subcategory": "directions"},
-        {"portuguese": "esquerda", "english": "left", "cefr": "A1", "gender": "f", "example": "Vira à esquerda.", "exampleTranslation": "Turn left.", "subcategory": "directions"},
-        {"portuguese": "em frente", "english": "straight ahead", "cefr": "A1", "gender": null, "example": "Segue em frente.", "exampleTranslation": "Go straight ahead.", "subcategory": "directions"},
-        {"portuguese": "perto", "english": "near / close", "cefr": "A1", "gender": null, "example": "Fica perto daqui.", "exampleTranslation": "It's near here.", "subcategory": "directions"},
-        {"portuguese": "longe", "english": "far", "cefr": "A1", "gender": null, "example": "É longe a pé.", "exampleTranslation": "It's far on foot.", "subcategory": "directions"},
-        {"portuguese": "aqui", "english": "here", "cefr": "A1", "gender": null, "example": "Estou aqui.", "exampleTranslation": "I'm here.", "subcategory": "directions"},
-        {"portuguese": "ali", "english": "there (visible)", "cefr": "A1", "gender": null, "example": "A farmácia é ali.", "exampleTranslation": "The pharmacy is over there.", "subcategory": "directions"},
-        {"portuguese": "mapa", "english": "map", "cefr": "A1", "gender": "m", "example": "Tens um mapa da cidade?", "exampleTranslation": "Do you have a city map?", "subcategory": "directions"},
-        {"portuguese": "hotel", "english": "hotel", "cefr": "A1", "gender": "m", "example": "Reservei um hotel no centro.", "exampleTranslation": "I booked a hotel in the centre.", "subcategory": "accommodation"},
-        {"portuguese": "quarto", "english": "room (hotel/bedroom)", "cefr": "A1", "gender": "m", "example": "Um quarto para duas noites.", "exampleTranslation": "A room for two nights.", "subcategory": "accommodation"},
-        {"portuguese": "reserva", "english": "reservation / booking", "cefr": "A2", "gender": "f", "example": "Tenho uma reserva em nome de Silva.", "exampleTranslation": "I have a booking under the name Silva.", "subcategory": "accommodation"},
-        {"portuguese": "chave", "english": "key", "cefr": "A1", "gender": "f", "example": "A chave do quarto, por favor.", "exampleTranslation": "The room key, please.", "subcategory": "accommodation"},
-        {"portuguese": "hospedagem", "english": "lodging / accommodation", "cefr": "B1", "gender": "f", "example": "A hospedagem inclui pequeno-almoço.", "exampleTranslation": "The accommodation includes breakfast.", "subcategory": "accommodation"},
-        {"portuguese": "praia", "english": "beach", "cefr": "A1", "gender": "f", "example": "Vamos à praia amanhã.", "exampleTranslation": "Let's go to the beach tomorrow.", "subcategory": "places"},
-        {"portuguese": "museu", "english": "museum", "cefr": "A1", "gender": "m", "example": "O museu abre às dez.", "exampleTranslation": "The museum opens at ten.", "subcategory": "places"},
-        {"portuguese": "igreja", "english": "church", "cefr": "A2", "gender": "f", "example": "A igreja é do século XV.", "exampleTranslation": "The church is from the 15th century.", "subcategory": "places"},
-        {"portuguese": "castelo", "english": "castle", "cefr": "A2", "gender": "m", "example": "O Castelo de São Jorge.", "exampleTranslation": "The Castle of São Jorge.", "subcategory": "places"},
-        {"portuguese": "jardim", "english": "garden / park", "cefr": "A2", "gender": "m", "example": "O jardim é muito bonito.", "exampleTranslation": "The garden is very beautiful.", "subcategory": "places"},
-        {"portuguese": "mercado", "english": "market", "cefr": "A2", "gender": "m", "example": "Vou ao mercado comprar fruta.", "exampleTranslation": "I'm going to the market to buy fruit.", "subcategory": "places"},
-        {"portuguese": "farmácia", "english": "pharmacy", "cefr": "A1", "gender": "f", "example": "Onde é a farmácia mais próxima?", "exampleTranslation": "Where is the nearest pharmacy?", "subcategory": "places"},
-        {"portuguese": "hospital", "english": "hospital", "cefr": "A1", "gender": "m", "example": "Levem-me ao hospital.", "exampleTranslation": "Take me to the hospital.", "subcategory": "places"},
-        {"portuguese": "banco", "english": "bank", "cefr": "A1", "gender": "m", "example": "Preciso de ir ao banco.", "exampleTranslation": "I need to go to the bank.", "subcategory": "places"},
-        {"portuguese": "correios", "english": "post office", "cefr": "A2", "gender": "m", "example": "Vou aos correios enviar uma carta.", "exampleTranslation": "I'm going to the post office to send a letter.", "subcategory": "places"},
-        {"portuguese": "supermercado", "english": "supermarket", "cefr": "A1", "gender": "m", "example": "Vou ao supermercado.", "exampleTranslation": "I'm going to the supermarket.", "subcategory": "places"},
-        {"portuguese": "perdido", "english": "lost", "cefr": "A2", "gender": "m", "example": "Estou perdido, pode ajudar-me?", "exampleTranslation": "I'm lost, can you help me?", "subcategory": "help"},
-        {"portuguese": "ajuda", "english": "help", "cefr": "A1", "gender": "f", "example": "Preciso de ajuda.", "exampleTranslation": "I need help.", "subcategory": "help"},
-        {"portuguese": "emergência", "english": "emergency", "cefr": "A2", "gender": "f", "example": "Chame uma ambulância, é uma emergência!", "exampleTranslation": "Call an ambulance, it's an emergency!", "subcategory": "help"},
-        {"portuguese": "passaporte", "english": "passport", "cefr": "A1", "gender": "m", "example": "O meu passaporte, por favor.", "exampleTranslation": "My passport, please.", "subcategory": "travel"},
-        {"portuguese": "bagagem", "english": "luggage", "cefr": "A2", "gender": "f", "example": "A minha bagagem não chegou.", "exampleTranslation": "My luggage didn't arrive.", "subcategory": "travel"},
-        {"portuguese": "viagem", "english": "trip / journey", "cefr": "A2", "gender": "f", "example": "Boa viagem!", "exampleTranslation": "Have a good trip!", "subcategory": "travel"},
-        {"portuguese": "férias", "english": "holidays / vacation", "cefr": "A2", "gender": "f", "example": "Estou de férias.", "exampleTranslation": "I'm on holiday.", "subcategory": "travel"},
-        {"portuguese": "saudade", "english": "longing / missing (untranslatable)", "cefr": "B1", "gender": "f", "example": "Tenho saudades de Portugal.", "exampleTranslation": "I miss Portugal.", "subcategory": "travel"},
-        {"portuguese": "estrangeiro", "english": "foreigner / abroad", "cefr": "B1", "gender": "m", "example": "Vivo no estrangeiro.", "exampleTranslation": "I live abroad.", "subcategory": "travel"},
-        {"portuguese": "alfândega", "english": "customs", "cefr": "B1", "gender": "f", "example": "Passámos pela alfândega.", "exampleTranslation": "We went through customs.", "subcategory": "travel"},
-        {"portuguese": "embaixada", "english": "embassy", "cefr": "B1", "gender": "f", "example": "A embaixada dos Países Baixos.", "exampleTranslation": "The Dutch embassy.", "subcategory": "travel"},
-        {"portuguese": "fronteira", "english": "border", "cefr": "B1", "gender": "f", "example": "A fronteira com Espanha.", "exampleTranslation": "The border with Spain.", "subcategory": "travel"},
-        {"portuguese": "recepção", "english": "reception / front desk", "cefr": "A2", "gender": "f", "example": "Pergunte na recepção.", "exampleTranslation": "Ask at reception.", "subcategory": "accommodation"},
-        {"portuguese": "câmbio", "english": "exchange (money)", "cefr": "B1", "gender": "m", "example": "Qual é a taxa de câmbio?", "exampleTranslation": "What is the exchange rate?", "subcategory": "travel"},
-        {"portuguese": "rotunda", "english": "roundabout", "cefr": "B1", "gender": "f", "example": "Na rotunda, toma a segunda saída.", "exampleTranslation": "At the roundabout, take the second exit.", "subcategory": "directions"},
-        {"portuguese": "peão", "english": "pedestrian", "cefr": "B1", "gender": "m", "example": "Passadeira para peões.", "exampleTranslation": "Pedestrian crossing.", "subcategory": "directions"}
+        {
+          "portuguese": "aeroporto",
+          "english": "airport",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O aeroporto de Lisboa.",
+          "exampleTranslation": "The Lisbon airport."
+        },
+        {
+          "portuguese": "avião",
+          "english": "aeroplane",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O avião parte às dez.",
+          "exampleTranslation": "The plane departs at ten."
+        },
+        {
+          "portuguese": "comboio",
+          "english": "train",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Apanhei o comboio para o Porto.",
+          "exampleTranslation": "I caught the train to Porto."
+        },
+        {
+          "portuguese": "autocarro",
+          "english": "bus",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O autocarro passa às nove.",
+          "exampleTranslation": "The bus comes at nine."
+        },
+        {
+          "portuguese": "metro",
+          "english": "metro / underground",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "A estação de metro é aqui perto.",
+          "exampleTranslation": "The metro station is nearby."
+        },
+        {
+          "portuguese": "táxi",
+          "english": "taxi",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Chamei um táxi.",
+          "exampleTranslation": "I called a taxi."
+        },
+        {
+          "portuguese": "carro",
+          "english": "car",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vou de carro.",
+          "exampleTranslation": "I'm going by car."
+        },
+        {
+          "portuguese": "bicicleta",
+          "english": "bicycle",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Ando de bicicleta todos os dias.",
+          "exampleTranslation": "I ride a bicycle every day."
+        },
+        {
+          "portuguese": "barco",
+          "english": "boat",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Apanhamos o barco para Cacilhas.",
+          "exampleTranslation": "We take the boat to Cacilhas."
+        },
+        {
+          "portuguese": "eléctrico",
+          "english": "tram",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O eléctrico 28 é famoso.",
+          "exampleTranslation": "Tram 28 is famous."
+        },
+        {
+          "portuguese": "bilhete",
+          "english": "ticket",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Onde compro o bilhete?",
+          "exampleTranslation": "Where do I buy the ticket?"
+        },
+        {
+          "portuguese": "ida e volta",
+          "english": "return / round trip",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Um bilhete de ida e volta.",
+          "exampleTranslation": "A return ticket."
+        },
+        {
+          "portuguese": "partida",
+          "english": "departure",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A hora de partida é às seis.",
+          "exampleTranslation": "The departure time is at six."
+        },
+        {
+          "portuguese": "chegada",
+          "english": "arrival",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A chegada é ao meio-dia.",
+          "exampleTranslation": "The arrival is at noon."
+        },
+        {
+          "portuguese": "atraso",
+          "english": "delay",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O comboio tem vinte minutos de atraso.",
+          "exampleTranslation": "The train is twenty minutes late."
+        },
+        {
+          "portuguese": "rua",
+          "english": "street",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Vivo na Rua Augusta.",
+          "exampleTranslation": "I live on Rua Augusta."
+        },
+        {
+          "portuguese": "avenida",
+          "english": "avenue",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A Avenida da Liberdade é bonita.",
+          "exampleTranslation": "Avenida da Liberdade is beautiful."
+        },
+        {
+          "portuguese": "praça",
+          "english": "square / plaza",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Encontramo-nos na praça.",
+          "exampleTranslation": "We'll meet at the square."
+        },
+        {
+          "portuguese": "esquina",
+          "english": "corner",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Vira na esquina.",
+          "exampleTranslation": "Turn at the corner."
+        },
+        {
+          "portuguese": "direita",
+          "english": "right",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Vira à direita.",
+          "exampleTranslation": "Turn right."
+        },
+        {
+          "portuguese": "esquerda",
+          "english": "left",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Vira à esquerda.",
+          "exampleTranslation": "Turn left."
+        },
+        {
+          "portuguese": "em frente",
+          "english": "straight ahead",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Segue em frente.",
+          "exampleTranslation": "Go straight ahead."
+        },
+        {
+          "portuguese": "perto",
+          "english": "near / close",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Fica perto daqui.",
+          "exampleTranslation": "It's near here."
+        },
+        {
+          "portuguese": "longe",
+          "english": "far",
+          "cefr": "A1",
+          "gender": null,
+          "example": "É longe a pé.",
+          "exampleTranslation": "It's far on foot."
+        },
+        {
+          "portuguese": "aqui",
+          "english": "here",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Estou aqui.",
+          "exampleTranslation": "I'm here."
+        },
+        {
+          "portuguese": "ali",
+          "english": "there (visible)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A farmácia é ali.",
+          "exampleTranslation": "The pharmacy is over there."
+        },
+        {
+          "portuguese": "mapa",
+          "english": "map",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Tens um mapa da cidade?",
+          "exampleTranslation": "Do you have a city map?"
+        },
+        {
+          "portuguese": "hotel",
+          "english": "hotel",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Reservei um hotel no centro.",
+          "exampleTranslation": "I booked a hotel in the centre."
+        },
+        {
+          "portuguese": "quarto",
+          "english": "room (hotel/bedroom)",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Um quarto para duas noites.",
+          "exampleTranslation": "A room for two nights."
+        },
+        {
+          "portuguese": "reserva",
+          "english": "reservation / booking",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho uma reserva em nome de Silva.",
+          "exampleTranslation": "I have a booking under the name Silva."
+        },
+        {
+          "portuguese": "chave",
+          "english": "key",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A chave do quarto, por favor.",
+          "exampleTranslation": "The room key, please."
+        },
+        {
+          "portuguese": "hospedagem",
+          "english": "lodging / accommodation",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A hospedagem inclui pequeno-almoço.",
+          "exampleTranslation": "The accommodation includes breakfast."
+        },
+        {
+          "portuguese": "praia",
+          "english": "beach",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Vamos à praia amanhã.",
+          "exampleTranslation": "Let's go to the beach tomorrow."
+        },
+        {
+          "portuguese": "museu",
+          "english": "museum",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O museu abre às dez.",
+          "exampleTranslation": "The museum opens at ten."
+        },
+        {
+          "portuguese": "igreja",
+          "english": "church",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A igreja é do século XV.",
+          "exampleTranslation": "The church is from the 15th century."
+        },
+        {
+          "portuguese": "castelo",
+          "english": "castle",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Castelo de São Jorge.",
+          "exampleTranslation": "The Castle of São Jorge."
+        },
+        {
+          "portuguese": "jardim",
+          "english": "garden / park",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O jardim é muito bonito.",
+          "exampleTranslation": "The garden is very beautiful."
+        },
+        {
+          "portuguese": "mercado",
+          "english": "market",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vou ao mercado comprar fruta.",
+          "exampleTranslation": "I'm going to the market to buy fruit."
+        },
+        {
+          "portuguese": "farmácia",
+          "english": "pharmacy",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Onde é a farmácia mais próxima?",
+          "exampleTranslation": "Where is the nearest pharmacy?"
+        },
+        {
+          "portuguese": "hospital",
+          "english": "hospital",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Levem-me ao hospital.",
+          "exampleTranslation": "Take me to the hospital."
+        },
+        {
+          "portuguese": "banco",
+          "english": "bank",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Preciso de ir ao banco.",
+          "exampleTranslation": "I need to go to the bank."
+        },
+        {
+          "portuguese": "correios",
+          "english": "post office",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vou aos correios enviar uma carta.",
+          "exampleTranslation": "I'm going to the post office to send a letter."
+        },
+        {
+          "portuguese": "supermercado",
+          "english": "supermarket",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vou ao supermercado.",
+          "exampleTranslation": "I'm going to the supermarket."
+        },
+        {
+          "portuguese": "perdido",
+          "english": "lost",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Estou perdido, pode ajudar-me?",
+          "exampleTranslation": "I'm lost, can you help me?"
+        },
+        {
+          "portuguese": "ajuda",
+          "english": "help",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Preciso de ajuda.",
+          "exampleTranslation": "I need help."
+        },
+        {
+          "portuguese": "emergência",
+          "english": "emergency",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Chame uma ambulância, é uma emergência!",
+          "exampleTranslation": "Call an ambulance, it's an emergency!"
+        },
+        {
+          "portuguese": "passaporte",
+          "english": "passport",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O meu passaporte, por favor.",
+          "exampleTranslation": "My passport, please."
+        },
+        {
+          "portuguese": "bagagem",
+          "english": "luggage",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A minha bagagem não chegou.",
+          "exampleTranslation": "My luggage didn't arrive."
+        },
+        {
+          "portuguese": "viagem",
+          "english": "trip / journey",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Boa viagem!",
+          "exampleTranslation": "Have a good trip!"
+        },
+        {
+          "portuguese": "férias",
+          "english": "holidays / vacation",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Estou de férias.",
+          "exampleTranslation": "I'm on holiday."
+        },
+        {
+          "portuguese": "saudade",
+          "english": "longing / missing (untranslatable)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Tenho saudades de Portugal.",
+          "exampleTranslation": "I miss Portugal."
+        },
+        {
+          "portuguese": "estrangeiro",
+          "english": "foreigner / abroad",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Vivo no estrangeiro.",
+          "exampleTranslation": "I live abroad."
+        },
+        {
+          "portuguese": "alfândega",
+          "english": "customs",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Passámos pela alfândega.",
+          "exampleTranslation": "We went through customs."
+        },
+        {
+          "portuguese": "embaixada",
+          "english": "embassy",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A embaixada dos Países Baixos.",
+          "exampleTranslation": "The Dutch embassy."
+        },
+        {
+          "portuguese": "fronteira",
+          "english": "border",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A fronteira com Espanha.",
+          "exampleTranslation": "The border with Spain."
+        },
+        {
+          "portuguese": "recepção",
+          "english": "reception / front desk",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Pergunte na recepção.",
+          "exampleTranslation": "Ask at reception."
+        },
+        {
+          "portuguese": "câmbio",
+          "english": "exchange (money)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Qual é a taxa de câmbio?",
+          "exampleTranslation": "What is the exchange rate?"
+        },
+        {
+          "portuguese": "rotunda",
+          "english": "roundabout",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Na rotunda, toma a segunda saída.",
+          "exampleTranslation": "At the roundabout, take the second exit."
+        },
+        {
+          "portuguese": "peão",
+          "english": "pedestrian",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Passadeira para peões.",
+          "exampleTranslation": "Pedestrian crossing."
+        }
       ]
     },
     {
-      "id": "home-family",
-      "title": "Home & Family",
-      "description": "Rooms, household items, relationships, and daily routines",
-      "emoji": "🏠",
+      "id": "home-rooms",
+      "title": "Home & Rooms",
+      "description": "Types of housing, rooms, furniture, appliances, and household items",
       "words": [
-        {"portuguese": "casa", "english": "house / home", "cefr": "A1", "gender": "f", "example": "A minha casa é pequena.", "exampleTranslation": "My house is small.", "subcategory": "home"},
-        {"portuguese": "apartamento", "english": "apartment / flat", "cefr": "A1", "gender": "m", "example": "Moro num apartamento.", "exampleTranslation": "I live in an apartment.", "subcategory": "home"},
-        {"portuguese": "cozinha", "english": "kitchen", "cefr": "A1", "gender": "f", "example": "A cozinha é grande.", "exampleTranslation": "The kitchen is big.", "subcategory": "rooms"},
-        {"portuguese": "sala", "english": "living room", "cefr": "A1", "gender": "f", "example": "Estamos na sala.", "exampleTranslation": "We're in the living room.", "subcategory": "rooms"},
-        {"portuguese": "quarto", "english": "bedroom", "cefr": "A1", "gender": "m", "example": "O quarto tem uma janela grande.", "exampleTranslation": "The bedroom has a big window.", "subcategory": "rooms"},
-        {"portuguese": "casa de banho", "english": "bathroom", "cefr": "A1", "gender": "f", "example": "Onde é a casa de banho?", "exampleTranslation": "Where is the bathroom?", "subcategory": "rooms"},
-        {"portuguese": "varanda", "english": "balcony", "cefr": "A2", "gender": "f", "example": "Tomo café na varanda.", "exampleTranslation": "I have coffee on the balcony.", "subcategory": "rooms"},
-        {"portuguese": "jardim", "english": "garden", "cefr": "A2", "gender": "m", "example": "Temos um jardim pequeno.", "exampleTranslation": "We have a small garden.", "subcategory": "rooms"},
-        {"portuguese": "garagem", "english": "garage", "cefr": "A2", "gender": "f", "example": "O carro está na garagem.", "exampleTranslation": "The car is in the garage.", "subcategory": "rooms"},
-        {"portuguese": "escadas", "english": "stairs", "cefr": "A2", "gender": "f", "example": "Sobe as escadas.", "exampleTranslation": "Go up the stairs.", "subcategory": "rooms"},
-        {"portuguese": "cama", "english": "bed", "cefr": "A1", "gender": "f", "example": "A cama é confortável.", "exampleTranslation": "The bed is comfortable.", "subcategory": "furniture"},
-        {"portuguese": "mesa", "english": "table", "cefr": "A1", "gender": "f", "example": "Põe a mesa para o jantar.", "exampleTranslation": "Set the table for dinner.", "subcategory": "furniture"},
-        {"portuguese": "cadeira", "english": "chair", "cefr": "A1", "gender": "f", "example": "Senta-te na cadeira.", "exampleTranslation": "Sit on the chair.", "subcategory": "furniture"},
-        {"portuguese": "sofá", "english": "sofa / couch", "cefr": "A1", "gender": "m", "example": "Vou sentar-me no sofá.", "exampleTranslation": "I'm going to sit on the sofa.", "subcategory": "furniture"},
-        {"portuguese": "armário", "english": "wardrobe / cupboard", "cefr": "A2", "gender": "m", "example": "A roupa está no armário.", "exampleTranslation": "The clothes are in the wardrobe.", "subcategory": "furniture"},
-        {"portuguese": "espelho", "english": "mirror", "cefr": "A2", "gender": "m", "example": "Olha-te ao espelho.", "exampleTranslation": "Look at yourself in the mirror.", "subcategory": "furniture"},
-        {"portuguese": "televisão", "english": "television", "cefr": "A1", "gender": "f", "example": "Estou a ver televisão.", "exampleTranslation": "I'm watching television.", "subcategory": "items"},
-        {"portuguese": "telemóvel", "english": "mobile phone", "cefr": "A1", "gender": "m", "example": "Esqueci o telemóvel em casa.", "exampleTranslation": "I forgot my phone at home.", "subcategory": "items"},
-        {"portuguese": "chave", "english": "key", "cefr": "A1", "gender": "f", "example": "Onde estão as chaves?", "exampleTranslation": "Where are the keys?", "subcategory": "items"},
-        {"portuguese": "porta", "english": "door", "cefr": "A1", "gender": "f", "example": "Fecha a porta.", "exampleTranslation": "Close the door.", "subcategory": "items"},
-        {"portuguese": "janela", "english": "window", "cefr": "A1", "gender": "f", "example": "Abre a janela.", "exampleTranslation": "Open the window.", "subcategory": "items"},
-        {"portuguese": "luz", "english": "light", "cefr": "A1", "gender": "f", "example": "Apaga a luz.", "exampleTranslation": "Turn off the light.", "subcategory": "items"},
-        {"portuguese": "mãe", "english": "mother", "cefr": "A1", "gender": "f", "example": "A minha mãe chama-se Ana.", "exampleTranslation": "My mother is called Ana.", "subcategory": "family"},
-        {"portuguese": "pai", "english": "father", "cefr": "A1", "gender": "m", "example": "O meu pai é professor.", "exampleTranslation": "My father is a teacher.", "subcategory": "family"},
-        {"portuguese": "pais", "english": "parents", "cefr": "A1", "gender": "m", "example": "Os meus pais vivem no Porto.", "exampleTranslation": "My parents live in Porto.", "subcategory": "family"},
-        {"portuguese": "filho / filha", "english": "son / daughter", "cefr": "A1", "gender": null, "example": "A minha filha tem cinco anos.", "exampleTranslation": "My daughter is five years old.", "subcategory": "family"},
-        {"portuguese": "irmão / irmã", "english": "brother / sister", "cefr": "A1", "gender": null, "example": "Tenho um irmão mais velho.", "exampleTranslation": "I have an older brother.", "subcategory": "family"},
-        {"portuguese": "avó / avô", "english": "grandmother / grandfather", "cefr": "A1", "gender": null, "example": "A minha avó faz o melhor bolo.", "exampleTranslation": "My grandmother makes the best cake.", "subcategory": "family"},
-        {"portuguese": "tio / tia", "english": "uncle / aunt", "cefr": "A2", "gender": null, "example": "O meu tio vive em Coimbra.", "exampleTranslation": "My uncle lives in Coimbra.", "subcategory": "family"},
-        {"portuguese": "primo / prima", "english": "cousin (m/f)", "cefr": "A2", "gender": null, "example": "A minha prima casa em junho.", "exampleTranslation": "My cousin is getting married in June.", "subcategory": "family"},
-        {"portuguese": "marido", "english": "husband", "cefr": "A1", "gender": "m", "example": "O meu marido é holandês.", "exampleTranslation": "My husband is Dutch.", "subcategory": "family"},
-        {"portuguese": "mulher / esposa", "english": "wife", "cefr": "A1", "gender": "f", "example": "A minha mulher é portuguesa.", "exampleTranslation": "My wife is Portuguese.", "subcategory": "family"},
-        {"portuguese": "namorado / namorada", "english": "boyfriend / girlfriend", "cefr": "A2", "gender": null, "example": "A minha namorada é de Lisboa.", "exampleTranslation": "My girlfriend is from Lisbon.", "subcategory": "family"},
-        {"portuguese": "amigo / amiga", "english": "friend (m/f)", "cefr": "A1", "gender": null, "example": "Vou sair com os meus amigos.", "exampleTranslation": "I'm going out with my friends.", "subcategory": "family"},
-        {"portuguese": "vizinho / vizinha", "english": "neighbour (m/f)", "cefr": "A2", "gender": null, "example": "Os vizinhos são simpáticos.", "exampleTranslation": "The neighbours are friendly.", "subcategory": "family"},
-        {"portuguese": "acordar", "english": "to wake up", "cefr": "A1", "gender": null, "example": "Acordo às sete da manhã.", "exampleTranslation": "I wake up at seven in the morning.", "subcategory": "routine"},
-        {"portuguese": "levantar-se", "english": "to get up", "cefr": "A1", "gender": null, "example": "Levanto-me cedo.", "exampleTranslation": "I get up early.", "subcategory": "routine"},
-        {"portuguese": "tomar banho", "english": "to take a shower/bath", "cefr": "A1", "gender": null, "example": "Tomo banho de manhã.", "exampleTranslation": "I shower in the morning.", "subcategory": "routine"},
-        {"portuguese": "vestir-se", "english": "to get dressed", "cefr": "A2", "gender": null, "example": "Visto-me depressa.", "exampleTranslation": "I get dressed quickly.", "subcategory": "routine"},
-        {"portuguese": "sair de casa", "english": "to leave the house", "cefr": "A2", "gender": null, "example": "Saio de casa às oito.", "exampleTranslation": "I leave the house at eight.", "subcategory": "routine"},
-        {"portuguese": "trabalhar", "english": "to work", "cefr": "A1", "gender": null, "example": "Trabalho em casa.", "exampleTranslation": "I work from home.", "subcategory": "routine"},
-        {"portuguese": "descansar", "english": "to rest", "cefr": "A2", "gender": null, "example": "Preciso de descansar.", "exampleTranslation": "I need to rest.", "subcategory": "routine"},
-        {"portuguese": "dormir", "english": "to sleep", "cefr": "A1", "gender": null, "example": "Durmo oito horas por noite.", "exampleTranslation": "I sleep eight hours a night.", "subcategory": "routine"},
-        {"portuguese": "deitar-se", "english": "to go to bed", "cefr": "A2", "gender": null, "example": "Deito-me à meia-noite.", "exampleTranslation": "I go to bed at midnight.", "subcategory": "routine"},
-        {"portuguese": "limpar", "english": "to clean", "cefr": "A2", "gender": null, "example": "Vou limpar a casa.", "exampleTranslation": "I'm going to clean the house.", "subcategory": "routine"},
-        {"portuguese": "cozinhar", "english": "to cook", "cefr": "A2", "gender": null, "example": "Quem cozinha hoje?", "exampleTranslation": "Who's cooking today?", "subcategory": "routine"},
-        {"portuguese": "lavar", "english": "to wash", "cefr": "A2", "gender": null, "example": "Vou lavar a roupa.", "exampleTranslation": "I'm going to wash the clothes.", "subcategory": "routine"},
-        {"portuguese": "arrumar", "english": "to tidy up", "cefr": "A2", "gender": null, "example": "Arruma o teu quarto.", "exampleTranslation": "Tidy up your room.", "subcategory": "routine"},
-        {"portuguese": "aspirador", "english": "vacuum cleaner", "cefr": "B1", "gender": "m", "example": "Passa o aspirador na sala.", "exampleTranslation": "Vacuum the living room.", "subcategory": "items"},
-        {"portuguese": "máquina de lavar", "english": "washing machine", "cefr": "A2", "gender": "f", "example": "Põe a máquina de lavar a trabalhar.", "exampleTranslation": "Put the washing machine on.", "subcategory": "items"},
-        {"portuguese": "frigorífico", "english": "fridge", "cefr": "A2", "gender": "m", "example": "O leite está no frigorífico.", "exampleTranslation": "The milk is in the fridge.", "subcategory": "items"},
-        {"portuguese": "fogão", "english": "stove / cooker", "cefr": "A2", "gender": "m", "example": "Cuidado com o fogão.", "exampleTranslation": "Be careful with the stove.", "subcategory": "items"},
-        {"portuguese": "renda", "english": "rent", "cefr": "B1", "gender": "f", "example": "A renda é cara em Lisboa.", "exampleTranslation": "The rent is expensive in Lisbon.", "subcategory": "home"},
-        {"portuguese": "mudança", "english": "move (house)", "cefr": "B1", "gender": "f", "example": "A mudança é no sábado.", "exampleTranslation": "The move is on Saturday.", "subcategory": "home"},
-        {"portuguese": "sótão", "english": "attic", "cefr": "B1", "gender": "m", "example": "As caixas estão no sótão.", "exampleTranslation": "The boxes are in the attic.", "subcategory": "rooms"},
-        {"portuguese": "cave", "english": "basement / cellar", "cefr": "B1", "gender": "f", "example": "O vinho está na cave.", "exampleTranslation": "The wine is in the cellar.", "subcategory": "rooms"},
-        {"portuguese": "andar", "english": "floor / storey", "cefr": "A2", "gender": "m", "example": "Moro no terceiro andar.", "exampleTranslation": "I live on the third floor.", "subcategory": "home"},
-        {"portuguese": "vizinhança", "english": "neighbourhood", "cefr": "B1", "gender": "f", "example": "A vizinhança é tranquila.", "exampleTranslation": "The neighbourhood is quiet.", "subcategory": "home"},
-        {"portuguese": "sobrinho / sobrinha", "english": "nephew / niece", "cefr": "A2", "gender": null, "example": "O meu sobrinho fez dois anos.", "exampleTranslation": "My nephew turned two.", "subcategory": "family"},
-        {"portuguese": "panela", "english": "pot / saucepan", "cefr": "A2", "gender": "f", "example": "Preciso de uma panela grande.", "exampleTranslation": "I need a big pot.", "subcategory": "kitchen"},
-        {"portuguese": "frigideira", "english": "frying pan", "cefr": "A2", "gender": "f", "example": "Frita o ovo na frigideira.", "exampleTranslation": "Fry the egg in the frying pan.", "subcategory": "kitchen"},
-        {"portuguese": "forno", "english": "oven", "cefr": "A2", "gender": "m", "example": "Põe no forno a 180 graus.", "exampleTranslation": "Put it in the oven at 180 degrees.", "subcategory": "kitchen"},
-        {"portuguese": "micro-ondas", "english": "microwave", "cefr": "A2", "gender": "m", "example": "Aquece no micro-ondas.", "exampleTranslation": "Heat it in the microwave.", "subcategory": "kitchen"},
-        {"portuguese": "lava-loiça", "english": "kitchen sink", "cefr": "B1", "gender": "m", "example": "A loiça está no lava-loiça.", "exampleTranslation": "The dishes are in the sink.", "subcategory": "kitchen"},
-        {"portuguese": "gaveta", "english": "drawer", "cefr": "A2", "gender": "f", "example": "Os talheres estão na gaveta.", "exampleTranslation": "The cutlery is in the drawer.", "subcategory": "kitchen"},
-        {"portuguese": "prateleira", "english": "shelf", "cefr": "A2", "gender": "f", "example": "Os copos estão na prateleira.", "exampleTranslation": "The glasses are on the shelf.", "subcategory": "kitchen"},
-        {"portuguese": "talheres", "english": "cutlery", "cefr": "A2", "gender": "m", "example": "Onde estão os talheres?", "exampleTranslation": "Where is the cutlery?", "subcategory": "kitchen"},
-        {"portuguese": "toalha de mesa", "english": "tablecloth", "cefr": "B1", "gender": "f", "example": "Põe a toalha de mesa.", "exampleTranslation": "Put the tablecloth on.", "subcategory": "kitchen"},
-        {"portuguese": "avental", "english": "apron", "cefr": "B1", "gender": "m", "example": "Usa o avental para cozinhar.", "exampleTranslation": "Wear the apron for cooking.", "subcategory": "kitchen"},
-        {"portuguese": "toalha", "english": "towel", "cefr": "A2", "gender": "f", "example": "Passa-me uma toalha.", "exampleTranslation": "Pass me a towel.", "subcategory": "bathroom"},
-        {"portuguese": "sabonete", "english": "soap (bar)", "cefr": "A2", "gender": "m", "example": "O sabonete está ao lado do lavatório.", "exampleTranslation": "The soap is next to the sink.", "subcategory": "bathroom"},
-        {"portuguese": "champô", "english": "shampoo", "cefr": "A2", "gender": "m", "example": "Preciso de comprar champô.", "exampleTranslation": "I need to buy shampoo.", "subcategory": "bathroom"},
-        {"portuguese": "escova de dentes", "english": "toothbrush", "cefr": "A2", "gender": "f", "example": "Onde está a minha escova de dentes?", "exampleTranslation": "Where is my toothbrush?", "subcategory": "bathroom"},
-        {"portuguese": "pasta de dentes", "english": "toothpaste", "cefr": "A2", "gender": "f", "example": "A pasta de dentes acabou.", "exampleTranslation": "The toothpaste ran out.", "subcategory": "bathroom"},
-        {"portuguese": "duche", "english": "shower", "cefr": "A2", "gender": "m", "example": "Vou tomar um duche rápido.", "exampleTranslation": "I'm going to take a quick shower.", "subcategory": "bathroom"},
-        {"portuguese": "banheira", "english": "bathtub", "cefr": "A2", "gender": "f", "example": "A casa de banho tem banheira.", "exampleTranslation": "The bathroom has a bathtub.", "subcategory": "bathroom"},
-        {"portuguese": "lavatório", "english": "washbasin / sink", "cefr": "B1", "gender": "m", "example": "Lava as mãos no lavatório.", "exampleTranslation": "Wash your hands at the sink.", "subcategory": "bathroom"},
-        {"portuguese": "secador de cabelo", "english": "hair dryer", "cefr": "B1", "gender": "m", "example": "O secador de cabelo está na gaveta.", "exampleTranslation": "The hair dryer is in the drawer.", "subcategory": "bathroom"},
-        {"portuguese": "almofada", "english": "pillow", "cefr": "A2", "gender": "f", "example": "Preciso de duas almofadas.", "exampleTranslation": "I need two pillows.", "subcategory": "bedroom"},
-        {"portuguese": "cobertor", "english": "blanket", "cefr": "A2", "gender": "m", "example": "No inverno uso um cobertor.", "exampleTranslation": "In winter I use a blanket.", "subcategory": "bedroom"},
-        {"portuguese": "lençol", "english": "bed sheet", "cefr": "A2", "gender": "m", "example": "Mudei os lençóis hoje.", "exampleTranslation": "I changed the sheets today.", "subcategory": "bedroom"},
-        {"portuguese": "colchão", "english": "mattress", "cefr": "B1", "gender": "m", "example": "O colchão é novo.", "exampleTranslation": "The mattress is new.", "subcategory": "bedroom"},
-        {"portuguese": "mesinha de cabeceira", "english": "bedside table", "cefr": "B1", "gender": "f", "example": "O livro está na mesinha de cabeceira.", "exampleTranslation": "The book is on the bedside table.", "subcategory": "bedroom"},
-        {"portuguese": "candeeiro", "english": "lamp", "cefr": "A2", "gender": "m", "example": "Acende o candeeiro.", "exampleTranslation": "Turn on the lamp.", "subcategory": "bedroom"},
-        {"portuguese": "cortina", "english": "curtain", "cefr": "A2", "gender": "f", "example": "Fecha as cortinas.", "exampleTranslation": "Close the curtains.", "subcategory": "bedroom"},
-        {"portuguese": "despertador", "english": "alarm clock", "cefr": "A2", "gender": "m", "example": "O despertador toca às sete.", "exampleTranslation": "The alarm goes off at seven.", "subcategory": "bedroom"},
-        {"portuguese": "tapete", "english": "rug / carpet", "cefr": "A2", "gender": "m", "example": "O tapete é novo.", "exampleTranslation": "The rug is new.", "subcategory": "living-room"},
-        {"portuguese": "estante", "english": "bookshelf", "cefr": "A2", "gender": "f", "example": "Os livros estão na estante.", "exampleTranslation": "The books are on the bookshelf.", "subcategory": "living-room"},
-        {"portuguese": "almofada", "english": "cushion", "cefr": "A2", "gender": "f", "example": "As almofadas do sofá.", "exampleTranslation": "The sofa cushions.", "subcategory": "living-room"},
-        {"portuguese": "comando", "english": "remote control", "cefr": "A2", "gender": "m", "example": "Onde está o comando da televisão?", "exampleTranslation": "Where is the TV remote?", "subcategory": "living-room"},
-        {"portuguese": "quadro", "english": "painting / frame", "cefr": "B1", "gender": "m", "example": "O quadro na parede é bonito.", "exampleTranslation": "The painting on the wall is beautiful.", "subcategory": "living-room"},
-        {"portuguese": "lareira", "english": "fireplace", "cefr": "B1", "gender": "f", "example": "Acende a lareira, está frio.", "exampleTranslation": "Light the fireplace, it's cold.", "subcategory": "living-room"}
+        {
+          "portuguese": "casa",
+          "english": "house / home",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A minha casa é pequena.",
+          "exampleTranslation": "My house is small."
+        },
+        {
+          "portuguese": "apartamento",
+          "english": "apartment / flat",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Moro num apartamento.",
+          "exampleTranslation": "I live in an apartment."
+        },
+        {
+          "portuguese": "cozinha",
+          "english": "kitchen",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A cozinha é grande.",
+          "exampleTranslation": "The kitchen is big."
+        },
+        {
+          "portuguese": "sala",
+          "english": "living room",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Estamos na sala.",
+          "exampleTranslation": "We're in the living room."
+        },
+        {
+          "portuguese": "quarto",
+          "english": "bedroom",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O quarto tem uma janela grande.",
+          "exampleTranslation": "The bedroom has a big window."
+        },
+        {
+          "portuguese": "casa de banho",
+          "english": "bathroom",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Onde é a casa de banho?",
+          "exampleTranslation": "Where is the bathroom?"
+        },
+        {
+          "portuguese": "varanda",
+          "english": "balcony",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tomo café na varanda.",
+          "exampleTranslation": "I have coffee on the balcony."
+        },
+        {
+          "portuguese": "jardim",
+          "english": "garden",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Temos um jardim pequeno.",
+          "exampleTranslation": "We have a small garden."
+        },
+        {
+          "portuguese": "garagem",
+          "english": "garage",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O carro está na garagem.",
+          "exampleTranslation": "The car is in the garage."
+        },
+        {
+          "portuguese": "escadas",
+          "english": "stairs",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Sobe as escadas.",
+          "exampleTranslation": "Go up the stairs."
+        },
+        {
+          "portuguese": "cama",
+          "english": "bed",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A cama é confortável.",
+          "exampleTranslation": "The bed is comfortable."
+        },
+        {
+          "portuguese": "mesa",
+          "english": "table",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Põe a mesa para o jantar.",
+          "exampleTranslation": "Set the table for dinner."
+        },
+        {
+          "portuguese": "cadeira",
+          "english": "chair",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Senta-te na cadeira.",
+          "exampleTranslation": "Sit on the chair."
+        },
+        {
+          "portuguese": "sofá",
+          "english": "sofa / couch",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vou sentar-me no sofá.",
+          "exampleTranslation": "I'm going to sit on the sofa."
+        },
+        {
+          "portuguese": "armário",
+          "english": "wardrobe / cupboard",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A roupa está no armário.",
+          "exampleTranslation": "The clothes are in the wardrobe."
+        },
+        {
+          "portuguese": "espelho",
+          "english": "mirror",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Olha-te ao espelho.",
+          "exampleTranslation": "Look at yourself in the mirror."
+        },
+        {
+          "portuguese": "televisão",
+          "english": "television",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Estou a ver televisão.",
+          "exampleTranslation": "I'm watching television."
+        },
+        {
+          "portuguese": "telemóvel",
+          "english": "mobile phone",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Esqueci o telemóvel em casa.",
+          "exampleTranslation": "I forgot my phone at home."
+        },
+        {
+          "portuguese": "chave",
+          "english": "key",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Onde estão as chaves?",
+          "exampleTranslation": "Where are the keys?"
+        },
+        {
+          "portuguese": "porta",
+          "english": "door",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Fecha a porta.",
+          "exampleTranslation": "Close the door."
+        },
+        {
+          "portuguese": "janela",
+          "english": "window",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Abre a janela.",
+          "exampleTranslation": "Open the window."
+        },
+        {
+          "portuguese": "luz",
+          "english": "light",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Apaga a luz.",
+          "exampleTranslation": "Turn off the light."
+        },
+        {
+          "portuguese": "aspirador",
+          "english": "vacuum cleaner",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Passa o aspirador na sala.",
+          "exampleTranslation": "Vacuum the living room."
+        },
+        {
+          "portuguese": "máquina de lavar",
+          "english": "washing machine",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Põe a máquina de lavar a trabalhar.",
+          "exampleTranslation": "Put the washing machine on."
+        },
+        {
+          "portuguese": "frigorífico",
+          "english": "fridge",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O leite está no frigorífico.",
+          "exampleTranslation": "The milk is in the fridge."
+        },
+        {
+          "portuguese": "fogão",
+          "english": "stove / cooker",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Cuidado com o fogão.",
+          "exampleTranslation": "Be careful with the stove."
+        },
+        {
+          "portuguese": "renda",
+          "english": "rent",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A renda é cara em Lisboa.",
+          "exampleTranslation": "The rent is expensive in Lisbon."
+        },
+        {
+          "portuguese": "mudança",
+          "english": "move (house)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A mudança é no sábado.",
+          "exampleTranslation": "The move is on Saturday."
+        },
+        {
+          "portuguese": "sótão",
+          "english": "attic",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "As caixas estão no sótão.",
+          "exampleTranslation": "The boxes are in the attic."
+        },
+        {
+          "portuguese": "cave",
+          "english": "basement / cellar",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "O vinho está na cave.",
+          "exampleTranslation": "The wine is in the cellar."
+        },
+        {
+          "portuguese": "andar",
+          "english": "floor / storey",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Moro no terceiro andar.",
+          "exampleTranslation": "I live on the third floor."
+        },
+        {
+          "portuguese": "vizinhança",
+          "english": "neighbourhood",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A vizinhança é tranquila.",
+          "exampleTranslation": "The neighbourhood is quiet."
+        },
+        {
+          "portuguese": "panela",
+          "english": "pot / saucepan",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Preciso de uma panela grande.",
+          "exampleTranslation": "I need a big pot."
+        },
+        {
+          "portuguese": "frigideira",
+          "english": "frying pan",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Frita o ovo na frigideira.",
+          "exampleTranslation": "Fry the egg in the frying pan."
+        },
+        {
+          "portuguese": "forno",
+          "english": "oven",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Põe no forno a 180 graus.",
+          "exampleTranslation": "Put it in the oven at 180 degrees."
+        },
+        {
+          "portuguese": "micro-ondas",
+          "english": "microwave",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Aquece no micro-ondas.",
+          "exampleTranslation": "Heat it in the microwave."
+        },
+        {
+          "portuguese": "lava-loiça",
+          "english": "kitchen sink",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "A loiça está no lava-loiça.",
+          "exampleTranslation": "The dishes are in the sink."
+        },
+        {
+          "portuguese": "gaveta",
+          "english": "drawer",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Os talheres estão na gaveta.",
+          "exampleTranslation": "The cutlery is in the drawer."
+        },
+        {
+          "portuguese": "prateleira",
+          "english": "shelf",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Os copos estão na prateleira.",
+          "exampleTranslation": "The glasses are on the shelf."
+        },
+        {
+          "portuguese": "talheres",
+          "english": "cutlery",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Onde estão os talheres?",
+          "exampleTranslation": "Where is the cutlery?"
+        },
+        {
+          "portuguese": "toalha de mesa",
+          "english": "tablecloth",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Põe a toalha de mesa.",
+          "exampleTranslation": "Put the tablecloth on."
+        },
+        {
+          "portuguese": "avental",
+          "english": "apron",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Usa o avental para cozinhar.",
+          "exampleTranslation": "Wear the apron for cooking."
+        },
+        {
+          "portuguese": "toalha",
+          "english": "towel",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Passa-me uma toalha.",
+          "exampleTranslation": "Pass me a towel."
+        },
+        {
+          "portuguese": "sabonete",
+          "english": "soap (bar)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O sabonete está ao lado do lavatório.",
+          "exampleTranslation": "The soap is next to the sink."
+        },
+        {
+          "portuguese": "champô",
+          "english": "shampoo",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Preciso de comprar champô.",
+          "exampleTranslation": "I need to buy shampoo."
+        },
+        {
+          "portuguese": "escova de dentes",
+          "english": "toothbrush",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Onde está a minha escova de dentes?",
+          "exampleTranslation": "Where is my toothbrush?"
+        },
+        {
+          "portuguese": "pasta de dentes",
+          "english": "toothpaste",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A pasta de dentes acabou.",
+          "exampleTranslation": "The toothpaste ran out."
+        },
+        {
+          "portuguese": "duche",
+          "english": "shower",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vou tomar um duche rápido.",
+          "exampleTranslation": "I'm going to take a quick shower."
+        },
+        {
+          "portuguese": "banheira",
+          "english": "bathtub",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A casa de banho tem banheira.",
+          "exampleTranslation": "The bathroom has a bathtub."
+        },
+        {
+          "portuguese": "lavatório",
+          "english": "washbasin / sink",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Lava as mãos no lavatório.",
+          "exampleTranslation": "Wash your hands at the sink."
+        },
+        {
+          "portuguese": "secador de cabelo",
+          "english": "hair dryer",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O secador de cabelo está na gaveta.",
+          "exampleTranslation": "The hair dryer is in the drawer."
+        },
+        {
+          "portuguese": "almofada",
+          "english": "pillow",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Preciso de duas almofadas.",
+          "exampleTranslation": "I need two pillows."
+        },
+        {
+          "portuguese": "cobertor",
+          "english": "blanket",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "No inverno uso um cobertor.",
+          "exampleTranslation": "In winter I use a blanket."
+        },
+        {
+          "portuguese": "lençol",
+          "english": "bed sheet",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Mudei os lençóis hoje.",
+          "exampleTranslation": "I changed the sheets today."
+        },
+        {
+          "portuguese": "colchão",
+          "english": "mattress",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O colchão é novo.",
+          "exampleTranslation": "The mattress is new."
+        },
+        {
+          "portuguese": "mesinha de cabeceira",
+          "english": "bedside table",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "O livro está na mesinha de cabeceira.",
+          "exampleTranslation": "The book is on the bedside table."
+        },
+        {
+          "portuguese": "candeeiro",
+          "english": "lamp",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Acende o candeeiro.",
+          "exampleTranslation": "Turn on the lamp."
+        },
+        {
+          "portuguese": "cortina",
+          "english": "curtain",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Fecha as cortinas.",
+          "exampleTranslation": "Close the curtains."
+        },
+        {
+          "portuguese": "despertador",
+          "english": "alarm clock",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O despertador toca às sete.",
+          "exampleTranslation": "The alarm goes off at seven."
+        },
+        {
+          "portuguese": "tapete",
+          "english": "rug / carpet",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O tapete é novo.",
+          "exampleTranslation": "The rug is new."
+        },
+        {
+          "portuguese": "estante",
+          "english": "bookshelf",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Os livros estão na estante.",
+          "exampleTranslation": "The books are on the bookshelf."
+        },
+        {
+          "portuguese": "almofada",
+          "english": "cushion",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "As almofadas do sofá.",
+          "exampleTranslation": "The sofa cushions."
+        },
+        {
+          "portuguese": "comando",
+          "english": "remote control",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Onde está o comando da televisão?",
+          "exampleTranslation": "Where is the TV remote?"
+        },
+        {
+          "portuguese": "quadro",
+          "english": "painting / frame",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O quadro na parede é bonito.",
+          "exampleTranslation": "The painting on the wall is beautiful."
+        },
+        {
+          "portuguese": "lareira",
+          "english": "fireplace",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Acende a lareira, está frio.",
+          "exampleTranslation": "Light the fireplace, it's cold."
+        }
+      ]
+    },
+    {
+      "id": "family-daily-routine",
+      "title": "Family & Daily Routine",
+      "description": "Family members, relationships, and everyday routines",
+      "words": [
+        {
+          "portuguese": "mãe",
+          "english": "mother",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A minha mãe chama-se Ana.",
+          "exampleTranslation": "My mother is called Ana."
+        },
+        {
+          "portuguese": "pai",
+          "english": "father",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O meu pai é professor.",
+          "exampleTranslation": "My father is a teacher."
+        },
+        {
+          "portuguese": "pais",
+          "english": "parents",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Os meus pais vivem no Porto.",
+          "exampleTranslation": "My parents live in Porto."
+        },
+        {
+          "portuguese": "filho / filha",
+          "english": "son / daughter",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A minha filha tem cinco anos.",
+          "exampleTranslation": "My daughter is five years old."
+        },
+        {
+          "portuguese": "irmão / irmã",
+          "english": "brother / sister",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tenho um irmão mais velho.",
+          "exampleTranslation": "I have an older brother."
+        },
+        {
+          "portuguese": "avó / avô",
+          "english": "grandmother / grandfather",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A minha avó faz o melhor bolo.",
+          "exampleTranslation": "My grandmother makes the best cake."
+        },
+        {
+          "portuguese": "tio / tia",
+          "english": "uncle / aunt",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O meu tio vive em Coimbra.",
+          "exampleTranslation": "My uncle lives in Coimbra."
+        },
+        {
+          "portuguese": "primo / prima",
+          "english": "cousin (m/f)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A minha prima casa em junho.",
+          "exampleTranslation": "My cousin is getting married in June."
+        },
+        {
+          "portuguese": "marido",
+          "english": "husband",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O meu marido é holandês.",
+          "exampleTranslation": "My husband is Dutch."
+        },
+        {
+          "portuguese": "mulher / esposa",
+          "english": "wife",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A minha mulher é portuguesa.",
+          "exampleTranslation": "My wife is Portuguese."
+        },
+        {
+          "portuguese": "namorado / namorada",
+          "english": "boyfriend / girlfriend",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A minha namorada é de Lisboa.",
+          "exampleTranslation": "My girlfriend is from Lisbon."
+        },
+        {
+          "portuguese": "amigo / amiga",
+          "english": "friend (m/f)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vou sair com os meus amigos.",
+          "exampleTranslation": "I'm going out with my friends."
+        },
+        {
+          "portuguese": "vizinho / vizinha",
+          "english": "neighbour (m/f)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Os vizinhos são simpáticos.",
+          "exampleTranslation": "The neighbours are friendly."
+        },
+        {
+          "portuguese": "acordar",
+          "english": "to wake up",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Acordo às sete da manhã.",
+          "exampleTranslation": "I wake up at seven in the morning."
+        },
+        {
+          "portuguese": "levantar-se",
+          "english": "to get up",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Levanto-me cedo.",
+          "exampleTranslation": "I get up early."
+        },
+        {
+          "portuguese": "tomar banho",
+          "english": "to take a shower/bath",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tomo banho de manhã.",
+          "exampleTranslation": "I shower in the morning."
+        },
+        {
+          "portuguese": "vestir-se",
+          "english": "to get dressed",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Visto-me depressa.",
+          "exampleTranslation": "I get dressed quickly."
+        },
+        {
+          "portuguese": "sair de casa",
+          "english": "to leave the house",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Saio de casa às oito.",
+          "exampleTranslation": "I leave the house at eight."
+        },
+        {
+          "portuguese": "trabalhar",
+          "english": "to work",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Trabalho em casa.",
+          "exampleTranslation": "I work from home."
+        },
+        {
+          "portuguese": "descansar",
+          "english": "to rest",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Preciso de descansar.",
+          "exampleTranslation": "I need to rest."
+        },
+        {
+          "portuguese": "dormir",
+          "english": "to sleep",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Durmo oito horas por noite.",
+          "exampleTranslation": "I sleep eight hours a night."
+        },
+        {
+          "portuguese": "deitar-se",
+          "english": "to go to bed",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Deito-me à meia-noite.",
+          "exampleTranslation": "I go to bed at midnight."
+        },
+        {
+          "portuguese": "limpar",
+          "english": "to clean",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou limpar a casa.",
+          "exampleTranslation": "I'm going to clean the house."
+        },
+        {
+          "portuguese": "cozinhar",
+          "english": "to cook",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Quem cozinha hoje?",
+          "exampleTranslation": "Who's cooking today?"
+        },
+        {
+          "portuguese": "lavar",
+          "english": "to wash",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou lavar a roupa.",
+          "exampleTranslation": "I'm going to wash the clothes."
+        },
+        {
+          "portuguese": "arrumar",
+          "english": "to tidy up",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Arruma o teu quarto.",
+          "exampleTranslation": "Tidy up your room."
+        },
+        {
+          "portuguese": "sobrinho / sobrinha",
+          "english": "nephew / niece",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O meu sobrinho fez dois anos.",
+          "exampleTranslation": "My nephew turned two."
+        }
       ]
     },
     {
       "id": "work-education",
       "title": "Work & Education",
       "description": "Office, school, professions, and workplace vocabulary",
-      "emoji": "",
       "words": [
-        {"portuguese": "professor / professora", "english": "teacher", "cefr": "A1", "gender": null, "example": "O meu professor de português é simpático.", "exampleTranslation": "My Portuguese teacher is friendly.", "subcategory": "professions"},
-        {"portuguese": "médico / médica", "english": "doctor", "cefr": "A1", "gender": null, "example": "Preciso de ir ao médico.", "exampleTranslation": "I need to go to the doctor.", "subcategory": "professions"},
-        {"portuguese": "advogado / advogada", "english": "lawyer", "cefr": "A2", "gender": null, "example": "O advogado aconselhou-me.", "exampleTranslation": "The lawyer advised me.", "subcategory": "professions"},
-        {"portuguese": "engenheiro / engenheira", "english": "engineer", "cefr": "A2", "gender": null, "example": "A minha irmã é engenheira.", "exampleTranslation": "My sister is an engineer.", "subcategory": "professions"},
-        {"portuguese": "enfermeiro / enfermeira", "english": "nurse", "cefr": "A2", "gender": null, "example": "A enfermeira tomou a tensão.", "exampleTranslation": "The nurse took my blood pressure.", "subcategory": "professions"},
-        {"portuguese": "polícia", "english": "police officer", "cefr": "A1", "gender": null, "example": "Chamei a polícia.", "exampleTranslation": "I called the police.", "subcategory": "professions"},
-        {"portuguese": "cozinheiro / cozinheira", "english": "cook / chef", "cefr": "A2", "gender": null, "example": "O cozinheiro fez um prato excelente.", "exampleTranslation": "The chef made an excellent dish.", "subcategory": "professions"},
-        {"portuguese": "jornalista", "english": "journalist", "cefr": "A2", "gender": null, "example": "Ela é jornalista num jornal.", "exampleTranslation": "She is a journalist at a newspaper.", "subcategory": "professions"},
-        {"portuguese": "vendedor / vendedora", "english": "salesperson", "cefr": "A2", "gender": null, "example": "O vendedor ajudou-me a escolher.", "exampleTranslation": "The salesperson helped me choose.", "subcategory": "professions"},
-        {"portuguese": "bombeiro", "english": "firefighter", "cefr": "A2", "gender": "m", "example": "Os bombeiros apagaram o fogo.", "exampleTranslation": "The firefighters put out the fire.", "subcategory": "professions"},
-        {"portuguese": "canalizador", "english": "plumber", "cefr": "B1", "gender": "m", "example": "Chamei o canalizador para a fuga.", "exampleTranslation": "I called the plumber for the leak.", "subcategory": "professions"},
-        {"portuguese": "electricista", "english": "electrician", "cefr": "B1", "gender": null, "example": "O electricista reparou a instalação.", "exampleTranslation": "The electrician fixed the wiring.", "subcategory": "professions"},
-        {"portuguese": "empregado de mesa", "english": "waiter", "cefr": "A2", "gender": "m", "example": "O empregado de mesa trouxe a ementa.", "exampleTranslation": "The waiter brought the menu.", "subcategory": "professions"},
-        {"portuguese": "escritor / escritora", "english": "writer", "cefr": "B1", "gender": null, "example": "Ela é uma escritora conhecida.", "exampleTranslation": "She is a well-known writer.", "subcategory": "professions"},
-        {"portuguese": "motorista", "english": "driver", "cefr": "A2", "gender": null, "example": "O motorista do autocarro foi simpático.", "exampleTranslation": "The bus driver was friendly.", "subcategory": "professions"},
-        {"portuguese": "escritório", "english": "office", "cefr": "A2", "gender": "m", "example": "Trabalho num escritório no centro.", "exampleTranslation": "I work in an office in the centre.", "subcategory": "workplace"},
-        {"portuguese": "empresa", "english": "company", "cefr": "A2", "gender": "f", "example": "A empresa tem cinquenta trabalhadores.", "exampleTranslation": "The company has fifty employees.", "subcategory": "workplace"},
-        {"portuguese": "reunião", "english": "meeting", "cefr": "A2", "gender": "f", "example": "Tenho uma reunião às dez.", "exampleTranslation": "I have a meeting at ten.", "subcategory": "workplace"},
-        {"portuguese": "computador", "english": "computer", "cefr": "A1", "gender": "m", "example": "O computador está avariado.", "exampleTranslation": "The computer is broken.", "subcategory": "workplace"},
-        {"portuguese": "ecrã", "english": "screen", "cefr": "A2", "gender": "m", "example": "O ecrã do portátil é grande.", "exampleTranslation": "The laptop screen is big.", "subcategory": "workplace"},
-        {"portuguese": "teclado", "english": "keyboard", "cefr": "B1", "gender": "m", "example": "O teclado está em português.", "exampleTranslation": "The keyboard is in Portuguese.", "subcategory": "workplace"},
-        {"portuguese": "impressora", "english": "printer", "cefr": "B1", "gender": "f", "example": "A impressora não tem tinta.", "exampleTranslation": "The printer has no ink.", "subcategory": "workplace"},
-        {"portuguese": "email", "english": "email", "cefr": "A2", "gender": "m", "example": "Enviei-te um email.", "exampleTranslation": "I sent you an email.", "subcategory": "workplace"},
-        {"portuguese": "correio eletrónico", "english": "email", "cefr": "A2", "gender": "m", "example": "O correio eletrónico está cheio.", "exampleTranslation": "The email inbox is full.", "subcategory": "workplace"},
-        {"portuguese": "colega", "english": "colleague", "cefr": "A2", "gender": null, "example": "Os meus colegas são simpáticos.", "exampleTranslation": "My colleagues are friendly.", "subcategory": "workplace"},
-        {"portuguese": "chefe", "english": "boss", "cefr": "A2", "gender": null, "example": "O meu chefe aprovou o projeto.", "exampleTranslation": "My boss approved the project.", "subcategory": "workplace"},
-        {"portuguese": "salário", "english": "salary", "cefr": "A2", "gender": "m", "example": "O salário é pago no fim do mês.", "exampleTranslation": "The salary is paid at the end of the month.", "subcategory": "workplace"},
-        {"portuguese": "contrato", "english": "contract", "cefr": "B1", "gender": "m", "example": "Assinei o contrato de trabalho.", "exampleTranslation": "I signed the employment contract.", "subcategory": "workplace"},
-        {"portuguese": "entrevista", "english": "interview", "cefr": "A2", "gender": "f", "example": "Tenho uma entrevista de emprego amanhã.", "exampleTranslation": "I have a job interview tomorrow.", "subcategory": "workplace"},
-        {"portuguese": "currículo", "english": "CV / resume", "cefr": "B1", "gender": "m", "example": "Enviei o meu currículo.", "exampleTranslation": "I sent my CV.", "subcategory": "workplace"},
-        {"portuguese": "horário", "english": "schedule / timetable", "cefr": "A2", "gender": "m", "example": "Qual é o teu horário de trabalho?", "exampleTranslation": "What is your work schedule?", "subcategory": "workplace"},
-        {"portuguese": "escola", "english": "school", "cefr": "A1", "gender": "f", "example": "Os miúdos vão à escola de autocarro.", "exampleTranslation": "The children go to school by bus.", "subcategory": "education"},
-        {"portuguese": "universidade", "english": "university", "cefr": "A1", "gender": "f", "example": "Estudei na Universidade de Lisboa.", "exampleTranslation": "I studied at the University of Lisbon.", "subcategory": "education"},
-        {"portuguese": "aula", "english": "class / lesson", "cefr": "A1", "gender": "f", "example": "A aula de português é às três.", "exampleTranslation": "The Portuguese class is at three.", "subcategory": "education"},
-        {"portuguese": "exame", "english": "exam", "cefr": "A2", "gender": "m", "example": "Tenho um exame na sexta-feira.", "exampleTranslation": "I have an exam on Friday.", "subcategory": "education"},
-        {"portuguese": "aluno / aluna", "english": "student", "cefr": "A1", "gender": null, "example": "Sou aluno de português.", "exampleTranslation": "I am a Portuguese student.", "subcategory": "education"},
-        {"portuguese": "livro", "english": "book", "cefr": "A1", "gender": "m", "example": "Comprei um livro novo.", "exampleTranslation": "I bought a new book.", "subcategory": "education"},
-        {"portuguese": "caderno", "english": "notebook", "cefr": "A1", "gender": "m", "example": "Escrevo as notas no caderno.", "exampleTranslation": "I write the notes in the notebook.", "subcategory": "education"},
-        {"portuguese": "caneta", "english": "pen", "cefr": "A1", "gender": "f", "example": "Tens uma caneta para mim?", "exampleTranslation": "Do you have a pen for me?", "subcategory": "education"},
-        {"portuguese": "lápis", "english": "pencil", "cefr": "A1", "gender": "m", "example": "Preciso de um lápis.", "exampleTranslation": "I need a pencil.", "subcategory": "education"},
-        {"portuguese": "mochila", "english": "backpack", "cefr": "A1", "gender": "f", "example": "A mochila está na sala.", "exampleTranslation": "The backpack is in the living room.", "subcategory": "education"},
-        {"portuguese": "biblioteca", "english": "library", "cefr": "A2", "gender": "f", "example": "Vou à biblioteca estudar.", "exampleTranslation": "I'm going to the library to study.", "subcategory": "education"},
-        {"portuguese": "dicionário", "english": "dictionary", "cefr": "A2", "gender": "m", "example": "Consulta o dicionário.", "exampleTranslation": "Look it up in the dictionary.", "subcategory": "education"},
-        {"portuguese": "curso", "english": "course", "cefr": "A2", "gender": "m", "example": "Fiz um curso de português.", "exampleTranslation": "I did a Portuguese course.", "subcategory": "education"},
-        {"portuguese": "nota", "english": "grade / mark", "cefr": "A2", "gender": "f", "example": "Tive boa nota no exame.", "exampleTranslation": "I got a good grade in the exam.", "subcategory": "education"},
-        {"portuguese": "trabalho de casa", "english": "homework", "cefr": "A1", "gender": "m", "example": "Já fiz o trabalho de casa.", "exampleTranslation": "I've already done my homework.", "subcategory": "education"},
-        {"portuguese": "recreio", "english": "break / recess", "cefr": "A2", "gender": "m", "example": "No recreio jogamos à bola.", "exampleTranslation": "At break we play ball.", "subcategory": "education"},
-        {"portuguese": "quadro", "english": "blackboard", "cefr": "A2", "gender": "m", "example": "O professor escreveu no quadro.", "exampleTranslation": "The teacher wrote on the blackboard.", "subcategory": "education"}
+        {
+          "portuguese": "professor / professora",
+          "english": "teacher",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O meu professor de português é simpático.",
+          "exampleTranslation": "My Portuguese teacher is friendly."
+        },
+        {
+          "portuguese": "médico / médica",
+          "english": "doctor",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Preciso de ir ao médico.",
+          "exampleTranslation": "I need to go to the doctor."
+        },
+        {
+          "portuguese": "advogado / advogada",
+          "english": "lawyer",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O advogado aconselhou-me.",
+          "exampleTranslation": "The lawyer advised me."
+        },
+        {
+          "portuguese": "engenheiro / engenheira",
+          "english": "engineer",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A minha irmã é engenheira.",
+          "exampleTranslation": "My sister is an engineer."
+        },
+        {
+          "portuguese": "enfermeiro / enfermeira",
+          "english": "nurse",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A enfermeira tomou a tensão.",
+          "exampleTranslation": "The nurse took my blood pressure."
+        },
+        {
+          "portuguese": "polícia",
+          "english": "police officer",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Chamei a polícia.",
+          "exampleTranslation": "I called the police."
+        },
+        {
+          "portuguese": "cozinheiro / cozinheira",
+          "english": "cook / chef",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O cozinheiro fez um prato excelente.",
+          "exampleTranslation": "The chef made an excellent dish."
+        },
+        {
+          "portuguese": "jornalista",
+          "english": "journalist",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Ela é jornalista num jornal.",
+          "exampleTranslation": "She is a journalist at a newspaper."
+        },
+        {
+          "portuguese": "vendedor / vendedora",
+          "english": "salesperson",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O vendedor ajudou-me a escolher.",
+          "exampleTranslation": "The salesperson helped me choose."
+        },
+        {
+          "portuguese": "bombeiro",
+          "english": "firefighter",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os bombeiros apagaram o fogo.",
+          "exampleTranslation": "The firefighters put out the fire."
+        },
+        {
+          "portuguese": "canalizador",
+          "english": "plumber",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Chamei o canalizador para a fuga.",
+          "exampleTranslation": "I called the plumber for the leak."
+        },
+        {
+          "portuguese": "electricista",
+          "english": "electrician",
+          "cefr": "B1",
+          "gender": null,
+          "example": "O electricista reparou a instalação.",
+          "exampleTranslation": "The electrician fixed the wiring."
+        },
+        {
+          "portuguese": "empregado de mesa",
+          "english": "waiter",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O empregado de mesa trouxe a ementa.",
+          "exampleTranslation": "The waiter brought the menu."
+        },
+        {
+          "portuguese": "escritor / escritora",
+          "english": "writer",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Ela é uma escritora conhecida.",
+          "exampleTranslation": "She is a well-known writer."
+        },
+        {
+          "portuguese": "motorista",
+          "english": "driver",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O motorista do autocarro foi simpático.",
+          "exampleTranslation": "The bus driver was friendly."
+        },
+        {
+          "portuguese": "escritório",
+          "english": "office",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Trabalho num escritório no centro.",
+          "exampleTranslation": "I work in an office in the centre."
+        },
+        {
+          "portuguese": "empresa",
+          "english": "company",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A empresa tem cinquenta trabalhadores.",
+          "exampleTranslation": "The company has fifty employees."
+        },
+        {
+          "portuguese": "reunião",
+          "english": "meeting",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho uma reunião às dez.",
+          "exampleTranslation": "I have a meeting at ten."
+        },
+        {
+          "portuguese": "computador",
+          "english": "computer",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O computador está avariado.",
+          "exampleTranslation": "The computer is broken."
+        },
+        {
+          "portuguese": "ecrã",
+          "english": "screen",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O ecrã do portátil é grande.",
+          "exampleTranslation": "The laptop screen is big."
+        },
+        {
+          "portuguese": "teclado",
+          "english": "keyboard",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O teclado está em português.",
+          "exampleTranslation": "The keyboard is in Portuguese."
+        },
+        {
+          "portuguese": "impressora",
+          "english": "printer",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A impressora não tem tinta.",
+          "exampleTranslation": "The printer has no ink."
+        },
+        {
+          "portuguese": "email",
+          "english": "email",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Enviei-te um email.",
+          "exampleTranslation": "I sent you an email."
+        },
+        {
+          "portuguese": "correio eletrónico",
+          "english": "email",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O correio eletrónico está cheio.",
+          "exampleTranslation": "The email inbox is full."
+        },
+        {
+          "portuguese": "colega",
+          "english": "colleague",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Os meus colegas são simpáticos.",
+          "exampleTranslation": "My colleagues are friendly."
+        },
+        {
+          "portuguese": "chefe",
+          "english": "boss",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O meu chefe aprovou o projeto.",
+          "exampleTranslation": "My boss approved the project."
+        },
+        {
+          "portuguese": "salário",
+          "english": "salary",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O salário é pago no fim do mês.",
+          "exampleTranslation": "The salary is paid at the end of the month."
+        },
+        {
+          "portuguese": "contrato",
+          "english": "contract",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Assinei o contrato de trabalho.",
+          "exampleTranslation": "I signed the employment contract."
+        },
+        {
+          "portuguese": "entrevista",
+          "english": "interview",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho uma entrevista de emprego amanhã.",
+          "exampleTranslation": "I have a job interview tomorrow."
+        },
+        {
+          "portuguese": "currículo",
+          "english": "CV / resume",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Enviei o meu currículo.",
+          "exampleTranslation": "I sent my CV."
+        },
+        {
+          "portuguese": "horário",
+          "english": "schedule / timetable",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Qual é o teu horário de trabalho?",
+          "exampleTranslation": "What is your work schedule?"
+        },
+        {
+          "portuguese": "escola",
+          "english": "school",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Os miúdos vão à escola de autocarro.",
+          "exampleTranslation": "The children go to school by bus."
+        },
+        {
+          "portuguese": "universidade",
+          "english": "university",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Estudei na Universidade de Lisboa.",
+          "exampleTranslation": "I studied at the University of Lisbon."
+        },
+        {
+          "portuguese": "aula",
+          "english": "class / lesson",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A aula de português é às três.",
+          "exampleTranslation": "The Portuguese class is at three."
+        },
+        {
+          "portuguese": "exame",
+          "english": "exam",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tenho um exame na sexta-feira.",
+          "exampleTranslation": "I have an exam on Friday."
+        },
+        {
+          "portuguese": "aluno / aluna",
+          "english": "student",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Sou aluno de português.",
+          "exampleTranslation": "I am a Portuguese student."
+        },
+        {
+          "portuguese": "livro",
+          "english": "book",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Comprei um livro novo.",
+          "exampleTranslation": "I bought a new book."
+        },
+        {
+          "portuguese": "caderno",
+          "english": "notebook",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Escrevo as notas no caderno.",
+          "exampleTranslation": "I write the notes in the notebook."
+        },
+        {
+          "portuguese": "caneta",
+          "english": "pen",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Tens uma caneta para mim?",
+          "exampleTranslation": "Do you have a pen for me?"
+        },
+        {
+          "portuguese": "lápis",
+          "english": "pencil",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Preciso de um lápis.",
+          "exampleTranslation": "I need a pencil."
+        },
+        {
+          "portuguese": "mochila",
+          "english": "backpack",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A mochila está na sala.",
+          "exampleTranslation": "The backpack is in the living room."
+        },
+        {
+          "portuguese": "biblioteca",
+          "english": "library",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Vou à biblioteca estudar.",
+          "exampleTranslation": "I'm going to the library to study."
+        },
+        {
+          "portuguese": "dicionário",
+          "english": "dictionary",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Consulta o dicionário.",
+          "exampleTranslation": "Look it up in the dictionary."
+        },
+        {
+          "portuguese": "curso",
+          "english": "course",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Fiz um curso de português.",
+          "exampleTranslation": "I did a Portuguese course."
+        },
+        {
+          "portuguese": "nota",
+          "english": "grade / mark",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tive boa nota no exame.",
+          "exampleTranslation": "I got a good grade in the exam."
+        },
+        {
+          "portuguese": "trabalho de casa",
+          "english": "homework",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Já fiz o trabalho de casa.",
+          "exampleTranslation": "I've already done my homework."
+        },
+        {
+          "portuguese": "recreio",
+          "english": "break / recess",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "No recreio jogamos à bola.",
+          "exampleTranslation": "At break we play ball."
+        },
+        {
+          "portuguese": "quadro",
+          "english": "blackboard",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O professor escreveu no quadro.",
+          "exampleTranslation": "The teacher wrote on the blackboard."
+        }
       ]
     },
     {
       "id": "health-body",
       "title": "Health & Body",
       "description": "Body parts, health, symptoms, and medical vocabulary",
-      "emoji": "",
       "words": [
-        {"portuguese": "cabeça", "english": "head", "cefr": "A1", "gender": "f", "example": "Dói-me a cabeça.", "exampleTranslation": "My head hurts.", "subcategory": "body"},
-        {"portuguese": "olho / olhos", "english": "eye(s)", "cefr": "A1", "gender": "m", "example": "Tenho os olhos castanhos.", "exampleTranslation": "I have brown eyes.", "subcategory": "body"},
-        {"portuguese": "nariz", "english": "nose", "cefr": "A1", "gender": "m", "example": "O nariz está entupido.", "exampleTranslation": "My nose is blocked.", "subcategory": "body"},
-        {"portuguese": "boca", "english": "mouth", "cefr": "A1", "gender": "f", "example": "Abre a boca.", "exampleTranslation": "Open your mouth.", "subcategory": "body"},
-        {"portuguese": "orelha", "english": "ear", "cefr": "A1", "gender": "f", "example": "Dói-me a orelha.", "exampleTranslation": "My ear hurts.", "subcategory": "body"},
-        {"portuguese": "dente", "english": "tooth", "cefr": "A1", "gender": "m", "example": "Tenho uma dor de dentes.", "exampleTranslation": "I have a toothache.", "subcategory": "body"},
-        {"portuguese": "cabelo", "english": "hair", "cefr": "A1", "gender": "m", "example": "O cabelo está molhado.", "exampleTranslation": "My hair is wet.", "subcategory": "body"},
-        {"portuguese": "mão / mãos", "english": "hand(s)", "cefr": "A1", "gender": "f", "example": "Lava as mãos.", "exampleTranslation": "Wash your hands.", "subcategory": "body"},
-        {"portuguese": "braço", "english": "arm", "cefr": "A1", "gender": "m", "example": "Parti o braço.", "exampleTranslation": "I broke my arm.", "subcategory": "body"},
-        {"portuguese": "perna", "english": "leg", "cefr": "A1", "gender": "f", "example": "Dói-me a perna.", "exampleTranslation": "My leg hurts.", "subcategory": "body"},
-        {"portuguese": "pé / pés", "english": "foot / feet", "cefr": "A1", "gender": "m", "example": "Os pés estão frios.", "exampleTranslation": "My feet are cold.", "subcategory": "body"},
-        {"portuguese": "costas", "english": "back", "cefr": "A2", "gender": "f", "example": "Tenho dores nas costas.", "exampleTranslation": "I have back pain.", "subcategory": "body"},
-        {"portuguese": "peito", "english": "chest", "cefr": "A2", "gender": "m", "example": "Dói-me o peito.", "exampleTranslation": "My chest hurts.", "subcategory": "body"},
-        {"portuguese": "barriga", "english": "belly / stomach", "cefr": "A2", "gender": "f", "example": "Dói-me a barriga.", "exampleTranslation": "My stomach hurts.", "subcategory": "body"},
-        {"portuguese": "dedo", "english": "finger / toe", "cefr": "A2", "gender": "m", "example": "Cortei o dedo.", "exampleTranslation": "I cut my finger.", "subcategory": "body"},
-        {"portuguese": "pescoço", "english": "neck", "cefr": "A2", "gender": "m", "example": "Tenho dores no pescoço.", "exampleTranslation": "I have neck pain.", "subcategory": "body"},
-        {"portuguese": "ombro", "english": "shoulder", "cefr": "A2", "gender": "m", "example": "O ombro está melhor.", "exampleTranslation": "My shoulder is better.", "subcategory": "body"},
-        {"portuguese": "joelho", "english": "knee", "cefr": "A2", "gender": "m", "example": "Machuquei o joelho.", "exampleTranslation": "I hurt my knee.", "subcategory": "body"},
-        {"portuguese": "dor", "english": "pain", "cefr": "A2", "gender": "f", "example": "Tenho muita dor.", "exampleTranslation": "I'm in a lot of pain.", "subcategory": "health"},
-        {"portuguese": "dor de cabeça", "english": "headache", "cefr": "A2", "gender": "f", "example": "Tenho uma dor de cabeça forte.", "exampleTranslation": "I have a bad headache.", "subcategory": "health"},
-        {"portuguese": "febre", "english": "fever", "cefr": "A2", "gender": "f", "example": "O miúdo tem febre.", "exampleTranslation": "The child has a fever.", "subcategory": "health"},
-        {"portuguese": "constipação", "english": "cold (illness)", "cefr": "A2", "gender": "f", "example": "Estou com constipação.", "exampleTranslation": "I have a cold. (False friend: in Portuguese constipação means cold, not constipation.)", "subcategory": "health"},
-        {"portuguese": "gripe", "english": "flu", "cefr": "A2", "gender": "f", "example": "Apanhei uma gripe.", "exampleTranslation": "I caught the flu.", "subcategory": "health"},
-        {"portuguese": "tosse", "english": "cough", "cefr": "A2", "gender": "f", "example": "Tenho tosse há uma semana.", "exampleTranslation": "I've had a cough for a week.", "subcategory": "health"},
-        {"portuguese": "alergia", "english": "allergy", "cefr": "A2", "gender": "f", "example": "Tenho alergia a amendoins.", "exampleTranslation": "I'm allergic to peanuts.", "subcategory": "health"},
-        {"portuguese": "receita médica", "english": "prescription", "cefr": "B1", "gender": "f", "example": "Preciso de uma receita médica.", "exampleTranslation": "I need a prescription.", "subcategory": "health"},
-        {"portuguese": "comprimido", "english": "pill / tablet", "cefr": "A2", "gender": "m", "example": "Tomo um comprimido por dia.", "exampleTranslation": "I take one pill a day.", "subcategory": "health"},
-        {"portuguese": "medicamento", "english": "medicine", "cefr": "A2", "gender": "m", "example": "O medicamento está na farmácia.", "exampleTranslation": "The medicine is at the pharmacy.", "subcategory": "health"},
-        {"portuguese": "doente", "english": "sick / ill", "cefr": "A1", "gender": null, "example": "Estou doente, não vou trabalhar.", "exampleTranslation": "I'm sick, I'm not going to work.", "subcategory": "health"},
-        {"portuguese": "saudável", "english": "healthy", "cefr": "A2", "gender": null, "example": "Como de forma saudável.", "exampleTranslation": "I eat healthily.", "subcategory": "health"},
-        {"portuguese": "cansado / cansada", "english": "tired", "cefr": "A1", "gender": null, "example": "Estou muito cansado.", "exampleTranslation": "I'm very tired.", "subcategory": "health"},
-        {"portuguese": "consulta", "english": "appointment (medical)", "cefr": "A2", "gender": "f", "example": "Tenho uma consulta no médico às três.", "exampleTranslation": "I have a doctor's appointment at three.", "subcategory": "health"},
-        {"portuguese": "urgência", "english": "A&E / emergency room", "cefr": "B1", "gender": "f", "example": "Foi levado para a urgência.", "exampleTranslation": "He was taken to A&E.", "subcategory": "health"},
-        {"portuguese": "análise", "english": "test / analysis (medical)", "cefr": "B1", "gender": "f", "example": "Fiz análises ao sangue.", "exampleTranslation": "I had blood tests.", "subcategory": "health"},
-        {"portuguese": "vacina", "english": "vaccine", "cefr": "B1", "gender": "f", "example": "Tomei a vacina da gripe.", "exampleTranslation": "I had the flu vaccine.", "subcategory": "health"},
-        {"portuguese": "operação", "english": "surgery / operation", "cefr": "B1", "gender": "f", "example": "Precisa de uma operação.", "exampleTranslation": "He needs an operation.", "subcategory": "health"},
-        {"portuguese": "dói", "english": "it hurts", "cefr": "A2", "gender": null, "example": "Dói-me aqui.", "exampleTranslation": "It hurts here.", "subcategory": "health"},
-        {"portuguese": "melhorar", "english": "to get better / improve", "cefr": "A2", "gender": null, "example": "Espero que melhores em breve.", "exampleTranslation": "I hope you get better soon.", "subcategory": "health"}
+        {
+          "portuguese": "cabeça",
+          "english": "head",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Dói-me a cabeça.",
+          "exampleTranslation": "My head hurts."
+        },
+        {
+          "portuguese": "olho / olhos",
+          "english": "eye(s)",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Tenho os olhos castanhos.",
+          "exampleTranslation": "I have brown eyes."
+        },
+        {
+          "portuguese": "nariz",
+          "english": "nose",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O nariz está entupido.",
+          "exampleTranslation": "My nose is blocked."
+        },
+        {
+          "portuguese": "boca",
+          "english": "mouth",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Abre a boca.",
+          "exampleTranslation": "Open your mouth."
+        },
+        {
+          "portuguese": "orelha",
+          "english": "ear",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Dói-me a orelha.",
+          "exampleTranslation": "My ear hurts."
+        },
+        {
+          "portuguese": "dente",
+          "english": "tooth",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Tenho uma dor de dentes.",
+          "exampleTranslation": "I have a toothache."
+        },
+        {
+          "portuguese": "cabelo",
+          "english": "hair",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O cabelo está molhado.",
+          "exampleTranslation": "My hair is wet."
+        },
+        {
+          "portuguese": "mão / mãos",
+          "english": "hand(s)",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Lava as mãos.",
+          "exampleTranslation": "Wash your hands."
+        },
+        {
+          "portuguese": "braço",
+          "english": "arm",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Parti o braço.",
+          "exampleTranslation": "I broke my arm."
+        },
+        {
+          "portuguese": "perna",
+          "english": "leg",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Dói-me a perna.",
+          "exampleTranslation": "My leg hurts."
+        },
+        {
+          "portuguese": "pé / pés",
+          "english": "foot / feet",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Os pés estão frios.",
+          "exampleTranslation": "My feet are cold."
+        },
+        {
+          "portuguese": "costas",
+          "english": "back",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho dores nas costas.",
+          "exampleTranslation": "I have back pain."
+        },
+        {
+          "portuguese": "peito",
+          "english": "chest",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Dói-me o peito.",
+          "exampleTranslation": "My chest hurts."
+        },
+        {
+          "portuguese": "barriga",
+          "english": "belly / stomach",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Dói-me a barriga.",
+          "exampleTranslation": "My stomach hurts."
+        },
+        {
+          "portuguese": "dedo",
+          "english": "finger / toe",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Cortei o dedo.",
+          "exampleTranslation": "I cut my finger."
+        },
+        {
+          "portuguese": "pescoço",
+          "english": "neck",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tenho dores no pescoço.",
+          "exampleTranslation": "I have neck pain."
+        },
+        {
+          "portuguese": "ombro",
+          "english": "shoulder",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O ombro está melhor.",
+          "exampleTranslation": "My shoulder is better."
+        },
+        {
+          "portuguese": "joelho",
+          "english": "knee",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Machuquei o joelho.",
+          "exampleTranslation": "I hurt my knee."
+        },
+        {
+          "portuguese": "dor",
+          "english": "pain",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho muita dor.",
+          "exampleTranslation": "I'm in a lot of pain."
+        },
+        {
+          "portuguese": "dor de cabeça",
+          "english": "headache",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho uma dor de cabeça forte.",
+          "exampleTranslation": "I have a bad headache."
+        },
+        {
+          "portuguese": "febre",
+          "english": "fever",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O miúdo tem febre.",
+          "exampleTranslation": "The child has a fever."
+        },
+        {
+          "portuguese": "constipação",
+          "english": "cold (illness)",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Estou com constipação.",
+          "exampleTranslation": "I have a cold. (False friend: in Portuguese constipação means cold, not constipation.)"
+        },
+        {
+          "portuguese": "gripe",
+          "english": "flu",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Apanhei uma gripe.",
+          "exampleTranslation": "I caught the flu."
+        },
+        {
+          "portuguese": "tosse",
+          "english": "cough",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho tosse há uma semana.",
+          "exampleTranslation": "I've had a cough for a week."
+        },
+        {
+          "portuguese": "alergia",
+          "english": "allergy",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho alergia a amendoins.",
+          "exampleTranslation": "I'm allergic to peanuts."
+        },
+        {
+          "portuguese": "receita médica",
+          "english": "prescription",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Preciso de uma receita médica.",
+          "exampleTranslation": "I need a prescription."
+        },
+        {
+          "portuguese": "comprimido",
+          "english": "pill / tablet",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tomo um comprimido por dia.",
+          "exampleTranslation": "I take one pill a day."
+        },
+        {
+          "portuguese": "medicamento",
+          "english": "medicine",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O medicamento está na farmácia.",
+          "exampleTranslation": "The medicine is at the pharmacy."
+        },
+        {
+          "portuguese": "doente",
+          "english": "sick / ill",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Estou doente, não vou trabalhar.",
+          "exampleTranslation": "I'm sick, I'm not going to work."
+        },
+        {
+          "portuguese": "saudável",
+          "english": "healthy",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Como de forma saudável.",
+          "exampleTranslation": "I eat healthily."
+        },
+        {
+          "portuguese": "cansado / cansada",
+          "english": "tired",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Estou muito cansado.",
+          "exampleTranslation": "I'm very tired."
+        },
+        {
+          "portuguese": "consulta",
+          "english": "appointment (medical)",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho uma consulta no médico às três.",
+          "exampleTranslation": "I have a doctor's appointment at three."
+        },
+        {
+          "portuguese": "urgência",
+          "english": "A&E / emergency room",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Foi levado para a urgência.",
+          "exampleTranslation": "He was taken to A&E."
+        },
+        {
+          "portuguese": "análise",
+          "english": "test / analysis (medical)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Fiz análises ao sangue.",
+          "exampleTranslation": "I had blood tests."
+        },
+        {
+          "portuguese": "vacina",
+          "english": "vaccine",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Tomei a vacina da gripe.",
+          "exampleTranslation": "I had the flu vaccine."
+        },
+        {
+          "portuguese": "operação",
+          "english": "surgery / operation",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Precisa de uma operação.",
+          "exampleTranslation": "He needs an operation."
+        },
+        {
+          "portuguese": "dói",
+          "english": "it hurts",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Dói-me aqui.",
+          "exampleTranslation": "It hurts here."
+        },
+        {
+          "portuguese": "melhorar",
+          "english": "to get better / improve",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Espero que melhores em breve.",
+          "exampleTranslation": "I hope you get better soon."
+        }
+      ]
+    },
+    {
+      "id": "shopping-money",
+      "title": "Shopping & Money",
+      "description": "Shops, prices, payments, and everyday transactions",
+      "words": [
+        {
+          "portuguese": "dinheiro",
+          "english": "money",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Não tenho dinheiro comigo.",
+          "exampleTranslation": "I don't have any money on me."
+        },
+        {
+          "portuguese": "preço",
+          "english": "price",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Qual é o preço?",
+          "exampleTranslation": "What is the price?"
+        },
+        {
+          "portuguese": "barato",
+          "english": "cheap",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Está barato.",
+          "exampleTranslation": "It's cheap."
+        },
+        {
+          "portuguese": "caro",
+          "english": "expensive",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Lisboa é caro.",
+          "exampleTranslation": "Lisbon is expensive."
+        },
+        {
+          "portuguese": "troco",
+          "english": "change (money)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Quer o troco?",
+          "exampleTranslation": "Do you want the change?"
+        },
+        {
+          "portuguese": "desconto",
+          "english": "discount",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Há desconto para estudantes.",
+          "exampleTranslation": "There is a discount for students."
+        },
+        {
+          "portuguese": "saldo",
+          "english": "balance / sale",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Verifique o saldo da conta.",
+          "exampleTranslation": "Check the account balance."
+        },
+        {
+          "portuguese": "multibanco",
+          "english": "ATM (PT)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Há um multibanco na esquina.",
+          "exampleTranslation": "There is an ATM on the corner."
+        },
+        {
+          "portuguese": "cartão",
+          "english": "card",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Pago com cartão.",
+          "exampleTranslation": "I'll pay by card."
+        },
+        {
+          "portuguese": "carteira",
+          "english": "wallet",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Esqueci a carteira em casa.",
+          "exampleTranslation": "I forgot my wallet at home."
+        },
+        {
+          "portuguese": "loja",
+          "english": "shop / store",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A loja abre às nove.",
+          "exampleTranslation": "The shop opens at nine."
+        },
+        {
+          "portuguese": "centro comercial",
+          "english": "shopping centre",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vamos ao centro comercial.",
+          "exampleTranslation": "We're going to the shopping centre."
+        },
+        {
+          "portuguese": "talho",
+          "english": "butcher shop",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Compro carne no talho.",
+          "exampleTranslation": "I buy meat at the butcher's."
+        },
+        {
+          "portuguese": "peixaria",
+          "english": "fishmonger",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A peixaria tem peixe fresco.",
+          "exampleTranslation": "The fishmonger has fresh fish."
+        },
+        {
+          "portuguese": "mercearia",
+          "english": "grocery shop",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Compro pão na mercearia.",
+          "exampleTranslation": "I buy bread at the grocery shop."
+        },
+        {
+          "portuguese": "sapataria",
+          "english": "shoe shop",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Preciso de ir à sapataria.",
+          "exampleTranslation": "I need to go to the shoe shop."
+        },
+        {
+          "portuguese": "livraria",
+          "english": "bookshop",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Comprei o livro na livraria.",
+          "exampleTranslation": "I bought the book at the bookshop."
+        },
+        {
+          "portuguese": "comprar",
+          "english": "to buy",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vou comprar leite.",
+          "exampleTranslation": "I'm going to buy milk."
+        },
+        {
+          "portuguese": "vender",
+          "english": "to sell",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Eles vendem fruta no mercado.",
+          "exampleTranslation": "They sell fruit at the market."
+        },
+        {
+          "portuguese": "pagar",
+          "english": "to pay",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quanto é para pagar?",
+          "exampleTranslation": "How much is it to pay?"
+        },
+        {
+          "portuguese": "gastar",
+          "english": "to spend (money)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Não quero gastar muito.",
+          "exampleTranslation": "I don't want to spend much."
+        },
+        {
+          "portuguese": "recibo",
+          "english": "receipt",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Quer o recibo?",
+          "exampleTranslation": "Do you want the receipt?"
+        },
+        {
+          "portuguese": "fatura",
+          "english": "invoice",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Envie a fatura por email.",
+          "exampleTranslation": "Send the invoice by email."
+        },
+        {
+          "portuguese": "saldos",
+          "english": "sales (seasonal)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Está tudo em saldos.",
+          "exampleTranslation": "Everything is on sale."
+        },
+        {
+          "portuguese": "promoção",
+          "english": "promotion / offer",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Há uma promoção esta semana.",
+          "exampleTranslation": "There is a promotion this week."
+        }
+      ]
+    },
+    {
+      "id": "nature-animals",
+      "title": "Nature & Animals",
+      "description": "Animals, plants, landscapes, and the natural world",
+      "words": [
+        {
+          "portuguese": "cão",
+          "english": "dog",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O cão está no jardim.",
+          "exampleTranslation": "The dog is in the garden."
+        },
+        {
+          "portuguese": "gato",
+          "english": "cat",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Tenho um gato preto.",
+          "exampleTranslation": "I have a black cat."
+        },
+        {
+          "portuguese": "pássaro",
+          "english": "bird",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O pássaro canta de manhã.",
+          "exampleTranslation": "The bird sings in the morning."
+        },
+        {
+          "portuguese": "peixe",
+          "english": "fish (animal)",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O peixe vive no aquário.",
+          "exampleTranslation": "The fish lives in the aquarium."
+        },
+        {
+          "portuguese": "cavalo",
+          "english": "horse",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os cavalos estão no campo.",
+          "exampleTranslation": "The horses are in the field."
+        },
+        {
+          "portuguese": "vaca",
+          "english": "cow",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A vaca dá leite.",
+          "exampleTranslation": "The cow gives milk."
+        },
+        {
+          "portuguese": "galo",
+          "english": "rooster",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O galo canta ao amanhecer.",
+          "exampleTranslation": "The rooster crows at dawn."
+        },
+        {
+          "portuguese": "galinha",
+          "english": "hen",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "As galinhas põem ovos.",
+          "exampleTranslation": "The hens lay eggs."
+        },
+        {
+          "portuguese": "coelho",
+          "english": "rabbit",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O coelho come cenouras.",
+          "exampleTranslation": "The rabbit eats carrots."
+        },
+        {
+          "portuguese": "borboleta",
+          "english": "butterfly",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Uma borboleta pousou na flor.",
+          "exampleTranslation": "A butterfly landed on the flower."
+        },
+        {
+          "portuguese": "abelha",
+          "english": "bee",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Cuidado com a abelha.",
+          "exampleTranslation": "Watch out for the bee."
+        },
+        {
+          "portuguese": "árvore",
+          "english": "tree",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A árvore é muito alta.",
+          "exampleTranslation": "The tree is very tall."
+        },
+        {
+          "portuguese": "flor",
+          "english": "flower",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Comprei flores para a minha mãe.",
+          "exampleTranslation": "I bought flowers for my mother."
+        },
+        {
+          "portuguese": "rio",
+          "english": "river",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O rio Tejo atravessa Lisboa.",
+          "exampleTranslation": "The Tagus river crosses Lisbon."
+        },
+        {
+          "portuguese": "mar",
+          "english": "sea",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O mar está calmo hoje.",
+          "exampleTranslation": "The sea is calm today."
+        },
+        {
+          "portuguese": "montanha",
+          "english": "mountain",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Subimos a montanha.",
+          "exampleTranslation": "We climbed the mountain."
+        },
+        {
+          "portuguese": "lago",
+          "english": "lake",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Nadámos no lago.",
+          "exampleTranslation": "We swam in the lake."
+        },
+        {
+          "portuguese": "floresta",
+          "english": "forest",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A floresta é densa.",
+          "exampleTranslation": "The forest is dense."
+        },
+        {
+          "portuguese": "campo",
+          "english": "field / countryside",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vivo no campo.",
+          "exampleTranslation": "I live in the countryside."
+        },
+        {
+          "portuguese": "céu",
+          "english": "sky",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O céu está azul.",
+          "exampleTranslation": "The sky is blue."
+        },
+        {
+          "portuguese": "estrela",
+          "english": "star",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Há muitas estrelas esta noite.",
+          "exampleTranslation": "There are many stars tonight."
+        },
+        {
+          "portuguese": "lua",
+          "english": "moon",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A lua está bonita.",
+          "exampleTranslation": "The moon looks beautiful."
+        },
+        {
+          "portuguese": "terra",
+          "english": "earth / land",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A terra é fértil aqui.",
+          "exampleTranslation": "The land is fertile here."
+        },
+        {
+          "portuguese": "ilha",
+          "english": "island",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A Madeira é uma ilha.",
+          "exampleTranslation": "Madeira is an island."
+        },
+        {
+          "portuguese": "paisagem",
+          "english": "landscape / scenery",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A paisagem é deslumbrante.",
+          "exampleTranslation": "The scenery is stunning."
+        }
+      ]
+    },
+    {
+      "id": "emotions-personality",
+      "title": "Emotions & Personality",
+      "description": "Feelings, moods, character traits, and describing people",
+      "words": [
+        {
+          "portuguese": "feliz",
+          "english": "happy",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Estou muito feliz.",
+          "exampleTranslation": "I'm very happy."
+        },
+        {
+          "portuguese": "triste",
+          "english": "sad",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Ela está triste.",
+          "exampleTranslation": "She is sad."
+        },
+        {
+          "portuguese": "zangado",
+          "english": "angry",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O meu irmão está zangado.",
+          "exampleTranslation": "My brother is angry."
+        },
+        {
+          "portuguese": "preocupado",
+          "english": "worried",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Estou preocupado com o exame.",
+          "exampleTranslation": "I'm worried about the exam."
+        },
+        {
+          "portuguese": "nervoso",
+          "english": "nervous",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Fico nervoso antes de falar em público.",
+          "exampleTranslation": "I get nervous before speaking in public."
+        },
+        {
+          "portuguese": "surpreso",
+          "english": "surprised",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Fiquei surpreso com a notícia.",
+          "exampleTranslation": "I was surprised by the news."
+        },
+        {
+          "portuguese": "orgulhoso",
+          "english": "proud",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Os meus pais estão orgulhosos de mim.",
+          "exampleTranslation": "My parents are proud of me."
+        },
+        {
+          "portuguese": "envergonhado",
+          "english": "embarrassed",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Senti-me envergonhado.",
+          "exampleTranslation": "I felt embarrassed."
+        },
+        {
+          "portuguese": "entusiasmado",
+          "english": "excited / enthusiastic",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Estou entusiasmado com a viagem.",
+          "exampleTranslation": "I'm excited about the trip."
+        },
+        {
+          "portuguese": "calmo",
+          "english": "calm",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Mantém-te calmo.",
+          "exampleTranslation": "Stay calm."
+        },
+        {
+          "portuguese": "simpático",
+          "english": "friendly / nice",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O vendedor foi muito simpático.",
+          "exampleTranslation": "The salesperson was very friendly."
+        },
+        {
+          "portuguese": "antipático",
+          "english": "unfriendly",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O empregado foi antipático.",
+          "exampleTranslation": "The waiter was unfriendly."
+        },
+        {
+          "portuguese": "tímido",
+          "english": "shy",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ele é tímido com estranhos.",
+          "exampleTranslation": "He is shy with strangers."
+        },
+        {
+          "portuguese": "corajoso",
+          "english": "brave",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Foste muito corajoso.",
+          "exampleTranslation": "You were very brave."
+        },
+        {
+          "portuguese": "preguiçoso",
+          "english": "lazy",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Não sejas preguiçoso.",
+          "exampleTranslation": "Don't be lazy."
+        },
+        {
+          "portuguese": "trabalhador",
+          "english": "hardworking",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ela é muito trabalhadora.",
+          "exampleTranslation": "She is very hardworking."
+        },
+        {
+          "portuguese": "inteligente",
+          "english": "intelligent",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O aluno é inteligente.",
+          "exampleTranslation": "The student is intelligent."
+        },
+        {
+          "portuguese": "engraçado",
+          "english": "funny",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O filme é engraçado.",
+          "exampleTranslation": "The film is funny."
+        },
+        {
+          "portuguese": "chateado",
+          "english": "annoyed / upset",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Estou chateado com a situação.",
+          "exampleTranslation": "I'm upset about the situation."
+        },
+        {
+          "portuguese": "saudade",
+          "english": "longing / missing",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Tenho saudades de ti.",
+          "exampleTranslation": "I miss you."
+        },
+        {
+          "portuguese": "amor",
+          "english": "love",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O amor é importante.",
+          "exampleTranslation": "Love is important."
+        },
+        {
+          "portuguese": "medo",
+          "english": "fear",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tenho medo de altura.",
+          "exampleTranslation": "I'm afraid of heights."
+        },
+        {
+          "portuguese": "esperança",
+          "english": "hope",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Não perco a esperança.",
+          "exampleTranslation": "I don't lose hope."
+        },
+        {
+          "portuguese": "confiança",
+          "english": "confidence / trust",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Tenho confiança em ti.",
+          "exampleTranslation": "I have confidence in you."
+        },
+        {
+          "portuguese": "paciência",
+          "english": "patience",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Preciso de paciência.",
+          "exampleTranslation": "I need patience."
+        }
       ]
     }
   ]
