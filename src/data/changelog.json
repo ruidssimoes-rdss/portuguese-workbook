@@ -2,6 +2,17 @@
   "entries": [
     {
       "date": "2026-02-09",
+      "version": "0.9.0",
+      "title": "More verbs, colloquial vocab, possessives grammar",
+      "changes": [
+        "Added 3 new verbs: ACREDITAR, EXPLICAR, ENVIAR (65 total)",
+        "Expanded Colloquial & Slang to 35 words with more everyday EP expressions",
+        "Improved possessives grammar with dele/dela construction and agreement rules",
+        "Total: 65 verbs, ~581 words, 13 categories"
+      ]
+    },
+    {
+      "date": "2026-02-09",
       "version": "0.8.0",
       "title": "New verbs, family vocab, reflexive verbs grammar",
       "changes": [

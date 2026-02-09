@@ -4616,6 +4616,126 @@
           "gender": "m",
           "example": "Fogo, que calor!",
           "exampleTranslation": "Damn, it's so hot!"
+        },
+        {
+          "portuguese": "malta",
+          "english": "gang / group / people (informal)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A malta quer ir ao cinema.",
+          "exampleTranslation": "The group wants to go to the cinema."
+        },
+        {
+          "portuguese": "giro",
+          "english": "pretty / cute / cool",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Que vestido giro!",
+          "exampleTranslation": "What a pretty dress!"
+        },
+        {
+          "portuguese": "porreiro",
+          "english": "cool / great (informal)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O teu irmão é muito porreiro.",
+          "exampleTranslation": "Your brother is really cool."
+        },
+        {
+          "portuguese": "chato",
+          "english": "annoying / boring",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Que filme chato!",
+          "exampleTranslation": "What a boring film!"
+        },
+        {
+          "portuguese": "farto",
+          "english": "fed up",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Estou farto de esperar.",
+          "exampleTranslation": "I'm fed up with waiting."
+        },
+        {
+          "portuguese": "queixar-se",
+          "english": "to complain",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Estás sempre a queixar-te.",
+          "exampleTranslation": "You're always complaining."
+        },
+        {
+          "portuguese": "mandrião",
+          "english": "lazybones / lazy person",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Levanta-te, mandrião!",
+          "exampleTranslation": "Get up, lazybones!"
+        },
+        {
+          "portuguese": "parvo",
+          "english": "silly / dumb",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Não sejas parvo.",
+          "exampleTranslation": "Don't be silly."
+        },
+        {
+          "portuguese": "stressado",
+          "english": "stressed / hassled",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Ando stressado com o trabalho.",
+          "exampleTranslation": "I've been stressed with work."
+        },
+        {
+          "portuguese": "ressaca",
+          "english": "hangover",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Tenho uma ressaca terrível.",
+          "exampleTranslation": "I have a terrible hangover."
+        },
+        {
+          "portuguese": "lixar",
+          "english": "to mess up / to ruin",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Acho que lixei tudo.",
+          "exampleTranslation": "I think I messed everything up."
+        },
+        {
+          "portuguese": "caramba",
+          "english": "wow / damn (surprise)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Caramba, que bonito!",
+          "exampleTranslation": "Wow, how beautiful!"
+        },
+        {
+          "portuguese": "conversar",
+          "english": "to chat / to talk",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vamos conversar um bocado?",
+          "exampleTranslation": "Shall we have a chat?"
+        },
+        {
+          "portuguese": "bocado",
+          "english": "a bit / a little while",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Espera um bocado.",
+          "exampleTranslation": "Wait a bit."
+        },
+        {
+          "portuguese": "montes de",
+          "english": "loads of / tons of",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Havia montes de gente na festa.",
+          "exampleTranslation": "There were loads of people at the party."
         }
       ]
     }

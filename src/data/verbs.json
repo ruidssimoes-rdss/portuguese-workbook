@@ -61,7 +61,10 @@
         "ACONTECER",
         "JOGAR",
         "TOCAR",
-        "ESCOLHER"
+        "ESCOLHER",
+        "ACREDITAR",
+        "EXPLICAR",
+        "ENVIAR"
     ],
     "verbs": {
         "SER": {
@@ -20637,7 +20640,1033 @@
                     "Notes": "Regular -ER Present Subjunctive."
                 }
             ]
+        },
+        "ACREDITAR": {
+            "meta": {
+                "emoji": "🙏",
+                "english": "to believe",
+                "group": "Regular -AR",
+                "priority": "Useful",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acredito",
+                    "Example Sentence": "Acredito em ti.",
+                    "English Translation": "I believe in you.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditas",
+                    "Example Sentence": "Acreditas no que ele disse?",
+                    "English Translation": "Do you believe what he said?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acredita",
+                    "Example Sentence": "Ela acredita que vai correr bem.",
+                    "English Translation": "She believes it will go well.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditamos",
+                    "Example Sentence": "Acreditamos no projeto.",
+                    "English Translation": "We believe in the project.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditam",
+                    "Example Sentence": "Não acreditam na história.",
+                    "English Translation": "They don't believe the story.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditei",
+                    "Example Sentence": "Acreditei nele e tinha razão.",
+                    "English Translation": "I believed in him and he was right.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditaste",
+                    "Example Sentence": "Acreditaste mesmo nisso?",
+                    "English Translation": "Did you really believe that?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditou",
+                    "Example Sentence": "Ninguém acreditou.",
+                    "English Translation": "Nobody believed it.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditámos",
+                    "Example Sentence": "Acreditámos que era verdade.",
+                    "English Translation": "We believed it was true.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditaram",
+                    "Example Sentence": "Acreditaram na promessa.",
+                    "English Translation": "They believed the promise.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditava",
+                    "Example Sentence": "Acreditava no Pai Natal quando era criança.",
+                    "English Translation": "I used to believe in Father Christmas as a child.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditavas",
+                    "Example Sentence": "Acreditavas em fantasmas?",
+                    "English Translation": "Did you used to believe in ghosts?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditava",
+                    "Example Sentence": "Acreditava que tudo era possível.",
+                    "English Translation": "He used to believe everything was possible.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditávamos",
+                    "Example Sentence": "Acreditávamos que ia mudar.",
+                    "English Translation": "We used to believe it would change.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditavam",
+                    "Example Sentence": "Acreditavam nas histórias do avô.",
+                    "English Translation": "They used to believe grandpa's stories.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditarei",
+                    "Example Sentence": "Acreditarei quando vir.",
+                    "English Translation": "I will believe it when I see it.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditarás",
+                    "Example Sentence": "Acreditarás em mim um dia.",
+                    "English Translation": "You will believe in me one day.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditará",
+                    "Example Sentence": "Acreditará com o tempo.",
+                    "English Translation": "He will believe with time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditaremos",
+                    "Example Sentence": "Acreditaremos nos resultados.",
+                    "English Translation": "We will believe in the results.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditarão",
+                    "Example Sentence": "Acreditarão quando virem.",
+                    "English Translation": "They will believe when they see.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditaria",
+                    "Example Sentence": "Acreditaria se tivesse provas.",
+                    "English Translation": "I would believe if I had proof.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditarias",
+                    "Example Sentence": "Acreditarias nesta história?",
+                    "English Translation": "Would you believe this story?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditaria",
+                    "Example Sentence": "Acreditaria se ouvisse.",
+                    "English Translation": "He would believe if he heard.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditaríamos",
+                    "Example Sentence": "Acreditaríamos com mais informação.",
+                    "English Translation": "We would believe with more information.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditariam",
+                    "Example Sentence": "Acreditariam se vissem.",
+                    "English Translation": "They would believe if they saw.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acredite",
+                    "Example Sentence": "Espero que acredite em mim.",
+                    "English Translation": "I hope he believes in me.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acredites",
+                    "Example Sentence": "Quero que acredites.",
+                    "English Translation": "I want you to believe.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acredite",
+                    "Example Sentence": "Talvez ela acredite.",
+                    "English Translation": "Maybe she will believe.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditemos",
+                    "Example Sentence": "Esperamos que acreditemos no futuro.",
+                    "English Translation": "We hope we believe in the future.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "acreditem",
+                    "Example Sentence": "Quero que acreditem na mudança.",
+                    "English Translation": "I want them to believe in change.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive. ACREDITAR EM = to believe in. Without 'em' = to believe (a statement)."
+                }
+            ]
+        },
+        "EXPLICAR": {
+            "meta": {
+                "emoji": "📖",
+                "english": "to explain",
+                "group": "Regular -AR (with spelling change)",
+                "priority": "Useful",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explico",
+                    "Example Sentence": "Explico outra vez se quiseres.",
+                    "English Translation": "I'll explain again if you want.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicas",
+                    "Example Sentence": "Explicas bem as coisas.",
+                    "English Translation": "You explain things well.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explica",
+                    "Example Sentence": "O professor explica com paciência.",
+                    "English Translation": "The teacher explains patiently.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicamos",
+                    "Example Sentence": "Explicamos o problema ao chefe.",
+                    "English Translation": "We explain the problem to the boss.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicam",
+                    "Example Sentence": "Não explicam nada.",
+                    "English Translation": "They don't explain anything.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "expliquei",
+                    "Example Sentence": "Expliquei tudo ao médico.",
+                    "English Translation": "I explained everything to the doctor.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (explicar, ficar, tocar)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicaste",
+                    "Example Sentence": "Explicaste a situação?",
+                    "English Translation": "Did you explain the situation?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicou",
+                    "Example Sentence": "Explicou a razão do atraso.",
+                    "English Translation": "He explained the reason for the delay.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicámos",
+                    "Example Sentence": "Explicámos as regras.",
+                    "English Translation": "We explained the rules.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicaram",
+                    "Example Sentence": "Explicaram o processo.",
+                    "English Translation": "They explained the process.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicava",
+                    "Example Sentence": "Explicava sempre com calma.",
+                    "English Translation": "I always used to explain calmly.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicavas",
+                    "Example Sentence": "Explicavas as lições?",
+                    "English Translation": "Did you used to explain the lessons?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicava",
+                    "Example Sentence": "Explicava tudo com exemplos.",
+                    "English Translation": "He used to explain everything with examples.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicávamos",
+                    "Example Sentence": "Explicávamos aos novos colegas.",
+                    "English Translation": "We used to explain to new colleagues.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicavam",
+                    "Example Sentence": "Explicavam as regras do jogo.",
+                    "English Translation": "They used to explain the game rules.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicarei",
+                    "Example Sentence": "Explicarei tudo na reunião.",
+                    "English Translation": "I will explain everything at the meeting.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicarás",
+                    "Example Sentence": "Explicarás ao teu pai?",
+                    "English Translation": "Will you explain to your father?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicará",
+                    "Example Sentence": "Explicará o plano amanhã.",
+                    "English Translation": "He will explain the plan tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicaremos",
+                    "Example Sentence": "Explicaremos com mais detalhe.",
+                    "English Translation": "We will explain in more detail.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicarão",
+                    "Example Sentence": "Explicarão as mudanças.",
+                    "English Translation": "They will explain the changes.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicaria",
+                    "Example Sentence": "Explicaria se percebesse melhor.",
+                    "English Translation": "I would explain if I understood better.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicarias",
+                    "Example Sentence": "Explicarias de outra forma?",
+                    "English Translation": "Would you explain it differently?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicaria",
+                    "Example Sentence": "Explicaria se tivesse tempo.",
+                    "English Translation": "He would explain if he had time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicaríamos",
+                    "Example Sentence": "Explicaríamos com prazer.",
+                    "English Translation": "We would explain with pleasure.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explicariam",
+                    "Example Sentence": "Explicariam se pudessem.",
+                    "English Translation": "They would explain if they could.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explique",
+                    "Example Sentence": "Espero que explique bem.",
+                    "English Translation": "I hope I explain well.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (explicar, ficar, tocar)."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "expliques",
+                    "Example Sentence": "Quero que expliques devagar.",
+                    "English Translation": "I want you to explain slowly.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (explicar, ficar, tocar)."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "explique",
+                    "Example Sentence": "Talvez ela explique amanhã.",
+                    "English Translation": "Maybe she will explain tomorrow.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (explicar, ficar, tocar)."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "expliquemos",
+                    "Example Sentence": "Esperamos que expliquemos claramente.",
+                    "English Translation": "We hope we explain clearly.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (explicar, ficar, tocar)."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "expliquem",
+                    "Example Sentence": "Quero que expliquem o motivo.",
+                    "English Translation": "I want them to explain the reason.",
+                    "Type": "Exception",
+                    "Notes": "Spelling change: c→qu before e to preserve the /k/ sound. Applies to all -CAR verbs (explicar, ficar, tocar)."
+                }
+            ]
+        },
+        "ENVIAR": {
+            "meta": {
+                "emoji": "📤",
+                "english": "to send",
+                "group": "Regular -AR",
+                "priority": "Useful",
+                "difficulty": "Beginner",
+                "cefr": "A2"
+            },
+            "conjugations": [
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "envio",
+                    "Example Sentence": "Envio o email já.",
+                    "English Translation": "I'll send the email right away.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "envias",
+                    "Example Sentence": "Envias muitas mensagens.",
+                    "English Translation": "You send a lot of messages.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "envia",
+                    "Example Sentence": "Ela envia encomendas todas as semanas.",
+                    "English Translation": "She sends packages every week.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviamos",
+                    "Example Sentence": "Enviamos o relatório ao cliente.",
+                    "English Translation": "We send the report to the client.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviam",
+                    "Example Sentence": "Enviam cartas pelo correio.",
+                    "English Translation": "They send letters by post.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviei",
+                    "Example Sentence": "Enviei a candidatura ontem.",
+                    "English Translation": "I sent the application yesterday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviaste",
+                    "Example Sentence": "Enviaste a mensagem?",
+                    "English Translation": "Did you send the message?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviou",
+                    "Example Sentence": "Enviou o presente pelo correio.",
+                    "English Translation": "He sent the present by post.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviámos",
+                    "Example Sentence": "Enviámos o convite a todos.",
+                    "English Translation": "We sent the invitation to everyone.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Preterite",
+                    "CEFR (Tense)": "A2",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviaram",
+                    "Example Sentence": "Enviaram os documentos.",
+                    "English Translation": "They sent the documents.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Preterite."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviava",
+                    "Example Sentence": "Enviava cartas ao meu avô.",
+                    "English Translation": "I used to send letters to my grandfather.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviavas",
+                    "Example Sentence": "Enviavas postais das férias?",
+                    "English Translation": "Did you used to send postcards from holidays?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviava",
+                    "Example Sentence": "Enviava flores no aniversário.",
+                    "English Translation": "He used to send flowers on her birthday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviávamos",
+                    "Example Sentence": "Enviávamos relatórios todas as sextas.",
+                    "English Translation": "We used to send reports every Friday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Imperfect",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviavam",
+                    "Example Sentence": "Enviavam prendas pelo Natal.",
+                    "English Translation": "They used to send presents at Christmas.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Imperfect."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviarei",
+                    "Example Sentence": "Enviarei a resposta amanhã.",
+                    "English Translation": "I will send the reply tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviarás",
+                    "Example Sentence": "Enviarás o pacote?",
+                    "English Translation": "Will you send the package?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviará",
+                    "Example Sentence": "Enviará a confirmação.",
+                    "English Translation": "He will send the confirmation.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviaremos",
+                    "Example Sentence": "Enviaremos tudo na segunda.",
+                    "English Translation": "We will send everything on Monday.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Future",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviarão",
+                    "Example Sentence": "Enviarão as faturas.",
+                    "English Translation": "They will send the invoices.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Future."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviaria",
+                    "Example Sentence": "Enviaria se tivesse o endereço.",
+                    "English Translation": "I would send it if I had the address.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviarias",
+                    "Example Sentence": "Enviarias por email ou correio?",
+                    "English Translation": "Would you send it by email or post?",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviaria",
+                    "Example Sentence": "Enviaria mais cedo se pudesse.",
+                    "English Translation": "He would send it sooner if he could.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviaríamos",
+                    "Example Sentence": "Enviaríamos por expresso.",
+                    "English Translation": "We would send it by express.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Conditional",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviariam",
+                    "Example Sentence": "Enviariam tudo junto.",
+                    "English Translation": "They would send everything together.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Conditional."
+                },
+                {
+                    "Person": "eu (I)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "envie",
+                    "Example Sentence": "Espero que envie a tempo.",
+                    "English Translation": "I hope I send it on time.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "tu (you singular)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "envies",
+                    "Example Sentence": "Quero que envies hoje.",
+                    "English Translation": "I want you to send it today.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "ele/ela/você (he/she/you formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "envie",
+                    "Example Sentence": "Talvez ela envie amanhã.",
+                    "English Translation": "Maybe she'll send it tomorrow.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "nós (we)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviemos",
+                    "Example Sentence": "Esperamos que enviemos antes do prazo.",
+                    "English Translation": "We hope we send it before the deadline.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                },
+                {
+                    "Person": "eles/elas/vocês (they/you plural formal)",
+                    "Tense": "Present Subjunctive",
+                    "CEFR (Tense)": "B1",
+                    "CEFR (Verb)": "A2",
+                    "Conjugation": "enviem",
+                    "Example Sentence": "Quero que enviem a confirmação.",
+                    "English Translation": "I want them to send the confirmation.",
+                    "Type": "Regular Pattern",
+                    "Notes": "Regular -AR Present Subjunctive."
+                }
+            ]
         }
     },
-    "totalVerbs": 62
+    "totalVerbs": 65
 }
