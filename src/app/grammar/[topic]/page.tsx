@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { Badge, cefrVariant } from "@/components/ui/badge";
+import { PronunciationButton } from "@/components/pronunciation-button";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic } from "@/types/grammar";
 
@@ -91,12 +92,14 @@ export default function GrammarTopicPage() {
                 {rule.examples.length > 0 && (
                   <div className="mt-3 pt-3 border-t border-indigo-200/50">
                     <p className="text-[12px] font-medium uppercase tracking-wide text-text-3 mb-1">Examples</p>
-                    <ul className="list-disc list-inside text-[14px] text-text-2 space-y-0.5">
+                    <ul className="list-disc list-inside text-[14px] text-text-2 space-y-1">
                       {rule.examples.map((ex, j) => (
                         <li key={j}>
-                          <span className="font-semibold text-text font-mono text-[13px]">{ex.pt}</span>
-                          {" — "}
-                          <span className="text-text-2">{ex.en}</span>
+                          <span className="inline-flex items-center gap-2">
+                            <PronunciationButton text={ex.pt} size="sm" className="shrink-0" />
+                            <span className="font-semibold text-text font-mono text-[13px]">{ex.pt}</span>
+                            <span className="text-text-2">— {ex.en}</span>
+                          </span>
                         </li>
                       ))}
                     </ul>

@@ -10,6 +10,7 @@
           "english": "hello",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "oh-LAH",
           "example": "Olá, como estás?",
           "exampleTranslation": "Hello, how are you?"
         },
@@ -18,6 +19,7 @@
           "english": "good morning",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "bong DEE-ah",
           "example": "Bom dia, senhora.",
           "exampleTranslation": "Good morning, madam."
         },
@@ -26,6 +28,7 @@
           "english": "good afternoon",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "BOH-ah TAHR-duh",
           "example": "Boa tarde a todos.",
           "exampleTranslation": "Good afternoon everyone."
         },
@@ -34,6 +37,7 @@
           "english": "good evening / good night",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "BOH-ah NOY-tuh",
           "example": "Boa noite, dorme bem.",
           "exampleTranslation": "Good night, sleep well."
         },
@@ -42,6 +46,7 @@
           "english": "goodbye",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ah-DAY-oosh",
           "example": "Adeus, até amanhã!",
           "exampleTranslation": "Goodbye, see you tomorrow!"
         },
@@ -50,6 +55,7 @@
           "english": "thank you (m/f)",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "oh-bree-GAH-doo / oh-bree-GAH-dah",
           "example": "Muito obrigado pela ajuda.",
           "exampleTranslation": "Thank you very much for the help."
         },
@@ -58,6 +64,7 @@
           "english": "please",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "pohr fah-VOHR",
           "example": "Um café, por favor.",
           "exampleTranslation": "A coffee, please."
         },
@@ -66,6 +73,7 @@
           "english": "excuse me / sorry",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "dish-KOOL-puh",
           "example": "Desculpe, onde fica o metro?",
           "exampleTranslation": "Excuse me, where is the metro?"
         },
@@ -74,6 +82,7 @@
           "english": "yes",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "SEENG",
           "example": "Sim, eu quero.",
           "exampleTranslation": "Yes, I want it."
         },
@@ -82,6 +91,7 @@
           "english": "no",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "NOWNG",
           "example": "Não, obrigado.",
           "exampleTranslation": "No, thank you."
         },
@@ -90,6 +100,7 @@
           "english": "maybe / perhaps",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "tahl-VAYSH",
           "example": "Talvez vá ao cinema.",
           "exampleTranslation": "Maybe I'll go to the cinema."
         },
@@ -98,6 +109,7 @@
           "english": "of course / clear",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "KLAH-roo",
           "example": "Claro que sim!",
           "exampleTranslation": "Of course!"
         },
@@ -106,6 +118,7 @@
           "english": "certainly / for sure",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "kong sehr-TAY-zah",
           "example": "Com certeza, eu ajudo.",
           "exampleTranslation": "For sure, I'll help."
         },
@@ -114,6 +127,7 @@
           "english": "excuse me (permission)",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "kong lee-SEN-sah",
           "example": "Com licença, posso passar?",
           "exampleTranslation": "Excuse me, may I pass?"
         },
@@ -122,6 +136,7 @@
           "english": "congratulations",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "pah-rah-BAYNGSH",
           "example": "Parabéns pelo aniversário!",
           "exampleTranslation": "Happy birthday!"
         },
@@ -130,6 +145,7 @@
           "english": "cheers / bless you",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "sah-OO-duh",
           "example": "Saúde! — quando alguém espirra.",
           "exampleTranslation": "Bless you! — when someone sneezes."
         },
@@ -138,6 +154,7 @@
           "english": "indeed / right / well",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "POYSH",
           "example": "Pois, tens razão.",
           "exampleTranslation": "Indeed, you're right."
         },
@@ -146,6 +163,7 @@
           "english": "cool / great (informal)",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "FEE-shuh",
           "example": "Que fixe! Adorei.",
           "exampleTranslation": "How cool! I loved it."
         },
@@ -154,6 +172,7 @@
           "english": "ready / done / okay",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "PRON-too",
           "example": "Pronto, já está.",
           "exampleTranslation": "Done, it's ready."
         },
@@ -162,6 +181,7 @@
           "english": "how are you? (informal)",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "KOH-moo shtahsh?",
           "example": "Olá, como estás?",
           "exampleTranslation": "Hello, how are you?"
         },
@@ -170,6 +190,7 @@
           "english": "everything okay? / how's it going?",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "TOO-doo bayng?",
           "example": "Tudo bem? Há quanto tempo!",
           "exampleTranslation": "How's it going? Long time no see!"
         },
@@ -178,6 +199,7 @@
           "english": "everything's fine / I'm good",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "TOO-doo bayng",
           "example": "Tudo bem, obrigado.",
           "exampleTranslation": "I'm fine, thank you."
         },
@@ -186,6 +208,7 @@
           "english": "see you later",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ah-TEH LOH-goo",
           "example": "Até logo, bom trabalho!",
           "exampleTranslation": "See you later, good work!"
         },
@@ -194,6 +217,7 @@
           "english": "see you tomorrow",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ah-TEH ah-mah-NYAH",
           "example": "Até amanhã, dorme bem.",
           "exampleTranslation": "See you tomorrow, sleep well."
         },
@@ -202,6 +226,7 @@
           "english": "see you in a moment",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ah-TEH ZHAH",
           "example": "Vou ali, até já!",
           "exampleTranslation": "I'm going over there, see you in a sec!"
         },
@@ -210,6 +235,7 @@
           "english": "you're welcome",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "duh NAH-dah",
           "example": "De nada, foi um prazer.",
           "exampleTranslation": "You're welcome, it was a pleasure."
         },
@@ -218,6 +244,7 @@
           "english": "okay / alright",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "shtah bayng",
           "example": "Está bem, eu faço isso.",
           "exampleTranslation": "Okay, I'll do that."
         },
@@ -226,6 +253,7 @@
           "english": "nice to meet you",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "MOOY-too prah-ZEHR",
           "example": "Muito prazer, sou o Rui.",
           "exampleTranslation": "Nice to meet you, I'm Rui."
         },
@@ -234,6 +262,7 @@
           "english": "likewise",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "ee-gwahl-MEN-tuh",
           "example": "Bom fim de semana! Igualmente!",
           "exampleTranslation": "Good weekend! Likewise!"
         },
@@ -242,6 +271,7 @@
           "english": "please (in requests)",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "fahsh fah-VOHR",
           "example": "Um café, faz favor.",
           "exampleTranslation": "A coffee, please."
         },
@@ -250,6 +280,7 @@
           "english": "if you please (formal)",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "suh fahsh fah-VOHR",
           "example": "A conta, se faz favor.",
           "exampleTranslation": "The bill, if you please."
         },
@@ -258,6 +289,7 @@
           "english": "good luck",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "BOH-ah SOHR-tuh",
           "example": "Boa sorte no exame!",
           "exampleTranslation": "Good luck on the exam!"
         },
@@ -266,6 +298,7 @@
           "english": "enjoy your meal",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "bong ah-puh-TEE-tuh",
           "example": "Bom apetite a todos!",
           "exampleTranslation": "Enjoy your meal, everyone!"
         }
@@ -696,6 +729,7 @@
           "english": "red",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "vehr-MEH-lyoo",
           "example": "O carro vermelho é meu.",
           "exampleTranslation": "The red car is mine."
         },
@@ -704,6 +738,7 @@
           "english": "blue",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "ah-ZOOL",
           "example": "O céu está azul.",
           "exampleTranslation": "The sky is blue."
         },
@@ -712,6 +747,7 @@
           "english": "green",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "VEHR-duh",
           "example": "Gosto de verde.",
           "exampleTranslation": "I like green."
         },
@@ -720,6 +756,7 @@
           "english": "yellow",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "ah-mah-REH-loo",
           "example": "A banana é amarela.",
           "exampleTranslation": "The banana is yellow."
         },
@@ -728,6 +765,7 @@
           "english": "white",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "BRAHN-koo",
           "example": "Vinho branco, por favor.",
           "exampleTranslation": "White wine, please."
         },
@@ -736,6 +774,7 @@
           "english": "black",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "PREH-too",
           "example": "Café preto, sem açúcar.",
           "exampleTranslation": "Black coffee, no sugar."
         },
@@ -744,6 +783,7 @@
           "english": "brown",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "kahsh-TAH-nyoo",
           "example": "Ela tem olhos castanhos.",
           "exampleTranslation": "She has brown eyes."
         },
@@ -752,6 +792,7 @@
           "english": "pink",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "KOHR duh ROH-zah",
           "example": "A camisa é cor-de-rosa.",
           "exampleTranslation": "The shirt is pink."
         },
@@ -760,6 +801,7 @@
           "english": "purple",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "ROH-shoo",
           "example": "As flores são roxas.",
           "exampleTranslation": "The flowers are purple."
         },
@@ -768,6 +810,7 @@
           "english": "grey",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "seen-ZEN-too",
           "example": "O dia está cinzento.",
           "exampleTranslation": "The day is grey."
         },
@@ -776,6 +819,7 @@
           "english": "sun",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "SOHL",
           "example": "Hoje está sol.",
           "exampleTranslation": "It's sunny today."
         },
@@ -784,6 +828,7 @@
           "english": "rain",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "SHOO-vah",
           "example": "Está a chover.",
           "exampleTranslation": "It's raining."
         },
@@ -792,6 +837,7 @@
           "english": "wind",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "VEN-too",
           "example": "Está muito vento.",
           "exampleTranslation": "It's very windy."
         },
@@ -800,6 +846,7 @@
           "english": "cold",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "FREE-oo",
           "example": "Está frio hoje.",
           "exampleTranslation": "It's cold today."
         },
@@ -808,6 +855,7 @@
           "english": "hot",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "KEN-tuh",
           "example": "Está muito quente.",
           "exampleTranslation": "It's very hot."
         },
@@ -816,6 +864,7 @@
           "english": "cloud",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "NOO-vayng",
           "example": "O céu está cheio de nuvens.",
           "exampleTranslation": "The sky is full of clouds."
         },
@@ -824,6 +873,7 @@
           "english": "snow",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "NEH-vuh",
           "example": "Nunca neva em Lisboa.",
           "exampleTranslation": "It never snows in Lisbon."
         },
@@ -832,6 +882,7 @@
           "english": "thunderstorm",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "troo-voh-AH-dah",
           "example": "Há trovoada esta noite.",
           "exampleTranslation": "There's a thunderstorm tonight."
         },
@@ -840,6 +891,7 @@
           "english": "temperature",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "tem-puh-rah-TOO-rah",
           "example": "A temperatura é de 25 graus.",
           "exampleTranslation": "The temperature is 25 degrees."
         },
@@ -848,6 +900,7 @@
           "english": "weather forecast",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "pruh-vee-ZOWNG doo TEM-poo",
           "example": "A previsão do tempo diz que vai chover.",
           "exampleTranslation": "The weather forecast says it will rain."
         },
@@ -856,6 +909,7 @@
           "english": "orange (colour)",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "lah-RAHN-zhah",
           "example": "O pôr do sol está laranja.",
           "exampleTranslation": "The sunset is orange."
         },
@@ -864,6 +918,7 @@
           "english": "gold / golden",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "doh-RAH-doo",
           "example": "A luz dourada da tarde.",
           "exampleTranslation": "The golden afternoon light."
         },
@@ -872,6 +927,7 @@
           "english": "silver",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "prah-tay-AH-doo",
           "example": "O carro prateado é novo.",
           "exampleTranslation": "The silver car is new."
         },
@@ -880,6 +936,7 @@
           "english": "dark",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "shKOO-roo",
           "example": "O azul escuro é bonito.",
           "exampleTranslation": "Dark blue is beautiful."
         },
@@ -888,6 +945,7 @@
           "english": "light (colour)",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "KLAH-roo",
           "example": "Prefiro verde claro.",
           "exampleTranslation": "I prefer light green."
         },
@@ -896,6 +954,7 @@
           "english": "fog",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "nuh-voo-AY-roo",
           "example": "Há muito nevoeiro de manhã.",
           "exampleTranslation": "There's a lot of fog in the morning."
         },
@@ -904,6 +963,7 @@
           "english": "storm",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "tem-push-TAH-duh",
           "example": "Vem aí uma tempestade.",
           "exampleTranslation": "A storm is coming."
         },
@@ -912,6 +972,7 @@
           "english": "drizzle",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "shoo-VEESH-koo",
           "example": "Está só um chuvisco.",
           "exampleTranslation": "It's just a drizzle."
         },
@@ -920,6 +981,7 @@
           "english": "hail",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "grah-NEE-zoo",
           "example": "Caiu granizo ontem.",
           "exampleTranslation": "It hailed yesterday."
         },
@@ -928,6 +990,7 @@
           "english": "spring",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "pree-mah-VEH-rah",
           "example": "A primavera começa em março.",
           "exampleTranslation": "Spring starts in March."
         },
@@ -936,6 +999,7 @@
           "english": "summer",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "vuh-ROWNG",
           "example": "No verão vamos à praia.",
           "exampleTranslation": "In summer we go to the beach."
         },
@@ -944,6 +1008,7 @@
           "english": "autumn",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "oh-TOH-noo",
           "example": "O outono é a minha estação preferida.",
           "exampleTranslation": "Autumn is my favourite season."
         },
@@ -952,6 +1017,7 @@
           "english": "winter",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "in-VEHR-noo",
           "example": "No inverno faz muito frio.",
           "exampleTranslation": "In winter it's very cold."
         },
@@ -3944,6 +4010,7 @@
           "english": "dog",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "KOWNG",
           "example": "O cão está no jardim.",
           "exampleTranslation": "The dog is in the garden."
         },
@@ -3952,6 +4019,7 @@
           "english": "cat",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "GAH-too",
           "example": "Tenho um gato preto.",
           "exampleTranslation": "I have a black cat."
         },
@@ -3960,6 +4028,7 @@
           "english": "bird",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "PAH-sah-roo",
           "example": "O pássaro canta de manhã.",
           "exampleTranslation": "The bird sings in the morning."
         },
@@ -3968,6 +4037,7 @@
           "english": "fish (animal)",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "PAY-shuh",
           "example": "O peixe vive no aquário.",
           "exampleTranslation": "The fish lives in the aquarium."
         },
@@ -3976,6 +4046,7 @@
           "english": "horse",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "kah-VAH-loo",
           "example": "Os cavalos estão no campo.",
           "exampleTranslation": "The horses are in the field."
         },
@@ -3984,6 +4055,7 @@
           "english": "cow",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "VAH-kah",
           "example": "A vaca dá leite.",
           "exampleTranslation": "The cow gives milk."
         },
@@ -3992,6 +4064,7 @@
           "english": "rooster",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "GAH-loo",
           "example": "O galo canta ao amanhecer.",
           "exampleTranslation": "The rooster crows at dawn."
         },
@@ -4000,6 +4073,7 @@
           "english": "hen",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "gah-LEE-nyah",
           "example": "As galinhas põem ovos.",
           "exampleTranslation": "The hens lay eggs."
         },
@@ -4008,6 +4082,7 @@
           "english": "rabbit",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "koo-EH-lyoo",
           "example": "O coelho come cenouras.",
           "exampleTranslation": "The rabbit eats carrots."
         },
@@ -4016,6 +4091,7 @@
           "english": "butterfly",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "bohr-boo-LEH-tah",
           "example": "Uma borboleta pousou na flor.",
           "exampleTranslation": "A butterfly landed on the flower."
         },
@@ -4024,6 +4100,7 @@
           "english": "bee",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ah-BEH-lyah",
           "example": "Cuidado com a abelha.",
           "exampleTranslation": "Watch out for the bee."
         },
@@ -4032,6 +4109,7 @@
           "english": "tree",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "AHR-voo-ruh",
           "example": "A árvore é muito alta.",
           "exampleTranslation": "The tree is very tall."
         },
@@ -4040,6 +4118,7 @@
           "english": "flower",
           "cefr": "A1",
           "gender": "f",
+          "pronunciation": "FLOHR",
           "example": "Comprei flores para a minha mãe.",
           "exampleTranslation": "I bought flowers for my mother."
         },
@@ -4048,6 +4127,7 @@
           "english": "river",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "RREE-oo",
           "example": "O rio Tejo atravessa Lisboa.",
           "exampleTranslation": "The Tagus river crosses Lisbon."
         },
@@ -4056,6 +4136,7 @@
           "english": "sea",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "MAHR",
           "example": "O mar está calmo hoje.",
           "exampleTranslation": "The sea is calm today."
         },
@@ -4064,6 +4145,7 @@
           "english": "mountain",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "mon-TAH-nyah",
           "example": "Subimos a montanha.",
           "exampleTranslation": "We climbed the mountain."
         },
@@ -4072,6 +4154,7 @@
           "english": "lake",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "LAH-goo",
           "example": "Nadámos no lago.",
           "exampleTranslation": "We swam in the lake."
         },
@@ -4080,6 +4163,7 @@
           "english": "forest",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "floo-REH-shtah",
           "example": "A floresta é densa.",
           "exampleTranslation": "The forest is dense."
         },
@@ -4088,6 +4172,7 @@
           "english": "field / countryside",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "KAHM-poo",
           "example": "Vivo no campo.",
           "exampleTranslation": "I live in the countryside."
         },
@@ -4096,6 +4181,7 @@
           "english": "sky",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "SAY-oo",
           "example": "O céu está azul.",
           "exampleTranslation": "The sky is blue."
         },
@@ -4104,6 +4190,7 @@
           "english": "star",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "shtRAY-lah",
           "example": "Há muitas estrelas esta noite.",
           "exampleTranslation": "There are many stars tonight."
         },
@@ -4112,6 +4199,7 @@
           "english": "moon",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "LOO-ah",
           "example": "A lua está bonita.",
           "exampleTranslation": "The moon looks beautiful."
         },
@@ -4120,6 +4208,7 @@
           "english": "earth / land",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "TEH-rrah",
           "example": "A terra é fértil aqui.",
           "exampleTranslation": "The land is fertile here."
         },
@@ -4128,6 +4217,7 @@
           "english": "island",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "EE-lyah",
           "example": "A Madeira é uma ilha.",
           "exampleTranslation": "Madeira is an island."
         },
@@ -4136,6 +4226,7 @@
           "english": "landscape / scenery",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "pah-ee-ZAH-zhayng",
           "example": "A paisagem é deslumbrante.",
           "exampleTranslation": "The scenery is stunning."
         },
@@ -4144,6 +4235,7 @@
           "english": "wolf",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "LOH-boo",
           "example": "O lobo ibérico está em perigo.",
           "exampleTranslation": "The Iberian wolf is endangered."
         },
@@ -4152,6 +4244,7 @@
           "english": "fox",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "rrah-POH-zah",
           "example": "Vi uma raposa no campo.",
           "exampleTranslation": "I saw a fox in the countryside."
         },
@@ -4160,6 +4253,7 @@
           "english": "dolphin",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "gohl-FEE-nyoo",
           "example": "Há golfinhos na costa do Algarve.",
           "exampleTranslation": "There are dolphins on the Algarve coast."
         },
@@ -4168,6 +4262,7 @@
           "english": "turtle / tortoise",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "tahr-tah-ROO-gah",
           "example": "A tartaruga caminha devagar.",
           "exampleTranslation": "The tortoise walks slowly."
         },
@@ -4176,6 +4271,7 @@
           "english": "sheep",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "oh-VEH-lyah",
           "example": "O pastor leva as ovelhas ao monte.",
           "exampleTranslation": "The shepherd takes the sheep to the hills."
         },
@@ -4184,6 +4280,7 @@
           "english": "pig",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "POHR-koo",
           "example": "O porco preto alentejano é famoso.",
           "exampleTranslation": "The Alentejo black pig is famous."
         },
@@ -4192,6 +4289,7 @@
           "english": "ant",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "foor-MEE-gah",
           "example": "As formigas trabalham muito.",
           "exampleTranslation": "Ants work a lot."
         },
@@ -4200,6 +4298,7 @@
           "english": "spider",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ah-RAH-nyah",
           "example": "Tenho medo de aranhas.",
           "exampleTranslation": "I'm afraid of spiders."
         },
@@ -4208,6 +4307,7 @@
           "english": "stone / rock",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "PEH-drah",
           "example": "Sentou-se numa pedra.",
           "exampleTranslation": "He sat on a rock."
         },
@@ -4216,6 +4316,7 @@
           "english": "sand",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ah-RAY-ah",
           "example": "A areia da praia é branca.",
           "exampleTranslation": "The beach sand is white."
         },
@@ -4224,6 +4325,7 @@
           "english": "wave",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "ON-dah",
           "example": "As ondas estão grandes hoje.",
           "exampleTranslation": "The waves are big today."
         },
@@ -4232,6 +4334,7 @@
           "english": "coast",
           "cefr": "A2",
           "gender": "f",
+          "pronunciation": "KOSH-tah",
           "example": "A costa portuguesa é linda.",
           "exampleTranslation": "The Portuguese coast is beautiful."
         },
@@ -4240,6 +4343,7 @@
           "english": "spring (water source)",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "nah-SEN-tuh",
           "example": "A água vem de uma nascente.",
           "exampleTranslation": "The water comes from a spring."
         },
@@ -4248,6 +4352,7 @@
           "english": "hill",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "koo-LEE-nah",
           "example": "A aldeia fica numa colina.",
           "exampleTranslation": "The village is on a hill."
         },
@@ -4256,6 +4361,7 @@
           "english": "sunset",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "POHR doo SOHL",
           "example": "O pôr do sol no Algarve é incrível.",
           "exampleTranslation": "The sunset in the Algarve is incredible."
         }
@@ -4598,6 +4704,7 @@
           "english": "dude / mate",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "PAH",
           "example": "Eh pá, que se passa?",
           "exampleTranslation": "Hey dude, what's going on?"
         },
@@ -4606,6 +4713,7 @@
           "english": "let's go",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "BOH-rah",
           "example": "Bora sair?",
           "exampleTranslation": "Let's go out?"
         },
@@ -4614,6 +4722,7 @@
           "english": "okay / alright",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "TAH",
           "example": "Tá, eu vou.",
           "exampleTranslation": "Okay, I'll go."
         },
@@ -4622,6 +4731,7 @@
           "english": "what's up? / so?",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "ee ah-EE?",
           "example": "E aí, tudo bem?",
           "exampleTranslation": "What's up, all good?"
         },
@@ -4630,6 +4740,7 @@
           "english": "no worries / chill",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "tran-KEE-loo",
           "example": "Tranquilo, não há problema.",
           "exampleTranslation": "No worries, no problem."
         },
@@ -4638,6 +4749,7 @@
           "english": "you're right",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "tayngsh rrah-ZOWNG",
           "example": "Tens razão, é melhor assim.",
           "exampleTranslation": "You're right, it's better this way."
         },
@@ -4646,6 +4758,7 @@
           "english": "like (filler word)",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "TEE-poo",
           "example": "Era tipo uma festa, sabes?",
           "exampleTranslation": "It was like a party, you know?"
         },
@@ -4654,6 +4767,7 @@
           "english": "yeah",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "YAH",
           "example": "Ya, concordo contigo.",
           "exampleTranslation": "Yeah, I agree with you."
         },
@@ -4662,6 +4776,7 @@
           "english": "thing / stuff (informal)",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "SAY-nah",
           "example": "Aquela cena foi estranha.",
           "exampleTranslation": "That thing was weird."
         },
@@ -4670,6 +4785,7 @@
           "english": "guy / girl (informal)",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "GAH-zhoo / GAH-zhah",
           "example": "Conheces aquele gajo?",
           "exampleTranslation": "Do you know that guy?"
         },
@@ -4678,6 +4794,7 @@
           "english": "cool / awesome",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "bah-KAH-noo",
           "example": "O concerto foi bacano.",
           "exampleTranslation": "The concert was cool."
         },
@@ -4686,6 +4803,7 @@
           "english": "make yourself comfortable / go ahead",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "ah vohn-TAH-duh",
           "example": "Fica à vontade, estás em casa.",
           "exampleTranslation": "Make yourself at home."
         },
@@ -4694,6 +4812,7 @@
           "english": "no worries / it's fine",
           "cefr": "A1",
           "gender": null,
+          "pronunciation": "nowng fahsh MAHL",
           "example": "Não faz mal, acontece a todos.",
           "exampleTranslation": "No worries, it happens to everyone."
         },
@@ -4702,6 +4821,7 @@
           "english": "wow / come on (exclamation)",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "ay-PAH",
           "example": "Epá, não acredito!",
           "exampleTranslation": "Come on, I can't believe it!"
         },
@@ -4710,6 +4830,7 @@
           "english": "bro / dude (address)",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "MAY-oo",
           "example": "Eh meu, vamos ao café?",
           "exampleTranslation": "Hey bro, shall we go to the café?"
         },
@@ -4718,6 +4839,7 @@
           "english": "a lot / very (Lisbon slang)",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "bway",
           "example": "Aquilo é bué fixe.",
           "exampleTranslation": "That's really cool."
         },
@@ -4726,6 +4848,7 @@
           "english": "don't worry about it",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "FEE-kah dish-kahn-SAH-doo",
           "example": "Fica descansado, eu trato disso.",
           "exampleTranslation": "Don't worry, I'll take care of it."
         },
@@ -4734,6 +4857,7 @@
           "english": "to annoy / to bother",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "shah-tay-AHR",
           "example": "Não me chateies agora.",
           "exampleTranslation": "Don't bother me now."
         },
@@ -4742,6 +4866,7 @@
           "english": "to enjoy / to like (informal)",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "koor-TEER",
           "example": "Curti bué o filme.",
           "exampleTranslation": "I really enjoyed the film."
         },
@@ -4750,6 +4875,7 @@
           "english": "damn / jeez (exclamation)",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "FOH-goo",
           "example": "Fogo, que calor!",
           "exampleTranslation": "Damn, it's so hot!"
         },
@@ -4758,6 +4884,7 @@
           "english": "gang / group / people (informal)",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "MAHL-tah",
           "example": "A malta quer ir ao cinema.",
           "exampleTranslation": "The group wants to go to the cinema."
         },
@@ -4766,6 +4893,7 @@
           "english": "pretty / cute / cool",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "ZHEE-roo",
           "example": "Que vestido giro!",
           "exampleTranslation": "What a pretty dress!"
         },
@@ -4774,6 +4902,7 @@
           "english": "cool / great (informal)",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "poo-RRAY-roo",
           "example": "O teu irmão é muito porreiro.",
           "exampleTranslation": "Your brother is really cool."
         },
@@ -4782,6 +4911,7 @@
           "english": "annoying / boring",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "SHAH-too",
           "example": "Que filme chato!",
           "exampleTranslation": "What a boring film!"
         },
@@ -4790,6 +4920,7 @@
           "english": "fed up",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "FAHR-too",
           "example": "Estou farto de esperar.",
           "exampleTranslation": "I'm fed up with waiting."
         },
@@ -4798,6 +4929,7 @@
           "english": "to complain",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "kay-SHAHR-suh",
           "example": "Estás sempre a queixar-te.",
           "exampleTranslation": "You're always complaining."
         },
@@ -4806,6 +4938,7 @@
           "english": "lazybones / lazy person",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "mahn-dree-OWNG",
           "example": "Levanta-te, mandrião!",
           "exampleTranslation": "Get up, lazybones!"
         },
@@ -4814,6 +4947,7 @@
           "english": "silly / dumb",
           "cefr": "A2",
           "gender": "m",
+          "pronunciation": "PAHR-voo",
           "example": "Não sejas parvo.",
           "exampleTranslation": "Don't be silly."
         },
@@ -4822,6 +4956,7 @@
           "english": "stressed / hassled",
           "cefr": "B1",
           "gender": "m",
+          "pronunciation": "shtreh-SAH-doo",
           "example": "Ando stressado com o trabalho.",
           "exampleTranslation": "I've been stressed with work."
         },
@@ -4830,6 +4965,7 @@
           "english": "hangover",
           "cefr": "B1",
           "gender": "f",
+          "pronunciation": "rruh-SAH-kah",
           "example": "Tenho uma ressaca terrível.",
           "exampleTranslation": "I have a terrible hangover."
         },
@@ -4838,6 +4974,7 @@
           "english": "to mess up / to ruin",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "lee-SHAHR",
           "example": "Acho que lixei tudo.",
           "exampleTranslation": "I think I messed everything up."
         },
@@ -4846,6 +4983,7 @@
           "english": "wow / damn (surprise)",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "kah-RAHM-bah",
           "example": "Caramba, que bonito!",
           "exampleTranslation": "Wow, how beautiful!"
         },
@@ -4854,6 +4992,7 @@
           "english": "to chat / to talk",
           "cefr": "A2",
           "gender": null,
+          "pronunciation": "kon-vehr-SAHR",
           "example": "Vamos conversar um bocado?",
           "exampleTranslation": "Shall we have a chat?"
         },
@@ -4862,6 +5001,7 @@
           "english": "a bit / a little while",
           "cefr": "A1",
           "gender": "m",
+          "pronunciation": "boo-KAH-doo",
           "example": "Espera um bocado.",
           "exampleTranslation": "Wait a bit."
         },
@@ -4870,6 +5010,7 @@
           "english": "loads of / tons of",
           "cefr": "B1",
           "gender": null,
+          "pronunciation": "MON-tush duh",
           "example": "Havia montes de gente na festa.",
           "exampleTranslation": "There were loads of people at the party."
         }

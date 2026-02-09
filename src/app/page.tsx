@@ -4,6 +4,7 @@ import { Topbar } from "@/components/layout/topbar";
 export const dynamic = "force-dynamic";
 import { HomeProgressBanner } from "@/components/home-progress-banner";
 import { ChangelogBanner } from "@/components/changelog-banner";
+import { PronunciationButton } from "@/components/pronunciation-button";
 import changelogData from "@/data/changelog.json";
 import { Badge, cefrVariant, groupVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
@@ -103,14 +104,17 @@ export default function Home() {
               </p>
               {wordOfDay ? (
                 <>
-                  <p className="text-xl md:text-2xl font-bold tracking-tight text-text break-words">
-                    {wordOfDay.word.portuguese}
-                    {wordOfDay.word.gender && (
-                      <span className="text-base font-normal text-text-2 ml-1">
-                        ({wordOfDay.word.gender === "m" ? "masc." : "fem."})
-                      </span>
-                    )}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <p className="text-xl md:text-2xl font-bold tracking-tight text-text break-words">
+                      {wordOfDay.word.portuguese}
+                      {wordOfDay.word.gender && (
+                        <span className="text-base font-normal text-text-2 ml-1">
+                          ({wordOfDay.word.gender === "m" ? "masc." : "fem."})
+                        </span>
+                      )}
+                    </p>
+                    <PronunciationButton text={wordOfDay.word.portuguese} size="md" className="shrink-0" />
+                  </div>
                   <p className="text-[14px] text-text-2 mt-1 break-words">
                     {wordOfDay.word.english}
                   </p>
@@ -149,6 +153,7 @@ export default function Home() {
                     <p className="text-xl md:text-2xl font-bold tracking-tight text-text break-words">
                       {verbKey}
                     </p>
+                    <PronunciationButton text={verbKey} size="md" className="shrink-0" />
                     <span className="text-[14px] text-text-2">
                       {verbOfDay.meta.english}
                     </span>

@@ -80,7 +80,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "SEHR"
             },
             "conjugations": [
                 {
@@ -422,7 +423,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "shTAHR"
             },
             "conjugations": [
                 {
@@ -764,7 +766,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "TEHR"
             },
             "conjugations": [
                 {
@@ -1106,7 +1109,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "EER"
             },
             "conjugations": [
                 {
@@ -1448,7 +1452,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Advanced",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "fah-ZEHR"
             },
             "conjugations": [
                 {
@@ -1790,7 +1795,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "poo-DEHR"
             },
             "conjugations": [
                 {
@@ -2132,7 +2138,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "kuh-REHR"
             },
             "conjugations": [
                 {
@@ -2474,7 +2481,8 @@
                 "group": "Regular -AR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "fah-LAHR"
             },
             "conjugations": [
                 {
@@ -2816,7 +2824,8 @@
                 "group": "Regular -AR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "moo-RAHR"
             },
             "conjugations": [
                 {
@@ -3158,7 +3167,8 @@
                 "group": "Regular -AR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "trah-bah-LYAHR"
             },
             "conjugations": [
                 {
@@ -3500,7 +3510,8 @@
                 "group": "Regular -AR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "goosh-TAHR"
             },
             "conjugations": [
                 {
@@ -3842,7 +3853,8 @@
                 "group": "Regular -AR",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "kom-PRAHR"
             },
             "conjugations": [
                 {
@@ -4184,7 +4196,8 @@
                 "group": "Regular -AR",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "an-DAHR"
             },
             "conjugations": [
                 {
@@ -4526,7 +4539,8 @@
                 "group": "Regular -ER",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "koo-MEHR"
             },
             "conjugations": [
                 {
@@ -4868,7 +4882,8 @@
                 "group": "Regular -ER",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "buh-BEHR"
             },
             "conjugations": [
                 {
@@ -5210,7 +5225,8 @@
                 "group": "Regular -ER",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "vee-VEHR"
             },
             "conjugations": [
                 {
@@ -5552,7 +5568,8 @@
                 "group": "Regular -ER",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "ah-pren-DEHR"
             },
             "conjugations": [
                 {
@@ -5894,7 +5911,8 @@
                 "group": "Regular -IR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "B1"
+                "cefr": "B1",
+                "pronunciation": "pahr-TEER"
             },
             "conjugations": [
                 {
@@ -6236,7 +6254,8 @@
                 "group": "Regular -IR",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "ah-BREER"
             },
             "conjugations": [
                 {
@@ -6578,7 +6597,8 @@
                 "group": "Regular -IR",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "B1"
+                "cefr": "B1",
+                "pronunciation": "duh-see-DEER"
             },
             "conjugations": [
                 {
@@ -6920,7 +6940,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "dee-ZEHR"
             },
             "conjugations": [
                 {
@@ -7232,7 +7253,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "VEHR"
             },
             "conjugations": [
                 {
@@ -7544,7 +7566,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "DAHR"
             },
             "conjugations": [
                 {
@@ -7856,7 +7879,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "sah-BEHR"
             },
             "conjugations": [
                 {
@@ -8168,7 +8192,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Advanced",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "VEER"
             },
             "conjugations": [
                 {
@@ -8480,7 +8505,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Advanced",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "POHR"
             },
             "conjugations": [
                 {
@@ -8792,7 +8818,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "sah-EER"
             },
             "conjugations": [
                 {
@@ -9104,7 +9131,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "door-MEER"
             },
             "conjugations": [
                 {
@@ -9416,7 +9444,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "pah-GAHR"
             },
             "conjugations": [
                 {
@@ -9728,7 +9757,8 @@
                 "group": "Regular -AR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "shtoo-DAHR"
             },
             "conjugations": [
                 {
@@ -10040,7 +10070,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "shah-MAHR"
             },
             "conjugations": [
                 {
@@ -10352,7 +10383,8 @@
                 "group": "Regular -AR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "ah-zhoo-DAHR"
             },
             "conjugations": [
                 {
@@ -10664,7 +10696,8 @@
                 "group": "Regular -AR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "pen-SAHR"
             },
             "conjugations": [
                 {
@@ -10976,7 +11009,8 @@
                 "group": "Regular -ER",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "shkruh-VEHR"
             },
             "conjugations": [
                 {
@@ -11288,7 +11322,8 @@
                 "group": "Regular -ER",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "koo-RREHR"
             },
             "conjugations": [
                 {
@@ -11600,7 +11635,8 @@
                 "group": "Regular -ER",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "pehr-suh-BEHR"
             },
             "conjugations": [
                 {
@@ -11912,7 +11948,8 @@
                 "group": "Regular -ER",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "koo-nyuh-SEHR"
             },
             "conjugations": [
                 {
@@ -12224,7 +12261,8 @@
                 "group": "Regular -IR",
                 "priority": "Core",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "ah-sees-TEER"
             },
             "conjugations": [
                 {
@@ -12536,7 +12574,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "kon-suh-GEER"
             },
             "conjugations": [
                 {
@@ -12848,7 +12887,8 @@
                 "group": "Irregular",
                 "priority": "Core",
                 "difficulty": "Intermediate",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "sen-TEER"
             },
             "conjugations": [
                 {
@@ -13160,7 +13200,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "oh-VEER"
             },
             "conjugations": [
                 {
@@ -13472,7 +13513,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "fee-KAHR"
             },
             "conjugations": [
                 {
@@ -13814,7 +13856,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "pruh-see-ZAHR"
             },
             "conjugations": [
                 {
@@ -14156,7 +14199,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "shuh-GAHR"
             },
             "conjugations": [
                 {
@@ -14498,7 +14542,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "en-kon-TRAHR"
             },
             "conjugations": [
                 {
@@ -14840,7 +14885,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "luh-VAHR"
             },
             "conjugations": [
                 {
@@ -15182,7 +15228,8 @@
                 "group": "Irregular",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "trah-ZEHR"
             },
             "conjugations": [
                 {
@@ -15524,7 +15571,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "day-SHAHR"
             },
             "conjugations": [
                 {
@@ -15866,7 +15914,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "koo-muh-SAHR"
             },
             "conjugations": [
                 {
@@ -16208,7 +16257,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "ah-kah-BAHR"
             },
             "conjugations": [
                 {
@@ -16550,7 +16600,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "shpuh-RAHR"
             },
             "conjugations": [
                 {
@@ -16892,7 +16943,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "vohl-TAHR"
             },
             "conjugations": [
                 {
@@ -17234,7 +17286,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "lem-BRAHR"
             },
             "conjugations": [
                 {
@@ -17576,7 +17629,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "pehr-goon-TAHR"
             },
             "conjugations": [
                 {
@@ -17918,7 +17972,8 @@
                 "group": "Regular -ER",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "rresh-pon-DEHR"
             },
             "conjugations": [
                 {
@@ -18260,7 +18315,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "pah-SAHR"
             },
             "conjugations": [
                 {
@@ -18602,7 +18658,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "en-TRAHR"
             },
             "conjugations": [
                 {
@@ -18944,7 +19001,8 @@
                 "group": "Regular -AR",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "moo-DAHR"
             },
             "conjugations": [
                 {
@@ -19286,7 +19344,8 @@
                 "group": "Regular -ER",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "ah-kon-tuh-SEHR"
             },
             "conjugations": [
                 {
@@ -19628,7 +19687,8 @@
                 "group": "Regular -AR (with spelling change)",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "zhoo-GAHR"
             },
             "conjugations": [
                 {
@@ -19970,7 +20030,8 @@
                 "group": "Regular -AR (with spelling change)",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "too-KAHR"
             },
             "conjugations": [
                 {
@@ -20312,7 +20373,8 @@
                 "group": "Regular -ER",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "shkoo-LYEHR"
             },
             "conjugations": [
                 {
@@ -20654,7 +20716,8 @@
                 "group": "Regular -AR",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "ah-kruh-dee-TAHR"
             },
             "conjugations": [
                 {
@@ -20996,7 +21059,8 @@
                 "group": "Regular -AR (with spelling change)",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "shplee-KAHR"
             },
             "conjugations": [
                 {
@@ -21338,7 +21402,8 @@
                 "group": "Regular -AR",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "en-vee-AHR"
             },
             "conjugations": [
                 {
@@ -21680,7 +21745,8 @@
                 "group": "Regular -ER",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "rruh-suh-BEHR"
             },
             "conjugations": [
                 {
@@ -22022,7 +22088,8 @@
                 "group": "Regular -ER (with spelling change in subjunctive)",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "pah-ruh-SEHR"
             },
             "conjugations": [
                 {
@@ -22364,7 +22431,8 @@
                 "group": "Irregular -IR",
                 "priority": "Essential",
                 "difficulty": "Intermediate",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "puh-DEER"
             },
             "conjugations": [
                 {
@@ -22706,7 +22774,8 @@
                 "group": "Regular -AR",
                 "priority": "Useful",
                 "difficulty": "Beginner",
-                "cefr": "A1"
+                "cefr": "A1",
+                "pronunciation": "vee-ah-ZHAHR"
             },
             "conjugations": [
                 {
@@ -23048,7 +23117,8 @@
                 "group": "Irregular -IR",
                 "priority": "Useful",
                 "difficulty": "Intermediate",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "pruh-fuh-REER"
             },
             "conjugations": [
                 {
@@ -23390,7 +23460,8 @@
                 "group": "Regular -ER",
                 "priority": "Essential",
                 "difficulty": "Beginner",
-                "cefr": "A2"
+                "cefr": "A2",
+                "pronunciation": "duh-VEHR"
             },
             "conjugations": [
                 {

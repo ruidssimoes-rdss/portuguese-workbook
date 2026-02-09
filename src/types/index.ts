@@ -6,6 +6,8 @@ export interface VerbMeta {
   priority: "Essential" | "Core" | "Useful";
   difficulty: string;
   cefr: "A1" | "A2" | "B1" | "B2";
+  /** Simplified phonetic transcription for infinitive (e.g. fah-ZEHR) */
+  pronunciation?: string;
 }
 
 export interface Conjugation {

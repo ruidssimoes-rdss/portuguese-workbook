@@ -2,18 +2,19 @@
   "entries": [
     {
       "date": "2026-02-09",
-      "version": "1.1.0",
-      "title": "Major content expansion — 10 updates",
-      "summary": "Massive content expansion day: restructured vocabulary, added 30 new verbs, created new categories, and polished 10 grammar topics.",
+      "version": "1.2.0",
+      "title": "Major content expansion + pronunciation",
+      "summary": "Massive update: restructured vocabulary, added 30 new verbs, created new categories, polished 10 grammar topics, and added audio pronunciation with phonetic transcriptions.",
       "changes": [
         "Restructured vocabulary from 6 broad categories to 13 focused categories",
-        "Added 30 new verbs: FICAR, PRECISAR, CHEGAR, ENCONTRAR, LEVAR, TRAZER, DEIXAR, COMECAR, ACABAR, ESPERAR, VOLTAR, LEMBRAR, PERGUNTAR, RESPONDER, PASSAR, ENTRAR, MUDAR, ACONTECER, JOGAR, TOCAR, ESCOLHER, ACREDITAR, EXPLICAR, ENVIAR, RECEBER, PARECER, PEDIR, VIAJAR, PREFERIR, DEVER",
-        "Now 71 verbs with 2,130 conjugations across 6 tenses",
-        "Added 3 new vocabulary categories: Shopping & Money, Nature & Animals, Emotions & Personality",
-        "Added Colloquial & Slang category with 35 everyday EP expressions",
+        "Added 30 new verbs: 71 total with 2,130 conjugations across 6 tenses",
         "Total vocabulary: ~605 words across 13 categories",
-        "Polished 10 grammar topics: ser-vs-estar, articles, noun-gender, negation, questions, prepositions, reflexive-verbs, possessives, demonstratives, present-tense-ar",
-        "New feature: What's New page with changelog and dismissable homepage banner"
+        "New: Colloquial & Slang category with 35 everyday EP expressions",
+        "Polished 10 grammar topics with improved rules and test questions",
+        "New: Audio pronunciation — tap the speaker icon to hear any word or phrase in European Portuguese",
+        "New: Phonetic transcriptions for 4 vocabulary categories and all 71 verb infinitives",
+        "New: What's New page with changelog and dismissable homepage banner",
+        "UI polish pass — consistent spacing, typography, colours, and responsive design"
       ]
     },
     {

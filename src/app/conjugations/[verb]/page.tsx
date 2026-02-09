@@ -10,6 +10,7 @@ import {
   cefrVariant,
   priorityVariant,
 } from "@/components/ui/badge";
+import { PronunciationButton } from "@/components/pronunciation-button";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 
@@ -59,7 +60,7 @@ export default function VerbPage() {
       <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
         {/* Compact header */}
         <div className="flex items-center justify-between gap-4 flex-wrap py-5">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <Link
               href="/conjugations"
               className="text-text-3 hover:text-text transition-colors"
@@ -76,6 +77,10 @@ export default function VerbPage() {
               </svg>
             </Link>
             <span className="text-[22px] font-bold tracking-tight">{slug}</span>
+            <PronunciationButton text={slug} size="md" className="shrink-0" />
+            {m.pronunciation && (
+              <span className="text-sm text-gray-400 font-mono">{m.pronunciation}</span>
+            )}
             <span className="text-[13px] text-text-3 ml-1">
               · {m.english} · {m.group}
             </span>
@@ -118,9 +123,12 @@ export default function VerbPage() {
                   </Badge>
                   <span className="text-[13px] text-text-2">{person}</span>
                 </div>
-                <p className="text-[16px] font-bold tracking-tight text-text">
-                  {r.Conjugation}
-                </p>
+                <div className="flex items-center gap-2">
+                  <p className="text-[16px] font-bold tracking-tight text-text">
+                    {r.Conjugation}
+                  </p>
+                  <PronunciationButton text={r.Conjugation} size="sm" />
+                </div>
                 {r["Example Sentence"] && (
                   <p className="text-[13px] text-text-2 italic mt-1.5 break-words">
                     {r["Example Sentence"]}
@@ -193,8 +201,11 @@ export default function VerbPage() {
                     <td className="px-3.5 py-2.5 border-b border-border-l font-medium whitespace-nowrap">
                       {person}
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l font-bold tracking-tight whitespace-nowrap">
-                      {r.Conjugation}
+                    <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-bold tracking-tight">{r.Conjugation}</span>
+                        <PronunciationButton text={r.Conjugation} size="sm" />
+                      </div>
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 italic text-[12.5px] whitespace-nowrap">
                       {r["Example Sentence"]}

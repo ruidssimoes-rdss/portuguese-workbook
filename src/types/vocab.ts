@@ -5,6 +5,8 @@ export interface VocabWord {
   gender: "m" | "f" | null;
   example: string;
   exampleTranslation: string;
+  /** Simplified phonetic transcription (e.g. bah-KAH-noo) */
+  pronunciation?: string;
 }
 
 export interface VocabCategory {

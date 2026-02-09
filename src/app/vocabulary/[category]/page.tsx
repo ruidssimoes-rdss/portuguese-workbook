@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { Badge, cefrVariant } from "@/components/ui/badge";
+import { PronunciationButton } from "@/components/pronunciation-button";
 import vocabData from "@/data/vocab.json";
 import type { VocabData } from "@/types/vocab";
 
@@ -102,22 +103,35 @@ export default function VocabCategoryPage() {
                 key={i}
                 className="border border-border rounded-lg p-4 bg-white min-h-[120px] flex flex-col transition-colors duration-200 hover:border-indigo-200"
               >
-                <p className="text-[17px] font-bold tracking-tight text-text break-words">
-                  {w.portuguese}
-                </p>
+                <div className="flex items-start gap-2">
+                  <p className="text-[17px] font-bold tracking-tight text-text break-words">
+                    {w.portuguese}
+                  </p>
+                  <PronunciationButton text={w.portuguese} size="sm" className="shrink-0 mt-0.5" />
+                </div>
+                {w.pronunciation && (
+                  <p className="text-sm text-gray-400 font-mono mt-0.5 break-words">
+                    {w.pronunciation}
+                  </p>
+                )}
                 <p className="text-[14px] text-text-2 mt-0.5 break-words">
                   {w.english}
                 </p>
                 {w.example && (
                   <>
-                    <p className="text-[13px] text-text-2 italic mt-2 break-words">
-                      {w.example}
-                    </p>
-                    {w.exampleTranslation && (
-                      <p className="text-[12px] text-text-3 mt-0.5 break-words">
-                        {w.exampleTranslation}
-                      </p>
-                    )}
+                    <div className="flex items-start gap-2 mt-2">
+                      <PronunciationButton text={w.example} size="sm" className="shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-[13px] text-text-2 italic break-words">
+                          {w.example}
+                        </p>
+                        {w.exampleTranslation && (
+                          <p className="text-[12px] text-text-3 mt-0.5 break-words">
+                            {w.exampleTranslation}
+                          </p>
+                        )}
+                      </div>
+                    </div>
                   </>
                 )}
                 <div className="flex gap-1.5 flex-wrap mt-3 mt-auto">
