@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { ProtectedRoute } from "@/components/protected-route";
 import { getProgress } from "@/lib/progress";
 import type { UserProgress } from "@/types/levels";
 import {
@@ -98,9 +99,11 @@ export default function DashboardPage() {
     return (
       <>
         <Topbar />
-        <main className="max-w-[1100px] mx-auto px-6 md:px-10 py-12">
-          <p className="text-text-2">Loading...</p>
-        </main>
+        <ProtectedRoute>
+          <main className="max-w-[1100px] mx-auto px-6 md:px-10 py-12">
+            <p className="text-text-2">Loading...</p>
+          </main>
+        </ProtectedRoute>
       </>
     );
   }
@@ -134,8 +137,9 @@ export default function DashboardPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
-        <header className="pt-12 pb-8">
+      <ProtectedRoute>
+        <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
+          <header className="pt-12 pb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-text">
             Progress & Tests
           </h1>
@@ -368,7 +372,8 @@ export default function DashboardPage() {
             </div>
           </div>
         </section>
-      </main>
+        </main>
+      </ProtectedRoute>
     </>
   );
 }

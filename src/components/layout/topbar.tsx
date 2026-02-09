@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SearchModal } from "@/components/search-modal";
+import { useAuth } from "@/components/auth-provider";
 
 const navItems = [
   { href: "/conjugations", label: "Conjugations" },
@@ -16,9 +17,13 @@ const navItems = [
 
 export function Topbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, loading: authLoading, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [shortcutHint, setShortcutHint] = useState<string>("⌘K");
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
   const closeSearchModal = useCallback(() => setSearchModalOpen(false), []);
@@ -71,6 +76,35 @@ export function Topbar() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [searchModalOpen]);
+
+  useEffect(() => {
+    if (!userMenuOpen) return;
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setUserMenuOpen(false);
+    };
+    const onClickOutside = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onEscape);
+    window.addEventListener("click", onClickOutside);
+    return () => {
+      window.removeEventListener("keydown", onEscape);
+      window.removeEventListener("click", onClickOutside);
+    };
+  }, [userMenuOpen]);
+
+  const handleSignOut = async () => {
+    setUserMenuOpen(false);
+    setMobileMenuOpen(false);
+    await signOut();
+    router.push("/");
+    router.refresh();
+  };
+
+  const displayName = user?.user_metadata?.display_name ?? user?.email?.split("@")[0] ?? "?";
+  const initials = displayName.slice(0, 1).toUpperCase();
 
   return (
     <>
@@ -138,6 +172,59 @@ export function Topbar() {
                 {shortcutHint}
               </kbd>
             </button>
+
+            {authLoading ? (
+              <div className="w-8 h-8 rounded-full bg-gray-100 animate-pulse shrink-0" aria-hidden />
+            ) : user ? (
+              <div className="relative shrink-0" ref={userMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setUserMenuOpen((o) => !o)}
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#5B4FA0] text-white text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
+                  aria-label="Menu da conta"
+                  aria-expanded={userMenuOpen}
+                >
+                  {initials}
+                </button>
+                {userMenuOpen && (
+                  <div className="absolute right-0 top-full mt-1 w-56 rounded-lg border border-gray-200 bg-white shadow-lg py-1 z-[60] animate-fade-in">
+                    <div className="px-3 py-2 border-b border-gray-100">
+                      <p className="text-sm font-medium text-text truncate">{displayName}</p>
+                      <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                    </div>
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-bg-s hover:text-text"
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      href="/settings"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-bg-s hover:text-text"
+                    >
+                      Definições
+                    </Link>
+                    <div className="my-1 border-t border-gray-100" />
+                    <button
+                      type="button"
+                      onClick={handleSignOut}
+                      className="block w-full text-left px-3 py-2 text-[13px] text-text-2 hover:bg-bg-s hover:text-text"
+                    >
+                      Sair
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/auth/login"
+                className="shrink-0 px-3 py-1.5 rounded-lg border border-[#5B4FA0] text-[#5B4FA0] text-[13px] font-medium hover:bg-indigo-50 transition-colors"
+              >
+                Entrar
+              </Link>
+            )}
           </div>
         </div>
       </header>
@@ -187,6 +274,40 @@ export function Topbar() {
                   </Link>
                 );
               })}
+              {!authLoading && (
+                <>
+                  <div className="my-1 border-t border-gray-200" />
+                  {user ? (
+                    <>
+                      <Link
+                        href="/settings"
+                        onClick={closeMobileMenu}
+                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-bg-s hover:text-text min-h-[44px] flex items-center"
+                      >
+                        Definições
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          closeMobileMenu();
+                          handleSignOut();
+                        }}
+                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-bg-s hover:text-text min-h-[44px] flex items-center w-full text-left"
+                      >
+                        Sair
+                      </button>
+                    </>
+                  ) : (
+                    <Link
+                      href="/auth/login"
+                      onClick={closeMobileMenu}
+                      className="px-4 py-3 rounded-lg text-[15px] font-medium text-[#5B4FA0] hover:bg-indigo-50 min-h-[44px] flex items-center"
+                    >
+                      Entrar
+                    </Link>
+                  )}
+                </>
+              )}
             </nav>
           </div>
         </div>
