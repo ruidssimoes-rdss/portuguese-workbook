@@ -3,9 +3,10 @@
  */
 
 import type { TestQuestion } from "@/types/levels";
-import type { ConjugationSubLevel, VocabSubLevel } from "@/types/levels";
+import type { ConjugationSubLevel, VocabSubLevel, GrammarSubLevel } from "@/types/levels";
 import type { VerbDataSet } from "@/types";
 import type { VocabData, VocabWord } from "@/types/vocab";
+import type { GrammarData } from "@/types/grammar";
 
 const PERSONS = [
   "eu (I)",
@@ -179,6 +180,58 @@ export function generateVocabularyQuestions(
   }
 
   return questions;
+}
+
+function getTopicIdsForLevel(levelData: GrammarSubLevel, grammarData: GrammarData): string[] {
+  const raw = levelData.topics;
+  if (Array.isArray(raw)) return raw.filter((id) => grammarData.topics[id]);
+  if (raw === "all") return Object.keys(grammarData.topics);
+  if (raw === "all_A1_A2") {
+    return Object.values(grammarData.topics)
+      .filter((t) => t.cefr === "A1" || t.cefr === "A2")
+      .map((t) => t.id);
+  }
+  if (raw === "all_A1" || raw === "all_B1") {
+    const cefr = raw === "all_A1" ? "A1" : "B1";
+    return Object.values(grammarData.topics)
+      .filter((t) => t.cefr === cefr)
+      .map((t) => t.id);
+  }
+  return [];
+}
+
+export function generateGrammarQuestions(
+  levelKey: string,
+  levelData: GrammarSubLevel,
+  grammarData: GrammarData
+): TestQuestion[] {
+  const topicIds = getTopicIdsForLevel(levelData, grammarData);
+  if (topicIds.length === 0) return [];
+
+  const allQuestions: TestQuestion[] = [];
+  for (const topicId of topicIds) {
+    const topic = grammarData.topics[topicId];
+    if (!topic?.questions?.length) continue;
+    for (const q of topic.questions) {
+      allQuestions.push({
+        questionText: q.questionText,
+        questionTextPt: q.questionTextPt,
+        options: q.options,
+        correctAnswer: q.correctAnswer,
+        correctIndex: q.correctIndex,
+        explanation: q.explanation,
+        exampleSentence: q.exampleSentence,
+        exampleTranslation: q.exampleTranslation,
+        levelKey,
+      });
+    }
+  }
+
+  const shuffled = shuffle(allQuestions);
+  const selected = shuffled.slice(0, QUESTIONS_PER_TEST);
+  if (selected.length < QUESTIONS_PER_TEST) return [];
+
+  return selected;
 }
 
 export { QUESTIONS_PER_TEST };

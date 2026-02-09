@@ -6,11 +6,16 @@ import { HomeProgressBanner } from "@/components/home-progress-banner";
 import { Badge, cefrVariant, groupVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
+import grammarData from "@/data/grammar.json";
 import type { VerbDataSet } from "@/types";
 import type { VocabData, VocabWord } from "@/types/vocab";
+import type { GrammarData } from "@/types/grammar";
 
 const verbs = verbData as unknown as VerbDataSet;
 const vocab = vocabData as unknown as VocabData;
+const grammar = grammarData as unknown as GrammarData;
+
+const totalGrammarTopics = Object.keys(grammar.topics).length;
 
 const totalVerbs = verbs.order.length;
 const totalConjugations = verbs.order.reduce(
@@ -58,9 +63,9 @@ const sections = [
   {
     title: "Grammar",
     href: "/grammar",
-    stat: "Coming soon",
+    stat: `${totalGrammarTopics} topics · A1–B1`,
     desc: "Tense explanations, rules, and tips",
-    ready: false,
+    ready: true,
   },
   {
     title: "Practice",
@@ -262,7 +267,7 @@ export default function Home() {
         <section className="pb-16 pt-2 text-center">
           <p className="text-[13px] text-text-2">
             {totalVerbs} verbs · {totalConjugations.toLocaleString()}{" "}
-            conjugations · {totalVocabWords} words · {totalCategories} categories
+            conjugations · {totalVocabWords} words · {totalCategories} categories · {totalGrammarTopics} grammar topics
           </p>
           <Link
             href="/dashboard"

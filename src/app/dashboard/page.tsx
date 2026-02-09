@@ -234,18 +234,13 @@ export default function DashboardPage() {
             const targetAccuracy = info.targetAccuracy ?? 70;
             const passedCount = highestPassed != null ? getLevelIndex(highestPassed) + 1 : 0;
             const progressPct = Math.max(4, (passedCount / 15) * 100);
-            const grammarDisabled = section === "grammar";
             const colors = SECTION_COLORS[section];
             const failedLast = s.lastTestScore != null && s.lastTestScore < targetAccuracy;
 
             return (
               <div
                 key={section}
-                className={`rounded-[12px] border p-5 transition-all duration-150 flex flex-col ${
-                  !grammarDisabled
-                    ? "hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
-                    : ""
-                }`}
+                className="rounded-[12px] border p-5 transition-all duration-150 flex flex-col hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-px"
                 style={{
                   backgroundColor: colors.bg,
                   borderColor: colors.border,
@@ -310,7 +305,7 @@ export default function DashboardPage() {
                       </span>
                       Section Complete
                     </div>
-                  ) : !grammarDisabled ? (
+                  ) : (
                     <>
                       <Link
                         href={`/dashboard/test/${section}`}
@@ -330,14 +325,6 @@ export default function DashboardPage() {
                         </p>
                       )}
                     </>
-                  ) : (
-                    <div
-                      className="inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-full border cursor-not-allowed"
-                      style={{ borderColor: colors.border, color: colors.title }}
-                      title="Coming soon"
-                    >
-                      Coming soon
-                    </div>
                   )}
                 </div>
               </div>

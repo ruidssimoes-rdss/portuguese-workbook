@@ -7,20 +7,24 @@ import { Topbar } from "@/components/layout/topbar";
 import {
   generateConjugationQuestions,
   generateVocabularyQuestions,
+  generateGrammarQuestions,
   QUESTIONS_PER_TEST,
 } from "@/lib/test-generator";
 import { getProgress, saveLevelResult } from "@/lib/progress";
 import { getNextLevel, getLevelIndex, type TestQuestion } from "@/types/levels";
-import type { LevelsData, ConjugationSubLevel, VocabSubLevel } from "@/types/levels";
+import type { LevelsData, ConjugationSubLevel, VocabSubLevel, GrammarSubLevel } from "@/types/levels";
 import levelsDataRaw from "@/data/levels.json";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
+import grammarData from "@/data/grammar.json";
 import type { VerbDataSet } from "@/types";
 import type { VocabData } from "@/types/vocab";
+import type { GrammarData } from "@/types/grammar";
 
 const levelsData = levelsDataRaw as unknown as LevelsData;
 const verbs = verbData as unknown as VerbDataSet;
 const vocab = vocabData as unknown as VocabData;
+const grammar = grammarData as unknown as GrammarData;
 
 const SECTION_COLORS = {
   conjugations: "#3D6B9E",
@@ -96,6 +100,14 @@ export default function LevelTestPage() {
       } else {
         setQuestions([]);
       }
+    } else if (isGrammar && levelInfo) {
+      const levelData = levelsData.grammar[currentLevel] as GrammarSubLevel | undefined;
+      if (levelData) {
+        const qs = generateGrammarQuestions(currentLevel, levelData, grammar);
+        setQuestions(qs.slice(0, QUESTIONS_PER_TEST));
+      } else {
+        setQuestions([]);
+      }
     } else {
       setQuestions([]);
     }
@@ -157,12 +169,12 @@ export default function LevelTestPage() {
     phase === "results" ? resultAnswers.filter((a) => a.correct).length : 0;
   const passed = resultScore >= targetAccuracy;
 
-  if (isGrammar || (!isConjugations && !isVocabulary)) {
+  if (!isConjugations && !isVocabulary && !isGrammar) {
     return (
       <>
         <Topbar />
         <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
-          <p className="text-text-2">Level tests for grammar are not available yet.</p>
+          <p className="text-text-2">Section not found.</p>
           <Link href="/dashboard" className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block">
             Back to Progress & Tests
           </Link>
