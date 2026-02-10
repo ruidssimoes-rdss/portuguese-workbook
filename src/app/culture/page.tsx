@@ -1,75 +1,56 @@
 "use client";
 
 import { useMemo, useState, useCallback, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import sayingsData from "@/data/sayings.json";
+import falseFriendsData from "@/data/false-friends.json";
+import etiquetteData from "@/data/etiquette.json";
+import regionalData from "@/data/regional.json";
 import type { SayingsData, Saying } from "@/types/saying";
+import type { FalseFriendsData, FalseFriend, EtiquetteData, EtiquetteTip, RegionalData, RegionalExpression } from "@/types/culture";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { normalizeForSearch } from "@/lib/search";
 
-const data = sayingsData as unknown as SayingsData;
-const sayings = data.sayings;
+const sayings = (sayingsData as unknown as SayingsData).sayings;
+const falseFriends = (falseFriendsData as unknown as FalseFriendsData).falseFriends;
+const etiquetteTips = (etiquetteData as unknown as EtiquetteData).tips;
+const regionalExpressions = (regionalData as unknown as RegionalData).expressions;
+
+const TABS = [
+  { id: "sayings", label: "Sayings & Proverbs", labelPt: "Ditados e Provérbios", count: sayings.length },
+  { id: "false-friends", label: "False Friends", labelPt: "Falsos Amigos", count: falseFriends.length },
+  { id: "etiquette", label: "Cultural Etiquette", labelPt: "Etiqueta Cultural", count: etiquetteTips.length },
+  { id: "regional", label: "Regional Slang", labelPt: "Calão Regional", count: regionalExpressions.length },
+] as const;
+type TabId = (typeof TABS)[number]["id"];
 
 const CEFR_LEVELS = ["All", "A1", "A2", "B1"] as const;
-type CefrFilter = (typeof CEFR_LEVELS)[number];
-
-const THEMES = [
-  "All",
-  "Life",
-  "Wisdom",
-  "Patience",
-  "Character",
-  "Relationships",
-  "Food",
-  "Weather",
-  "Money",
-  "Work",
-  "Humor",
-] as const;
-type ThemeFilter = (typeof THEMES)[number];
-
+const THEMES = ["All", "Life", "Wisdom", "Patience", "Character", "Relationships", "Food", "Weather", "Money", "Work", "Humor"] as const;
 const THEME_TO_KEY: Record<string, string> = {
-  Life: "life",
-  Wisdom: "wisdom",
-  Patience: "patience",
-  Character: "character",
-  Relationships: "relationships",
-  Food: "food",
-  Weather: "weather",
-  Money: "money",
-  Work: "work",
-  Humor: "humor",
+  Life: "life", Wisdom: "wisdom", Patience: "patience", Character: "character",
+  Relationships: "relationships", Food: "food", Weather: "weather", Money: "money", Work: "work", Humor: "humor",
+};
+const ETIQUETTE_CATEGORIES = ["All", "Greetings", "Dining", "Social", "Shopping", "Daily"] as const;
+const ETIQUETTE_TO_KEY: Record<string, string> = {
+  Greetings: "greetings", Dining: "dining", Social: "social", Shopping: "shopping", Daily: "daily",
+};
+const REGIONS = ["All", "Lisboa", "Porto", "North", "Algarve", "Azores", "Madeira"] as const;
+const REGION_TO_KEY: Record<string, string> = {
+  Lisboa: "lisbon", Porto: "porto", North: "north", Algarve: "algarve", Azores: "azores", Madeira: "madeira",
 };
 
-function countByCefr() {
-  const a1 = sayings.filter((s) => s.cefr === "A1").length;
-  const a2 = sayings.filter((s) => s.cefr === "A2").length;
-  const b1 = sayings.filter((s) => s.cefr === "B1").length;
-  return { a1, a2, b1 };
-}
-
-const counts = countByCefr();
-
-function SayingCard({
-  saying,
-  isHighlighted,
-}: {
-  saying: Saying;
-  isHighlighted?: boolean;
-}) {
+function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?: boolean }) {
   const [copied, setCopied] = useState(false);
   const [exampleOpen, setExampleOpen] = useState(false);
-
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(saying.portuguese).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   }, [saying.portuguese]);
-
   const hasExample = !!saying.example;
-
   return (
     <article
       id={saying.id}
@@ -79,61 +60,42 @@ function SayingCard({
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-gray-900 italic">
-            &quot;{saying.portuguese}&quot;
-          </p>
+          <p className="text-lg font-semibold text-gray-900 italic">&quot;{saying.portuguese}&quot;</p>
           <p className="text-sm font-mono text-gray-400 mt-1">{saying.pronunciation}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={saying.portuguese} size="sm" />
-          <span className="inline-flex items-center text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-gray-100 text-gray-700 border border-gray-200">
-            {saying.cefr}
-          </span>
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="text-xs text-gray-500 hover:text-[#5B4FA0] px-2 py-1 rounded border border-gray-200 hover:border-[#5B4FA0]/30 transition-colors"
-          >
+          <span className="inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-gray-100 text-gray-700 border border-gray-200">{saying.cefr}</span>
+          <button type="button" onClick={handleCopy} className="text-xs text-gray-500 hover:text-[#5B4FA0] px-2 py-1 rounded border border-gray-200 hover:border-[#5B4FA0]/30 transition-colors">
             {copied ? "Copied" : "Copy"}
           </button>
         </div>
       </div>
-
       <div className="border-t border-gray-100 pt-3 mt-3">
         <p className="text-sm font-semibold text-gray-500 mb-0.5">Literal:</p>
         <p className="text-sm text-gray-700">{saying.literal}</p>
       </div>
-
       <div className="border-t border-gray-100 pt-3 mt-3">
         <p className="text-sm font-semibold text-gray-700 mb-0.5">Meaning:</p>
         <p className="text-sm text-gray-700">{saying.meaning}</p>
       </div>
-
       <div className="border-t border-gray-100 pt-3 mt-3">
         <p className="text-sm font-semibold text-gray-500 mb-0.5">When to use:</p>
         <p className="text-sm text-gray-700">{saying.usage}</p>
       </div>
-
       {hasExample && (
         <div className="border-t border-gray-100 pt-3 mt-3">
-          <button
-            type="button"
-            onClick={() => setExampleOpen((o) => !o)}
-            className="text-sm font-semibold text-gray-500 hover:text-[#5B4FA0]"
-          >
+          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-gray-500 hover:text-[#5B4FA0]">
             Example {exampleOpen ? "–" : "+"}
           </button>
           {exampleOpen && (
             <div className="bg-gray-50 rounded-lg p-4 mt-3">
               <p className="text-sm text-gray-900 italic">{saying.example}</p>
-              {saying.exampleTranslation && (
-                <p className="text-sm text-gray-500 mt-1">{saying.exampleTranslation}</p>
-              )}
+              {saying.exampleTranslation && <p className="text-sm text-gray-500 mt-1">{saying.exampleTranslation}</p>}
             </div>
           )}
         </div>
       )}
-
       <div className="border-t border-gray-100 pt-3 mt-3">
         <span className="inline-block bg-gray-100 text-gray-600 rounded-full px-3 py-1 text-xs">
           {THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === saying.theme) ?? saying.theme}
@@ -143,132 +105,422 @@ function SayingCard({
   );
 }
 
+function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlighted?: boolean }) {
+  return (
+    <article
+      id={item.id}
+      className={`bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all duration-200 ${
+        isHighlighted ? "ring-2 ring-[#5B4FA0]/40 border-[#5B4FA0]/30" : ""
+      }`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <p className="text-lg font-semibold text-gray-900">{item.portuguese}</p>
+          <p className="text-sm font-mono text-gray-400 mt-1">{item.pronunciation}</p>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <PronunciationButton text={item.portuguese} size="sm" />
+          <span className="inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-gray-100 text-gray-700 border border-gray-200">{item.cefr}</span>
+        </div>
+      </div>
+      <p className="text-sm font-semibold text-red-400 mt-3">
+        Looks like: <span className="line-through text-red-500">{item.looksLike}</span>
+      </p>
+      <p className="text-sm font-semibold text-emerald-600 mt-1">Actually means: {item.actualMeaning}</p>
+      <p className="text-sm font-semibold text-gray-500 mt-2">
+        Correct word for &quot;{item.looksLike}&quot;: {item.correctWord}
+      </p>
+      <div className="border-t border-gray-100 pt-3 mt-3">
+        <p className="text-sm text-gray-700 italic">{item.example}</p>
+        <p className="text-sm text-gray-500 mt-1">{item.exampleTranslation}</p>
+      </div>
+      <div className="bg-amber-50 rounded-lg p-3 mt-3">
+        <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
+        <p className="text-sm text-amber-800">{item.tip}</p>
+      </div>
+    </article>
+  );
+}
+
+function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
+  const categoryLabel = ETIQUETTE_CATEGORIES.find((c) => c !== "All" && ETIQUETTE_TO_KEY[c] === tip.category) ?? tip.category;
+  return (
+    <article
+      id={tip.id}
+      className="bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all duration-200"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <p className="text-base font-semibold text-gray-900">{tip.title}</p>
+          <p className="text-sm text-[#5B4FA0]/60 font-medium mt-0.5">{tip.titlePt}</p>
+        </div>
+        <span className="text-xs bg-gray-100 text-gray-500 rounded-full px-3 py-1 shrink-0">{categoryLabel}</span>
+      </div>
+      <p className="text-sm text-gray-600 mt-3">{tip.description}</p>
+      <div className="bg-emerald-50 rounded-lg p-3 mt-3">
+        <p className="text-xs font-semibold text-emerald-700">Do:</p>
+        <p className="text-sm text-emerald-800">{tip.doThis}</p>
+      </div>
+      <div className="bg-red-50 rounded-lg p-3 mt-2">
+        <p className="text-xs font-semibold text-red-400">Avoid:</p>
+        <p className="text-sm text-red-700">{tip.avoidThis}</p>
+      </div>
+    </article>
+  );
+}
+
+function regionBadgeClass(region: string): string {
+  switch (region) {
+    case "lisbon": return "bg-yellow-50 text-yellow-700 border border-yellow-200";
+    case "porto": return "bg-blue-50 text-blue-700 border border-blue-200";
+    case "algarve": return "bg-orange-50 text-orange-700 border border-orange-200";
+    case "north": return "bg-emerald-50 text-emerald-700 border border-emerald-200";
+    case "azores": return "bg-cyan-50 text-cyan-700 border border-cyan-200";
+    case "madeira": return "bg-purple-50 text-purple-700 border border-purple-200";
+    default: return "bg-gray-100 text-gray-700 border border-gray-200";
+  }
+}
+function regionLabel(region: string): string {
+  const map: Record<string, string> = { lisbon: "Lisboa", porto: "Porto", north: "North", algarve: "Algarve", azores: "Azores", madeira: "Madeira" };
+  return map[region] ?? region;
+}
+
+function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHighlighted?: boolean }) {
+  return (
+    <article
+      id={item.id}
+      className={`bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all duration-200 border-l-[3px] ${
+        isHighlighted ? "ring-2 ring-[#5B4FA0]/40 border-[#5B4FA0]/30" : ""
+      }`}
+      style={{ borderLeftColor: item.region === "lisbon" ? "#eab308" : item.region === "porto" ? "#3b82f6" : item.region === "algarve" ? "#f97316" : item.region === "north" ? "#10b981" : item.region === "azores" ? "#06b6d4" : item.region === "madeira" ? "#a855f7" : "#e5e7eb" }}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <p className="text-lg font-semibold text-gray-900 italic">{item.expression}</p>
+          <p className="text-sm font-mono text-gray-400 mt-1">{item.pronunciation}</p>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <PronunciationButton text={item.expression} size="sm" />
+          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full border ${regionBadgeClass(item.region)}`}>
+            {regionLabel(item.region)}
+          </span>
+          <span className="inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-gray-100 text-gray-700 border border-gray-200">{item.cefr}</span>
+        </div>
+      </div>
+      <p className="text-sm text-gray-700 mt-3"><span className="font-semibold text-gray-500">Meaning:</span> {item.meaning}</p>
+      <p className="text-sm font-semibold text-gray-500 mt-2">Standard Portuguese: {item.standardAlternative}</p>
+      <div className="border-t border-gray-100 pt-3 mt-3">
+        <p className="text-sm text-gray-900 italic">{item.example}</p>
+        <p className="text-sm text-gray-500 mt-1">{item.exampleTranslation}</p>
+      </div>
+    </article>
+  );
+}
+
 function CultureContent() {
   const searchParams = useSearchParams();
-  const [cefrFilter, setCefrFilter] = useState<CefrFilter>("All");
-  const [themeFilter, setThemeFilter] = useState<ThemeFilter>("All");
-  const [search, setSearch] = useState("");
+  const router = useRouter();
+  const tabParam = searchParams.get("tab");
+  const tab: TabId = (TABS.some((t) => t.id === tabParam) ? tabParam : "sayings") as TabId;
+  const setTab = useCallback(
+    (id: TabId) => {
+      const u = new URLSearchParams(searchParams.toString());
+      u.set("tab", id);
+      u.delete("highlight");
+      router.replace(`/culture?${u.toString()}`, { scroll: false });
+    },
+    [searchParams, router]
+  );
+
   const highlightId = searchParams.get("highlight");
 
-  const filtered = useMemo(() => {
+  const [cefrFilter, setCefrFilter] = useState<string>("All");
+  const [themeFilter, setThemeFilter] = useState<string>("All");
+  const [etiquetteCategory, setEtiquetteCategory] = useState<string>("All");
+  const [regionFilter, setRegionFilter] = useState<string>("All");
+  const [search, setSearch] = useState("");
+
+  const filteredSayings = useMemo(() => {
     let list = sayings;
     if (cefrFilter !== "All") list = list.filter((s) => s.cefr === cefrFilter);
-    if (themeFilter !== "All") {
-      const key = THEME_TO_KEY[themeFilter];
-      list = list.filter((s) => s.theme === key);
-    }
+    if (themeFilter !== "All") list = list.filter((s) => s.theme === THEME_TO_KEY[themeFilter]);
     if (search.trim()) {
       const q = normalizeForSearch(search.trim());
-      list = list.filter((s) => {
-        const pt = normalizeForSearch(s.portuguese);
-        const lit = normalizeForSearch(s.literal);
-        const mean = normalizeForSearch(s.meaning);
-        const use = normalizeForSearch(s.usage);
-        return pt.includes(q) || lit.includes(q) || mean.includes(q) || use.includes(q);
-      });
+      list = list.filter((s) =>
+        normalizeForSearch(s.portuguese).includes(q) ||
+        normalizeForSearch(s.literal).includes(q) ||
+        normalizeForSearch(s.meaning).includes(q) ||
+        normalizeForSearch(s.usage).includes(q)
+      );
     }
     return list;
   }, [cefrFilter, themeFilter, search]);
 
+  const filteredFalseFriends = useMemo(() => {
+    let list = falseFriends;
+    if (cefrFilter !== "All") list = list.filter((f) => f.cefr === cefrFilter);
+    if (search.trim()) {
+      const q = normalizeForSearch(search.trim());
+      list = list.filter((f) =>
+        normalizeForSearch(f.portuguese).includes(q) ||
+        normalizeForSearch(f.looksLike).includes(q) ||
+        normalizeForSearch(f.actualMeaning).includes(q)
+      );
+    }
+    return list;
+  }, [cefrFilter, search]);
+
+  const filteredEtiquette = useMemo(() => {
+    let list = etiquetteTips;
+    if (etiquetteCategory !== "All") list = list.filter((e) => e.category === ETIQUETTE_TO_KEY[etiquetteCategory]);
+    if (search.trim()) {
+      const q = normalizeForSearch(search.trim());
+      list = list.filter((e) =>
+        normalizeForSearch(e.title).includes(q) ||
+        normalizeForSearch(e.titlePt).includes(q) ||
+        normalizeForSearch(e.description).includes(q)
+      );
+    }
+    return list;
+  }, [etiquetteCategory, search]);
+
+  const filteredRegional = useMemo(() => {
+    let list = regionalExpressions;
+    if (regionFilter !== "All") list = list.filter((r) => r.region === REGION_TO_KEY[regionFilter]);
+    if (cefrFilter !== "All") list = list.filter((r) => r.cefr === cefrFilter);
+    if (search.trim()) {
+      const q = normalizeForSearch(search.trim());
+      list = list.filter((r) =>
+        normalizeForSearch(r.expression).includes(q) ||
+        normalizeForSearch(r.meaning).includes(q) ||
+        normalizeForSearch(r.standardAlternative).includes(q)
+      );
+    }
+    return list;
+  }, [regionFilter, cefrFilter, search]);
+
   useEffect(() => {
-    if (!highlightId || filtered.length === 0) return;
-    const inFiltered = filtered.some((s) => s.id === highlightId);
-    if (!inFiltered) return;
+    if (!highlightId) return;
     const t = setTimeout(() => {
       document.getElementById(highlightId)?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 300);
     return () => clearTimeout(t);
-  }, [highlightId, filtered]);
+  }, [highlightId, tab]);
 
   return (
     <>
       <Topbar />
       <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
-        <section className="py-12 md:py-16">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div>
-              <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-gray-900">
-                Culture & Expressions
-              </h1>
-              <p className="text-lg text-[#5B4FA0]/70 font-medium -mt-1">
-                Cultura e Expressões
-              </p>
-              <p className="text-[14px] text-gray-500 mt-1">
-                {sayings.length} sayings & proverbs · A1–B1
-              </p>
-              <div className="flex gap-6 text-sm text-gray-400 mt-2">
-                <span>
-                  A1: <span className="font-medium text-gray-600">{counts.a1} sayings</span>
-                </span>
-                <span>
-                  A2: <span className="font-medium text-gray-600">{counts.a2} sayings</span>
-                </span>
-                <span>
-                  B1: <span className="font-medium text-gray-600">{counts.b1} sayings</span>
-                </span>
-              </div>
-            </div>
-            <input
-              type="text"
-              placeholder="Search sayings..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[200px] transition-colors"
-            />
+        <section className="py-10 md:py-14">
+          <div>
+            <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-gray-900">
+              Culture & Expressions
+            </h1>
+            <p className="text-lg text-[#5B4FA0]/70 font-medium -mt-1">
+              Cultura e Expressões
+            </p>
+            <p className="text-[14px] text-gray-500 mt-1">
+              Explore Portuguese language and culture — sayings, false friends, etiquette, and regional expressions.
+            </p>
+            <p className="text-sm text-gray-400 mt-2">
+              4 sections · {sayings.length} sayings · {falseFriends.length} false friends · {etiquetteTips.length} etiquette tips · {regionalExpressions.length} regional expressions
+            </p>
           </div>
-        </section>
 
-        <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
-          <div className="flex items-center gap-2 flex-wrap">
-            {CEFR_LEVELS.map((level) => (
-              <button
-                key={level}
-                onClick={() => setCefrFilter(level)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                  cefrFilter === level
-                    ? "bg-[#5B4FA0] text-white"
-                    : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-                }`}
-              >
-                {level}
-              </button>
-            ))}
-          </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            {THEMES.map((t) => (
-              <button
-                key={t}
-                onClick={() => setThemeFilter(t)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                  themeFilter === t
-                    ? "bg-[#5B4FA0] text-white"
-                    : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-                }`}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-          <p className="text-sm text-gray-500">
-            Showing {filtered.length} of {sayings.length}
-          </p>
-        </div>
-
-        <div className="pb-16">
-          {filtered.length === 0 ? (
-            <p className="text-sm text-gray-500 py-8">No sayings match your filters.</p>
-          ) : (
-            <div className="max-w-none">
-              {filtered.map((saying) => (
-                <SayingCard
-                  key={saying.id}
-                  saying={saying}
-                  isHighlighted={highlightId === saying.id}
-                />
+          <div className="border-b border-gray-200 mb-6 mt-8 overflow-x-auto whitespace-nowrap">
+            <div className="flex gap-1 min-w-max pb-px">
+              {TABS.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setTab(t.id)}
+                  className={`pb-3 px-1 text-sm font-medium cursor-pointer transition-colors relative min-h-[44px] flex flex-col items-center sm:items-start ${
+                    tab === t.id ? "text-[#5B4FA0] border-b-2 border-[#5B4FA0] -mb-px" : "text-gray-400 hover:text-gray-600"
+                  }`}
+                >
+                  <span>
+                    {t.label} ({t.count})
+                  </span>
+                  <span className="text-[10px] text-gray-300 block hidden md:block">{t.labelPt}</span>
+                </button>
               ))}
             </div>
+          </div>
+
+          {tab === "sayings" && (
+            <>
+              <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {CEFR_LEVELS.map((level) => (
+                    <button
+                      key={level}
+                      onClick={() => setCefrFilter(level)}
+                      className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                        cefrFilter === level ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      {level}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {THEMES.map((t) => (
+                    <button
+                      key={t}
+                      onClick={() => setThemeFilter(t)}
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                        themeFilter === t ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <input
+                    type="text"
+                    placeholder="Search sayings..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[200px] transition-colors"
+                  />
+                </div>
+                <p className="text-sm text-gray-500">Showing {filteredSayings.length} of {sayings.length}</p>
+              </div>
+              <div className="pb-16">
+                {filteredSayings.length === 0 ? (
+                  <p className="text-sm text-gray-500 py-8">No sayings match your filters.</p>
+                ) : (
+                  filteredSayings.map((saying) => (
+                    <SayingCard key={saying.id} saying={saying} isHighlighted={highlightId === saying.id} />
+                  ))
+                )}
+              </div>
+            </>
           )}
-        </div>
+
+          {tab === "false-friends" && (
+            <>
+              <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {CEFR_LEVELS.map((level) => (
+                    <button
+                      key={level}
+                      onClick={() => setCefrFilter(level)}
+                      className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                        cefrFilter === level ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      {level}
+                    </button>
+                  ))}
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search false friends..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[220px] transition-colors"
+                />
+                <p className="text-sm text-gray-500">Showing {filteredFalseFriends.length} of {falseFriends.length}</p>
+              </div>
+              <div className="pb-16">
+                {filteredFalseFriends.length === 0 ? (
+                  <p className="text-sm text-gray-500 py-8">No false friends match your filters.</p>
+                ) : (
+                  filteredFalseFriends.map((item) => (
+                    <FalseFriendCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
+                  ))
+                )}
+              </div>
+            </>
+          )}
+
+          {tab === "etiquette" && (
+            <>
+              <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {ETIQUETTE_CATEGORIES.map((c) => (
+                    <button
+                      key={c}
+                      onClick={() => setEtiquetteCategory(c)}
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                        etiquetteCategory === c ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search etiquette..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[220px] transition-colors"
+                />
+                <p className="text-sm text-gray-500">Showing {filteredEtiquette.length} of {etiquetteTips.length}</p>
+              </div>
+              <div className="pb-16">
+                {filteredEtiquette.length === 0 ? (
+                  <p className="text-sm text-gray-500 py-8">No tips match your filters.</p>
+                ) : (
+                  filteredEtiquette.map((tip) => <EtiquetteCard key={tip.id} tip={tip} />)
+                )}
+              </div>
+            </>
+          )}
+
+          {tab === "regional" && (
+            <>
+              <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {REGIONS.map((r) => (
+                    <button
+                      key={r}
+                      onClick={() => setRegionFilter(r)}
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                        regionFilter === r ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      {r}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {CEFR_LEVELS.map((level) => (
+                    <button
+                      key={level}
+                      onClick={() => setCefrFilter(level)}
+                      className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                        cefrFilter === level ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      {level}
+                    </button>
+                  ))}
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search regional..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[220px] transition-colors"
+                />
+                <p className="text-sm text-gray-500">Showing {filteredRegional.length} of {regionalExpressions.length}</p>
+              </div>
+              <div className="pb-16">
+                {filteredRegional.length === 0 ? (
+                  <p className="text-sm text-gray-500 py-8">No regional expressions match your filters.</p>
+                ) : (
+                  filteredRegional.map((item) => (
+                    <RegionalCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
+                  ))
+                )}
+              </div>
+            </>
+          )}
+        </section>
       </main>
     </>
   );

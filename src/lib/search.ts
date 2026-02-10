@@ -2,13 +2,17 @@ import vocabData from "@/data/vocab.json";
 import verbData from "@/data/verbs.json";
 import grammarData from "@/data/grammar.json";
 import sayingsData from "@/data/sayings.json";
+import falseFriendsData from "@/data/false-friends.json";
+import etiquetteData from "@/data/etiquette.json";
+import regionalData from "@/data/regional.json";
 import type { VocabData } from "@/types/vocab";
 import type { VerbDataSet, VerbData, Conjugation } from "@/types";
 import type { GrammarData } from "@/types/grammar";
 import type { SayingsData } from "@/types/saying";
+import type { FalseFriendsData, EtiquetteData, RegionalData } from "@/types/culture";
 
 export interface SearchResult {
-  type: "vocabulary" | "verb" | "conjugation" | "grammar" | "saying";
+  type: "vocabulary" | "verb" | "conjugation" | "grammar" | "saying" | "false_friend" | "etiquette" | "regional";
   title: string;
   subtitle: string;
   category?: string;
@@ -111,6 +115,9 @@ const vocab = vocabData as unknown as VocabData;
 const verbs = verbData as unknown as VerbDataSet;
 const grammar = grammarData as unknown as GrammarData;
 const sayings = (sayingsData as unknown as SayingsData).sayings;
+const falseFriends = (falseFriendsData as unknown as FalseFriendsData).falseFriends;
+const etiquetteTips = (etiquetteData as unknown as EtiquetteData).tips;
+const regionalExpressions = (regionalData as unknown as RegionalData).expressions;
 
 const CATEGORY_PT_TITLE: Record<string, string> = {
   "greetings-expressions": "Cumprimentos e Expressões",
@@ -466,7 +473,7 @@ function runTextSearch(
       const usageNorm = normalizeForSearch(s.usage);
       const score = scoreSaying(queryNorm, ptNorm, literalNorm, meaningNorm, usageNorm);
       if (score === 0) continue;
-      const href = `/culture?highlight=${encodeURIComponent(s.id)}`;
+      const href = `/culture?tab=sayings&highlight=${encodeURIComponent(s.id)}`;
       const key = dedupeKey("saying", href, s.id);
       if (seen.has(key)) continue;
       seen.add(key);
@@ -479,6 +486,83 @@ function runTextSearch(
           href,
           matchField: "portuguese",
           meta: { summary: s.meaning },
+        },
+      });
+    }
+
+    for (const f of falseFriends) {
+      const ptNorm = normalizeForSearch(f.portuguese);
+      const looksNorm = normalizeForSearch(f.looksLike);
+      const actualNorm = normalizeForSearch(f.actualMeaning);
+      const score =
+        ptNorm.includes(queryNorm) || ptNorm.startsWith(queryNorm) ? 300 :
+        looksNorm.includes(queryNorm) || actualNorm.includes(queryNorm) ? 200 : 0;
+      if (score === 0) continue;
+      const href = `/culture?tab=false-friends&highlight=${encodeURIComponent(f.id)}`;
+      const key = dedupeKey("false_friend", href, f.id);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      results.push({
+        score,
+        result: {
+          type: "false_friend",
+          title: f.portuguese,
+          subtitle: f.actualMeaning,
+          pronunciation: f.pronunciation,
+          href,
+          matchField: "portuguese",
+          meta: { summary: f.tip },
+        },
+      });
+    }
+
+    for (const e of etiquetteTips) {
+      const titleNorm = normalizeForSearch(e.title);
+      const titlePtNorm = normalizeForSearch(e.titlePt);
+      const descNorm = normalizeForSearch(e.description);
+      const score =
+        titleNorm.includes(queryNorm) || titleNorm.startsWith(queryNorm) ? 280 :
+        titlePtNorm.includes(queryNorm) || descNorm.includes(queryNorm) ? 200 : 0;
+      if (score === 0) continue;
+      const href = `/culture?tab=etiquette&highlight=${encodeURIComponent(e.id)}`;
+      const key = dedupeKey("etiquette", href, e.id);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      results.push({
+        score,
+        result: {
+          type: "etiquette",
+          title: e.title,
+          subtitle: e.titlePt,
+          href,
+          matchField: "title",
+          meta: { summary: e.description },
+        },
+      });
+    }
+
+    for (const r of regionalExpressions) {
+      const exprNorm = normalizeForSearch(r.expression);
+      const meaningNorm = normalizeForSearch(r.meaning);
+      const standardNorm = normalizeForSearch(r.standardAlternative);
+      const score =
+        exprNorm.includes(queryNorm) || exprNorm.startsWith(queryNorm) ? 300 :
+        meaningNorm.includes(queryNorm) || standardNorm.includes(queryNorm) ? 200 : 0;
+      if (score === 0) continue;
+      const href = `/culture?tab=regional&highlight=${encodeURIComponent(r.id)}`;
+      const key = dedupeKey("regional", href, r.id);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      results.push({
+        score,
+        result: {
+          type: "regional",
+          title: r.expression,
+          subtitle: r.meaning,
+          pronunciation: r.pronunciation,
+          href,
+          matchField: "expression",
+          meta: { summary: r.standardAlternative },
         },
       });
     }

@@ -1,6 +1,21 @@
 {
   "entries": [
     {
+      "date": "2026-02-10",
+      "version": "1.4.0",
+      "title": "Smart search, Culture section, Practice mode & UI overhaul",
+      "summary": "Natural-language search, interactive flashcards, premium mega menu, and 78 new vocabulary phrases. Culture section with 45 sayings and proverbs.",
+      "changes": [
+        "New: Culture & Expressions — 45 Portuguese sayings, proverbs, and idiomatic expressions; filter by theme and CEFR; pronunciation, copy, collapsible examples; Saying of the Day on homepage",
+        "New: Practice — Flashcards with 3D flip, configurable sessions (category, level, count, order, direction), familiarity tracking, results with review list and 'Practice these again'; keyboard shortcuts and swipe on mobile",
+        "New: Smart Search — understands 'how do you say kitchen?', 'conjugate ir', 'past tense of fazer', SER vs ESTAR; works in English and Portuguese; rotating hints and suggestion chips; Portuguese result labels (Vocabulário, Verbos, Gramática, Cultura)",
+        "Improved: Navigation — premium Learn mega menu with card layout and dynamic stats; 2 top-level items (Learn, Progress); What's New in user menu",
+        "Improved: Vocabulary index — white cards, themed sections (Essentials, Daily Life, World & Self), CEFR filter tabs, stats bar",
+        "Content: ~78 new words and phrases (598 to 676); survival phrases, everyday adjectives, restaurant/travel/health/work essentials",
+        "Added: Vercel Analytics and Speed Insights"
+      ]
+    },
+    {
       "date": "2026-02-09",
       "version": "1.3.0",
       "title": "Major content expansion + full pronunciation",

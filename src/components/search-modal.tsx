@@ -40,18 +40,27 @@ const GROUP_LABELS: Record<SearchResult["type"], string> = {
   conjugation: "Conjugações",
   grammar: "Gramática",
   saying: "Cultura",
+  false_friend: "Cultura",
+  etiquette: "Cultura",
+  regional: "Cultura",
 };
 
-function groupResults(
-  results: SearchResult[]
-): Map<SearchResult["type"], SearchResult[]> {
-  const map = new Map<SearchResult["type"], SearchResult[]>();
+const CULTURE_TYPES: SearchResult["type"][] = ["saying", "false_friend", "etiquette", "regional"];
+
+function groupResults(results: SearchResult[]): Map<string, SearchResult[]> {
+  const map = new Map<string, SearchResult[]>();
   for (const r of results) {
-    const list = map.get(r.type) ?? [];
+    const key = CULTURE_TYPES.includes(r.type) ? "culture" : r.type;
+    const list = map.get(key) ?? [];
     list.push(r);
-    map.set(r.type, list);
+    map.set(key, list);
   }
   return map;
+}
+
+function groupLabel(key: string): string {
+  if (key === "culture") return "Cultura";
+  return GROUP_LABELS[key as SearchResult["type"]] ?? key;
 }
 
 function typeToBadge(
@@ -67,6 +76,9 @@ function typeToBadge(
     case "grammar":
       return { label: "Gramática", className: "bg-slate-100 text-slate-800 border-slate-200" };
     case "saying":
+    case "false_friend":
+    case "etiquette":
+    case "regional":
       return { label: "Cultura", className: "bg-amber-100 text-amber-800 border-amber-200" };
   }
 }
@@ -333,10 +345,10 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 {results.length} result{results.length !== 1 ? "s" : ""}
               </p>
               <div className="pb-2">
-                {Array.from(grouped.entries()).map(([type, list]) => (
-                  <div key={type} className="mb-2">
+                {Array.from(grouped.entries()).map(([groupKey, list]) => (
+                  <div key={groupKey} className="mb-2">
                     <div className="px-4 py-1 text-xs font-semibold uppercase tracking-wider text-gray-400 flex items-center gap-2">
-                      <span>{GROUP_LABELS[type]}</span>
+                      <span>{groupLabel(groupKey)}</span>
                       <span>({list.length})</span>
                     </div>
                     {list.map((r) => {
