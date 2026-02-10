@@ -60,9 +60,9 @@ const learnItems = [
   {
     title: "Practice",
     portuguese: "Prática",
-    stats: ["Coming soon"],
+    stats: ["Flashcards · Verb Drills"],
     href: "/practice",
-    disabled: true,
+    disabled: false,
   },
 ];
 
@@ -308,23 +308,6 @@ export function Topbar() {
                   <div className="grid grid-cols-3 gap-3">
                     {learnItems.map((item) => {
                       const isCurrent = pathname === item.href || pathname?.startsWith(item.href + "/");
-                      if (item.disabled) {
-                        return (
-                          <div
-                            key={item.href}
-                            role="menuitem"
-                            tabIndex={0}
-                            className="block rounded-lg border border-gray-100 p-4 opacity-60 cursor-default"
-                          >
-                            <span className="text-sm font-semibold text-gray-400">{item.title}</span>
-                            <span className="text-[10px] bg-gray-100 text-gray-400 rounded px-1.5 py-0.5 ml-2 inline-block align-middle">
-                              Soon
-                            </span>
-                            <p className="text-xs text-gray-300 font-medium mt-0.5">{item.portuguese}</p>
-                            <p className="text-xs text-gray-300 mt-3">{item.stats[0]}</p>
-                          </div>
-                        );
-                      }
                       return (
                         <Link
                           key={item.href}
@@ -475,18 +458,7 @@ export function Topbar() {
                 LEARN · Aprende
               </p>
               {learnItems.map((item) => {
-                const isCurrent = !item.disabled && (pathname === item.href || pathname?.startsWith(item.href + "/"));
-                if (item.disabled) {
-                  return (
-                    <div
-                      key={item.href}
-                      className="min-h-[44px] px-4 py-3 flex flex-col justify-center text-gray-400"
-                    >
-                      <span className="text-[15px] font-medium">Practice</span>
-                      <span className="text-xs text-[#5B4FA0]/60">Coming soon</span>
-                    </div>
-                  );
-                }
+                const isCurrent = pathname === item.href || pathname?.startsWith(item.href + "/");
                 return (
                   <Link
                     key={item.href}
