@@ -68,6 +68,29 @@ export type SmartResultCard =
       conjugations: string[];
     }
   | {
+      type: "conjugation_multi";
+      query: string;
+      verbs: Array<{
+        infinitive: string;
+        english: string;
+        group: string;
+        cefr: string;
+        href: string;
+        presentPreview: string;
+      }>;
+    }
+  | {
+      type: "tense_multi";
+      query: string;
+      tense: string;
+      tenseLabel: string;
+      verbs: Array<{
+        infinitive: string;
+        href: string;
+        conjugations: string[];
+      }>;
+    }
+  | {
       type: "comparison";
       topic: SearchResult;
     }
@@ -130,6 +153,23 @@ export function normalizeForSearch(text: string): string {
 
 const MIN_QUERY_LENGTH = 2;
 
+/** Filler phrases to strip from conjugation/tense extracted query (case-insensitive) */
+const VERB_QUERY_FILLERS = [
+  /^\s*the\s+verb\s+/i,
+  /^\s*the\s+word\s+/i,
+  /^\s*verb\s+/i,
+  /^\s*o\s+verbo\s+/i,
+  /^\s*a\s+palavra\s+/i,
+];
+
+function cleanVerbQuery(extracted: string): string {
+  let s = extracted.trim();
+  for (const re of VERB_QUERY_FILLERS) {
+    s = s.replace(re, "").trim();
+  }
+  return s;
+}
+
 function extractPhrase(query: string, prefixes: RegExp[]): string {
   const raw = query.trim().toLowerCase();
   for (const re of prefixes) {
@@ -164,10 +204,11 @@ export function detectIntent(query: string): DetectedIntent {
   // Tense: "past tense of X", "pretérito de X", etc.
   for (const { pattern, tense } of TENSE_PATTERNS) {
     if (!pattern.test(lower)) continue;
-    const ofMatch = lower.match(/\b(?:of|de)\s+(\w+(?:\s+\w+)*)\s*$/i);
+    const ofMatch = lower.match(/\b(?:of|de)\s+(.+?)\s*$/i);
     const term = ofMatch ? ofMatch[1].trim() : lower.replace(pattern, "").replace(/\b(?:of|de)\s*$/i, "").trim();
-    if (term.length >= 2)
-      return { type: "tense", extractedQuery: term, tense };
+    const cleaned = cleanVerbQuery(term);
+    if (cleaned.length >= 2)
+      return { type: "tense", extractedQuery: cleaned, tense };
   }
 
   // Conjugation: "conjugate X", "conjugação de X"
@@ -179,7 +220,8 @@ export function detectIntent(query: string): DetectedIntent {
       /conjugar\s+(.+?)$/i,
       /conjuga[cç][aã]o\s+de\s+(.+?)$/i,
     ]);
-    if (term.length >= 2) return { type: "conjugation", extractedQuery: term };
+    const cleaned = cleanVerbQuery(term);
+    if (cleaned.length >= 2) return { type: "conjugation", extractedQuery: cleaned };
   }
 
   // Translation: "how do you say X", "X in portuguese", "como se diz X"
@@ -385,13 +427,25 @@ function runTextSearch(
   return results;
 }
 
-function findVerbByInfinitive(term: string): { infinitive: string; data: VerbData } | null {
+/** Match verbs by Portuguese infinitive or English translation; returns all matches (e.g. "to be" → SER, ESTAR). */
+function findVerbsByQuery(term: string): Array<{ infinitive: string; data: VerbData }> {
   const norm = normalizeForSearch(term);
+  const out: Array<{ infinitive: string; data: VerbData }> = [];
   for (const inf of verbs.order) {
-    if (normalizeForSearch(inf) === norm || normalizeForSearch(inf).startsWith(norm))
-      return { infinitive: inf, data: verbs.verbs[inf] };
+    const v = verbs.verbs[inf];
+    if (!v) continue;
+    const infNorm = normalizeForSearch(inf);
+    const enNorm = normalizeForSearch(v.meta.english);
+    const matchInfinitive = infNorm === norm || infNorm.startsWith(norm) || norm.startsWith(infNorm);
+    const matchEnglish =
+      enNorm === norm ||
+      enNorm.startsWith(norm) ||
+      norm.startsWith(enNorm) ||
+      enNorm.includes(norm) ||
+      norm.includes(enNorm);
+    if (matchInfinitive || matchEnglish) out.push({ infinitive: inf, data: v });
   }
-  return null;
+  return out;
 }
 
 function getPresentConjugations(conjugations: Conjugation[]): string {
@@ -444,36 +498,64 @@ function buildSmartCard(
   }
 
   if (intent.type === "conjugation") {
-    const verbInfo = findVerbByInfinitive(intent.extractedQuery);
-    if (verbInfo) {
-      const presentPreview = getPresentConjugations(verbInfo.data.conjugations);
+    const matches = findVerbsByQuery(intent.extractedQuery);
+    if (matches.length === 0) return null;
+    if (matches.length === 1) {
+      const { infinitive, data } = matches[0];
+      const presentPreview = getPresentConjugations(data.conjugations);
       return {
         type: "conjugation",
-        infinitive: verbInfo.infinitive,
-        english: verbInfo.data.meta.english,
-        group: verbInfo.data.meta.group,
-        cefr: verbInfo.data.meta.cefr,
-        href: `/conjugations/${verbInfo.infinitive.toLowerCase()}`,
+        infinitive,
+        english: data.meta.english,
+        group: data.meta.group,
+        cefr: data.meta.cefr,
+        href: `/conjugations/${infinitive.toLowerCase()}`,
         presentPreview,
       };
     }
+    return {
+      type: "conjugation_multi",
+      query: intent.extractedQuery,
+      verbs: matches.map(({ infinitive, data }) => ({
+        infinitive,
+        english: data.meta.english,
+        group: data.meta.group,
+        cefr: data.meta.cefr,
+        href: `/conjugations/${infinitive.toLowerCase()}`,
+        presentPreview: getPresentConjugations(data.conjugations),
+      })),
+    };
   }
 
   if (intent.type === "tense" && intent.tense) {
-    const verbInfo = findVerbByInfinitive(intent.extractedQuery);
-    if (verbInfo && VERB_TENSES.includes(intent.tense)) {
-      const conjugations = getConjugationsForTense(verbInfo.data.conjugations, intent.tense);
-      const tenseConfig = TENSE_PATTERNS.find((p) => p.tense === intent.tense);
-      const href = `/conjugations/${verbInfo.infinitive.toLowerCase()}?tense=${encodeURIComponent(intent.tense)}`;
+    if (!VERB_TENSES.includes(intent.tense)) return null;
+    const matches = findVerbsByQuery(intent.extractedQuery);
+    if (matches.length === 0) return null;
+    const tenseConfig = TENSE_PATTERNS.find((p) => p.tense === intent.tense);
+    const tenseLabel = tenseConfig?.label ?? intent.tense ?? "";
+    if (matches.length === 1) {
+      const { infinitive, data } = matches[0];
+      const conjugations = getConjugationsForTense(data.conjugations, intent.tense);
       return {
         type: "tense",
-        infinitive: verbInfo.infinitive,
+        infinitive,
         tense: intent.tense,
-        tenseLabel: tenseConfig?.label ?? intent.tense,
-        href,
+        tenseLabel,
+        href: `/conjugations/${infinitive.toLowerCase()}?tense=${encodeURIComponent(intent.tense)}`,
         conjugations,
       };
     }
+    return {
+      type: "tense_multi",
+      query: intent.extractedQuery,
+      tense: intent.tense,
+      tenseLabel,
+      verbs: matches.map(({ infinitive, data }) => ({
+        infinitive,
+        href: `/conjugations/${infinitive.toLowerCase()}?tense=${encodeURIComponent(intent.tense!)}`,
+        conjugations: getConjugationsForTense(data.conjugations, intent.tense!),
+      })),
+    };
   }
 
   if (intent.type === "comparison" && intent.comparisonTerms && intent.comparisonTerms.length >= 2) {
@@ -566,6 +648,10 @@ export function search(query: string): SearchOutput {
       dedupeHref.add(smartCard.primary.href);
     else if (smartCard.type === "conjugation" || smartCard.type === "tense")
       dedupeHref.add(smartCard.href);
+    else if (smartCard.type === "conjugation_multi")
+      smartCard.verbs.forEach((v) => dedupeHref.add(v.href));
+    else if (smartCard.type === "tense_multi")
+      smartCard.verbs.forEach((v) => dedupeHref.add(v.href));
     else if (smartCard.type === "comparison" || smartCard.type === "grammar")
       dedupeHref.add(smartCard.topic.href);
   }

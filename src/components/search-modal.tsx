@@ -76,6 +76,9 @@ function getSmartCardHref(card: SmartResultCard): string {
     case "conjugation":
     case "tense":
       return card.href;
+    case "conjugation_multi":
+    case "tense_multi":
+      return card.verbs[0]?.href ?? "#";
     case "comparison":
     case "grammar":
       return card.topic.href;
@@ -316,7 +319,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                   highlightedIndex === 0 ? "ring-2 ring-[#5B4FA0]/30" : ""
                 }`}
               >
-                <SmartCardContent card={smartCard} />
+                <SmartCardContent card={smartCard} onSelectHref={handleSelectHref} />
               </button>
             </div>
           )}
@@ -385,7 +388,13 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
   );
 }
 
-function SmartCardContent({ card }: { card: SmartResultCard }) {
+function SmartCardContent({
+  card,
+  onSelectHref,
+}: {
+  card: SmartResultCard;
+  onSelectHref: (href: string) => void;
+}) {
   const intentLabel = (() => {
     switch (card.type) {
       case "translation":
@@ -393,9 +402,11 @@ function SmartCardContent({ card }: { card: SmartResultCard }) {
       case "definition":
         return "Definition";
       case "conjugation":
+      case "conjugation_multi":
         return "Conjugation";
       case "tense":
-        return card.tenseLabel ?? "Tense";
+      case "tense_multi":
+        return card.type === "tense" ? (card.tenseLabel ?? "Tense") : card.tenseLabel;
       case "comparison":
       case "grammar":
         return "Grammar";
@@ -465,6 +476,53 @@ function SmartCardContent({ card }: { card: SmartResultCard }) {
             {card.conjugations.join(" · ")}
           </p>
           <p className="text-xs text-[#5B4FA0]/70 mt-2">View full conjugation table</p>
+        </>
+      )}
+      {card.type === "conjugation_multi" && (
+        <>
+          <p className="text-sm text-gray-900 mb-2">&quot;{card.query}&quot; — more than one verb:</p>
+          <ul className="space-y-2">
+            {card.verbs.map((v) => (
+              <li key={v.infinitive}>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectHref(v.href);
+                  }}
+                  className="block w-full text-left rounded px-2 py-1.5 hover:bg-[#5B4FA0]/10 text-sm font-semibold text-gray-900"
+                >
+                  {v.infinitive} — {v.english}
+                </button>
+                <p className="text-xs text-gray-500 ml-2">{v.group} · {v.cefr}</p>
+                <p className="text-xs text-gray-600 ml-2">{v.presentPreview}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-[#5B4FA0]/70 mt-2">Click a verb to view conjugations</p>
+        </>
+      )}
+      {card.type === "tense_multi" && (
+        <>
+          <p className="text-sm text-gray-900 mb-2">&quot;{card.query}&quot; — {card.tenseLabel}:</p>
+          <ul className="space-y-2">
+            {card.verbs.map((v) => (
+              <li key={v.infinitive}>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectHref(v.href);
+                  }}
+                  className="block w-full text-left rounded px-2 py-1.5 hover:bg-[#5B4FA0]/10 text-sm font-semibold text-gray-900"
+                >
+                  {v.infinitive}
+                </button>
+                <p className="text-xs text-gray-600 ml-2">{v.conjugations.join(" · ")}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-[#5B4FA0]/70 mt-2">Click a verb to view full table</p>
         </>
       )}
       {(card.type === "comparison" || card.type === "grammar") && (
