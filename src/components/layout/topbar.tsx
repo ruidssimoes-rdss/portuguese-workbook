@@ -5,15 +5,65 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { SearchModal } from "@/components/search-modal";
 import { useAuth } from "@/components/auth-provider";
+import verbData from "@/data/verbs.json";
+import vocabData from "@/data/vocab.json";
+import grammarData from "@/data/grammar.json";
+import sayingsData from "@/data/sayings.json";
+import type { VerbDataSet } from "@/types";
+import type { VocabData } from "@/types/vocab";
+import type { GrammarData } from "@/types/grammar";
+import type { SayingsData } from "@/types/saying";
 
-const navItems = [
-  { href: "/conjugations", label: "Conjugations" },
-  { href: "/vocabulary", label: "Vocabulary" },
-  { href: "/grammar", label: "Grammar" },
-  { href: "/practice", label: "Practice" },
-  { href: "/culture", label: "Culture" },
-  { href: "/dashboard", label: "Progress & Tests" },
-  { href: "/changelog", label: "What's New" },
+const verbs = verbData as unknown as VerbDataSet;
+const vocab = vocabData as unknown as VocabData;
+const grammar = grammarData as unknown as GrammarData;
+const sayings = (sayingsData as unknown as SayingsData).sayings;
+
+const verbCount = verbs.order.length;
+const tenseCount = new Set(
+  verbs.order.flatMap((k) => verbs.verbs[k]?.conjugations?.map((c) => c.Tense) ?? [])
+).size;
+const wordCount = vocab.categories.reduce((s, c) => s + (c.words?.length ?? 0), 0);
+const categoryCount = vocab.categories.length;
+const topicCount = Object.keys(grammar.topics).length;
+const sayingCount = sayings.length;
+
+const learnItems = [
+  {
+    title: "Conjugations",
+    portuguese: "Conjugações",
+    stats: [`${verbCount} verbs`, `${tenseCount} tenses`],
+    href: "/conjugations",
+    disabled: false,
+  },
+  {
+    title: "Vocabulary",
+    portuguese: "Vocabulário",
+    stats: [`${wordCount} words`, `${categoryCount} categories`],
+    href: "/vocabulary",
+    disabled: false,
+  },
+  {
+    title: "Grammar",
+    portuguese: "Gramática",
+    stats: [`${topicCount} topics`, "A1–B1"],
+    href: "/grammar",
+    disabled: false,
+  },
+  {
+    title: "Culture",
+    portuguese: "Cultura",
+    stats: [`${sayingCount} sayings`, "Proverbs & expressions"],
+    href: "/culture",
+    disabled: false,
+  },
+  {
+    title: "Practice",
+    portuguese: "Prática",
+    stats: ["Coming soon"],
+    href: "/practice",
+    disabled: true,
+  },
 ];
 
 const TOPBAR_HINTS = [
@@ -23,6 +73,12 @@ const TOPBAR_HINTS = [
   "What does ... mean?",
 ];
 
+const LEARN_PATHS = ["/conjugations", "/vocabulary", "/grammar", "/culture", "/practice"];
+
+function isLearnPage(pathname: string | null): boolean {
+  return LEARN_PATHS.some((p) => pathname === p || pathname?.startsWith(p + "/"));
+}
+
 export function Topbar() {
   const pathname = usePathname();
   const router = useRouter();
@@ -30,9 +86,13 @@ export function Topbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [learnMenuOpen, setLearnMenuOpen] = useState(false);
   const [shortcutHint, setShortcutHint] = useState<string>("⌘K");
   const [searchHintIndex, setSearchHintIndex] = useState(0);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const navLeftRef = useRef<HTMLDivElement>(null);
+  const learnTriggerRef = useRef<HTMLButtonElement>(null);
+  const learnPanelRef = useRef<HTMLDivElement>(null);
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
   const closeSearchModal = useCallback(() => setSearchModalOpen(false), []);
@@ -67,7 +127,6 @@ export function Topbar() {
     return () => clearInterval(interval);
   }, []);
 
-  // Global Cmd+K / Ctrl+K and "/" to open search (only "/" when not in an input)
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
@@ -111,6 +170,56 @@ export function Topbar() {
     };
   }, [userMenuOpen]);
 
+  useEffect(() => {
+    if (!learnMenuOpen) return;
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setLearnMenuOpen(false);
+        learnTriggerRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, [learnMenuOpen]);
+
+  useEffect(() => {
+    if (learnMenuOpen && learnPanelRef.current) {
+      const first = learnPanelRef.current.querySelector<HTMLElement>('[role="menuitem"]');
+      first?.focus();
+    }
+  }, [learnMenuOpen]);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (learnMenuOpen && navLeftRef.current && !navLeftRef.current.contains(e.target as Node)) {
+        setLearnMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [learnMenuOpen]);
+
+  useEffect(() => {
+    setLearnMenuOpen(false);
+  }, [pathname]);
+
+  const handleLearnPanelKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp" && e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const panel = learnPanelRef.current;
+    if (!panel) return;
+    const items = Array.from(panel.querySelectorAll<HTMLElement>('[role="menuitem"]'));
+    if (items.length === 0) return;
+    const current = document.activeElement as HTMLElement;
+    const idx = items.indexOf(current);
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      items[(idx + 1) % items.length]?.focus();
+    } else {
+      e.preventDefault();
+      items[(idx - 1 + items.length) % items.length]?.focus();
+    }
+  }, []);
+
   const handleSignOut = async () => {
     setUserMenuOpen(false);
     setMobileMenuOpen(false);
@@ -121,6 +230,7 @@ export function Topbar() {
 
   const displayName = user?.user_metadata?.display_name ?? user?.email?.split("@")[0] ?? "?";
   const initials = displayName.slice(0, 1).toUpperCase();
+  const learnActive = isLearnPage(pathname);
 
   return (
     <>
@@ -139,30 +249,112 @@ export function Topbar() {
                 <line x1="4" y1="18" x2="20" y2="18" />
               </svg>
             </button>
-            <Link
-              href="/"
-              className="flex items-center gap-2 font-bold text-[15px] tracking-tight"
-            >
-              Aula PT
-            </Link>
-            <nav className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => {
-                const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`px-3 py-1.5 rounded-md text-[13px] font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#5B4FA0] focus:ring-offset-1 ${
-                      isActive
-                        ? "bg-indigo-100 text-[#5B4FA0]"
-                        : "text-text-2 hover:text-text hover:bg-bg-s"
-                    }`}
+            <div ref={navLeftRef} className="flex items-center gap-4 relative">
+              <Link
+                href="/"
+                className="flex items-center gap-2 font-bold text-[15px] tracking-tight"
+              >
+                Aula PT
+              </Link>
+              <nav className="hidden md:flex items-center gap-1">
+                <button
+                  ref={learnTriggerRef}
+                  type="button"
+                  onClick={() => setLearnMenuOpen((o) => !o)}
+                  aria-expanded={learnMenuOpen}
+                  aria-haspopup="true"
+                  className={`text-sm font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
+                    learnActive || learnMenuOpen
+                      ? "bg-[#5B4FA0]/10 text-[#5B4FA0]"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
+                >
+                  Learn
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`shrink-0 transition-transform duration-200 ${learnMenuOpen ? "rotate-180" : ""}`}
                   >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                <Link
+                  href="/dashboard"
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+                    pathname?.startsWith("/dashboard")
+                      ? "bg-[#5B4FA0]/10 text-[#5B4FA0]"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
+                >
+                  Progress
+                </Link>
+              </nav>
+              {learnMenuOpen && (
+                <div
+                  ref={learnPanelRef}
+                  className="absolute left-0 top-full mt-1 w-[560px] max-w-[560px] bg-white border border-gray-200 rounded-xl shadow-xl p-6 z-[60] animate-mega-open"
+                  role="menu"
+                  onKeyDown={handleLearnPanelKeyDown}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
+                    LEARN · Aprende
+                  </p>
+                  <div className="grid grid-cols-3 gap-3">
+                    {learnItems.map((item) => {
+                      const isCurrent = pathname === item.href || pathname?.startsWith(item.href + "/");
+                      if (item.disabled) {
+                        return (
+                          <div
+                            key={item.href}
+                            role="menuitem"
+                            tabIndex={0}
+                            className="block rounded-lg border border-gray-100 p-4 opacity-60 cursor-default"
+                          >
+                            <span className="text-sm font-semibold text-gray-400">{item.title}</span>
+                            <span className="text-[10px] bg-gray-100 text-gray-400 rounded px-1.5 py-0.5 ml-2 inline-block align-middle">
+                              Soon
+                            </span>
+                            <p className="text-xs text-gray-300 font-medium mt-0.5">{item.portuguese}</p>
+                            <p className="text-xs text-gray-300 mt-3">{item.stats[0]}</p>
+                          </div>
+                        );
+                      }
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setLearnMenuOpen(false)}
+                          role="menuitem"
+                          tabIndex={0}
+                          className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#5B4FA0]/30 hover:bg-[#5B4FA0]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
+                            isCurrent ? "border-[#5B4FA0]/30 bg-[#5B4FA0]/5" : "border-gray-100"
+                          }`}
+                        >
+                          <span className="text-sm font-semibold text-gray-900">{item.title}</span>
+                          <p className="text-xs text-[#5B4FA0]/60 font-medium mt-0.5">{item.portuguese}</p>
+                          <p className="text-xs text-gray-400 mt-3">{item.stats[0]}</p>
+                          {item.stats[1] && <p className="text-xs text-gray-400">{item.stats[1]}</p>}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+            {!authLoading && !user && (
+              <Link
+                href="/changelog"
+                className="hidden md:inline-flex px-3 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                What&apos;s New
+              </Link>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -222,6 +414,13 @@ export function Topbar() {
                     >
                       Definições
                     </Link>
+                    <Link
+                      href="/changelog"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-bg-s hover:text-text"
+                    >
+                      What&apos;s New
+                    </Link>
                     <div className="my-1 border-t border-gray-100" />
                     <button
                       type="button"
@@ -245,7 +444,6 @@ export function Topbar() {
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div
           className="fixed inset-0 z-[100] md:hidden"
@@ -272,27 +470,57 @@ export function Topbar() {
                 </svg>
               </button>
             </div>
-            <nav className="px-6 pb-6 pt-2 flex flex-col gap-0.5">
-              {navItems.map((item) => {
-                const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+            <nav className="px-0 pb-6 pt-2 flex flex-col">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 px-4 pt-4 pb-2">
+                LEARN · Aprende
+              </p>
+              {learnItems.map((item) => {
+                const isCurrent = !item.disabled && (pathname === item.href || pathname?.startsWith(item.href + "/"));
+                if (item.disabled) {
+                  return (
+                    <div
+                      key={item.href}
+                      className="min-h-[44px] px-4 py-3 flex flex-col justify-center text-gray-400"
+                    >
+                      <span className="text-[15px] font-medium">Practice</span>
+                      <span className="text-xs text-[#5B4FA0]/60">Coming soon</span>
+                    </div>
+                  );
+                }
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={closeMobileMenu}
-                    className={`px-4 py-3 rounded-lg text-[15px] font-medium transition-colors duration-200 min-h-[44px] flex items-center ${
-                      isActive
-                        ? "bg-indigo-100 text-[#5B4FA0]"
-                        : "text-text-2 hover:bg-bg-s hover:text-text"
+                    className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
+                      isCurrent ? "bg-[#5B4FA0]/5 text-[#5B4FA0] border-l-2 border-[#5B4FA0]" : "text-text-2 hover:bg-bg-s hover:text-text"
                     }`}
                   >
-                    {item.label}
+                    <span className="text-[15px] font-medium">{item.title}</span>
+                    <span className="text-xs text-[#5B4FA0]/60">{item.portuguese}</span>
                   </Link>
                 );
               })}
+              <div className="border-t border-gray-100 my-2 mx-4" />
+              <Link
+                href="/dashboard"
+                onClick={closeMobileMenu}
+                className={`min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium transition-colors ${
+                  pathname?.startsWith("/dashboard") ? "bg-[#5B4FA0]/5 text-[#5B4FA0]" : "text-text-2 hover:bg-bg-s hover:text-text"
+                }`}
+              >
+                Progress
+              </Link>
+              <Link
+                href="/changelog"
+                onClick={closeMobileMenu}
+                className="min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium text-text-2 hover:bg-bg-s hover:text-text"
+              >
+                What&apos;s New
+              </Link>
               {!authLoading && (
                 <>
-                  <div className="my-1 border-t border-gray-200" />
+                  <div className="my-1 border-t border-gray-200 mx-4" />
                   {user ? (
                     <>
                       <Link
@@ -330,7 +558,6 @@ export function Topbar() {
       )}
 
       <SearchModal open={searchModalOpen} onClose={closeSearchModal} />
-
     </>
   );
 }
