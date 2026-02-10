@@ -4,79 +4,56 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 
-const SECTIONS = [
-  { id: "how-aula-pt-works", label: "How Aula PT Works" },
-  { id: "cefr-levels", label: "Understanding CEFR Levels" },
-  { id: "timelines", label: "Realistic Timelines" },
-  { id: "daily-routine", label: "Structuring Your Daily Routine" },
-  { id: "science-of-learning", label: "The Science of Learning" },
-  { id: "portuguese-tips", label: "Tips for Portuguese Specifically" },
-] as const;
+const sections = [
+  {
+    id: "how-aula-pt-works",
+    number: 1,
+    title: "How Aula PT Works",
+    portuguese: "Como Funciona o Aula PT",
+    teaser: "Everything the platform offers and how to use it.",
+  },
+  {
+    id: "cefr-levels",
+    number: 2,
+    title: "Understanding CEFR Levels",
+    portuguese: "Compreender os Níveis do QECR",
+    teaser: "What A1, A2, and B1 actually mean in practice.",
+  },
+  {
+    id: "timelines",
+    number: 3,
+    title: "Realistic Timelines",
+    portuguese: "Prazos Realistas",
+    teaser: "How long it takes and what to expect.",
+  },
+  {
+    id: "daily-routine",
+    number: 4,
+    title: "Structuring Your Daily Routine",
+    portuguese: "Estruturar a Tua Rotina Diária",
+    teaser: "15, 30, and 60-minute daily plans.",
+  },
+  {
+    id: "science-of-learning",
+    number: 5,
+    title: "The Science of Learning",
+    portuguese: "A Ciência da Aprendizagem",
+    teaser: "Active recall, spaced repetition, and what to avoid.",
+  },
+  {
+    id: "portuguese-tips",
+    number: 6,
+    title: "Tips for Portuguese Specifically",
+    portuguese: "Dicas para o Português",
+    teaser: "Pronunciation, verbs, confusing pairs, immersion.",
+  },
+];
 
-export default function GuidePage() {
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      setShowBackToTop(window.scrollY > 500);
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
-  const handleScrollTo = useCallback((id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, []);
-
-  return (
-    <>
-      <Topbar />
-      <main className="max-w-3xl mx-auto px-6 py-12">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            How to Learn Portuguese
-          </h1>
-          <p className="text-xl text-[#5B4FA0]/70 font-medium mt-1">
-            Como Aprender Português
-          </p>
-          <p className="text-base text-gray-500 mt-3 max-w-xl leading-relaxed">
-            Your complete guide to learning European Portuguese — from your first
-            words to real conversations, using Aula PT as your main companion.
-          </p>
-        </header>
-
-        <section className="bg-gray-50 rounded-lg p-6 mb-12">
-          <p className="text-sm font-semibold text-gray-600 mb-3">
-            In this guide:
-          </p>
-          <ol className="space-y-2 text-sm">
-            {SECTIONS.map((s, index) => (
-              <li key={s.id} className="flex items-start gap-2">
-                <span className="text-gray-400">{index + 1}.</span>
-                <button
-                  type="button"
-                  onClick={() => handleScrollTo(s.id)}
-                  className="text-[#5B4FA0] hover:underline text-left"
-                >
-                  {s.label}
-                </button>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        {/* Section 1 */}
-        <section
-          id="how-aula-pt-works"
-          className="border-b border-gray-100 pb-12 mb-12"
-        >
+function GuideSectionContent({ id }: { id: string }) {
+  switch (id) {
+    case "how-aula-pt-works":
+      return (
+        <>
           <h2 className="text-xl font-bold text-gray-900">
             How Aula PT Works
           </h2>
@@ -198,10 +175,11 @@ export default function GuidePage() {
               in vocabulary, conjugations, grammar, or culture.
             </p>
           </div>
-        </section>
-
-        {/* Section 2 */}
-        <section id="cefr-levels" className="border-b border-gray-100 pb-12 mb-12">
+        </>
+      );
+    case "cefr-levels":
+      return (
+        <>
           <h2 className="text-xl font-bold text-gray-900">
             Understanding CEFR Levels
           </h2>
@@ -279,10 +257,11 @@ export default function GuidePage() {
             colleagues, handle bureaucracy with some patience, and feel at home
             in the language rather than lost in it.
           </p>
-        </section>
-
-        {/* Section 3 */}
-        <section id="timelines" className="border-b border-gray-100 pb-12 mb-12">
+        </>
+      );
+    case "timelines":
+      return (
+        <>
           <h2 className="text-xl font-bold text-gray-900">Realistic Timelines</h2>
           <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
             Prazos Realistas
@@ -365,13 +344,11 @@ export default function GuidePage() {
               Portuguese this month than you did last month.
             </p>
           </div>
-        </section>
-
-        {/* Section 4 */}
-        <section
-          id="daily-routine"
-          className="border-b border-gray-100 pb-12 mb-12"
-        >
+        </>
+      );
+    case "daily-routine":
+      return (
+        <>
           <h2 className="text-xl font-bold text-gray-900">
             Structuring Your Daily Routine
           </h2>
@@ -507,13 +484,11 @@ export default function GuidePage() {
               listening to Portuguese music.
             </p>
           </div>
-        </section>
-
-        {/* Section 5 */}
-        <section
-          id="science-of-learning"
-          className="border-b border-gray-100 pb-12 mb-12"
-        >
+        </>
+      );
+    case "science-of-learning":
+      return (
+        <>
           <h2 className="text-xl font-bold text-gray-900">
             Active Recall vs Passive Learning
           </h2>
@@ -608,13 +583,11 @@ export default function GuidePage() {
               the real growth happens.
             </p>
           </div>
-        </section>
-
-        {/* Section 6 */}
-        <section
-          id="portuguese-tips"
-          className="border-b border-gray-100 pb-12 mb-12"
-        >
+        </>
+      );
+    case "portuguese-tips":
+      return (
+        <>
           <h2 className="text-xl font-bold text-gray-900">
             Tips for Portuguese Specifically
           </h2>
@@ -723,10 +696,118 @@ export default function GuidePage() {
               full conversation without translating it in your head.
             </p>
           </div>
-        </section>
+        </>
+      );
+    default:
+      return null;
+  }
+}
 
-        {/* Closing */}
-        <section className="pb-8 mb-4 text-center">
+export default function GuidePage() {
+  const [openSectionId, setOpenSectionId] = useState<string | null>(null);
+
+  const toggle = useCallback((id: string) => {
+    setOpenSectionId((prev) => (prev === id ? null : id));
+  }, []);
+
+  useEffect(() => {
+    const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
+    if (hash && sections.some((s) => s.id === hash)) {
+      setOpenSectionId(hash);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!openSectionId) return;
+    const el = document.getElementById(openSectionId);
+    if (el) {
+      const t = setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 150);
+      return () => clearTimeout(t);
+    }
+  }, [openSectionId]);
+
+  return (
+    <>
+      <Topbar />
+      <main className="max-w-3xl mx-auto px-6 py-12">
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">
+            How to Learn Portuguese
+          </h1>
+          <p className="text-xl text-[#5B4FA0]/70 font-medium mt-1">
+            Como Aprender Português
+          </p>
+          <p className="text-base text-gray-500 mt-3 max-w-xl leading-relaxed">
+            Your complete guide to learning European Portuguese — from your first
+            words to real conversations, using Aula PT as your main companion.
+          </p>
+        </header>
+
+        <div className="space-y-3">
+          {sections.map((s) => {
+            const isOpen = openSectionId === s.id;
+            return (
+              <article
+                key={s.id}
+                id={s.id}
+                className={`bg-white border rounded-lg cursor-pointer transition-all hover:border-[#5B4FA0]/30 hover:shadow-sm min-h-[44px] ${
+                  isOpen ? "border-[#5B4FA0]/30" : "border-gray-200"
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggle(s.id)}
+                  className="w-full p-6 text-left flex items-center justify-between gap-4"
+                  aria-expanded={isOpen}
+                  aria-controls={`${s.id}-content`}
+                  id={`${s.id}-button`}
+                >
+                  <div className="flex-1 min-w-0">
+                    <p className="text-base font-semibold text-gray-900">
+                      <span className="text-sm text-gray-300 font-medium">{s.number}.</span> {s.title}
+                    </p>
+                    <p className="text-sm text-[#5B4FA0]/60 font-medium mt-0.5">
+                      {s.portuguese}
+                    </p>
+                    {!isOpen && (
+                      <p className="text-sm text-gray-400 mt-1">{s.teaser}</p>
+                    )}
+                  </div>
+                  <svg
+                    className={`flex-shrink-0 text-gray-300 w-5 h-5 transition-transform duration-200 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+                <div
+                  id={`${s.id}-content`}
+                  role="region"
+                  aria-labelledby={`${s.id}-button`}
+                  className={`accordion-content ${isOpen ? "open" : ""}`}
+                >
+                  <div>
+                    <div className="border-t border-gray-100 mt-4 pt-6 px-6 pb-6 text-base leading-relaxed text-gray-700">
+                      <GuideSectionContent id={s.id} />
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <section className="pb-8 mb-4 text-center mt-12 pt-4">
           <p className="text-lg font-medium text-gray-900">
             You&apos;re ready.
           </p>
@@ -753,28 +834,6 @@ export default function GuidePage() {
           </div>
         </section>
       </main>
-
-      {showBackToTop && (
-        <button
-          type="button"
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-white border border-gray-200 rounded-full p-3 shadow-lg hover:shadow-xl transition-all text-gray-600 hover:text-gray-900"
-          aria-label="Back to top"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M18 15l-6-6-6 6" />
-          </svg>
-        </button>
-      )}
     </>
   );
 }
