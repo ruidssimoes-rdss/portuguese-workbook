@@ -173,6 +173,23 @@ function cleanVerbQuery(extracted: string): string {
   return s;
 }
 
+/** Filler words to strip from translation intent query (e.g. "im hungry" → "hungry") */
+const TRANSLATION_FILLERS = new Set([
+  "im", "i'm", "i", "am", "its", "it's", "it", "is", "the", "a", "an", "some",
+  "very", "really", "so", "to", "be", "are", "do", "does", "my", "your",
+  "how", "say", "in", "portuguese", "word", "phrase", "me", "please",
+]);
+
+function cleanTranslationQuery(extracted: string): string {
+  const lower = extracted.trim().toLowerCase().replace(/['']/g, "'");
+  const tokens = lower.split(/\s+/).filter((t) => t.length > 0);
+  const meaningful = tokens.filter((t) => {
+    const w = t.replace(/^["']|["']$/g, "");
+    return w.length >= 2 && !TRANSLATION_FILLERS.has(w);
+  });
+  return meaningful.join(" ").trim() || lower;
+}
+
 function extractPhrase(query: string, prefixes: RegExp[]): string {
   const raw = query.trim().toLowerCase();
   for (const re of prefixes) {
@@ -668,7 +685,25 @@ export function search(query: string): SearchOutput {
 
   if (intent.type === "translation") {
     opts.vocabByEnglish = true;
-    targetedResults = runTextSearch(extractedNorm, opts);
+    const cleanedRaw = cleanTranslationQuery(intent.extractedQuery);
+    const cleanedNorm = normalizeForSearch(cleanedRaw);
+    targetedResults = runTextSearch(cleanedNorm.length >= MIN_QUERY_LENGTH ? cleanedNorm : extractedNorm, opts);
+    if (targetedResults.length === 0 && cleanedRaw.includes(" ")) {
+      const words = cleanedRaw.split(/\s+/).filter((w) => w.length >= MIN_QUERY_LENGTH);
+      const seenHref = new Set<string>();
+      for (const word of words) {
+        const wordNorm = normalizeForSearch(word);
+        if (!wordNorm) continue;
+        const wordResults = runTextSearch(wordNorm, opts);
+        for (const r of wordResults) {
+          if (!seenHref.has(r.result.href)) {
+            seenHref.add(r.result.href);
+            targetedResults.push(r);
+          }
+        }
+      }
+      targetedResults.sort((a, b) => b.score - a.score);
+    }
   } else if (intent.type === "definition") {
     opts.vocabByPortuguese = true;
     targetedResults = runTextSearch(extractedNorm, opts);
