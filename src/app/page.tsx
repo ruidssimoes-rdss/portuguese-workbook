@@ -10,13 +10,16 @@ import { Badge, cefrVariant, groupVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
+import sayingsData from "@/data/sayings.json";
 import type { VerbDataSet } from "@/types";
+import type { SayingsData } from "@/types/saying";
 import type { VocabData, VocabWord } from "@/types/vocab";
 import type { GrammarData } from "@/types/grammar";
 
 const verbs = verbData as unknown as VerbDataSet;
 const vocab = vocabData as unknown as VocabData;
 const grammar = grammarData as unknown as GrammarData;
+const sayings = (sayingsData as unknown as SayingsData).sayings;
 
 const totalGrammarTopics = Object.keys(grammar.topics).length;
 
@@ -49,6 +52,8 @@ const verbKey =
 const verbOfDay = verbKey ? verbs.verbs[verbKey] : null;
 const presentRows =
   verbOfDay?.conjugations?.filter((c) => c.Tense === "Present") ?? [];
+const sayingOfDay =
+  sayings.length > 0 ? sayings[dayIndex % sayings.length] : null;
 
 const sections = [
   {
@@ -78,6 +83,13 @@ const sections = [
     stat: "Coming soon",
     desc: "Quizzes, flashcards, and spaced repetition",
     ready: false,
+  },
+  {
+    title: "Culture",
+    href: "/culture",
+    stat: `${sayings.length} sayings & proverbs · A1–B1`,
+    desc: "Portuguese sayings, proverbs, and expressions",
+    ready: true,
   },
 ];
 
@@ -232,6 +244,29 @@ export default function Home() {
               )}
             </div>
           </div>
+
+          {/* Saying of the Day — full width */}
+          {sayingOfDay && (
+            <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
+                Saying of the Day
+              </p>
+              <div className="flex flex-wrap items-baseline gap-2">
+                <p className="text-lg font-semibold text-gray-900 italic">
+                  &quot;{sayingOfDay.portuguese}&quot;
+                </p>
+                <PronunciationButton text={sayingOfDay.portuguese} size="sm" className="shrink-0" />
+              </div>
+              <p className="text-sm text-gray-500 mt-2">{sayingOfDay.literal}</p>
+              <p className="text-sm text-gray-600 mt-1">{sayingOfDay.meaning}</p>
+              <Link
+                href="/culture"
+                className="text-sm text-[#5B4FA0] hover:underline mt-4 inline-block"
+              >
+                View all sayings →
+              </Link>
+            </div>
+          )}
         </section>
 
         <HomeProgressBanner />

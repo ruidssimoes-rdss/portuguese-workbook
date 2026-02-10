@@ -1,0 +1,456 @@
+{
+  "sayings": [
+    {
+      "id": "quem-nao-tem-cao",
+      "portuguese": "Quem não tem cão, caça com gato.",
+      "pronunciation": "keng nowng teng KOWNG, KAH-suh kong GAH-too",
+      "literal": "Who doesn't have a dog, hunts with a cat.",
+      "meaning": "Make do with what you have. Work with whatever resources are available.",
+      "usage": "When someone finds a creative solution because the ideal option isn't available.",
+      "example": "Não temos impressora, mas podemos fotografar o documento. Quem não tem cão, caça com gato.",
+      "exampleTranslation": "We don't have a printer, but we can photograph the document. You make do with what you have.",
+      "theme": "wisdom",
+      "cefr": "A2"
+    },
+    {
+      "id": "agua-mole-pedra-dura",
+      "portuguese": "Água mole em pedra dura, tanto bate até que fura.",
+      "pronunciation": "AH-gwuh MOL eng PEH-druh DOO-ruh, TAN-too BAH-tuh ah-TEH kuh FOO-ruh",
+      "literal": "Soft water on hard stone, hits so much until it pierces.",
+      "meaning": "Persistence pays off. Constant effort achieves results over time.",
+      "usage": "When encouraging someone not to give up on a long-term goal.",
+      "theme": "patience",
+      "cefr": "B1"
+    },
+    {
+      "id": "devagarinho-se-vai-ao-longe",
+      "portuguese": "Devagarinho se vai ao longe.",
+      "pronunciation": "deh-vuh-guh-REE-nyoo suh vai ow LONZH",
+      "literal": "Slowly, one goes far.",
+      "meaning": "Slow and steady wins the race. Take your time and you'll get there.",
+      "usage": "When someone is rushing and you want to remind them that patience leads to better results.",
+      "theme": "patience",
+      "cefr": "A2"
+    },
+    {
+      "id": "mais-vale-tarde",
+      "portuguese": "Mais vale tarde do que nunca.",
+      "pronunciation": "maish VAL TARD doo kuh NOON-kuh",
+      "literal": "Better late than never.",
+      "meaning": "It's better to do something late than not at all.",
+      "usage": "When someone finally does something they've been putting off.",
+      "theme": "wisdom",
+      "cefr": "A1"
+    },
+    {
+      "id": "quem-tudo-quer",
+      "portuguese": "Quem tudo quer, tudo perde.",
+      "pronunciation": "keng TOO-doo kehr, TOO-doo PEHRD",
+      "literal": "Who wants everything, loses everything.",
+      "meaning": "Being too greedy leads to losing it all.",
+      "usage": "When someone is overextending themselves or being too ambitious at once.",
+      "theme": "wisdom",
+      "cefr": "A2"
+    },
+    {
+      "id": "nao-ha-bem-que-sempre-dure",
+      "portuguese": "Não há bem que sempre dure, nem mal que nunca se cure.",
+      "pronunciation": "nowng ah beng kuh SEMP-ruh DOOR, neng mal kuh NOON-kuh suh KOOR",
+      "literal": "There's no good that always lasts, nor bad that never heals.",
+      "meaning": "Nothing lasts forever — neither good times nor bad.",
+      "usage": "When comforting someone going through a tough time.",
+      "theme": "life",
+      "cefr": "B1"
+    },
+    {
+      "id": "a-esperanca-e-a-ultima",
+      "portuguese": "A esperança é a última a morrer.",
+      "pronunciation": "uh shpuh-RAN-suh eh uh OOL-tee-muh uh moo-RREHR",
+      "literal": "Hope is the last to die.",
+      "meaning": "Never give up hope. Hope persists even in the darkest times.",
+      "usage": "When things look bleak but there's still a chance.",
+      "theme": "life",
+      "cefr": "A2"
+    },
+    {
+      "id": "cada-macaco-no-seu-galho",
+      "portuguese": "Cada macaco no seu galho.",
+      "pronunciation": "KAH-duh muh-KAH-koo noo seh-oo GAH-lyoo",
+      "literal": "Each monkey on its own branch.",
+      "meaning": "Mind your own business. Everyone should stick to what they know.",
+      "usage": "When someone is meddling in affairs that don't concern them.",
+      "theme": "character",
+      "cefr": "A2"
+    },
+    {
+      "id": "em-terra-de-cegos",
+      "portuguese": "Em terra de cegos, quem tem um olho é rei.",
+      "pronunciation": "eng TEH-rruh duh SEH-goosh, keng teng oom OH-lyoo eh rray",
+      "literal": "In the land of the blind, the one-eyed man is king.",
+      "meaning": "Among people with no skill, even a little knowledge makes you stand out.",
+      "usage": "When someone with basic skills excels because everyone else knows even less.",
+      "theme": "wisdom",
+      "cefr": "B1"
+    },
+    {
+      "id": "quem-com-ferros-mata",
+      "portuguese": "Quem com ferros mata, com ferros morre.",
+      "pronunciation": "keng kong FEH-rroosh MAH-tuh, kong FEH-rroosh MOH-rruh",
+      "literal": "Who kills with iron, dies by iron.",
+      "meaning": "What goes around comes around. You reap what you sow.",
+      "usage": "When someone faces consequences for their own bad actions.",
+      "theme": "wisdom",
+      "cefr": "B1"
+    },
+    {
+      "id": "de-grao-em-grao",
+      "portuguese": "De grão em grão, enche a galinha o papo.",
+      "pronunciation": "duh growng eng growng, EN-shuh uh guh-LEE-nyuh oo PAH-poo",
+      "literal": "Grain by grain, the hen fills her crop.",
+      "meaning": "Little by little, small efforts add up to big results.",
+      "usage": "When saving money or making slow but steady progress.",
+      "theme": "food",
+      "cefr": "B1"
+    },
+    {
+      "id": "gato-escaldado",
+      "portuguese": "Gato escaldado de água fria tem medo.",
+      "pronunciation": "GAH-too shkal-DAH-doo duh AH-gwuh FREE-uh teng MEH-doo",
+      "literal": "A scalded cat is afraid of cold water.",
+      "meaning": "Once burned, twice shy. Bad experiences make you cautious.",
+      "usage": "When someone is overly cautious because of a past bad experience.",
+      "theme": "wisdom",
+      "cefr": "A2"
+    },
+    {
+      "id": "a-bom-entendedor",
+      "portuguese": "A bom entendedor, meia palavra basta.",
+      "pronunciation": "uh bong en-ten-duh-DOHR, MAY-uh puh-LAH-vruh BASH-tuh",
+      "literal": "To a good understander, half a word is enough.",
+      "meaning": "A word to the wise is sufficient. Smart people catch on quickly.",
+      "usage": "When hinting at something without saying it directly.",
+      "theme": "wisdom",
+      "cefr": "B1"
+    },
+    {
+      "id": "quem-vai-ao-mar",
+      "portuguese": "Quem vai ao mar, avia-se em terra.",
+      "pronunciation": "keng vai ow MAR, uh-VEE-uh-suh eng TEH-rruh",
+      "literal": "Who goes to sea, prepares on land.",
+      "meaning": "Prepare properly before starting something. Plan ahead.",
+      "usage": "When reminding someone to get ready before a trip or project.",
+      "theme": "wisdom",
+      "cefr": "A2"
+    },
+    {
+      "id": "comer-e-cocar",
+      "portuguese": "Comer e coçar, é só começar.",
+      "pronunciation": "koo-MEHR ee koo-SAR, eh soh koo-muh-SAR",
+      "literal": "Eating and scratching, you just have to start.",
+      "meaning": "The hardest part is getting started. Once you begin, it gets easier.",
+      "usage": "When someone is procrastinating — just take the first step.",
+      "theme": "food",
+      "cefr": "A2"
+    },
+    {
+      "id": "depois-da-tempestade",
+      "portuguese": "Depois da tempestade vem a bonança.",
+      "pronunciation": "duh-POYSH duh tem-push-TAH-duh veng uh boo-NAN-suh",
+      "literal": "After the storm comes the calm.",
+      "meaning": "Bad times are followed by good times. Things will get better.",
+      "usage": "When comforting someone during a difficult period.",
+      "theme": "weather",
+      "cefr": "A2"
+    },
+    {
+      "id": "nem-tudo-o-que-reluz",
+      "portuguese": "Nem tudo o que reluz é ouro.",
+      "pronunciation": "neng TOO-doo oo kuh rruh-LOOZ eh OH-roo",
+      "literal": "Not everything that shines is gold.",
+      "meaning": "Appearances can be deceiving. Don't judge by the surface.",
+      "usage": "When something looks great on the outside but might not be as good as it seems.",
+      "theme": "wisdom",
+      "cefr": "A2"
+    },
+    {
+      "id": "nao-se-apanham-trutas",
+      "portuguese": "Não se apanham trutas a braços enxutos.",
+      "pronunciation": "nowng suh uh-PAH-nyung TROO-tush uh BRAH-soosh en-SHOO-toosh",
+      "literal": "You don't catch trout with dry arms.",
+      "meaning": "You have to get your hands dirty to achieve results. No effort, no reward.",
+      "usage": "When someone wants results without putting in the work.",
+      "theme": "wisdom",
+      "cefr": "B1"
+    },
+    {
+      "id": "quem-nao-tem-dinheiro",
+      "portuguese": "Quem não tem dinheiro não tem vícios.",
+      "pronunciation": "keng nowng teng dee-NYAY-roo nowng teng VEE-see-oosh",
+      "literal": "Who has no money has no vices.",
+      "meaning": "Being broke keeps you out of trouble. Poverty limits temptation.",
+      "usage": "Humorous — when you can't afford something indulgent.",
+      "theme": "money",
+      "cefr": "A2"
+    },
+    {
+      "id": "o-barato-sai-caro",
+      "portuguese": "O barato sai caro.",
+      "pronunciation": "oo buh-RAH-too sai KAH-roo",
+      "literal": "The cheap comes out expensive.",
+      "meaning": "You get what you pay for. Buying cheap often costs more in the long run.",
+      "usage": "When a budget purchase breaks or fails quickly.",
+      "theme": "money",
+      "cefr": "A1"
+    },
+    {
+      "id": "quem-nao-arrisca",
+      "portuguese": "Quem não arrisca, não petisca.",
+      "pronunciation": "keng nowng uh-RREE-shuh, nowng puh-TEESH-kuh",
+      "literal": "Who doesn't risk, doesn't snack.",
+      "meaning": "Nothing ventured, nothing gained. You have to take risks to get rewards.",
+      "usage": "When encouraging someone to take a chance.",
+      "theme": "life",
+      "cefr": "A2"
+    },
+    {
+      "id": "deus-ajuda",
+      "portuguese": "Deus ajuda quem se ajuda.",
+      "pronunciation": "DEH-oosh uh-ZHOO-duh keng suh uh-ZHOO-duh",
+      "literal": "God helps those who help themselves.",
+      "meaning": "Don't wait for luck — take action and work for what you want.",
+      "usage": "When someone is waiting for things to magically improve without effort.",
+      "theme": "work",
+      "cefr": "A2"
+    },
+    {
+      "id": "trabalho-de-ingles",
+      "portuguese": "Isto é trabalho de inglês.",
+      "pronunciation": "EESH-too eh truh-BAH-lyoo duh een-GLESH",
+      "literal": "This is English work.",
+      "meaning": "This is shoddy or unreliable work. (Historical reference to broken treaties.)",
+      "usage": "When commenting on poor quality work — humorous and culturally specific.",
+      "theme": "humor",
+      "cefr": "B1"
+    },
+    {
+      "id": "longe-da-vista",
+      "portuguese": "Longe da vista, longe do coração.",
+      "pronunciation": "LONZH duh VEESH-tuh, LONZH doo koo-ruh-SOWNG",
+      "literal": "Far from sight, far from the heart.",
+      "meaning": "Out of sight, out of mind. Distance weakens relationships.",
+      "usage": "When someone drifts apart from friends or family after moving away.",
+      "theme": "relationships",
+      "cefr": "A2"
+    },
+    {
+      "id": "diz-me-com-quem-andas",
+      "portuguese": "Diz-me com quem andas, dir-te-ei quem és.",
+      "pronunciation": "deezh-muh kong keng AN-dush, deer-tuh-AY keng ehsh",
+      "literal": "Tell me who you walk with, I'll tell you who you are.",
+      "meaning": "You're known by the company you keep.",
+      "usage": "When commenting on someone's choice of friends or associates.",
+      "theme": "character",
+      "cefr": "B1"
+    },
+    {
+      "id": "quem-cala-consente",
+      "portuguese": "Quem cala, consente.",
+      "pronunciation": "keng KAH-luh, kon-SEN-tuh",
+      "literal": "Who is silent, consents.",
+      "meaning": "Silence means agreement. If you don't speak up, you're accepting the situation.",
+      "usage": "When someone should voice their objection but stays quiet.",
+      "theme": "character",
+      "cefr": "A2"
+    },
+    {
+      "id": "amigos-amigos",
+      "portuguese": "Amigos, amigos, negócios à parte.",
+      "pronunciation": "uh-MEE-goosh, uh-MEE-goosh, nuh-GOH-see-oosh ah PART",
+      "literal": "Friends, friends, business aside.",
+      "meaning": "Don't mix friendship and business. Keep personal and professional separate.",
+      "usage": "When setting boundaries about money or work with friends.",
+      "theme": "relationships",
+      "cefr": "A2"
+    },
+    {
+      "id": "quem-ama-o-feio",
+      "portuguese": "Quem o feio ama, bonito lhe parece.",
+      "pronunciation": "keng oo FAY-oo AH-muh, boo-NEE-too lyuh puh-REH-suh",
+      "literal": "Who loves the ugly, finds them beautiful.",
+      "meaning": "Love is blind. When you love someone, you see beauty in them.",
+      "usage": "When commenting on an unlikely couple or someone's biased view of a loved one.",
+      "theme": "relationships",
+      "cefr": "B1"
+    },
+    {
+      "id": "entre-marido-e-mulher",
+      "portuguese": "Entre marido e mulher, ninguém mete a colher.",
+      "pronunciation": "EN-truh muh-REE-doo ee moo-LYEHR, neen-GENG MEH-tuh uh koo-LYEHR",
+      "literal": "Between husband and wife, nobody puts a spoon.",
+      "meaning": "Don't interfere in a couple's affairs.",
+      "usage": "When someone tries to get involved in a couple's argument.",
+      "theme": "relationships",
+      "cefr": "A2"
+    },
+    {
+      "id": "cao-que-ladra",
+      "portuguese": "Cão que ladra não morde.",
+      "pronunciation": "kowng kuh LAH-druh nowng MOHRD",
+      "literal": "A dog that barks doesn't bite.",
+      "meaning": "People who make the most noise are often the least dangerous.",
+      "usage": "When someone makes empty threats.",
+      "theme": "character",
+      "cefr": "A1"
+    },
+    {
+      "id": "quem-semeia-ventos",
+      "portuguese": "Quem semeia ventos, colhe tempestades.",
+      "pronunciation": "keng suh-MAY-uh VEN-toosh, KOH-lyuh tem-push-TAH-dush",
+      "literal": "Who sows winds, harvests storms.",
+      "meaning": "If you cause trouble, expect bigger trouble in return.",
+      "usage": "When someone's bad behaviour leads to serious consequences.",
+      "theme": "character",
+      "cefr": "B1"
+    },
+    {
+      "id": "filho-de-peixe-sabe-nadar",
+      "portuguese": "Filho de peixe sabe nadar.",
+      "pronunciation": "FEE-lyoo duh PAY-shuh SAH-buh nuh-DAR",
+      "literal": "Son of a fish knows how to swim.",
+      "meaning": "Like father, like son. Children inherit their parents' traits.",
+      "usage": "When a child shows a talent or behaviour similar to their parents.",
+      "theme": "character",
+      "cefr": "A2"
+    },
+    {
+      "id": "a-mentira-tem-perna-curta",
+      "portuguese": "A mentira tem perna curta.",
+      "pronunciation": "uh men-TEE-ruh teng PEHR-nuh KOOR-tuh",
+      "literal": "The lie has a short leg.",
+      "meaning": "Lies don't get very far. The truth always comes out.",
+      "usage": "When someone gets caught lying.",
+      "theme": "character",
+      "cefr": "A1"
+    },
+    {
+      "id": "quem-nao-deve",
+      "portuguese": "Quem não deve, não teme.",
+      "pronunciation": "keng nowng DEH-vuh, nowng TEH-muh",
+      "literal": "Who doesn't owe, doesn't fear.",
+      "meaning": "A clear conscience fears nothing. If you've done nothing wrong, you have nothing to worry about.",
+      "usage": "When someone is anxious about being investigated or questioned but has nothing to hide.",
+      "theme": "character",
+      "cefr": "A2"
+    },
+    {
+      "id": "em-boca-fechada",
+      "portuguese": "Em boca fechada não entram moscas.",
+      "pronunciation": "eng BOH-kuh fuh-SHAH-duh nowng EN-trang MOSH-kush",
+      "literal": "In a closed mouth, flies don't enter.",
+      "meaning": "Silence is golden. It's better to keep quiet than to say something stupid.",
+      "usage": "When advising someone to not speak about something.",
+      "theme": "character",
+      "cefr": "A2"
+    },
+    {
+      "id": "ha-mar-e-mar",
+      "portuguese": "Há mar e mar, há ir e voltar.",
+      "pronunciation": "ah MAR ee MAR, ah eer ee vol-TAR",
+      "literal": "There's sea and sea, there's going and coming back.",
+      "meaning": "Be careful — things aren't always as simple as they seem. Respect the risk.",
+      "usage": "Originally about sea safety, now used for any situation where caution is needed.",
+      "theme": "life",
+      "cefr": "A2"
+    },
+    {
+      "id": "casa-onde-nao-ha-pao",
+      "portuguese": "Casa onde não há pão, todos ralham e ninguém tem razão.",
+      "pronunciation": "KAH-zuh OND nowng ah POWNG, TOH-doosh RAH-lyung ee neen-GENG teng ruh-ZOWNG",
+      "literal": "House where there's no bread, everyone argues and nobody is right.",
+      "meaning": "Poverty and scarcity cause conflict. People fight when basic needs aren't met.",
+      "usage": "When a stressful environment (work, home) is causing unnecessary arguments.",
+      "theme": "life",
+      "cefr": "B1"
+    },
+    {
+      "id": "santos-da-casa",
+      "portuguese": "Santos da casa não fazem milagres.",
+      "pronunciation": "SAN-toosh duh KAH-zuh nowng FAH-zeng mee-LAH-grush",
+      "literal": "Saints of the house don't perform miracles.",
+      "meaning": "Familiarity breeds contempt. People don't value what's close to them.",
+      "usage": "When someone's expertise is ignored at home/work but valued by outsiders.",
+      "theme": "humor",
+      "cefr": "B1"
+    },
+    {
+      "id": "anda-ca-e-vai-la",
+      "portuguese": "Anda cá e vai lá.",
+      "pronunciation": "AN-duh KAH ee vai LAH",
+      "literal": "Come here and go there.",
+      "meaning": "Being sent back and forth. Getting the runaround.",
+      "usage": "When dealing with bureaucracy or being bounced between departments.",
+      "theme": "humor",
+      "cefr": "A1"
+    },
+    {
+      "id": "para-bom-bebedor",
+      "portuguese": "Para bom bebedor, meia garrafa basta.",
+      "pronunciation": "PAH-ruh bong buh-buh-DOHR, MAY-uh guh-RRAH-fuh BASH-tuh",
+      "literal": "For a good drinker, half a bottle is enough.",
+      "meaning": "A connoisseur doesn't need excess. Quality over quantity.",
+      "usage": "Humorous — when splitting wine or drinks, or appreciating something in moderation.",
+      "theme": "food",
+      "cefr": "A2"
+    },
+    {
+      "id": "quem-conta-um-conto",
+      "portuguese": "Quem conta um conto, acrescenta um ponto.",
+      "pronunciation": "keng KON-tuh oom KON-too, uh-kruh-SEN-tuh oom PON-too",
+      "literal": "Who tells a tale, adds a stitch.",
+      "meaning": "Stories get exaggerated as they're retold. Like a game of telephone.",
+      "usage": "When gossip or a story has clearly been embellished.",
+      "theme": "humor",
+      "cefr": "B1"
+    },
+    {
+      "id": "dar-o-braco-a-torcer",
+      "portuguese": "Não dou o braço a torcer.",
+      "pronunciation": "nowng doh oo BRAH-soo uh tor-SEHR",
+      "literal": "I don't give my arm to be twisted.",
+      "meaning": "I won't give in. I stand by my position.",
+      "usage": "When someone stubbornly refuses to change their mind (can be positive or negative).",
+      "theme": "character",
+      "cefr": "A2"
+    },
+    {
+      "id": "meter-os-pes-pelas-maos",
+      "portuguese": "Meter os pés pelas mãos.",
+      "pronunciation": "muh-TEHR oosh pehsh PEH-lush mowngsh",
+      "literal": "Put the feet through the hands.",
+      "meaning": "To mess things up completely. To make a total blunder.",
+      "usage": "When someone makes a confusing or clumsy mistake.",
+      "theme": "humor",
+      "cefr": "A2"
+    },
+    {
+      "id": "pagar-as-favas",
+      "portuguese": "Vai pagar as favas!",
+      "pronunciation": "vai puh-GAR ush FAH-vush",
+      "literal": "Go pay for the broad beans!",
+      "meaning": "Get lost! Go away! (Mild, humorous way to dismiss someone.)",
+      "usage": "Casual/humorous dismissal — not aggressive, more playful.",
+      "theme": "humor",
+      "cefr": "A2"
+    },
+    {
+      "id": "estar-com-os-azeites",
+      "portuguese": "Estar com os azeites.",
+      "pronunciation": "shtar kong oosh uh-ZAY-tush",
+      "literal": "To be with the olive oils.",
+      "meaning": "To be in a bad mood. To be grumpy or irritable.",
+      "usage": "When someone is being moody for no apparent reason.",
+      "theme": "humor",
+      "cefr": "A1"
+    }
+  ]
+}

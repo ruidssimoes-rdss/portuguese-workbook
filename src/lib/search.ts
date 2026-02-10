@@ -1,12 +1,14 @@
 import vocabData from "@/data/vocab.json";
 import verbData from "@/data/verbs.json";
 import grammarData from "@/data/grammar.json";
+import sayingsData from "@/data/sayings.json";
 import type { VocabData } from "@/types/vocab";
 import type { VerbDataSet, VerbData, Conjugation } from "@/types";
 import type { GrammarData } from "@/types/grammar";
+import type { SayingsData } from "@/types/saying";
 
 export interface SearchResult {
-  type: "vocabulary" | "verb" | "conjugation" | "grammar";
+  type: "vocabulary" | "verb" | "conjugation" | "grammar" | "saying";
   title: string;
   subtitle: string;
   category?: string;
@@ -108,6 +110,7 @@ export interface SearchOutput {
 const vocab = vocabData as unknown as VocabData;
 const verbs = verbData as unknown as VerbDataSet;
 const grammar = grammarData as unknown as GrammarData;
+const sayings = (sayingsData as unknown as SayingsData).sayings;
 
 const CATEGORY_PT_TITLE: Record<string, string> = {
   "greetings-expressions": "Cumprimentos e Expressões",
@@ -305,6 +308,21 @@ function runTextSearch(
     return 0;
   }
 
+  function scoreSaying(
+    q: string,
+    ptNorm: string,
+    literalNorm: string,
+    meaningNorm: string,
+    usageNorm: string
+  ): number {
+    if (ptNorm === q || ptNorm.startsWith(q)) return 350;
+    if (literalNorm === q || literalNorm.startsWith(q)) return 320;
+    if (meaningNorm.includes(q) || meaningNorm.startsWith(q)) return 280;
+    if (usageNorm.includes(q) || usageNorm.startsWith(q)) return 250;
+    if (ptNorm.includes(q) || literalNorm.includes(q) || meaningNorm.includes(q) || usageNorm.includes(q)) return 150;
+    return 0;
+  }
+
   const vocabOnlyEnglish = options.vocabByEnglish === true;
   const vocabOnlyPortuguese = options.vocabByPortuguese === true;
 
@@ -418,6 +436,32 @@ function runTextSearch(
           href,
           matchField: "title",
           meta: { summary: t.summary },
+        },
+      });
+    }
+  }
+
+  if (!options.verbOnly && !options.grammarOnly) {
+    for (const s of sayings) {
+      const ptNorm = normalizeForSearch(s.portuguese);
+      const literalNorm = normalizeForSearch(s.literal);
+      const meaningNorm = normalizeForSearch(s.meaning);
+      const usageNorm = normalizeForSearch(s.usage);
+      const score = scoreSaying(queryNorm, ptNorm, literalNorm, meaningNorm, usageNorm);
+      if (score === 0) continue;
+      const href = `/culture?highlight=${encodeURIComponent(s.id)}`;
+      const key = dedupeKey("saying", href, s.id);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      results.push({
+        score,
+        result: {
+          type: "saying",
+          title: s.portuguese.length > 60 ? s.portuguese.slice(0, 57) + "..." : s.portuguese,
+          subtitle: s.meaning.length > 80 ? s.meaning.slice(0, 77) + "..." : s.meaning,
+          href,
+          matchField: "portuguese",
+          meta: { summary: s.meaning },
         },
       });
     }

@@ -39,6 +39,7 @@ const GROUP_LABELS: Record<SearchResult["type"], string> = {
   verb: "Verbos",
   conjugation: "Conjugações",
   grammar: "Gramática",
+  saying: "Cultura",
 };
 
 function groupResults(
@@ -65,6 +66,8 @@ function typeToBadge(
       return { label: "Conjugações", className: "bg-violet-100 text-violet-800 border-violet-200" };
     case "grammar":
       return { label: "Gramática", className: "bg-slate-100 text-slate-800 border-slate-200" };
+    case "saying":
+      return { label: "Cultura", className: "bg-amber-100 text-amber-800 border-amber-200" };
   }
 }
 

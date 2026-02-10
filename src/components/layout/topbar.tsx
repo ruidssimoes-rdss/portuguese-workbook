@@ -11,6 +11,7 @@ const navItems = [
   { href: "/vocabulary", label: "Vocabulary" },
   { href: "/grammar", label: "Grammar" },
   { href: "/practice", label: "Practice" },
+  { href: "/culture", label: "Culture" },
   { href: "/dashboard", label: "Progress & Tests" },
   { href: "/changelog", label: "What's New" },
 ];
