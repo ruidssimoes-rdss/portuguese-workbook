@@ -11,13 +11,24 @@ const data = vocabData as unknown as VocabData;
 const CEFR_LEVELS = ["All", "A1", "A2", "B1"] as const;
 type CefrFilter = (typeof CEFR_LEVELS)[number];
 
-const SECTIONS: { label: string; categoryIds: string[] }[] = [
+const SECTIONS: {
+  label: string;
+  ptName: string;
+  description: string;
+  categoryIds: string[];
+}[] = [
   {
     label: "Essentials",
+    ptName: "O Essencial",
+    description:
+      "The building blocks of everyday Portuguese. Start here to greet people, count, tell the time, and describe the world around you.",
     categoryIds: ["greetings-expressions", "numbers-time", "colours-weather"],
   },
   {
     label: "Daily Life",
+    ptName: "Vida Quotidiana",
+    description:
+      "Words you need to navigate daily life in Portugal — from ordering food and shopping to talking about your home and family.",
     categoryIds: [
       "food-drink",
       "home-rooms",
@@ -27,6 +38,9 @@ const SECTIONS: { label: string; categoryIds: string[] }[] = [
   },
   {
     label: "World & Self",
+    ptName: "O Mundo e Eu",
+    description:
+      "Broaden your vocabulary beyond the basics. Talk about travel, work, health, nature, and how you feel.",
     categoryIds: [
       "travel-directions",
       "work-education",
@@ -37,6 +51,51 @@ const SECTIONS: { label: string; categoryIds: string[] }[] = [
     ],
   },
 ];
+
+const CATEGORY_PT_TITLE: Record<string, string> = {
+  "greetings-expressions": "Cumprimentos e Expressões",
+  "numbers-time": "Números e Tempo",
+  "colours-weather": "Cores e Clima",
+  "food-drink": "Comida e Bebida",
+  "home-rooms": "Casa e Divisões",
+  "family-daily-routine": "Família e Rotina Diária",
+  "shopping-money": "Compras e Dinheiro",
+  "travel-directions": "Viagens e Direções",
+  "work-education": "Trabalho e Educação",
+  "health-body": "Saúde e Corpo",
+  "nature-animals": "Natureza e Animais",
+  "emotions-personality": "Emoções e Personalidade",
+  "colloquial-slang": "Coloquial e Calão",
+};
+
+const CATEGORY_DESCRIPTION: Record<string, string> = {
+  "greetings-expressions":
+    "Olá, bom dia, obrigado — essential phrases for every interaction.",
+  "numbers-time":
+    "Um, dois, três — counting, telling time, and days of the week.",
+  "colours-weather":
+    "Azul, vermelho, sol, chuva — describe colours and the weather.",
+  "food-drink":
+    "Café, pão, água — restaurants, groceries, and cooking.",
+  "home-rooms":
+    "Cozinha, quarto, sala — rooms, furniture, and household items.",
+  "family-daily-routine":
+    "Mãe, pai, irmão — family, relationships, and everyday routines.",
+  "shopping-money":
+    "Preço, troco, recibo — shops, payments, and transactions.",
+  "travel-directions":
+    "Esquerda, direita, hotel — transport, navigation, and getting around.",
+  "work-education":
+    "Escritório, escola, reunião — professions, workplace, and studies.",
+  "health-body":
+    "Cabeça, médico, farmácia — body parts, symptoms, and healthcare.",
+  "nature-animals":
+    "Árvore, cão, praia — animals, plants, and the natural world.",
+  "emotions-personality":
+    "Feliz, triste, simpático — feelings, moods, and character traits.",
+  "colloquial-slang":
+    "Fixe, giro, bué — informal expressions and everyday slang.",
+};
 
 function countByLevel(categories: VocabCategory[]) {
   const a1 = categories.reduce(
@@ -61,9 +120,12 @@ function categoryLevelCount(cat: VocabCategory, level: Exclude<CefrFilter, "All"
 function categoryMatchesSearch(cat: VocabCategory, q: string): number {
   if (!q.trim()) return -1;
   const lower = q.toLowerCase();
+  const ptTitle = CATEGORY_PT_TITLE[cat.id] ?? "";
+  const desc = CATEGORY_DESCRIPTION[cat.id] ?? cat.description;
   if (
     cat.title.toLowerCase().includes(lower) ||
-    cat.description.toLowerCase().includes(lower)
+    ptTitle.toLowerCase().includes(lower) ||
+    desc.toLowerCase().includes(lower)
   )
     return -1;
   const inWords = cat.words.filter(
@@ -95,9 +157,12 @@ export default function VocabularyPage() {
 
       if (q) {
         cats = cats.filter((c) => {
+          const ptTitle = (CATEGORY_PT_TITLE[c.id] ?? "").toLowerCase();
+          const desc = (CATEGORY_DESCRIPTION[c.id] ?? c.description).toLowerCase();
           const titleOrDesc =
             c.title.toLowerCase().includes(q) ||
-            c.description.toLowerCase().includes(q);
+            ptTitle.includes(q) ||
+            desc.includes(q);
           const wordMatches = categoryMatchesSearch(c, search);
           return titleOrDesc || wordMatches > 0;
         });
@@ -126,6 +191,9 @@ export default function VocabularyPage() {
               <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-gray-900">
                 Vocabulary
               </h1>
+              <p className="text-lg text-[#5B4FA0]/70 font-medium -mt-1">
+                Vocabulário
+              </p>
               <p className="text-[14px] text-gray-500 mt-1">
                 {displayTotalWords.toLocaleString()} words · {displayCategoryCount} categories · A1–B1
               </p>
@@ -170,13 +238,20 @@ export default function VocabularyPage() {
         <div className="pb-16">
           {categoriesBySection.map((section, sectionIndex) => (
             <div key={section.label}>
-              <h2
-                className={`text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 ${
-                  sectionIndex === 0 ? "" : "mt-8"
-                }`}
+              <div
+                className={`${sectionIndex === 0 ? "" : "mt-8"}`}
               >
-                {section.label}
-              </h2>
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                  {section.label}
+                  <span className="text-xs font-normal normal-case tracking-normal text-[#5B4FA0]/60">
+                    {" · "}
+                    {section.ptName}
+                  </span>
+                </h2>
+                <p className="text-sm text-gray-500 mt-1 mb-4 max-w-2xl">
+                  {section.description}
+                </p>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {section.categories.map((cat) => {
                   const wordCount =
@@ -196,6 +271,13 @@ export default function VocabularyPage() {
                       .toLowerCase()
                       .includes(search.trim().toLowerCase());
 
+                  const cardDesc = CATEGORY_DESCRIPTION[cat.id] ?? cat.description;
+                  const descParts = cardDesc.includes(" — ")
+                    ? cardDesc.split(" — ", 2)
+                    : [null, cardDesc];
+                  const ptIntro = descParts[0];
+                  const descRest = descParts[1] ?? cardDesc;
+
                   return (
                     <Link
                       key={cat.id}
@@ -211,8 +293,19 @@ export default function VocabularyPage() {
                           {showMatchNote && ` · ${matchCount} match${matchCount !== 1 ? "es" : ""}`}
                         </span>
                       </div>
+                      <p className="text-sm text-[#5B4FA0]/70 font-medium mt-0.5">
+                        {CATEGORY_PT_TITLE[cat.id] ?? ""}
+                      </p>
                       <p className="text-sm text-gray-500 mt-1 truncate">
-                        {cat.description}
+                        {ptIntro != null ? (
+                          <>
+                            <em>{ptIntro}</em>
+                            {" — "}
+                            {descRest}
+                          </>
+                        ) : (
+                          cardDesc
+                        )}
                       </p>
                     </Link>
                   );
