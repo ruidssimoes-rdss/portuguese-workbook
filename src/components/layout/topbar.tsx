@@ -15,6 +15,13 @@ const navItems = [
   { href: "/changelog", label: "What's New" },
 ];
 
+const TOPBAR_HINTS = [
+  "Search...",
+  "How do you say...?",
+  "Conjugate a verb...",
+  "What does ... mean?",
+];
+
 export function Topbar() {
   const pathname = usePathname();
   const router = useRouter();
@@ -23,6 +30,7 @@ export function Topbar() {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [shortcutHint, setShortcutHint] = useState<string>("⌘K");
+  const [searchHintIndex, setSearchHintIndex] = useState(0);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
@@ -49,6 +57,13 @@ export function Topbar() {
   useEffect(() => {
     const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
     setShortcutHint(isMac ? "⌘K" : "Ctrl+K");
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSearchHintIndex((i) => (i + 1) % TOPBAR_HINTS.length);
+    }, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   // Global Cmd+K / Ctrl+K and "/" to open search (only "/" when not in an input)
@@ -167,7 +182,7 @@ export function Topbar() {
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
-              <span className="hidden md:inline">Search…</span>
+              <span className="hidden md:inline">{TOPBAR_HINTS[searchHintIndex]}</span>
               <kbd className="hidden md:inline ml-auto text-[11px] px-1.5 py-0.5 border border-border rounded text-text-3 font-sans">
                 {shortcutHint}
               </kbd>
