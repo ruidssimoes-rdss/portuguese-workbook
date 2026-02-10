@@ -64,6 +64,13 @@ const learnItems = [
     href: "/practice",
     disabled: false,
   },
+  {
+    title: "How to Learn",
+    portuguese: "Como Aprender",
+    stats: ["Study tips & CEFR guide"],
+    href: "/guide",
+    disabled: false,
+  },
 ];
 
 const TOPBAR_HINTS = [
@@ -308,6 +315,7 @@ export function Topbar() {
                   <div className="grid grid-cols-3 gap-3">
                     {learnItems.map((item) => {
                       const isCurrent = pathname === item.href || pathname?.startsWith(item.href + "/");
+                      const isGuide = item.href === "/guide";
                       return (
                         <Link
                           key={item.href}
@@ -316,10 +324,29 @@ export function Topbar() {
                           role="menuitem"
                           tabIndex={0}
                           className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#5B4FA0]/30 hover:bg-[#5B4FA0]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
-                            isCurrent ? "border-[#5B4FA0]/30 bg-[#5B4FA0]/5" : "border-gray-100"
+                            isCurrent ? "border-[#5B4FA0]/30 bg-[#5B4FA0]/5" : isGuide ? "border-dashed border-gray-200" : "border-gray-100"
                           }`}
                         >
-                          <span className="text-sm font-semibold text-gray-900">{item.title}</span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-sm font-semibold text-gray-900 flex-1">{item.title}</span>
+                            {isGuide && (
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="text-[#5B4FA0]/70 shrink-0"
+                                aria-hidden
+                              >
+                                <path d="M4 19.5V6a2 2 0 0 1 2-2h9.5" />
+                                <path d="M8 6h12a1 1 0 0 1 1 1v12.5l-3-2-3 2-3-2-3 2-3-2-3 2V8a2 2 0 0 1 2-2z" />
+                              </svg>
+                            )}
+                          </div>
                           <p className="text-xs text-[#5B4FA0]/60 font-medium mt-0.5">{item.portuguese}</p>
                           <p className="text-xs text-gray-400 mt-3">{item.stats[0]}</p>
                           {item.stats[1] && <p className="text-xs text-gray-400">{item.stats[1]}</p>}
