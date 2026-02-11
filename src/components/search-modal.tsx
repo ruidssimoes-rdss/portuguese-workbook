@@ -68,7 +68,7 @@ function typeToBadge(
 ): { label: string; className: string } {
   switch (type) {
     case "vocabulary":
-      return { label: "Vocabulário", className: "bg-indigo-100 text-indigo-800 border-indigo-200" };
+      return { label: "Vocabulário", className: "bg-blue-100 text-blue-800 border-blue-200" };
     case "verb":
       return { label: "Verbos", className: "bg-purple-100 text-purple-800 border-purple-200" };
     case "conjugation":
@@ -310,7 +310,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                     key={s.label}
                     type="button"
                     onClick={() => handleSuggestionClick(s.fill)}
-                    className="bg-gray-100 rounded-full px-4 py-2 text-sm text-gray-600 hover:bg-[#5B4FA0]/10 hover:text-[#5B4FA0] transition-colors cursor-pointer text-left"
+                    className="bg-gray-100 rounded-full px-4 py-2 text-sm text-gray-600 hover:bg-[#3C5E95]/10 hover:text-[#3C5E95] transition-colors cursor-pointer text-left"
                   >
                     {s.label}
                   </button>
@@ -330,8 +330,8 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 data-index={0}
                 onClick={() => handleSelectHref(getSmartCardHref(smartCard))}
                 onMouseEnter={() => setHighlightedIndex(0)}
-                className={`w-full text-left rounded-lg p-4 mb-4 border transition-all duration-200 bg-[#5B4FA0]/5 border-[#5B4FA0]/20 hover:border-[#5B4FA0]/40 ${
-                  highlightedIndex === 0 ? "ring-2 ring-[#5B4FA0]/30" : ""
+                className={`w-full text-left rounded-lg p-4 mb-4 border transition-all duration-200 bg-[#3C5E95]/5 border-[#3C5E95]/20 hover:border-[#3C5E95]/40 ${
+                  highlightedIndex === 0 ? "ring-2 ring-[#3C5E95]/30" : ""
                 }`}
               >
                 <SmartCardContent card={smartCard} onSelectHref={handleSelectHref} />
@@ -363,7 +363,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                           onClick={() => handleSelectResult(r)}
                           onMouseEnter={() => setHighlightedIndex(globalIdx)}
                           className={`w-full flex items-center gap-2 px-4 py-2.5 text-left transition-colors cursor-pointer ${
-                            isHighlighted ? "bg-[#5B4FA0]/10" : "hover:bg-gray-50"
+                            isHighlighted ? "bg-[#3C5E95]/10" : "hover:bg-gray-50"
                           }`}
                         >
                           <span
@@ -430,7 +430,7 @@ function SmartCardContent({
 
   return (
     <>
-      <p className="text-xs font-semibold uppercase tracking-wider text-[#5B4FA0]/60 mb-2">
+      <p className="text-xs font-semibold uppercase tracking-wider text-[#3C5E95]/60 mb-2">
         {intentLabel}
       </p>
       {card.type === "translation" && (
@@ -446,7 +446,7 @@ function SmartCardContent({
               {card.primary.meta.categoryTitlePt} · {card.primary.meta.categoryTitle}
             </p>
           )}
-          <p className="text-xs text-[#5B4FA0]/70 mt-2">Click to see full entry</p>
+          <p className="text-xs text-[#3C5E95]/70 mt-2">Click to see full entry</p>
         </>
       )}
       {card.type === "definition" && (
@@ -467,7 +467,7 @@ function SmartCardContent({
               Example: {card.primary.meta.example} — {card.primary.meta.exampleTranslation}
             </p>
           )}
-          <p className="text-xs text-[#5B4FA0]/70 mt-2">Click to see full entry</p>
+          <p className="text-xs text-[#3C5E95]/70 mt-2">Click to see full entry</p>
         </>
       )}
       {card.type === "conjugation" && (
@@ -479,7 +479,7 @@ function SmartCardContent({
             {card.group} · {card.cefr}
           </p>
           <p className="text-xs text-gray-600 mt-1">{card.presentPreview}</p>
-          <p className="text-xs text-[#5B4FA0]/70 mt-2">View all conjugations</p>
+          <p className="text-xs text-[#3C5E95]/70 mt-2">View all conjugations</p>
         </>
       )}
       {card.type === "tense" && (
@@ -490,7 +490,7 @@ function SmartCardContent({
           <p className="text-xs text-gray-600 mt-1">
             {card.conjugations.join(" · ")}
           </p>
-          <p className="text-xs text-[#5B4FA0]/70 mt-2">View full conjugation table</p>
+          <p className="text-xs text-[#3C5E95]/70 mt-2">View full conjugation table</p>
         </>
       )}
       {card.type === "conjugation_multi" && (
@@ -505,7 +505,7 @@ function SmartCardContent({
                     e.stopPropagation();
                     onSelectHref(v.href);
                   }}
-                  className="block w-full text-left rounded px-2 py-1.5 hover:bg-[#5B4FA0]/10 text-sm font-semibold text-gray-900"
+                  className="block w-full text-left rounded px-2 py-1.5 hover:bg-[#3C5E95]/10 text-sm font-semibold text-gray-900"
                 >
                   {v.infinitive} — {v.english}
                 </button>
@@ -514,7 +514,7 @@ function SmartCardContent({
               </li>
             ))}
           </ul>
-          <p className="text-xs text-[#5B4FA0]/70 mt-2">Click a verb to view conjugations</p>
+          <p className="text-xs text-[#3C5E95]/70 mt-2">Click a verb to view conjugations</p>
         </>
       )}
       {card.type === "tense_multi" && (
@@ -529,7 +529,7 @@ function SmartCardContent({
                     e.stopPropagation();
                     onSelectHref(v.href);
                   }}
-                  className="block w-full text-left rounded px-2 py-1.5 hover:bg-[#5B4FA0]/10 text-sm font-semibold text-gray-900"
+                  className="block w-full text-left rounded px-2 py-1.5 hover:bg-[#3C5E95]/10 text-sm font-semibold text-gray-900"
                 >
                   {v.infinitive}
                 </button>
@@ -537,7 +537,7 @@ function SmartCardContent({
               </li>
             ))}
           </ul>
-          <p className="text-xs text-[#5B4FA0]/70 mt-2">Click a verb to view full table</p>
+          <p className="text-xs text-[#3C5E95]/70 mt-2">Click a verb to view full table</p>
         </>
       )}
       {(card.type === "comparison" || card.type === "grammar") && (
@@ -546,7 +546,7 @@ function SmartCardContent({
           {card.topic.meta?.summary && (
             <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">{card.topic.meta.summary}</p>
           )}
-          <p className="text-xs text-[#5B4FA0]/70 mt-2">Read full explanation</p>
+          <p className="text-xs text-[#3C5E95]/70 mt-2">Read full explanation</p>
         </>
       )}
     </>

@@ -272,7 +272,7 @@ export function Topbar() {
                   aria-haspopup="true"
                   className={`text-sm font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
                     learnActive || learnMenuOpen
-                      ? "bg-[#5B4FA0]/10 text-[#5B4FA0]"
+                      ? "bg-[#3C5E95]/10 text-[#3C5E95]"
                       : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
@@ -295,7 +295,7 @@ export function Topbar() {
                   href="/dashboard"
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 ${
                     pathname?.startsWith("/dashboard")
-                      ? "bg-[#5B4FA0]/10 text-[#5B4FA0]"
+                      ? "bg-[#3C5E95]/10 text-[#3C5E95]"
                       : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
@@ -323,8 +323,8 @@ export function Topbar() {
                           onClick={() => setLearnMenuOpen(false)}
                           role="menuitem"
                           tabIndex={0}
-                          className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#5B4FA0]/30 hover:bg-[#5B4FA0]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
-                            isCurrent ? "border-[#5B4FA0]/30 bg-[#5B4FA0]/5" : isGuide ? "border-dashed border-gray-200" : "border-gray-100"
+                          className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#3C5E95]/30 hover:bg-[#3C5E95]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
+                            isCurrent ? "border-[#3C5E95]/30 bg-[#3C5E95]/5" : isGuide ? "border-dashed border-gray-200" : "border-gray-100"
                           }`}
                         >
                           <div className="flex items-center gap-1.5">
@@ -339,7 +339,7 @@ export function Topbar() {
                                 strokeWidth="2"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                className="text-[#5B4FA0]/70 shrink-0"
+                                className="text-[#3C5E95]/70 shrink-0"
                                 aria-hidden
                               >
                                 <path d="M4 19.5V6a2 2 0 0 1 2-2h9.5" />
@@ -347,7 +347,7 @@ export function Topbar() {
                               </svg>
                             )}
                           </div>
-                          <p className="text-xs text-[#5B4FA0]/60 font-medium mt-0.5">{item.portuguese}</p>
+                          <p className="text-xs text-[#3C5E95]/60 font-medium mt-0.5">{item.portuguese}</p>
                           <p className="text-xs text-gray-400 mt-3">{item.stats[0]}</p>
                           {item.stats[1] && <p className="text-xs text-gray-400">{item.stats[1]}</p>}
                         </Link>
@@ -398,7 +398,7 @@ export function Topbar() {
                 <button
                   type="button"
                   onClick={() => setUserMenuOpen((o) => !o)}
-                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#5B4FA0] text-white text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#3C5E95] text-white text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
                   aria-label="Menu da conta"
                   aria-expanded={userMenuOpen}
                 >
@@ -445,7 +445,7 @@ export function Topbar() {
             ) : (
               <Link
                 href="/auth/login"
-                className="shrink-0 px-3 py-1.5 rounded-lg border border-[#5B4FA0] text-[#5B4FA0] text-[13px] font-medium hover:bg-indigo-50 transition-colors"
+                className="shrink-0 px-3 py-1.5 rounded-lg border border-[#3C5E95] text-[#3C5E95] text-[13px] font-medium hover:bg-sky-50 transition-colors"
               >
                 Entrar
               </Link>
@@ -492,11 +492,11 @@ export function Topbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                      isCurrent ? "bg-[#5B4FA0]/5 text-[#5B4FA0] border-l-2 border-[#5B4FA0]" : "text-text-2 hover:bg-bg-s hover:text-text"
+                      isCurrent ? "bg-[#3C5E95]/5 text-[#3C5E95] border-l-2 border-[#3C5E95]" : "text-text-2 hover:bg-bg-s hover:text-text"
                     }`}
                   >
                     <span className="text-[15px] font-medium">{item.title}</span>
-                    <span className="text-xs text-[#5B4FA0]/60">{item.portuguese}</span>
+                    <span className="text-xs text-[#3C5E95]/60">{item.portuguese}</span>
                   </Link>
                 );
               })}
@@ -505,7 +505,7 @@ export function Topbar() {
                 href="/dashboard"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium transition-colors ${
-                  pathname?.startsWith("/dashboard") ? "bg-[#5B4FA0]/5 text-[#5B4FA0]" : "text-text-2 hover:bg-bg-s hover:text-text"
+                  pathname?.startsWith("/dashboard") ? "bg-[#3C5E95]/5 text-[#3C5E95]" : "text-text-2 hover:bg-bg-s hover:text-text"
                 }`}
               >
                 Progress
@@ -544,7 +544,7 @@ export function Topbar() {
                     <Link
                       href="/auth/login"
                       onClick={closeMobileMenu}
-                      className="px-4 py-3 rounded-lg text-[15px] font-medium text-[#5B4FA0] hover:bg-indigo-50 min-h-[44px] flex items-center"
+                      className="px-4 py-3 rounded-lg text-[15px] font-medium text-[#3C5E95] hover:bg-sky-50 min-h-[44px] flex items-center"
                     >
                       Entrar
                     </Link>

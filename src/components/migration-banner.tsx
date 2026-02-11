@@ -91,11 +91,11 @@ export function MigrationBanner({
   if (!show) return null;
 
   return (
-    <div className="rounded-lg border border-[#5B4FA0]/20 bg-[#F0F5FF] p-4 mb-6">
+    <div className="rounded-lg border border-[#3C5E95]/20 bg-[#EBF2FA] p-4 mb-6">
       <div className="flex gap-3">
         <div className="shrink-0 mt-0.5">
           <svg
-            className="w-5 h-5 text-[#5B4FA0]"
+            className="w-5 h-5 text-[#3C5E95]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -109,7 +109,7 @@ export function MigrationBanner({
           </svg>
         </div>
         <div className="min-w-0 flex-1">
-          <h2 className="font-bold text-[#5B4FA0] text-[15px]">
+          <h2 className="font-bold text-[#3C5E95] text-[15px]">
             Dados de progresso encontrados
           </h2>
           <p className="text-[14px] text-text-2 mt-1">
@@ -133,7 +133,7 @@ export function MigrationBanner({
               type="button"
               onClick={handleMigrate}
               disabled={migrating}
-              className="rounded-lg bg-[#5B4FA0] px-4 py-2 text-white text-[14px] font-medium hover:bg-[#4a4190] disabled:opacity-60 flex items-center gap-2"
+              className="rounded-lg bg-[#3C5E95] px-4 py-2 text-white text-[14px] font-medium hover:bg-[#2E4A75] disabled:opacity-60 flex items-center gap-2"
             >
               {migrating ? (
                 <>
@@ -147,7 +147,7 @@ export function MigrationBanner({
             <button
               type="button"
               onClick={() => setDismissed(true)}
-              className="rounded-lg bg-transparent text-[#5B4FA0] text-[14px] font-medium hover:underline"
+              className="rounded-lg bg-transparent text-[#3C5E95] text-[14px] font-medium hover:underline"
             >
               Ignorar
             </button>

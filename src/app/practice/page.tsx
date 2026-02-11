@@ -44,7 +44,7 @@ export default function PracticePage() {
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
               Practice
             </h1>
-            <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
+            <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
               Prática
             </p>
             <p className="text-sm text-gray-500 mt-2">
@@ -58,19 +58,19 @@ export default function PracticePage() {
                 <Link
                   key={mode.id}
                   href={mode.href!}
-                  className="bg-white border border-gray-200 rounded-lg p-6 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all cursor-pointer block"
+                  className="bg-white border border-gray-200 rounded-lg p-6 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all cursor-pointer block"
                 >
                   <h2 className="text-lg font-semibold text-gray-900">
                     {mode.title}
                   </h2>
-                  <p className="text-sm text-[#5B4FA0]/60 font-medium mt-0.5">
+                  <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">
                     {mode.portuguese}
                   </p>
                   <p className="text-sm text-gray-500 mt-3">
                     {mode.description}
                   </p>
                   <p className="text-xs text-gray-400 mt-3">{mode.stats}</p>
-                  <span className="text-sm text-[#5B4FA0] font-medium mt-4 inline-block">
+                  <span className="text-sm text-[#3C5E95] font-medium mt-4 inline-block">
                     {mode.cta} →
                   </span>
                 </Link>
@@ -82,7 +82,7 @@ export default function PracticePage() {
                   <h2 className="text-lg font-semibold text-gray-900">
                     {mode.title}
                   </h2>
-                  <p className="text-sm text-[#5B4FA0]/60 font-medium mt-0.5">
+                  <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">
                     {mode.portuguese}
                   </p>
                   <p className="text-sm text-gray-500 mt-3">

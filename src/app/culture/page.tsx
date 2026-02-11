@@ -54,8 +54,8 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
   return (
     <article
       id={saying.id}
-      className={`bg-white border rounded-lg p-6 mb-4 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all duration-200 ${
-        isHighlighted ? "ring-2 ring-[#5B4FA0]/40 border-[#5B4FA0]/30" : "border-gray-200"
+      className={`bg-white border rounded-lg p-6 mb-4 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200 ${
+        isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : "border-gray-200"
       }`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -66,7 +66,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={saying.portuguese} size="sm" />
           <span className="inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-gray-100 text-gray-700 border border-gray-200">{saying.cefr}</span>
-          <button type="button" onClick={handleCopy} className="text-xs text-gray-500 hover:text-[#5B4FA0] px-2 py-1 rounded border border-gray-200 hover:border-[#5B4FA0]/30 transition-colors">
+          <button type="button" onClick={handleCopy} className="text-xs text-gray-500 hover:text-[#3C5E95] px-2 py-1 rounded border border-gray-200 hover:border-[#3C5E95]/30 transition-colors">
             {copied ? "Copied" : "Copy"}
           </button>
         </div>
@@ -85,7 +85,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
       </div>
       {hasExample && (
         <div className="border-t border-gray-100 pt-3 mt-3">
-          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-gray-500 hover:text-[#5B4FA0]">
+          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-gray-500 hover:text-[#3C5E95]">
             Example {exampleOpen ? "–" : "+"}
           </button>
           {exampleOpen && (
@@ -109,8 +109,8 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
   return (
     <article
       id={item.id}
-      className={`bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all duration-200 ${
-        isHighlighted ? "ring-2 ring-[#5B4FA0]/40 border-[#5B4FA0]/30" : ""
+      className={`bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200 ${
+        isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : ""
       }`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -147,12 +147,12 @@ function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
   return (
     <article
       id={tip.id}
-      className="bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all duration-200"
+      className="bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <p className="text-base font-semibold text-gray-900">{tip.title}</p>
-          <p className="text-sm text-[#5B4FA0]/60 font-medium mt-0.5">{tip.titlePt}</p>
+          <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">{tip.titlePt}</p>
         </div>
         <span className="text-xs bg-gray-100 text-gray-500 rounded-full px-3 py-1 shrink-0">{categoryLabel}</span>
       </div>
@@ -176,7 +176,7 @@ function regionBadgeClass(region: string): string {
     case "algarve": return "bg-orange-50 text-orange-700 border border-orange-200";
     case "north": return "bg-emerald-50 text-emerald-700 border border-emerald-200";
     case "azores": return "bg-cyan-50 text-cyan-700 border border-cyan-200";
-    case "madeira": return "bg-purple-50 text-purple-700 border border-purple-200";
+    case "madeira": return "bg-blue-50 text-blue-700 border border-blue-200";
     default: return "bg-gray-100 text-gray-700 border border-gray-200";
   }
 }
@@ -189,8 +189,8 @@ function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHig
   return (
     <article
       id={item.id}
-      className={`bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all duration-200 border-l-[3px] ${
-        isHighlighted ? "ring-2 ring-[#5B4FA0]/40 border-[#5B4FA0]/30" : ""
+      className={`bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200 border-l-[3px] ${
+        isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : ""
       }`}
       style={{ borderLeftColor: item.region === "lisbon" ? "#eab308" : item.region === "porto" ? "#3b82f6" : item.region === "algarve" ? "#f97316" : item.region === "north" ? "#10b981" : item.region === "azores" ? "#06b6d4" : item.region === "madeira" ? "#a855f7" : "#e5e7eb" }}
     >
@@ -316,7 +316,7 @@ function CultureContent() {
             <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-gray-900">
               Culture & Expressions
             </h1>
-            <p className="text-lg text-[#5B4FA0]/70 font-medium -mt-1">
+            <p className="text-lg text-[#3C5E95]/70 font-medium -mt-1">
               Cultura e Expressões
             </p>
             <p className="text-[14px] text-gray-500 mt-1">
@@ -335,7 +335,7 @@ function CultureContent() {
                   type="button"
                   onClick={() => setTab(t.id)}
                   className={`pb-3 px-1 text-sm font-medium cursor-pointer transition-colors relative min-h-[44px] flex flex-col items-center sm:items-start ${
-                    tab === t.id ? "text-[#5B4FA0] border-b-2 border-[#5B4FA0] -mb-px" : "text-gray-400 hover:text-gray-600"
+                    tab === t.id ? "text-[#3C5E95] border-b-2 border-[#3C5E95] -mb-px" : "text-gray-400 hover:text-gray-600"
                   }`}
                 >
                   <span>
@@ -356,7 +356,7 @@ function CultureContent() {
                       key={level}
                       onClick={() => setCefrFilter(level)}
                       className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                        cefrFilter === level ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                        cefrFilter === level ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
                       }`}
                     >
                       {level}
@@ -369,7 +369,7 @@ function CultureContent() {
                       key={t}
                       onClick={() => setThemeFilter(t)}
                       className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                        themeFilter === t ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                        themeFilter === t ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
                       }`}
                     >
                       {t}
@@ -382,7 +382,7 @@ function CultureContent() {
                     placeholder="Search sayings..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[200px] transition-colors"
+                    className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[200px] transition-colors"
                   />
                 </div>
                 <p className="text-sm text-gray-500">Showing {filteredSayings.length} of {sayings.length}</p>
@@ -408,7 +408,7 @@ function CultureContent() {
                       key={level}
                       onClick={() => setCefrFilter(level)}
                       className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                        cefrFilter === level ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                        cefrFilter === level ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
                       }`}
                     >
                       {level}
@@ -420,7 +420,7 @@ function CultureContent() {
                   placeholder="Search false friends..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[220px] transition-colors"
+                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[220px] transition-colors"
                 />
                 <p className="text-sm text-gray-500">Showing {filteredFalseFriends.length} of {falseFriends.length}</p>
               </div>
@@ -445,7 +445,7 @@ function CultureContent() {
                       key={c}
                       onClick={() => setEtiquetteCategory(c)}
                       className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                        etiquetteCategory === c ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                        etiquetteCategory === c ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
                       }`}
                     >
                       {c}
@@ -457,7 +457,7 @@ function CultureContent() {
                   placeholder="Search etiquette..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[220px] transition-colors"
+                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[220px] transition-colors"
                 />
                 <p className="text-sm text-gray-500">Showing {filteredEtiquette.length} of {etiquetteTips.length}</p>
               </div>
@@ -480,7 +480,7 @@ function CultureContent() {
                       key={r}
                       onClick={() => setRegionFilter(r)}
                       className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                        regionFilter === r ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                        regionFilter === r ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
                       }`}
                     >
                       {r}
@@ -493,7 +493,7 @@ function CultureContent() {
                       key={level}
                       onClick={() => setCefrFilter(level)}
                       className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                        cefrFilter === level ? "bg-[#5B4FA0] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                        cefrFilter === level ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
                       }`}
                     >
                       {level}
@@ -505,7 +505,7 @@ function CultureContent() {
                   placeholder="Search regional..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[220px] transition-colors"
+                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[220px] transition-colors"
                 />
                 <p className="text-sm text-gray-500">Showing {filteredRegional.length} of {regionalExpressions.length}</p>
               </div>

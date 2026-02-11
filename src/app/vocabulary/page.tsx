@@ -52,6 +52,22 @@ const SECTIONS: {
   },
 ];
 
+const CATEGORY_TINT: Record<string, string> = {
+  "greetings-expressions": "bg-sky-50",
+  "numbers-time": "bg-blue-50",
+  "colours-weather": "bg-cyan-50",
+  "food-drink": "bg-slate-50",
+  "travel-directions": "bg-sky-50/70",
+  "home-rooms": "bg-blue-50/70",
+  "family-daily-routine": "bg-cyan-50/70",
+  "work-education": "bg-slate-50/70",
+  "health-body": "bg-sky-50/50",
+  "shopping-money": "bg-blue-50/50",
+  "nature-animals": "bg-cyan-50/50",
+  "emotions-personality": "bg-slate-50/50",
+  "colloquial-slang": "bg-teal-50",
+};
+
 const CATEGORY_PT_TITLE: Record<string, string> = {
   "greetings-expressions": "Cumprimentos e Expressões",
   "numbers-time": "Números e Tempo",
@@ -191,7 +207,7 @@ export default function VocabularyPage() {
               <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-gray-900">
                 Vocabulary
               </h1>
-              <p className="text-lg text-[#5B4FA0]/70 font-medium -mt-1">
+              <p className="text-lg text-[#3C5E95]/70 font-medium -mt-1">
                 Vocabulário
               </p>
               <p className="text-[14px] text-gray-500 mt-1">
@@ -214,7 +230,7 @@ export default function VocabularyPage() {
               placeholder="Search categories..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#5B4FA0]/50 w-[200px] transition-colors"
+              className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[200px] transition-colors"
             />
           </div>
         </section>
@@ -226,7 +242,7 @@ export default function VocabularyPage() {
               onClick={() => setCefrFilter(level)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
                 cefrFilter === level
-                  ? "bg-[#5B4FA0] text-white"
+                  ? "bg-[#3C5E95] text-white"
                   : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
               }`}
             >
@@ -243,7 +259,7 @@ export default function VocabularyPage() {
               >
                 <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
                   {section.label}
-                  <span className="text-xs font-normal normal-case tracking-normal text-[#5B4FA0]/60">
+                  <span className="text-xs font-normal normal-case tracking-normal text-[#3C5E95]/60">
                     {" · "}
                     {section.ptName}
                   </span>
@@ -282,7 +298,7 @@ export default function VocabularyPage() {
                     <Link
                       key={cat.id}
                       href={`/vocabulary/${cat.id}`}
-                      className="group bg-white border border-gray-200 rounded-lg p-4 md:p-5 hover:border-[#5B4FA0]/30 hover:shadow-sm transition-all duration-200"
+                      className={`group ${CATEGORY_TINT[cat.id] ?? "bg-white"} border border-gray-200 rounded-lg p-4 md:p-5 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200`}
                     >
                       <div className="flex items-start justify-between gap-2">
                         <h3 className="text-base font-semibold text-gray-900 flex-1 min-w-0">
@@ -293,7 +309,7 @@ export default function VocabularyPage() {
                           {showMatchNote && ` · ${matchCount} match${matchCount !== 1 ? "es" : ""}`}
                         </span>
                       </div>
-                      <p className="text-sm text-[#5B4FA0]/70 font-medium mt-0.5">
+                      <p className="text-sm text-[#3C5E95]/70 font-medium mt-0.5">
                         {CATEGORY_PT_TITLE[cat.id] ?? ""}
                       </p>
                       <p className="text-sm text-gray-500 mt-1 truncate">

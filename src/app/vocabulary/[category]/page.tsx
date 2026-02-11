@@ -123,9 +123,9 @@ export default function VocabCategoryPage() {
               <div
                 key={i}
                 ref={isHighlight ? highlightedRef : undefined}
-                className={`border rounded-lg p-4 min-h-[120px] flex flex-col transition-colors duration-200 hover:border-indigo-200 ${
+                className={`border rounded-lg p-4 min-h-[120px] flex flex-col transition-colors duration-200 hover:border-blue-200 ${
                   isHighlight && flashHighlight
-                    ? "border-indigo-300 bg-indigo-100"
+                    ? "border-blue-300 bg-blue-100"
                     : "border-border bg-white"
                 }`}
               >

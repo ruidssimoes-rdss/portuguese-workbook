@@ -218,7 +218,7 @@ export default function FlashcardsPage() {
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
                 Flashcards
               </h1>
-              <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
+              <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
                 Cartões de Memória
               </p>
               <p className="text-sm text-gray-500 mt-2">
@@ -233,7 +233,7 @@ export default function FlashcardsPage() {
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#5B4FA0] focus:ring-1 focus:ring-[#5B4FA0]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   <option value="all">All categories</option>
                   {categories.map((c) => (
@@ -248,7 +248,7 @@ export default function FlashcardsPage() {
                 <select
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#5B4FA0] focus:ring-1 focus:ring-[#5B4FA0]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {CEFR_OPTIONS.map((l) => (
                     <option key={l} value={l}>
@@ -264,7 +264,7 @@ export default function FlashcardsPage() {
                   onChange={(e) =>
                     setCardCount(e.target.value === "all" ? 0 : Number(e.target.value))
                   }
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#5B4FA0] focus:ring-1 focus:ring-[#5B4FA0]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {CARD_OPTIONS.map((n) => (
                     <option key={n} value={n}>
@@ -279,7 +279,7 @@ export default function FlashcardsPage() {
                 <select
                   value={order}
                   onChange={(e) => setOrder(e.target.value as "random" | "pt" | "en")}
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#5B4FA0] focus:ring-1 focus:ring-[#5B4FA0]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {ORDER_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -295,7 +295,7 @@ export default function FlashcardsPage() {
                   onChange={(e) =>
                     setDirection(e.target.value as "pt-en" | "en-pt" | "mixed")
                   }
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#5B4FA0] focus:ring-1 focus:ring-[#5B4FA0]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {DIRECTION_OPTIONS.map((d) => (
                     <option key={d.value} value={d.value}>
@@ -308,7 +308,7 @@ export default function FlashcardsPage() {
                 type="button"
                 onClick={() => startSession()}
                 disabled={maxAvailable === 0}
-                className="bg-[#5B4FA0] text-white px-6 py-3 rounded-lg font-medium text-sm hover:bg-[#4A3F8F] transition-colors mt-6 w-full min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#3C5E95] text-white px-6 py-3 rounded-lg font-medium text-sm hover:bg-[#2E4A75] transition-colors mt-6 w-full min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Start session →
               </button>
@@ -335,7 +335,7 @@ export default function FlashcardsPage() {
           <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-10">
             <div className="max-w-md mx-auto text-center">
               <h1 className="text-2xl font-bold text-gray-900">Session Complete!</h1>
-              <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">Sessão Concluída!</p>
+              <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">Sessão Concluída!</p>
               <div className="mt-8 py-6 border-y border-gray-200 space-y-3">
                 <p className="text-emerald-600 font-semibold">
                   Knew: {knownCount} / {total} ({knewPct}%)
@@ -402,7 +402,7 @@ export default function FlashcardsPage() {
           </p>
           <div className="h-1 bg-gray-100 rounded-full max-w-sm mx-auto mb-8">
             <div
-              className="h-full bg-[#5B4FA0] rounded-full transition-all duration-300"
+              className="h-full bg-[#3C5E95] rounded-full transition-all duration-300"
               style={{ width: `${progressPct}%` }}
             />
           </div>
@@ -451,7 +451,7 @@ export default function FlashcardsPage() {
                   )}
                 </div>
                 <div className="flashcard-back flex flex-col items-center justify-center p-6 overflow-y-auto">
-                  <span className="text-3xl font-bold text-[#5B4FA0] text-center">
+                  <span className="text-3xl font-bold text-[#3C5E95] text-center">
                     {showPortugueseOnFront ? currentWord.english : currentWord.portuguese}
                   </span>
                   <span className="text-lg text-gray-500 mt-2 text-center">

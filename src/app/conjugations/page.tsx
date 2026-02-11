@@ -85,7 +85,7 @@ export default function ConjugationsPage() {
                 onClick={() => setFilter(f)}
                 className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
                   filter === f
-                    ? "bg-[#5B4FA0] text-white border-[#5B4FA0]"
+                    ? "bg-[#3C5E95] text-white border-[#3C5E95]"
                     : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-gray-300"
                 }`}
               >
@@ -102,7 +102,7 @@ export default function ConjugationsPage() {
               <Link
                 key={v}
                 href={`/conjugations/${v.toLowerCase()}`}
-                className="group bg-white border border-border rounded-lg p-4 md:p-5 flex flex-col min-h-[160px] transition-all duration-200 hover:border-indigo-200 hover:shadow-[0_4px_16px_rgba(91,79,160,0.08)] hover:-translate-y-px"
+                className="group bg-white border border-border rounded-lg p-4 md:p-5 flex flex-col min-h-[160px] transition-all duration-200 hover:border-blue-200 hover:shadow-[0_4px_16px_rgba(60,94,149,0.08)] hover:-translate-y-px"
               >
                 <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] mb-2.5">
                   {v}

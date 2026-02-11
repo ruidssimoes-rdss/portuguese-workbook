@@ -33,14 +33,14 @@ const SECTION_COLORS = {
     barGradient: "linear-gradient(90deg, #5A8EC0, #3D6B9E)",
   },
   vocabulary: {
-    primary: "#5B4FA0",
-    light: "#8B7FC7",
-    bg: "#F0EEFF",
-    border: "#8B7FC7",
-    title: "#5B4FA0",
-    track: "#5B4FA0",
-    barTrack: "rgba(91,79,160,0.12)",
-    barGradient: "linear-gradient(90deg, #7B6FBF, #5B4FA0)",
+    primary: "#3C5E95",
+    light: "#5081B6",
+    bg: "#EBF2FA",
+    border: "#5081B6",
+    title: "#3C5E95",
+    track: "#3C5E95",
+    barTrack: "rgba(60,94,149,0.12)",
+    barGradient: "linear-gradient(90deg, #5081B6, #3C5E95)",
   },
   grammar: {
     primary: "#4B5563",
@@ -257,7 +257,7 @@ export default function DashboardPage() {
             return (
               <div
                 key={section}
-                className="rounded-lg border p-4 md:p-5 transition-all duration-200 flex flex-col hover:shadow-[0_4px_16px_rgba(91,79,160,0.08)] hover:-translate-y-px"
+                className="rounded-lg border p-4 md:p-5 transition-all duration-200 flex flex-col hover:shadow-[0_4px_16px_rgba(60,94,149,0.08)] hover:-translate-y-px"
                 style={{
                   backgroundColor: colors.bg,
                   borderColor: colors.border,

@@ -11,10 +11,10 @@ import type { GrammarData, GrammarTopic } from "@/types/grammar";
 const data = grammarData as unknown as GrammarData;
 
 const GRAMMAR_COLORS = {
-  track: "#5B4FA0",
+  track: "#3C5E95",
   border: "#A5B4FC",
   bg: "#EEF2FF",
-  title: "#5B4FA0",
+  title: "#3C5E95",
 };
 
 export default function GrammarTopicPage() {
@@ -90,7 +90,7 @@ export default function GrammarTopicPage() {
                   {rule.rulePt}
                 </p>
                 {rule.examples.length > 0 && (
-                  <div className="mt-3 pt-3 border-t border-indigo-200/50">
+                  <div className="mt-3 pt-3 border-t border-blue-200/50">
                     <p className="text-[12px] font-medium uppercase tracking-wide text-text-3 mb-1">Examples</p>
                     <ul className="list-disc list-inside text-[14px] text-text-2 space-y-1">
                       {rule.examples.map((ex, j) => (

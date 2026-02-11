@@ -16,7 +16,7 @@ type ChangelogData = { entries: ChangelogEntry[] };
 
 const data = changelogData as unknown as ChangelogData;
 
-const INDIGO = "#5B4FA0";
+const ACCENT = "#3C5E95";
 
 function formatDate(iso: string): string {
   const d = new Date(iso);
@@ -43,19 +43,19 @@ export default function ChangelogPage() {
           </p>
         </header>
 
-        <div className="relative pl-6 md:pl-8 space-y-0" style={{ borderLeftWidth: "2px", borderColor: INDIGO }}>
+        <div className="relative pl-6 md:pl-8 space-y-0" style={{ borderLeftWidth: "2px", borderColor: ACCENT }}>
           {entries.map((entry) => (
             <div key={entry.version} className="relative pb-8 last:pb-0">
               {/* Dot on timeline — 8px circle */}
               <div
                 className="absolute rounded-full border-2 border-white shadow-sm top-1.5 -left-[21px] md:-left-[25px] box-content"
-                style={{ width: "8px", height: "8px", backgroundColor: INDIGO }}
+                style={{ width: "8px", height: "8px", backgroundColor: ACCENT }}
               />
               <div className="flex flex-wrap items-baseline gap-2 mb-1.5">
                 <time className="text-sm text-gray-500">
                   {formatDate(entry.date)}
                 </time>
-                <span className="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200">
+                <span className="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
                   v{entry.version}
                 </span>
               </div>

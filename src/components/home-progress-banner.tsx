@@ -9,7 +9,7 @@ import { PROGRESS_STORAGE_KEY } from "@/types/levels";
 
 const SECTION_COLORS = {
   conjugations: "#3D6B9E",
-  vocabulary: "#5B4FA0",
+  vocabulary: "#3C5E95",
   grammar: "#4B5563",
 } as const;
 

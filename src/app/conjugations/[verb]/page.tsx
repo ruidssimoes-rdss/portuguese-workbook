@@ -123,7 +123,7 @@ export default function VerbPage() {
               onClick={() => setTenseFilter(t)}
               className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
                 tenseFilter === t
-                  ? "bg-[#5B4FA0] text-white border-[#5B4FA0]"
+                  ? "bg-[#3C5E95] text-white border-[#3C5E95]"
                   : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-gray-300"
               }`}
             >
@@ -143,7 +143,7 @@ export default function VerbPage() {
                 ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLDivElement>) : undefined}
                 className={`border rounded-lg p-4 ${
                   r.Type === "Exception" ? "border-amber-200 bg-amber-50" : "border-border-l bg-white"
-                } ${isHighlight && flashHighlight ? "ring-2 ring-indigo-400 bg-indigo-50" : ""}`}
+                } ${isHighlight && flashHighlight ? "ring-2 ring-blue-400 bg-sky-50" : ""}`}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <Badge variant={tenseVariant[r.Tense] || "gray"}>
@@ -231,7 +231,7 @@ export default function VerbPage() {
                     key={i}
                     ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLTableRowElement>) : undefined}
                     className={`hover:bg-bg-s ${newTense ? "border-t-2 border-border" : ""} ${
-                      isHighlight && flashHighlight ? "bg-indigo-100" : ""
+                      isHighlight && flashHighlight ? "bg-blue-100" : ""
                     }`}
                   >
                     <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">

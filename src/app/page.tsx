@@ -261,7 +261,7 @@ export default function Home() {
               <p className="text-sm text-gray-600 mt-1">{sayingOfDay.meaning}</p>
               <Link
                 href="/culture"
-                className="text-sm text-[#5B4FA0] hover:underline mt-4 inline-block"
+                className="text-sm text-[#3C5E95] hover:underline mt-4 inline-block"
               >
                 View all sayings →
               </Link>
@@ -304,7 +304,7 @@ export default function Home() {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="group flex items-center gap-4 border border-border rounded-lg p-4 md:p-6 bg-white h-full transition-all duration-200 hover:border-indigo-200 hover:shadow-[0_4px_16px_rgba(91,79,160,0.08)] hover:-translate-y-px cursor-pointer"
+                  className="group flex items-center gap-4 border border-border rounded-lg p-4 md:p-6 bg-white h-full transition-all duration-200 hover:border-blue-200 hover:shadow-[0_4px_16px_rgba(60,94,149,0.08)] hover:-translate-y-px cursor-pointer"
                 >
                   {cardContent}
                 </Link>

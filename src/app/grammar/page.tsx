@@ -10,10 +10,10 @@ import type { GrammarData, GrammarTopic } from "@/types/grammar";
 const data = grammarData as unknown as GrammarData;
 
 const GRAMMAR_COLORS = {
-  track: "#5B4FA0",
+  track: "#3C5E95",
   border: "#A5B4FC",
   bg: "#EEF2FF",
-  title: "#5B4FA0",
+  title: "#3C5E95",
 };
 
 const CEFR_ORDER = ["A1", "A2", "B1"] as const;
@@ -67,7 +67,7 @@ export default function GrammarPage() {
               placeholder="Search topics…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full max-w-md px-4 py-2.5 rounded-lg border border-border text-[14px] text-text placeholder:text-text-3 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#5B4FA0]"
+              className="w-full max-w-md px-4 py-2.5 rounded-lg border border-border text-[14px] text-text placeholder:text-text-3 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#3C5E95]"
               aria-label="Search grammar topics"
             />
           </div>
@@ -91,7 +91,7 @@ export default function GrammarPage() {
                     <Link
                       key={topic.id}
                       href={`/grammar/${topic.id}`}
-                      className="group border rounded-lg p-4 md:p-5 transition-all duration-200 hover:border-indigo-300 hover:shadow-[0_4px_16px_rgba(91,79,160,0.08)] hover:-translate-y-px"
+                      className="group border rounded-lg p-4 md:p-5 transition-all duration-200 hover:border-blue-300 hover:shadow-[0_4px_16px_rgba(60,94,149,0.08)] hover:-translate-y-px"
                       style={{
                         backgroundColor: GRAMMAR_COLORS.bg,
                         borderColor: GRAMMAR_COLORS.border,

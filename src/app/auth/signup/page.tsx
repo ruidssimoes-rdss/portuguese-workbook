@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { GoogleSignInButton } from "@/components/google-sign-in-button";
 
 const inputClass =
-  "w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#5B4FA0] focus:border-[#5B4FA0] outline-none transition-colors";
+  "w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none transition-colors";
 const labelClass = "block text-sm font-medium text-gray-700 mb-1";
 
 export default function SignUpPage() {
@@ -50,7 +50,7 @@ export default function SignUpPage() {
       <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-bg">
         <div className="w-full max-w-md mx-auto">
           <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
-            <Link href="/" className="block text-center font-bold text-[18px] tracking-tight text-[#5B4FA0] mb-1">
+            <Link href="/" className="block text-center font-bold text-[18px] tracking-tight text-[#3C5E95] mb-1">
               Aula PT
             </Link>
             <h1 className="text-center text-lg font-semibold text-text mt-4 mb-2">
@@ -61,7 +61,7 @@ export default function SignUpPage() {
             </p>
             <Link
               href="/auth/login"
-              className="mt-6 block text-center text-[14px] font-medium text-[#5B4FA0] hover:underline"
+              className="mt-6 block text-center text-[14px] font-medium text-[#3C5E95] hover:underline"
             >
               Voltar ao login
             </Link>
@@ -75,7 +75,7 @@ export default function SignUpPage() {
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-bg">
       <div className="w-full max-w-md mx-auto">
         <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
-          <Link href="/" className="block text-center font-bold text-[18px] tracking-tight text-[#5B4FA0] mb-1">
+          <Link href="/" className="block text-center font-bold text-[18px] tracking-tight text-[#3C5E95] mb-1">
             Aula PT
           </Link>
           <p className="text-center text-gray-500 text-[15px] mb-6">
@@ -157,7 +157,7 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-[#5B4FA0] py-3 text-white font-medium text-[15px] hover:bg-[#4a4190] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-lg bg-[#3C5E95] py-3 text-white font-medium text-[15px] hover:bg-[#2E4A75] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -172,7 +172,7 @@ export default function SignUpPage() {
 
           <p className="mt-6 text-center text-[14px] text-gray-600">
             Já tens conta?{" "}
-            <Link href="/auth/login" className="font-medium text-[#5B4FA0] hover:underline">
+            <Link href="/auth/login" className="font-medium text-[#3C5E95] hover:underline">
               Entrar
             </Link>
           </p>

@@ -57,7 +57,7 @@ function GuideSectionContent({ id }: { id: string }) {
           <h2 className="text-xl font-bold text-gray-900">
             How Aula PT Works
           </h2>
-          <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
+          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
             Como Funciona o Aula PT
           </p>
           <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-700">
@@ -183,7 +183,7 @@ function GuideSectionContent({ id }: { id: string }) {
           <h2 className="text-xl font-bold text-gray-900">
             Understanding CEFR Levels
           </h2>
-          <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
+          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
             Compreender os Níveis do QECR
           </p>
           <p className="text-base text-gray-700 mt-4 leading-relaxed">
@@ -213,7 +213,7 @@ function GuideSectionContent({ id }: { id: string }) {
               </p>
             </div>
 
-            <div className="bg-violet-50 border border-violet-100 rounded-lg p-4">
+            <div className="bg-cyan-50 border border-cyan-100 rounded-lg p-4">
               <p className="text-sm font-semibold text-violet-800">
                 A2 — Elementary / Elementar
               </p>
@@ -263,7 +263,7 @@ function GuideSectionContent({ id }: { id: string }) {
       return (
         <>
           <h2 className="text-xl font-bold text-gray-900">Realistic Timelines</h2>
-          <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
+          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
             Prazos Realistas
           </p>
           <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-700">
@@ -352,7 +352,7 @@ function GuideSectionContent({ id }: { id: string }) {
           <h2 className="text-xl font-bold text-gray-900">
             Structuring Your Daily Routine
           </h2>
-          <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
+          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
             Estruturar a Tua Rotina Diária
           </p>
           <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-700">
@@ -492,7 +492,7 @@ function GuideSectionContent({ id }: { id: string }) {
           <h2 className="text-xl font-bold text-gray-900">
             Active Recall vs Passive Learning
           </h2>
-          <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
+          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
             Recordação Ativa vs Aprendizagem Passiva
           </p>
           <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-700">
@@ -591,7 +591,7 @@ function GuideSectionContent({ id }: { id: string }) {
           <h2 className="text-xl font-bold text-gray-900">
             Tips for Portuguese Specifically
           </h2>
-          <p className="text-lg text-[#5B4FA0]/70 font-medium mt-1">
+          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
             Dicas para o Português
           </p>
           <div className="mt-4 space-y-4 text-base leading-relaxed text-gray-700">
@@ -736,7 +736,7 @@ export default function GuidePage() {
           <h1 className="text-3xl font-bold text-gray-900">
             How to Learn Portuguese
           </h1>
-          <p className="text-xl text-[#5B4FA0]/70 font-medium mt-1">
+          <p className="text-xl text-[#3C5E95]/70 font-medium mt-1">
             Como Aprender Português
           </p>
           <p className="text-base text-gray-500 mt-3 max-w-xl leading-relaxed">
@@ -752,8 +752,8 @@ export default function GuidePage() {
               <article
                 key={s.id}
                 id={s.id}
-                className={`bg-white border rounded-lg cursor-pointer transition-all hover:border-[#5B4FA0]/30 hover:shadow-sm min-h-[44px] ${
-                  isOpen ? "border-[#5B4FA0]/30" : "border-gray-200"
+                className={`bg-white border rounded-lg cursor-pointer transition-all hover:border-[#3C5E95]/30 hover:shadow-sm min-h-[44px] ${
+                  isOpen ? "border-[#3C5E95]/30" : "border-gray-200"
                 }`}
               >
                 <button
@@ -768,7 +768,7 @@ export default function GuidePage() {
                     <p className="text-base font-semibold text-gray-900">
                       <span className="text-sm text-gray-300 font-medium">{s.number}.</span> {s.title}
                     </p>
-                    <p className="text-sm text-[#5B4FA0]/60 font-medium mt-0.5">
+                    <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">
                       {s.portuguese}
                     </p>
                     {!isOpen && (
@@ -815,19 +815,19 @@ export default function GuidePage() {
             The best time to start was yesterday. The second best time is now.
             Open any section in the Learn menu and begin.
           </p>
-          <p className="text-base text-[#5B4FA0] italic mt-4">
+          <p className="text-base text-[#3C5E95] italic mt-4">
             A língua portuguesa está à tua espera.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/vocabulary"
-              className="bg-[#5B4FA0] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#4A3F8F] transition-colors min-w-[190px] text-center"
+              className="bg-[#3C5E95] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#2E4A75] transition-colors min-w-[190px] text-center"
             >
               Start with Vocabulary →
             </Link>
             <Link
               href="/practice/flashcards"
-              className="border border-[#5B4FA0] text-[#5B4FA0] px-6 py-3 rounded-lg text-sm font-medium hover:bg-indigo-50 transition-colors min-w-[190px] text-center"
+              className="border border-[#3C5E95] text-[#3C5E95] px-6 py-3 rounded-lg text-sm font-medium hover:bg-sky-50 transition-colors min-w-[190px] text-center"
             >
               Try Flashcards →
             </Link>

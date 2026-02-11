@@ -30,7 +30,7 @@ const grammar = grammarData as unknown as GrammarData;
 
 const SECTION_COLORS = {
   conjugations: "#3D6B9E",
-  vocabulary: "#5B4FA0",
+  vocabulary: "#3C5E95",
   grammar: "#4B5563",
 } as const;
 
@@ -337,8 +337,8 @@ export default function LevelTestPage() {
                             ? "border-green-500 bg-green-50"
                             : showWrong
                               ? "border-red-500 bg-red-50"
-                              : "border-border bg-white text-text hover:border-indigo-200"
-                        } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5B4FA0]`}
+                              : "border-border bg-white text-text hover:border-blue-200"
+                        } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3C5E95]`}
                         style={
                           !revealed ? { ["--tw-ring-color" as string]: sectionColor } : undefined
                         }

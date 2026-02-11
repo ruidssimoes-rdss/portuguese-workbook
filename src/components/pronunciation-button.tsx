@@ -137,7 +137,7 @@ export function PronunciationButton({
             ? "Portuguese voice not available on this device"
             : "Listen (European Portuguese)"
         }
-        className={`inline-flex items-center justify-center rounded-full border border-indigo-200 bg-white text-[#5B4FA0] transition-colors duration-200 hover:bg-indigo-50 hover:border-indigo-300 focus:outline-none focus:ring-2 focus:ring-[#5B4FA0] focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${className}`}
+        className={`inline-flex items-center justify-center rounded-full border border-blue-200 bg-white text-[#3C5E95] transition-colors duration-200 hover:bg-sky-50 hover:border-blue-300 focus:outline-none focus:ring-2 focus:ring-[#3C5E95] focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${className}`}
         style={size === "md" ? { boxShadow: "0 1px 3px rgba(0,0,0,0.08)" } : undefined}
         aria-label="Play pronunciation"
       >
