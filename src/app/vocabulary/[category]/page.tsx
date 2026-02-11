@@ -27,7 +27,7 @@ export default function VocabCategoryPage() {
     return (
       <>
         <Topbar />
-        <main className="max-w-[1100px] mx-auto px-10 py-16">
+        <main className="max-w-[1280px] mx-auto px-10 py-16">
           <p className="text-text-2">Category not found.</p>
           <Link href="/vocabulary" className="text-text-2 underline mt-2 block">
             ← Back to vocabulary
@@ -66,7 +66,7 @@ export default function VocabCategoryPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
+      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
         {/* Header */}
         <div className="flex flex-col gap-2 py-5">
           <Link

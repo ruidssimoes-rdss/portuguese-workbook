@@ -112,7 +112,7 @@ export default function DashboardPage() {
       <>
         <Topbar />
         <ProtectedRoute>
-          <main className="max-w-[1100px] mx-auto px-6 md:px-10 py-12">
+          <main className="max-w-[1280px] mx-auto px-6 md:px-10 py-12">
             <p className="text-text-2">Loading...</p>
           </main>
         </ProtectedRoute>
@@ -150,7 +150,7 @@ export default function DashboardPage() {
     <>
       <Topbar />
       <ProtectedRoute>
-        <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
+        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
           <MigrationBanner onMigrationComplete={refreshProgress} />
           <header className="pt-12 pb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-text">

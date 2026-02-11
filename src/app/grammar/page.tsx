@@ -53,7 +53,7 @@ export default function GrammarPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
+      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
         <section className="py-12 md:py-16">
           <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-text">
             Grammar

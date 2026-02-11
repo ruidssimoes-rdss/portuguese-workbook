@@ -310,7 +310,7 @@ function CultureContent() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10">
+      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
         <section className="py-10 md:py-14">
           <div>
             <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-gray-900">
@@ -532,7 +532,7 @@ export default function CulturePage() {
       fallback={
         <>
           <Topbar />
-          <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10 py-12">
+          <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-12">
             <p className="text-gray-500">Loading...</p>
           </main>
         </>

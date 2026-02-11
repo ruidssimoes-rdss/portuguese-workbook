@@ -109,7 +109,7 @@ export default function Home() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1100px] mx-auto px-4 md:px-6 lg:px-10 pt-6">
+      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 pt-6">
         {latestChangelog && (
           <ChangelogBanner
             version={latestChangelog.version}

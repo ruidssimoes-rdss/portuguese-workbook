@@ -26,7 +26,7 @@ export default function GrammarTopicPage() {
     return (
       <>
         <Topbar />
-        <main className="max-w-[1100px] mx-auto px-6 md:px-10 py-12">
+        <main className="max-w-[1280px] mx-auto px-6 md:px-10 py-12">
           <p className="text-text-2">Topic not found.</p>
           <Link href="/grammar" className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block">
             Back to Grammar
