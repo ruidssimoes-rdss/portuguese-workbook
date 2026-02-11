@@ -7,6 +7,8 @@ export interface PronunciationButtonProps {
   speed?: number;
   className?: string;
   size?: "sm" | "md";
+  /** Dark style for use on homepage cards (dark circle, white icon) */
+  variant?: "default" | "dark";
 }
 
 const RATE = { default: 0.85, slow: 0.6 };
@@ -48,6 +50,7 @@ export function PronunciationButton({
   speed = RATE.default,
   className = "",
   size = "sm",
+  variant = "default",
 }: PronunciationButtonProps) {
   const [playing, setPlaying] = useState(false);
   const [voiceUnavailable, setVoiceUnavailable] = useState(false);
@@ -126,6 +129,11 @@ export function PronunciationButton({
       ? "w-7 h-7 min-w-[28px] min-h-[28px]"
       : "w-9 h-9 min-w-[36px] min-h-[36px]";
 
+  const variantClasses =
+    variant === "dark"
+      ? "border-0 bg-[#262626] text-white hover:bg-[#404040] shadow-none focus:ring-gray-400"
+      : "border border-blue-200 bg-white text-[#3C5E95] hover:bg-sky-50 hover:border-blue-300 focus:ring-[#3C5E95]";
+
   return (
     <span className="relative inline-flex">
       <button
@@ -137,8 +145,8 @@ export function PronunciationButton({
             ? "Portuguese voice not available on this device"
             : "Listen (European Portuguese)"
         }
-        className={`inline-flex items-center justify-center rounded-full border border-blue-200 bg-white text-[#3C5E95] transition-colors duration-200 hover:bg-sky-50 hover:border-blue-300 focus:outline-none focus:ring-2 focus:ring-[#3C5E95] focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${className}`}
-        style={size === "md" ? { boxShadow: "0 1px 3px rgba(0,0,0,0.08)" } : undefined}
+        className={`inline-flex items-center justify-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${variantClasses} ${className}`}
+        style={variant === "dark" ? undefined : size === "md" ? { boxShadow: "0 1px 3px rgba(0,0,0,0.08)" } : undefined}
         aria-label="Play pronunciation"
       >
         <SpeakerIcon playing={playing} size={size} />

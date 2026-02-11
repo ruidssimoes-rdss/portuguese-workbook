@@ -120,14 +120,14 @@ export default function Home() {
         )}
         {/* Daily Focus — hero */}
         <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto items-stretch">
             {/* Word of the Day */}
             <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
               <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
                 {wordOfDay ? (
                   <>
                     <div
-                      className="relative h-[180px] md:h-[220px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
+                      className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
                       style={{ backgroundImage: `url(${wordGradient})` }}
                     >
                       <div className="flex flex-col">
@@ -167,7 +167,8 @@ export default function Home() {
                         <PronunciationButton
                           text={wordOfDay.word.portuguese}
                           size="md"
-                          className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#262626] hover:bg-[#404040] flex items-center justify-center shrink-0 text-white shadow-none"
+                          variant="dark"
+                          className="w-8 h-8 min-w-[32px] min-h-[32px] shrink-0"
                         />
                       </div>
                       <div className="h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" aria-hidden />
@@ -247,7 +248,8 @@ export default function Home() {
                         <PronunciationButton
                           text={verbKey}
                           size="md"
-                          className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#262626] hover:bg-[#404040] flex items-center justify-center shrink-0 text-white shadow-none"
+                          variant="dark"
+                          className="w-8 h-8 min-w-[32px] min-h-[32px] shrink-0"
                         />
                       </div>
                       <div className="h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" aria-hidden />
@@ -297,62 +299,63 @@ export default function Home() {
                 )}
               </div>
             </div>
-          </div>
 
-          {/* Saying of the Day — full width */}
-          {sayingOfDay && (
-            <div className="mt-6 bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)]">
-              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white">
-                <div
-                  className="relative h-[120px] md:h-[140px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
-                  style={{ backgroundImage: `url(${sayingGradient})` }}
-                >
-                  <div className="flex flex-col">
-                    <span className="text-[16px] md:text-[20px] font-semibold uppercase tracking-[1.32px] text-white leading-[26px]">
-                      Saying of the Day
-                    </span>
-                    <span className="text-[16px] md:text-[20px] font-medium italic text-white leading-[26px]">
-                      Provérbio do Dia
-                    </span>
-                  </div>
-                </div>
-                <div className="p-5 md:p-7 flex flex-col gap-5">
-                  <div className="border-l-[3px] border-[#3C5E95] pl-5 py-2">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[19px] md:text-[22px] font-semibold italic text-[#111827] leading-[1.35] break-words">
-                        &ldquo;{sayingOfDay.portuguese}&rdquo;
+            {/* Saying of the Day */}
+            {sayingOfDay ? (
+              <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
+                <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
+                  <div
+                    className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
+                    style={{ backgroundImage: `url(${sayingGradient})` }}
+                  >
+                    <div className="flex flex-col">
+                      <span className="text-[16px] md:text-[20px] font-semibold uppercase tracking-[1.32px] text-white leading-[26px]">
+                        Saying of the Day
                       </span>
-                      <PronunciationButton
-                        text={sayingOfDay.portuguese}
-                        size="md"
-                        className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#262626] hover:bg-[#404040] flex items-center justify-center shrink-0 text-white shadow-none"
-                      />
+                      <span className="text-[16px] md:text-[20px] font-medium italic text-white leading-[26px]">
+                        Provérbio do Dia
+                      </span>
                     </div>
                   </div>
-                  <div>
-                    <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
-                      Literal
-                    </span>
-                    <p className="text-[14px] text-[#6B7280] mt-1 break-words">{sayingOfDay.literal}</p>
+                  <div className="p-5 md:p-7 flex flex-col gap-5 flex-1 min-h-0">
+                    <div className="border-l-[3px] border-[#3C5E95] pl-5 py-2">
+                      <div className="flex items-center gap-3">
+                        <span className="text-[19px] md:text-[22px] font-semibold italic text-[#111827] leading-[1.35] break-words">
+                          &ldquo;{sayingOfDay.portuguese}&rdquo;
+                        </span>
+                        <PronunciationButton
+                          text={sayingOfDay.portuguese}
+                          size="md"
+                          variant="dark"
+                          className="w-8 h-8 min-w-[32px] min-h-[32px] shrink-0"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
+                        Literal
+                      </span>
+                      <p className="text-[14px] text-[#6B7280] mt-1 break-words">{sayingOfDay.literal}</p>
+                    </div>
+                    <div>
+                      <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
+                        Meaning
+                      </span>
+                      <p className="text-[14px] text-[#4B5563] leading-relaxed mt-1 break-words">
+                        {sayingOfDay.meaning}
+                      </p>
+                    </div>
+                    <Link
+                      href="/culture"
+                      className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200"
+                    >
+                      View all sayings →
+                    </Link>
                   </div>
-                  <div>
-                    <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
-                      Meaning
-                    </span>
-                    <p className="text-[14px] text-[#4B5563] leading-relaxed mt-1 break-words">
-                      {sayingOfDay.meaning}
-                    </p>
-                  </div>
-                  <Link
-                    href="/culture"
-                    className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200"
-                  >
-                    View all sayings →
-                  </Link>
                 </div>
               </div>
-            </div>
-          )}
+            ) : null}
+          </div>
         </section>
 
         <HomeProgressBanner />
