@@ -307,7 +307,7 @@ export function Topbar() {
               {learnMenuOpen && (
                 <div
                   ref={learnPanelRef}
-                  className="absolute left-0 top-full mt-1 w-[560px] max-w-[560px] bg-white/95 backdrop-blur-md border border-gray-200/80 rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
+                  className="absolute left-0 top-full mt-1 w-[560px] max-w-[560px] bg-white border border-gray-200/80 rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
                   role="menu"
                   onKeyDown={handleLearnPanelKeyDown}
                 >

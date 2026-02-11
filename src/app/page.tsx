@@ -6,7 +6,6 @@ import { HomeProgressBanner } from "@/components/home-progress-banner";
 import { ChangelogBanner } from "@/components/changelog-banner";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import changelogData from "@/data/changelog.json";
-import { Badge, cefrVariant, groupVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
@@ -109,159 +108,192 @@ export default function Home() {
         {/* Daily Focus — hero */}
         <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
-            {/* Word of the Day — Portuguese first */}
-            <div className="border border-border rounded-lg p-4 md:p-6 bg-white flex flex-col min-h-0 overflow-hidden">
-              <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
-                Word of the Day
-              </p>
+            {/* Word of the Day */}
+            <div className="rounded-2xl border border-gray-100 bg-white p-6 md:p-8 transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(60,94,149,0.08)] flex flex-col min-h-0 overflow-hidden">
               {wordOfDay ? (
                 <>
-                  <div className="flex flex-wrap items-baseline gap-2 mb-1">
-                    <p className="text-2xl md:text-3xl font-bold tracking-tight text-text break-words">
-                      {wordOfDay.word.portuguese}
-                    </p>
-                    {wordOfDay.word.gender && (
-                      <span className="text-base font-normal text-text-2">
-                        ({wordOfDay.word.gender === "m" ? "m." : "f."})
-                      </span>
-                    )}
-                    <PronunciationButton text={wordOfDay.word.portuguese} size="md" className="shrink-0" />
+                  <div className="flex items-start gap-2 flex-wrap">
+                    <span className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-[#EBF2FA] text-[#3C5E95]">
+                      {wordOfDay.word.cefr}
+                    </span>
+                    <div>
+                      <p className="text-[11px] tracking-widest uppercase text-gray-400 font-medium">
+                        Word of the Day
+                      </p>
+                      <p className="text-[11px] text-gray-300 italic">Palavra do Dia</p>
+                    </div>
                   </div>
-                  {wordOfDay.word.pronunciation && (
-                    <p className="text-sm text-gray-400 font-mono mt-0.5 break-words">
-                      {wordOfDay.word.pronunciation}
-                    </p>
-                  )}
-                  <p className="text-base text-gray-600 mt-1 break-words">
+                  <div className="flex items-start justify-between gap-3 mt-4">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-3xl md:text-4xl font-bold text-gray-900 break-words">
+                        {wordOfDay.word.portuguese}
+                        {wordOfDay.word.gender && (
+                          <span className="text-base font-normal text-gray-500 ml-1">
+                            ({wordOfDay.word.gender === "m" ? "m." : "f."})
+                          </span>
+                        )}
+                      </p>
+                      {wordOfDay.word.pronunciation && (
+                        <p className="text-sm text-gray-400 font-mono mt-1 break-words">
+                          /{wordOfDay.word.pronunciation}/
+                        </p>
+                      )}
+                    </div>
+                    <PronunciationButton
+                      text={wordOfDay.word.portuguese}
+                      size="md"
+                      className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#EBF2FA] hover:bg-[#dce8f5] flex items-center justify-center shrink-0 text-[#3C5E95] shadow-none"
+                    />
+                  </div>
+                  <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-5" aria-hidden />
+                  <p className="text-lg text-gray-700 font-medium break-words">
                     {wordOfDay.word.english}
                   </p>
                   {wordOfDay.word.example && (
-                    <>
-                      <p className="text-[13px] text-text-2 italic mt-3 break-words">
-                        {wordOfDay.word.example}
+                    <div className="bg-[#F8FAFC] rounded-xl p-4 mt-4 relative">
+                      <svg className="absolute top-3 left-3 w-4 h-4 text-[#3C5E95] opacity-30" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                      <p className="text-[15px] text-gray-800 italic font-medium pl-6 break-words">
+                        &ldquo;{wordOfDay.word.example}&rdquo;
                       </p>
-                      <p className="text-[13px] text-gray-500 mt-0.5 break-words">
+                      <p className="text-sm text-gray-500 mt-1 pl-6 break-words">
                         {wordOfDay.word.exampleTranslation}
                       </p>
-                    </>
+                    </div>
                   )}
-                  <div className="flex gap-1.5 mt-4 mt-auto">
-                    <Badge variant={cefrVariant[wordOfDay.word.cefr] || "gray"}>
-                      {wordOfDay.word.cefr}
-                    </Badge>
-                    <Badge variant="gray">
-                      {wordOfDay.categoryTitle}
-                    </Badge>
-                  </div>
-                </>
-              ) : (
-                <p className="text-text-2 text-[14px]">No vocabulary data.</p>
-              )}
-            </div>
-
-            {/* Verb of the Day — Portuguese first */}
-            <div className="border border-border rounded-lg p-4 md:p-6 bg-white flex flex-col min-h-0 overflow-hidden">
-              <p className="text-[12px] text-text-3 font-medium uppercase tracking-wider mb-3">
-                Verb of the Day
-              </p>
-              {verbKey && verbOfDay ? (
-                <>
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <p className="text-2xl md:text-3xl font-bold tracking-tight text-text break-words uppercase">
-                      {verbKey}
-                    </p>
-                    <PronunciationButton text={verbKey} size="md" className="shrink-0" />
-                  </div>
-                  <p className="text-base text-gray-600 mt-0.5 break-words">
-                    {verbOfDay.meta.english}
+                  <p className="text-xs text-gray-400 font-medium mt-4">
+                    {wordOfDay.categoryTitle}
                   </p>
-                  {verbOfDay.meta.pronunciation && (
-                    <p className="text-sm text-gray-400 font-mono mt-0.5 break-words">
-                      {verbOfDay.meta.pronunciation}
-                    </p>
-                  )}
-                  <div className="flex gap-1.5 flex-wrap mt-2">
-                    <Badge variant={groupVariant[verbOfDay.meta.group] || "gray"}>
-                      {verbOfDay.meta.group}
-                    </Badge>
-                    <Badge variant={cefrVariant[verbOfDay.meta.cefr] || "gray"}>
-                      {verbOfDay.meta.cefr}
-                    </Badge>
-                  </div>
-                  <div className="overflow-x-auto border border-border rounded-lg mt-3 min-w-0 flex-1">
-                    <table className="w-full text-[12px] md:text-[13px] border-collapse">
-                      <thead>
-                        <tr>
-                          <th className="text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
-                            Person
-                          </th>
-                          <th className="text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
-                            Conjugation
-                          </th>
-                          <th className="hidden sm:table-cell text-left text-[11px] font-semibold text-text-2 px-2.5 py-2 border-b border-border bg-bg-s">
-                            Example
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {presentRows.map((row, i) => {
-                          const personPt = row.Person.split(" (")[0].trim();
-                          const personShort =
-                            /^ele\/ela(\/você)?$/i.test(personPt)
-                              ? "ele/ela"
-                              : /^eles\/elas(\/vocês)?$/i.test(personPt)
-                                ? "eles/elas"
-                                : personPt;
-                          return (
-                            <tr
-                              key={i}
-                              className="border-b border-border-l last:border-0"
-                            >
-                              <td className="px-2.5 py-1.5 text-text-2 whitespace-nowrap">
-                                {personShort}
-                              </td>
-                              <td className="px-2.5 py-1.5 font-semibold whitespace-nowrap text-text">
-                                {row.Conjugation}
-                              </td>
-                              <td className="hidden sm:table-cell px-2.5 py-1.5 text-text-2 italic max-w-[180px] truncate">
-                                {row["Example Sentence"]}
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
                   <Link
-                    href={`/conjugations/${verbKey.toLowerCase()}`}
-                    className="inline-block mt-4 text-[13px] font-medium text-text-2 hover:text-text transition-colors"
+                    href="/vocabulary"
+                    className="mt-4 text-sm font-medium text-[#3C5E95] hover:text-[#2E4A75] transition-colors duration-200 inline-flex items-center gap-1"
                   >
-                    View full conjugations →
+                    Practice this word →
                   </Link>
                 </>
               ) : (
-                <p className="text-text-2 text-[14px]">No verb data.</p>
+                <p className="text-gray-500 text-[14px]">No vocabulary data.</p>
+              )}
+            </div>
+
+            {/* Verb of the Day */}
+            <div className="rounded-2xl border border-gray-100 bg-white p-6 md:p-8 transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(60,94,149,0.08)] flex flex-col min-h-0 overflow-hidden">
+              {verbKey && verbOfDay ? (
+                <>
+                  <div className="flex items-start gap-2 flex-wrap">
+                    <span
+                      className={`inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full border ${
+                        verbOfDay.meta.group === "Irregular"
+                          ? "bg-amber-50 text-amber-700 border-amber-100"
+                          : "bg-emerald-50 text-emerald-700 border-emerald-100"
+                      }`}
+                    >
+                      {verbOfDay.meta.group}
+                    </span>
+                    <span className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-[#EBF2FA] text-[#3C5E95]">
+                      {verbOfDay.meta.cefr}
+                    </span>
+                    <div>
+                      <p className="text-[11px] tracking-widest uppercase text-gray-400 font-medium">
+                        Verb of the Day
+                      </p>
+                      <p className="text-[11px] text-gray-300 italic">Verbo do Dia</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start justify-between gap-3 mt-4">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-wide break-words">
+                        {verbKey}
+                      </p>
+                      {verbOfDay.meta.pronunciation && (
+                        <p className="text-sm text-gray-400 font-mono mt-1 break-words">
+                          /{verbOfDay.meta.pronunciation}/
+                        </p>
+                      )}
+                    </div>
+                    <PronunciationButton
+                      text={verbKey}
+                      size="md"
+                      className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#EBF2FA] hover:bg-[#dce8f5] flex items-center justify-center shrink-0 text-[#3C5E95] shadow-none"
+                    />
+                  </div>
+                  <p className="text-base text-gray-600 mt-2 break-words">
+                    {verbOfDay.meta.english}
+                  </p>
+                  <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-5" aria-hidden />
+                  <p className="text-[11px] tracking-widest uppercase text-gray-400 font-medium mb-3">
+                    Presente do Indicativo
+                  </p>
+                  <div className="min-w-0 flex-1 space-y-0">
+                    {presentRows.map((row, i) => {
+                      const personPt = row.Person.split(" (")[0].trim();
+                      const personShort =
+                        /^ele\/ela(\/você)?$/i.test(personPt)
+                          ? "ele/ela"
+                          : /^eles\/elas(\/vocês)?$/i.test(personPt)
+                            ? "eles/elas"
+                            : personPt;
+                      return (
+                        <div
+                          key={i}
+                          className="flex items-center gap-3 py-2.5 border-b border-gray-50 last:border-0 transition-colors duration-150 hover:bg-[#F8FAFC] hover:rounded-lg -mx-1 px-1"
+                        >
+                          <span className="text-sm text-gray-400 w-16 shrink-0">{personShort}</span>
+                          <span className="text-sm font-semibold text-gray-900 w-28 shrink-0 break-all">
+                            {row.Conjugation}
+                          </span>
+                          <span className="text-sm text-gray-400 italic truncate min-w-0">
+                            {row["Example Sentence"]}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <Link
+                    href={`/conjugations/${verbKey.toLowerCase()}`}
+                    className="mt-4 text-sm font-medium text-[#3C5E95] hover:text-[#2E4A75] transition-colors duration-200 inline-flex items-center gap-1"
+                  >
+                    View all tenses →
+                  </Link>
+                </>
+              ) : (
+                <p className="text-gray-500 text-[14px]">No verb data.</p>
               )}
             </div>
           </div>
 
           {/* Saying of the Day — full width */}
           {sayingOfDay && (
-            <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
-                Saying of the Day
+            <div className="mt-6 rounded-2xl border border-gray-100 bg-white p-6 md:p-8 transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(60,94,149,0.08)]">
+              <p className="text-[11px] tracking-widest uppercase text-gray-400 font-medium">
+                Saying of the Day · Provérbio do Dia
               </p>
-              <div className="flex flex-wrap items-baseline gap-2">
-                <p className="text-lg font-semibold text-gray-900 italic">
-                  &quot;{sayingOfDay.portuguese}&quot;
-                </p>
-                <PronunciationButton text={sayingOfDay.portuguese} size="sm" className="shrink-0" />
+              <div className="border-l-[3px] border-[#3C5E95] pl-5 py-3 my-5">
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <p className="text-xl md:text-2xl font-semibold text-gray-900 italic break-words">
+                    &ldquo;{sayingOfDay.portuguese}&rdquo;
+                  </p>
+                  <PronunciationButton
+                    text={sayingOfDay.portuguese}
+                    size="md"
+                    className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#EBF2FA] hover:bg-[#dce8f5] flex items-center justify-center shrink-0 text-[#3C5E95] shadow-none"
+                  />
+                </div>
               </div>
-              <p className="text-sm text-gray-500 mt-2">{sayingOfDay.literal}</p>
-              <p className="text-sm text-gray-600 mt-1">{sayingOfDay.meaning}</p>
+              <p className="text-xs uppercase tracking-wider text-gray-400 font-medium mt-2">
+                Literal
+              </p>
+              <p className="text-sm text-gray-500 mt-1 break-words">{sayingOfDay.literal}</p>
+              <p className="text-xs uppercase tracking-wider text-gray-400 font-medium mt-3">
+                Meaning
+              </p>
+              <p className="text-sm text-gray-600 mt-1 leading-relaxed break-words">
+                {sayingOfDay.meaning}
+              </p>
               <Link
                 href="/culture"
-                className="text-sm text-[#3C5E95] hover:underline mt-4 inline-block"
+                className="mt-4 text-sm font-medium text-[#3C5E95] hover:text-[#2E4A75] transition-colors duration-200 inline-flex items-center gap-1"
               >
                 View all sayings →
               </Link>
