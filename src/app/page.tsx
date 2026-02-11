@@ -10,6 +10,8 @@ import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
 import sayingsData from "@/data/sayings.json";
+import { greetings } from "@/data/greetings";
+import { HomeGreeting } from "@/components/home-greeting";
 import type { VerbDataSet } from "@/types";
 import type { SayingsData } from "@/types/saying";
 import type { VocabData, VocabWord } from "@/types/vocab";
@@ -67,6 +69,18 @@ const presentRows =
 const sayingOfDay =
   sayings.length > 0 ? sayings[dayIndex % sayings.length] : null;
 
+// Greeting of the day: time-based + daily rotation
+const hour = new Date().getHours();
+const greetingTimeSlots: ("morning" | "afternoon" | "evening" | "anytime")[] =
+  hour < 12 ? ["morning", "anytime"] : hour < 18 ? ["afternoon", "anytime"] : ["evening", "anytime"];
+const filteredGreetings = greetings.filter((g) =>
+  greetingTimeSlots.includes(g.timeOfDay)
+);
+const greetingOfDay =
+  filteredGreetings.length > 0
+    ? filteredGreetings[dayOfYear % filteredGreetings.length]
+    : null;
+
 const sections = [
   {
     title: "Conjugations",
@@ -118,6 +132,7 @@ export default function Home() {
             firstChange={latestChangelog.changes?.[0] ?? ""}
           />
         )}
+        {greetingOfDay && <HomeGreeting greeting={greetingOfDay} />}
         {/* Daily Focus — hero */}
         <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
