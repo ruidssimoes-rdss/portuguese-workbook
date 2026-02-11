@@ -122,8 +122,8 @@ export default function Home() {
         <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
             {/* Word of the Day */}
-            <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
-              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
+            <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden h-full">
+              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0 h-full">
                 {wordOfDay ? (
                   <>
                     <div
@@ -202,8 +202,8 @@ export default function Home() {
             </div>
 
             {/* Verb of the Day */}
-            <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
-              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
+            <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden h-full">
+              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0 h-full">
                 {verbKey && verbOfDay ? (
                   <>
                     <div
@@ -302,9 +302,9 @@ export default function Home() {
 
             {/* Saying of the Day */}
             {sayingOfDay ? (
-              <div className="md:col-span-2 xl:col-span-1">
-                <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
-                <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
+              <div className="md:col-span-2 xl:col-span-1 h-full">
+                <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden h-full">
+                <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0 h-full">
                   <div
                     className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
                     style={{ backgroundImage: `url(${sayingGradient})` }}
@@ -317,19 +317,31 @@ export default function Home() {
                         Provérbio do Dia
                       </span>
                     </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-[11px] font-semibold text-[#3C5E95] bg-[rgba(232,240,249,0.75)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                        {sayingOfDay.cefr ?? "A2"}
+                      </span>
+                    </div>
                   </div>
                   <div className="p-5 md:p-7 flex flex-col gap-5 flex-1 min-h-0">
-                    <div className="border-l-[3px] border-[#3C5E95] pl-5 py-2">
-                      <div className="flex items-center gap-3">
-                        <span className="text-[19px] md:text-[22px] font-semibold italic text-[#111827] leading-[1.35] break-words">
-                          &ldquo;{sayingOfDay.portuguese}&rdquo;
-                        </span>
-                        <PronunciationButton
-                          text={sayingOfDay.portuguese}
-                          size="md"
-                          variant="dark"
-                          className="w-8 h-8 min-w-[32px] min-h-[32px] shrink-0"
-                        />
+                    <div className="py-2">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <span className="text-[19px] md:text-[22px] font-semibold italic text-[#111827] leading-[1.35] break-words">
+                            &ldquo;{sayingOfDay.portuguese}&rdquo;
+                          </span>
+                          <PronunciationButton
+                            text={sayingOfDay.portuguese}
+                            size="md"
+                            variant="dark"
+                            className="w-8 h-8 min-w-[32px] min-h-[32px] shrink-0"
+                          />
+                        </div>
+                        {sayingOfDay.pronunciation && (
+                          <span className="font-mono text-[14px] text-[#9CA3AF] leading-[18px]">
+                            /{sayingOfDay.pronunciation}/
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div>
