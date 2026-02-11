@@ -44,6 +44,19 @@ vocab.categories.forEach((cat) => {
 const latestChangelog = (changelogData as { entries: { date: string; version: string; title: string; summary?: string; changes: string[] }[] }).entries?.[0] ?? null;
 
 const dayIndex = Math.floor(Date.now() / 86400000);
+const dayOfYear = Math.floor(
+  (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000
+);
+const TOTAL_GRADIENTS = 11;
+const gradientExt = (n: number) => ([4, 5, 6, 7, 11].includes(n) ? "jpeg" : "jpg");
+const gradientPath = (offset: number) => {
+  const n = (dayOfYear + offset) % TOTAL_GRADIENTS + 1;
+  return `/gradients/mesh-${n}.${gradientExt(n)}`;
+};
+const wordGradient = gradientPath(0);
+const verbGradient = gradientPath(3);
+const sayingGradient = gradientPath(7);
+
 const wordOfDay =
   flatVocab.length > 0 ? flatVocab[dayIndex % flatVocab.length] : null;
 const verbKey =
@@ -109,194 +122,235 @@ export default function Home() {
         <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
             {/* Word of the Day */}
-            <div className="rounded-2xl border border-gray-100 bg-white p-6 md:p-8 transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(60,94,149,0.08)] flex flex-col min-h-0 overflow-hidden">
-              {wordOfDay ? (
-                <>
-                  <div className="flex items-start gap-2 flex-wrap">
-                    <span className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-[#EBF2FA] text-[#3C5E95]">
-                      {wordOfDay.word.cefr}
-                    </span>
-                    <div>
-                      <p className="text-[11px] tracking-widest uppercase text-gray-400 font-medium">
-                        Word of the Day
-                      </p>
-                      <p className="text-[11px] text-gray-300 italic">Palavra do Dia</p>
+            <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
+              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
+                {wordOfDay ? (
+                  <>
+                    <div
+                      className="relative h-[180px] md:h-[220px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
+                      style={{ backgroundImage: `url(${wordGradient})` }}
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-[16px] md:text-[20px] font-semibold uppercase tracking-[1.32px] text-white leading-[26px]">
+                          Word of the Day
+                        </span>
+                        <span className="text-[16px] md:text-[20px] font-medium italic text-white leading-[26px]">
+                          Palavra do Dia
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[rgba(232,240,249,0.75)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                          {wordOfDay.word.cefr}
+                        </span>
+                        <span className="text-[11px] font-semibold text-[#3C5E95] bg-white px-2.5 py-[3px] rounded-full leading-[14px]">
+                          {wordOfDay.categoryTitle}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start justify-between gap-3 mt-4">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-3xl md:text-4xl font-bold text-gray-900 break-words">
-                        {wordOfDay.word.portuguese}
-                        {wordOfDay.word.gender && (
-                          <span className="text-base font-normal text-gray-500 ml-1">
-                            ({wordOfDay.word.gender === "m" ? "m." : "f."})
+                    <div className="p-5 md:p-7 flex flex-col gap-5 flex-1 min-h-0">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-3 min-w-0">
+                          <span className="text-[26px] md:text-[32px] font-bold text-[#111827] leading-[35px] break-words">
+                            {wordOfDay.word.portuguese}
+                            {wordOfDay.word.gender && (
+                              <span className="text-base font-normal text-[#6B7280] ml-1">
+                                ({wordOfDay.word.gender === "m" ? "m." : "f."})
+                              </span>
+                            )}
                           </span>
-                        )}
-                      </p>
-                      {wordOfDay.word.pronunciation && (
-                        <p className="text-sm text-gray-400 font-mono mt-1 break-words">
-                          /{wordOfDay.word.pronunciation}/
-                        </p>
+                          {wordOfDay.word.pronunciation && (
+                            <span className="font-mono text-[14px] text-[#9CA3AF] leading-[18px] whitespace-nowrap">
+                              /{wordOfDay.word.pronunciation}/
+                            </span>
+                          )}
+                        </div>
+                        <PronunciationButton
+                          text={wordOfDay.word.portuguese}
+                          size="md"
+                          className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#262626] hover:bg-[#404040] flex items-center justify-center shrink-0 text-white shadow-none"
+                        />
+                      </div>
+                      <div className="h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" aria-hidden />
+                      <span className="text-[18px] font-medium text-[#374151] leading-[23px] break-words">
+                        {wordOfDay.word.english}
+                      </span>
+                      {wordOfDay.word.example && (
+                        <div className="bg-[#FCFCFC] border-[0.5px] border-[#E9E9E9] rounded-[10px] p-4 flex flex-col gap-1">
+                          <span className="text-[15px] italic text-[#1F2937] leading-[20px] break-words">
+                            &ldquo;{wordOfDay.word.example}&rdquo;
+                          </span>
+                          <span className="text-[13px] text-[#9CA3AF] leading-[17px] break-words">
+                            {wordOfDay.word.exampleTranslation}
+                          </span>
+                        </div>
                       )}
+                      <Link
+                        href="/vocabulary"
+                        className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200"
+                      >
+                        Practice this word →
+                      </Link>
                     </div>
-                    <PronunciationButton
-                      text={wordOfDay.word.portuguese}
-                      size="md"
-                      className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#EBF2FA] hover:bg-[#dce8f5] flex items-center justify-center shrink-0 text-[#3C5E95] shadow-none"
-                    />
+                  </>
+                ) : (
+                  <div className="p-5 md:p-7">
+                    <p className="text-gray-500 text-[14px]">No vocabulary data.</p>
                   </div>
-                  <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-5" aria-hidden />
-                  <p className="text-lg text-gray-700 font-medium break-words">
-                    {wordOfDay.word.english}
-                  </p>
-                  {wordOfDay.word.example && (
-                    <div className="bg-[#F8FAFC] rounded-xl p-4 mt-4 relative">
-                      <svg className="absolute top-3 left-3 w-4 h-4 text-[#3C5E95] opacity-30" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                      </svg>
-                      <p className="text-[15px] text-gray-800 italic font-medium pl-6 break-words">
-                        &ldquo;{wordOfDay.word.example}&rdquo;
-                      </p>
-                      <p className="text-sm text-gray-500 mt-1 pl-6 break-words">
-                        {wordOfDay.word.exampleTranslation}
-                      </p>
-                    </div>
-                  )}
-                  <p className="text-xs text-gray-400 font-medium mt-4">
-                    {wordOfDay.categoryTitle}
-                  </p>
-                  <Link
-                    href="/vocabulary"
-                    className="mt-4 text-sm font-medium text-[#3C5E95] hover:text-[#2E4A75] transition-colors duration-200 inline-flex items-center gap-1"
-                  >
-                    Practice this word →
-                  </Link>
-                </>
-              ) : (
-                <p className="text-gray-500 text-[14px]">No vocabulary data.</p>
-              )}
+                )}
+              </div>
             </div>
 
             {/* Verb of the Day */}
-            <div className="rounded-2xl border border-gray-100 bg-white p-6 md:p-8 transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(60,94,149,0.08)] flex flex-col min-h-0 overflow-hidden">
-              {verbKey && verbOfDay ? (
-                <>
-                  <div className="flex items-start gap-2 flex-wrap">
-                    <span
-                      className={`inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full border ${
-                        verbOfDay.meta.group === "Irregular"
-                          ? "bg-amber-50 text-amber-700 border-amber-100"
-                          : "bg-emerald-50 text-emerald-700 border-emerald-100"
-                      }`}
+            <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
+              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
+                {verbKey && verbOfDay ? (
+                  <>
+                    <div
+                      className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
+                      style={{ backgroundImage: `url(${verbGradient})` }}
                     >
-                      {verbOfDay.meta.group}
-                    </span>
-                    <span className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-[#EBF2FA] text-[#3C5E95]">
-                      {verbOfDay.meta.cefr}
-                    </span>
-                    <div>
-                      <p className="text-[11px] tracking-widest uppercase text-gray-400 font-medium">
-                        Verb of the Day
-                      </p>
-                      <p className="text-[11px] text-gray-300 italic">Verbo do Dia</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start justify-between gap-3 mt-4">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-wide break-words">
-                        {verbKey}
-                      </p>
-                      {verbOfDay.meta.pronunciation && (
-                        <p className="text-sm text-gray-400 font-mono mt-1 break-words">
-                          /{verbOfDay.meta.pronunciation}/
-                        </p>
-                      )}
-                    </div>
-                    <PronunciationButton
-                      text={verbKey}
-                      size="md"
-                      className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#EBF2FA] hover:bg-[#dce8f5] flex items-center justify-center shrink-0 text-[#3C5E95] shadow-none"
-                    />
-                  </div>
-                  <p className="text-base text-gray-600 mt-2 break-words">
-                    {verbOfDay.meta.english}
-                  </p>
-                  <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-5" aria-hidden />
-                  <p className="text-[11px] tracking-widest uppercase text-gray-400 font-medium mb-3">
-                    Presente do Indicativo
-                  </p>
-                  <div className="min-w-0 flex-1 space-y-0">
-                    {presentRows.map((row, i) => {
-                      const personPt = row.Person.split(" (")[0].trim();
-                      const personShort =
-                        /^ele\/ela(\/você)?$/i.test(personPt)
-                          ? "ele/ela"
-                          : /^eles\/elas(\/vocês)?$/i.test(personPt)
-                            ? "eles/elas"
-                            : personPt;
-                      return (
-                        <div
-                          key={i}
-                          className="flex items-center gap-3 py-2.5 border-b border-gray-50 last:border-0 transition-colors duration-150 hover:bg-[#F8FAFC] hover:rounded-lg -mx-1 px-1"
-                        >
-                          <span className="text-sm text-gray-400 w-16 shrink-0">{personShort}</span>
-                          <span className="text-sm font-semibold text-gray-900 w-28 shrink-0 break-all">
-                            {row.Conjugation}
+                      <div className="flex flex-col">
+                        <span className="text-[16px] md:text-[20px] font-semibold uppercase tracking-[1.32px] text-white leading-[26px]">
+                          Verb of the Day
+                        </span>
+                        <span className="text-[16px] md:text-[20px] font-medium italic text-white leading-[26px]">
+                          Verbo do Dia
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        {verbOfDay.meta.group === "Irregular" ? (
+                          <span className="text-[11px] font-semibold text-amber-700 bg-[rgba(255,251,235,0.85)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                            {verbOfDay.meta.group}
                           </span>
-                          <span className="text-sm text-gray-400 italic truncate min-w-0">
-                            {row["Example Sentence"]}
+                        ) : (
+                          <span className="text-[11px] font-semibold text-emerald-700 bg-[rgba(236,253,245,0.85)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                            {verbOfDay.meta.group}
                           </span>
+                        )}
+                        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[rgba(232,240,249,0.75)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                          {verbOfDay.meta.cefr}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-5 md:p-7 flex flex-col gap-5 flex-1 min-h-0">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-3 min-w-0">
+                          <span className="text-[26px] md:text-[32px] font-bold text-[#111827] leading-[35px] uppercase tracking-[0.02em] break-words">
+                            {verbKey}
+                          </span>
+                          {verbOfDay.meta.pronunciation && (
+                            <span className="font-mono text-[14px] text-[#9CA3AF] leading-[18px] whitespace-nowrap">
+                              /{verbOfDay.meta.pronunciation}/
+                            </span>
+                          )}
                         </div>
-                      );
-                    })}
+                        <PronunciationButton
+                          text={verbKey}
+                          size="md"
+                          className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#262626] hover:bg-[#404040] flex items-center justify-center shrink-0 text-white shadow-none"
+                        />
+                      </div>
+                      <div className="h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" aria-hidden />
+                      <span className="text-[16px] font-medium text-[#374151] break-words">
+                        {verbOfDay.meta.english}
+                      </span>
+                      <span className="text-[11px] tracking-[0.1em] uppercase text-[#9CA3AF] font-medium">
+                        Presente do Indicativo
+                      </span>
+                      <div className="flex flex-col min-w-0 flex-1">
+                        {presentRows.map((row, i) => {
+                          const personPt = row.Person.split(" (")[0].trim();
+                          const personShort =
+                            /^ele\/ela(\/você)?$/i.test(personPt)
+                              ? "ele/ela"
+                              : /^eles\/elas(\/vocês)?$/i.test(personPt)
+                                ? "eles/elas"
+                                : personPt;
+                          return (
+                            <div
+                              key={i}
+                              className="flex items-center py-2 px-2 rounded-lg border-b border-[#F9FAFB] last:border-0 hover:bg-[#F8FAFC] transition-colors duration-150"
+                            >
+                              <span className="w-[70px] text-[14px] text-[#9CA3AF] shrink-0">{personShort}</span>
+                              <span className="w-[110px] text-[14px] font-semibold text-[#111827] shrink-0 break-all">
+                                {row.Conjugation}
+                              </span>
+                              <span className="text-[14px] text-[#9CA3AF] italic truncate min-w-0">
+                                {row["Example Sentence"]}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <Link
+                        href={`/conjugations/${verbKey.toLowerCase()}`}
+                        className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200"
+                      >
+                        View all tenses →
+                      </Link>
+                    </div>
+                  </>
+                ) : (
+                  <div className="p-5 md:p-7">
+                    <p className="text-gray-500 text-[14px]">No verb data.</p>
                   </div>
-                  <Link
-                    href={`/conjugations/${verbKey.toLowerCase()}`}
-                    className="mt-4 text-sm font-medium text-[#3C5E95] hover:text-[#2E4A75] transition-colors duration-200 inline-flex items-center gap-1"
-                  >
-                    View all tenses →
-                  </Link>
-                </>
-              ) : (
-                <p className="text-gray-500 text-[14px]">No verb data.</p>
-              )}
+                )}
+              </div>
             </div>
           </div>
 
           {/* Saying of the Day — full width */}
           {sayingOfDay && (
-            <div className="mt-6 rounded-2xl border border-gray-100 bg-white p-6 md:p-8 transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(60,94,149,0.08)]">
-              <p className="text-[11px] tracking-widest uppercase text-gray-400 font-medium">
-                Saying of the Day · Provérbio do Dia
-              </p>
-              <div className="border-l-[3px] border-[#3C5E95] pl-5 py-3 my-5">
-                <div className="flex flex-wrap items-baseline gap-2">
-                  <p className="text-xl md:text-2xl font-semibold text-gray-900 italic break-words">
-                    &ldquo;{sayingOfDay.portuguese}&rdquo;
-                  </p>
-                  <PronunciationButton
-                    text={sayingOfDay.portuguese}
-                    size="md"
-                    className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#EBF2FA] hover:bg-[#dce8f5] flex items-center justify-center shrink-0 text-[#3C5E95] shadow-none"
-                  />
+            <div className="mt-6 bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)]">
+              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white">
+                <div
+                  className="relative h-[120px] md:h-[140px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
+                  style={{ backgroundImage: `url(${sayingGradient})` }}
+                >
+                  <div className="flex flex-col">
+                    <span className="text-[16px] md:text-[20px] font-semibold uppercase tracking-[1.32px] text-white leading-[26px]">
+                      Saying of the Day
+                    </span>
+                    <span className="text-[16px] md:text-[20px] font-medium italic text-white leading-[26px]">
+                      Provérbio do Dia
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5 md:p-7 flex flex-col gap-5">
+                  <div className="border-l-[3px] border-[#3C5E95] pl-5 py-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[19px] md:text-[22px] font-semibold italic text-[#111827] leading-[1.35] break-words">
+                        &ldquo;{sayingOfDay.portuguese}&rdquo;
+                      </span>
+                      <PronunciationButton
+                        text={sayingOfDay.portuguese}
+                        size="md"
+                        className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-0 bg-[#262626] hover:bg-[#404040] flex items-center justify-center shrink-0 text-white shadow-none"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
+                      Literal
+                    </span>
+                    <p className="text-[14px] text-[#6B7280] mt-1 break-words">{sayingOfDay.literal}</p>
+                  </div>
+                  <div>
+                    <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
+                      Meaning
+                    </span>
+                    <p className="text-[14px] text-[#4B5563] leading-relaxed mt-1 break-words">
+                      {sayingOfDay.meaning}
+                    </p>
+                  </div>
+                  <Link
+                    href="/culture"
+                    className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200"
+                  >
+                    View all sayings →
+                  </Link>
                 </div>
               </div>
-              <p className="text-xs uppercase tracking-wider text-gray-400 font-medium mt-2">
-                Literal
-              </p>
-              <p className="text-sm text-gray-500 mt-1 break-words">{sayingOfDay.literal}</p>
-              <p className="text-xs uppercase tracking-wider text-gray-400 font-medium mt-3">
-                Meaning
-              </p>
-              <p className="text-sm text-gray-600 mt-1 leading-relaxed break-words">
-                {sayingOfDay.meaning}
-              </p>
-              <Link
-                href="/culture"
-                className="mt-4 text-sm font-medium text-[#3C5E95] hover:text-[#2E4A75] transition-colors duration-200 inline-flex items-center gap-1"
-              >
-                View all sayings →
-              </Link>
             </div>
           )}
         </section>
