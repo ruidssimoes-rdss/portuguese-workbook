@@ -120,7 +120,7 @@ export default function Home() {
         )}
         {/* Daily Focus — hero */}
         <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
             {/* Word of the Day */}
             <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
               <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
@@ -302,7 +302,8 @@ export default function Home() {
 
             {/* Saying of the Day */}
             {sayingOfDay ? (
-              <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
+              <div className="md:col-span-2 xl:col-span-1">
+                <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden">
                 <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0">
                   <div
                     className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
@@ -351,6 +352,7 @@ export default function Home() {
                     >
                       View all sayings →
                     </Link>
+                  </div>
                   </div>
                 </div>
               </div>
