@@ -60,7 +60,7 @@ const learnItems = [
   {
     title: "Practice",
     portuguese: "Prática",
-    stats: ["Flashcards · Verb Drills"],
+    stats: ["4 practice modes"],
     href: "/practice",
     disabled: false,
   },
