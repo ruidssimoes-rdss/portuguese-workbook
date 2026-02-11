@@ -7,6 +7,10 @@ export interface VocabWord {
   exampleTranslation: string;
   /** Simplified phonetic transcription (e.g. bah-KAH-noo) */
   pronunciation?: string;
+  /** Optional related words with short meanings */
+  relatedWords?: Array<{ word: string; meaning: string }>;
+  /** Optional pro tip for learners */
+  proTip?: string;
 }
 
 export interface VocabCategory {

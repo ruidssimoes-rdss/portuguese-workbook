@@ -230,7 +230,7 @@ export default function VocabularyPage() {
               placeholder="Search categories..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[200px] transition-colors"
+              className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
             />
           </div>
         </section>
@@ -240,11 +240,11 @@ export default function VocabularyPage() {
             <button
               key={level}
               onClick={() => setCefrFilter(level)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={
                 cefrFilter === level
-                  ? "bg-[#3C5E95] text-white"
-                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-              }`}
+                  ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                  : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+              }
             >
               {level}
             </button>
@@ -268,7 +268,7 @@ export default function VocabularyPage() {
                   {section.description}
                 </p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
                 {section.categories.map((cat) => {
                   const wordCount =
                     cefrFilter === "All"
@@ -288,41 +288,33 @@ export default function VocabularyPage() {
                       .includes(search.trim().toLowerCase());
 
                   const cardDesc = CATEGORY_DESCRIPTION[cat.id] ?? cat.description;
-                  const descParts = cardDesc.includes(" — ")
-                    ? cardDesc.split(" — ", 2)
-                    : [null, cardDesc];
-                  const ptIntro = descParts[0];
-                  const descRest = descParts[1] ?? cardDesc;
 
                   return (
                     <Link
                       key={cat.id}
                       href={`/vocabulary/${cat.id}`}
-                      className={`group ${CATEGORY_TINT[cat.id] ?? "bg-white"} border border-gray-200 rounded-lg p-4 md:p-5 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200`}
+                      className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] block"
                     >
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-base font-semibold text-gray-900 flex-1 min-w-0">
-                          {cat.title}
-                        </h3>
-                        <span className="text-sm text-gray-400 whitespace-nowrap">
-                          {wordCount} word{wordCount !== 1 ? "s" : ""}
-                          {showMatchNote && ` · ${matchCount} match${matchCount !== 1 ? "es" : ""}`}
+                      <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white p-6">
+                        <div className="flex items-start justify-between gap-3 mb-1">
+                          <h3 className="text-[18px] font-bold text-[#111827]">
+                            {cat.title}
+                          </h3>
+                          <span className="text-[12px] text-[#9CA3AF] whitespace-nowrap">
+                            {wordCount} word{wordCount !== 1 ? "s" : ""}
+                            {showMatchNote && ` · ${matchCount} match${matchCount !== 1 ? "es" : ""}`}
+                          </span>
+                        </div>
+                        <span className="text-[13px] text-[#3C5E95] font-medium">
+                          {CATEGORY_PT_TITLE[cat.id] ?? ""}
+                        </span>
+                        <p className="text-[13px] text-[#9CA3AF] mt-3 leading-relaxed italic">
+                          {cardDesc}
+                        </p>
+                        <span className="inline-flex items-center justify-center self-start px-[13px] h-8 bg-[#262626] border border-[#262626] rounded-[10px] text-[12.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200 mt-4">
+                          Explore →
                         </span>
                       </div>
-                      <p className="text-sm text-[#3C5E95]/70 font-medium mt-0.5">
-                        {CATEGORY_PT_TITLE[cat.id] ?? ""}
-                      </p>
-                      <p className="text-sm text-gray-500 mt-1 truncate">
-                        {ptIntro != null ? (
-                          <>
-                            <em>{ptIntro}</em>
-                            {" — "}
-                            {descRest}
-                          </>
-                        ) : (
-                          cardDesc
-                        )}
-                      </p>
                     </Link>
                   );
                 })}
