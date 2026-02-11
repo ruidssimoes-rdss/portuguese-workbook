@@ -57,7 +57,8 @@
           "gender": null,
           "pronunciation": "oh-bree-GAH-doo / oh-bree-GAH-dah",
           "example": "Muito obrigado pela ajuda.",
-          "exampleTranslation": "Thank you very much for the help."
+          "exampleTranslation": "Thank you very much for the help.",
+          "proTip": "Men say 'obrigado,' women say 'obrigada' — it literally means 'obliged.' This is one of the few words in Portuguese where the speaker's gender matters, not the listener's."
         },
         {
           "portuguese": "por favor",
@@ -129,7 +130,13 @@
           "gender": null,
           "pronunciation": "kong lee-SEN-sah",
           "example": "Com licença, posso passar?",
-          "exampleTranslation": "Excuse me, may I pass?"
+          "exampleTranslation": "Excuse me, may I pass?",
+          "relatedWords": [
+            { "word": "desculpe", "meaning": "sorry / excuse me" },
+            { "word": "perdão", "meaning": "pardon" },
+            { "word": "faz favor", "meaning": "please (to get attention)" }
+          ],
+          "proTip": "'Com licença' is for passing through. 'Desculpe' is for getting attention or apologizing. To call a waiter, say 'Faz favor!' — never snap your fingers."
         },
         {
           "portuguese": "parabéns",
@@ -165,7 +172,13 @@
           "gender": null,
           "pronunciation": "FEE-shuh",
           "example": "Que fixe! Adorei.",
-          "exampleTranslation": "How cool! I loved it."
+          "exampleTranslation": "How cool! I loved it.",
+          "relatedWords": [
+            { "word": "giro", "meaning": "cute / cool" },
+            { "word": "bué", "meaning": "a lot / very (slang)" },
+            { "word": "porreiro", "meaning": "cool / great (slightly older slang)" }
+          ],
+          "proTip": "'Fixe' is THE word for 'cool' in Portugal. 'Que fixe!' = How cool! 'Bué fixe' = Super cool. It's informal but used by all ages. Never say 'legal' for cool — that's Brazilian."
         },
         {
           "portuguese": "pronto",
@@ -415,7 +428,13 @@
           "gender": "f",
           "pronunciation": "OH-rah",
           "example": "Que horas são?",
-          "exampleTranslation": "What time is it?"
+          "exampleTranslation": "What time is it?",
+          "relatedWords": [
+            { "word": "minutos", "meaning": "minutes" },
+            { "word": "meia hora", "meaning": "half hour" },
+            { "word": "um quarto de hora", "meaning": "quarter of an hour" }
+          ],
+          "proTip": "'Que horas são?' = What time is it? Portugal uses both 12h and 24h time. For 'it's 3pm' say 'São três da tarde' or 'São quinze horas.' Always feminine: 'É uma hora' (it's 1 o'clock)."
         },
         {
           "portuguese": "minuto",
@@ -1167,7 +1186,14 @@
           "gender": "f",
           "pronunciation": "AH-gwah",
           "example": "Uma garrafa de água, por favor.",
-          "exampleTranslation": "A bottle of water, please."
+          "exampleTranslation": "A bottle of water, please.",
+          "relatedWords": [
+            { "word": "água com gás", "meaning": "sparkling water" },
+            { "word": "água sem gás", "meaning": "still water" },
+            { "word": "garrafa", "meaning": "bottle" },
+            { "word": "copo", "meaning": "glass" }
+          ],
+          "proTip": "At restaurants, specify 'com gás' or 'sem gás' — otherwise you might get whichever they have. Tap water ('água da torneira') is safe to drink in Portugal but not always offered."
         },
         {
           "portuguese": "café",
@@ -1176,7 +1202,14 @@
           "gender": "m",
           "pronunciation": "kah-FEH",
           "example": "Quero um café com leite.",
-          "exampleTranslation": "I want a coffee with milk."
+          "exampleTranslation": "I want a coffee with milk.",
+          "relatedWords": [
+            { "word": "bica", "meaning": "espresso (Lisbon slang)" },
+            { "word": "cimbalino", "meaning": "espresso (Porto slang)" },
+            { "word": "galão", "meaning": "milky coffee in a glass" },
+            { "word": "meia de leite", "meaning": "half coffee, half milk" }
+          ],
+          "proTip": "In Lisbon, order a 'bica' for espresso. In Porto, say 'cimbalino.' A 'café' works everywhere. 'Um café, por favor' is probably the most useful sentence in Portugal."
         },
         {
           "portuguese": "chá",
@@ -1239,7 +1272,14 @@
           "gender": "m",
           "pronunciation": "POWNG",
           "example": "Pão fresco da padaria.",
-          "exampleTranslation": "Fresh bread from the bakery."
+          "exampleTranslation": "Fresh bread from the bakery.",
+          "relatedWords": [
+            { "word": "padaria", "meaning": "bakery" },
+            { "word": "pão de forma", "meaning": "sliced bread" },
+            { "word": "broa", "meaning": "corn bread (traditional)" },
+            { "word": "tosta", "meaning": "toast / toasted sandwich" }
+          ],
+          "proTip": "Bread is sacred in Portugal. At restaurants, bread and olives ('couvert') often appear automatically — but they're not free! You can politely decline."
         },
         {
           "portuguese": "queijo",
@@ -1455,7 +1495,14 @@
           "gender": "m",
           "pronunciation": "puh-KAY-noo ahl-MOH-soo",
           "example": "O pequeno-almoço está incluído.",
-          "exampleTranslation": "Breakfast is included."
+          "exampleTranslation": "Breakfast is included.",
+          "relatedWords": [
+            { "word": "almoço", "meaning": "lunch" },
+            { "word": "jantar", "meaning": "dinner" },
+            { "word": "lanche", "meaning": "snack / afternoon tea" },
+            { "word": "café da manhã", "meaning": "breakfast (Brazilian — avoid!)" }
+          ],
+          "proTip": "Always say 'pequeno-almoço' in Portugal, never 'café da manhã' (that's Brazilian). A typical Portuguese breakfast is a galão (milky coffee) with a tosta mista (toasted ham and cheese)."
         },
         {
           "portuguese": "almoço",
@@ -1509,7 +1556,14 @@
           "gender": "f",
           "pronunciation": "KON-tah",
           "example": "A conta, por favor.",
-          "exampleTranslation": "The bill, please."
+          "exampleTranslation": "The bill, please.",
+          "relatedWords": [
+            { "word": "pagar", "meaning": "to pay" },
+            { "word": "gorjeta", "meaning": "tip" },
+            { "word": "troco", "meaning": "change" },
+            { "word": "multibanco", "meaning": "ATM / card payment" }
+          ],
+          "proTip": "Say 'A conta, por favor' to ask for the bill. Tipping in Portugal is appreciated but not obligatory — rounding up or leaving 5-10% is common."
         },
         {
           "portuguese": "garfo",
@@ -1876,7 +1930,14 @@
           "gender": "m",
           "pronunciation": "ah-eh-roo-POHR-too",
           "example": "O aeroporto de Lisboa.",
-          "exampleTranslation": "The Lisbon airport."
+          "exampleTranslation": "The Lisbon airport.",
+          "relatedWords": [
+            { "word": "avião", "meaning": "aeroplane" },
+            { "word": "voo", "meaning": "flight" },
+            { "word": "embarque", "meaning": "boarding" },
+            { "word": "chegadas", "meaning": "arrivals" }
+          ],
+          "proTip": "Lisbon airport is officially 'Aeroporto Humberto Delgado' but locals just say 'o aeroporto.' You'll hear 'porta de embarque' for boarding gate."
         },
         {
           "portuguese": "avião",
@@ -1894,7 +1955,14 @@
           "gender": "m",
           "pronunciation": "kom-BOY-oo",
           "example": "Apanhei o comboio para o Porto.",
-          "exampleTranslation": "I caught the train to Porto."
+          "exampleTranslation": "I caught the train to Porto.",
+          "relatedWords": [
+            { "word": "estação", "meaning": "station" },
+            { "word": "carruagem", "meaning": "carriage / coach" },
+            { "word": "linha", "meaning": "line / track" },
+            { "word": "bilhete", "meaning": "ticket" }
+          ],
+          "proTip": "'Comboio' is European Portuguese — never say 'trem' (that's Brazilian). The CP (Comboios de Portugal) runs the national rail network."
         },
         {
           "portuguese": "autocarro",
@@ -1903,7 +1971,13 @@
           "gender": "m",
           "pronunciation": "ow-too-KAH-rroo",
           "example": "O autocarro passa às nove.",
-          "exampleTranslation": "The bus comes at nine."
+          "exampleTranslation": "The bus comes at nine.",
+          "relatedWords": [
+            { "word": "paragem", "meaning": "bus stop" },
+            { "word": "motorista", "meaning": "driver" },
+            { "word": "carreira", "meaning": "bus route / line" }
+          ],
+          "proTip": "'Autocarro' is strictly PT-PT. In Brazil they say 'ônibus.' In Lisbon, use the Carris network; intercity buses are run by Rede Expressos."
         },
         {
           "portuguese": "metro",
@@ -1957,7 +2031,13 @@
           "gender": "m",
           "pronunciation": "ay-LEK-tree-koo",
           "example": "O eléctrico 28 é famoso.",
-          "exampleTranslation": "Tram 28 is famous."
+          "exampleTranslation": "Tram 28 is famous.",
+          "relatedWords": [
+            { "word": "carreira", "meaning": "route / line" },
+            { "word": "paragem", "meaning": "stop" },
+            { "word": "Carris", "meaning": "Lisbon transit company" }
+          ],
+          "proTip": "The famous Eléctrico 28 runs through Lisbon's historic neighborhoods. Locals pronounce it 'eh-LEK-tree-koo' with the accent on the second syllable."
         },
         {
           "portuguese": "bilhete",
@@ -1966,7 +2046,13 @@
           "gender": "m",
           "pronunciation": "bee-LYEH-tuh",
           "example": "Onde compro o bilhete?",
-          "exampleTranslation": "Where do I buy the ticket?"
+          "exampleTranslation": "Where do I buy the ticket?",
+          "relatedWords": [
+            { "word": "bilheteira", "meaning": "ticket office" },
+            { "word": "passe", "meaning": "travel pass" },
+            { "word": "validar", "meaning": "to validate" }
+          ],
+          "proTip": "In Lisbon, most people use a 'Viva Viagem' rechargeable card rather than single bilhetes. 'Passe mensal' is the monthly pass."
         },
         {
           "portuguese": "ida e volta",
@@ -1975,7 +2061,14 @@
           "gender": null,
           "pronunciation": "EE-dah ee VOHL-tah",
           "example": "Um bilhete de ida e volta.",
-          "exampleTranslation": "A return ticket."
+          "exampleTranslation": "A return ticket.",
+          "relatedWords": [
+            { "word": "ida", "meaning": "one-way / going" },
+            { "word": "volta", "meaning": "return / coming back" },
+            { "word": "só ida", "meaning": "one-way only" },
+            { "word": "viagem", "meaning": "journey / trip" }
+          ],
+          "proTip": "At the bilheteira (ticket office), say 'Um bilhete de ida e volta para...' for a return, or 'Só ida' for one-way."
         },
         {
           "portuguese": "partida",
@@ -2218,7 +2311,13 @@
           "gender": "f",
           "pronunciation": "fahr-MAH-see-ah",
           "example": "Onde é a farmácia mais próxima?",
-          "exampleTranslation": "Where is the nearest pharmacy?"
+          "exampleTranslation": "Where is the nearest pharmacy?",
+          "relatedWords": [
+            { "word": "medicamento", "meaning": "medicine" },
+            { "word": "receita", "meaning": "prescription" },
+            { "word": "farmácia de serviço", "meaning": "duty pharmacy (open 24h)" }
+          ],
+          "proTip": "Portuguese pharmacies (marked with a green cross) can advise on minor ailments without a doctor's visit. There's always a 'farmácia de serviço' open 24h in each area — check the posted schedule on any pharmacy door."
         },
         {
           "portuguese": "hospital",
@@ -2326,7 +2425,13 @@
           "gender": "f",
           "pronunciation": "sow-DAH-duh",
           "example": "Tenho saudades de Portugal.",
-          "exampleTranslation": "I miss Portugal."
+          "exampleTranslation": "I miss Portugal.",
+          "relatedWords": [
+            { "word": "saudades", "meaning": "missing someone (plural form)" },
+            { "word": "ter saudades", "meaning": "to miss / to long for" },
+            { "word": "matar saudades", "meaning": "to satisfy longing (lit. 'kill saudades')" }
+          ],
+          "proTip": "Portugal's most famous word — there's no exact English translation. 'Tenho saudades tuas' = I miss you. It's deeper than missing; it's a bittersweet longing. Central to Portuguese culture and fado music."
         },
         {
           "portuguese": "estrangeiro",
@@ -2540,7 +2645,13 @@
           "gender": "f",
           "pronunciation": "KAH-zah duh BAH-nyoo",
           "example": "Onde é a casa de banho?",
-          "exampleTranslation": "Where is the bathroom?"
+          "exampleTranslation": "Where is the bathroom?",
+          "relatedWords": [
+            { "word": "duche", "meaning": "shower" },
+            { "word": "sanita", "meaning": "toilet" },
+            { "word": "lavatório", "meaning": "washbasin" }
+          ],
+          "proTip": "In Portugal it's always 'casa de banho,' never 'banheiro' (that's Brazilian and sounds odd in Portugal). In a restaurant, ask 'Onde é a casa de banho?'"
         },
         {
           "portuguese": "varanda",
@@ -2648,7 +2759,13 @@
           "gender": "m",
           "pronunciation": "tuh-luh-MOH-vuhl",
           "example": "Esqueci o telemóvel em casa.",
-          "exampleTranslation": "I forgot my phone at home."
+          "exampleTranslation": "I forgot my phone at home.",
+          "relatedWords": [
+            { "word": "ligar", "meaning": "to call" },
+            { "word": "mensagem", "meaning": "text message" },
+            { "word": "carregador", "meaning": "charger" }
+          ],
+          "proTip": "'Telemóvel' is PT-PT — never say 'celular' (that's Brazilian). From 'tele' (distant) + 'móvel' (mobile). Portugal's main operators are MEO, NOS, and Vodafone."
         },
         {
           "portuguese": "chave",
@@ -3697,7 +3814,14 @@
           "gender": "m",
           "pronunciation": "shKree-TOH-ree-oo",
           "example": "Trabalho num escritório no centro.",
-          "exampleTranslation": "I work in an office in the centre."
+          "exampleTranslation": "I work in an office in the centre.",
+          "relatedWords": [
+            { "word": "trabalho", "meaning": "work / job" },
+            { "word": "empresa", "meaning": "company" },
+            { "word": "colega", "meaning": "colleague" },
+            { "word": "reunião", "meaning": "meeting" }
+          ],
+          "proTip": "'Escritório' is the physical office. 'Trabalho' is work in general. 'Vou para o escritório' (I'm going to the office) vs 'Vou trabalhar' (I'm going to work)."
         },
         {
           "portuguese": "empresa",
@@ -4584,7 +4708,14 @@
           "gender": "m",
           "pronunciation": "PREH-soo",
           "example": "Qual é o preço?",
-          "exampleTranslation": "What is the price?"
+          "exampleTranslation": "What is the price?",
+          "relatedWords": [
+            { "word": "barato", "meaning": "cheap" },
+            { "word": "caro", "meaning": "expensive" },
+            { "word": "desconto", "meaning": "discount" },
+            { "word": "saldos", "meaning": "sales" }
+          ],
+          "proTip": "'Qual é o preço?' = What's the price? For bargaining (rare in Portugal except at markets): 'Pode fazer melhor preço?' (Can you do a better price?)"
         },
         {
           "portuguese": "barato",
@@ -4611,7 +4742,13 @@
           "gender": "m",
           "pronunciation": "TROH-koo",
           "example": "Quer o troco?",
-          "exampleTranslation": "Do you want the change?"
+          "exampleTranslation": "Do you want the change?",
+          "relatedWords": [
+            { "word": "moeda", "meaning": "coin" },
+            { "word": "nota", "meaning": "banknote" },
+            { "word": "pagar", "meaning": "to pay" }
+          ],
+          "proTip": "'Tem troco?' = Do you have change? Small shops in Portugal sometimes struggle with large notes. 'Fique com o troco' = Keep the change."
         },
         {
           "portuguese": "desconto",
@@ -5471,7 +5608,8 @@
           "gender": "m",
           "pronunciation": "seem-PAH-tee-koo",
           "example": "O vendedor foi muito simpático.",
-          "exampleTranslation": "The salesperson was very friendly."
+          "exampleTranslation": "The salesperson was very friendly.",
+          "proTip": "False friend alert! 'Simpático' does NOT mean 'sympathetic' — it means 'nice/friendly/likeable.' To say sympathetic, use 'compreensivo.' This is one of the most common mistakes English speakers make."
         },
         {
           "portuguese": "antipático",
@@ -5543,7 +5681,13 @@
           "gender": "m",
           "pronunciation": "shah-tee-AH-doo",
           "example": "Estou chateado com a situação.",
-          "exampleTranslation": "I'm upset about the situation."
+          "exampleTranslation": "I'm upset about the situation.",
+          "relatedWords": [
+            { "word": "chatear", "meaning": "to annoy / to upset" },
+            { "word": "chato", "meaning": "boring / annoying" },
+            { "word": "irritado", "meaning": "irritated (stronger)" }
+          ],
+          "proTip": "'Chateado' is milder than 'zangado' (angry). 'Que chato!' (how annoying!) is one of the most common Portuguese expressions."
         },
         {
           "portuguese": "saudade",
@@ -5552,7 +5696,13 @@
           "gender": "f",
           "pronunciation": "sow-DAH-duh",
           "example": "Tenho saudades de ti.",
-          "exampleTranslation": "I miss you."
+          "exampleTranslation": "I miss you.",
+          "relatedWords": [
+            { "word": "saudades", "meaning": "missing someone (plural form)" },
+            { "word": "ter saudades", "meaning": "to miss / to long for" },
+            { "word": "matar saudades", "meaning": "to satisfy longing (lit. 'kill saudades')" }
+          ],
+          "proTip": "Portugal's most famous word — there's no exact English translation. 'Tenho saudades tuas' = I miss you. It's deeper than missing; it's a bittersweet longing. Central to Portuguese culture and fado music."
         },
         {
           "portuguese": "amor",
@@ -5937,7 +6087,13 @@
           "gender": null,
           "pronunciation": "GAH-zhoo / GAH-zhah",
           "example": "Conheces aquele gajo?",
-          "exampleTranslation": "Do you know that guy?"
+          "exampleTranslation": "Do you know that guy?",
+          "relatedWords": [
+            { "word": "tipo", "meaning": "dude / guy" },
+            { "word": "pessoal", "meaning": "people / everyone" },
+            { "word": "malta", "meaning": "group / crowd (informal)" }
+          ],
+          "proTip": "'Gajo' and 'gaja' are very informal — like 'dude' and 'chick.' Fine with friends but avoid in formal situations. 'Aquele gajo' = That guy. Not offensive, just casual."
         },
         {
           "portuguese": "bacano",
