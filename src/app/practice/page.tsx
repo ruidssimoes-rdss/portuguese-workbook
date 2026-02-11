@@ -13,6 +13,47 @@ const categoryCount = vocab.categories.length;
 const verbCount = verbs.order?.length ?? 0;
 const tenseCount = 6;
 
+function CardIcon({ id }: { id: string }) {
+  const className = "w-10 h-10 text-[#3C5E95]";
+  switch (id) {
+    case "flashcards":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="2" width="14" height="10" rx="2" />
+          <rect x="6" y="6" width="14" height="10" rx="2" />
+          <rect x="10" y="10" width="14" height="10" rx="2" />
+        </svg>
+      );
+    case "verb-drills":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6.5 6.5h11v11h-11z" />
+          <path d="M6.5 12h11" />
+          <path d="M12 6.5v11" />
+          <path d="M4 4l3 3" />
+          <path d="M20 20l-3-3" />
+          <path d="M20 4l-3 3" />
+          <path d="M4 20l3-3" />
+        </svg>
+      );
+    case "vocab-quiz":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      );
+    case "listening":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+          <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 const modes = [
   {
     id: "flashcards",
@@ -74,27 +115,38 @@ export default function PracticePage() {
             </p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
             {modes.map((mode) => (
-              <Link
+              <div
                 key={mode.id}
-                href={mode.href}
-                className="rounded-2xl border border-gray-100 bg-white p-6 border-t-[3px] border-t-[#3C5E95] transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(60,94,149,0.08)] block"
+                className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)]"
               >
-                <h2 className="text-xl font-bold text-gray-900">
-                  {mode.title}
-                </h2>
-                <p className="text-sm text-[#3C5E95] mt-0.5">
-                  {mode.portuguese}
-                </p>
-                <p className="text-sm text-gray-500 mt-3 leading-relaxed">
-                  {mode.description}
-                </p>
-                <p className="text-xs text-gray-400 mt-4">{mode.stats}</p>
-                <span className="text-sm text-[#3C5E95] font-medium hover:text-[#2E4A75] mt-3 inline-block transition-colors duration-200">
-                  {mode.cta} →
-                </span>
-              </Link>
+                <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white">
+                  <div className="h-[100px] bg-gradient-to-br from-[#EBF2FA] via-[#e0eaf4] to-[#d4dff0] flex items-center justify-center rounded-t-[16px]">
+                    <CardIcon id={mode.id} />
+                  </div>
+                  <div className="p-6 flex flex-col gap-3">
+                    <h3 className="text-[20px] font-bold text-[#111827]">
+                      {mode.title}
+                    </h3>
+                    <span className="text-[14px] text-[#3C5E95] font-medium -mt-2">
+                      {mode.portuguese}
+                    </span>
+                    <p className="text-[14px] text-[#6B7280] leading-relaxed">
+                      {mode.description}
+                    </p>
+                    <span className="text-[12px] text-[#9CA3AF]">
+                      {mode.stats}
+                    </span>
+                    <Link
+                      href={mode.href}
+                      className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200 mt-1"
+                    >
+                      {mode.cta} →
+                    </Link>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
