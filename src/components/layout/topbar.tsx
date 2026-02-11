@@ -73,13 +73,6 @@ const learnItems = [
   },
 ];
 
-const TOPBAR_HINTS = [
-  "Search...",
-  "How do you say...?",
-  "Conjugate a verb...",
-  "What does ... mean?",
-];
-
 const LEARN_PATHS = ["/conjugations", "/vocabulary", "/grammar", "/culture", "/practice"];
 
 function isLearnPage(pathname: string | null): boolean {
@@ -95,7 +88,7 @@ export function Topbar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [learnMenuOpen, setLearnMenuOpen] = useState(false);
   const [shortcutHint, setShortcutHint] = useState<string>("⌘K");
-  const [searchHintIndex, setSearchHintIndex] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const navLeftRef = useRef<HTMLDivElement>(null);
   const learnTriggerRef = useRef<HTMLButtonElement>(null);
@@ -128,10 +121,19 @@ export function Topbar() {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSearchHintIndex((i) => (i + 1) % TOPBAR_HINTS.length);
-    }, 4000);
-    return () => clearInterval(interval);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(typeof window !== "undefined" && window.scrollY > 10);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -241,8 +243,12 @@ export function Topbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-border-l">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10 flex items-center justify-between h-14">
+      <header
+        className={`sticky top-0 z-50 h-14 bg-white/80 backdrop-blur-xl transition-all duration-300 ease-out ${
+          isScrolled ? "border-b border-gray-200/60 shadow-[0_1px_3px_rgba(0,0,0,0.04)]" : ""
+        }`}
+      >
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 flex items-center justify-between h-full">
           <div className="flex items-center gap-4">
             <button
               type="button"
@@ -256,10 +262,10 @@ export function Topbar() {
                 <line x1="4" y1="18" x2="20" y2="18" />
               </svg>
             </button>
-            <div ref={navLeftRef} className="flex items-center gap-4 relative">
+            <div ref={navLeftRef} className="flex items-center gap-6 relative">
               <Link
                 href="/"
-                className="flex items-center gap-2 font-bold text-[15px] tracking-tight"
+                className="font-semibold text-[15px] tracking-tight hover:opacity-80 transition-opacity duration-200"
               >
                 Aula PT
               </Link>
@@ -271,9 +277,7 @@ export function Topbar() {
                   aria-expanded={learnMenuOpen}
                   aria-haspopup="true"
                   className={`text-sm font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
-                    learnActive || learnMenuOpen
-                      ? "bg-[#3C5E95]/10 text-[#3C5E95]"
-                      : "text-gray-600 hover:text-gray-900"
+                    learnActive || learnMenuOpen ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   Learn
@@ -294,9 +298,7 @@ export function Topbar() {
                 <Link
                   href="/dashboard"
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 ${
-                    pathname?.startsWith("/dashboard")
-                      ? "bg-[#3C5E95]/10 text-[#3C5E95]"
-                      : "text-gray-600 hover:text-gray-900"
+                    pathname?.startsWith("/dashboard") ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   Progress
@@ -305,7 +307,7 @@ export function Topbar() {
               {learnMenuOpen && (
                 <div
                   ref={learnPanelRef}
-                  className="absolute left-0 top-full mt-1 w-[560px] max-w-[560px] bg-white border border-gray-200 rounded-xl shadow-xl p-6 z-[60] animate-mega-open"
+                  className="absolute left-0 top-full mt-1 w-[560px] max-w-[560px] bg-white/95 backdrop-blur-md border border-gray-200/80 rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
                   role="menu"
                   onKeyDown={handleLearnPanelKeyDown}
                 >
@@ -370,7 +372,7 @@ export function Topbar() {
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 border border-gray-200 rounded-lg text-[13px] text-text-3 cursor-pointer w-12 md:w-48 transition-colors hover:border-gray-300 hover:text-text-2 justify-center md:justify-start"
+              className="flex items-center gap-2 h-9 px-3 w-9 md:w-[160px] lg:w-[200px] rounded-full bg-gray-100/80 hover:bg-gray-200/80 border border-gray-200/50 text-gray-400 transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-gray-300/50 justify-center md:justify-start whitespace-nowrap"
               aria-label="Search"
             >
               <svg
@@ -380,13 +382,13 @@ export function Topbar() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                className="opacity-40 shrink-0"
+                className="shrink-0 text-gray-400"
               >
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
-              <span className="hidden md:inline">{TOPBAR_HINTS[searchHintIndex]}</span>
-              <kbd className="hidden md:inline ml-auto text-[11px] px-1.5 py-0.5 border border-border rounded text-text-3 font-sans">
+              <span className="hidden md:inline text-sm text-gray-400">Search...</span>
+              <kbd className="hidden md:inline ml-auto text-[11px] font-mono px-1.5 py-0.5 rounded bg-gray-200/60 text-gray-400">
                 {shortcutHint}
               </kbd>
             </button>
@@ -462,10 +464,10 @@ export function Topbar() {
           aria-label="Navigation menu"
         >
           <div
-            className="absolute inset-0 bg-white/90 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/10 backdrop-blur-sm"
             onClick={closeMobileMenu}
           />
-          <div className="relative bg-white border-b border-border-l shadow-lg animate-fade-in">
+          <div className="relative bg-white/95 backdrop-blur-md border-b border-gray-200/60 shadow-lg animate-fade-in">
             <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-14">
               <span className="text-[13px] font-medium text-text-2">Menu</span>
               <button
