@@ -60,7 +60,7 @@ export default function VerbPage() {
     return (
       <>
         <Topbar />
-        <main className="w-full px-4 md:px-6 lg:px-10 py-16">
+        <main className="max-w-[1280px] mx-auto w-full px-4 md:px-6 lg:px-10 py-16">
           <p className="text-text-2">Verb not found.</p>
           <Link href="/conjugations" className="text-text-2 underline mt-2 block">
             ← Back to all verbs
@@ -81,13 +81,13 @@ export default function VerbPage() {
   return (
     <>
       <Topbar />
-      <main className="w-full px-4 md:px-6 lg:px-10">
+      <main className="max-w-[1280px] mx-auto w-full px-4 md:px-6 lg:px-10">
         {/* Compact header */}
         <div className="flex items-center justify-between gap-4 flex-wrap py-5">
           <div className="flex items-center gap-2 flex-wrap">
             <Link
               href="/conjugations"
-              className="text-text-3 hover:text-text transition-colors"
+              className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
             >
               <svg
                 width="20"
@@ -103,7 +103,7 @@ export default function VerbPage() {
             <span className="text-[22px] font-bold tracking-tight">{slug}</span>
             <PronunciationButton text={slug} size="md" className="shrink-0" />
             {m.pronunciation && (
-              <span className="text-sm text-gray-400 font-mono">{m.pronunciation}</span>
+              <span className="text-sm text-[#9CA3AF] font-mono">{m.pronunciation}</span>
             )}
             <span className="text-[13px] text-text-3 ml-1">
               · {m.english} · {m.group}
@@ -116,16 +116,16 @@ export default function VerbPage() {
         </div>
 
         {/* Tense filters */}
-        <div className="flex gap-1.5 flex-wrap mb-4 pb-3 border-b border-border-l">
+        <div className="flex items-center gap-2 flex-wrap mb-6 pb-4 border-b border-[#E9E9E9]">
           {tenses.map((t) => (
             <button
               key={t}
               onClick={() => setTenseFilter(t)}
-              className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
+              className={
                 tenseFilter === t
-                  ? "bg-[#3C5E95] text-white border-[#3C5E95]"
-                  : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-gray-300"
-              }`}
+                  ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                  : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200 whitespace-nowrap"
+              }
             >
               {t}
             </button>
@@ -141,8 +141,8 @@ export default function VerbPage() {
               <div
                 key={i}
                 ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLDivElement>) : undefined}
-                className={`border rounded-lg p-4 ${
-                  r.Type === "Exception" ? "border-amber-200 bg-amber-50" : "border-border-l bg-white"
+                className={`border rounded-[14px] p-4 ${
+                  r.Type === "Exception" ? "border-amber-200 bg-amber-50" : "border-[#E9E9E9] bg-white"
                 } ${isHighlight && flashHighlight ? "ring-2 ring-blue-400 bg-sky-50" : ""}`}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -186,34 +186,34 @@ export default function VerbPage() {
         </div>
 
         {/* Desktop: table — full width, no scroll, text wraps; Notes only when a tense is selected */}
-        <div className="hidden md:block mb-12 border border-border rounded-lg bg-white">
+        <div className="hidden md:block mb-12 border border-[#E5E5E5] rounded-[14px] bg-white">
           <table className="w-full text-[13px] border-collapse table-auto">
             <thead>
               <tr>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
                   Tense
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
                   Person
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
                   Conjugation
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s min-w-0">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] min-w-0">
                   Example
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s min-w-0">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] min-w-0">
                   Translation
                 </th>
                 {tenseFilter !== "All" && (
-                  <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s min-w-0">
+                  <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] min-w-0">
                     Notes
                   </th>
                 )}
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
                   CEFR
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-border bg-bg-s whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
                   Type
                 </th>
               </tr>
@@ -230,41 +230,41 @@ export default function VerbPage() {
                   <tr
                     key={i}
                     ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLTableRowElement>) : undefined}
-                    className={`hover:bg-bg-s ${newTense ? "border-t-2 border-border" : ""} ${
+                    className={`hover:bg-[#FAFAFA] ${newTense ? "border-t-2 border-[#E9E9E9]" : ""} ${
                       isHighlight && flashHighlight ? "bg-blue-100" : ""
                     }`}
                   >
-                    <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
                       <Badge variant={tenseVariant[r.Tense] || "gray"}>
                         {r.Tense}
                       </Badge>
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l font-medium whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] font-medium whitespace-nowrap">
                       {person}
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
                       <div className="flex items-center gap-1.5">
                         <span className="font-bold tracking-tight">{r.Conjugation}</span>
                         <PronunciationButton text={r.Conjugation} size="sm" variant="muted" />
                       </div>
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 italic text-[12.5px] min-w-0 break-words">
+                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] text-text-2 italic text-[12.5px] min-w-0 break-words">
                       {r["Example Sentence"]}
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l text-text-3 text-[12px] min-w-0 break-words">
+                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] text-text-3 text-[12px] min-w-0 break-words">
                       {r["English Translation"]}
                     </td>
                     {tenseFilter !== "All" && (
-                      <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 text-[12px] min-w-0 break-words">
+                      <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] text-text-2 text-[12px] min-w-0 break-words">
                         {r.Notes}
                       </td>
                     )}
-                    <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
                       <Badge variant={cefrVariant[r["CEFR (Tense)"]] || "gray"}>
                         {r["CEFR (Tense)"]}
                       </Badge>
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
                       <Badge variant={r.Type === "Exception" ? "orange" : "green"}>
                         {r.Type === "Exception" ? "Irreg." : "Reg."}
                       </Badge>

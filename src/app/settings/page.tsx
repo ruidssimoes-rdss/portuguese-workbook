@@ -122,7 +122,7 @@ export default function SettingsPage() {
       <Topbar />
       <ProtectedRoute>
         <main className="max-w-[640px] mx-auto px-4 md:px-6 py-12">
-          <h1 className="text-2xl font-bold tracking-tight text-text">Definições</h1>
+          <h1 className="text-[22px] font-bold tracking-tight text-text">Definições</h1>
 
           {message && (
             <div
@@ -138,9 +138,9 @@ export default function SettingsPage() {
 
           <section className="mt-8">
             <h2 className="text-lg font-semibold text-text mb-3">Perfil</h2>
-            <div className="rounded-lg border border-gray-200 bg-white p-4 space-y-4">
+            <div className="rounded-[14px] border border-[#E9E9E9] bg-white p-5 space-y-4">
               <div>
-                <label htmlFor="display-name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="display-name" className="block text-sm font-medium text-[#374151] mb-1">
                   Nome
                 </label>
                 <input
@@ -148,12 +148,12 @@ export default function SettingsPage() {
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
+                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <p className="text-gray-600 text-[15px]">{user?.email ?? "—"}</p>
+                <label className="block text-sm font-medium text-[#374151] mb-1">Email</label>
+                <p className="text-[#6B7280] text-[15px]">{user?.email ?? "—"}</p>
               </div>
               <button
                 type="button"
@@ -168,15 +168,15 @@ export default function SettingsPage() {
 
           <section className="mt-8">
             <h2 className="text-lg font-semibold text-text mb-3">Preferências de aprendizagem</h2>
-            <div className="rounded-lg border border-gray-200 bg-white p-4 space-y-4">
+            <div className="rounded-[14px] border border-[#E9E9E9] bg-white p-5 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#374151] mb-2">
                   Velocidade da pronúncia
                 </label>
                 <select
                   value={pronunciationSpeed}
                   onChange={(e) => setPronunciationSpeed(Number(e.target.value))}
-                  className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
+                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
                 >
                   {SPEED_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -186,14 +186,14 @@ export default function SettingsPage() {
                 </select>
               </div>
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-gray-700">Mostrar fonética</label>
+                <label className="text-sm font-medium text-[#374151]">Mostrar fonética</label>
                 <button
                   type="button"
                   role="switch"
                   aria-checked={showPhonetics}
                   onClick={() => setShowPhonetics((v) => !v)}
                   className={`relative inline-flex h-6 w-11 shrink-0 rounded-full border transition-colors ${
-                    showPhonetics ? "bg-[#3C5E95] border-[#3C5E95]" : "bg-gray-200 border-gray-200"
+                    showPhonetics ? "bg-[#3C5E95] border-[#3C5E95]" : "bg-[#E5E7EB] border-[#E9E9E9]"
                   }`}
                 >
                   <span
@@ -205,11 +205,11 @@ export default function SettingsPage() {
                 </button>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Objetivo diário (palavras)</label>
+                <label className="block text-sm font-medium text-[#374151] mb-2">Objetivo diário (palavras)</label>
                 <select
                   value={dailyGoal}
                   onChange={(e) => setDailyGoal(Number(e.target.value))}
-                  className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
+                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
                 >
                   {DAILY_GOAL_OPTIONS.map((n) => (
                     <option key={n} value={n}>
@@ -231,7 +231,7 @@ export default function SettingsPage() {
 
           <section className="mt-8">
             <h2 className="text-lg font-semibold text-text mb-3">Conta</h2>
-            <div className="rounded-lg border border-gray-200 bg-white p-4 space-y-3">
+            <div className="rounded-[14px] border border-[#E9E9E9] bg-white p-5 space-y-3">
               <p>
                 <Link
                   href="/auth/update-password"
@@ -243,11 +243,11 @@ export default function SettingsPage() {
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-text-2 hover:bg-bg-s"
+                className="rounded-lg border border-[#E9E9E9] px-4 py-2 text-sm font-medium text-text-2 hover:bg-[#FAFAFA]"
               >
                 Sair
               </button>
-              <p className="text-sm text-gray-500 pt-2">
+              <p className="text-sm text-[#6B7280] pt-2">
                 Para apagar a tua conta, contacta-nos.
               </p>
             </div>

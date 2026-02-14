@@ -54,50 +54,50 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
   return (
     <article
       id={saying.id}
-      className={`bg-white border rounded-lg p-6 mb-4 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200 ${
-        isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : "border-gray-200"
-      }`}
+      className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 mb-4 transition-all duration-200 ${
+        isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : ""
+      } hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-gray-900 italic">&quot;{saying.portuguese}&quot;</p>
-          <p className="text-sm font-mono text-gray-400 mt-1">{saying.pronunciation}</p>
+          <p className="text-lg font-semibold text-[#111827] italic">&quot;{saying.portuguese}&quot;</p>
+          <p className="text-sm font-mono text-[#9CA3AF] mt-1">{saying.pronunciation}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={saying.portuguese} size="sm" />
-          <span className="inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-gray-100 text-gray-700 border border-gray-200">{saying.cefr}</span>
-          <button type="button" onClick={handleCopy} className="text-xs text-gray-500 hover:text-[#3C5E95] px-2 py-1 rounded border border-gray-200 hover:border-[#3C5E95]/30 transition-colors">
+          <span className="inline-flex text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">{saying.cefr}</span>
+          <button type="button" onClick={handleCopy} className="text-xs text-[#6B7280] hover:text-[#3C5E95] px-2 py-1 rounded-lg border border-[#E9E9E9] hover:border-[#3C5E95]/30 transition-colors">
             {copied ? "Copied" : "Copy"}
           </button>
         </div>
       </div>
-      <div className="border-t border-gray-100 pt-3 mt-3">
-        <p className="text-sm font-semibold text-gray-500 mb-0.5">Literal:</p>
-        <p className="text-sm text-gray-700">{saying.literal}</p>
+      <div className="border-t border-[#F0F0F0] pt-3 mt-3">
+        <p className="text-sm font-semibold text-[#6B7280] mb-0.5">Literal:</p>
+        <p className="text-sm text-[#374151]">{saying.literal}</p>
       </div>
-      <div className="border-t border-gray-100 pt-3 mt-3">
-        <p className="text-sm font-semibold text-gray-700 mb-0.5">Meaning:</p>
-        <p className="text-sm text-gray-700">{saying.meaning}</p>
+      <div className="border-t border-[#F0F0F0] pt-3 mt-3">
+        <p className="text-sm font-semibold text-[#374151] mb-0.5">Meaning:</p>
+        <p className="text-sm text-[#374151]">{saying.meaning}</p>
       </div>
-      <div className="border-t border-gray-100 pt-3 mt-3">
-        <p className="text-sm font-semibold text-gray-500 mb-0.5">When to use:</p>
-        <p className="text-sm text-gray-700">{saying.usage}</p>
+      <div className="border-t border-[#F0F0F0] pt-3 mt-3">
+        <p className="text-sm font-semibold text-[#6B7280] mb-0.5">When to use:</p>
+        <p className="text-sm text-[#374151]">{saying.usage}</p>
       </div>
       {hasExample && (
-        <div className="border-t border-gray-100 pt-3 mt-3">
-          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-gray-500 hover:text-[#3C5E95]">
+        <div className="border-t border-[#F0F0F0] pt-3 mt-3">
+          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-[#6B7280] hover:text-[#3C5E95]">
             Example {exampleOpen ? "–" : "+"}
           </button>
           {exampleOpen && (
-            <div className="bg-gray-50 rounded-lg p-4 mt-3">
-              <p className="text-sm text-gray-900 italic">{saying.example}</p>
-              {saying.exampleTranslation && <p className="text-sm text-gray-500 mt-1">{saying.exampleTranslation}</p>}
+            <div className="bg-[#F9FAFB] rounded-lg p-4 mt-3">
+              <p className="text-sm text-[#111827] italic">{saying.example}</p>
+              {saying.exampleTranslation && <p className="text-sm text-[#6B7280] mt-1">{saying.exampleTranslation}</p>}
             </div>
           )}
         </div>
       )}
-      <div className="border-t border-gray-100 pt-3 mt-3">
-        <span className="inline-block bg-gray-100 text-gray-600 rounded-full px-3 py-1 text-xs">
+      <div className="border-t border-[#F0F0F0] pt-3 mt-3">
+        <span className="inline-block bg-[#F3F4F6] text-[#6B7280] rounded-full px-3 py-1 text-xs">
           {THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === saying.theme) ?? saying.theme}
         </span>
       </div>
@@ -109,30 +109,30 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
   return (
     <article
       id={item.id}
-      className={`bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200 ${
+      className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 mb-4 transition-all duration-200 ${
         isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : ""
-      }`}
+      } hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-gray-900">{item.portuguese}</p>
-          <p className="text-sm font-mono text-gray-400 mt-1">{item.pronunciation}</p>
+          <p className="text-lg font-semibold text-[#111827]">{item.portuguese}</p>
+          <p className="text-sm font-mono text-[#9CA3AF] mt-1">{item.pronunciation}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={item.portuguese} size="sm" />
-          <span className="inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-gray-100 text-gray-700 border border-gray-200">{item.cefr}</span>
+          <span className="inline-flex text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">{item.cefr}</span>
         </div>
       </div>
       <p className="text-sm font-semibold text-red-400 mt-3">
         Looks like: <span className="line-through text-red-500">{item.looksLike}</span>
       </p>
       <p className="text-sm font-semibold text-emerald-600 mt-1">Actually means: {item.actualMeaning}</p>
-      <p className="text-sm font-semibold text-gray-500 mt-2">
+      <p className="text-sm font-semibold text-[#6B7280] mt-2">
         Correct word for &quot;{item.looksLike}&quot;: {item.correctWord}
       </p>
-      <div className="border-t border-gray-100 pt-3 mt-3">
-        <p className="text-sm text-gray-700 italic">{item.example}</p>
-        <p className="text-sm text-gray-500 mt-1">{item.exampleTranslation}</p>
+      <div className="border-t border-[#F0F0F0] pt-3 mt-3">
+        <p className="text-sm text-[#374151] italic">{item.example}</p>
+        <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
       </div>
       <div className="bg-amber-50 rounded-lg p-3 mt-3">
         <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
@@ -147,16 +147,16 @@ function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
   return (
     <article
       id={tip.id}
-      className="bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200"
+      className="bg-white border border-[#E5E5E5] rounded-[14px] p-5 mb-4 transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-base font-semibold text-gray-900">{tip.title}</p>
+          <p className="text-base font-semibold text-[#111827]">{tip.title}</p>
           <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">{tip.titlePt}</p>
         </div>
-        <span className="text-xs bg-gray-100 text-gray-500 rounded-full px-3 py-1 shrink-0">{categoryLabel}</span>
+        <span className="text-xs bg-[#F3F4F6] text-[#6B7280] rounded-full px-3 py-1 shrink-0">{categoryLabel}</span>
       </div>
-      <p className="text-sm text-gray-600 mt-3">{tip.description}</p>
+      <p className="text-sm text-[#6B7280] mt-3">{tip.description}</p>
       <div className="bg-emerald-50 rounded-lg p-3 mt-3">
         <p className="text-xs font-semibold text-emerald-700">Do:</p>
         <p className="text-sm text-emerald-800">{tip.doThis}</p>
@@ -171,13 +171,13 @@ function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
 
 function regionBadgeClass(region: string): string {
   switch (region) {
-    case "lisbon": return "bg-yellow-50 text-yellow-700 border border-yellow-200";
-    case "porto": return "bg-blue-50 text-blue-700 border border-blue-200";
-    case "algarve": return "bg-orange-50 text-orange-700 border border-orange-200";
-    case "north": return "bg-emerald-50 text-emerald-700 border border-emerald-200";
-    case "azores": return "bg-cyan-50 text-cyan-700 border border-cyan-200";
-    case "madeira": return "bg-blue-50 text-blue-700 border border-blue-200";
-    default: return "bg-gray-100 text-gray-700 border border-gray-200";
+    case "lisbon": return "bg-yellow-50 text-yellow-700";
+    case "porto": return "bg-blue-50 text-blue-700";
+    case "algarve": return "bg-orange-50 text-orange-700";
+    case "north": return "bg-emerald-50 text-emerald-700";
+    case "azores": return "bg-cyan-50 text-cyan-700";
+    case "madeira": return "bg-blue-50 text-blue-700";
+    default: return "bg-[#F3F4F6] text-[#6B7280]";
   }
 }
 function regionLabel(region: string): string {
@@ -189,29 +189,28 @@ function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHig
   return (
     <article
       id={item.id}
-      className={`bg-white border border-gray-200 rounded-lg p-6 mb-4 hover:border-[#3C5E95]/30 hover:shadow-sm transition-all duration-200 border-l-[3px] ${
+      className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 mb-4 transition-all duration-200 ${
         isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : ""
-      }`}
-      style={{ borderLeftColor: item.region === "lisbon" ? "#eab308" : item.region === "porto" ? "#3b82f6" : item.region === "algarve" ? "#f97316" : item.region === "north" ? "#10b981" : item.region === "azores" ? "#06b6d4" : item.region === "madeira" ? "#a855f7" : "#e5e7eb" }}
+      } hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-gray-900 italic">{item.expression}</p>
-          <p className="text-sm font-mono text-gray-400 mt-1">{item.pronunciation}</p>
+          <p className="text-lg font-semibold text-[#111827] italic">{item.expression}</p>
+          <p className="text-sm font-mono text-[#9CA3AF] mt-1">{item.pronunciation}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={item.expression} size="sm" />
-          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full border ${regionBadgeClass(item.region)}`}>
+          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${regionBadgeClass(item.region)}`}>
             {regionLabel(item.region)}
           </span>
-          <span className="inline-flex text-[11px] font-semibold px-2.5 py-[2px] rounded-full bg-gray-100 text-gray-700 border border-gray-200">{item.cefr}</span>
+          <span className="inline-flex text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">{item.cefr}</span>
         </div>
       </div>
-      <p className="text-sm text-gray-700 mt-3"><span className="font-semibold text-gray-500">Meaning:</span> {item.meaning}</p>
-      <p className="text-sm font-semibold text-gray-500 mt-2">Standard Portuguese: {item.standardAlternative}</p>
-      <div className="border-t border-gray-100 pt-3 mt-3">
-        <p className="text-sm text-gray-900 italic">{item.example}</p>
-        <p className="text-sm text-gray-500 mt-1">{item.exampleTranslation}</p>
+      <p className="text-sm text-[#374151] mt-3"><span className="font-semibold text-[#6B7280]">Meaning:</span> {item.meaning}</p>
+      <p className="text-sm font-semibold text-[#6B7280] mt-2">Standard Portuguese: {item.standardAlternative}</p>
+      <div className="border-t border-[#F0F0F0] pt-3 mt-3">
+        <p className="text-sm text-[#111827] italic">{item.example}</p>
+        <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
       </div>
     </article>
   );
@@ -311,37 +310,37 @@ function CultureContent() {
     <>
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
-        <section className="py-10 md:py-14">
+        <section className="py-5">
           <div>
-            <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-gray-900">
+            <h1 className="text-[22px] font-bold tracking-tight">
               Culture & Expressions
             </h1>
-            <p className="text-lg text-[#3C5E95]/70 font-medium -mt-1">
+            <p className="text-[14px] text-[#3C5E95] font-medium -mt-1">
               Cultura e Expressões
             </p>
-            <p className="text-[14px] text-gray-500 mt-1">
+            <p className="text-[13px] text-text-3 mt-1">
               Explore Portuguese language and culture — sayings, false friends, etiquette, and regional expressions.
             </p>
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-[13px] text-text-3 mt-1">
               4 sections · {sayings.length} sayings · {falseFriends.length} false friends · {etiquetteTips.length} etiquette tips · {regionalExpressions.length} regional expressions
             </p>
           </div>
 
-          <div className="border-b border-gray-200 mb-6 mt-8 overflow-x-auto whitespace-nowrap">
+          <div className="border-b border-[#E9E9E9] mb-6 mt-6 overflow-x-auto whitespace-nowrap">
             <div className="flex gap-1 min-w-max pb-px">
               {TABS.map((t) => (
                 <button
                   key={t.id}
                   type="button"
                   onClick={() => setTab(t.id)}
-                  className={`pb-3 px-1 text-sm font-medium cursor-pointer transition-colors relative min-h-[44px] flex flex-col items-center sm:items-start ${
-                    tab === t.id ? "text-[#3C5E95] border-b-2 border-[#3C5E95] -mb-px" : "text-gray-400 hover:text-gray-600"
+                  className={`pb-3 px-1 text-[13px] font-medium cursor-pointer transition-colors relative min-h-[44px] flex flex-col items-center sm:items-start ${
+                    tab === t.id ? "text-[#3C5E95] border-b-2 border-[#3C5E95] -mb-px" : "text-[#9CA3AF] hover:text-[#6B7280]"
                   }`}
                 >
                   <span>
                     {t.label} ({t.count})
                   </span>
-                  <span className="text-[10px] text-gray-300 block hidden md:block">{t.labelPt}</span>
+                  <span className="text-[10px] text-[#9CA3AF] block hidden md:block">{t.labelPt}</span>
                 </button>
               ))}
             </div>
@@ -349,15 +348,17 @@ function CultureContent() {
 
           {tab === "sayings" && (
             <>
-              <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
+              <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-[#E9E9E9]">
                 <div className="flex items-center gap-2 flex-wrap">
                   {CEFR_LEVELS.map((level) => (
                     <button
                       key={level}
                       onClick={() => setCefrFilter(level)}
-                      className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                        cefrFilter === level ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-                      }`}
+                      className={
+                        cefrFilter === level
+                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+                      }
                     >
                       {level}
                     </button>
@@ -368,9 +369,11 @@ function CultureContent() {
                     <button
                       key={t}
                       onClick={() => setThemeFilter(t)}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                        themeFilter === t ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-                      }`}
+                      className={
+                        themeFilter === t
+                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+                      }
                     >
                       {t}
                     </button>
@@ -382,14 +385,14 @@ function CultureContent() {
                     placeholder="Search sayings..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[200px] transition-colors"
+                    className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
                   />
                 </div>
-                <p className="text-sm text-gray-500">Showing {filteredSayings.length} of {sayings.length}</p>
+                <p className="text-[13px] text-[#6B7280]">Showing {filteredSayings.length} of {sayings.length}</p>
               </div>
               <div className="pb-16">
                 {filteredSayings.length === 0 ? (
-                  <p className="text-sm text-gray-500 py-8">No sayings match your filters.</p>
+                  <p className="text-[13px] text-[#6B7280] py-8">No sayings match your filters.</p>
                 ) : (
                   filteredSayings.map((saying) => (
                     <SayingCard key={saying.id} saying={saying} isHighlighted={highlightId === saying.id} />
@@ -401,15 +404,17 @@ function CultureContent() {
 
           {tab === "false-friends" && (
             <>
-              <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
+              <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-[#E9E9E9]">
                 <div className="flex items-center gap-2 flex-wrap">
                   {CEFR_LEVELS.map((level) => (
                     <button
                       key={level}
                       onClick={() => setCefrFilter(level)}
-                      className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                        cefrFilter === level ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-                      }`}
+                      className={
+                        cefrFilter === level
+                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+                      }
                     >
                       {level}
                     </button>
@@ -420,13 +425,13 @@ function CultureContent() {
                   placeholder="Search false friends..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[220px] transition-colors"
+                  className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
                 />
-                <p className="text-sm text-gray-500">Showing {filteredFalseFriends.length} of {falseFriends.length}</p>
+                <p className="text-[13px] text-[#6B7280]">Showing {filteredFalseFriends.length} of {falseFriends.length}</p>
               </div>
               <div className="pb-16">
                 {filteredFalseFriends.length === 0 ? (
-                  <p className="text-sm text-gray-500 py-8">No false friends match your filters.</p>
+                  <p className="text-[13px] text-[#6B7280] py-8">No false friends match your filters.</p>
                 ) : (
                   filteredFalseFriends.map((item) => (
                     <FalseFriendCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
@@ -438,15 +443,17 @@ function CultureContent() {
 
           {tab === "etiquette" && (
             <>
-              <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
+              <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-[#E9E9E9]">
                 <div className="flex items-center gap-2 flex-wrap">
                   {ETIQUETTE_CATEGORIES.map((c) => (
                     <button
                       key={c}
                       onClick={() => setEtiquetteCategory(c)}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                        etiquetteCategory === c ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-                      }`}
+                      className={
+                        etiquetteCategory === c
+                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+                      }
                     >
                       {c}
                     </button>
@@ -457,13 +464,13 @@ function CultureContent() {
                   placeholder="Search etiquette..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[220px] transition-colors"
+                  className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
                 />
-                <p className="text-sm text-gray-500">Showing {filteredEtiquette.length} of {etiquetteTips.length}</p>
+                <p className="text-[13px] text-[#6B7280]">Showing {filteredEtiquette.length} of {etiquetteTips.length}</p>
               </div>
               <div className="pb-16">
                 {filteredEtiquette.length === 0 ? (
-                  <p className="text-sm text-gray-500 py-8">No tips match your filters.</p>
+                  <p className="text-[13px] text-[#6B7280] py-8">No tips match your filters.</p>
                 ) : (
                   filteredEtiquette.map((tip) => <EtiquetteCard key={tip.id} tip={tip} />)
                 )}
@@ -473,15 +480,17 @@ function CultureContent() {
 
           {tab === "regional" && (
             <>
-              <div className="flex flex-col gap-4 pb-6 border-t border-gray-200 pt-5">
+              <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-[#E9E9E9]">
                 <div className="flex items-center gap-2 flex-wrap">
                   {REGIONS.map((r) => (
                     <button
                       key={r}
                       onClick={() => setRegionFilter(r)}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                        regionFilter === r ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-                      }`}
+                      className={
+                        regionFilter === r
+                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+                      }
                     >
                       {r}
                     </button>
@@ -492,9 +501,11 @@ function CultureContent() {
                     <button
                       key={level}
                       onClick={() => setCefrFilter(level)}
-                      className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                        cefrFilter === level ? "bg-[#3C5E95] text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-                      }`}
+                      className={
+                        cefrFilter === level
+                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+                      }
                     >
                       {level}
                     </button>
@@ -505,13 +516,13 @@ function CultureContent() {
                   placeholder="Search regional..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="px-3 py-1.5 border border-gray-200 rounded-lg text-[13px] bg-white text-gray-900 outline-none focus:border-[#3C5E95]/50 w-[220px] transition-colors"
+                  className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
                 />
-                <p className="text-sm text-gray-500">Showing {filteredRegional.length} of {regionalExpressions.length}</p>
+                <p className="text-[13px] text-[#6B7280]">Showing {filteredRegional.length} of {regionalExpressions.length}</p>
               </div>
               <div className="pb-16">
                 {filteredRegional.length === 0 ? (
-                  <p className="text-sm text-gray-500 py-8">No regional expressions match your filters.</p>
+                  <p className="text-[13px] text-[#6B7280] py-8">No regional expressions match your filters.</p>
                 ) : (
                   filteredRegional.map((item) => (
                     <RegionalCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
@@ -533,7 +544,7 @@ export default function CulturePage() {
         <>
           <Topbar />
           <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-12">
-            <p className="text-gray-500">Loading...</p>
+            <p className="text-[#6B7280]">Loading...</p>
           </main>
         </>
       }

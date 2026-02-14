@@ -185,7 +185,7 @@ export default function Home() {
                           className="w-8 h-8 min-w-[32px] min-h-[32px] shrink-0"
                         />
                       </div>
-                      <div className="h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" aria-hidden />
+                      <div className="h-px bg-[#F0F0F0]" aria-hidden />
                       <span className="text-[18px] font-medium text-[#374151] leading-[23px] break-words">
                         {wordOfDay.word.english}
                       </span>
@@ -264,7 +264,7 @@ export default function Home() {
                           className="w-8 h-8 min-w-[32px] min-h-[32px] shrink-0"
                         />
                       </div>
-                      <div className="h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" aria-hidden />
+                      <div className="h-px bg-[#F0F0F0]" aria-hidden />
                       <span className="text-[16px] font-medium text-[#374151] break-words">
                         {verbOfDay.meta.english}
                       </span>
@@ -306,7 +306,7 @@ export default function Home() {
                 </>
               ) : (
                 <div className="p-5 md:p-7">
-                  <p className="text-gray-500 text-[14px]">No verb data.</p>
+                  <p className="text-[#6B7280] text-[14px]">No verb data.</p>
                 </div>
               )}
             </div>
@@ -385,7 +385,7 @@ export default function Home() {
 
         {/* Section cards — 4-col desktop, 2x2 tablet, stacked mobile */}
         <section className="pb-12 pt-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
             {sections.map((s) => {
               const cardContent = (
                 <>
@@ -416,14 +416,14 @@ export default function Home() {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="group flex items-center gap-4 border border-border rounded-lg p-4 md:p-6 bg-white h-full transition-all duration-200 hover:border-blue-200 hover:shadow-[0_4px_16px_rgba(60,94,149,0.08)] hover:-translate-y-px cursor-pointer"
+                  className="group flex items-center gap-4 border border-[#E5E5E5] rounded-[14px] p-4 md:p-6 bg-white h-full transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] cursor-pointer"
                 >
                   {cardContent}
                 </Link>
               ) : (
                 <div
                   key={s.href}
-                  className="flex items-center gap-4 border border-dashed border-border rounded-lg p-4 md:p-6 bg-bg-s h-full cursor-not-allowed"
+                  className="flex items-center gap-4 border border-dashed border-[#E5E5E5] rounded-[14px] p-4 md:p-6 bg-[#FAFAFA] h-full cursor-not-allowed"
                 >
                   <div className="flex-1 min-w-0">
                     <h2 className="text-lg font-bold tracking-tight text-text-2">

@@ -259,13 +259,13 @@ export default function ListeningPage() {
         <main className="min-h-screen bg-[#fafafa]" onKeyDown={handleKeyDown}>
           <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-8">
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-[#9CA3AF]">
                 Question {current} of {total}
               </p>
               <button
                 type="button"
                 onClick={() => confirm("End session?") && (setEndTime(Date.now()), setPhase("results"))}
-                className="text-sm text-gray-400 hover:text-gray-600"
+                className="text-sm text-[#9CA3AF] hover:text-[#6B7280]"
               >
                 End
               </button>
@@ -292,7 +292,7 @@ export default function ListeningPage() {
                   <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
                 </svg>
               </button>
-              <p className="text-sm text-gray-400 mt-2">{hasPlayed ? "Tap to replay" : "Tap to listen"}</p>
+              <p className="text-sm text-[#9CA3AF] mt-2">{hasPlayed ? "Tap to replay" : "Tap to listen"}</p>
 
               <input
                 ref={inputRef}
@@ -306,7 +306,7 @@ export default function ListeningPage() {
                     ? "border-emerald-400 bg-emerald-50"
                     : feedback === "wrong"
                       ? "border-red-400 bg-red-50"
-                      : "border-gray-200 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]"
+                      : "border-[#E9E9E9] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]"
                 }`}
                 autoFocus
               />
@@ -316,21 +316,21 @@ export default function ListeningPage() {
               {feedback === "wrong" && (
                 <>
                   <p className="text-red-500 font-medium text-sm mt-2">Not quite</p>
-                  <p className="text-lg font-bold text-gray-900 mt-2">The answer is: {correctAnswer}</p>
+                  <p className="text-lg font-bold text-[#111827] mt-2">The answer is: {correctAnswer}</p>
                 </>
               )}
               {(feedback === "correct" || feedback === "wrong") && content === "Vocabulary" && "exampleTranslation" in currentQ && currentQ.example && (
-                <div className="bg-gray-50 rounded-xl p-4 mt-4 text-left">
-                  <p className="text-sm text-gray-800 italic">{currentQ.example}</p>
+                <div className="bg-[#F9FAFB] rounded-[14px] p-4 mt-4 text-left">
+                  <p className="text-sm text-[#1F2937] italic">{currentQ.example}</p>
                   {"exampleTranslation" in currentQ && currentQ.exampleTranslation && (
-                    <p className="text-xs text-gray-500 mt-1">{currentQ.exampleTranslation}</p>
+                    <p className="text-xs text-[#6B7280] mt-1">{currentQ.exampleTranslation}</p>
                   )}
                 </div>
               )}
               {(feedback === "correct" || feedback === "wrong") && content === "Verb conjugations" && "translation" in currentQ && currentQ.example && (
-                <div className="bg-gray-50 rounded-xl p-4 mt-4 text-left">
-                  <p className="text-sm text-gray-800 italic">{currentQ.example}</p>
-                  <p className="text-xs text-gray-500 mt-1">{currentQ.translation}</p>
+                <div className="bg-[#F9FAFB] rounded-[14px] p-4 mt-4 text-left">
+                  <p className="text-sm text-[#1F2937] italic">{currentQ.example}</p>
+                  <p className="text-xs text-[#6B7280] mt-1">{currentQ.translation}</p>
                 </div>
               )}
               {feedback === null && (
@@ -371,18 +371,18 @@ export default function ListeningPage() {
       <main className="min-h-screen bg-[#fafafa]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-10">
           <header className="mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-bold text-[#111827] tracking-tight">
               Listening Practice
             </h1>
             <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">Prática de Audição</p>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-[#6B7280] mt-2">
               Listen and identify words and phrases. Train your ear for European Portuguese.
             </p>
           </header>
 
           <div className="max-w-lg mx-auto space-y-8">
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Content</p>
+              <p className="text-sm font-medium text-[#374151] mb-2">Content</p>
               <div className="flex flex-wrap gap-2">
                 {(["Vocabulary", "Verb conjugations"] as const).map((c) => (
                   <button
@@ -392,7 +392,7 @@ export default function ListeningPage() {
                     className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                       content === c
                         ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
-                        : "border border-gray-200 text-gray-600 bg-white hover:bg-gray-50"
+                        : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                     }`}
                   >
                     {c}
@@ -402,11 +402,11 @@ export default function ListeningPage() {
             </div>
             {content === "Vocabulary" && (
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">Category</p>
+                <p className="text-sm font-medium text-[#374151] mb-2">Category</p>
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-white text-gray-900"
+                  className="w-full px-4 py-2.5 border border-[#E9E9E9] rounded-xl bg-white text-[#111827]"
                 >
                   <option value="all">All categories</option>
                   {vocab.categories.map((c) => (
@@ -417,7 +417,7 @@ export default function ListeningPage() {
             )}
             {content === "Verb conjugations" && (
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">Tense</p>
+                <p className="text-sm font-medium text-[#374151] mb-2">Tense</p>
                 <div className="flex flex-wrap gap-2">
                   {TENSES.map((t) => (
                     <button
@@ -435,7 +435,7 @@ export default function ListeningPage() {
                       className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                         selectedTenses.includes(t)
                           ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
-                          : "border border-gray-200 text-gray-600 bg-white hover:bg-gray-50"
+                          : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                       }`}
                     >
                       {t}
@@ -445,11 +445,11 @@ export default function ListeningPage() {
               </div>
             )}
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Level</p>
+              <p className="text-sm font-medium text-[#374151] mb-2">Level</p>
               <select
                 value={level}
                 onChange={(e) => setLevel(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-white text-gray-900"
+                className="w-full px-4 py-2.5 border border-[#E9E9E9] rounded-xl bg-white text-[#111827]"
               >
                 {LEVELS.map((l) => (
                   <option key={l} value={l}>{l}</option>
@@ -457,11 +457,11 @@ export default function ListeningPage() {
               </select>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Number of questions</p>
+              <p className="text-sm font-medium text-[#374151] mb-2">Number of questions</p>
               <select
                 value={count}
                 onChange={(e) => setCount(Number(e.target.value))}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-white text-gray-900"
+                className="w-full px-4 py-2.5 border border-[#E9E9E9] rounded-xl bg-white text-[#111827]"
               >
                 {COUNTS.map((n) => (
                   <option key={n} value={n}>{n}</option>

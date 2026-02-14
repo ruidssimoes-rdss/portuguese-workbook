@@ -34,11 +34,11 @@ export default function ChangelogPage() {
     <>
       <Topbar />
       <main className="max-w-[896px] mx-auto px-4 md:px-6 lg:px-10 pb-16">
-        <header className="pt-10 pb-8">
-          <h1 className="text-2xl md:text-[28px] font-bold tracking-tight text-text">
+        <header className="py-5">
+          <h1 className="text-[22px] font-bold tracking-tight text-text">
             What&apos;s New
           </h1>
-          <p className="text-text-2 text-[15px] mt-1">
+          <p className="text-[13px] text-text-3 mt-1">
             Latest updates and improvements to Aula PT
           </p>
         </header>
@@ -52,7 +52,7 @@ export default function ChangelogPage() {
                 style={{ width: "8px", height: "8px", backgroundColor: ACCENT }}
               />
               <div className="flex flex-wrap items-baseline gap-2 mb-1.5">
-                <time className="text-sm text-gray-500">
+                <time className="text-sm text-[#6B7280]">
                   {formatDate(entry.date)}
                 </time>
                 <span className="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
@@ -63,11 +63,11 @@ export default function ChangelogPage() {
                 {entry.title}
               </h2>
               {entry.summary ? (
-                <p className="text-base text-gray-600 mb-2 leading-snug">
+                <p className="text-base text-[#6B7280] mb-2 leading-snug">
                   {entry.summary}
                 </p>
               ) : null}
-              <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 pl-1">
+              <ul className="list-disc list-inside space-y-1 text-sm text-[#374151] pl-1">
                 {entry.changes.map((change, j) => (
                   <li key={j}>{change}</li>
                 ))}

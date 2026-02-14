@@ -101,16 +101,16 @@ export default function PracticePage() {
   return (
     <>
       <Topbar />
-      <main className="min-h-screen bg-[#fafafa]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-10">
-          <header className="mb-10">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+      <main>
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
+          <header className="mb-6">
+            <h1 className="text-[22px] font-bold tracking-tight">
               Practice
             </h1>
-            <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
+            <p className="text-[14px] text-[#3C5E95] font-medium mt-1">
               Prática
             </p>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-[13px] text-text-3 mt-1">
               Build your Portuguese through daily practice.
             </p>
           </header>

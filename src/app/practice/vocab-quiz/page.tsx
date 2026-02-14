@@ -286,13 +286,13 @@ export default function VocabQuizPage() {
         <main className="min-h-screen bg-[#fafafa]" onKeyDown={handleKeyDown}>
           <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-8">
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-[#9CA3AF]">
                 Question {current} of {total}
               </p>
               <button
                 type="button"
                 onClick={() => confirm("End quiz?") && (setEndTime(Date.now()), setPhase("results"))}
-                className="text-sm text-gray-400 hover:text-gray-600"
+                className="text-sm text-[#9CA3AF] hover:text-[#6B7280]"
               >
                 End quiz
               </button>
@@ -300,7 +300,7 @@ export default function VocabQuizPage() {
             <PracticeProgressBar current={answered} total={total} className="mb-8" />
 
             <PracticeQuestionCard>
-              <p className="text-2xl md:text-3xl font-bold text-gray-900">
+              <p className="text-2xl md:text-3xl font-bold text-[#111827]">
                 {prompt}
               </p>
 
@@ -318,7 +318,7 @@ export default function VocabQuizPage() {
                         ? "border-emerald-400 bg-emerald-50"
                         : feedback === "wrong"
                           ? "border-red-400 bg-red-50"
-                          : "border-gray-200 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]"
+                          : "border-[#E9E9E9] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]"
                     }`}
                     autoFocus
                   />
@@ -328,13 +328,13 @@ export default function VocabQuizPage() {
                   {feedback === "wrong" && (
                     <>
                       <p className="text-red-500 font-medium text-sm mt-2">Not quite</p>
-                      <p className="text-lg font-bold text-gray-900 mt-2">The answer is: {correctAnswer}</p>
+                      <p className="text-lg font-bold text-[#111827] mt-2">The answer is: {correctAnswer}</p>
                     </>
                   )}
                   {(feedback === "correct" || feedback === "wrong") && currentQ.example && (
-                    <div className="bg-gray-50 rounded-xl p-4 mt-4 text-left">
-                      <p className="text-sm text-gray-800 italic">{currentQ.example}</p>
-                      <p className="text-xs text-gray-500 mt-1">{currentQ.exampleTranslation}</p>
+                    <div className="bg-[#F9FAFB] rounded-[14px] p-4 mt-4 text-left">
+                      <p className="text-sm text-[#1F2937] italic">{currentQ.example}</p>
+                      <p className="text-xs text-[#6B7280] mt-1">{currentQ.exampleTranslation}</p>
                     </div>
                   )}
                   {feedback === null && (
@@ -377,7 +377,7 @@ export default function VocabQuizPage() {
                             ? "border-red-400 bg-red-50 text-red-700"
                             : showCorrect && isCorrect
                               ? "border-emerald-400 bg-emerald-50 text-emerald-700"
-                              : "border-gray-200 hover:bg-gray-50 hover:border-gray-300";
+                              : "border-[#E9E9E9] hover:bg-[#F9FAFB] hover:border-[#E9E9E9]";
                       return (
                         <button
                           key={opt}
@@ -405,9 +405,9 @@ export default function VocabQuizPage() {
                     })}
                   </div>
                   {selectedOption !== null && currentQ.example && (
-                    <div className="bg-gray-50 rounded-xl p-4 mt-4 text-left">
-                      <p className="text-sm text-gray-800 italic">{currentQ.example}</p>
-                      <p className="text-xs text-gray-500 mt-1">{currentQ.exampleTranslation}</p>
+                    <div className="bg-[#F9FAFB] rounded-[14px] p-4 mt-4 text-left">
+                      <p className="text-sm text-[#1F2937] italic">{currentQ.example}</p>
+                      <p className="text-xs text-[#6B7280] mt-1">{currentQ.exampleTranslation}</p>
                     </div>
                   )}
                   {selectedOption !== null && (
@@ -437,22 +437,22 @@ export default function VocabQuizPage() {
       <main className="min-h-screen bg-[#fafafa]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-10">
           <header className="mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-bold text-[#111827] tracking-tight">
               Vocabulary Quiz
             </h1>
             <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">Questionário de Vocabulário</p>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-[#6B7280] mt-2">
               Test your vocabulary with multiple choice and typing challenges.
             </p>
           </header>
 
           <div className="max-w-lg mx-auto space-y-8">
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Category</p>
+              <p className="text-sm font-medium text-[#374151] mb-2">Category</p>
               <select
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-white text-gray-900"
+                className="w-full px-4 py-2.5 border border-[#E9E9E9] rounded-xl bg-white text-[#111827]"
               >
                 <option value="all">All categories</option>
                 {categories.map((c) => (
@@ -461,11 +461,11 @@ export default function VocabQuizPage() {
               </select>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Level</p>
+              <p className="text-sm font-medium text-[#374151] mb-2">Level</p>
               <select
                 value={level}
                 onChange={(e) => setLevel(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-white text-gray-900"
+                className="w-full px-4 py-2.5 border border-[#E9E9E9] rounded-xl bg-white text-[#111827]"
               >
                 {LEVELS.map((l) => (
                   <option key={l} value={l}>{l}</option>
@@ -473,7 +473,7 @@ export default function VocabQuizPage() {
               </select>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Mode</p>
+              <p className="text-sm font-medium text-[#374151] mb-2">Mode</p>
               <div className="flex flex-wrap gap-2">
                 {MODES.map((m) => (
                   <button
@@ -483,7 +483,7 @@ export default function VocabQuizPage() {
                     className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                       mode === m
                         ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
-                        : "border border-gray-200 text-gray-600 bg-white hover:bg-gray-50"
+                        : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                     }`}
                   >
                     {m}
@@ -492,7 +492,7 @@ export default function VocabQuizPage() {
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Format</p>
+              <p className="text-sm font-medium text-[#374151] mb-2">Format</p>
               <div className="flex flex-wrap gap-2">
                 {FORMATS.map((f) => (
                   <button
@@ -502,7 +502,7 @@ export default function VocabQuizPage() {
                     className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                       format === f
                         ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
-                        : "border border-gray-200 text-gray-600 bg-white hover:bg-gray-50"
+                        : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                     }`}
                   >
                     {f}
@@ -511,11 +511,11 @@ export default function VocabQuizPage() {
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Number of questions</p>
+              <p className="text-sm font-medium text-[#374151] mb-2">Number of questions</p>
               <select
                 value={count}
                 onChange={(e) => setCount(Number(e.target.value))}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-white text-gray-900"
+                className="w-full px-4 py-2.5 border border-[#E9E9E9] rounded-xl bg-white text-[#111827]"
               >
                 {COUNTS.map((n) => (
                   <option key={n} value={n}>{n}</option>

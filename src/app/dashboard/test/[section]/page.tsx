@@ -238,7 +238,7 @@ export default function LevelTestPage() {
         {phase === "start" && (
           <div className="max-w-[500px] mx-auto">
             <div
-              className="border rounded-lg bg-white overflow-hidden transition-all duration-200"
+              className="border border-[#E5E5E5] rounded-[14px] bg-white overflow-hidden transition-all duration-200"
               style={{ borderWidth: 1, borderColor: sectionColor }}
             >
               <div className="p-6">
@@ -337,7 +337,7 @@ export default function LevelTestPage() {
                             ? "border-green-500 bg-green-50"
                             : showWrong
                               ? "border-red-500 bg-red-50"
-                              : "border-border bg-white text-text hover:border-blue-200"
+                              : "border-[#E9E9E9] bg-white text-text hover:border-[#3C5E95]"
                         } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3C5E95]`}
                         style={
                           !revealed ? { ["--tw-ring-color" as string]: sectionColor } : undefined
@@ -408,7 +408,7 @@ export default function LevelTestPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="mt-6 w-full py-3 px-4 rounded-xl font-medium border border-border text-text hover:bg-bg-s transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    className="mt-6 w-full py-3 px-4 rounded-xl font-medium border border-[#E9E9E9] text-text hover:bg-[#FAFAFA] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
                     style={{ ["--tw-ring-color" as string]: sectionColor }}
                   >
                     {questionIndex >= questions.length - 1 ? "See Results" : "Next"}
@@ -427,7 +427,7 @@ export default function LevelTestPage() {
               </div>
             )}
             <div
-              className="border rounded-lg bg-white overflow-hidden transition-all duration-200"
+              className="border border-[#E5E5E5] rounded-[14px] bg-white overflow-hidden transition-all duration-200"
               style={{ borderWidth: 1, borderColor: sectionColor }}
             >
               <div className="p-8">
@@ -477,7 +477,7 @@ export default function LevelTestPage() {
                         </Link>
                         <Link
                           href="/dashboard"
-                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-bg-s transition-colors duration-150"
+                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-[#FAFAFA] transition-colors duration-150"
                           style={{ borderColor: sectionColor, color: sectionColor }}
                         >
                           Back to Progress & Tests
@@ -515,7 +515,7 @@ export default function LevelTestPage() {
                         </button>
                         <Link
                           href="/dashboard"
-                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-bg-s transition-colors duration-150"
+                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-[#FAFAFA] transition-colors duration-150"
                           style={{ borderColor: sectionColor, color: sectionColor }}
                         >
                           Back to Progress & Tests

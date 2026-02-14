@@ -92,7 +92,7 @@ export default function ConjugationsPage() {
           )}
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(198px,1fr))] gap-3 pb-16">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(198px,1fr))] gap-4 pb-16">
           {verbs.map((v) => {
             const m = data.verbs[v].meta;
             return (

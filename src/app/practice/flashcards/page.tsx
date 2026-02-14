@@ -212,28 +212,28 @@ export default function FlashcardsPage() {
     return (
       <>
         <Topbar />
-        <main className="min-h-screen bg-[#fafafa]">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-10">
-            <header className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+        <main>
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
+            <header className="mb-6">
+              <h1 className="text-[22px] font-bold tracking-tight">
                 Flashcards
               </h1>
-              <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
+              <p className="text-[14px] text-[#3C5E95] font-medium mt-1">
                 Cartões de Memória
               </p>
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-[13px] text-text-3 mt-1">
                 Choose what to practice:
               </p>
             </header>
-            <div className="max-w-md mx-auto bg-white border border-gray-200 rounded-xl shadow-sm p-6">
-              <div className="flex items-center justify-between py-3 border-b border-gray-100">
-                <label className="text-sm font-medium text-gray-700">
+            <div className="max-w-md mx-auto bg-white border border-[#E9E9E9] rounded-[14px] p-5">
+              <div className="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
+                <label className="text-sm font-medium text-[#374151]">
                   Category
                 </label>
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   <option value="all">All categories</option>
                   {categories.map((c) => (
@@ -243,12 +243,12 @@ export default function FlashcardsPage() {
                   ))}
                 </select>
               </div>
-              <div className="flex items-center justify-between py-3 border-b border-gray-100">
-                <label className="text-sm font-medium text-gray-700">Level</label>
+              <div className="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
+                <label className="text-sm font-medium text-[#374151]">Level</label>
                 <select
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {CEFR_OPTIONS.map((l) => (
                     <option key={l} value={l}>
@@ -257,14 +257,14 @@ export default function FlashcardsPage() {
                   ))}
                 </select>
               </div>
-              <div className="flex items-center justify-between py-3 border-b border-gray-100">
-                <label className="text-sm font-medium text-gray-700">Cards</label>
+              <div className="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
+                <label className="text-sm font-medium text-[#374151]">Cards</label>
                 <select
                   value={cardCount === 0 ? "all" : cardCount}
                   onChange={(e) =>
                     setCardCount(e.target.value === "all" ? 0 : Number(e.target.value))
                   }
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {CARD_OPTIONS.map((n) => (
                     <option key={n} value={n}>
@@ -274,12 +274,12 @@ export default function FlashcardsPage() {
                   <option value="all">All</option>
                 </select>
               </div>
-              <div className="flex items-center justify-between py-3 border-b border-gray-100">
-                <label className="text-sm font-medium text-gray-700">Order</label>
+              <div className="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
+                <label className="text-sm font-medium text-[#374151]">Order</label>
                 <select
                   value={order}
                   onChange={(e) => setOrder(e.target.value as "random" | "pt" | "en")}
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {ORDER_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -288,14 +288,14 @@ export default function FlashcardsPage() {
                   ))}
                 </select>
               </div>
-              <div className="flex items-center justify-between py-3 border-b border-gray-100">
-                <label className="text-sm font-medium text-gray-700">Direction</label>
+              <div className="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
+                <label className="text-sm font-medium text-[#374151]">Direction</label>
                 <select
                   value={direction}
                   onChange={(e) =>
                     setDirection(e.target.value as "pt-en" | "en-pt" | "mixed")
                   }
-                  className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {DIRECTION_OPTIONS.map((d) => (
                     <option key={d.value} value={d.value}>
@@ -313,7 +313,7 @@ export default function FlashcardsPage() {
                 Start session →
               </button>
               {maxAvailable === 0 && (
-                <p className="text-sm text-gray-500 mt-2 text-center">
+                <p className="text-[13px] text-[#6B7280] mt-2 text-center">
                   No words match the selected filters.
                 </p>
               )}
@@ -331,12 +331,12 @@ export default function FlashcardsPage() {
     return (
       <>
         <Topbar />
-        <main className="min-h-screen bg-[#fafafa]">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-10">
+        <main>
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
             <div className="max-w-md mx-auto text-center">
-              <h1 className="text-2xl font-bold text-gray-900">Session Complete!</h1>
-              <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">Sessão Concluída!</p>
-              <div className="mt-8 py-6 border-y border-gray-200 space-y-3">
+              <h1 className="text-[22px] font-bold">Session Complete!</h1>
+              <p className="text-[14px] text-[#3C5E95] font-medium mt-1">Sessão Concluída!</p>
+              <div className="mt-8 py-6 border-y border-[#E9E9E9] space-y-3">
                 <p className="text-emerald-600 font-semibold">
                   Knew: {knownCount} / {total} ({knewPct}%)
                 </p>
@@ -346,14 +346,14 @@ export default function FlashcardsPage() {
               </div>
               {learningWords.length > 0 && (
                 <div className="mt-8 text-left">
-                  <h2 className="text-sm font-semibold text-gray-700 mb-3">
+                  <h2 className="text-sm font-semibold text-[#374151] mb-3">
                     Words to review:
                   </h2>
-                  <ul className="space-y-1 text-sm text-gray-600">
+                  <ul className="space-y-1 text-sm text-[#6B7280]">
                     {learningWords.map((w) => (
                       <li key={wordKey(w)}>
-                        <span className="font-medium text-gray-800">{w.portuguese}</span>
-                        <span className="text-gray-400"> — {w.english}</span>
+                        <span className="font-medium text-[#1F2937]">{w.portuguese}</span>
+                        <span className="text-[#9CA3AF]"> — {w.english}</span>
                       </li>
                     ))}
                   </ul>
@@ -372,13 +372,13 @@ export default function FlashcardsPage() {
                 <button
                   type="button"
                   onClick={() => setPhase("setup")}
-                  className="bg-white border border-gray-200 text-gray-700 rounded-lg px-4 py-2 text-sm font-medium hover:bg-gray-50 transition-colors min-h-[44px]"
+                  className="bg-white border border-[#E9E9E9] text-[#374151] rounded-lg px-4 py-2 text-sm font-medium hover:bg-[#F9FAFB] transition-colors min-h-[44px]"
                 >
                   New session
                 </button>
                 <Link
                   href="/practice"
-                  className="bg-gray-100 text-gray-700 rounded-lg px-4 py-2 text-sm font-medium hover:bg-gray-200 transition-colors min-h-[44px] inline-flex items-center justify-center"
+                  className="bg-[#F3F4F6] text-[#374151] rounded-lg px-4 py-2 text-sm font-medium hover:bg-[#E5E7EB] transition-colors min-h-[44px] inline-flex items-center justify-center"
                 >
                   Back to Practice
                 </Link>
@@ -395,12 +395,12 @@ export default function FlashcardsPage() {
   return (
     <>
       <Topbar />
-      <main className="min-h-screen bg-[#fafafa]">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-6">
-          <p className="text-sm text-gray-400 text-center mb-4">
+      <main>
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
+          <p className="text-[13px] text-[#9CA3AF] text-center mb-4">
             {currentIndex + 1} / {sessionWords.length}
           </p>
-          <div className="h-1 bg-gray-100 rounded-full max-w-sm mx-auto mb-8">
+          <div className="h-1 bg-[#F3F4F6] rounded-full max-w-sm mx-auto mb-8">
             <div
               className="h-full bg-[#3C5E95] rounded-full transition-all duration-300"
               style={{ width: `${progressPct}%` }}
@@ -417,7 +417,7 @@ export default function FlashcardsPage() {
               tabIndex={0}
               onClick={handleFlip}
               onKeyDown={(e) => e.key === "Enter" && handleFlip()}
-              className="w-full aspect-[3/4] bg-white border border-gray-200 rounded-xl shadow-lg cursor-pointer select-none overflow-hidden"
+              className="w-full aspect-[3/4] bg-white border border-[#E5E5E5] rounded-[14px] shadow-lg cursor-pointer select-none overflow-hidden"
               aria-label="Flip card"
             >
               <div className={`flashcard-inner w-full h-full ${isFlipped ? "flipped" : ""}`}>
@@ -425,11 +425,11 @@ export default function FlashcardsPage() {
                   {showPortugueseOnFront ? (
                     <>
                       <div className="flex items-center gap-2 flex-wrap justify-center">
-                        <span className="text-3xl font-bold text-gray-900 text-center">
+                        <span className="text-3xl font-bold text-[#111827] text-center">
                           {currentWord.portuguese}
                         </span>
                         {currentWord.gender && (
-                          <span className="text-lg text-gray-400">({currentWord.gender}.)</span>
+                          <span className="text-lg text-[#9CA3AF]">({currentWord.gender}.)</span>
                         )}
                       </div>
                       <div className="mt-4">
@@ -439,14 +439,14 @@ export default function FlashcardsPage() {
                           className="shrink-0"
                         />
                       </div>
-                      <p className="text-xs text-gray-300 mt-6">Tap to flip</p>
+                      <p className="text-xs text-[#9CA3AF] mt-6">Tap to flip</p>
                     </>
                   ) : (
                     <>
-                      <span className="text-3xl font-bold text-gray-900 text-center">
+                      <span className="text-3xl font-bold text-[#111827] text-center">
                         {currentWord.english}
                       </span>
-                      <p className="text-xs text-gray-300 mt-6">Tap to flip</p>
+                      <p className="text-xs text-[#9CA3AF] mt-6">Tap to flip</p>
                     </>
                   )}
                 </div>
@@ -454,11 +454,11 @@ export default function FlashcardsPage() {
                   <span className="text-3xl font-bold text-[#3C5E95] text-center">
                     {showPortugueseOnFront ? currentWord.english : currentWord.portuguese}
                   </span>
-                  <span className="text-lg text-gray-500 mt-2 text-center">
+                  <span className="text-lg text-[#6B7280] mt-2 text-center">
                     {showPortugueseOnFront ? currentWord.portuguese : currentWord.english}
                   </span>
                   {currentWord.pronunciation && (
-                    <span className="text-sm font-mono text-gray-400 mt-1 text-center">
+                    <span className="text-sm font-mono text-[#9CA3AF] mt-1 text-center">
                       {currentWord.pronunciation}
                     </span>
                   )}
@@ -470,16 +470,16 @@ export default function FlashcardsPage() {
                     />
                   </div>
                   {currentWord.example && (
-                    <p className="text-sm text-gray-500 italic mt-4 text-center">
+                    <p className="text-sm text-[#6B7280] italic mt-4 text-center">
                       {currentWord.example}
                     </p>
                   )}
                   {currentWord.exampleTranslation && (
-                    <p className="text-sm text-gray-500 mt-1 text-center">
+                    <p className="text-sm text-[#6B7280] mt-1 text-center">
                       {currentWord.exampleTranslation}
                     </p>
                   )}
-                  <span className="text-xs bg-gray-100 text-gray-500 rounded-full px-2 py-0.5 mt-4">
+                  <span className="text-xs bg-[#F3F4F6] text-[#6B7280] rounded-full px-2 py-0.5 mt-4">
                     {currentWord.categoryTitle}
                   </span>
                 </div>

@@ -201,27 +201,24 @@ export default function VocabularyPage() {
     <>
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
-        <section className="py-12 md:py-16">
+        <section className="py-5">
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div>
-              <h1 className="text-3xl md:text-[36px] font-bold tracking-tight text-gray-900">
+              <h1 className="text-[22px] font-bold tracking-tight">
                 Vocabulary
               </h1>
-              <p className="text-lg text-[#3C5E95]/70 font-medium -mt-1">
-                Vocabulário
-              </p>
-              <p className="text-[14px] text-gray-500 mt-1">
+              <p className="text-[13px] text-text-3 mt-1">
                 {displayTotalWords.toLocaleString()} words · {displayCategoryCount} categories · A1–B1
               </p>
-              <div className="flex gap-6 text-sm text-gray-400 mt-2">
+              <div className="flex gap-6 text-sm text-[#9CA3AF] mt-2">
                 <span>
-                  A1: <span className="font-medium text-gray-600">{levelCounts.a1} words</span>
+                  A1: <span className="font-medium text-[#6B7280]">{levelCounts.a1} words</span>
                 </span>
                 <span>
-                  A2: <span className="font-medium text-gray-600">{levelCounts.a2} words</span>
+                  A2: <span className="font-medium text-[#6B7280]">{levelCounts.a2} words</span>
                 </span>
                 <span>
-                  B1: <span className="font-medium text-gray-600">{levelCounts.b1} words</span>
+                  B1: <span className="font-medium text-[#6B7280]">{levelCounts.b1} words</span>
                 </span>
               </div>
             </div>
@@ -235,7 +232,7 @@ export default function VocabularyPage() {
           </div>
         </section>
 
-        <div className="flex items-center gap-2 flex-wrap pb-6 border-t border-gray-200 pt-5">
+        <div className="flex items-center gap-2 flex-wrap mb-6 pb-4 border-b border-[#E9E9E9]">
           {CEFR_LEVELS.map((level) => (
             <button
               key={level}
@@ -257,14 +254,14 @@ export default function VocabularyPage() {
               <div
                 className={`${sectionIndex === 0 ? "" : "mt-8"}`}
               >
-                <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
                   {section.label}
-                  <span className="text-xs font-normal normal-case tracking-normal text-[#3C5E95]/60">
+                  <span className="text-[11px] font-normal normal-case tracking-normal text-[#3C5E95]/60">
                     {" · "}
                     {section.ptName}
                   </span>
                 </h2>
-                <p className="text-sm text-gray-500 mt-1 mb-4 max-w-2xl">
+                <p className="text-[13px] text-[#9CA3AF] mt-1 mb-4 max-w-2xl">
                   {section.description}
                 </p>
               </div>
@@ -323,7 +320,7 @@ export default function VocabularyPage() {
           ))}
 
           {categoriesBySection.length === 0 && (
-            <p className="text-sm text-gray-500 py-8">
+            <p className="text-[13px] text-[#6B7280] py-8">
               No categories match your filter.
             </p>
           )}

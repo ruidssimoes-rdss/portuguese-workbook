@@ -152,11 +152,11 @@ export default function DashboardPage() {
       <ProtectedRoute>
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
           <MigrationBanner onMigrationComplete={refreshProgress} />
-          <header className="pt-12 pb-8">
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-text">
+          <header className="py-5">
+          <h1 className="text-[22px] font-bold tracking-tight text-text">
             Progress & Tests
           </h1>
-          <p className="text-text-2 mt-1 text-[15px]">
+          <p className="text-[13px] text-text-3 mt-1">
             Pass each level to unlock the next — A1.1 through B1.5
           </p>
         </header>
@@ -257,7 +257,7 @@ export default function DashboardPage() {
             return (
               <div
                 key={section}
-                className="rounded-lg border p-4 md:p-5 transition-all duration-200 flex flex-col hover:shadow-[0_4px_16px_rgba(60,94,149,0.08)] hover:-translate-y-px"
+                className="rounded-[14px] border p-4 md:p-5 transition-all duration-200 flex flex-col hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
                 style={{
                   backgroundColor: colors.bg,
                   borderColor: colors.border,
@@ -304,7 +304,7 @@ export default function DashboardPage() {
                     Score {targetAccuracy}% or higher to advance
                   </p>
                 )}
-                <div className="mt-5 pt-4 border-t border-border-l flex flex-col flex-1">
+                <div className="mt-5 pt-4 border-t border-[#E9E9E9] flex flex-col flex-1">
                   {isComplete ? (
                     <div className="flex items-center gap-2 text-[15px] font-medium" style={{ color: colors.title }}>
                       <span
@@ -350,10 +350,10 @@ export default function DashboardPage() {
         </section>
 
         {/* Quick stats */}
-        <section className="border-t border-border-l pt-8 pb-16">
+        <section className="border-t border-[#E9E9E9] pt-8 pb-16">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div
-              className="rounded-lg border p-4 md:p-5 transition-all duration-200"
+              className="rounded-[14px] border p-4 md:p-5 transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
               style={{
                 backgroundColor: SECTION_COLORS[focusSection].bg,
                 borderColor: SECTION_COLORS[focusSection].border,
@@ -367,7 +367,7 @@ export default function DashboardPage() {
                 {focusSection} · {progress[focusSection].currentLevel}
               </p>
             </div>
-            <div className="rounded-lg border border-border p-4 md:p-5 bg-bg-s transition-all duration-200">
+            <div className="rounded-[14px] border border-[#E9E9E9] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200">
               <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Levels Passed
               </p>
@@ -375,7 +375,7 @@ export default function DashboardPage() {
                 {levelsPassedTotal} / {totalLevels}
               </p>
             </div>
-            <div className="rounded-lg border border-border p-4 md:p-5 bg-bg-s transition-all duration-200">
+            <div className="rounded-[14px] border border-[#E9E9E9] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200">
               <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Last Tested
               </p>
