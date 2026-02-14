@@ -24,100 +24,94 @@ function WordCard({
   return (
     <div
       ref={isHighlight ? highlightedRef : undefined}
-      className={`bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] ${
+      className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 flex flex-col gap-3 transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] ${
         isHighlight && flashHighlight
           ? "ring-2 ring-[#3C5E95] ring-offset-2"
           : ""
       }`}
     >
-      <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white p-6 flex flex-col gap-4">
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="text-[22px] font-bold text-[#111827] break-words">
-            {w.portuguese}
-          </h3>
-          <PronunciationButton
-            text={w.portuguese}
-            size="md"
-            variant="dark"
-            className="shrink-0"
-          />
-        </div>
-        {w.pronunciation && (
-          <span className="font-mono text-[13px] text-[#9CA3AF] -mt-2">
-            /{w.pronunciation}/
-          </span>
-        )}
-        <span className="text-[16px] font-medium text-[#374151] break-words">
-          {w.english}
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-[20px] font-bold leading-tight text-[#111827] break-words">
+          {w.portuguese}
+        </h3>
+        <PronunciationButton
+          text={w.portuguese}
+          size="md"
+          variant="dark"
+          className="shrink-0"
+        />
+      </div>
+      {w.pronunciation && (
+        <span className="font-mono text-[12px] text-[#9CA3AF] -mt-1.5">
+          /{w.pronunciation}/
         </span>
-        <div className="h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" />
-        {w.example && (
-          <div className="bg-[#FCFCFC] border-[0.5px] border-[#E9E9E9] rounded-[10px] p-3.5 flex flex-col gap-1">
-            <div className="flex items-start gap-2">
-              <PronunciationButton
-                text={w.example}
-                variant="dark"
-                size="sm"
-                className="shrink-0 mt-0.5"
-              />
-              <div className="min-w-0">
-                <span className="text-[14px] italic text-[#1F2937] break-words">
-                  &ldquo;{w.example}&rdquo;
-                </span>
-                {w.exampleTranslation && (
-                  <span className="text-[12px] text-[#9CA3AF] block mt-0.5 break-words">
-                    {w.exampleTranslation}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
-            {w.cefr}
-          </span>
-          {w.gender && (
-            <span
-              className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-                w.gender === "m"
-                  ? "text-blue-700 bg-blue-50"
-                  : "text-pink-700 bg-pink-50"
-              }`}
-            >
-              {w.gender}
+      )}
+      <span className="text-[15px] font-medium text-[#374151] break-words">
+        {w.english}
+      </span>
+      {w.example && (
+        <div className="bg-[#F8F8FA] rounded-[8px] px-3 py-2.5 flex items-start gap-2">
+          <PronunciationButton
+            text={w.example}
+            variant="dark"
+            size="sm"
+            className="shrink-0 mt-0.5"
+          />
+          <div className="min-w-0">
+            <span className="text-[13px] italic leading-snug text-[#1F2937] break-words">
+              &ldquo;{w.example}&rdquo;
             </span>
-          )}
+            {w.exampleTranslation && (
+              <span className="text-[11.5px] text-[#9CA3AF] block mt-0.5 break-words">
+                {w.exampleTranslation}
+              </span>
+            )}
+          </div>
         </div>
-        {w.relatedWords && w.relatedWords.length > 0 && (
-          <div>
-            <div className="h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent mb-3" />
-            <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
-              Related
-            </span>
-            <div className="flex flex-wrap gap-2 mt-2">
-              {w.relatedWords.map((rw, j) => (
-                <span
-                  key={j}
-                  className="text-[12px] text-[#374151] bg-[#F3F4F6] px-2.5 py-1 rounded-full"
-                >
-                  {rw.word} — <span className="text-[#9CA3AF]">{rw.meaning}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-        {w.proTip && (
-          <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[10px] p-3.5">
-            <span className="text-[11px] uppercase tracking-[0.08em] text-amber-600 font-semibold">
-              Pro Tip
-            </span>
-            <p className="text-[13px] text-[#92400E] leading-relaxed mt-1">
-              {w.proTip}
-            </p>
-          </div>
+      )}
+      <div className="flex items-center gap-1.5 flex-wrap">
+        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+          {w.cefr}
+        </span>
+        {w.gender && (
+          <span
+            className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+              w.gender === "m"
+                ? "text-blue-700 bg-blue-50"
+                : "text-pink-700 bg-pink-50"
+            }`}
+          >
+            {w.gender}
+          </span>
         )}
       </div>
+      {w.relatedWords && w.relatedWords.length > 0 && (
+        <div className="pt-2 border-t border-[#F0F0F0]">
+          <span className="text-[10px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
+            Related
+          </span>
+          <div className="flex flex-wrap gap-1.5 mt-1.5">
+            {w.relatedWords.map((rw, j) => (
+              <span
+                key={j}
+                className="text-[11.5px] text-[#374151] bg-[#F3F4F6] px-2 py-0.5 rounded-full"
+              >
+                {rw.word} — <span className="text-[#9CA3AF]">{rw.meaning}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      {w.proTip && (
+        <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[8px] px-3 py-2.5">
+          <span className="text-[10px] uppercase tracking-[0.08em] text-amber-600 font-semibold">
+            Pro Tip
+          </span>
+          <p className="text-[12px] text-[#92400E] leading-relaxed mt-0.5">
+            {w.proTip}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -219,7 +213,7 @@ export default function VocabCategoryPage() {
         </div>
 
         {/* Word cards — responsive grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-12">
           {filtered.length === 0 ? (
             <p className="col-span-full text-center py-12 text-[#6B7280] text-[14px]">
               No words match your filter.
