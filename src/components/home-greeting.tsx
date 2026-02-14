@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import type { Greeting } from "@/data/greetings";
 
@@ -13,7 +14,6 @@ function normalizeForMatching(input: string): string {
     .replace(/[^\p{L}\p{N}\s]/gu, "") // remove punctuation, keep letters + numbers + spaces
     .replace(/\s+/g, " ")
     .trim();
-  // Portuguese-specific: ç → c is already handled by NFD (ç = c + combining cedilla)
   return s;
 }
 
@@ -63,165 +63,170 @@ export function HomeGreeting({ greeting }: { greeting: Greeting }) {
     const normalized = normalizeForMatching(raw);
     const variants = getFuzzyVariants(normalized);
 
-    // Check accepted responses (exact or fuzzy)
     for (const acc of greeting.acceptedResponses) {
       if (normalized === acc.text) {
-        setFeedback({
-          type: "success",
-          display: acc.display,
-          message: acc.feedback,
-        });
+        setFeedback({ type: "success", display: acc.display, message: acc.feedback });
         return;
       }
       for (const v of variants) {
         if (v === acc.text) {
-          setFeedback({
-            type: "success",
-            display: acc.display,
-            message: acc.feedback,
-          });
+          setFeedback({ type: "success", display: acc.display, message: acc.feedback });
           return;
         }
       }
     }
 
-    // Check common mistakes
     for (const mistake of greeting.commonMistakes) {
       if (normalized === mistake.text) {
-        setFeedback({
-          type: "correction",
-          correction: mistake.correction,
-          explanation: mistake.explanation,
-        });
+        setFeedback({ type: "correction", correction: mistake.correction, explanation: mistake.explanation });
         return;
       }
       for (const v of variants) {
         if (v === mistake.text) {
-          setFeedback({
-            type: "correction",
-            correction: mistake.correction,
-            explanation: mistake.explanation,
-          });
+          setFeedback({ type: "correction", correction: mistake.correction, explanation: mistake.explanation });
           return;
         }
       }
     }
 
-    // Unknown
     setFeedback({ type: "unknown" });
   }
 
   return (
-    <div className="mb-4">
-      <div className="bg-white border border-[#E9E9E9] rounded-[16px] p-6 md:p-8">
-        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+    <div className="bg-white border border-[#CFD3D9] rounded-[12px] p-[30px] flex flex-col gap-5">
+      {/* Row 1: PT + divider + EN + CEFR pill */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-5">
+        <div className="flex flex-col min-w-0">
+          <div className="flex items-center gap-3 min-w-0 flex-wrap">
+            <PronunciationButton
+              text={greeting.portuguese}
+              variant="dark"
+              className="shrink-0 mr-1"
+            />
+            <span className="text-[22px] font-bold text-[#262626] leading-[42px]">
+              {greeting.portuguese}
+            </span>
+            <div className="hidden md:block w-px h-[34px] bg-[#9AA2AD] mx-5 shrink-0" />
+            <span className="hidden md:inline text-[22px] font-normal text-[#A3AAB4] leading-[42px] truncate">
+              {greeting.english}
+            </span>
+          </div>
+          <p className="md:hidden text-[14px] text-[#A3AAB4] mt-1">{greeting.english}</p>
+        </div>
+        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full shrink-0 self-start md:self-center">
           {greeting.level}
         </span>
-        <h2 className="text-[28px] md:text-[34px] font-bold text-[#111827] mt-4 leading-tight">
-          {greeting.portuguese}
-        </h2>
-        <p className="text-[16px] text-[#9CA3AF] mt-1">{greeting.english}</p>
-        <span className="font-mono text-[13px] text-[#9CA3AF] mt-1 block">
-          /{greeting.pronunciation}/
-        </span>
-        <PronunciationButton
-          text={greeting.portuguese}
-          variant="dark"
-          className="mt-3"
-        />
-        <div className="mt-6">
-          <label className="text-[13px] text-[#6B7280] font-medium block mb-2">
-            Your response in Portuguese:
-          </label>
-          <div className="flex flex-col md:flex-row gap-3">
-            <input
-              type="text"
-              placeholder="Type your answer..."
-              className="flex-1 h-11 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[15px] text-[#111827] placeholder:text-[#C9CDD3] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
-              value={userResponse}
-              onChange={(e) => setUserResponse(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-            />
+      </div>
+
+      {/* Row 2: Pronunciation */}
+      <span className="font-mono text-[12px] text-[#A3AAB4] leading-5">
+        /{greeting.pronunciation}/
+      </span>
+
+      {/* Row 3: Input row */}
+      {!feedback && (
+        <div className="flex items-center gap-3 flex-wrap">
+          <input
+            type="text"
+            placeholder="Your response in Portuguese:"
+            className="w-full md:flex-1 min-w-0 h-[36px] px-3 rounded-[12px] border border-[#CFD3D9] bg-white text-[13px] text-[#262626] placeholder:text-[#CFD3D9] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+            value={userResponse}
+            onChange={(e) => setUserResponse(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+          />
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setShowHint(true)}
+              className="h-[36px] px-3 rounded-[12px] border border-[#CFD3D9] bg-[#F4F4F4] text-[13px] font-medium text-[#A2A6AE] hover:text-[#475569] hover:border-[#A2A6AE] transition-colors duration-200 whitespace-nowrap shrink-0"
+            >
+              Need a hint?
+            </button>
             <button
               type="button"
               onClick={handleSubmit}
-              className="h-11 px-5 bg-[#262626] border border-[#262626] rounded-[12px] text-[14px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200 whitespace-nowrap"
+              className="h-[36px] px-5 rounded-[12px] bg-[#262626] border border-[#494949] text-[13px] font-medium text-white hover:bg-[#404040] transition-colors duration-200 whitespace-nowrap shrink-0"
             >
               Reply
             </button>
           </div>
-          {!feedback && (
-            <button
-              type="button"
-              onClick={() => setShowHint(true)}
-              className="text-[13px] text-[#3C5E95] font-medium mt-2 hover:text-[#2E4A75] transition-colors duration-200"
-            >
-              Need a hint?
-            </button>
-          )}
-          {showHint && !feedback && (
-            <p className="text-[13px] text-[#6B7280] mt-2 italic">
-              {greeting.hint}
-            </p>
-          )}
         </div>
-        {feedback && (
-          <div
-            className={`mt-4 p-4 rounded-[12px] ${
-              feedback.type === "success"
-                ? "bg-emerald-50 border border-emerald-100"
-                : feedback.type === "correction"
-                  ? "bg-amber-50 border border-amber-100"
-                  : "bg-[#F3F4F6] border border-[#E5E7EB]"
-            }`}
+      )}
+
+      {/* Hint display */}
+      {showHint && !feedback && (
+        <p className="text-[13px] text-[#6B7280] italic">
+          {greeting.hint}
+        </p>
+      )}
+
+      {/* Learn about the structure — hidden when feedback shown */}
+      {!feedback && (
+        <Link
+          href="/grammar"
+          className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[rgba(224,231,255,0.75)] border border-[rgba(79,70,229,0.75)] text-[13px] font-medium text-[rgba(79,70,229,0.75)] hover:bg-[rgba(224,231,255,1)] transition-colors duration-200 w-fit"
+        >
+          Learn about the structure
+        </Link>
+      )}
+
+      {/* Feedback display */}
+      {feedback && (
+        <div
+          className={`p-4 rounded-[12px] ${
+            feedback.type === "success"
+              ? "bg-emerald-50 border border-emerald-100"
+              : feedback.type === "correction"
+                ? "bg-amber-50 border border-amber-100"
+                : "bg-[#F3F4F6] border border-[#E5E7EB]"
+          }`}
+        >
+          {feedback.type === "success" && (
+            <>
+              <span className="text-[14px] font-semibold text-emerald-700 block">
+                {feedback.display}
+              </span>
+              <span className="text-[13px] text-emerald-600 mt-1 block">
+                {feedback.message}
+              </span>
+            </>
+          )}
+          {feedback.type === "correction" && (
+            <>
+              <span className="text-[14px] font-semibold text-amber-700 block">
+                {feedback.correction
+                  ? `Almost! Try: ${feedback.correction}`
+                  : "Almost!"}
+              </span>
+              <span className="text-[13px] text-amber-600 mt-1 block">
+                {feedback.explanation}
+              </span>
+            </>
+          )}
+          {feedback.type === "unknown" && (
+            <>
+              <span className="text-[14px] font-medium text-[#374151] block">
+                Hmm, I don&apos;t recognise that one.
+              </span>
+              <span className="text-[13px] text-[#6B7280] mt-1 block">
+                That might be correct, but try a simpler response. Tap
+                &quot;hint&quot; for ideas!
+              </span>
+            </>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              setFeedback(null);
+              setUserResponse("");
+              setShowHint(false);
+            }}
+            className="text-[13px] text-[#3C5E95] font-medium mt-3 hover:text-[#2E4A75] transition-colors duration-200"
           >
-            {feedback.type === "success" && (
-              <>
-                <span className="text-[14px] font-semibold text-emerald-700 block">
-                  {feedback.display}
-                </span>
-                <span className="text-[13px] text-emerald-600 mt-1 block">
-                  {feedback.message}
-                </span>
-              </>
-            )}
-            {feedback.type === "correction" && (
-              <>
-                <span className="text-[14px] font-semibold text-amber-700 block">
-                  {feedback.correction
-                    ? `Almost! Try: ${feedback.correction}`
-                    : "Almost!"}
-                </span>
-                <span className="text-[13px] text-amber-600 mt-1 block">
-                  {feedback.explanation}
-                </span>
-              </>
-            )}
-            {feedback.type === "unknown" && (
-              <>
-                <span className="text-[14px] font-medium text-[#374151] block">
-                  Hmm, I don&apos;t recognise that one.
-                </span>
-                <span className="text-[13px] text-[#6B7280] mt-1 block">
-                  That might be correct, but try a simpler response. Tap
-                  &quot;hint&quot; for ideas!
-                </span>
-              </>
-            )}
-            <button
-              type="button"
-              onClick={() => {
-                setFeedback(null);
-                setUserResponse("");
-                setShowHint(false);
-              }}
-              className="text-[13px] text-[#3C5E95] font-medium mt-3 hover:text-[#2E4A75] transition-colors duration-200"
-            >
-              Try another response
-            </button>
-          </div>
-        )}
-      </div>
+            Try another response
+          </button>
+        </div>
+      )}
     </div>
   );
 }
