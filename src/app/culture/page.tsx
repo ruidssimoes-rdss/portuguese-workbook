@@ -11,6 +11,7 @@ import regionalData from "@/data/regional.json";
 import type { SayingsData, Saying } from "@/types/saying";
 import type { FalseFriendsData, FalseFriend, EtiquetteData, EtiquetteTip, RegionalData, RegionalExpression } from "@/types/culture";
 import { PronunciationButton } from "@/components/pronunciation-button";
+import { cefrPillClass } from "@/lib/cefr";
 import { normalizeForSearch } from "@/lib/search";
 
 const sayings = (sayingsData as unknown as SayingsData).sayings;
@@ -65,7 +66,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={saying.portuguese} size="sm" />
-          <span className="inline-flex text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">{saying.cefr}</span>
+          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(saying.cefr)}`}>{saying.cefr}</span>
           <button type="button" onClick={handleCopy} className="text-xs text-[#6B7280] hover:text-[#3C5E95] px-2 py-1 rounded-lg border border-[#E9E9E9] hover:border-[#D0D0D0] transition-colors">
             {copied ? "Copied" : "Copy"}
           </button>
@@ -120,7 +121,7 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={item.portuguese} size="sm" />
-          <span className="inline-flex text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">{item.cefr}</span>
+          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
         </div>
       </div>
       <p className="text-sm font-semibold text-red-400 mt-3">
@@ -203,7 +204,7 @@ function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHig
           <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${regionBadgeClass(item.region)}`}>
             {regionLabel(item.region)}
           </span>
-          <span className="inline-flex text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">{item.cefr}</span>
+          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
         </div>
       </div>
       <p className="text-sm text-[#374151] mt-3"><span className="font-semibold text-[#6B7280]">Meaning:</span> {item.meaning}</p>

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { cefrPillClass } from "@/lib/cefr";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import vocabData from "@/data/vocab.json";
 import type { VocabData, VocabWord } from "@/types/vocab";
@@ -123,7 +124,7 @@ function WordCard({
       )}
       {/* CEFR + Gender + Related + Pro Tip badges */}
       <div className="flex items-center gap-1.5 flex-wrap">
-        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+        <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(w.cefr)}`}>
           {w.cefr}
         </span>
         {w.gender && (

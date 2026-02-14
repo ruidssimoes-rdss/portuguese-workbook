@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Topbar } from "@/components/layout/topbar";
+import { cefrPillClass } from "@/lib/cefr";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 import Link from "next/link";
@@ -29,12 +30,22 @@ function matchFilter(
   filter: string
 ): boolean {
   if (filter === "All") return true;
-  if (["Irregular", "Regular -AR", "Regular -ER", "Regular -IR"].includes(filter))
-    return meta.group === filter;
+  if (filter === "Irregular") return meta.group.startsWith("Irregular");
+  if (filter === "Regular -AR") return meta.group.startsWith("Regular -AR");
+  if (filter === "Regular -ER") return meta.group.startsWith("Regular -ER");
+  if (filter === "Regular -IR") return meta.group.startsWith("Regular -IR");
   if (["A1", "A2", "B1", "B2"].includes(filter)) return meta.cefr === filter;
   if (["Essential", "Core", "Useful"].includes(filter))
     return meta.priority === filter;
   return true;
+}
+
+function shortGroup(group: string): string {
+  if (group.startsWith("Irregular")) return "Irregular";
+  if (group.startsWith("Regular -AR")) return "Regular -AR";
+  if (group.startsWith("Regular -ER")) return "Regular -ER";
+  if (group.startsWith("Regular -IR")) return "Regular -IR";
+  return group;
 }
 
 export default function ConjugationsPage() {
@@ -109,17 +120,17 @@ export default function ConjugationsPage() {
                 </div>
                 <div className="flex gap-1.5 flex-wrap mt-auto pt-3">
                   <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-                    m.group === "Irregular"
+                    m.group.startsWith("Irregular")
                       ? "text-amber-700 bg-amber-50"
-                      : m.group === "Regular -AR"
+                      : m.group.startsWith("Regular -AR")
                         ? "text-emerald-700 bg-emerald-50"
-                        : m.group === "Regular -ER"
+                        : m.group.startsWith("Regular -ER")
                           ? "text-blue-700 bg-blue-50"
                           : "text-violet-700 bg-violet-50"
                   }`}>
-                    {m.group}
+                    {shortGroup(m.group)}
                   </span>
-                  <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
                     {m.cefr}
                   </span>
                 </div>

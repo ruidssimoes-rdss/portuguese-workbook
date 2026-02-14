@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { cefrPillClass } from "@/lib/cefr";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
@@ -109,7 +110,7 @@ export default function VerbPage() {
               : m.priority === "Core" ? "text-blue-700 bg-blue-50"
               : "text-[#6B7280] bg-[#F3F4F6]"
             }`}>{m.priority}</span>
-            <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+            <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
               CEFR {m.cefr}
             </span>
           </div>
@@ -179,7 +180,7 @@ export default function VerbPage() {
                   </p>
                 )}
                 <div className="flex gap-1.5 flex-wrap mt-2">
-                  <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(r["CEFR (Tense)"])}`}>
                     {r["CEFR (Tense)"]}
                   </span>
                   <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
@@ -275,7 +276,7 @@ export default function VerbPage() {
                       </td>
                     )}
                     <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
-                      <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+                      <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(r["CEFR (Tense)"])}`}>
                         {r["CEFR (Tense)"]}
                       </span>
                     </td>

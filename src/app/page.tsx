@@ -11,6 +11,7 @@ import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
 import sayingsData from "@/data/sayings.json";
 import { greetings } from "@/data/greetings";
+import { cefrPillClass } from "@/lib/cefr";
 import { HomeGreeting } from "@/components/home-greeting";
 import type { VerbDataSet } from "@/types";
 import type { SayingsData } from "@/types/saying";
@@ -153,7 +154,7 @@ export default function Home() {
                         </span>
                       </div>
                       <div className="flex items-center gap-2.5">
-                        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[rgba(232,240,249,0.75)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                        <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full leading-[14px] ${cefrPillClass(wordOfDay.word.cefr)}`}>
                           {wordOfDay.word.cefr}
                         </span>
                         <span className="text-[11px] font-semibold text-[#3C5E95] bg-white px-2.5 py-[3px] rounded-full leading-[14px]">
@@ -231,16 +232,24 @@ export default function Home() {
                         </span>
                       </div>
                       <div className="flex items-center gap-2.5">
-                        {verbOfDay.meta.group === "Irregular" ? (
+                        {verbOfDay.meta.group.startsWith("Irregular") ? (
                           <span className="text-[11px] font-semibold text-amber-700 bg-[rgba(255,251,235,0.85)] px-2.5 py-[3px] rounded-full leading-[14px]">
-                            {verbOfDay.meta.group}
+                            Irregular
+                          </span>
+                        ) : verbOfDay.meta.group.startsWith("Regular -AR") ? (
+                          <span className="text-[11px] font-semibold text-emerald-700 bg-[rgba(236,253,245,0.85)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                            Regular -AR
+                          </span>
+                        ) : verbOfDay.meta.group.startsWith("Regular -ER") ? (
+                          <span className="text-[11px] font-semibold text-blue-700 bg-[rgba(239,246,255,0.9)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                            Regular -ER
                           </span>
                         ) : (
-                          <span className="text-[11px] font-semibold text-emerald-700 bg-[rgba(236,253,245,0.85)] px-2.5 py-[3px] rounded-full leading-[14px]">
-                            {verbOfDay.meta.group}
+                          <span className="text-[11px] font-semibold text-violet-700 bg-[rgba(245,243,255,0.9)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                            Regular -IR
                           </span>
                         )}
-                        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[rgba(232,240,249,0.75)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                        <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full leading-[14px] ${cefrPillClass(verbOfDay.meta.cefr)}`}>
                           {verbOfDay.meta.cefr}
                         </span>
                       </div>
@@ -328,7 +337,7 @@ export default function Home() {
                       </span>
                     </div>
                     <div className="flex items-center gap-2.5">
-                      <span className="text-[11px] font-semibold text-[#3C5E95] bg-[rgba(232,240,249,0.75)] px-2.5 py-[3px] rounded-full leading-[14px]">
+                      <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full leading-[14px] ${cefrPillClass(sayingOfDay.cefr ?? "A2")}`}>
                         {sayingOfDay.cefr ?? "A2"}
                       </span>
                     </div>
@@ -364,7 +373,7 @@ export default function Home() {
                       <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
                         Meaning
                       </span>
-                      <p className="text-[14px] text-[#4B5563] leading-relaxed mt-1 break-words">
+                      <p className="text-[14px] text-[#6B7280] leading-relaxed mt-1 break-words">
                         {sayingOfDay.meaning}
                       </p>
                     </div>

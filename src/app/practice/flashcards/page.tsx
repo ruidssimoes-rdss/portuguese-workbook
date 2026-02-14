@@ -497,7 +497,7 @@ export default function FlashcardsPage() {
                 }
               }}
               disabled={currentIndex === 0}
-              className="bg-gray-100 rounded-full p-3 hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[44px] min-h-[44px]"
+              className="bg-[#F3F4F6] rounded-full p-3 hover:bg-[#E5E7EB] transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[44px] min-h-[44px]"
               aria-label="Previous card"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -513,7 +513,7 @@ export default function FlashcardsPage() {
                 }
               }}
               disabled={currentIndex === sessionWords.length - 1}
-              className="bg-gray-100 rounded-full p-3 hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[44px] min-h-[44px]"
+              className="bg-[#F3F4F6] rounded-full p-3 hover:bg-[#E5E7EB] transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[44px] min-h-[44px]"
               aria-label="Next card"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

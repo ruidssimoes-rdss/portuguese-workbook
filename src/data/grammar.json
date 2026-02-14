@@ -108,6 +108,24 @@
         {"questionText": "Which is the formal way to say 'you' in EP?", "questionTextPt": "Qual é a forma formal de 'you' em PE?", "options": ["tu", "você", "vós", "ele"], "correctAnswer": "você", "correctIndex": 1, "explanation": "Você (or o senhor/a senhora) is formal in EP."}
       ]
     },
+    "verb-types": {
+      "id": "verb-types",
+      "title": "Verb Types: Regular & Irregular",
+      "titlePt": "Tipos de Verbos: Regulares e Irregulares",
+      "cefr": "A1",
+      "summary": "Portuguese verbs end in -AR, -ER, or -IR. Regular verbs follow predictable conjugation patterns; irregular verbs change their stem or endings.",
+      "intro": "Every Portuguese verb belongs to one of three families based on its infinitive ending: -AR (the largest group, e.g. falar, morar, trabalhar), -ER (e.g. comer, beber, viver), or -IR (e.g. partir, abrir, dormir). This ending determines which conjugation pattern the verb follows.\n\nRegular verbs follow their family's pattern exactly — once you learn one, you can conjugate all of them. Irregular verbs break the pattern: they may change their stem (e.g. poder → posso, not *podo), use unexpected endings, or both. The most common irregular verbs — ser, estar, ter, ir, fazer — are also the most frequently used, so you'll memorise them through repetition.",
+      "rules": [
+        {"rule": "-AR verbs are the largest family (~60% of Portuguese verbs). They follow the most regular pattern.", "rulePt": "Verbos terminados em -AR são o grupo maior e mais regular.", "examples": [{"pt": "falar", "en": "to speak"}, {"pt": "morar", "en": "to live"}, {"pt": "trabalhar", "en": "to work"}, {"pt": "gostar", "en": "to like"}]},
+        {"rule": "-ER verbs are the second family. Most follow regular patterns, with occasional stem changes in some tenses.", "rulePt": "Verbos terminados em -ER são o segundo grupo.", "examples": [{"pt": "comer", "en": "to eat"}, {"pt": "beber", "en": "to drink"}, {"pt": "viver", "en": "to live"}, {"pt": "escrever", "en": "to write"}]},
+        {"rule": "-IR verbs are the smallest family. Some are regular (partir, abrir), but several common ones are irregular (ir, dormir, pedir).", "rulePt": "Verbos terminados em -IR são o grupo menor, com vários irregulares comuns.", "examples": [{"pt": "partir", "en": "to leave/depart"}, {"pt": "abrir", "en": "to open"}, {"pt": "dormir", "en": "to sleep"}, {"pt": "pedir", "en": "to ask for"}]},
+        {"rule": "Regular verbs keep their stem and add predictable endings. Remove -ar, -er, or -ir from the infinitive to find the stem.", "rulePt": "Verbos regulares mantêm o radical e adicionam terminações previsíveis.", "examples": [{"pt": "fal-ar → eu falo", "en": "I speak (stem: fal-)"}, {"pt": "com-er → eu como", "en": "I eat (stem: com-)"}, {"pt": "part-ir → eu parto", "en": "I leave (stem: part-)"}]},
+        {"rule": "Irregular verbs change their stem, their endings, or both. The most essential irregular verbs are: ser, estar, ter, ir, fazer, poder, querer, saber, dar, dizer, vir, pôr.", "rulePt": "Verbos irregulares mudam o radical, as terminações, ou ambos.", "examples": [{"pt": "ser → eu sou", "en": "I am (permanent)"}, {"pt": "ir → eu vou", "en": "I go"}, {"pt": "ter → eu tenho", "en": "I have"}, {"pt": "fazer → eu faço", "en": "I do/make"}]}
+      ],
+      "tips": ["Learn the -AR pattern first — it covers the most verbs and gives you the foundation for understanding how conjugation works.", "Don't try to memorise irregular verb tables. Focus on the 10 most common irregular verbs and learn them through usage and repetition.", "Some verbs are 'almost regular' — they follow the pattern but have a small spelling change (e.g. jogar → jogo, not *jogo; ficar → fiquei, not *ficei). These aren't truly irregular; they just adjust spelling to keep the correct pronunciation."],
+      "tipsPt": ["Aprende o padrão dos verbos em -AR primeiro — cobre a maioria dos verbos.", "Não tentes decorar tabelas de verbos irregulares. Foca nos 10 mais comuns e aprende-os pelo uso.", "Alguns verbos são 'quase regulares' — seguem o padrão mas com pequenas mudanças ortográficas para manter a pronúncia correta."],
+      "questions": []
+    },
     "ser-vs-estar": {
       "id": "ser-vs-estar",
       "title": "SER vs ESTAR",

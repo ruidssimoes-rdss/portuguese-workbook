@@ -201,27 +201,11 @@ export default function VocabularyPage() {
     <>
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
-        <section className="py-5">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div>
-              <h1 className="text-[22px] font-bold tracking-tight">
-                Vocabulary
-              </h1>
-              <p className="text-[13px] text-text-3 mt-1">
-                {displayTotalWords.toLocaleString()} words · {displayCategoryCount} categories · A1–B1
-              </p>
-              <div className="flex gap-6 text-sm text-[#9CA3AF] mt-2">
-                <span>
-                  A1: <span className="font-medium text-[#6B7280]">{levelCounts.a1} words</span>
-                </span>
-                <span>
-                  A2: <span className="font-medium text-[#6B7280]">{levelCounts.a2} words</span>
-                </span>
-                <span>
-                  B1: <span className="font-medium text-[#6B7280]">{levelCounts.b1} words</span>
-                </span>
-              </div>
-            </div>
+        <div className="flex flex-col gap-2 py-5">
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <h1 className="text-[22px] font-bold tracking-tight">
+              Vocabulary
+            </h1>
             <input
               type="text"
               placeholder="Search categories..."
@@ -230,7 +214,10 @@ export default function VocabularyPage() {
               className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
             />
           </div>
-        </section>
+          <p className="text-[13px] text-text-3">
+            {displayTotalWords.toLocaleString()} words · {displayCategoryCount} categories · A1–B1
+          </p>
+        </div>
 
         <div className="flex items-center gap-2 flex-wrap mb-6 pb-4 border-b border-[#E9E9E9]">
           {CEFR_LEVELS.map((level) => (

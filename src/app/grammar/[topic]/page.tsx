@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { cefrPillClass } from "@/lib/cefr";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic, GrammarRule } from "@/types/grammar";
@@ -164,7 +165,7 @@ export default function GrammarTopicPage() {
               <h1 className="text-[22px] font-bold tracking-tight">{topic.title}</h1>
               <p className="text-[14px] text-[#3C5E95] font-medium mt-0.5">{topic.titlePt}</p>
             </div>
-            <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full shrink-0">
+            <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(topic.cefr)}`}>
               {topic.cefr}
             </span>
           </div>

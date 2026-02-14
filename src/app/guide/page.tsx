@@ -766,7 +766,7 @@ export default function GuidePage() {
                 >
                   <div className="flex-1 min-w-0">
                     <p className="text-base font-semibold text-[#111827]">
-                      <span className="text-sm text-gray-300 font-medium">{s.number}.</span> {s.title}
+                      <span className="text-sm text-[#D1D5DB] font-medium">{s.number}.</span> {s.title}
                     </p>
                     <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">
                       {s.portuguese}
@@ -776,7 +776,7 @@ export default function GuidePage() {
                     )}
                   </div>
                   <svg
-                    className={`flex-shrink-0 text-gray-300 w-5 h-5 transition-transform duration-200 ${
+                    className={`flex-shrink-0 text-[#D1D5DB] w-5 h-5 transition-transform duration-200 ${
                       isOpen ? "rotate-180" : ""
                     }`}
                     viewBox="0 0 24 24"
