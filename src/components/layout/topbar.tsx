@@ -253,7 +253,7 @@ export function Topbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 -ml-2 rounded-md text-text-2 hover:text-text hover:bg-bg-s transition-colors"
+              className="md:hidden p-2 -ml-2 rounded-md text-text-2 hover:text-text hover:bg-[#FAFAFA] transition-colors"
               aria-label="Open menu"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -415,21 +415,21 @@ export function Topbar() {
                     <Link
                       href="/dashboard"
                       onClick={() => setUserMenuOpen(false)}
-                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-bg-s hover:text-text"
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                     >
                       Dashboard
                     </Link>
                     <Link
                       href="/settings"
                       onClick={() => setUserMenuOpen(false)}
-                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-bg-s hover:text-text"
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                     >
                       Definições
                     </Link>
                     <Link
                       href="/changelog"
                       onClick={() => setUserMenuOpen(false)}
-                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-bg-s hover:text-text"
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                     >
                       What&apos;s New
                     </Link>
@@ -437,7 +437,7 @@ export function Topbar() {
                     <button
                       type="button"
                       onClick={handleSignOut}
-                      className="block w-full text-left px-3 py-2 text-[13px] text-text-2 hover:bg-bg-s hover:text-text"
+                      className="block w-full text-left px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                     >
                       Sair
                     </button>
@@ -473,7 +473,7 @@ export function Topbar() {
               <button
                 type="button"
                 onClick={closeMobileMenu}
-                className="p-2 -mr-2 rounded-md text-text-2 hover:text-text hover:bg-bg-s transition-colors"
+                className="p-2 -mr-2 rounded-md text-text-2 hover:text-text hover:bg-[#FAFAFA] transition-colors"
                 aria-label="Close menu"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -494,7 +494,7 @@ export function Topbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                      isCurrent ? "bg-[#3C5E95]/5 text-[#3C5E95] border-l-2 border-[#3C5E95]" : "text-text-2 hover:bg-bg-s hover:text-text"
+                      isCurrent ? "bg-[#3C5E95]/5 text-[#3C5E95] border-l-2 border-[#3C5E95]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                     }`}
                   >
                     <span className="text-[15px] font-medium">{item.title}</span>
@@ -507,7 +507,7 @@ export function Topbar() {
                 href="/dashboard"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium transition-colors ${
-                  pathname?.startsWith("/dashboard") ? "bg-[#3C5E95]/5 text-[#3C5E95]" : "text-text-2 hover:bg-bg-s hover:text-text"
+                  pathname?.startsWith("/dashboard") ? "bg-[#3C5E95]/5 text-[#3C5E95]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                 }`}
               >
                 Progress
@@ -515,7 +515,7 @@ export function Topbar() {
               <Link
                 href="/changelog"
                 onClick={closeMobileMenu}
-                className="min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium text-text-2 hover:bg-bg-s hover:text-text"
+                className="min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium text-text-2 hover:bg-[#FAFAFA] hover:text-text"
               >
                 What&apos;s New
               </Link>
@@ -527,7 +527,7 @@ export function Topbar() {
                       <Link
                         href="/settings"
                         onClick={closeMobileMenu}
-                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-bg-s hover:text-text min-h-[44px] flex items-center"
+                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-[#FAFAFA] hover:text-text min-h-[44px] flex items-center"
                       >
                         Definições
                       </Link>
@@ -537,7 +537,7 @@ export function Topbar() {
                           closeMobileMenu();
                           handleSignOut();
                         }}
-                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-bg-s hover:text-text min-h-[44px] flex items-center w-full text-left"
+                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-[#FAFAFA] hover:text-text min-h-[44px] flex items-center w-full text-left"
                       >
                         Sair
                       </button>

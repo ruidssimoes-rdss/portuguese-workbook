@@ -57,7 +57,7 @@ export function HomeProgressBanner() {
       <section className="pb-8">
         <Link
           href="/dashboard"
-          className="flex flex-wrap items-center justify-between gap-4 border border-border rounded-xl p-4 bg-white hover:border-[#ccc] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-3"
+          className="flex flex-wrap items-center justify-between gap-4 border border-[#E9E9E9] rounded-xl p-4 bg-white hover:border-[#ccc] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-3"
         >
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <span className="text-[13px] text-text-3 font-medium">O teu progresso:</span>

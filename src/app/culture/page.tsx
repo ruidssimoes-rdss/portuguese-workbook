@@ -316,9 +316,6 @@ function CultureContent() {
             <h1 className="text-[22px] font-bold tracking-tight">
               Culture & Expressions
             </h1>
-            <p className="text-[14px] text-[#3C5E95] font-medium -mt-1">
-              Cultura e Expressões
-            </p>
             <p className="text-[13px] text-text-3 mt-1">
               Explore Portuguese language and culture — sayings, false friends, etiquette, and regional expressions.
             </p>
