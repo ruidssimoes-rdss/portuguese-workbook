@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Topbar } from "@/components/layout/topbar";
-import { Badge, groupVariant, cefrVariant } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 import Link from "next/link";
@@ -55,39 +54,37 @@ export default function ConjugationsPage() {
     <>
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
-        <section className="py-12 md:py-16">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div>
-              <h1 className="text-3xl md:text-[36px] font-bold tracking-tight">
-                Conjugations
-              </h1>
-              <p className="text-[14px] text-text-2 mt-1">
-                {data.order.length} verbs · {data.order.length * 30} conjugations · 6 tenses
-              </p>
-            </div>
+        <div className="flex flex-col gap-2 py-5">
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <h1 className="text-[22px] font-bold tracking-tight">
+              Conjugations
+            </h1>
             <input
               type="text"
               placeholder="Search verbs…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="px-3 py-1.5 border border-border rounded-lg text-[13px] bg-white text-text outline-none focus:border-[#999] w-[180px] transition-colors"
+              className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
             />
           </div>
-        </section>
+          <p className="text-[13px] text-text-3">
+            {data.order.length} verbs · {data.order.length * 30} conjugations · 6 tenses
+          </p>
+        </div>
 
-        <div className="flex items-center gap-2 flex-wrap pb-6 border-t border-border-l pt-5">
+        <div className="flex items-center gap-2 flex-wrap mb-6 pb-4 border-b border-[#E9E9E9]">
           {filters.map((f, i) =>
             f === "|" ? (
-              <div key={i} className="w-px h-5 bg-border mx-1 shrink-0" />
+              <div key={i} className="w-px h-5 bg-[#E9E9E9] mx-1 shrink-0" />
             ) : (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
+                className={
                   filter === f
-                    ? "bg-[#3C5E95] text-white border-[#3C5E95]"
-                    : "bg-white text-text-2 border-border hover:bg-bg-s hover:border-gray-300"
-                }`}
+                    ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                    : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+                }
               >
                 {f}
               </button>
@@ -95,30 +92,42 @@ export default function ConjugationsPage() {
           )}
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(198px,1fr))] gap-2.5 pb-16">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(198px,1fr))] gap-3 pb-16">
           {verbs.map((v) => {
             const m = data.verbs[v].meta;
             return (
               <Link
                 key={v}
                 href={`/conjugations/${v.toLowerCase()}`}
-                className="group bg-white border border-border rounded-lg p-4 md:p-5 flex flex-col min-h-[160px] transition-all duration-200 hover:border-blue-200 hover:shadow-[0_4px_16px_rgba(60,94,149,0.08)] hover:-translate-y-px"
+                className="bg-white border border-[#E5E5E5] rounded-[14px] p-5 flex flex-col min-h-[140px] transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
               >
-                <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] mb-2.5">
+                <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] text-[#111827] mb-1">
                   {v}
                 </div>
-                <div className="text-[13px] text-text-2 leading-[21px] flex-1">
+                <div className="text-[13px] text-[#6B7280] leading-relaxed flex-1">
                   {m.english}
                 </div>
-                <div className="flex gap-1.5 flex-wrap mt-auto">
-                  <Badge variant={groupVariant[m.group]}>{m.group}</Badge>
-                  <Badge variant={cefrVariant[m.cefr]}>{m.cefr}</Badge>
+                <div className="flex gap-1.5 flex-wrap mt-auto pt-3">
+                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                    m.group === "Irregular"
+                      ? "text-amber-700 bg-amber-50"
+                      : m.group === "Regular -AR"
+                        ? "text-emerald-700 bg-emerald-50"
+                        : m.group === "Regular -ER"
+                          ? "text-blue-700 bg-blue-50"
+                          : "text-violet-700 bg-violet-50"
+                  }`}>
+                    {m.group}
+                  </span>
+                  <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+                    {m.cefr}
+                  </span>
                 </div>
               </Link>
             );
           })}
           {verbs.length === 0 && (
-            <div className="col-span-full text-center py-12 text-text-3 text-[14px]">
+            <div className="col-span-full text-center py-12 text-[#6B7280] text-[14px]">
               No verbs match your filter.
             </div>
           )}
