@@ -135,14 +135,13 @@ export default function Home() {
         {greetingOfDay && <HomeGreeting greeting={greetingOfDay} />}
         {/* Daily Focus — hero */}
         <section className="pt-8 md:pt-12 pb-16 md:pb-20 gap-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-stretch">
             {/* Word of the Day */}
-            <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden h-full">
-              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0 h-full">
-                {wordOfDay ? (
-                  <>
-                    <div
-                      className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
+            <div className="bg-white border border-[#E5E5E5] rounded-[14px] overflow-hidden flex flex-col min-h-0 h-full transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+              {wordOfDay ? (
+                <>
+                  <div
+                    className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[14px] flex flex-col justify-between p-5 md:p-7"
                       style={{ backgroundImage: `url(${wordGradient})` }}
                     >
                       <div className="flex flex-col">
@@ -206,23 +205,21 @@ export default function Home() {
                       >
                         Practice this word →
                       </Link>
-                    </div>
-                  </>
-                ) : (
-                  <div className="p-5 md:p-7">
-                    <p className="text-gray-500 text-[14px]">No vocabulary data.</p>
                   </div>
-                )}
-              </div>
+                </>
+              ) : (
+                <div className="p-5 md:p-7">
+                  <p className="text-gray-500 text-[14px]">No vocabulary data.</p>
+                </div>
+              )}
             </div>
 
             {/* Verb of the Day */}
-            <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden h-full">
-              <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0 h-full">
-                {verbKey && verbOfDay ? (
-                  <>
-                    <div
-                      className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
+            <div className="bg-white border border-[#E5E5E5] rounded-[14px] overflow-hidden flex flex-col min-h-0 h-full transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+              {verbKey && verbOfDay ? (
+                <>
+                  <div
+                    className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[14px] flex flex-col justify-between p-5 md:p-7"
                       style={{ backgroundImage: `url(${verbGradient})` }}
                     >
                       <div className="flex flex-col">
@@ -305,23 +302,21 @@ export default function Home() {
                       >
                         View all tenses →
                       </Link>
-                    </div>
-                  </>
-                ) : (
-                  <div className="p-5 md:p-7">
-                    <p className="text-gray-500 text-[14px]">No verb data.</p>
                   </div>
-                )}
-              </div>
+                </>
+              ) : (
+                <div className="p-5 md:p-7">
+                  <p className="text-gray-500 text-[14px]">No verb data.</p>
+                </div>
+              )}
             </div>
 
             {/* Saying of the Day */}
             {sayingOfDay ? (
               <div className="md:col-span-2 xl:col-span-1 h-full">
-                <div className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] flex flex-col min-h-0 overflow-hidden h-full">
-                <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white flex flex-col flex-1 min-h-0 h-full">
+                <div className="bg-white border border-[#E5E5E5] rounded-[14px] overflow-hidden flex flex-col min-h-0 h-full transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
                   <div
-                    className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[16px] flex flex-col justify-between p-5 md:p-7"
+                    className="relative h-[160px] md:h-[200px] bg-cover bg-center rounded-t-[14px] flex flex-col justify-between p-5 md:p-7"
                     style={{ backgroundImage: `url(${sayingGradient})` }}
                   >
                     <div className="flex flex-col">
@@ -379,7 +374,6 @@ export default function Home() {
                     >
                       View all sayings →
                     </Link>
-                  </div>
                   </div>
                 </div>
               </div>

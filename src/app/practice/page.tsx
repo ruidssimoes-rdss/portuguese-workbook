@@ -115,36 +115,34 @@ export default function PracticePage() {
             </p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
             {modes.map((mode) => (
               <div
                 key={mode.id}
-                className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)]"
+                className="bg-white border border-[#E5E5E5] rounded-[14px] overflow-hidden transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
               >
-                <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white">
-                  <div className="h-[100px] bg-gradient-to-br from-[#EBF2FA] via-[#e0eaf4] to-[#d4dff0] flex items-center justify-center rounded-t-[16px]">
-                    <CardIcon id={mode.id} />
-                  </div>
-                  <div className="p-6 flex flex-col gap-3">
-                    <h3 className="text-[20px] font-bold text-[#111827]">
-                      {mode.title}
-                    </h3>
-                    <span className="text-[14px] text-[#3C5E95] font-medium -mt-2">
-                      {mode.portuguese}
-                    </span>
-                    <p className="text-[14px] text-[#6B7280] leading-relaxed">
-                      {mode.description}
-                    </p>
-                    <span className="text-[12px] text-[#9CA3AF]">
-                      {mode.stats}
-                    </span>
-                    <Link
-                      href={mode.href}
-                      className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200 mt-1"
-                    >
-                      {mode.cta} →
-                    </Link>
-                  </div>
+                <div className="h-[100px] bg-gradient-to-br from-[#EBF2FA] via-[#e0eaf4] to-[#d4dff0] flex items-center justify-center rounded-t-[14px]">
+                  <CardIcon id={mode.id} />
+                </div>
+                <div className="p-5 flex flex-col gap-3">
+                  <h3 className="text-[20px] font-bold text-[#111827]">
+                    {mode.title}
+                  </h3>
+                  <span className="text-[14px] text-[#3C5E95] font-medium -mt-2">
+                    {mode.portuguese}
+                  </span>
+                  <p className="text-[14px] text-[#6B7280] leading-relaxed">
+                    {mode.description}
+                  </p>
+                  <span className="text-[12px] text-[#9CA3AF]">
+                    {mode.stats}
+                  </span>
+                  <Link
+                    href={mode.href}
+                    className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200 mt-1"
+                  >
+                    {mode.cta} →
+                  </Link>
                 </div>
               </div>
             ))}

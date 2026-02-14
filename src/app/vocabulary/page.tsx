@@ -268,7 +268,7 @@ export default function VocabularyPage() {
                   {section.description}
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {section.categories.map((cat) => {
                   const wordCount =
                     cefrFilter === "All"
@@ -293,9 +293,9 @@ export default function VocabularyPage() {
                     <Link
                       key={cat.id}
                       href={`/vocabulary/${cat.id}`}
-                      className="bg-white/50 border border-[#E9E9E9] rounded-[20px] p-[5px] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(60,94,149,0.10)] block"
+                      className="bg-white border border-[#E5E5E5] rounded-[14px] overflow-hidden block transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
                     >
-                      <div className="border border-[#E9E9E9] rounded-[16px] overflow-hidden bg-white p-6">
+                      <div className="p-5">
                         <div className="flex items-start justify-between gap-3 mb-1">
                           <h3 className="text-[18px] font-bold text-[#111827]">
                             {cat.title}
