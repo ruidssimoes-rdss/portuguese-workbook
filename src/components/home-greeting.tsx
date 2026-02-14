@@ -112,7 +112,7 @@ export function HomeGreeting({ greeting }: { greeting: Greeting }) {
   }
 
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <div className="bg-white border border-[#E9E9E9] rounded-[16px] p-6 md:p-8">
         <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
           {greeting.level}

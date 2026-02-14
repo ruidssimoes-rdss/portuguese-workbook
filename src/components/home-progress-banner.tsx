@@ -7,18 +7,6 @@ import { getProgress } from "@/lib/progress-service";
 import type { UserProgress } from "@/types/levels";
 import { PROGRESS_STORAGE_KEY } from "@/types/levels";
 
-const SECTION_COLORS = {
-  conjugations: "#3D6B9E",
-  vocabulary: "#3C5E95",
-  grammar: "#4B5563",
-} as const;
-
-const SECTION_LABELS = {
-  conjugations: "Conjugations",
-  vocabulary: "Vocabulary",
-  grammar: "Grammar",
-} as const;
-
 export function HomeProgressBanner() {
   const { user } = useAuth();
   const [progress, setProgress] = useState<UserProgress | null>(null);
@@ -53,59 +41,45 @@ export function HomeProgressBanner() {
     progress.grammar.totalTestsTaken > 0;
 
   if (hasAnyTest) {
+    const sections = [
+      { key: "conjugations" as const, label: "Conjugations", level: progress.conjugations.currentLevel },
+      { key: "vocabulary" as const, label: "Vocabulary", level: progress.vocabulary.currentLevel },
+      { key: "grammar" as const, label: "Grammar", level: progress.grammar.currentLevel },
+    ];
     return (
-      <section className="pb-8">
+      <>
+        <div className="space-y-2">
+          {sections.map((s) => (
+            <div key={s.key} className="flex items-center justify-between text-[13px]">
+              <span className="text-[#374151] font-medium capitalize">{s.label}</span>
+              <span className="text-[#9CA3AF]">{s.level}</span>
+            </div>
+          ))}
+        </div>
         <Link
           href="/dashboard"
-          className="flex flex-wrap items-center justify-between gap-4 border border-[#E9E9E9] rounded-xl p-4 bg-white hover:border-[#ccc] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-3"
+          className="text-[13px] font-medium text-[#3C5E95] hover:text-[#2E4A75] mt-3 inline-block transition-colors"
         >
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span className="text-[13px] text-text-3 font-medium">O teu progresso:</span>
-            <span className="flex items-center gap-2">
-              <span
-                className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
-                style={{ backgroundColor: SECTION_COLORS.conjugations }}
-              >
-                {progress.conjugations.currentLevel}
-              </span>
-              <span className="text-[13px] text-text-2">{SECTION_LABELS.conjugations}</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <span
-                className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
-                style={{ backgroundColor: SECTION_COLORS.vocabulary }}
-              >
-                {progress.vocabulary.currentLevel}
-              </span>
-              <span className="text-[13px] text-text-2">{SECTION_LABELS.vocabulary}</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <span
-                className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full text-white"
-                style={{ backgroundColor: SECTION_COLORS.grammar }}
-              >
-                {progress.grammar.currentLevel}
-              </span>
-              <span className="text-[13px] text-text-2">{SECTION_LABELS.grammar}</span>
-            </span>
-          </div>
-          <span className="text-[13px] font-medium text-text-2 hover:text-text transition-colors duration-150">
-            Ver Progresso e Testes →
-          </span>
+          View full progress →
         </Link>
-      </section>
+      </>
     );
   }
 
   return (
-    <section className="pb-8">
+    <>
+      <p className="text-[14px] text-[#374151] mb-1">
+        Track your learning progress
+      </p>
+      <p className="text-[13px] text-[#9CA3AF] mb-4">
+        Take placement tests in conjugations, vocabulary, and grammar to see where you stand.
+      </p>
       <Link
         href="/dashboard"
-        className="text-[13px] text-text-2 hover:text-text transition-colors duration-150 inline-flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-3 rounded"
+        className="inline-flex items-center justify-center px-4 py-2.5 bg-[#262626] text-white text-[13px] font-medium rounded-[10px] hover:bg-[#404040] transition-colors duration-200"
       >
-        Começa a tua jornada em português
-        <span className="inline-block animate-arrow-pulse">→</span>
+        Go to Dashboard →
       </Link>
-    </section>
+    </>
   );
 }

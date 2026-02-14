@@ -80,6 +80,15 @@ function shortGroup(group: string): string {
   return "text-violet-700 bg-violet-50";
 }
 
+function shortPerson(person: string): string {
+  if (person.startsWith("eu")) return "eu";
+  if (person.startsWith("tu")) return "tu";
+  if (person.startsWith("ele")) return "ele";
+  if (person.startsWith("nós")) return "nós";
+  if (person.startsWith("eles")) return "eles";
+  return person.split(" ")[0];
+}
+
 const sections = [
   {
     title: "Conjugations",
@@ -140,9 +149,29 @@ export default function Home() {
         )}
         {greetingOfDay && <HomeGreeting greeting={greetingOfDay} />}
 
+        {/* Mobile: Quick Practice first */}
+        <section className="lg:hidden pt-4 pb-4">
+          <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
+            <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
+              Quick Practice
+            </h2>
+            <div className="grid grid-cols-2 gap-2">
+              {quickActions.map((action) => (
+                <Link
+                  key={action.href}
+                  href={action.href}
+                  className="flex items-center justify-center px-3.5 py-3 rounded-[10px] border border-[#E9E9E9] bg-[#FAFAFA] text-[13px] font-medium text-[#374151] hover:border-[#3C5E95] hover:text-[#3C5E95] hover:bg-white transition-all duration-200"
+                >
+                  {action.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Two-column main area */}
-        <section className="pt-6 pb-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6">
+        <section className="pt-4 pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8">
             {/* Left: Today's Picks */}
             <div className="space-y-4">
               <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
@@ -226,14 +255,11 @@ export default function Home() {
                     </div>
                     <p className="text-[15px] text-[#374151]">{verbOfDay.meta.english}</p>
                     <div className="mt-4 pt-4 border-t border-[#F0F0F0] space-y-1.5">
-                      {presentRows.map((row) => {
-                        const personShort = row.Person.split(" ")[0];
-                        return (
-                          <div key={row.Person} className="flex items-baseline gap-3 text-[13px]">
-                            <span className="w-[55px] text-[#9CA3AF] shrink-0">{personShort}</span>
-                            <span className="font-semibold text-[#111827] font-mono">{row.Conjugation}</span>
-                          </div>
-                        );
+                      {presentRows.map((row) => (
+                        <div key={row.Person} className="flex items-baseline gap-3 text-[13px]">
+                          <span className="w-[40px] text-[#9CA3AF] shrink-0">{shortPerson(row.Person)}</span>
+                          <span className="font-semibold text-[#111827] font-mono">{row.Conjugation}</span>
+                        </div>
                       })}
                     </div>
                     <Link
@@ -287,9 +313,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Quick Actions → Journey → Stats (mobile order: Picks → Quick → Progress → Stats) */}
+            {/* Right: Quick Practice (desktop only) → Journey → Stats */}
             <div className="space-y-4">
-              <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
+              <div className="hidden lg:block bg-white border border-[#E5E5E5] rounded-[14px] p-5">
                 <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
                   Quick Practice
                 </h2>
@@ -334,7 +360,7 @@ export default function Home() {
         </section>
 
         {/* Explore grid */}
-        <section className="pb-16">
+        <section className="pt-2 pb-16">
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-4">
             Explore
           </h2>
@@ -344,12 +370,13 @@ export default function Home() {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="group border rounded-[14px] p-4 transition-all duration-200 bg-white border-[#E5E5E5] hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
+                  className="group flex items-center justify-between border rounded-[14px] p-4 bg-white border-[#E5E5E5] transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
                 >
-                  <h3 className="text-[15px] font-bold tracking-tight text-[#111827]">
-                    {s.title}
-                  </h3>
-                  <p className="text-[12px] mt-1 text-[#6B7280]">{s.stat}</p>
+                  <div>
+                    <h3 className="text-[15px] font-bold tracking-tight text-[#111827]">{s.title}</h3>
+                    <p className="text-[12px] text-[#9CA3AF] mt-0.5">{s.stat}</p>
+                  </div>
+                  <span className="text-[#9CA3AF] text-[16px] transition-transform duration-200 group-hover:translate-x-0.5">→</span>
                 </Link>
               ) : (
                 <div
