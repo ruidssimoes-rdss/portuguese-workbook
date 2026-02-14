@@ -190,7 +190,7 @@ export default function DashboardPage() {
                         {[0, 1, 2].map((band) => (
                           <div
                             key={band}
-                            className={`flex flex-1 gap-[3px] min-w-0 rounded ${band < 2 ? "border-r border-border-l" : ""}`}
+                            className={`flex flex-1 gap-[3px] min-w-0 rounded ${band < 2 ? "border-r border-[#E9E9E9]" : ""}`}
                             style={{ backgroundColor: BAND_TINTS[band] }}
                           >
                             {SUB_LEVEL_ORDER.slice(band * 5, band * 5 + 5).map((levelKey, j) => {

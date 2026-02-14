@@ -4,12 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
-import {
-  Badge,
-  tenseVariant,
-  cefrVariant,
-  priorityVariant,
-} from "@/components/ui/badge";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
@@ -110,8 +104,14 @@ export default function VerbPage() {
             </span>
           </div>
           <div className="flex gap-1.5 flex-wrap">
-            <Badge variant={priorityVariant[m.priority]}>{m.priority}</Badge>
-            <Badge variant={cefrVariant[m.cefr]}>CEFR {m.cefr}</Badge>
+            <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+              m.priority === "Essential" ? "text-red-700 bg-red-50"
+              : m.priority === "Core" ? "text-blue-700 bg-blue-50"
+              : "text-[#6B7280] bg-[#F3F4F6]"
+            }`}>{m.priority}</span>
+            <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
+              CEFR {m.cefr}
+            </span>
           </div>
         </div>
 
@@ -146,9 +146,15 @@ export default function VerbPage() {
                 } ${isHighlight && flashHighlight ? "ring-2 ring-blue-400 bg-sky-50" : ""}`}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <Badge variant={tenseVariant[r.Tense] || "gray"}>
-                    {r.Tense}
-                  </Badge>
+                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                    r.Tense === "Present" ? "text-emerald-700 bg-emerald-50"
+                    : r.Tense === "Preterite" ? "text-amber-800 bg-orange-50"
+                    : r.Tense === "Imperfect" ? "text-violet-700 bg-violet-50"
+                    : r.Tense === "Future" ? "text-blue-700 bg-blue-50"
+                    : r.Tense === "Conditional" ? "text-amber-700 bg-amber-50"
+                    : r.Tense === "Present Subjunctive" ? "text-pink-700 bg-pink-50"
+                    : "text-[#6B7280] bg-[#F3F4F6]"
+                  }`}>{r.Tense}</span>
                   <span className="text-[13px] text-text-2">{person}</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -173,12 +179,15 @@ export default function VerbPage() {
                   </p>
                 )}
                 <div className="flex gap-1.5 flex-wrap mt-2">
-                  <Badge variant={cefrVariant[r["CEFR (Tense)"]] || "gray"}>
+                  <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
                     {r["CEFR (Tense)"]}
-                  </Badge>
-                  <Badge variant={r.Type === "Exception" ? "orange" : "green"}>
+                  </span>
+                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                    r.Type === "Exception" ? "text-amber-700 bg-amber-50"
+                    : "text-emerald-700 bg-emerald-50"
+                  }`}>
                     {r.Type === "Exception" ? "Irreg." : "Reg."}
-                  </Badge>
+                  </span>
                 </div>
               </div>
             );
@@ -235,9 +244,15 @@ export default function VerbPage() {
                     }`}
                   >
                     <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
-                      <Badge variant={tenseVariant[r.Tense] || "gray"}>
-                        {r.Tense}
-                      </Badge>
+                      <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                        r.Tense === "Present" ? "text-emerald-700 bg-emerald-50"
+                        : r.Tense === "Preterite" ? "text-amber-800 bg-orange-50"
+                        : r.Tense === "Imperfect" ? "text-violet-700 bg-violet-50"
+                        : r.Tense === "Future" ? "text-blue-700 bg-blue-50"
+                        : r.Tense === "Conditional" ? "text-amber-700 bg-amber-50"
+                        : r.Tense === "Present Subjunctive" ? "text-pink-700 bg-pink-50"
+                        : "text-[#6B7280] bg-[#F3F4F6]"
+                      }`}>{r.Tense}</span>
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] font-medium whitespace-nowrap">
                       {person}
@@ -260,14 +275,17 @@ export default function VerbPage() {
                       </td>
                     )}
                     <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
-                      <Badge variant={cefrVariant[r["CEFR (Tense)"]] || "gray"}>
+                      <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
                         {r["CEFR (Tense)"]}
-                      </Badge>
+                      </span>
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
-                      <Badge variant={r.Type === "Exception" ? "orange" : "green"}>
+                      <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                        r.Type === "Exception" ? "text-amber-700 bg-amber-50"
+                        : "text-emerald-700 bg-emerald-50"
+                      }`}>
                         {r.Type === "Exception" ? "Irreg." : "Reg."}
-                      </Badge>
+                      </span>
                     </td>
                   </tr>
                 );

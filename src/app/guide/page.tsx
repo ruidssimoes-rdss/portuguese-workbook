@@ -232,7 +232,7 @@ function GuideSectionContent({ id }: { id: string }) {
               </p>
             </div>
 
-            <div className="bg-gray-50 border border-[#E9E9E9] rounded-lg p-4">
+            <div className="bg-[#F9FAFB] border border-[#E9E9E9] rounded-lg p-4">
               <p className="text-sm font-semibold text-[#111827]">
                 B1 — Intermediate / Intermédio
               </p>
@@ -284,7 +284,7 @@ function GuideSectionContent({ id }: { id: string }) {
 
           <div className="mt-6 overflow-x-auto border border-[#F0F0F0] rounded-lg">
             <table className="w-full text-sm border-collapse">
-              <thead className="bg-gray-50">
+              <thead className="bg-[#F9FAFB]">
                 <tr>
                   <th className="text-left px-4 py-2 font-semibold text-[#6B7280]">
                     Level
@@ -299,21 +299,21 @@ function GuideSectionContent({ id }: { id: string }) {
               </thead>
               <tbody>
                 <tr className="border-t border-[#F0F0F0]">
-                  <td className="px-4 py-2 font-semibold text-gray-800">A1</td>
+                  <td className="px-4 py-2 font-semibold text-[#1F2937]">A1</td>
                   <td className="px-4 py-2 text-[#374151]">60–100 hours</td>
                   <td className="px-4 py-2 text-[#374151]">
                     2–3 months (about 30 minutes per day)
                   </td>
                 </tr>
-                <tr className="border-t border-gray-50 bg-gray-50/40">
-                  <td className="px-4 py-2 font-semibold text-gray-800">A2</td>
+                <tr className="border-t border-[#F0F0F0] bg-[#F9FAFB]/40">
+                  <td className="px-4 py-2 font-semibold text-[#1F2937]">A2</td>
                   <td className="px-4 py-2 text-[#374151]">150–200 hours</td>
                   <td className="px-4 py-2 text-[#374151]">
                     4–6 months (about 30 minutes per day)
                   </td>
                 </tr>
                 <tr className="border-t border-[#F0F0F0]">
-                  <td className="px-4 py-2 font-semibold text-gray-800">B1</td>
+                  <td className="px-4 py-2 font-semibold text-[#1F2937]">B1</td>
                   <td className="px-4 py-2 text-[#374151]">300–400 hours</td>
                   <td className="px-4 py-2 text-[#374151]">
                     8–14 months (about 30 minutes per day)
@@ -366,7 +366,7 @@ function GuideSectionContent({ id }: { id: string }) {
 
           <div className="mt-6">
             <div className="bg-white border border-[#E9E9E9] rounded-lg p-4 mb-4">
-              <p className="text-sm font-semibold text-gray-800">
+              <p className="text-sm font-semibold text-[#1F2937]">
                 The 15-Minute Day (Minimum Effective Dose)
               </p>
               <p className="text-sm text-[#6B7280] mt-2 leading-relaxed">
@@ -392,7 +392,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </div>
 
             <div className="bg-white border border-[#E9E9E9] rounded-lg p-4 mb-4">
-              <p className="text-sm font-semibold text-gray-800">
+              <p className="text-sm font-semibold text-[#1F2937]">
                 The 30-Minute Day (Sweet Spot)
               </p>
               <p className="text-sm text-[#6B7280] mt-2 leading-relaxed">
@@ -429,7 +429,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </div>
 
             <div className="bg-white border border-[#E9E9E9] rounded-lg p-4">
-              <p className="text-sm font-semibold text-gray-800">
+              <p className="text-sm font-semibold text-[#1F2937]">
                 The 60-Minute Day (Accelerated)
               </p>
               <p className="text-sm text-[#6B7280] mt-2 leading-relaxed">
@@ -772,7 +772,7 @@ export default function GuidePage() {
                       {s.portuguese}
                     </p>
                     {!isOpen && (
-                      <p className="text-sm text-gray-400 mt-1">{s.teaser}</p>
+                      <p className="text-sm text-[#9CA3AF] mt-1">{s.teaser}</p>
                     )}
                   </div>
                   <svg

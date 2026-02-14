@@ -248,7 +248,7 @@ export default function VocabQuizPage() {
       <>
         <Topbar />
         <main className="min-h-screen bg-[#fafafa]">
-          <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-10">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
             <PracticeResults
               title="Quiz Complete"
               subtitle="Questionário Completo"
@@ -284,7 +284,7 @@ export default function VocabQuizPage() {
       <>
         <Topbar />
         <main className="min-h-screen bg-[#fafafa]" onKeyDown={handleKeyDown}>
-          <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-8">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-8">
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-[#9CA3AF]">
                 Question {current} of {total}
@@ -435,9 +435,9 @@ export default function VocabQuizPage() {
     <>
       <Topbar />
       <main className="min-h-screen bg-[#fafafa]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-10">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
           <header className="mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-[#111827] tracking-tight">
+            <h1 className="text-[22px] font-bold tracking-tight">
               Vocabulary Quiz
             </h1>
             <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">Questionário de Vocabulário</p>

@@ -66,7 +66,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={saying.portuguese} size="sm" />
           <span className="inline-flex text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">{saying.cefr}</span>
-          <button type="button" onClick={handleCopy} className="text-xs text-[#6B7280] hover:text-[#3C5E95] px-2 py-1 rounded-lg border border-[#E9E9E9] hover:border-[#3C5E95]/30 transition-colors">
+          <button type="button" onClick={handleCopy} className="text-xs text-[#6B7280] hover:text-[#3C5E95] px-2 py-1 rounded-lg border border-[#E9E9E9] hover:border-[#D0D0D0] transition-colors">
             {copied ? "Copied" : "Copy"}
           </button>
         </div>

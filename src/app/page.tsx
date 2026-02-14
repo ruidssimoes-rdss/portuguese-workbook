@@ -209,7 +209,7 @@ export default function Home() {
                 </>
               ) : (
                 <div className="p-5 md:p-7">
-                  <p className="text-gray-500 text-[14px]">No vocabulary data.</p>
+                  <p className="text-[#6B7280] text-[14px]">No vocabulary data.</p>
                 </div>
               )}
             </div>
