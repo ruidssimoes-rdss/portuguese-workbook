@@ -260,7 +260,7 @@ export default function Home() {
                           <span className="w-[40px] text-[#9CA3AF] shrink-0">{shortPerson(row.Person)}</span>
                           <span className="font-semibold text-[#111827] font-mono">{row.Conjugation}</span>
                         </div>
-                      })}
+                      ))}
                     </div>
                     <Link
                       href={`/conjugations/${verbKey.toLowerCase()}`}
