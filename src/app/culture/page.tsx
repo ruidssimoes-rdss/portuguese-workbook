@@ -316,10 +316,10 @@ function CultureContent() {
             <h1 className="text-[22px] font-bold tracking-tight">
               Culture & Expressions
             </h1>
-            <p className="text-[13px] text-text-3 mt-1">
+            <p className="text-[13px] text-[#9CA3AF] mt-1">
               Explore Portuguese language and culture — sayings, false friends, etiquette, and regional expressions.
             </p>
-            <p className="text-[13px] text-text-3 mt-1">
+            <p className="text-[13px] text-[#9CA3AF] mt-1">
               4 sections · {sayings.length} sayings · {falseFriends.length} false friends · {etiquetteTips.length} etiquette tips · {regionalExpressions.length} regional expressions
             </p>
           </div>

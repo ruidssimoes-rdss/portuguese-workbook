@@ -259,7 +259,7 @@ export default function VocabCategoryPage() {
               className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
             />
           </div>
-          <p className="text-[13px] text-text-3">{category.words.length} words</p>
+          <p className="text-[13px] text-[#9CA3AF]">{category.words.length} words</p>
         </div>
 
         {/* Filters */}

@@ -214,7 +214,7 @@ export default function VocabularyPage() {
               className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
             />
           </div>
-          <p className="text-[13px] text-text-3">
+          <p className="text-[13px] text-[#9CA3AF]">
             {displayTotalWords.toLocaleString()} words · {displayCategoryCount} categories · A1–B1
           </p>
         </div>

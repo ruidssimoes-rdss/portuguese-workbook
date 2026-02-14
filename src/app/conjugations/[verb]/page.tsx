@@ -111,7 +111,7 @@ export default function VerbPage() {
               : "text-[#6B7280] bg-[#F3F4F6]"
             }`}>{m.priority}</span>
             <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
-              CEFR {m.cefr}
+              {m.cefr}
             </span>
           </div>
         </div>
