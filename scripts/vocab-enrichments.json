@@ -1,0 +1,124 @@
+{
+  "vermelho": {
+    "relatedWords": [{ "word": "azul", "meaning": "blue" }, { "word": "verde", "meaning": "green" }]
+  },
+  "azul": {
+    "relatedWords": [{ "word": "vermelho", "meaning": "red" }, { "word": "céu", "meaning": "sky" }]
+  },
+  "verde": {
+    "relatedWords": [{ "word": "vermelho", "meaning": "red" }, { "word": "natureza", "meaning": "nature" }]
+  },
+  "sol": {
+    "relatedWords": [{ "word": "chuva", "meaning": "rain" }, { "word": "vento", "meaning": "wind" }, { "word": "temperatura", "meaning": "temperature" }],
+    "proTip": "'Está sol' = It's sunny. In Portugal the sun can be strong — say 'protector solar' for sunscreen."
+  },
+  "chuva": {
+    "relatedWords": [{ "word": "sol", "meaning": "sun" }, { "word": "guarda-chuva", "meaning": "umbrella" }, { "word": "nuvem", "meaning": "cloud" }],
+    "proTip": "In Lisbon, rain can come suddenly. 'Está a chover' = It's raining. Always carry an 'guarda-chuva' in winter."
+  },
+  "frio": {
+    "relatedWords": [{ "word": "quente", "meaning": "hot" }, { "word": "temperatura", "meaning": "temperature" }],
+    "proTip": "'Está frio' = It's cold. Portuguese homes can feel cold in winter — heating isn't always central."
+  },
+  "quente": {
+    "relatedWords": [{ "word": "frio", "meaning": "cold" }, { "word": "temperatura", "meaning": "temperature" }]
+  },
+  "café": {
+    "relatedWords": [{ "word": "chá", "meaning": "tea" }, { "word": "leite", "meaning": "milk" }, { "word": "água", "meaning": "water" }],
+    "proTip": "In Portugal, 'um café' = an espresso. Say 'café com leite' for coffee with milk, 'carioca' for weak coffee. Order at the counter in a pastelaria."
+  },
+  "pão": {
+    "relatedWords": [{ "word": "manteiga", "meaning": "butter" }, { "word": "queijo", "meaning": "cheese" }, { "word": "padaria", "meaning": "bakery" }],
+    "proTip": "Portuguese bread (pão) is excellent. Buy 'pão quente' (fresh) from a padaria in the morning. 'Pão de forma' = sliced bread."
+  },
+  "bacalhau": {
+    "relatedWords": [{ "word": "peixe", "meaning": "fish" }, { "word": "azeite", "meaning": "olive oil" }, { "word": "sal", "meaning": "salt" }],
+    "proTip": "Bacalhau (salt cod) is Portugal's national dish — there are hundreds of recipes. Always soaked before cooking to remove salt."
+  },
+  "pequeno-almoço": {
+    "relatedWords": [{ "word": "almoço", "meaning": "lunch" }, { "word": "jantar", "meaning": "dinner" }, { "word": "pão", "meaning": "bread" }],
+    "proTip": "Never say 'café da manhã' — that's Brazilian. In Portugal it's 'pequeno-almoço' (literally 'small lunch'). Often bread, butter, ham, coffee."
+  },
+  "conta": {
+    "relatedWords": [{ "word": "restaurante", "meaning": "restaurant" }, { "word": "gorjeta", "meaning": "tip" }],
+    "proTip": "To ask for the bill in Portugal, say 'A conta, se faz favor.' Tipping is optional — round up or leave 5–10% for good service."
+  },
+  "autocarro": {
+    "relatedWords": [{ "word": "metro", "meaning": "metro" }, { "word": "comboio", "meaning": "train" }, { "word": "eléctrico", "meaning": "tram" }],
+    "proTip": "Never say 'ônibus' — that's Brazilian. In Portugal it's 'autocarro.' Lisbon's trams (eléctricos) are iconic — take the 28!"
+  },
+  "telemóvel": {
+    "relatedWords": [{ "word": "computador", "meaning": "computer" }, { "word": "telefone", "meaning": "telephone" }],
+    "proTip": "Never say 'celular' — that's Brazilian. In Portugal it's 'telemóvel' or 'telemóveis' (plural)."
+  },
+  "mãe": {
+    "relatedWords": [{ "word": "pai", "meaning": "father" }, { "word": "pais", "meaning": "parents" }, { "word": "avó", "meaning": "grandmother" }]
+  },
+  "pai": {
+    "relatedWords": [{ "word": "mãe", "meaning": "mother" }, { "word": "pais", "meaning": "parents" }, { "word": "avô", "meaning": "grandfather" }]
+  },
+  "casa": {
+    "relatedWords": [{ "word": "apartamento", "meaning": "flat / apartment" }, { "word": "quarto", "meaning": "room" }, { "word": "cozinha", "meaning": "kitchen" }],
+    "proTip": "'Em casa' = at home (no article). 'Na casa' = in the house (specific). 'Estou em casa' = I'm home."
+  },
+  "casa de banho": {
+    "relatedWords": [{ "word": "quarto", "meaning": "bedroom" }, { "word": "cozinha", "meaning": "kitchen" }],
+    "proTip": "Never say 'banheiro' — that's Brazilian. In Portugal it's 'casa de banho' or 'WC.' In a restaurant, ask 'Onde fica a casa de banho?'"
+  },
+  "comboio": {
+    "relatedWords": [{ "word": "autocarro", "meaning": "bus" }, { "word": "metro", "meaning": "metro" }, { "word": "estação", "meaning": "station" }],
+    "proTip": "Never say 'trem' — that's Brazilian. In Portugal it's 'comboio.' CP (Comboios de Portugal) runs trains nationwide."
+  },
+  "farmácia": {
+    "relatedWords": [{ "word": "hospital", "meaning": "hospital" }, { "word": "médico", "meaning": "doctor" }],
+    "proTip": "Farmácias have a green cross. Many are open 24h on rotation — look for 'farmácia de serviço' signs. Prescription = 'receita médica.'"
+  },
+  "saudade": {
+    "relatedWords": [{ "word": "férias", "meaning": "holiday" }, { "word": "casa", "meaning": "home" }],
+    "proTip": "Saudade has no exact English translation — it's a nostalgic longing for someone or something. A deeply Portuguese emotion. 'Tenho saudades tuas' = I miss you."
+  },
+  "amarelo": { "relatedWords": [{ "word": "vermelho", "meaning": "red" }, { "word": "laranja", "meaning": "orange" }] },
+  "branco": { "relatedWords": [{ "word": "preto", "meaning": "black" }, { "word": "cinzento", "meaning": "grey" }] },
+  "preto": { "relatedWords": [{ "word": "branco", "meaning": "white" }, { "word": "escuro", "meaning": "dark" }] },
+  "vento": { "relatedWords": [{ "word": "sol", "meaning": "sun" }, { "word": "chuva", "meaning": "rain" }, { "word": "frio", "meaning": "cold" }] },
+  "nuvem": { "relatedWords": [{ "word": "sol", "meaning": "sun" }, { "word": "chuva", "meaning": "rain" }, { "word": "céu", "meaning": "sky" }] },
+  "neve": { "relatedWords": [{ "word": "frio", "meaning": "cold" }, { "word": "inverno", "meaning": "winter" }] },
+  "trovoada": { "relatedWords": [{ "word": "chuva", "meaning": "rain" }, { "word": "tempestade", "meaning": "storm" }] },
+  "primavera": { "relatedWords": [{ "word": "verão", "meaning": "summer" }, { "word": "outono", "meaning": "autumn" }, { "word": "inverno", "meaning": "winter" }] },
+  "verão": { "relatedWords": [{ "word": "primavera", "meaning": "spring" }, { "word": "outono", "meaning": "autumn" }] },
+  "outono": { "relatedWords": [{ "word": "verão", "meaning": "summer" }, { "word": "inverno", "meaning": "winter" }, { "word": "primavera", "meaning": "spring" }] },
+  "inverno": { "relatedWords": [{ "word": "outono", "meaning": "autumn" }, { "word": "verão", "meaning": "summer" }, { "word": "frio", "meaning": "cold" }] },
+  "água": { "relatedWords": [{ "word": "café", "meaning": "coffee" }, { "word": "chá", "meaning": "tea" }, { "word": "leite", "meaning": "milk" }] },
+  "chá": { "relatedWords": [{ "word": "café", "meaning": "coffee" }, { "word": "água", "meaning": "water" }] },
+  "leite": { "relatedWords": [{ "word": "café", "meaning": "coffee" }, { "word": "queijo", "meaning": "cheese" }, { "word": "iogurte", "meaning": "yoghurt" }] },
+  "vinho": { "relatedWords": [{ "word": "cerveja", "meaning": "beer" }, { "word": "café", "meaning": "coffee" }] },
+  "imperial": { "relatedWords": [{ "word": "cerveja", "meaning": "beer" }, { "word": "vinho", "meaning": "wine" }], "proTip": "In Portugal, 'imperial' = a small draft beer (about 200ml). Order at a café: 'Uma imperial, se faz favor.' It's the standard beer size." },
+  "queijo": { "relatedWords": [{ "word": "pão", "meaning": "bread" }, { "word": "manteiga", "meaning": "butter" }, { "word": "presunto", "meaning": "ham" }] },
+  "carne": { "relatedWords": [{ "word": "peixe", "meaning": "fish" }, { "word": "frango", "meaning": "chicken" }] },
+  "frango": { "relatedWords": [{ "word": "carne", "meaning": "meat" }, { "word": "peixe", "meaning": "fish" }] },
+  "peixe": { "relatedWords": [{ "word": "carne", "meaning": "meat" }, { "word": "bacalhau", "meaning": "salt cod" }, { "word": "marisco", "meaning": "seafood" }] },
+  "arroz": { "relatedWords": [{ "word": "batata", "meaning": "potato" }, { "word": "feijão", "meaning": "beans" }] },
+  "batata": { "relatedWords": [{ "word": "arroz", "meaning": "rice" }, { "word": "ovo", "meaning": "egg" }] },
+  "azeite": { "relatedWords": [{ "word": "sal", "meaning": "salt" }, { "word": "cozinhar", "meaning": "to cook" }], "proTip": "Portuguese olive oil (azeite) is excellent. Use 'azeite virgem extra' for salads. Bread + azeite + salt = classic Portuguese snack." },
+  "restaurante": { "relatedWords": [{ "word": "conta", "meaning": "bill" }, { "word": "padaria", "meaning": "bakery" }, { "word": "supermercado", "meaning": "supermarket" }] },
+  "garfo": { "relatedWords": [{ "word": "faca", "meaning": "knife" }, { "word": "colher", "meaning": "spoon" }, { "word": "talheres", "meaning": "cutlery" }] },
+  "faca": { "relatedWords": [{ "word": "garfo", "meaning": "fork" }, { "word": "colher", "meaning": "spoon" }] },
+  "aeroporto": { "relatedWords": [{ "word": "avião", "meaning": "plane" }, { "word": "bilhete", "meaning": "ticket" }, { "word": "bagagem", "meaning": "luggage" }] },
+  "avião": { "relatedWords": [{ "word": "aeroporto", "meaning": "airport" }, { "word": "comboio", "meaning": "train" }, { "word": "autocarro", "meaning": "bus" }] },
+  "metro": { "relatedWords": [{ "word": "autocarro", "meaning": "bus" }, { "word": "comboio", "meaning": "train" }, { "word": "paragem", "meaning": "stop" }] },
+  "rua": { "relatedWords": [{ "word": "avenida", "meaning": "avenue" }, { "word": "praça", "meaning": "square" }, { "word": "esquina", "meaning": "corner" }] },
+  "direita": { "relatedWords": [{ "word": "esquerda", "meaning": "left" }, { "word": "em frente", "meaning": "straight ahead" }] },
+  "esquerda": { "relatedWords": [{ "word": "direita", "meaning": "right" }, { "word": "em frente", "meaning": "straight ahead" }] },
+  "hotel": { "relatedWords": [{ "word": "quarto", "meaning": "room" }, { "word": "reserva", "meaning": "reservation" }, { "word": "recepção", "meaning": "reception" }] },
+  "praia": { "relatedWords": [{ "word": "sol", "meaning": "sun" }, { "word": "férias", "meaning": "holiday" }], "proTip": "Portugal has stunning beaches. Say 'Vou à praia' = I'm going to the beach. 'Praia' is feminine: a praia, a minha praia favorita." },
+  "supermercado": { "relatedWords": [{ "word": "restaurante", "meaning": "restaurant" }, { "word": "padaria", "meaning": "bakery" }, { "word": "mercado", "meaning": "market" }] },
+  "viagem": { "relatedWords": [{ "word": "férias", "meaning": "holiday" }, { "word": "aeroporto", "meaning": "airport" }, { "word": "passaporte", "meaning": "passport" }] },
+  "férias": { "relatedWords": [{ "word": "viagem", "meaning": "trip" }, { "word": "praia", "meaning": "beach" }, { "word": "saudade", "meaning": "nostalgic longing" }] },
+  "apartamento": { "relatedWords": [{ "word": "casa", "meaning": "house" }, { "word": "quarto", "meaning": "room" }, { "word": "renda", "meaning": "rent" }] },
+  "cozinha": { "relatedWords": [{ "word": "sala", "meaning": "living room" }, { "word": "quarto", "meaning": "bedroom" }, { "word": "casa de banho", "meaning": "bathroom" }] },
+  "quarto": { "relatedWords": [{ "word": "casa", "meaning": "house" }, { "word": "cama", "meaning": "bed" }, { "word": "cozinha", "meaning": "kitchen" }] },
+  "cama": { "relatedWords": [{ "word": "quarto", "meaning": "bedroom" }, { "word": "almofada", "meaning": "pillow" }, { "word": "lençol", "meaning": "sheet" }] },
+  "televisão": { "relatedWords": [{ "word": "telemóvel", "meaning": "mobile phone" }, { "word": "computador", "meaning": "computer" }] },
+  "frigorífico": { "relatedWords": [{ "word": "fogão", "meaning": "stove" }, { "word": "cozinha", "meaning": "kitchen" }] },
+  "pais": { "relatedWords": [{ "word": "mãe", "meaning": "mother" }, { "word": "pai", "meaning": "father" }, { "word": "filho", "meaning": "son" }] }
+}

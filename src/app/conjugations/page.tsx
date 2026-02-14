@@ -42,9 +42,9 @@ function matchFilter(
 
 function shortGroup(group: string): string {
   if (group.startsWith("Irregular")) return "Irregular";
-  if (group.startsWith("Regular -AR")) return "Regular -AR";
-  if (group.startsWith("Regular -ER")) return "Regular -ER";
-  if (group.startsWith("Regular -IR")) return "Regular -IR";
+  if (group.startsWith("Regular -AR")) return "-AR";
+  if (group.startsWith("Regular -ER")) return "-ER";
+  if (group.startsWith("Regular -IR")) return "-IR";
   return group;
 }
 
