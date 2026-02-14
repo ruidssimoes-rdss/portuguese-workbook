@@ -1134,7 +1134,8 @@
               "word": "às vezes",
               "meaning": "sometimes"
             }
-          ]
+          ],
+          "proTip": "Sempre = always. 'Sempre' before the verb: 'Ela sempre chega tarde' = She always arrives late."
         },
         {
           "portuguese": "nunca",
@@ -1173,7 +1174,8 @@
               "word": "nunca",
               "meaning": "never"
             }
-          ]
+          ],
+          "proTip": "Às vezes = sometimes. 'Às vezes como fora' = Sometimes I eat out. Note the 'às' (contraction)."
         },
         {
           "portuguese": "cedo",
@@ -1212,7 +1214,8 @@
               "word": "noite",
               "meaning": "night"
             }
-          ]
+          ],
+          "proTip": "Tarde = afternoon (noun) OR late (adverb). 'Cheguei tarde' = I arrived late. Context matters!"
         },
         {
           "portuguese": "entretanto",
@@ -1365,7 +1368,8 @@
               "word": "sexta-feira",
               "meaning": "Friday"
             }
-          ]
+          ],
+          "proTip": "Sábado = Saturday. Masculine. 'Ao sábado' = on Saturday. Weekend starts here!"
         },
         {
           "portuguese": "domingo",
@@ -1384,7 +1388,8 @@
               "word": "segunda-feira",
               "meaning": "Monday"
             }
-          ]
+          ],
+          "proTip": "Domingo = Sunday. Traditional family day — almoço with parents/grandparents."
         },
         {
           "portuguese": "fim de semana",
@@ -1523,7 +1528,8 @@
               "word": "almoço",
               "meaning": "lunch"
             }
-          ]
+          ],
+          "proTip": "Meio-dia = noon. 'O almoço é ao meio-dia' — Portuguese lunch is often 12:30–2pm."
         },
         {
           "portuguese": "meia-noite",
@@ -1542,7 +1548,8 @@
               "word": "noite",
               "meaning": "night"
             }
-          ]
+          ],
+          "proTip": "Meia-noite = midnight. 'À meia-noite' = at midnight. Feminine."
         },
         {
           "portuguese": "anteontem",
@@ -1637,7 +1644,8 @@
               "word": "férias",
               "meaning": "holiday / vacation"
             }
-          ]
+          ],
+          "proTip": "Feriado = public holiday. Shops closed, families together. 'Amanhã é feriado.'"
         },
         {
           "portuguese": "que horas são?",
@@ -1683,7 +1691,8 @@
               "word": "verde",
               "meaning": "green"
             }
-          ]
+          ],
+          "proTip": "Colour adjectives agree: 'carro vermelho' (m), 'casa vermelha' (f). In Portugal, red wine = vinho tinto."
         },
         {
           "portuguese": "azul",
@@ -1702,7 +1711,8 @@
               "word": "céu",
               "meaning": "sky"
             }
-          ]
+          ],
+          "proTip": "Agrees with noun: 'céu azul,' 'camisa azul' (blue is invariable — ends in consonant)."
         },
         {
           "portuguese": "verde",
@@ -1721,7 +1731,8 @@
               "word": "natureza",
               "meaning": "nature"
             }
-          ]
+          ],
+          "proTip": "Portuguese love verde — parks, countryside, 'verde' symbolises nature. 'Pôr a verde' = to criticise severely."
         },
         {
           "portuguese": "amarelo",
@@ -1740,7 +1751,8 @@
               "word": "laranja",
               "meaning": "orange"
             }
-          ]
+          ],
+          "proTip": "Amarelo (yellow) — the -o/-a agreement: 'sol amarelo,' 'casa amarela.'"
         },
         {
           "portuguese": "branco",
@@ -1759,7 +1771,8 @@
               "word": "cinzento",
               "meaning": "grey"
             }
-          ]
+          ],
+          "proTip": "Vinho branco = white wine. 'Em branco' = blank. Branco (white) agrees: branco/branca."
         },
         {
           "portuguese": "preto",
@@ -1778,7 +1791,8 @@
               "word": "escuro",
               "meaning": "dark"
             }
-          ]
+          ],
+          "proTip": "Café preto = black coffee (no milk). Preto agrees: preto/preta."
         },
         {
           "portuguese": "castanho",
@@ -1797,7 +1811,8 @@
               "word": "laranja",
               "meaning": "orange"
             }
-          ]
+          ],
+          "proTip": "Castanho = brown. Common for eyes: 'olhos castanhos.' Also chestnut — castanhas in autumn."
         },
         {
           "portuguese": "cor-de-rosa",
@@ -1816,7 +1831,8 @@
               "word": "roxo",
               "meaning": "purple"
             }
-          ]
+          ],
+          "proTip": "Invariable — doesn't change for gender: 'camisa cor-de-rosa,' 'casaco cor-de-rosa.'"
         },
         {
           "portuguese": "roxo",
@@ -1835,7 +1851,8 @@
               "word": "vermelho",
               "meaning": "red"
             }
-          ]
+          ],
+          "proTip": "Roxo (purple) — 'roxo' can also mean bruised: 'joelho roxo' = bruised knee."
         },
         {
           "portuguese": "cinzento",
@@ -1854,7 +1871,8 @@
               "word": "preto",
               "meaning": "black"
             }
-          ]
+          ],
+          "proTip": "O dia está cinzento = The day is grey. Portuguese use this a lot for cloudy Lisbon weather."
         },
         {
           "portuguese": "sol",
@@ -1925,7 +1943,8 @@
               "word": "frio",
               "meaning": "cold"
             }
-          ]
+          ],
+          "proTip": "Portugal's coast is windy — 'Está muito vento' = It's very windy. Norte (north wind) brings cold."
         },
         {
           "portuguese": "frio",
@@ -1964,7 +1983,8 @@
               "word": "temperatura",
               "meaning": "temperature"
             }
-          ]
+          ],
+          "proTip": "'Está quente' = It's hot (weather). 'A água está quente' = The water is hot. Quente is invariable."
         },
         {
           "portuguese": "nuvem",
@@ -1987,7 +2007,8 @@
               "word": "céu",
               "meaning": "sky"
             }
-          ]
+          ],
+          "proTip": "Feminine: a nuvem, nuvens. 'O céu está cheio de nuvens' = The sky is full of clouds."
         },
         {
           "portuguese": "neve",
@@ -2006,7 +2027,8 @@
               "word": "inverno",
               "meaning": "winter"
             }
-          ]
+          ],
+          "proTip": "Rare in Lisbon — 'Nunca neva aqui.' In Serra da Estrela they have snow. Feminine."
         },
         {
           "portuguese": "trovoada",
@@ -2025,7 +2047,8 @@
               "word": "tempestade",
               "meaning": "storm"
             }
-          ]
+          ],
+          "proTip": "Trovoada = thunderstorm. 'Há trovoada' = There's a thunderstorm. Summer storms are common."
         },
         {
           "portuguese": "temperatura",
@@ -2044,7 +2067,8 @@
               "word": "quente",
               "meaning": "hot"
             }
-          ]
+          ],
+          "proTip": "Ask: 'Qual é a temperatura?' Portugal uses Celsius. 25° = 'vinte e cinco graus.'"
         },
         {
           "portuguese": "previsão do tempo",
@@ -2063,7 +2087,8 @@
               "word": "chuva",
               "meaning": "rain"
             }
-          ]
+          ],
+          "proTip": "Check 'previsão do tempo' on TV or IPMA.pt. Portuguese love talking about weather."
         },
         {
           "portuguese": "laranja",
@@ -2102,7 +2127,8 @@
               "word": "prateado",
               "meaning": "silver"
             }
-          ]
+          ],
+          "proTip": "Dourado = golden. 'Luz dourada' = golden light. Common for sunset descriptions."
         },
         {
           "portuguese": "prateado",
@@ -2121,7 +2147,8 @@
               "word": "cinzento",
               "meaning": "grey"
             }
-          ]
+          ],
+          "proTip": "Prateado = silver. Often for cars: 'carro prateado.'"
         },
         {
           "portuguese": "escuro",
@@ -2140,7 +2167,8 @@
               "word": "preto",
               "meaning": "black"
             }
-          ]
+          ],
+          "proTip": "Verde escuro = dark green. Escuro agrees: escuro/escura."
         },
         {
           "portuguese": "claro",
@@ -2179,7 +2207,8 @@
               "word": "visibilidade",
               "meaning": "visibility"
             }
-          ]
+          ],
+          "proTip": "Common in Lisbon mornings, especially near the river. 'Há muito nevoeiro' = There's a lot of fog."
         },
         {
           "portuguese": "tempestade",
@@ -2198,7 +2227,8 @@
               "word": "vento",
               "meaning": "wind"
             }
-          ]
+          ],
+          "proTip": "Tempestade = storm. 'Vem aí uma tempestade' = A storm is coming. Stay indoors."
         },
         {
           "portuguese": "chuvisco",
@@ -2217,7 +2247,8 @@
               "word": "nevoeiro",
               "meaning": "fog"
             }
-          ]
+          ],
+          "proTip": "Chuvisco = drizzle. Portuguese drizzle (brisa) is typical — light rain, no umbrella needed sometimes."
         },
         {
           "portuguese": "granizo",
@@ -2236,7 +2267,8 @@
               "word": "neve",
               "meaning": "snow"
             }
-          ]
+          ],
+          "proTip": "Granizo = hail. Rare but happens. 'Caiu granizo' = It hailed."
         },
         {
           "portuguese": "primavera",
@@ -2259,7 +2291,8 @@
               "word": "inverno",
               "meaning": "winter"
             }
-          ]
+          ],
+          "proTip": "March–June. Best time to visit — flowers, mild weather. 'Na primavera' = in spring."
         },
         {
           "portuguese": "verão",
@@ -2278,7 +2311,8 @@
               "word": "outono",
               "meaning": "autumn"
             }
-          ]
+          ],
+          "proTip": "June–September. Hot and dry. 'No verão' = in summer. Beach season."
         },
         {
           "portuguese": "outono",
@@ -2301,7 +2335,8 @@
               "word": "primavera",
               "meaning": "spring"
             }
-          ]
+          ],
+          "proTip": "September–December. 'No outono' = in autumn. Castanhas (chestnuts) and vindima (grape harvest)."
         },
         {
           "portuguese": "inverno",
@@ -2324,7 +2359,8 @@
               "word": "frio",
               "meaning": "cold"
             }
-          ]
+          ],
+          "proTip": "December–March. 'No inverno' = in winter. Rainy, cold, but rarely freezing in Lisbon."
         },
         {
           "portuguese": "estação do ano",
@@ -2343,7 +2379,8 @@
               "word": "verão",
               "meaning": "summer"
             }
-          ]
+          ],
+          "proTip": "As quatro estações = the four seasons. Primavera, verão, outono, inverno."
         },
         {
           "portuguese": "húmido",
@@ -2382,7 +2419,8 @@
               "word": "quente",
               "meaning": "hot"
             }
-          ]
+          ],
+          "proTip": "'Está calor' (impersonal) = It's hot. Don't say 'eu estou calor' — wrong. 'Tenho calor' = I'm hot."
         },
         {
           "portuguese": "está frio",
@@ -2391,7 +2429,8 @@
           "gender": null,
           "pronunciation": "shtah FREE-oo",
           "example": "Está frio lá fora.",
-          "exampleTranslation": "It's cold outside."
+          "exampleTranslation": "It's cold outside.",
+          "proTip": "'Está frio' = It's cold. 'Tenho frio' = I'm cold (personal). Portuguese homes can feel cold in winter."
         },
         {
           "portuguese": "está a chover",
@@ -2410,7 +2449,8 @@
               "word": "o guarda-chuva",
               "meaning": "the umbrella"
             }
-          ]
+          ],
+          "proTip": "Present continuous: estar a + infinitive. 'Está a chover' = It's raining. Very common structure in EP."
         },
         {
           "portuguese": "o guarda-chuva",
@@ -2449,7 +2489,8 @@
               "word": "está calor",
               "meaning": "it's hot"
             }
-          ]
+          ],
+          "proTip": "'Está bom tempo' = The weather is nice. Perfect for 'Vamos dar um passeio?' (Shall we go for a walk?)."
         }
       ]
     },
@@ -2744,7 +2785,8 @@
               "word": "marisco",
               "meaning": "seafood"
             }
-          ]
+          ],
+          "proTip": "Peixe = fish. Same singular/plural in some contexts. Portugal eats a lot of peixe — coastal nation."
         },
         {
           "portuguese": "bacalhau",
@@ -4921,7 +4963,8 @@
               "word": "mercado",
               "meaning": "market"
             }
-          ]
+          ],
+          "proTip": "Supermercado = supermarket. Pingo Doce, Continente, Lidl are main chains. 'Fazer compras.'"
         },
         {
           "portuguese": "perdido",
@@ -5501,7 +5544,8 @@
               "word": "quarto",
               "meaning": "bedroom"
             }
-          ]
+          ],
+          "proTip": "Sala = living room. 'Sala de estar' = sitting room. Central to Portuguese homes — where guests sit."
         },
         {
           "portuguese": "quarto",
@@ -5567,7 +5611,8 @@
               "word": "terraço",
               "meaning": "terrace"
             }
-          ]
+          ],
+          "proTip": "Varanda = balcony. Many Lisbon flats have one. 'Tomar café na varanda' = have coffee on the balcony."
         },
         {
           "portuguese": "jardim",
@@ -5624,7 +5669,8 @@
               "word": "andar",
               "meaning": "floor"
             }
-          ]
+          ],
+          "proTip": "Escadas = stairs. Feminine plural. 'Moro no 3º andar' = I live on 3rd floor — no elevator in old buildings."
         },
         {
           "portuguese": "cama",
@@ -5823,7 +5869,8 @@
               "word": "chave",
               "meaning": "key"
             }
-          ]
+          ],
+          "proTip": "Porta = door. 'Bater à porta' = to knock on the door. 'Porta aberta' = open door (welcoming)."
         },
         {
           "portuguese": "janela",
@@ -5842,7 +5889,8 @@
               "word": "luz",
               "meaning": "light"
             }
-          ]
+          ],
+          "proTip": "Janela = window. 'Abrir a janela' = open the window. Portuguese love fresh air."
         },
         {
           "portuguese": "luz",
@@ -5937,7 +5985,8 @@
               "word": "cozinha",
               "meaning": "kitchen"
             }
-          ]
+          ],
+          "proTip": "Fogão = stove. Many Portuguese cook on gas (gás). 'Cuidado com o fogão' = careful with the stove."
         },
         {
           "portuguese": "renda",
@@ -6053,7 +6102,8 @@
               "word": "bairro",
               "meaning": "neighbourhood"
             }
-          ]
+          ],
+          "proTip": "Vizinhança = neighbourhood. Portuguese often know their neighbours — community matters."
         },
         {
           "portuguese": "panela",
@@ -6129,7 +6179,8 @@
               "word": "aquecer",
               "meaning": "to heat"
             }
-          ]
+          ],
+          "proTip": "Micro-ondas = microwave. 'Aquecer no micro-ondas' = heat in the microwave."
         },
         {
           "portuguese": "lava-loiça",
@@ -6529,7 +6580,8 @@
               "word": "mesa",
               "meaning": "table"
             }
-          ]
+          ],
+          "proTip": "Candeeiro = lamp. 'Acender o candeeiro' = turn on the lamp. Portuguese use candeeiros, not just ceiling lights."
         },
         {
           "portuguese": "cortina",
@@ -6567,7 +6619,8 @@
               "word": "manhã",
               "meaning": "morning"
             }
-          ]
+          ],
+          "proTip": "Despertador = alarm clock. 'O despertador toca às sete' = The alarm goes off at seven."
         },
         {
           "portuguese": "tapete",
@@ -6776,7 +6829,8 @@
               "word": "elevador",
               "meaning": "lift"
             }
-          ]
+          ],
+          "proTip": "Andar = floor/storey. 'Moro no 3º andar' = I live on the 3rd floor. Ground = rés-do-chão."
         }
       ]
     },
@@ -6806,7 +6860,8 @@
               "word": "avó",
               "meaning": "grandmother"
             }
-          ]
+          ],
+          "proTip": "Mãe = mother. 'A minha mãe' — mãe is feminine. In Portugal, family names: mother's surname often comes last."
         },
         {
           "portuguese": "pai",
@@ -6829,7 +6884,8 @@
               "word": "avô",
               "meaning": "grandfather"
             }
-          ]
+          ],
+          "proTip": "Pai = father. Portuguese fathers traditionally had authority; modern families are more equal."
         },
         {
           "portuguese": "pais",
@@ -6852,7 +6908,8 @@
               "word": "filho",
               "meaning": "son"
             }
-          ]
+          ],
+          "proTip": "Pais = parents (plural of pai in this sense). 'Os meus pais' = my parents. Don't confuse with país (country)."
         },
         {
           "portuguese": "filho / filha",
@@ -6871,7 +6928,8 @@
               "word": "mãe",
               "meaning": "mother"
             }
-          ]
+          ],
+          "proTip": "Filho/filha = son/daughter. 'Tenho um filho' = I have a son. Used for children of any age."
         },
         {
           "portuguese": "irmão / irmã",
@@ -6890,7 +6948,8 @@
               "word": "filho / filha",
               "meaning": "son / daughter"
             }
-          ]
+          ],
+          "proTip": "Irmão/irmã = brother/sister. 'Meus irmãos' can mean brothers or siblings (mixed)."
         },
         {
           "portuguese": "avó / avô",
@@ -6929,7 +6988,8 @@
               "word": "sobrinho / sobrinha",
               "meaning": "nephew / niece"
             }
-          ]
+          ],
+          "proTip": "Tio/tia = uncle/aunt. Portuguese families are often close — 'almoço de família' on Sundays."
         },
         {
           "portuguese": "primo / prima",
@@ -6948,7 +7008,8 @@
               "word": "família",
               "meaning": "family"
             }
-          ]
+          ],
+          "proTip": "Primo/prima = cousin. 'Primos em segundo grau' = second cousins."
         },
         {
           "portuguese": "marido",
@@ -6967,7 +7028,8 @@
               "word": "casado",
               "meaning": "married"
             }
-          ]
+          ],
+          "proTip": "Marido = husband. 'O meu marido' — common in all contexts."
         },
         {
           "portuguese": "mulher / esposa",
@@ -7006,7 +7068,8 @@
               "word": "noivo / noiva",
               "meaning": "fiancé / fiancée"
             }
-          ]
+          ],
+          "proTip": "Namorado/namorada = boyfriend/girlfriend. More serious than 'amigo' — implies romantic relationship."
         },
         {
           "portuguese": "amigo / amiga",
@@ -7025,7 +7088,8 @@
               "word": "conhecer",
               "meaning": "to meet"
             }
-          ]
+          ],
+          "proTip": "Amigo/amiga = friend. Portuguese value friendship deeply. 'Os meus amigos' = my friends."
         },
         {
           "portuguese": "vizinho / vizinha",
@@ -7063,7 +7127,8 @@
               "word": "despertador",
               "meaning": "alarm clock"
             }
-          ]
+          ],
+          "proTip": "Acordar = to wake up. 'Acordo às sete' = I wake up at seven. Reflexive optional in EP."
         },
         {
           "portuguese": "levantar-se",
@@ -7082,7 +7147,8 @@
               "word": "deitar-se",
               "meaning": "to go to bed"
             }
-          ]
+          ],
+          "proTip": "Levantar-se = to get up. 'Levanto-me cedo' = I get up early. The 'me' is the reflexive pronoun."
         },
         {
           "portuguese": "tomar banho",
@@ -7101,7 +7167,8 @@
               "word": "manhã",
               "meaning": "morning"
             }
-          ]
+          ],
+          "proTip": "Tomar banho = to have a shower/bath. Never 'tomar uma ducha' (Brazilian). 'Tomei banho' = I showered."
         },
         {
           "portuguese": "vestir-se",
@@ -7120,7 +7187,8 @@
               "word": "levantar-se",
               "meaning": "to get up"
             }
-          ]
+          ],
+          "proTip": "Vestir-se = to get dressed. 'Visto-me depressa' = I get dressed quickly."
         },
         {
           "portuguese": "sair de casa",
@@ -7139,7 +7207,8 @@
               "word": "trabalho",
               "meaning": "work"
             }
-          ]
+          ],
+          "proTip": "Sair de casa = to leave the house. 'Saio de casa às oito' = I leave at eight."
         },
         {
           "portuguese": "trabalhar",
@@ -7158,7 +7227,8 @@
               "word": "escritório",
               "meaning": "office"
             }
-          ]
+          ],
+          "proTip": "Trabalhar = to work. 'Trabalho em casa' = I work from home. Portuguese work long hours by EU standards."
         },
         {
           "portuguese": "descansar",
@@ -7177,7 +7247,8 @@
               "word": "cansado",
               "meaning": "tired"
             }
-          ]
+          ],
+          "proTip": "Descansar = to rest. 'Preciso de descansar' = I need to rest. Sunday is often family rest day."
         },
         {
           "portuguese": "dormir",
@@ -7196,7 +7267,8 @@
               "word": "cama",
               "meaning": "bed"
             }
-          ]
+          ],
+          "proTip": "Dormir = to sleep. Irregular: durmo, dormes, dorme. 'Durmo oito horas' = I sleep eight hours."
         },
         {
           "portuguese": "deitar-se",
@@ -7215,7 +7287,8 @@
               "word": "cama",
               "meaning": "bed"
             }
-          ]
+          ],
+          "proTip": "Deitar-se = to go to bed. 'Deito-me à meia-noite' = I go to bed at midnight."
         },
         {
           "portuguese": "limpar",
@@ -7234,7 +7307,8 @@
               "word": "casa",
               "meaning": "house"
             }
-          ]
+          ],
+          "proTip": "Limpar = to clean. 'Limpar a casa' = to clean the house. Saturday morning is often limpeza day."
         },
         {
           "portuguese": "cozinhar",
@@ -7272,7 +7346,8 @@
               "word": "água",
               "meaning": "water"
             }
-          ]
+          ],
+          "proTip": "Lavar = to wash. 'Lavar a loiça' = wash the dishes. 'Lavar a roupa' = do the laundry."
         },
         {
           "portuguese": "arrumar",
@@ -7291,7 +7366,8 @@
               "word": "ordem",
               "meaning": "order"
             }
-          ]
+          ],
+          "proTip": "Arrumar = to tidy. 'Arruma o teu quarto!' = Tidy your room! (parent to child)."
         },
         {
           "portuguese": "sobrinho / sobrinha",
@@ -7395,7 +7471,8 @@
           "gender": null,
           "pronunciation": "en-tee-AH-doo / en-tee-AH-dah",
           "example": "Ela tem uma enteada de dez anos.",
-          "exampleTranslation": "She has a ten-year-old stepdaughter."
+          "exampleTranslation": "She has a ten-year-old stepdaughter.",
+          "proTip": "Enteado/enteada = stepson/stepdaughter. Blended families use this. 'O meu enteado' = my stepson."
         },
         {
           "portuguese": "solteiro",
@@ -7471,7 +7548,8 @@
               "word": "espelho",
               "meaning": "mirror"
             }
-          ]
+          ],
+          "proTip": "Pentear-se = to comb one's hair. 'Penteio-me' = I comb my hair."
         },
         {
           "portuguese": "barbear-se",
@@ -7490,7 +7568,8 @@
               "word": "manhã",
               "meaning": "morning"
             }
-          ]
+          ],
+          "proTip": "Barbear-se = to shave. 'Barbeio-me' = I shave. Or use 'fazer a barba.'"
         },
         {
           "portuguese": "maquilhar-se",
@@ -7528,7 +7607,8 @@
               "word": "lençol",
               "meaning": "sheet"
             }
-          ]
+          ],
+          "proTip": "Fazer a cama = to make the bed. 'Faço a cama todos os dias' = I make the bed every day."
         },
         {
           "portuguese": "pôr a mesa",
@@ -7547,7 +7627,8 @@
               "word": "jantar",
               "meaning": "dinner"
             }
-          ]
+          ],
+          "proTip": "Pôr a mesa = to set the table. 'Põe a mesa para o jantar' = Set the table for dinner."
         },
         {
           "portuguese": "levantar a mesa",
@@ -7566,7 +7647,8 @@
               "word": "loiça",
               "meaning": "dishes"
             }
-          ]
+          ],
+          "proTip": "Levantar a mesa = to clear the table. Often followed by 'lavar a loiça.'"
         },
         {
           "portuguese": "passar a ferro",
@@ -7585,7 +7667,8 @@
               "word": "engomar",
               "meaning": "to iron"
             }
-          ]
+          ],
+          "proTip": "Passar a ferro = to iron. 'Passar a ferro a roupa' — Portuguese often iron everything, even jeans."
         },
         {
           "portuguese": "estou atrasado / atrasada",
@@ -7624,7 +7707,8 @@
               "word": "cansado",
               "meaning": "tired"
             }
-          ]
+          ],
+          "proTip": "Tenho sono = I'm sleepy. Different from 'estou cansado' (tired). 'Tenho' + noun for states."
         },
         {
           "portuguese": "o fim de semana",
@@ -7633,7 +7717,8 @@
           "gender": "m",
           "pronunciation": "oo feeng duh suh-MAH-nuh",
           "example": "O que vais fazer no fim de semana?",
-          "exampleTranslation": "What are you going to do at the weekend?"
+          "exampleTranslation": "What are you going to do at the weekend?",
+          "proTip": "Fim de semana = weekend. 'O que vais fazer no fim de semana?' — common Friday question."
         },
         {
           "portuguese": "o feriado",
@@ -7642,7 +7727,8 @@
           "gender": "m",
           "pronunciation": "oo fuh-ree-AH-doo",
           "example": "Na segunda-feira é feriado.",
-          "exampleTranslation": "Monday is a public holiday."
+          "exampleTranslation": "Monday is a public holiday.",
+          "proTip": "Feriado = public holiday. Portugal has ~13. Shops may be closed. 'É feriado amanhã.'"
         },
         {
           "portuguese": "dia a dia",
@@ -7661,7 +7747,8 @@
               "word": "diariamente",
               "meaning": "daily"
             }
-          ]
+          ],
+          "proTip": "Dia a dia = day to day, daily. 'Vivo dia a dia' = I live day to day."
         }
       ]
     },
@@ -7687,7 +7774,8 @@
               "word": "escola",
               "meaning": "school"
             }
-          ]
+          ],
+          "proTip": "Professor/professora = teacher. University teachers are also 'professor.' Very respected profession."
         },
         {
           "portuguese": "médico / médica",
@@ -8002,7 +8090,8 @@
               "word": "chefe",
               "meaning": "boss"
             }
-          ]
+          ],
+          "proTip": "Empresa = company. 'Trabalhar numa empresa' = to work for a company. PME = small/medium enterprise."
         },
         {
           "portuguese": "reunião",
@@ -8021,7 +8110,8 @@
               "word": "chefe",
               "meaning": "boss"
             }
-          ]
+          ],
+          "proTip": "Reunião = meeting. 'Tenho uma reunião' = I have a meeting. Often long in Portugal!"
         },
         {
           "portuguese": "computador",
@@ -8040,7 +8130,8 @@
               "word": "ecrã",
               "meaning": "screen"
             }
-          ]
+          ],
+          "proTip": "Computador = computer. 'Portátil' = laptop. Portuguese workplaces are increasingly digital."
         },
         {
           "portuguese": "ecrã",
@@ -8116,7 +8207,8 @@
               "word": "mensagem",
               "meaning": "message"
             }
-          ]
+          ],
+          "proTip": "Email = email. Pronounced 'ee-MAYL.' 'Enviei-te um email' = I sent you an email."
         },
         {
           "portuguese": "correio eletrónico",
@@ -8154,7 +8246,8 @@
               "word": "empresa",
               "meaning": "company"
             }
-          ]
+          ],
+          "proTip": "Colega = colleague. Same for m/f! 'Os meus colegas' = my colleagues. Important in work culture."
         },
         {
           "portuguese": "chefe",
@@ -8173,7 +8266,8 @@
               "word": "patrão / patroa",
               "meaning": "boss"
             }
-          ]
+          ],
+          "proTip": "Chefe = boss. Same for m/f. 'O meu chefe' or 'A minha chefe.' Formal hierarchy in many companies."
         },
         {
           "portuguese": "salário",
@@ -8307,7 +8401,8 @@
               "word": "curso",
               "meaning": "course"
             }
-          ]
+          ],
+          "proTip": "Universidade = university. Free for EU citizens in public unis. Lisbon, Porto, Coimbra are top."
         },
         {
           "portuguese": "aula",
@@ -8326,7 +8421,8 @@
               "word": "exame",
               "meaning": "exam"
             }
-          ]
+          ],
+          "proTip": "Aula = class/lesson. 'A aula de português' = the Portuguese class. 'Ter aulas' = to have classes."
         },
         {
           "portuguese": "exame",
@@ -8345,7 +8441,8 @@
               "word": "nota",
               "meaning": "grade"
             }
-          ]
+          ],
+          "proTip": "Exame = exam. 'Fazer um exame' = to sit an exam. 'Boa sorte no exame!'"
         },
         {
           "portuguese": "aluno / aluna",
@@ -8364,7 +8461,8 @@
               "word": "escola",
               "meaning": "school"
             }
-          ]
+          ],
+          "proTip": "Aluno/aluna = student. 'Sou aluno de português' = I'm a Portuguese student."
         },
         {
           "portuguese": "livro",
@@ -8383,7 +8481,8 @@
               "word": "biblioteca",
               "meaning": "library"
             }
-          ]
+          ],
+          "proTip": "Livro = book. 'Ler um livro' = to read a book. Livraria = bookshop (different from biblioteca)."
         },
         {
           "portuguese": "caderno",
@@ -8402,7 +8501,8 @@
               "word": "livro",
               "meaning": "book"
             }
-          ]
+          ],
+          "proTip": "Caderno = notebook. Students use cadernos. 'Escrever no caderno' = to write in the notebook."
         },
         {
           "portuguese": "caneta",
@@ -8421,7 +8521,8 @@
               "word": "caderno",
               "meaning": "notebook"
             }
-          ]
+          ],
+          "proTip": "Caneta = pen. 'Tens uma caneta?' = Do you have a pen? Caneta de feltro = marker."
         },
         {
           "portuguese": "lápis",
@@ -8478,7 +8579,8 @@
               "word": "estudar",
               "meaning": "to study"
             }
-          ]
+          ],
+          "proTip": "Biblioteca = library. Free to use. 'Estudar na biblioteca' = to study at the library."
         },
         {
           "portuguese": "dicionário",
@@ -8516,7 +8618,8 @@
               "word": "universidade",
               "meaning": "university"
             }
-          ]
+          ],
+          "proTip": "Curso = course. 'Fiz um curso de português' = I did a Portuguese course. Curso intensivo = intensive."
         },
         {
           "portuguese": "nota",
@@ -8638,7 +8741,8 @@
           "gender": null,
           "pronunciation": "oo puh-TROWNG / uh puh-TROH-uh",
           "example": "O patrão quer falar contigo.",
-          "exampleTranslation": "The boss wants to talk to you."
+          "exampleTranslation": "The boss wants to talk to you.",
+          "proTip": "Patrão/patroa = boss (informal). More colloquial than chefe. 'O patrão não gostou.'"
         },
         {
           "portuguese": "despedir",
@@ -8665,7 +8769,8 @@
           "gender": "f",
           "pronunciation": "uh FOL-guh",
           "example": "Amanhã tenho folga.",
-          "exampleTranslation": "I have the day off tomorrow."
+          "exampleTranslation": "I have the day off tomorrow.",
+          "proTip": "Folga = day off. 'Tenho folga amanhã' = I have the day off tomorrow. 'Dia de folga.'"
         },
         {
           "portuguese": "as férias",
@@ -8683,7 +8788,8 @@
           "gender": "f",
           "pronunciation": "uh rruh-FOHR-muh",
           "example": "O meu pai está na reforma.",
-          "exampleTranslation": "My father is retired."
+          "exampleTranslation": "My father is retired.",
+          "proTip": "Reforma = retirement. 'Estar na reforma' = to be retired. Portuguese retire around 66."
         }
       ]
     },
@@ -8709,7 +8815,8 @@
               "word": "dor de cabeça",
               "meaning": "headache"
             }
-          ]
+          ],
+          "proTip": "Cabeça = head. Feminine: a cabeça. 'Dói-me a cabeça' = My head hurts (lit. It hurts me the head)."
         },
         {
           "portuguese": "olho / olhos",
@@ -8728,7 +8835,8 @@
               "word": "cabeça",
               "meaning": "head"
             }
-          ]
+          ],
+          "proTip": "Olho (eye) → olhos (eyes). Irregular plural! 'Tenho os olhos castanhos' = I have brown eyes."
         },
         {
           "portuguese": "nariz",
@@ -8747,7 +8855,8 @@
               "word": "cabeça",
               "meaning": "head"
             }
-          ]
+          ],
+          "proTip": "Nariz = nose. One nose, same form. 'O nariz está entupido' = My nose is blocked."
         },
         {
           "portuguese": "boca",
@@ -8766,7 +8875,8 @@
               "word": "dente",
               "meaning": "tooth"
             }
-          ]
+          ],
+          "proTip": "Boca = mouth. Feminine. 'Abre a boca' = Open your mouth (doctor/dentist)."
         },
         {
           "portuguese": "orelha",
@@ -8785,7 +8895,8 @@
               "word": "cabeça",
               "meaning": "head"
             }
-          ]
+          ],
+          "proTip": "Orelha = ear. 'Dói-me a orelha' = My ear hurts. Orelha can also mean ear (of corn)."
         },
         {
           "portuguese": "dente",
@@ -8804,7 +8915,8 @@
               "word": "dentista",
               "meaning": "dentist"
             }
-          ]
+          ],
+          "proTip": "Dente → dentes (tooth/teeth). 'Dor de dentes' = toothache. Dentista = dentist."
         },
         {
           "portuguese": "cabelo",
@@ -8823,7 +8935,8 @@
               "word": "pentear-se",
               "meaning": "to comb hair"
             }
-          ]
+          ],
+          "proTip": "Cabelo = hair (as a whole). Usually singular: 'o cabelo.' 'O cabelo está molhado.'"
         },
         {
           "portuguese": "mão / mãos",
@@ -8842,7 +8955,8 @@
               "word": "dedo",
               "meaning": "finger"
             }
-          ]
+          ],
+          "proTip": "Mão (hand) → mãos (hands). Irregular! The only -ão word that becomes -ãos."
         },
         {
           "portuguese": "braço",
@@ -8861,7 +8975,8 @@
               "word": "ombro",
               "meaning": "shoulder"
             }
-          ]
+          ],
+          "proTip": "Braço → braços. 'Parti o braço' = I broke my arm. Braço = arm; abraço = hug."
         },
         {
           "portuguese": "perna",
@@ -8880,7 +8995,8 @@
               "word": "joelho",
               "meaning": "knee"
             }
-          ]
+          ],
+          "proTip": "Perna = leg. 'Dói-me a perna' = My leg hurts. Feminine."
         },
         {
           "portuguese": "pé / pés",
@@ -8899,7 +9015,8 @@
               "word": "dedo",
               "meaning": "toe"
             }
-          ]
+          ],
+          "proTip": "Pé (foot) → pés (feet). Irregular! 'Os pés estão frios' = My feet are cold."
         },
         {
           "portuguese": "costas",
@@ -8918,7 +9035,8 @@
               "word": "dor de costas",
               "meaning": "backache"
             }
-          ]
+          ],
+          "proTip": "Costas = back. Always plural! 'Tenho dores nas costas' = I have back pain."
         },
         {
           "portuguese": "peito",
@@ -8956,7 +9074,8 @@
               "word": "dor",
               "meaning": "pain"
             }
-          ]
+          ],
+          "proTip": "Barriga = belly/stomach. Informal. 'Dói-me a barriga' = My stomach hurts. Estômago is more formal."
         },
         {
           "portuguese": "dedo",
@@ -8975,7 +9094,8 @@
               "word": "dedo do pé",
               "meaning": "toe"
             }
-          ]
+          ],
+          "proTip": "Dedo = finger or toe. 'Dedo do pé' = toe. 'Dedo da mão' = finger. Same word for both."
         },
         {
           "portuguese": "pescoço",
@@ -9051,7 +9171,8 @@
               "word": "farmácia",
               "meaning": "pharmacy"
             }
-          ]
+          ],
+          "proTip": "Dor = pain. Feminine: 'tenho muita dor.' 'Dói-me' = it hurts me — use with body parts."
         },
         {
           "portuguese": "dor de cabeça",
@@ -9060,7 +9181,8 @@
           "gender": "f",
           "pronunciation": "DOHR duh kah-BAY-sah",
           "example": "Tenho uma dor de cabeça forte.",
-          "exampleTranslation": "I have a bad headache."
+          "exampleTranslation": "I have a bad headache.",
+          "proTip": "Dor de cabeça = headache. 'Tenho uma dor de cabeça forte' = I have a bad headache."
         },
         {
           "portuguese": "febre",
@@ -9069,7 +9191,8 @@
           "gender": "f",
           "pronunciation": "FEH-bruh",
           "example": "O miúdo tem febre.",
-          "exampleTranslation": "The child has a fever."
+          "exampleTranslation": "The child has a fever.",
+          "proTip": "Febre = fever. 'Tenho febre' = I have a fever. Go to farmácia first — they can advise."
         },
         {
           "portuguese": "constipação",
@@ -9098,7 +9221,8 @@
           "gender": "f",
           "pronunciation": "GREEP-uh",
           "example": "Apanhei uma gripe.",
-          "exampleTranslation": "I caught the flu."
+          "exampleTranslation": "I caught the flu.",
+          "proTip": "Gripe = flu. 'Apanhei uma gripe' = I caught the flu. Vaccination: 'vacina da gripe.'"
         },
         {
           "portuguese": "tosse",
@@ -9107,7 +9231,8 @@
           "gender": "f",
           "pronunciation": "TOH-suh",
           "example": "Tenho tosse há uma semana.",
-          "exampleTranslation": "I've had a cough for a week."
+          "exampleTranslation": "I've had a cough for a week.",
+          "proTip": "Tosse = cough. 'Tenho tosse' = I have a cough. Feminine."
         },
         {
           "portuguese": "alergia",
@@ -9134,7 +9259,8 @@
           "gender": "m",
           "pronunciation": "kom-pree-MEE-doo",
           "example": "Tomo um comprimido por dia.",
-          "exampleTranslation": "I take one pill a day."
+          "exampleTranslation": "I take one pill a day.",
+          "proTip": "Comprimido = pill/tablet. 'Tomar um comprimido' = to take a pill. De manhã/à noite = morning/evening."
         },
         {
           "portuguese": "medicamento",
@@ -9162,7 +9288,8 @@
               "word": "hospital",
               "meaning": "hospital"
             }
-          ]
+          ],
+          "proTip": "Doente = sick/ill. 'Estou doente' = I'm sick. Can also mean 'patient' (o doente)."
         },
         {
           "portuguese": "saudável",
@@ -9171,7 +9298,8 @@
           "gender": null,
           "pronunciation": "sow-DAH-vuhl",
           "example": "Como de forma saudável.",
-          "exampleTranslation": "I eat healthily."
+          "exampleTranslation": "I eat healthily.",
+          "proTip": "Saudável = healthy. 'Vida saudável' = healthy lifestyle. Comida saudável = healthy food."
         },
         {
           "portuguese": "cansado / cansada",
@@ -9180,7 +9308,8 @@
           "gender": null,
           "pronunciation": "kahn-SAH-doo / kahn-SAH-dah",
           "example": "Estou muito cansado.",
-          "exampleTranslation": "I'm very tired."
+          "exampleTranslation": "I'm very tired.",
+          "proTip": "Cansado/cansada = tired. Agrees with speaker: men say cansado, women cansada."
         },
         {
           "portuguese": "consulta",
@@ -9234,7 +9363,8 @@
           "gender": null,
           "pronunciation": "DOY",
           "example": "Dói-me aqui.",
-          "exampleTranslation": "It hurts here."
+          "exampleTranslation": "It hurts here.",
+          "proTip": "'Dói-me' = it hurts me. 'Dói-me a cabeça' = I have a headache. The 'me' is the indirect object."
         },
         {
           "portuguese": "melhorar",
@@ -9243,7 +9373,8 @@
           "gender": null,
           "pronunciation": "muh-lyoo-RAHR",
           "example": "Espero que melhores em breve.",
-          "exampleTranslation": "I hope you get better soon."
+          "exampleTranslation": "I hope you get better soon.",
+          "proTip": "Melhorar = to get better. 'Espero que melhores em breve' = I hope you get better soon."
         },
         {
           "portuguese": "receita",
@@ -9271,7 +9402,8 @@
           "gender": "f",
           "pronunciation": "oor-ZHEN-see-ahsh",
           "example": "Fui às urgências ontem à noite.",
-          "exampleTranslation": "I went to A&E last night."
+          "exampleTranslation": "I went to A&E last night.",
+          "proTip": "Urgências = A&E / ER. 'Fui às urgências' = I went to A&E. For emergencies, go to hospital."
         },
         {
           "portuguese": "penso",
@@ -9280,7 +9412,8 @@
           "gender": "m",
           "pronunciation": "PEN-soo",
           "example": "Preciso de um penso rápido.",
-          "exampleTranslation": "I need a plaster."
+          "exampleTranslation": "I need a plaster.",
+          "proTip": "Penso = plaster/band-aid. 'Penso rápido' = sticking plaster. At the farmácia."
         },
         {
           "portuguese": "dor de garganta",
@@ -9307,7 +9440,8 @@
           "gender": null,
           "pronunciation": "shtoh doo-EN-tuh",
           "example": "Não vou trabalhar, estou doente.",
-          "exampleTranslation": "I'm not going to work, I'm sick."
+          "exampleTranslation": "I'm not going to work, I'm sick.",
+          "proTip": "'Estou doente' = I'm sick. Common excuse: 'Não vou trabalhar, estou doente.'"
         },
         {
           "portuguese": "dói-me aqui",
@@ -9325,7 +9459,8 @@
           "gender": null,
           "pronunciation": "TAY-nyoo FEH-bruh",
           "example": "Tenho febre e dor de cabeça.",
-          "exampleTranslation": "I have a fever and a headache."
+          "exampleTranslation": "I have a fever and a headache.",
+          "proTip": "'Tenho febre' = I have a fever. Thermometer = termómetro. 38°+ is febre."
         },
         {
           "portuguese": "a receita",
@@ -9414,7 +9549,8 @@
               "word": "banco",
               "meaning": "bank"
             }
-          ]
+          ],
+          "proTip": "Dinheiro = money. 'Trocar dinheiro' = exchange money. Portugal uses euros (euros)."
         },
         {
           "portuguese": "preço",
@@ -9451,7 +9587,8 @@
           "gender": "m",
           "pronunciation": "bah-RAH-too",
           "example": "Está barato.",
-          "exampleTranslation": "It's cheap."
+          "exampleTranslation": "It's cheap.",
+          "proTip": "Barato = cheap. 'É barato' = It's cheap. Supermercados have 'preços baixos' (low prices)."
         },
         {
           "portuguese": "caro",
@@ -9460,7 +9597,8 @@
           "gender": "m",
           "pronunciation": "KAH-roo",
           "example": "Lisboa é caro.",
-          "exampleTranslation": "Lisbon is expensive."
+          "exampleTranslation": "Lisbon is expensive.",
+          "proTip": "Caro = expensive. 'Lisboa está cara' = Lisbon is expensive. Renda (rent) is often 'cara.'"
         },
         {
           "portuguese": "troco",
@@ -9493,7 +9631,8 @@
           "gender": "m",
           "pronunciation": "dush-KON-too",
           "example": "Há desconto para estudantes.",
-          "exampleTranslation": "There is a discount for students."
+          "exampleTranslation": "There is a discount for students.",
+          "proTip": "Desconto = discount. 'Há desconto?' = Is there a discount? 'Saldos' = sales (January, July)."
         },
         {
           "portuguese": "saldo",
@@ -9549,7 +9688,8 @@
           "gender": "f",
           "pronunciation": "LOH-zhah",
           "example": "A loja abre às nove.",
-          "exampleTranslation": "The shop opens at nine."
+          "exampleTranslation": "The shop opens at nine.",
+          "proTip": "Loja = shop. 'Loja de roupa' = clothes shop. Shops close 7–8pm, some close for lunch."
         },
         {
           "portuguese": "centro comercial",
@@ -9863,7 +10003,8 @@
           "gender": "m",
           "pronunciation": "KOWNG",
           "example": "O cão está no jardim.",
-          "exampleTranslation": "The dog is in the garden."
+          "exampleTranslation": "The dog is in the garden.",
+          "proTip": "Cão → cães (dog/dogs). Irregular plural! Very common pet. 'O cão' = the dog."
         },
         {
           "portuguese": "gato",
@@ -9872,7 +10013,8 @@
           "gender": "m",
           "pronunciation": "GAH-too",
           "example": "Tenho um gato preto.",
-          "exampleTranslation": "I have a black cat."
+          "exampleTranslation": "I have a black cat.",
+          "proTip": "Gato = cat. Gato/gatos. 'O gato está a dormir' = The cat is sleeping. Popular pets."
         },
         {
           "portuguese": "pássaro",
@@ -9881,7 +10023,8 @@
           "gender": "m",
           "pronunciation": "PAH-sah-roo",
           "example": "O pássaro canta de manhã.",
-          "exampleTranslation": "The bird sings in the morning."
+          "exampleTranslation": "The bird sings in the morning.",
+          "proTip": "Pássaro = bird. Portugal has diverse birdlife. 'Ouço os pássaros' = I hear the birds."
         },
         {
           "portuguese": "peixe",
@@ -9904,7 +10047,8 @@
               "word": "marisco",
               "meaning": "seafood"
             }
-          ]
+          ],
+          "proTip": "Peixe = fish. Same singular/plural in some contexts. Portugal eats a lot of peixe — coastal nation."
         },
         {
           "portuguese": "cavalo",
@@ -9976,7 +10120,8 @@
           "gender": "f",
           "pronunciation": "AHR-voo-ruh",
           "example": "A árvore é muito alta.",
-          "exampleTranslation": "The tree is very tall."
+          "exampleTranslation": "The tree is very tall.",
+          "proTip": "Árvore = tree. Feminine. 'Sob a árvore' = under the tree. Portuguese love their olive trees (oliveiras)."
         },
         {
           "portuguese": "flor",
@@ -9985,7 +10130,8 @@
           "gender": "f",
           "pronunciation": "FLOHR",
           "example": "Comprei flores para a minha mãe.",
-          "exampleTranslation": "I bought flowers for my mother."
+          "exampleTranslation": "I bought flowers for my mother.",
+          "proTip": "Flor = flower. Feminine. 'As flores estão bonitas' = The flowers are beautiful. Portugal has stunning wildflowers."
         },
         {
           "portuguese": "rio",
@@ -9994,7 +10140,8 @@
           "gender": "m",
           "pronunciation": "RREE-oo",
           "example": "O rio Tejo atravessa Lisboa.",
-          "exampleTranslation": "The Tagus river crosses Lisbon."
+          "exampleTranslation": "The Tagus river crosses Lisbon.",
+          "proTip": "Rio = river. Tejo, Douro, Mondego — Portugal's main rivers. 'À beira-rio' = by the river."
         },
         {
           "portuguese": "mar",
@@ -10003,7 +10150,8 @@
           "gender": "m",
           "pronunciation": "MAHR",
           "example": "O mar está calmo hoje.",
-          "exampleTranslation": "The sea is calm today."
+          "exampleTranslation": "The sea is calm today.",
+          "proTip": "Mar = sea. Masculine: o mar. 'Vou ao mar' = I'm going to the sea. Portugal = 800+ km of coast."
         },
         {
           "portuguese": "montanha",
@@ -10012,7 +10160,8 @@
           "gender": "f",
           "pronunciation": "mon-TAH-nyah",
           "example": "Subimos a montanha.",
-          "exampleTranslation": "We climbed the mountain."
+          "exampleTranslation": "We climbed the mountain.",
+          "proTip": "Montanha = mountain. Serra da Estrela is the highest. 'Fazer uma caminhada na montanha.'"
         },
         {
           "portuguese": "lago",
@@ -10039,7 +10188,8 @@
           "gender": "m",
           "pronunciation": "KAHM-poo",
           "example": "Vivo no campo.",
-          "exampleTranslation": "I live in the countryside."
+          "exampleTranslation": "I live in the countryside.",
+          "proTip": "Campo = countryside/field. 'Viver no campo' = to live in the countryside. Alentejo = vast campos."
         },
         {
           "portuguese": "céu",
@@ -10299,7 +10449,8 @@
               "word": "alegre",
               "meaning": "happy"
             }
-          ]
+          ],
+          "proTip": "Feliz = happy. 'Estou feliz' = I'm happy. Feliz aniversário! = Happy birthday!"
         },
         {
           "portuguese": "triste",
@@ -10308,7 +10459,8 @@
           "gender": null,
           "pronunciation": "TREESH-tuh",
           "example": "Ela está triste.",
-          "exampleTranslation": "She is sad."
+          "exampleTranslation": "She is sad.",
+          "proTip": "Triste = sad. 'Estou triste' = I'm sad. Fado is música triste — saudade in song form."
         },
         {
           "portuguese": "zangado",
@@ -10317,7 +10469,8 @@
           "gender": "m",
           "pronunciation": "zan-GAH-doo",
           "example": "O meu irmão está zangado.",
-          "exampleTranslation": "My brother is angry."
+          "exampleTranslation": "My brother is angry.",
+          "proTip": "Zangado = angry. 'Estou zangado' = I'm angry. Menos forte que 'furioso.'"
         },
         {
           "portuguese": "preocupado",
@@ -10326,7 +10479,8 @@
           "gender": "m",
           "pronunciation": "pree-oh-koo-PAH-doo",
           "example": "Estou preocupado com o exame.",
-          "exampleTranslation": "I'm worried about the exam."
+          "exampleTranslation": "I'm worried about the exam.",
+          "proTip": "Preocupado = worried. 'Estou preocupado' = I'm worried. Common state!"
         },
         {
           "portuguese": "nervoso",
@@ -10335,7 +10489,8 @@
           "gender": "m",
           "pronunciation": "nehr-VOH-zoo",
           "example": "Fico nervoso antes de falar em público.",
-          "exampleTranslation": "I get nervous before speaking in public."
+          "exampleTranslation": "I get nervous before speaking in public.",
+          "proTip": "Nervoso = nervous. 'Estou nervoso' = I'm nervous. Agrees: nervoso/nervosa."
         },
         {
           "portuguese": "surpreso",
@@ -10344,7 +10499,8 @@
           "gender": "m",
           "pronunciation": "soor-PRAY-zoo",
           "example": "Fiquei surpreso com a notícia.",
-          "exampleTranslation": "I was surprised by the news."
+          "exampleTranslation": "I was surprised by the news.",
+          "proTip": "Surpreso = surprised. 'Fiquei surpreso' = I was surprised. Surpreso/surpresa."
         },
         {
           "portuguese": "orgulhoso",
@@ -10380,7 +10536,8 @@
           "gender": "m",
           "pronunciation": "KAHL-moo",
           "example": "Mantém-te calmo.",
-          "exampleTranslation": "Stay calm."
+          "exampleTranslation": "Stay calm.",
+          "proTip": "Calmo = calm. 'Fica calmo' = Stay calm. Portuguese value being calmo."
         },
         {
           "portuguese": "simpático",
@@ -10510,7 +10667,8 @@
           "gender": "m",
           "pronunciation": "ah-MOHR",
           "example": "O amor é importante.",
-          "exampleTranslation": "Love is important."
+          "exampleTranslation": "Love is important.",
+          "proTip": "Amor = love. 'Amor' as address = honey/darling. 'O meu amor' = my love. Central to Portuguese expression."
         },
         {
           "portuguese": "medo",
@@ -10690,7 +10848,8 @@
           "gender": null,
           "pronunciation": "kan-SAH-doo / kan-SAH-dah",
           "example": "Estou muito cansado.",
-          "exampleTranslation": "I'm very tired."
+          "exampleTranslation": "I'm very tired.",
+          "proTip": "Cansado/cansada = tired. Agrees with speaker: men say cansado, women cansada."
         },
         {
           "portuguese": "entediado / entediada",
@@ -10814,7 +10973,8 @@
           "gender": null,
           "pronunciation": "BOH-rah",
           "example": "Bora sair?",
-          "exampleTranslation": "Let's go out?"
+          "exampleTranslation": "Let's go out?",
+          "proTip": "Bora = let's go. From 'vamos embora.' 'Bora!' = Let's go! Very informal, young people."
         },
         {
           "portuguese": "tá",
@@ -10823,7 +10983,8 @@
           "gender": null,
           "pronunciation": "TAH",
           "example": "Tá, eu vou.",
-          "exampleTranslation": "Okay, I'll go."
+          "exampleTranslation": "Okay, I'll go.",
+          "proTip": "Tá = contraction of 'está.' 'Tá bem' = Okay. 'Tá bom' = That's fine. Very informal writing/speech."
         },
         {
           "portuguese": "e aí?",
@@ -10841,7 +11002,8 @@
           "gender": "m",
           "pronunciation": "tran-KEE-loo",
           "example": "Tranquilo, não há problema.",
-          "exampleTranslation": "No worries, no problem."
+          "exampleTranslation": "No worries, no problem.",
+          "proTip": "Tranquilo = cool/no problem. 'Está tranquilo' = It's all good. Laid-back response."
         },
         {
           "portuguese": "tens razão",
@@ -10877,7 +11039,8 @@
           "gender": "f",
           "pronunciation": "SAY-nah",
           "example": "Aquela cena foi estranha.",
-          "exampleTranslation": "That thing was weird."
+          "exampleTranslation": "That thing was weird.",
+          "proTip": "Cena = thing/stuff. 'Essa cena' = that thing. 'Que cena!' = What a thing! Very informal."
         },
         {
           "portuguese": "gajo / gaja",
@@ -10928,7 +11091,8 @@
           "gender": null,
           "pronunciation": "ay-PAH",
           "example": "Epá, não acredito!",
-          "exampleTranslation": "Come on, I can't believe it!"
+          "exampleTranslation": "Come on, I can't believe it!",
+          "proTip": "Epá = hey/man/dude. Filler word. 'Epá, não acredito!' = Man, I can't believe it! Very Portuguese."
         },
         {
           "portuguese": "meu",
@@ -11011,7 +11175,8 @@
           "gender": "m",
           "pronunciation": "ZHEE-roo",
           "example": "Que vestido giro!",
-          "exampleTranslation": "What a pretty dress!"
+          "exampleTranslation": "What a pretty dress!",
+          "proTip": "Giro = cute/cool. 'Que giro!' = How cute! Very Portuguese. Can describe people or things."
         },
         {
           "portuguese": "porreiro",
@@ -11020,7 +11185,8 @@
           "gender": "m",
           "pronunciation": "poo-RRAY-roo",
           "example": "O teu irmão é muito porreiro.",
-          "exampleTranslation": "Your brother is really cool."
+          "exampleTranslation": "Your brother is really cool.",
+          "proTip": "Porreiro = cool/great. Slightly older slang. 'Está porreiro' = It's great. Lisbon/Porto usage."
         },
         {
           "portuguese": "chato",
