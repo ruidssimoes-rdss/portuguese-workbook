@@ -53,7 +53,7 @@ function WordCard({
         <div className="bg-[#F8F8FA] rounded-[8px] px-3 py-2.5 flex items-start gap-2">
           <PronunciationButton
             text={w.example}
-            variant="dark"
+            variant="muted"
             size="sm"
             className="shrink-0 mt-0.5"
           />

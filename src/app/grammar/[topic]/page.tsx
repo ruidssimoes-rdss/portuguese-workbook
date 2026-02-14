@@ -96,7 +96,7 @@ export default function GrammarTopicPage() {
                       {rule.examples.map((ex, j) => (
                         <li key={j}>
                           <span className="inline-flex items-center gap-2">
-                            <PronunciationButton text={ex.pt} size="sm" className="shrink-0" />
+                            <PronunciationButton text={ex.pt} size="sm" variant="muted" className="shrink-0" />
                             <span className="font-semibold text-text font-mono text-[13px]">{ex.pt}</span>
                             <span className="text-text-2">— {ex.en}</span>
                           </span>

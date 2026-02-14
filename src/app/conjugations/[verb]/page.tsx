@@ -155,7 +155,7 @@ export default function VerbPage() {
                   <p className="text-[16px] font-bold tracking-tight text-text">
                     {r.Conjugation}
                   </p>
-                  <PronunciationButton text={r.Conjugation} size="sm" />
+                  <PronunciationButton text={r.Conjugation} size="sm" variant="muted" />
                 </div>
                 {r["Example Sentence"] && (
                   <p className="text-[13px] text-text-2 italic mt-1.5 break-words">
@@ -245,7 +245,7 @@ export default function VerbPage() {
                     <td className="px-3.5 py-2.5 border-b border-border-l whitespace-nowrap">
                       <div className="flex items-center gap-1.5">
                         <span className="font-bold tracking-tight">{r.Conjugation}</span>
-                        <PronunciationButton text={r.Conjugation} size="sm" />
+                        <PronunciationButton text={r.Conjugation} size="sm" variant="muted" />
                       </div>
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-border-l text-text-2 italic text-[12.5px] min-w-0 break-words">

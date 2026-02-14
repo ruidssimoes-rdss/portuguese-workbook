@@ -8,7 +8,7 @@ export interface PronunciationButtonProps {
   className?: string;
   size?: "sm" | "md";
   /** Dark style for use on homepage cards (dark circle, white icon) */
-  variant?: "default" | "dark";
+  variant?: "default" | "dark" | "muted";
 }
 
 const RATE = { default: 0.85, slow: 0.6 };
@@ -132,7 +132,9 @@ export function PronunciationButton({
   const variantClasses =
     variant === "dark"
       ? "border-0 bg-[#262626] text-white hover:bg-[#404040] shadow-none focus:ring-gray-400"
-      : "border border-blue-200 bg-white text-[#3C5E95] hover:bg-sky-50 hover:border-blue-300 focus:ring-[#3C5E95]";
+      : variant === "muted"
+        ? "border-0 bg-[#F0F0F0] text-[#6B7280] hover:bg-[#E5E5E5] hover:text-[#374151] shadow-none focus:ring-gray-300"
+        : "border border-blue-200 bg-white text-[#3C5E95] hover:bg-sky-50 hover:border-blue-300 focus:ring-[#3C5E95]";
 
   return (
     <span className="relative inline-flex">
@@ -146,7 +148,7 @@ export function PronunciationButton({
             : "Listen (European Portuguese)"
         }
         className={`inline-flex items-center justify-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${variantClasses} ${className}`}
-        style={variant === "dark" ? undefined : size === "md" ? { boxShadow: "0 1px 3px rgba(0,0,0,0.08)" } : undefined}
+        style={variant === "dark" || variant === "muted" ? undefined : size === "md" ? { boxShadow: "0 1px 3px rgba(0,0,0,0.08)" } : undefined}
         aria-label="Play pronunciation"
       >
         <SpeakerIcon playing={playing} size={size} />
