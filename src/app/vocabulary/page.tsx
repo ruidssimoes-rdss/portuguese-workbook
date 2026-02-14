@@ -197,42 +197,50 @@ export default function VocabularyPage() {
     0
   );
 
+  const pillActive =
+    "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200";
+  const pillInactive =
+    "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer";
+  const groupContainer =
+    "flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]";
+
   return (
     <>
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
-        <div className="flex flex-col gap-2 py-5">
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <h1 className="text-[22px] font-bold tracking-tight">
+        <div className="flex flex-col gap-4 py-5">
+          <div className="flex items-baseline gap-3">
+            <h1 className="text-[20px] font-semibold text-[#0A0A0A]">
               Vocabulary
             </h1>
+            <div className="w-px h-[18px] bg-[#9AA2AD] self-center" />
+            <span className="text-[16px] font-medium text-[rgba(71,85,105,0.5)]">
+              Vocabulário
+            </span>
+          </div>
+          <p className="text-[11px] text-[#9AA2AD]">
+            {displayTotalWords.toLocaleString()} words · {displayCategoryCount} categories · A1–B1
+          </p>
+          <div className="flex items-center gap-3 flex-wrap">
+            <div className={groupContainer}>
+              {CEFR_LEVELS.map((level) => (
+                <button
+                  key={level}
+                  onClick={() => setCefrFilter(level)}
+                  className={cefrFilter === level ? pillActive : pillInactive}
+                >
+                  {level}
+                </button>
+              ))}
+            </div>
             <input
               type="text"
               placeholder="Search categories..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+              className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
             />
           </div>
-          <p className="text-[13px] text-[#9CA3AF]">
-            {displayTotalWords.toLocaleString()} words · {displayCategoryCount} categories · A1–B1
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2 flex-wrap mb-6 pb-4 border-b border-[#E9E9E9]">
-          {CEFR_LEVELS.map((level) => (
-            <button
-              key={level}
-              onClick={() => setCefrFilter(level)}
-              className={
-                cefrFilter === level
-                  ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                  : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
-              }
-            >
-              {level}
-            </button>
-          ))}
         </div>
 
         <div className="pb-16">

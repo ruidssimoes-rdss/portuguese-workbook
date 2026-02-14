@@ -312,14 +312,17 @@ function CultureContent() {
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
         <section className="py-5">
-          <div>
-            <h1 className="text-[22px] font-bold tracking-tight">
-              Culture & Expressions
-            </h1>
-            <p className="text-[13px] text-[#9CA3AF] mt-1">
-              Explore Portuguese language and culture — sayings, false friends, etiquette, and regional expressions.
-            </p>
-            <p className="text-[13px] text-[#9CA3AF] mt-1">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-baseline gap-3">
+              <h1 className="text-[20px] font-semibold text-[#0A0A0A]">
+                Culture
+              </h1>
+              <div className="w-px h-[18px] bg-[#9AA2AD] self-center" />
+              <span className="text-[16px] font-medium text-[rgba(71,85,105,0.5)]">
+                Cultura
+              </span>
+            </div>
+            <p className="text-[11px] text-[#9AA2AD]">
               4 sections · {sayings.length} sayings · {falseFriends.length} false friends · {etiquetteTips.length} etiquette tips · {regionalExpressions.length} regional expressions
             </p>
           </div>
@@ -346,47 +349,47 @@ function CultureContent() {
 
           {tab === "sayings" && (
             <>
-              <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-[#E9E9E9]">
-                <div className="flex items-center gap-2 flex-wrap">
-                  {CEFR_LEVELS.map((level) => (
-                    <button
-                      key={level}
-                      onClick={() => setCefrFilter(level)}
-                      className={
-                        cefrFilter === level
-                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
-                      }
-                    >
-                      {level}
-                    </button>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  {THEMES.map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => setThemeFilter(t)}
-                      className={
-                        themeFilter === t
-                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
-                      }
-                    >
-                      {t}
-                    </button>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex flex-col gap-4 mb-6">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]">
+                    {CEFR_LEVELS.map((level) => (
+                      <button
+                        key={level}
+                        onClick={() => setCefrFilter(level)}
+                        className={
+                          cefrFilter === level
+                            ? "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200"
+                            : "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer"
+                        }
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]">
+                    {THEMES.map((t) => (
+                      <button
+                        key={t}
+                        onClick={() => setThemeFilter(t)}
+                        className={
+                          themeFilter === t
+                            ? "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200"
+                            : "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer"
+                        }
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
                   <input
                     type="text"
                     placeholder="Search sayings..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
                   />
                 </div>
-                <p className="text-[13px] text-[#6B7280]">Showing {filteredSayings.length} of {sayings.length}</p>
+                <p className="text-[11px] text-[#9AA2AD]">Showing {filteredSayings.length} of {sayings.length}</p>
               </div>
               <div className="pb-16">
                 {filteredSayings.length === 0 ? (
@@ -402,30 +405,32 @@ function CultureContent() {
 
           {tab === "false-friends" && (
             <>
-              <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-[#E9E9E9]">
-                <div className="flex items-center gap-2 flex-wrap">
-                  {CEFR_LEVELS.map((level) => (
-                    <button
-                      key={level}
-                      onClick={() => setCefrFilter(level)}
-                      className={
-                        cefrFilter === level
-                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
-                      }
-                    >
-                      {level}
-                    </button>
-                  ))}
+              <div className="flex flex-col gap-4 mb-6">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]">
+                    {CEFR_LEVELS.map((level) => (
+                      <button
+                        key={level}
+                        onClick={() => setCefrFilter(level)}
+                        className={
+                          cefrFilter === level
+                            ? "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200"
+                            : "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer"
+                        }
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search false friends..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+                  />
                 </div>
-                <input
-                  type="text"
-                  placeholder="Search false friends..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
-                />
-                <p className="text-[13px] text-[#6B7280]">Showing {filteredFalseFriends.length} of {falseFriends.length}</p>
+                <p className="text-[11px] text-[#9AA2AD]">Showing {filteredFalseFriends.length} of {falseFriends.length}</p>
               </div>
               <div className="pb-16">
                 {filteredFalseFriends.length === 0 ? (
@@ -441,30 +446,32 @@ function CultureContent() {
 
           {tab === "etiquette" && (
             <>
-              <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-[#E9E9E9]">
-                <div className="flex items-center gap-2 flex-wrap">
-                  {ETIQUETTE_CATEGORIES.map((c) => (
-                    <button
-                      key={c}
-                      onClick={() => setEtiquetteCategory(c)}
-                      className={
-                        etiquetteCategory === c
-                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
-                      }
-                    >
-                      {c}
-                    </button>
-                  ))}
+              <div className="flex flex-col gap-4 mb-6">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]">
+                    {ETIQUETTE_CATEGORIES.map((c) => (
+                      <button
+                        key={c}
+                        onClick={() => setEtiquetteCategory(c)}
+                        className={
+                          etiquetteCategory === c
+                            ? "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200"
+                            : "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer"
+                        }
+                      >
+                        {c}
+                      </button>
+                    ))}
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search etiquette..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+                  />
                 </div>
-                <input
-                  type="text"
-                  placeholder="Search etiquette..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
-                />
-                <p className="text-[13px] text-[#6B7280]">Showing {filteredEtiquette.length} of {etiquetteTips.length}</p>
+                <p className="text-[11px] text-[#9AA2AD]">Showing {filteredEtiquette.length} of {etiquetteTips.length}</p>
               </div>
               <div className="pb-16">
                 {filteredEtiquette.length === 0 ? (
@@ -478,45 +485,47 @@ function CultureContent() {
 
           {tab === "regional" && (
             <>
-              <div className="flex flex-col gap-4 mb-6 pb-4 border-b border-[#E9E9E9]">
-                <div className="flex items-center gap-2 flex-wrap">
-                  {REGIONS.map((r) => (
-                    <button
-                      key={r}
-                      onClick={() => setRegionFilter(r)}
-                      className={
-                        regionFilter === r
-                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
-                      }
-                    >
-                      {r}
-                    </button>
-                  ))}
+              <div className="flex flex-col gap-4 mb-6">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]">
+                    {REGIONS.map((r) => (
+                      <button
+                        key={r}
+                        onClick={() => setRegionFilter(r)}
+                        className={
+                          regionFilter === r
+                            ? "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200"
+                            : "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer"
+                        }
+                      >
+                        {r}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]">
+                    {CEFR_LEVELS.map((level) => (
+                      <button
+                        key={level}
+                        onClick={() => setCefrFilter(level)}
+                        className={
+                          cefrFilter === level
+                            ? "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200"
+                            : "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer"
+                        }
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search regional..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+                  />
                 </div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  {CEFR_LEVELS.map((level) => (
-                    <button
-                      key={level}
-                      onClick={() => setCefrFilter(level)}
-                      className={
-                        cefrFilter === level
-                          ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                          : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
-                      }
-                    >
-                      {level}
-                    </button>
-                  ))}
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search regional..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
-                />
-                <p className="text-[13px] text-[#6B7280]">Showing {filteredRegional.length} of {regionalExpressions.length}</p>
+                <p className="text-[11px] text-[#9AA2AD]">Showing {filteredRegional.length} of {regionalExpressions.length}</p>
               </div>
               <div className="pb-16">
                 {filteredRegional.length === 0 ? (

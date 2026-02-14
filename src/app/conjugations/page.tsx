@@ -9,34 +9,25 @@ import Link from "next/link";
 
 const data = verbData as unknown as VerbDataSet;
 
-const filters = [
-  "All",
-  "Irregular",
-  "Regular -AR",
-  "Regular -ER",
-  "Regular -IR",
-  "|",
-  "A1",
-  "A2",
-  "B1",
-  "|",
-  "Essential",
-  "Core",
-  "Useful",
-];
+const totalConjugations = data.order.reduce(
+  (sum, key) => sum + (data.verbs[key]?.conjugations?.length ?? 0),
+  0
+);
 
-function matchFilter(
+function matchFilters(
   meta: { group: string; cefr: string; priority: string },
-  filter: string
+  typeFilter: string,
+  levelFilter: string | null,
+  priorityFilter: string | null
 ): boolean {
-  if (filter === "All") return true;
-  if (filter === "Irregular") return meta.group.startsWith("Irregular");
-  if (filter === "Regular -AR") return meta.group.startsWith("Regular -AR");
-  if (filter === "Regular -ER") return meta.group.startsWith("Regular -ER");
-  if (filter === "Regular -IR") return meta.group.startsWith("Regular -IR");
-  if (["A1", "A2", "B1", "B2"].includes(filter)) return meta.cefr === filter;
-  if (["Essential", "Core", "Useful"].includes(filter))
-    return meta.priority === filter;
+  if (typeFilter !== "All") {
+    if (typeFilter === "Irregular" && !meta.group.startsWith("Irregular")) return false;
+    if (typeFilter === "Regular -AR" && !meta.group.startsWith("Regular -AR")) return false;
+    if (typeFilter === "Regular -ER" && !meta.group.startsWith("Regular -ER")) return false;
+    if (typeFilter === "Regular -IR" && !meta.group.startsWith("Regular -IR")) return false;
+  }
+  if (levelFilter && meta.cefr !== levelFilter) return false;
+  if (priorityFilter && meta.priority !== priorityFilter) return false;
   return true;
 }
 
@@ -48,14 +39,23 @@ function shortGroup(group: string): string {
   return group;
 }
 
+const pillActive =
+  "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200";
+const pillInactive =
+  "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer";
+const groupContainer =
+  "flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]";
+
 export default function ConjugationsPage() {
-  const [filter, setFilter] = useState("All");
+  const [typeFilter, setTypeFilter] = useState("All");
+  const [levelFilter, setLevelFilter] = useState<string | null>(null);
+  const [priorityFilter, setPriorityFilter] = useState<string | null>(null);
   const [search, setSearch] = useState("");
 
   const q = search.toLowerCase();
   const verbs = data.order.filter((v) => {
     const m = data.verbs[v].meta;
-    if (!matchFilter(m, filter)) return false;
+    if (!matchFilters(m, typeFilter, levelFilter, priorityFilter)) return false;
     if (q && !v.toLowerCase().includes(q) && !m.english.toLowerCase().includes(q))
       return false;
     return true;
@@ -65,42 +65,61 @@ export default function ConjugationsPage() {
     <>
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
-        <div className="flex flex-col gap-2 py-5">
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <h1 className="text-[22px] font-bold tracking-tight">
+        <div className="flex flex-col gap-4 py-5">
+          <div className="flex items-baseline gap-3">
+            <h1 className="text-[20px] font-semibold text-[#0A0A0A]">
               Conjugations
             </h1>
+            <div className="w-px h-[18px] bg-[#9AA2AD] self-center" />
+            <span className="text-[16px] font-medium text-[rgba(71,85,105,0.5)]">
+              Conjugações
+            </span>
+          </div>
+          <p className="text-[11px] text-[#9AA2AD]">
+            {data.order.length} verbs · {totalConjugations.toLocaleString()} conjugations · 6 tenses
+          </p>
+          <div className="flex items-center gap-3 flex-wrap">
+            <div className={groupContainer}>
+              {["All", "Irregular", "Regular -AR", "Regular -ER", "Regular -IR"].map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setTypeFilter(f)}
+                  className={typeFilter === f ? pillActive : pillInactive}
+                >
+                  {f === "Regular -AR" ? "-AR" : f === "Regular -ER" ? "-ER" : f === "Regular -IR" ? "-IR" : f}
+                </button>
+              ))}
+            </div>
+            <div className={groupContainer}>
+              {["A1", "A2", "B1"].map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setLevelFilter((prev) => (prev === f ? null : f))}
+                  className={levelFilter === f ? pillActive : pillInactive}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+            <div className={groupContainer}>
+              {["Essential", "Core", "Useful"].map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setPriorityFilter((prev) => (prev === f ? null : f))}
+                  className={priorityFilter === f ? pillActive : pillInactive}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
             <input
               type="text"
-              placeholder="Search verbs…"
+              placeholder="Search verbs..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+              className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
             />
           </div>
-          <p className="text-[13px] text-[#9CA3AF]">
-            {data.order.length} verbs · {data.order.length * 30} conjugations · 6 tenses
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2 flex-wrap mb-6 pb-4 border-b border-[#E9E9E9]">
-          {filters.map((f, i) =>
-            f === "|" ? (
-              <div key={i} className="w-px h-5 bg-[#E9E9E9] mx-1 shrink-0" />
-            ) : (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={
-                  filter === f
-                    ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                    : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
-                }
-              >
-                {f}
-              </button>
-            )
-          )}
         </div>
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(198px,1fr))] gap-4 pb-16">
