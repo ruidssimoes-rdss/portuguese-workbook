@@ -193,7 +193,7 @@ export default function GrammarTopicPage() {
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
             Tips & Tricks
           </h2>
-          <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5 border-l-[3px] border-l-[#3C5E95]">
+          <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
             <ul className="space-y-4">
               {topic.tips.map((tip, i) => (
                 <li key={i}>
