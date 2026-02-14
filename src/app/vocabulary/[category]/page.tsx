@@ -10,6 +10,58 @@ import type { VocabData, VocabWord } from "@/types/vocab";
 
 const data = vocabData as unknown as VocabData;
 
+function Popover({
+  trigger,
+  children,
+  align = "left",
+}: {
+  trigger: React.ReactNode;
+  children: React.ReactNode;
+  align?: "left" | "right";
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return;
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative inline-flex">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        onMouseEnter={() => {
+          if (window.matchMedia("(hover: hover)").matches) setOpen(true);
+        }}
+        onMouseLeave={() => {
+          if (window.matchMedia("(hover: hover)").matches) setOpen(false);
+        }}
+        className="cursor-pointer"
+      >
+        {trigger}
+      </button>
+      {open && (
+        <div
+          className={`absolute bottom-full mb-2 z-50 w-[280px] bg-white border border-[#E5E5E5] rounded-[12px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-4 ${
+            align === "right" ? "right-0" : "left-0"
+          }`}
+        >
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function WordCard({
   word: w,
   isHighlight,
@@ -69,6 +121,7 @@ function WordCard({
           </div>
         </div>
       )}
+      {/* CEFR + Gender + Related + Pro Tip badges */}
       <div className="flex items-center gap-1.5 flex-wrap">
         <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full">
           {w.cefr}
@@ -84,34 +137,47 @@ function WordCard({
             {w.gender}
           </span>
         )}
-      </div>
-      {w.relatedWords && w.relatedWords.length > 0 && (
-        <div className="pt-2 border-t border-[#F0F0F0]">
-          <span className="text-[10px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium">
-            Related
-          </span>
-          <div className="flex flex-wrap gap-1.5 mt-1.5">
-            {w.relatedWords.map((rw, j) => (
-              <span
-                key={j}
-                className="text-[11.5px] text-[#374151] bg-[#F3F4F6] px-2 py-0.5 rounded-full"
-              >
-                {rw.word} — <span className="text-[#9CA3AF]">{rw.meaning}</span>
+        {w.relatedWords && w.relatedWords.length > 0 && (
+          <Popover
+            trigger={
+              <span className="text-[11px] font-semibold text-[#6B7280] bg-[#F3F4F6] px-2.5 py-[3px] rounded-full hover:bg-[#E5E7EB] transition-colors duration-150">
+                Related ({w.relatedWords.length})
               </span>
-            ))}
-          </div>
-        </div>
-      )}
-      {w.proTip && (
-        <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[8px] px-3 py-2.5">
-          <span className="text-[10px] uppercase tracking-[0.08em] text-amber-600 font-semibold">
-            Pro Tip
-          </span>
-          <p className="text-[12px] text-[#92400E] leading-relaxed mt-0.5">
-            {w.proTip}
-          </p>
-        </div>
-      )}
+            }
+          >
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium mb-1">
+                Related Words
+              </span>
+              {w.relatedWords.map((rw, j) => (
+                <div key={j} className="flex items-baseline gap-1.5">
+                  <span className="text-[13px] font-medium text-[#111827]">{rw.word}</span>
+                  <span className="text-[12px] text-[#9CA3AF]">— {rw.meaning}</span>
+                </div>
+              ))}
+            </div>
+          </Popover>
+        )}
+        {w.proTip && (
+          <Popover
+            trigger={
+              <span className="text-[11px] font-semibold text-amber-600 bg-[#FFFBEB] border border-[#FEF3C7] px-2.5 py-[3px] rounded-full hover:bg-[#FEF3C7] transition-colors duration-150">
+                Pro Tip
+              </span>
+            }
+            align="right"
+          >
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.08em] text-amber-600 font-semibold">
+                Pro Tip
+              </span>
+              <p className="text-[13px] text-[#374151] leading-relaxed mt-1">
+                {w.proTip}
+              </p>
+            </div>
+          </Popover>
+        )}
+      </div>
     </div>
   );
 }
