@@ -4,18 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import type { DailyPrompt } from "@/data/daily-prompts";
-
-function normalizeForMatching(input: string): string {
-  let s = input
-    .toLowerCase()
-    .trim()
-    .normalize("NFD")
-    .replace(/\p{M}/gu, "") // strip combining marks (accents)
-    .replace(/[^\p{L}\p{N}\s]/gu, "") // remove punctuation, keep letters + numbers + spaces
-    .replace(/\s+/g, " ")
-    .trim();
-  return s;
-}
+import { validateResponse } from "@/lib/validate-response";
+import { promptKeywords } from "@/data/prompt-keywords";
 
 function getFuzzyVariants(normalized: string): string[] {
   const variants = new Set<string>();
@@ -23,12 +13,7 @@ function getFuzzyVariants(normalized: string): string[] {
   if (normalized.startsWith("eu ")) {
     variants.add(normalized.slice(3).trim());
   }
-  const trailing = [
-    " obrigado",
-    " obrigada",
-    " e tu",
-    " e contigo",
-  ];
+  const trailing = [" obrigado", " obrigada", " e tu", " e contigo"];
   for (const t of trailing) {
     if (normalized.endsWith(t)) {
       variants.add(normalized.slice(0, -t.length).trim());
@@ -45,23 +30,15 @@ function getFuzzyVariants(normalized: string): string[] {
   return Array.from(variants);
 }
 
-function matchResponse(normalized: string, acceptedText: string): boolean {
-  if (normalized === acceptedText) return true;
-  if (acceptedText.includes("[")) {
-    const prefix = acceptedText.split("[")[0].trim();
-    if (prefix && normalized.startsWith(prefix)) return true;
-  }
-  return false;
-}
-
 export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
   const [userResponse, setUserResponse] = useState("");
   const [feedback, setFeedback] = useState<{
-    type: "success" | "correction" | "unknown";
+    type: "success" | "correction" | "partial" | "unknown";
     display?: string;
     message?: string;
     correction?: string;
     explanation?: string;
+    examples?: string[];
   } | null>(null);
   const [showHint, setShowHint] = useState(false);
 
@@ -69,46 +46,57 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
     const raw = userResponse.trim();
     if (!raw) return;
 
-    const normalized = normalizeForMatching(raw);
-    const variants = getFuzzyVariants(normalized);
+    const config = promptKeywords[greeting.id] || {
+      sets: [],
+      minMatches: 1,
+      minWords: 2,
+    };
 
-    for (const acc of greeting.acceptedResponses) {
-      if (normalized === acc.text) {
-        setFeedback({ type: "success", display: acc.display, message: acc.feedback });
-        return;
-      }
-      for (const v of variants) {
-        if (v === acc.text) {
-          setFeedback({ type: "success", display: acc.display, message: acc.feedback });
-          return;
-        }
-      }
-      if (matchResponse(normalized, acc.text)) {
-        setFeedback({ type: "success", display: acc.display, message: acc.feedback });
-        return;
-      }
-      for (const v of variants) {
-        if (matchResponse(v, acc.text)) {
-          setFeedback({ type: "success", display: acc.display, message: acc.feedback });
-          return;
-        }
-      }
+    const result = validateResponse(
+      raw,
+      greeting.acceptedResponses,
+      greeting.commonMistakes,
+      config,
+      getFuzzyVariants
+    );
+
+    switch (result.type) {
+      case "exact":
+        setFeedback({
+          type: "success",
+          display: result.display,
+          message: result.feedback,
+        });
+        break;
+      case "keyword":
+        setFeedback({
+          type: "success",
+          display: result.display,
+          message: result.feedback,
+        });
+        break;
+      case "mistake":
+        setFeedback({
+          type: "correction",
+          correction: result.correction,
+          explanation: result.explanation,
+        });
+        break;
+      case "partial":
+        setFeedback({
+          type: "partial",
+          message: result.feedback,
+          examples: result.examples,
+        });
+        break;
+      case "unknown":
+        setFeedback({
+          type: "unknown",
+          message: result.feedback,
+          examples: result.examples,
+        });
+        break;
     }
-
-    for (const mistake of greeting.commonMistakes) {
-      if (normalized === mistake.text) {
-        setFeedback({ type: "correction", correction: mistake.correction, explanation: mistake.explanation });
-        return;
-      }
-      for (const v of variants) {
-        if (v === mistake.text) {
-          setFeedback({ type: "correction", correction: mistake.correction, explanation: mistake.explanation });
-          return;
-        }
-      }
-    }
-
-    setFeedback({ type: "unknown" });
   }
 
   return (
@@ -202,9 +190,11 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
         >
           {feedback.type === "success" && (
             <>
-              <span className="text-[14px] font-semibold text-emerald-700 block">
-                {feedback.display}
-              </span>
+              {feedback.display && (
+                <span className="text-[14px] font-semibold text-emerald-700 block">
+                  {feedback.display}
+                </span>
+              )}
               <span className="text-[13px] text-emerald-600 mt-1 block">
                 {feedback.message}
               </span>
@@ -222,15 +212,20 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
               </span>
             </>
           )}
-          {feedback.type === "unknown" && (
+          {(feedback.type === "partial" || feedback.type === "unknown") && (
             <>
               <span className="text-[14px] font-medium text-[#374151] block">
-                Hmm, I don&apos;t recognise that one.
+                {feedback.message}
               </span>
-              <span className="text-[13px] text-[#6B7280] mt-1 block">
-                That might be correct, but try a simpler response. Tap
-                &quot;hint&quot; for ideas!
-              </span>
+              {feedback.examples && feedback.examples.length > 0 && (
+                <ul className="mt-2 space-y-1">
+                  {feedback.examples.map((ex, i) => (
+                    <li key={i} className="text-[13px] text-[#6B7280]">
+                      • {ex}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </>
           )}
           <button
