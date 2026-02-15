@@ -9,7 +9,7 @@ import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
 import sayingsData from "@/data/sayings.json";
-import { greetings } from "@/data/greetings";
+import { dailyPrompts } from "@/data/daily-prompts";
 import { cefrPillClass } from "@/lib/cefr";
 import { HomeGreeting } from "@/components/home-greeting";
 import type { VerbDataSet } from "@/types";
@@ -60,17 +60,14 @@ const presentRows =
 const sayingOfDay =
   sayings.length > 0 ? sayings[dayIndex % sayings.length] : null;
 
-// Greeting of the day: time-based + daily rotation
+// Daily prompt: time-appropriate + daily rotation
 const hour = new Date().getHours();
-const greetingTimeSlots: ("morning" | "afternoon" | "evening" | "anytime")[] =
-  hour < 12 ? ["morning", "anytime"] : hour < 18 ? ["afternoon", "anytime"] : ["evening", "anytime"];
-const filteredGreetings = greetings.filter((g) =>
-  greetingTimeSlots.includes(g.timeOfDay)
+const timeOfDay = hour < 12 ? "morning" : hour < 18 ? "afternoon" : "evening";
+const eligible = dailyPrompts.filter(
+  (p) => p.timeOfDay === timeOfDay || p.timeOfDay === "anytime"
 );
-const greetingOfDay =
-  filteredGreetings.length > 0
-    ? filteredGreetings[dayOfYear % filteredGreetings.length]
-    : null;
+const promptIndex = dayIndex % eligible.length;
+const todayPrompt = eligible[promptIndex];
 
 function shortGroup(group: string): string {
   if (group.startsWith("Irregular")) return "Irregular";
@@ -102,7 +99,7 @@ export default function Home() {
             firstChange={latestChangelog.changes?.[0] ?? ""}
           />
         )}
-        {greetingOfDay && <HomeGreeting greeting={greetingOfDay} />}
+        {todayPrompt && <HomeGreeting greeting={todayPrompt} />}
 
         {/* Two-column main area */}
         <section className="pt-4 pb-8">

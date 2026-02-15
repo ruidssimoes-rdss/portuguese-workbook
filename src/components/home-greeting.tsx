@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { PronunciationButton } from "@/components/pronunciation-button";
-import type { Greeting } from "@/data/greetings";
+import type { DailyPrompt } from "@/data/daily-prompts";
 
 function normalizeForMatching(input: string): string {
   let s = input
@@ -45,7 +45,16 @@ function getFuzzyVariants(normalized: string): string[] {
   return Array.from(variants);
 }
 
-export function HomeGreeting({ greeting }: { greeting: Greeting }) {
+function matchResponse(normalized: string, acceptedText: string): boolean {
+  if (normalized === acceptedText) return true;
+  if (acceptedText.includes("[")) {
+    const prefix = acceptedText.split("[")[0].trim();
+    if (prefix && normalized.startsWith(prefix)) return true;
+  }
+  return false;
+}
+
+export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
   const [userResponse, setUserResponse] = useState("");
   const [feedback, setFeedback] = useState<{
     type: "success" | "correction" | "unknown";
@@ -70,6 +79,16 @@ export function HomeGreeting({ greeting }: { greeting: Greeting }) {
       }
       for (const v of variants) {
         if (v === acc.text) {
+          setFeedback({ type: "success", display: acc.display, message: acc.feedback });
+          return;
+        }
+      }
+      if (matchResponse(normalized, acc.text)) {
+        setFeedback({ type: "success", display: acc.display, message: acc.feedback });
+        return;
+      }
+      for (const v of variants) {
+        if (matchResponse(v, acc.text)) {
           setFeedback({ type: "success", display: acc.display, message: acc.feedback });
           return;
         }
@@ -161,9 +180,9 @@ export function HomeGreeting({ greeting }: { greeting: Greeting }) {
       )}
 
       {/* Learn about the structure — hidden when feedback shown */}
-      {!feedback && (
+      {!feedback && greeting.grammarLink && (
         <Link
-          href="/grammar"
+          href={`/grammar/${greeting.grammarLink}`}
           className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[rgba(224,231,255,0.75)] border border-[rgba(79,70,229,0.75)] text-[13px] font-medium text-[rgba(79,70,229,0.75)] hover:bg-[rgba(224,231,255,1)] transition-colors duration-200 w-fit"
         >
           Learn about the structure
