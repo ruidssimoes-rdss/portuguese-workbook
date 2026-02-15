@@ -18,6 +18,7 @@ import {
   type GrammarSubLevel,
 } from "@/types/levels";
 import levelsDataRaw from "@/data/levels.json";
+import { cefrPillClass } from "@/lib/cefr";
 
 const levelsData = levelsDataRaw as unknown as LevelsData;
 
@@ -47,6 +48,13 @@ const SECTION_COLORS = {
     barGradient: "linear-gradient(90deg, #894AA6, #AA61F1)",
   },
 } as const;
+
+function getCefrBand(level: string): string {
+  if (level.startsWith("A1")) return "A1";
+  if (level.startsWith("A2")) return "A2";
+  if (level.startsWith("B1")) return "B1";
+  return "A1";
+}
 
 const SECTION_ORDER = ["conjugations", "vocabulary", "grammar"] as const;
 
@@ -220,8 +228,7 @@ export default function DashboardPage() {
                     ))}
                   </div>
                   <span
-                    className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white w-14 text-center"
-                    style={{ backgroundColor: colors.primary }}
+                    className={`text-[12px] font-semibold shrink-0 px-2.5 py-0.5 rounded-full w-14 text-center ${cefrPillClass(getCefrBand(currentLevel))}`}
                   >
                     {currentLevel}
                   </span>
