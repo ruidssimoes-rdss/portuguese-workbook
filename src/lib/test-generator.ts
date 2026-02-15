@@ -65,7 +65,7 @@ const PERSONS = [
   "eles/elas/vocês (they/you plural formal)",
 ];
 
-const QUESTIONS_PER_TEST = 10;
+const DEFAULT_QUESTIONS = 15;
 
 const TENSE_PT: Record<string, string> = {
   Present: "Presente",
@@ -122,7 +122,8 @@ function getWordsForLevel(levelData: VocabSubLevel, vocab: VocabData): { word: V
 export function generateConjugationQuestions(
   levelKey: string,
   levelData: ConjugationSubLevel,
-  verbs: VerbDataSet
+  verbs: VerbDataSet,
+  count: number = DEFAULT_QUESTIONS
 ): TestQuestion[] {
   const requiredVerbs = getVerbsByFilter(levelData.requiredVerbs, verbs);
   const requiredTenses = levelData.requiredTenses;
@@ -143,8 +144,8 @@ export function generateConjugationQuestions(
   const uniqueCombos = Array.from(
     new Map(combos.map((c) => [`${c.verbKey}|${c.tense}|${c.person}`, c])).values()
   );
-  const selected = shuffle(uniqueCombos).slice(0, QUESTIONS_PER_TEST);
-  if (selected.length < QUESTIONS_PER_TEST) return [];
+  const selected = shuffle(uniqueCombos).slice(0, count);
+  if (selected.length < count) return [];
 
   const questions: TestQuestion[] = [];
   for (const { verbKey, tense, person } of selected) {
@@ -184,14 +185,15 @@ export function generateConjugationQuestions(
 export function generateVocabularyQuestions(
   levelKey: string,
   levelData: VocabSubLevel,
-  vocab: VocabData
+  vocab: VocabData,
+  count: number = DEFAULT_QUESTIONS
 ): TestQuestion[] {
   const words = getWordsForLevel(levelData, vocab);
   if (words.length < 4) return [];
 
   const shuffled = shuffle(words);
-  const selected = shuffled.slice(0, QUESTIONS_PER_TEST);
-  if (selected.length < QUESTIONS_PER_TEST) return [];
+  const selected = shuffled.slice(0, count);
+  if (selected.length < count) return [];
 
   const questions: TestQuestion[] = [];
   for (let i = 0; i < selected.length; i++) {
@@ -263,7 +265,8 @@ function getTopicIdsForLevel(levelData: GrammarSubLevel, grammarData: GrammarDat
 export function generateGrammarQuestions(
   levelKey: string,
   levelData: GrammarSubLevel,
-  grammarData: GrammarData
+  grammarData: GrammarData,
+  count: number = DEFAULT_QUESTIONS
 ): TestQuestion[] {
   const topicIds = getTopicIdsForLevel(levelData, grammarData);
   if (topicIds.length === 0) return [];
@@ -288,10 +291,10 @@ export function generateGrammarQuestions(
   }
 
   const shuffled = shuffle(allQuestions);
-  const selected = shuffled.slice(0, QUESTIONS_PER_TEST);
-  if (selected.length < QUESTIONS_PER_TEST) return [];
+  const selected = shuffled.slice(0, count);
+  if (selected.length < count) return [];
 
   return selected;
 }
 
-export { QUESTIONS_PER_TEST };
+export { DEFAULT_QUESTIONS, DEFAULT_QUESTIONS as QUESTIONS_PER_TEST };

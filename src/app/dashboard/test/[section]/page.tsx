@@ -8,8 +8,9 @@ import {
   generateConjugationQuestions,
   generateVocabularyQuestions,
   generateGrammarQuestions,
-  QUESTIONS_PER_TEST,
+  DEFAULT_QUESTIONS,
 } from "@/lib/test-generator";
+import { PronunciationButton } from "@/components/pronunciation-button";
 import { getProgress as getLocalProgress } from "@/lib/progress";
 import { getProgress, saveLevelResult } from "@/lib/progress-service";
 import { useAuth } from "@/components/auth-provider";
@@ -123,6 +124,15 @@ function getGrammarTags(levelData: GrammarSubLevel): string[] {
   });
 }
 
+function stripMarkdown(text: string): string {
+  return text.replace(/\*\*(.*?)\*\*/g, "$1");
+}
+
+function getQuestionCount(section: string, level: string): number {
+  if (section === "conjugations" && level === "A1.1") return 10;
+  return DEFAULT_QUESTIONS;
+}
+
 function parseQuestionText(text: string, sectionColor: string): React.ReactNode {
   const parts = text.split(/\*\*(.*?)\*\*/g);
   return parts.map((p, i) =>
@@ -188,27 +198,29 @@ export default function LevelTestPage() {
   const sectionLabel = section.charAt(0).toUpperCase() + section.slice(1);
 
   const handleStart = () => {
+    const count = getQuestionCount(section, currentLevel);
+
     if (isConjugations && levelInfo) {
       const levelData = levelsData.conjugations[currentLevel] as ConjugationSubLevel | undefined;
       if (levelData) {
-        const qs = generateConjugationQuestions(currentLevel, levelData, verbs);
-        setQuestions(qs.slice(0, QUESTIONS_PER_TEST));
+        const qs = generateConjugationQuestions(currentLevel, levelData, verbs, count);
+        setQuestions(qs.slice(0, count));
       } else {
         setQuestions([]);
       }
     } else if (isVocabulary && levelInfo) {
       const levelData = levelsData.vocabulary[currentLevel] as VocabSubLevel | undefined;
       if (levelData) {
-        const qs = generateVocabularyQuestions(currentLevel, levelData, vocab);
-        setQuestions(qs.slice(0, QUESTIONS_PER_TEST));
+        const qs = generateVocabularyQuestions(currentLevel, levelData, vocab, count);
+        setQuestions(qs.slice(0, count));
       } else {
         setQuestions([]);
       }
     } else if (isGrammar && levelInfo) {
       const levelData = levelsData.grammar[currentLevel] as GrammarSubLevel | undefined;
       if (levelData) {
-        const qs = generateGrammarQuestions(currentLevel, levelData, grammar);
-        setQuestions(qs.slice(0, QUESTIONS_PER_TEST));
+        const qs = generateGrammarQuestions(currentLevel, levelData, grammar, count);
+        setQuestions(qs.slice(0, count));
       } else {
         setQuestions([]);
       }
@@ -420,12 +432,12 @@ export default function LevelTestPage() {
           >
             <div className="flex justify-between text-[13px] text-text-2 mb-4">
               <span>
-                Question {questionIndex + 1} of {QUESTIONS_PER_TEST}
+                Question {questionIndex + 1} of {questions.length}
               </span>
               <span className="text-text-3">Level {currentLevel}</span>
             </div>
                 <div className="flex gap-0.5 mb-8">
-              {Array.from({ length: QUESTIONS_PER_TEST }, (_, i) => (
+              {Array.from({ length: questions.length }, (_, i) => (
                 <div
                   key={i}
                   className="h-2 flex-1 min-w-0 rounded-sm transition-all duration-200"
@@ -443,9 +455,16 @@ export default function LevelTestPage() {
                     {parseQuestionText(currentQuestion.questionText, sectionColor)}
                   </p>
                   {currentQuestion.questionTextPt && (
-                    <p className="mt-2 text-[16px] text-text-2 italic">
-                      {parseQuestionText(currentQuestion.questionTextPt, sectionColor)}
-                    </p>
+                    <div className="mt-2 flex items-center gap-2">
+                      <PronunciationButton
+                        text={stripMarkdown(currentQuestion.questionTextPt)}
+                        size="sm"
+                        variant="muted"
+                      />
+                      <p className="text-[16px] text-text-2 italic">
+                        {parseQuestionText(currentQuestion.questionTextPt, sectionColor)}
+                      </p>
+                    </div>
                   )}
                 </div>
                 <div className="space-y-3">
