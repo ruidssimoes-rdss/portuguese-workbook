@@ -23,34 +23,28 @@ const levelsData = levelsDataRaw as unknown as LevelsData;
 
 const SECTION_COLORS = {
   conjugations: {
-    primary: "#3D6B9E",
-    light: "#7BA4D4",
-    bg: "#F0F5FF",
-    border: "#7BA4D4",
-    title: "#3D6B9E",
-    track: "#3D6B9E",
-    barTrack: "rgba(61,107,158,0.12)",
-    barGradient: "linear-gradient(90deg, #5A8EC0, #3D6B9E)",
+    primary: "#6B7280",
+    bg: "rgba(107, 114, 128, 0.1)",
+    border: "#6B7280",
+    text: "#6B7280",
+    barTrack: "rgba(107, 114, 128, 0.12)",
+    barGradient: "linear-gradient(90deg, #555A64, #6B7280)",
   },
   vocabulary: {
-    primary: "#3C5E95",
-    light: "#5081B6",
-    bg: "#EBF2FA",
-    border: "#5081B6",
-    title: "#3C5E95",
-    track: "#3C5E95",
-    barTrack: "rgba(60,94,149,0.12)",
-    barGradient: "linear-gradient(90deg, #5081B6, #3C5E95)",
+    primary: "#14B8A6",
+    bg: "rgba(20, 184, 166, 0.1)",
+    border: "#14B8A6",
+    text: "#14B8A6",
+    barTrack: "rgba(20, 184, 166, 0.12)",
+    barGradient: "linear-gradient(90deg, #179A8B, #14B8A6)",
   },
   grammar: {
-    primary: "#4B5563",
-    light: "#9CA3AF",
-    bg: "#F4F5F7",
-    border: "#9CA3AF",
-    title: "#4B5563",
-    track: "#4B5563",
-    barTrack: "rgba(75,85,99,0.12)",
-    barGradient: "linear-gradient(90deg, #7B8494, #4B5563)",
+    primary: "#AA61F1",
+    bg: "rgba(170, 97, 241, 0.1)",
+    border: "#AA61F1",
+    text: "#AA61F1",
+    barTrack: "rgba(170, 97, 241, 0.12)",
+    barGradient: "linear-gradient(90deg, #894AA6, #AA61F1)",
   },
 } as const;
 
@@ -207,7 +201,7 @@ export default function DashboardPage() {
                                 background: passed
                                   ? colors.barGradient
                                   : isCurrent
-                                    ? `${colors.track}44`
+                                    ? `${colors.primary}44`
                                     : "#E5E7EB",
                                 minWidth: "12px",
                               }}
@@ -227,7 +221,7 @@ export default function DashboardPage() {
                   </div>
                   <span
                     className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white w-14 text-center"
-                    style={{ backgroundColor: colors.track }}
+                    style={{ backgroundColor: colors.primary }}
                   >
                     {currentLevel}
                   </span>
@@ -238,7 +232,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Section cards */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-12 items-stretch">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-12">
           {SECTION_ORDER.map((section) => {
             const s = progress[section];
             const currentLevel = s.currentLevel;
@@ -251,94 +245,122 @@ export default function DashboardPage() {
             const colors = SECTION_COLORS[section];
             const failedLast = s.lastTestScore != null && s.lastTestScore < targetAccuracy;
 
+            const lastTestedStr = s.lastTestDate
+              ? new Date(s.lastTestDate).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })
+              : null;
+
+            const sectionLabels: Record<string, string> = {
+              conjugations: "Conjugations",
+              vocabulary: "Vocab",
+              grammar: "Grammar",
+            };
+
             return (
               <div
                 key={section}
-                className="rounded-[14px] border p-4 md:p-5 transition-all duration-200 flex flex-col hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
+                className="rounded-[14px] border flex flex-col"
                 style={{
                   backgroundColor: colors.bg,
                   borderColor: colors.border,
-                  borderWidth: 1,
+                  padding: "19px 20px 20px",
+                  gap: "20px",
                 }}
               >
-                <h2
-                  className="text-[17px] font-normal capitalize"
-                  style={{ color: colors.title }}
-                >
-                  {section}
-                </h2>
+                {/* Row 1: Title + Score pill */}
+                <div className="flex items-start justify-between gap-5">
+                  <h2 className="text-[22px] font-normal text-[#262626] leading-[42px]">
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </h2>
+                  {!isComplete && (
+                    <div
+                      className="flex items-center h-[36px] px-2.5 bg-white border rounded-[12px] shrink-0"
+                      style={{ borderColor: colors.border }}
+                    >
+                      <span
+                        className="text-[13px] font-medium whitespace-nowrap"
+                        style={{ color: colors.text }}
+                      >
+                        Score {targetAccuracy}% or higher
+                      </span>
+                    </div>
+                  )}
+                  {isComplete && (
+                    <div
+                      className="flex items-center h-[36px] px-2.5 bg-white border rounded-[12px] shrink-0"
+                      style={{ borderColor: colors.border }}
+                    >
+                      <span
+                        className="text-[13px] font-medium whitespace-nowrap"
+                        style={{ color: colors.text }}
+                      >
+                        Complete
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Row 2: Level + label */}
                 <p
-                  className="mt-1 text-[15px]"
-                  style={{ color: colors.title, opacity: 0.5 }}
+                  className="text-[15px] font-normal leading-[22px]"
+                  style={{ color: colors.text }}
                 >
                   {currentLevel} · {info.label}
                 </p>
+
+                {/* Row 3: Description */}
                 <p
-                  className="mt-2 text-[14px]"
-                  style={{ color: colors.title, opacity: 0.5 }}
+                  className="text-[14px] font-normal leading-[21px]"
+                  style={{ color: colors.text }}
                 >
                   {info.description}
                 </p>
-                <div className="mt-4">
+
+                {/* Row 4: Progress bar + count */}
+                <div className="flex flex-col gap-1">
                   <div
-                    className="h-1.5 rounded-full overflow-hidden"
+                    className="h-[6px] rounded-full overflow-hidden"
                     style={{ backgroundColor: colors.barTrack }}
                   >
                     <div
-                      className="h-full rounded-full transition-all duration-150"
+                      className="h-full rounded-full transition-all duration-300"
                       style={{
                         width: `${progressPct}%`,
                         background: colors.barGradient,
                       }}
                     />
                   </div>
-                  <p className="text-[12px] text-text-3 mt-1">
+                  <span className="text-[13px] font-normal text-[#9FA5AD]">
                     {passedCount} / 15
-                  </p>
+                  </span>
                 </div>
-                {!isComplete && (
-                  <p className="mt-3 text-[13px] text-text-2">
-                    Score {targetAccuracy}% or higher to advance
-                  </p>
-                )}
-                <div className="mt-5 pt-4 border-t border-[#E9E9E9] flex flex-col flex-1">
+
+                {/* Row 5: CTA button + Last tested */}
+                <div className="flex items-center justify-between mt-auto">
                   {isComplete ? (
-                    <div className="flex items-center gap-2 text-[15px] font-medium" style={{ color: colors.title }}>
-                      <span
-                        className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 flex-shrink-0"
-                        style={{ borderColor: colors.track }}
-                      >
-                        <span
-                          className="block w-2.5 h-1.5 border-l-2 border-b-2 -rotate-45 origin-center"
-                          style={{
-                            marginLeft: "2px",
-                            marginBottom: "2px",
-                            borderColor: colors.track,
-                          }}
-                        />
-                      </span>
-                      Section Complete
-                    </div>
+                    <span
+                      className="text-[13px] font-medium"
+                      style={{ color: colors.text }}
+                    >
+                      All levels passed
+                    </span>
                   ) : (
-                    <>
-                      <Link
-                        href={`/dashboard/test/${section}`}
-                        className="inline-block w-full text-center text-[14px] font-medium py-2.5 rounded-full text-white transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
-                        style={{ backgroundColor: colors.track }}
-                      >
-                        {failedLast ? "Retry Level Test" : "Start Level Test"}
-                      </Link>
-                      {failedLast && s.lastTestScore != null && (
-                        <p className="text-[12px] text-text-3 mt-2">
-                          Last attempt: {Math.round(s.lastTestScore)}% — need {targetAccuracy}%
-                        </p>
-                      )}
-                      {s.lastTestDate && !failedLast && (
-                        <p className="text-[12px] text-text-3 mt-2">
-                          Last tested {new Date(s.lastTestDate).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
-                        </p>
-                      )}
-                    </>
+                    <Link
+                      href={`/dashboard/test/${section}`}
+                      className="inline-flex items-center justify-center h-[36px] px-5 bg-[#262626] border border-[#494949] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#404040] transition-colors duration-200"
+                    >
+                      {failedLast
+                        ? `Retry ${sectionLabels[section]} Test`
+                        : `Start ${sectionLabels[section]} Test`}
+                    </Link>
+                  )}
+                  {lastTestedStr && (
+                    <span className="text-[13px] font-normal text-[#9FA5AD] text-right leading-5">
+                      Last tested<br />{lastTestedStr}
+                    </span>
                   )}
                 </div>
               </div>
