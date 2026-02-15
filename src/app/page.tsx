@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 
 export const dynamic = "force-dynamic";
-import { HomeProgressBanner } from "@/components/home-progress-banner";
 import { ChangelogBanner } from "@/components/changelog-banner";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import changelogData from "@/data/changelog.json";
@@ -90,51 +89,6 @@ function shortPerson(person: string): string {
   return person.split(" ")[0];
 }
 
-const sections = [
-  {
-    title: "Conjugations",
-    href: "/conjugations",
-    stat: `${totalVerbs} verbs · ${totalConjugations.toLocaleString()} conjugations`,
-    desc: "Explore all tenses with examples and notes",
-    ready: true,
-  },
-  {
-    title: "Vocabulary",
-    href: "/vocabulary",
-    stat: `${totalVocabWords} words · ${totalCategories} categories`,
-    desc: "Words and phrases organized by theme",
-    ready: true,
-  },
-  {
-    title: "Grammar",
-    href: "/grammar",
-    stat: `${totalGrammarTopics} topics · A1–B1`,
-    desc: "Tense explanations, rules, and tips",
-    ready: true,
-  },
-  {
-    title: "Practice",
-    href: "/practice",
-    stat: "4 practice modes",
-    desc: "Quizzes, flashcards, and spaced repetition",
-    ready: true,
-  },
-  {
-    title: "Culture",
-    href: "/culture",
-    stat: `${sayings.length} sayings & proverbs · A1–B1`,
-    desc: "Portuguese sayings, proverbs, and expressions",
-    ready: true,
-  },
-];
-
-const quickActions = [
-  { label: "Verb Drills", href: "/practice/verb-drills" },
-  { label: "Vocab Quiz", href: "/practice/vocab-quiz" },
-  { label: "Flashcards", href: "/practice/flashcards" },
-  { label: "Listening", href: "/practice/listening" },
-];
-
 export default function Home() {
   return (
     <>
@@ -149,26 +103,6 @@ export default function Home() {
           />
         )}
         {greetingOfDay && <HomeGreeting greeting={greetingOfDay} />}
-
-        {/* Mobile: Quick Practice first */}
-        <section className="lg:hidden pt-4 pb-4">
-          <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
-              Quick Practice
-            </h2>
-            <div className="grid grid-cols-2 gap-2">
-              {quickActions.map((action) => (
-                <Link
-                  key={action.href}
-                  href={action.href}
-                  className="flex items-center justify-center px-3.5 py-3 rounded-[10px] border border-[#E9E9E9] bg-[#FAFAFA] text-[13px] font-medium text-[#374151] hover:border-[#3C5E95] hover:text-[#3C5E95] hover:bg-white transition-all duration-200"
-                >
-                  {action.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Two-column main area */}
         <section className="pt-4 pb-8">
@@ -356,18 +290,42 @@ export default function Home() {
               ) : null}
             </div>
 
-            {/* Right: Quick Practice (desktop only) → Journey → Stats */}
-            <div className="space-y-4">
-              <div className="hidden lg:block bg-white border border-[#E5E5E5] rounded-[14px] p-5">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
-                  Quick Practice
-                </h2>
-                <div className="grid grid-cols-2 gap-2">
-                  {quickActions.map((action) => (
+            {/* Right column */}
+            <div className="space-y-2">
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.88px] text-[#9CA3AF]">
+                Quick navigation
+              </h2>
+
+              <div className="bg-white border border-[#CFD3D9] rounded-[12px] p-[21px] flex flex-col gap-5">
+                <p className="text-[14px] font-normal text-[#262626]">
+                  Track your learning progress
+                </p>
+                <p className="text-[13px] font-normal text-[#A3AAB4] leading-5">
+                  Take placement tests in conjugations, vocabulary, and grammar to see where you stand.
+                </p>
+                <Link
+                  href="/dashboard"
+                  className="inline-flex items-center justify-center h-[36px] px-5 bg-[#262626] border border-[#494949] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#404040] transition-colors duration-200 self-start"
+                >
+                  Go to Dashboard →
+                </Link>
+              </div>
+
+              <div className="bg-white border border-[#CFD3D9] rounded-[12px] p-[30px] flex flex-col gap-5">
+                <p className="text-[14px] font-normal text-[#262626]">
+                  Practice makes perfect
+                </p>
+                <div className="grid grid-cols-2 gap-5">
+                  {[
+                    { label: "Verb Drills", href: "/practice/verb-drills" },
+                    { label: "Listening", href: "/practice/listening" },
+                    { label: "Flashcards", href: "/practice/flashcards" },
+                    { label: "Vocab Quiz", href: "/practice/vocab-quiz" },
+                  ].map((action) => (
                     <Link
                       key={action.href}
                       href={action.href}
-                      className="flex items-center justify-center px-3.5 py-3 rounded-[10px] border border-[#E9E9E9] bg-[#FAFAFA] text-[13px] font-medium text-[#374151] hover:border-[#3C5E95] hover:text-[#3C5E95] hover:bg-white transition-all duration-200"
+                      className="flex items-center justify-center h-[36px] bg-[#FAFAFA] border border-[#CFD3D9] rounded-[12px] text-[12px] font-normal text-[#6B7280] hover:border-[#9AA2AD] hover:text-[#475569] transition-colors duration-200"
                     >
                       {action.label}
                     </Link>
@@ -375,64 +333,36 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-4">
-                  Your Journey
-                </h2>
-                <HomeProgressBanner />
-              </div>
-
-              <div className="bg-[#FAFAFA] border border-[#E9E9E9] rounded-[14px] p-4">
-                <div className="grid grid-cols-3 gap-3 text-center">
-                  <div>
-                    <p className="text-[18px] font-bold text-[#111827]">{totalVerbs}</p>
-                    <p className="text-[11px] text-[#9CA3AF]">Verbs</p>
-                  </div>
-                  <div>
-                    <p className="text-[18px] font-bold text-[#111827]">{totalVocabWords}</p>
-                    <p className="text-[11px] text-[#9CA3AF]">Words</p>
-                  </div>
-                  <div>
-                    <p className="text-[18px] font-bold text-[#111827]">{totalGrammarTopics}</p>
-                    <p className="text-[11px] text-[#9CA3AF]">Topics</p>
-                  </div>
-                </div>
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.88px] text-[#9CA3AF] pt-2">
+                Explore
+              </h2>
+              <div className="grid grid-cols-2 gap-5">
+                {[
+                  { title: "Conjugations", href: "/conjugations", stats: `${totalVerbs} verbs\n${totalConjugations.toLocaleString()} conjugations` },
+                  { title: "Vocabulary", href: "/vocabulary", stats: `${totalVocabWords} words\n${totalCategories} categories` },
+                  { title: "Grammar", href: "/grammar", stats: `${totalGrammarTopics} topics\nA1–B1` },
+                  { title: "Culture", href: "/culture", stats: `${sayings.length} sayings & proverbs\nA1–B1` },
+                ].map((s) => (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    className="group bg-[#FAFAFA] border border-[#CFD3D9] rounded-[12px] p-4 flex flex-col gap-2.5 hover:border-[#9AA2AD] transition-colors duration-200"
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className="text-[15px] font-bold tracking-[-0.375px] text-[#111827]">
+                        {s.title}
+                      </span>
+                      <span className="text-[16px] text-[#CFD3D9] group-hover:text-[#9AA2AD] transition-colors">
+                        →
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-medium text-[#6B7280] leading-4 whitespace-pre-line">
+                      {s.stats}
+                    </span>
+                  </Link>
+                ))}
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Explore grid */}
-        <section className="pt-2 pb-16">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-4">
-            Explore
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            {sections.map((s) =>
-              s.ready ? (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  className="group flex items-center justify-between border rounded-[14px] p-4 bg-white border-[#E5E5E5] transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-                >
-                  <div>
-                    <h3 className="text-[15px] font-bold tracking-tight text-[#111827]">{s.title}</h3>
-                    <p className="text-[12px] text-[#9CA3AF] mt-0.5">{s.stat}</p>
-                  </div>
-                  <span className="text-[#9CA3AF] text-[16px] transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-                </Link>
-              ) : (
-                <div
-                  key={s.href}
-                  className="border rounded-[14px] p-4 bg-[#FAFAFA] border-dashed border-[#E5E5E5] cursor-not-allowed"
-                >
-                  <h3 className="text-[15px] font-bold tracking-tight text-[#111827]">
-                    {s.title}
-                  </h3>
-                  <p className="text-[12px] mt-1 text-[#9CA3AF] italic">{s.stat}</p>
-                </div>
-              )
-            )}
           </div>
         </section>
       </main>
