@@ -28,11 +28,100 @@ const verbs = verbData as unknown as VerbDataSet;
 const vocab = vocabData as unknown as VocabData;
 const grammar = grammarData as unknown as GrammarData;
 
-const SECTION_COLORS = {
-  conjugations: "#3D6B9E",
-  vocabulary: "#3C5E95",
-  grammar: "#4B5563",
+const TEST_SECTION_COLORS = {
+  conjugations: {
+    primary: "#6B7280",
+    tagBg: "rgba(107, 114, 128, 0.08)",
+    tagBorder: "#6B7280",
+    tagText: "#6B7280",
+    barTrack: "rgba(107, 114, 128, 0.12)",
+    barGradient: "linear-gradient(90deg, #555A64, #6B7280)",
+  },
+  vocabulary: {
+    primary: "#14B8A6",
+    tagBg: "#E7F8F6",
+    tagBorder: "#14B8A6",
+    tagText: "#14B8A6",
+    barTrack: "rgba(20, 184, 166, 0.12)",
+    barGradient: "linear-gradient(90deg, #1F9487, #14B8A6)",
+  },
+  grammar: {
+    primary: "#AA61F1",
+    tagBg: "rgba(170, 97, 241, 0.08)",
+    tagBorder: "#AA61F1",
+    tagText: "#AA61F1",
+    barTrack: "rgba(170, 97, 241, 0.12)",
+    barGradient: "linear-gradient(90deg, #894AA6, #AA61F1)",
+  },
 } as const;
+
+function getConjugationTags(levelData: ConjugationSubLevel): string[] {
+  const req = levelData.requiredVerbs;
+  if (typeof req === "string") {
+    const labels: Record<string, string> = {
+      all: "All verbs",
+      all_A1: "All A1 verbs",
+      all_A2: "All A2 verbs",
+      all_A1_A2: "All A1 & A2 verbs",
+      all_B1: "All B1 verbs",
+      essential_A1: "Essential A1",
+      essential_A1_A2: "Essential A1 & A2",
+    };
+    const tags = [labels[req] || req];
+    for (const t of levelData.requiredTenses) {
+      tags.push(t);
+    }
+    return tags;
+  }
+  const verbTags = req.length <= 6 ? req.map((v) => v.toLowerCase()) : [`${req.length} verbs`];
+  const tenseTags = levelData.requiredTenses.map((t) => t);
+  return [...verbTags, ...tenseTags];
+}
+
+function getVocabularyTags(levelData: VocabSubLevel): string[] {
+  const req = levelData.requiredCategories;
+  if (req === "all") {
+    const cefrLabel = levelData.cefrFilter
+      ? typeof levelData.cefrFilter === "string"
+        ? levelData.cefrFilter.replace("_", " & ")
+        : levelData.cefrFilter.join(" & ")
+      : "all levels";
+    return ["All categories", cefrLabel];
+  }
+  const shortLabels: Record<string, string> = {
+    "greetings-expressions": "greetings",
+    "numbers-time": "numbers",
+    "colours-weather": "colours",
+    "food-drink": "food & drink",
+    "travel-directions": "travel",
+    "home-rooms": "home",
+    "family-daily-routine": "family",
+    "work-education": "work",
+    "health-body": "health",
+    "shopping-money": "shopping",
+    "nature-animals": "nature",
+    "emotions-personality": "emotions",
+    "colloquial-slang": "slang",
+  };
+  return req.map((id) => shortLabels[id] || id);
+}
+
+function getGrammarTags(levelData: GrammarSubLevel): string[] {
+  const topics = levelData.topics;
+  if (typeof topics === "string") {
+    const labels: Record<string, string> = {
+      all: "All topics",
+      all_A1: "All A1 topics",
+      all_A1_A2: "All A1 & A2 topics",
+      all_B1: "All B1 topics",
+    };
+    return [labels[topics] || topics];
+  }
+  return topics.map((slug) => {
+    const topic = grammar.topics[slug];
+    return topic ? topic.title : slug;
+  });
+}
 
 function parseQuestionText(text: string, sectionColor: string): React.ReactNode {
   const parts = text.split(/\*\*(.*?)\*\*/g);
@@ -93,7 +182,9 @@ export default function LevelTestPage() {
     return (data as Record<string, { label: string }>)[level];
   }, [section, testedLevel, currentLevel]);
 
-  const sectionColor = SECTION_COLORS[section as keyof typeof SECTION_COLORS] ?? SECTION_COLORS.conjugations;
+  const sectionColor =
+    TEST_SECTION_COLORS[section as keyof typeof TEST_SECTION_COLORS]?.primary ??
+    TEST_SECTION_COLORS.conjugations.primary;
   const sectionLabel = section.charAt(0).toUpperCase() + section.slice(1);
 
   const handleStart = () => {
@@ -218,69 +309,106 @@ export default function LevelTestPage() {
     );
   }
 
-  const conjVerbs = isConjugations && levelInfo ? (levelInfo as ConjugationSubLevel).requiredVerbs : null;
-  const vocabCats = isVocabulary && levelInfo ? (levelInfo as VocabSubLevel).requiredCategories : null;
-  const testedOn =
-    conjVerbs === "all"
-      ? "All verbs in this level"
-      : Array.isArray(conjVerbs)
-        ? conjVerbs.join(", ")
-        : vocabCats === "all"
-          ? "All categories"
-          : Array.isArray(vocabCats)
-            ? vocabCats.join(", ")
-            : "";
-
   return (
     <>
       <Topbar />
       <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
-        {phase === "start" && (
-          <div className="max-w-[500px] mx-auto">
-            <div
-              className="border border-[#E5E5E5] rounded-[14px] bg-white overflow-hidden transition-all duration-200"
-              style={{ borderWidth: 1, borderColor: sectionColor }}
-            >
-              <div className="p-6">
-                <h1 className="text-xl font-bold tracking-tight text-text">
-                  Level {currentLevel} — {levelInfo.label}
-                </h1>
-                <p className="text-[15px] text-text-2 mt-3">{levelInfo.description}</p>
-                {testedOn && (
-                  <p className="text-[14px] text-text-2 mt-3">
-                    <span className="font-medium text-text">Tested on:</span> {testedOn}
-                  </p>
-                )}
-                <p className="text-[14px] text-text-2 mt-2">
-                  Score {targetAccuracy}% or higher to advance{nextLevel ? ` to ${nextLevel}` : ""}.
-                </p>
-                <p className="text-[13px] text-text-3 mt-2">{QUESTIONS_PER_TEST} questions</p>
-                {sectionProgress?.lastTestScore != null &&
-                  sectionProgress.lastTestScore < targetAccuracy && (
-                    <p className="text-[13px] text-text-3 mt-2">
-                      Previous attempt: {Math.round(sectionProgress.lastTestScore)}%
-                    </p>
+        {phase === "start" &&
+          (() => {
+            const colors =
+              TEST_SECTION_COLORS[section as keyof typeof TEST_SECTION_COLORS] ??
+              TEST_SECTION_COLORS.conjugations;
+            const passedCount = sectionProgress?.highestPassed
+              ? getLevelIndex(sectionProgress.highestPassed) + 1
+              : 0;
+            const progressPct = Math.max(4, (passedCount / 15) * 100);
+
+            let tags: string[] = [];
+            if (isConjugations) {
+              const ld = levelsData.conjugations[currentLevel] as ConjugationSubLevel | undefined;
+              if (ld) tags = getConjugationTags(ld);
+            } else if (isVocabulary) {
+              const ld = levelsData.vocabulary[currentLevel] as VocabSubLevel | undefined;
+              if (ld) tags = getVocabularyTags(ld);
+            } else if (isGrammar) {
+              const ld = levelsData.grammar[currentLevel] as GrammarSubLevel | undefined;
+              if (ld) tags = getGrammarTags(ld);
+            }
+
+            return (
+              <div className="max-w-[672px] mx-auto">
+                <div className="bg-[#FDFDFD] border border-[#CFD3D9] rounded-[12px] p-5 flex flex-col gap-5">
+                  {/* Row 1: Title + Score pill */}
+                  <div className="flex items-start justify-between gap-5">
+                    <h1 className="text-[22px] font-normal text-[#262626] leading-[42px]">
+                      Level {currentLevel} – {levelInfo?.label}
+                    </h1>
+                    <div className="flex items-center h-[35px] px-2.5 bg-white border-[0.5px] border-[#6B7280] rounded-[12px] shrink-0">
+                      <span className="text-[13px] font-light text-[#6B7280] whitespace-nowrap">
+                        Score {targetAccuracy}% or higher to advance
+                        {nextLevel ? ` to ${nextLevel}` : ""}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Row 2: Content tags */}
+                  {tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2.5">
+                      {tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="inline-flex items-center justify-center px-3 py-0.5 rounded-[12px] text-[12px]"
+                          style={{
+                            backgroundColor: colors.tagBg,
+                            border: `0.8px solid ${colors.tagBorder}`,
+                            color: colors.tagText,
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   )}
-                <div className="mt-6 flex flex-col gap-3">
-                  <button
-                    type="button"
-                    onClick={handleStart}
-                    className="w-full py-3 px-4 rounded-xl font-medium text-white transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
-                    style={{ backgroundColor: sectionColor }}
-                  >
-                    Start Test
-                  </button>
-                  <Link
-                    href="/dashboard"
-                    className="text-center text-[14px] text-text-2 hover:text-text underline"
-                  >
-                    Back to Progress & Tests
-                  </Link>
+
+                  {/* Row 3: Progress bar + count */}
+                  <div className="flex flex-col gap-1">
+                    <div
+                      className="h-[6px] rounded-full overflow-hidden"
+                      style={{ backgroundColor: colors.barTrack }}
+                    >
+                      <div
+                        className="h-full rounded-full transition-all duration-300"
+                        style={{
+                          width: `${progressPct}%`,
+                          background: colors.barGradient,
+                        }}
+                      />
+                    </div>
+                    <span className="text-[13px] font-normal text-[#9FA5AD]">
+                      {passedCount} / 15
+                    </span>
+                  </div>
+
+                  {/* Row 4: CTA + Back */}
+                  <div className="flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={handleStart}
+                      className="inline-flex items-center justify-center h-[36px] px-5 bg-[#262626] border border-[#494949] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#404040] transition-colors duration-200"
+                    >
+                      Start Level {currentLevel} Test
+                    </button>
+                    <Link
+                      href="/dashboard"
+                      className="inline-flex items-center justify-center h-[36px] px-2.5 bg-[#F4F4F4] border border-[#A2A6AE] rounded-[12px] text-[13px] font-medium text-[#A2A6AE] hover:bg-[#EBEBEB] transition-colors duration-200"
+                    >
+                      Back
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        )}
+            );
+          })()}
 
         {phase === "question" && (
           <div
