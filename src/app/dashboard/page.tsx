@@ -54,12 +54,6 @@ const SECTION_COLORS = {
   },
 } as const;
 
-const BAND_TINTS = [
-  "rgba(74,157,232,0.06)",
-  "rgba(124,58,237,0.06)",
-  "rgba(75,85,99,0.06)",
-] as const;
-
 const SECTION_ORDER = ["conjugations", "vocabulary", "grammar"] as const;
 
 function getLevelInfo(
@@ -161,82 +155,85 @@ export default function DashboardPage() {
           </p>
         </header>
 
-        {/* Progress track — filled = passed, current = pulse, rest = grey */}
+        {/* Progress track */}
         <section className="pb-12">
-          <div className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
-            <div className="inline-flex flex-col min-w-0">
-              <div className="flex items-center mb-3">
-                <span className="min-w-[120px] w-[120px] shrink-0" aria-hidden />
-                <div className="flex flex-1 min-w-0 gap-2">
-                  <span className="flex-1 text-center text-[12px] font-medium uppercase tracking-wide text-text-2">A1</span>
-                  <span className="flex-1 text-center text-[12px] font-medium uppercase tracking-wide text-text-2">A2</span>
-                  <span className="flex-1 text-center text-[12px] font-medium uppercase tracking-wide text-text-2">B1</span>
-                </div>
-                <span className="w-12 shrink-0" aria-hidden />
+          <div className="space-y-4">
+            {/* Band headers */}
+            <div className="flex items-center gap-3">
+              <span className="min-w-[120px] w-[120px] shrink-0" aria-hidden />
+              <div className="flex flex-1 gap-2">
+                {["A1", "A2", "B1"].map((band) => (
+                  <div key={band} className="flex-1 text-center">
+                    <span className="text-[12px] font-medium uppercase tracking-wide text-text-2">
+                      {band}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <div className="space-y-4">
-                {SECTION_ORDER.map((sec) => {
-                  const currentLevel = progress[sec].currentLevel;
-                  const highestPassed = progress[sec].highestPassed;
-                  const passedIdx = highestPassed ? getLevelIndex(highestPassed) : -1;
-                  const currentIdx = getLevelIndex(currentLevel);
-                  const colors = SECTION_COLORS[sec];
-                  return (
-                    <div key={sec} className="flex items-center gap-3">
-                      <span className="text-[14px] font-medium text-text capitalize min-w-[120px] w-[120px] shrink-0">
-                        {sec}
-                      </span>
-                      <div className="flex flex-1 min-w-0 gap-2">
-                        {[0, 1, 2].map((band) => (
-                          <div
-                            key={band}
-                            className={`flex flex-1 gap-[3px] min-w-0 rounded ${band < 2 ? "border-r border-[#E9E9E9]" : ""}`}
-                            style={{ backgroundColor: BAND_TINTS[band] }}
-                          >
-                            {SUB_LEVEL_ORDER.slice(band * 5, band * 5 + 5).map((levelKey, j) => {
-                              const i = band * 5 + j;
-                              const passed = i <= passedIdx;
-                              const isCurrent = i === currentIdx;
-                              const info = getLevelInfo(sec, levelKey);
-                              const tooltip = `${levelKey} — ${info.label}`;
-                              return (
-                                <span
-                                  key={levelKey}
-                                  className={`relative flex-1 min-w-0 h-2 md:h-2.5 rounded transition-all duration-150 group/seg ${
-                                    isCurrent ? "animate-pulse-segment" : ""
-                                  }`}
-                                  style={{
-                                    background: passed
-                                      ? colors.barGradient
-                                      : isCurrent
-                                        ? `${colors.track}66`
-                                        : "#F3F4F6",
-                                  }}
-                                  title={tooltip}
-                                >
-                                  <span
-                                    className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 rounded-md text-[12px] text-white whitespace-nowrap opacity-0 group-hover/seg:opacity-100 transition-opacity duration-200 delay-200 z-10"
-                                    style={{ backgroundColor: "#1F2937" }}
-                                  >
-                                    {tooltip}
-                                  </span>
-                                </span>
-                              );
-                            })}
-                          </div>
-                        ))}
-                      </div>
-                      <span
-                        className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white ml-3"
-                        style={{ backgroundColor: colors.track }}
-                      >
-                        {currentLevel}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+              <span className="w-14 shrink-0" aria-hidden />
             </div>
+
+            {/* Section rows */}
+            {SECTION_ORDER.map((sec) => {
+              const currentLevel = progress[sec].currentLevel;
+              const highestPassed = progress[sec].highestPassed;
+              const passedIdx = highestPassed ? getLevelIndex(highestPassed) : -1;
+              const currentIdx = getLevelIndex(currentLevel);
+              const colors = SECTION_COLORS[sec];
+              return (
+                <div key={sec} className="flex items-center gap-3">
+                  <span className="text-[14px] font-medium text-text capitalize min-w-[120px] w-[120px] shrink-0">
+                    {sec}
+                  </span>
+                  <div className="flex flex-1 gap-2">
+                    {[0, 1, 2].map((band) => (
+                      <div
+                        key={band}
+                        className="flex flex-1 gap-[3px] rounded-sm overflow-hidden"
+                      >
+                        {SUB_LEVEL_ORDER.slice(band * 5, band * 5 + 5).map((levelKey, j) => {
+                          const i = band * 5 + j;
+                          const passed = i <= passedIdx;
+                          const isCurrent = i === currentIdx;
+                          const info = getLevelInfo(sec, levelKey);
+                          const tooltip = `${levelKey} — ${info.label}`;
+                          return (
+                            <span
+                              key={levelKey}
+                              className={`relative flex-1 h-2.5 rounded-sm transition-all duration-150 group/seg ${
+                                isCurrent ? "animate-pulse" : ""
+                              }`}
+                              style={{
+                                background: passed
+                                  ? colors.barGradient
+                                  : isCurrent
+                                    ? `${colors.track}44`
+                                    : "#E5E7EB",
+                                minWidth: "12px",
+                              }}
+                              title={tooltip}
+                            >
+                              <span
+                                className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 rounded-md text-[11px] text-white whitespace-nowrap opacity-0 group-hover/seg:opacity-100 transition-opacity duration-200 z-10"
+                                style={{ backgroundColor: "#1F2937" }}
+                              >
+                                {tooltip}
+                              </span>
+                            </span>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  <span
+                    className="text-[12px] font-semibold shrink-0 px-2 py-0.5 rounded text-white w-14 text-center"
+                    style={{ backgroundColor: colors.track }}
+                  >
+                    {currentLevel}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </section>
 

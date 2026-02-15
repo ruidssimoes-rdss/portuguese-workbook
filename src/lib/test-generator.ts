@@ -8,6 +8,55 @@ import type { VerbDataSet } from "@/types";
 import type { VocabData, VocabWord } from "@/types/vocab";
 import type { GrammarData } from "@/types/grammar";
 
+function getVerbsByFilter(filter: string[] | string, verbs: VerbDataSet): string[] {
+  if (Array.isArray(filter)) {
+    return filter.filter((v) => verbs.verbs[v]);
+  }
+  if (filter === "all") {
+    return verbs.order.filter((v) => verbs.verbs[v]);
+  }
+  if (filter === "all_A1") {
+    return verbs.order.filter(
+      (v) => verbs.verbs[v]?.meta?.cefr === "A1"
+    );
+  }
+  if (filter === "all_A2") {
+    return verbs.order.filter(
+      (v) => {
+        const cefr = verbs.verbs[v]?.meta?.cefr;
+        return cefr === "A2";
+      }
+    );
+  }
+  if (filter === "all_A1_A2") {
+    return verbs.order.filter(
+      (v) => {
+        const cefr = verbs.verbs[v]?.meta?.cefr;
+        return cefr === "A1" || cefr === "A2";
+      }
+    );
+  }
+  if (filter === "all_B1") {
+    return verbs.order.filter(
+      (v) => verbs.verbs[v]?.meta?.cefr === "B1"
+    );
+  }
+  if (filter === "essential_A1") {
+    return verbs.order.filter(
+      (v) => verbs.verbs[v]?.meta?.cefr === "A1" && verbs.verbs[v]?.meta?.priority === "Essential"
+    );
+  }
+  if (filter === "essential_A1_A2") {
+    return verbs.order.filter(
+      (v) => {
+        const meta = verbs.verbs[v]?.meta;
+        return (meta?.cefr === "A1" || meta?.cefr === "A2") && meta?.priority === "Essential";
+      }
+    );
+  }
+  return [];
+}
+
 const PERSONS = [
   "eu (I)",
   "tu (you singular)",
@@ -38,14 +87,32 @@ function shuffle<T>(arr: T[]): T[] {
 
 function getWordsForLevel(levelData: VocabSubLevel, vocab: VocabData): { word: VocabWord; categoryTitle: string }[] {
   const out: { word: VocabWord; categoryTitle: string }[] = [];
-  const categories =
-    levelData.requiredCategories === "all"
-      ? vocab.categories
-      : vocab.categories.filter((c) =>
-          (levelData.requiredCategories as string[]).includes(c.id)
-        );
+
+  let categories: typeof vocab.categories;
+  const req = levelData.requiredCategories;
+
+  if (req === "all") {
+    categories = vocab.categories;
+  } else if (Array.isArray(req)) {
+    categories = vocab.categories.filter((c) => req.includes(c.id));
+  } else {
+    categories = vocab.categories;
+  }
+
   for (const cat of categories) {
     for (const word of cat.words) {
+      if (levelData.cefrFilter) {
+        const allowedCefrs = Array.isArray(levelData.cefrFilter)
+          ? levelData.cefrFilter
+          : levelData.cefrFilter === "A1"
+            ? ["A1"]
+            : levelData.cefrFilter === "A1_A2"
+              ? ["A1", "A2"]
+              : levelData.cefrFilter === "B1"
+                ? ["B1"]
+                : ["A1", "A2", "B1"];
+        if (!allowedCefrs.includes(word.cefr ?? "A1")) continue;
+      }
       out.push({ word, categoryTitle: cat.title });
     }
   }
@@ -57,10 +124,7 @@ export function generateConjugationQuestions(
   levelData: ConjugationSubLevel,
   verbs: VerbDataSet
 ): TestQuestion[] {
-  const requiredVerbs =
-    levelData.requiredVerbs === "all"
-      ? verbs.order.filter((v) => verbs.verbs[v])
-      : levelData.requiredVerbs.filter((v) => verbs.verbs[v]);
+  const requiredVerbs = getVerbsByFilter(levelData.requiredVerbs, verbs);
   const requiredTenses = levelData.requiredTenses;
   if (requiredVerbs.length === 0 || requiredTenses.length === 0) return [];
 

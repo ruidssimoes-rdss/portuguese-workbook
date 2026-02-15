@@ -59,7 +59,7 @@ export function getLevelIndex(level: string): number {
 export interface ConjugationSubLevel {
   label: string;
   description: string;
-  requiredVerbs: string[] | "all";
+  requiredVerbs: string[] | "all" | "all_A1" | "all_A2" | "all_A1_A2" | "all_B1" | "essential_A1" | "essential_A1_A2";
   requiredTenses: string[];
   targetAccuracy: number;
 }
@@ -69,9 +69,7 @@ export interface VocabSubLevel {
   label: string;
   description: string;
   requiredCategories: string[] | "all";
-  /** @deprecated No longer used; vocabulary has no subcategories. */
-  requiredSubcategories?: string[] | "all_A1" | "all_A1_A2" | "all_B1" | "all";
-  targetWordCount?: number;
+  cefrFilter?: string[] | "A1" | "A1_A2" | "B1";
   targetAccuracy: number;
 }
 
