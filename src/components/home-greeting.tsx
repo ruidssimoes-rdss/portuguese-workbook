@@ -120,7 +120,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
           </div>
           <p className="md:hidden text-[14px] text-[#A3AAB4] mt-1">{greeting.english}</p>
         </div>
-        <span className="text-[11px] font-semibold text-[#3C5E95] bg-[#EBF2FA] px-2.5 py-[3px] rounded-full shrink-0 self-start md:self-center">
+        <span className="text-[11px] font-semibold text-[#111827] bg-[#F3F4F6] px-2.5 py-[3px] rounded-full shrink-0 self-start md:self-center">
           {greeting.level}
         </span>
       </div>
@@ -136,7 +136,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
           <input
             type="text"
             placeholder="Your response in Portuguese:"
-            className="w-full md:flex-1 min-w-0 h-[36px] px-3 rounded-[12px] border border-[#CFD3D9] bg-white text-[13px] text-[#262626] placeholder:text-[#CFD3D9] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+            className="w-full md:flex-1 min-w-0 h-[36px] px-3 rounded-[12px] border border-[#CFD3D9] bg-white text-[13px] text-[#262626] placeholder:text-[#CFD3D9] focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
             value={userResponse}
             onChange={(e) => setUserResponse(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
@@ -152,7 +152,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
             <button
               type="button"
               onClick={handleSubmit}
-              className="h-[36px] px-5 rounded-[12px] bg-[#262626] border border-[#494949] text-[13px] font-medium text-white hover:bg-[#404040] transition-colors duration-200 whitespace-nowrap shrink-0"
+              className="h-[36px] px-5 rounded-[12px] bg-[#111827] border border-[#111827] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200 whitespace-nowrap shrink-0"
             >
               Reply
             </button>
@@ -235,7 +235,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
               setUserResponse("");
               setShowHint(false);
             }}
-            className="text-[13px] text-[#3C5E95] font-medium mt-3 hover:text-[#2E4A75] transition-colors duration-200"
+            className="text-[13px] text-[#111827] font-medium mt-3 hover:text-[#1F2937] transition-colors duration-200"
           >
             Try another response
           </button>

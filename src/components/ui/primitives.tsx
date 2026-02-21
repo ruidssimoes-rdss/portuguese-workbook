@@ -72,7 +72,7 @@ export function CrossLinkButton({ href, label }: { href: string; label: string }
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-accent-border text-accent text-xs sm:text-sm font-medium hover:bg-accent-hover transition-all duration-200"
+      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#E5E7EB] text-accent text-xs sm:text-sm font-medium hover:border-[#D1D5DB] hover:bg-[#FAFAFA] transition-all duration-200"
     >
       {label}
       <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -100,8 +100,8 @@ export function FilterPill({
       onClick={onClick}
       className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer ${
         active
-          ? 'bg-accent text-white border-accent'
-          : 'border-border text-text-secondary hover:border-accent hover:text-accent'
+          ? 'bg-[#111827] text-white border-[#111827]'
+          : 'border-border text-text-secondary hover:border-[#D1D5DB] hover:text-[#111827]'
       }`}
     >
       {children}
@@ -130,7 +130,7 @@ export function SearchInput({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      className={`px-4 py-2 rounded-full border border-border text-sm text-text bg-white placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors ${className}`}
+      className={`px-4 py-2 rounded-full border border-border text-sm text-text bg-white placeholder:text-text-muted focus:outline-none focus:border-[#111827] transition-colors ${className}`}
     />
   );
 }

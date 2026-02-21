@@ -46,7 +46,7 @@ export function ChangelogBanner({ version, title, summary, firstChange }: Props)
   return (
     <div
       className="mt-6 mb-4 rounded-lg border border-blue-200 bg-sky-50 px-4 py-3 flex items-center gap-3"
-      style={{ borderLeftWidth: "3px", borderLeftColor: "#3C5E95" }}
+      style={{ borderLeftWidth: "3px", borderLeftColor: "#111827" }}
     >
       <Link
         href="/changelog"

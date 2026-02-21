@@ -34,6 +34,11 @@
   --color-cefr-a1: #0144C0;
   --color-cefr-a2: #7C3AED;
   --color-cefr-b1: #4B5563;
+
+  /* === Monochrome UI === */
+  --color-btn-primary: #111827;
+  --color-btn-primary-hover: #1F2937;
+  --color-btn-primary-text: #ffffff;
 }
 
 @layer base {

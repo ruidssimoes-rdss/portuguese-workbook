@@ -406,7 +406,7 @@ export default function LevelTestPage() {
                     <button
                       type="button"
                       onClick={handleStart}
-                      className="inline-flex items-center justify-center h-[36px] px-5 bg-[#262626] border border-[#494949] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#404040] transition-colors duration-200"
+                      className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200"
                     >
                       Start Level {currentLevel} Test
                     </button>
@@ -484,8 +484,8 @@ export default function LevelTestPage() {
                             ? "border-green-500 bg-green-50"
                             : showWrong
                               ? "border-red-500 bg-red-50"
-                              : "border-[#E9E9E9] bg-white text-text hover:border-[#3C5E95]"
-                        } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3C5E95]`}
+                              : "border-[#E9E9E9] bg-white text-text hover:border-[#111827]"
+                        } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#111827]`}
                         style={
                           !revealed ? { ["--tw-ring-color" as string]: sectionColor } : undefined
                         }

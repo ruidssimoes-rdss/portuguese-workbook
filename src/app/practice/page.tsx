@@ -14,7 +14,7 @@ const verbCount = verbs.order?.length ?? 0;
 const tenseCount = 6;
 
 function CardIcon({ id }: { id: string }) {
-  const className = "w-10 h-10 text-[#3C5E95]";
+  const className = "w-10 h-10 text-[#111827]";
   switch (id) {
     case "flashcards":
       return (
@@ -107,7 +107,7 @@ export default function PracticePage() {
             <h1 className="text-[22px] font-bold tracking-tight">
               Practice
             </h1>
-            <p className="text-[14px] text-[#3C5E95] font-medium mt-1">
+            <p className="text-[14px] text-[#111827] font-medium mt-1">
               Prática
             </p>
             <p className="text-[13px] text-text-3 mt-1">
@@ -128,7 +128,7 @@ export default function PracticePage() {
                   <h3 className="text-[20px] font-bold text-[#111827]">
                     {mode.title}
                   </h3>
-                  <span className="text-[14px] text-[#3C5E95] font-medium -mt-2">
+                  <span className="text-[14px] text-[#111827] font-medium -mt-2">
                     {mode.portuguese}
                   </span>
                   <p className="text-[14px] text-[#6B7280] leading-relaxed">
@@ -139,7 +139,7 @@ export default function PracticePage() {
                   </span>
                   <Link
                     href={mode.href}
-                    className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#262626] border border-[#262626] rounded-[10px] text-[13.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200 mt-1"
+                    className="inline-flex items-center justify-center self-start px-[13px] h-9 bg-[#111827] border border-[#111827] rounded-[10px] text-[13.5px] font-medium text-white shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#1F2937] transition-colors duration-200 mt-1"
                   >
                     {mode.cta} →
                   </Link>

@@ -233,7 +233,7 @@ export default function FlashcardsPage() {
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#111827] focus:ring-1 focus:ring-[#111827]/20 min-h-[44px] w-48 md:w-56"
                 >
                   <option value="all">All categories</option>
                   {categories.map((c) => (
@@ -248,7 +248,7 @@ export default function FlashcardsPage() {
                 <select
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
-                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#111827] focus:ring-1 focus:ring-[#111827]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {CEFR_OPTIONS.map((l) => (
                     <option key={l} value={l}>
@@ -264,7 +264,7 @@ export default function FlashcardsPage() {
                   onChange={(e) =>
                     setCardCount(e.target.value === "all" ? 0 : Number(e.target.value))
                   }
-                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#111827] focus:ring-1 focus:ring-[#111827]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {CARD_OPTIONS.map((n) => (
                     <option key={n} value={n}>
@@ -279,7 +279,7 @@ export default function FlashcardsPage() {
                 <select
                   value={order}
                   onChange={(e) => setOrder(e.target.value as "random" | "pt" | "en")}
-                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#111827] focus:ring-1 focus:ring-[#111827]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {ORDER_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -295,7 +295,7 @@ export default function FlashcardsPage() {
                   onChange={(e) =>
                     setDirection(e.target.value as "pt-en" | "en-pt" | "mixed")
                   }
-                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]/20 min-h-[44px] w-48 md:w-56"
+                  className="bg-white border border-[#E9E9E9] rounded-lg px-3 py-2 text-sm text-[#374151] focus:border-[#111827] focus:ring-1 focus:ring-[#111827]/20 min-h-[44px] w-48 md:w-56"
                 >
                   {DIRECTION_OPTIONS.map((d) => (
                     <option key={d.value} value={d.value}>
@@ -308,7 +308,7 @@ export default function FlashcardsPage() {
                 type="button"
                 onClick={() => startSession()}
                 disabled={maxAvailable === 0}
-                className="bg-[#3C5E95] text-white px-6 py-3 rounded-lg font-medium text-sm hover:bg-[#2E4A75] transition-colors mt-6 w-full min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#111827] text-white px-6 py-3 rounded-lg font-medium text-sm hover:bg-[#1F2937] transition-colors mt-6 w-full min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Start session →
               </button>
@@ -402,7 +402,7 @@ export default function FlashcardsPage() {
           </p>
           <div className="h-1 bg-[#F3F4F6] rounded-full max-w-sm mx-auto mb-8">
             <div
-              className="h-full bg-[#3C5E95] rounded-full transition-all duration-300"
+              className="h-full bg-[#111827] rounded-full transition-all duration-300"
               style={{ width: `${progressPct}%` }}
             />
           </div>

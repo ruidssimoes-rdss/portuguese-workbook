@@ -101,7 +101,7 @@ function RuleItem({
     <div
       className={[
         "border rounded-xl overflow-hidden bg-white transition-all duration-200 ease-out",
-        isOpen ? "border-accent/20" : "border-border hover:border-accent/30",
+        isOpen ? "border-[#D1D5DB]" : "border-border hover:border-[#D1D5DB]",
       ].join(" ")}
     >
       <button
@@ -110,14 +110,14 @@ function RuleItem({
         className="w-full min-h-[44px] text-left p-4 sm:p-5 xl:p-6 cursor-pointer transition-all duration-200 ease-out"
       >
         <div className="flex items-start gap-3 sm:gap-4">
-          <span className="text-accent font-bold text-base sm:text-lg flex-shrink-0 w-6 sm:w-8 text-right leading-6">
+          <span className="text-[#111827] font-bold text-base sm:text-lg flex-shrink-0 w-6 sm:w-8 text-right leading-6">
             {index + 1}
           </span>
           <div className="min-w-0 flex-1">
             <p className="text-text font-semibold text-sm sm:text-base leading-snug break-words">
               {renderWithLinks(rule.rule)}
             </p>
-            <p className="text-xs sm:text-sm italic mt-0.5 text-accent-muted break-words">{rule.rulePt}</p>
+            <p className="text-xs sm:text-sm italic mt-0.5 text-[#6B7280] break-words">{rule.rulePt}</p>
           </div>
           <svg
             className={[
@@ -205,7 +205,7 @@ function RuleItem({
                         <Link
                           key={`${link.href}-${i}`}
                           href={link.href}
-                          className="inline-flex min-h-[44px] items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-accent-border text-accent text-xs sm:text-sm font-medium hover:bg-accent-hover transition-all duration-200 ease-out"
+                          className="inline-flex min-h-[44px] items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-[#E5E7EB] text-accent text-xs sm:text-sm font-medium hover:border-[#D1D5DB] hover:bg-[#FAFAFA] transition-all duration-200 ease-out"
                         >
                           {link.label}
                           <svg
@@ -295,7 +295,7 @@ export default function GrammarTopicPage() {
           <div className="flex items-start justify-between gap-4 mt-1">
             <div className="min-w-0">
               <h1 className="text-2xl sm:text-3xl font-bold text-text break-words">{topic.title}</h1>
-              <p className="text-base sm:text-lg text-accent-muted italic mt-0.5 break-words">{topic.titlePt}</p>
+              <p className="text-base sm:text-lg text-[#6B7280] italic mt-0.5 break-words">{topic.titlePt}</p>
             </div>
             <span
               className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getCefrBadgeClass(topic.cefr)}`}
@@ -340,7 +340,7 @@ export default function GrammarTopicPage() {
             <button
               type="button"
               onClick={allExpanded ? collapseAll : expandAll}
-              className="min-h-[44px] text-xs text-text-secondary hover:text-accent cursor-pointer transition-all duration-200 ease-out"
+              className="min-h-[44px] text-xs text-[#6B7280] hover:text-[#111827] cursor-pointer transition-all duration-200 ease-out"
             >
               {allExpanded ? "Collapse all" : "Expand all"}
             </button>
@@ -364,7 +364,7 @@ export default function GrammarTopicPage() {
           </h2>
           <div className="space-y-4 sm:space-y-6">
             {topic.tips.map((tip, i) => (
-              <div key={i} className="pl-3 sm:pl-4 border-l-2 border-accent/20 py-2 sm:py-3">
+              <div key={i} className="pl-3 sm:pl-4 border-l-2 border-[#E5E7EB] py-2 sm:py-3">
                 <p className="text-xs sm:text-sm text-text leading-relaxed break-words">
                   {renderWithLinks(tip)}
                 </p>

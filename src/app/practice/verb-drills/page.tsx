@@ -329,7 +329,7 @@ export default function VerbDrillsPage() {
             <PracticeQuestionCard>
               <p className="text-2xl font-bold text-[#111827] uppercase tracking-wide">{currentQ.verb}</p>
               <p className="text-sm text-[#6B7280] mt-1">{currentQ.verbEnglish}</p>
-              <p className="text-sm text-[#3C5E95] font-medium mt-4">{TENSE_LABELS[currentQ.tense] ?? currentQ.tense}</p>
+              <p className="text-sm text-[#111827] font-medium mt-4">{TENSE_LABELS[currentQ.tense] ?? currentQ.tense}</p>
               <p className="text-lg text-[#1F2937] font-medium mt-2">
                 {currentQ.person} ___
               </p>
@@ -348,7 +348,7 @@ export default function VerbDrillsPage() {
                         ? "border-emerald-400 bg-emerald-50"
                         : feedback === "wrong"
                           ? "border-red-400 bg-red-50"
-                          : "border-[#E9E9E9] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]"
+                          : "border-[#E9E9E9] focus:border-[#111827] focus:ring-1 focus:ring-[#111827]"
                     }`}
                     autoFocus
                   />
@@ -376,7 +376,7 @@ export default function VerbDrillsPage() {
                     <button
                       type="button"
                       onClick={() => checkAnswer(inputValue)}
-                      className="bg-[#3C5E95] hover:bg-[#2E4A75] text-white rounded-xl px-8 py-3 text-base font-medium mt-4 transition-colors duration-200"
+                      className="bg-[#111827] hover:bg-[#1F2937] text-white rounded-xl px-8 py-3 text-base font-medium mt-4 transition-colors duration-200"
                     >
                       Check
                     </button>
@@ -388,7 +388,7 @@ export default function VerbDrillsPage() {
                         if (currentIndex >= total - 1) setPhase("results");
                         else setCurrentIndex((i) => i + 1);
                       }}
-                      className="text-[#3C5E95] font-medium mt-4"
+                      className="text-[#111827] font-medium mt-4"
                     >
                       Next
                     </button>
@@ -402,7 +402,7 @@ export default function VerbDrillsPage() {
                           setPhase("results");
                         } else setCurrentIndex((i) => i + 1);
                       }}
-                      className="text-[#3C5E95] font-medium mt-4"
+                      className="text-[#111827] font-medium mt-4"
                     >
                       Next
                     </button>
@@ -463,7 +463,7 @@ export default function VerbDrillsPage() {
                         if (currentIndex >= total - 1) setPhase("results");
                         else setCurrentIndex((i) => i + 1);
                       }}
-                      className="text-[#3C5E95] font-medium mt-4"
+                      className="text-[#111827] font-medium mt-4"
                     >
                       Next
                     </button>
@@ -477,7 +477,7 @@ export default function VerbDrillsPage() {
                           setPhase("results");
                         } else setCurrentIndex((i) => i + 1);
                       }}
-                      className="text-[#3C5E95] font-medium mt-4"
+                      className="text-[#111827] font-medium mt-4"
                     >
                       Next
                     </button>
@@ -500,7 +500,7 @@ export default function VerbDrillsPage() {
             <h1 className="text-[22px] font-bold tracking-tight">
               Verb Drills
             </h1>
-            <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">Exercícios de Verbos</p>
+            <p className="text-lg text-[#6B7280] font-medium mt-1">Exercícios de Verbos</p>
             <p className="text-sm text-[#6B7280] mt-2">
               Practice conjugating verbs across all tenses.
             </p>
@@ -517,7 +517,7 @@ export default function VerbDrillsPage() {
                     onClick={() => toggleTense(t)}
                     className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                       selectedTenses.includes(t)
-                        ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
+                        ? "bg-[#111827] text-white border border-[#111827]"
                         : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                     }`}
                   >
@@ -536,7 +536,7 @@ export default function VerbDrillsPage() {
                     onClick={() => toggleGroup(g)}
                     className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                       selectedGroups.includes(g)
-                        ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
+                        ? "bg-[#111827] text-white border border-[#111827]"
                         : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                     }`}
                   >
@@ -567,7 +567,7 @@ export default function VerbDrillsPage() {
                     onClick={() => setMode(m)}
                     className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                       mode === m
-                        ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
+                        ? "bg-[#111827] text-white border border-[#111827]"
                         : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                     }`}
                   >
@@ -591,7 +591,7 @@ export default function VerbDrillsPage() {
             <button
               type="button"
               onClick={startDrill}
-              className="bg-[#3C5E95] hover:bg-[#2E4A75] text-white rounded-xl px-6 py-3 text-base font-medium transition-colors duration-200 w-full"
+              className="bg-[#111827] hover:bg-[#1F2937] text-white rounded-xl px-6 py-3 text-base font-medium transition-colors duration-200 w-full"
             >
               Start Drill
             </button>

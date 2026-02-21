@@ -326,8 +326,8 @@ export function Topbar() {
                           onClick={() => setLearnMenuOpen(false)}
                           role="menuitem"
                           tabIndex={0}
-                          className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#3C5E95]/30 hover:bg-[#3C5E95]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
-                            isCurrent ? "border-[#3C5E95]/30 bg-[#3C5E95]/5" : isGuide ? "border-dashed border-gray-200" : "border-gray-100"
+                          className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#111827]/30 hover:bg-[#111827]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
+                            isCurrent ? "border-[#111827]/30 bg-[#111827]/5" : isGuide ? "border-dashed border-gray-200" : "border-gray-100"
                           }`}
                         >
                           <div className="flex items-center gap-1.5">
@@ -342,7 +342,7 @@ export function Topbar() {
                                 strokeWidth="2"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                className="text-[#3C5E95]/70 shrink-0"
+                                className="text-[#6B7280] shrink-0"
                                 aria-hidden
                               >
                                 <path d="M4 19.5V6a2 2 0 0 1 2-2h9.5" />
@@ -350,7 +350,7 @@ export function Topbar() {
                               </svg>
                             )}
                           </div>
-                          <p className="text-xs text-[#3C5E95]/60 font-medium mt-0.5">{item.portuguese}</p>
+                          <p className="text-xs text-[#6B7280] font-medium mt-0.5">{item.portuguese}</p>
                           <p className="text-xs text-gray-400 mt-3">{item.stats[0]}</p>
                           {item.stats[1] && <p className="text-xs text-gray-400">{item.stats[1]}</p>}
                         </Link>
@@ -401,7 +401,7 @@ export function Topbar() {
                 <button
                   type="button"
                   onClick={() => setUserMenuOpen((o) => !o)}
-                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#3C5E95] text-white text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#111827] text-white text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
                   aria-label="Menu da conta"
                   aria-expanded={userMenuOpen}
                 >
@@ -448,7 +448,7 @@ export function Topbar() {
             ) : (
               <Link
                 href="/auth/login"
-                className="shrink-0 px-3 py-1.5 rounded-lg border border-[#3C5E95] text-[#3C5E95] text-[13px] font-medium hover:bg-sky-50 transition-colors"
+                className="shrink-0 px-3 py-1.5 rounded-lg border border-[#111827] text-[#111827] text-[13px] font-medium hover:bg-[#F3F4F6] transition-colors"
               >
                 Entrar
               </Link>
@@ -495,11 +495,11 @@ export function Topbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                      isCurrent ? "bg-[#3C5E95]/5 text-[#3C5E95] border-l-2 border-[#3C5E95]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                      isCurrent ? "bg-[#111827]/5 text-[#111827] border-l-2 border-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                     }`}
                   >
                     <span className="text-[15px] font-medium">{item.title}</span>
-                    <span className="text-xs text-[#3C5E95]/60">{item.portuguese}</span>
+                    <span className="text-xs text-[#6B7280]">{item.portuguese}</span>
                   </Link>
                 );
               })}
@@ -508,7 +508,7 @@ export function Topbar() {
                 href="/dashboard"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium transition-colors ${
-                  pathname?.startsWith("/dashboard") ? "bg-[#3C5E95]/5 text-[#3C5E95]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                  pathname?.startsWith("/dashboard") ? "bg-[#111827]/5 text-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                 }`}
               >
                 Progress

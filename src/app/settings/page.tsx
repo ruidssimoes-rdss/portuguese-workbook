@@ -148,7 +148,7 @@ export default function SettingsPage() {
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
+                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#111827] focus:border-[#111827] outline-none"
                 />
               </div>
               <div>
@@ -159,7 +159,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={saveProfile}
                 disabled={saving}
-                className="rounded-lg bg-[#3C5E95] px-4 py-2 text-white text-sm font-medium hover:bg-[#2E4A75] disabled:opacity-60"
+                className="rounded-lg bg-[#111827] px-4 py-2 text-white text-sm font-medium hover:bg-[#1F2937] disabled:opacity-60"
               >
                 {saving ? "A guardar..." : "Guardar perfil"}
               </button>
@@ -176,7 +176,7 @@ export default function SettingsPage() {
                 <select
                   value={pronunciationSpeed}
                   onChange={(e) => setPronunciationSpeed(Number(e.target.value))}
-                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
+                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#111827] focus:border-[#111827] outline-none"
                 >
                   {SPEED_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -193,7 +193,7 @@ export default function SettingsPage() {
                   aria-checked={showPhonetics}
                   onClick={() => setShowPhonetics((v) => !v)}
                   className={`relative inline-flex h-6 w-11 shrink-0 rounded-full border transition-colors ${
-                    showPhonetics ? "bg-[#3C5E95] border-[#3C5E95]" : "bg-[#E5E7EB] border-[#E9E9E9]"
+                    showPhonetics ? "bg-[#111827] border-[#111827]" : "bg-[#E5E7EB] border-[#E9E9E9]"
                   }`}
                 >
                   <span
@@ -209,7 +209,7 @@ export default function SettingsPage() {
                 <select
                   value={dailyGoal}
                   onChange={(e) => setDailyGoal(Number(e.target.value))}
-                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none"
+                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#111827] focus:border-[#111827] outline-none"
                 >
                   {DAILY_GOAL_OPTIONS.map((n) => (
                     <option key={n} value={n}>
@@ -222,7 +222,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={saveSettings}
                 disabled={saving}
-                className="rounded-lg bg-[#3C5E95] px-4 py-2 text-white text-sm font-medium hover:bg-[#2E4A75] disabled:opacity-60"
+                className="rounded-lg bg-[#111827] px-4 py-2 text-white text-sm font-medium hover:bg-[#1F2937] disabled:opacity-60"
               >
                 {saving ? "A guardar..." : "Guardar preferências"}
               </button>

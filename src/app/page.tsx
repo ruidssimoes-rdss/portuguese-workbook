@@ -164,7 +164,7 @@ export default function Home() {
                   )}
                   <Link
                     href="/vocabulary"
-                    className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[rgba(224,231,255,0.75)] border border-[rgba(79,70,229,0.75)] text-[13px] font-medium text-[rgba(79,70,229,0.75)] hover:bg-[rgba(224,231,255,1)] transition-colors duration-200 self-start"
+                    className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[#111827] border border-[#111827] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200 self-start"
                   >
                     Explore vocabulary →
                   </Link>
@@ -227,7 +227,7 @@ export default function Home() {
                   </div>
                   <Link
                     href={`/conjugations/${verbKey.toLowerCase()}`}
-                    className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[rgba(224,231,255,0.75)] border border-[rgba(79,70,229,0.75)] text-[13px] font-medium text-[rgba(79,70,229,0.75)] hover:bg-[rgba(224,231,255,1)] transition-colors duration-200 self-start"
+                    className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[#111827] border border-[#111827] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200 self-start"
                   >
                     View all tenses →
                   </Link>
@@ -279,7 +279,7 @@ export default function Home() {
                   </div>
                   <Link
                     href="/culture"
-                    className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[rgba(224,231,255,0.75)] border border-[rgba(79,70,229,0.75)] text-[13px] font-medium text-[rgba(79,70,229,0.75)] hover:bg-[rgba(224,231,255,1)] transition-colors duration-200 self-start"
+                    className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[#111827] border border-[#111827] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200 self-start"
                   >
                     Explore culture →
                   </Link>
@@ -302,7 +302,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/dashboard"
-                  className="inline-flex items-center justify-center h-[36px] px-5 bg-[#262626] border border-[#494949] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#404040] transition-colors duration-200 self-start"
+                  className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200 self-start"
                 >
                   Go to Dashboard →
                 </Link>

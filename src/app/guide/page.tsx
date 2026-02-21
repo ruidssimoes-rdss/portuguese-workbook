@@ -821,7 +821,7 @@ export default function GuidePage() {
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/vocabulary"
-              className="bg-[#3C5E95] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#2E4A75] transition-colors min-w-[190px] text-center"
+              className="bg-[#111827] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#1F2937] transition-colors min-w-[190px] text-center"
             >
               Start with Vocabulary →
             </Link>

@@ -16,7 +16,7 @@ type ChangelogData = { entries: ChangelogEntry[] };
 
 const data = changelogData as unknown as ChangelogData;
 
-const ACCENT = "#3C5E95";
+const ACCENT = "#111827";
 
 function formatDate(iso: string): string {
   const d = new Date(iso);

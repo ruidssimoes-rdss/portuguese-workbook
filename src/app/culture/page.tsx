@@ -56,7 +56,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
     <article
       id={saying.id}
       className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 mb-4 transition-all duration-200 ${
-        isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : ""
+        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
       } hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -67,7 +67,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={saying.portuguese} size="sm" />
           <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(saying.cefr)}`}>{saying.cefr}</span>
-          <button type="button" onClick={handleCopy} className="text-xs text-text-secondary hover:text-[#3C5E95] px-2 py-1 rounded-lg border border-[#E9E9E9] hover:border-[#D0D0D0] transition-colors">
+          <button type="button" onClick={handleCopy} className="text-xs text-text-secondary hover:text-[#111827] px-2 py-1 rounded-lg border border-[#E9E9E9] hover:border-[#D0D0D0] transition-colors">
             {copied ? "Copied" : "Copy"}
           </button>
         </div>
@@ -86,7 +86,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
       </div>
       {hasExample && (
         <div className="border-t border-[#F0F0F0] pt-3 mt-3">
-          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-text-secondary hover:text-[#3C5E95]">
+          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-text-secondary hover:text-[#111827]">
             Example {exampleOpen ? "–" : "+"}
           </button>
           {exampleOpen && (
@@ -111,7 +111,7 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
     <article
       id={item.id}
       className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 mb-4 transition-all duration-200 ${
-        isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : ""
+        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
       } hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -153,7 +153,7 @@ function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <p className="text-base font-semibold text-text">{tip.title}</p>
-          <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">{tip.titlePt}</p>
+          <p className="text-sm text-[#6B7280] font-medium mt-0.5">{tip.titlePt}</p>
         </div>
         <span className="text-xs bg-border-light text-text-secondary rounded-full px-3 py-1 shrink-0">{categoryLabel}</span>
       </div>
@@ -191,7 +191,7 @@ function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHig
     <article
       id={item.id}
       className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 mb-4 transition-all duration-200 ${
-        isHighlighted ? "ring-2 ring-[#3C5E95]/40 border-[#3C5E95]/30" : ""
+        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
       } hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -335,7 +335,7 @@ function CultureContent() {
                   type="button"
                   onClick={() => setTab(t.id)}
                   className={`pb-3 px-1 text-[13px] font-medium cursor-pointer transition-colors relative min-h-[44px] flex flex-col items-center sm:items-start ${
-                    tab === t.id ? "text-[#3C5E95] border-b-2 border-[#3C5E95] -mb-px" : "text-text-muted hover:text-text-secondary"
+                    tab === t.id ? "text-[#111827] border-b-2 border-[#111827] -mb-px" : "text-text-muted hover:text-text-secondary"
                   }`}
                 >
                   <span>
@@ -386,7 +386,7 @@ function CultureContent() {
                     placeholder="Search sayings..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
                   />
                 </div>
                 <p className="text-[11px] text-[#9AA2AD]">Showing {filteredSayings.length} of {sayings.length}</p>
@@ -427,7 +427,7 @@ function CultureContent() {
                     placeholder="Search false friends..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
                   />
                 </div>
                 <p className="text-[11px] text-[#9AA2AD]">Showing {filteredFalseFriends.length} of {falseFriends.length}</p>
@@ -468,7 +468,7 @@ function CultureContent() {
                     placeholder="Search etiquette..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
                   />
                 </div>
                 <p className="text-[11px] text-[#9AA2AD]">Showing {filteredEtiquette.length} of {etiquetteTips.length}</p>
@@ -522,7 +522,7 @@ function CultureContent() {
                     placeholder="Search regional..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+                    className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
                   />
                 </div>
                 <p className="text-[11px] text-[#9AA2AD]">Showing {filteredRegional.length} of {regionalExpressions.length}</p>

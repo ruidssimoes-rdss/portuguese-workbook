@@ -277,12 +277,12 @@ export default function ListeningPage() {
                 type="button"
                 onClick={() => { speak(); setHasPlayed(true); }}
                 className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto transition-colors duration-200 ${
-                  isPlaying ? "bg-[#3C5E95]/20" : "bg-[#EBF2FA] hover:bg-[#dce8f5]"
+                  isPlaying ? "bg-[#111827]/20" : "bg-[#EBF2FA] hover:bg-[#dce8f5]"
                 }`}
                 aria-label="Play"
               >
                 <svg
-                  className={`w-8 h-8 text-[#3C5E95] ${isPlaying ? "animate-pulse" : ""}`}
+                  className={`w-8 h-8 text-[#111827] ${isPlaying ? "animate-pulse" : ""}`}
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   aria-hidden
@@ -306,7 +306,7 @@ export default function ListeningPage() {
                     ? "border-emerald-400 bg-emerald-50"
                     : feedback === "wrong"
                       ? "border-red-400 bg-red-50"
-                      : "border-[#E9E9E9] focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95]"
+                      : "border-[#E9E9E9] focus:border-[#111827] focus:ring-1 focus:ring-[#111827]"
                 }`}
                 autoFocus
               />
@@ -337,7 +337,7 @@ export default function ListeningPage() {
                 <button
                   type="button"
                   onClick={checkAnswer}
-                  className="bg-[#3C5E95] hover:bg-[#2E4A75] text-white rounded-xl px-8 py-3 text-base font-medium mt-4 transition-colors duration-200"
+                  className="bg-[#111827] hover:bg-[#1F2937] text-white rounded-xl px-8 py-3 text-base font-medium mt-4 transition-colors duration-200"
                 >
                   Check
                 </button>
@@ -353,7 +353,7 @@ export default function ListeningPage() {
                       setInputValue("");
                     }
                   }}
-                  className="text-[#3C5E95] font-medium mt-4"
+                  className="text-[#111827] font-medium mt-4"
                 >
                   Next
                 </button>
@@ -374,7 +374,7 @@ export default function ListeningPage() {
             <h1 className="text-[22px] font-bold tracking-tight">
               Listening Practice
             </h1>
-            <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">Prática de Audição</p>
+            <p className="text-lg text-[#6B7280] font-medium mt-1">Prática de Audição</p>
             <p className="text-sm text-[#6B7280] mt-2">
               Listen and identify words and phrases. Train your ear for European Portuguese.
             </p>
@@ -391,7 +391,7 @@ export default function ListeningPage() {
                     onClick={() => setContent(c)}
                     className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                       content === c
-                        ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
+                        ? "bg-[#111827] text-white border border-[#111827]"
                         : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                     }`}
                   >
@@ -434,7 +434,7 @@ export default function ListeningPage() {
                       }
                       className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                         selectedTenses.includes(t)
-                          ? "bg-[#3C5E95] text-white border border-[#3C5E95]"
+                          ? "bg-[#111827] text-white border border-[#111827]"
                           : "border border-[#E9E9E9] text-[#6B7280] bg-white hover:bg-[#F9FAFB]"
                       }`}
                     >
@@ -471,7 +471,7 @@ export default function ListeningPage() {
             <button
               type="button"
               onClick={startSession}
-              className="bg-[#3C5E95] hover:bg-[#2E4A75] text-white rounded-xl px-6 py-3 text-base font-medium transition-colors duration-200 w-full"
+              className="bg-[#111827] hover:bg-[#1F2937] text-white rounded-xl px-6 py-3 text-base font-medium transition-colors duration-200 w-full"
             >
               Start Listening
             </button>

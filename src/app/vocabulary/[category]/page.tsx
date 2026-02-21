@@ -79,7 +79,7 @@ function WordCard({
       ref={isHighlight ? highlightedRef : undefined}
       className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 flex flex-col gap-3 transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] ${
         isHighlight && flashHighlight
-          ? "ring-2 ring-[#3C5E95] ring-offset-2"
+          ? "ring-2 ring-[#111827] ring-offset-2"
           : ""
       }`}
     >
@@ -256,7 +256,7 @@ export default function VocabCategoryPage() {
               placeholder="Search words…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+              className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
             />
           </div>
           <p className="text-[13px] text-text-muted">{category.words.length} words</p>
@@ -270,8 +270,8 @@ export default function VocabCategoryPage() {
               onClick={() => setCefrFilter(l)}
               className={
                 cefrFilter === l
-                  ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                  : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200"
+                  ? "bg-[#111827] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                  : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#D1D5DB] hover:text-[#111827] transition-colors duration-200"
               }
             >
               {l}

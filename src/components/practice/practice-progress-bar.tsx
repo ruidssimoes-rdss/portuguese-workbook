@@ -11,7 +11,7 @@ export function PracticeProgressBar({ current, total, className = "" }: Practice
   return (
     <div className={`h-1.5 bg-gray-100 rounded-full overflow-hidden ${className}`} role="progressbar" aria-valuenow={current} aria-valuemin={0} aria-valuemax={total}>
       <div
-        className="h-full bg-[#3C5E95] rounded-full transition-all duration-500 ease-out"
+        className="h-full bg-[#111827] rounded-full transition-all duration-500 ease-out"
         style={{ width: `${pct}%` }}
       />
     </div>

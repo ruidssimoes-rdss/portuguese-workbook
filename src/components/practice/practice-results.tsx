@@ -61,7 +61,7 @@ export function PracticeResults({
   return (
     <div className="max-w-xl mx-auto text-center animate-fade-in-up">
       <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
-      <p className="text-sm text-[#3C5E95] mt-0.5">{subtitle}</p>
+      <p className="text-sm text-[#6B7280] mt-0.5">{subtitle}</p>
       <p className="text-4xl font-bold text-gray-900 mt-6">
         {score} / {total} correct
       </p>
@@ -83,7 +83,7 @@ export function PracticeResults({
             cy="50"
             r="45"
             fill="none"
-            stroke="#3C5E95"
+            stroke="#111827"
             strokeWidth="8"
             strokeLinecap="round"
             strokeDasharray={circumference}
@@ -128,14 +128,14 @@ export function PracticeResults({
         <button
           type="button"
           onClick={onTryAgain}
-          className="border border-[#3C5E95] text-[#3C5E95] hover:bg-[#EBF2FA] rounded-xl px-6 py-3 text-sm font-medium transition-colors duration-200"
+          className="border border-[#111827] text-[#111827] hover:bg-[#F3F4F6] rounded-xl px-6 py-3 text-sm font-medium transition-colors duration-200"
         >
           {tryAgainLabel}
         </button>
         <button
           type="button"
           onClick={onNew}
-          className="bg-[#3C5E95] hover:bg-[#2E4A75] text-white rounded-xl px-6 py-3 text-sm font-medium transition-colors duration-200"
+          className="bg-[#111827] hover:bg-[#1F2937] text-white rounded-xl px-6 py-3 text-sm font-medium transition-colors duration-200"
         >
           {newLabel}
         </button>

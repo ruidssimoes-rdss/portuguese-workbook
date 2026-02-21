@@ -124,8 +124,8 @@ export default function VerbPage() {
               onClick={() => setTenseFilter(t)}
               className={
                 tenseFilter === t
-                  ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                  : "bg-white border border-[#E9E9E9] text-text-secondary text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200 whitespace-nowrap"
+                  ? "bg-[#111827] text-white text-[13px] font-medium px-4 py-2 rounded-full"
+                  : "bg-white border border-[#E9E9E9] text-text-secondary text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#D1D5DB] hover:text-[#111827] transition-colors duration-200 whitespace-nowrap"
               }
             >
               {t}

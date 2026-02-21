@@ -238,7 +238,7 @@ export default function VocabularyPage() {
               placeholder="Search categories..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
+              className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
             />
           </div>
         </div>
@@ -251,7 +251,7 @@ export default function VocabularyPage() {
               >
                 <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
                   {section.label}
-                  <span className="text-[11px] font-normal normal-case tracking-normal text-[#3C5E95]/60">
+                  <span className="text-[11px] font-normal normal-case tracking-normal text-[#6B7280]">
                     {" · "}
                     {section.ptName}
                   </span>
@@ -297,13 +297,13 @@ export default function VocabularyPage() {
                             {showMatchNote && ` · ${matchCount} match${matchCount !== 1 ? "es" : ""}`}
                           </span>
                         </div>
-                        <span className="text-[13px] text-[#3C5E95] font-medium">
+                        <span className="text-[13px] text-[#6B7280] font-medium">
                           {CATEGORY_PT_TITLE[cat.id] ?? ""}
                         </span>
                         <p className="text-[13px] text-text-muted mt-3 leading-relaxed italic">
                           {cardDesc}
                         </p>
-                        <span className="inline-flex items-center justify-center self-start px-[13px] h-8 bg-[#262626] border border-[#262626] rounded-[10px] text-[12.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200 mt-4">
+                        <span className="inline-flex items-center justify-center self-start px-[13px] h-8 bg-[#111827] border border-[#111827] rounded-[10px] text-[12.5px] font-medium text-white shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#1F2937] transition-colors duration-200 mt-4">
                           Explore →
                         </span>
                       </div>

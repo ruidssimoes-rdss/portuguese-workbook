@@ -357,7 +357,7 @@ export default function DashboardPage() {
                   ) : (
                     <Link
                       href={`/dashboard/test/${section}`}
-                      className="inline-flex items-center justify-center h-[36px] px-5 bg-[#262626] border border-[#494949] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#404040] transition-colors duration-200"
+                      className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200"
                     >
                       {failedLast
                         ? `Retry ${sectionLabels[section]} Test`
