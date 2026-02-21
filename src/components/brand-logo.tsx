@@ -7,14 +7,27 @@ type BrandLogoProps = {
 };
 
 const LOGO_SIZES = {
-  topbar: { width: 32, height: 32 },
   auth: { width: 132, height: 46 },
 } as const;
 
 export function BrandLogo({ size = "topbar", className = "", priority = false }: BrandLogoProps) {
-  const { width, height } = LOGO_SIZES[size];
-  const sizeClass = size === "topbar" ? "h-8 w-8" : "h-11 w-auto";
-  const mergedClassName = `${sizeClass} object-contain ${className}`.trim();
+  if (size === "topbar") {
+    return (
+      <span className={`relative block h-8 w-8 overflow-hidden rounded-md ${className}`.trim()}>
+        <Image
+          src="/aula-logo.svg"
+          alt="Aula PT"
+          fill
+          sizes="32px"
+          priority={priority}
+          className="object-cover"
+        />
+      </span>
+    );
+  }
+
+  const { width, height } = LOGO_SIZES.auth;
+  const mergedClassName = `h-11 w-auto object-contain ${className}`.trim();
 
   return (
     <Image
