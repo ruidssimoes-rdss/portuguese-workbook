@@ -77,60 +77,56 @@ export default function VerbPage() {
     <>
       <Topbar />
       <main className="max-w-[1280px] mx-auto w-full px-4 md:px-6 lg:px-10">
-        {/* Compact header */}
-        <div className="flex items-center justify-between gap-4 flex-wrap py-5">
-          <div className="flex items-center gap-2 flex-wrap">
-            <Link
-              href="/conjugations"
-              className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </Link>
-            <span className="text-[22px] font-bold tracking-tight">{slug}</span>
-            <PronunciationButton text={slug} size="md" className="shrink-0" />
-            {m.pronunciation && (
-              <span className="text-sm text-text-muted font-mono">{m.pronunciation}</span>
-            )}
-            <span className="text-[13px] text-text-3 ml-1">
-              · {m.english} · {m.group}
-            </span>
+        {/* Header */}
+        <div className="py-5">
+          <Link
+            href="/conjugations"
+            className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
+          >
+            ← Conjugations
+          </Link>
+          <div className="flex items-start justify-between gap-4 mt-2">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h1 className="text-2xl font-bold text-[#111827]">{slug}</h1>
+                <PronunciationButton text={slug} size="md" className="shrink-0" />
+                {m.pronunciation && (
+                  <span className="text-sm text-text-muted font-mono">{m.pronunciation}</span>
+                )}
+              </div>
+              <p className="mt-1 text-sm text-[#9CA3AF]">
+                {m.english} · {m.group}
+              </p>
+            </div>
+            <div className="flex gap-1.5 flex-wrap shrink-0">
+              <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                m.priority === "Essential" ? "text-red-700 bg-red-50"
+                : m.priority === "Core" ? "text-blue-700 bg-blue-50"
+                : "text-text-secondary bg-border-light"
+              }`}>{m.priority}</span>
+              <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
+                {m.cefr}
+              </span>
+            </div>
           </div>
-          <div className="flex gap-1.5 flex-wrap">
-            <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-              m.priority === "Essential" ? "text-red-700 bg-red-50"
-              : m.priority === "Core" ? "text-blue-700 bg-blue-50"
-              : "text-text-secondary bg-border-light"
-            }`}>{m.priority}</span>
-            <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
-              {m.cefr}
-            </span>
-          </div>
-        </div>
 
-        {/* Tense filters */}
-        <div className="flex items-center gap-2 flex-wrap mb-6 pb-4 border-b border-[#E9E9E9]">
-          {tenses.map((t) => (
-            <button
-              key={t}
-              onClick={() => setTenseFilter(t)}
-              className={
-                tenseFilter === t
-                  ? "bg-[#111827] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                  : "bg-white border border-[#E9E9E9] text-text-secondary text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#D1D5DB] hover:text-[#111827] transition-colors duration-200 whitespace-nowrap"
-              }
-            >
-              {t}
-            </button>
-          ))}
+          {/* Tense filters */}
+          <div className="flex flex-wrap items-center gap-1.5 mt-6">
+            {tenses.map((t) => (
+              <button
+                key={t}
+                onClick={() => setTenseFilter(t)}
+                className={
+                  tenseFilter === t
+                    ? "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer"
+                    : "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white whitespace-nowrap"
+                }
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+          <div className="border-t border-[#F3F4F6] mt-4" />
         </div>
 
         {/* Mobile: card layout */}
@@ -142,9 +138,9 @@ export default function VerbPage() {
               <div
                 key={i}
                 ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLDivElement>) : undefined}
-                className={`border rounded-[14px] p-4 ${
-                  r.Type === "Exception" ? "border-amber-200 bg-amber-50" : "border-[#E9E9E9] bg-white"
-                } ${isHighlight && flashHighlight ? "ring-2 ring-blue-400 bg-sky-50" : ""}`}
+                className={`border rounded-xl p-4 ${
+                  r.Type === "Exception" ? "border-amber-200 bg-amber-50" : "border-[#E5E7EB] bg-white"
+                } ${isHighlight && flashHighlight ? "ring-2 ring-[#111827] ring-offset-2" : ""}`}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
@@ -196,34 +192,34 @@ export default function VerbPage() {
         </div>
 
         {/* Desktop: table — full width, no scroll, text wraps; Notes only when a tense is selected */}
-        <div className="hidden md:block mb-12 border border-[#E5E5E5] rounded-[14px] bg-white">
+        <div className="hidden md:block mb-12 border border-[#E5E7EB] rounded-xl bg-white">
           <table className="w-full text-[13px] border-collapse table-auto">
             <thead>
               <tr>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E5E7EB] bg-surface whitespace-nowrap">
                   Tense
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E5E7EB] bg-surface whitespace-nowrap">
                   Person
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E5E7EB] bg-surface whitespace-nowrap">
                   Conjugation
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface min-w-0">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E5E7EB] bg-surface min-w-0">
                   Example
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface min-w-0">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E5E7EB] bg-surface min-w-0">
                   Translation
                 </th>
                 {tenseFilter !== "All" && (
-                  <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface min-w-0">
+                  <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E5E7EB] bg-surface min-w-0">
                     Notes
                   </th>
                 )}
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E5E7EB] bg-surface whitespace-nowrap">
                   CEFR
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E5E7EB] bg-surface whitespace-nowrap">
                   Type
                 </th>
               </tr>
@@ -240,11 +236,11 @@ export default function VerbPage() {
                   <tr
                     key={i}
                     ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLTableRowElement>) : undefined}
-                    className={`hover:bg-surface ${newTense ? "border-t-2 border-[#E9E9E9]" : ""} ${
-                      isHighlight && flashHighlight ? "bg-blue-100" : ""
+                    className={`hover:bg-surface ${newTense ? "border-t-2 border-[#E5E7EB]" : ""} ${
+                      isHighlight && flashHighlight ? "bg-[#F3F4F6]" : ""
                     }`}
                   >
-                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] whitespace-nowrap">
                       <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
                         r.Tense === "Present" ? "text-emerald-700 bg-emerald-50"
                         : r.Tense === "Preterite" ? "text-amber-800 bg-orange-50"
@@ -255,32 +251,32 @@ export default function VerbPage() {
                         : "text-text-secondary bg-border-light"
                       }`}>{r.Tense}</span>
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] font-medium whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] font-medium whitespace-nowrap">
                       {person}
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] whitespace-nowrap">
                       <div className="flex items-center gap-1.5">
                         <span className="font-bold tracking-tight">{r.Conjugation}</span>
                         <PronunciationButton text={r.Conjugation} size="sm" variant="muted" />
                       </div>
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] text-text-2 italic text-[12.5px] min-w-0 break-words">
+                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] text-text-2 italic text-[12.5px] min-w-0 break-words">
                       {r["Example Sentence"]}
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] text-text-3 text-[12px] min-w-0 break-words">
+                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] text-text-3 text-[12px] min-w-0 break-words">
                       {r["English Translation"]}
                     </td>
                     {tenseFilter !== "All" && (
-                      <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] text-text-2 text-[12px] min-w-0 break-words">
+                      <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] text-text-2 text-[12px] min-w-0 break-words">
                         {r.Notes}
                       </td>
                     )}
-                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] whitespace-nowrap">
                       <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(r["CEFR (Tense)"])}`}>
                         {r["CEFR (Tense)"]}
                       </span>
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] whitespace-nowrap">
                       <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
                         r.Type === "Exception" ? "text-amber-700 bg-amber-50"
                         : "text-emerald-700 bg-emerald-50"

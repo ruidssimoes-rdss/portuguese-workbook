@@ -484,7 +484,7 @@ export default function LevelTestPage() {
                             ? "border-green-500 bg-green-50"
                             : showWrong
                               ? "border-red-500 bg-red-50"
-                              : "border-[#E9E9E9] bg-white text-text hover:border-[#111827]"
+                              : "border-[#E5E7EB] bg-white text-text hover:border-[#111827]"
                         } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#111827]`}
                         style={
                           !revealed ? { ["--tw-ring-color" as string]: "#111827" } : undefined
@@ -552,7 +552,7 @@ export default function LevelTestPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="mt-6 w-full py-3 px-4 rounded-xl font-medium border border-[#E9E9E9] text-text hover:bg-[#FAFAFA] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    className="mt-6 w-full py-3 px-4 rounded-xl font-medium border border-[#E5E7EB] text-text hover:bg-[#FAFAFA] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
                     style={{ ["--tw-ring-color" as string]: "#111827" }}
                   >
                     {questionIndex >= questions.length - 1 ? "See Results" : "Next"}

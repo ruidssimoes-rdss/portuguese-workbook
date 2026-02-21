@@ -11,6 +11,22 @@ import type { VocabData, VocabWord } from "@/types/vocab";
 
 const data = vocabData as unknown as VocabData;
 
+const CATEGORY_PT_TITLE: Record<string, string> = {
+  "greetings-expressions": "Cumprimentos e Expressões",
+  "numbers-time": "Números e Tempo",
+  "colours-weather": "Cores e Clima",
+  "food-drink": "Comida e Bebida",
+  "home-rooms": "Casa e Divisões",
+  "family-daily-routine": "Família e Rotina Diária",
+  "shopping-money": "Compras e Dinheiro",
+  "travel-directions": "Viagens e Direções",
+  "work-education": "Trabalho e Educação",
+  "health-body": "Saúde e Corpo",
+  "nature-animals": "Natureza e Animais",
+  "emotions-personality": "Emoções e Personalidade",
+  "colloquial-slang": "Coloquial e Calão",
+};
+
 function Popover({
   trigger,
   children,
@@ -52,7 +68,7 @@ function Popover({
       </button>
       {open && (
         <div
-          className={`absolute bottom-full mb-2 z-50 w-[280px] bg-white border border-[#E5E5E5] rounded-[12px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-4 ${
+          className={`absolute bottom-full mb-2 z-50 w-[280px] bg-white border border-[#E5E7EB] rounded-[12px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-4 ${
             align === "right" ? "right-0" : "left-0"
           }`}
         >
@@ -77,7 +93,7 @@ function WordCard({
   return (
     <div
       ref={isHighlight ? highlightedRef : undefined}
-      className={`bg-white border border-[#E5E5E5] rounded-[14px] p-5 flex flex-col gap-3 transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] ${
+      className={`bg-white border border-[#E5E7EB] rounded-xl p-5 flex flex-col gap-3 transition-all duration-200 hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] ${
         isHighlight && flashHighlight
           ? "ring-2 ring-[#111827] ring-offset-2"
           : ""
@@ -240,44 +256,52 @@ export default function VocabCategoryPage() {
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
         {/* Header */}
-        <div className="flex flex-col gap-2 py-5">
+        <div className="py-5">
           <Link
             href="/vocabulary"
             className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
           >
-            ← {category.title}
+            ← Vocabulary
           </Link>
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <h1 className="text-[22px] font-bold tracking-tight">
+          <div className="flex items-baseline gap-3 mt-2">
+            <h1 className="text-2xl font-bold text-[#111827]">
               {category.title}
             </h1>
-            <input
-              type="text"
-              placeholder="Search words…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
-            />
+            <span className="text-lg text-[#9CA3AF] italic">
+              {CATEGORY_PT_TITLE[category.id] ?? ""}
+            </span>
           </div>
-          <p className="text-[13px] text-text-muted">{category.words.length} words</p>
+          <p className="mt-1 text-sm text-[#9CA3AF]">{category.words.length} words</p>
         </div>
 
-        {/* Filters */}
-        <div className="flex items-center gap-2 flex-wrap mb-6 pb-4 border-b border-[#E9E9E9]">
-          {["All", "A1", "A2", "B1"].map((l) => (
-            <button
-              key={l}
-              onClick={() => setCefrFilter(l)}
-              className={
-                cefrFilter === l
-                  ? "bg-[#111827] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                  : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#D1D5DB] hover:text-[#111827] transition-colors duration-200"
-              }
-            >
-              {l}
-            </button>
-          ))}
+        {/* Filters + search */}
+        <div className="flex flex-wrap items-center gap-3 mt-2">
+          <div className="flex items-center gap-1.5">
+            {["All", "A1", "A2", "B1"].map((l) => (
+              <button
+                key={l}
+                onClick={() => setCefrFilter(l)}
+                className={
+                  cefrFilter === l
+                    ? "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer"
+                    : "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white"
+                }
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+          <div className="w-full sm:w-auto sm:ml-auto">
+            <input
+              type="text"
+              placeholder="Search words..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white"
+            />
+          </div>
         </div>
+        <div className="border-t border-[#F3F4F6] mt-4 mb-6" />
 
         {/* Word cards — responsive grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-12">

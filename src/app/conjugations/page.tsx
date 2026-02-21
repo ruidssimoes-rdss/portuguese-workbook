@@ -39,12 +39,10 @@ function shortGroup(group: string): string {
   return group;
 }
 
-const pillActive =
-  "px-3 py-1.5 text-[11px] font-medium text-[#475569] bg-white rounded-[8px] shadow-[0_1px_3px_rgba(0,0,0,0.1),0_0px_2px_rgba(0,0,0,0.06)] transition-all duration-200";
-const pillInactive =
-  "px-3 py-1.5 text-[11px] font-medium text-[rgba(71,85,105,0.5)] rounded-[8px] hover:text-[#475569] transition-all duration-200 cursor-pointer";
-const groupContainer =
-  "flex items-center gap-1 bg-[#FAFAFB] border border-[rgba(71,85,105,0.25)] rounded-[12px] p-[4px]";
+const PILL_ACTIVE =
+  "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer";
+const PILL_INACTIVE =
+  "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white";
 
 export default function ConjugationsPage() {
   const [typeFilter, setTypeFilter] = useState("All");
@@ -65,61 +63,65 @@ export default function ConjugationsPage() {
     <>
       <Topbar />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
-        <div className="flex flex-col gap-4 py-5">
+        <div className="py-5">
           <div className="flex items-baseline gap-3">
-            <h1 className="text-[20px] font-semibold text-text">
+            <h1 className="text-2xl font-bold text-[#111827]">
               Conjugations
             </h1>
-            <div className="w-px h-[18px] bg-[#9AA2AD] self-center" />
-            <span className="text-[16px] font-medium text-[rgba(71,85,105,0.5)]">
+            <span className="text-lg text-[#9CA3AF] italic">
               Conjugações
             </span>
           </div>
-          <p className="text-[11px] text-[#9AA2AD]">
+          <p className="mt-1 text-sm text-[#9CA3AF]">
             {data.order.length} verbs · {totalConjugations.toLocaleString()} conjugations · 6 tenses
           </p>
-          <div className="flex items-center gap-3 flex-wrap">
-            <div className={groupContainer}>
+          <div className="flex flex-wrap items-center gap-3 mt-6">
+            <div className="flex items-center gap-1.5">
               {["All", "Irregular", "Regular -AR", "Regular -ER", "Regular -IR"].map((f) => (
                 <button
                   key={f}
                   onClick={() => setTypeFilter(f)}
-                  className={typeFilter === f ? pillActive : pillInactive}
+                  className={typeFilter === f ? PILL_ACTIVE : PILL_INACTIVE}
                 >
                   {f === "Regular -AR" ? "-AR" : f === "Regular -ER" ? "-ER" : f === "Regular -IR" ? "-IR" : f}
                 </button>
               ))}
             </div>
-            <div className={groupContainer}>
+            <div className="w-px h-5 bg-[#E5E7EB]" />
+            <div className="flex items-center gap-1.5">
               {["A1", "A2", "B1"].map((f) => (
                 <button
                   key={f}
                   onClick={() => setLevelFilter((prev) => (prev === f ? null : f))}
-                  className={levelFilter === f ? pillActive : pillInactive}
+                  className={levelFilter === f ? PILL_ACTIVE : PILL_INACTIVE}
                 >
                   {f}
                 </button>
               ))}
             </div>
-            <div className={groupContainer}>
+            <div className="w-px h-5 bg-[#E5E7EB]" />
+            <div className="flex items-center gap-1.5">
               {["Essential", "Core", "Useful"].map((f) => (
                 <button
                   key={f}
                   onClick={() => setPriorityFilter((prev) => (prev === f ? null : f))}
-                  className={priorityFilter === f ? pillActive : pillInactive}
+                  className={priorityFilter === f ? PILL_ACTIVE : PILL_INACTIVE}
                 >
                   {f}
                 </button>
               ))}
             </div>
-            <input
-              type="text"
-              placeholder="Search verbs..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="h-[36px] w-full md:w-[200px] px-3 text-[11px] text-[#475569] placeholder:text-[rgba(71,85,105,0.5)] border border-[rgba(71,85,105,0.25)] rounded-[12px] bg-white focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
-            />
+            <div className="w-full sm:w-auto sm:ml-auto">
+              <input
+                type="text"
+                placeholder="Search verbs..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white"
+              />
+            </div>
           </div>
+          <div className="border-t border-[#F3F4F6] mt-4 mb-6" />
         </div>
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(198px,1fr))] gap-4 pb-16">
@@ -129,7 +131,7 @@ export default function ConjugationsPage() {
               <Link
                 key={v}
                 href={`/conjugations/${v.toLowerCase()}`}
-                className="bg-white border border-[#E5E5E5] rounded-[14px] p-5 flex flex-col min-h-[140px] transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
+                className="border border-[#E5E7EB] rounded-xl p-5 bg-white flex flex-col min-h-[140px] hover:border-[#D1D5DB] transition-colors duration-200"
               >
                 <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] text-text mb-1">
                   {v}
