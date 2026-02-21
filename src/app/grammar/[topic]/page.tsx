@@ -144,7 +144,7 @@ function RuleItem({
             <div
               className={[
                 "mt-4 grid grid-cols-1 gap-4",
-                hasLeftColumn ? "sm:grid-cols-[1fr,auto] sm:gap-8" : "sm:grid-cols-1",
+                hasLeftColumn ? "sm:grid-cols-[1fr_auto] sm:gap-8" : "sm:grid-cols-1",
               ].join(" ")}
             >
               {rule.examples.length > 0 && (
