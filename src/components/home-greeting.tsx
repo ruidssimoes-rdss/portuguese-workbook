@@ -110,15 +110,15 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
               variant="dark"
               className="shrink-0 mr-1"
             />
-            <span className="text-[22px] font-bold text-[#262626] leading-[42px]">
+            <span className="text-2xl font-semibold text-[#262626] leading-[42px]">
               {greeting.portuguese}
             </span>
             <div className="hidden md:block w-px h-[34px] bg-[#9AA2AD] mx-5 shrink-0" />
-            <span className="hidden md:inline text-[22px] font-normal text-[#A3AAB4] leading-[42px] truncate">
+            <span className="hidden md:inline text-2xl font-normal text-[#A3AAB4] leading-[42px] truncate">
               {greeting.english}
             </span>
           </div>
-          <p className="md:hidden text-[14px] text-[#A3AAB4] mt-1">{greeting.english}</p>
+          <p className="md:hidden text-[13px] text-[#A3AAB4] mt-1">{greeting.english}</p>
         </div>
         <span className="text-[11px] font-semibold text-[#111827] bg-[#F3F4F6] px-2.5 py-[3px] rounded-full shrink-0 self-start md:self-center">
           {greeting.level}
@@ -191,7 +191,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
           {feedback.type === "success" && (
             <>
               {feedback.display && (
-                <span className="text-[14px] font-semibold text-emerald-700 block">
+                <span className="text-[13px] font-semibold text-emerald-700 block">
                   {feedback.display}
                 </span>
               )}
@@ -202,7 +202,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
           )}
           {feedback.type === "correction" && (
             <>
-              <span className="text-[14px] font-semibold text-amber-700 block">
+              <span className="text-[13px] font-semibold text-amber-700 block">
                 {feedback.correction
                   ? `Almost! Try: ${feedback.correction}`
                   : "Almost!"}
@@ -214,7 +214,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
           )}
           {(feedback.type === "partial" || feedback.type === "unknown") && (
             <>
-              <span className="text-[14px] font-medium text-[#374151] block">
+              <span className="text-[13px] font-medium text-[#374151] block">
                 {feedback.message}
               </span>
               {feedback.examples && feedback.examples.length > 0 && (

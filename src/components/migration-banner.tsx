@@ -82,7 +82,7 @@ export function MigrationBanner({
 
   if (success) {
     return (
-      <div className="rounded-lg border border-green-200 bg-green-50 p-3 mb-6 text-green-800 text-[14px]">
+      <div className="rounded-lg border border-green-200 bg-green-50 p-3 mb-6 text-green-800 text-[13px]">
         Dados transferidos com sucesso.
       </div>
     );
@@ -109,10 +109,10 @@ export function MigrationBanner({
           </svg>
         </div>
         <div className="min-w-0 flex-1">
-          <h2 className="font-bold text-[#111827] text-[15px]">
+          <h2 className="font-semibold text-[#111827] text-[15px]">
             Dados de progresso encontrados
           </h2>
-          <p className="text-[14px] text-text-2 mt-1">
+          <p className="text-[13px] text-text-2 mt-1">
             Encontrámos progresso guardado neste dispositivo. Queres transferi-lo
             para a tua conta?
           </p>
@@ -133,7 +133,7 @@ export function MigrationBanner({
               type="button"
               onClick={handleMigrate}
               disabled={migrating}
-              className="rounded-lg bg-[#111827] px-4 py-2 text-white text-[14px] font-medium hover:bg-[#1F2937] disabled:opacity-60 flex items-center gap-2"
+              className="rounded-lg bg-[#111827] px-4 py-2 text-white text-[13px] font-medium hover:bg-[#1F2937] disabled:opacity-60 flex items-center gap-2"
             >
               {migrating ? (
                 <>
@@ -147,7 +147,7 @@ export function MigrationBanner({
             <button
               type="button"
               onClick={() => setDismissed(true)}
-              className="rounded-lg bg-transparent text-[#6B7280] text-[14px] font-medium hover:underline"
+              className="rounded-lg bg-transparent text-[#6B7280] text-[13px] font-medium hover:underline"
             >
               Ignorar
             </button>

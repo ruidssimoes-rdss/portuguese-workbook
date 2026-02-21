@@ -122,7 +122,7 @@ export default function SettingsPage() {
       <Topbar />
       <ProtectedRoute>
         <main className="max-w-[640px] mx-auto px-4 md:px-6 py-12">
-          <h1 className="text-[22px] font-bold tracking-tight text-text">Definições</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-text">Definições</h1>
 
           {message && (
             <div
@@ -137,7 +137,7 @@ export default function SettingsPage() {
           )}
 
           <section className="mt-8">
-            <h2 className="text-lg font-semibold text-text mb-3">Perfil</h2>
+            <h2 className="text-[15px] font-semibold text-text mb-3">Perfil</h2>
             <div className="rounded-[14px] border border-[#E9E9E9] bg-white p-5 space-y-4">
               <div>
                 <label htmlFor="display-name" className="block text-sm font-medium text-[#374151] mb-1">
@@ -167,7 +167,7 @@ export default function SettingsPage() {
           </section>
 
           <section className="mt-8">
-            <h2 className="text-lg font-semibold text-text mb-3">Preferências de aprendizagem</h2>
+            <h2 className="text-[15px] font-semibold text-text mb-3">Preferências de aprendizagem</h2>
             <div className="rounded-[14px] border border-[#E9E9E9] bg-white p-5 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-[#374151] mb-2">
@@ -230,7 +230,7 @@ export default function SettingsPage() {
           </section>
 
           <section className="mt-8">
-            <h2 className="text-lg font-semibold text-text mb-3">Conta</h2>
+            <h2 className="text-[15px] font-semibold text-text mb-3">Conta</h2>
             <div className="rounded-[14px] border border-[#E9E9E9] bg-white p-5 space-y-3">
               <p>
                 <Link

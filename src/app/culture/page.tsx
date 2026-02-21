@@ -490,7 +490,7 @@ function CultureContent() {
             <h1 className="text-2xl font-bold text-[#111827]">
               Culture
             </h1>
-            <span className="text-lg text-[#9CA3AF] italic">
+            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
               Cultura
             </span>
           </div>

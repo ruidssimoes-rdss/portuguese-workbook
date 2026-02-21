@@ -299,7 +299,7 @@ export default function LevelTestPage() {
         <Topbar />
         <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
           <p className="text-text-2">Section not found.</p>
-          <Link href="/dashboard" className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block">
+          <Link href="/dashboard" className="text-[13px] text-text-2 hover:text-text underline mt-4 inline-block">
             Back to Progress & Tests
           </Link>
         </main>
@@ -313,7 +313,7 @@ export default function LevelTestPage() {
         <Topbar />
         <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
           <p className="text-text-2">Level not found.</p>
-          <Link href="/dashboard" className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block">
+          <Link href="/dashboard" className="text-[13px] text-text-2 hover:text-text underline mt-4 inline-block">
             Back to Progress & Tests
           </Link>
         </main>
@@ -352,7 +352,7 @@ export default function LevelTestPage() {
                 <div className="bg-white border border-[#E5E7EB] rounded-[12px] p-5 flex flex-col gap-5">
                   {/* Row 1: Title + Score pill */}
                   <div className="flex items-start justify-between gap-5">
-                    <h1 className="text-[22px] font-normal text-[#111827] leading-[42px]">
+                    <h1 className="text-[18px] font-normal text-[#111827] leading-[42px]">
                       Level {currentLevel} – {levelInfo?.label}
                     </h1>
                     <div className="flex items-center h-[35px] px-2.5 bg-white border-[0.5px] border-[#6B7280] rounded-[12px] shrink-0">
@@ -451,7 +451,7 @@ export default function LevelTestPage() {
             {currentQuestion && (
               <>
                 <div className="mb-8">
-                  <p className="text-[20px] text-text font-medium leading-snug">
+                  <p className="text-[18px] text-text font-medium leading-snug">
                     {parseQuestionText(currentQuestion.questionText, sectionColor)}
                   </p>
                   {currentQuestion.questionTextPt && (
@@ -461,7 +461,7 @@ export default function LevelTestPage() {
                         size="sm"
                         variant="muted"
                       />
-                      <p className="text-[16px] text-text-2 italic">
+                      <p className="text-[15px] text-text-2 italic">
                         {parseQuestionText(currentQuestion.questionTextPt, sectionColor)}
                       </p>
                     </div>
@@ -529,7 +529,7 @@ export default function LevelTestPage() {
                 </div>
                 {revealed && (currentQuestion.explanation || currentQuestion.exampleSentence) && (
                   <div
-                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[14px] text-text-2"
+                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[13px] text-text-2"
                   >
                     {currentQuestion.explanation && (
                       <p className="italic">{currentQuestion.explanation}</p>
@@ -574,7 +574,7 @@ export default function LevelTestPage() {
               className="border border-[#E5E7EB] rounded-[14px] bg-white overflow-hidden transition-all duration-200"
             >
               <div className="p-8">
-                <h1 className="text-xl font-bold tracking-tight text-text">
+                <h1 className="text-[18px] font-semibold tracking-tight text-text">
                   Level {testedLevel ?? currentLevel} — {resultsLevelInfo?.label ?? levelInfo?.label ?? ""}
                 </h1>
                 <div className="flex flex-col items-center mt-8">
@@ -604,7 +604,7 @@ export default function LevelTestPage() {
                   </div>
                   {passed ? (
                     <>
-                      <p className="mt-6 text-lg font-semibold text-green-600">PASSED</p>
+                      <p className="mt-6 text-[18px] font-semibold text-green-600">PASSED</p>
                       {nextLevel && nextLevelInfo && (
                         <p className="mt-2 text-[15px] text-text-2 text-center">
                           You&apos;ve unlocked {nextLevel}! — {nextLevelInfo.label}
@@ -627,7 +627,7 @@ export default function LevelTestPage() {
                     </>
                   ) : (
                     <>
-                      <p className="mt-6 text-lg font-semibold text-amber-600">NOT YET</p>
+                      <p className="mt-6 text-[18px] font-semibold text-amber-600">NOT YET</p>
                       <p className="mt-2 text-[15px] text-text-2 text-center">
                         You needed {targetAccuracy}%, you scored {resultScore}%.
                       </p>

@@ -50,7 +50,7 @@ export function ChangelogBanner({ version, title, summary, firstChange }: Props)
     >
       <Link
         href="/changelog"
-        className="flex-1 min-w-0 flex items-center gap-2 text-[14px] text-text hover:text-text group"
+        className="flex-1 min-w-0 flex items-center gap-2 text-[13px] text-text hover:text-text group"
       >
         <span className="shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-100 text-blue-800 border border-blue-200">
           v{version}

@@ -327,7 +327,7 @@ export default function VerbDrillsPage() {
             <PracticeProgressBar current={answered} total={total} className="mb-8" />
 
             <PracticeQuestionCard>
-              <p className="text-2xl font-bold text-[#111827] uppercase tracking-wide">{currentQ.verb}</p>
+              <p className="text-2xl font-semibold text-[#111827] uppercase tracking-wide">{currentQ.verb}</p>
               <p className="text-sm text-[#6B7280] mt-1">{currentQ.verbEnglish}</p>
               <p className="text-sm text-[#111827] font-medium mt-4">{TENSE_LABELS[currentQ.tense] ?? currentQ.tense}</p>
               <p className="text-lg text-[#1F2937] font-medium mt-2">
@@ -497,10 +497,10 @@ export default function VerbDrillsPage() {
       <main className="min-h-screen bg-[#fafafa]">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
           <header className="mb-8">
-            <h1 className="text-[22px] font-bold tracking-tight">
+            <h1 className="text-2xl font-bold tracking-tight">
               Verb Drills
             </h1>
-            <p className="text-lg text-[#6B7280] font-medium mt-1">Exercícios de Verbos</p>
+            <p className="text-[13px] text-[#6B7280] font-medium mt-1">Exercícios de Verbos</p>
             <p className="text-sm text-[#6B7280] mt-2">
               Practice conjugating verbs across all tenses.
             </p>

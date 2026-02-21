@@ -54,13 +54,13 @@ function GuideSectionContent({ id }: { id: string }) {
     case "how-aula-pt-works":
       return (
         <>
-          <h2 className="text-xl font-bold text-[#111827]">
+          <h2 className="text-[18px] font-semibold text-[#111827]">
             How Aula PT Works
           </h2>
-          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
+          <p className="text-[13px] text-[#3C5E95]/70 font-medium mt-1">
             Como Funciona o Aula PT
           </p>
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
             <p>
               Aula PT is designed as a learning companion, not a game. There are
               no streaks, no leaderboards, and no pressure to keep up with
@@ -180,10 +180,10 @@ function GuideSectionContent({ id }: { id: string }) {
     case "cefr-levels":
       return (
         <>
-          <h2 className="text-xl font-bold text-[#111827]">
+          <h2 className="text-[18px] font-semibold text-[#111827]">
             Understanding CEFR Levels
           </h2>
-          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
+          <p className="text-[13px] text-[#3C5E95]/70 font-medium mt-1">
             Compreender os Níveis do QECR
           </p>
           <p className="text-base text-[#374151] mt-4 leading-relaxed">
@@ -262,11 +262,11 @@ function GuideSectionContent({ id }: { id: string }) {
     case "timelines":
       return (
         <>
-          <h2 className="text-xl font-bold text-[#111827]">Realistic Timelines</h2>
-          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
+          <h2 className="text-[18px] font-semibold text-[#111827]">Realistic Timelines</h2>
+          <p className="text-[13px] text-[#3C5E95]/70 font-medium mt-1">
             Prazos Realistas
           </p>
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
             <p>
               Be honest with yourself about how long this takes. Language
               learning is a marathon, not a sprint. Portuguese is classified as
@@ -323,7 +323,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </table>
           </div>
 
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
             <p>
               These estimates assume fairly consistent daily practice. They may
               be shorter if you already speak another Romance language or have
@@ -349,13 +349,13 @@ function GuideSectionContent({ id }: { id: string }) {
     case "daily-routine":
       return (
         <>
-          <h2 className="text-xl font-bold text-[#111827]">
+          <h2 className="text-[18px] font-semibold text-[#111827]">
             Structuring Your Daily Routine
           </h2>
-          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
+          <p className="text-[13px] text-[#3C5E95]/70 font-medium mt-1">
             Estruturar a Tua Rotina Diária
           </p>
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
             <p>
               A good routine does not need to be complicated. The goal is to
               attach Portuguese to things you already do — your morning coffee,
@@ -467,7 +467,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </div>
           </div>
 
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
             <p>
               Choose the routine that fits your current season of life. The
               fifteen‑minute version is not a &quot;failure day&quot;; it is the
@@ -489,13 +489,13 @@ function GuideSectionContent({ id }: { id: string }) {
     case "science-of-learning":
       return (
         <>
-          <h2 className="text-xl font-bold text-[#111827]">
+          <h2 className="text-[18px] font-semibold text-[#111827]">
             Active Recall vs Passive Learning
           </h2>
-          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
+          <p className="text-[13px] text-[#3C5E95]/70 font-medium mt-1">
             Recordação Ativa vs Aprendizagem Passiva
           </p>
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
             <p>
               Understanding how your brain stores new information will make you
               far more efficient. Most learners spend a lot of time on
@@ -588,13 +588,13 @@ function GuideSectionContent({ id }: { id: string }) {
     case "portuguese-tips":
       return (
         <>
-          <h2 className="text-xl font-bold text-[#111827]">
+          <h2 className="text-[18px] font-semibold text-[#111827]">
             Tips for Portuguese Specifically
           </h2>
-          <p className="text-lg text-[#3C5E95]/70 font-medium mt-1">
+          <p className="text-[13px] text-[#3C5E95]/70 font-medium mt-1">
             Dicas para o Português
           </p>
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
             <p className="font-semibold text-[#111827]">
               Pronunciation is Your Biggest Challenge
             </p>
@@ -733,10 +733,10 @@ export default function GuidePage() {
       <Topbar />
       <main className="max-w-[896px] mx-auto px-4 md:px-6 lg:px-10 py-5">
         <header className="mb-6">
-          <h1 className="text-[22px] font-bold tracking-tight">
+          <h1 className="text-2xl font-bold tracking-tight">
             How to Learn Portuguese
           </h1>
-          <p className="text-[14px] text-[#3C5E95] font-medium mt-1">
+          <p className="text-[13px] text-[#3C5E95] font-medium mt-1">
             Como Aprender Português
           </p>
           <p className="text-[13px] text-text-3 mt-2 max-w-xl leading-relaxed">
@@ -765,7 +765,7 @@ export default function GuidePage() {
                   id={`${s.id}-button`}
                 >
                   <div className="flex-1 min-w-0">
-                    <p className="text-base font-semibold text-[#111827]">
+                    <p className="text-[15px] font-semibold text-[#111827]">
                       <span className="text-sm text-[#D1D5DB] font-medium">{s.number}.</span> {s.title}
                     </p>
                     <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">
@@ -797,7 +797,7 @@ export default function GuidePage() {
                   className={`accordion-content ${isOpen ? "open" : ""}`}
                 >
                   <div>
-                    <div className="border-t border-[#F0F0F0] mt-4 pt-6 px-6 pb-6 text-base leading-relaxed text-[#374151]">
+                    <div className="border-t border-[#F0F0F0] mt-4 pt-6 px-6 pb-6 text-[15px] leading-relaxed text-[#374151]">
                       <GuideSectionContent id={s.id} />
                     </div>
                   </div>
@@ -808,14 +808,14 @@ export default function GuidePage() {
         </div>
 
         <section className="pb-8 mb-4 text-center mt-12 pt-4">
-          <p className="text-lg font-medium text-[#111827]">
+          <p className="text-[15px] font-medium text-[#111827]">
             You&apos;re ready.
           </p>
-          <p className="text-base text-[#6B7280] mt-2">
+          <p className="text-[15px] text-[#6B7280] mt-2">
             The best time to start was yesterday. The second best time is now.
             Open any section in the Learn menu and begin.
           </p>
-          <p className="text-base text-[#3C5E95] italic mt-4">
+          <p className="text-[15px] text-[#3C5E95] italic mt-4">
             A língua portuguesa está à tua espera.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">

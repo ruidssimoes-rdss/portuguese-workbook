@@ -371,10 +371,10 @@ export default function ListeningPage() {
       <main className="min-h-screen bg-[#fafafa]">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
           <header className="mb-8">
-            <h1 className="text-[22px] font-bold tracking-tight">
+            <h1 className="text-2xl font-bold tracking-tight">
               Listening Practice
             </h1>
-            <p className="text-lg text-[#6B7280] font-medium mt-1">Prática de Audição</p>
+            <p className="text-[13px] text-[#6B7280] font-medium mt-1">Prática de Audição</p>
             <p className="text-sm text-[#6B7280] mt-2">
               Listen and identify words and phrases. Train your ear for European Portuguese.
             </p>

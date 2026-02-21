@@ -215,10 +215,10 @@ export default function FlashcardsPage() {
         <main>
           <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
             <header className="mb-6">
-              <h1 className="text-[22px] font-bold tracking-tight">
+              <h1 className="text-2xl font-bold tracking-tight">
                 Flashcards
               </h1>
-              <p className="text-[14px] text-[#3C5E95] font-medium mt-1">
+              <p className="text-[13px] text-[#3C5E95] font-medium mt-1">
                 Cartões de Memória
               </p>
               <p className="text-[13px] text-text-3 mt-1">
@@ -334,8 +334,8 @@ export default function FlashcardsPage() {
         <main>
           <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
             <div className="max-w-md mx-auto text-center">
-              <h1 className="text-[22px] font-bold">Session Complete!</h1>
-              <p className="text-[14px] text-[#3C5E95] font-medium mt-1">Sessão Concluída!</p>
+              <h1 className="text-2xl font-semibold">Session Complete!</h1>
+              <p className="text-[13px] text-[#3C5E95] font-medium mt-1">Sessão Concluída!</p>
               <div className="mt-8 py-6 border-y border-[#E9E9E9] space-y-3">
                 <p className="text-emerald-600 font-semibold">
                   Knew: {knownCount} / {total} ({knewPct}%)
@@ -425,7 +425,7 @@ export default function FlashcardsPage() {
                   {showPortugueseOnFront ? (
                     <>
                       <div className="flex items-center gap-2 flex-wrap justify-center">
-                        <span className="text-3xl font-bold text-[#111827] text-center">
+                        <span className="text-2xl font-semibold text-[#111827] text-center">
                           {currentWord.portuguese}
                         </span>
                         {currentWord.gender && (
@@ -443,7 +443,7 @@ export default function FlashcardsPage() {
                     </>
                   ) : (
                     <>
-                      <span className="text-3xl font-bold text-[#111827] text-center">
+                      <span className="text-2xl font-semibold text-[#111827] text-center">
                         {currentWord.english}
                       </span>
                       <p className="text-xs text-[#9CA3AF] mt-6">Tap to flip</p>
@@ -451,7 +451,7 @@ export default function FlashcardsPage() {
                   )}
                 </div>
                 <div className="flashcard-back flex flex-col items-center justify-center p-6 overflow-y-auto">
-                  <span className="text-3xl font-bold text-[#3C5E95] text-center">
+                  <span className="text-2xl font-semibold text-[#3C5E95] text-center">
                     {showPortugueseOnFront ? currentWord.english : currentWord.portuguese}
                   </span>
                   <span className="text-lg text-[#6B7280] mt-2 text-center">

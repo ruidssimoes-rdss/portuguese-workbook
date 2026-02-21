@@ -149,7 +149,7 @@ export default function DashboardPage() {
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
           <MigrationBanner onMigrationComplete={refreshProgress} />
           <header className="py-5">
-          <h1 className="text-[22px] font-bold tracking-tight text-text">
+          <h1 className="text-2xl font-bold tracking-tight text-text">
             Progress & Tests
           </h1>
           <p className="text-[13px] text-text-3 mt-1">
@@ -184,7 +184,7 @@ export default function DashboardPage() {
               const colors = SECTION_COLORS[sec];
               return (
                 <div key={sec} className="flex items-center gap-3">
-                  <span className="text-[14px] font-medium text-text capitalize min-w-[120px] w-[120px] shrink-0">
+                  <span className="text-[13px] font-medium text-text capitalize min-w-[120px] w-[120px] shrink-0">
                     {sec}
                   </span>
                   <div className="flex flex-1 gap-2">
@@ -269,7 +269,7 @@ export default function DashboardPage() {
             return (
               <div
                 key={section}
-                className="rounded-[14px] border flex flex-col"
+                className="rounded-xl border flex flex-col"
                 style={{
                   backgroundColor: colors.bg,
                   borderColor: colors.border,
@@ -279,7 +279,7 @@ export default function DashboardPage() {
               >
                 {/* Row 1: Title + Score pill */}
                 <div className="flex items-start justify-between gap-5">
-                  <h2 className="text-[22px] font-normal text-[#111827] leading-[42px]">
+                  <h2 className="text-[18px] font-normal text-[#111827] leading-[42px]">
                     {section.charAt(0).toUpperCase() + section.slice(1)}
                   </h2>
                   {!isComplete && (
@@ -320,7 +320,7 @@ export default function DashboardPage() {
 
                 {/* Row 3: Description */}
                 <p
-                  className="text-[14px] font-normal leading-[21px]"
+                  className="text-[13px] font-normal leading-[21px]"
                   style={{ color: colors.text }}
                 >
                   {info.description}

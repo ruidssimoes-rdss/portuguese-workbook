@@ -100,7 +100,7 @@ function WordCard({
       }`}
     >
       <div className="flex items-center justify-between gap-3">
-        <h3 className="text-[20px] font-bold leading-tight text-text break-words">
+        <h3 className="text-[18px] font-semibold leading-tight text-text break-words">
           {w.portuguese}
         </h3>
         <PronunciationButton
@@ -131,7 +131,7 @@ function WordCard({
               &ldquo;{w.example}&rdquo;
             </span>
             {w.exampleTranslation && (
-              <span className="text-[11.5px] text-text-muted block mt-0.5 break-words">
+              <span className="text-[11px] text-text-muted block mt-0.5 break-words">
                 {w.exampleTranslation}
               </span>
             )}
@@ -259,7 +259,7 @@ export default function VocabCategoryPage() {
         <div className="py-5">
           <Link
             href="/vocabulary"
-            className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
+            className="text-text-2 hover:text-text text-[13px] transition-colors w-fit"
           >
             ← Vocabulary
           </Link>
@@ -267,7 +267,7 @@ export default function VocabCategoryPage() {
             <h1 className="text-2xl font-bold text-[#111827]">
               {category.title}
             </h1>
-            <span className="text-lg text-[#9CA3AF] italic">
+            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
               {CATEGORY_PT_TITLE[category.id] ?? ""}
             </span>
           </div>
@@ -306,7 +306,7 @@ export default function VocabCategoryPage() {
         {/* Word cards — responsive grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {filtered.length === 0 ? (
-            <p className="col-span-full text-center py-12 text-text-secondary text-[14px]">
+            <p className="col-span-full text-center py-12 text-text-secondary text-[13px]">
               No words match your filter.
             </p>
           ) : (

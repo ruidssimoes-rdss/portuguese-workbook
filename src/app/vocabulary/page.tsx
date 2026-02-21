@@ -162,7 +162,7 @@ export default function VocabularyPage() {
             <h1 className="text-2xl font-bold text-[#111827]">
               Vocabulary
             </h1>
-            <span className="text-lg text-[#9CA3AF] italic">
+            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
               Vocabulário
             </span>
           </div>
@@ -226,7 +226,7 @@ export default function VocabularyPage() {
               >
                 <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full">
                   <div className="flex items-start justify-between gap-3 mb-1">
-                    <h3 className="text-[18px] font-bold text-text">
+                    <h3 className="text-[15px] font-semibold text-text">
                       {cat.title}
                     </h3>
                     <span className="text-[12px] text-text-muted whitespace-nowrap">

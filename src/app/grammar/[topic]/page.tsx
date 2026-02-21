@@ -110,14 +110,14 @@ function RuleItem({
         className="w-full min-h-[44px] text-left p-4 sm:p-5 xl:p-6 cursor-pointer transition-all duration-200 ease-out"
       >
         <div className="flex items-start gap-3 sm:gap-4">
-          <span className="text-[#111827] font-bold text-base sm:text-lg flex-shrink-0 w-6 sm:w-8 text-right leading-6">
+          <span className="text-[#111827] font-semibold text-[15px] sm:text-[18px] flex-shrink-0 w-6 sm:w-8 text-right leading-6">
             {index + 1}
           </span>
           <div className="min-w-0 flex-1">
-            <p className="text-text font-semibold text-sm sm:text-base leading-snug break-words">
+            <p className="text-text font-semibold text-[13px] sm:text-[15px] leading-snug break-words">
               {renderWithLinks(rule.rule)}
             </p>
-            <p className="text-xs sm:text-sm italic mt-0.5 text-[#6B7280] break-words">{rule.rulePt}</p>
+            <p className="text-xs sm:text-[13px] italic mt-0.5 text-[#6B7280] break-words">{rule.rulePt}</p>
           </div>
           <svg
             className={[
@@ -294,8 +294,8 @@ export default function GrammarTopicPage() {
 
           <div className="flex items-start justify-between gap-4 mt-1">
             <div className="min-w-0">
-              <h1 className="text-2xl sm:text-3xl font-bold text-text break-words">{topic.title}</h1>
-              <p className="text-base sm:text-lg text-[#6B7280] italic mt-0.5 break-words">{topic.titlePt}</p>
+              <h1 className="text-2xl font-bold text-text break-words">{topic.title}</h1>
+              <p className="text-[13px] font-medium text-[#6B7280] italic mt-0.5 break-words">{topic.titlePt}</p>
             </div>
             <span
               className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getCefrBadgeClass(topic.cefr)}`}
@@ -304,7 +304,7 @@ export default function GrammarTopicPage() {
             </span>
           </div>
 
-          <p className="text-sm sm:text-base text-text-secondary mt-2 max-w-2xl leading-relaxed">{topic.summary}</p>
+          <p className="text-[13px] sm:text-[15px] text-text-secondary mt-2 max-w-2xl leading-relaxed">{topic.summary}</p>
         </header>
 
         <section className="bg-surface rounded-xl p-4 sm:p-6 mt-6 sm:mt-8">

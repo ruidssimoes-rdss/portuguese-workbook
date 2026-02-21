@@ -68,7 +68,7 @@ export default function ConjugationsPage() {
             <h1 className="text-2xl font-bold text-[#111827]">
               Conjugations
             </h1>
-            <span className="text-lg text-[#9CA3AF] italic">
+            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
               Conjugações
             </span>
           </div>
@@ -134,7 +134,7 @@ export default function ConjugationsPage() {
                 className="block group"
               >
                 <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white flex flex-col min-h-[140px] hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full">
-                  <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] text-text mb-1">
+                  <div className="text-[15px] font-semibold text-text mb-1">
                     {v}
                   </div>
                   <div className="text-[13px] text-text-secondary leading-relaxed flex-1">
@@ -161,7 +161,7 @@ export default function ConjugationsPage() {
             );
           })}
           {verbs.length === 0 && (
-            <div className="col-span-full text-center py-12 text-text-secondary text-[14px]">
+            <div className="col-span-full text-center py-12 text-text-secondary text-[13px]">
               No verbs match your filter.
             </div>
           )}

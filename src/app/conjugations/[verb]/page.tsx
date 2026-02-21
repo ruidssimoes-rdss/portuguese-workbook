@@ -81,7 +81,7 @@ export default function VerbPage() {
         <div className="py-5">
           <Link
             href="/conjugations"
-            className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
+            className="text-text-2 hover:text-text text-[13px] transition-colors w-fit"
           >
             ← Conjugations
           </Link>
@@ -155,7 +155,7 @@ export default function VerbPage() {
                   <span className="text-[13px] text-text-2">{person}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <p className="text-[16px] font-bold tracking-tight text-text">
+                  <p className="text-[15px] font-semibold tracking-tight text-text">
                     {r.Conjugation}
                   </p>
                   <PronunciationButton text={r.Conjugation} size="sm" variant="muted" />
@@ -256,11 +256,11 @@ export default function VerbPage() {
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] whitespace-nowrap">
                       <div className="flex items-center gap-1.5">
-                        <span className="font-bold tracking-tight">{r.Conjugation}</span>
+                        <span className="font-semibold tracking-tight">{r.Conjugation}</span>
                         <PronunciationButton text={r.Conjugation} size="sm" variant="muted" />
                       </div>
                     </td>
-                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] text-text-2 italic text-[12.5px] min-w-0 break-words">
+                    <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] text-text-2 italic text-[12px] min-w-0 break-words">
                       {r["Example Sentence"]}
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] text-text-3 text-[12px] min-w-0 break-words">

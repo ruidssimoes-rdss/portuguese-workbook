@@ -35,7 +35,7 @@ export default function ChangelogPage() {
       <Topbar />
       <main className="max-w-[896px] mx-auto px-4 md:px-6 lg:px-10 pb-16">
         <header className="py-5">
-          <h1 className="text-[22px] font-bold tracking-tight text-text">
+          <h1 className="text-2xl font-bold tracking-tight text-text">
             What&apos;s New
           </h1>
           <p className="text-[13px] text-text-3 mt-1">
@@ -59,11 +59,11 @@ export default function ChangelogPage() {
                   v{entry.version}
                 </span>
               </div>
-              <h2 className="text-lg font-semibold text-text mb-2">
+              <h2 className="text-[15px] font-semibold text-text mb-2">
                 {entry.title}
               </h2>
               {entry.summary ? (
-                <p className="text-base text-[#6B7280] mb-2 leading-snug">
+                <p className="text-[15px] text-[#6B7280] mb-2 leading-snug">
                   {entry.summary}
                 </p>
               ) : null}

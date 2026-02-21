@@ -104,10 +104,10 @@ export default function PracticePage() {
       <main>
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-5">
           <header className="mb-6">
-            <h1 className="text-[22px] font-bold tracking-tight">
+            <h1 className="text-2xl font-bold tracking-tight">
               Practice
             </h1>
-            <p className="text-[14px] text-[#111827] font-medium mt-1">
+            <p className="text-[13px] text-[#111827] font-medium mt-1">
               Prática
             </p>
             <p className="text-[13px] text-text-3 mt-1">
@@ -125,13 +125,13 @@ export default function PracticePage() {
                   <CardIcon id={mode.id} />
                 </div>
                 <div className="p-5 flex flex-col gap-3">
-                  <h3 className="text-[20px] font-bold text-[#111827]">
+                  <h3 className="text-[18px] font-semibold text-[#111827]">
                     {mode.title}
                   </h3>
-                  <span className="text-[14px] text-[#111827] font-medium -mt-2">
+                  <span className="text-[13px] text-[#111827] font-medium -mt-2">
                     {mode.portuguese}
                   </span>
-                  <p className="text-[14px] text-[#6B7280] leading-relaxed">
+                  <p className="text-[13px] text-[#6B7280] leading-relaxed">
                     {mode.description}
                   </p>
                   <span className="text-[12px] text-[#9CA3AF]">

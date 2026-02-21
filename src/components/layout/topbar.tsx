@@ -245,11 +245,11 @@ export function Topbar() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 h-14 bg-white/80 backdrop-blur-xl transition-all duration-300 ease-out ${
-          isScrolled ? "border-b border-gray-200/60 shadow-[0_1px_3px_rgba(0,0,0,0.04)]" : ""
+        className={`sticky top-0 z-50 h-14 bg-white/80 backdrop-blur-xl border-b border-[#F3F4F6] transition-all duration-300 ease-out ${
+          isScrolled ? "shadow-[0_1px_3px_rgba(0,0,0,0.04)]" : ""
         }`}
       >
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 flex items-center justify-between h-full">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 flex items-center justify-between h-full">
           <div className="flex items-center gap-4">
             <button
               type="button"
@@ -277,7 +277,7 @@ export function Topbar() {
                   onClick={() => setLearnMenuOpen((o) => !o)}
                   aria-expanded={learnMenuOpen}
                   aria-haspopup="true"
-                  className={`text-sm font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
+                  className={`text-[13px] font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
                     learnActive || learnMenuOpen ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
@@ -298,7 +298,7 @@ export function Topbar() {
                 </button>
                 <Link
                   href="/dashboard"
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+                  className={`px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors duration-200 ${
                     pathname?.startsWith("/dashboard") ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
@@ -363,7 +363,7 @@ export function Topbar() {
             {!authLoading && !user && (
               <Link
                 href="/changelog"
-                className="hidden md:inline-flex px-3 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                className="hidden md:inline-flex px-3 py-1.5 rounded-full text-[13px] font-medium text-gray-600 hover:text-gray-900 transition-colors"
               >
                 What&apos;s New
               </Link>
@@ -469,7 +469,7 @@ export function Topbar() {
             onClick={closeMobileMenu}
           />
           <div className="relative bg-white/95 backdrop-blur-md border-b border-gray-200/60 shadow-lg animate-fade-in">
-            <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-14">
+            <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-14">
               <span className="text-[13px] font-medium text-text-2">Menu</span>
               <button
                 type="button"
