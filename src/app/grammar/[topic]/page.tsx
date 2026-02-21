@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
@@ -10,6 +10,21 @@ import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic, GrammarRule } from "@/types/grammar";
 
 const data = grammarData as unknown as GrammarData;
+
+function renderWithLinks(text: string): ReactNode {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return parts.map((part, i) => {
+    const match = part.match(/^\[(.*?)\]\((.*?)\)$/);
+    if (match) {
+      return (
+        <Link key={i} href={match[2]} className="text-[#5B4FA0] hover:underline font-medium">
+          {match[1]}
+        </Link>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
 
 function extractRuleTitle(text: string): string {
   const colonIdx = text.indexOf(":");
@@ -84,6 +99,18 @@ function CollapsibleIntro({ text }: { text: string }) {
 function RuleCard({ rule, index }: { rule: GrammarRule; index: number }) {
   const equalsCount = (rule.rule.match(/=/g) || []).length;
   const isContractionRule = equalsCount >= 3;
+  const rawExceptions = (rule as unknown as { exceptions?: unknown }).exceptions;
+  const exceptions: string[] = Array.isArray(rawExceptions)
+    ? rawExceptions
+        .map((item) => {
+          if (typeof item === "string") return item;
+          if (item && typeof item === "object" && "pt" in item && typeof item.pt === "string") {
+            return item.pt;
+          }
+          return null;
+        })
+        .filter((item): item is string => Boolean(item))
+    : [];
 
   return (
     <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
@@ -91,7 +118,7 @@ function RuleCard({ rule, index }: { rule: GrammarRule; index: number }) {
         <div>
           <div className="mb-4">
             <p className="font-semibold text-[#111827] text-[15px]">
-              {index + 1}. {extractRuleTitle(rule.rule)}
+              {index + 1}. {renderWithLinks(extractRuleTitle(rule.rule))}
             </p>
             <p className="text-[13px] italic text-[#6B7280] mt-1">{rule.rulePt}</p>
           </div>
@@ -104,14 +131,42 @@ function RuleCard({ rule, index }: { rule: GrammarRule; index: number }) {
               <ExamplesList examples={rule.examples} />
             </div>
           )}
+          {exceptions.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-[#F0F0F0]">
+              <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#9CA3AF] mb-2">
+                Exceptions
+              </p>
+              <ul className="space-y-2">
+                {exceptions.map((exception, i) => (
+                  <li key={i} className="text-[14px] text-[#111827] leading-relaxed">
+                    {renderWithLinks(exception)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex flex-col md:flex-row md:gap-6">
           <div className="md:w-[55%] shrink-0">
             <p className="font-semibold text-[#111827] text-[15px]">
-              {index + 1}. {rule.rule}
+              {index + 1}. {renderWithLinks(rule.rule)}
             </p>
             <p className="text-[13px] italic text-[#6B7280] mt-1">{rule.rulePt}</p>
+            {exceptions.length > 0 && (
+              <div className="mt-3">
+                <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#9CA3AF] mb-2">
+                  Exceptions
+                </p>
+                <ul className="space-y-2">
+                  {exceptions.map((exception, i) => (
+                    <li key={i} className="text-[14px] text-[#111827] leading-relaxed">
+                      {renderWithLinks(exception)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           {rule.examples.length > 0 && (
             <div className="mt-4 pt-4 border-t border-[#F0F0F0] md:mt-0 md:pt-0 md:border-t-0 md:border-l md:border-[#F0F0F0] md:pl-6 md:w-[45%]">
@@ -198,9 +253,9 @@ export default function GrammarTopicPage() {
             <ul className="space-y-4">
               {topic.tips.map((tip, i) => (
                 <li key={i}>
-                  <p className="text-[14px] text-[#111827] leading-relaxed">{tip}</p>
+                  <p className="text-[14px] text-[#111827] leading-relaxed">{renderWithLinks(tip)}</p>
                   {topic.tipsPt[i] && (
-                    <p className="text-[13px] italic text-[#9CA3AF] mt-1">{topic.tipsPt[i]}</p>
+                    <p className="text-[13px] italic text-[#9CA3AF] mt-1">{renderWithLinks(topic.tipsPt[i])}</p>
                   )}
                 </li>
               ))}
