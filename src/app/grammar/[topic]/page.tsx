@@ -95,6 +95,7 @@ function RuleItem({
   const dedupedLinks = allLinks.filter(
     (link, i, arr) => arr.findIndex((other) => other.label === link.label && other.href === link.href) === i,
   );
+  const hasLeftColumn = noteTexts.length > 0 || dedupedLinks.length > 0;
 
   return (
     <div
@@ -140,79 +141,90 @@ function RuleItem({
       >
         <div className="overflow-hidden">
           <div className="px-4 pb-4 sm:px-5 sm:pb-5 xl:px-6 xl:pb-6">
-            {rule.examples.length > 0 && (
-              <div>
-                <p className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-[#6B7280]/40 sm:text-[#6B7280]/50 mt-4 mb-2">
-                  Examples
-                </p>
-                <div className="bg-[#FAFAFA]/50 rounded-lg p-3 sm:p-4 mt-3">
-                  {rule.examples.map((example, i) => (
-                    <div
-                      key={i}
-                      className="py-2 sm:py-2.5 border-b border-[#F3F4F6] last:border-0 transition-all duration-200 ease-out"
-                    >
-                      <div className="flex items-start gap-2 sm:gap-3">
-                        <PronunciationButton
-                          text={example.pt}
-                          size="sm"
-                          variant="muted"
-                          className="shrink-0 mt-0.5"
-                        />
-                        <div className="min-w-0 flex-1">
-                          <div className="sm:flex sm:items-start sm:gap-4 sm:justify-between">
-                            <p className="font-mono text-[13px] sm:text-[15px] text-[#111827] font-medium break-words">
-                              {example.pt}
-                            </p>
-                            <p className="text-xs sm:text-sm text-[#6B7280] mt-1 ml-9 sm:ml-0 sm:mt-0 sm:text-right sm:max-w-[45%] break-words">
-                              {example.en}
-                            </p>
+            <div
+              className={[
+                "mt-4 grid grid-cols-1 gap-4",
+                hasLeftColumn ? "sm:grid-cols-[1fr,auto] sm:gap-8" : "sm:grid-cols-1",
+              ].join(" ")}
+            >
+              {rule.examples.length > 0 && (
+                <div className="order-1 sm:order-2 sm:min-w-[280px] sm:max-w-[360px] lg:min-w-[320px] lg:max-w-[420px]">
+                  <p className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-[#6B7280]/40 mb-2">
+                    Examples
+                  </p>
+                  <div className="bg-[#FAFAFA]/50 rounded-lg p-3 sm:p-4">
+                    {rule.examples.map((example, i) => (
+                      <div
+                        key={i}
+                        className="py-2 sm:py-2.5 border-b border-[#F3F4F6] last:border-0 transition-all duration-200 ease-out"
+                      >
+                        <div className="flex items-start gap-2 sm:gap-3">
+                          <PronunciationButton
+                            text={example.pt}
+                            size="sm"
+                            variant="muted"
+                            className="shrink-0 mt-0.5"
+                          />
+                          <div className="min-w-0 flex-1">
+                            <div className="sm:flex sm:items-start sm:gap-4 sm:justify-between">
+                              <p className="font-mono text-[13px] sm:text-[15px] text-[#111827] font-medium break-words">
+                                {example.pt}
+                              </p>
+                              <p className="text-xs sm:text-sm text-[#6B7280] mt-1 ml-9 sm:ml-0 sm:mt-0 sm:text-right sm:max-w-[45%] break-words">
+                                {example.en}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {hasLeftColumn && (
+                <div className="order-2 sm:order-1">
+                  {noteTexts.length > 0 && (
+                    <div>
+                      <p className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-[#6B7280]/40 mb-2">
+                        Note
+                      </p>
+                      <div className="mt-3">
+                        {noteTexts.map((note, i) => (
+                          <p key={i} className="text-xs sm:text-sm text-[#6B7280] leading-relaxed mb-2 last:mb-0">
+                            {note}
+                          </p>
+                        ))}
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
+                  )}
 
-            {noteTexts.length > 0 && (
-              <div className="mt-3">
-                <p className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-[#6B7280]/40 sm:text-[#6B7280]/50 mt-4 mb-2">
-                  Note
-                </p>
-                <div className="mt-3">
-                  {noteTexts.map((note, i) => (
-                    <p key={i} className="text-xs sm:text-sm text-[#6B7280] leading-relaxed mb-2 last:mb-0">
-                      {note}
-                    </p>
-                  ))}
+                  {dedupedLinks.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-[#F3F4F6]">
+                      {dedupedLinks.map((link, i) => (
+                        <Link
+                          key={`${link.href}-${i}`}
+                          href={link.href}
+                          className="inline-flex min-h-[44px] items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-[#0144C0]/15 text-[#0144C0] text-xs sm:text-sm font-medium hover:bg-[#0144C0]/5 transition-all duration-200 ease-out"
+                        >
+                          {link.label}
+                          <svg
+                            className="w-3 h-3 sm:w-3.5 sm:h-3.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </div>
-            )}
-
-            {dedupedLinks.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-[#F3F4F6]">
-                {dedupedLinks.map((link, i) => (
-                  <Link
-                    key={`${link.href}-${i}`}
-                    href={link.href}
-                    className="inline-flex min-h-[44px] items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-[#0144C0]/15 text-[#0144C0] text-xs sm:text-sm font-medium hover:bg-[#0144C0]/5 transition-all duration-200 ease-out"
-                  >
-                    {link.label}
-                    <svg
-                      className="w-3 h-3 sm:w-3.5 sm:h-3.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      aria-hidden="true"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                ))}
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
