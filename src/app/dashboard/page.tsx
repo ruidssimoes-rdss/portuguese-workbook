@@ -24,28 +24,28 @@ const levelsData = levelsDataRaw as unknown as LevelsData;
 
 const SECTION_COLORS = {
   conjugations: {
-    primary: "#6B7280",
-    bg: "rgba(107, 114, 128, 0.1)",
-    border: "#6B7280",
+    primary: "#111827",
+    bg: "#FFFFFF",
+    border: "#E5E7EB",
     text: "#6B7280",
-    barTrack: "rgba(107, 114, 128, 0.12)",
-    barGradient: "linear-gradient(90deg, #555A64, #6B7280)",
+    barTrack: "#F3F4F6",
+    barFill: "#111827",
   },
   vocabulary: {
-    primary: "#14B8A6",
-    bg: "rgba(20, 184, 166, 0.1)",
-    border: "#14B8A6",
-    text: "#14B8A6",
-    barTrack: "rgba(20, 184, 166, 0.12)",
-    barGradient: "linear-gradient(90deg, #179A8B, #14B8A6)",
+    primary: "#111827",
+    bg: "#FFFFFF",
+    border: "#E5E7EB",
+    text: "#6B7280",
+    barTrack: "#F3F4F6",
+    barFill: "#111827",
   },
   grammar: {
-    primary: "#AA61F1",
-    bg: "rgba(170, 97, 241, 0.1)",
-    border: "#AA61F1",
-    text: "#AA61F1",
-    barTrack: "rgba(170, 97, 241, 0.12)",
-    barGradient: "linear-gradient(90deg, #894AA6, #AA61F1)",
+    primary: "#111827",
+    bg: "#FFFFFF",
+    border: "#E5E7EB",
+    text: "#6B7280",
+    barTrack: "#F3F4F6",
+    barFill: "#111827",
   },
 } as const;
 
@@ -207,7 +207,7 @@ export default function DashboardPage() {
                               }`}
                               style={{
                                 background: passed
-                                  ? colors.barGradient
+                                  ? colors.barFill
                                   : isCurrent
                                     ? `${colors.primary}44`
                                     : "#E5E7EB",
@@ -279,7 +279,7 @@ export default function DashboardPage() {
               >
                 {/* Row 1: Title + Score pill */}
                 <div className="flex items-start justify-between gap-5">
-                  <h2 className="text-[22px] font-normal text-[#262626] leading-[42px]">
+                  <h2 className="text-[22px] font-normal text-[#111827] leading-[42px]">
                     {section.charAt(0).toUpperCase() + section.slice(1)}
                   </h2>
                   {!isComplete && (
@@ -336,7 +336,7 @@ export default function DashboardPage() {
                       className="h-full rounded-full transition-all duration-300"
                       style={{
                         width: `${progressPct}%`,
-                        background: colors.barGradient,
+                        backgroundColor: colors.barFill,
                       }}
                     />
                   </div>
@@ -376,15 +376,10 @@ export default function DashboardPage() {
         </section>
 
         {/* Quick stats */}
-        <section className="border-t border-[#E9E9E9] pt-8 pb-16">
+        <section className="border-t border-[#E5E7EB] pt-8 pb-16">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div
-              className="rounded-[14px] border p-4 md:p-5 transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-              style={{
-                backgroundColor: SECTION_COLORS[focusSection].bg,
-                borderColor: SECTION_COLORS[focusSection].border,
-                borderWidth: 1,
-              }}
+              className="rounded-[14px] border border-[#E5E7EB] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
             >
               <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Current Focus
@@ -393,7 +388,7 @@ export default function DashboardPage() {
                 {focusSection} · {progress[focusSection].currentLevel}
               </p>
             </div>
-            <div className="rounded-[14px] border border-[#E9E9E9] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200">
+            <div className="rounded-[14px] border border-[#E5E7EB] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200">
               <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Levels Passed
               </p>
@@ -401,7 +396,7 @@ export default function DashboardPage() {
                 {levelsPassedTotal} / {totalLevels}
               </p>
             </div>
-            <div className="rounded-[14px] border border-[#E9E9E9] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200">
+            <div className="rounded-[14px] border border-[#E5E7EB] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200">
               <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                 Last Tested
               </p>

@@ -31,28 +31,28 @@ const grammar = grammarData as unknown as GrammarData;
 
 const TEST_SECTION_COLORS = {
   conjugations: {
-    primary: "#6B7280",
-    tagBg: "rgba(107, 114, 128, 0.08)",
-    tagBorder: "#6B7280",
+    primary: "#111827",
+    tagBg: "#F3F4F6",
+    tagBorder: "#E5E7EB",
     tagText: "#6B7280",
-    barTrack: "rgba(107, 114, 128, 0.12)",
-    barGradient: "linear-gradient(90deg, #555A64, #6B7280)",
+    barTrack: "#F3F4F6",
+    barFill: "#111827",
   },
   vocabulary: {
-    primary: "#14B8A6",
-    tagBg: "#E7F8F6",
-    tagBorder: "#14B8A6",
-    tagText: "#14B8A6",
-    barTrack: "rgba(20, 184, 166, 0.12)",
-    barGradient: "linear-gradient(90deg, #1F9487, #14B8A6)",
+    primary: "#111827",
+    tagBg: "#F3F4F6",
+    tagBorder: "#E5E7EB",
+    tagText: "#6B7280",
+    barTrack: "#F3F4F6",
+    barFill: "#111827",
   },
   grammar: {
-    primary: "#AA61F1",
-    tagBg: "rgba(170, 97, 241, 0.08)",
-    tagBorder: "#AA61F1",
-    tagText: "#AA61F1",
-    barTrack: "rgba(170, 97, 241, 0.12)",
-    barGradient: "linear-gradient(90deg, #894AA6, #AA61F1)",
+    primary: "#111827",
+    tagBg: "#F3F4F6",
+    tagBorder: "#E5E7EB",
+    tagText: "#6B7280",
+    barTrack: "#F3F4F6",
+    barFill: "#111827",
   },
 } as const;
 
@@ -349,10 +349,10 @@ export default function LevelTestPage() {
 
             return (
               <div className="max-w-[672px] mx-auto">
-                <div className="bg-[#FDFDFD] border border-[#CFD3D9] rounded-[12px] p-5 flex flex-col gap-5">
+                <div className="bg-white border border-[#E5E7EB] rounded-[12px] p-5 flex flex-col gap-5">
                   {/* Row 1: Title + Score pill */}
                   <div className="flex items-start justify-between gap-5">
-                    <h1 className="text-[22px] font-normal text-[#262626] leading-[42px]">
+                    <h1 className="text-[22px] font-normal text-[#111827] leading-[42px]">
                       Level {currentLevel} – {levelInfo?.label}
                     </h1>
                     <div className="flex items-center h-[35px] px-2.5 bg-white border-[0.5px] border-[#6B7280] rounded-[12px] shrink-0">
@@ -392,7 +392,7 @@ export default function LevelTestPage() {
                         className="h-full rounded-full transition-all duration-300"
                         style={{
                           width: `${progressPct}%`,
-                          background: colors.barGradient,
+                          backgroundColor: colors.barFill,
                         }}
                       />
                     </div>
@@ -442,7 +442,7 @@ export default function LevelTestPage() {
                   key={i}
                   className="h-2 flex-1 min-w-0 rounded-sm transition-all duration-200"
                   style={{
-                    backgroundColor: i < questionIndex + 1 ? sectionColor : "#E5E7EB",
+                    backgroundColor: i < questionIndex + 1 ? "#111827" : "#E5E7EB",
                   }}
                 />
               ))}
@@ -487,7 +487,7 @@ export default function LevelTestPage() {
                               : "border-[#E9E9E9] bg-white text-text hover:border-[#111827]"
                         } ${revealed ? "cursor-default" : "cursor-pointer"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#111827]`}
                         style={
-                          !revealed ? { ["--tw-ring-color" as string]: sectionColor } : undefined
+                          !revealed ? { ["--tw-ring-color" as string]: "#111827" } : undefined
                         }
                       >
                         {showCorrect && (
@@ -508,14 +508,12 @@ export default function LevelTestPage() {
                         )}
                         {!revealed && (
                           <span
-                            className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity duration-150"
-                            style={{ backgroundColor: sectionColor }}
+                            className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity duration-150 bg-[#111827]"
                           />
                         )}
                         {!revealed && (
                           <span
-                            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-150"
-                            style={{ backgroundColor: `${sectionColor}0D` }}
+                            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-150 bg-[#111827]/5"
                           />
                         )}
                         <span
@@ -531,8 +529,7 @@ export default function LevelTestPage() {
                 </div>
                 {revealed && (currentQuestion.explanation || currentQuestion.exampleSentence) && (
                   <div
-                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border text-[14px] text-text-2"
-                    style={{ borderWidth: 1, borderColor: sectionColor }}
+                    className="mt-6 p-4 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[14px] text-text-2"
                   >
                     {currentQuestion.explanation && (
                       <p className="italic">{currentQuestion.explanation}</p>
@@ -556,7 +553,7 @@ export default function LevelTestPage() {
                     type="button"
                     onClick={handleNext}
                     className="mt-6 w-full py-3 px-4 rounded-xl font-medium border border-[#E9E9E9] text-text hover:bg-[#FAFAFA] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                    style={{ ["--tw-ring-color" as string]: sectionColor }}
+                    style={{ ["--tw-ring-color" as string]: "#111827" }}
                   >
                     {questionIndex >= questions.length - 1 ? "See Results" : "Next"}
                   </button>
@@ -574,8 +571,7 @@ export default function LevelTestPage() {
               </div>
             )}
             <div
-              className="border border-[#E5E5E5] rounded-[14px] bg-white overflow-hidden transition-all duration-200"
-              style={{ borderWidth: 1, borderColor: sectionColor }}
+              className="border border-[#E5E7EB] rounded-[14px] bg-white overflow-hidden transition-all duration-200"
             >
               <div className="p-8">
                 <h1 className="text-xl font-bold tracking-tight text-text">
@@ -590,7 +586,7 @@ export default function LevelTestPage() {
                         cy="60"
                         r="54"
                         fill="none"
-                        stroke={sectionColor}
+                        stroke="#111827"
                         strokeWidth="10"
                         strokeLinecap="round"
                         strokeDasharray={`${(resultScore / 100) * 339.3} 339.3`}
@@ -598,7 +594,7 @@ export default function LevelTestPage() {
                       />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-2xl font-bold" style={{ color: sectionColor }}>
+                      <span className="text-2xl font-bold text-[#111827]">
                         {resultScore}%
                       </span>
                       <span className="text-[12px] text-text-3 mt-0.5">
@@ -617,15 +613,13 @@ export default function LevelTestPage() {
                       <div className="mt-6 flex flex-col gap-3 w-full">
                         <Link
                           href="/dashboard"
-                          className="w-full text-center py-3 px-4 rounded-xl font-medium text-white transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
-                          style={{ backgroundColor: sectionColor }}
+                          className="w-full text-center py-3 px-4 rounded-xl font-medium text-white bg-[#111827] hover:bg-[#1F2937] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#111827]"
                         >
                           {nextLevel ? `Continue to ${nextLevel}` : "Back to Progress & Tests"}
                         </Link>
                         <Link
                           href="/dashboard"
-                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-[#FAFAFA] transition-colors duration-150"
-                          style={{ borderColor: sectionColor, color: sectionColor }}
+                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 border-[#E5E7EB] text-[#6B7280] bg-transparent hover:bg-[#FAFAFA] transition-colors duration-150"
                         >
                           Back to Progress & Tests
                         </Link>
@@ -655,15 +649,13 @@ export default function LevelTestPage() {
                         <button
                           type="button"
                           onClick={handleStart}
-                          className="w-full py-3 px-4 rounded-xl font-medium text-white transition-opacity duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:opacity-90"
-                          style={{ backgroundColor: sectionColor }}
+                          className="w-full py-3 px-4 rounded-xl font-medium text-white bg-[#111827] hover:bg-[#1F2937] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#111827]"
                         >
                           Try Again
                         </button>
                         <Link
                           href="/dashboard"
-                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 bg-transparent hover:bg-[#FAFAFA] transition-colors duration-150"
-                          style={{ borderColor: sectionColor, color: sectionColor }}
+                          className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 border-[#E5E7EB] text-[#6B7280] bg-transparent hover:bg-[#FAFAFA] transition-colors duration-150"
                         >
                           Back to Progress & Tests
                         </Link>
