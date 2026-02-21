@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { SearchModal } from "@/components/search-modal";
 import { useAuth } from "@/components/auth-provider";
+import { BrandLogo } from "@/components/brand-logo";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
@@ -265,9 +266,9 @@ export function Topbar() {
             <div ref={navLeftRef} className="flex items-center gap-6 relative">
               <Link
                 href="/"
-                className="font-semibold text-[15px] tracking-tight hover:opacity-80 transition-opacity duration-200"
+                className="inline-flex items-center hover:opacity-80 transition-opacity duration-200"
               >
-                Aula PT
+                <BrandLogo size="topbar" priority />
               </Link>
               <nav className="hidden md:flex items-center gap-1">
                 <button

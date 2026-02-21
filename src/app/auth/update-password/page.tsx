@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { BrandLogo } from "@/components/brand-logo";
 
 const inputClass =
   "w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#3C5E95] focus:border-[#3C5E95] outline-none transition-colors";
@@ -48,8 +49,8 @@ export default function UpdatePasswordPage() {
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-bg">
       <div className="w-full max-w-md mx-auto">
         <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
-          <Link href="/" className="block text-center font-bold text-[18px] tracking-tight text-[#3C5E95] mb-1">
-            Aula PT
+          <Link href="/" className="mb-1 flex justify-center">
+            <BrandLogo size="auth" priority />
           </Link>
           <p className="text-center text-gray-500 text-[15px] mb-6">
             Nova palavra-passe
