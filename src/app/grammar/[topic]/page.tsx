@@ -1,15 +1,29 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
-import { cefrPillClass } from "@/lib/cefr";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic, GrammarRule } from "@/types/grammar";
 
 const data = grammarData as unknown as GrammarData;
+
+type CrossLink = { label: string; href: string };
+
+function createInitialOpenRules(ruleCount: number): Set<number> {
+  if (ruleCount <= 3) return new Set(Array.from({ length: ruleCount }, (_, i) => i));
+  if (ruleCount > 0) return new Set([0]);
+  return new Set();
+}
+
+function getCefrBadgeClass(level: string): string {
+  if (level === "A1") return "border-[#0144C0]/20 text-[#0144C0]";
+  if (level === "A2") return "border-[#7C3AED]/20 text-[#7C3AED]";
+  if (level === "B1") return "border-[#4B5563]/20 text-[#4B5563]";
+  return "border-[#E5E7EB] text-[#6B7280]";
+}
 
 function renderWithLinks(text: string): ReactNode {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
@@ -17,7 +31,11 @@ function renderWithLinks(text: string): ReactNode {
     const match = part.match(/^\[(.*?)\]\((.*?)\)$/);
     if (match) {
       return (
-        <Link key={i} href={match[2]} className="text-[#5B4FA0] hover:underline font-medium">
+        <Link
+          key={i}
+          href={match[2]}
+          className="text-[#0144C0] hover:underline font-medium transition-all duration-200 ease-out"
+        >
           {match[1]}
         </Link>
       );
@@ -26,158 +44,178 @@ function renderWithLinks(text: string): ReactNode {
   });
 }
 
-function extractRuleTitle(text: string): string {
-  const colonIdx = text.indexOf(":");
-  if (colonIdx > 0 && colonIdx < 40) return text.substring(0, colonIdx);
-  return text;
+function extractCrossLinks(text: string): { cleanText: string; links: CrossLink[] } {
+  const links: CrossLink[] = [];
+  const cleanText = text
+    .replace(/→\s*See:\s*\[([^\]]+)\]\(([^)]+)\)/g, (_, label: string, href: string) => {
+      links.push({ label, href });
+      return "";
+    })
+    .replace(/\s+and\s*$/, "")
+    .trim();
+  return { cleanText, links };
 }
 
-function ContractionTable({ text }: { text: string }) {
-  const pattern = /([a-záàâãéèêíóôõúüç]+)\s*\+\s*([a-záàâãéèêíóôõúüç\/]+)\s*=\s*([a-záàâãéèêíóôõúüç\/]+)/gi;
-  const pairs: { left: string; right: string; result: string }[] = [];
-  let match;
-  while ((match = pattern.exec(text)) !== null) {
-    pairs.push({ left: match[1], right: match[2], result: match[3] });
+function normalizeExceptionText(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object") {
+    const candidate = value as { pt?: unknown; en?: unknown };
+    if (typeof candidate.pt === "string") return candidate.pt;
+    if (typeof candidate.en === "string") return candidate.en;
   }
-
-  if (pairs.length === 0) return null;
-
-  return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-      {pairs.map((p, i) => (
-        <div key={i} className="bg-[#F9FAFB] rounded-lg px-3 py-2 text-center">
-          <p className="text-[12px] text-[#6B7280]">
-            {p.left} + {p.right}
-          </p>
-          <p className="text-[14px] font-semibold text-[#111827] font-mono">
-            {p.result}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
+  return "";
 }
 
-function ExamplesList({ examples }: { examples: { pt: string; en: string }[] }) {
-  return (
-    <div className="space-y-2">
-      {examples.map((ex, j) => (
-        <div key={j} className="flex items-center gap-2">
-          <PronunciationButton text={ex.pt} size="sm" variant="muted" className="shrink-0" />
-          <span className="font-semibold text-[#111827] font-mono text-[13px]">{ex.pt}</span>
-          <span className="text-[#9CA3AF] text-[13px]">— {ex.en}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function CollapsibleIntro({ text }: { text: string }) {
-  const [expanded, setExpanded] = useState(false);
-  const isLong = text.length > 200;
-
-  return (
-    <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
-      <div
-        className={`text-[14px] text-[#374151] leading-relaxed whitespace-pre-line ${!expanded && isLong ? "line-clamp-3" : ""}`}
-      >
-        {text}
-      </div>
-      {isLong && (
-        <button
-          type="button"
-          onClick={() => setExpanded(!expanded)}
-          className="text-[13px] font-medium text-[#3C5E95] hover:text-[#2E4A75] mt-2 transition-colors"
-        >
-          {expanded ? "Show less" : "Read more"}
-        </button>
-      )}
-    </div>
-  );
-}
-
-function RuleCard({ rule, index }: { rule: GrammarRule; index: number }) {
-  const equalsCount = (rule.rule.match(/=/g) || []).length;
-  const isContractionRule = equalsCount >= 3;
-  const rawExceptions = (rule as unknown as { exceptions?: unknown }).exceptions;
-  const exceptions: string[] = Array.isArray(rawExceptions)
-    ? rawExceptions
-        .map((item) => {
-          if (typeof item === "string") return item;
-          if (item && typeof item === "object" && "pt" in item && typeof item.pt === "string") {
-            return item.pt;
-          }
-          return null;
-        })
-        .filter((item): item is string => Boolean(item))
+function RuleItem({
+  rule,
+  index,
+  isOpen,
+  onToggle,
+}: {
+  rule: GrammarRule;
+  index: number;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
+    ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
     : [];
 
+  const noteTexts: string[] = [];
+  const allLinks: CrossLink[] = [];
+
+  for (const exception of rawExceptions) {
+    const rawText = normalizeExceptionText(exception);
+    if (!rawText) continue;
+    const { cleanText, links } = extractCrossLinks(rawText);
+    if (cleanText) noteTexts.push(cleanText);
+    allLinks.push(...links);
+  }
+
+  const dedupedLinks = allLinks.filter(
+    (link, i, arr) => arr.findIndex((other) => other.label === link.label && other.href === link.href) === i,
+  );
+
   return (
-    <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
-      {isContractionRule ? (
-        <div>
-          <div className="mb-4">
-            <p className="font-semibold text-[#111827] text-[15px]">
-              {index + 1}. {renderWithLinks(extractRuleTitle(rule.rule))}
+    <div
+      className={[
+        "border rounded-xl overflow-hidden bg-white transition-all duration-200 ease-out",
+        isOpen ? "border-[#0144C0]/20" : "border-[#E5E7EB] hover:border-[#0144C0]/30",
+      ].join(" ")}
+    >
+      <button
+        type="button"
+        onClick={onToggle}
+        className="w-full min-h-[44px] text-left p-4 sm:p-5 xl:p-6 cursor-pointer transition-all duration-200 ease-out"
+      >
+        <div className="flex items-start gap-3 sm:gap-4">
+          <span className="text-[#0144C0] font-bold text-base sm:text-lg flex-shrink-0 w-6 sm:w-8 text-right leading-6">
+            {index + 1}
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-[#111827] font-semibold text-sm sm:text-base leading-snug break-words">
+              {renderWithLinks(rule.rule)}
             </p>
-            <p className="text-[13px] italic text-[#6B7280] mt-1">{rule.rulePt}</p>
+            <p className="text-xs sm:text-sm italic mt-0.5 text-[#0144C0]/60 break-words">{rule.rulePt}</p>
           </div>
-          <ContractionTable text={rule.rule} />
-          {rule.examples.length > 0 && (
-            <div className="mt-4 pt-4 border-t border-[#F0F0F0]">
-              <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#9CA3AF] mb-2">
-                Examples
-              </p>
-              <ExamplesList examples={rule.examples} />
-            </div>
-          )}
-          {exceptions.length > 0 && (
-            <div className="mt-4 pt-4 border-t border-[#F0F0F0]">
-              <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#9CA3AF] mb-2">
-                Exceptions
-              </p>
-              <ul className="space-y-2">
-                {exceptions.map((exception, i) => (
-                  <li key={i} className="text-[14px] text-[#111827] leading-relaxed">
-                    {renderWithLinks(exception)}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <svg
+            className={[
+              "text-[#6B7280] transition-all duration-200 ease-out flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 mt-0.5",
+              isOpen ? "rotate-180" : "rotate-0",
+            ].join(" ")}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
         </div>
-      ) : (
-        <div className="flex flex-col md:flex-row md:gap-6">
-          <div className="md:w-[55%] shrink-0">
-            <p className="font-semibold text-[#111827] text-[15px]">
-              {index + 1}. {renderWithLinks(rule.rule)}
-            </p>
-            <p className="text-[13px] italic text-[#6B7280] mt-1">{rule.rulePt}</p>
-            {exceptions.length > 0 && (
-              <div className="mt-3">
-                <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#9CA3AF] mb-2">
-                  Exceptions
+      </button>
+
+      <div
+        className="grid transition-all duration-300 ease-out"
+        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+      >
+        <div className="overflow-hidden">
+          <div className="px-4 pb-4 sm:px-5 sm:pb-5 xl:px-6 xl:pb-6">
+            {rule.examples.length > 0 && (
+              <div>
+                <p className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-[#6B7280]/40 sm:text-[#6B7280]/50 mt-4 mb-2">
+                  Examples
                 </p>
-                <ul className="space-y-2">
-                  {exceptions.map((exception, i) => (
-                    <li key={i} className="text-[14px] text-[#111827] leading-relaxed">
-                      {renderWithLinks(exception)}
-                    </li>
+                <div className="bg-[#FAFAFA]/50 rounded-lg p-3 sm:p-4 mt-3">
+                  {rule.examples.map((example, i) => (
+                    <div
+                      key={i}
+                      className="py-2 sm:py-2.5 border-b border-[#F3F4F6] last:border-0 transition-all duration-200 ease-out"
+                    >
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <PronunciationButton
+                          text={example.pt}
+                          size="sm"
+                          variant="muted"
+                          className="shrink-0 mt-0.5"
+                        />
+                        <div className="min-w-0 flex-1">
+                          <div className="sm:flex sm:items-start sm:gap-4 sm:justify-between">
+                            <p className="font-mono text-[13px] sm:text-[15px] text-[#111827] font-medium break-words">
+                              {example.pt}
+                            </p>
+                            <p className="text-xs sm:text-sm text-[#6B7280] mt-1 ml-9 sm:ml-0 sm:mt-0 sm:text-right sm:max-w-[45%] break-words">
+                              {example.en}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
+              </div>
+            )}
+
+            {noteTexts.length > 0 && (
+              <div className="mt-3">
+                <p className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-[#6B7280]/40 sm:text-[#6B7280]/50 mt-4 mb-2">
+                  Note
+                </p>
+                <div className="mt-3">
+                  {noteTexts.map((note, i) => (
+                    <p key={i} className="text-xs sm:text-sm text-[#6B7280] leading-relaxed mb-2 last:mb-0">
+                      {note}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {dedupedLinks.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-[#F3F4F6]">
+                {dedupedLinks.map((link, i) => (
+                  <Link
+                    key={`${link.href}-${i}`}
+                    href={link.href}
+                    className="inline-flex min-h-[44px] items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-[#0144C0]/15 text-[#0144C0] text-xs sm:text-sm font-medium hover:bg-[#0144C0]/5 transition-all duration-200 ease-out"
+                  >
+                    {link.label}
+                    <svg
+                      className="w-3 h-3 sm:w-3.5 sm:h-3.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                ))}
               </div>
             )}
           </div>
-          {rule.examples.length > 0 && (
-            <div className="mt-4 pt-4 border-t border-[#F0F0F0] md:mt-0 md:pt-0 md:border-t-0 md:border-l md:border-[#F0F0F0] md:pl-6 md:w-[45%]">
-              <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#9CA3AF] mb-2">
-                Examples
-              </p>
-              <ExamplesList examples={rule.examples} />
-            </div>
-          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -187,79 +225,144 @@ export default function GrammarTopicPage() {
   const topicId = params.topic as string;
   const topic: GrammarTopic | undefined = topicId ? data.topics[topicId] : undefined;
 
+  const [introExpanded, setIntroExpanded] = useState(false);
+  const [openRules, setOpenRules] = useState<Set<number>>(
+    createInitialOpenRules(topic?.rules.length ?? 0),
+  );
+
+  useEffect(() => {
+    if (!topic) return;
+    setOpenRules(createInitialOpenRules(topic.rules.length));
+    setIntroExpanded(false);
+  }, [topicId, topic]);
+
   if (!topic) {
     return (
       <>
         <Topbar />
-        <main className="max-w-[1280px] mx-auto px-6 md:px-10 py-12">
-          <p className="text-text-2">Topic not found.</p>
+        <main className="mx-auto px-4 py-4 sm:px-6 sm:py-6 lg:max-w-3xl xl:max-w-4xl">
+          <p className="text-[#6B7280] text-sm">Topic not found.</p>
           <Link
             href="/grammar"
-            className="text-[14px] text-text-2 hover:text-text underline mt-4 inline-block"
+            className="text-sm text-[#6B7280] hover:text-[#0144C0] transition-all duration-200 ease-out mt-4 inline-block min-h-[44px]"
           >
-            Back to Grammar
+            ← Grammar
           </Link>
         </main>
       </>
     );
   }
 
+  const introIsLong = topic.intro.length > 240;
+  const allExpanded = openRules.size === topic.rules.length && topic.rules.length > 0;
+
+  const toggleRule = (index: number) => {
+    setOpenRules((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  };
+
+  const expandAll = () => setOpenRules(new Set(topic.rules.map((_, i) => i)));
+  const collapseAll = () => setOpenRules(new Set());
+
   return (
     <>
       <Topbar />
-      <main className="max-w-[960px] mx-auto px-4 md:px-6 lg:px-10">
-        <header className="flex flex-col gap-2 py-5">
+      <main className="mx-auto px-4 py-4 sm:px-6 sm:py-6 lg:max-w-3xl xl:max-w-4xl">
+        <header>
           <Link
             href="/grammar"
-            className="text-text-2 hover:text-text text-[14px] transition-colors w-fit"
+            className="inline-flex items-center min-h-[44px] text-sm text-[#6B7280] hover:text-[#0144C0] transition-all duration-200 ease-out"
           >
             ← Grammar
           </Link>
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div>
-              <h1 className="text-[22px] font-bold tracking-tight">{topic.title}</h1>
-              <p className="text-[14px] text-[#3C5E95] font-medium mt-0.5">{topic.titlePt}</p>
+
+          <div className="flex items-start justify-between gap-4 mt-1">
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#111827] break-words">{topic.title}</h1>
+              <p className="text-base sm:text-lg text-[#0144C0]/60 italic mt-0.5 break-words">{topic.titlePt}</p>
             </div>
-            <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(topic.cefr)}`}>
+            <span
+              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getCefrBadgeClass(topic.cefr)}`}
+            >
               {topic.cefr}
             </span>
           </div>
-          <p className="text-[13px] text-text-3 mt-1">{topic.summary}</p>
+
+          <p className="text-sm sm:text-base text-[#6B7280] mt-2 max-w-2xl leading-relaxed">{topic.summary}</p>
         </header>
 
-        <section className="pb-8">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
-            Introduction
-          </h2>
-          <CollapsibleIntro text={topic.intro} />
+        <section className="bg-[#FAFAFA] rounded-xl p-4 sm:p-6 mt-6 sm:mt-8">
+          {!introExpanded && (
+            <p className="text-sm sm:text-[15px] text-[#6B7280] leading-relaxed line-clamp-3 sm:line-clamp-3">
+              {topic.intro}
+            </p>
+          )}
+          <div
+            className="grid transition-all duration-300 ease-out"
+            style={{ gridTemplateRows: introExpanded ? "1fr" : "0fr" }}
+          >
+            <div className="overflow-hidden">
+              <p className="text-sm sm:text-[15px] text-[#6B7280] leading-relaxed">{topic.intro}</p>
+            </div>
+          </div>
+          {introIsLong && (
+            <button
+              type="button"
+              onClick={() => setIntroExpanded((prev) => !prev)}
+              className="min-h-[44px] text-[#0144C0] text-sm font-medium cursor-pointer hover:underline mt-2 transition-all duration-200 ease-out"
+            >
+              {introExpanded ? "Read less" : "Read more"}
+            </button>
+          )}
         </section>
 
-        <section className="pb-8">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
-            Rules
-          </h2>
-          <div className="space-y-4">
-            {topic.rules.map((rule, i) => (
-              <RuleCard key={i} rule={rule} index={i} />
+        <section>
+          <div className="flex items-center justify-between gap-4 mt-8 sm:mt-10 mb-4">
+            <h2 className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-[#6B7280]/40 sm:text-[#6B7280]/50">
+              Rules
+            </h2>
+            <button
+              type="button"
+              onClick={allExpanded ? collapseAll : expandAll}
+              className="min-h-[44px] text-xs text-[#6B7280] hover:text-[#0144C0] cursor-pointer transition-all duration-200 ease-out"
+            >
+              {allExpanded ? "Collapse all" : "Expand all"}
+            </button>
+          </div>
+          <div className="space-y-3">
+            {topic.rules.map((rule, index) => (
+              <RuleItem
+                key={index}
+                rule={rule}
+                index={index}
+                isOpen={openRules.has(index)}
+                onToggle={() => toggleRule(index)}
+              />
             ))}
           </div>
         </section>
 
-        <section className="pb-12">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
+        <section>
+          <h2 className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-[#6B7280]/40 sm:text-[#6B7280]/50 mt-8 sm:mt-10 mb-4">
             Tips & Tricks
           </h2>
-          <div className="bg-white border border-[#E5E5E5] rounded-[14px] p-5">
-            <ul className="space-y-4">
-              {topic.tips.map((tip, i) => (
-                <li key={i}>
-                  <p className="text-[14px] text-[#111827] leading-relaxed">{renderWithLinks(tip)}</p>
-                  {topic.tipsPt[i] && (
-                    <p className="text-[13px] italic text-[#9CA3AF] mt-1">{renderWithLinks(topic.tipsPt[i])}</p>
-                  )}
-                </li>
-              ))}
-            </ul>
+          <div className="space-y-4 sm:space-y-6">
+            {topic.tips.map((tip, i) => (
+              <div key={i} className="pl-3 sm:pl-4 border-l-2 border-[#0144C0]/20 py-2 sm:py-3">
+                <p className="text-xs sm:text-sm text-[#111827] leading-relaxed break-words">
+                  {renderWithLinks(tip)}
+                </p>
+                {topic.tipsPt[i] && (
+                  <p className="text-xs sm:text-sm text-[#6B7280] italic mt-1 break-words">
+                    {renderWithLinks(topic.tipsPt[i])}
+                  </p>
+                )}
+              </div>
+            ))}
           </div>
         </section>
       </main>
