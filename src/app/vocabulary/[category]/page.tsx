@@ -304,7 +304,7 @@ export default function VocabCategoryPage() {
         <div className="border-t border-[#F3F4F6] mt-4 mb-6" />
 
         {/* Word cards — responsive grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {filtered.length === 0 ? (
             <p className="col-span-full text-center py-12 text-text-secondary text-[14px]">
               No words match your filter.

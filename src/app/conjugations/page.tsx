@@ -124,36 +124,38 @@ export default function ConjugationsPage() {
           <div className="border-t border-[#F3F4F6] mt-4 mb-6" />
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(198px,1fr))] gap-4 pb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pb-16">
           {verbs.map((v) => {
             const m = data.verbs[v].meta;
             return (
               <Link
                 key={v}
                 href={`/conjugations/${v.toLowerCase()}`}
-                className="border border-[#E5E7EB] rounded-xl p-5 bg-white flex flex-col min-h-[140px] hover:border-[#D1D5DB] transition-colors duration-200"
+                className="block group"
               >
-                <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] text-text mb-1">
-                  {v}
-                </div>
-                <div className="text-[13px] text-text-secondary leading-relaxed flex-1">
-                  {m.english}
-                </div>
-                <div className="flex gap-1.5 flex-wrap mt-auto pt-3">
-                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-                    m.group.startsWith("Irregular")
-                      ? "text-amber-700 bg-amber-50"
-                      : m.group.startsWith("Regular -AR")
-                        ? "text-emerald-700 bg-emerald-50"
-                        : m.group.startsWith("Regular -ER")
-                          ? "text-blue-700 bg-blue-50"
-                          : "text-violet-700 bg-violet-50"
-                  }`}>
-                    {shortGroup(m.group)}
-                  </span>
-                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
-                    {m.cefr}
-                  </span>
+                <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white flex flex-col min-h-[140px] hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full">
+                  <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] text-text mb-1">
+                    {v}
+                  </div>
+                  <div className="text-[13px] text-text-secondary leading-relaxed flex-1">
+                    {m.english}
+                  </div>
+                  <div className="flex gap-1.5 flex-wrap mt-auto pt-3">
+                    <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                      m.group.startsWith("Irregular")
+                        ? "text-amber-700 bg-amber-50"
+                        : m.group.startsWith("Regular -AR")
+                          ? "text-emerald-700 bg-emerald-50"
+                          : m.group.startsWith("Regular -ER")
+                            ? "text-blue-700 bg-blue-50"
+                            : "text-violet-700 bg-violet-50"
+                    }`}>
+                      {shortGroup(m.group)}
+                    </span>
+                    <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
+                      {m.cefr}
+                    </span>
+                  </div>
                 </div>
               </Link>
             );

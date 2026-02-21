@@ -11,62 +11,22 @@ const data = vocabData as unknown as VocabData;
 const CEFR_LEVELS = ["All", "A1", "A2", "B1"] as const;
 type CefrFilter = (typeof CEFR_LEVELS)[number];
 
-const SECTIONS: {
-  label: string;
-  ptName: string;
-  description: string;
-  categoryIds: string[];
-}[] = [
-  {
-    label: "Essentials",
-    ptName: "O Essencial",
-    description:
-      "The building blocks of everyday Portuguese. Start here to greet people, count, tell the time, and describe the world around you.",
-    categoryIds: ["greetings-expressions", "numbers-time", "colours-weather"],
-  },
-  {
-    label: "Daily Life",
-    ptName: "Vida Quotidiana",
-    description:
-      "Words you need to navigate daily life in Portugal — from ordering food and shopping to talking about your home and family.",
-    categoryIds: [
-      "food-drink",
-      "home-rooms",
-      "family-daily-routine",
-      "shopping-money",
-    ],
-  },
-  {
-    label: "World & Self",
-    ptName: "O Mundo e Eu",
-    description:
-      "Broaden your vocabulary beyond the basics. Talk about travel, work, health, nature, and how you feel.",
-    categoryIds: [
-      "travel-directions",
-      "work-education",
-      "health-body",
-      "nature-animals",
-      "emotions-personality",
-      "colloquial-slang",
-    ],
-  },
+/** Flat ordering: Essentials → Daily Life → World & Self */
+const CATEGORY_ORDER = [
+  "greetings-expressions",
+  "numbers-time",
+  "colours-weather",
+  "food-drink",
+  "home-rooms",
+  "family-daily-routine",
+  "shopping-money",
+  "travel-directions",
+  "work-education",
+  "health-body",
+  "nature-animals",
+  "emotions-personality",
+  "colloquial-slang",
 ];
-
-const CATEGORY_TINT: Record<string, string> = {
-  "greetings-expressions": "bg-sky-50",
-  "numbers-time": "bg-blue-50",
-  "colours-weather": "bg-cyan-50",
-  "food-drink": "bg-slate-50",
-  "travel-directions": "bg-sky-50/70",
-  "home-rooms": "bg-blue-50/70",
-  "family-daily-routine": "bg-cyan-50/70",
-  "work-education": "bg-slate-50/70",
-  "health-body": "bg-sky-50/50",
-  "shopping-money": "bg-blue-50/50",
-  "nature-animals": "bg-cyan-50/50",
-  "emotions-personality": "bg-slate-50/50",
-  "colloquial-slang": "bg-teal-50",
-};
 
 const CATEGORY_PT_TITLE: Record<string, string> = {
   "greetings-expressions": "Cumprimentos e Expressões",
@@ -158,44 +118,40 @@ export default function VocabularyPage() {
 
   const levelCounts = useMemo(() => countByLevel(data.categories), []);
 
-  const categoriesBySection = useMemo(() => {
+  const filteredCategories = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return SECTIONS.map((section) => {
-      let cats = data.categories.filter((c) =>
-        section.categoryIds.includes(c.id)
+
+    // Get all categories in the defined order
+    let cats = CATEGORY_ORDER
+      .map((id) => data.categories.find((c) => c.id === id))
+      .filter((c): c is VocabCategory => c != null);
+
+    if (cefrFilter !== "All") {
+      cats = cats.filter(
+        (c) => categoryLevelCount(c, cefrFilter as "A1" | "A2" | "B1") > 0
       );
+    }
 
-      if (cefrFilter !== "All") {
-        cats = cats.filter(
-          (c) => categoryLevelCount(c, cefrFilter as "A1" | "A2" | "B1") > 0
-        );
-      }
+    if (q) {
+      cats = cats.filter((c) => {
+        const ptTitle = (CATEGORY_PT_TITLE[c.id] ?? "").toLowerCase();
+        const desc = (CATEGORY_DESCRIPTION[c.id] ?? c.description).toLowerCase();
+        const titleOrDesc =
+          c.title.toLowerCase().includes(q) ||
+          ptTitle.includes(q) ||
+          desc.includes(q);
+        const wordMatches = categoryMatchesSearch(c, search);
+        return titleOrDesc || wordMatches > 0;
+      });
+    }
 
-      if (q) {
-        cats = cats.filter((c) => {
-          const ptTitle = (CATEGORY_PT_TITLE[c.id] ?? "").toLowerCase();
-          const desc = (CATEGORY_DESCRIPTION[c.id] ?? c.description).toLowerCase();
-          const titleOrDesc =
-            c.title.toLowerCase().includes(q) ||
-            ptTitle.includes(q) ||
-            desc.includes(q);
-          const wordMatches = categoryMatchesSearch(c, search);
-          return titleOrDesc || wordMatches > 0;
-        });
-      }
-
-      return { ...section, categories: cats };
-    }).filter((s) => s.categories.length > 0);
+    return cats;
   }, [cefrFilter, search]);
 
   const displayTotalWords =
     cefrFilter === "All"
       ? levelCounts.total
       : levelCounts[cefrFilter.toLowerCase() as "a1" | "a2" | "b1"];
-  const displayCategoryCount = categoriesBySection.reduce(
-    (s, sec) => s + sec.categories.length,
-    0
-  );
 
   return (
     <>
@@ -211,7 +167,7 @@ export default function VocabularyPage() {
             </span>
           </div>
           <p className="mt-1 text-sm text-[#9CA3AF]">
-            {displayTotalWords.toLocaleString()} words · {displayCategoryCount} categories · A1–B1
+            {displayTotalWords.toLocaleString()} words · {filteredCategories.length} categories · A1–B1
           </p>
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <div className="flex items-center gap-1.5">
@@ -241,79 +197,56 @@ export default function VocabularyPage() {
           <div className="border-t border-[#F3F4F6] mt-4" />
         </div>
 
-        <div className="pb-16">
-          {categoriesBySection.map((section, sectionIndex) => (
-            <div key={section.label}>
-              <div
-                className={`${sectionIndex === 0 ? "" : "mt-8"}`}
-              >
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
-                  {section.label}
-                  <span className="text-[11px] font-normal normal-case tracking-normal text-[#6B7280]">
-                    {" · "}
-                    {section.ptName}
-                  </span>
-                </h2>
-                <p className="text-[13px] text-text-muted mt-1 mb-4 max-w-2xl">
-                  {section.description}
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {section.categories.map((cat) => {
-                  const wordCount =
-                    cefrFilter === "All"
-                      ? cat.words.length
-                      : categoryLevelCount(
-                          cat,
-                          cefrFilter as "A1" | "A2" | "B1"
-                        );
-                  const matchCount = search.trim()
-                    ? categoryMatchesSearch(cat, search)
-                    : -1;
-                  const showMatchNote =
-                    matchCount > 0 &&
-                    !cat.title.toLowerCase().includes(search.trim().toLowerCase()) &&
-                    !cat.description
-                      .toLowerCase()
-                      .includes(search.trim().toLowerCase());
-
-                  const cardDesc = CATEGORY_DESCRIPTION[cat.id] ?? cat.description;
-
-                  return (
-                    <Link
-                      key={cat.id}
-                      href={`/vocabulary/${cat.id}`}
-                      className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-colors duration-200 block"
-                    >
-                      <div>
-                        <div className="flex items-start justify-between gap-3 mb-1">
-                          <h3 className="text-[18px] font-bold text-text">
-                            {cat.title}
-                          </h3>
-                          <span className="text-[12px] text-text-muted whitespace-nowrap">
-                            {wordCount} word{wordCount !== 1 ? "s" : ""}
-                            {showMatchNote && ` · ${matchCount} match${matchCount !== 1 ? "es" : ""}`}
-                          </span>
-                        </div>
-                        <span className="text-[13px] text-[#6B7280] font-medium">
-                          {CATEGORY_PT_TITLE[cat.id] ?? ""}
-                        </span>
-                        <p className="text-[13px] text-text-muted mt-3 leading-relaxed italic">
-                          {cardDesc}
-                        </p>
-                        <span className="inline-flex items-center justify-center self-start px-[13px] h-8 bg-[#111827] border border-[#111827] rounded-[10px] text-[12.5px] font-medium text-white shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#1F2937] transition-colors duration-200 mt-4">
-                          Explore →
-                        </span>
-                      </div>
-                    </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
+          {filteredCategories.map((cat) => {
+            const wordCount =
+              cefrFilter === "All"
+                ? cat.words.length
+                : categoryLevelCount(
+                    cat,
+                    cefrFilter as "A1" | "A2" | "B1"
                   );
-                })}
-              </div>
-            </div>
-          ))}
+            const matchCount = search.trim()
+              ? categoryMatchesSearch(cat, search)
+              : -1;
+            const showMatchNote =
+              matchCount > 0 &&
+              !cat.title.toLowerCase().includes(search.trim().toLowerCase()) &&
+              !cat.description
+                .toLowerCase()
+                .includes(search.trim().toLowerCase());
 
-          {categoriesBySection.length === 0 && (
-            <p className="text-[13px] text-text-secondary py-8">
+            const cardDesc = CATEGORY_DESCRIPTION[cat.id] ?? cat.description;
+
+            return (
+              <Link
+                key={cat.id}
+                href={`/vocabulary/${cat.id}`}
+                className="block group"
+              >
+                <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full">
+                  <div className="flex items-start justify-between gap-3 mb-1">
+                    <h3 className="text-[18px] font-bold text-text">
+                      {cat.title}
+                    </h3>
+                    <span className="text-[12px] text-text-muted whitespace-nowrap">
+                      {wordCount} word{wordCount !== 1 ? "s" : ""}
+                      {showMatchNote && ` · ${matchCount} match${matchCount !== 1 ? "es" : ""}`}
+                    </span>
+                  </div>
+                  <span className="text-[13px] text-[#6B7280] font-medium">
+                    {CATEGORY_PT_TITLE[cat.id] ?? ""}
+                  </span>
+                  <p className="text-[13px] text-text-muted mt-3 leading-relaxed italic">
+                    {cardDesc}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
+
+          {filteredCategories.length === 0 && (
+            <p className="col-span-full text-[13px] text-text-secondary py-8">
               No categories match your filter.
             </p>
           )}

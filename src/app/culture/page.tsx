@@ -48,131 +48,17 @@ const PILL_INACTIVE =
 const SEARCH_INPUT =
   "w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white";
 
-function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?: boolean }) {
-  const [copied, setCopied] = useState(false);
-  const [exampleOpen, setExampleOpen] = useState(false);
-  const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(saying.portuguese).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }, [saying.portuguese]);
-  const hasExample = !!saying.example;
+function Chevron({ expanded }: { expanded: boolean }) {
   return (
-    <article
-      id={saying.id}
-      className={`bg-white border border-[#E5E7EB] rounded-xl p-5 mb-4 transition-all duration-200 ${
-        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
-      } hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
+    <svg
+      className={`w-4 h-4 text-[#9CA3AF] transition-transform duration-200 shrink-0 ${expanded ? "rotate-180" : ""}`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-text italic">&quot;{saying.portuguese}&quot;</p>
-          <p className="text-sm font-mono text-text-muted mt-1">{saying.pronunciation}</p>
-        </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <PronunciationButton text={saying.portuguese} size="sm" />
-          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(saying.cefr)}`}>{saying.cefr}</span>
-          <button type="button" onClick={handleCopy} className="text-xs text-text-secondary hover:text-[#111827] px-2 py-1 rounded-lg border border-[#E5E7EB] hover:border-[#D1D5DB] transition-colors">
-            {copied ? "Copied" : "Copy"}
-          </button>
-        </div>
-      </div>
-      <div className="border-t border-[#F3F4F6] pt-3 mt-3">
-        <p className="text-sm font-semibold text-text-secondary mb-0.5">Literal:</p>
-        <p className="text-sm text-[#374151]">{saying.literal}</p>
-      </div>
-      <div className="border-t border-[#F3F4F6] pt-3 mt-3">
-        <p className="text-sm font-semibold text-[#374151] mb-0.5">Meaning:</p>
-        <p className="text-sm text-[#374151]">{saying.meaning}</p>
-      </div>
-      <div className="border-t border-[#F3F4F6] pt-3 mt-3">
-        <p className="text-sm font-semibold text-text-secondary mb-0.5">When to use:</p>
-        <p className="text-sm text-[#374151]">{saying.usage}</p>
-      </div>
-      {hasExample && (
-        <div className="border-t border-[#F3F4F6] pt-3 mt-3">
-          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-text-secondary hover:text-[#111827]">
-            Example {exampleOpen ? "–" : "+"}
-          </button>
-          {exampleOpen && (
-            <div className="bg-[#F9FAFB] rounded-lg p-4 mt-3">
-              <p className="text-sm text-text italic">{saying.example}</p>
-              {saying.exampleTranslation && <p className="text-sm text-text-secondary mt-1">{saying.exampleTranslation}</p>}
-            </div>
-          )}
-        </div>
-      )}
-      <div className="border-t border-[#F3F4F6] pt-3 mt-3">
-        <span className="inline-block bg-border-light text-text-secondary rounded-full px-3 py-1 text-xs">
-          {THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === saying.theme) ?? saying.theme}
-        </span>
-      </div>
-    </article>
-  );
-}
-
-function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlighted?: boolean }) {
-  return (
-    <article
-      id={item.id}
-      className={`bg-white border border-[#E5E7EB] rounded-xl p-5 mb-4 transition-all duration-200 ${
-        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
-      } hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-text">{item.portuguese}</p>
-          <p className="text-sm font-mono text-text-muted mt-1">{item.pronunciation}</p>
-        </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <PronunciationButton text={item.portuguese} size="sm" />
-          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
-        </div>
-      </div>
-      <p className="text-sm font-semibold text-red-400 mt-3">
-        Looks like: <span className="line-through text-red-500">{item.looksLike}</span>
-      </p>
-      <p className="text-sm font-semibold text-emerald-600 mt-1">Actually means: {item.actualMeaning}</p>
-      <p className="text-sm font-semibold text-text-secondary mt-2">
-        Correct word for &quot;{item.looksLike}&quot;: {item.correctWord}
-      </p>
-      <div className="border-t border-[#F3F4F6] pt-3 mt-3">
-        <p className="text-sm text-[#374151] italic">{item.example}</p>
-        <p className="text-sm text-text-secondary mt-1">{item.exampleTranslation}</p>
-      </div>
-      <div className="bg-amber-50 rounded-lg p-3 mt-3">
-        <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
-        <p className="text-sm text-amber-800">{item.tip}</p>
-      </div>
-    </article>
-  );
-}
-
-function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
-  const categoryLabel = ETIQUETTE_CATEGORIES.find((c) => c !== "All" && ETIQUETTE_TO_KEY[c] === tip.category) ?? tip.category;
-  return (
-    <article
-      id={tip.id}
-      className="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-4 transition-all duration-200 hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <p className="text-base font-semibold text-text">{tip.title}</p>
-          <p className="text-sm text-[#6B7280] font-medium mt-0.5">{tip.titlePt}</p>
-        </div>
-        <span className="text-xs bg-border-light text-text-secondary rounded-full px-3 py-1 shrink-0">{categoryLabel}</span>
-      </div>
-      <p className="text-sm text-text-secondary mt-3">{tip.description}</p>
-      <div className="bg-emerald-50 rounded-lg p-3 mt-3">
-        <p className="text-xs font-semibold text-emerald-700">Do:</p>
-        <p className="text-sm text-emerald-800">{tip.doThis}</p>
-      </div>
-      <div className="bg-red-50 rounded-lg p-3 mt-2">
-        <p className="text-xs font-semibold text-red-400">Avoid:</p>
-        <p className="text-sm text-red-700">{tip.avoidThis}</p>
-      </div>
-    </article>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+    </svg>
   );
 }
 
@@ -192,33 +78,197 @@ function regionLabel(region: string): string {
   return map[region] ?? region;
 }
 
-function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHighlighted?: boolean }) {
+function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const handleCopy = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(saying.portuguese).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [saying.portuguese]);
+
+  return (
+    <article
+      id={saying.id}
+      onClick={() => setExpanded((v) => !v)}
+      className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
+        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
+      }`}
+    >
+      {/* Collapsed: always visible */}
+      <div className="flex items-start justify-between gap-3">
+        <p className="font-semibold text-[#111827] italic">&quot;{saying.portuguese}&quot;</p>
+        <Chevron expanded={expanded} />
+      </div>
+      <div className="flex items-center gap-2 mt-2">
+        <PronunciationButton text={saying.portuguese} size="sm" />
+        <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(saying.cefr)}`}>{saying.cefr}</span>
+      </div>
+      <p className="mt-3 text-sm text-[#6B7280]">{saying.meaning}</p>
+      <div className="mt-3">
+        <span className="inline-block bg-border-light text-text-secondary rounded-full px-3 py-1 text-xs">
+          {THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === saying.theme) ?? saying.theme}
+        </span>
+      </div>
+
+      {/* Expanded: additional details */}
+      {expanded && (
+        <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
+          <p className="text-xs text-[#9CA3AF] font-mono">{saying.pronunciation}</p>
+          <div>
+            <p className="text-xs font-semibold text-[#6B7280]">Literal:</p>
+            <p className="text-sm text-[#6B7280]">{saying.literal}</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-[#6B7280]">When to use:</p>
+            <p className="text-sm text-[#6B7280]">{saying.usage}</p>
+          </div>
+          {saying.example && (
+            <div className="bg-[#F9FAFB] rounded-lg p-3">
+              <p className="text-sm text-[#111827] italic">{saying.example}</p>
+              {saying.exampleTranslation && <p className="text-sm text-[#6B7280] mt-1">{saying.exampleTranslation}</p>}
+            </div>
+          )}
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="text-xs text-[#9CA3AF] hover:text-[#6B7280] transition-colors"
+            >
+              {copied ? "Copied" : "Copy"}
+            </button>
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlighted?: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <article
       id={item.id}
-      className={`bg-white border border-[#E5E7EB] rounded-xl p-5 mb-4 transition-all duration-200 ${
+      onClick={() => setExpanded((v) => !v)}
+      className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
         isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
-      } hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
+      }`}
     >
+      {/* Collapsed */}
       <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-text italic">{item.expression}</p>
-          <p className="text-sm font-mono text-text-muted mt-1">{item.pronunciation}</p>
-        </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <PronunciationButton text={item.expression} size="sm" />
-          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${regionBadgeClass(item.region)}`}>
-            {regionLabel(item.region)}
-          </span>
-          <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
-        </div>
+        <p className="font-semibold text-[#111827]">{item.portuguese}</p>
+        <Chevron expanded={expanded} />
       </div>
-      <p className="text-sm text-[#374151] mt-3"><span className="font-semibold text-text-secondary">Meaning:</span> {item.meaning}</p>
-      <p className="text-sm font-semibold text-text-secondary mt-2">Standard Portuguese: {item.standardAlternative}</p>
-      <div className="border-t border-[#F3F4F6] pt-3 mt-3">
-        <p className="text-sm text-text italic">{item.example}</p>
-        <p className="text-sm text-text-secondary mt-1">{item.exampleTranslation}</p>
+      <div className="flex items-center gap-2 mt-2">
+        <PronunciationButton text={item.portuguese} size="sm" />
+        <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
       </div>
+      <p className="mt-3 text-sm text-[#6B7280]">Actually means: {item.actualMeaning}</p>
+
+      {/* Expanded */}
+      {expanded && (
+        <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
+          <p className="text-xs text-[#9CA3AF] font-mono">{item.pronunciation}</p>
+          <p className="text-sm text-red-400">
+            Looks like: <span className="line-through text-red-500">{item.looksLike}</span>
+          </p>
+          <p className="text-sm text-[#6B7280]">
+            Correct word for &quot;{item.looksLike}&quot;: <span className="font-medium text-[#374151]">{item.correctWord}</span>
+          </p>
+          <div className="bg-[#F9FAFB] rounded-lg p-3">
+            <p className="text-sm text-[#111827] italic">{item.example}</p>
+            <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
+          </div>
+          <div className="bg-amber-50 rounded-lg p-3">
+            <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
+            <p className="text-sm text-amber-800">{item.tip}</p>
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
+  const [expanded, setExpanded] = useState(false);
+  const categoryLabel = ETIQUETTE_CATEGORIES.find((c) => c !== "All" && ETIQUETTE_TO_KEY[c] === tip.category) ?? tip.category;
+
+  return (
+    <article
+      id={tip.id}
+      onClick={() => setExpanded((v) => !v)}
+      className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer"
+    >
+      {/* Collapsed */}
+      <div className="flex items-start justify-between gap-3">
+        <p className="font-semibold text-[#111827]">{tip.title}</p>
+        <Chevron expanded={expanded} />
+      </div>
+      <p className="text-sm text-[#6B7280] font-medium mt-1">{tip.titlePt}</p>
+      <p className="mt-3 text-sm text-[#6B7280] line-clamp-2">{tip.description}</p>
+      <div className="mt-3">
+        <span className="text-xs bg-border-light text-text-secondary rounded-full px-3 py-1">{categoryLabel}</span>
+      </div>
+
+      {/* Expanded */}
+      {expanded && (
+        <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
+          <p className="text-sm text-[#6B7280]">{tip.description}</p>
+          <div className="bg-emerald-50 rounded-lg p-3">
+            <p className="text-xs font-semibold text-emerald-700">Do:</p>
+            <p className="text-sm text-emerald-800">{tip.doThis}</p>
+          </div>
+          <div className="bg-red-50 rounded-lg p-3">
+            <p className="text-xs font-semibold text-red-400">Avoid:</p>
+            <p className="text-sm text-red-700">{tip.avoidThis}</p>
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHighlighted?: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <article
+      id={item.id}
+      onClick={() => setExpanded((v) => !v)}
+      className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
+        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
+      }`}
+    >
+      {/* Collapsed */}
+      <div className="flex items-start justify-between gap-3">
+        <p className="font-semibold text-[#111827] italic">{item.expression}</p>
+        <Chevron expanded={expanded} />
+      </div>
+      <div className="flex items-center gap-2 mt-2">
+        <PronunciationButton text={item.expression} size="sm" />
+        <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${regionBadgeClass(item.region)}`}>
+          {regionLabel(item.region)}
+        </span>
+        <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
+      </div>
+      <p className="mt-3 text-sm text-[#6B7280]">{item.meaning}</p>
+
+      {/* Expanded */}
+      {expanded && (
+        <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
+          <p className="text-xs text-[#9CA3AF] font-mono">{item.pronunciation}</p>
+          <p className="text-sm text-[#6B7280]">
+            Standard Portuguese: <span className="font-medium text-[#374151]">{item.standardAlternative}</span>
+          </p>
+          <div className="bg-[#F9FAFB] rounded-lg p-3">
+            <p className="text-sm text-[#111827] italic">{item.example}</p>
+            <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
+          </div>
+        </div>
+      )}
     </article>
   );
 }
@@ -256,7 +306,6 @@ function TabFilters({
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      {/* CEFR pills — shown for sayings, false-friends, regional */}
       {(tab === "sayings" || tab === "false-friends" || tab === "regional") && (
         <>
           <div className="flex items-center gap-1.5">
@@ -270,14 +319,12 @@ function TabFilters({
               </button>
             ))}
           </div>
-          {/* Divider before next group if one exists */}
           {(tab === "sayings" || tab === "regional") && (
             <div className="w-px h-5 bg-[#E5E7EB]" />
           )}
         </>
       )}
 
-      {/* Theme pills — sayings only */}
       {tab === "sayings" && (
         <div className="flex items-center gap-1.5 flex-wrap">
           {THEMES.map((t) => (
@@ -292,7 +339,6 @@ function TabFilters({
         </div>
       )}
 
-      {/* Etiquette category pills */}
       {tab === "etiquette" && (
         <div className="flex items-center gap-1.5">
           {ETIQUETTE_CATEGORIES.map((c) => (
@@ -307,7 +353,6 @@ function TabFilters({
         </div>
       )}
 
-      {/* Region pills — regional only */}
       {tab === "regional" && (
         <div className="flex items-center gap-1.5 flex-wrap">
           {REGIONS.map((r) => (
@@ -322,7 +367,6 @@ function TabFilters({
         </div>
       )}
 
-      {/* Search — always right-aligned */}
       <div className="w-full sm:w-auto sm:ml-auto">
         <input
           type="text"
@@ -454,7 +498,6 @@ function CultureContent() {
             4 sections · {sayings.length} sayings · {falseFriends.length} false friends · {etiquetteTips.length} etiquette tips · {regionalExpressions.length} regional expressions
           </p>
 
-          {/* Section tabs + tab-specific filters + search — all in one row system */}
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <div className="flex items-center gap-1.5">
               {TABS.map((t) => (
@@ -472,7 +515,6 @@ function CultureContent() {
 
           <div className="border-t border-[#F3F4F6] mt-4" />
 
-          {/* Tab-specific filters */}
           <div className="mt-6">
             <TabFilters
               tab={tab}
@@ -493,11 +535,11 @@ function CultureContent() {
           </div>
         </div>
 
-        <div className="pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
           {tab === "sayings" && (
             <>
               {filteredSayings.length === 0 ? (
-                <p className="text-[13px] text-text-secondary py-8">No sayings match your filters.</p>
+                <p className="col-span-full text-[13px] text-text-secondary py-8">No sayings match your filters.</p>
               ) : (
                 filteredSayings.map((saying) => (
                   <SayingCard key={saying.id} saying={saying} isHighlighted={highlightId === saying.id} />
@@ -509,7 +551,7 @@ function CultureContent() {
           {tab === "false-friends" && (
             <>
               {filteredFalseFriends.length === 0 ? (
-                <p className="text-[13px] text-text-secondary py-8">No false friends match your filters.</p>
+                <p className="col-span-full text-[13px] text-text-secondary py-8">No false friends match your filters.</p>
               ) : (
                 filteredFalseFriends.map((item) => (
                   <FalseFriendCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
@@ -521,7 +563,7 @@ function CultureContent() {
           {tab === "etiquette" && (
             <>
               {filteredEtiquette.length === 0 ? (
-                <p className="text-[13px] text-text-secondary py-8">No tips match your filters.</p>
+                <p className="col-span-full text-[13px] text-text-secondary py-8">No tips match your filters.</p>
               ) : (
                 filteredEtiquette.map((tip) => <EtiquetteCard key={tip.id} tip={tip} />)
               )}
@@ -531,7 +573,7 @@ function CultureContent() {
           {tab === "regional" && (
             <>
               {filteredRegional.length === 0 ? (
-                <p className="text-[13px] text-text-secondary py-8">No regional expressions match your filters.</p>
+                <p className="col-span-full text-[13px] text-text-secondary py-8">No regional expressions match your filters.</p>
               ) : (
                 filteredRegional.map((item) => (
                   <RegionalCard key={item.id} item={item} isHighlighted={highlightId === item.id} />

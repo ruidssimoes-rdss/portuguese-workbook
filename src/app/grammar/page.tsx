@@ -88,22 +88,24 @@ export default function GrammarPage() {
             <Link
               key={topic.id}
               href={`/grammar/${topic.id}`}
-              className="group block border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-colors duration-200"
+              className="block group"
             >
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="text-[15px] font-bold tracking-tight text-text">
-                  {topic.title}
-                </h3>
-                <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(topic.cefr)}`}>
-                  {topic.cefr}
-                </span>
+              <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-[15px] font-bold tracking-tight text-text">
+                    {topic.title}
+                  </h3>
+                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(topic.cefr)}`}>
+                    {topic.cefr}
+                  </span>
+                </div>
+                <p className="text-[13px] text-text-secondary mt-1">
+                  {topic.titlePt}
+                </p>
+                <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
+                  {topic.summary}
+                </p>
               </div>
-              <p className="text-[13px] text-text-secondary mt-1">
-                {topic.titlePt}
-              </p>
-              <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
-                {topic.summary}
-              </p>
             </Link>
           ))}
         </div>
