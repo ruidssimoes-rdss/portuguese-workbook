@@ -67,7 +67,7 @@ export default function ConjugationsPage() {
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
         <div className="flex flex-col gap-4 py-5">
           <div className="flex items-baseline gap-3">
-            <h1 className="text-[20px] font-semibold text-[#0A0A0A]">
+            <h1 className="text-[20px] font-semibold text-text">
               Conjugations
             </h1>
             <div className="w-px h-[18px] bg-[#9AA2AD] self-center" />
@@ -131,10 +131,10 @@ export default function ConjugationsPage() {
                 href={`/conjugations/${v.toLowerCase()}`}
                 className="bg-white border border-[#E5E5E5] rounded-[14px] p-5 flex flex-col min-h-[140px] transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
               >
-                <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] text-[#111827] mb-1">
+                <div className="text-[17px] font-bold tracking-[-0.34px] leading-[27px] text-text mb-1">
                   {v}
                 </div>
-                <div className="text-[13px] text-[#6B7280] leading-relaxed flex-1">
+                <div className="text-[13px] text-text-secondary leading-relaxed flex-1">
                   {m.english}
                 </div>
                 <div className="flex gap-1.5 flex-wrap mt-auto pt-3">
@@ -157,7 +157,7 @@ export default function ConjugationsPage() {
             );
           })}
           {verbs.length === 0 && (
-            <div className="col-span-full text-center py-12 text-[#6B7280] text-[14px]">
+            <div className="col-span-full text-center py-12 text-text-secondary text-[14px]">
               No verbs match your filter.
             </div>
           )}

@@ -84,7 +84,7 @@ function WordCard({
       }`}
     >
       <div className="flex items-center justify-between gap-3">
-        <h3 className="text-[20px] font-bold leading-tight text-[#111827] break-words">
+        <h3 className="text-[20px] font-bold leading-tight text-text break-words">
           {w.portuguese}
         </h3>
         <PronunciationButton
@@ -95,7 +95,7 @@ function WordCard({
         />
       </div>
       {w.pronunciation && (
-        <span className="font-mono text-[12px] text-[#9CA3AF] -mt-1.5">
+        <span className="font-mono text-[12px] text-text-muted -mt-1.5">
           /{w.pronunciation}/
         </span>
       )}
@@ -115,7 +115,7 @@ function WordCard({
               &ldquo;{w.example}&rdquo;
             </span>
             {w.exampleTranslation && (
-              <span className="text-[11.5px] text-[#9CA3AF] block mt-0.5 break-words">
+              <span className="text-[11.5px] text-text-muted block mt-0.5 break-words">
                 {w.exampleTranslation}
               </span>
             )}
@@ -141,19 +141,19 @@ function WordCard({
         {w.relatedWords && w.relatedWords.length > 0 && (
           <Popover
             trigger={
-              <span className="text-[11px] font-semibold text-[#6B7280] bg-[#F3F4F6] px-2.5 py-[3px] rounded-full hover:bg-[#E5E7EB] transition-colors duration-150">
+              <span className="text-[11px] font-semibold text-text-secondary bg-border-light px-2.5 py-[3px] rounded-full hover:bg-[#E5E7EB] transition-colors duration-150">
                 Related ({w.relatedWords.length})
               </span>
             }
           >
             <div className="flex flex-col gap-1">
-              <span className="text-[10px] uppercase tracking-[0.08em] text-[#9CA3AF] font-medium mb-1">
+              <span className="text-[10px] uppercase tracking-[0.08em] text-text-muted font-medium mb-1">
                 Related Words
               </span>
               {w.relatedWords.map((rw, j) => (
                 <div key={j} className="flex items-baseline gap-1.5">
-                  <span className="text-[13px] font-medium text-[#111827]">{rw.word}</span>
-                  <span className="text-[12px] text-[#9CA3AF]">— {rw.meaning}</span>
+                  <span className="text-[13px] font-medium text-text">{rw.word}</span>
+                  <span className="text-[12px] text-text-muted">— {rw.meaning}</span>
                 </div>
               ))}
             </div>
@@ -259,7 +259,7 @@ export default function VocabCategoryPage() {
               className="w-full md:w-[280px] h-10 px-4 rounded-[12px] border border-[#E9E9E9] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#3C5E95] focus:ring-1 focus:ring-[#3C5E95] transition-colors duration-200"
             />
           </div>
-          <p className="text-[13px] text-[#9CA3AF]">{category.words.length} words</p>
+          <p className="text-[13px] text-text-muted">{category.words.length} words</p>
         </div>
 
         {/* Filters */}
@@ -282,7 +282,7 @@ export default function VocabCategoryPage() {
         {/* Word cards — responsive grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-12">
           {filtered.length === 0 ? (
-            <p className="col-span-full text-center py-12 text-[#6B7280] text-[14px]">
+            <p className="col-span-full text-center py-12 text-text-secondary text-[14px]">
               No words match your filter.
             </p>
           ) : (

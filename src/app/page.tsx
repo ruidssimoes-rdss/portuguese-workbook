@@ -106,7 +106,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8">
             {/* Left: Today's Picks */}
             <div className="space-y-4">
-              <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-2">
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted mb-2">
                 Today&apos;s Picks
               </h2>
 
@@ -140,7 +140,7 @@ export default function Home() {
                       <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(wordOfDay.word.cefr)}`}>
                         {wordOfDay.word.cefr}
                       </span>
-                      <span className="text-[11px] font-medium text-[#6B7280] bg-[#F3F4F6] px-2.5 py-[3px] rounded-full">
+                      <span className="text-[11px] font-medium text-text-secondary bg-border-light px-2.5 py-[3px] rounded-full">
                         {wordOfDay.categoryTitle}
                       </span>
                     </div>
@@ -171,7 +171,7 @@ export default function Home() {
                 </div>
               ) : (
                 <div className="bg-white border border-[#CFD3D9] rounded-[12px] p-[30px]">
-                  <p className="text-[#6B7280] text-[14px]">No vocabulary data.</p>
+                  <p className="text-text-secondary text-[14px]">No vocabulary data.</p>
                 </div>
               )}
 
@@ -205,7 +205,7 @@ export default function Home() {
                           : verbOfDay.meta.group.startsWith("Regular -AR") ? "text-emerald-700 bg-emerald-50"
                           : verbOfDay.meta.group.startsWith("Regular -ER") ? "text-blue-700 bg-blue-50"
                           : verbOfDay.meta.group.startsWith("Regular -IR") ? "text-violet-700 bg-violet-50"
-                          : "text-[#6B7280] bg-[#F3F4F6]"
+                          : "text-text-secondary bg-border-light"
                       }`}>
                         {shortGroup(verbOfDay.meta.group)}
                       </span>
@@ -234,7 +234,7 @@ export default function Home() {
                 </div>
               ) : (
                 <div className="bg-white border border-[#CFD3D9] rounded-[12px] p-[30px]">
-                  <p className="text-[#6B7280] text-[14px]">No verb data.</p>
+                  <p className="text-text-secondary text-[14px]">No verb data.</p>
                 </div>
               )}
 
@@ -289,7 +289,7 @@ export default function Home() {
 
             {/* Right column */}
             <div className="space-y-2">
-              <h2 className="text-[11px] font-semibold uppercase tracking-[0.88px] text-[#9CA3AF]">
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.88px] text-text-muted">
                 Quick navigation
               </h2>
 
@@ -322,7 +322,7 @@ export default function Home() {
                     <Link
                       key={action.href}
                       href={action.href}
-                      className="flex items-center justify-center h-[36px] bg-[#FAFAFA] border border-[#CFD3D9] rounded-[12px] text-[12px] font-normal text-[#6B7280] hover:border-[#9AA2AD] hover:text-[#475569] transition-colors duration-200"
+                      className="flex items-center justify-center h-[36px] bg-surface border border-[#CFD3D9] rounded-[12px] text-[12px] font-normal text-text-secondary hover:border-[#9AA2AD] hover:text-[#475569] transition-colors duration-200"
                     >
                       {action.label}
                     </Link>
@@ -330,7 +330,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <h2 className="text-[11px] font-semibold uppercase tracking-[0.88px] text-[#9CA3AF] pt-2">
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.88px] text-text-muted pt-2">
                 Explore
               </h2>
               <div className="grid grid-cols-2 gap-5">
@@ -343,17 +343,17 @@ export default function Home() {
                   <Link
                     key={s.href}
                     href={s.href}
-                    className="group bg-[#FAFAFA] border border-[#CFD3D9] rounded-[12px] p-4 flex flex-col gap-2.5 hover:border-[#9AA2AD] transition-colors duration-200"
+                    className="group bg-surface border border-[#CFD3D9] rounded-[12px] p-4 flex flex-col gap-2.5 hover:border-[#9AA2AD] transition-colors duration-200"
                   >
                     <div className="flex items-start justify-between">
-                      <span className="text-[15px] font-bold tracking-[-0.375px] text-[#111827]">
+                      <span className="text-[15px] font-bold tracking-[-0.375px] text-text">
                         {s.title}
                       </span>
                       <span className="text-[16px] text-[#CFD3D9] group-hover:text-[#9AA2AD] transition-colors">
                         →
                       </span>
                     </div>
-                    <span className="text-[11px] font-medium text-[#6B7280] leading-4 whitespace-pre-line">
+                    <span className="text-[11px] font-medium text-text-secondary leading-4 whitespace-pre-line">
                       {s.stats}
                     </span>
                   </Link>

@@ -11,6 +11,29 @@
   --color-text: #0a0a0a;
   --color-text-2: #737373;
   --color-text-3: #a3a3a3;
+
+  /* === Accent & Brand === */
+  --color-accent: #0144C0;
+  --color-accent-light: #0144C010;
+  --color-accent-border: #0144C026;
+  --color-accent-hover: #0144C00D;
+  --color-accent-muted: #0144C099;
+
+  /* === Text Hierarchy === */
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+
+  /* === Surfaces === */
+  --color-surface: #FAFAFA;
+  --color-surface-hover: #F9FAFB;
+
+  /* === Borders === */
+  --color-border-light: #F3F4F6;
+
+  /* === CEFR Level Colors === */
+  --color-cefr-a1: #0144C0;
+  --color-cefr-a2: #7C3AED;
+  --color-cefr-b1: #4B5563;
 }
 
 @layer base {

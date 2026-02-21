@@ -98,7 +98,7 @@ export default function VerbPage() {
             <span className="text-[22px] font-bold tracking-tight">{slug}</span>
             <PronunciationButton text={slug} size="md" className="shrink-0" />
             {m.pronunciation && (
-              <span className="text-sm text-[#9CA3AF] font-mono">{m.pronunciation}</span>
+              <span className="text-sm text-text-muted font-mono">{m.pronunciation}</span>
             )}
             <span className="text-[13px] text-text-3 ml-1">
               · {m.english} · {m.group}
@@ -108,7 +108,7 @@ export default function VerbPage() {
             <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
               m.priority === "Essential" ? "text-red-700 bg-red-50"
               : m.priority === "Core" ? "text-blue-700 bg-blue-50"
-              : "text-[#6B7280] bg-[#F3F4F6]"
+              : "text-text-secondary bg-border-light"
             }`}>{m.priority}</span>
             <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
               {m.cefr}
@@ -125,7 +125,7 @@ export default function VerbPage() {
               className={
                 tenseFilter === t
                   ? "bg-[#262626] text-white text-[13px] font-medium px-4 py-2 rounded-full"
-                  : "bg-white border border-[#E9E9E9] text-[#6B7280] text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200 whitespace-nowrap"
+                  : "bg-white border border-[#E9E9E9] text-text-secondary text-[13px] font-medium px-4 py-2 rounded-full hover:border-[#3C5E95] hover:text-[#3C5E95] transition-colors duration-200 whitespace-nowrap"
               }
             >
               {t}
@@ -154,7 +154,7 @@ export default function VerbPage() {
                     : r.Tense === "Future" ? "text-blue-700 bg-blue-50"
                     : r.Tense === "Conditional" ? "text-amber-700 bg-amber-50"
                     : r.Tense === "Present Subjunctive" ? "text-pink-700 bg-pink-50"
-                    : "text-[#6B7280] bg-[#F3F4F6]"
+                    : "text-text-secondary bg-border-light"
                   }`}>{r.Tense}</span>
                   <span className="text-[13px] text-text-2">{person}</span>
                 </div>
@@ -200,30 +200,30 @@ export default function VerbPage() {
           <table className="w-full text-[13px] border-collapse table-auto">
             <thead>
               <tr>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
                   Tense
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
                   Person
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
                   Conjugation
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] min-w-0">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface min-w-0">
                   Example
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] min-w-0">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface min-w-0">
                   Translation
                 </th>
                 {tenseFilter !== "All" && (
-                  <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] min-w-0">
+                  <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface min-w-0">
                     Notes
                   </th>
                 )}
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
                   CEFR
                 </th>
-                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-[#FAFAFA] whitespace-nowrap">
+                <th className="text-left text-[12px] font-semibold text-text-2 px-3.5 py-2.5 border-b border-[#E9E9E9] bg-surface whitespace-nowrap">
                   Type
                 </th>
               </tr>
@@ -240,7 +240,7 @@ export default function VerbPage() {
                   <tr
                     key={i}
                     ref={isHighlight ? (highlightedRowRef as React.RefObject<HTMLTableRowElement>) : undefined}
-                    className={`hover:bg-[#FAFAFA] ${newTense ? "border-t-2 border-[#E9E9E9]" : ""} ${
+                    className={`hover:bg-surface ${newTense ? "border-t-2 border-[#E9E9E9]" : ""} ${
                       isHighlight && flashHighlight ? "bg-blue-100" : ""
                     }`}
                   >
@@ -252,7 +252,7 @@ export default function VerbPage() {
                         : r.Tense === "Future" ? "text-blue-700 bg-blue-50"
                         : r.Tense === "Conditional" ? "text-amber-700 bg-amber-50"
                         : r.Tense === "Present Subjunctive" ? "text-pink-700 bg-pink-50"
-                        : "text-[#6B7280] bg-[#F3F4F6]"
+                        : "text-text-secondary bg-border-light"
                       }`}>{r.Tense}</span>
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-[#E9E9E9] font-medium whitespace-nowrap">

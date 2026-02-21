@@ -52,7 +52,7 @@ export default function GrammarPage() {
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
         <div className="flex flex-col gap-4 py-5">
           <div className="flex items-baseline gap-3">
-            <h1 className="text-[20px] font-semibold text-[#0A0A0A]">
+            <h1 className="text-[20px] font-semibold text-text">
               Grammar
             </h1>
             <div className="w-px h-[18px] bg-[#9AA2AD] self-center" />
@@ -93,17 +93,17 @@ export default function GrammarPage() {
               className="group block bg-white border border-[#E5E5E5] rounded-[14px] p-5 transition-all duration-200 hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
             >
               <div className="flex items-start justify-between gap-2">
-                <h3 className="text-[15px] font-bold tracking-tight text-[#111827]">
+                <h3 className="text-[15px] font-bold tracking-tight text-text">
                   {topic.title}
                 </h3>
                 <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(topic.cefr)}`}>
                   {topic.cefr}
                 </span>
               </div>
-              <p className="text-[13px] text-[#6B7280] mt-1">
+              <p className="text-[13px] text-text-secondary mt-1">
                 {topic.titlePt}
               </p>
-              <p className="text-[12px] text-[#9CA3AF] mt-2 line-clamp-2">
+              <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
                 {topic.summary}
               </p>
             </Link>
@@ -111,7 +111,7 @@ export default function GrammarPage() {
         </div>
 
         {filteredTopics.length === 0 && (
-          <p className="text-[13px] text-[#6B7280] py-8">
+          <p className="text-[13px] text-text-secondary py-8">
             No topics match your filter.
           </p>
         )}

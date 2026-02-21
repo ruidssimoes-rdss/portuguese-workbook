@@ -249,14 +249,14 @@ export default function VocabularyPage() {
               <div
                 className={`${sectionIndex === 0 ? "" : "mt-8"}`}
               >
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
                   {section.label}
                   <span className="text-[11px] font-normal normal-case tracking-normal text-[#3C5E95]/60">
                     {" · "}
                     {section.ptName}
                   </span>
                 </h2>
-                <p className="text-[13px] text-[#9CA3AF] mt-1 mb-4 max-w-2xl">
+                <p className="text-[13px] text-text-muted mt-1 mb-4 max-w-2xl">
                   {section.description}
                 </p>
               </div>
@@ -289,10 +289,10 @@ export default function VocabularyPage() {
                     >
                       <div className="p-5">
                         <div className="flex items-start justify-between gap-3 mb-1">
-                          <h3 className="text-[18px] font-bold text-[#111827]">
+                          <h3 className="text-[18px] font-bold text-text">
                             {cat.title}
                           </h3>
-                          <span className="text-[12px] text-[#9CA3AF] whitespace-nowrap">
+                          <span className="text-[12px] text-text-muted whitespace-nowrap">
                             {wordCount} word{wordCount !== 1 ? "s" : ""}
                             {showMatchNote && ` · ${matchCount} match${matchCount !== 1 ? "es" : ""}`}
                           </span>
@@ -300,7 +300,7 @@ export default function VocabularyPage() {
                         <span className="text-[13px] text-[#3C5E95] font-medium">
                           {CATEGORY_PT_TITLE[cat.id] ?? ""}
                         </span>
-                        <p className="text-[13px] text-[#9CA3AF] mt-3 leading-relaxed italic">
+                        <p className="text-[13px] text-text-muted mt-3 leading-relaxed italic">
                           {cardDesc}
                         </p>
                         <span className="inline-flex items-center justify-center self-start px-[13px] h-8 bg-[#262626] border border-[#262626] rounded-[10px] text-[12.5px] font-medium text-[#FAFAFA] shadow-[0_1px_2px_rgba(38,38,38,0.24),inset_0_1px_0_1px_rgba(255,255,255,0.16)] hover:bg-[#404040] transition-colors duration-200 mt-4">
@@ -315,7 +315,7 @@ export default function VocabularyPage() {
           ))}
 
           {categoriesBySection.length === 0 && (
-            <p className="text-[13px] text-[#6B7280] py-8">
+            <p className="text-[13px] text-text-secondary py-8">
               No categories match your filter.
             </p>
           )}

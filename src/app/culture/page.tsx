@@ -61,19 +61,19 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-[#111827] italic">&quot;{saying.portuguese}&quot;</p>
-          <p className="text-sm font-mono text-[#9CA3AF] mt-1">{saying.pronunciation}</p>
+          <p className="text-lg font-semibold text-text italic">&quot;{saying.portuguese}&quot;</p>
+          <p className="text-sm font-mono text-text-muted mt-1">{saying.pronunciation}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={saying.portuguese} size="sm" />
           <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(saying.cefr)}`}>{saying.cefr}</span>
-          <button type="button" onClick={handleCopy} className="text-xs text-[#6B7280] hover:text-[#3C5E95] px-2 py-1 rounded-lg border border-[#E9E9E9] hover:border-[#D0D0D0] transition-colors">
+          <button type="button" onClick={handleCopy} className="text-xs text-text-secondary hover:text-[#3C5E95] px-2 py-1 rounded-lg border border-[#E9E9E9] hover:border-[#D0D0D0] transition-colors">
             {copied ? "Copied" : "Copy"}
           </button>
         </div>
       </div>
       <div className="border-t border-[#F0F0F0] pt-3 mt-3">
-        <p className="text-sm font-semibold text-[#6B7280] mb-0.5">Literal:</p>
+        <p className="text-sm font-semibold text-text-secondary mb-0.5">Literal:</p>
         <p className="text-sm text-[#374151]">{saying.literal}</p>
       </div>
       <div className="border-t border-[#F0F0F0] pt-3 mt-3">
@@ -81,24 +81,24 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
         <p className="text-sm text-[#374151]">{saying.meaning}</p>
       </div>
       <div className="border-t border-[#F0F0F0] pt-3 mt-3">
-        <p className="text-sm font-semibold text-[#6B7280] mb-0.5">When to use:</p>
+        <p className="text-sm font-semibold text-text-secondary mb-0.5">When to use:</p>
         <p className="text-sm text-[#374151]">{saying.usage}</p>
       </div>
       {hasExample && (
         <div className="border-t border-[#F0F0F0] pt-3 mt-3">
-          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-[#6B7280] hover:text-[#3C5E95]">
+          <button type="button" onClick={() => setExampleOpen((o) => !o)} className="text-sm font-semibold text-text-secondary hover:text-[#3C5E95]">
             Example {exampleOpen ? "–" : "+"}
           </button>
           {exampleOpen && (
             <div className="bg-[#F9FAFB] rounded-lg p-4 mt-3">
-              <p className="text-sm text-[#111827] italic">{saying.example}</p>
-              {saying.exampleTranslation && <p className="text-sm text-[#6B7280] mt-1">{saying.exampleTranslation}</p>}
+              <p className="text-sm text-text italic">{saying.example}</p>
+              {saying.exampleTranslation && <p className="text-sm text-text-secondary mt-1">{saying.exampleTranslation}</p>}
             </div>
           )}
         </div>
       )}
       <div className="border-t border-[#F0F0F0] pt-3 mt-3">
-        <span className="inline-block bg-[#F3F4F6] text-[#6B7280] rounded-full px-3 py-1 text-xs">
+        <span className="inline-block bg-border-light text-text-secondary rounded-full px-3 py-1 text-xs">
           {THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === saying.theme) ?? saying.theme}
         </span>
       </div>
@@ -116,8 +116,8 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-[#111827]">{item.portuguese}</p>
-          <p className="text-sm font-mono text-[#9CA3AF] mt-1">{item.pronunciation}</p>
+          <p className="text-lg font-semibold text-text">{item.portuguese}</p>
+          <p className="text-sm font-mono text-text-muted mt-1">{item.pronunciation}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={item.portuguese} size="sm" />
@@ -128,12 +128,12 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
         Looks like: <span className="line-through text-red-500">{item.looksLike}</span>
       </p>
       <p className="text-sm font-semibold text-emerald-600 mt-1">Actually means: {item.actualMeaning}</p>
-      <p className="text-sm font-semibold text-[#6B7280] mt-2">
+      <p className="text-sm font-semibold text-text-secondary mt-2">
         Correct word for &quot;{item.looksLike}&quot;: {item.correctWord}
       </p>
       <div className="border-t border-[#F0F0F0] pt-3 mt-3">
         <p className="text-sm text-[#374151] italic">{item.example}</p>
-        <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
+        <p className="text-sm text-text-secondary mt-1">{item.exampleTranslation}</p>
       </div>
       <div className="bg-amber-50 rounded-lg p-3 mt-3">
         <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
@@ -152,12 +152,12 @@ function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-base font-semibold text-[#111827]">{tip.title}</p>
+          <p className="text-base font-semibold text-text">{tip.title}</p>
           <p className="text-sm text-[#3C5E95]/60 font-medium mt-0.5">{tip.titlePt}</p>
         </div>
-        <span className="text-xs bg-[#F3F4F6] text-[#6B7280] rounded-full px-3 py-1 shrink-0">{categoryLabel}</span>
+        <span className="text-xs bg-border-light text-text-secondary rounded-full px-3 py-1 shrink-0">{categoryLabel}</span>
       </div>
-      <p className="text-sm text-[#6B7280] mt-3">{tip.description}</p>
+      <p className="text-sm text-text-secondary mt-3">{tip.description}</p>
       <div className="bg-emerald-50 rounded-lg p-3 mt-3">
         <p className="text-xs font-semibold text-emerald-700">Do:</p>
         <p className="text-sm text-emerald-800">{tip.doThis}</p>
@@ -178,7 +178,7 @@ function regionBadgeClass(region: string): string {
     case "north": return "bg-emerald-50 text-emerald-700";
     case "azores": return "bg-cyan-50 text-cyan-700";
     case "madeira": return "bg-blue-50 text-blue-700";
-    default: return "bg-[#F3F4F6] text-[#6B7280]";
+    default: return "bg-border-light text-text-secondary";
   }
 }
 function regionLabel(region: string): string {
@@ -196,8 +196,8 @@ function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHig
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <p className="text-lg font-semibold text-[#111827] italic">{item.expression}</p>
-          <p className="text-sm font-mono text-[#9CA3AF] mt-1">{item.pronunciation}</p>
+          <p className="text-lg font-semibold text-text italic">{item.expression}</p>
+          <p className="text-sm font-mono text-text-muted mt-1">{item.pronunciation}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <PronunciationButton text={item.expression} size="sm" />
@@ -207,11 +207,11 @@ function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHig
           <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
         </div>
       </div>
-      <p className="text-sm text-[#374151] mt-3"><span className="font-semibold text-[#6B7280]">Meaning:</span> {item.meaning}</p>
-      <p className="text-sm font-semibold text-[#6B7280] mt-2">Standard Portuguese: {item.standardAlternative}</p>
+      <p className="text-sm text-[#374151] mt-3"><span className="font-semibold text-text-secondary">Meaning:</span> {item.meaning}</p>
+      <p className="text-sm font-semibold text-text-secondary mt-2">Standard Portuguese: {item.standardAlternative}</p>
       <div className="border-t border-[#F0F0F0] pt-3 mt-3">
-        <p className="text-sm text-[#111827] italic">{item.example}</p>
-        <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
+        <p className="text-sm text-text italic">{item.example}</p>
+        <p className="text-sm text-text-secondary mt-1">{item.exampleTranslation}</p>
       </div>
     </article>
   );
@@ -314,7 +314,7 @@ function CultureContent() {
         <section className="py-5">
           <div className="flex flex-col gap-4">
             <div className="flex items-baseline gap-3">
-              <h1 className="text-[20px] font-semibold text-[#0A0A0A]">
+              <h1 className="text-[20px] font-semibold text-text">
                 Culture
               </h1>
               <div className="w-px h-[18px] bg-[#9AA2AD] self-center" />
@@ -335,13 +335,13 @@ function CultureContent() {
                   type="button"
                   onClick={() => setTab(t.id)}
                   className={`pb-3 px-1 text-[13px] font-medium cursor-pointer transition-colors relative min-h-[44px] flex flex-col items-center sm:items-start ${
-                    tab === t.id ? "text-[#3C5E95] border-b-2 border-[#3C5E95] -mb-px" : "text-[#9CA3AF] hover:text-[#6B7280]"
+                    tab === t.id ? "text-[#3C5E95] border-b-2 border-[#3C5E95] -mb-px" : "text-text-muted hover:text-text-secondary"
                   }`}
                 >
                   <span>
                     {t.label} ({t.count})
                   </span>
-                  <span className="text-[10px] text-[#9CA3AF] block hidden md:block">{t.labelPt}</span>
+                  <span className="text-[10px] text-text-muted block hidden md:block">{t.labelPt}</span>
                 </button>
               ))}
             </div>
@@ -393,7 +393,7 @@ function CultureContent() {
               </div>
               <div className="pb-16">
                 {filteredSayings.length === 0 ? (
-                  <p className="text-[13px] text-[#6B7280] py-8">No sayings match your filters.</p>
+                  <p className="text-[13px] text-text-secondary py-8">No sayings match your filters.</p>
                 ) : (
                   filteredSayings.map((saying) => (
                     <SayingCard key={saying.id} saying={saying} isHighlighted={highlightId === saying.id} />
@@ -434,7 +434,7 @@ function CultureContent() {
               </div>
               <div className="pb-16">
                 {filteredFalseFriends.length === 0 ? (
-                  <p className="text-[13px] text-[#6B7280] py-8">No false friends match your filters.</p>
+                  <p className="text-[13px] text-text-secondary py-8">No false friends match your filters.</p>
                 ) : (
                   filteredFalseFriends.map((item) => (
                     <FalseFriendCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
@@ -475,7 +475,7 @@ function CultureContent() {
               </div>
               <div className="pb-16">
                 {filteredEtiquette.length === 0 ? (
-                  <p className="text-[13px] text-[#6B7280] py-8">No tips match your filters.</p>
+                  <p className="text-[13px] text-text-secondary py-8">No tips match your filters.</p>
                 ) : (
                   filteredEtiquette.map((tip) => <EtiquetteCard key={tip.id} tip={tip} />)
                 )}
@@ -529,7 +529,7 @@ function CultureContent() {
               </div>
               <div className="pb-16">
                 {filteredRegional.length === 0 ? (
-                  <p className="text-[13px] text-[#6B7280] py-8">No regional expressions match your filters.</p>
+                  <p className="text-[13px] text-text-secondary py-8">No regional expressions match your filters.</p>
                 ) : (
                   filteredRegional.map((item) => (
                     <RegionalCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
@@ -551,7 +551,7 @@ export default function CulturePage() {
         <>
           <Topbar />
           <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-12">
-            <p className="text-[#6B7280]">Loading...</p>
+            <p className="text-text-secondary">Loading...</p>
           </main>
         </>
       }
