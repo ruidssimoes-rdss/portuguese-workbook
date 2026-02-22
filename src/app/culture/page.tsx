@@ -78,8 +78,7 @@ function regionLabel(region: string): string {
   return map[region] ?? region;
 }
 
-function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?: boolean }) {
-  const [expanded, setExpanded] = useState(false);
+function SayingCard({ saying, isHighlighted, isExpanded, onToggle }: { saying: Saying; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
@@ -92,7 +91,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
   return (
     <article
       id={saying.id}
-      onClick={() => setExpanded((v) => !v)}
+      onClick={onToggle}
       className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
         isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
       }`}
@@ -100,7 +99,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
       {/* Collapsed: always visible */}
       <div className="flex items-start justify-between gap-3">
         <p className="font-semibold text-[#111827] italic">&quot;{saying.portuguese}&quot;</p>
-        <Chevron expanded={expanded} />
+        <Chevron expanded={isExpanded} />
       </div>
       <div className="flex items-center gap-2 mt-2">
         <PronunciationButton text={saying.portuguese} size="sm" />
@@ -114,7 +113,7 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
       </div>
 
       {/* Expanded: additional details */}
-      {expanded && (
+      {isExpanded && (
         <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
           <p className="text-xs text-[#9CA3AF] font-mono">{saying.pronunciation}</p>
           <div>
@@ -146,13 +145,11 @@ function SayingCard({ saying, isHighlighted }: { saying: Saying; isHighlighted?:
   );
 }
 
-function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlighted?: boolean }) {
-  const [expanded, setExpanded] = useState(false);
-
+function FalseFriendCard({ item, isHighlighted, isExpanded, onToggle }: { item: FalseFriend; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
   return (
     <article
       id={item.id}
-      onClick={() => setExpanded((v) => !v)}
+      onClick={onToggle}
       className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
         isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
       }`}
@@ -160,7 +157,7 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
       {/* Collapsed */}
       <div className="flex items-start justify-between gap-3">
         <p className="font-semibold text-[#111827]">{item.portuguese}</p>
-        <Chevron expanded={expanded} />
+        <Chevron expanded={isExpanded} />
       </div>
       <div className="flex items-center gap-2 mt-2">
         <PronunciationButton text={item.portuguese} size="sm" />
@@ -169,7 +166,7 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
       <p className="mt-3 text-sm text-[#6B7280]">Actually means: {item.actualMeaning}</p>
 
       {/* Expanded */}
-      {expanded && (
+      {isExpanded && (
         <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
           <p className="text-xs text-[#9CA3AF] font-mono">{item.pronunciation}</p>
           <p className="text-sm text-red-400">
@@ -192,20 +189,19 @@ function FalseFriendCard({ item, isHighlighted }: { item: FalseFriend; isHighlig
   );
 }
 
-function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
-  const [expanded, setExpanded] = useState(false);
+function EtiquetteCard({ tip, isExpanded, onToggle }: { tip: EtiquetteTip; isExpanded: boolean; onToggle: () => void }) {
   const categoryLabel = ETIQUETTE_CATEGORIES.find((c) => c !== "All" && ETIQUETTE_TO_KEY[c] === tip.category) ?? tip.category;
 
   return (
     <article
       id={tip.id}
-      onClick={() => setExpanded((v) => !v)}
+      onClick={onToggle}
       className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer"
     >
       {/* Collapsed */}
       <div className="flex items-start justify-between gap-3">
         <p className="font-semibold text-[#111827]">{tip.title}</p>
-        <Chevron expanded={expanded} />
+        <Chevron expanded={isExpanded} />
       </div>
       <p className="text-sm text-[#6B7280] font-medium mt-1">{tip.titlePt}</p>
       <p className="mt-3 text-sm text-[#6B7280] line-clamp-2">{tip.description}</p>
@@ -214,7 +210,7 @@ function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
       </div>
 
       {/* Expanded */}
-      {expanded && (
+      {isExpanded && (
         <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
           <p className="text-sm text-[#6B7280]">{tip.description}</p>
           <div className="bg-emerald-50 rounded-lg p-3">
@@ -231,13 +227,11 @@ function EtiquetteCard({ tip }: { tip: EtiquetteTip }) {
   );
 }
 
-function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHighlighted?: boolean }) {
-  const [expanded, setExpanded] = useState(false);
-
+function RegionalCard({ item, isHighlighted, isExpanded, onToggle }: { item: RegionalExpression; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
   return (
     <article
       id={item.id}
-      onClick={() => setExpanded((v) => !v)}
+      onClick={onToggle}
       className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
         isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
       }`}
@@ -245,7 +239,7 @@ function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHig
       {/* Collapsed */}
       <div className="flex items-start justify-between gap-3">
         <p className="font-semibold text-[#111827] italic">{item.expression}</p>
-        <Chevron expanded={expanded} />
+        <Chevron expanded={isExpanded} />
       </div>
       <div className="flex items-center gap-2 mt-2">
         <PronunciationButton text={item.expression} size="sm" />
@@ -257,7 +251,7 @@ function RegionalCard({ item, isHighlighted }: { item: RegionalExpression; isHig
       <p className="mt-3 text-sm text-[#6B7280]">{item.meaning}</p>
 
       {/* Expanded */}
-      {expanded && (
+      {isExpanded && (
         <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
           <p className="text-xs text-[#9CA3AF] font-mono">{item.pronunciation}</p>
           <p className="text-sm text-[#6B7280]">
@@ -391,17 +385,30 @@ function CultureContent() {
       u.set("tab", id);
       u.delete("highlight");
       router.replace(`/culture?${u.toString()}`, { scroll: false });
+      setExpandedId(null);
     },
     [searchParams, router]
   );
 
   const highlightId = searchParams.get("highlight");
 
-  const [cefrFilter, setCefrFilter] = useState<string>("All");
-  const [themeFilter, setThemeFilter] = useState<string>("All");
-  const [etiquetteCategory, setEtiquetteCategory] = useState<string>("All");
-  const [regionFilter, setRegionFilter] = useState<string>("All");
-  const [search, setSearch] = useState("");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const toggleCard = useCallback((id: string) => {
+    setExpandedId((prev) => (prev === id ? null : id));
+  }, []);
+
+  const [cefrFilter, setCefrFilterRaw] = useState<string>("All");
+  const [themeFilter, setThemeFilterRaw] = useState<string>("All");
+  const [etiquetteCategory, setEtiquetteCategoryRaw] = useState<string>("All");
+  const [regionFilter, setRegionFilterRaw] = useState<string>("All");
+  const [search, setSearchRaw] = useState("");
+
+  // Wrap filter setters to also collapse expanded card
+  const setCefrFilter = useCallback((v: string) => { setCefrFilterRaw(v); setExpandedId(null); }, []);
+  const setThemeFilter = useCallback((v: string) => { setThemeFilterRaw(v); setExpandedId(null); }, []);
+  const setEtiquetteCategory = useCallback((v: string) => { setEtiquetteCategoryRaw(v); setExpandedId(null); }, []);
+  const setRegionFilter = useCallback((v: string) => { setRegionFilterRaw(v); setExpandedId(null); }, []);
+  const setSearch = useCallback((v: string) => { setSearchRaw(v); setExpandedId(null); }, []);
 
   const filteredSayings = useMemo(() => {
     let list = sayings;
@@ -542,7 +549,7 @@ function CultureContent() {
                 <p className="col-span-full text-[13px] text-text-secondary py-8">No sayings match your filters.</p>
               ) : (
                 filteredSayings.map((saying) => (
-                  <SayingCard key={saying.id} saying={saying} isHighlighted={highlightId === saying.id} />
+                  <SayingCard key={saying.id} saying={saying} isHighlighted={highlightId === saying.id} isExpanded={expandedId === saying.id} onToggle={() => toggleCard(saying.id)} />
                 ))
               )}
             </>
@@ -554,7 +561,7 @@ function CultureContent() {
                 <p className="col-span-full text-[13px] text-text-secondary py-8">No false friends match your filters.</p>
               ) : (
                 filteredFalseFriends.map((item) => (
-                  <FalseFriendCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
+                  <FalseFriendCard key={item.id} item={item} isHighlighted={highlightId === item.id} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} />
                 ))
               )}
             </>
@@ -565,7 +572,7 @@ function CultureContent() {
               {filteredEtiquette.length === 0 ? (
                 <p className="col-span-full text-[13px] text-text-secondary py-8">No tips match your filters.</p>
               ) : (
-                filteredEtiquette.map((tip) => <EtiquetteCard key={tip.id} tip={tip} />)
+                filteredEtiquette.map((tip) => <EtiquetteCard key={tip.id} tip={tip} isExpanded={expandedId === tip.id} onToggle={() => toggleCard(tip.id)} />)
               )}
             </>
           )}
@@ -576,7 +583,7 @@ function CultureContent() {
                 <p className="col-span-full text-[13px] text-text-secondary py-8">No regional expressions match your filters.</p>
               ) : (
                 filteredRegional.map((item) => (
-                  <RegionalCard key={item.id} item={item} isHighlighted={highlightId === item.id} />
+                  <RegionalCard key={item.id} item={item} isHighlighted={highlightId === item.id} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} />
                 ))
               )}
             </>
