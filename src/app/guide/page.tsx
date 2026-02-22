@@ -131,28 +131,19 @@ function GuideSectionContent({ id }: { id: string }) {
               artificially simple dialogues.
             </p>
 
-            <p className="font-semibold text-[#111827]">Practice</p>
+            <p className="font-semibold text-[#111827]">Lessons</p>
             <p>
-              Practice in Aula PT starts with flashcards. You choose what to
-              focus on – a specific vocabulary category, a CEFR level, the
-              number of cards, the order, and the direction (Portuguese →
-              English, English → Portuguese, or mixed). Each card invites you to
-              pause, try to recall the answer, and then flip to see whether you
-              were right.
+              Lessons in Aula PT are structured, guided revision sessions. Each
+              lesson walks you through vocabulary, verb conjugation, grammar
+              rules, and cultural notes in stages. Along the way you flip cards,
+              complete fill-in-the-blank exercises, and work through verb drills
+              — all within a single focused session.
             </p>
             <p>
-              After flipping, you mark each card as{" "}
-              <span className="font-semibold text-emerald-700">
-                I knew it
-              </span>{" "}
-              or{" "}
-              <span className="font-semibold text-amber-700">
-                Still learning
-              </span>
-              . At the end of the session, Aula PT builds a focused review set
-              of only the words you struggled with, so your next round of
-              practice targets the weak spots instead of repeating everything
-              equally.
+              At the end of each lesson you see a completion summary showing
+              how many items you got right. Lessons are designed to be repeated
+              as often as you like, so you can revisit them whenever you want to
+              reinforce what you have learned.
             </p>
 
             <p className="font-semibold text-[#111827]">
@@ -556,11 +547,9 @@ function GuideSectionContent({ id }: { id: string }) {
                 forgetting curve.
               </p>
               <p className="text-sm text-[#374151] mt-2 leading-relaxed">
-                The flashcard session summary in Aula PT already nudges you in
-                this direction: when you tap &quot;Practice these again&quot;, you get a
-                focused set of items that your brain has flagged as fragile.
-                Building a habit of revisiting those sets over time gives you a
-                simple, practical form of spaced repetition.
+                Aula PT already nudges you in this direction: lessons are
+                designed to be repeated, and revisiting weak areas over time
+                gives you a simple, practical form of spaced repetition.
               </p>
             </div>
           </div>
@@ -826,10 +815,10 @@ export default function GuidePage() {
               Start with Vocabulary →
             </Link>
             <Link
-              href="/practice/flashcards"
+              href="/lessons"
               className="border border-[#3C5E95] text-[#3C5E95] px-6 py-3 rounded-lg text-sm font-medium hover:bg-sky-50 transition-colors min-w-[190px] text-center"
             >
-              Try Flashcards →
+              Start Lessons →
             </Link>
           </div>
         </section>

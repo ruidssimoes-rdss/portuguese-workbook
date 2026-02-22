@@ -295,29 +295,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Practice */}
-        <div className="mt-8 mb-12">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted mb-3">
-            Practice
-          </h2>
-          <div className="flex flex-wrap items-center gap-3">
-            {[
-              { label: "Verb Drills", href: "/practice/verb-drills" },
-              { label: "Listening", href: "/practice/listening" },
-              { label: "Flashcards", href: "/practice/flashcards" },
-              { label: "Vocab Quiz", href: "/practice/vocab-quiz" },
-              { label: "Dashboard", href: "/dashboard" },
-            ].map((action) => (
-              <Link
-                key={action.href}
-                href={action.href}
-                className="inline-flex items-center h-[36px] px-4 border border-[#E5E7EB] rounded-full text-[13px] font-medium text-[#6B7280] bg-white hover:border-[#D1D5DB] hover:text-[#111827] transition-colors duration-200"
-              >
-                {action.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+        <div className="mb-12" />
       </main>
     </>
   );

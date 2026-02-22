@@ -29,65 +29,143 @@ const tenseCount = new Set(
 const wordCount = vocab.categories.reduce((s, c) => s + (c.words?.length ?? 0), 0);
 const categoryCount = vocab.categories.length;
 const topicCount = Object.keys(grammar.topics).length;
-const sayingCount = sayings.length;
 
-const learnItems = [
+/* ─── Menu data ─── */
+
+interface MenuItem {
+  title: string;
+  portuguese: string;
+  stats: string[];
+  href: string;
+}
+
+const revisionItems: MenuItem[] = [
   {
     title: "Lessons",
     portuguese: "Lições",
     stats: [`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"}`, "Guided revision"],
     href: "/lessons",
-    disabled: false,
+  },
+  {
+    title: "Exams",
+    portuguese: "Exames",
+    stats: ["CIPLE preparation", "Coming soon"],
+    href: "/exams",
+  },
+  {
+    title: "Progress",
+    portuguese: "Progresso",
+    stats: ["Track your level", "A1–B1"],
+    href: "/dashboard",
+  },
+];
+
+const libraryItems: MenuItem[] = [
+  {
+    title: "Vocabulary",
+    portuguese: "Vocabulário",
+    stats: [`${wordCount} words`, `${categoryCount} categories`],
+    href: "/vocabulary",
   },
   {
     title: "Conjugations",
     portuguese: "Conjugações",
     stats: [`${verbCount} verbs`, `${tenseCount} tenses`],
     href: "/conjugations",
-    disabled: false,
-  },
-  {
-    title: "Vocabulary",
-    portuguese: "Vocabulário",
-    stats: [`${wordCount} words`, `${categoryCount} categories`],
-    href: "/vocabulary",
-    disabled: false,
   },
   {
     title: "Grammar",
     portuguese: "Gramática",
     stats: [`${topicCount} topics`, "A1–B1"],
     href: "/grammar",
-    disabled: false,
-  },
-  {
-    title: "Culture",
-    portuguese: "Cultura",
-    stats: [`${sayingCount} sayings`, "Proverbs & expressions"],
-    href: "/culture",
-    disabled: false,
-  },
-  {
-    title: "Practice",
-    portuguese: "Prática",
-    stats: ["4 practice modes"],
-    href: "/practice",
-    disabled: false,
-  },
-  {
-    title: "How to Learn",
-    portuguese: "Como Aprender",
-    stats: ["Study tips & CEFR guide"],
-    href: "/guide",
-    disabled: false,
   },
 ];
 
-const LEARN_PATHS = ["/lessons", "/conjugations", "/vocabulary", "/grammar", "/culture", "/practice"];
+const REVISION_PATHS = ["/lessons", "/exams", "/dashboard"];
+const LIBRARY_PATHS = ["/vocabulary", "/conjugations", "/grammar"];
 
-function isLearnPage(pathname: string | null): boolean {
-  return LEARN_PATHS.some((p) => pathname === p || pathname?.startsWith(p + "/"));
+function matchesSection(pathname: string | null, paths: string[]): boolean {
+  return paths.some((p) => pathname === p || pathname?.startsWith(p + "/"));
 }
+
+/* ─── Chevron icon ─── */
+
+function ChevronDown({ open, className }: { open: boolean; className?: string }) {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""} ${className ?? ""}`}
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
+/* ─── Mega-menu dropdown panel (shared between Revision & Library) ─── */
+
+function MegaPanel({
+  label,
+  labelPt,
+  items,
+  pathname,
+  onClose,
+  panelRef,
+  onKeyDown,
+  columns,
+}: {
+  label: string;
+  labelPt: string;
+  items: MenuItem[];
+  pathname: string | null;
+  onClose: () => void;
+  panelRef: React.RefObject<HTMLDivElement | null>;
+  onKeyDown: (e: React.KeyboardEvent) => void;
+  columns: number;
+}) {
+  return (
+    <div
+      ref={panelRef}
+      className="absolute left-0 top-full mt-1 w-[420px] max-w-[420px] bg-white border border-gray-200/80 rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
+      role="menu"
+      onKeyDown={onKeyDown}
+    >
+      <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
+        {label} · {labelPt}
+      </p>
+      <div className={`grid gap-3 ${columns === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+        {items.map((item) => {
+          const isCurrent = pathname === item.href || pathname?.startsWith(item.href + "/");
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onClose}
+              role="menuitem"
+              tabIndex={0}
+              className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#111827]/30 hover:bg-[#111827]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
+                isCurrent ? "border-[#111827]/30 bg-[#111827]/5" : "border-gray-100"
+              }`}
+            >
+              <span className="text-sm font-semibold text-gray-900">{item.title}</span>
+              <p className="text-xs text-[#6B7280] font-medium mt-0.5">{item.portuguese}</p>
+              <p className="text-xs text-gray-400 mt-3">{item.stats[0]}</p>
+              {item.stats[1] && <p className="text-xs text-gray-400">{item.stats[1]}</p>}
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Topbar ─── */
 
 export function Topbar() {
   const pathname = usePathname();
@@ -96,17 +174,21 @@ export function Topbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [learnMenuOpen, setLearnMenuOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<"revision" | "library" | null>(null);
   const [shortcutHint, setShortcutHint] = useState<string>("⌘K");
   const [isScrolled, setIsScrolled] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const navLeftRef = useRef<HTMLDivElement>(null);
-  const learnTriggerRef = useRef<HTMLButtonElement>(null);
-  const learnPanelRef = useRef<HTMLDivElement>(null);
+  const revisionTriggerRef = useRef<HTMLButtonElement>(null);
+  const libraryTriggerRef = useRef<HTMLButtonElement>(null);
+  const revisionPanelRef = useRef<HTMLDivElement>(null);
+  const libraryPanelRef = useRef<HTMLDivElement>(null);
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
   const closeSearchModal = useCallback(() => setSearchModalOpen(false), []);
+  const closeMenus = useCallback(() => setOpenMenu(null), []);
 
+  /* Escape handlers */
   useEffect(() => {
     if (!mobileMenuOpen) return;
     const onEscape = (e: KeyboardEvent) => {
@@ -130,6 +212,7 @@ export function Topbar() {
     setShortcutHint(isMac ? "⌘K" : "Ctrl+K");
   }, []);
 
+  /* Scroll detection */
   useEffect(() => {
     let ticking = false;
     const onScroll = () => {
@@ -146,6 +229,7 @@ export function Topbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* Cmd+K / Ctrl+K / "/" shortcut */
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
@@ -171,6 +255,7 @@ export function Topbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [searchModalOpen]);
 
+  /* User menu click-outside + escape */
   useEffect(() => {
     if (!userMenuOpen) return;
     const onEscape = (e: KeyboardEvent) => {
@@ -189,42 +274,49 @@ export function Topbar() {
     };
   }, [userMenuOpen]);
 
+  /* Dropdown escape */
   useEffect(() => {
-    if (!learnMenuOpen) return;
+    if (!openMenu) return;
     const onEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setLearnMenuOpen(false);
-        learnTriggerRef.current?.focus();
+        const trigger = openMenu === "revision" ? revisionTriggerRef : libraryTriggerRef;
+        setOpenMenu(null);
+        trigger.current?.focus();
       }
     };
     window.addEventListener("keydown", onEscape);
     return () => window.removeEventListener("keydown", onEscape);
-  }, [learnMenuOpen]);
+  }, [openMenu]);
 
+  /* Auto-focus first item when dropdown opens */
   useEffect(() => {
-    if (learnMenuOpen && learnPanelRef.current) {
-      const first = learnPanelRef.current.querySelector<HTMLElement>('[role="menuitem"]');
+    const panel = openMenu === "revision" ? revisionPanelRef : openMenu === "library" ? libraryPanelRef : null;
+    if (panel?.current) {
+      const first = panel.current.querySelector<HTMLElement>('[role="menuitem"]');
       first?.focus();
     }
-  }, [learnMenuOpen]);
+  }, [openMenu]);
 
+  /* Click outside nav closes dropdown */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (learnMenuOpen && navLeftRef.current && !navLeftRef.current.contains(e.target as Node)) {
-        setLearnMenuOpen(false);
+      if (openMenu && navLeftRef.current && !navLeftRef.current.contains(e.target as Node)) {
+        setOpenMenu(null);
       }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [learnMenuOpen]);
+  }, [openMenu]);
 
+  /* Close dropdown on navigation */
   useEffect(() => {
-    setLearnMenuOpen(false);
+    setOpenMenu(null);
   }, [pathname]);
 
-  const handleLearnPanelKeyDown = useCallback((e: React.KeyboardEvent) => {
+  /* Arrow key navigation in panels */
+  const handlePanelKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp" && e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-    const panel = learnPanelRef.current;
+    const panel = openMenu === "revision" ? revisionPanelRef.current : libraryPanelRef.current;
     if (!panel) return;
     const items = Array.from(panel.querySelectorAll<HTMLElement>('[role="menuitem"]'));
     if (items.length === 0) return;
@@ -237,7 +329,7 @@ export function Topbar() {
       e.preventDefault();
       items[(idx - 1 + items.length) % items.length]?.focus();
     }
-  }, []);
+  }, [openMenu]);
 
   const handleSignOut = async () => {
     setUserMenuOpen(false);
@@ -249,7 +341,19 @@ export function Topbar() {
 
   const displayName = user?.user_metadata?.display_name ?? user?.email?.split("@")[0] ?? "?";
   const initials = displayName.slice(0, 1).toUpperCase();
-  const learnActive = isLearnPage(pathname);
+  const revisionActive = matchesSection(pathname, REVISION_PATHS);
+  const libraryActive = matchesSection(pathname, LIBRARY_PATHS);
+
+  /* Shared tab button classes */
+  const tabClass = (active: boolean, menuOpen: boolean) =>
+    `text-[13px] font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
+      active || menuOpen ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
+    }`;
+
+  const directLinkClass = (active: boolean) =>
+    `px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors duration-200 ${
+      active ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
+    }`;
 
   return (
     <>
@@ -280,93 +384,75 @@ export function Topbar() {
                 <BrandLogo size="topbar" priority />
               </Link>
               <nav className="hidden md:flex items-center gap-1">
+                {/* Tab 1: Revision (dropdown) */}
                 <button
-                  ref={learnTriggerRef}
+                  ref={revisionTriggerRef}
                   type="button"
-                  onClick={() => setLearnMenuOpen((o) => !o)}
-                  aria-expanded={learnMenuOpen}
+                  onClick={() => setOpenMenu((o) => (o === "revision" ? null : "revision"))}
+                  aria-expanded={openMenu === "revision"}
                   aria-haspopup="true"
-                  className={`text-[13px] font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
-                    learnActive || learnMenuOpen ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className={tabClass(revisionActive, openMenu === "revision")}
                 >
-                  Learn
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className={`shrink-0 transition-transform duration-200 ${learnMenuOpen ? "rotate-180" : ""}`}
-                  >
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
+                  Revision
+                  <ChevronDown open={openMenu === "revision"} />
                 </button>
+
+                {/* Tab 2: How to Learn (direct link) */}
                 <Link
-                  href="/dashboard"
-                  className={`px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors duration-200 ${
-                    pathname?.startsWith("/dashboard") ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  href="/guide"
+                  className={directLinkClass(pathname === "/guide" || pathname?.startsWith("/guide/") === true)}
                 >
-                  Progress
+                  How to Learn
                 </Link>
-              </nav>
-              {learnMenuOpen && (
-                <div
-                  ref={learnPanelRef}
-                  className="absolute left-0 top-full mt-1 w-[560px] max-w-[560px] bg-white border border-gray-200/80 rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
-                  role="menu"
-                  onKeyDown={handleLearnPanelKeyDown}
+
+                {/* Tab 3: Culture (direct link) */}
+                <Link
+                  href="/culture"
+                  className={directLinkClass(pathname === "/culture" || pathname?.startsWith("/culture/") === true)}
                 >
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
-                    LEARN · Aprende
-                  </p>
-                  <div className="grid grid-cols-3 gap-3">
-                    {learnItems.map((item) => {
-                      const isCurrent = pathname === item.href || pathname?.startsWith(item.href + "/");
-                      const isGuide = item.href === "/guide";
-                      return (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setLearnMenuOpen(false)}
-                          role="menuitem"
-                          tabIndex={0}
-                          className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#111827]/30 hover:bg-[#111827]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
-                            isCurrent ? "border-[#111827]/30 bg-[#111827]/5" : isGuide ? "border-dashed border-gray-200" : "border-gray-100"
-                          }`}
-                        >
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-sm font-semibold text-gray-900 flex-1">{item.title}</span>
-                            {isGuide && (
-                              <svg
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-[#6B7280] shrink-0"
-                                aria-hidden
-                              >
-                                <path d="M4 19.5V6a2 2 0 0 1 2-2h9.5" />
-                                <path d="M8 6h12a1 1 0 0 1 1 1v12.5l-3-2-3 2-3-2-3 2-3-2-3 2V8a2 2 0 0 1 2-2z" />
-                              </svg>
-                            )}
-                          </div>
-                          <p className="text-xs text-[#6B7280] font-medium mt-0.5">{item.portuguese}</p>
-                          <p className="text-xs text-gray-400 mt-3">{item.stats[0]}</p>
-                          {item.stats[1] && <p className="text-xs text-gray-400">{item.stats[1]}</p>}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
+                  Culture
+                </Link>
+
+                {/* Tab 4: Library (dropdown) */}
+                <button
+                  ref={libraryTriggerRef}
+                  type="button"
+                  onClick={() => setOpenMenu((o) => (o === "library" ? null : "library"))}
+                  aria-expanded={openMenu === "library"}
+                  aria-haspopup="true"
+                  className={tabClass(libraryActive, openMenu === "library")}
+                >
+                  Library
+                  <ChevronDown open={openMenu === "library"} />
+                </button>
+              </nav>
+
+              {/* Revision mega-menu panel */}
+              {openMenu === "revision" && (
+                <MegaPanel
+                  label="REVISION"
+                  labelPt="Revisão"
+                  items={revisionItems}
+                  pathname={pathname}
+                  onClose={closeMenus}
+                  panelRef={revisionPanelRef}
+                  onKeyDown={handlePanelKeyDown}
+                  columns={3}
+                />
+              )}
+
+              {/* Library mega-menu panel */}
+              {openMenu === "library" && (
+                <MegaPanel
+                  label="LIBRARY"
+                  labelPt="Biblioteca"
+                  items={libraryItems}
+                  pathname={pathname}
+                  onClose={closeMenus}
+                  panelRef={libraryPanelRef}
+                  onKeyDown={handlePanelKeyDown}
+                  columns={3}
+                />
               )}
             </div>
             {!authLoading && !user && (
@@ -466,6 +552,7 @@ export function Topbar() {
         </div>
       </header>
 
+      {/* ─── Mobile menu ─── */}
       {mobileMenuOpen && (
         <div
           className="fixed inset-0 z-[100] md:hidden"
@@ -493,10 +580,11 @@ export function Topbar() {
               </button>
             </div>
             <nav className="px-0 pb-6 pt-2 flex flex-col">
+              {/* Revision section */}
               <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 px-4 pt-4 pb-2">
-                LEARN · Aprende
+                REVISION · Revisão
               </p>
-              {learnItems.map((item) => {
+              {revisionItems.map((item) => {
                 const isCurrent = pathname === item.href || pathname?.startsWith(item.href + "/");
                 return (
                   <Link
@@ -512,16 +600,57 @@ export function Topbar() {
                   </Link>
                 );
               })}
+
               <div className="border-t border-gray-100 my-2 mx-4" />
+
+              {/* Direct links */}
               <Link
-                href="/dashboard"
+                href="/guide"
                 onClick={closeMobileMenu}
-                className={`min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium transition-colors ${
-                  pathname?.startsWith("/dashboard") ? "bg-[#111827]/5 text-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
+                  pathname === "/guide" ? "bg-[#111827]/5 text-[#111827] border-l-2 border-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                 }`}
               >
-                Progress
+                <span className="text-[15px] font-medium">How to Learn</span>
+                <span className="text-xs text-[#6B7280]">Como Aprender</span>
               </Link>
+              <Link
+                href="/culture"
+                onClick={closeMobileMenu}
+                className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
+                  pathname === "/culture" || pathname?.startsWith("/culture/") ? "bg-[#111827]/5 text-[#111827] border-l-2 border-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                }`}
+              >
+                <span className="text-[15px] font-medium">Culture</span>
+                <span className="text-xs text-[#6B7280]">Cultura</span>
+              </Link>
+
+              <div className="border-t border-gray-100 my-2 mx-4" />
+
+              {/* Library section */}
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 px-4 pt-4 pb-2">
+                LIBRARY · Biblioteca
+              </p>
+              {libraryItems.map((item) => {
+                const isCurrent = pathname === item.href || pathname?.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
+                      isCurrent ? "bg-[#111827]/5 text-[#111827] border-l-2 border-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                    }`}
+                  >
+                    <span className="text-[15px] font-medium">{item.title}</span>
+                    <span className="text-xs text-[#6B7280]">{item.portuguese}</span>
+                  </Link>
+                );
+              })}
+
+              <div className="border-t border-gray-100 my-2 mx-4" />
+
+              {/* Changelog */}
               <Link
                 href="/changelog"
                 onClick={closeMobileMenu}
@@ -529,6 +658,8 @@ export function Topbar() {
               >
                 What&apos;s New
               </Link>
+
+              {/* Auth section */}
               {!authLoading && (
                 <>
                   <div className="my-1 border-t border-gray-200 mx-4" />
