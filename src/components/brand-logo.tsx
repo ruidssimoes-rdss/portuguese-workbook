@@ -15,7 +15,7 @@ export function BrandLogo({ size = "topbar", className = "", priority = false }:
     return (
       <span className={`relative block h-8 w-8 overflow-hidden rounded-md ${className}`.trim()}>
         <Image
-          src="/aula-logo.svg"
+          src="/favicon-aula.svg"
           alt="Aula PT"
           fill
           sizes="32px"

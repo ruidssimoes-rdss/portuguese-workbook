@@ -117,7 +117,7 @@ function FeaturedSaying() {
   return (
     <section className="mt-6">
       <SectionHeader className="mb-3">Destaque do Dia</SectionHeader>
-      <Card variant="featured" padding="lg">
+      <Card padding="lg" className="bg-[#EFF6FF]/60 border-[#BFDBFE]/50">
         <div className="flex items-start gap-3">
           <p className="text-xl font-semibold italic text-[#111827] leading-snug flex-1">
             &quot;{featured.portuguese}&quot;
