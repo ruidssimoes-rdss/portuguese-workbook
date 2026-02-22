@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { ProtectedRoute } from "@/components/protected-route";
 import { PronunciationButton } from "@/components/pronunciation-button";
-import { cefrPillClass } from "@/lib/cefr";
+import { CEFRBadge } from "@/components/ui/badge";
 import { lessons } from "@/data/lessons";
 import type {
   LessonStage,
@@ -914,11 +914,7 @@ function LessonContent({ id }: { id: string }) {
                 {lesson.ptTitle}
               </p>
             </div>
-            <span
-              className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(lesson.cefr)}`}
-            >
-              {lesson.cefr}
-            </span>
+            <CEFRBadge level={lesson.cefr} className="shrink-0" />
           </div>
 
           {/* Stage dots */}

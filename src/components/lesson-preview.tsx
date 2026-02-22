@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { cefrPillClass } from "@/lib/cefr";
+import { Card } from "@/components/ui/card";
+import { CEFRBadge } from "@/components/ui/badge";
 import { lessons, getLessonItemCount } from "@/data/lessons";
 import { getAllLessonProgress } from "@/lib/lesson-progress";
 import { useAuth } from "@/components/auth-provider";
@@ -48,7 +49,7 @@ export function LessonPreview() {
   return (
     <div className="mt-6">
       <Link href={`/lessons/${activeLesson.id}`} className="block group">
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200">
+        <Card interactive>
           <div className="flex items-start justify-between mb-2">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
@@ -65,18 +66,14 @@ export function LessonPreview() {
                 {activeLesson.ptTitle}
               </p>
             </div>
-            <span
-              className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(activeLesson.cefr)}`}
-            >
-              {activeLesson.cefr}
-            </span>
+            <CEFRBadge level={activeLesson.cefr} className="shrink-0" />
           </div>
           <p className="text-[13px] font-medium text-[#9CA3AF] mt-2">
             ~{activeLesson.estimatedMinutes} min · {activeLesson.stages.length}{" "}
             stages
           </p>
           <ProgressBar completed={completedCount} total={totalItems} className="mt-3" />
-        </div>
+        </Card>
       </Link>
     </div>
   );

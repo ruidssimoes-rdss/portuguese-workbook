@@ -4,7 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
-import { cefrPillClass } from "@/lib/cefr";
+import { PageContainer } from "@/components/ui/page-container";
+import { FilterPill } from "@/components/ui/filter-pill";
+import { Divider } from "@/components/ui/divider";
+import { CEFRBadge, Badge } from "@/components/ui/badge";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
@@ -55,12 +58,12 @@ export default function VerbPage() {
     return (
       <>
         <Topbar />
-        <main className="max-w-[1280px] mx-auto w-full px-4 md:px-6 lg:px-10 py-16">
+        <PageContainer className="w-full py-16">
           <p className="text-text-2">Verb not found.</p>
           <Link href="/conjugations" className="text-text-2 underline mt-2 block">
             ← Back to all verbs
           </Link>
-        </main>
+        </PageContainer>
       </>
     );
   }
@@ -76,7 +79,7 @@ export default function VerbPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto w-full px-4 md:px-6 lg:px-10">
+      <PageContainer className="w-full">
         {/* Header */}
         <div className="py-5">
           <Link
@@ -99,34 +102,28 @@ export default function VerbPage() {
               </p>
             </div>
             <div className="flex gap-1.5 flex-wrap shrink-0">
-              <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+              <Badge color={
                 m.priority === "Essential" ? "text-red-700 bg-red-50"
                 : m.priority === "Core" ? "text-blue-700 bg-blue-50"
                 : "text-text-secondary bg-border-light"
-              }`}>{m.priority}</span>
-              <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
-                {m.cefr}
-              </span>
+              }>{m.priority}</Badge>
+              <CEFRBadge level={m.cefr} />
             </div>
           </div>
 
           {/* Tense filters */}
           <div className="flex flex-wrap items-center gap-1.5 mt-6">
             {tenses.map((t) => (
-              <button
+              <FilterPill
                 key={t}
+                active={tenseFilter === t}
                 onClick={() => setTenseFilter(t)}
-                className={
-                  tenseFilter === t
-                    ? "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer"
-                    : "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white whitespace-nowrap"
-                }
               >
                 {t}
-              </button>
+              </FilterPill>
             ))}
           </div>
-          <div className="border-t border-[#F3F4F6] mt-4" />
+          <Divider className="mt-4" />
         </div>
 
         {/* Mobile: card layout */}
@@ -143,7 +140,7 @@ export default function VerbPage() {
                 } ${isHighlight && flashHighlight ? "ring-2 ring-[#111827] ring-offset-2" : ""}`}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                  <Badge color={
                     r.Tense === "Present" ? "text-emerald-700 bg-emerald-50"
                     : r.Tense === "Preterite" ? "text-amber-800 bg-orange-50"
                     : r.Tense === "Imperfect" ? "text-violet-700 bg-violet-50"
@@ -151,7 +148,7 @@ export default function VerbPage() {
                     : r.Tense === "Conditional" ? "text-amber-700 bg-amber-50"
                     : r.Tense === "Present Subjunctive" ? "text-pink-700 bg-pink-50"
                     : "text-text-secondary bg-border-light"
-                  }`}>{r.Tense}</span>
+                  }>{r.Tense}</Badge>
                   <span className="text-[13px] text-text-2">{person}</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -176,15 +173,10 @@ export default function VerbPage() {
                   </p>
                 )}
                 <div className="flex gap-1.5 flex-wrap mt-2">
-                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(r["CEFR (Tense)"])}`}>
-                    {r["CEFR (Tense)"]}
-                  </span>
-                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-                    r.Type === "Exception" ? "text-amber-700 bg-amber-50"
-                    : "text-emerald-700 bg-emerald-50"
-                  }`}>
+                  <CEFRBadge level={r["CEFR (Tense)"]} />
+                  <Badge color={r.Type === "Exception" ? "text-amber-700 bg-amber-50" : "text-emerald-700 bg-emerald-50"}>
                     {r.Type === "Exception" ? "Irreg." : "Reg."}
-                  </span>
+                  </Badge>
                 </div>
               </div>
             );
@@ -241,7 +233,7 @@ export default function VerbPage() {
                     }`}
                   >
                     <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] whitespace-nowrap">
-                      <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
+                      <Badge color={
                         r.Tense === "Present" ? "text-emerald-700 bg-emerald-50"
                         : r.Tense === "Preterite" ? "text-amber-800 bg-orange-50"
                         : r.Tense === "Imperfect" ? "text-violet-700 bg-violet-50"
@@ -249,7 +241,7 @@ export default function VerbPage() {
                         : r.Tense === "Conditional" ? "text-amber-700 bg-amber-50"
                         : r.Tense === "Present Subjunctive" ? "text-pink-700 bg-pink-50"
                         : "text-text-secondary bg-border-light"
-                      }`}>{r.Tense}</span>
+                      }>{r.Tense}</Badge>
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] font-medium whitespace-nowrap">
                       {person}
@@ -272,17 +264,12 @@ export default function VerbPage() {
                       </td>
                     )}
                     <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] whitespace-nowrap">
-                      <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(r["CEFR (Tense)"])}`}>
-                        {r["CEFR (Tense)"]}
-                      </span>
+                      <CEFRBadge level={r["CEFR (Tense)"]} />
                     </td>
                     <td className="px-3.5 py-2.5 border-b border-[#E5E7EB] whitespace-nowrap">
-                      <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-                        r.Type === "Exception" ? "text-amber-700 bg-amber-50"
-                        : "text-emerald-700 bg-emerald-50"
-                      }`}>
+                      <Badge color={r.Type === "Exception" ? "text-amber-700 bg-amber-50" : "text-emerald-700 bg-emerald-50"}>
                         {r.Type === "Exception" ? "Irreg." : "Reg."}
-                      </span>
+                      </Badge>
                     </td>
                   </tr>
                 );
@@ -290,7 +277,7 @@ export default function VerbPage() {
             </tbody>
           </table>
         </div>
-      </main>
+      </PageContainer>
     </>
   );
 }

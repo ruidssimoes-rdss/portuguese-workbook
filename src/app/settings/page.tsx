@@ -6,6 +6,8 @@ import { Topbar } from "@/components/layout/topbar";
 import { ProtectedRoute } from "@/components/protected-route";
 import { useAuth } from "@/components/auth-provider";
 import { createClient } from "@/lib/supabase/client";
+import { PageContainer } from "@/components/ui/page-container";
+import { Button } from "@/components/ui/button";
 import type { Profile, UserSettings } from "@/types/database";
 
 const SPEED_OPTIONS = [
@@ -109,9 +111,9 @@ export default function SettingsPage() {
       <>
         <Topbar />
         <ProtectedRoute>
-          <main className="max-w-[640px] mx-auto px-4 md:px-6 py-12">
+          <PageContainer width="xnarrow" className="py-12">
             <p className="text-text-2">A carregar...</p>
-          </main>
+          </PageContainer>
         </ProtectedRoute>
       </>
     );
@@ -121,7 +123,7 @@ export default function SettingsPage() {
     <>
       <Topbar />
       <ProtectedRoute>
-        <main className="max-w-[640px] mx-auto px-4 md:px-6 py-12">
+        <PageContainer width="xnarrow" className="py-12">
           <h1 className="text-2xl font-bold tracking-tight text-text">Definições</h1>
 
           {message && (
@@ -155,14 +157,9 @@ export default function SettingsPage() {
                 <label className="block text-sm font-medium text-[#374151] mb-1">Email</label>
                 <p className="text-[#6B7280] text-[15px]">{user?.email ?? "—"}</p>
               </div>
-              <button
-                type="button"
-                onClick={saveProfile}
-                disabled={saving}
-                className="rounded-lg bg-[#111827] px-4 py-2 text-white text-sm font-medium hover:bg-[#1F2937] disabled:opacity-60"
-              >
+              <Button variant="primary" onClick={saveProfile} disabled={saving}>
                 {saving ? "A guardar..." : "Guardar perfil"}
-              </button>
+              </Button>
             </div>
           </section>
 
@@ -218,14 +215,9 @@ export default function SettingsPage() {
                   ))}
                 </select>
               </div>
-              <button
-                type="button"
-                onClick={saveSettings}
-                disabled={saving}
-                className="rounded-lg bg-[#111827] px-4 py-2 text-white text-sm font-medium hover:bg-[#1F2937] disabled:opacity-60"
-              >
+              <Button variant="primary" onClick={saveSettings} disabled={saving}>
                 {saving ? "A guardar..." : "Guardar preferências"}
-              </button>
+              </Button>
             </div>
           </section>
 
@@ -240,19 +232,15 @@ export default function SettingsPage() {
                   Alterar palavra-passe
                 </Link>
               </p>
-              <button
-                type="button"
-                onClick={handleSignOut}
-                className="rounded-lg border border-[#E9E9E9] px-4 py-2 text-sm font-medium text-text-2 hover:bg-[#FAFAFA]"
-              >
+              <Button variant="secondary" onClick={handleSignOut}>
                 Sair
-              </button>
+              </Button>
               <p className="text-sm text-[#6B7280] pt-2">
                 Para apagar a tua conta, contacta-nos.
               </p>
             </div>
           </section>
-        </main>
+        </PageContainer>
       </ProtectedRoute>
     </>
   );

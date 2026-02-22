@@ -10,7 +10,10 @@ import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
 import sayingsData from "@/data/sayings.json";
 import { dailyPrompts } from "@/data/daily-prompts";
-import { cefrPillClass } from "@/lib/cefr";
+import { CEFRBadge, VerbGroupBadge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { SectionHeader } from "@/components/ui/section-header";
+import { PageContainer } from "@/components/ui/page-container";
 import { HomeGreeting } from "@/components/home-greeting";
 import { LessonPreview } from "@/components/lesson-preview";
 import type { VerbDataSet } from "@/types";
@@ -92,7 +95,7 @@ export default function Home() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageContainer>
         {latestChangelog && (
           <ChangelogBanner
             version={latestChangelog.version}
@@ -120,49 +123,47 @@ export default function Home() {
 
         {/* Quick stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-          <div className="border border-[#E5E7EB] rounded-xl p-4 bg-white">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
+          <Card padding="md">
+            <SectionHeader>
               Vocabulary
-            </p>
+            </SectionHeader>
             <p className="text-[18px] font-semibold text-[#111827] mt-1">
               {totalVocabWords.toLocaleString()} words
             </p>
             <p className="text-[12px] text-[#9CA3AF] mt-0.5">{totalCategories} categories · A1–B1</p>
-          </div>
-          <div className="border border-[#E5E7EB] rounded-xl p-4 bg-white">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
+          </Card>
+          <Card padding="md">
+            <SectionHeader>
               Conjugations
-            </p>
+            </SectionHeader>
             <p className="text-[18px] font-semibold text-[#111827] mt-1">
               {totalVerbs} verbs
             </p>
             <p className="text-[12px] text-[#9CA3AF] mt-0.5">{totalConjugations.toLocaleString()} conjugations · 6 tenses</p>
-          </div>
-          <div className="border border-[#E5E7EB] rounded-xl p-4 bg-white">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
+          </Card>
+          <Card padding="md">
+            <SectionHeader>
               Grammar
-            </p>
+            </SectionHeader>
             <p className="text-[18px] font-semibold text-[#111827] mt-1">
               {totalGrammarTopics} topics
             </p>
             <p className="text-[12px] text-[#9CA3AF] mt-0.5">A1–B1 · Rules & examples</p>
-          </div>
+          </Card>
         </div>
 
         {/* Today's Picks */}
         <div className="mt-8">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted mb-3">
+          <SectionHeader className="mb-3">
             Today&apos;s Picks
-          </h2>
+          </SectionHeader>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {/* Word of the Day */}
             {wordOfDay && (
-              <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white flex flex-col gap-3">
+              <Card className="flex flex-col gap-3">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">Word of the Day</p>
-                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(wordOfDay.word.cefr)}`}>
-                    {wordOfDay.word.cefr}
-                  </span>
+                  <SectionHeader>Word of the Day</SectionHeader>
+                  <CEFRBadge level={wordOfDay.word.cefr} />
                 </div>
                 <div className="flex items-center gap-2">
                   <PronunciationButton text={wordOfDay.word.portuguese} size="sm" variant="dark" className="shrink-0" />
@@ -190,26 +191,17 @@ export default function Home() {
                     {wordOfDay.categoryTitle}
                   </span>
                 </div>
-              </div>
+              </Card>
             )}
 
             {/* Verb of the Day */}
             {verbKey && verbOfDay && (
-              <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white flex flex-col gap-3">
+              <Card className="flex flex-col gap-3">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">Verb of the Day</p>
+                  <SectionHeader>Verb of the Day</SectionHeader>
                   <div className="flex items-center gap-1.5">
-                    <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(verbOfDay.meta.cefr)}`}>
-                      {verbOfDay.meta.cefr}
-                    </span>
-                    <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-                      verbOfDay.meta.group.startsWith("Irregular") ? "text-amber-700 bg-amber-50"
-                        : verbOfDay.meta.group.startsWith("Regular -AR") ? "text-emerald-700 bg-emerald-50"
-                        : verbOfDay.meta.group.startsWith("Regular -ER") ? "text-blue-700 bg-blue-50"
-                        : "text-violet-700 bg-violet-50"
-                    }`}>
-                      {shortGroup(verbOfDay.meta.group)}
-                    </span>
+                    <CEFRBadge level={verbOfDay.meta.cefr} />
+                    <VerbGroupBadge group={verbOfDay.meta.group} label={shortGroup(verbOfDay.meta.group)} />
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -231,17 +223,15 @@ export default function Home() {
                 >
                   View all tenses →
                 </Link>
-              </div>
+              </Card>
             )}
 
             {/* Saying of the Day */}
             {sayingOfDay && (
-              <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white flex flex-col gap-3">
+              <Card className="flex flex-col gap-3">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">Saying of the Day</p>
-                  <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(sayingOfDay.cefr ?? "A2")}`}>
-                    {sayingOfDay.cefr ?? "A2"}
-                  </span>
+                  <SectionHeader>Saying of the Day</SectionHeader>
+                  <CEFRBadge level={sayingOfDay.cefr ?? "A2"} />
                 </div>
                 <div className="flex items-start gap-2">
                   <PronunciationButton text={sayingOfDay.portuguese} size="sm" variant="dark" className="shrink-0 mt-0.5" />
@@ -263,16 +253,16 @@ export default function Home() {
                 >
                   Explore culture →
                 </Link>
-              </div>
+              </Card>
             )}
           </div>
         </div>
 
         {/* Explore */}
         <div className="mt-8">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted mb-3">
+          <SectionHeader className="mb-3">
             Explore
-          </h2>
+          </SectionHeader>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { title: "Conjugations", titlePt: "Conjugações", href: "/conjugations", stat: `${totalVerbs} verbs` },
@@ -285,18 +275,18 @@ export default function Home() {
                 href={s.href}
                 className="block group"
               >
-                <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full flex flex-col">
+                <Card interactive className="h-full flex flex-col">
                   <span className="text-[15px] font-semibold text-[#111827]">{s.title}</span>
                   <span className="text-[13px] text-[#9CA3AF] italic">{s.titlePt}</span>
                   <span className="text-[12px] text-text-secondary mt-auto pt-3">{s.stat}</span>
-                </div>
+                </Card>
               </Link>
             ))}
           </div>
         </div>
 
         <div className="mb-12" />
-      </main>
+      </PageContainer>
     </>
   );
 }

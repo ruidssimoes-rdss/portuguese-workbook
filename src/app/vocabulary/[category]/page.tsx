@@ -4,7 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
-import { cefrPillClass } from "@/lib/cefr";
+import { PageContainer } from "@/components/ui/page-container";
+import { FilterPill } from "@/components/ui/filter-pill";
+import { SearchInput } from "@/components/ui/search-input";
+import { Divider } from "@/components/ui/divider";
+import { CEFRBadge, Badge } from "@/components/ui/badge";
+import { EmptyState } from "@/components/ui/empty-state";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import vocabData from "@/data/vocab.json";
 import type { VocabData, VocabWord } from "@/types/vocab";
@@ -142,19 +147,11 @@ function WordCard({
       )}
       {/* CEFR + Gender + Related + Pro Tip badges */}
       <div className="flex items-center gap-1.5 flex-wrap">
-        <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(w.cefr)}`}>
-          {w.cefr}
-        </span>
+        <CEFRBadge level={w.cefr} />
         {w.gender && (
-          <span
-            className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-              w.gender === "m"
-                ? "text-blue-700 bg-blue-50"
-                : "text-pink-700 bg-pink-50"
-            }`}
-          >
+          <Badge color={w.gender === "m" ? "text-blue-700 bg-blue-50" : "text-pink-700 bg-pink-50"}>
             {w.gender}
-          </span>
+          </Badge>
         )}
         {w.relatedWords && w.relatedWords.length > 0 && (
           <Popover
@@ -217,12 +214,12 @@ export default function VocabCategoryPage() {
     return (
       <>
         <Topbar />
-        <main className="max-w-[1280px] mx-auto px-10 py-16">
+        <PageContainer className="py-16">
           <p className="text-text-2">Category not found.</p>
           <Link href="/vocabulary" className="text-text-2 underline mt-2 block">
             ← Back to vocabulary
           </Link>
-        </main>
+        </PageContainer>
       </>
     );
   }
@@ -256,7 +253,7 @@ export default function VocabCategoryPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageContainer>
         {/* Header */}
         <div className="py-5">
           <Link
@@ -280,37 +277,21 @@ export default function VocabCategoryPage() {
         <div className="flex flex-wrap items-center gap-3 mt-2">
           <div className="flex items-center gap-1.5">
             {["All", "A1", "A2", "B1"].map((l) => (
-              <button
-                key={l}
-                onClick={() => setCefrFilter(l)}
-                className={
-                  cefrFilter === l
-                    ? "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer"
-                    : "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white"
-                }
-              >
+              <FilterPill key={l} active={cefrFilter === l} onClick={() => setCefrFilter(l)}>
                 {l}
-              </button>
+              </FilterPill>
             ))}
           </div>
           <div className="w-full sm:w-auto sm:ml-auto">
-            <input
-              type="text"
-              placeholder="Search words..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white"
-            />
+            <SearchInput value={search} onChange={setSearch} placeholder="Search words..." />
           </div>
         </div>
-        <div className="border-t border-[#F3F4F6] mt-4 mb-6" />
+        <Divider className="mt-4 mb-6" />
 
         {/* Word cards — responsive grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {filtered.length === 0 ? (
-            <p className="col-span-full text-center py-12 text-text-secondary text-[13px]">
-              No words match your filter.
-            </p>
+            <EmptyState message="No words match your filter." className="col-span-full text-center" />
           ) : (
             filtered.map((w, i) => (
               <WordCard
@@ -325,7 +306,7 @@ export default function VocabCategoryPage() {
             ))
           )}
         </div>
-      </main>
+      </PageContainer>
     </>
   );
 }

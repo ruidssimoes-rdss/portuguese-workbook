@@ -3,6 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { PageContainer } from "@/components/ui/page-container";
+import { PageHeader } from "@/components/ui/page-header";
+import { Card } from "@/components/ui/card";
+import { Divider } from "@/components/ui/divider";
+import { SectionHeader } from "@/components/ui/section-header";
 import { getAllExams } from "@/data/exams";
 import { getAllExamResults, type ExamResult } from "@/lib/exam-progress";
 
@@ -58,28 +63,21 @@ export default function ExamsPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageContainer>
         <div className="py-5">
-          <div className="flex items-baseline gap-3">
-            <h1 className="text-2xl font-bold text-[#111827]">
-              CIPLE Mock Exams
-            </h1>
-            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
-              Exames de Preparação CIPLE
-            </span>
-          </div>
-          <p className="mt-1 text-[13px] text-[#9CA3AF]">
-            Monthly mock exams to prepare for the CIPLE A2 certification. New
-            exams released each month.
-          </p>
-          <div className="border-t border-[#F3F4F6] mt-4 mb-6" />
+          <PageHeader
+            title="CIPLE Mock Exams"
+            titlePt="Exames de Preparação CIPLE"
+            subtitle="Monthly mock exams to prepare for the CIPLE A2 certification. New exams released each month."
+          />
+          <Divider className="mt-4 mb-6" />
         </div>
 
         {/* CIPLE format info banner */}
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA] mb-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted mb-2">
+        <Card variant="surface" className="mb-8">
+          <SectionHeader className="mb-2">
             About the CIPLE A2 Exam
-          </p>
+          </SectionHeader>
           <p className="text-[13px] text-[#6B7280] leading-relaxed">
             Each mock exam simulates the full CIPLE A2 format with 3 sections:
             Reading & Writing (45%), Listening (30%), and Speaking (25%).
@@ -91,7 +89,7 @@ export default function ExamsPage() {
             <span className="font-semibold text-[#111827]">Muito Bom</span>{" "}
             (85%).
           </p>
-        </div>
+        </Card>
 
         {/* Exam grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
@@ -142,7 +140,7 @@ export default function ExamsPage() {
                 href={`/exams/${exam.id}`}
                 className="block group"
               >
-                <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full flex flex-col">
+                <Card interactive className="h-full flex flex-col">
                   <div className="flex items-start justify-between gap-2">
                     <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
                       {exam.monthPt}
@@ -177,12 +175,12 @@ export default function ExamsPage() {
                       </div>
                     )}
                   </div>
-                </div>
+                </Card>
               </Link>
             );
           })}
         </div>
-      </main>
+      </PageContainer>
     </>
   );
 }

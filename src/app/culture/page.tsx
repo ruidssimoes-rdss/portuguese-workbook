@@ -10,8 +10,14 @@ import regionalData from "@/data/regional.json";
 import type { SayingsData, Saying } from "@/types/saying";
 import type { FalseFriendsData, FalseFriend, EtiquetteData, EtiquetteTip, RegionalData, RegionalExpression } from "@/types/culture";
 import { PronunciationButton } from "@/components/pronunciation-button";
-import { cefrPillClass } from "@/lib/cefr";
 import { normalizeForSearch } from "@/lib/search";
+import { PageContainer } from "@/components/ui/page-container";
+import { PageHeader } from "@/components/ui/page-header";
+import { FilterPill } from "@/components/ui/filter-pill";
+import { SearchInput } from "@/components/ui/search-input";
+import { Divider } from "@/components/ui/divider";
+import { CEFRBadge } from "@/components/ui/badge";
+import { EmptyState } from "@/components/ui/empty-state";
 
 const sayings = (sayingsData as unknown as SayingsData).sayings;
 const falseFriends = (falseFriendsData as unknown as FalseFriendsData).falseFriends;
@@ -40,13 +46,6 @@ const REGIONS = ["All", "Lisboa", "Porto", "North", "Algarve", "Azores", "Madeir
 const REGION_TO_KEY: Record<string, string> = {
   Lisboa: "lisbon", Porto: "porto", North: "north", Algarve: "algarve", Azores: "azores", Madeira: "madeira",
 };
-
-const PILL_ACTIVE =
-  "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer";
-const PILL_INACTIVE =
-  "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white";
-const SEARCH_INPUT =
-  "w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white";
 
 function Chevron({ expanded }: { expanded: boolean }) {
   return (
@@ -103,7 +102,7 @@ function SayingCard({ saying, isHighlighted, isExpanded, onToggle }: { saying: S
       </div>
       <div className="flex items-center gap-2 mt-2">
         <PronunciationButton text={saying.portuguese} size="sm" />
-        <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(saying.cefr)}`}>{saying.cefr}</span>
+        <CEFRBadge level={saying.cefr} />
       </div>
       <p className="mt-3 text-sm text-[#6B7280]">{saying.meaning}</p>
       <div className="mt-3">
@@ -161,7 +160,7 @@ function FalseFriendCard({ item, isHighlighted, isExpanded, onToggle }: { item: 
       </div>
       <div className="flex items-center gap-2 mt-2">
         <PronunciationButton text={item.portuguese} size="sm" />
-        <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
+        <CEFRBadge level={item.cefr} />
       </div>
       <p className="mt-3 text-sm text-[#6B7280]">Actually means: {item.actualMeaning}</p>
 
@@ -246,7 +245,7 @@ function RegionalCard({ item, isHighlighted, isExpanded, onToggle }: { item: Reg
         <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${regionBadgeClass(item.region)}`}>
           {regionLabel(item.region)}
         </span>
-        <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(item.cefr)}`}>{item.cefr}</span>
+        <CEFRBadge level={item.cefr} />
       </div>
       <p className="mt-3 text-sm text-[#6B7280]">{item.meaning}</p>
 
@@ -304,13 +303,13 @@ function TabFilters({
         <>
           <div className="flex items-center gap-1.5">
             {CEFR_LEVELS.map((level) => (
-              <button
+              <FilterPill
                 key={level}
+                active={cefrFilter === level}
                 onClick={() => setCefrFilter(level)}
-                className={cefrFilter === level ? PILL_ACTIVE : PILL_INACTIVE}
               >
                 {level}
-              </button>
+              </FilterPill>
             ))}
           </div>
           {(tab === "sayings" || tab === "regional") && (
@@ -322,13 +321,13 @@ function TabFilters({
       {tab === "sayings" && (
         <div className="flex items-center gap-1.5 flex-wrap">
           {THEMES.map((t) => (
-            <button
+            <FilterPill
               key={t}
+              active={themeFilter === t}
               onClick={() => setThemeFilter(t)}
-              className={themeFilter === t ? PILL_ACTIVE : PILL_INACTIVE}
             >
               {t}
-            </button>
+            </FilterPill>
           ))}
         </div>
       )}
@@ -336,13 +335,13 @@ function TabFilters({
       {tab === "etiquette" && (
         <div className="flex items-center gap-1.5">
           {ETIQUETTE_CATEGORIES.map((c) => (
-            <button
+            <FilterPill
               key={c}
+              active={etiquetteCategory === c}
               onClick={() => setEtiquetteCategory(c)}
-              className={etiquetteCategory === c ? PILL_ACTIVE : PILL_INACTIVE}
             >
               {c}
-            </button>
+            </FilterPill>
           ))}
         </div>
       )}
@@ -350,24 +349,22 @@ function TabFilters({
       {tab === "regional" && (
         <div className="flex items-center gap-1.5 flex-wrap">
           {REGIONS.map((r) => (
-            <button
+            <FilterPill
               key={r}
+              active={regionFilter === r}
               onClick={() => setRegionFilter(r)}
-              className={regionFilter === r ? PILL_ACTIVE : PILL_INACTIVE}
             >
               {r}
-            </button>
+            </FilterPill>
           ))}
         </div>
       )}
 
       <div className="w-full sm:w-auto sm:ml-auto">
-        <input
-          type="text"
-          placeholder={placeholder}
+        <SearchInput
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className={SEARCH_INPUT}
+          onChange={setSearch}
+          placeholder={placeholder}
         />
       </div>
     </div>
@@ -491,36 +488,29 @@ function CultureContent() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageContainer>
         <div className="py-5">
-          <div className="flex items-baseline gap-3">
-            <h1 className="text-2xl font-bold text-[#111827]">
-              Culture
-            </h1>
-            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
-              Cultura
-            </span>
-          </div>
-          <p className="mt-1 text-sm text-[#9CA3AF]">
-            4 sections · {sayings.length} sayings · {falseFriends.length} false friends · {etiquetteTips.length} etiquette tips · {regionalExpressions.length} regional expressions
-          </p>
+          <PageHeader
+            title="Culture"
+            titlePt="Cultura"
+            subtitle={`4 sections \u00b7 ${sayings.length} sayings \u00b7 ${falseFriends.length} false friends \u00b7 ${etiquetteTips.length} etiquette tips \u00b7 ${regionalExpressions.length} regional expressions`}
+          />
 
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <div className="flex items-center gap-1.5">
               {TABS.map((t) => (
-                <button
+                <FilterPill
                   key={t.id}
-                  type="button"
+                  active={tab === t.id}
                   onClick={() => setTab(t.id)}
-                  className={tab === t.id ? PILL_ACTIVE : PILL_INACTIVE}
                 >
                   {t.label}
-                </button>
+                </FilterPill>
               ))}
             </div>
           </div>
 
-          <div className="border-t border-[#F3F4F6] mt-4" />
+          <Divider className="mt-4" />
 
           <div className="mt-6">
             <TabFilters
@@ -546,7 +536,7 @@ function CultureContent() {
           {tab === "sayings" && (
             <>
               {filteredSayings.length === 0 ? (
-                <p className="col-span-full text-[13px] text-text-secondary py-8">No sayings match your filters.</p>
+                <EmptyState message="No sayings match your filters." className="col-span-full" />
               ) : (
                 filteredSayings.map((saying) => (
                   <SayingCard key={saying.id} saying={saying} isHighlighted={highlightId === saying.id} isExpanded={expandedId === saying.id} onToggle={() => toggleCard(saying.id)} />
@@ -558,7 +548,7 @@ function CultureContent() {
           {tab === "false-friends" && (
             <>
               {filteredFalseFriends.length === 0 ? (
-                <p className="col-span-full text-[13px] text-text-secondary py-8">No false friends match your filters.</p>
+                <EmptyState message="No false friends match your filters." className="col-span-full" />
               ) : (
                 filteredFalseFriends.map((item) => (
                   <FalseFriendCard key={item.id} item={item} isHighlighted={highlightId === item.id} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} />
@@ -570,7 +560,7 @@ function CultureContent() {
           {tab === "etiquette" && (
             <>
               {filteredEtiquette.length === 0 ? (
-                <p className="col-span-full text-[13px] text-text-secondary py-8">No tips match your filters.</p>
+                <EmptyState message="No tips match your filters." className="col-span-full" />
               ) : (
                 filteredEtiquette.map((tip) => <EtiquetteCard key={tip.id} tip={tip} isExpanded={expandedId === tip.id} onToggle={() => toggleCard(tip.id)} />)
               )}
@@ -580,7 +570,7 @@ function CultureContent() {
           {tab === "regional" && (
             <>
               {filteredRegional.length === 0 ? (
-                <p className="col-span-full text-[13px] text-text-secondary py-8">No regional expressions match your filters.</p>
+                <EmptyState message="No regional expressions match your filters." className="col-span-full" />
               ) : (
                 filteredRegional.map((item) => (
                   <RegionalCard key={item.id} item={item} isHighlighted={highlightId === item.id} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} />
@@ -589,7 +579,7 @@ function CultureContent() {
             </>
           )}
         </div>
-      </main>
+      </PageContainer>
     </>
   );
 }
@@ -600,9 +590,9 @@ export default function CulturePage() {
       fallback={
         <>
           <Topbar />
-          <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-12">
+          <PageContainer className="py-12">
             <p className="text-text-secondary">Loading...</p>
-          </main>
+          </PageContainer>
         </>
       }
     >

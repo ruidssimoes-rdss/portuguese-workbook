@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { PageContainer } from "@/components/ui/page-container";
 import changelogData from "@/data/changelog.json";
 
 type ChangelogEntry = {
@@ -33,7 +34,7 @@ export default function ChangelogPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[896px] mx-auto px-4 md:px-6 lg:px-10 pb-16">
+      <PageContainer width="narrow" className="pb-16">
         <header className="py-5">
           <h1 className="text-2xl font-bold tracking-tight text-text">
             What&apos;s New
@@ -75,7 +76,7 @@ export default function ChangelogPage() {
             </div>
           ))}
         </div>
-      </main>
+      </PageContainer>
     </>
   );
 }

@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { Topbar } from "@/components/layout/topbar";
-import { cefrPillClass } from "@/lib/cefr";
+import { PageContainer } from "@/components/ui/page-container";
+import { PageHeader } from "@/components/ui/page-header";
+import { FilterPill } from "@/components/ui/filter-pill";
+import { SearchInput } from "@/components/ui/search-input";
+import { Card } from "@/components/ui/card";
+import { Divider } from "@/components/ui/divider";
+import { EmptyState } from "@/components/ui/empty-state";
+import { CEFRBadge, VerbGroupBadge } from "@/components/ui/badge";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 import Link from "next/link";
@@ -39,11 +46,6 @@ function shortGroup(group: string): string {
   return group;
 }
 
-const PILL_ACTIVE =
-  "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer";
-const PILL_INACTIVE =
-  "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white";
-
 export default function ConjugationsPage() {
   const [typeFilter, setTypeFilter] = useState("All");
   const [levelFilter, setLevelFilter] = useState<string | null>(null);
@@ -62,66 +64,58 @@ export default function ConjugationsPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageContainer>
         <div className="py-5">
-          <div className="flex items-baseline gap-3">
-            <h1 className="text-2xl font-bold text-[#111827]">
-              Conjugations
-            </h1>
-            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
-              Conjugações
-            </span>
-          </div>
-          <p className="mt-1 text-sm text-[#9CA3AF]">
-            {data.order.length} verbs · {totalConjugations.toLocaleString()} conjugations · 6 tenses
-          </p>
+          <PageHeader
+            title="Conjugations"
+            titlePt="Conjugações"
+            subtitle={<>{data.order.length} verbs · {totalConjugations.toLocaleString()} conjugations · 6 tenses</>}
+          />
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <div className="flex items-center gap-1.5">
               {["All", "Irregular", "Regular -AR", "Regular -ER", "Regular -IR"].map((f) => (
-                <button
+                <FilterPill
                   key={f}
+                  active={typeFilter === f}
                   onClick={() => setTypeFilter(f)}
-                  className={typeFilter === f ? PILL_ACTIVE : PILL_INACTIVE}
                 >
                   {f === "Regular -AR" ? "-AR" : f === "Regular -ER" ? "-ER" : f === "Regular -IR" ? "-IR" : f}
-                </button>
+                </FilterPill>
               ))}
             </div>
             <div className="w-px h-5 bg-[#E5E7EB]" />
             <div className="flex items-center gap-1.5">
               {["A1", "A2", "B1"].map((f) => (
-                <button
+                <FilterPill
                   key={f}
+                  active={levelFilter === f}
                   onClick={() => setLevelFilter((prev) => (prev === f ? null : f))}
-                  className={levelFilter === f ? PILL_ACTIVE : PILL_INACTIVE}
                 >
                   {f}
-                </button>
+                </FilterPill>
               ))}
             </div>
             <div className="w-px h-5 bg-[#E5E7EB]" />
             <div className="flex items-center gap-1.5">
               {["Essential", "Core", "Useful"].map((f) => (
-                <button
+                <FilterPill
                   key={f}
+                  active={priorityFilter === f}
                   onClick={() => setPriorityFilter((prev) => (prev === f ? null : f))}
-                  className={priorityFilter === f ? PILL_ACTIVE : PILL_INACTIVE}
                 >
                   {f}
-                </button>
+                </FilterPill>
               ))}
             </div>
             <div className="w-full sm:w-auto sm:ml-auto">
-              <input
-                type="text"
-                placeholder="Search verbs..."
+              <SearchInput
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white"
+                onChange={(v) => setSearch(v)}
+                placeholder="Search verbs..."
               />
             </div>
           </div>
-          <div className="border-t border-[#F3F4F6] mt-4 mb-6" />
+          <Divider className="mt-4 mb-6" />
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pb-16">
@@ -133,7 +127,7 @@ export default function ConjugationsPage() {
                 href={`/conjugations/${v.toLowerCase()}`}
                 className="block group"
               >
-                <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white flex flex-col min-h-[140px] hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full">
+                <Card interactive className="flex flex-col min-h-[140px] h-full">
                   <div className="text-[15px] font-semibold text-text mb-1">
                     {v}
                   </div>
@@ -141,32 +135,18 @@ export default function ConjugationsPage() {
                     {m.english}
                   </div>
                   <div className="flex gap-1.5 flex-wrap mt-auto pt-3">
-                    <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${
-                      m.group.startsWith("Irregular")
-                        ? "text-amber-700 bg-amber-50"
-                        : m.group.startsWith("Regular -AR")
-                          ? "text-emerald-700 bg-emerald-50"
-                          : m.group.startsWith("Regular -ER")
-                            ? "text-blue-700 bg-blue-50"
-                            : "text-violet-700 bg-violet-50"
-                    }`}>
-                      {shortGroup(m.group)}
-                    </span>
-                    <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${cefrPillClass(m.cefr)}`}>
-                      {m.cefr}
-                    </span>
+                    <VerbGroupBadge group={m.group} label={shortGroup(m.group)} />
+                    <CEFRBadge level={m.cefr} />
                   </div>
-                </div>
+                </Card>
               </Link>
             );
           })}
           {verbs.length === 0 && (
-            <div className="col-span-full text-center py-12 text-text-secondary text-[13px]">
-              No verbs match your filter.
-            </div>
+            <EmptyState message="No verbs match your filter." className="col-span-full text-center" />
           )}
         </div>
-      </main>
+      </PageContainer>
     </>
   );
 }

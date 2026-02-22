@@ -5,7 +5,11 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { PronunciationButton } from "@/components/pronunciation-button";
-import { cefrPillClass } from "@/lib/cefr";
+import { PageContainer } from "@/components/ui/page-container";
+import { Card } from "@/components/ui/card";
+import { Divider } from "@/components/ui/divider";
+import { CEFRBadge } from "@/components/ui/badge";
+import { SectionHeader } from "@/components/ui/section-header";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic, GrammarRule } from "@/types/grammar";
 import type { ReactNode } from "react";
@@ -14,13 +18,6 @@ const data = grammarData as unknown as GrammarData;
 const allTopicIds = new Set(Object.keys(data.topics));
 
 type CrossLink = { label: string; href: string };
-
-function getCefrBadgeClass(level: string): string {
-  if (level === "A1") return "border-cefr-a1/20 text-cefr-a1";
-  if (level === "A2") return "border-cefr-a2/20 text-cefr-a2";
-  if (level === "B1") return "border-cefr-b1/20 text-cefr-b1";
-  return "border-border text-text-secondary";
-}
 
 function renderWithLinks(text: string): ReactNode {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
@@ -147,7 +144,7 @@ function RuleCard({
   );
 
   return (
-    <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white">
+    <Card>
       {/* 1. Rule header */}
       <div className="flex items-start gap-3 mb-4">
         <span className="text-[13px] font-semibold text-[#9CA3AF] mt-0.5">{index + 1}</span>
@@ -235,7 +232,7 @@ function RuleCard({
           ))}
         </div>
       )}
-    </div>
+    </Card>
   );
 }
 
@@ -304,7 +301,7 @@ export default function GrammarTopicPage() {
     return (
       <>
         <Topbar />
-        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+        <PageContainer>
           <p className="text-[13px] text-[#6B7280]">Topic not found.</p>
           <Link
             href="/grammar"
@@ -312,7 +309,7 @@ export default function GrammarTopicPage() {
           >
             ← Grammar
           </Link>
-        </main>
+        </PageContainer>
       </>
     );
   }
@@ -322,7 +319,7 @@ export default function GrammarTopicPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageContainer>
         {/* Header */}
         <div className="mb-8 py-5">
           <Link
@@ -343,15 +340,11 @@ export default function GrammarTopicPage() {
                 {topic.summary}
               </p>
             </div>
-            <span
-              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border shrink-0 ${getCefrBadgeClass(topic.cefr)}`}
-            >
-              {topic.cefr}
-            </span>
+            <CEFRBadge level={topic.cefr} className="shrink-0" />
           </div>
         </div>
 
-        <div className="border-t border-[#F3F4F6]" />
+        <Divider />
 
         {/* Rules */}
         <div className="space-y-4 mt-8">
@@ -371,7 +364,7 @@ export default function GrammarTopicPage() {
         {/* Unmatched tips fallback */}
         {unmatchedTips.length > 0 && (
           <div className="mt-8 pt-6 border-t border-[#F3F4F6]">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-4">More Tips</p>
+            <SectionHeader className="mb-4">More Tips</SectionHeader>
             <div className="space-y-3">
               {unmatchedTips.map((tip, i) => (
                 <div key={i} className="px-4 py-3 bg-[#F9FAFB] rounded-lg border border-[#F3F4F6]">
@@ -389,27 +382,25 @@ export default function GrammarTopicPage() {
         {/* Related Topics */}
         {relatedTopics.length > 0 && (
           <div className="mt-8 pt-6 border-t border-[#F3F4F6] mb-12">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-4">Related Topics</p>
+            <SectionHeader className="mb-4">Related Topics</SectionHeader>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {relatedTopics.map((related) => (
                 <Link key={related.id} href={`/grammar/${related.id}`} className="block group">
-                  <div className="border border-[#E5E7EB] rounded-xl p-4 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200">
+                  <Card interactive padding="md">
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <p className="text-[15px] font-semibold text-[#111827]">{related.title}</p>
                         <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">{related.titlePt}</p>
                       </div>
-                      <span className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(related.cefr)}`}>
-                        {related.cefr}
-                      </span>
+                      <CEFRBadge level={related.cefr} className="shrink-0" />
                     </div>
-                  </div>
+                  </Card>
                 </Link>
               ))}
             </div>
           </div>
         )}
-      </main>
+      </PageContainer>
     </>
   );
 }

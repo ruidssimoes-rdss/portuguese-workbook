@@ -3,6 +3,8 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { PageContainer } from "@/components/ui/page-container";
+import { Button } from "@/components/ui/button";
 
 const sections = [
   {
@@ -720,7 +722,7 @@ export default function GuidePage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[896px] mx-auto px-4 md:px-6 lg:px-10 py-5">
+      <PageContainer width="narrow" className="py-5">
         <header className="mb-6">
           <h1 className="text-2xl font-bold tracking-tight">
             How to Learn Portuguese
@@ -808,12 +810,9 @@ export default function GuidePage() {
             A língua portuguesa está à tua espera.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
-              href="/vocabulary"
-              className="bg-[#111827] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#1F2937] transition-colors min-w-[190px] text-center"
-            >
+            <Button href="/vocabulary" size="lg" className="min-w-[190px]">
               Start with Vocabulary →
-            </Link>
+            </Button>
             <Link
               href="/lessons"
               className="border border-[#3C5E95] text-[#3C5E95] px-6 py-3 rounded-lg text-sm font-medium hover:bg-sky-50 transition-colors min-w-[190px] text-center"
@@ -822,7 +821,7 @@ export default function GuidePage() {
             </Link>
           </div>
         </section>
-      </main>
+      </PageContainer>
     </>
   );
 }

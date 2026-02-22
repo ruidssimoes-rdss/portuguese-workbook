@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { MigrationBanner } from "@/components/migration-banner";
 import { useAuth } from "@/components/auth-provider";
-import { cefrPillClass } from "@/lib/cefr";
+import { cefrBadgeClasses } from "@/lib/design-tokens";
 import { lessons, getLessonItemCount } from "@/data/lessons";
 import { getAllLessonProgress } from "@/lib/lesson-progress";
 import { getProgress } from "@/lib/progress-service";
@@ -21,6 +21,12 @@ import {
 } from "@/types/levels";
 import levelsDataRaw from "@/data/levels.json";
 import { ProgressBar } from "@/components/ui/progress-bar";
+import { PageContainer } from "@/components/ui/page-container";
+import { PageHeader } from "@/components/ui/page-header";
+import { SectionHeader } from "@/components/ui/section-header";
+import { Card } from "@/components/ui/card";
+import { Divider } from "@/components/ui/divider";
+import { CEFRBadge } from "@/components/ui/badge";
 
 const levelsData = levelsDataRaw as unknown as LevelsData;
 
@@ -166,28 +172,24 @@ export default function LessonsPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageContainer>
         {/* ─── Page Header ─── */}
         <div className="py-5">
-          <div className="flex items-baseline gap-3">
-            <h1 className="text-2xl font-bold text-[#111827]">Revision</h1>
-            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
-              Revisão
-            </span>
-          </div>
-          <p className="mt-1 text-[13px] text-[#9CA3AF]">
-            {lessons.length} {lessons.length === 1 ? "lesson" : "lessons"} · 3 test sections · A1–B1
-          </p>
-          <div className="border-t border-[#F3F4F6] mt-4 mb-6" />
+          <PageHeader
+            title="Revision"
+            titlePt="Revisão"
+            subtitle={<>{lessons.length} {lessons.length === 1 ? "lesson" : "lessons"} · 3 test sections · A1–B1</>}
+          />
+          <Divider className="mt-4 mb-6" />
         </div>
 
         {/* ═══════════════════════════════════════════════ */}
         {/* SECTION 1: GUIDED LESSONS                      */}
         {/* ═══════════════════════════════════════════════ */}
         <section>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-4">
+          <SectionHeader className="mb-4">
             Guided Lessons · Lições
-          </p>
+          </SectionHeader>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {sorted.map((lesson) => {
@@ -201,16 +203,12 @@ export default function LessonsPage() {
                   href={`/lessons/${lesson.id}`}
                   className="block group"
                 >
-                  <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full flex flex-col">
+                  <Card interactive className="h-full flex flex-col">
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
                         Lesson {lesson.order}
                       </p>
-                      <span
-                        className={`text-[11px] font-semibold px-2.5 py-[3px] rounded-full shrink-0 ${cefrPillClass(lesson.cefr)}`}
-                      >
-                        {lesson.cefr}
-                      </span>
+                      <CEFRBadge level={lesson.cefr} className="shrink-0" />
                     </div>
                     <h3 className="text-[15px] font-semibold tracking-tight text-[#111827] mt-2">
                       {lesson.title}
@@ -228,7 +226,7 @@ export default function LessonsPage() {
                       </p>
                       <ProgressBar completed={completed} total={total} className="mt-3" />
                     </div>
-                  </div>
+                  </Card>
                 </Link>
               );
             })}
@@ -245,10 +243,10 @@ export default function LessonsPage() {
         {/* SECTION 2: LEVEL TESTS                         */}
         {/* ═══════════════════════════════════════════════ */}
         <section id="level-tests" className="mt-16">
-          <div className="border-t border-[#F3F4F6] mb-8" />
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-4">
+          <Divider className="mb-8" />
+          <SectionHeader className="mb-4">
             Level Tests · Testes de Nível
-          </p>
+          </SectionHeader>
 
           {/* Auth gate */}
           {!isLoggedIn ? (
@@ -342,7 +340,7 @@ export default function LessonsPage() {
                         ))}
                       </div>
                       <span
-                        className={`text-[12px] font-semibold shrink-0 px-2.5 py-0.5 rounded-full w-14 text-center ${cefrPillClass(getCefrBand(currentLevel))}`}
+                        className={`text-[12px] font-semibold shrink-0 px-2.5 py-0.5 rounded-full w-14 text-center ${cefrBadgeClasses(getCefrBand(currentLevel))}`}
                       >
                         {currentLevel}
                       </span>
@@ -522,7 +520,7 @@ export default function LessonsPage() {
         </section>
 
         <div className="pb-16" />
-      </main>
+      </PageContainer>
     </>
   );
 }

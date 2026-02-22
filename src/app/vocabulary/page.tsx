@@ -5,6 +5,13 @@ import { Topbar } from "@/components/layout/topbar";
 import vocabData from "@/data/vocab.json";
 import type { VocabData, VocabCategory } from "@/types/vocab";
 import Link from "next/link";
+import { PageContainer } from "@/components/ui/page-container";
+import { PageHeader } from "@/components/ui/page-header";
+import { FilterPill } from "@/components/ui/filter-pill";
+import { SearchInput } from "@/components/ui/search-input";
+import { Card } from "@/components/ui/card";
+import { Divider } from "@/components/ui/divider";
+import { EmptyState } from "@/components/ui/empty-state";
 
 const data = vocabData as unknown as VocabData;
 
@@ -164,45 +171,34 @@ export default function VocabularyPage() {
   return (
     <>
       <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageContainer>
         <div className="py-5">
-          <div className="flex items-baseline gap-3">
-            <h1 className="text-2xl font-bold text-[#111827]">
-              Vocabulary
-            </h1>
-            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
-              Vocabulário
-            </span>
-          </div>
-          <p className="mt-1 text-sm text-[#9CA3AF]">
-            {displayTotalWords.toLocaleString()} words · {filteredCategories.length} categories · A1–B1
-          </p>
+          <PageHeader
+            title="Vocabulary"
+            titlePt="Vocabulário"
+            subtitle={<>{displayTotalWords.toLocaleString()} words · {filteredCategories.length} categories · A1–B1</>}
+          />
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <div className="flex items-center gap-1.5">
               {CEFR_LEVELS.map((level) => (
-                <button
+                <FilterPill
                   key={level}
+                  active={cefrFilter === level}
                   onClick={() => setCefrFilter(level)}
-                  className={cefrFilter === level
-                    ? "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer"
-                    : "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white"
-                  }
                 >
                   {level}
-                </button>
+                </FilterPill>
               ))}
             </div>
             <div className="w-full sm:w-auto sm:ml-auto">
-              <input
-                type="text"
-                placeholder="Search categories..."
+              <SearchInput
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white"
+                onChange={setSearch}
+                placeholder="Search categories..."
               />
             </div>
           </div>
-          <div className="border-t border-[#F3F4F6] mt-4" />
+          <Divider className="mt-4" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
@@ -232,7 +228,7 @@ export default function VocabularyPage() {
                 href={`/vocabulary/${cat.id}`}
                 className="block group"
               >
-                <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200 h-full">
+                <Card interactive className="h-full">
                   <div className="flex items-start justify-between gap-3 mb-1">
                     <h3 className="text-[15px] font-semibold text-text">
                       {cat.title}
@@ -248,18 +244,16 @@ export default function VocabularyPage() {
                   <p className="text-[13px] text-text-muted mt-3 leading-relaxed italic">
                     {cardDesc}
                   </p>
-                </div>
+                </Card>
               </Link>
             );
           })}
 
           {filteredCategories.length === 0 && (
-            <p className="col-span-full text-[13px] text-text-secondary py-8">
-              No categories match your filter.
-            </p>
+            <EmptyState message="No categories match your filter." className="col-span-full" />
           )}
         </div>
-      </main>
+      </PageContainer>
     </>
   );
 }
