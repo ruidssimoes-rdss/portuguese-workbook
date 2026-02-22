@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { cefrPillClass } from "@/lib/cefr";
-import { lessons } from "@/data/lessons";
+import { lessons, getLessonItemCount } from "@/data/lessons";
 import { getAllLessonProgress } from "@/lib/lesson-progress";
 
 function ProgressBar({
@@ -62,7 +62,7 @@ export default function LessonsPage() {
           {sorted.map((lesson) => {
             const prog = progressMap[lesson.id];
             const completed = prog?.completed ?? 0;
-            const total = lesson.items.length;
+            const total = getLessonItemCount(lesson);
 
             return (
               <Link
@@ -92,7 +92,8 @@ export default function LessonsPage() {
                   </p>
                   <div className="mt-auto pt-3">
                     <p className="text-[12px] text-[#9CA3AF]">
-                      ~{lesson.estimatedMinutes} min · {total} items
+                      ~{lesson.estimatedMinutes} min · {lesson.stages.length}{" "}
+                      stages
                     </p>
                     <ProgressBar completed={completed} total={total} />
                   </div>

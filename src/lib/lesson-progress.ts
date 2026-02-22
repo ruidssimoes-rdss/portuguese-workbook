@@ -79,3 +79,28 @@ export async function getAllLessonProgress(): Promise<
 
   return result;
 }
+
+export async function completeLessonFull(
+  lessonId: string,
+  itemIds: string[]
+): Promise<boolean> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return false;
+
+  const records = itemIds.map((itemId) => ({
+    user_id: user.id,
+    lesson_id: lessonId,
+    item_id: itemId,
+    completed: true,
+    completed_at: new Date().toISOString(),
+  }));
+
+  const { error } = await supabase
+    .from("lesson_progress")
+    .upsert(records, { onConflict: "user_id,lesson_id,item_id" });
+
+  return !error;
+}

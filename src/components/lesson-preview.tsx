@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { cefrPillClass } from "@/lib/cefr";
-import { lessons } from "@/data/lessons";
+import { lessons, getLessonItemCount } from "@/data/lessons";
 import { getAllLessonProgress } from "@/lib/lesson-progress";
 import { useAuth } from "@/components/auth-provider";
 
@@ -52,19 +52,18 @@ export function LessonPreview() {
 
   const sorted = [...lessons].sort((a, b) => a.order - b.order);
 
-  // Find first incomplete lesson, or the first lesson if none started
   const activeLesson =
     sorted.find((l) => {
       const prog = progressMap[l.id];
-      if (!prog) return true; // not started
-      return prog.completed < l.items.length; // incomplete
+      if (!prog) return true;
+      return prog.completed < getLessonItemCount(l);
     }) ?? sorted[0];
 
   if (!activeLesson) return null;
 
   const prog = progressMap[activeLesson.id];
   const completedCount = prog?.completed ?? 0;
-  const totalItems = activeLesson.items.length;
+  const totalItems = getLessonItemCount(activeLesson);
   const allComplete = completedCount >= totalItems && totalItems > 0;
   const hasStarted = completedCount > 0;
 
@@ -95,7 +94,8 @@ export function LessonPreview() {
             </span>
           </div>
           <p className="text-[13px] font-medium text-[#9CA3AF] mt-2">
-            ~{activeLesson.estimatedMinutes} min · {totalItems} items
+            ~{activeLesson.estimatedMinutes} min · {activeLesson.stages.length}{" "}
+            stages
           </p>
           <ProgressBar completed={completedCount} total={totalItems} />
         </div>
