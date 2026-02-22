@@ -11315,6 +11315,1216 @@
           "exampleTranslation": "What a boring film!"
         }
       ]
+    },
+    {
+      "id": "technology-internet",
+      "title": "Technology & Internet",
+      "description": "Telemóvel, ecrã, palavra-passe — devices, apps, and digital life.",
+      "words": [
+        {
+          "portuguese": "portátil",
+          "english": "laptop",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "pohr-TAH-til",
+          "example": "Esqueci-me do portátil em casa.",
+          "exampleTranslation": "I forgot my laptop at home.",
+          "relatedWords": [
+            {
+              "word": "computador",
+              "meaning": "computer"
+            },
+            {
+              "word": "teclado",
+              "meaning": "keyboard"
+            }
+          ],
+          "proTip": "In Portugal, 'portátil' is always used for laptop. Never say 'laptop' — although people will understand you."
+        },
+        {
+          "portuguese": "tablet",
+          "english": "tablet",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "TAH-blet",
+          "example": "O meu filho usa o tablet para desenhar.",
+          "exampleTranslation": "My son uses the tablet to draw."
+        },
+        {
+          "portuguese": "rato",
+          "english": "mouse (computer)",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "HAH-too",
+          "example": "O rato do computador não funciona.",
+          "exampleTranslation": "The computer mouse doesn't work.",
+          "proTip": "Yes, it's the same word as 'mouse' the animal — 'rato.' Context makes it clear."
+        },
+        {
+          "portuguese": "auscultadores",
+          "english": "headphones",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "owsh-kool-tah-DOH-resh",
+          "example": "Onde estão os meus auscultadores?",
+          "exampleTranslation": "Where are my headphones?",
+          "relatedWords": [
+            {
+              "word": "auriculares",
+              "meaning": "earbuds/earphones"
+            }
+          ],
+          "proTip": "'Auscultadores' is the standard European Portuguese word. 'Auriculares' is also used, especially for earbuds."
+        },
+        {
+          "portuguese": "coluna",
+          "english": "speaker",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "koh-LOO-nah",
+          "example": "Liga a música na coluna.",
+          "exampleTranslation": "Play the music on the speaker.",
+          "proTip": "'Coluna' also means 'column' or 'spine' — context tells you which. For audio: 'coluna de som' or just 'coluna.'"
+        },
+        {
+          "portuguese": "câmara",
+          "english": "camera",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "KAH-mah-rah",
+          "example": "A câmara do telemóvel é muito boa.",
+          "exampleTranslation": "The phone camera is very good.",
+          "relatedWords": [
+            {
+              "word": "fotografia",
+              "meaning": "photograph"
+            },
+            {
+              "word": "vídeo",
+              "meaning": "video"
+            }
+          ]
+        },
+        {
+          "portuguese": "bateria",
+          "english": "battery",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "bah-teh-REE-ah",
+          "example": "O meu telemóvel ficou sem bateria.",
+          "exampleTranslation": "My phone ran out of battery.",
+          "relatedWords": [
+            {
+              "word": "carregador",
+              "meaning": "charger"
+            },
+            {
+              "word": "carregar",
+              "meaning": "to charge"
+            }
+          ]
+        },
+        {
+          "portuguese": "carregador",
+          "english": "charger",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "kah-reh-gah-DOHR",
+          "example": "Tens um carregador que me emprestes?",
+          "exampleTranslation": "Do you have a charger you can lend me?"
+        },
+        {
+          "portuguese": "internet",
+          "english": "internet",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "in-ter-NET",
+          "example": "Não tenho internet em casa.",
+          "exampleTranslation": "I don't have internet at home.",
+          "proTip": "In European Portuguese, 'internet' is feminine: 'a internet.' You'll hear 'a net' colloquially."
+        },
+        {
+          "portuguese": "Wi-Fi",
+          "english": "Wi-Fi",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "WAI-fai",
+          "example": "Qual é a palavra-passe do Wi-Fi?",
+          "exampleTranslation": "What's the Wi-Fi password?",
+          "relatedWords": [
+            {
+              "word": "rede",
+              "meaning": "network"
+            },
+            {
+              "word": "ligação",
+              "meaning": "connection"
+            }
+          ]
+        },
+        {
+          "portuguese": "rede",
+          "english": "network",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "HEH-duh",
+          "example": "A rede está muito lenta hoje.",
+          "exampleTranslation": "The network is very slow today.",
+          "relatedWords": [
+            {
+              "word": "rede social",
+              "meaning": "social network"
+            },
+            {
+              "word": "sinal",
+              "meaning": "signal"
+            }
+          ]
+        },
+        {
+          "portuguese": "página",
+          "english": "page / web page",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "PAH-zhee-nah",
+          "example": "Abre a página do restaurante.",
+          "exampleTranslation": "Open the restaurant's page."
+        },
+        {
+          "portuguese": "site",
+          "english": "website",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "SAIT",
+          "example": "Encontrei um site muito útil.",
+          "exampleTranslation": "I found a very useful website.",
+          "proTip": "'Site' (from English) is commonly used in PT-PT. You can also say 'sítio web' or 'página web,' but 'site' is the most common."
+        },
+        {
+          "portuguese": "ligação",
+          "english": "connection / link",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "lee-gah-SOWNG",
+          "example": "A ligação à internet caiu.",
+          "exampleTranslation": "The internet connection dropped.",
+          "relatedWords": [
+            {
+              "word": "link",
+              "meaning": "link (URL)"
+            },
+            {
+              "word": "ligar",
+              "meaning": "to connect / to call"
+            }
+          ]
+        },
+        {
+          "portuguese": "descarregar",
+          "english": "to download",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "desh-kah-reh-GAHR",
+          "example": "Preciso de descarregar a aplicação.",
+          "exampleTranslation": "I need to download the app.",
+          "proTip": "In European Portuguese, 'descarregar' = download and 'carregar' = upload. Never use 'baixar' — that's Brazilian Portuguese."
+        },
+        {
+          "portuguese": "carregar",
+          "english": "to upload / to charge / to load",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "kah-reh-GAHR",
+          "example": "Vou carregar as fotos para a nuvem.",
+          "exampleTranslation": "I'm going to upload the photos to the cloud.",
+          "proTip": "'Carregar' has multiple meanings: upload (files), charge (battery), load (a page), press (a button). Context is key."
+        },
+        {
+          "portuguese": "navegar",
+          "english": "to browse / to navigate",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "nah-veh-GAHR",
+          "example": "Passo muito tempo a navegar na internet.",
+          "exampleTranslation": "I spend a lot of time browsing the internet.",
+          "relatedWords": [
+            {
+              "word": "navegador",
+              "meaning": "browser"
+            }
+          ]
+        },
+        {
+          "portuguese": "aplicação",
+          "english": "app / application",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "ah-plee-kah-SOWNG",
+          "example": "Já descarregaste a aplicação?",
+          "exampleTranslation": "Have you already downloaded the app?",
+          "proTip": "In European Portuguese, always say 'aplicação' — never 'aplicativo' (that's Brazilian)."
+        },
+        {
+          "portuguese": "rede social",
+          "english": "social network / social media",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "HEH-duh soh-see-AHL",
+          "example": "Estás em alguma rede social?",
+          "exampleTranslation": "Are you on any social media?"
+        },
+        {
+          "portuguese": "perfil",
+          "english": "profile",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "pehr-FEEL",
+          "example": "Vou ver o teu perfil.",
+          "exampleTranslation": "I'm going to look at your profile."
+        },
+        {
+          "portuguese": "seguir",
+          "english": "to follow",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "seh-GEER",
+          "example": "Queres seguir a minha página?",
+          "exampleTranslation": "Do you want to follow my page?",
+          "relatedWords": [
+            {
+              "word": "seguidor",
+              "meaning": "follower"
+            }
+          ]
+        },
+        {
+          "portuguese": "partilhar",
+          "english": "to share",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "pahr-tee-LYAHR",
+          "example": "Podes partilhar este link comigo?",
+          "exampleTranslation": "Can you share this link with me?",
+          "proTip": "'Partilhar' is European Portuguese. In Brazil they say 'compartilhar.'"
+        },
+        {
+          "portuguese": "publicar",
+          "english": "to post / to publish",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "poo-blee-KAHR",
+          "example": "Vou publicar uma foto do jantar.",
+          "exampleTranslation": "I'm going to post a photo of dinner.",
+          "proTip": "In PT-PT, 'publicar' = to post online. Never use 'postar' — that's Brazilian Portuguese."
+        },
+        {
+          "portuguese": "comentário",
+          "english": "comment",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "koh-men-TAH-ree-oo",
+          "example": "Deixei um comentário na tua foto.",
+          "exampleTranslation": "I left a comment on your photo.",
+          "relatedWords": [
+            {
+              "word": "comentar",
+              "meaning": "to comment"
+            }
+          ]
+        },
+        {
+          "portuguese": "mensagem",
+          "english": "message",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "men-SAH-zheng",
+          "example": "Envia-me uma mensagem quando chegares.",
+          "exampleTranslation": "Send me a message when you arrive.",
+          "relatedWords": [
+            {
+              "word": "enviar",
+              "meaning": "to send"
+            },
+            {
+              "word": "receber",
+              "meaning": "to receive"
+            }
+          ]
+        },
+        {
+          "portuguese": "notificação",
+          "english": "notification",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "noh-tee-fee-kah-SOWNG",
+          "example": "Recebi uma notificação no telemóvel.",
+          "exampleTranslation": "I received a notification on my phone."
+        },
+        {
+          "portuguese": "pesquisar",
+          "english": "to search / to look up",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "pesh-kee-ZAHR",
+          "example": "Vou pesquisar no Google.",
+          "exampleTranslation": "I'm going to search on Google.",
+          "relatedWords": [
+            {
+              "word": "pesquisa",
+              "meaning": "search / research"
+            }
+          ]
+        },
+        {
+          "portuguese": "clicar",
+          "english": "to click",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "klee-KAHR",
+          "example": "Clica neste botão.",
+          "exampleTranslation": "Click on this button."
+        },
+        {
+          "portuguese": "copiar",
+          "english": "to copy",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "koh-pee-AHR",
+          "example": "Copia o endereço e cola aqui.",
+          "exampleTranslation": "Copy the address and paste it here.",
+          "relatedWords": [
+            {
+              "word": "colar",
+              "meaning": "to paste"
+            }
+          ]
+        },
+        {
+          "portuguese": "guardar",
+          "english": "to save",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "gwahr-DAHR",
+          "example": "Não te esqueças de guardar o ficheiro.",
+          "exampleTranslation": "Don't forget to save the file.",
+          "relatedWords": [
+            {
+              "word": "ficheiro",
+              "meaning": "file"
+            }
+          ]
+        },
+        {
+          "portuguese": "apagar",
+          "english": "to delete / to erase",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "ah-pah-GAHR",
+          "example": "Apaguei a mensagem sem querer.",
+          "exampleTranslation": "I accidentally deleted the message.",
+          "proTip": "'Apagar' also means 'to turn off' (a light) or 'to erase.' 'Apagar um ficheiro' = delete a file."
+        },
+        {
+          "portuguese": "atualizar",
+          "english": "to update",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "ah-too-ah-lee-ZAHR",
+          "example": "Preciso de atualizar o sistema.",
+          "exampleTranslation": "I need to update the system.",
+          "relatedWords": [
+            {
+              "word": "atualização",
+              "meaning": "update (noun)"
+            }
+          ]
+        },
+        {
+          "portuguese": "enviar",
+          "english": "to send",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "en-vee-AHR",
+          "example": "Podes enviar-me o link?",
+          "exampleTranslation": "Can you send me the link?",
+          "relatedWords": [
+            {
+              "word": "receber",
+              "meaning": "to receive"
+            },
+            {
+              "word": "mensagem",
+              "meaning": "message"
+            }
+          ]
+        },
+        {
+          "portuguese": "receber",
+          "english": "to receive",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "heh-seh-BEHR",
+          "example": "Já recebi o teu email.",
+          "exampleTranslation": "I already received your email."
+        },
+        {
+          "portuguese": "palavra-passe",
+          "english": "password",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "pah-LAH-vrah PAHS",
+          "example": "Esqueci-me da minha palavra-passe.",
+          "exampleTranslation": "I forgot my password.",
+          "proTip": "European Portuguese always says 'palavra-passe.' Never use 'senha' — that's Brazilian Portuguese."
+        },
+        {
+          "portuguese": "utilizador",
+          "english": "user / username",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "oo-tee-lee-zah-DOHR",
+          "example": "Qual é o teu nome de utilizador?",
+          "exampleTranslation": "What's your username?",
+          "relatedWords": [
+            {
+              "word": "conta",
+              "meaning": "account"
+            }
+          ]
+        },
+        {
+          "portuguese": "iniciar sessão",
+          "english": "to log in",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "ee-nee-see-AHR seh-SOWNG",
+          "example": "Tens de iniciar sessão primeiro.",
+          "exampleTranslation": "You have to log in first.",
+          "relatedWords": [
+            {
+              "word": "terminar sessão",
+              "meaning": "to log out"
+            }
+          ]
+        },
+        {
+          "portuguese": "terminar sessão",
+          "english": "to log out",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "tehr-mee-NAHR seh-SOWNG",
+          "example": "Não te esqueças de terminar sessão.",
+          "exampleTranslation": "Don't forget to log out."
+        },
+        {
+          "portuguese": "ficheiro",
+          "english": "file",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "fee-SHAY-roo",
+          "example": "Abre o ficheiro que te enviei.",
+          "exampleTranslation": "Open the file I sent you.",
+          "proTip": "In PT-PT, always say 'ficheiro' for a digital file. 'Arquivo' means archive. In Brazil, 'arquivo' is used for both."
+        },
+        {
+          "portuguese": "ecrã tátil",
+          "english": "touchscreen",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "eh-KRANG TAH-til",
+          "example": "Este portátil tem ecrã tátil.",
+          "exampleTranslation": "This laptop has a touchscreen."
+        },
+        {
+          "portuguese": "sinal",
+          "english": "signal",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "see-NAHL",
+          "example": "Aqui não há sinal.",
+          "exampleTranslation": "There's no signal here."
+        },
+        {
+          "portuguese": "fotografia",
+          "english": "photograph / photo",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "foh-toh-grah-FEE-ah",
+          "example": "Queres tirar uma fotografia?",
+          "exampleTranslation": "Do you want to take a photo?",
+          "relatedWords": [
+            {
+              "word": "foto",
+              "meaning": "photo (short form)"
+            },
+            {
+              "word": "câmara",
+              "meaning": "camera"
+            }
+          ],
+          "proTip": "'Fotografia' is the formal word; 'foto' is the everyday short form. Both are feminine: 'a fotografia,' 'a foto.'"
+        },
+        {
+          "portuguese": "vídeo",
+          "english": "video",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "VEE-dee-oo",
+          "example": "Viste o vídeo que te enviei?",
+          "exampleTranslation": "Did you see the video I sent you?"
+        },
+        {
+          "portuguese": "ligar",
+          "english": "to turn on / to call",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "lee-GAHR",
+          "example": "Liga o computador, por favor.",
+          "exampleTranslation": "Turn on the computer, please.",
+          "relatedWords": [
+            {
+              "word": "desligar",
+              "meaning": "to turn off / to hang up"
+            }
+          ],
+          "proTip": "'Ligar' = turn on (device), call someone, or connect. 'Desligar' = turn off or hang up. 'Liga-me!' = Call me!"
+        },
+        {
+          "portuguese": "desligar",
+          "english": "to turn off / to hang up",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "desh-lee-GAHR",
+          "example": "Desliga o telemóvel durante o filme.",
+          "exampleTranslation": "Turn off your phone during the movie."
+        },
+        {
+          "portuguese": "navegador",
+          "english": "browser",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "nah-veh-gah-DOHR",
+          "example": "Que navegador usas?",
+          "exampleTranslation": "Which browser do you use?"
+        }
+      ]
+    },
+    {
+      "id": "clothing-appearance",
+      "title": "Clothing & Appearance",
+      "description": "Camisa, sapatos, vestido — clothing, style, and describing how people look.",
+      "words": [
+        {
+          "portuguese": "camisa",
+          "english": "shirt (button-up)",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "kah-MEE-zah",
+          "example": "Vou vestir a camisa azul.",
+          "exampleTranslation": "I'm going to wear the blue shirt.",
+          "relatedWords": [
+            {
+              "word": "camisola",
+              "meaning": "sweater / jumper"
+            },
+            {
+              "word": "t-shirt",
+              "meaning": "T-shirt"
+            }
+          ]
+        },
+        {
+          "portuguese": "camisola",
+          "english": "sweater / jumper",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "kah-mee-ZOH-lah",
+          "example": "Leva uma camisola, está frio.",
+          "exampleTranslation": "Bring a sweater, it's cold.",
+          "proTip": "'Camisola' in PT-PT means sweater/jumper. In Brazil, 'camisola' means nightgown — very different!"
+        },
+        {
+          "portuguese": "t-shirt",
+          "english": "T-shirt",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "TEE-shurt",
+          "example": "Comprei uma t-shirt nova.",
+          "exampleTranslation": "I bought a new T-shirt."
+        },
+        {
+          "portuguese": "casaco",
+          "english": "coat / jacket",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "kah-ZAH-koo",
+          "example": "Não saias sem casaco.",
+          "exampleTranslation": "Don't go out without a coat.",
+          "relatedWords": [
+            {
+              "word": "blusão",
+              "meaning": "windbreaker / bomber jacket"
+            },
+            {
+              "word": "colete",
+              "meaning": "vest / waistcoat"
+            }
+          ]
+        },
+        {
+          "portuguese": "blusão",
+          "english": "windbreaker / bomber jacket",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "bloo-ZOWNG",
+          "example": "Leva o blusão, pode chover.",
+          "exampleTranslation": "Bring the jacket, it might rain."
+        },
+        {
+          "portuguese": "colete",
+          "english": "vest / waistcoat",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "koh-LEH-tuh",
+          "example": "Ele usou um colete por cima da camisa.",
+          "exampleTranslation": "He wore a waistcoat over the shirt."
+        },
+        {
+          "portuguese": "fato",
+          "english": "suit",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "FAH-too",
+          "example": "Preciso de um fato para a entrevista.",
+          "exampleTranslation": "I need a suit for the interview.",
+          "relatedWords": [
+            {
+              "word": "fato de banho",
+              "meaning": "swimsuit"
+            },
+            {
+              "word": "fato de treino",
+              "meaning": "tracksuit"
+            }
+          ],
+          "proTip": "'Fato' = suit (formal). 'Fato de banho' = swimsuit. 'Fato de treino' = tracksuit. In Brazil, 'fato' means 'fact' — in PT-PT it's primarily 'suit.'"
+        },
+        {
+          "portuguese": "vestido",
+          "english": "dress",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "vesh-TEE-doo",
+          "example": "Que vestido bonito!",
+          "exampleTranslation": "What a beautiful dress!",
+          "proTip": "Even though it's clothing worn by women, 'vestido' is masculine: 'o vestido.'"
+        },
+        {
+          "portuguese": "calças",
+          "english": "trousers / pants",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "KAHL-sahs",
+          "example": "Estas calças estão muito apertadas.",
+          "exampleTranslation": "These trousers are too tight.",
+          "proTip": "'Calças' is always plural in Portuguese — you never say 'calça' (singular) for trousers."
+        },
+        {
+          "portuguese": "calções",
+          "english": "shorts",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "kahl-SOYNGSH",
+          "example": "No verão uso sempre calções.",
+          "exampleTranslation": "In summer I always wear shorts."
+        },
+        {
+          "portuguese": "saia",
+          "english": "skirt",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "SAI-ah",
+          "example": "A saia preta combina com tudo.",
+          "exampleTranslation": "The black skirt goes with everything."
+        },
+        {
+          "portuguese": "calças de ganga",
+          "english": "jeans",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "KAHL-sahs duh GANG-gah",
+          "example": "As calças de ganga são muito confortáveis.",
+          "exampleTranslation": "Jeans are very comfortable.",
+          "proTip": "'Ganga' = denim. In PT-PT, jeans are always 'calças de ganga.' You might hear 'jeans' too, but 'calças de ganga' is the proper term."
+        },
+        {
+          "portuguese": "sapatos",
+          "english": "shoes",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "sah-PAH-toosh",
+          "example": "Preciso de sapatos novos.",
+          "exampleTranslation": "I need new shoes.",
+          "relatedWords": [
+            {
+              "word": "sapataria",
+              "meaning": "shoe shop"
+            },
+            {
+              "word": "sapatilhas",
+              "meaning": "trainers / sneakers"
+            }
+          ]
+        },
+        {
+          "portuguese": "ténis",
+          "english": "trainers / sneakers",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "TEH-nish",
+          "example": "Vou calçar os ténis para correr.",
+          "exampleTranslation": "I'm going to put on my trainers to run.",
+          "proTip": "In PT-PT, 'ténis' means both the sport (tennis) and sneakers/trainers. 'Sapatilhas' is also used for trainers."
+        },
+        {
+          "portuguese": "botas",
+          "english": "boots",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "BOH-tahsh",
+          "example": "No inverno uso sempre botas.",
+          "exampleTranslation": "In winter I always wear boots."
+        },
+        {
+          "portuguese": "sandálias",
+          "english": "sandals",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "san-DAH-lee-ahsh",
+          "example": "Na praia uso sandálias.",
+          "exampleTranslation": "At the beach I wear sandals."
+        },
+        {
+          "portuguese": "chinelos",
+          "english": "slippers / flip-flops",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "shee-NEH-loosh",
+          "example": "Em casa ando sempre de chinelos.",
+          "exampleTranslation": "At home I always wear slippers.",
+          "proTip": "'Chinelos' can mean both slippers (indoor) and flip-flops (beach). Context clarifies."
+        },
+        {
+          "portuguese": "chapéu",
+          "english": "hat",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "shah-PEH-oo",
+          "example": "Põe o chapéu, está muito sol.",
+          "exampleTranslation": "Put on your hat, it's very sunny.",
+          "relatedWords": [
+            {
+              "word": "boné",
+              "meaning": "cap / baseball cap"
+            }
+          ]
+        },
+        {
+          "portuguese": "lenço",
+          "english": "scarf / handkerchief",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "LEN-soo",
+          "example": "Leva um lenço para o pescoço.",
+          "exampleTranslation": "Bring a scarf for your neck."
+        },
+        {
+          "portuguese": "cinto",
+          "english": "belt",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "SEEN-too",
+          "example": "Precisas de um cinto com estas calças.",
+          "exampleTranslation": "You need a belt with these trousers."
+        },
+        {
+          "portuguese": "óculos",
+          "english": "glasses",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "OH-koo-loosh",
+          "example": "Onde estão os meus óculos?",
+          "exampleTranslation": "Where are my glasses?",
+          "relatedWords": [
+            {
+              "word": "óculos de sol",
+              "meaning": "sunglasses"
+            }
+          ],
+          "proTip": "'Óculos' is always plural. 'Usar óculos' = to wear glasses."
+        },
+        {
+          "portuguese": "óculos de sol",
+          "english": "sunglasses",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "OH-koo-loosh duh SOHL",
+          "example": "Esqueci-me dos óculos de sol.",
+          "exampleTranslation": "I forgot my sunglasses."
+        },
+        {
+          "portuguese": "relógio",
+          "english": "watch / clock",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "heh-LOH-zhee-oo",
+          "example": "Que relógio giro!",
+          "exampleTranslation": "What a cool watch!",
+          "proTip": "'Relógio' means both wristwatch and clock. 'Relógio de pulso' = wristwatch. 'Relógio de parede' = wall clock."
+        },
+        {
+          "portuguese": "brincos",
+          "english": "earrings",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "BREEN-koosh",
+          "example": "Gosto muito desses brincos.",
+          "exampleTranslation": "I really like those earrings."
+        },
+        {
+          "portuguese": "colar",
+          "english": "necklace",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "koh-LAHR",
+          "example": "Ela usa sempre o mesmo colar.",
+          "exampleTranslation": "She always wears the same necklace.",
+          "proTip": "Same spelling as 'colar' (to paste/to glue) — context makes it clear. As a noun with article: 'o colar' = the necklace."
+        },
+        {
+          "portuguese": "pulseira",
+          "english": "bracelet",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "pool-SAY-rah",
+          "example": "A pulseira é de prata.",
+          "exampleTranslation": "The bracelet is made of silver."
+        },
+        {
+          "portuguese": "anel",
+          "english": "ring",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "ah-NEHL",
+          "example": "Que anel bonito! É de ouro?",
+          "exampleTranslation": "What a beautiful ring! Is it gold?",
+          "relatedWords": [
+            {
+              "word": "aliança",
+              "meaning": "wedding ring"
+            }
+          ]
+        },
+        {
+          "portuguese": "mala",
+          "english": "bag / handbag",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "MAH-lah",
+          "example": "Leva a mala, tens lá tudo.",
+          "exampleTranslation": "Bring the bag, you have everything in there.",
+          "relatedWords": [
+            {
+              "word": "mala de viagem",
+              "meaning": "suitcase"
+            },
+            {
+              "word": "mochila",
+              "meaning": "backpack"
+            }
+          ],
+          "proTip": "'Mala' in PT-PT means handbag/purse (everyday) or suitcase (travel). 'Mala de mão' = handbag, 'mala de viagem' = suitcase."
+        },
+        {
+          "portuguese": "bonito / bonita",
+          "english": "beautiful / handsome / pretty",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "boo-NEE-too / boo-NEE-tah",
+          "example": "Estás muito bonita hoje.",
+          "exampleTranslation": "You look very pretty today.",
+          "relatedWords": [
+            {
+              "word": "giro / gira",
+              "meaning": "cute / good-looking"
+            },
+            {
+              "word": "lindo / linda",
+              "meaning": "gorgeous / stunning"
+            }
+          ]
+        },
+        {
+          "portuguese": "feio / feia",
+          "english": "ugly",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "FAY-oo / FAY-ah",
+          "example": "Aquele casaco é muito feio.",
+          "exampleTranslation": "That coat is very ugly."
+        },
+        {
+          "portuguese": "elegante",
+          "english": "elegant / smart",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "eh-leh-GANG-tuh",
+          "example": "Estás muito elegante com esse fato.",
+          "exampleTranslation": "You look very smart in that suit."
+        },
+        {
+          "portuguese": "casual",
+          "english": "casual",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "kah-zoo-AHL",
+          "example": "Prefiro um estilo mais casual.",
+          "exampleTranslation": "I prefer a more casual style."
+        },
+        {
+          "portuguese": "estampado",
+          "english": "patterned / printed",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "esh-tahm-PAH-doo",
+          "example": "Gosto desta camisa estampada.",
+          "exampleTranslation": "I like this patterned shirt."
+        },
+        {
+          "portuguese": "liso",
+          "english": "plain / solid (colour)",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "LEE-zoo",
+          "example": "Prefiro t-shirts lisas, sem desenhos.",
+          "exampleTranslation": "I prefer plain T-shirts, without designs."
+        },
+        {
+          "portuguese": "às riscas",
+          "english": "striped",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "ahsh REESH-kahsh",
+          "example": "Aquela camisola às riscas é gira.",
+          "exampleTranslation": "That striped jumper is cool."
+        },
+        {
+          "portuguese": "às bolinhas",
+          "english": "polka-dotted",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "ahsh boh-LEE-nyahsh",
+          "example": "Tens uma saia às bolinhas?",
+          "exampleTranslation": "Do you have a polka-dot skirt?"
+        },
+        {
+          "portuguese": "largo",
+          "english": "wide / loose-fitting",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "LAHR-goo",
+          "example": "Estas calças estão muito largas.",
+          "exampleTranslation": "These trousers are too loose.",
+          "relatedWords": [
+            {
+              "word": "apertado",
+              "meaning": "tight"
+            }
+          ]
+        },
+        {
+          "portuguese": "apertado",
+          "english": "tight",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "ah-pehr-TAH-doo",
+          "example": "Esta camisola está muito apertada.",
+          "exampleTranslation": "This jumper is too tight."
+        },
+        {
+          "portuguese": "justo",
+          "english": "fitted / form-fitting",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "ZHOOSH-too",
+          "example": "Gosto de vestidos mais justos.",
+          "exampleTranslation": "I like more fitted dresses."
+        },
+        {
+          "portuguese": "despir",
+          "english": "to undress / to take off (clothes)",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "desh-PEER",
+          "example": "Despe o casaco, está calor aqui.",
+          "exampleTranslation": "Take off your coat, it's hot in here.",
+          "relatedWords": [
+            {
+              "word": "vestir",
+              "meaning": "to dress / to put on"
+            }
+          ]
+        },
+        {
+          "portuguese": "calçar",
+          "english": "to put on (shoes)",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "kahl-SAHR",
+          "example": "Calça os sapatos, vamos sair.",
+          "exampleTranslation": "Put your shoes on, we're going out.",
+          "relatedWords": [
+            {
+              "word": "descalçar",
+              "meaning": "to take off (shoes)"
+            }
+          ],
+          "proTip": "'Calçar' is specifically for footwear. 'Vestir' is for clothing. Portuguese distinguishes the two — you never 'vestir' shoes."
+        },
+        {
+          "portuguese": "descalçar",
+          "english": "to take off (shoes)",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "desh-kahl-SAHR",
+          "example": "Em casa, descalço os sapatos à entrada.",
+          "exampleTranslation": "At home, I take off my shoes at the door."
+        },
+        {
+          "portuguese": "provar",
+          "english": "to try on",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "proh-VAHR",
+          "example": "Posso provar isto?",
+          "exampleTranslation": "Can I try this on?",
+          "proTip": "'Provar' = try on (clothes) or taste (food). 'Experimentar' also works for both, but 'provar' is more common for clothes in shops."
+        },
+        {
+          "portuguese": "combinar",
+          "english": "to match / to go with",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "kohm-bee-NAHR",
+          "example": "Esta gravata não combina com a camisa.",
+          "exampleTranslation": "This tie doesn't go with the shirt.",
+          "proTip": "'Combinar' also means 'to arrange/agree' (e.g., 'Vamos combinar um dia' = Let's arrange a day). For clothes: 'combinar com' = to match/go with."
+        },
+        {
+          "portuguese": "roupa",
+          "english": "clothes / clothing",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "HOH-pah",
+          "example": "Preciso de comprar roupa nova.",
+          "exampleTranslation": "I need to buy new clothes.",
+          "proTip": "'Roupa' is always singular in Portuguese, even when referring to multiple items. 'Muita roupa' = many clothes."
+        },
+        {
+          "portuguese": "bolso",
+          "english": "pocket",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "BOHL-soo",
+          "example": "As chaves estão no bolso.",
+          "exampleTranslation": "The keys are in the pocket."
+        },
+        {
+          "portuguese": "botão",
+          "english": "button",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "boh-TOWNG",
+          "example": "Falta um botão nesta camisa.",
+          "exampleTranslation": "There's a button missing on this shirt."
+        },
+        {
+          "portuguese": "fecho",
+          "english": "zipper",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "FEH-shoo",
+          "example": "O fecho do casaco está preso.",
+          "exampleTranslation": "The coat zipper is stuck.",
+          "proTip": "'Fecho' or 'fecho éclair' — both are used in PT-PT for zipper."
+        },
+        {
+          "portuguese": "número",
+          "english": "size (shoes)",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "NOO-meh-roo",
+          "example": "Que número calças?",
+          "exampleTranslation": "What shoe size do you wear?",
+          "proTip": "For shoes: 'número' (Que número calças? = What size?). For clothes: 'tamanho.' Two different words!"
+        },
+        {
+          "portuguese": "provador",
+          "english": "fitting room",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "proh-vah-DOHR",
+          "example": "Onde é o provador?",
+          "exampleTranslation": "Where is the fitting room?"
+        },
+        {
+          "portuguese": "gravata",
+          "english": "tie",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "grah-VAH-tah",
+          "example": "Tens de usar gravata no escritório?",
+          "exampleTranslation": "Do you have to wear a tie at the office?"
+        },
+        {
+          "portuguese": "meias",
+          "english": "socks",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "MAY-ahsh",
+          "example": "Preciso de meias limpas.",
+          "exampleTranslation": "I need clean socks."
+        },
+        {
+          "portuguese": "roupa interior",
+          "english": "underwear",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "HOH-pah in-teh-ree-OHR",
+          "example": "Leva roupa interior suficiente para a viagem.",
+          "exampleTranslation": "Bring enough underwear for the trip."
+        },
+        {
+          "portuguese": "fica-te bem",
+          "english": "it suits you / it looks good on you",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "FEE-kah tuh BANG",
+          "example": "Esse vestido fica-te muito bem!",
+          "exampleTranslation": "That dress looks great on you!",
+          "relatedWords": [
+            {
+              "word": "ficar bem",
+              "meaning": "to look good / to suit"
+            },
+            {
+              "word": "ficar mal",
+              "meaning": "to look bad / not suit"
+            }
+          ],
+          "proTip": "'Fica-te bem' (informal you) / 'Fica-lhe bem' (formal). To say it looks bad: 'Não te fica bem' or 'Fica-te mal.'"
+        }
+      ]
     }
   ]
 }
