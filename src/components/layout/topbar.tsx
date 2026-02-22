@@ -43,7 +43,7 @@ const revisionItems: MenuItem[] = [
   {
     title: "Lessons",
     portuguese: "Lições",
-    stats: [`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"}`, "Guided revision"],
+    stats: [`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"} + level tests`, "A1–B1"],
     href: "/lessons",
   },
   {
@@ -51,12 +51,6 @@ const revisionItems: MenuItem[] = [
     portuguese: "Exames",
     stats: ["CIPLE preparation", "Coming soon"],
     href: "/exams",
-  },
-  {
-    title: "Progress",
-    portuguese: "Progresso",
-    stats: ["Track your level", "A1–B1"],
-    href: "/dashboard",
   },
 ];
 
@@ -81,7 +75,7 @@ const libraryItems: MenuItem[] = [
   },
 ];
 
-const REVISION_PATHS = ["/lessons", "/exams", "/dashboard"];
+const REVISION_PATHS = ["/lessons", "/exams"];
 const LIBRARY_PATHS = ["/vocabulary", "/conjugations", "/grammar"];
 
 function matchesSection(pathname: string | null, paths: string[]): boolean {
@@ -437,7 +431,7 @@ export function Topbar() {
                   onClose={closeMenus}
                   panelRef={revisionPanelRef}
                   onKeyDown={handlePanelKeyDown}
-                  columns={3}
+                  columns={2}
                 />
               )}
 
@@ -509,11 +503,11 @@ export function Topbar() {
                       <p className="text-xs text-gray-400 truncate">{user.email}</p>
                     </div>
                     <Link
-                      href="/dashboard"
+                      href="/lessons#level-tests"
                       onClick={() => setUserMenuOpen(false)}
                       className="block px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
                     >
-                      Dashboard
+                      Progress
                     </Link>
                     <Link
                       href="/settings"

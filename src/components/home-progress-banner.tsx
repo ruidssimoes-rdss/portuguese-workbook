@@ -57,7 +57,7 @@ export function HomeProgressBanner() {
           ))}
         </div>
         <Link
-          href="/dashboard"
+          href="/lessons#level-tests"
           className="text-[13px] font-medium text-[#3C5E95] hover:text-[#2E4A75] mt-3 inline-block transition-colors"
         >
           View full progress →
@@ -75,10 +75,10 @@ export function HomeProgressBanner() {
         Take placement tests in conjugations, vocabulary, and grammar to see where you stand.
       </p>
       <Link
-        href="/dashboard"
+        href="/lessons#level-tests"
         className="inline-flex items-center justify-center px-4 py-2.5 bg-[#111827] text-white text-[13px] font-medium rounded-[10px] hover:bg-[#1F2937] transition-colors duration-200"
       >
-        Go to Dashboard →
+        Go to Level Tests →
       </Link>
     </>
   );

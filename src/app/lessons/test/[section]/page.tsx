@@ -301,8 +301,8 @@ export default function LevelTestPage() {
         <Topbar />
         <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
           <p className="text-text-2">Section not found.</p>
-          <Link href="/dashboard" className="text-[13px] text-text-2 hover:text-text underline mt-4 inline-block">
-            Back to Progress & Tests
+          <Link href="/lessons" className="text-[13px] text-text-2 hover:text-text underline mt-4 inline-block">
+            Back to Revision
           </Link>
         </main>
       </>
@@ -315,8 +315,8 @@ export default function LevelTestPage() {
         <Topbar />
         <main className="max-w-[640px] mx-auto px-6 md:px-10 py-12">
           <p className="text-text-2">Level not found.</p>
-          <Link href="/dashboard" className="text-[13px] text-text-2 hover:text-text underline mt-4 inline-block">
-            Back to Progress & Tests
+          <Link href="/lessons" className="text-[13px] text-text-2 hover:text-text underline mt-4 inline-block">
+            Back to Revision
           </Link>
         </main>
       </>
@@ -413,7 +413,7 @@ export default function LevelTestPage() {
                       Start Level {currentLevel} Test
                     </button>
                     <Link
-                      href="/dashboard"
+                      href="/lessons"
                       className="inline-flex items-center justify-center h-[36px] px-2.5 bg-[#F4F4F4] border border-[#A2A6AE] rounded-[12px] text-[13px] font-medium text-[#A2A6AE] hover:bg-[#EBEBEB] transition-colors duration-200"
                     >
                       Back
@@ -614,16 +614,16 @@ export default function LevelTestPage() {
                       )}
                       <div className="mt-6 flex flex-col gap-3 w-full">
                         <Link
-                          href="/dashboard"
+                          href="/lessons#level-tests"
                           className="w-full text-center py-3 px-4 rounded-xl font-medium text-white bg-[#111827] hover:bg-[#1F2937] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#111827]"
                         >
-                          {nextLevel ? `Continue to ${nextLevel}` : "Back to Progress & Tests"}
+                          {nextLevel ? `Continue to ${nextLevel}` : "Back to Revision"}
                         </Link>
                         <Link
-                          href="/dashboard"
+                          href="/lessons#level-tests"
                           className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 border-[#E5E7EB] text-[#6B7280] bg-transparent hover:bg-[#FAFAFA] transition-colors duration-150"
                         >
-                          Back to Progress & Tests
+                          Back to Revision
                         </Link>
                       </div>
                     </>
@@ -656,10 +656,10 @@ export default function LevelTestPage() {
                           Try Again
                         </button>
                         <Link
-                          href="/dashboard"
+                          href="/lessons#level-tests"
                           className="w-full text-center py-3 px-4 rounded-xl font-medium border-2 border-[#E5E7EB] text-[#6B7280] bg-transparent hover:bg-[#FAFAFA] transition-colors duration-150"
                         >
-                          Back to Progress & Tests
+                          Back to Revision
                         </Link>
                       </div>
                     </>
