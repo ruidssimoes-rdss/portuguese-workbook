@@ -12,6 +12,7 @@ import sayingsData from "@/data/sayings.json";
 import { dailyPrompts } from "@/data/daily-prompts";
 import { cefrPillClass } from "@/lib/cefr";
 import { HomeGreeting } from "@/components/home-greeting";
+import { LessonPreview } from "@/components/lesson-preview";
 import type { VerbDataSet } from "@/types";
 import type { SayingsData } from "@/types/saying";
 import type { VocabData, VocabWord } from "@/types/vocab";
@@ -113,6 +114,9 @@ export default function Home() {
 
         {/* Daily prompt */}
         {todayPrompt && <HomeGreeting greeting={todayPrompt} />}
+
+        {/* Lesson preview */}
+        <LessonPreview />
 
         {/* Quick stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">

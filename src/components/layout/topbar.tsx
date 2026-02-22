@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { SearchModal } from "@/components/search-modal";
 import { useAuth } from "@/components/auth-provider";
 import { BrandLogo } from "@/components/brand-logo";
+import { lessons } from "@/data/lessons";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
@@ -20,6 +21,7 @@ const vocab = vocabData as unknown as VocabData;
 const grammar = grammarData as unknown as GrammarData;
 const sayings = (sayingsData as unknown as SayingsData).sayings;
 
+const lessonCount = lessons.length;
 const verbCount = verbs.order.length;
 const tenseCount = new Set(
   verbs.order.flatMap((k) => verbs.verbs[k]?.conjugations?.map((c) => c.Tense) ?? [])
@@ -30,6 +32,13 @@ const topicCount = Object.keys(grammar.topics).length;
 const sayingCount = sayings.length;
 
 const learnItems = [
+  {
+    title: "Lessons",
+    portuguese: "Lições",
+    stats: [`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"}`, "Guided revision"],
+    href: "/lessons",
+    disabled: false,
+  },
   {
     title: "Conjugations",
     portuguese: "Conjugações",
@@ -74,7 +83,7 @@ const learnItems = [
   },
 ];
 
-const LEARN_PATHS = ["/conjugations", "/vocabulary", "/grammar", "/culture", "/practice"];
+const LEARN_PATHS = ["/lessons", "/conjugations", "/vocabulary", "/grammar", "/culture", "/practice"];
 
 function isLearnPage(pathname: string | null): boolean {
   return LEARN_PATHS.some((p) => pathname === p || pathname?.startsWith(p + "/"));
