@@ -13,10 +13,12 @@ import { PronunciationButton } from "@/components/pronunciation-button";
 import { normalizeForSearch } from "@/lib/search";
 import { PageContainer } from "@/components/ui/page-container";
 import { PageHeader } from "@/components/ui/page-header";
+import { SectionHeader } from "@/components/ui/section-header";
 import { FilterPill } from "@/components/ui/filter-pill";
 import { SearchInput } from "@/components/ui/search-input";
 import { Divider } from "@/components/ui/divider";
-import { CEFRBadge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { Badge, CEFRBadge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 
 const sayings = (sayingsData as unknown as SayingsData).sayings;
@@ -25,10 +27,10 @@ const etiquetteTips = (etiquetteData as unknown as EtiquetteData).tips;
 const regionalExpressions = (regionalData as unknown as RegionalData).expressions;
 
 const TABS = [
-  { id: "sayings", label: "Sayings & Proverbs", labelPt: "Ditados e Provérbios", count: sayings.length },
+  { id: "sayings", label: "Sayings & Proverbs", labelPt: "Ditados e Prov\u00e9rbios", count: sayings.length },
   { id: "false-friends", label: "False Friends", labelPt: "Falsos Amigos", count: falseFriends.length },
   { id: "etiquette", label: "Cultural Etiquette", labelPt: "Etiqueta Cultural", count: etiquetteTips.length },
-  { id: "regional", label: "Regional Slang", labelPt: "Calão Regional", count: regionalExpressions.length },
+  { id: "regional", label: "Regional Slang", labelPt: "Cal\u00e3o Regional", count: regionalExpressions.length },
 ] as const;
 type TabId = (typeof TABS)[number]["id"];
 
@@ -47,6 +49,16 @@ const REGION_TO_KEY: Record<string, string> = {
   Lisboa: "lisbon", Porto: "porto", North: "north", Algarve: "algarve", Azores: "azores", Madeira: "madeira",
 };
 
+const ETIQUETTE_CATEGORY_COLORS: Record<string, string> = {
+  greetings: "text-violet-700 bg-violet-50",
+  dining: "text-amber-700 bg-amber-50",
+  social: "text-sky-700 bg-sky-50",
+  shopping: "text-emerald-700 bg-emerald-50",
+  daily: "text-rose-700 bg-rose-50",
+};
+
+/* ── Utility ────────────────────────────────────────────────── */
+
 function Chevron({ expanded }: { expanded: boolean }) {
   return (
     <svg
@@ -61,6 +73,16 @@ function Chevron({ expanded }: { expanded: boolean }) {
   );
 }
 
+function ExpandableSection({ expanded, children }: { expanded: boolean; children: React.ReactNode }) {
+  return (
+    <div
+      className={`grid transition-all duration-150 ease-out ${expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+    >
+      <div className="overflow-hidden">{children}</div>
+    </div>
+  );
+}
+
 function regionBadgeClass(region: string): string {
   switch (region) {
     case "lisbon": return "bg-yellow-50 text-yellow-700";
@@ -69,13 +91,50 @@ function regionBadgeClass(region: string): string {
     case "north": return "bg-emerald-50 text-emerald-700";
     case "azores": return "bg-cyan-50 text-cyan-700";
     case "madeira": return "bg-blue-50 text-blue-700";
-    default: return "bg-border-light text-text-secondary";
+    default: return "bg-[#F3F4F6] text-[#6B7280]";
   }
 }
+
 function regionLabel(region: string): string {
   const map: Record<string, string> = { lisbon: "Lisboa", porto: "Porto", north: "North", algarve: "Algarve", azores: "Azores", madeira: "Madeira" };
   return map[region] ?? region;
 }
+
+function themeLabel(themeKey: string): string {
+  return THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === themeKey) ?? themeKey;
+}
+
+function etiquetteCategoryLabel(categoryKey: string): string {
+  return ETIQUETTE_CATEGORIES.find((c) => c !== "All" && ETIQUETTE_TO_KEY[c] === categoryKey) ?? categoryKey;
+}
+
+/* ── Featured Saying ────────────────────────────────────────── */
+
+function FeaturedSaying() {
+  const dayIndex = Math.floor(Date.now() / 86400000);
+  const featured = sayings[dayIndex % sayings.length];
+
+  return (
+    <section className="mt-6">
+      <SectionHeader className="mb-3">Destaque do Dia</SectionHeader>
+      <Card variant="featured" padding="lg">
+        <div className="flex items-start gap-3">
+          <p className="text-xl font-semibold italic text-[#111827] leading-snug flex-1">
+            &quot;{featured.portuguese}&quot;
+          </p>
+          <PronunciationButton text={featured.portuguese} size="sm" />
+          <CEFRBadge level={featured.cefr} />
+        </div>
+        <p className="mt-3 text-sm text-[#6B7280]">{featured.meaning}</p>
+        <div className="mt-3">
+          <Badge>{themeLabel(featured.theme)}</Badge>
+        </div>
+      </Card>
+    </section>
+  );
+}
+
+/* ── Card Components ────────────────────────────────────────── */
 
 function SayingCard({ saying, isHighlighted, isExpanded, onToggle }: { saying: Saying; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
   const [copied, setCopied] = useState(false);
@@ -88,183 +147,196 @@ function SayingCard({ saying, isHighlighted, isExpanded, onToggle }: { saying: S
   }, [saying.portuguese]);
 
   return (
-    <article
-      id={saying.id}
+    <Card
+      variant="outline"
+      interactive
+      padding="lg"
       onClick={onToggle}
-      className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
-        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
-      }`}
+      className={isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""}
     >
-      {/* Collapsed: always visible */}
-      <div className="flex items-start justify-between gap-3">
-        <p className="font-semibold text-[#111827] italic">&quot;{saying.portuguese}&quot;</p>
-        <Chevron expanded={isExpanded} />
-      </div>
-      <div className="flex items-center gap-2 mt-2">
-        <PronunciationButton text={saying.portuguese} size="sm" />
-        <CEFRBadge level={saying.cefr} />
-      </div>
-      <p className="mt-3 text-sm text-[#6B7280]">{saying.meaning}</p>
-      <div className="mt-3">
-        <span className="inline-block bg-border-light text-text-secondary rounded-full px-3 py-1 text-xs">
-          {THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === saying.theme) ?? saying.theme}
-        </span>
-      </div>
-
-      {/* Expanded: additional details */}
-      {isExpanded && (
-        <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
-          <p className="text-xs text-[#9CA3AF] font-mono">{saying.pronunciation}</p>
-          <div>
-            <p className="text-xs font-semibold text-[#6B7280]">Literal:</p>
-            <p className="text-sm text-[#6B7280]">{saying.literal}</p>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-[#6B7280]">When to use:</p>
-            <p className="text-sm text-[#6B7280]">{saying.usage}</p>
-          </div>
-          {saying.example && (
-            <div className="bg-[#F9FAFB] rounded-lg p-3">
-              <p className="text-sm text-[#111827] italic">{saying.example}</p>
-              {saying.exampleTranslation && <p className="text-sm text-[#6B7280] mt-1">{saying.exampleTranslation}</p>}
-            </div>
-          )}
-          <div className="flex justify-end">
-            <button
-              type="button"
-              onClick={handleCopy}
-              className="text-xs text-[#9CA3AF] hover:text-[#6B7280] transition-colors"
-            >
-              {copied ? "Copied" : "Copy"}
-            </button>
-          </div>
+      <article id={saying.id}>
+        {/* Collapsed: always visible */}
+        <div className="flex items-start justify-between gap-3">
+          <p className="text-[15px] font-semibold italic text-[#111827] leading-snug">
+            &quot;{saying.portuguese}&quot;
+          </p>
+          <Chevron expanded={isExpanded} />
         </div>
-      )}
-    </article>
+        <div className="flex items-center gap-2 mt-2 flex-wrap">
+          <PronunciationButton text={saying.portuguese} size="sm" />
+          <CEFRBadge level={saying.cefr} />
+          <Badge>{themeLabel(saying.theme)}</Badge>
+        </div>
+        <p className="mt-3 text-sm text-[#6B7280]">{saying.meaning}</p>
+
+        {/* Expandable details */}
+        <ExpandableSection expanded={isExpanded}>
+          <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
+            <div className="bg-[#F9FAFB] rounded-lg p-3 space-y-2">
+              <div>
+                <p className="text-xs font-semibold text-[#6B7280]">Literal:</p>
+                <p className="text-sm text-[#6B7280]">{saying.literal}</p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-[#6B7280]">When to use:</p>
+                <p className="text-sm text-[#6B7280]">{saying.usage}</p>
+              </div>
+              {saying.example && (
+                <div className="pt-2 border-t border-[#E5E7EB]">
+                  <p className="text-sm text-[#111827] italic">{saying.example}</p>
+                  {saying.exampleTranslation && <p className="text-sm text-[#6B7280] mt-1">{saying.exampleTranslation}</p>}
+                </div>
+              )}
+            </div>
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="text-xs text-[#9CA3AF] hover:text-[#6B7280] transition-colors"
+              >
+                {copied ? "Copied" : "Copy"}
+              </button>
+            </div>
+          </div>
+        </ExpandableSection>
+      </article>
+    </Card>
   );
 }
 
 function FalseFriendCard({ item, isHighlighted, isExpanded, onToggle }: { item: FalseFriend; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
   return (
-    <article
-      id={item.id}
+    <Card
+      variant="outline"
+      interactive
+      padding="lg"
       onClick={onToggle}
-      className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
-        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
-      }`}
+      className={isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""}
     >
-      {/* Collapsed */}
-      <div className="flex items-start justify-between gap-3">
-        <p className="font-semibold text-[#111827]">{item.portuguese}</p>
-        <Chevron expanded={isExpanded} />
-      </div>
-      <div className="flex items-center gap-2 mt-2">
-        <PronunciationButton text={item.portuguese} size="sm" />
-        <CEFRBadge level={item.cefr} />
-      </div>
-      <p className="mt-3 text-sm text-[#6B7280]">Actually means: {item.actualMeaning}</p>
+      <article id={item.id}>
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3">
+          <p className="font-bold text-[#111827] text-base">{item.portuguese}</p>
+          <Chevron expanded={isExpanded} />
+        </div>
+        <div className="flex items-center gap-2 mt-2">
+          <PronunciationButton text={item.portuguese} size="sm" />
+          <CEFRBadge level={item.cefr} />
+        </div>
 
-      {/* Expanded */}
-      {isExpanded && (
-        <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
-          <p className="text-xs text-[#9CA3AF] font-mono">{item.pronunciation}</p>
-          <p className="text-sm text-red-400">
-            Looks like: <span className="line-through text-red-500">{item.looksLike}</span>
-          </p>
-          <p className="text-sm text-[#6B7280]">
-            Correct word for &quot;{item.looksLike}&quot;: <span className="font-medium text-[#374151]">{item.correctWord}</span>
-          </p>
-          <div className="bg-[#F9FAFB] rounded-lg p-3">
-            <p className="text-sm text-[#111827] italic">{item.example}</p>
-            <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
+        {/* Side-by-side comparison */}
+        <div className="grid grid-cols-2 gap-2 mt-3">
+          <div className="rounded-lg bg-emerald-50 p-2.5">
+            <p className="text-[10px] font-semibold uppercase tracking-wide text-emerald-600 mb-0.5">Actually means</p>
+            <p className="text-sm font-medium text-emerald-800">{item.actualMeaning}</p>
           </div>
-          <div className="bg-amber-50 rounded-lg p-3">
-            <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
-            <p className="text-sm text-amber-800">{item.tip}</p>
+          <div className="rounded-lg bg-red-50 p-2.5">
+            <p className="text-[10px] font-semibold uppercase tracking-wide text-red-500 mb-0.5">Looks like</p>
+            <p className="text-sm font-medium text-red-700 line-through">{item.looksLike}</p>
           </div>
         </div>
-      )}
-    </article>
+
+        {/* Expandable details */}
+        <ExpandableSection expanded={isExpanded}>
+          <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
+            <p className="text-sm text-[#6B7280]">
+              Correct word for &quot;{item.looksLike}&quot;: <span className="font-medium text-[#374151]">{item.correctWord}</span>
+            </p>
+            <div className="bg-[#F9FAFB] rounded-lg p-3">
+              <p className="text-sm text-[#111827] italic">{item.example}</p>
+              <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
+            </div>
+            <div className="bg-amber-50 rounded-lg p-3">
+              <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
+              <p className="text-sm text-amber-800">{item.tip}</p>
+            </div>
+          </div>
+        </ExpandableSection>
+      </article>
+    </Card>
   );
 }
 
 function EtiquetteCard({ tip, isExpanded, onToggle }: { tip: EtiquetteTip; isExpanded: boolean; onToggle: () => void }) {
-  const categoryLabel = ETIQUETTE_CATEGORIES.find((c) => c !== "All" && ETIQUETTE_TO_KEY[c] === tip.category) ?? tip.category;
-
   return (
-    <article
-      id={tip.id}
+    <Card
+      variant="outline"
+      interactive
+      padding="lg"
       onClick={onToggle}
-      className="border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer"
     >
-      {/* Collapsed */}
-      <div className="flex items-start justify-between gap-3">
-        <p className="font-semibold text-[#111827]">{tip.title}</p>
-        <Chevron expanded={isExpanded} />
-      </div>
-      <p className="text-sm text-[#6B7280] font-medium mt-1">{tip.titlePt}</p>
-      <p className="mt-3 text-sm text-[#6B7280] line-clamp-2">{tip.description}</p>
-      <div className="mt-3">
-        <span className="text-xs bg-border-light text-text-secondary rounded-full px-3 py-1">{categoryLabel}</span>
-      </div>
-
-      {/* Expanded */}
-      {isExpanded && (
-        <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
-          <p className="text-sm text-[#6B7280]">{tip.description}</p>
-          <div className="bg-emerald-50 rounded-lg p-3">
-            <p className="text-xs font-semibold text-emerald-700">Do:</p>
-            <p className="text-sm text-emerald-800">{tip.doThis}</p>
-          </div>
-          <div className="bg-red-50 rounded-lg p-3">
-            <p className="text-xs font-semibold text-red-400">Avoid:</p>
-            <p className="text-sm text-red-700">{tip.avoidThis}</p>
-          </div>
+      <article id={tip.id}>
+        {/* Category badge at top */}
+        <div className="flex items-start justify-between gap-3">
+          <Badge color={ETIQUETTE_CATEGORY_COLORS[tip.category] ?? "text-[#6B7280] bg-[#F3F4F6]"}>
+            {etiquetteCategoryLabel(tip.category)}
+          </Badge>
+          <Chevron expanded={isExpanded} />
         </div>
-      )}
-    </article>
+
+        <p className="font-bold text-[#111827] mt-2">{tip.title}</p>
+        <p className="text-sm text-[#6B7280] italic mt-0.5">{tip.titlePt}</p>
+        <p className={`mt-3 text-sm text-[#6B7280] ${isExpanded ? "" : "line-clamp-2"}`}>{tip.description}</p>
+
+        {/* Expandable details */}
+        <ExpandableSection expanded={isExpanded}>
+          <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
+            <div className="bg-emerald-50 rounded-lg p-3">
+              <p className="text-xs font-semibold text-emerald-700 mb-1">Do:</p>
+              <p className="text-sm text-emerald-800">{tip.doThis}</p>
+            </div>
+            <div className="bg-red-50 rounded-lg p-3">
+              <p className="text-xs font-semibold text-red-500 mb-1">Avoid:</p>
+              <p className="text-sm text-red-700">{tip.avoidThis}</p>
+            </div>
+          </div>
+        </ExpandableSection>
+      </article>
+    </Card>
   );
 }
 
 function RegionalCard({ item, isHighlighted, isExpanded, onToggle }: { item: RegionalExpression; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
   return (
-    <article
-      id={item.id}
+    <Card
+      variant="outline"
+      interactive
+      padding="lg"
       onClick={onToggle}
-      className={`border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] transition-all duration-200 cursor-pointer ${
-        isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""
-      }`}
+      className={`bg-[#FAFBFC] ${isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""}`}
     >
-      {/* Collapsed */}
-      <div className="flex items-start justify-between gap-3">
-        <p className="font-semibold text-[#111827] italic">{item.expression}</p>
-        <Chevron expanded={isExpanded} />
-      </div>
-      <div className="flex items-center gap-2 mt-2">
-        <PronunciationButton text={item.expression} size="sm" />
-        <span className={`inline-flex text-[11px] font-semibold px-2.5 py-[3px] rounded-full ${regionBadgeClass(item.region)}`}>
-          {regionLabel(item.region)}
-        </span>
-        <CEFRBadge level={item.cefr} />
-      </div>
-      <p className="mt-3 text-sm text-[#6B7280]">{item.meaning}</p>
-
-      {/* Expanded */}
-      {isExpanded && (
-        <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
-          <p className="text-xs text-[#9CA3AF] font-mono">{item.pronunciation}</p>
-          <p className="text-sm text-[#6B7280]">
-            Standard Portuguese: <span className="font-medium text-[#374151]">{item.standardAlternative}</span>
-          </p>
-          <div className="bg-[#F9FAFB] rounded-lg p-3">
-            <p className="text-sm text-[#111827] italic">{item.example}</p>
-            <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
-          </div>
+      <article id={item.id}>
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3">
+          <p className="font-semibold text-[#111827] italic text-[15px]">{item.expression}</p>
+          <Chevron expanded={isExpanded} />
         </div>
-      )}
-    </article>
+        <div className="flex items-center gap-2 mt-2 flex-wrap">
+          <Badge color={regionBadgeClass(item.region)}>{regionLabel(item.region)}</Badge>
+          <CEFRBadge level={item.cefr} />
+          <PronunciationButton text={item.expression} size="sm" />
+        </div>
+        <p className="mt-3 text-sm text-[#6B7280]">{item.meaning}</p>
+
+        {/* Expandable details */}
+        <ExpandableSection expanded={isExpanded}>
+          <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
+            <p className="text-xs text-[#9CA3AF] font-mono">{item.pronunciation}</p>
+            <p className="text-sm text-[#6B7280]">
+              Standard Portuguese: <span className="font-medium text-[#374151]">{item.standardAlternative}</span>
+            </p>
+            <div className="bg-[#F9FAFB] rounded-lg p-3">
+              <p className="text-sm text-[#111827] italic">{item.example}</p>
+              <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
+            </div>
+          </div>
+        </ExpandableSection>
+      </article>
+    </Card>
   );
 }
+
+/* ── Tab Filters ────────────────────────────────────────────── */
 
 function TabFilters({
   tab,
@@ -299,25 +371,27 @@ function TabFilters({
 
   return (
     <div className="flex flex-wrap items-center gap-3">
+      {/* CEFR pills (left) */}
       {(tab === "sayings" || tab === "false-friends" || tab === "regional") && (
-        <>
-          <div className="flex items-center gap-1.5">
-            {CEFR_LEVELS.map((level) => (
-              <FilterPill
-                key={level}
-                active={cefrFilter === level}
-                onClick={() => setCefrFilter(level)}
-              >
-                {level}
-              </FilterPill>
-            ))}
-          </div>
-          {(tab === "sayings" || tab === "regional") && (
-            <div className="w-px h-5 bg-[#E5E7EB]" />
-          )}
-        </>
+        <div className="flex items-center gap-1.5">
+          {CEFR_LEVELS.map((level) => (
+            <FilterPill
+              key={level}
+              active={cefrFilter === level}
+              onClick={() => setCefrFilter(level)}
+            >
+              {level}
+            </FilterPill>
+          ))}
+        </div>
       )}
 
+      {/* Thin divider between CEFR and topic/category/region pills */}
+      {(tab === "sayings" || tab === "regional") && (
+        <div className="w-px h-5 bg-[#E5E7EB]" />
+      )}
+
+      {/* Topic pills for sayings */}
       {tab === "sayings" && (
         <div className="flex items-center gap-1.5 flex-wrap">
           {THEMES.map((t) => (
@@ -332,6 +406,7 @@ function TabFilters({
         </div>
       )}
 
+      {/* Category pills for etiquette */}
       {tab === "etiquette" && (
         <div className="flex items-center gap-1.5">
           {ETIQUETTE_CATEGORIES.map((c) => (
@@ -346,6 +421,7 @@ function TabFilters({
         </div>
       )}
 
+      {/* Region pills for regional */}
       {tab === "regional" && (
         <div className="flex items-center gap-1.5 flex-wrap">
           {REGIONS.map((r) => (
@@ -360,6 +436,7 @@ function TabFilters({
         </div>
       )}
 
+      {/* Search on far right */}
       <div className="w-full sm:w-auto sm:ml-auto">
         <SearchInput
           value={search}
@@ -370,6 +447,8 @@ function TabFilters({
     </div>
   );
 }
+
+/* ── Main Content ───────────────────────────────────────────── */
 
 function CultureContent() {
   const searchParams = useSearchParams();
@@ -496,7 +575,11 @@ function CultureContent() {
             subtitle={`4 sections \u00b7 ${sayings.length} sayings \u00b7 ${falseFriends.length} false friends \u00b7 ${etiquetteTips.length} etiquette tips \u00b7 ${regionalExpressions.length} regional expressions`}
           />
 
-          <div className="flex flex-wrap items-center gap-3 mt-6">
+          {/* Featured Saying of the Day */}
+          <FeaturedSaying />
+
+          {/* Tab Switcher */}
+          <div className="flex flex-wrap items-center gap-3 mt-8">
             <div className="flex items-center gap-1.5">
               {TABS.map((t) => (
                 <FilterPill
@@ -512,6 +595,7 @@ function CultureContent() {
 
           <Divider className="mt-4" />
 
+          {/* Filters Row */}
           <div className="mt-6">
             <TabFilters
               tab={tab}
@@ -532,6 +616,7 @@ function CultureContent() {
           </div>
         </div>
 
+        {/* Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
           {tab === "sayings" && (
             <>

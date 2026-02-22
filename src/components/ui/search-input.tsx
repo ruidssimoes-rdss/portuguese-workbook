@@ -19,7 +19,7 @@ export function SearchInput({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      className={`w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white${className ? ` ${className}` : ""}`}
+      className={`w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] focus-visible:ring-2 focus-visible:ring-[#3C5E95] focus-visible:ring-offset-2 transition-all duration-150 bg-white${className ? ` ${className}` : ""}`}
     />
   );
 }

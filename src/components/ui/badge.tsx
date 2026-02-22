@@ -7,7 +7,7 @@ interface BadgeProps {
   className?: string;
 }
 
-const baseClasses = "text-[11px] font-semibold px-2.5 py-[3px] rounded-full inline-flex items-center";
+const baseClasses = "text-[11px] font-medium px-2.5 py-0.5 rounded-full inline-flex items-center whitespace-nowrap";
 
 export function Badge({ children, color, className }: BadgeProps) {
   const c = color ?? "text-[#6B7280] bg-[#F3F4F6]";

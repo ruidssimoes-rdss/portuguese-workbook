@@ -28,9 +28,9 @@ interface ButtonAsLink {
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-[#111827] text-white hover:bg-[#1F2937] disabled:opacity-60",
-  secondary: "border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] bg-white",
-  ghost: "text-[#6B7280] hover:text-[#111827]",
+  primary: "bg-[#111827] text-white hover:bg-[#1F2937] hover:-translate-y-[0.5px] disabled:opacity-60 focus-visible:ring-2 focus-visible:ring-[#3C5E95] focus-visible:ring-offset-2",
+  secondary: "border border-[#E5E7EB] text-[#6B7280] hover:bg-[#F9FAFB] hover:border-[#D1D5DB] hover:text-[#111827] bg-white focus-visible:ring-2 focus-visible:ring-[#3C5E95] focus-visible:ring-offset-2",
+  ghost: "text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] focus-visible:ring-2 focus-visible:ring-[#3C5E95] focus-visible:ring-offset-2",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -46,7 +46,7 @@ export function Button({
   className,
   ...props
 }: ButtonProps) {
-  const base = "inline-flex items-center justify-center font-medium rounded-lg transition-colors duration-200";
+  const base = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-150 ease-out outline-none";
   const v = variantClasses[variant];
   const s = sizeClasses[size];
   const classes = `${base} ${v} ${s}${className ? ` ${className}` : ""}`;

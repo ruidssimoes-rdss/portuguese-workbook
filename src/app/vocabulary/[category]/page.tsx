@@ -100,7 +100,7 @@ function WordCard({
   return (
     <div
       ref={isHighlight ? highlightedRef : undefined}
-      className={`bg-white border border-[#E5E7EB] rounded-xl p-5 flex flex-col gap-3 transition-all duration-200 hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] ${
+      className={`bg-white border border-[#E5E7EB] rounded-xl p-5 flex flex-col gap-3 transition-all duration-150 ease-out hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-[1px] ${
         isHighlight && flashHighlight
           ? "ring-2 ring-[#111827] ring-offset-2"
           : ""
@@ -258,7 +258,7 @@ export default function VocabCategoryPage() {
         <div className="py-5">
           <Link
             href="/vocabulary"
-            className="text-text-2 hover:text-text text-[13px] transition-colors w-fit"
+            className="text-text-2 hover:text-text text-[13px] transition-all duration-150 ease-out w-fit"
           >
             ← Vocabulary
           </Link>

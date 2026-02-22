@@ -88,11 +88,18 @@ export const radii = {
   input: "rounded-full",
 } as const;
 
+// ── Elevation ───────────────────────────────────────────────
+
+export const elevation = {
+  low: "shadow-[0_4px_16px_rgba(0,0,0,0.06)]",
+  medium: "shadow-[0_8px_30px_rgba(0,0,0,0.08)]",
+} as const;
+
 // ── Transitions ─────────────────────────────────────────────
 
 export const transitions = {
-  fast: "transition-colors duration-200",
-  default: "transition-all duration-200",
+  fast: "transition-all duration-150 ease-out",
+  default: "transition-all duration-200 ease-out",
 } as const;
 
 // ── Component class patterns ────────────────────────────────
@@ -100,21 +107,22 @@ export const transitions = {
 export const patterns = {
   card: {
     base: "border border-[#E5E7EB] rounded-xl p-5 bg-white",
-    interactive: "border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-sm transition-all duration-200",
+    interactive: "border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-[1px] transition-all duration-150 ease-out",
     surface: "bg-[#FAFAFA] rounded-xl p-5 border border-[#E5E7EB]",
+    featured: "border border-[#E5E7EB] rounded-xl p-5 bg-white border-l-[3px] border-l-[#3C5E95]",
   },
   pill: {
-    active: "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer",
-    inactive: "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer bg-white",
+    active: "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer transition-all duration-150 ease-out",
+    inactive: "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-all duration-150 ease-out cursor-pointer bg-white",
   },
-  badge: "text-[11px] font-semibold px-2.5 py-[3px] rounded-full",
-  searchInput: "w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] transition-colors bg-white",
+  badge: "text-[11px] font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap",
+  searchInput: "w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] focus-visible:ring-2 focus-visible:ring-[#3C5E95] focus-visible:ring-offset-2 transition-all duration-150 bg-white",
   divider: "border-t border-[#F3F4F6]",
   emptyState: "text-[13px] text-text-secondary py-8",
   button: {
-    primary: "bg-[#111827] text-white text-sm font-medium rounded-lg hover:bg-[#1F2937] transition-colors",
-    secondary: "border border-[#E5E7EB] text-[#6B7280] text-sm font-medium rounded-lg hover:border-[#D1D5DB] hover:text-[#111827] transition-colors bg-white",
-    ghost: "text-sm font-medium text-[#6B7280] hover:text-[#111827] transition-colors",
+    primary: "bg-[#111827] text-white text-sm font-medium rounded-lg hover:bg-[#1F2937] hover:-translate-y-[0.5px] transition-all duration-150 ease-out",
+    secondary: "border border-[#E5E7EB] text-[#6B7280] text-sm font-medium rounded-lg hover:bg-[#F9FAFB] hover:border-[#D1D5DB] hover:text-[#111827] transition-all duration-150 ease-out bg-white",
+    ghost: "text-sm font-medium text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] transition-all duration-150 ease-out",
   },
 } as const;
 

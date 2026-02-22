@@ -259,7 +259,7 @@ export default function LessonsPage() {
               </p>
               <Link
                 href="/auth/login"
-                className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200 mt-5"
+                className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-all duration-150 ease-out mt-5"
               >
                 Entrar
               </Link>
@@ -468,7 +468,7 @@ export default function LessonsPage() {
                         ) : (
                           <Link
                             href={`/lessons/test/${section}`}
-                            className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200"
+                            className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-all duration-150 ease-out"
                           >
                             {failedLast
                               ? `Retry ${sectionLabels[section]} Test`

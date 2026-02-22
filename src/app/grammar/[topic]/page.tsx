@@ -193,7 +193,7 @@ function RuleCard({
           <button
             type="button"
             onClick={onToggleNote}
-            className="flex items-center gap-1.5 text-[13px] font-medium text-[#9CA3AF] hover:text-[#6B7280] transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-[13px] font-medium text-[#9CA3AF] hover:text-[#6B7280] transition-all duration-150 ease-out cursor-pointer"
           >
             <svg
               className={`w-3 h-3 transition-transform duration-200 ${isNoteExpanded ? "rotate-90" : ""}`}
@@ -305,7 +305,7 @@ export default function GrammarTopicPage() {
           <p className="text-[13px] text-[#6B7280]">Topic not found.</p>
           <Link
             href="/grammar"
-            className="text-[13px] text-[#6B7280] hover:text-[#111827] transition-colors mt-4 inline-block"
+            className="text-[13px] text-[#6B7280] hover:text-[#111827] transition-all duration-150 ease-out mt-4 inline-block"
           >
             ← Grammar
           </Link>
@@ -324,7 +324,7 @@ export default function GrammarTopicPage() {
         <div className="mb-8 py-5">
           <Link
             href="/grammar"
-            className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors mb-4"
+            className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-all duration-150 ease-out mb-4"
           >
             ← Grammar
           </Link>

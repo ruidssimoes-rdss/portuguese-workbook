@@ -219,7 +219,7 @@ export default function Home() {
                 </div>
                 <Link
                   href={`/conjugations/${verbKey.toLowerCase()}`}
-                  className="text-[13px] font-medium text-[#111827] hover:text-[#374151] transition-colors mt-auto"
+                  className="text-[13px] font-medium text-[#111827] hover:text-[#374151] transition-all duration-150 ease-out mt-auto"
                 >
                   View all tenses →
                 </Link>
@@ -249,7 +249,7 @@ export default function Home() {
                 </div>
                 <Link
                   href="/culture"
-                  className="text-[13px] font-medium text-[#111827] hover:text-[#374151] transition-colors mt-auto"
+                  className="text-[13px] font-medium text-[#111827] hover:text-[#374151] transition-all duration-150 ease-out mt-auto"
                 >
                   Explore culture →
                 </Link>

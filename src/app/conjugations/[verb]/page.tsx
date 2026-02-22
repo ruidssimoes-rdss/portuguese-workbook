@@ -84,7 +84,7 @@ export default function VerbPage() {
         <div className="py-5">
           <Link
             href="/conjugations"
-            className="text-text-2 hover:text-text text-[13px] transition-colors w-fit"
+            className="text-text-2 hover:text-text text-[13px] transition-all duration-150 ease-out w-fit"
           >
             ← Conjugations
           </Link>
