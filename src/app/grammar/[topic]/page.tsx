@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
@@ -68,11 +69,9 @@ function collectCrossLinkedTopicIds(topic: GrammarTopic): string[] {
   const linkPattern = /\]\(\/grammar\/([^)]+)\)/g;
 
   for (const rule of topic.rules) {
-    // Check rule text
     for (const m of rule.rule.matchAll(linkPattern)) {
       if (allTopicIds.has(m[1])) ids.add(m[1]);
     }
-    // Check exceptions
     const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
       ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
       : [];
@@ -83,7 +82,6 @@ function collectCrossLinkedTopicIds(topic: GrammarTopic): string[] {
       }
     }
   }
-  // Check tips
   for (const tip of topic.tips) {
     for (const m of tip.matchAll(linkPattern)) {
       if (allTopicIds.has(m[1])) ids.add(m[1]);
@@ -102,7 +100,6 @@ function getRelatedTopics(topic: GrammarTopic, topicId: string): GrammarTopic[] 
 
   if (related.length >= 3) return related.slice(0, 6);
 
-  // Fall back to same-CEFR topics
   const sameCefr = Object.entries(data.topics)
     .filter(([id, t]) => id !== topicId && t.cefr === topic.cefr && !crossLinkedIds.includes(id))
     .map(([, t]) => t);
@@ -110,7 +107,26 @@ function getRelatedTopics(topic: GrammarTopic, topicId: string): GrammarTopic[] 
   return [...related, ...sameCefr].slice(0, 3);
 }
 
-function RuleCard({ rule, index }: { rule: GrammarRule; index: number }) {
+/** Strip markdown links from text for keyword matching */
+function stripLinks(text: string): string {
+  return text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+}
+
+function RuleCard({
+  rule,
+  index,
+  tips,
+  tipsPt,
+  isNoteExpanded,
+  onToggleNote,
+}: {
+  rule: GrammarRule;
+  index: number;
+  tips: string[];
+  tipsPt: string[];
+  isNoteExpanded: boolean;
+  onToggleNote: () => void;
+}) {
   const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
     ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
     : [];
@@ -132,7 +148,7 @@ function RuleCard({ rule, index }: { rule: GrammarRule; index: number }) {
 
   return (
     <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white">
-      {/* Rule header */}
+      {/* 1. Rule header */}
       <div className="flex items-start gap-3 mb-4">
         <span className="text-[13px] font-semibold text-[#9CA3AF] mt-0.5">{index + 1}</span>
         <div>
@@ -143,18 +159,7 @@ function RuleCard({ rule, index }: { rule: GrammarRule; index: number }) {
         </div>
       </div>
 
-      {/* Note/explanation — from exceptions */}
-      {noteTexts.length > 0 && (
-        <div className="mb-4">
-          {noteTexts.map((note, i) => (
-            <p key={i} className="text-[15px] text-[#6B7280] mb-2 last:mb-0">
-              {renderWithLinks(note)}
-            </p>
-          ))}
-        </div>
-      )}
-
-      {/* Examples — always shown, single column */}
+      {/* 2. Examples — THE PRIMARY CONTENT */}
       {rule.examples.length > 0 && (
         <div className="space-y-0">
           {rule.examples.map((ex, i) => (
@@ -174,7 +179,49 @@ function RuleCard({ rule, index }: { rule: GrammarRule; index: number }) {
         </div>
       )}
 
-      {/* Cross-links — subtle inline links */}
+      {/* 3. Tip callouts */}
+      {tips.map((tip, i) => (
+        <div key={i} className="mt-4 px-4 py-3 bg-[#F9FAFB] rounded-lg border border-[#F3F4F6]">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1.5">Tip</p>
+          <p className="text-[13px] font-medium text-[#6B7280]">{renderWithLinks(tip)}</p>
+          {tipsPt[i] && (
+            <p className="text-[13px] text-[#9CA3AF] italic mt-1">{renderWithLinks(tipsPt[i])}</p>
+          )}
+        </div>
+      ))}
+
+      {/* 4. "Why?" collapsible note */}
+      {noteTexts.length > 0 && (
+        <div className="mt-4 pt-3 border-t border-[#F3F4F6]">
+          <button
+            type="button"
+            onClick={onToggleNote}
+            className="flex items-center gap-1.5 text-[13px] font-medium text-[#9CA3AF] hover:text-[#6B7280] transition-colors cursor-pointer"
+          >
+            <svg
+              className={`w-3 h-3 transition-transform duration-200 ${isNoteExpanded ? "rotate-90" : ""}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+            Why?
+          </button>
+          {isNoteExpanded && (
+            <div className="mt-3 space-y-2">
+              {noteTexts.map((note, i) => (
+                <p key={i} className="text-[13px] text-[#9CA3AF] leading-relaxed">
+                  {renderWithLinks(note)}
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* 5. Cross-links */}
       {dedupedLinks.length > 0 && (
         <div className="mt-4 pt-3 border-t border-[#F3F4F6]">
           {dedupedLinks.map((link, i) => (
@@ -196,6 +243,62 @@ export default function GrammarTopicPage() {
   const params = useParams();
   const topicId = params.topic as string;
   const topic: GrammarTopic | undefined = topicId ? data.topics[topicId] : undefined;
+  const [expandedNoteId, setExpandedNoteId] = useState<number | null>(null);
+
+  const toggleNote = (ruleIndex: number) => {
+    setExpandedNoteId((prev) => (prev === ruleIndex ? null : ruleIndex));
+  };
+
+  // Match tips to rules by keyword overlap
+  const { ruleTipsMap, unmatchedTips, unmatchedTipsPt } = useMemo(() => {
+    if (!topic) return { ruleTipsMap: {} as Record<number, { tips: string[]; tipsPt: string[] }>, unmatchedTips: [] as string[], unmatchedTipsPt: [] as string[] };
+
+    const map: Record<number, { tips: string[]; tipsPt: string[] }> = {};
+    const matched = new Set<number>();
+
+    topic.tips.forEach((tip, tipIdx) => {
+      const tipText = stripLinks(tip + " " + (topic.tipsPt[tipIdx] || "")).toLowerCase();
+      let bestMatch = -1;
+      let bestScore = 0;
+
+      topic.rules.forEach((rule, ruleIdx) => {
+        // Build searchable text from rule title, PT title, and exception notes
+        const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
+          ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
+          : [];
+        const noteText = rawExceptions.map((ex) => normalizeExceptionText(ex)).join(" ");
+        const ruleText = stripLinks(
+          rule.rule + " " + rule.rulePt + " " + noteText
+        ).toLowerCase();
+
+        const tipWords = tipText.split(/\s+/).filter((w) => w.length > 3);
+        const score = tipWords.filter((w) => ruleText.includes(w)).length;
+
+        if (score > bestScore) {
+          bestScore = score;
+          bestMatch = ruleIdx;
+        }
+      });
+
+      if (bestMatch >= 0 && bestScore >= 2) {
+        if (!map[bestMatch]) map[bestMatch] = { tips: [], tipsPt: [] };
+        map[bestMatch].tips.push(tip);
+        map[bestMatch].tipsPt.push(topic.tipsPt[tipIdx] || "");
+        matched.add(tipIdx);
+      }
+    });
+
+    const unTips: string[] = [];
+    const unTipsPt: string[] = [];
+    topic.tips.forEach((tip, i) => {
+      if (!matched.has(i)) {
+        unTips.push(tip);
+        unTipsPt.push(topic.tipsPt[i] || "");
+      }
+    });
+
+    return { ruleTipsMap: map, unmatchedTips: unTips, unmatchedTipsPt: unTipsPt };
+  }, [topic]);
 
   if (!topic) {
     return (
@@ -250,25 +353,32 @@ export default function GrammarTopicPage() {
 
         <div className="border-t border-[#F3F4F6]" />
 
-        {/* Rules — no accordions, all visible */}
+        {/* Rules */}
         <div className="space-y-4 mt-8">
           {topic.rules.map((rule, index) => (
-            <RuleCard key={index} rule={rule} index={index} />
+            <RuleCard
+              key={index}
+              rule={rule}
+              index={index}
+              tips={ruleTipsMap[index]?.tips ?? []}
+              tipsPt={ruleTipsMap[index]?.tipsPt ?? []}
+              isNoteExpanded={expandedNoteId === index}
+              onToggleNote={() => toggleNote(index)}
+            />
           ))}
         </div>
 
-        {/* Tips */}
-        {topic.tips.length > 0 && (
+        {/* Unmatched tips fallback */}
+        {unmatchedTips.length > 0 && (
           <div className="mt-8 pt-6 border-t border-[#F3F4F6]">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-4">Tips</p>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-4">More Tips</p>
             <div className="space-y-3">
-              {topic.tips.map((tip, i) => (
-                <div key={i} className="border border-[#E5E7EB] rounded-xl p-4 bg-white">
-                  <p className="text-[15px] text-[#111827]">{renderWithLinks(tip)}</p>
-                  {topic.tipsPt[i] && (
-                    <p className="text-[13px] font-medium text-[#6B7280] italic mt-2">
-                      {renderWithLinks(topic.tipsPt[i])}
-                    </p>
+              {unmatchedTips.map((tip, i) => (
+                <div key={i} className="px-4 py-3 bg-[#F9FAFB] rounded-lg border border-[#F3F4F6]">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1.5">Tip</p>
+                  <p className="text-[13px] font-medium text-[#6B7280]">{renderWithLinks(tip)}</p>
+                  {unmatchedTipsPt[i] && (
+                    <p className="text-[13px] text-[#9CA3AF] italic mt-1">{renderWithLinks(unmatchedTipsPt[i])}</p>
                   )}
                 </div>
               ))}
