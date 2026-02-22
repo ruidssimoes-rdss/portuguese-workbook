@@ -26,6 +26,8 @@ const CATEGORY_ORDER = [
   "nature-animals",
   "emotions-personality",
   "colloquial-slang",
+  "technology-internet",
+  "clothing-appearance",
 ];
 
 const CATEGORY_PT_TITLE: Record<string, string> = {
@@ -42,6 +44,8 @@ const CATEGORY_PT_TITLE: Record<string, string> = {
   "nature-animals": "Natureza e Animais",
   "emotions-personality": "Emoções e Personalidade",
   "colloquial-slang": "Coloquial e Calão",
+  "technology-internet": "Tecnologia e Internet",
+  "clothing-appearance": "Roupa e Aparência",
 };
 
 const CATEGORY_DESCRIPTION: Record<string, string> = {
@@ -71,6 +75,10 @@ const CATEGORY_DESCRIPTION: Record<string, string> = {
     "Feliz, triste, simpático — feelings, moods, and character traits.",
   "colloquial-slang":
     "Fixe, giro, bué — informal expressions and everyday slang.",
+  "technology-internet":
+    "Telemóvel, ecrã, palavra-passe — devices, apps, and digital life.",
+  "clothing-appearance":
+    "Camisa, sapatos, vestido — clothing, style, and describing how people look.",
 };
 
 function countByLevel(categories: VocabCategory[]) {

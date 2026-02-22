@@ -25,6 +25,8 @@ const CATEGORY_PT_TITLE: Record<string, string> = {
   "nature-animals": "Natureza e Animais",
   "emotions-personality": "Emoções e Personalidade",
   "colloquial-slang": "Coloquial e Calão",
+  "technology-internet": "Tecnologia e Internet",
+  "clothing-appearance": "Roupa e Aparência",
 };
 
 function Popover({

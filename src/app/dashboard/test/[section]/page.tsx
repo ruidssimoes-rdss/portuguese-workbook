@@ -103,6 +103,8 @@ function getVocabularyTags(levelData: VocabSubLevel): string[] {
     "nature-animals": "nature",
     "emotions-personality": "emotions",
     "colloquial-slang": "slang",
+    "technology-internet": "technology",
+    "clothing-appearance": "clothing",
   };
   return req.map((id) => shortLabels[id] || id);
 }
