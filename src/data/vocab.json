@@ -12525,6 +12525,827 @@
           "proTip": "'Fica-te bem' (informal you) / 'Fica-lhe bem' (formal). To say it looks bad: 'Não te fica bem' or 'Fica-te mal.'"
         }
       ]
+    },
+    {
+      "id": "opposites",
+      "title": "Opposites",
+      "titlePt": "Opostos",
+      "description": "Common antonym pairs for adjectives, verbs, adverbs, and nouns — learn words in pairs for faster recall.",
+      "words": [
+        {
+          "portuguese": "grande",
+          "english": "big / large",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A casa é muito grande.",
+          "exampleTranslation": "The house is very big.",
+          "relatedWords": [
+            {
+              "word": "enorme",
+              "meaning": "enormous"
+            },
+            {
+              "word": "grandioso",
+              "meaning": "grand / magnificent"
+            }
+          ],
+          "proTip": "In EP, 'grande' before a noun can mean 'great' rather than 'big': 'um grande homem' (a great man) vs 'um homem grande' (a big/tall man)."
+        },
+        {
+          "portuguese": "pequeno",
+          "english": "small / little",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O jardim é pequeno mas bonito.",
+          "exampleTranslation": "The garden is small but pretty.",
+          "relatedWords": [
+            {
+              "word": "diminuto",
+              "meaning": "tiny / minute"
+            },
+            {
+              "word": "pequenino",
+              "meaning": "very small (affectionate)"
+            }
+          ],
+          "proTip": "'Pequenino' is a common affectionate diminutive used especially when talking to or about children."
+        },
+        {
+          "portuguese": "quente",
+          "english": "hot",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O café está muito quente.",
+          "exampleTranslation": "The coffee is very hot.",
+          "relatedWords": [
+            {
+              "word": "morno",
+              "meaning": "warm / lukewarm"
+            },
+            {
+              "word": "a quentura",
+              "meaning": "the heat (informal)"
+            }
+          ]
+        },
+        {
+          "portuguese": "frio",
+          "english": "cold",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Está muito frio lá fora.",
+          "exampleTranslation": "It's very cold outside.",
+          "relatedWords": [
+            {
+              "word": "gelado",
+              "meaning": "freezing / ice cream"
+            },
+            {
+              "word": "fresco",
+              "meaning": "cool / fresh"
+            }
+          ],
+          "proTip": "'Frio' is both an adjective (cold) and a noun (the cold): 'Tenho frio' (I'm cold — literally 'I have cold')."
+        },
+        {
+          "portuguese": "alto",
+          "english": "tall / high",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Ele é muito alto.",
+          "exampleTranslation": "He is very tall.",
+          "relatedWords": [
+            {
+              "word": "a altura",
+              "meaning": "the height"
+            }
+          ]
+        },
+        {
+          "portuguese": "baixo",
+          "english": "short / low",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A mesa é muito baixa.",
+          "exampleTranslation": "The table is very low.",
+          "proTip": "'Baixo' also means 'bass' in music. And 'em baixo' / 'embaixo' means 'below' or 'downstairs'."
+        },
+        {
+          "portuguese": "novo",
+          "english": "new / young",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Comprámos um carro novo.",
+          "exampleTranslation": "We bought a new car.",
+          "proTip": "'Novo' has two meanings: 'new' (for things) and 'young' (for people). Context makes it clear: 'uma casa nova' (a new house) vs 'ela é nova' (she is young)."
+        },
+        {
+          "portuguese": "velho",
+          "english": "old",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Este edifício é muito velho.",
+          "exampleTranslation": "This building is very old.",
+          "relatedWords": [
+            {
+              "word": "antigo",
+              "meaning": "ancient / former"
+            },
+            {
+              "word": "idoso",
+              "meaning": "elderly (polite)"
+            }
+          ],
+          "proTip": "For people, 'idoso' is more polite than 'velho'. Calling someone 'velho' can sound rude. For objects, 'velho' is fine."
+        },
+        {
+          "portuguese": "bonito",
+          "english": "pretty / handsome",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Que dia tão bonito!",
+          "exampleTranslation": "What a beautiful day!",
+          "relatedWords": [
+            {
+              "word": "lindo",
+              "meaning": "beautiful / gorgeous"
+            },
+            {
+              "word": "giro",
+              "meaning": "cute / pretty (EP)"
+            }
+          ],
+          "proTip": "'Giro/gira' is a very common EP word for cute/pretty/cool. It's used casually: 'Que giro!' (How cute!). Brazilians don't use this word."
+        },
+        {
+          "portuguese": "feio",
+          "english": "ugly",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Aquele quadro é feio.",
+          "exampleTranslation": "That painting is ugly.",
+          "relatedWords": [
+            {
+              "word": "horrível",
+              "meaning": "horrible"
+            }
+          ]
+        },
+        {
+          "portuguese": "fácil",
+          "english": "easy",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O exame foi fácil.",
+          "exampleTranslation": "The exam was easy.",
+          "relatedWords": [
+            {
+              "word": "a facilidade",
+              "meaning": "the ease / easiness"
+            },
+            {
+              "word": "facilmente",
+              "meaning": "easily"
+            }
+          ]
+        },
+        {
+          "portuguese": "difícil",
+          "english": "difficult",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Português é difícil mas não é impossível.",
+          "exampleTranslation": "Portuguese is difficult but it's not impossible.",
+          "relatedWords": [
+            {
+              "word": "a dificuldade",
+              "meaning": "the difficulty"
+            },
+            {
+              "word": "complicado",
+              "meaning": "complicated"
+            }
+          ]
+        },
+        {
+          "portuguese": "rápido",
+          "english": "fast / quick",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O comboio é muito rápido.",
+          "exampleTranslation": "The train is very fast.",
+          "proTip": "In EP, 'rápido' is mainly an adjective. As an adverb ('quickly'), European Portuguese prefers 'depressa': 'Anda depressa!' (Come quickly!)."
+        },
+        {
+          "portuguese": "lento",
+          "english": "slow",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O serviço neste restaurante é lento.",
+          "exampleTranslation": "The service in this restaurant is slow.",
+          "relatedWords": [
+            {
+              "word": "devagar",
+              "meaning": "slowly (adverb)"
+            },
+            {
+              "word": "vagaroso",
+              "meaning": "sluggish / unhurried"
+            }
+          ],
+          "proTip": "The adverb form is 'devagar' (slowly) or 'lentamente'. 'Devagar' is much more common in spoken EP."
+        },
+        {
+          "portuguese": "limpo",
+          "english": "clean",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A cozinha está limpa.",
+          "exampleTranslation": "The kitchen is clean.",
+          "relatedWords": [
+            {
+              "word": "limpar",
+              "meaning": "to clean"
+            },
+            {
+              "word": "a limpeza",
+              "meaning": "the cleaning / cleanliness"
+            }
+          ]
+        },
+        {
+          "portuguese": "sujo",
+          "english": "dirty",
+          "cefr": "A1",
+          "gender": null,
+          "example": "As mãos estão sujas.",
+          "exampleTranslation": "The hands are dirty.",
+          "relatedWords": [
+            {
+              "word": "sujar",
+              "meaning": "to make dirty / to soil"
+            },
+            {
+              "word": "a sujidade",
+              "meaning": "the dirt / filth"
+            }
+          ]
+        },
+        {
+          "portuguese": "cheio",
+          "english": "full",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O autocarro está cheio.",
+          "exampleTranslation": "The bus is full.",
+          "proTip": "'Cheio' is also used colloquially to mean 'fed up': 'Estou cheio disto!' (I'm fed up with this!)."
+        },
+        {
+          "portuguese": "vazio",
+          "english": "empty",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O restaurante estava vazio.",
+          "exampleTranslation": "The restaurant was empty.",
+          "relatedWords": [
+            {
+              "word": "esvaziar",
+              "meaning": "to empty"
+            },
+            {
+              "word": "o vazio",
+              "meaning": "the void / emptiness"
+            }
+          ]
+        },
+        {
+          "portuguese": "forte",
+          "english": "strong",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Ele é muito forte.",
+          "exampleTranslation": "He is very strong.",
+          "relatedWords": [
+            {
+              "word": "a força",
+              "meaning": "the strength / force"
+            }
+          ]
+        },
+        {
+          "portuguese": "fraco",
+          "english": "weak",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Sinto-me fraco hoje.",
+          "exampleTranslation": "I feel weak today.",
+          "relatedWords": [
+            {
+              "word": "a fraqueza",
+              "meaning": "the weakness"
+            }
+          ],
+          "proTip": "'Fraco' is also used for bad quality: 'O filme foi fraco' (The film was poor/weak)."
+        },
+        {
+          "portuguese": "rico",
+          "english": "rich",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Portugal é rico em história.",
+          "exampleTranslation": "Portugal is rich in history.",
+          "relatedWords": [
+            {
+              "word": "a riqueza",
+              "meaning": "the wealth / richness"
+            }
+          ]
+        },
+        {
+          "portuguese": "pobre",
+          "english": "poor",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O bairro é pobre mas tem muita vida.",
+          "exampleTranslation": "The neighbourhood is poor but has a lot of life.",
+          "relatedWords": [
+            {
+              "word": "a pobreza",
+              "meaning": "the poverty"
+            }
+          ],
+          "proTip": "'Pobre' before a noun changes meaning: 'o homem pobre' (the poor man — no money) vs 'o pobre homem' (the poor man — unfortunate/pitiful)."
+        },
+        {
+          "portuguese": "gordo",
+          "english": "fat",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O gato está a ficar gordo.",
+          "exampleTranslation": "The cat is getting fat."
+        },
+        {
+          "portuguese": "magro",
+          "english": "thin / slim",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Ela é muito magra.",
+          "exampleTranslation": "She is very thin.",
+          "relatedWords": [
+            {
+              "word": "emagrecer",
+              "meaning": "to lose weight"
+            }
+          ]
+        },
+        {
+          "portuguese": "largo",
+          "english": "wide / broad",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A rua é muito larga.",
+          "exampleTranslation": "The street is very wide.",
+          "proTip": "'Largo' as a noun means a small square/plaza: 'o Largo do Carmo' is a famous square in Lisbon."
+        },
+        {
+          "portuguese": "estreito",
+          "english": "narrow",
+          "cefr": "A2",
+          "gender": null,
+          "example": "As ruas da Alfama são muito estreitas.",
+          "exampleTranslation": "The streets of Alfama are very narrow."
+        },
+        {
+          "portuguese": "leve",
+          "english": "light (weight)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A mala é leve.",
+          "exampleTranslation": "The suitcase is light."
+        },
+        {
+          "portuguese": "pesado",
+          "english": "heavy",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Esta caixa é muito pesada.",
+          "exampleTranslation": "This box is very heavy.",
+          "proTip": "'Pesado' is also used informally to mean 'heavy/intense' emotionally: 'O filme foi pesado' (The film was heavy/intense)."
+        },
+        {
+          "portuguese": "abrir",
+          "english": "to open",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Podes abrir a janela?",
+          "exampleTranslation": "Can you open the window?",
+          "relatedWords": [
+            {
+              "word": "a abertura",
+              "meaning": "the opening"
+            }
+          ]
+        },
+        {
+          "portuguese": "fechar",
+          "english": "to close",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Fecha a porta, está frio.",
+          "exampleTranslation": "Close the door, it's cold.",
+          "relatedWords": [
+            {
+              "word": "fechado",
+              "meaning": "closed"
+            },
+            {
+              "word": "o fecho",
+              "meaning": "the lock / clasp / zip"
+            }
+          ]
+        },
+        {
+          "portuguese": "comprar",
+          "english": "to buy",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vou comprar pão.",
+          "exampleTranslation": "I'm going to buy bread.",
+          "relatedWords": [
+            {
+              "word": "a compra",
+              "meaning": "the purchase"
+            }
+          ]
+        },
+        {
+          "portuguese": "vender",
+          "english": "to sell",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Ele quer vender a casa.",
+          "exampleTranslation": "He wants to sell the house.",
+          "relatedWords": [
+            {
+              "word": "a venda",
+              "meaning": "the sale"
+            },
+            {
+              "word": "o vendedor",
+              "meaning": "the salesperson"
+            }
+          ]
+        },
+        {
+          "portuguese": "subir",
+          "english": "to go up / to climb",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Temos de subir as escadas.",
+          "exampleTranslation": "We have to go up the stairs."
+        },
+        {
+          "portuguese": "descer",
+          "english": "to go down / to descend",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Cuidado ao descer as escadas.",
+          "exampleTranslation": "Be careful going down the stairs."
+        },
+        {
+          "portuguese": "entrar",
+          "english": "to enter / to go in",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Posso entrar?",
+          "exampleTranslation": "May I come in?",
+          "relatedWords": [
+            {
+              "word": "a entrada",
+              "meaning": "the entrance / entry"
+            }
+          ]
+        },
+        {
+          "portuguese": "sair",
+          "english": "to leave / to go out",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vamos sair às oito.",
+          "exampleTranslation": "We're going out at eight.",
+          "relatedWords": [
+            {
+              "word": "a saída",
+              "meaning": "the exit"
+            }
+          ],
+          "proTip": "In EP, 'sair' is used for both leaving a place and going out socially: 'Queres sair logo à noite?' (Do you want to go out tonight?)."
+        },
+        {
+          "portuguese": "começar",
+          "english": "to start / to begin",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O filme começa às nove.",
+          "exampleTranslation": "The film starts at nine.",
+          "relatedWords": [
+            {
+              "word": "o começo",
+              "meaning": "the beginning"
+            },
+            {
+              "word": "o início",
+              "meaning": "the start"
+            }
+          ]
+        },
+        {
+          "portuguese": "acabar",
+          "english": "to finish / to end",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A aula acaba às cinco.",
+          "exampleTranslation": "The class finishes at five.",
+          "proTip": "'Acabar de + infinitive' means 'to have just done something': 'Acabei de comer' (I just ate)."
+        },
+        {
+          "portuguese": "ganhar",
+          "english": "to win / to earn",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Portugal ganhou o Europeu em 2016.",
+          "exampleTranslation": "Portugal won the Euros in 2016.",
+          "proTip": "'Ganhar' means both 'to win' and 'to earn (money)': 'Quanto ganhas por mês?' (How much do you earn per month?)."
+        },
+        {
+          "portuguese": "perder",
+          "english": "to lose",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Perdi as chaves outra vez.",
+          "exampleTranslation": "I lost the keys again.",
+          "proTip": "'Perder' covers both 'to lose' (a game, keys) and 'to miss' (a bus, a flight): 'Perdi o comboio' (I missed the train)."
+        },
+        {
+          "portuguese": "lembrar",
+          "english": "to remember",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Lembras-te do nome dele?",
+          "exampleTranslation": "Do you remember his name?",
+          "proTip": "In EP, 'lembrar-se' (reflexive) is the standard form: 'Eu lembro-me' (I remember). Without the reflexive, it means 'to remind': 'Lembra-me amanhã' (Remind me tomorrow)."
+        },
+        {
+          "portuguese": "esquecer",
+          "english": "to forget",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Esqueci-me do aniversário dela.",
+          "exampleTranslation": "I forgot her birthday.",
+          "relatedWords": [
+            {
+              "word": "o esquecimento",
+              "meaning": "the forgetfulness"
+            }
+          ],
+          "proTip": "Like 'lembrar', 'esquecer' is usually reflexive in EP: 'esqueci-me de...' (I forgot about...)."
+        },
+        {
+          "portuguese": "dar",
+          "english": "to give",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Dá-me o sal, por favor.",
+          "exampleTranslation": "Give me the salt, please.",
+          "relatedWords": [
+            {
+              "word": "a dádiva",
+              "meaning": "the gift / donation"
+            }
+          ]
+        },
+        {
+          "portuguese": "receber",
+          "english": "to receive",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Recebi uma carta hoje.",
+          "exampleTranslation": "I received a letter today."
+        },
+        {
+          "portuguese": "sempre",
+          "english": "always",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Ela chega sempre a horas.",
+          "exampleTranslation": "She always arrives on time."
+        },
+        {
+          "portuguese": "nunca",
+          "english": "never",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Nunca fui ao Brasil.",
+          "exampleTranslation": "I've never been to Brazil.",
+          "proTip": "When 'nunca' comes before the verb, you don't need 'não': 'Nunca fui' (I never went). But 'Não fui nunca' (I didn't ever go) is also correct — double negatives are fine in Portuguese."
+        },
+        {
+          "portuguese": "antes",
+          "english": "before",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Cheguei antes de ti.",
+          "exampleTranslation": "I arrived before you.",
+          "relatedWords": [
+            {
+              "word": "anterior",
+              "meaning": "previous / prior"
+            }
+          ]
+        },
+        {
+          "portuguese": "depois",
+          "english": "after",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Falamos depois do jantar.",
+          "exampleTranslation": "We'll talk after dinner.",
+          "relatedWords": [
+            {
+              "word": "posterior",
+              "meaning": "later / subsequent"
+            }
+          ]
+        },
+        {
+          "portuguese": "dentro",
+          "english": "inside",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O gato está cá dentro.",
+          "exampleTranslation": "The cat is in here."
+        },
+        {
+          "portuguese": "fora",
+          "english": "outside",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vamos comer lá fora.",
+          "exampleTranslation": "Let's eat outside.",
+          "proTip": "'Cá dentro' (in here) and 'lá fora' (out there) are extremely common EP expressions. You'll hear them constantly."
+        },
+        {
+          "portuguese": "perto",
+          "english": "near / close",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O supermercado fica perto.",
+          "exampleTranslation": "The supermarket is nearby."
+        },
+        {
+          "portuguese": "longe",
+          "english": "far",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A praia fica longe daqui.",
+          "exampleTranslation": "The beach is far from here.",
+          "relatedWords": [
+            {
+              "word": "a distância",
+              "meaning": "the distance"
+            }
+          ]
+        },
+        {
+          "portuguese": "cedo",
+          "english": "early",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Amanhã tenho de acordar cedo.",
+          "exampleTranslation": "Tomorrow I have to wake up early."
+        },
+        {
+          "portuguese": "tarde",
+          "english": "late",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Desculpa, cheguei tarde.",
+          "exampleTranslation": "Sorry, I arrived late.",
+          "proTip": "'Tarde' is both an adverb (late) and a noun (afternoon): 'Boa tarde' (Good afternoon). Context makes it clear."
+        },
+        {
+          "portuguese": "depressa",
+          "english": "quickly / fast",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Anda depressa, estamos atrasados!",
+          "exampleTranslation": "Come quickly, we're late!",
+          "proTip": "This is the EP adverb for 'quickly'. Brazilians tend to use 'rápido' as an adverb, but in EP 'depressa' is standard."
+        },
+        {
+          "portuguese": "devagar",
+          "english": "slowly",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Podes falar mais devagar, por favor?",
+          "exampleTranslation": "Can you speak more slowly, please?",
+          "proTip": "This is one of the most useful phrases for language learners: 'Mais devagar, por favor' (Slower, please)."
+        },
+        {
+          "portuguese": "a entrada",
+          "english": "the entrance / entry",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A entrada do museu é gratuita.",
+          "exampleTranslation": "The museum entrance is free.",
+          "proTip": "'Entrada' also means 'starter' (food course): 'Para entrada, quero a sopa' (For starter, I'll have the soup)."
+        },
+        {
+          "portuguese": "a saída",
+          "english": "the exit",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A saída de emergência é ali.",
+          "exampleTranslation": "The emergency exit is over there."
+        },
+        {
+          "portuguese": "o início",
+          "english": "the beginning / start",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "No início foi difícil.",
+          "exampleTranslation": "In the beginning it was difficult."
+        },
+        {
+          "portuguese": "o fim",
+          "english": "the end",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O fim de semana foi ótimo.",
+          "exampleTranslation": "The weekend was great.",
+          "proTip": "'Fim de semana' (weekend) literally means 'end of week'. It's always masculine: 'o fim de semana'."
+        },
+        {
+          "portuguese": "a pergunta",
+          "english": "the question",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Posso fazer uma pergunta?",
+          "exampleTranslation": "May I ask a question?",
+          "relatedWords": [
+            {
+              "word": "perguntar",
+              "meaning": "to ask (a question)"
+            }
+          ]
+        },
+        {
+          "portuguese": "a resposta",
+          "english": "the answer",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Qual é a resposta correta?",
+          "exampleTranslation": "What is the correct answer?",
+          "relatedWords": [
+            {
+              "word": "responder",
+              "meaning": "to answer / to reply"
+            }
+          ]
+        },
+        {
+          "portuguese": "a verdade",
+          "english": "the truth",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Diz-me a verdade.",
+          "exampleTranslation": "Tell me the truth.",
+          "relatedWords": [
+            {
+              "word": "verdadeiro",
+              "meaning": "true / real"
+            }
+          ]
+        },
+        {
+          "portuguese": "a mentira",
+          "english": "the lie",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Isso é uma mentira!",
+          "exampleTranslation": "That's a lie!",
+          "relatedWords": [
+            {
+              "word": "mentir",
+              "meaning": "to lie"
+            },
+            {
+              "word": "mentiroso",
+              "meaning": "liar (adj/noun)"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

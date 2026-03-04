@@ -56,7 +56,7 @@ export default function GrammarPage() {
             titlePt="Gramática"
             section="LIBRARY"
             sectionPt="Biblioteca"
-            tagline="30 grammar topics with clear rules and real examples — from A1 articles and contractions to B1 conditionals and the subjunctive."
+            tagline={`${Object.keys(data.topics).length} grammar topics with clear rules and real examples — from A1 articles and contractions to B1 conditionals and the subjunctive.`}
             stats={[
               { value: String(totalTopics), label: "topics" },
               { value: "A1–B1", label: "levels" },

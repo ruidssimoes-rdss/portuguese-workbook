@@ -1266,6 +1266,176 @@
         {"questionText": "What does 'já que' mean?", "questionTextPt": "O que significa 'já que'?", "options": ["therefore", "since (cause)", "while", "although"], "correctAnswer": "since (cause)", "correctIndex": 1, "explanation": "Já que = since (because)."}
       ]
     },
+    "opposites": {
+      "id": "opposites",
+      "title": "Opposites & Word Formation",
+      "titlePt": "Opostos e Formação de Palavras",
+      "cefr": "A2",
+      "summary": "How to form and use opposites in Portuguese — from prefix rules that let you decode unfamiliar words, to common antonym pairs every learner needs.",
+      "intro": "Portuguese has two main ways to express opposites. The first is using prefixes to transform a word into its opposite — much like English uses 'un-', 'in-', or 'dis-'. The second is simply knowing the antonym pairs (grande/pequeno, quente/frio). Learning the prefix rules is especially powerful because it gives you a tool to understand new words you have never seen before. If you know 'feliz' means happy, you can immediately decode 'infeliz' as unhappy. This topic covers both strategies.",
+      "rules": [
+        {
+          "rule": "The prefix 'in-' is the most common way to form adjective opposites. It works like English 'un-' or 'in-'. Before words starting with 'b', 'm', or 'p', it changes to 'im-'.",
+          "rulePt": "O prefixo 'in-' é a forma mais comum de formar opostos de adjetivos. Antes de palavras que começam com 'b', 'm' ou 'p', muda para 'im-'.",
+          "examples": [
+            { "pt": "feliz → infeliz", "en": "happy → unhappy" },
+            { "pt": "capaz → incapaz", "en": "capable → incapable" },
+            { "pt": "justo → injusto", "en": "fair → unfair" },
+            { "pt": "comum → incomum", "en": "common → uncommon" },
+            { "pt": "possível → impossível", "en": "possible → impossible" },
+            { "pt": "paciente → impaciente", "en": "patient → impatient" },
+            { "pt": "provável → improvável", "en": "probable → improbable" }
+          ],
+          "exceptions": [
+            "Not all adjectives use 'in-'. Many common opposites are completely different words: bom/mau (good/bad), grande/pequeno (big/small)."
+          ]
+        },
+        {
+          "rule": "The prefix 'des-' is used mainly with verbs and some adjectives. It expresses reversal or removal — like English 'un-' or 'dis-'. This is one of the most productive prefixes in Portuguese.",
+          "rulePt": "O prefixo 'des-' usa-se principalmente com verbos e alguns adjetivos. Expressa reversão ou remoção.",
+          "examples": [
+            { "pt": "fazer → desfazer", "en": "to do/make → to undo" },
+            { "pt": "ligar → desligar", "en": "to turn on / connect → to turn off / disconnect" },
+            { "pt": "vestir → despir", "en": "to dress → to undress" },
+            { "pt": "cobrir → descobrir", "en": "to cover → to discover / uncover" },
+            { "pt": "aparecer → desaparecer", "en": "to appear → to disappear" },
+            { "pt": "organizado → desorganizado", "en": "organised → disorganised" },
+            { "pt": "contente → descontente", "en": "happy/content → unhappy/discontent" },
+            { "pt": "confortável → desconfortável", "en": "comfortable → uncomfortable" }
+          ],
+          "exceptions": [
+            "'Despir' is irregular — it does not follow the pattern of simply adding 'des-' to 'vestir'. The stem changes."
+          ]
+        },
+        {
+          "rule": "The prefix 'i-' is used before words starting with 'l' or 'r'. Before 'l' the word gets 'il-', before 'r' it gets 'ir-'. This mirrors the English pattern exactly.",
+          "rulePt": "O prefixo 'i-' usa-se antes de palavras que começam com 'l' ou 'r'. Antes de 'l' usa-se 'il-', antes de 'r' usa-se 'ir-'.",
+          "examples": [
+            { "pt": "legal → ilegal", "en": "legal → illegal" },
+            { "pt": "legível → ilegível", "en": "legible → illegible" },
+            { "pt": "limitado → ilimitado", "en": "limited → unlimited" },
+            { "pt": "regular → irregular", "en": "regular → irregular" },
+            { "pt": "responsável → irresponsável", "en": "responsible → irresponsible" },
+            { "pt": "real → irreal", "en": "real → unreal" }
+          ],
+          "exceptions": []
+        },
+        {
+          "rule": "Common adjective opposites that use completely different words — no prefix pattern. These must be memorised as pairs.",
+          "rulePt": "Opostos comuns de adjetivos que usam palavras completamente diferentes — sem padrão de prefixo. Devem ser memorizados como pares.",
+          "examples": [
+            { "pt": "grande → pequeno", "en": "big → small" },
+            { "pt": "bom → mau", "en": "good → bad" },
+            { "pt": "quente → frio", "en": "hot → cold" },
+            { "pt": "alto → baixo", "en": "tall/high → short/low" },
+            { "pt": "novo → velho", "en": "new/young → old" },
+            { "pt": "bonito → feio", "en": "pretty/handsome → ugly" },
+            { "pt": "fácil → difícil", "en": "easy → difficult" },
+            { "pt": "rápido → lento", "en": "fast → slow" },
+            { "pt": "largo → estreito", "en": "wide → narrow" },
+            { "pt": "cheio → vazio", "en": "full → empty" },
+            { "pt": "gordo → magro", "en": "fat → thin" },
+            { "pt": "limpo → sujo", "en": "clean → dirty" },
+            { "pt": "leve → pesado", "en": "light → heavy" },
+            { "pt": "forte → fraco", "en": "strong → weak" },
+            { "pt": "rico → pobre", "en": "rich → poor" }
+          ],
+          "exceptions": [
+            "'Novo' means both 'new' and 'young'. The opposite of 'novo' (new) is 'velho' (old), and the opposite of 'novo' (young) is also 'velho' (old/elderly)."
+          ]
+        },
+        {
+          "rule": "Common verb opposites — pairs that express opposite actions. These are essential for daily conversation.",
+          "rulePt": "Opostos comuns de verbos — pares que expressam ações opostas. São essenciais para a conversa do dia a dia.",
+          "examples": [
+            { "pt": "abrir → fechar", "en": "to open → to close" },
+            { "pt": "comprar → vender", "en": "to buy → to sell" },
+            { "pt": "subir → descer", "en": "to go up → to go down" },
+            { "pt": "entrar → sair", "en": "to enter → to leave/exit" },
+            { "pt": "começar → acabar", "en": "to start → to finish" },
+            { "pt": "perguntar → responder", "en": "to ask → to answer" },
+            { "pt": "lembrar → esquecer", "en": "to remember → to forget" },
+            { "pt": "ganhar → perder", "en": "to win → to lose" },
+            { "pt": "dar → receber", "en": "to give → to receive" },
+            { "pt": "adormecer → acordar", "en": "to fall asleep → to wake up" }
+          ],
+          "exceptions": [
+            "'Acabar' can also mean 'to end up' — 'Acabei por concordar' (I ended up agreeing). Context determines meaning.",
+            "In EP, 'começar' is more common than 'iniciar' in everyday speech, though both are correct."
+          ]
+        },
+        {
+          "rule": "Common adverb and preposition opposites. These come up constantly in giving directions, describing time, and comparing things.",
+          "rulePt": "Opostos comuns de advérbios e preposições. Aparecem constantemente ao dar direções, descrever tempo e comparar coisas.",
+          "examples": [
+            { "pt": "sempre → nunca", "en": "always → never" },
+            { "pt": "aqui → ali", "en": "here → there" },
+            { "pt": "antes → depois", "en": "before → after" },
+            { "pt": "dentro → fora", "en": "inside → outside" },
+            { "pt": "perto → longe", "en": "near → far" },
+            { "pt": "cima → baixo", "en": "up → down (em cima / em baixo)" },
+            { "pt": "muito → pouco", "en": "a lot → a little" },
+            { "pt": "mais → menos", "en": "more → less" },
+            { "pt": "cedo → tarde", "en": "early → late" },
+            { "pt": "depressa → devagar", "en": "quickly → slowly" }
+          ],
+          "exceptions": [
+            "In EP, 'depressa' is the standard word for quickly/fast. Brazilian Portuguese uses 'rápido' as an adverb more often. In EP, 'rápido' is primarily an adjective."
+          ]
+        },
+        {
+          "rule": "Common noun opposites — pairs that represent opposite concepts. Many of these involve gender changes or completely different words.",
+          "rulePt": "Opostos comuns de nomes — pares que representam conceitos opostos. Muitos envolvem mudanças de género ou palavras completamente diferentes.",
+          "examples": [
+            { "pt": "a entrada → a saída", "en": "the entrance → the exit" },
+            { "pt": "o início → o fim", "en": "the beginning → the end" },
+            { "pt": "a pergunta → a resposta", "en": "the question → the answer" },
+            { "pt": "o dia → a noite", "en": "the day → the night" },
+            { "pt": "o verão → o inverno", "en": "the summer → the winter" },
+            { "pt": "a vida → a morte", "en": "life → death" },
+            { "pt": "a paz → a guerra", "en": "peace → war" },
+            { "pt": "a verdade → a mentira", "en": "truth → lie" }
+          ],
+          "exceptions": [
+            "Notice how some pairs change gender: 'o dia' (m) → 'a noite' (f), 'o início' (m) → 'o fim' (m). There is no pattern — memorise the genders with each word."
+          ]
+        }
+      ],
+      "tips": [
+        "When you see an unfamiliar word starting with 'in-', 'im-', 'des-', 'il-', or 'ir-', try removing the prefix. If the remaining word makes sense, you have found the opposite.",
+        "The prefix 'des-' is by far the most versatile. If you are unsure how to say the opposite of a verb, try adding 'des-' — it works more often than you think.",
+        "Many opposite pairs in Portuguese mirror English exactly: possível/impossível, legal/ilegal, regular/irregular. Your English knowledge is a huge advantage here.",
+        "Be careful with 'fechar' and 'acabar'. They sound similar to beginners but mean very different things: fechar = to close (a door, a shop), acabar = to finish/end."
+      ],
+      "tipsPt": [
+        "Quando vês uma palavra desconhecida que começa com 'in-', 'im-', 'des-', 'il-' ou 'ir-', tenta remover o prefixo. Se a palavra restante fizer sentido, encontraste o oposto.",
+        "O prefixo 'des-' é de longe o mais versátil. Se não sabes como dizer o oposto de um verbo, tenta acrescentar 'des-' — funciona mais vezes do que pensas.",
+        "Muitos pares de opostos em português são iguais ao inglês: possível/impossível, legal/ilegal, regular/irregular. O teu conhecimento de inglês é uma grande vantagem.",
+        "Tem cuidado com 'fechar' e 'acabar'. Parecem semelhantes para iniciantes mas significam coisas muito diferentes: fechar = to close (uma porta, uma loja), acabar = to finish/end."
+      ],
+      "questions": [
+        {"questionText": "What is the opposite of 'possível'?", "questionTextPt": "Qual é o oposto de 'possível'?", "options": ["dispossível", "impossível", "inpossível", "ilpossível"], "correctAnswer": "impossível", "correctIndex": 1, "explanation": "Before 'p', the prefix 'in-' changes to 'im-'. So possível → impossível.", "exampleSentence": "É impossível chegar a tempo.", "exampleTranslation": "It's impossible to arrive on time."},
+        {"questionText": "What is the opposite of 'feliz'?", "questionTextPt": "Qual é o oposto de 'feliz'?", "options": ["desfeliz", "imfeliz", "infeliz", "malfeliz"], "correctAnswer": "infeliz", "correctIndex": 2, "explanation": "'Feliz' starts with 'f', so the standard prefix 'in-' applies: infeliz.", "exampleSentence": "Ele parece infeliz com a decisão.", "exampleTranslation": "He seems unhappy with the decision."},
+        {"questionText": "What is the opposite of 'legal'?", "questionTextPt": "Qual é o oposto de 'legal'?", "options": ["deslegal", "inlegal", "ilegal", "irlegal"], "correctAnswer": "ilegal", "correctIndex": 2, "explanation": "Before words starting with 'l', the prefix becomes 'il-'. Legal → ilegal.", "exampleSentence": "Estacionar aqui é ilegal.", "exampleTranslation": "Parking here is illegal."},
+        {"questionText": "How do you say 'to turn off' in Portuguese?", "questionTextPt": "Como se diz 'to turn off' em português?", "options": ["religar", "inligar", "desligar", "imligar"], "correctAnswer": "desligar", "correctIndex": 2, "explanation": "'Ligar' means to turn on / connect. Adding 'des-' reverses it: desligar = to turn off / disconnect.", "exampleSentence": "Podes desligar a luz, por favor?", "exampleTranslation": "Can you turn off the light, please?"},
+        {"questionText": "What is the opposite of 'abrir'?", "questionTextPt": "Qual é o oposto de 'abrir'?", "options": ["desabrir", "fechar", "cobrir", "sair"], "correctAnswer": "fechar", "correctIndex": 1, "explanation": "'Abrir' (to open) and 'fechar' (to close) are a common opposite pair — no prefix pattern, just different words.", "exampleSentence": "Fecha a porta, por favor.", "exampleTranslation": "Close the door, please."},
+        {"questionText": "What is the opposite of 'comprar'?", "questionTextPt": "Qual é o oposto de 'comprar'?", "options": ["descomprar", "trocar", "vender", "devolver"], "correctAnswer": "vender", "correctIndex": 2, "explanation": "Comprar (to buy) → vender (to sell). These are separate words, not a prefix pattern.", "exampleSentence": "Quero vender o meu carro.", "exampleTranslation": "I want to sell my car."},
+        {"questionText": "What is the opposite of 'sempre'?", "questionTextPt": "Qual é o oposto de 'sempre'?", "options": ["quase", "nunca", "às vezes", "já"], "correctAnswer": "nunca", "correctIndex": 1, "explanation": "Sempre (always) → nunca (never). A fundamental adverb pair.", "exampleSentence": "Nunca fui ao Algarve.", "exampleTranslation": "I have never been to the Algarve."},
+        {"questionText": "Which sentence correctly uses a prefix opposite?", "questionTextPt": "Qual frase usa corretamente um oposto com prefixo?", "options": ["Ele é muito dispaciente.", "Ela é muito impaciente.", "Ele é muito inpaciente.", "Ela é muito ilpaciente."], "correctAnswer": "Ela é muito impaciente.", "correctIndex": 1, "explanation": "'Paciente' starts with 'p', so the prefix 'in-' changes to 'im-': impaciente.", "exampleSentence": "Não sejas tão impaciente!", "exampleTranslation": "Don't be so impatient!"},
+        {"questionText": "What is the opposite of 'responsável'?", "questionTextPt": "Qual é o oposto de 'responsável'?", "options": ["inresponsável", "desresponsável", "irresponsável", "imresponsável"], "correctAnswer": "irresponsável", "correctIndex": 2, "explanation": "Before words starting with 'r', the prefix becomes 'ir-'. Responsável → irresponsável.", "exampleSentence": "Foi uma atitude irresponsável.", "exampleTranslation": "It was an irresponsible attitude."},
+        {"questionText": "What is the opposite of 'aparecer'?", "questionTextPt": "Qual é o oposto de 'aparecer'?", "options": ["inaparecer", "desaparecer", "imaparecer", "sumir"], "correctAnswer": "desaparecer", "correctIndex": 1, "explanation": "The prefix 'des-' reverses the verb: aparecer (to appear) → desaparecer (to disappear).", "exampleSentence": "O gato desapareceu há dois dias.", "exampleTranslation": "The cat disappeared two days ago."},
+        {"questionText": "What is the opposite of 'quente'?", "questionTextPt": "Qual é o oposto de 'quente'?", "options": ["desquente", "inquente", "gelado", "frio"], "correctAnswer": "frio", "correctIndex": 3, "explanation": "Quente (hot) → frio (cold). This is a word pair, not a prefix opposite. 'Gelado' means frozen/icy, which is more extreme than 'frio'.", "exampleSentence": "Está muito frio hoje.", "exampleTranslation": "It's very cold today."},
+        {"questionText": "How do you say 'the exit' in Portuguese?", "questionTextPt": "Como se diz 'the exit' em português?", "options": ["a entrada", "a saída", "o saído", "a partida"], "correctAnswer": "a saída", "correctIndex": 1, "explanation": "Entrada (entrance) → saída (exit). Both are feminine nouns.", "exampleSentence": "A saída é por ali.", "exampleTranslation": "The exit is over there."},
+        {"questionText": "What is the opposite of 'lembrar'?", "questionTextPt": "Qual é o oposto de 'lembrar'?", "options": ["deslembrar", "esquecer", "recordar", "pensar"], "correctAnswer": "esquecer", "correctIndex": 1, "explanation": "Lembrar (to remember) → esquecer (to forget). These are separate words. 'Recordar' is a synonym of 'lembrar', not its opposite.", "exampleSentence": "Esqueci-me das chaves em casa.", "exampleTranslation": "I forgot the keys at home."},
+        {"questionText": "What is the opposite of 'cedo'?", "questionTextPt": "Qual é o oposto de 'cedo'?", "options": ["depois", "nunca", "tarde", "longe"], "correctAnswer": "tarde", "correctIndex": 2, "explanation": "Cedo (early) → tarde (late). Note: 'tarde' also means 'afternoon' as a noun (a tarde).", "exampleSentence": "Chegámos tarde ao restaurante.", "exampleTranslation": "We arrived late to the restaurant."},
+        {"questionText": "If 'cobrir' means 'to cover', what does 'descobrir' mean?", "questionTextPt": "Se 'cobrir' significa 'to cover', o que significa 'descobrir'?", "options": ["to recover", "to discover / uncover", "to hide", "to protect"], "correctAnswer": "to discover / uncover", "correctIndex": 1, "explanation": "The prefix 'des-' reverses the meaning: cobrir (to cover) → descobrir (to uncover / discover). Portugal's Age of Discovery is 'a Era dos Descobrimentos'.", "exampleSentence": "Descobri um restaurante ótimo perto de casa.", "exampleTranslation": "I discovered a great restaurant near home."},
+        {"questionText": "What is the opposite of 'dentro'?", "questionTextPt": "Qual é o oposto de 'dentro'?", "options": ["longe", "perto", "fora", "acima"], "correctAnswer": "fora", "correctIndex": 2, "explanation": "Dentro (inside) → fora (outside). Used constantly in daily life: 'cá dentro' (in here), 'lá fora' (out there).", "exampleSentence": "As crianças estão lá fora a brincar.", "exampleTranslation": "The children are outside playing."},
+        {"questionText": "Which word means 'disorganised'?", "questionTextPt": "Qual palavra significa 'disorganised'?", "options": ["inorganizado", "imorganizado", "irorganizado", "desorganizado"], "correctAnswer": "desorganizado", "correctIndex": 3, "explanation": "'Organizado' uses the prefix 'des-' for its opposite: desorganizado. The 'des-' prefix is used with many adjectives derived from verbs.", "exampleSentence": "O escritório dele é muito desorganizado.", "exampleTranslation": "His office is very disorganised."},
+        {"questionText": "What is the opposite of 'subir'?", "questionTextPt": "Qual é o oposto de 'subir'?", "options": ["dessubir", "baixar", "descer", "cair"], "correctAnswer": "descer", "correctIndex": 2, "explanation": "Subir (to go up) → descer (to go down). 'Baixar' means to lower (e.g. volume), and 'cair' means to fall — different meanings.", "exampleSentence": "Tens de descer as escadas.", "exampleTranslation": "You have to go down the stairs."},
+        {"questionText": "What is the opposite of 'perto'?", "questionTextPt": "Qual é o oposto de 'perto'?", "options": ["fora", "longe", "ali", "depois"], "correctAnswer": "longe", "correctIndex": 1, "explanation": "Perto (near) → longe (far). 'Perto de' and 'longe de' are used with 'de' to say near/far from something.", "exampleSentence": "A praia fica longe daqui?", "exampleTranslation": "Is the beach far from here?"},
+        {"questionText": "You see the word 'ilegível' for the first time. Based on prefix rules, what does it mean?", "questionTextPt": "Vês a palavra 'ilegível' pela primeira vez. Com base nas regras de prefixos, o que significa?", "options": ["very legible", "illegible / unreadable", "legal", "irregular"], "correctAnswer": "illegible / unreadable", "correctIndex": 1, "explanation": "The prefix 'il-' is used before 'l'. Remove it and you get 'legível' (legible/readable). So 'ilegível' = illegible/unreadable. This is the power of knowing prefix rules!", "exampleSentence": "A letra dele é ilegível.", "exampleTranslation": "His handwriting is illegible."}
+      ]
+    },
     "verb-types": {
       "id": "verb-types",
       "title": "Verb Types: Regular & Irregular",
