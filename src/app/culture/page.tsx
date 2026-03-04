@@ -572,7 +572,15 @@ function CultureContent() {
           <PageHeader
             title="Culture"
             titlePt="Cultura"
-            subtitle={`4 sections \u00b7 ${sayings.length} sayings \u00b7 ${falseFriends.length} false friends \u00b7 ${etiquetteTips.length} etiquette tips \u00b7 ${regionalExpressions.length} regional expressions`}
+            section="CULTURE"
+            sectionPt="Cultura"
+            tagline="Sayings, etiquette, false friends, and regional expressions — the real Portugal behind the language, and why it matters for fluency."
+            stats={[
+              { value: String(sayings.length), label: "sayings" },
+              { value: String(falseFriends.length), label: "false friends" },
+              { value: String(etiquetteTips.length), label: "etiquette tips" },
+              { value: String(regionalExpressions.length), label: "regional expressions" },
+            ]}
           />
 
           {/* Featured Saying of the Day */}

@@ -69,7 +69,14 @@ export default function ConjugationsPage() {
           <PageHeader
             title="Conjugations"
             titlePt="Conjugações"
-            subtitle={<>{data.order.length} verbs · {totalConjugations.toLocaleString()} conjugations · 6 tenses</>}
+            section="LIBRARY"
+            sectionPt="Biblioteca"
+            tagline="133 verbs and 3,990 conjugations across 6 tenses — the full engine of European Portuguese, from present tense to the subjunctive."
+            stats={[
+              { value: String(data.order.length), label: "verbs" },
+              { value: String(totalConjugations), label: "conjugations" },
+              { value: "6", label: "tenses" },
+            ]}
           />
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <div className="flex items-center gap-1.5">

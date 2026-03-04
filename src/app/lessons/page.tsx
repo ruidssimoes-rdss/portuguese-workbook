@@ -184,9 +184,16 @@ export default function LessonsPage() {
         {/* ─── Page Header ─── */}
         <div className="py-5">
           <PageHeader
-            title="Revision"
-            titlePt="Revisão"
-            subtitle={<>{lessons.length} {lessons.length === 1 ? "lesson" : "lessons"} · 3 test sections · A1–B1</>}
+            title="Lessons"
+            titlePt="Lições"
+            section="REVISION"
+            sectionPt="Revisão"
+            tagline="Structured guided lessons from first conversations to confident A2 Portuguese — each one built around real situations you'll actually use."
+            stats={[
+              { value: String(lessons.length), label: "lessons" },
+              { value: "3", label: "level tests" },
+              { value: "A1–B1", label: "range" },
+            ]}
           />
           <Divider className="mt-4 mb-6" />
         </div>

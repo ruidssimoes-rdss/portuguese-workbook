@@ -176,7 +176,14 @@ export default function VocabularyPage() {
           <PageHeader
             title="Vocabulary"
             titlePt="Vocabulário"
-            subtitle={<>{displayTotalWords.toLocaleString()} words · {filteredCategories.length} categories · A1–B1</>}
+            section="LIBRARY"
+            sectionPt="Biblioteca"
+            tagline="776 words across 15 focused categories — from essential A1 greetings to the B1 vocabulary you need to hold a real conversation."
+            stats={[
+              { value: String(levelCounts.total), label: "words" },
+              { value: String(data.categories.length), label: "categories" },
+              { value: "A1–B1", label: "range" },
+            ]}
           />
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <div className="flex items-center gap-1.5">

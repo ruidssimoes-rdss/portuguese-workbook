@@ -54,7 +54,13 @@ export default function GrammarPage() {
           <PageHeader
             title="Grammar"
             titlePt="Gramática"
-            subtitle={`${totalTopics} topics · A1–B1`}
+            section="LIBRARY"
+            sectionPt="Biblioteca"
+            tagline="30 grammar topics with clear rules and real examples — from A1 articles and contractions to B1 conditionals and the subjunctive."
+            stats={[
+              { value: String(totalTopics), label: "topics" },
+              { value: "A1–B1", label: "levels" },
+            ]}
           />
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <div className="flex items-center gap-1.5">

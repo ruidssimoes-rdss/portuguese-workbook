@@ -75,9 +75,16 @@ export default function ExamsPage() {
       <PageContainer>
         <div className="py-5">
           <PageHeader
-            title="CIPLE Mock Exams"
-            titlePt="Exames de Preparação CIPLE"
-            subtitle="Monthly mock exams to prepare for the CIPLE A2 certification. New exams released each month."
+            title="Exams"
+            titlePt="Exames"
+            section="REVISION"
+            sectionPt="Revisão"
+            tagline="Monthly mock exams that mirror the real CIPLE A2 format — three sections, timed, and scored exactly as the certification body does it."
+            stats={[
+              { value: "12", label: "mock exams" },
+              { value: "3", label: "sections each" },
+              { value: "~120", label: "min per exam" },
+            ]}
           />
           <Divider className="mt-4 mb-6" />
         </div>
