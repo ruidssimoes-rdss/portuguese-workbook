@@ -126,11 +126,11 @@ function MegaPanel({
   return (
     <div
       ref={panelRef}
-      className="absolute left-0 top-full mt-1 w-[420px] max-w-[420px] bg-white border border-gray-200/80 rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
+      className="absolute left-0 top-full mt-1 w-[420px] max-w-[420px] bg-bg border border-border rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
       role="menu"
       onKeyDown={onKeyDown}
     >
-      <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
+      <p className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
         {label} · {labelPt}
       </p>
       <div className={`grid gap-3 ${columns === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
@@ -143,14 +143,14 @@ function MegaPanel({
               onClick={onClose}
               role="menuitem"
               tabIndex={0}
-              className={`block rounded-lg border p-4 transition-all duration-200 hover:border-[#111827]/30 hover:bg-[#111827]/[0.03] hover:shadow-sm hover:-translate-y-0.5 ${
-                isCurrent ? "border-[#111827]/30 bg-[#111827]/5" : "border-gray-100"
+              className={`block rounded-lg border p-4 transition-all duration-200 hover:border-text/30 hover:bg-surface hover:shadow-sm hover:-translate-y-0.5 ${
+                isCurrent ? "border-text/30 bg-surface" : "border-border-light"
               }`}
             >
-              <span className="text-sm font-semibold text-gray-900">{item.title}</span>
-              <p className="text-xs text-[#6B7280] font-medium mt-0.5">{item.portuguese}</p>
-              <p className="text-xs text-gray-400 mt-3">{item.stats[0]}</p>
-              {item.stats[1] && <p className="text-xs text-gray-400">{item.stats[1]}</p>}
+              <span className="text-sm font-semibold text-text">{item.title}</span>
+              <p className="text-xs text-text-secondary font-medium mt-0.5">{item.portuguese}</p>
+              <p className="text-xs text-text-muted mt-3">{item.stats[0]}</p>
+              {item.stats[1] && <p className="text-xs text-text-muted">{item.stats[1]}</p>}
             </Link>
           );
         })}
@@ -341,18 +341,18 @@ export function Topbar() {
   /* Shared tab button classes */
   const tabClass = (active: boolean, menuOpen: boolean) =>
     `text-[13px] font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
-      active || menuOpen ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
+      active || menuOpen ? "text-text font-semibold" : "text-text-secondary hover:text-text"
     }`;
 
   const directLinkClass = (active: boolean) =>
     `px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors duration-200 ${
-      active ? "text-gray-900 font-semibold" : "text-gray-600 hover:text-gray-900"
+      active ? "text-text font-semibold" : "text-text-secondary hover:text-text"
     }`;
 
   return (
     <>
       <header
-        className={`sticky top-0 z-50 h-14 bg-white/80 backdrop-blur-xl border-b border-[#F3F4F6] transition-all duration-300 ease-out ${
+        className={`sticky top-0 z-50 h-14 bg-bg/80 backdrop-blur-xl border-b border-border-light transition-all duration-300 ease-out ${
           isScrolled ? "shadow-[0_1px_3px_rgba(0,0,0,0.04)]" : ""
         }`}
       >
@@ -361,7 +361,7 @@ export function Topbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 -ml-2 rounded-md text-text-2 hover:text-text hover:bg-[#FAFAFA] transition-colors"
+              className="md:hidden p-2 -ml-2 rounded-md text-text-2 hover:text-text hover:bg-surface transition-colors"
               aria-label="Open menu"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -452,7 +452,7 @@ export function Topbar() {
             {!authLoading && !user && (
               <Link
                 href="/changelog"
-                className="hidden md:inline-flex px-3 py-1.5 rounded-full text-[13px] font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                className="hidden md:inline-flex px-3 py-1.5 rounded-full text-[13px] font-medium text-text-secondary hover:text-text transition-colors"
               >
                 What&apos;s New
               </Link>
@@ -462,7 +462,7 @@ export function Topbar() {
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="flex items-center gap-2 h-9 px-3 w-9 md:w-[160px] lg:w-[200px] rounded-full bg-gray-100/80 hover:bg-gray-200/80 border border-gray-200/50 text-gray-400 transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-gray-300/50 justify-center md:justify-start whitespace-nowrap"
+              className="flex items-center gap-2 h-9 px-3 w-9 md:w-[160px] lg:w-[200px] rounded-full bg-surface hover:bg-border-light border border-border text-text-muted transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-border justify-center md:justify-start whitespace-nowrap"
               aria-label="Search"
             >
               <svg
@@ -472,62 +472,62 @@ export function Topbar() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                className="shrink-0 text-gray-400"
+                className="shrink-0 text-text-muted"
               >
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
-              <span className="hidden md:inline text-sm text-gray-400">Search...</span>
-              <kbd className="hidden md:inline ml-auto text-[11px] font-mono px-1.5 py-0.5 rounded bg-gray-200/60 text-gray-400">
+              <span className="hidden md:inline text-sm text-text-muted">Search...</span>
+              <kbd className="hidden md:inline ml-auto text-[11px] font-mono px-1.5 py-0.5 rounded bg-border text-text-muted">
                 {shortcutHint}
               </kbd>
             </button>
 
             {authLoading ? (
-              <div className="w-8 h-8 rounded-full bg-gray-100 animate-pulse shrink-0" aria-hidden />
+              <div className="w-8 h-8 rounded-full bg-surface animate-pulse shrink-0" aria-hidden />
             ) : user ? (
               <div className="relative shrink-0" ref={userMenuRef}>
                 <button
                   type="button"
                   onClick={() => setUserMenuOpen((o) => !o)}
-                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#111827] text-white text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-text text-bg text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
                   aria-label="Menu da conta"
                   aria-expanded={userMenuOpen}
                 >
                   {initials}
                 </button>
                 {userMenuOpen && (
-                  <div className="absolute right-0 top-full mt-1 w-56 rounded-lg border border-gray-200 bg-white shadow-lg py-1 z-[60] animate-fade-in">
-                    <div className="px-3 py-2 border-b border-gray-100">
+                  <div className="absolute right-0 top-full mt-1 w-56 rounded-lg border border-border bg-bg shadow-lg py-1 z-[60] animate-fade-in">
+                    <div className="px-3 py-2 border-b border-border-light">
                       <p className="text-sm font-medium text-text truncate">{displayName}</p>
-                      <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                      <p className="text-xs text-text-muted truncate">{user.email}</p>
                     </div>
                     <Link
                       href="/lessons#level-tests"
                       onClick={() => setUserMenuOpen(false)}
-                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-surface hover:text-text"
                     >
                       Progress
                     </Link>
                     <Link
                       href="/settings"
                       onClick={() => setUserMenuOpen(false)}
-                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-surface hover:text-text"
                     >
                       Definições
                     </Link>
                     <Link
                       href="/changelog"
                       onClick={() => setUserMenuOpen(false)}
-                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                      className="block px-3 py-2 text-[13px] text-text-2 hover:bg-surface hover:text-text"
                     >
                       What&apos;s New
                     </Link>
-                    <div className="my-1 border-t border-gray-100" />
+                    <div className="my-1 border-t border-border-light" />
                     <button
                       type="button"
                       onClick={handleSignOut}
-                      className="block w-full text-left px-3 py-2 text-[13px] text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                      className="block w-full text-left px-3 py-2 text-[13px] text-text-2 hover:bg-surface hover:text-text"
                     >
                       Sair
                     </button>
@@ -537,7 +537,7 @@ export function Topbar() {
             ) : (
               <Link
                 href="/auth/login"
-                className="shrink-0 px-3 py-1.5 rounded-lg border border-[#111827] text-[#111827] text-[13px] font-medium hover:bg-[#F3F4F6] transition-colors"
+                className="shrink-0 rounded-xl px-4 py-2 bg-[#003399] text-white text-sm font-medium hover:bg-[#002277] transition-colors"
               >
                 Entrar
               </Link>
@@ -558,13 +558,13 @@ export function Topbar() {
             className="absolute inset-0 bg-black/10 backdrop-blur-sm"
             onClick={closeMobileMenu}
           />
-          <div className="relative bg-white/95 backdrop-blur-md border-b border-gray-200/60 shadow-lg animate-fade-in">
+          <div className="relative bg-bg/95 backdrop-blur-md border-b border-border shadow-lg animate-fade-in">
             <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-14">
               <span className="text-[13px] font-medium text-text-2">Menu</span>
               <button
                 type="button"
                 onClick={closeMobileMenu}
-                className="p-2 -mr-2 rounded-md text-text-2 hover:text-text hover:bg-[#FAFAFA] transition-colors"
+                className="p-2 -mr-2 rounded-md text-text-2 hover:text-text hover:bg-surface transition-colors"
                 aria-label="Close menu"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -575,7 +575,7 @@ export function Topbar() {
             </div>
             <nav className="px-0 pb-6 pt-2 flex flex-col">
               {/* Revision section */}
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 px-4 pt-4 pb-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-text-muted px-4 pt-4 pb-2">
                 REVISION · Revisão
               </p>
               {revisionItems.map((item) => {
@@ -586,43 +586,43 @@ export function Topbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                      isCurrent ? "bg-[#111827]/5 text-[#111827] border-l-2 border-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                      isCurrent ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
                     }`}
                   >
                     <span className="text-[15px] font-medium">{item.title}</span>
-                    <span className="text-xs text-[#6B7280]">{item.portuguese}</span>
+                    <span className="text-xs text-text-secondary">{item.portuguese}</span>
                   </Link>
                 );
               })}
 
-              <div className="border-t border-gray-100 my-2 mx-4" />
+              <div className="border-t border-border-light my-2 mx-4" />
 
               {/* Direct links */}
               <Link
                 href="/guide"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                  pathname === "/guide" ? "bg-[#111827]/5 text-[#111827] border-l-2 border-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                  pathname === "/guide" ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
                 }`}
               >
                 <span className="text-[15px] font-medium">How to Learn</span>
-                <span className="text-xs text-[#6B7280]">Como Aprender</span>
+                <span className="text-xs text-text-secondary">Como Aprender</span>
               </Link>
               <Link
                 href="/culture"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                  pathname === "/culture" || pathname?.startsWith("/culture/") ? "bg-[#111827]/5 text-[#111827] border-l-2 border-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                  pathname === "/culture" || pathname?.startsWith("/culture/") ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
                 }`}
               >
                 <span className="text-[15px] font-medium">Culture</span>
-                <span className="text-xs text-[#6B7280]">Cultura</span>
+                <span className="text-xs text-text-secondary">Cultura</span>
               </Link>
 
-              <div className="border-t border-gray-100 my-2 mx-4" />
+              <div className="border-t border-border-light my-2 mx-4" />
 
               {/* Library section */}
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 px-4 pt-4 pb-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-text-muted px-4 pt-4 pb-2">
                 LIBRARY · Biblioteca
               </p>
               {libraryItems.map((item) => {
@@ -633,22 +633,22 @@ export function Topbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                      isCurrent ? "bg-[#111827]/5 text-[#111827] border-l-2 border-[#111827]" : "text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                      isCurrent ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
                     }`}
                   >
                     <span className="text-[15px] font-medium">{item.title}</span>
-                    <span className="text-xs text-[#6B7280]">{item.portuguese}</span>
+                    <span className="text-xs text-text-secondary">{item.portuguese}</span>
                   </Link>
                 );
               })}
 
-              <div className="border-t border-gray-100 my-2 mx-4" />
+              <div className="border-t border-border-light my-2 mx-4" />
 
               {/* Changelog */}
               <Link
                 href="/changelog"
                 onClick={closeMobileMenu}
-                className="min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium text-text-2 hover:bg-[#FAFAFA] hover:text-text"
+                className="min-h-[44px] px-4 py-3 flex items-center text-[15px] font-medium text-text-2 hover:bg-surface hover:text-text"
               >
                 What&apos;s New
               </Link>
@@ -656,13 +656,13 @@ export function Topbar() {
               {/* Auth section */}
               {!authLoading && (
                 <>
-                  <div className="my-1 border-t border-gray-200 mx-4" />
+                  <div className="my-1 border-t border-border mx-4" />
                   {user ? (
                     <>
                       <Link
                         href="/settings"
                         onClick={closeMobileMenu}
-                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-[#FAFAFA] hover:text-text min-h-[44px] flex items-center"
+                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-surface hover:text-text min-h-[44px] flex items-center"
                       >
                         Definições
                       </Link>
@@ -672,7 +672,7 @@ export function Topbar() {
                           closeMobileMenu();
                           handleSignOut();
                         }}
-                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-[#FAFAFA] hover:text-text min-h-[44px] flex items-center w-full text-left"
+                        className="px-4 py-3 rounded-lg text-[15px] font-medium text-text-2 hover:bg-surface hover:text-text min-h-[44px] flex items-center w-full text-left"
                       >
                         Sair
                       </button>
@@ -681,7 +681,7 @@ export function Topbar() {
                     <Link
                       href="/auth/login"
                       onClick={closeMobileMenu}
-                      className="px-4 py-3 rounded-lg text-[15px] font-medium text-[#003399] hover:bg-sky-50 min-h-[44px] flex items-center"
+                      className="px-4 py-3 rounded-xl bg-[#003399] text-white text-sm font-medium hover:bg-[#002277] min-h-[44px] flex items-center transition-colors"
                     >
                       Entrar
                     </Link>

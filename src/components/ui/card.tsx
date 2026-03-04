@@ -17,7 +17,7 @@ const variantClasses: Record<CardVariant, string> = {
   outline: "border border-border bg-bg",
   surface: "bg-surface border border-border",
   ghost: "bg-transparent",
-  featured: "border border-[#E5E7EB] bg-white border-l-[3px] border-l-[#3C5E95]",
+  featured: "border border-border bg-bg border-l-[3px] border-l-[#003399]",
 };
 
 const paddingClasses = {
@@ -40,7 +40,7 @@ export function Card({
   const v = variantClasses[variant];
   const p = paddingClasses[padding];
   const hover = interactive
-    ? "hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-[1px] transition-all duration-150 ease-out"
+    ? "hover:border-[#003399]/20 hover:shadow-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003399]/30 focus-visible:ring-offset-2"
     : "";
   const active = interactive && pressed ? "scale-[0.995]" : "";
   const clickable = onClick ? "cursor-pointer" : "";
@@ -49,6 +49,7 @@ export function Card({
     <div
       className={`${base} ${v} ${p} ${hover} ${active} ${clickable}${className ? ` ${className}` : ""}`}
       onClick={onClick}
+      tabIndex={interactive ? 0 : undefined}
       onMouseDown={interactive ? () => setPressed(true) : undefined}
       onMouseUp={interactive ? () => setPressed(false) : undefined}
       onMouseLeave={interactive ? () => setPressed(false) : undefined}

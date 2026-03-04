@@ -131,10 +131,10 @@ export function PronunciationButton({
 
   const variantClasses =
     variant === "dark"
-      ? "border-0 bg-[#262626] text-white hover:bg-[#404040] shadow-none focus:ring-gray-400"
+      ? "border-0 bg-text text-bg hover:bg-text-secondary shadow-none focus:ring-border"
       : variant === "muted"
-        ? "border-0 bg-[#F0F0F0] text-[#6B7280] hover:bg-[#E5E5E5] hover:text-[#374151] shadow-none focus:ring-gray-300"
-        : "border border-blue-200 bg-white text-[#003399] hover:bg-sky-50 hover:border-blue-300 focus:ring-[#003399]";
+        ? "border-0 bg-surface text-text-muted hover:bg-border hover:text-text-secondary shadow-none focus:ring-border"
+        : "border-0 bg-[#003399] text-white hover:bg-[#002277] shadow-none focus:ring-[#003399]/30";
 
   return (
     <span className="relative inline-flex">
@@ -148,14 +148,13 @@ export function PronunciationButton({
             : "Listen (European Portuguese)"
         }
         className={`inline-flex items-center justify-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${variantClasses} ${className}`}
-        style={variant === "dark" || variant === "muted" ? undefined : size === "md" ? { boxShadow: "0 1px 3px rgba(0,0,0,0.08)" } : undefined}
         aria-label="Play pronunciation"
       >
         <SpeakerIcon playing={playing} size={size} />
       </button>
       {voiceUnavailable && (
         <span
-          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 rounded text-[11px] whitespace-nowrap bg-gray-800 text-white z-10"
+          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 rounded text-[11px] whitespace-nowrap bg-text text-bg z-10"
           role="tooltip"
         >
           Portuguese voice not available

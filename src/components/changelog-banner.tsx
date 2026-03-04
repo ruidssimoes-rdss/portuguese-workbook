@@ -44,15 +44,12 @@ export function ChangelogBanner({ version, title, summary, firstChange }: Props)
   if (!show) return null;
 
   return (
-    <div
-      className="mt-6 mb-4 rounded-lg border border-blue-200 bg-sky-50 px-4 py-3 flex items-center gap-3"
-      style={{ borderLeftWidth: "3px", borderLeftColor: "#111827" }}
-    >
+    <div className="mt-6 mb-4 rounded-lg border border-[#003399]/20 bg-[#003399]/8 border-l-2 border-l-text px-4 py-3 flex items-center gap-3">
       <Link
         href="/changelog"
         className="flex-1 min-w-0 flex items-center gap-2 text-[13px] text-text hover:text-text group"
       >
-        <span className="shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-100 text-blue-800 border border-blue-200">
+        <span className="shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded bg-[#003399]/8 text-[#003399] border border-[#003399]/20">
           v{version}
         </span>
         <span className="font-medium truncate">
@@ -66,14 +63,14 @@ export function ChangelogBanner({ version, title, summary, firstChange }: Props)
             </span>
           ) : null}
         </span>
-        <span className="shrink-0 text-blue-800 group-hover:underline text-[13px]">
+        <span className="shrink-0 text-[#003399] group-hover:underline text-[13px]">
           See all updates →
         </span>
       </Link>
       <button
         type="button"
         onClick={dismiss}
-        className="shrink-0 p-1.5 rounded-md text-text-3 hover:text-text hover:bg-blue-100 transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+        className="shrink-0 p-1.5 rounded-md text-text-3 hover:text-text hover:bg-[#003399]/10 transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
         aria-label="Dismiss"
       >
         ×

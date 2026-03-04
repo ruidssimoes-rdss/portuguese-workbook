@@ -100,7 +100,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
   }
 
   return (
-    <div className="bg-white border border-[#CFD3D9] rounded-[12px] p-[30px] flex flex-col gap-5">
+    <div className="bg-bg border border-border rounded-[12px] p-[30px] flex flex-col gap-5">
       {/* Row 1: PT + divider + EN + CEFR pill */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-5">
         <div className="flex flex-col min-w-0">
@@ -110,23 +110,23 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
               variant="dark"
               className="shrink-0 mr-1"
             />
-            <span className="text-2xl font-semibold text-[#262626] leading-[42px]">
+            <span className="text-2xl font-semibold text-text leading-[42px]">
               {greeting.portuguese}
             </span>
-            <div className="hidden md:block w-px h-[34px] bg-[#9AA2AD] mx-5 shrink-0" />
-            <span className="hidden md:inline text-2xl font-normal text-[#A3AAB4] leading-[42px] truncate">
+            <div className="hidden md:block w-px h-[34px] bg-border mx-5 shrink-0" />
+            <span className="hidden md:inline text-2xl font-normal text-text-muted leading-[42px] truncate">
               {greeting.english}
             </span>
           </div>
-          <p className="md:hidden text-[13px] text-[#A3AAB4] mt-1">{greeting.english}</p>
+          <p className="md:hidden text-[13px] text-text-muted mt-1">{greeting.english}</p>
         </div>
-        <span className="text-[11px] font-semibold text-[#111827] bg-[#F3F4F6] px-2.5 py-[3px] rounded-full shrink-0 self-start md:self-center">
+        <span className="text-[11px] font-semibold text-text bg-surface px-2.5 py-[3px] rounded-full shrink-0 self-start md:self-center">
           {greeting.level}
         </span>
       </div>
 
       {/* Row 2: Pronunciation */}
-      <span className="font-mono text-[12px] text-[#A3AAB4] leading-5">
+      <span className="font-mono text-[12px] text-text-muted leading-5">
         /{greeting.pronunciation}/
       </span>
 
@@ -136,7 +136,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
           <input
             type="text"
             placeholder="Your response in Portuguese:"
-            className="w-full md:flex-1 min-w-0 h-[36px] px-3 rounded-[12px] border border-[#CFD3D9] bg-white text-[13px] text-[#262626] placeholder:text-[#CFD3D9] focus:outline-none focus:border-[#111827] focus:ring-1 focus:ring-[#111827] transition-colors duration-200"
+            className="w-full md:flex-1 min-w-0 h-[36px] px-3 rounded-[12px] border border-border bg-bg text-[13px] text-text placeholder:text-text-muted focus:outline-none focus:border-text focus:ring-1 focus:ring-text transition-colors duration-200"
             value={userResponse}
             onChange={(e) => setUserResponse(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
@@ -145,14 +145,14 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
             <button
               type="button"
               onClick={() => setShowHint(true)}
-              className="h-[36px] px-3 rounded-[12px] border border-[#CFD3D9] bg-[#F4F4F4] text-[13px] font-medium text-[#A2A6AE] hover:text-[#475569] hover:border-[#A2A6AE] transition-colors duration-200 whitespace-nowrap shrink-0"
+              className="h-[36px] px-3 rounded-[12px] border border-border bg-surface text-[13px] font-medium text-text-muted hover:text-text-secondary hover:border-border transition-colors duration-200 whitespace-nowrap shrink-0"
             >
               Need a hint?
             </button>
             <button
               type="button"
               onClick={handleSubmit}
-              className="h-[36px] px-5 rounded-[12px] bg-[#111827] border border-[#111827] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-colors duration-200 whitespace-nowrap shrink-0"
+              className="h-[36px] px-5 rounded-[12px] bg-[#003399] border border-[#003399] text-[13px] font-medium text-white hover:bg-[#002277] transition-colors duration-200 whitespace-nowrap shrink-0"
             >
               Reply
             </button>
@@ -162,7 +162,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
 
       {/* Hint display */}
       {showHint && !feedback && (
-        <p className="text-[13px] text-[#6B7280] italic">
+        <p className="text-[13px] text-text-secondary italic">
           {greeting.hint}
         </p>
       )}
@@ -171,7 +171,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
       {!feedback && greeting.grammarLink && (
         <Link
           href={`/grammar/${greeting.grammarLink}`}
-          className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-[rgba(224,231,255,0.75)] border border-[rgba(79,70,229,0.75)] text-[13px] font-medium text-[rgba(79,70,229,0.75)] hover:bg-[rgba(224,231,255,1)] transition-colors duration-200 w-fit"
+          className="inline-flex items-center justify-center h-[36px] px-3 rounded-[12px] bg-accent-light border border-accent-border text-[13px] font-medium text-[#003399] hover:text-[#002277] transition-colors duration-200 w-fit"
         >
           Learn about the structure
         </Link>
@@ -185,7 +185,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
               ? "bg-emerald-50 border border-emerald-100"
               : feedback.type === "correction"
                 ? "bg-amber-50 border border-amber-100"
-                : "bg-[#F3F4F6] border border-[#E5E7EB]"
+                : "bg-surface border border-border"
           }`}
         >
           {feedback.type === "success" && (
@@ -214,13 +214,13 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
           )}
           {(feedback.type === "partial" || feedback.type === "unknown") && (
             <>
-              <span className="text-[13px] font-medium text-[#374151] block">
+              <span className="text-[13px] font-medium text-text block">
                 {feedback.message}
               </span>
               {feedback.examples && feedback.examples.length > 0 && (
                 <ul className="mt-2 space-y-1">
                   {feedback.examples.map((ex, i) => (
-                    <li key={i} className="text-[13px] text-[#6B7280]">
+                    <li key={i} className="text-[13px] text-text-secondary">
                       • {ex}
                     </li>
                   ))}
@@ -235,7 +235,7 @@ export function HomeGreeting({ greeting }: { greeting: DailyPrompt }) {
               setUserResponse("");
               setShowHint(false);
             }}
-            className="text-[13px] text-[#111827] font-medium mt-3 hover:text-[#1F2937] transition-colors duration-200"
+            className="text-[13px] text-text font-medium mt-3 hover:text-text-secondary transition-colors duration-200"
           >
             Try another response
           </button>

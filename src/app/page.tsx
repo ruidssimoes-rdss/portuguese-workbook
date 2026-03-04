@@ -95,6 +95,39 @@ export default function Home() {
   return (
     <>
       <Topbar />
+      {/* Hero greeting section — full width */}
+      <section
+        className="w-full"
+        style={{
+          background: `radial-gradient(ellipse at 15% 60%, #dce6ff 0%, transparent 55%),
+                  radial-gradient(ellipse at 85% 20%, #e8eeff 0%, transparent 50%),
+                  radial-gradient(ellipse at 60% 90%, #f0f4ff 0%, transparent 40%),
+                  #ffffff`,
+        }}
+      >
+        <div className="max-w-[1280px] mx-auto px-6 pt-14 pb-12">
+          <h1 className="text-5xl font-bold tracking-tight text-text">
+            {ptGreeting}
+          </h1>
+          <div className="mt-3 h-[2px] w-12 bg-[#003399] opacity-50 rounded-full" />
+          <div className="flex flex-wrap gap-2 mt-5">
+            {[
+              { value: totalVocabWords.toLocaleString(), label: "words" },
+              { value: totalVerbs, label: "verbs" },
+              { value: totalGrammarTopics, label: "grammar topics" },
+              { value: sayings.length, label: "sayings" },
+            ].map(({ value, label }) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-text-secondary bg-surface border border-border rounded-full px-3 py-1"
+              >
+                <span className="font-semibold text-text">{value}</span>
+                {label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
       <PageContainer>
         {latestChangelog && (
           <ChangelogBanner
@@ -105,16 +138,6 @@ export default function Home() {
           />
         )}
 
-        {/* Greeting bar */}
-        <div className="py-5">
-          <h1 className="text-2xl font-bold text-[#111827]">
-            {ptGreeting}
-          </h1>
-          <p className="mt-1 text-[13px] text-[#9CA3AF]">
-            {totalVocabWords.toLocaleString()} words · {totalVerbs} verbs · {totalGrammarTopics} grammar topics · {sayings.length} sayings
-          </p>
-        </div>
-
         {/* Daily prompt */}
         {todayPrompt && <HomeGreeting greeting={todayPrompt} />}
 
@@ -123,33 +146,48 @@ export default function Home() {
 
         {/* Quick stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-          <Card padding="md">
-            <SectionHeader>
-              Vocabulary
-            </SectionHeader>
-            <p className="text-[18px] font-semibold text-[#111827] mt-1">
-              {totalVocabWords.toLocaleString()} words
+          <div className="relative group bg-bg border border-border rounded-2xl p-6 hover:shadow-lg hover:border-[#003399]/20 transition-all duration-300 overflow-hidden cursor-default">
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#003399] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div
+              className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center text-lg"
+              style={{ backgroundColor: "rgba(0,51,153,0.07)" }}
+            >
+              📖
+            </div>
+            <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-text-muted mb-3">Vocabulary</p>
+            <p className="text-4xl font-bold text-text tracking-tight leading-none">
+              {totalVocabWords.toLocaleString()}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-0.5">{totalCategories} categories · A1–B1</p>
-          </Card>
-          <Card padding="md">
-            <SectionHeader>
-              Conjugations
-            </SectionHeader>
-            <p className="text-[18px] font-semibold text-[#111827] mt-1">
-              {totalVerbs} verbs
+            <p className="text-sm text-text-muted mt-1">{totalCategories} categories · A1–B1</p>
+          </div>
+          <div className="relative group bg-bg border border-border rounded-2xl p-6 hover:shadow-lg hover:border-[#003399]/20 transition-all duration-300 overflow-hidden cursor-default">
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#003399] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div
+              className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center text-lg"
+              style={{ backgroundColor: "rgba(0,51,153,0.07)" }}
+            >
+              🔤
+            </div>
+            <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-text-muted mb-3">Conjugations</p>
+            <p className="text-4xl font-bold text-text tracking-tight leading-none">
+              {totalVerbs}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-0.5">{totalConjugations.toLocaleString()} conjugations · 6 tenses</p>
-          </Card>
-          <Card padding="md">
-            <SectionHeader>
-              Grammar
-            </SectionHeader>
-            <p className="text-[18px] font-semibold text-[#111827] mt-1">
-              {totalGrammarTopics} topics
+            <p className="text-sm text-text-muted mt-1">{totalConjugations.toLocaleString()} conjugations · 6 tenses</p>
+          </div>
+          <div className="relative group bg-bg border border-border rounded-2xl p-6 hover:shadow-lg hover:border-[#003399]/20 transition-all duration-300 overflow-hidden cursor-default">
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#003399] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div
+              className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center text-lg"
+              style={{ backgroundColor: "rgba(0,51,153,0.07)" }}
+            >
+              📐
+            </div>
+            <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-text-muted mb-3">Grammar</p>
+            <p className="text-4xl font-bold text-text tracking-tight leading-none">
+              {totalGrammarTopics}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-0.5">A1–B1 · Rules & examples</p>
-          </Card>
+            <p className="text-sm text-text-muted mt-1">A1–B1 · Rules & examples</p>
+          </div>
         </div>
 
         {/* Today's Picks */}
@@ -167,23 +205,23 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <PronunciationButton text={wordOfDay.word.portuguese} size="sm" variant="dark" className="shrink-0" />
-                  <span className="text-[18px] font-semibold text-[#111827]">{wordOfDay.word.portuguese}</span>
+                  <span className="text-[18px] font-semibold text-text">{wordOfDay.word.portuguese}</span>
                 </div>
-                <p className="text-[13px] text-[#6B7280]">{wordOfDay.word.english}</p>
+                <p className="text-[13px] text-text-secondary">{wordOfDay.word.english}</p>
                 {wordOfDay.word.pronunciation && (
-                  <span className="text-[12px] font-mono text-[#9CA3AF]">/{wordOfDay.word.pronunciation}/</span>
+                  <span className="text-[12px] font-mono text-text-muted">/{wordOfDay.word.pronunciation}/</span>
                 )}
                 {wordOfDay.word.example && (
-                  <div className="bg-[#F8F8FA] rounded-lg px-3 py-2">
-                    <p className="text-[13px] italic text-[#374151]">&ldquo;{wordOfDay.word.example}&rdquo;</p>
+                  <div className="bg-surface rounded-lg px-3 py-2">
+                    <p className="text-[13px] italic text-text">&ldquo;{wordOfDay.word.example}&rdquo;</p>
                     {wordOfDay.word.exampleTranslation && (
-                      <p className="text-[11px] text-[#9CA3AF] mt-0.5">{wordOfDay.word.exampleTranslation}</p>
+                      <p className="text-[11px] text-text-muted mt-0.5">{wordOfDay.word.exampleTranslation}</p>
                     )}
                   </div>
                 )}
                 <div className="flex items-center gap-1.5 flex-wrap mt-auto">
                   {wordOfDay.word.gender && (
-                    <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2.5 py-[3px] rounded-full">
+                    <span className="text-xs font-medium text-[#003399] bg-[#003399]/10 rounded-full px-2 py-0.5">
                       {wordOfDay.word.gender}
                     </span>
                   )}
@@ -206,20 +244,20 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <PronunciationButton text={verbKey.toLowerCase()} size="sm" variant="dark" className="shrink-0" />
-                  <span className="text-[18px] font-semibold text-[#111827]">{verbKey.toLowerCase()}</span>
+                  <span className="text-[18px] font-semibold text-text">{verbKey.toLowerCase()}</span>
                 </div>
-                <p className="text-[13px] text-[#6B7280]">{verbOfDay.meta.english}</p>
+                <p className="text-[13px] text-text-secondary">{verbOfDay.meta.english}</p>
                 <div className="space-y-0.5">
                   {presentRows.slice(0, 5).map((row) => (
                     <div key={row.Person} className="flex items-baseline gap-3 text-[13px]">
-                      <span className="w-[36px] text-[#9CA3AF] shrink-0">{shortPerson(row.Person)}</span>
-                      <span className="font-medium text-[#111827]">{row.Conjugation}</span>
+                      <span className="w-[36px] text-text-muted shrink-0">{shortPerson(row.Person)}</span>
+                      <span className="font-medium text-text">{row.Conjugation}</span>
                     </div>
                   ))}
                 </div>
                 <Link
                   href={`/conjugations/${verbKey.toLowerCase()}`}
-                  className="text-[13px] font-medium text-[#111827] hover:text-[#374151] transition-all duration-150 ease-out mt-auto"
+                  className="text-[13px] font-medium text-text hover:text-text-secondary transition-all duration-150 ease-out mt-auto"
                 >
                   View all tenses →
                 </Link>
@@ -235,21 +273,21 @@ export default function Home() {
                 </div>
                 <div className="flex items-start gap-2">
                   <PronunciationButton text={sayingOfDay.portuguese} size="sm" variant="dark" className="shrink-0 mt-0.5" />
-                  <p className="text-[15px] font-semibold italic text-[#111827]">&ldquo;{sayingOfDay.portuguese}&rdquo;</p>
+                  <p className="text-[15px] font-semibold italic text-text">&ldquo;{sayingOfDay.portuguese}&rdquo;</p>
                 </div>
-                <p className="text-[13px] text-[#6B7280]">{sayingOfDay.meaning}</p>
+                <p className="text-[13px] text-text-secondary">{sayingOfDay.meaning}</p>
                 {sayingOfDay.pronunciation && (
-                  <span className="text-[12px] font-mono text-[#9CA3AF]">/{sayingOfDay.pronunciation}/</span>
+                  <span className="text-[12px] font-mono text-text-muted">/{sayingOfDay.pronunciation}/</span>
                 )}
                 <div className="flex flex-col gap-1 text-[12px]">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-[11px] uppercase tracking-[0.08em] text-[#9CA3AF] font-semibold shrink-0">Literal</span>
-                    <span className="text-[#6B7280]">{sayingOfDay.literal}</span>
+                    <span className="text-[11px] uppercase tracking-[0.08em] text-text-muted font-semibold shrink-0">Literal</span>
+                    <span className="text-text-secondary">{sayingOfDay.literal}</span>
                   </div>
                 </div>
                 <Link
                   href="/culture"
-                  className="text-[13px] font-medium text-[#111827] hover:text-[#374151] transition-all duration-150 ease-out mt-auto"
+                  className="text-[13px] font-medium text-text hover:text-text-secondary transition-all duration-150 ease-out mt-auto"
                 >
                   Explore culture →
                 </Link>
@@ -276,8 +314,8 @@ export default function Home() {
                 className="block group"
               >
                 <Card interactive className="h-full flex flex-col">
-                  <span className="text-[15px] font-semibold text-[#111827]">{s.title}</span>
-                  <span className="text-[13px] text-[#9CA3AF] italic">{s.titlePt}</span>
+                  <span className="text-[15px] font-semibold text-text">{s.title}</span>
+                  <span className="text-[13px] text-text-muted italic">{s.titlePt}</span>
                   <span className="text-[12px] text-text-secondary mt-auto pt-3">{s.stat}</span>
                 </Card>
               </Link>
