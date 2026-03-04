@@ -164,7 +164,7 @@ function RuleCard({
               <PronunciationButton
                 text={ex.pt}
                 size="sm"
-                variant="muted"
+                variant="default"
                 className="shrink-0"
               />
               <div className="flex-1 flex items-baseline justify-between gap-4 min-w-0">

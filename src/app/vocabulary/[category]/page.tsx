@@ -113,7 +113,7 @@ function WordCard({
         <PronunciationButton
           text={w.portuguese}
           size="md"
-          variant="dark"
+          variant="default"
           className="shrink-0"
         />
       </div>
