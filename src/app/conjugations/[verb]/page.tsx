@@ -92,7 +92,7 @@ export default function VerbPage() {
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <h1 className="text-2xl font-bold text-[#111827]">{slug}</h1>
-                <PronunciationButton text={slug} size="md" className="shrink-0" />
+                <PronunciationButton text={slug} size="md" variant="default" className="shrink-0" />
                 {m.pronunciation && (
                   <span className="text-sm text-text-muted font-mono">{m.pronunciation}</span>
                 )}

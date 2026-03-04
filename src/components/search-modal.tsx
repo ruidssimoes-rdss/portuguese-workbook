@@ -377,7 +377,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                           </span>
                                           {r.type === "vocabulary" && (
                             <span className="shrink-0" onClick={(e) => e.stopPropagation()}>
-                              <PronunciationButton text={r.title} size="sm" />
+                              <PronunciationButton text={r.title} size="sm" variant="muted" />
                             </span>
                           )}
                           <svg

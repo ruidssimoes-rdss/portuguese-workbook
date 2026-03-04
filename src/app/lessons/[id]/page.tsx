@@ -152,7 +152,7 @@ function VocabCard({
             <p className="text-[18px] font-semibold text-[#111827]">
               {item.word}
             </p>
-            <PronunciationButton text={item.word} size="sm" />
+            <PronunciationButton text={item.word} size="sm" variant="muted" />
           </div>
           <p className="text-[15px] text-[#6B7280]">{item.translation}</p>
           <p className="text-[13px] text-[#9CA3AF] mt-1">
@@ -235,7 +235,7 @@ function VerbStage({
       <StageHeader stage={stage} />
       <div className="mb-4">
         <div className="flex items-center gap-2">
-          <PronunciationButton text={verb.verb} size="sm" />
+          <PronunciationButton text={verb.verb} size="sm" variant="muted" />
           <h3 className="text-[18px] font-semibold text-[#111827]">
             {verb.verb}
           </h3>
@@ -404,7 +404,7 @@ function GrammarStage({
             }`}
           >
             <div className="flex items-center gap-3">
-              <PronunciationButton text={ex.pt} size="sm" />
+              <PronunciationButton text={ex.pt} size="sm" variant="muted" />
               <p className="text-[15px] font-semibold text-[#111827]">
                 {ex.pt}
               </p>
@@ -460,6 +460,7 @@ function CultureStage({
               <PronunciationButton
                 text={item.expression}
                 size="sm"
+                variant="muted"
                 className="shrink-0 mt-0.5"
               />
               <p className="text-[18px] font-semibold text-[#111827] italic leading-relaxed">

@@ -122,7 +122,7 @@ function FeaturedSaying() {
           <p className="text-xl font-semibold italic text-[#111827] leading-snug flex-1">
             &quot;{featured.portuguese}&quot;
           </p>
-          <PronunciationButton text={featured.portuguese} size="sm" />
+          <PronunciationButton text={featured.portuguese} size="sm" variant="default" />
           <CEFRBadge level={featured.cefr} />
         </div>
         <p className="mt-3 text-sm text-[#6B7280]">{featured.meaning}</p>
@@ -163,7 +163,7 @@ function SayingCard({ saying, isHighlighted, isExpanded, onToggle }: { saying: S
           <Chevron expanded={isExpanded} />
         </div>
         <div className="flex items-center gap-2 mt-2 flex-wrap">
-          <PronunciationButton text={saying.portuguese} size="sm" />
+          <PronunciationButton text={saying.portuguese} size="sm" variant="muted" />
           <CEFRBadge level={saying.cefr} />
           <Badge>{themeLabel(saying.theme)}</Badge>
         </div>
@@ -220,7 +220,7 @@ function FalseFriendCard({ item, isHighlighted, isExpanded, onToggle }: { item: 
           <Chevron expanded={isExpanded} />
         </div>
         <div className="flex items-center gap-2 mt-2">
-          <PronunciationButton text={item.portuguese} size="sm" />
+          <PronunciationButton text={item.portuguese} size="sm" variant="muted" />
           <CEFRBadge level={item.cefr} />
         </div>
 
@@ -314,7 +314,7 @@ function RegionalCard({ item, isHighlighted, isExpanded, onToggle }: { item: Reg
         <div className="flex items-center gap-2 mt-2 flex-wrap">
           <Badge color={regionBadgeClass(item.region)}>{regionLabel(item.region)}</Badge>
           <CEFRBadge level={item.cefr} />
-          <PronunciationButton text={item.expression} size="sm" />
+          <PronunciationButton text={item.expression} size="sm" variant="muted" />
         </div>
         <p className="mt-3 text-sm text-[#6B7280]">{item.meaning}</p>
 
