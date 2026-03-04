@@ -96,15 +96,7 @@ export default function Home() {
     <>
       <Topbar />
       {/* Hero greeting section — full width */}
-      <section
-        className="w-full"
-        style={{
-          background: `radial-gradient(ellipse at 15% 60%, #dce6ff 0%, transparent 55%),
-                  radial-gradient(ellipse at 85% 20%, #e8eeff 0%, transparent 50%),
-                  radial-gradient(ellipse at 60% 90%, #f0f4ff 0%, transparent 40%),
-                  #ffffff`,
-        }}
-      >
+      <section className="w-full bg-bg">
         <div className="max-w-[1280px] mx-auto px-6 pt-14 pb-12">
           <h1 className="text-5xl font-bold tracking-tight text-text">
             {ptGreeting}
