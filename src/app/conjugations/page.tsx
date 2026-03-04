@@ -71,7 +71,7 @@ export default function ConjugationsPage() {
             titlePt="Conjugações"
             section="LIBRARY"
             sectionPt="Biblioteca"
-            tagline="133 verbs and 3,990 conjugations across 6 tenses — the full engine of European Portuguese, from present tense to the subjunctive."
+            tagline={`${data.order.length} verbs and ${totalConjugations.toLocaleString()} conjugations across 6 tenses — the full engine of European Portuguese, from present tense to the subjunctive.`}
             stats={[
               { value: String(data.order.length), label: "verbs" },
               { value: String(totalConjugations), label: "conjugations" },
