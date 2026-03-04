@@ -11,15 +11,15 @@ export function PageHeader({ title, titlePt, subtitle, className }: PageHeaderPr
   return (
     <div className={className}>
       <div className="flex items-baseline gap-3">
-        <h1 className="text-2xl font-bold text-[#111827]">{title}</h1>
+        <h1 className="text-2xl font-bold text-text">{title}</h1>
         {titlePt && (
-          <span className="text-[13px] font-medium text-[#9CA3AF] italic">
+          <span className="text-[13px] font-medium text-text-muted italic">
             {titlePt}
           </span>
         )}
       </div>
       {subtitle && (
-        <p className="mt-1 text-sm text-[#9CA3AF]">{subtitle}</p>
+        <p className="mt-1 text-sm text-text-muted">{subtitle}</p>
       )}
     </div>
   );

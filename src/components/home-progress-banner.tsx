@@ -58,7 +58,7 @@ export function HomeProgressBanner() {
         </div>
         <Link
           href="/lessons#level-tests"
-          className="text-[13px] font-medium text-[#3C5E95] hover:text-[#2E4A75] mt-3 inline-block transition-colors"
+          className="text-[13px] font-medium text-[#003399] hover:text-[#002277] mt-3 inline-block transition-colors"
         >
           View full progress →
         </Link>

@@ -14,8 +14,8 @@ interface CardProps {
 }
 
 const variantClasses: Record<CardVariant, string> = {
-  outline: "border border-[#E5E7EB] bg-white",
-  surface: "bg-[#FAFAFA] border border-[#E5E7EB]",
+  outline: "border border-border bg-bg",
+  surface: "bg-surface border border-border",
   ghost: "bg-transparent",
   featured: "border border-[#E5E7EB] bg-white border-l-[3px] border-l-[#3C5E95]",
 };

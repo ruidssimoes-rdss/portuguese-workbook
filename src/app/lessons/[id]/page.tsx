@@ -346,7 +346,7 @@ function VerbStage({
           </div>
           <Link
             href={`/conjugations/${verb.verbSlug}`}
-            className="text-[13px] font-medium text-[#3C5E95] hover:underline"
+            className="text-[13px] font-medium text-[#003399] hover:underline"
           >
             View all tenses →
           </Link>
@@ -426,7 +426,7 @@ function GrammarStage({
         <div className="mt-6 text-center">
           <Link
             href={`/grammar/${grammar.topicSlug}`}
-            className="text-[13px] font-medium text-[#3C5E95] hover:underline"
+            className="text-[13px] font-medium text-[#003399] hover:underline"
           >
             Deep dive: {grammar.topicTitle} →
           </Link>
@@ -823,7 +823,7 @@ function LessonContent({ id }: { id: string }) {
           <p className="text-[13px] text-[#9CA3AF]">Lesson not found.</p>
           <Link
             href="/lessons"
-            className="text-[13px] font-medium text-[#3C5E95] hover:underline mt-2 inline-block"
+            className="text-[13px] font-medium text-[#003399] hover:underline mt-2 inline-block"
           >
             Back to Lessons
           </Link>
@@ -1042,7 +1042,7 @@ function LessonContent({ id }: { id: string }) {
               </p>
               <Link
                 href="/lessons"
-                className="text-[13px] font-medium text-[#3C5E95] hover:underline"
+                className="text-[13px] font-medium text-[#003399] hover:underline"
               >
                 Back to all lessons →
               </Link>

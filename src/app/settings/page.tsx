@@ -140,9 +140,9 @@ export default function SettingsPage() {
 
           <section className="mt-8">
             <h2 className="text-[15px] font-semibold text-text mb-3">Perfil</h2>
-            <div className="rounded-[14px] border border-[#E9E9E9] bg-white p-5 space-y-4">
+            <div className="rounded-[14px] border border-[#E9E9E9] bg-bg p-5 space-y-4">
               <div>
-                <label htmlFor="display-name" className="block text-sm font-medium text-[#374151] mb-1">
+                <label htmlFor="display-name" className="block text-sm font-medium text-text mb-1">
                   Nome
                 </label>
                 <input
@@ -150,12 +150,12 @@ export default function SettingsPage() {
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#111827] focus:border-[#111827] outline-none"
+                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-text focus:border-text outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#374151] mb-1">Email</label>
-                <p className="text-[#6B7280] text-[15px]">{user?.email ?? "—"}</p>
+                <label className="block text-sm font-medium text-text mb-1">Email</label>
+                <p className="text-text-secondary text-[15px]">{user?.email ?? "—"}</p>
               </div>
               <Button variant="primary" onClick={saveProfile} disabled={saving}>
                 {saving ? "A guardar..." : "Guardar perfil"}
@@ -165,15 +165,15 @@ export default function SettingsPage() {
 
           <section className="mt-8">
             <h2 className="text-[15px] font-semibold text-text mb-3">Preferências de aprendizagem</h2>
-            <div className="rounded-[14px] border border-[#E9E9E9] bg-white p-5 space-y-4">
+            <div className="rounded-[14px] border border-[#E9E9E9] bg-bg p-5 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#374151] mb-2">
+                <label className="block text-sm font-medium text-text mb-2">
                   Velocidade da pronúncia
                 </label>
                 <select
                   value={pronunciationSpeed}
                   onChange={(e) => setPronunciationSpeed(Number(e.target.value))}
-                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-[#111827] focus:border-[#111827] outline-none"
+                  className="w-full rounded-lg border border-[#E9E9E9] px-4 py-3 text-base focus:ring-2 focus:ring-text focus:border-text outline-none"
                 >
                   {SPEED_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -183,14 +183,21 @@ export default function SettingsPage() {
                 </select>
               </div>
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-[#374151]">Mostrar fonética</label>
+                <label className="text-sm font-medium text-text">Mostrar fonética</label>
                 <button
                   type="button"
                   role="switch"
                   aria-checked={showPhonetics}
                   onClick={() => setShowPhonetics((v) => !v)}
-                  className={`relative inline-flex h-6 w-11 shrink-0 rounded-full border transition-colors ${
-                    showPhonetics ? "bg-[#111827] border-[#111827]" : "bg-[#E5E7EB] border-[#E9E9E9]"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === " " || e.key === "Enter") {
+                      e.preventDefault();
+                      setShowPhonetics((v) => !v);
+                    }
+                  }}
+                  className={`relative inline-flex h-6 w-11 shrink-0 rounded-full border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[--color-accent] focus-visible:ring-offset-2 ${
+                    showPhonetics ? "bg-text border-text" : "bg-border border-[#E9E9E9]"
                   }`}
                 >
                   <span
@@ -227,7 +234,7 @@ export default function SettingsPage() {
               <p>
                 <Link
                   href="/auth/update-password"
-                  className="text-[#3C5E95] text-sm font-medium hover:underline"
+                  className="text-[#003399] text-sm font-medium hover:underline"
                 >
                   Alterar palavra-passe
                 </Link>

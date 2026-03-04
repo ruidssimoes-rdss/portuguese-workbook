@@ -62,7 +62,7 @@ export default function SignUpPage() {
             </p>
             <Link
               href="/auth/login"
-              className="mt-6 block text-center text-[14px] font-medium text-[#3C5E95] hover:underline"
+              className="mt-6 block text-center text-[14px] font-medium text-[#003399] hover:underline"
             >
               Voltar ao login
             </Link>
@@ -173,7 +173,7 @@ export default function SignUpPage() {
 
           <p className="mt-6 text-center text-[14px] text-gray-600">
             Já tens conta?{" "}
-            <Link href="/auth/login" className="font-medium text-[#3C5E95] hover:underline">
+            <Link href="/auth/login" className="font-medium text-[#003399] hover:underline">
               Entrar
             </Link>
           </p>

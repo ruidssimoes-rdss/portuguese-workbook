@@ -20,7 +20,7 @@ function DifficultyDots({ level }: { level: 1 | 2 | 3 }) {
         <div
           key={i}
           className={`w-1.5 h-1.5 rounded-full ${
-            i <= level ? "bg-[#111827]" : "bg-[#E5E7EB]"
+            i <= level ? "bg-text" : "bg-border"
           }`}
         />
       ))}
@@ -39,7 +39,7 @@ function ClassificationBadge({
     "Muito Bom": "text-amber-700 bg-amber-50 border-amber-200",
     Bom: "text-blue-700 bg-blue-50 border-blue-200",
     Suficiente: "text-emerald-700 bg-emerald-50 border-emerald-200",
-    "Not yet": "text-[#6B7280] bg-[#F9FAFB] border-[#E5E7EB]",
+    "Not yet": "text-text-secondary bg-surface border-border",
   };
 
   return (
@@ -57,7 +57,16 @@ export default function ExamsPage() {
   const [results, setResults] = useState<Record<string, ExamResult>>({});
 
   useEffect(() => {
-    getAllExamResults().then(setResults).catch(() => {});
+    getAllExamResults()
+      .then(setResults)
+      .catch((err) => {
+        if (process.env.NODE_ENV === "development") {
+          console.warn(
+            "[AulaPT] Progress/exam fetch failed silently:",
+            err
+          );
+        }
+      });
   }, []);
 
   return (
@@ -78,15 +87,15 @@ export default function ExamsPage() {
           <SectionHeader className="mb-2">
             About the CIPLE A2 Exam
           </SectionHeader>
-          <p className="text-[13px] text-[#6B7280] leading-relaxed">
+          <p className="text-[13px] text-text-secondary leading-relaxed">
             Each mock exam simulates the full CIPLE A2 format with 3 sections:
             Reading & Writing (45%), Listening (30%), and Speaking (25%).
             Scores are classified as{" "}
-            <span className="font-semibold text-[#111827]">Suficiente</span>{" "}
+            <span className="font-semibold text-text">Suficiente</span>{" "}
             (55%),{" "}
-            <span className="font-semibold text-[#111827]">Bom</span>{" "}
+            <span className="font-semibold text-text">Bom</span>{" "}
             (70%), or{" "}
-            <span className="font-semibold text-[#111827]">Muito Bom</span>{" "}
+            <span className="font-semibold text-text">Muito Bom</span>{" "}
             (85%).
           </p>
         </Card>
@@ -169,7 +178,7 @@ export default function ExamsPage() {
                       </div>
                     ) : (
                       <div className="mt-2">
-                        <span className="text-[12px] font-medium text-[#3C5E95]">
+                        <span className="text-[12px] font-medium text-[#003399]">
                           Iniciar exame →
                         </span>
                       </div>

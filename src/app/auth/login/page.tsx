@@ -121,7 +121,7 @@ function LoginForm() {
               <p className="mt-1.5 text-sm">
                 <Link
                   href="/auth/reset-password"
-                  className="text-[#3C5E95] hover:underline"
+                  className="text-[#003399] hover:underline"
                 >
                   Esqueceste a palavra-passe?
                 </Link>
@@ -145,7 +145,7 @@ function LoginForm() {
 
           <p className="mt-6 text-center text-[14px] text-gray-600">
             Ainda não tens conta?{" "}
-            <Link href="/auth/signup" className="font-medium text-[#3C5E95] hover:underline">
+            <Link href="/auth/signup" className="font-medium text-[#003399] hover:underline">
               Criar conta
             </Link>
           </p>

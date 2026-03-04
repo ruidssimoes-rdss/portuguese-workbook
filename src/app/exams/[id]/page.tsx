@@ -951,7 +951,7 @@ function ExamContent({ id }: { id: string }) {
           <p className="text-[13px] text-[#9CA3AF]">Exam not found.</p>
           <Link
             href="/exams"
-            className="text-[13px] font-medium text-[#3C5E95] hover:underline mt-2 inline-block"
+            className="text-[13px] font-medium text-[#003399] hover:underline mt-2 inline-block"
           >
             Back to Exams
           </Link>
@@ -973,7 +973,7 @@ function ExamContent({ id }: { id: string }) {
           </p>
           <Link
             href="/exams"
-            className="text-[13px] font-medium text-[#3C5E95] hover:underline mt-4 inline-block"
+            className="text-[13px] font-medium text-[#003399] hover:underline mt-4 inline-block"
           >
             Back to Exams
           </Link>

@@ -36,28 +36,28 @@ const levelsData = levelsDataRaw as unknown as LevelsData;
 
 const SECTION_COLORS = {
   conjugations: {
-    primary: "#111827",
-    bg: "#FFFFFF",
-    border: "#E5E7EB",
-    text: "#6B7280",
-    barTrack: "#F3F4F6",
-    barFill: "#111827",
+    primary: "var(--color-text)",
+    bg: "var(--color-bg)",
+    border: "var(--color-border)",
+    text: "var(--color-text-secondary)",
+    barTrack: "var(--color-border-light)",
+    barFill: "var(--color-text)",
   },
   vocabulary: {
-    primary: "#111827",
-    bg: "#FFFFFF",
-    border: "#E5E7EB",
-    text: "#6B7280",
-    barTrack: "#F3F4F6",
-    barFill: "#111827",
+    primary: "var(--color-text)",
+    bg: "var(--color-bg)",
+    border: "var(--color-border)",
+    text: "var(--color-text-secondary)",
+    barTrack: "var(--color-border-light)",
+    barFill: "var(--color-text)",
   },
   grammar: {
-    primary: "#111827",
-    bg: "#FFFFFF",
-    border: "#E5E7EB",
-    text: "#6B7280",
-    barTrack: "#F3F4F6",
-    barFill: "#111827",
+    primary: "var(--color-text)",
+    bg: "var(--color-bg)",
+    border: "var(--color-border)",
+    text: "var(--color-text-secondary)",
+    barTrack: "var(--color-border-light)",
+    barFill: "var(--color-text)",
   },
 } as const;
 
@@ -97,7 +97,16 @@ export default function LessonsPage() {
   >({});
 
   useEffect(() => {
-    getAllLessonProgress().then(setLessonProgressMap).catch(() => {});
+    getAllLessonProgress()
+      .then(setLessonProgressMap)
+      .catch((err) => {
+        if (process.env.NODE_ENV === "development") {
+          console.warn(
+            "[AulaPT] Progress/exam fetch failed silently:",
+            err
+          );
+        }
+      });
   }, []);
 
   // Level test progress
@@ -205,22 +214,22 @@ export default function LessonsPage() {
                 >
                   <Card interactive className="h-full flex flex-col">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+                      <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
                         Lesson {lesson.order}
                       </p>
                       <CEFRBadge level={lesson.cefr} className="shrink-0" />
                     </div>
-                    <h3 className="text-[15px] font-semibold tracking-tight text-[#111827] mt-2">
+                    <h3 className="text-[15px] font-semibold tracking-tight text-text mt-2">
                       {lesson.title}
                     </h3>
-                    <p className="text-[13px] text-[#6B7280] italic mt-0.5">
+                    <p className="text-[13px] text-text-secondary italic mt-0.5">
                       {lesson.ptTitle}
                     </p>
-                    <p className="text-[12px] text-[#9CA3AF] mt-2 line-clamp-2">
+                    <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
                       {lesson.description}
                     </p>
                     <div className="mt-auto pt-3">
-                      <p className="text-[12px] text-[#9CA3AF]">
+                      <p className="text-[12px] text-text-muted">
                         ~{lesson.estimatedMinutes} min · {lesson.stages.length}{" "}
                         stages
                       </p>
@@ -233,7 +242,7 @@ export default function LessonsPage() {
           </div>
 
           {lessons.length <= 1 && (
-            <p className="text-[13px] text-[#9CA3AF] mt-4">
+            <p className="text-[13px] text-text-muted mt-4">
               More lessons coming soon.
             </p>
           )}
@@ -250,16 +259,16 @@ export default function LessonsPage() {
 
           {/* Auth gate */}
           {!isLoggedIn ? (
-            <div className="border border-[#E5E7EB] rounded-xl p-8 bg-[#FAFAFA] text-center">
-              <p className="text-[15px] font-semibold text-[#111827]">
+            <div className="border border-border rounded-xl p-8 bg-surface text-center">
+              <p className="text-[15px] font-semibold text-text">
                 Sign in to access level tests and track your progress
               </p>
-              <p className="text-[13px] text-[#6B7280] italic mt-1">
+              <p className="text-[13px] text-text-secondary italic mt-1">
                 Inicia sessão para aceder aos testes de nível
               </p>
               <Link
                 href="/auth/login"
-                className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-all duration-150 ease-out mt-5"
+                className="inline-flex items-center justify-center h-[36px] px-5 bg-text border border-text rounded-[12px] text-[13px] font-medium text-bg hover:bg-[#1F2937] transition-colors duration-200 mt-5"
               >
                 Entrar
               </Link>
@@ -322,7 +331,7 @@ export default function LessonsPage() {
                                       ? colors.barFill
                                       : isCurrent
                                         ? `${colors.primary}44`
-                                        : "#E5E7EB",
+                                        : "var(--color-border)",
                                     minWidth: "12px",
                                   }}
                                   title={tooltip}
@@ -380,41 +389,29 @@ export default function LessonsPage() {
                   return (
                     <div
                       key={section}
-                      className="rounded-xl border flex flex-col"
+                      className="rounded-xl border flex flex-col bg-bg border-border"
                       style={{
-                        backgroundColor: colors.bg,
-                        borderColor: colors.border,
                         padding: "19px 20px 20px",
                         gap: "20px",
                       }}
                     >
                       {/* Row 1: Title + Score pill */}
                       <div className="flex items-start justify-between gap-5">
-                        <h2 className="text-[18px] font-normal text-[#111827] leading-[42px]">
+                        <h2 className="text-[18px] font-normal text-text leading-[42px]">
                           {section.charAt(0).toUpperCase() + section.slice(1)}
                         </h2>
                         {!isComplete && (
                           <div
-                            className="flex items-center h-[36px] px-2.5 bg-white border rounded-[12px] shrink-0"
-                            style={{ borderColor: colors.border }}
+                            className="flex items-center h-[36px] px-2.5 bg-bg border border-border rounded-[12px] shrink-0"
                           >
-                            <span
-                              className="text-[13px] font-medium whitespace-nowrap"
-                              style={{ color: colors.text }}
-                            >
+                              <span className="text-[13px] font-medium whitespace-nowrap text-text-secondary">
                               Score {targetAccuracy}% or higher
                             </span>
                           </div>
                         )}
                         {isComplete && (
-                          <div
-                            className="flex items-center h-[36px] px-2.5 bg-white border rounded-[12px] shrink-0"
-                            style={{ borderColor: colors.border }}
-                          >
-                            <span
-                              className="text-[13px] font-medium whitespace-nowrap"
-                              style={{ color: colors.text }}
-                            >
+                          <div className="flex items-center h-[36px] px-2.5 bg-bg border border-border rounded-[12px] shrink-0">
+                            <span className="text-[13px] font-medium whitespace-nowrap text-text-secondary">
                               Complete
                             </span>
                           </div>
@@ -422,27 +419,18 @@ export default function LessonsPage() {
                       </div>
 
                       {/* Row 2: Level + label */}
-                      <p
-                        className="text-[15px] font-normal leading-[22px]"
-                        style={{ color: colors.text }}
-                      >
+                      <p className="text-[15px] font-normal leading-[22px] text-text-secondary">
                         {currentLevel} · {info.label}
                       </p>
 
                       {/* Row 3: Description */}
-                      <p
-                        className="text-[13px] font-normal leading-[21px]"
-                        style={{ color: colors.text }}
-                      >
+                      <p className="text-[13px] font-normal leading-[21px] text-text-secondary">
                         {info.description}
                       </p>
 
                       {/* Row 4: Progress bar + count */}
                       <div className="flex flex-col gap-1">
-                        <div
-                          className="h-[6px] rounded-full overflow-hidden"
-                          style={{ backgroundColor: colors.barTrack }}
-                        >
+                        <div className="h-[6px] rounded-full overflow-hidden bg-border-light">
                           <div
                             className="h-full rounded-full transition-all duration-300"
                             style={{
@@ -451,7 +439,7 @@ export default function LessonsPage() {
                             }}
                           />
                         </div>
-                        <span className="text-[13px] font-normal text-[#9FA5AD]">
+                        <span className="text-[13px] font-normal text-text-muted">
                           {passedCount} / 15
                         </span>
                       </div>
@@ -468,7 +456,7 @@ export default function LessonsPage() {
                         ) : (
                           <Link
                             href={`/lessons/test/${section}`}
-                            className="inline-flex items-center justify-center h-[36px] px-5 bg-[#111827] border border-[#111827] rounded-[12px] text-[13px] font-medium text-white hover:bg-[#1F2937] transition-all duration-150 ease-out"
+                            className="inline-flex items-center justify-center h-[36px] px-5 bg-text border border-text rounded-[12px] text-[13px] font-medium text-bg hover:bg-[#1F2937] transition-colors duration-200"
                           >
                             {failedLast
                               ? `Retry ${sectionLabels[section]} Test`
@@ -476,7 +464,7 @@ export default function LessonsPage() {
                           </Link>
                         )}
                         {lastTestedStr && (
-                          <span className="text-[13px] font-normal text-[#9FA5AD] text-right leading-5">
+                          <span className="text-[13px] font-normal text-text-muted text-right leading-5">
                             Last tested<br />{lastTestedStr}
                           </span>
                         )}
@@ -487,9 +475,9 @@ export default function LessonsPage() {
               </div>
 
               {/* Quick stats */}
-              <div className="border-t border-[#E5E7EB] mt-8 pt-8">
+              <div className="border-t border-border mt-8 pt-8">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="rounded-[14px] border border-[#E5E7EB] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+                  <div className="rounded-[14px] border border-border p-4 md:p-5 bg-surface transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
                     <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                       Current Focus
                     </p>
@@ -497,7 +485,7 @@ export default function LessonsPage() {
                       {focusSection} · {focusSection ? progress[focusSection].currentLevel : ""}
                     </p>
                   </div>
-                  <div className="rounded-[14px] border border-[#E5E7EB] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200">
+                  <div className="rounded-[14px] border border-border p-4 md:p-5 bg-surface transition-all duration-200">
                     <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                       Levels Passed
                     </p>
@@ -505,7 +493,7 @@ export default function LessonsPage() {
                       {levelsPassedTotal} / {totalLevels}
                     </p>
                   </div>
-                  <div className="rounded-[14px] border border-[#E5E7EB] p-4 md:p-5 bg-[#FAFAFA] transition-all duration-200">
+                  <div className="rounded-[14px] border border-border p-4 md:p-5 bg-surface transition-all duration-200">
                     <p className="text-xs font-medium uppercase tracking-wide text-text-3">
                       Last Tested
                     </p>

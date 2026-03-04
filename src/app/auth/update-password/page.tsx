@@ -121,7 +121,7 @@ export default function UpdatePasswordPage() {
           </form>
 
           <p className="mt-6 text-center text-[14px] text-gray-600">
-            <Link href="/auth/login" className="font-medium text-[#3C5E95] hover:underline">
+            <Link href="/auth/login" className="font-medium text-[#003399] hover:underline">
               Voltar ao login
             </Link>
           </p>

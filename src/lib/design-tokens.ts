@@ -47,7 +47,7 @@ export const colors = {
   },
 
   // Accent (brand blue)
-  accent: "#3C5E95",
+  accent: "#003399",
 } as const;
 
 // ── Typography ──────────────────────────────────────────────
@@ -109,14 +109,14 @@ export const patterns = {
     base: "border border-[#E5E7EB] rounded-xl p-5 bg-white",
     interactive: "border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-[1px] transition-all duration-150 ease-out",
     surface: "bg-[#FAFAFA] rounded-xl p-5 border border-[#E5E7EB]",
-    featured: "border border-[#E5E7EB] rounded-xl p-5 bg-white border-l-[3px] border-l-[#3C5E95]",
+    featured: "border border-[#E5E7EB] rounded-xl p-5 bg-white border-l-[3px] border-l-[#003399]",
   },
   pill: {
     active: "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer transition-all duration-150 ease-out",
     inactive: "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-all duration-150 ease-out cursor-pointer bg-white",
   },
   badge: "text-[11px] font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap",
-  searchInput: "w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] focus-visible:ring-2 focus-visible:ring-[#3C5E95] focus-visible:ring-offset-2 transition-all duration-150 bg-white",
+  searchInput: "w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] focus-visible:ring-2 focus-visible:ring-[#003399] focus-visible:ring-offset-2 transition-all duration-150 bg-white",
   divider: "border-t border-[#F3F4F6]",
   emptyState: "text-[13px] text-text-secondary py-8",
   button: {

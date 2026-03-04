@@ -28,7 +28,7 @@ function renderWithLinks(text: string): ReactNode {
         <Link
           key={i}
           href={match[2]}
-          className="text-[#3C5E95] hover:underline font-medium"
+          className="text-[#003399] hover:underline font-medium"
         >
           {match[1]}
         </Link>
@@ -225,7 +225,7 @@ function RuleCard({
             <Link
               key={`${link.href}-${i}`}
               href={link.href}
-              className="text-[13px] font-medium text-[#3C5E95] hover:underline mr-4"
+              className="text-[13px] font-medium text-[#003399] hover:underline mr-4"
             >
               {link.label} →
             </Link>

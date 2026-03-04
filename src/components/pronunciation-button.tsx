@@ -134,7 +134,7 @@ export function PronunciationButton({
       ? "border-0 bg-[#262626] text-white hover:bg-[#404040] shadow-none focus:ring-gray-400"
       : variant === "muted"
         ? "border-0 bg-[#F0F0F0] text-[#6B7280] hover:bg-[#E5E5E5] hover:text-[#374151] shadow-none focus:ring-gray-300"
-        : "border border-blue-200 bg-white text-[#3C5E95] hover:bg-sky-50 hover:border-blue-300 focus:ring-[#3C5E95]";
+        : "border border-blue-200 bg-white text-[#003399] hover:bg-sky-50 hover:border-blue-300 focus:ring-[#003399]";
 
   return (
     <span className="relative inline-flex">

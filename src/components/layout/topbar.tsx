@@ -681,7 +681,7 @@ export function Topbar() {
                     <Link
                       href="/auth/login"
                       onClick={closeMobileMenu}
-                      className="px-4 py-3 rounded-lg text-[15px] font-medium text-[#3C5E95] hover:bg-sky-50 min-h-[44px] flex items-center"
+                      className="px-4 py-3 rounded-lg text-[15px] font-medium text-[#003399] hover:bg-sky-50 min-h-[44px] flex items-center"
                     >
                       Entrar
                     </Link>

@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description:
     "Aula PT: European Portuguese conjugations, vocabulary, grammar, and practice. Learn European Portuguese.",
   icons: {
-    icon: "/favicon-aula.svg",
-    shortcut: "/favicon-aula.png",
-    apple: "/favicon-aula.png",
+    icon: "/aula/Aula_Main.svg",
+    shortcut: "/aula/Aula_Main.svg",
+    apple: "/aula/Aula_Main.svg",
   },
   openGraph: {
     title: "Aula PT — European Portuguese",
