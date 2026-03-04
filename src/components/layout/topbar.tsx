@@ -126,7 +126,7 @@ function MegaPanel({
   return (
     <div
       ref={panelRef}
-      className="absolute left-0 top-full mt-1 w-[420px] max-w-[420px] bg-bg border border-border rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
+      className="absolute left-0 top-full mt-2 w-[420px] max-w-[420px] bg-bg border border-border rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
       role="menu"
       onKeyDown={onKeyDown}
     >
@@ -340,23 +340,30 @@ export function Topbar() {
 
   /* Shared tab button classes */
   const tabClass = (active: boolean, menuOpen: boolean) =>
-    `text-[13px] font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200 ${
-      active || menuOpen ? "text-text font-semibold" : "text-text-secondary hover:text-text"
+    `text-[13px] font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200 ${
+      active || menuOpen
+        ? "text-[#003399] font-semibold bg-[#003399]/8"
+        : "text-text-secondary hover:text-text hover:bg-surface"
     }`;
 
   const directLinkClass = (active: boolean) =>
-    `px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors duration-200 ${
-      active ? "text-text font-semibold" : "text-text-secondary hover:text-text"
+    `px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200 ${
+      active
+        ? "text-[#003399] font-semibold bg-[#003399]/8"
+        : "text-text-secondary hover:text-text hover:bg-surface"
     }`;
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-50 h-14 bg-bg/80 backdrop-blur-xl border-b border-border-light transition-all duration-300 ease-out ${
-          isScrolled ? "shadow-[0_1px_3px_rgba(0,0,0,0.04)]" : ""
-        }`}
-      >
-        <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 flex items-center justify-between h-full">
+      <header className="sticky top-0 z-50 pt-3 pb-2 px-4 md:px-6 lg:px-10 pointer-events-none">
+        <div className="max-w-[1280px] mx-auto pointer-events-auto">
+          <div
+            className={`flex items-center justify-between h-12 px-4 bg-white/90 backdrop-blur-xl border border-border rounded-2xl shadow-[0_4px_24px_rgba(0,51,153,0.07),0_1px_4px_rgba(0,0,0,0.04)] transition-all duration-300 ease-out ${
+              isScrolled
+                ? "shadow-[0_8px_32px_rgba(0,51,153,0.10),0_2px_8px_rgba(0,0,0,0.06)]"
+                : ""
+            }`}
+          >
           <div className="flex items-center gap-4">
             <button
               type="button"
@@ -378,7 +385,7 @@ export function Topbar() {
                 <BrandLogo size="topbar" priority />
               </Link>
               <nav className="hidden md:flex items-center gap-1">
-                {/* Tab 1: Revision (dropdown) */}
+                {/* 1. Revision (dropdown) */}
                 <button
                   ref={revisionTriggerRef}
                   type="button"
@@ -391,23 +398,7 @@ export function Topbar() {
                   <ChevronDown open={openMenu === "revision"} />
                 </button>
 
-                {/* Tab 2: How to Learn (direct link) */}
-                <Link
-                  href="/guide"
-                  className={directLinkClass(pathname === "/guide" || pathname?.startsWith("/guide/") === true)}
-                >
-                  How to Learn
-                </Link>
-
-                {/* Tab 3: Culture (direct link) */}
-                <Link
-                  href="/culture"
-                  className={directLinkClass(pathname === "/culture" || pathname?.startsWith("/culture/") === true)}
-                >
-                  Culture
-                </Link>
-
-                {/* Tab 4: Library (dropdown) */}
+                {/* 2. Library (dropdown) */}
                 <button
                   ref={libraryTriggerRef}
                   type="button"
@@ -419,6 +410,22 @@ export function Topbar() {
                   Library
                   <ChevronDown open={openMenu === "library"} />
                 </button>
+
+                {/* 3. Culture (direct link) */}
+                <Link
+                  href="/culture"
+                  className={directLinkClass(pathname === "/culture" || pathname?.startsWith("/culture/") === true)}
+                >
+                  Culture
+                </Link>
+
+                {/* 4. How to Learn (direct link) */}
+                <Link
+                  href="/guide"
+                  className={directLinkClass(pathname === "/guide" || pathname?.startsWith("/guide/") === true)}
+                >
+                  How to Learn
+                </Link>
               </nav>
 
               {/* Revision mega-menu panel */}
@@ -452,7 +459,7 @@ export function Topbar() {
             {!authLoading && !user && (
               <Link
                 href="/changelog"
-                className="hidden md:inline-flex px-3 py-1.5 rounded-full text-[13px] font-medium text-text-secondary hover:text-text transition-colors"
+                className="hidden md:inline-flex px-2.5 py-1.5 rounded-lg text-[12px] font-medium text-text-muted hover:text-text-secondary transition-colors duration-200"
               >
                 What&apos;s New
               </Link>
@@ -462,7 +469,7 @@ export function Topbar() {
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="flex items-center gap-2 h-9 px-3 w-9 md:w-[160px] lg:w-[200px] rounded-full bg-surface hover:bg-border-light border border-border text-text-muted transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-border justify-center md:justify-start whitespace-nowrap"
+              className="flex items-center gap-2 h-8 px-3 w-9 md:w-[160px] lg:w-[200px] rounded-full bg-surface hover:bg-border-light border border-border text-text-muted transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-border justify-center md:justify-start whitespace-nowrap"
               aria-label="Search"
             >
               <svg
@@ -542,6 +549,7 @@ export function Topbar() {
                 Entrar
               </Link>
             )}
+          </div>
           </div>
         </div>
       </header>
