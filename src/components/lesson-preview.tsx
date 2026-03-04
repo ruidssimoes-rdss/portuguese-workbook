@@ -5,6 +5,7 @@ import Link from "next/link";
 import { lessons, getLessonItemCount } from "@/data/lessons";
 import { getAllLessonProgress } from "@/lib/lesson-progress";
 import { useAuth } from "@/components/auth-provider";
+import { CEFRBadge } from "@/components/ui/badge";
 
 export function LessonPreview() {
   const { user, loading: authLoading } = useAuth();
@@ -75,9 +76,7 @@ export function LessonPreview() {
                 {activeLesson.ptTitle}
               </p>
             </div>
-            <span className="shrink-0 bg-[#003399] text-white text-xs font-bold px-2.5 py-1 rounded-full">
-              {activeLesson.cefr}
-            </span>
+            <CEFRBadge level={activeLesson.cefr} className="shrink-0" />
           </div>
           <div className="relative flex items-center gap-2 mt-4 flex-wrap">
             <span className="text-xs text-text-muted bg-white border border-border rounded-full px-3 py-1">

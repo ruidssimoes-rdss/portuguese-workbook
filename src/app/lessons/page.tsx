@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { MigrationBanner } from "@/components/migration-banner";
 import { useAuth } from "@/components/auth-provider";
-import { cefrBadgeClasses } from "@/lib/design-tokens";
 import { lessons, getLessonItemCount } from "@/data/lessons";
 import { getAllLessonProgress } from "@/lib/lesson-progress";
 import { getProgress } from "@/lib/progress-service";
@@ -26,7 +25,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
-import { CEFRBadge } from "@/components/ui/badge";
+import { CEFRBadge, cefrColors } from "@/components/ui/badge";
 
 const levelsData = levelsDataRaw as unknown as LevelsData;
 
@@ -349,7 +348,12 @@ export default function LessonsPage() {
                         ))}
                       </div>
                       <span
-                        className={`text-[12px] font-semibold shrink-0 px-2.5 py-0.5 rounded-full w-14 text-center ${cefrBadgeClasses(getCefrBand(currentLevel))}`}
+                        className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide shrink-0 w-14 text-center"
+                        style={{
+                          backgroundColor: cefrColors[getCefrBand(currentLevel)]?.bg ?? cefrColors.A1.bg,
+                          color: cefrColors[getCefrBand(currentLevel)]?.text ?? cefrColors.A1.text,
+                          border: `1px solid ${cefrColors[getCefrBand(currentLevel)]?.border ?? cefrColors.A1.border}`,
+                        }}
                       >
                         {currentLevel}
                       </span>
