@@ -7,6 +7,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { PageContainer } from "@/components/ui/page-container";
 import { PageHeader } from "@/components/ui/page-header";
 import { Divider } from "@/components/ui/divider";
+import { SlideDrawer } from "@/components/ui/slide-drawer";
 import { useAuth } from "@/components/auth-provider";
 import {
   getUserNotes,
@@ -261,36 +262,14 @@ function NoteEditorDrawer({
       : null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end">
-      <div
-        className="absolute inset-0 bg-black/30"
-        onClick={onClose}
-        aria-hidden
-      />
-      <div
-        className="relative w-full max-w-lg bg-white shadow-xl flex flex-col max-h-full"
-        role="dialog"
-        aria-label="Edit note"
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">Note</h2>
-          <div className="flex items-center gap-2">
-            {savedAt != null && (
-              <span className="text-xs text-gray-500">
-                Saved
-              </span>
-            )}
-            <button
-              type="button"
-              onClick={onClose}
-              className="p-2 rounded-lg text-gray-500 hover:bg-gray-100"
-              aria-label="Close"
-            >
-              <span className="text-lg leading-none">×</span>
-            </button>
-          </div>
-        </div>
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+    <SlideDrawer
+      isOpen
+      onClose={onClose}
+      title="Note"
+      ariaLabel="Edit note"
+      headerExtra={savedAt != null ? <span className="text-xs text-gray-500">Saved</span> : null}
+    >
+      <div className="p-4 space-y-4">
           <input
             type="text"
             value={title}
@@ -342,9 +321,8 @@ function NoteEditorDrawer({
               </button>
             )}
           </div>
-        </div>
       </div>
-    </div>
+    </SlideDrawer>
   );
 }
 

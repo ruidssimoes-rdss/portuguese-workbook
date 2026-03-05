@@ -9,6 +9,7 @@ import { FilterPill } from "@/components/ui/filter-pill";
 import { Divider } from "@/components/ui/divider";
 import { CEFRBadge, Badge } from "@/components/ui/badge";
 import { PronunciationButton } from "@/components/pronunciation-button";
+import { StudyLogButton } from "@/components/study-log-button";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 
@@ -111,6 +112,7 @@ export default function VerbPage() {
                 </svg>
                 Add note
               </Link>
+              <StudyLogButton contextTitle={`${slug} — ${m.english}`} contextType="Verbs" />
               <Badge color={
                 m.priority === "Essential" ? "text-red-700 bg-red-50"
                 : m.priority === "Core" ? "text-blue-700 bg-blue-50"

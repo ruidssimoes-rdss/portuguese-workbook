@@ -9,6 +9,7 @@ import { PageContainer } from "@/components/ui/page-container";
 import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
 import { CEFRBadge } from "@/components/ui/badge";
+import { StudyLogButton } from "@/components/study-log-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic, GrammarRule } from "@/types/grammar";
@@ -350,6 +351,7 @@ export default function GrammarTopicPage() {
                 </svg>
                 Add note
               </Link>
+              <StudyLogButton contextTitle={topic.title} contextType="Grammar" />
               <CEFRBadge level={topic.cefr} />
             </div>
           </div>

@@ -6,6 +6,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { PageContainer } from "@/components/ui/page-container";
 import { PageHeader } from "@/components/ui/page-header";
 import { Divider } from "@/components/ui/divider";
+import { SlideDrawer } from "@/components/ui/slide-drawer";
 import { useAuth } from "@/components/auth-provider";
 import {
   getEventsForMonth,
@@ -66,16 +67,38 @@ function formatTime(t: string | null): string {
   return `${hh - 12}:${String(mm).padStart(2, "0")} PM`;
 }
 
+const DOT_COLORS = {
+  auto_lesson_passed: "#16A34A",
+  auto_lesson_failed: "#F59E0B",
+  auto_exam_passed: "#003399",
+  auto_exam_failed: "#F59E0B",
+  auto_practice: "#8B5CF6",
+  planned: "#6B7280",
+} as const;
+
 function EventDots({ events }: { events: CalendarEvent[] }) {
-  const lessonPassed = events.some((e) => e.event_type === "auto_lesson" && e.linked_passed);
-  const lessonFailed = events.some((e) => e.event_type === "auto_lesson" && !e.linked_passed);
-  const exam = events.some((e) => e.event_type === "auto_exam");
-  const planned = events.some((e) => e.event_type === "planned");
+  const dots: string[] = [];
+  if (events.some((e) => e.event_type === "auto_lesson" && e.linked_passed)) dots.push(DOT_COLORS.auto_lesson_passed);
+  if (events.some((e) => e.event_type === "auto_lesson" && !e.linked_passed)) dots.push(DOT_COLORS.auto_lesson_failed);
+  if (events.some((e) => e.event_type === "auto_exam" && e.linked_passed)) dots.push(DOT_COLORS.auto_exam_passed);
+  if (events.some((e) => e.event_type === "auto_exam" && !e.linked_passed)) dots.push(DOT_COLORS.auto_exam_failed);
+  if (events.some((e) => e.event_type === "auto_practice")) dots.push(DOT_COLORS.auto_practice);
+  if (events.some((e) => e.event_type === "planned")) dots.push(DOT_COLORS.planned);
+  const uniq = [...new Set(dots)];
+  const show = uniq.slice(0, 3);
+  const overflow = uniq.length > 3 ? uniq.length - 3 : 0;
   return (
-    <div className="flex items-center justify-center gap-1 mt-1">
-      {lessonPassed && <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" title="Lesson passed" />}
-      {(lessonFailed || planned) && <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" title="Lesson failed or planned" />}
-      {exam && <span className="w-1.5 h-1.5 rounded-full bg-[#003399]" title="Exam" />}
+    <div className="flex items-center justify-center gap-0.5 mt-1 flex-wrap">
+      {show.map((color) => (
+        <span
+          key={color}
+          className="w-1.5 h-1.5 rounded-full shrink-0"
+          style={{ backgroundColor: color }}
+        />
+      ))}
+      {overflow > 0 && (
+        <span className="text-[10px] text-gray-400">+{overflow}</span>
+      )}
     </div>
   );
 }
@@ -117,10 +140,13 @@ function CreateEventModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/30" onClick={onClose} aria-hidden />
-      <div className="relative bg-white rounded-xl border border-gray-200 shadow-xl w-full max-w-md p-6" role="dialog" aria-label="Plan study session">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Plan study session</h2>
+    <SlideDrawer
+      isOpen
+      onClose={onClose}
+      title="Plan study session"
+      ariaLabel="Plan study session"
+    >
+      <div className="p-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
@@ -201,11 +227,11 @@ function CreateEventModal({
           </div>
         </form>
       </div>
-    </div>
+    </SlideDrawer>
   );
 }
 
-function EditEventModal({
+function EditEventDrawer({
   event,
   onClose,
   onSaved,
@@ -242,10 +268,13 @@ function EditEventModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/30" onClick={onClose} aria-hidden />
-      <div className="relative bg-white rounded-xl border border-gray-200 shadow-xl w-full max-w-md p-6" role="dialog" aria-label="Edit event">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Edit event</h2>
+    <SlideDrawer
+      isOpen
+      onClose={onClose}
+      title="Edit event"
+      ariaLabel="Edit event"
+    >
+      <div className="p-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
@@ -325,7 +354,7 @@ function EditEventModal({
           </div>
         </form>
       </div>
-    </div>
+    </SlideDrawer>
   );
 }
 
@@ -338,7 +367,7 @@ export default function CalendarPage() {
   const [monthEvents, setMonthEvents] = useState<CalendarEvent[]>([]);
   const [dayEvents, setDayEvents] = useState<CalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);
-  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState<"create" | "edit" | null>(null);
   const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<CalendarEvent | null>(null);
 
@@ -400,6 +429,7 @@ export default function CalendarPage() {
   const monthStats = {
     lessons: monthEvents.filter((e) => e.event_type === "auto_lesson").length,
     exams: monthEvents.filter((e) => e.event_type === "auto_exam").length,
+    practice: monthEvents.filter((e) => e.event_type === "auto_practice").length,
     planned: monthEvents.filter((e) => e.event_type === "planned").length,
   };
 
@@ -419,7 +449,7 @@ export default function CalendarPage() {
             {isLoggedIn && (
               <button
                 type="button"
-                onClick={() => setCreateModalOpen(true)}
+                onClick={() => setDrawerOpen("create")}
                 className="shrink-0 flex items-center gap-2 h-10 px-4 bg-[#003399] hover:bg-[#002266] text-white rounded-lg text-sm font-medium transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -459,7 +489,9 @@ export default function CalendarPage() {
                 {" · "}
                 <span className="font-medium text-gray-700">{monthStats.exams} exams taken</span>
                 {" · "}
-                <span className="font-medium text-gray-700">{monthStats.planned} sessions planned</span>
+                <span className="font-medium text-gray-700">{monthStats.practice} practice sessions</span>
+                {" · "}
+                <span className="font-medium text-gray-700">{monthStats.planned} planned</span>
               </p>
             )}
 
@@ -561,7 +593,7 @@ export default function CalendarPage() {
                 ) : (
                   <ul className="space-y-3">
                     {dayEvents.map((event) => {
-                      const isAuto = event.event_type === "auto_lesson" || event.event_type === "auto_exam";
+                      const isAuto = event.event_type === "auto_lesson" || event.event_type === "auto_exam" || event.event_type === "auto_practice";
                       const borderColor =
                         event.event_type === "auto_lesson"
                           ? event.linked_passed
@@ -571,7 +603,10 @@ export default function CalendarPage() {
                             ? event.linked_passed
                               ? "#003399"
                               : "#F59E0B"
-                            : event.color ?? "#9CA3AF";
+                            : event.event_type === "auto_practice"
+                              ? "#8B5CF6"
+                              : event.color ?? "#6B7280";
+                      const practiceLabel = event.linked_id ? `Practice · ${String(event.linked_id).replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}` : "Practice";
                       return (
                         <li
                           key={event.id}
@@ -579,7 +614,7 @@ export default function CalendarPage() {
                           style={{ borderLeftWidth: 4, borderLeftColor: borderColor }}
                         >
                           <div className="flex-1 min-w-0 p-4">
-                            {isAuto ? (
+                            {event.event_type === "auto_lesson" || event.event_type === "auto_exam" ? (
                               <Link
                                 href={event.linked_type === "lesson" ? `/lessons/${event.linked_id}` : `/exams/${event.linked_id}`}
                                 className="block"
@@ -597,6 +632,27 @@ export default function CalendarPage() {
                                   )}
                                 </p>
                               </Link>
+                            ) : event.event_type === "auto_practice" ? (
+                              <div>
+                                <div className="flex items-center gap-2">
+                                  <svg className="w-4 h-4 text-[#8B5CF6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                  </svg>
+                                  <p className="text-[15px] font-semibold text-gray-900">{event.title}</p>
+                                </div>
+                                <span className="text-xs font-medium text-gray-600 mt-0.5 block">{practiceLabel}</span>
+                                {event.linked_score != null && (
+                                  <span className="text-xs text-gray-600">
+                                    {Math.round(event.linked_score)}%
+                                  </span>
+                                )}
+                                <p className="text-xs text-gray-500 mt-1">
+                                  Auto-logged
+                                  {event.created_at && (
+                                    <> · {new Date(event.created_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</>
+                                  )}
+                                </p>
+                              </div>
                             ) : (
                               <>
                                 <p className="text-[15px] font-semibold text-gray-900">{event.title}</p>
@@ -658,7 +714,7 @@ export default function CalendarPage() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => setCreateModalOpen(true)}
+                  onClick={() => setDrawerOpen("create")}
                   className="mt-4 inline-flex items-center gap-2 h-10 px-4 bg-[#003399] hover:bg-[#002266] text-white rounded-lg text-sm font-medium"
                 >
                   Plan your first session
@@ -666,18 +722,19 @@ export default function CalendarPage() {
               </div>
             )}
 
-            {createModalOpen && (
+            {drawerOpen === "create" && (
               <CreateEventModal
                 initialDate={selectedDate ?? toDateKey(year, month, today.getDate())}
-                onClose={() => setCreateModalOpen(false)}
+                onClose={() => setDrawerOpen(null)}
                 onSaved={() => {
+                  setDrawerOpen(null);
                   loadMonth();
                   if (selectedDate) loadDay(selectedDate);
                 }}
               />
             )}
             {editingEvent && (
-              <EditEventModal
+              <EditEventDrawer
                 event={editingEvent}
                 onClose={() => setEditingEvent(null)}
                 onSaved={() => {

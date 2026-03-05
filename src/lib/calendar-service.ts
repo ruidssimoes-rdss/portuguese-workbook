@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/client";
 
-export type CalendarEventType = "planned" | "auto_lesson" | "auto_exam";
-export type LinkedType = "lesson" | "exam" | null;
+export type CalendarEventType = "planned" | "auto_lesson" | "auto_exam" | "auto_practice";
+export type LinkedType = "lesson" | "exam" | "practice" | null;
 
 export interface CalendarEvent {
   id: string;
@@ -167,6 +167,7 @@ export async function deleteEvent(eventId: string): Promise<boolean> {
 }
 
 const LESSON_PASSED_COLOR = "#16A34A";
+const PRACTICE_COLOR = "#8B5CF6";
 const LESSON_FAILED_COLOR = "#F59E0B";
 const EXAM_PASSED_COLOR = "#003399";
 const EXAM_FAILED_COLOR = "#F59E0B";
@@ -243,6 +244,48 @@ export async function logExamAttempt(
       linked_score: score,
       linked_passed: passed,
       color,
+    })
+    .select()
+    .single();
+
+  if (error || !row) return null;
+  return mapRowToEvent(row);
+}
+
+export interface LogPracticeSessionData {
+  practiceType: string;
+  title: string;
+  score?: number;
+  questionsTotal?: number;
+  questionsCorrect?: number;
+}
+
+export async function logPracticeSession(data: LogPracticeSessionData): Promise<CalendarEvent | null> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  const { data: row, error } = await supabase
+    .from("user_calendar_events")
+    .insert({
+      user_id: user.id,
+      title: data.title,
+      description: null,
+      event_date: today,
+      start_time: null,
+      end_time: null,
+      all_day: true,
+      event_type: "auto_practice",
+      linked_type: "practice",
+      linked_id: data.practiceType,
+      linked_label: data.title,
+      linked_score: data.score ?? null,
+      linked_passed: null,
+      color: PRACTICE_COLOR,
     })
     .select()
     .single();
