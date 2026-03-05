@@ -1,18 +1,28 @@
 "use client";
 
-import { useState, use } from "react";
+import { useState, use, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { ProtectedRoute } from "@/components/protected-route";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { CEFRBadge } from "@/components/ui/badge";
-import { lessons } from "@/data/lessons";
+import {
+  getResolvedLesson,
+  getCurriculumLesson,
+  getResolvedLessons,
+} from "@/data/resolve-lessons";
 import type {
   LessonStage,
   VocabItem,
   PracticeItem,
+  Lesson,
 } from "@/data/lessons";
-import { completeLessonFull } from "@/lib/lesson-progress";
+import {
+  saveLessonAttempt,
+  getLessonProgressMap,
+  type WrongItem,
+} from "@/lib/lesson-progress";
+import { logLessonCompletion } from "@/lib/calendar-service";
 
 /* ─── Shared types ─── */
 
@@ -651,138 +661,203 @@ function PracticeStage({
   );
 }
 
-/* ─── STAGE: Summary / Completion ─── */
+/* ─── STAGE: Results (pass/fail, scoring, save) ─── */
 
-function SummaryStage({
+function ResultsStage({
   lesson,
+  curriculumLesson,
   stageProgress,
-  onComplete,
-  completing,
+  nextLessonId,
+  onTryAgain,
 }: {
-  lesson: (typeof lessons)[0];
+  lesson: Lesson;
+  curriculumLesson: { scoring: { passingScore: number } } | undefined;
   stageProgress: StageProgressMap;
-  onComplete: () => void;
-  completing: boolean;
+  nextLessonId: string | null;
+  onTryAgain: () => void;
 }) {
-  // Vocab stats
-  const vocabStage = lesson.stages.find((s) => s.type === "vocabulary");
-  const totalVocab = vocabStage?.items?.length ?? 0;
-  const vocabProgress = stageProgress[vocabStage?.id ?? ""] ?? {};
-  const vocabKnown = Object.values(vocabProgress).filter(
-    (v) => (v as { known?: boolean })?.known === true
-  ).length;
-  const vocabToReview = totalVocab - vocabKnown;
-
-  // Verb stats
-  const verbStage = lesson.stages.find((s) => s.type === "verb");
-  const totalVerb = verbStage?.verbs?.[0]?.conjugations.length ?? 0;
-  const verbProgress = stageProgress[verbStage?.id ?? ""] ?? {};
-  const verbCorrect = Object.values(verbProgress).filter(
-    (v) => (v as { correct?: boolean })?.correct === true
-  ).length;
-
-  // Practice stats
+  const passingScore = curriculumLesson?.scoring.passingScore ?? 60;
+  const verbStages = lesson.stages.filter((s) => s.type === "verb");
   const practiceStage = lesson.stages.find((s) => s.type === "practice");
-  const totalPractice = practiceStage?.practiceItems?.length ?? 0;
-  const practiceProgress = stageProgress[practiceStage?.id ?? ""] ?? {};
-  const practiceCorrect = Object.values(practiceProgress).filter(
-    (v) => (v as { correct?: boolean })?.correct === true
-  ).length;
 
-  // Items to review
-  const reviewItems: string[] = [];
-  if (vocabStage?.items) {
-    vocabStage.items.forEach((item) => {
-      const p = vocabProgress[item.id] as { known?: boolean } | undefined;
-      if (p?.known === false) reviewItems.push(item.word);
+  let verbCorrect = 0;
+  let verbTotal = 0;
+  const wrongItems: WrongItem[] = [];
+
+  verbStages.forEach((stage) => {
+    const verb = stage.verbs?.[0];
+    if (!verb) return;
+    verb.conjugations.forEach((c) => {
+      verbTotal++;
+      const key = `${verb.id}-${c.pronoun}`;
+      const p = (stageProgress[stage.id] ?? {})[key] as { correct?: boolean; answer?: string } | undefined;
+      if (p?.correct) verbCorrect++;
+      else if (p !== undefined)
+        wrongItems.push({
+          type: "verb",
+          verbKey: verb.verb,
+          tense: verb.tense,
+          pronoun: c.pronoun,
+          userAnswer: p.answer ?? "",
+          correctAnswer: c.form,
+        });
     });
+  });
+
+  let practiceCorrect = 0;
+  const practiceItems = practiceStage?.practiceItems ?? [];
+  const practiceStageId = practiceStage?.id ?? "";
+  practiceItems.forEach((item) => {
+    const p = (stageProgress[practiceStageId] ?? {})[item.id] as { correct?: boolean; answer?: string } | undefined;
+    if (p?.correct) practiceCorrect++;
+    else if (p !== undefined)
+      wrongItems.push({
+        type: "practice",
+        userAnswer: p.answer ?? "",
+        correctAnswer: item.answer,
+        sentencePt: item.fullSentence,
+        sentenceEn: item.translation,
+      });
+  });
+  const practiceTotal = practiceItems.length;
+
+  const gradedTotal = verbTotal + practiceTotal;
+  const gradedCorrect = verbCorrect + practiceCorrect;
+  const accuracy = gradedTotal > 0 ? Math.round((gradedCorrect / gradedTotal) * 100) : 0;
+  const passed = accuracy >= passingScore;
+
+  const hasSaved = useRef(false);
+  useEffect(() => {
+    if (hasSaved.current) return;
+    hasSaved.current = true;
+    const title = lesson.ptTitle ? `${lesson.title} (${lesson.ptTitle})` : lesson.title;
+    saveLessonAttempt(lesson.id, accuracy, passed, wrongItems).catch(() => {});
+    logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- save once on mount
+  }, []);
+
+  const [a1CompletedCount, setA1CompletedCount] = useState<number | null>(null);
+  useEffect(() => {
+    if (!passed || lesson.cefr !== "A1") return;
+    getLessonProgressMap().then((map) => {
+      const count = Object.entries(map).filter(
+        ([id, p]) => id.startsWith("a1-") && p.completed
+      ).length;
+      setA1CompletedCount(count);
+    }).catch(() => {});
+  }, [passed, lesson.cefr]);
+
+  const unlockedExamNum = a1CompletedCount != null && [5, 9, 14, 18].includes(a1CompletedCount)
+    ? [5, 9, 14, 18].indexOf(a1CompletedCount) + 1
+    : null;
+
+  if (passed) {
+    return (
+      <div className="text-center py-8">
+        <div className="mb-8">
+          <div className="w-16 h-16 rounded-full bg-[#F0FDF4] border-2 border-[#D1FAE5] flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-[#059669]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-[#111827]">Lesson Complete!</h2>
+          <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">Lição Completa!</p>
+        </div>
+        <p className="text-[18px] font-semibold text-[#111827] mb-6">Accuracy: {accuracy}%</p>
+        <div className="flex flex-wrap justify-center gap-4 mb-6 text-[13px] text-[#6B7280]">
+          <span>Verb Drill: {verbCorrect}/{verbTotal} correct</span>
+          <span>Practice: {practiceCorrect}/{practiceTotal} correct</span>
+        </div>
+        {lesson.cefr === "A1" && (
+          <p className="text-[13px] text-[#6B7280] mb-2">
+            A1 Progress: {a1CompletedCount ?? "…"} / 18 lessons
+          </p>
+        )}
+        {unlockedExamNum != null && (
+          <p className="text-[14px] font-semibold text-[#059669] mb-8">
+            Mock Exam {unlockedExamNum} Unlocked!
+          </p>
+        )}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          {nextLessonId && (
+            <Link
+              href={`/lessons/${nextLessonId}`}
+              className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors"
+            >
+              Next Lesson →
+            </Link>
+          )}
+          <Link
+            href={`/lessons/${lesson.id}`}
+            className="px-6 py-2.5 border border-[#E5E7EB] rounded-xl text-[14px] font-medium text-[#6B7280] hover:bg-[#F9FAFB] transition-colors"
+          >
+            Review Lesson
+          </Link>
+          <Link href="/lessons" className="text-[13px] font-medium text-[#6B7280] hover:text-[#111827]">
+            Back to Lessons
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="text-center py-8">
-      <div className="mb-8">
-        <div className="w-16 h-16 rounded-full bg-[#F0FDF4] border-2 border-[#D1FAE5] flex items-center justify-center mx-auto mb-4">
-          <svg
-            className="w-8 h-8 text-[#059669]"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2.5}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+      <div className="mb-6">
+        <div className="w-16 h-16 rounded-full bg-[#FEF3C7] border-2 border-[#FCD34D] flex items-center justify-center mx-auto mb-4">
+          <span className="text-3xl" aria-hidden>📚</span>
         </div>
-        <h2 className="text-2xl font-bold text-[#111827]">Lesson Complete</h2>
-        <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">
-          Lição Completa
-        </p>
+        <h2 className="text-2xl font-bold text-[#111827]">Not quite yet</h2>
+        <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">Ainda não</p>
       </div>
+      <p className="text-[18px] font-semibold text-[#111827] mb-6">Accuracy: {accuracy}%</p>
+      <p className="text-[13px] text-[#6B7280] mb-6">You need {passingScore}% to pass. Review your mistakes below and try again.</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left">
-        <div className="border border-[#E5E7EB] rounded-xl p-4 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
-            Vocabulary
-          </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
-            {vocabKnown} / {totalVocab} known
-          </p>
-          <p className="text-[13px] text-[#6B7280] mt-1">
-            {vocabToReview > 0 ? `${vocabToReview} to review` : "All known!"}
-          </p>
-        </div>
-        <div className="border border-[#E5E7EB] rounded-xl p-4 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
-            Verb Drill
-          </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
-            {verbCorrect} / {totalVerb} correct
-          </p>
-        </div>
-        <div className="border border-[#E5E7EB] rounded-xl p-4 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
-            Practice
-          </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
-            {practiceCorrect} / {totalPractice} correct
-          </p>
-        </div>
-      </div>
-
-      {reviewItems.length > 0 && (
-        <div className="mb-8 text-left">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">
-            Review These
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {reviewItems.map((item) => (
-              <span
-                key={item}
-                className="px-3 py-1.5 bg-[#FEF2F2] border border-[#FEE2E2] rounded-lg text-[13px] font-medium text-[#DC2626]"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
+      {wrongItems.length > 0 && (
+        <div className="text-left max-w-2xl mx-auto mb-8 space-y-4">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">Wrong answers</p>
+          {wrongItems.map((item, i) => (
+            <div key={i} className="border border-[#FEE2E2] rounded-xl p-4 bg-[#FEF2F2]">
+              {item.type === "verb" && (
+                <>
+                  <p className="text-[13px] text-[#6B7280]">
+                    Verb: {item.verbKey} · {item.tense} · {item.pronoun}
+                  </p>
+                  <p className="mt-1">
+                    <span className="text-[#DC2626] line-through">{item.userAnswer || "(empty)"}</span>
+                    {" → "}
+                    <span className="text-[#059669] font-semibold">{item.correctAnswer}</span>
+                  </p>
+                </>
+              )}
+              {item.type === "practice" && (
+                <>
+                  <p className="text-[13px] text-[#111827] font-medium">{item.sentencePt}</p>
+                  <p className="text-[12px] text-[#6B7280] mt-0.5">{item.sentenceEn}</p>
+                  <p className="mt-1">
+                    <span className="text-[#DC2626] line-through">{item.userAnswer || "(empty)"}</span>
+                    {" → "}
+                    <span className="text-[#059669] font-semibold">{item.correctAnswer}</span>
+                  </p>
+                </>
+              )}
+            </div>
+          ))}
         </div>
       )}
 
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         <button
-          onClick={onComplete}
-          disabled={completing}
-          className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors cursor-pointer disabled:opacity-50"
+          onClick={onTryAgain}
+          className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors"
         >
-          {completing ? "Saving..." : "Complete Lesson"}
+          Try Again
         </button>
         <Link
           href="/lessons"
-          className="text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors"
+          className="px-6 py-2.5 border border-[#E5E7EB] rounded-xl text-[14px] font-medium text-[#6B7280] hover:bg-[#F9FAFB] transition-colors"
         >
-          Back to all lessons
+          Back to Lessons
         </Link>
       </div>
     </div>
@@ -810,11 +885,14 @@ function StageHeader({ stage }: { stage: LessonStage }) {
 /* ─── Main lesson content ─── */
 
 function LessonContent({ id }: { id: string }) {
-  const lesson = lessons.find((l) => l.id === id);
+  const lesson = getResolvedLesson(id);
+  const curriculumLesson = getCurriculumLesson(id);
   const [currentStage, setCurrentStage] = useState(0);
   const [stageProgress, setStageProgress] = useState<StageProgressMap>({});
-  const [completing, setCompleting] = useState(false);
-  const [completed, setCompleted] = useState(false);
+
+  const sortedLessons = getResolvedLessons().sort((a, b) => a.order - b.order);
+  const nextLesson = lesson ? sortedLessons.find((l) => l.order === lesson.order + 1) : null;
+  const nextLessonId = nextLesson?.id ?? null;
 
   if (!lesson) {
     return (
@@ -861,32 +939,10 @@ function LessonContent({ id }: { id: string }) {
     }
   };
 
-  const handleComplete = async () => {
-    setCompleting(true);
-    // Collect all item IDs across stages
-    const itemIds: string[] = [];
-    lesson.stages.forEach((stage) => {
-      stage.items?.forEach((item) => itemIds.push(`${stage.id}:${item.id}`));
-      stage.verbs?.forEach((v) =>
-        v.conjugations.forEach((c) =>
-          itemIds.push(`${stage.id}:${v.id}-${c.pronoun}`)
-        )
-      );
-      stage.grammarItems?.forEach((g) =>
-        g.examples.forEach((_, i) =>
-          itemIds.push(`${stage.id}:grammar-example-${i}`)
-        )
-      );
-      stage.cultureItems?.forEach((c) =>
-        itemIds.push(`${stage.id}:${c.id}`)
-      );
-      stage.practiceItems?.forEach((p) =>
-        itemIds.push(`${stage.id}:${p.id}`)
-      );
-    });
-    await completeLessonFull(lesson.id, itemIds);
-    setCompleting(false);
-    setCompleted(true);
+  const handleTryAgain = () => {
+    setCurrentStage(0);
+    setStageProgress({});
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const progressPct = isSummary
@@ -915,7 +971,18 @@ function LessonContent({ id }: { id: string }) {
                 {lesson.ptTitle}
               </p>
             </div>
-            <CEFRBadge level={lesson.cefr} className="shrink-0" />
+            <div className="flex items-center gap-3 shrink-0">
+              <Link
+                href={`/notes?contextType=lesson&contextId=${encodeURIComponent(lesson.id)}&contextLabel=${encodeURIComponent(lesson.title)}`}
+                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#003399] transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+                Add note
+              </Link>
+              <CEFRBadge level={lesson.cefr} />
+            </div>
           </div>
 
           {/* Stage dots */}
@@ -967,11 +1034,12 @@ function LessonContent({ id }: { id: string }) {
         {/* Stage content */}
         <div className="pb-16">
           {isSummary ? (
-            <SummaryStage
+            <ResultsStage
               lesson={lesson}
+              curriculumLesson={curriculumLesson}
               stageProgress={stageProgress}
-              onComplete={handleComplete}
-              completing={completing}
+              nextLessonId={nextLessonId}
+              onTryAgain={handleTryAgain}
             />
           ) : currentStageData?.type === "vocabulary" ? (
             <VocabStage
@@ -1011,7 +1079,7 @@ function LessonContent({ id }: { id: string }) {
           ) : null}
 
           {/* Navigation footer */}
-          {!completed && (
+          {!isSummary && (
             <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#F3F4F6]">
               <button
                 onClick={goPrev}
@@ -1033,20 +1101,6 @@ function LessonContent({ id }: { id: string }) {
                   Continue →
                 </button>
               )}
-            </div>
-          )}
-
-          {completed && (
-            <div className="mt-8 pt-6 border-t border-[#F3F4F6] text-center">
-              <p className="text-[15px] font-semibold text-[#059669] mb-2">
-                Progress saved!
-              </p>
-              <Link
-                href="/lessons"
-                className="text-[13px] font-medium text-[#003399] hover:underline"
-              >
-                Back to all lessons →
-              </Link>
             </div>
           )}
         </div>

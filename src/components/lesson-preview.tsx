@@ -2,15 +2,18 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { lessons, getLessonItemCount } from "@/data/lessons";
-import { getAllLessonProgress } from "@/lib/lesson-progress";
+import { getResolvedLessons } from "@/data/resolve-lessons";
+import { getLessonProgressMap } from "@/lib/lesson-progress";
 import { useAuth } from "@/components/auth-provider";
 import { CEFRBadge } from "@/components/ui/badge";
+
+const lessons = getResolvedLessons();
+const A1_TOTAL = lessons.filter((l) => l.cefr === "A1").length;
 
 export function LessonPreview() {
   const { user, loading: authLoading } = useAuth();
   const [progressMap, setProgressMap] = useState<
-    Record<string, { completed: number; total: number }>
+    Record<string, { completed: boolean }>
   >({});
   const [loaded, setLoaded] = useState(false);
 
@@ -19,8 +22,11 @@ export function LessonPreview() {
       setLoaded(true);
       return;
     }
-    getAllLessonProgress().then((data) => {
-      setProgressMap(data);
+    getLessonProgressMap().then((data) => {
+      const byCompleted = Object.fromEntries(
+        Object.entries(data).map(([id, p]) => [id, { completed: p.completed }])
+      );
+      setProgressMap(byCompleted);
       setLoaded(true);
     });
   }, [user]);
@@ -28,22 +34,19 @@ export function LessonPreview() {
   if (authLoading || !loaded) return null;
 
   const sorted = [...lessons].sort((a, b) => a.order - b.order);
+  const a1Completed = sorted
+    .filter((l) => l.cefr === "A1")
+    .filter((l) => progressMap[l.id]?.completed).length;
 
   const activeLesson =
-    sorted.find((l) => {
-      const prog = progressMap[l.id];
-      if (!prog) return true;
-      return prog.completed < getLessonItemCount(l);
-    }) ?? sorted[0];
+    sorted.find((l) => !progressMap[l.id]?.completed) ?? sorted[sorted.length - 1];
 
   if (!activeLesson) return null;
 
-  const prog = progressMap[activeLesson.id];
-  const completedCount = prog?.completed ?? 0;
-  const totalItems = getLessonItemCount(activeLesson);
-  const allComplete = completedCount >= totalItems && totalItems > 0;
-  const hasStarted = completedCount > 0;
-  const pct = totalItems > 0 ? (completedCount / totalItems) * 100 : 0;
+  const isCurrentCompleted = progressMap[activeLesson.id]?.completed ?? false;
+  const allComplete = a1Completed >= A1_TOTAL && A1_TOTAL > 0;
+  const hasStarted = a1Completed > 0;
+  const pct = A1_TOTAL > 0 ? (a1Completed / A1_TOTAL) * 100 : 0;
 
   return (
     <div className="mt-6">
@@ -90,7 +93,7 @@ export function LessonPreview() {
             <div className="flex justify-between items-center mb-2">
               <span className="text-xs font-medium text-text-secondary">Progresso</span>
               <span className="text-xs font-semibold text-[#003399]">
-                {completedCount} / {totalItems}
+                {a1Completed} / {A1_TOTAL} lessons
               </span>
             </div>
             <div className="h-2 bg-white/80 rounded-full overflow-hidden">

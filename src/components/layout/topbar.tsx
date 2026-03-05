@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { SearchModal } from "@/components/search-modal";
 import { useAuth } from "@/components/auth-provider";
 import { BrandLogo } from "@/components/brand-logo";
-import { lessons } from "@/data/lessons";
+import { getResolvedLessons } from "@/data/resolve-lessons";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
@@ -21,7 +21,7 @@ const vocab = vocabData as unknown as VocabData;
 const grammar = grammarData as unknown as GrammarData;
 const sayings = (sayingsData as unknown as SayingsData).sayings;
 
-const lessonCount = lessons.length;
+const lessonCount = getResolvedLessons().length;
 const verbCount = verbs.order.length;
 const tenseCount = new Set(
   verbs.order.flatMap((k) => verbs.verbs[k]?.conjugations?.map((c) => c.Tense) ?? [])
@@ -43,7 +43,7 @@ const revisionItems: MenuItem[] = [
   {
     title: "Lessons",
     portuguese: "Lições",
-    stats: [`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"} + level tests`, "A1–B1"],
+    stats: [`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"}`, "A1 progression"],
     href: "/lessons",
   },
   {
@@ -77,6 +77,7 @@ const libraryItems: MenuItem[] = [
 
 const REVISION_PATHS = ["/lessons", "/exams"];
 const LIBRARY_PATHS = ["/vocabulary", "/conjugations", "/grammar"];
+const NOTES_CALENDAR_PATHS = ["/notes", "/calendar"];
 
 function matchesSection(pathname: string | null, paths: string[]): boolean {
   return paths.some((p) => pathname === p || pathname?.startsWith(p + "/"));
@@ -426,6 +427,31 @@ export function Topbar() {
                 >
                   How to Learn
                 </Link>
+
+                {/* 5. Notes (direct link) */}
+                <Link
+                  href="/notes"
+                  className={`${directLinkClass(matchesSection(pathname, NOTES_CALENDAR_PATHS) && pathname === "/notes")} flex items-center gap-1.5`}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Notes
+                </Link>
+
+                {/* 6. Calendar (direct link) */}
+                <Link
+                  href="/calendar"
+                  className={`${directLinkClass(matchesSection(pathname, NOTES_CALENDAR_PATHS) && pathname === "/calendar")} flex items-center gap-1.5`}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  Calendar
+                </Link>
               </nav>
 
               {/* Revision mega-menu panel */}
@@ -510,7 +536,7 @@ export function Topbar() {
                       <p className="text-xs text-text-muted truncate">{user.email}</p>
                     </div>
                     <Link
-                      href="/lessons#level-tests"
+                      href="/lessons"
                       onClick={() => setUserMenuOpen(false)}
                       className="block px-3 py-2 text-[13px] text-text-2 hover:bg-surface hover:text-text"
                     >
@@ -602,6 +628,30 @@ export function Topbar() {
                   </Link>
                 );
               })}
+
+              <div className="border-t border-border-light my-2 mx-4" />
+
+              {/* Notes & Calendar */}
+              <Link
+                href="/notes"
+                onClick={closeMobileMenu}
+                className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
+                  pathname === "/notes" ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
+                }`}
+              >
+                <span className="text-[15px] font-medium">Notes</span>
+                <span className="text-xs text-text-secondary">Notas</span>
+              </Link>
+              <Link
+                href="/calendar"
+                onClick={closeMobileMenu}
+                className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
+                  pathname === "/calendar" ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
+                }`}
+              >
+                <span className="text-[15px] font-medium">Calendar</span>
+                <span className="text-xs text-text-secondary">Calendário</span>
+              </Link>
 
               <div className="border-t border-border-light my-2 mx-4" />
 

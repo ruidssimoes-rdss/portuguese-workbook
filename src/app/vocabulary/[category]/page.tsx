@@ -262,13 +262,24 @@ export default function VocabCategoryPage() {
           >
             ← Vocabulary
           </Link>
-          <div className="flex items-baseline gap-3 mt-2">
-            <h1 className="text-2xl font-bold text-[#111827]">
-              {category.title}
-            </h1>
-            <span className="text-[13px] font-medium text-[#9CA3AF] italic">
-              {CATEGORY_PT_TITLE[category.id] ?? ""}
-            </span>
+          <div className="flex items-baseline justify-between gap-4 mt-2 flex-wrap">
+            <div className="flex items-baseline gap-3">
+              <h1 className="text-2xl font-bold text-[#111827]">
+                {category.title}
+              </h1>
+              <span className="text-[13px] font-medium text-[#9CA3AF] italic">
+                {CATEGORY_PT_TITLE[category.id] ?? ""}
+              </span>
+            </div>
+            <Link
+              href={`/notes?contextType=vocabulary&contextId=${encodeURIComponent(category.id)}&contextLabel=${encodeURIComponent(category.title)}`}
+              className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#003399] transition-colors shrink-0"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+              Add note
+            </Link>
           </div>
           <p className="mt-1 text-sm text-[#9CA3AF]">{category.words.length} words</p>
         </div>

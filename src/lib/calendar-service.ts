@@ -1,0 +1,274 @@
+import { createClient } from "@/lib/supabase/client";
+
+export type CalendarEventType = "planned" | "auto_lesson" | "auto_exam";
+export type LinkedType = "lesson" | "exam" | null;
+
+export interface CalendarEvent {
+  id: string;
+  user_id: string;
+  title: string;
+  description: string | null;
+  event_date: string;
+  start_time: string | null;
+  end_time: string | null;
+  all_day: boolean;
+  event_type: CalendarEventType;
+  linked_type: LinkedType;
+  linked_id: string | null;
+  linked_label: string | null;
+  linked_score: number | null;
+  linked_passed: boolean | null;
+  color: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function getEventsForMonth(
+  year: number,
+  month: number
+): Promise<CalendarEvent[]> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const start = `${year}-${String(month).padStart(2, "0")}-01`;
+  const lastDay = new Date(year, month, 0).getDate();
+  const end = `${year}-${String(month).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
+
+  const { data, error } = await supabase
+    .from("user_calendar_events")
+    .select("*")
+    .eq("user_id", user.id)
+    .gte("event_date", start)
+    .lte("event_date", end)
+    .order("event_date", { ascending: true })
+    .order("start_time", { ascending: true, nullsFirst: false });
+
+  if (error || !data) return [];
+  return data.map(mapRowToEvent);
+}
+
+export async function getEventsForDate(
+  date: string
+): Promise<CalendarEvent[]> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const { data, error } = await supabase
+    .from("user_calendar_events")
+    .select("*")
+    .eq("user_id", user.id)
+    .eq("event_date", date)
+    .order("start_time", { ascending: true, nullsFirst: false });
+
+  if (error || !data) return [];
+  return data.map(mapRowToEvent);
+}
+
+export interface CreatePlannedEventData {
+  title: string;
+  description?: string | null;
+  eventDate: string;
+  startTime?: string | null;
+  endTime?: string | null;
+  allDay?: boolean;
+  color?: string | null;
+}
+
+export async function createPlannedEvent(
+  data: CreatePlannedEventData
+): Promise<CalendarEvent | null> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data: row, error } = await supabase
+    .from("user_calendar_events")
+    .insert({
+      user_id: user.id,
+      title: data.title,
+      description: data.description ?? null,
+      event_date: data.eventDate,
+      start_time: data.startTime ?? null,
+      end_time: data.endTime ?? null,
+      all_day: data.allDay ?? true,
+      event_type: "planned",
+      linked_type: null,
+      linked_id: null,
+      linked_label: null,
+      linked_score: null,
+      linked_passed: null,
+      color: data.color ?? null,
+    })
+    .select()
+    .single();
+
+  if (error || !row) return null;
+  return mapRowToEvent(row);
+}
+
+export async function updateEvent(
+  eventId: string,
+  data: Partial<
+    Pick<
+      CalendarEvent,
+      "title" | "description" | "event_date" | "start_time" | "end_time" | "all_day" | "color"
+    >
+  >
+): Promise<CalendarEvent | null> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const payload: Record<string, unknown> = {};
+  if (data.title !== undefined) payload.title = data.title;
+  if (data.description !== undefined) payload.description = data.description;
+  if (data.event_date !== undefined) payload.event_date = data.event_date;
+  if (data.start_time !== undefined) payload.start_time = data.start_time;
+  if (data.end_time !== undefined) payload.end_time = data.end_time;
+  if (data.all_day !== undefined) payload.all_day = data.all_day;
+  if (data.color !== undefined) payload.color = data.color;
+
+  const { data: row, error } = await supabase
+    .from("user_calendar_events")
+    .update(payload)
+    .eq("id", eventId)
+    .eq("user_id", user.id)
+    .select()
+    .single();
+
+  if (error || !row) return null;
+  return mapRowToEvent(row);
+}
+
+export async function deleteEvent(eventId: string): Promise<boolean> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return false;
+
+  const { error } = await supabase
+    .from("user_calendar_events")
+    .delete()
+    .eq("id", eventId)
+    .eq("user_id", user.id);
+
+  return !error;
+}
+
+const LESSON_PASSED_COLOR = "#16A34A";
+const LESSON_FAILED_COLOR = "#F59E0B";
+const EXAM_PASSED_COLOR = "#003399";
+const EXAM_FAILED_COLOR = "#F59E0B";
+
+export async function logLessonCompletion(
+  lessonId: string,
+  lessonTitle: string,
+  score: number,
+  passed: boolean
+): Promise<CalendarEvent | null> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const color = passed ? LESSON_PASSED_COLOR : LESSON_FAILED_COLOR;
+  const today = new Date().toISOString().slice(0, 10);
+
+  const { data: row, error } = await supabase
+    .from("user_calendar_events")
+    .insert({
+      user_id: user.id,
+      title: lessonTitle,
+      description: null,
+      event_date: today,
+      start_time: null,
+      end_time: null,
+      all_day: true,
+      event_type: "auto_lesson",
+      linked_type: "lesson",
+      linked_id: lessonId,
+      linked_label: lessonTitle,
+      linked_score: score,
+      linked_passed: passed,
+      color,
+    })
+    .select()
+    .single();
+
+  if (error || !row) return null;
+  return mapRowToEvent(row);
+}
+
+export async function logExamAttempt(
+  examId: string,
+  examTitle: string,
+  score: number,
+  passed: boolean
+): Promise<CalendarEvent | null> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const color = passed ? EXAM_PASSED_COLOR : EXAM_FAILED_COLOR;
+  const today = new Date().toISOString().slice(0, 10);
+
+  const { data: row, error } = await supabase
+    .from("user_calendar_events")
+    .insert({
+      user_id: user.id,
+      title: examTitle,
+      description: null,
+      event_date: today,
+      start_time: null,
+      end_time: null,
+      all_day: true,
+      event_type: "auto_exam",
+      linked_type: "exam",
+      linked_id: examId,
+      linked_label: examTitle,
+      linked_score: score,
+      linked_passed: passed,
+      color,
+    })
+    .select()
+    .single();
+
+  if (error || !row) return null;
+  return mapRowToEvent(row);
+}
+
+function mapRowToEvent(row: Record<string, unknown>): CalendarEvent {
+  return {
+    id: row.id as string,
+    user_id: row.user_id as string,
+    title: row.title as string,
+    description: (row.description as string | null) ?? null,
+    event_date: row.event_date as string,
+    start_time: (row.start_time as string | null) ?? null,
+    end_time: (row.end_time as string | null) ?? null,
+    all_day: Boolean(row.all_day),
+    event_type: row.event_type as CalendarEventType,
+    linked_type: (row.linked_type as LinkedType) ?? null,
+    linked_id: (row.linked_id as string | null) ?? null,
+    linked_label: (row.linked_label as string | null) ?? null,
+    linked_score: row.linked_score != null ? Number(row.linked_score) : null,
+    linked_passed: row.linked_passed as boolean | null,
+    color: (row.color as string | null) ?? null,
+    created_at: row.created_at as string,
+    updated_at: row.updated_at as string,
+  };
+}

@@ -19,6 +19,7 @@ import {
   type SpeakingPrompt,
 } from "@/data/exams";
 import { saveExamResult } from "@/lib/exam-progress";
+import { logExamAttempt } from "@/lib/calendar-service";
 
 /* ═══════════════════════════════════════════════════
    Types
@@ -1078,6 +1079,10 @@ function ExamContent({ id }: { id: string }) {
         )
       ),
     });
+
+    const examTitle = exam.titlePt ? `${exam.titlePt} (${exam.title})` : exam.title;
+    const passed = classification.tier !== "not-yet";
+    logExamAttempt(exam.id, examTitle, finalPct, passed).catch(() => {});
 
     setSaving(false);
     setSaved(true);

@@ -9,9 +9,13 @@ import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { getAllExams } from "@/data/exams";
+import { MOCK_EXAM_UNLOCKS } from "@/data/curriculum";
+import { getResolvedLessons } from "@/data/resolve-lessons";
 import { getAllExamResults, type ExamResult } from "@/lib/exam-progress";
+import { getLessonProgressMap } from "@/lib/lesson-progress";
 
 const exams = getAllExams();
+const A1_TOTAL = getResolvedLessons().filter((l) => l.cefr === "A1").length;
 
 function DifficultyDots({ level }: { level: 1 | 2 | 3 }) {
   return (
@@ -55,19 +59,34 @@ function ClassificationBadge({
 
 export default function ExamsPage() {
   const [results, setResults] = useState<Record<string, ExamResult>>({});
+  const [lessonProgressMap, setLessonProgressMap] = useState<
+    Record<string, { completed: boolean }>
+  >({});
 
   useEffect(() => {
     getAllExamResults()
       .then(setResults)
       .catch((err) => {
         if (process.env.NODE_ENV === "development") {
-          console.warn(
-            "[AulaPT] Progress/exam fetch failed silently:",
-            err
-          );
+          console.warn("[AulaPT] Exam results fetch failed:", err);
         }
       });
   }, []);
+
+  useEffect(() => {
+    getLessonProgressMap()
+      .then((map) => {
+        const byCompleted = Object.fromEntries(
+          Object.entries(map).map(([id, p]) => [id, { completed: p.completed }])
+        );
+        setLessonProgressMap(byCompleted);
+      })
+      .catch(() => {});
+  }, []);
+
+  const a1Completed = Object.entries(lessonProgressMap).filter(
+    ([id, p]) => id.startsWith("a1-") && p.completed
+  ).length;
 
   return (
     <>
@@ -111,9 +130,17 @@ export default function ExamsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
           {exams.map((exam) => {
             const result = results[exam.id];
-            const isAvailable = exam.available;
+            const unlockConfig = MOCK_EXAM_UNLOCKS[exam.id];
+            const lessonsRequired = unlockConfig?.lessonsRequired ?? 0;
+            const unlockedByLessons =
+              lessonsRequired === 0 || a1Completed >= lessonsRequired;
+            const isAvailable = exam.available && unlockedByLessons;
+            const moreNeeded =
+              lessonsRequired > 0 && a1Completed < lessonsRequired
+                ? lessonsRequired - a1Completed
+                : 0;
 
-            if (!isAvailable) {
+            if (!exam.available) {
               return (
                 <div
                   key={exam.id}
@@ -145,6 +172,44 @@ export default function ExamsPage() {
                     <span className="text-[12px] font-medium text-[#D1D5DB]">
                       Em breve
                     </span>
+                  </div>
+                </div>
+              );
+            }
+
+            if (!unlockedByLessons && moreNeeded > 0) {
+              const pct = Math.min(
+                100,
+                Math.round((a1Completed / lessonsRequired) * 100)
+              );
+              return (
+                <div
+                  key={exam.id}
+                  className="border border-[#F3F4F6] rounded-xl p-5 bg-[#FAFAFA] opacity-90 h-full flex flex-col"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+                      {exam.monthPt}
+                    </p>
+                    <DifficultyDots level={exam.difficulty} />
+                  </div>
+                  <h3 className="text-[15px] font-semibold text-[#6B7280] mt-2">
+                    {exam.titlePt}
+                  </h3>
+                  <p className="text-[12px] text-[#9CA3AF] mt-2">
+                    Complete {moreNeeded} more A1 lesson
+                    {moreNeeded !== 1 ? "s" : ""} to unlock
+                  </p>
+                  <div className="mt-auto pt-4">
+                    <div className="h-1.5 rounded-full bg-[#E5E7EB] overflow-hidden">
+                      <div
+                        className="h-full bg-[var(--color-primary)] rounded-full transition-all"
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    <p className="text-[11px] text-[#9CA3AF] mt-1">
+                      {a1Completed} / {lessonsRequired} A1 lessons
+                    </p>
                   </div>
                 </div>
               );
