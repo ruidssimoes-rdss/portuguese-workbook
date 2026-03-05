@@ -70,6 +70,29 @@ export async function getEventsForDate(
   return data.map(mapRowToEvent);
 }
 
+export async function getEventsInRange(
+  startDate: string,
+  endDate: string
+): Promise<CalendarEvent[]> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const { data, error } = await supabase
+    .from("user_calendar_events")
+    .select("*")
+    .eq("user_id", user.id)
+    .gte("event_date", startDate)
+    .lte("event_date", endDate)
+    .order("event_date", { ascending: true })
+    .order("start_time", { ascending: true, nullsFirst: false });
+
+  if (error || !data) return [];
+  return data.map(mapRowToEvent);
+}
+
 export interface CreatePlannedEventData {
   title: string;
   description?: string | null;

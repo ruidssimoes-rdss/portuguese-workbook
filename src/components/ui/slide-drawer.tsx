@@ -35,17 +35,17 @@ export function SlideDrawer({
         role="dialog"
         aria-label={ariaLabel}
       >
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 shrink-0">
+        <div className="flex items-center justify-between p-4 border-b border-[rgba(0,0,0,0.06)] shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
           <div className="flex items-center gap-2">
             {headerExtra}
             <button
               type="button"
               onClick={onClose}
-              className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
-              aria-label="Close"
+              className="px-3 py-1.5 rounded-[12px] text-[13px] font-medium text-gray-600 hover:bg-[rgba(0,0,0,0.05)] border border-[rgba(0,0,0,0.06)] transition-colors"
+              aria-label="Fechar"
             >
-              <span className="text-lg leading-none">×</span>
+              Fechar
             </button>
           </div>
         </div>

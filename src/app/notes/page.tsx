@@ -22,20 +22,27 @@ import {
 } from "@/lib/notes-service";
 
 const FILTERS: { id: string; label: string; contextType?: NoteContextType; isPinned?: boolean; isArchived?: boolean }[] = [
-  { id: "all", label: "All" },
-  { id: "pinned", label: "Pinned", isPinned: true },
-  { id: "grammar", label: "Grammar", contextType: "grammar" },
-  { id: "vocabulary", label: "Vocabulary", contextType: "vocabulary" },
-  { id: "verbs", label: "Verbs", contextType: "verb" },
-  { id: "lessons", label: "Lessons", contextType: "lesson" },
-  { id: "archived", label: "Archived", isArchived: true },
+  { id: "all", label: "Todas" },
+  { id: "pinned", label: "Fixadas", isPinned: true },
+  { id: "grammar", label: "Gramática", contextType: "grammar" },
+  { id: "vocabulary", label: "Vocabulário", contextType: "vocabulary" },
+  { id: "verbs", label: "Verbos", contextType: "verb" },
+  { id: "lessons", label: "Lições", contextType: "lesson" },
+  { id: "archived", label: "Arquivo", isArchived: true },
 ];
 
-const CONTEXT_BADGE_COLORS: Record<string, string> = {
-  grammar: "bg-[#4B5563] text-white",
-  vocabulary: "bg-[#5B4FA0] text-white",
-  verb: "bg-[#3D6B9E] text-white",
-  lesson: "bg-[#003399] text-white",
+const CONTEXT_LABELS: Record<string, string> = {
+  grammar: "Gramática",
+  vocabulary: "Vocabulário",
+  verb: "Verbos",
+  lesson: "Lições",
+};
+
+const CONTEXT_COLORS: Record<string, string> = {
+  grammar: "text-slate-600",
+  vocabulary: "text-indigo-600",
+  verb: "text-sky-600",
+  lesson: "text-[#003399]",
 };
 
 function formatRelativeTime(dateStr: string): string {
@@ -45,74 +52,53 @@ function formatRelativeTime(dateStr: string): string {
   const diffMins = Math.floor(diffMs / 60000);
   const diffHours = Math.floor(diffMs / 3600000);
   const diffDays = Math.floor(diffMs / 86400000);
-  if (diffMins < 1) return "Just now";
-  if (diffMins < 60) return `${diffMins} minute${diffMins === 1 ? "" : "s"} ago`;
-  if (diffHours < 24) return `${diffHours} hour${diffHours === 1 ? "" : "s"} ago`;
-  if (diffDays === 1) return "Yesterday";
-  if (diffDays < 7) return `${diffDays} days ago`;
-  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  if (diffMins < 1) return "Agora";
+  if (diffMins < 60) return `${diffMins} min`;
+  if (diffHours < 24) return `${diffHours}h`;
+  if (diffDays === 1) return "Ontem";
+  if (diffDays < 7) return `${diffDays} dias`;
+  return d.toLocaleDateString("pt-PT", { day: "numeric", month: "short" });
 }
 
-function NoteCard({
+function NoteRow({
   note,
   onClick,
 }: {
   note: Note;
   onClick: () => void;
 }) {
-  const preview = note.content.slice(0, 100).trim();
-  const previewText = preview.length < note.content.length ? `${preview}...` : preview;
-  const badgeLabel = note.context_type
-    ? `${note.context_type === "verb" ? "Verbs" : note.context_type.charAt(0).toUpperCase() + note.context_type.slice(1)} · ${note.context_label ?? note.context_id ?? ""}`
-    : "Free-form";
-  const badgeColor = note.context_type
-    ? CONTEXT_BADGE_COLORS[note.context_type] ?? "bg-gray-500 text-white"
-    : "bg-gray-400 text-white";
+  const preview = note.content.slice(0, 80).trim();
+  const previewText = preview.length < note.content.length ? `${preview}…` : preview;
+  const contextLabel = note.context_type
+    ? `${CONTEXT_LABELS[note.context_type] ?? note.context_type}${note.context_label ? ` — ${note.context_label}` : ""}`
+    : null;
+  const contextColor = note.context_type ? (CONTEXT_COLORS[note.context_type] ?? "text-gray-500") : "";
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`w-full text-left bg-white border border-gray-200 rounded-lg p-4 hover:border-[#003399]/30 hover:shadow-sm transition-all duration-200 ${
-        note.is_pinned ? "border-l-4 border-l-[#003399]" : ""
-      }`}
+      className="w-full text-left flex items-center gap-3 py-3 px-3 rounded-[12px] hover:bg-[rgba(0,0,0,0.02)] transition-colors border border-transparent hover:border-[rgba(0,0,0,0.06)]"
     >
-      <div className="flex items-start justify-between gap-2">
+      <span
+        className={`w-[3px] shrink-0 self-stretch rounded-full ${note.is_pinned ? "bg-[#003399]" : "bg-transparent"}`}
+        aria-hidden
+      />
+      <div className="min-w-0 flex-1 flex items-center gap-3">
         <div className="min-w-0 flex-1">
-          <h3 className="text-base font-semibold text-gray-900 truncate">
-            {note.title || "Untitled note"}
+          <h3 className="text-[14px] font-semibold text-gray-900 truncate">
+            {note.title?.trim() || "Sem título"}
           </h3>
-          <span
-            className={`inline-block mt-1.5 text-xs font-medium px-2 py-0.5 rounded ${badgeColor}`}
-          >
-            {badgeLabel}
-          </span>
-          <p className="text-sm text-gray-500 mt-2 line-clamp-2">{previewText || "No content"}</p>
-          <p className="text-xs text-gray-400 mt-2">{formatRelativeTime(note.updated_at)}</p>
+          <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+            {contextLabel && (
+              <span className={`text-[11px] font-medium ${contextColor}`}>{contextLabel}</span>
+            )}
+            <p className="text-[12px] text-gray-500 truncate">{previewText || "Sem conteúdo"}</p>
+          </div>
         </div>
-        {note.is_pinned && (
-          <span className="shrink-0 text-gray-400" aria-hidden>
-            <PinIcon className="w-4 h-4" />
-          </span>
-        )}
+        <span className="text-[10px] text-gray-400 shrink-0">{formatRelativeTime(note.updated_at)}</span>
       </div>
     </button>
-  );
-}
-
-function PinIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 5v14l7-7 7 7V5" />
-    </svg>
-  );
-}
-
-function FileTextIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-    </svg>
   );
 }
 
@@ -149,6 +135,7 @@ function NoteEditorDrawer({
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [savedAt, setSavedAt] = useState<number | null>(null);
+  const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastSavedRef = useRef({ title: "", content: "" });
@@ -196,22 +183,27 @@ function NoteEditorDrawer({
     const t = title.trim();
     const c = content;
     if (t === lastSavedRef.current.title && c === lastSavedRef.current.content) return;
-    if (note) {
-      const updated = await updateNote(note.id, { title: t || null, content: c });
-      if (updated) {
-        setNote(updated);
-        lastSavedRef.current = { title: updated.title ?? "", content: updated.content };
-        setSavedAt(Date.now());
-        onSaved(updated);
+    setSaving(true);
+    try {
+      if (note) {
+        const updated = await updateNote(note.id, { title: t || null, content: c });
+        if (updated) {
+          setNote(updated);
+          lastSavedRef.current = { title: updated.title ?? "", content: updated.content };
+          setSavedAt(Date.now());
+          onSaved(updated);
+        }
+      } else if (!initialContext && (t || c)) {
+        const created = await createNote({ title: t || null, content: c });
+        if (created) {
+          setNote(created);
+          lastSavedRef.current = { title: created.title ?? "", content: created.content };
+          setSavedAt(Date.now());
+          onSaved(created);
+        }
       }
-    } else if (!initialContext && (t || c)) {
-      const created = await createNote({ title: t || null, content: c });
-      if (created) {
-        setNote(created);
-        lastSavedRef.current = { title: created.title ?? "", content: created.content };
-        setSavedAt(Date.now());
-        onSaved(created);
-      }
+    } finally {
+      setSaving(false);
     }
   }, [note, title, content, initialContext, onSaved]);
 
@@ -256,71 +248,79 @@ function NoteEditorDrawer({
   };
 
   const contextLabel = note?.context_type
-    ? `${note.context_type === "verb" ? "Verbs" : note.context_type.charAt(0).toUpperCase() + note.context_type.slice(1)} · ${note.context_label ?? note.context_id ?? ""}`
+    ? `${CONTEXT_LABELS[note.context_type] ?? note.context_type}${note.context_label ? ` — ${note.context_label}` : ""}`
     : initialContext && initialContext.contextType
-      ? `${initialContext.contextType === "verb" ? "Verbs" : initialContext.contextType.charAt(0).toUpperCase() + initialContext.contextType.slice(1)} · ${initialContext.contextLabel}`
+      ? `${CONTEXT_LABELS[initialContext.contextType] ?? initialContext.contextType} — ${initialContext.contextLabel}`
       : null;
+  const contextTypeKey = note?.context_type ?? initialContext?.contextType ?? null;
+  const contextColor = contextTypeKey ? (CONTEXT_COLORS[contextTypeKey] ?? "text-gray-600") : "";
 
   return (
     <SlideDrawer
       isOpen
       onClose={onClose}
-      title="Note"
-      ariaLabel="Edit note"
-      headerExtra={savedAt != null ? <span className="text-xs text-gray-500">Saved</span> : null}
+      title="Nota"
+      ariaLabel="Editar nota"
     >
-      <div className="p-4 space-y-4">
+      <div className="flex flex-col h-full">
+        <div className="flex-1 overflow-y-auto px-6 py-6">
+          {contextLabel && (
+            <span className={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-[12px] mb-4 ${contextColor} bg-gray-100`}>
+              {contextLabel}
+            </span>
+          )}
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             onBlur={handleBlur}
-            placeholder="Note title (optional)"
-            className="w-full text-lg font-medium text-gray-900 border-0 border-b border-gray-200 focus:border-[#003399] focus:ring-0 focus:outline-none pb-2"
+            placeholder="Título"
+            className="w-full text-[20px] font-semibold text-gray-900 border-0 focus:ring-0 focus:outline-none placeholder:text-gray-400 mb-2"
           />
-          {contextLabel && (
-            <span className="inline-block text-xs font-medium px-2 py-1 rounded bg-gray-100 text-gray-700">
-              {contextLabel}
-            </span>
-          )}
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             onBlur={handleBlur}
-            placeholder="Start writing..."
-            className="w-full min-h-[200px] text-sm text-gray-700 border border-gray-200 rounded-lg p-3 focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20 resize-y"
+            placeholder="Começar a escrever..."
+            className="w-full min-h-[280px] text-[14px] text-gray-700/90 leading-[1.8] border-0 focus:ring-0 focus:outline-none resize-y placeholder:text-gray-400"
           />
-          <div className="flex items-center gap-2 pt-2 border-t border-gray-200">
+        </div>
+        <div
+          className="shrink-0 flex items-center justify-between gap-4 px-4 py-3 rounded-[10px] mx-4 mb-4 bg-black/88 backdrop-blur-xl border border-[rgba(0,0,0,0.06)]"
+        >
+          <div className="flex items-center gap-1">
             {note && (
               <button
                 type="button"
                 onClick={handlePin}
-                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#003399]"
+                className="px-3 py-1.5 text-[11px] font-medium rounded-[12px] text-white/40 hover:text-white/[0.85] transition-colors"
               >
-                <PinIcon className="w-4 h-4" />
-                {note.is_pinned ? "Unpin" : "Pin"}
+                {note.is_pinned ? "Desfixar" : "Fixar"}
               </button>
             )}
             {note && (
               <button
                 type="button"
                 onClick={handleArchive}
-                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#003399]"
+                className="px-3 py-1.5 text-[11px] font-medium rounded-[12px] text-white/40 hover:text-white/[0.85] transition-colors"
               >
-                Archive
+                Arquivar
               </button>
             )}
             {(note || initialContext) && (
               <button
                 type="button"
                 onClick={handleDelete}
-                className={`flex items-center gap-1.5 text-sm ${confirmDelete ? "text-red-600 hover:text-red-700" : "text-gray-500 hover:text-[#003399]"}`}
+                className={`px-3 py-1.5 text-[11px] font-medium rounded-[12px] transition-colors ${confirmDelete ? "text-red-400 hover:text-red-300" : "text-white/40 hover:text-red-400"}`}
               >
-                <TrashIcon className="w-4 h-4" />
-                {confirmDelete ? "Confirm delete" : "Delete"}
+                {confirmDelete ? "Confirmar apagar" : "Apagar"}
               </button>
             )}
           </div>
+          <span className="text-[10px] font-medium text-white/[0.35]">
+            {saving ? "A guardar..." : savedAt != null ? "Guardado" : ""}
+          </span>
+        </div>
       </div>
     </SlideDrawer>
   );
@@ -415,16 +415,16 @@ function NotesContent() {
               titlePt="Notas"
               section="REVISION"
               sectionPt="Revisão"
-              tagline="Your study notebook — capture ideas, rules, and discoveries."
+              tagline="O teu caderno de estudo — ideias, regras e descobertas."
             />
             {isLoggedIn && (
               <button
                 type="button"
                 onClick={openNewNote}
-                className="shrink-0 flex items-center gap-2 h-10 px-4 bg-[#003399] hover:bg-[#002266] text-white rounded-lg text-sm font-medium transition-colors"
+                className="shrink-0 flex items-center gap-2 h-10 px-4 bg-[#003399] hover:bg-[#002266] text-white rounded-[12px] text-sm font-medium transition-colors border border-[rgba(0,0,0,0.06)]"
               >
                 <PencilIcon className="w-4 h-4" />
-                New Note
+                Nova nota
               </button>
             )}
           </div>
@@ -432,82 +432,93 @@ function NotesContent() {
         </div>
 
         {!isLoggedIn ? (
-          <div className="border border-gray-200 rounded-xl p-8 bg-white text-center">
+          <div className="border border-[rgba(0,0,0,0.06)] rounded-[12px] p-8 bg-white text-center">
             <p className="text-[15px] font-semibold text-gray-900">
-              Sign in to use your notebook
+              Inicia sessão para usar o caderno
             </p>
-            <p className="text-[13px] text-gray-500 italic mt-1">
-              Inicia sessão para guardar as tuas notas
+            <p className="text-[13px] text-gray-500 mt-1">
+              Guarda as tuas notas e sincroniza entre dispositivos.
             </p>
             <Link
               href="/auth/login"
-              className="inline-flex items-center justify-center h-[36px] px-5 bg-[#003399] text-white border border-[#003399] rounded-xl text-[13px] font-medium hover:bg-[#002266] transition-colors duration-200 mt-5"
+              className="inline-flex items-center justify-center h-9 px-5 bg-[#003399] text-white rounded-[12px] text-[13px] font-medium hover:bg-[#002266] transition-colors mt-5 border border-[rgba(0,0,0,0.06)]"
             >
               Entrar
             </Link>
           </div>
         ) : (
           <>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap items-center gap-2 mb-4">
               {FILTERS.map((f) => (
                 <button
                   key={f.id}
                   type="button"
                   onClick={() => setFilterId(f.id)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${
+                  className={`px-3 py-1.5 rounded-[12px] text-sm font-medium border transition-all ${
                     filterId === f.id
-                      ? "border-gray-900 bg-gray-900 text-white"
-                      : "border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-900 bg-white"
+                      ? "bg-[rgba(0,0,0,0.05)] text-gray-900 border-[rgba(0,0,0,0.08)]"
+                      : "border-[rgba(0,0,0,0.06)] text-gray-500 hover:text-gray-700 hover:border-[rgba(0,0,0,0.1)] bg-white"
                   }`}
                 >
                   {f.label}
                 </button>
               ))}
-            </div>
-            <div className="mb-6">
-              <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.35-4.35" strokeWidth={2} />
-                  </svg>
-                </span>
+              <div className="flex-1 min-w-[160px] max-w-xs ml-auto">
                 <input
                   type="search"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search notes..."
-                  className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
+                  placeholder="Pesquisar..."
+                  className="w-full px-3 py-2 rounded-[12px] text-sm border border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.1)] focus:ring-1 focus:ring-[rgba(0,0,0,0.05)] outline-none"
                 />
               </div>
             </div>
 
             {loading ? (
-              <p className="text-sm text-gray-500 py-8">Loading...</p>
+              <p className="text-sm text-gray-500 py-8">A carregar...</p>
             ) : sortedNotes.length === 0 ? (
               <div className="text-center py-16">
-                <FileTextIcon className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900">No notes yet</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Ainda sem notas</h3>
                 <p className="text-sm text-gray-500 mt-1 mb-6">
-                  Start capturing your learning discoveries.
+                  Começa a capturar as tuas descobertas.
                 </p>
                 <button
                   type="button"
                   onClick={openNewNote}
-                  className="inline-flex items-center gap-2 h-10 px-4 bg-[#003399] hover:bg-[#002266] text-white rounded-lg text-sm font-medium"
+                  className="inline-flex items-center gap-2 h-10 px-4 bg-[#003399] hover:bg-[#002266] text-white rounded-[12px] text-sm font-medium border border-[rgba(0,0,0,0.06)]"
                 >
                   <PencilIcon className="w-4 h-4" />
-                  Create your first note
+                  Nova nota
                 </button>
               </div>
             ) : (
-              <ul className="space-y-3">
-                {sortedNotes.map((note) => (
-                  <li key={note.id}>
-                    <NoteCard note={note} onClick={() => openEditor(note)} />
-                  </li>
-                ))}
-              </ul>
+              <div className="space-y-1">
+                {(() => {
+                  const pinned = sortedNotes.filter((n) => n.is_pinned);
+                  const recent = sortedNotes.filter((n) => !n.is_pinned);
+                  const showSections = filterId === "all" && pinned.length > 0;
+                  return (
+                    <>
+                      {showSections && (
+                        <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-gray-400 mt-4 mb-2" style={{ opacity: 0.85 }}>
+                          Fixadas
+                        </p>
+                      )}
+                      {pinned.map((note) => (
+                        <NoteRow key={note.id} note={note} onClick={() => openEditor(note)} />
+                      ))}
+                      {showSections && recent.length > 0 && (
+                        <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-gray-400 mt-6 mb-2" style={{ opacity: 0.85 }}>
+                          Recentes
+                        </p>
+                      )}
+                      {recent.map((note) => (
+                        <NoteRow key={note.id} note={note} onClick={() => openEditor(note)} />
+                      ))}
+                    </>
+                  );
+                })()}
+              </div>
             )}
           </>
         )}
@@ -547,7 +558,7 @@ export default function NotesPage() {
             />
             <Divider className="mt-4 mb-6" />
           </div>
-          <p className="text-sm text-gray-500 py-8">Loading...</p>
+          <p className="text-sm text-gray-500 py-8">A carregar...</p>
           <div className="pb-16" />
         </PageContainer>
       </>

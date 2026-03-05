@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { PageContainer } from "@/components/ui/page-container";
@@ -11,99 +11,111 @@ import { useAuth } from "@/components/auth-provider";
 import {
   getEventsForMonth,
   getEventsForDate,
+  getEventsInRange,
   createPlannedEvent,
   updateEvent,
   deleteEvent,
   type CalendarEvent,
 } from "@/lib/calendar-service";
 
-const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+// ─── Portuguese labels ───
+const MESES: string[] = [
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
 ];
 
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const DIAS_SEMANA: string[] = [
+  "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira",
+  "Sexta-feira", "Sábado", "Domingo",
+];
 
-function getMonthGrid(year: number, month: number): (number | null)[][] {
-  const first = new Date(year, month - 1, 1);
-  const last = new Date(year, month, 0);
-  const startDay = first.getDay();
-  const monFirst = startDay === 0 ? 6 : startDay - 1;
-  const daysInMonth = last.getDate();
-  const rows: (number | null)[][] = [];
-  let row: (number | null)[] = [];
-  for (let i = 0; i < monFirst; i++) row.push(null);
-  for (let d = 1; d <= daysInMonth; d++) {
-    row.push(d);
-    if (row.length === 7) {
-      rows.push(row);
-      row = [];
-    }
-  }
-  if (row.length) {
-    while (row.length < 7) row.push(null);
-    rows.push(row);
-  }
-  return rows;
+const DIAS_CURTOS: string[] = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+
+type ViewMode = "day" | "week" | "month";
+
+const EVENT_STYLE: Record<string, { color: string; label: string }> = {
+  auto_lesson_passed: { color: "#16A34A", label: "Lição" },
+  auto_lesson_failed: { color: "#D97706", label: "Lição" },
+  auto_exam_passed: { color: "#003399", label: "Exame" },
+  auto_exam_failed: { color: "#D97706", label: "Exame" },
+  auto_practice: { color: "#7C3AED", label: "Prática" },
+  planned: { color: "#6B7280", label: "Planeado" },
+};
+
+function getEventStyle(e: CalendarEvent): { color: string; label: string } {
+  if (e.event_type === "auto_lesson") return e.linked_passed ? EVENT_STYLE.auto_lesson_passed : EVENT_STYLE.auto_lesson_failed;
+  if (e.event_type === "auto_exam") return e.linked_passed ? EVENT_STYLE.auto_exam_passed : EVENT_STYLE.auto_exam_failed;
+  if (e.event_type === "auto_practice") return EVENT_STYLE.auto_practice;
+  return EVENT_STYLE.planned;
 }
 
-function toDateKey(year: number, month: number, day: number): string {
-  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+function toDateKey(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
 }
 
-function isToday(year: number, month: number, day: number): boolean {
+function getMonday(d: Date): Date {
+  const date = new Date(d);
+  const day = date.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  date.setDate(date.getDate() + diff);
+  return date;
+}
+
+function addDays(d: Date, n: number): Date {
+  const out = new Date(d);
+  out.setDate(out.getDate() + n);
+  return out;
+}
+
+function isTodayKey(key: string): boolean {
   const t = new Date();
-  return t.getFullYear() === year && t.getMonth() === month - 1 && t.getDate() === day;
+  return toDateKey(t) === key;
 }
 
-function formatTime(t: string | null): string {
+function formatTimePT(t: string | null): string {
   if (!t) return "";
   const [h, m] = t.split(":");
   const hh = parseInt(h!, 10);
   const mm = m ? parseInt(m, 10) : 0;
-  if (hh === 0 && mm === 0) return "12:00 AM";
-  if (hh < 12) return `${hh}:${String(mm).padStart(2, "0")} AM`;
-  if (hh === 12) return `12:${String(mm).padStart(2, "0")} PM`;
-  return `${hh - 12}:${String(mm).padStart(2, "0")} PM`;
+  if (hh === 0 && mm === 0) return "0:00";
+  return `${hh}:${String(mm).padStart(2, "0")}`;
 }
 
-const DOT_COLORS = {
-  auto_lesson_passed: "#16A34A",
-  auto_lesson_failed: "#F59E0B",
-  auto_exam_passed: "#003399",
-  auto_exam_failed: "#F59E0B",
-  auto_practice: "#8B5CF6",
-  planned: "#6B7280",
-} as const;
-
-function EventDots({ events }: { events: CalendarEvent[] }) {
-  const dots: string[] = [];
-  if (events.some((e) => e.event_type === "auto_lesson" && e.linked_passed)) dots.push(DOT_COLORS.auto_lesson_passed);
-  if (events.some((e) => e.event_type === "auto_lesson" && !e.linked_passed)) dots.push(DOT_COLORS.auto_lesson_failed);
-  if (events.some((e) => e.event_type === "auto_exam" && e.linked_passed)) dots.push(DOT_COLORS.auto_exam_passed);
-  if (events.some((e) => e.event_type === "auto_exam" && !e.linked_passed)) dots.push(DOT_COLORS.auto_exam_failed);
-  if (events.some((e) => e.event_type === "auto_practice")) dots.push(DOT_COLORS.auto_practice);
-  if (events.some((e) => e.event_type === "planned")) dots.push(DOT_COLORS.planned);
-  const uniq = [...new Set(dots)];
-  const show = uniq.slice(0, 3);
-  const overflow = uniq.length > 3 ? uniq.length - 3 : 0;
-  return (
-    <div className="flex items-center justify-center gap-0.5 mt-1 flex-wrap">
-      {show.map((color) => (
-        <span
-          key={color}
-          className="w-1.5 h-1.5 rounded-full shrink-0"
-          style={{ backgroundColor: color }}
-        />
-      ))}
-      {overflow > 0 && (
-        <span className="text-[10px] text-gray-400">+{overflow}</span>
-      )}
-    </div>
-  );
+function formatDateRangePT(startKey: string, endKey: string): string {
+  const s = new Date(startKey + "T12:00:00");
+  const e = new Date(endKey + "T12:00:00");
+  const sm = MESES[s.getMonth()];
+  const em = MESES[e.getMonth()];
+  if (startKey === endKey) return `${s.getDate()} de ${sm} ${s.getFullYear()}`;
+  if (s.getMonth() === e.getMonth()) return `${sm} ${s.getDate()} – ${e.getDate()}, ${s.getFullYear()}`;
+  return `${s.getDate()} ${sm} – ${e.getDate()} ${em} ${s.getFullYear()}`;
 }
 
-function CreateEventModal({
+function formatDayLongPT(dateKey: string): string {
+  const d = new Date(dateKey + "T12:00:00");
+  const dayName = DIAS_SEMANA[d.getDay() === 0 ? 6 : d.getDay() - 1];
+  return `${dayName}, ${d.getDate()} de ${MESES[d.getMonth()]}`;
+}
+
+const HOURS = Array.from({ length: 17 }, (_, i) => i + 6); // 06:00–22:00
+
+function getEventPosition(e: CalendarEvent): { top: number; height: number } {
+  if (e.all_day) return { top: 0, height: 24 };
+  const [sh, sm] = (e.start_time ?? "06:00").split(":").map(Number);
+  const [eh, em] = (e.end_time ?? e.start_time ?? "07:00").split(":").map(Number);
+  const startMins = sh * 60 + (sm || 0);
+  const endMins = eh * 60 + (em || 0);
+  const duration = Math.max(30, endMins - startMins);
+  const top = ((startMins - 6 * 60) / 60) * 60; // 60px per hour
+  const height = (duration / 60) * 60;
+  return { top, height };
+}
+
+// ─── Plan / Edit drawers (Portuguese labels) ───
+function CreateEventDrawer({
   initialDate,
   onClose,
   onSaved,
@@ -140,32 +152,27 @@ function CreateEventModal({
   };
 
   return (
-    <SlideDrawer
-      isOpen
-      onClose={onClose}
-      title="Plan study session"
-      ariaLabel="Plan study session"
-    >
+    <SlideDrawer isOpen onClose={onClose} title="Planear sessão" ariaLabel="Planear sessão">
       <div className="p-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="e.g. Review verb conjugations"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
+              placeholder="ex.: Rever conjugações verbais"
+              className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Data</label>
             <input
               type="date"
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
+              className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -174,55 +181,32 @@ function CreateEventModal({
               id="allDay"
               checked={allDay}
               onChange={(e) => setAllDay(e.target.checked)}
-              className="rounded border-gray-300 text-[#003399] focus:ring-[#003399]"
+              className="rounded-[12px] border-gray-300 text-[#003399] focus:ring-[#003399]"
             />
-            <label htmlFor="allDay" className="text-sm text-gray-700">All day</label>
+            <label htmlFor="allDay" className="text-sm text-gray-700">Dia inteiro</label>
           </div>
           {!allDay && (
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Start</label>
-                <input
-                  type="time"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Hora início</label>
+                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">End</label>
-                <input
-                  type="time"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Hora fim</label>
+                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm" />
               </div>
             </div>
           )}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Description (optional)</label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={2}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20 resize-none"
-            />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Descrição (opcional)</label>
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20 resize-none" />
           </div>
           <div className="flex justify-end gap-2 pt-2">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50"
-            >
-              Cancel
+            <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 border border-[rgba(0,0,0,0.08)] rounded-[12px] hover:bg-[rgba(0,0,0,0.02)]">
+              Cancelar
             </button>
-            <button
-              type="submit"
-              disabled={saving || !title.trim()}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-lg hover:bg-[#002266] disabled:opacity-50"
-            >
-              {saving ? "Saving..." : "Save"}
+            <button type="submit" disabled={saving || !title.trim()} className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50">
+              {saving ? "A guardar..." : "Guardar"}
             </button>
           </div>
         </form>
@@ -231,15 +215,7 @@ function CreateEventModal({
   );
 }
 
-function EditEventDrawer({
-  event,
-  onClose,
-  onSaved,
-}: {
-  event: CalendarEvent;
-  onClose: () => void;
-  onSaved: () => void;
-}) {
+function EditEventDrawer({ event, onClose, onSaved }: { event: CalendarEvent; onClose: () => void; onSaved: () => void }) {
   const [title, setTitle] = useState(event.title);
   const [description, setDescription] = useState(event.description ?? "");
   const [eventDate, setEventDate] = useState(event.event_date);
@@ -252,14 +228,7 @@ function EditEventDrawer({
     e.preventDefault();
     if (!title.trim()) return;
     setSaving(true);
-    const updated = await updateEvent(event.id, {
-      title: title.trim(),
-      description: description.trim() || null,
-      event_date: eventDate,
-      all_day: allDay,
-      start_time: allDay ? null : startTime,
-      end_time: allDay ? null : endTime,
-    });
+    const updated = await updateEvent(event.id, { title: title.trim(), description: description.trim() || null, event_date: eventDate, all_day: allDay, start_time: allDay ? null : startTime, end_time: allDay ? null : endTime });
     setSaving(false);
     if (updated) {
       onSaved();
@@ -268,89 +237,40 @@ function EditEventDrawer({
   };
 
   return (
-    <SlideDrawer
-      isOpen
-      onClose={onClose}
-      title="Edit event"
-      ariaLabel="Edit event"
-    >
+    <SlideDrawer isOpen onClose={onClose} title="Editar evento" ariaLabel="Editar evento">
       <div className="p-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
-              required
-            />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
-            <input
-              type="date"
-              value={eventDate}
-              onChange={(e) => setEventDate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
-            />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Data</label>
+            <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20" />
           </div>
           <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              id="editAllDay"
-              checked={allDay}
-              onChange={(e) => setAllDay(e.target.checked)}
-              className="rounded border-gray-300 text-[#003399] focus:ring-[#003399]"
-            />
-            <label htmlFor="editAllDay" className="text-sm text-gray-700">All day</label>
+            <input type="checkbox" id="editAllDay" checked={allDay} onChange={(e) => setAllDay(e.target.checked)} className="rounded-[12px] border-gray-300 text-[#003399] focus:ring-[#003399]" />
+            <label htmlFor="editAllDay" className="text-sm text-gray-700">Dia inteiro</label>
           </div>
           {!allDay && (
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Start</label>
-                <input
-                  type="time"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Hora início</label>
+                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">End</label>
-                <input
-                  type="time"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Hora fim</label>
+                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm" />
               </div>
             </div>
           )}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Description (optional)</label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={2}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20 resize-none"
-            />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Descrição (opcional)</label>
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20 resize-none" />
           </div>
           <div className="flex justify-end gap-2 pt-2">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={saving || !title.trim()}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-lg hover:bg-[#002266] disabled:opacity-50"
-            >
-              {saving ? "Saving..." : "Save"}
-            </button>
+            <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 border border-[rgba(0,0,0,0.08)] rounded-[12px] hover:bg-[rgba(0,0,0,0.02)]">Cancelar</button>
+            <button type="submit" disabled={saving || !title.trim()} className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50">{saving ? "A guardar..." : "Guardar"}</button>
           </div>
         </form>
       </div>
@@ -358,378 +278,241 @@ function EditEventDrawer({
   );
 }
 
+// ─── Main page ───
 export default function CalendarPage() {
   const { user, loading: authLoading } = useAuth();
   const today = new Date();
-  const [year, setYear] = useState(today.getFullYear());
-  const [month, setMonth] = useState(today.getMonth() + 1);
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>("week");
+  const [cursorDate, setCursorDate] = useState<string>(() => toDateKey(today));
   const [monthEvents, setMonthEvents] = useState<CalendarEvent[]>([]);
-  const [dayEvents, setDayEvents] = useState<CalendarEvent[]>([]);
+  const [rangeEvents, setRangeEvents] = useState<CalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);
-  const [drawerOpen, setDrawerOpen] = useState<"create" | "edit" | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState<"create" | null>(null);
   const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null);
+  const [detailEvent, setDetailEvent] = useState<CalendarEvent | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<CalendarEvent | null>(null);
 
   const isLoggedIn = !authLoading && !!user;
 
+  const cursor = useMemo(() => new Date(cursorDate + "T12:00:00"), [cursorDate]);
+  const year = cursor.getFullYear();
+  const month = cursor.getMonth() + 1;
+  const weekStart = useMemo(() => getMonday(cursor), [cursor]);
+  const weekStartKey = toDateKey(weekStart);
+  const weekEnd = addDays(weekStart, 6);
+  const weekEndKey = toDateKey(weekEnd);
+
   const loadMonth = useCallback(async () => {
-    setLoading(true);
     const list = await getEventsForMonth(year, month);
     setMonthEvents(list);
-    setLoading(false);
   }, [year, month]);
 
-  useEffect(() => {
-    if (!isLoggedIn) return;
-    loadMonth();
-  }, [isLoggedIn, loadMonth]);
-
-  const loadDay = useCallback(async (dateKey: string) => {
-    const list = await getEventsForDate(dateKey);
-    setDayEvents(list);
+  const loadRange = useCallback(async (start: string, end: string) => {
+    const list = await getEventsInRange(start, end);
+    setRangeEvents(list);
   }, []);
 
   useEffect(() => {
-    if (!isLoggedIn || !selectedDate) return;
-    loadDay(selectedDate);
-  }, [isLoggedIn, selectedDate, loadDay]);
+    if (!isLoggedIn) return;
+    setLoading(true);
+    const run = async () => {
+      await loadMonth();
+      if (viewMode === "week" || viewMode === "day") {
+        await loadRange(viewMode === "week" ? weekStartKey : cursorDate, viewMode === "week" ? weekEndKey : cursorDate);
+      }
+      setLoading(false);
+    };
+    run();
+  }, [isLoggedIn, viewMode, year, month, cursorDate, weekStartKey, weekEndKey, loadMonth, loadRange]);
 
-  const eventsByDate = monthEvents.reduce<Record<string, CalendarEvent[]>>((acc, e) => {
-    if (!acc[e.event_date]) acc[e.event_date] = [];
-    acc[e.event_date].push(e);
-    return acc;
-  }, {});
+  const eventsByDate = useMemo(() => {
+    const list = viewMode === "month" ? monthEvents : rangeEvents;
+    return list.reduce<Record<string, CalendarEvent[]>>((acc, e) => {
+      if (!acc[e.event_date]) acc[e.event_date] = [];
+      acc[e.event_date].push(e);
+      return acc;
+    }, {});
+  }, [viewMode, monthEvents, rangeEvents]);
 
-  const grid = getMonthGrid(year, month);
-
-  const prevMonth = () => {
-    if (month === 1) {
-      setYear((y) => y - 1);
-      setMonth(12);
-    } else setMonth((m) => m - 1);
-    setSelectedDate(null);
-  };
-
-  const nextMonth = () => {
-    if (month === 12) {
-      setYear((y) => y + 1);
-      setMonth(1);
-    } else setMonth((m) => m + 1);
-    setSelectedDate(null);
-  };
-
-  const handleDeleteEvent = async (event: CalendarEvent) => {
-    await deleteEvent(event.id);
-    setConfirmDelete(null);
-    if (selectedDate) loadDay(selectedDate);
-    loadMonth();
-  };
-
-  const monthStats = {
+  const monthStats = useMemo(() => ({
     lessons: monthEvents.filter((e) => e.event_type === "auto_lesson").length,
     exams: monthEvents.filter((e) => e.event_type === "auto_exam").length,
     practice: monthEvents.filter((e) => e.event_type === "auto_practice").length,
     planned: monthEvents.filter((e) => e.event_type === "planned").length,
+  }), [monthEvents]);
+
+  const navPrev = () => {
+    if (viewMode === "month") {
+      const d = new Date(year, month - 2, 1);
+      setCursorDate(toDateKey(d));
+    } else if (viewMode === "week") {
+      setCursorDate(toDateKey(addDays(weekStart, -7)));
+    } else {
+      setCursorDate(toDateKey(addDays(cursor, -1)));
+    }
   };
+
+  const navNext = () => {
+    if (viewMode === "month") {
+      const d = new Date(year, month, 1);
+      setCursorDate(toDateKey(d));
+    } else if (viewMode === "week") {
+      setCursorDate(toDateKey(addDays(weekStart, 7)));
+    } else {
+      setCursorDate(toDateKey(addDays(cursor, 1)));
+    }
+  };
+
+  const navCenterLabel = viewMode === "month"
+    ? `${MESES[month - 1]} ${year}`
+    : viewMode === "week"
+      ? formatDateRangePT(weekStartKey, weekEndKey)
+      : formatDayLongPT(cursorDate);
+
+  const handleDeleteEvent = async (event: CalendarEvent) => {
+    await deleteEvent(event.id);
+    setConfirmDelete(null);
+    setDetailEvent(null);
+    if (viewMode === "month") loadMonth(); else loadRange(viewMode === "week" ? weekStartKey : cursorDate, viewMode === "week" ? weekEndKey : cursorDate);
+  };
+
+  const weekDays = useMemo(() => Array.from({ length: 7 }, (_, i) => addDays(weekStart, i)), [weekStart]);
+  const currentTimeMins = today.getHours() * 60 + today.getMinutes();
+  const currentTimeTop = ((currentTimeMins - 6 * 60) / 60) * 60;
 
   return (
     <>
       <Topbar />
       <PageContainer>
         <div className="py-5">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <PageHeader
-              title="Calendar"
-              titlePt="Calendário"
-              section="REVISION"
-              sectionPt="Revisão"
-              tagline="Track your learning journey and plan ahead."
-            />
-            {isLoggedIn && (
-              <button
-                type="button"
-                onClick={() => setDrawerOpen("create")}
-                className="shrink-0 flex items-center gap-2 h-10 px-4 bg-[#003399] hover:bg-[#002266] text-white rounded-lg text-sm font-medium transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                </svg>
-                Plan study session
-              </button>
-            )}
-          </div>
+          <PageHeader
+            title="Calendário"
+            titlePt="Calendário"
+            section="REVISION"
+            sectionPt="Revisão"
+            tagline="Acompanha o teu percurso e planeia sessões de estudo."
+          />
           <Divider className="mt-4 mb-6" />
         </div>
 
         {!isLoggedIn ? (
-          <div className="border border-gray-200 rounded-xl p-8 bg-white text-center">
-            <p className="text-[15px] font-semibold text-gray-900">
-              Sign in to use the calendar
-            </p>
-            <p className="text-[13px] text-gray-500 italic mt-1">
-              Inicia sessão para ver o teu calendário
-            </p>
-            <Link
-              href="/auth/login"
-              className="inline-flex items-center justify-center h-[36px] px-5 bg-[#003399] text-white rounded-xl text-[13px] font-medium hover:bg-[#002266] transition-colors duration-200 mt-5"
-            >
+          <div className="border border-[rgba(0,0,0,0.08)] rounded-[12px] p-8 bg-white text-center">
+            <p className="text-[15px] font-semibold text-gray-900">Inicia sessão para usar o calendário</p>
+            <p className="text-[13px] text-gray-500 italic mt-1">Inicia sessão para ver o teu calendário</p>
+            <Link href="/auth/login" className="inline-flex items-center justify-center h-9 px-5 bg-[#003399] text-white rounded-[12px] text-[13px] font-medium hover:bg-[#002266] transition-colors mt-5">
               Entrar
             </Link>
           </div>
         ) : (
           <>
             {monthEvents.length > 0 && (
-              <p className="text-sm text-gray-500 mb-4">
-                This month:{" "}
-                <span className="font-medium text-gray-700">{monthStats.lessons} lessons completed</span>
-                {" · "}
-                <span className="font-medium text-gray-700">{monthStats.exams} exams taken</span>
-                {" · "}
-                <span className="font-medium text-gray-700">{monthStats.practice} practice sessions</span>
-                {" · "}
-                <span className="font-medium text-gray-700">{monthStats.planned} planned</span>
+              <p className="text-[12px] text-gray-500 mb-4">
+                Este mês: <span className="font-medium text-gray-700">{monthStats.lessons} lições</span>
+                {" · "}<span className="font-medium text-gray-700">{monthStats.exams} exame</span>
+                {" · "}<span className="font-medium text-gray-700">{monthStats.practice} prática</span>
+                {" · "}<span className="font-medium text-gray-700">{monthStats.planned} planeado</span>
               </p>
             )}
 
-            <div className="flex items-center justify-between mb-6">
-              <button
-                type="button"
-                onClick={prevMonth}
-                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                aria-label="Previous month"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <h2 className="text-lg font-semibold text-gray-900">
-                {MONTHS[month - 1]} {year}
-              </h2>
-              <button
-                type="button"
-                onClick={nextMonth}
-                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                aria-label="Next month"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-xl overflow-hidden mb-8">
-              <div className="grid grid-cols-7 border-b border-gray-200">
-                {WEEKDAYS.map((d) => (
-                  <div
-                    key={d}
-                    className="py-2 text-center text-xs font-semibold text-gray-500 uppercase"
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+              <div className="flex items-center gap-2">
+                {(["day", "week", "month"] as const).map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    onClick={() => setViewMode(v)}
+                    className={`px-3 py-1.5 rounded-[12px] text-sm font-medium transition-colors ${
+                      viewMode === v ? "bg-[rgba(0,0,0,0.05)] text-gray-900" : "text-[rgba(0,0,0,0.5)] hover:text-gray-700"
+                    }`}
                   >
-                    {d}
-                  </div>
+                    {v === "day" ? "Dia" : v === "week" ? "Semana" : "Mês"}
+                  </button>
                 ))}
               </div>
-              <div className="divide-y divide-gray-100">
-                {grid.map((row, ri) => (
-                  <div key={ri} className="grid grid-cols-7">
-                    {row.map((day, di) => {
-                      const dateKey = day != null ? toDateKey(year, month, day) : null;
-                      const events = dateKey ? eventsByDate[dateKey] ?? [] : [];
-                      const isSelected = selectedDate === dateKey;
-                      const todayCell = day != null && isToday(year, month, day);
-                      return (
-                        <button
-                          key={di}
-                          type="button"
-                          onClick={() => dateKey && setSelectedDate(dateKey)}
-                          disabled={!dateKey}
-                          className={`min-h-[72px] p-2 text-left border-r border-gray-100 last:border-r-0 transition-colors ${
-                            !dateKey
-                              ? "bg-gray-50/50 text-gray-300 cursor-default"
-                              : todayCell
-                                ? "bg-[#003399]/5 text-[#003399] font-medium"
-                                : isSelected
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "hover:bg-gray-50 text-gray-700"
-                          }`}
-                        >
-                          {day != null ? day : ""}
-                          {events.length > 0 && <EventDots events={events} />}
-                        </button>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {selectedDate ? (
-              <>
-                <h3 className="text-base font-semibold text-gray-900 mb-3">
-                  {new Date(selectedDate + "T12:00:00").toLocaleDateString("en-GB", {
-                    weekday: "long",
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                  {(() => {
-                    const s = new Date(selectedDate);
-                    const t = new Date();
-                    if (s.getFullYear() === t.getFullYear() && s.getMonth() === t.getMonth() && s.getDate() === t.getDate())
-                      return " (Today)";
-                    return "";
-                  })()}
-                </h3>
-                {dayEvents.length === 0 ? (
-                  <div className="py-8 text-center border border-gray-200 rounded-xl bg-gray-50/50">
-                    <p className="text-sm text-gray-500">Nothing here yet.</p>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Complete a lesson to see it logged, or plan a study session.
-                    </p>
-                  </div>
-                ) : (
-                  <ul className="space-y-3">
-                    {dayEvents.map((event) => {
-                      const isAuto = event.event_type === "auto_lesson" || event.event_type === "auto_exam" || event.event_type === "auto_practice";
-                      const borderColor =
-                        event.event_type === "auto_lesson"
-                          ? event.linked_passed
-                            ? "#16A34A"
-                            : "#F59E0B"
-                          : event.event_type === "auto_exam"
-                            ? event.linked_passed
-                              ? "#003399"
-                              : "#F59E0B"
-                            : event.event_type === "auto_practice"
-                              ? "#8B5CF6"
-                              : event.color ?? "#6B7280";
-                      const practiceLabel = event.linked_id ? `Practice · ${String(event.linked_id).replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}` : "Practice";
-                      return (
-                        <li
-                          key={event.id}
-                          className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-[#003399]/30 hover:shadow-sm transition-all duration-200 flex"
-                          style={{ borderLeftWidth: 4, borderLeftColor: borderColor }}
-                        >
-                          <div className="flex-1 min-w-0 p-4">
-                            {event.event_type === "auto_lesson" || event.event_type === "auto_exam" ? (
-                              <Link
-                                href={event.linked_type === "lesson" ? `/lessons/${event.linked_id}` : `/exams/${event.linked_id}`}
-                                className="block"
-                              >
-                                <p className="text-[15px] font-semibold text-gray-900">{event.title}</p>
-                                {event.linked_score != null && (
-                                  <span className="text-xs font-medium text-gray-600">
-                                    {Math.round(event.linked_score)}% · {event.linked_passed ? "Passed" : "Not yet"}
-                                  </span>
-                                )}
-                                <p className="text-xs text-gray-500 mt-1">
-                                  Auto-logged
-                                  {event.created_at && (
-                                    <> · {new Date(event.created_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</>
-                                  )}
-                                </p>
-                              </Link>
-                            ) : event.event_type === "auto_practice" ? (
-                              <div>
-                                <div className="flex items-center gap-2">
-                                  <svg className="w-4 h-4 text-[#8B5CF6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                  </svg>
-                                  <p className="text-[15px] font-semibold text-gray-900">{event.title}</p>
-                                </div>
-                                <span className="text-xs font-medium text-gray-600 mt-0.5 block">{practiceLabel}</span>
-                                {event.linked_score != null && (
-                                  <span className="text-xs text-gray-600">
-                                    {Math.round(event.linked_score)}%
-                                  </span>
-                                )}
-                                <p className="text-xs text-gray-500 mt-1">
-                                  Auto-logged
-                                  {event.created_at && (
-                                    <> · {new Date(event.created_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</>
-                                  )}
-                                </p>
-                              </div>
-                            ) : (
-                              <>
-                                <p className="text-[15px] font-semibold text-gray-900">{event.title}</p>
-                                <p className="text-xs text-gray-500 mt-1">
-                                  Planned
-                                  {event.all_day ? " · All day" : ` · ${formatTime(event.start_time)}–${formatTime(event.end_time)}`}
-                                </p>
-                                {event.description && (
-                                  <p className="text-sm text-gray-600 mt-2 line-clamp-2">{event.description}</p>
-                                )}
-                              </>
-                            )}
-                          </div>
-                          {!isAuto && (
-                            <div className="flex items-center gap-1 p-2">
-                              <button
-                                type="button"
-                                onClick={() => setEditingEvent(event)}
-                                className="p-2 rounded-lg text-gray-500 hover:text-[#003399] hover:bg-gray-100"
-                                aria-label="Edit"
-                              >
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                </svg>
-                              </button>
-                              {confirmDelete?.id === event.id ? (
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteEvent(event)}
-                                  className="p-2 rounded-lg text-red-600 hover:bg-red-50 text-sm font-medium"
-                                >
-                                  Confirm delete
-                                </button>
-                              ) : (
-                                <button
-                                  type="button"
-                                  onClick={() => setConfirmDelete(event)}
-                                  className="p-2 rounded-lg text-gray-500 hover:text-red-600 hover:bg-red-50"
-                                  aria-label="Delete"
-                                >
-                                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                  </svg>
-                                </button>
-                              )}
-                            </div>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </>
-            ) : (
-              <div className="py-12 text-center border border-gray-200 rounded-xl bg-gray-50/50">
-                <p className="text-[15px] font-semibold text-gray-900">Your learning calendar</p>
-                <p className="text-sm text-gray-500 mt-1">
-                  Lesson completions are logged automatically. Plan study sessions to stay on track.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setDrawerOpen("create")}
-                  className="mt-4 inline-flex items-center gap-2 h-10 px-4 bg-[#003399] hover:bg-[#002266] text-white rounded-lg text-sm font-medium"
-                >
-                  Plan your first session
+              <div className="flex items-center gap-3">
+                <button type="button" onClick={navPrev} className="text-sm text-gray-600 hover:text-gray-900">
+                  {viewMode === "month" ? "← " + MESES[month - 2 < 0 ? 11 : month - 2] : viewMode === "week" ? "← Semana anterior" : "← Dia anterior"}
+                </button>
+                <span className="text-sm font-medium text-gray-800 min-w-[200px] text-center">{navCenterLabel}</span>
+                <button type="button" onClick={navNext} className="text-sm text-gray-600 hover:text-gray-900">
+                  {viewMode === "month" ? MESES[month > 11 ? 0 : month] + " →" : viewMode === "week" ? "Próxima semana →" : "Próximo dia →"}
                 </button>
               </div>
+              <button
+                type="button"
+                onClick={() => setDrawerOpen("create")}
+                className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266]"
+              >
+                Planear sessão
+              </button>
+            </div>
+
+            {/* Legend */}
+            <p className="text-[10px] text-[rgba(0,0,0,0.4)] mb-4">
+              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" /> Aprovado</span>
+              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" /> Ainda não</span>
+              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#003399]" /> Exame</span>
+              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]" /> Prática</span>
+              <span className="inline-flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#6B7280]" /> Planeado</span>
+            </p>
+
+            {loading ? (
+              <p className="text-sm text-gray-500 py-8">A carregar...</p>
+            ) : viewMode === "month" ? (
+              <MonthGridView
+                year={year}
+                month={month}
+                cursorDate={cursorDate}
+                eventsByDate={eventsByDate}
+                onSelectDay={(key) => {
+                  setCursorDate(key);
+                  setViewMode("day");
+                }}
+                onEventClick={(e) => setDetailEvent(e)}
+                onEditEvent={(e) => setEditingEvent(e)}
+                confirmDelete={confirmDelete}
+                setConfirmDelete={setConfirmDelete}
+                onDelete={handleDeleteEvent}
+              />
+            ) : viewMode === "week" ? (
+              <WeekViewSimple
+                weekDays={weekDays}
+                eventsByDate={eventsByDate}
+                currentTimeTop={currentTimeTop}
+                onEventClick={(e) => setDetailEvent(e)}
+              />
+            ) : (
+              <DayView
+                dateKey={cursorDate}
+                events={eventsByDate[cursorDate] ?? []}
+                currentTimeTop={currentTimeTop}
+                onEventClick={(e) => setDetailEvent(e)}
+                onEditEvent={(e) => setEditingEvent(e)}
+                confirmDelete={confirmDelete}
+                setConfirmDelete={setConfirmDelete}
+                onDelete={handleDeleteEvent}
+              />
+            )}
+
+            {detailEvent && (
+              <EventDetailPopover
+                event={detailEvent}
+                onClose={() => setDetailEvent(null)}
+                onEdit={() => {
+                  setDetailEvent(null);
+                  setEditingEvent(detailEvent);
+                }}
+                onDelete={() => setConfirmDelete(detailEvent)}
+              />
             )}
 
             {drawerOpen === "create" && (
-              <CreateEventModal
-                initialDate={selectedDate ?? toDateKey(year, month, today.getDate())}
+              <CreateEventDrawer
+                initialDate={cursorDate}
                 onClose={() => setDrawerOpen(null)}
                 onSaved={() => {
                   setDrawerOpen(null);
-                  loadMonth();
-                  if (selectedDate) loadDay(selectedDate);
+                  if (viewMode === "month") loadMonth(); else loadRange(viewMode === "week" ? weekStartKey : cursorDate, viewMode === "week" ? weekEndKey : cursorDate);
                 }}
               />
             )}
@@ -739,8 +522,7 @@ export default function CalendarPage() {
                 onClose={() => setEditingEvent(null)}
                 onSaved={() => {
                   setEditingEvent(null);
-                  if (selectedDate) loadDay(selectedDate);
-                  loadMonth();
+                  if (viewMode === "month") loadMonth(); else loadRange(viewMode === "week" ? weekStartKey : cursorDate, viewMode === "week" ? weekEndKey : cursorDate);
                 }}
               />
             )}
@@ -750,5 +532,324 @@ export default function CalendarPage() {
         <div className="pb-16" />
       </PageContainer>
     </>
+  );
+}
+
+// ─── Event detail popover ───
+function EventDetailPopover({
+  event,
+  onClose,
+  onEdit,
+  onDelete,
+}: {
+  event: CalendarEvent;
+  onClose: () => void;
+  onEdit: () => void;
+  onDelete: () => void;
+}) {
+  const isAuto = event.event_type === "auto_lesson" || event.event_type === "auto_exam" || event.event_type === "auto_practice";
+  const style = getEventStyle(event);
+  return (
+    <div className="fixed inset-0 z-40 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/20" />
+      <div
+        className="relative bg-white rounded-[12px] border border-[rgba(0,0,0,0.08)] shadow-lg p-4 w-full max-w-sm"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-start gap-2">
+          <span className="w-[6px] h-[6px] rounded-full shrink-0 mt-1.5" style={{ backgroundColor: style.color }} />
+          <div className="min-w-0 flex-1">
+            <p className="text-[14px] font-semibold text-gray-900">{event.title}</p>
+            <p className="text-[11px] text-gray-500 mt-0.5">{style.label}{event.linked_score != null ? ` · ${Math.round(event.linked_score)}%` : ""}{event.linked_passed !== null ? (event.linked_passed ? " · Aprovado" : " · Ainda não") : ""}</p>
+            {event.created_at && (
+              <p className="text-[10px] text-gray-400 mt-1">{new Date(event.created_at).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" })}</p>
+            )}
+            {event.event_type === "auto_lesson" && event.linked_id && (
+              <Link href={`/lessons/${event.linked_id}`} className="text-[12px] text-[#003399] hover:underline mt-2 inline-block">Abrir lição</Link>
+            )}
+            {event.event_type === "auto_exam" && event.linked_id && (
+              <Link href={`/exams/${event.linked_id}`} className="text-[12px] text-[#003399] hover:underline mt-2 inline-block">Abrir exame</Link>
+            )}
+          </div>
+        </div>
+        <div className="flex justify-end gap-2 mt-4 pt-3 border-t border-[rgba(0,0,0,0.06)]">
+          {!isAuto && (
+            <>
+              <button type="button" onClick={onEdit} className="text-sm font-medium text-gray-600 hover:text-gray-900">Editar</button>
+              <button type="button" onClick={onDelete} className="text-sm font-medium text-red-600 hover:text-red-700">Apagar</button>
+            </>
+          )}
+          <button type="button" onClick={onClose} className="text-sm font-medium text-gray-600 hover:text-gray-900">Fechar</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Week view: day columns + time axis, events as blocks
+function WeekViewSimple({
+  weekDays,
+  eventsByDate,
+  currentTimeTop,
+  onEventClick,
+}: {
+  weekDays: Date[];
+  eventsByDate: Record<string, CalendarEvent[]>;
+  currentTimeTop: number;
+  onEventClick: (e: CalendarEvent) => void;
+}) {
+  const todayKey = toDateKey(new Date());
+  return (
+    <div className="rounded-[12px] border border-[rgba(0,0,0,0.06)] overflow-hidden bg-white">
+      <div className="grid border-b border-[rgba(0,0,0,0.03)]" style={{ gridTemplateColumns: "56px repeat(7, 1fr)" }}>
+        <div />
+        {weekDays.map((d) => {
+          const key = toDateKey(d);
+          const isToday = key === todayKey;
+          return (
+            <div key={key} className={`py-2 text-center border-r border-[rgba(0,0,0,0.03)] ${isToday ? "bg-[#003399]/[0.03]" : ""}`}>
+              <p className={`text-[10px] ${isToday ? "text-[#003399]" : "text-gray-400"}`}>{DIAS_CURTOS[d.getDay() === 0 ? 6 : d.getDay() - 1]}</p>
+              <p className={`text-[13px] font-semibold ${isToday ? "text-[#003399]" : "text-gray-700"}`}>{d.getDate()}</p>
+            </div>
+          );
+        })}
+      </div>
+      <div className="grid border-b border-[rgba(0,0,0,0.03)] min-h-[40px]" style={{ gridTemplateColumns: "56px repeat(7, 1fr)" }}>
+        <div className="px-2 py-1.5 text-[10px] text-gray-400 border-r border-[rgba(0,0,0,0.03)]">Todo o dia</div>
+        {weekDays.map((d) => {
+          const key = toDateKey(d);
+          const events = (eventsByDate[key] ?? []).filter((e) => e.all_day);
+          return (
+            <div key={key} className="border-r border-[rgba(0,0,0,0.03)] p-1 space-y-1">
+              {events.slice(0, 2).map((e) => {
+                const st = getEventStyle(e);
+                return (
+                  <button key={e.id} type="button" onClick={() => onEventClick(e)} className="w-full text-left rounded-[12px] p-1.5 flex items-center gap-1.5" style={{ backgroundColor: st.color + "14" }}>
+                    <span className="w-[6px] h-[6px] rounded-full shrink-0" style={{ backgroundColor: st.color }} />
+                    <span className="text-[11px] font-medium text-gray-800 truncate">{e.title}</span>
+                  </button>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+      <div className="overflow-x-auto" style={{ height: 1020 }}>
+        <div className="flex">
+          <div className="shrink-0 w-14 border-r border-[rgba(0,0,0,0.03)]">
+            {HOURS.map((h) => (
+              <div key={h} className="h-[60px] text-[10px] text-gray-400 text-right pr-2 pt-0.5">{h}:00</div>
+            ))}
+          </div>
+          {weekDays.map((d) => {
+            const key = toDateKey(d);
+            const isToday = key === todayKey;
+            const events = eventsByDate[key] ?? [];
+            const timedEvents = events.filter((e) => !e.all_day);
+            return (
+              <div key={key} className={`shrink-0 flex-1 min-w-[120px] relative border-r border-[rgba(0,0,0,0.03)] ${isToday ? "bg-[#003399]/[0.03]" : ""}`} style={{ height: 1020 }}>
+                {timedEvents.map((e) => {
+                  const { top, height } = getEventPosition(e);
+                  const st = getEventStyle(e);
+                  return (
+                    <button key={e.id} type="button" onClick={() => onEventClick(e)} className="absolute left-1 right-1 rounded-[12px] p-2 overflow-hidden text-left border-l-2" style={{ top: top + 2, height: Math.max(height - 2, 36), backgroundColor: st.color + "14", borderLeftColor: st.color }}>
+                      <span className="text-[10px] font-medium block truncate" style={{ color: st.color }}>{st.label}</span>
+                      <span className="text-[12px] font-medium text-gray-800 truncate block">{e.title}</span>
+                      {e.linked_score != null && <span className="text-[10px] text-gray-500">{Math.round(e.linked_score)}%</span>}
+                    </button>
+                  );
+                })}
+                {isToday && currentTimeTop >= 0 && currentTimeTop < 960 && (
+                  <div className="absolute left-0 right-0 h-0.5 bg-[#003399] z-10" style={{ top: currentTimeTop }} />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Day view ───
+function DayView({
+  dateKey,
+  events,
+  currentTimeTop,
+  onEventClick,
+  onEditEvent,
+  confirmDelete,
+  setConfirmDelete,
+  onDelete,
+}: {
+  dateKey: string;
+  events: CalendarEvent[];
+  currentTimeTop: number;
+  onEventClick: (e: CalendarEvent) => void;
+  onEditEvent: (e: CalendarEvent) => void;
+  confirmDelete: CalendarEvent | null;
+  setConfirmDelete: (e: CalendarEvent | null) => void;
+  onDelete: (e: CalendarEvent) => void;
+}) {
+  const allDay = events.filter((e) => e.all_day);
+  const timed = events.filter((e) => !e.all_day);
+  const isToday = isTodayKey(dateKey);
+  return (
+    <div className="rounded-[12px] border border-[rgba(0,0,0,0.06)] overflow-hidden bg-white">
+      {allDay.length > 0 && (
+        <div className="p-3 border-b border-[rgba(0,0,0,0.03)]">
+          <p className="text-[10px] text-gray-400 mb-2">Dia inteiro</p>
+          <div className="flex flex-wrap gap-2">
+            {allDay.map((e) => {
+              const st = getEventStyle(e);
+              return (
+                <button key={e.id} type="button" onClick={() => onEventClick(e)} className="rounded-[12px] px-3 py-2 flex items-center gap-2" style={{ backgroundColor: st.color + "14", borderLeft: `3px solid ${st.color}` }}>
+                  <span className="w-[6px] h-[6px] rounded-full" style={{ backgroundColor: st.color }} />
+                  <span className="text-[13px] font-medium text-gray-800">{e.title}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      <div className="relative" style={{ height: 17 * 60 }}>
+        <div className="absolute inset-0 flex">
+          <div className="w-14 shrink-0 border-r border-[rgba(0,0,0,0.03)]">
+            {HOURS.map((h) => (
+              <div key={h} className="h-[60px] text-[10px] text-gray-400 text-right pr-2 pt-0.5">{h}:00</div>
+            ))}
+          </div>
+          <div className="flex-1 relative">
+            {timed.map((e) => {
+              const { top, height } = getEventPosition(e);
+              const st = getEventStyle(e);
+              return (
+                <button key={e.id} type="button" onClick={() => onEventClick(e)} className="absolute left-2 right-2 rounded-[12px] p-2 overflow-hidden text-left border-l-2" style={{ top: top + 2, height: Math.max(height - 2, 36), backgroundColor: st.color + "14", borderLeftColor: st.color }}>
+                  <span className="text-[10px] font-medium block" style={{ color: st.color }}>{st.label}</span>
+                  <span className="text-[13px] font-medium text-gray-800 truncate block">{e.title}</span>
+                  {e.linked_score != null && <span className="text-[11px] text-gray-500">{Math.round(e.linked_score)}%</span>}
+                </button>
+              );
+            })}
+            {isToday && currentTimeTop >= 0 && currentTimeTop < 960 && (
+              <div className="absolute left-0 right-0 h-0.5 bg-[#003399] z-10" style={{ top: currentTimeTop }} />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Month grid view ───
+function getMonthGrid(year: number, month: number): (number | null)[][] {
+  const first = new Date(year, month - 1, 1);
+  const last = new Date(year, month, 0);
+  const startDay = first.getDay();
+  const monFirst = startDay === 0 ? 6 : startDay - 1;
+  const daysInMonth = last.getDate();
+  const rows: (number | null)[][] = [];
+  let row: (number | null)[] = [];
+  for (let i = 0; i < monFirst; i++) row.push(null);
+  for (let d = 1; d <= daysInMonth; d++) {
+    row.push(d);
+    if (row.length === 7) {
+      rows.push(row);
+      row = [];
+    }
+  }
+  if (row.length) {
+    while (row.length < 7) row.push(null);
+    rows.push(row);
+  }
+  return rows;
+}
+
+function MonthGridView({
+  year,
+  month,
+  cursorDate,
+  eventsByDate,
+  onSelectDay,
+  onEventClick,
+  onEditEvent,
+  confirmDelete,
+  setConfirmDelete,
+  onDelete,
+}: {
+  year: number;
+  month: number;
+  cursorDate: string;
+  eventsByDate: Record<string, CalendarEvent[]>;
+  onSelectDay: (key: string) => void;
+  onEventClick: (e: CalendarEvent) => void;
+  onEditEvent: (e: CalendarEvent) => void;
+  confirmDelete: CalendarEvent | null;
+  setConfirmDelete: (e: CalendarEvent | null) => void;
+  onDelete: (e: CalendarEvent) => void;
+}) {
+  const grid = getMonthGrid(year, month);
+  const todayKey = toDateKey(new Date());
+  return (
+    <div className="rounded-[12px] border border-[rgba(0,0,0,0.06)] overflow-hidden bg-white">
+      <div className="grid grid-cols-7 border-b border-[rgba(0,0,0,0.03)]">
+        {DIAS_CURTOS.map((d) => (
+          <div key={d} className="py-2 text-center text-[10px] font-semibold text-gray-500 uppercase">
+            {d}
+          </div>
+        ))}
+      </div>
+      <div className="divide-y divide-[rgba(0,0,0,0.03)]">
+        {grid.map((row, ri) => (
+          <div key={ri} className="grid grid-cols-7">
+            {row.map((day, di) => {
+              const dateKey = day != null ? `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` : null;
+              const events = dateKey ? eventsByDate[dateKey] ?? [] : [];
+              const isToday = dateKey === todayKey;
+              return (
+                <button
+                  key={di}
+                  type="button"
+                  onClick={() => dateKey && onSelectDay(dateKey)}
+                  disabled={!dateKey}
+                  className={`min-h-[100px] p-2 text-left border-r border-[rgba(0,0,0,0.03)] last:border-r-0 transition-colors ${
+                    !dateKey ? "bg-[rgba(0,0,0,0.02)] cursor-default" : isToday ? "bg-[#003399]/[0.03]" : "hover:bg-[rgba(0,0,0,0.02)]"
+                  }`}
+                >
+                  {day != null && (
+                    <>
+                      <span className={`inline-flex items-center justify-center w-7 h-7 rounded-[12px] text-[13px] font-semibold ${isToday ? "bg-[#003399] text-white" : "text-gray-700"}`}>
+                        {day}
+                      </span>
+                      <div className="mt-1 space-y-0.5">
+                        {events.slice(0, 3).map((e) => {
+                          const st = getEventStyle(e);
+                          return (
+                            <button
+                              key={e.id}
+                              type="button"
+                              onClick={(ev) => {
+                                ev.stopPropagation();
+                                onEventClick(e);
+                              }}
+                              className="w-full text-left rounded-[12px] px-1.5 py-1 flex items-center gap-1"
+                              style={{ backgroundColor: st.color + "14" }}
+                            >
+                              <span className="w-[6px] h-[6px] rounded-full shrink-0" style={{ backgroundColor: st.color }} />
+                              <span className="text-[10px] font-medium text-gray-800 truncate flex-1">{e.title}</span>
+                            </button>
+                          );
+                        })}
+                        {events.length > 3 && <span className="text-[10px] text-gray-400">+{events.length - 3} mais</span>}
+                      </div>
+                    </>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
