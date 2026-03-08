@@ -4,7 +4,7 @@
  */
 
 import type { CurriculumLesson } from "./curriculum-types";
-import { A1_LESSONS } from "./curriculum";
+import { A1_LESSONS, A2_LESSONS, B1_LESSONS } from "./curriculum";
 import type {
   Lesson,
   LessonStage,
@@ -233,19 +233,35 @@ export function resolveCurriculumLesson(cl: CurriculumLesson): Lesson {
     });
   }
 
-  // Verb stages (one per verb so existing UI works)
+  // Verb stages: one stage per verb, with one VerbItem per requested tense (A2: Present+Preterite, B1: +Imperfect+Future)
+  const TENSE_LABELS: Record<string, string> = {
+    Present: "Presente",
+    Preterite: "Pretérito Perfeito",
+    Imperfect: "Pretérito Imperfeito",
+    Future: "Futuro",
+    Conditional: "Condicional",
+    "Present Subjunctive": "Presente do Conjuntivo",
+  };
   for (let i = 0; i < cl.stages.verbs.verbs.length; i++) {
     const vRef = cl.stages.verbs.verbs[i];
-    const tense = vRef.tenses[0] ?? "Present";
-    const verbItem = getVerbConjugations(vRef.verbKey, tense);
-    if (verbItem) {
+    const tensesToUse = vRef.tenses?.length ? vRef.tenses : ["Present"];
+    const verbItems: import("./lessons").VerbItem[] = [];
+    for (const tense of tensesToUse) {
+      const item = getVerbConjugations(vRef.verbKey, tense);
+      if (item) {
+        verbItems.push({ ...item, id: `${item.id}-${tense}` });
+      }
+    }
+    if (verbItems.length > 0) {
+      const first = verbItems[0];
+      const tenseList = verbItems.map((it) => TENSE_LABELS[it.tense] ?? it.tense).join(", ");
       stages.push({
         id: `${cl.id}-verb-${i}`,
         type: "verb",
-        title: `Verb: ${verbItem.verb}`,
-        ptTitle: `Verbo: ${verbItem.verb}`,
-        description: `Fill in the correct conjugation of '${verbItem.verb}' (${verbItem.verbTranslation}) in the ${tense} tense.`,
-        verbs: [verbItem],
+        title: `Verb: ${first.verb}`,
+        ptTitle: `Verbo: ${first.verb}`,
+        description: `Fill in the correct conjugation of '${first.verb}' (${first.verbTranslation}). Tenses: ${tenseList}.`,
+        verbs: verbItems,
       });
     }
   }
@@ -316,11 +332,17 @@ export function resolveCurriculumLesson(cl: CurriculumLesson): Lesson {
   };
 }
 
+const ALL_CURRICULUM_LESSONS: CurriculumLesson[] = [
+  ...A1_LESSONS,
+  ...A2_LESSONS,
+  ...B1_LESSONS,
+];
+
 let cachedLessons: Lesson[] | null = null;
 
 export function getResolvedLessons(): Lesson[] {
   if (cachedLessons) return cachedLessons;
-  cachedLessons = A1_LESSONS.map(resolveCurriculumLesson);
+  cachedLessons = ALL_CURRICULUM_LESSONS.map(resolveCurriculumLesson);
   return cachedLessons;
 }
 
@@ -329,5 +351,5 @@ export function getResolvedLesson(id: string): Lesson | undefined {
 }
 
 export function getCurriculumLesson(id: string): CurriculumLesson | undefined {
-  return A1_LESSONS.find((l) => l.id === id);
+  return ALL_CURRICULUM_LESSONS.find((l) => l.id === id);
 }

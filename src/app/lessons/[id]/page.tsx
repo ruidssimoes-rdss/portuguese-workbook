@@ -13,6 +13,7 @@ import {
   getCurriculumLesson,
   getResolvedLessons,
 } from "@/data/resolve-lessons";
+import { MOCK_EXAM_UNLOCKS } from "@/data/curriculum";
 import type {
   LessonStage,
   VocabItem,
@@ -212,7 +213,18 @@ function VocabCard({
   );
 }
 
+const TENSE_LABELS: Record<string, string> = {
+  Present: "Presente",
+  Preterite: "Pretérito Perfeito",
+  Imperfect: "Pretérito Imperfeito",
+  Future: "Futuro",
+  Conditional: "Condicional",
+  "Present Subjunctive": "Presente do Conjuntivo",
+};
+
 /* ─── STAGE: Verb drill (type-to-answer) ─── */
+
+type ConjRow = { verbItem: import("@/data/lessons").VerbItem; pronoun: string; form: string };
 
 function VerbStage({
   stage,
@@ -221,26 +233,36 @@ function VerbStage({
   stage: LessonStage;
   onProgress: (itemId: string, data: unknown) => void;
 }) {
-  const verb = stage.verbs?.[0];
-  if (!verb) return null;
+  const verbs = stage.verbs ?? [];
+  const firstVerb = verbs[0];
+  if (!firstVerb) return null;
 
+  // Flatten conjugations from all tenses; interleave by pronoun (all tenses for eu, then tu, etc.)
+  const rows: ConjRow[] = [];
+  const pronouns = firstVerb.conjugations.map((c) => c.pronoun);
+  for (const pronoun of pronouns) {
+    for (const verbItem of verbs) {
+      const conj = verbItem.conjugations.find((c) => c.pronoun === pronoun);
+      if (conj) rows.push({ verbItem, pronoun, form: conj.form });
+    }
+  }
+
+  const progressKey = (row: ConjRow) => `${row.verbItem.id}-${row.pronoun}`;
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
   const [correct, setCorrect] = useState<Record<string, boolean>>({});
 
-  const handleSubmit = (pronoun: string, correctForm: string) => {
-    const userAnswer = (answers[pronoun] || "").trim().toLowerCase();
-    const isCorrect = userAnswer === correctForm.toLowerCase();
-    setSubmitted((prev) => ({ ...prev, [pronoun]: true }));
-    setCorrect((prev) => ({ ...prev, [pronoun]: isCorrect }));
-    onProgress(`${verb.id}-${pronoun}`, {
-      correct: isCorrect,
-      answer: userAnswer,
-    });
+  const handleSubmit = (row: ConjRow) => {
+    const key = progressKey(row);
+    const userAnswer = (answers[key] || "").trim().toLowerCase();
+    const isCorrect = userAnswer === row.form.toLowerCase();
+    setSubmitted((prev) => ({ ...prev, [key]: true }));
+    setCorrect((prev) => ({ ...prev, [key]: isCorrect }));
+    onProgress(key, { correct: isCorrect, answer: userAnswer });
   };
 
-  const allSubmitted = verb.conjugations.every((c) => submitted[c.pronoun]);
-  const correctCount = Object.values(correct).filter(Boolean).length;
+  const allSubmitted = rows.every((r) => submitted[progressKey(r)]);
+  const correctCount = rows.filter((r) => correct[progressKey(r)]).length;
   const hasAnswers = Object.keys(answers).some((k) => answers[k]?.trim());
 
   return (
@@ -248,100 +270,103 @@ function VerbStage({
       <StageHeader stage={stage} />
       <div className="mb-4">
         <div className="flex items-center gap-2">
-          <PronunciationButton text={verb.verb} size="sm" variant="muted" />
+          <PronunciationButton text={firstVerb.verb} size="sm" variant="muted" />
           <h3 className="text-[18px] font-semibold text-[#111827]">
-            {verb.verb}
+            {firstVerb.verb}
           </h3>
           <span className="text-[13px] text-[#6B7280]">
-            — {verb.verbTranslation}
+            — {firstVerb.verbTranslation}
           </span>
         </div>
-        <p className="text-[13px] text-[#9CA3AF] mt-1">
-          Tense: {verb.tense}
-        </p>
+        {verbs.length > 1 && (
+          <p className="text-[13px] text-[#9CA3AF] mt-1">
+            {verbs.map((v) => TENSE_LABELS[v.tense] ?? v.tense).join(" · ")}
+          </p>
+        )}
       </div>
 
       <div className="border border-[#E5E7EB] rounded-xl overflow-hidden bg-white">
-        {verb.conjugations.map((conj, i) => (
-          <div
-            key={conj.pronoun}
-            className={`flex items-center gap-4 px-5 py-4 ${i > 0 ? "border-t border-[#F3F4F6]" : ""} ${
-              submitted[conj.pronoun]
-                ? correct[conj.pronoun]
-                  ? "bg-[#F0FDF4]"
-                  : "bg-[#FEF2F2]"
-                : ""
-            }`}
-          >
-            <span className="text-[15px] font-medium text-[#9CA3AF] w-20 shrink-0">
-              {conj.pronoun}
-            </span>
-            {!submitted[conj.pronoun] ? (
-              <input
-                type="text"
-                value={answers[conj.pronoun] || ""}
-                onChange={(e) =>
-                  setAnswers((prev) => ({
-                    ...prev,
-                    [conj.pronoun]: e.target.value,
-                  }))
-                }
-                onKeyDown={(e) => {
-                  if (e.key === "Enter")
-                    handleSubmit(conj.pronoun, conj.form);
-                }}
-                onBlur={() => {
-                  if (answers[conj.pronoun]?.trim())
-                    handleSubmit(conj.pronoun, conj.form);
-                }}
-                placeholder="Type conjugation..."
-                className="flex-1 text-[15px] font-semibold text-[#111827] bg-transparent border-b border-[#E5E7EB] focus:border-[#111827] outline-none py-1 placeholder:text-[#D1D5DB] placeholder:font-normal transition-colors"
-                autoComplete="off"
-                spellCheck={false}
-              />
-            ) : (
-              <div className="flex-1 flex items-center justify-between">
-                <div>
-                  {correct[conj.pronoun] ? (
-                    <span className="text-[15px] font-semibold text-[#059669]">
-                      {conj.form}
-                    </span>
-                  ) : (
-                    <div>
-                      <span className="text-[15px] font-semibold text-[#DC2626] line-through mr-2">
-                        {answers[conj.pronoun]}
-                      </span>
+        {rows.map((row, i) => {
+          const key = progressKey(row);
+          const tenseLabel = TENSE_LABELS[row.verbItem.tense] ?? row.verbItem.tense;
+          return (
+            <div
+              key={key}
+              className={`flex items-center gap-4 px-5 py-4 ${i > 0 ? "border-t border-[#F3F4F6]" : ""} ${
+                submitted[key]
+                  ? correct[key]
+                    ? "bg-[#F0FDF4]"
+                    : "bg-[#FEF2F2]"
+                  : ""
+              }`}
+            >
+              <span className="text-[15px] font-medium text-[#9CA3AF] w-20 shrink-0">
+                {row.pronoun}
+              </span>
+              <span className="text-[12px] text-[#9CA3AF] w-28 shrink-0">
+                {tenseLabel}
+              </span>
+              {!submitted[key] ? (
+                <input
+                  type="text"
+                  value={answers[key] || ""}
+                  onChange={(e) =>
+                    setAnswers((prev) => ({ ...prev, [key]: e.target.value }))
+                  }
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleSubmit(row);
+                  }}
+                  onBlur={() => {
+                    if (answers[key]?.trim()) handleSubmit(row);
+                  }}
+                  placeholder="Conjugação..."
+                  className="flex-1 text-[15px] font-semibold text-[#111827] bg-transparent border-b border-[#E5E7EB] focus:border-[#111827] outline-none py-1 placeholder:text-[#D1D5DB] placeholder:font-normal transition-colors"
+                  autoComplete="off"
+                  spellCheck={false}
+                />
+              ) : (
+                <div className="flex-1 flex items-center justify-between">
+                  <div>
+                    {correct[key] ? (
                       <span className="text-[15px] font-semibold text-[#059669]">
-                        {conj.form}
+                        {row.form}
                       </span>
-                    </div>
-                  )}
+                    ) : (
+                      <div>
+                        <span className="text-[15px] font-semibold text-[#DC2626] line-through mr-2">
+                          {answers[key]}
+                        </span>
+                        <span className="text-[15px] font-semibold text-[#059669]">
+                          {row.form}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <span className="text-[13px] font-medium">
+                    {correct[key] ? (
+                      <svg className="w-4 h-4 text-[#059669]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    ) : (
+                      <svg className="w-4 h-4 text-[#DC2626]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                    )}
+                  </span>
                 </div>
-                <span className="text-[13px] font-medium">
-                  {correct[conj.pronoun] ? (
-                    <svg className="w-4 h-4 text-[#059669]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                  ) : (
-                    <svg className="w-4 h-4 text-[#DC2626]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                  )}
-                </span>
-              </div>
-            )}
-          </div>
-        ))}
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {!allSubmitted && hasAnswers && (
         <button
           onClick={() => {
-            verb.conjugations.forEach((conj) => {
-              if (!submitted[conj.pronoun] && answers[conj.pronoun]?.trim()) {
-                handleSubmit(conj.pronoun, conj.form);
-              }
+            rows.forEach((row) => {
+              const key = progressKey(row);
+              if (!submitted[key] && answers[key]?.trim()) handleSubmit(row);
             });
           }}
           className="mt-4 w-full py-2.5 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
         >
-          Check answers
+          Verificar respostas
         </button>
       )}
 
@@ -349,19 +374,19 @@ function VerbStage({
         <div className="mt-6 p-4 bg-[#F9FAFB] rounded-xl border border-[#F3F4F6] flex items-center justify-between">
           <div>
             <p className="text-[15px] font-semibold text-[#111827]">
-              {correctCount} / {verb.conjugations.length} correct
+              {correctCount} / {rows.length} corretas
             </p>
             <p className="text-[13px] text-[#6B7280] mt-0.5">
-              {correctCount === verb.conjugations.length
-                ? "Perfect!"
-                : "Keep practising — you'll get there."}
+              {correctCount === rows.length
+                ? "Perfeito!"
+                : "Continua a praticar."}
             </p>
           </div>
           <Link
-            href={`/conjugations/${verb.verbSlug}`}
+            href={`/conjugations/${firstVerb.verbSlug}`}
             className="text-[13px] font-medium text-[#003399] hover:underline"
           >
-            View all tenses →
+            Ver todos os tempos →
           </Link>
         </div>
       )}
@@ -688,23 +713,23 @@ function ResultsStage({
   const wrongItems: WrongItem[] = [];
 
   verbStages.forEach((stage) => {
-    const verb = stage.verbs?.[0];
-    if (!verb) return;
-    verb.conjugations.forEach((c) => {
-      verbTotal++;
-      const key = `${verb.id}-${c.pronoun}`;
-      const p = (stageProgress[stage.id] ?? {})[key] as { correct?: boolean; answer?: string } | undefined;
-      if (p?.correct) verbCorrect++;
-      else if (p !== undefined)
-        wrongItems.push({
-          type: "verb",
-          verbKey: verb.verb,
-          tense: verb.tense,
-          pronoun: c.pronoun,
-          userAnswer: p.answer ?? "",
-          correctAnswer: c.form,
-        });
-    });
+    for (const verb of stage.verbs ?? []) {
+      verb.conjugations.forEach((c) => {
+        verbTotal++;
+        const key = `${verb.id}-${c.pronoun}`;
+        const p = (stageProgress[stage.id] ?? {})[key] as { correct?: boolean; answer?: string } | undefined;
+        if (p?.correct) verbCorrect++;
+        else if (p !== undefined)
+          wrongItems.push({
+            type: "verb",
+            verbKey: verb.verb,
+            tense: verb.tense,
+            pronoun: c.pronoun,
+            userAnswer: p.answer ?? "",
+            correctAnswer: c.form,
+          });
+      });
+    }
   });
 
   let practiceCorrect = 0;
@@ -737,33 +762,43 @@ function ResultsStage({
     (async () => {
       await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems).catch(() => {});
       await logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
-      if (passed && lesson.cefr === "A1") {
+      if (passed) {
         const progressMap = await getLessonProgressMap().catch(() => ({}));
         const { getResolvedLessons } = await import("@/data/resolve-lessons");
-        const a1LessonIds = new Set(getResolvedLessons().filter((l) => l.cefr === "A1").map((l) => l.id));
-        const a1Completed = Object.entries(progressMap).filter(
-          ([id, p]) => a1LessonIds.has(id) && p.completed
-        ).length;
-        updateGoalProgress("lessons_a1", a1Completed).catch(() => {});
+        const all = getResolvedLessons();
+        const a1Ids = new Set(all.filter((l) => l.cefr === "A1").map((l) => l.id));
+        const a2Ids = new Set(all.filter((l) => l.cefr === "A2").map((l) => l.id));
+        const b1Ids = new Set(all.filter((l) => l.cefr === "B1").map((l) => l.id));
+        const a1Completed = Object.entries(progressMap).filter(([id, p]) => a1Ids.has(id) && p.completed).length;
+        const a2Completed = Object.entries(progressMap).filter(([id, p]) => a2Ids.has(id) && p.completed).length;
+        const b1Completed = Object.entries(progressMap).filter(([id, p]) => b1Ids.has(id) && p.completed).length;
+        const totalCompleted = a1Completed + a2Completed + b1Completed;
+        if (lesson.cefr === "A1") updateGoalProgress("lessons_a1", a1Completed).catch(() => {});
+        if (lesson.cefr === "A2") updateGoalProgress("lessons_a2", a2Completed).catch(() => {});
+        if (lesson.cefr === "B1") updateGoalProgress("lessons_b1", b1Completed).catch(() => {});
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- save once on mount
   }, []);
 
-  const [a1CompletedCount, setA1CompletedCount] = useState<number | null>(null);
+  const [levelCounts, setLevelCounts] = useState<{ a1: number; a2: number; b1: number; total: number } | null>(null);
   useEffect(() => {
-    if (!passed || lesson.cefr !== "A1") return;
+    if (!passed) return;
     getLessonProgressMap().then((map) => {
-      const count = Object.entries(map).filter(
-        ([id, p]) => id.startsWith("a1-") && p.completed
-      ).length;
-      setA1CompletedCount(count);
+      const a1 = Object.entries(map).filter(([id, p]) => id.startsWith("a1-") && p.completed).length;
+      const a2 = Object.entries(map).filter(([id, p]) => id.startsWith("a2-") && p.completed).length;
+      const b1 = Object.entries(map).filter(([id, p]) => id.startsWith("b1-") && p.completed).length;
+      setLevelCounts({ a1, a2, b1, total: a1 + a2 + b1 });
     }).catch(() => {});
-  }, [passed, lesson.cefr]);
+  }, [passed]);
 
-  const unlockedExamNum = a1CompletedCount != null && [5, 9, 14, 18].includes(a1CompletedCount)
-    ? [5, 9, 14, 18].indexOf(a1CompletedCount) + 1
-    : null;
+  const unlockedExamId =
+    levelCounts != null
+      ? Object.entries(MOCK_EXAM_UNLOCKS).find(
+          ([, config]) => config.lessonsRequired === levelCounts.total
+        )?.[0] ?? null
+      : null;
+  const unlockedExamNum = unlockedExamId ? parseInt(unlockedExamId.replace("exam-", ""), 10) : null;
 
   if (passed) {
     return (
@@ -782,14 +817,27 @@ function ResultsStage({
           <span>Verb Drill: {verbCorrect}/{verbTotal} correct</span>
           <span>Practice: {practiceCorrect}/{practiceTotal} correct</span>
         </div>
-        {lesson.cefr === "A1" && (
+        {levelCounts != null && (
           <p className="text-[13px] text-[#6B7280] mb-2">
-            A1 Progress: {a1CompletedCount ?? "…"} / 18 lessons
+            {lesson.cefr === "A1" && `A1: ${levelCounts.a1} / 18 · `}
+            {lesson.cefr === "A2" && `A2: ${levelCounts.a2} / 16 · `}
+            {lesson.cefr === "B1" && `B1: ${levelCounts.b1} / 10 · `}
+            Total: {levelCounts.total} lições
+          </p>
+        )}
+        {lesson.id === "a2-16" && (
+          <p className="text-[14px] font-semibold text-[#059669] mb-2">
+            A2 completo! Concluíste o nível A2.
+          </p>
+        )}
+        {lesson.id === "b1-10" && (
+          <p className="text-[14px] font-semibold text-[#059669] mb-2">
+            B1 completo! Parabéns — concluíste o currículo Aula PT.
           </p>
         )}
         {unlockedExamNum != null && (
           <p className="text-[14px] font-semibold text-[#059669] mb-8">
-            Mock Exam {unlockedExamNum} Unlocked!
+            Exame {unlockedExamNum} desbloqueado!
           </p>
         )}
         <div className="flex flex-wrap items-center justify-center gap-4">

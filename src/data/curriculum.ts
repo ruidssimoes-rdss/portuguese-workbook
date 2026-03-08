@@ -1022,6 +1022,8 @@ export const A1_LESSONS: CurriculumLesson[] = [
   },
 ];
 
+export { A2_LESSONS, B1_LESSONS } from "./curriculum-a2-b1";
+
 export const MOCK_EXAM_UNLOCKS: Record<
   string,
   { level: CEFRLevel; lessonsRequired: number }
@@ -1030,4 +1032,12 @@ export const MOCK_EXAM_UNLOCKS: Record<
   "exam-02": { level: "A1", lessonsRequired: 9 },
   "exam-03": { level: "A1", lessonsRequired: 14 },
   "exam-04": { level: "A1", lessonsRequired: 18 },
+  "exam-05": { level: "A2", lessonsRequired: 22 },
+  "exam-06": { level: "A2", lessonsRequired: 26 },
+  "exam-07": { level: "A2", lessonsRequired: 30 },
+  "exam-08": { level: "A2", lessonsRequired: 34 },
+  "exam-09": { level: "B1", lessonsRequired: 37 },
+  "exam-10": { level: "B1", lessonsRequired: 40 },
+  "exam-11": { level: "B1", lessonsRequired: 42 },
+  "exam-12": { level: "B1", lessonsRequired: 44 },
 };

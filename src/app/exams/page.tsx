@@ -84,8 +84,10 @@ export default function ExamsPage() {
       .catch(() => {});
   }, []);
 
-  const a1Completed = Object.entries(lessonProgressMap).filter(
-    ([id, p]) => id.startsWith("a1-") && p.completed
+  const totalCompleted = Object.entries(lessonProgressMap).filter(
+    ([id, p]) =>
+      (id.startsWith("a1-") || id.startsWith("a2-") || id.startsWith("b1-")) &&
+      p.completed
   ).length;
 
   return (
@@ -133,11 +135,11 @@ export default function ExamsPage() {
             const unlockConfig = MOCK_EXAM_UNLOCKS[exam.id];
             const lessonsRequired = unlockConfig?.lessonsRequired ?? 0;
             const unlockedByLessons =
-              lessonsRequired === 0 || a1Completed >= lessonsRequired;
+              lessonsRequired === 0 || totalCompleted >= lessonsRequired;
             const isAvailable = exam.available && unlockedByLessons;
             const moreNeeded =
-              lessonsRequired > 0 && a1Completed < lessonsRequired
-                ? lessonsRequired - a1Completed
+              lessonsRequired > 0 && totalCompleted < lessonsRequired
+                ? lessonsRequired - totalCompleted
                 : 0;
 
             if (!exam.available) {
@@ -180,7 +182,7 @@ export default function ExamsPage() {
             if (!unlockedByLessons && moreNeeded > 0) {
               const pct = Math.min(
                 100,
-                Math.round((a1Completed / lessonsRequired) * 100)
+                Math.round((totalCompleted / lessonsRequired) * 100)
               );
               return (
                 <div
@@ -208,7 +210,7 @@ export default function ExamsPage() {
                       />
                     </div>
                     <p className="text-[11px] text-[#9CA3AF] mt-1">
-                      {a1Completed} / {lessonsRequired} A1 lessons
+                      {totalCompleted} / {lessonsRequired} lições
                     </p>
                   </div>
                 </div>

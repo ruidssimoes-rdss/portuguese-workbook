@@ -19,7 +19,11 @@ import { CEFRBadge } from "@/components/ui/badge";
 
 const lessons = getResolvedLessons();
 const A1_LESSONS = lessons.filter((l) => l.cefr === "A1");
+const A2_LESSONS = lessons.filter((l) => l.cefr === "A2");
+const B1_LESSONS = lessons.filter((l) => l.cefr === "B1");
 const A1_TOTAL = A1_LESSONS.length;
+const A2_TOTAL = A2_LESSONS.length;
+const B1_TOTAL = B1_LESSONS.length;
 
 type LessonCardState = "completed" | "current" | "attempted" | "locked";
 
@@ -57,8 +61,16 @@ export default function LessonsPage() {
 
   const sorted = [...lessons].sort((a, b) => a.order - b.order);
   const a1Completed = A1_LESSONS.filter((l) => progressMap[l.id]?.completed).length;
+  const a2Completed = A2_LESSONS.filter((l) => progressMap[l.id]?.completed).length;
+  const b1Completed = B1_LESSONS.filter((l) => progressMap[l.id]?.completed).length;
   const a1ProgressPct =
     A1_TOTAL > 0 ? Math.round((a1Completed / A1_TOTAL) * 100) : 0;
+  const a2ProgressPct =
+    A2_TOTAL > 0 ? Math.round((a2Completed / A2_TOTAL) * 100) : 0;
+  const b1ProgressPct =
+    B1_TOTAL > 0 ? Math.round((b1Completed / B1_TOTAL) * 100) : 0;
+  const a2Unlocked = A1_TOTAL > 0 && a1Completed >= A1_TOTAL;
+  const b1Unlocked = A2_TOTAL > 0 && a2Completed >= A2_TOTAL;
 
   const isLoggedIn = !authLoading && !!user;
 
@@ -172,31 +184,193 @@ export default function LessonsPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════ */}
-        {/* A2 — Locked placeholder                        */}
+        {/* A2 — Elementar                                  */}
         {/* ═══════════════════════════════════════════════ */}
         <section className="mt-16">
           <Divider className="mb-8" />
-          <SectionHeader className="mb-4 text-text-muted">
-            A2 — Building Confidence · 🔒 Complete A1 to unlock
+          <SectionHeader className="mb-4">
+            A2 — Elementar · {a2Completed}/{A2_TOTAL} completo
           </SectionHeader>
-          <div className="rounded-xl border border-border bg-surface/50 p-8 text-center">
-            <p className="text-[15px] text-text-secondary">
-              Coming soon: 16 A2 lessons. Complete all 18 A1 lessons to unlock this level.
+          <div className="h-2 rounded-full bg-border-light overflow-hidden mb-6">
+            <div
+              className="h-full bg-[var(--color-cefr-a2)] transition-all duration-300"
+              style={{ width: `${a2ProgressPct}%` }}
+            />
+          </div>
+          {!a2Unlocked && A2_TOTAL > 0 && (
+            <p className="text-[13px] text-text-muted mb-4">
+              Completa as {A1_TOTAL} lições A1 para desbloqueares o A2.
             </p>
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sorted
+              .filter((l) => l.cefr === "A2")
+              .map((lesson) => {
+                const state = getLessonState(lesson, progressMap, sorted);
+                const progress = progressMap[lesson.id];
+                const isLocked = state === "locked" || !a2Unlocked;
+
+                const cardContent = (
+                  <Card
+                    interactive={!isLocked}
+                    className={`h-full flex flex-col transition-all ${
+                      isLocked
+                        ? "opacity-60 cursor-not-allowed border-l-4 border-border"
+                        : state === "completed"
+                          ? "border-l-4 border-green-500"
+                          : state === "current"
+                            ? "border-l-4 border-[var(--color-primary)] shadow-sm"
+                            : state === "attempted"
+                              ? "border-l-4 border-amber-500"
+                              : ""
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
+                        Lição {lesson.order}
+                      </p>
+                      <CEFRBadge level={lesson.cefr} className="shrink-0" />
+                    </div>
+                    <h3 className="text-[15px] font-semibold tracking-tight text-text mt-2">
+                      {lesson.title}
+                    </h3>
+                    <p className="text-[13px] text-text-secondary italic mt-0.5">
+                      {lesson.ptTitle}
+                    </p>
+                    <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
+                      {lesson.description}
+                    </p>
+                    <div className="mt-auto pt-3">
+                      {state === "completed" && progress && (
+                        <p className="text-[12px] text-green-600 font-medium">
+                          ✓ {Math.round(progress.accuracy_score)}%
+                        </p>
+                      )}
+                      {state === "attempted" && progress && (
+                        <p className="text-[12px] text-amber-600">
+                          Melhor: {Math.round(progress.best_score)}% — Tenta outra vez
+                        </p>
+                      )}
+                      {isLocked && (
+                        <p className="text-[12px] text-text-muted">
+                          {!a2Unlocked
+                            ? "Completa o A1 para desbloquear"
+                            : "Completa a lição anterior"}
+                        </p>
+                      )}
+                      {state === "current" && a2Unlocked && (
+                        <p className="text-[12px] text-[var(--color-primary)] font-medium">
+                          Começar →
+                        </p>
+                      )}
+                    </div>
+                  </Card>
+                );
+
+                if (isLocked) {
+                  return <div key={lesson.id}>{cardContent}</div>;
+                }
+                return (
+                  <Link key={lesson.id} href={`/lessons/${lesson.id}`} className="block group">
+                    {cardContent}
+                  </Link>
+                );
+              })}
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════ */}
-        {/* B1 — Locked placeholder                        */}
+        {/* B1 — Intermédio                                 */}
         {/* ═══════════════════════════════════════════════ */}
         <section className="mt-10">
-          <SectionHeader className="mb-4 text-text-muted">
-            B1 — Reaching Fluency · 🔒 Complete A2 to unlock
+          <SectionHeader className="mb-4">
+            B1 — Intermédio · {b1Completed}/{B1_TOTAL} completo
           </SectionHeader>
-          <div className="rounded-xl border border-border bg-surface/50 p-8 text-center">
-            <p className="text-[15px] text-text-secondary">
-              Coming soon: 10 B1 lessons. Complete A2 to unlock this level.
+          <div className="h-2 rounded-full bg-border-light overflow-hidden mb-6">
+            <div
+              className="h-full bg-[var(--color-cefr-b1)] transition-all duration-300"
+              style={{ width: `${b1ProgressPct}%` }}
+            />
+          </div>
+          {!b1Unlocked && B1_TOTAL > 0 && (
+            <p className="text-[13px] text-text-muted mb-4">
+              Completa as {A2_TOTAL} lições A2 para desbloqueares o B1.
             </p>
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sorted
+              .filter((l) => l.cefr === "B1")
+              .map((lesson) => {
+                const state = getLessonState(lesson, progressMap, sorted);
+                const progress = progressMap[lesson.id];
+                const isLocked = state === "locked" || !b1Unlocked;
+
+                const cardContent = (
+                  <Card
+                    interactive={!isLocked}
+                    className={`h-full flex flex-col transition-all ${
+                      isLocked
+                        ? "opacity-60 cursor-not-allowed border-l-4 border-border"
+                        : state === "completed"
+                          ? "border-l-4 border-green-500"
+                          : state === "current"
+                            ? "border-l-4 border-[var(--color-primary)] shadow-sm"
+                            : state === "attempted"
+                              ? "border-l-4 border-amber-500"
+                              : ""
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
+                        Lição {lesson.order}
+                      </p>
+                      <CEFRBadge level={lesson.cefr} className="shrink-0" />
+                    </div>
+                    <h3 className="text-[15px] font-semibold tracking-tight text-text mt-2">
+                      {lesson.title}
+                    </h3>
+                    <p className="text-[13px] text-text-secondary italic mt-0.5">
+                      {lesson.ptTitle}
+                    </p>
+                    <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
+                      {lesson.description}
+                    </p>
+                    <div className="mt-auto pt-3">
+                      {state === "completed" && progress && (
+                        <p className="text-[12px] text-green-600 font-medium">
+                          ✓ {Math.round(progress.accuracy_score)}%
+                        </p>
+                      )}
+                      {state === "attempted" && progress && (
+                        <p className="text-[12px] text-amber-600">
+                          Melhor: {Math.round(progress.best_score)}% — Tenta outra vez
+                        </p>
+                      )}
+                      {isLocked && (
+                        <p className="text-[12px] text-text-muted">
+                          {!b1Unlocked
+                            ? "Completa o A2 para desbloquear"
+                            : "Completa a lição anterior"}
+                        </p>
+                      )}
+                      {state === "current" && b1Unlocked && (
+                        <p className="text-[12px] text-[var(--color-primary)] font-medium">
+                          Começar →
+                        </p>
+                      )}
+                    </div>
+                  </Card>
+                );
+
+                if (isLocked) {
+                  return <div key={lesson.id}>{cardContent}</div>;
+                }
+                return (
+                  <Link key={lesson.id} href={`/lessons/${lesson.id}`} className="block group">
+                    {cardContent}
+                  </Link>
+                );
+              })}
           </div>
         </section>
 
