@@ -1,8 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/components/auth-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+const themeScript = `
+(function(){
+  var d=document.documentElement;
+  var s=typeof localStorage!=='undefined'?localStorage.getItem('aula-pt-theme'):null;
+  s=s||'system';
+  var dark=(s==='dark')||(s==='system'&&typeof window!=='undefined'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+  d.setAttribute('data-theme',dark?'dark':'light');
+})();
+`;
 
 export const metadata: Metadata = {
   title: "Aula PT — European Portuguese",
@@ -41,8 +52,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-bg text-text min-h-screen">
-        <AuthProvider>{children}</AuthProvider>
+      <body className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <AuthProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </AuthProvider>
         <Analytics />
         <SpeedInsights />
       </body>

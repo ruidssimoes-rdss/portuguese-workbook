@@ -3,6 +3,12 @@ export interface Profile {
   display_name: string | null;
   created_at: string;
   updated_at: string;
+  learning_motivation?: string | null;
+  self_assessed_level?: string | null;
+  study_days_per_week?: number | null;
+  target_goal?: string | null;
+  target_date?: string | null;
+  onboarding_completed?: boolean | null;
 }
 
 export interface UserProgress {
@@ -51,4 +57,7 @@ export interface UserSettings {
   daily_goal: number;
   created_at: string;
   updated_at: string;
+  theme?: string | null;
+  show_translations?: boolean | null;
+  preferred_study_time?: string | null;
 }

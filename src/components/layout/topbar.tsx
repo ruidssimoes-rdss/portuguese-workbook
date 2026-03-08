@@ -127,7 +127,7 @@ function MegaPanel({
   return (
     <div
       ref={panelRef}
-      className="absolute left-0 top-full mt-2 w-[420px] max-w-[420px] bg-bg border border-border rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
+      className="absolute left-0 top-full mt-2 w-[420px] max-w-[420px] bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-xl shadow-lg shadow-black/5 p-6 z-[60] animate-mega-open transition-all duration-200 ease-out"
       role="menu"
       onKeyDown={onKeyDown}
     >
@@ -359,7 +359,7 @@ export function Topbar() {
       <header className="sticky top-0 z-50 pt-3 pb-2 px-4 md:px-6 lg:px-10 pointer-events-none">
         <div className="max-w-[1280px] mx-auto pointer-events-auto">
           <div
-            className={`flex items-center justify-between h-12 px-4 bg-white/90 backdrop-blur-xl border border-border rounded-2xl shadow-[0_4px_24px_rgba(0,51,153,0.07),0_1px_4px_rgba(0,0,0,0.04)] transition-all duration-300 ease-out ${
+            className={`flex items-center justify-between h-12 px-4 bg-[var(--bg-card)]/90 backdrop-blur-xl border border-[var(--border-primary)] rounded-2xl shadow-[0_4px_24px_rgba(0,51,153,0.07),0_1px_4px_rgba(0,0,0,0.04)] transition-all duration-300 ease-out ${
               isScrolled
                 ? "shadow-[0_8px_32px_rgba(0,51,153,0.10),0_2px_8px_rgba(0,0,0,0.06)]"
                 : ""
@@ -530,8 +530,8 @@ export function Topbar() {
                   {initials}
                 </button>
                 {userMenuOpen && (
-                  <div className="absolute right-0 top-full mt-1 w-56 rounded-lg border border-border bg-bg shadow-lg py-1 z-[60] animate-fade-in">
-                    <div className="px-3 py-2 border-b border-border-light">
+                  <div className="absolute right-0 top-full mt-1 w-56 rounded-lg border border-[var(--border-primary)] bg-[var(--bg-card)] shadow-lg py-1 z-[60] animate-fade-in">
+                    <div className="px-3 py-2 border-b border-[var(--border-light)]">
                       <p className="text-sm font-medium text-text truncate">{displayName}</p>
                       <p className="text-xs text-text-muted truncate">{user.email}</p>
                     </div>
@@ -592,7 +592,7 @@ export function Topbar() {
             className="absolute inset-0 bg-black/10 backdrop-blur-sm"
             onClick={closeMobileMenu}
           />
-          <div className="relative bg-bg/95 backdrop-blur-md border-b border-border shadow-lg animate-fade-in">
+          <div className="relative bg-[var(--bg-card)]/95 backdrop-blur-md border-b border-[var(--border-primary)] shadow-lg animate-fade-in">
             <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-14">
               <span className="text-[13px] font-medium text-text-2">Menu</span>
               <button

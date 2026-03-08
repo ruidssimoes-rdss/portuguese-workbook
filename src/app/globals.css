@@ -41,6 +41,33 @@
   --color-btn-primary-text: #ffffff;
 }
 
+/* Theme: light/dark via data-theme (Approach B — layout-level overrides) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-card: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border-primary: #e5e7eb;
+  --border-light: #f0f0f0;
+  --brand: #003399;
+  --brand-light: rgba(0, 51, 153, 0.05);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f1117;
+  --bg-secondary: #1a1d27;
+  --bg-card: #1e2130;
+  --text-primary: #f0f0f0;
+  --text-secondary: #a0a0a0;
+  --text-muted: #6b7280;
+  --border-primary: #2a2d3a;
+  --border-light: #1e2130;
+  --brand: #4d7fcc;
+  --brand-light: rgba(77, 127, 204, 0.1);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
