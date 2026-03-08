@@ -2,6 +2,7 @@
 
 import { useState, use, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Topbar } from "@/components/layout/topbar";
 import { ProtectedRoute } from "@/components/protected-route";
 import { PronunciationButton } from "@/components/pronunciation-button";
@@ -32,6 +33,45 @@ import { updateGoalProgress } from "@/lib/goals-service";
 /* ─── Shared types ─── */
 
 type StageProgressMap = Record<string, Record<string, unknown>>;
+
+/* ─── Lesson session (sessionStorage) ─── */
+
+const SESSION_KEY_PREFIX = "aula-pt-lesson-";
+
+interface LessonSessionState {
+  currentStage: number;
+  stageProgress: StageProgressMap;
+}
+
+function getLessonSessionKey(lessonId: string): string {
+  return `${SESSION_KEY_PREFIX}${lessonId}`;
+}
+
+function saveLessonSession(lessonId: string, state: LessonSessionState): void {
+  try {
+    sessionStorage.setItem(getLessonSessionKey(lessonId), JSON.stringify(state));
+  } catch {
+    // sessionStorage may be full or unavailable
+  }
+}
+
+function restoreLessonSession(lessonId: string): LessonSessionState | null {
+  try {
+    const raw = sessionStorage.getItem(getLessonSessionKey(lessonId));
+    if (raw) return JSON.parse(raw) as LessonSessionState;
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
+function clearLessonSession(lessonId: string): void {
+  try {
+    sessionStorage.removeItem(getLessonSessionKey(lessonId));
+  } catch {
+    // ignore
+  }
+}
 
 /* ─── Helper: render sentence with inline input ─── */
 
@@ -385,6 +425,8 @@ function VerbStage({
           </div>
           <Link
             href={`/conjugations/${firstVerb.verbSlug}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[13px] font-medium text-[#003399] hover:underline"
           >
             Ver todos os tempos →
@@ -465,6 +507,8 @@ function GrammarStage({
         <div className="mt-6 text-center">
           <Link
             href={`/grammar/${grammar.topicSlug}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[13px] font-medium text-[#003399] hover:underline"
           >
             Deep dive: {grammar.topicTitle} →
@@ -698,13 +742,16 @@ function ResultsStage({
   stageProgress,
   nextLessonId,
   onTryAgain,
+  onSaveComplete,
 }: {
   lesson: Lesson;
   curriculumLesson: { scoring: { passingScore: number } } | undefined;
   stageProgress: StageProgressMap;
   nextLessonId: string | null;
   onTryAgain: () => void;
+  onSaveComplete?: () => void;
 }) {
+  const router = useRouter();
   const passingScore = curriculumLesson?.scoring.passingScore ?? 60;
   const verbStages = lesson.stages.filter((s) => s.type === "verb");
   const practiceStage = lesson.stages.find((s) => s.type === "practice");
@@ -755,29 +802,36 @@ function ResultsStage({
   const accuracy = gradedTotal > 0 ? Math.round((gradedCorrect / gradedTotal) * 100) : 0;
   const passed = accuracy >= passingScore;
 
+  const [isSaving, setIsSaving] = useState(true);
   const hasSaved = useRef(false);
   useEffect(() => {
     if (hasSaved.current) return;
     hasSaved.current = true;
     const title = lesson.ptTitle ? `${lesson.title} (${lesson.ptTitle})` : lesson.title;
     (async () => {
-      await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems).catch(() => {});
-      await logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
-      await updateStreak().catch(() => {});
-      if (passed) {
-        const progressMap = await getLessonProgressMap().catch(() => ({}));
-        const { getResolvedLessons } = await import("@/data/resolve-lessons");
-        const all = getResolvedLessons();
-        const a1Ids = new Set(all.filter((l) => l.cefr === "A1").map((l) => l.id));
-        const a2Ids = new Set(all.filter((l) => l.cefr === "A2").map((l) => l.id));
-        const b1Ids = new Set(all.filter((l) => l.cefr === "B1").map((l) => l.id));
-        const a1Completed = Object.entries(progressMap).filter(([id, p]) => a1Ids.has(id) && p.completed).length;
-        const a2Completed = Object.entries(progressMap).filter(([id, p]) => a2Ids.has(id) && p.completed).length;
-        const b1Completed = Object.entries(progressMap).filter(([id, p]) => b1Ids.has(id) && p.completed).length;
-        const totalCompleted = a1Completed + a2Completed + b1Completed;
-        if (lesson.cefr === "A1") updateGoalProgress("lessons_a1", a1Completed).catch(() => {});
-        if (lesson.cefr === "A2") updateGoalProgress("lessons_a2", a2Completed).catch(() => {});
-        if (lesson.cefr === "B1") updateGoalProgress("lessons_b1", b1Completed).catch(() => {});
+      try {
+        const ok = await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems);
+        if (ok) onSaveComplete?.();
+        logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
+        updateStreak().catch(() => {});
+        if (passed) {
+          const progressMap = await getLessonProgressMap().catch(() => ({}));
+          const { getResolvedLessons } = await import("@/data/resolve-lessons");
+          const all = getResolvedLessons();
+          const a1Ids = new Set(all.filter((l) => l.cefr === "A1").map((l) => l.id));
+          const a2Ids = new Set(all.filter((l) => l.cefr === "A2").map((l) => l.id));
+          const b1Ids = new Set(all.filter((l) => l.cefr === "B1").map((l) => l.id));
+          const a1Completed = Object.entries(progressMap).filter(([id, p]) => a1Ids.has(id) && p.completed).length;
+          const a2Completed = Object.entries(progressMap).filter(([id, p]) => a2Ids.has(id) && p.completed).length;
+          const b1Completed = Object.entries(progressMap).filter(([id, p]) => b1Ids.has(id) && p.completed).length;
+          if (lesson.cefr === "A1") updateGoalProgress("lessons_a1", a1Completed).catch(() => {});
+          if (lesson.cefr === "A2") updateGoalProgress("lessons_a2", a2Completed).catch(() => {});
+          if (lesson.cefr === "B1") updateGoalProgress("lessons_b1", b1Completed).catch(() => {});
+        }
+      } catch (e) {
+        console.error("Failed to save lesson progress:", e);
+      } finally {
+        setIsSaving(false);
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- save once on mount
@@ -844,22 +898,31 @@ function ResultsStage({
         )}
         <div className="flex flex-wrap items-center justify-center gap-4">
           {nextLessonId && (
-            <Link
-              href={`/lessons/${nextLessonId}`}
-              className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors"
+            <button
+              type="button"
+              disabled={isSaving}
+              onClick={() => !isSaving && router.push(`/lessons/${nextLessonId}`)}
+              className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Next Lesson →
-            </Link>
+              {isSaving ? "A guardar..." : "Próxima lição"}
+            </button>
           )}
-          <Link
-            href={`/lessons/${lesson.id}`}
-            className="px-6 py-2.5 border border-[#E5E7EB] rounded-xl text-[14px] font-medium text-[#6B7280] hover:bg-[#F9FAFB] transition-colors"
+          <button
+            type="button"
+            disabled={isSaving}
+            onClick={() => !isSaving && router.push(`/lessons/${lesson.id}`)}
+            className="px-6 py-2.5 border border-[#E5E7EB] rounded-xl text-[14px] font-medium text-[#6B7280] hover:bg-[#F9FAFB] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Review Lesson
-          </Link>
-          <Link href="/lessons" className="text-[13px] font-medium text-[#6B7280] hover:text-[#111827]">
-            Back to Lessons
-          </Link>
+            Rever lição
+          </button>
+          <button
+            type="button"
+            disabled={isSaving}
+            onClick={() => !isSaving && router.push("/lessons")}
+            className="text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            Voltar às lições
+          </button>
         </div>
       </div>
     );
@@ -913,16 +976,19 @@ function ResultsStage({
       <div className="flex flex-wrap items-center justify-center gap-4">
         <button
           onClick={onTryAgain}
-          className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors"
+          disabled={isSaving}
+          className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Try Again
+          {isSaving ? "A guardar..." : "Tentar novamente"}
         </button>
-        <Link
-          href="/lessons"
-          className="px-6 py-2.5 border border-[#E5E7EB] rounded-xl text-[14px] font-medium text-[#6B7280] hover:bg-[#F9FAFB] transition-colors"
+        <button
+          type="button"
+          disabled={isSaving}
+          onClick={() => !isSaving && router.push("/lessons")}
+          className="px-6 py-2.5 border border-[#E5E7EB] rounded-xl text-[14px] font-medium text-[#6B7280] hover:bg-[#F9FAFB] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Back to Lessons
-        </Link>
+          Voltar às lições
+        </button>
       </div>
     </div>
   );
@@ -953,6 +1019,42 @@ function LessonContent({ id }: { id: string }) {
   const curriculumLesson = getCurriculumLesson(id);
   const [currentStage, setCurrentStage] = useState(0);
   const [stageProgress, setStageProgress] = useState<StageProgressMap>({});
+  const [progressMap, setProgressMap] = useState<Record<string, { completed?: boolean }> | null>(null);
+  const [savedSession, setSavedSession] = useState<LessonSessionState | null>(null);
+  const [showRestorePrompt, setShowRestorePrompt] = useState(false);
+
+  useEffect(() => {
+    getLessonProgressMap().then((map) => {
+      setProgressMap(map);
+      const session = restoreLessonSession(id);
+      setSavedSession(session);
+      if (session && !map[id]?.completed) setShowRestorePrompt(true);
+      else if (session && map[id]?.completed) clearLessonSession(id);
+    });
+  }, [id]);
+
+  useEffect(() => {
+    if (!lesson || showRestorePrompt) return;
+    saveLessonSession(id, { currentStage, stageProgress });
+  }, [id, lesson, currentStage, stageProgress, showRestorePrompt]);
+
+  const handleRestoreSession = () => {
+    if (savedSession) {
+      setCurrentStage(savedSession.currentStage);
+      setStageProgress(savedSession.stageProgress);
+    }
+    setShowRestorePrompt(false);
+  };
+
+  const handleStartFresh = () => {
+    clearLessonSession(id);
+    setSavedSession(null);
+    setShowRestorePrompt(false);
+  };
+
+  const handleSaveComplete = () => {
+    clearLessonSession(id);
+  };
 
   const sortedLessons = getResolvedLessons().sort((a, b) => a.order - b.order);
   const nextLesson = lesson ? sortedLessons.find((l) => l.order === lesson.order + 1) : null;
@@ -1046,61 +1148,91 @@ function LessonContent({ id }: { id: string }) {
             </div>
           </div>
 
-          {/* Stage dots */}
-          <div className="flex items-center gap-4 mb-3">
-            <div className="flex items-center gap-1.5">
-              {lesson.stages.map((stage, i) => (
-                <button
-                  key={stage.id}
-                  onClick={() => setCurrentStage(i)}
-                  className={`h-2 rounded-full transition-all duration-200 cursor-pointer ${
-                    i === currentStage
-                      ? "bg-[#111827] w-6"
-                      : i < currentStage
-                        ? "bg-[#111827] w-2"
+          {!showRestorePrompt && (
+            <>
+              {/* Stage dots */}
+              <div className="flex items-center gap-4 mb-3">
+                <div className="flex items-center gap-1.5">
+                  {lesson.stages.map((stage, i) => (
+                    <button
+                      key={stage.id}
+                      onClick={() => setCurrentStage(i)}
+                      className={`h-2 rounded-full transition-all duration-200 cursor-pointer ${
+                        i === currentStage
+                          ? "bg-[#111827] w-6"
+                          : i < currentStage
+                            ? "bg-[#111827] w-2"
+                            : "bg-[#E5E7EB] w-2"
+                      }`}
+                      aria-label={`Go to stage ${i + 1}: ${stage.title}`}
+                    />
+                  ))}
+                  {/* Summary dot */}
+                  <button
+                    onClick={() => setCurrentStage(totalStages)}
+                    className={`h-2 rounded-full transition-all duration-200 cursor-pointer ${
+                      isSummary
+                        ? "bg-[#111827] w-6"
                         : "bg-[#E5E7EB] w-2"
-                  }`}
-                  aria-label={`Go to stage ${i + 1}: ${stage.title}`}
-                />
-              ))}
-              {/* Summary dot */}
-              <button
-                onClick={() => setCurrentStage(totalStages)}
-                className={`h-2 rounded-full transition-all duration-200 cursor-pointer ${
-                  isSummary
-                    ? "bg-[#111827] w-6"
-                    : "bg-[#E5E7EB] w-2"
-                }`}
-                aria-label="Go to summary"
-              />
-            </div>
-            <span className="text-[13px] font-medium text-[#9CA3AF]">
-              {isSummary
-                ? "Summary"
-                : `Stage ${currentStage + 1} of ${totalStages + 1}`}
-            </span>
-          </div>
+                    }`}
+                    aria-label="Go to summary"
+                  />
+                </div>
+                <span className="text-[13px] font-medium text-[#9CA3AF]">
+                  {isSummary
+                    ? "Summary"
+                    : `Stage ${currentStage + 1} of ${totalStages + 1}`}
+                </span>
+              </div>
 
-          {/* Progress bar */}
-          <div className="h-1 bg-[#F3F4F6] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-[#111827] rounded-full transition-all duration-500"
-              style={{ width: `${progressPct}%` }}
-            />
-          </div>
+              {/* Progress bar */}
+              <div className="h-1 bg-[#F3F4F6] rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#111827] rounded-full transition-all duration-500"
+                  style={{ width: `${progressPct}%` }}
+                />
+              </div>
+            </>
+          )}
         </div>
 
         <div className="border-t border-[#F3F4F6] mb-6" />
 
+        {/* Restore session prompt */}
+        {showRestorePrompt && (
+          <div className="mb-6 p-6 rounded-xl border border-[var(--border-primary,#E5E7EB)] bg-[var(--bg-card,white)] text-center">
+            <p className="text-[15px] font-medium text-[var(--text-primary,#111827)] mb-4">
+              Tens progresso guardado nesta lição.
+            </p>
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <button
+                type="button"
+                onClick={handleRestoreSession}
+                className="px-5 py-2.5 bg-[#003399] text-white text-[14px] font-medium rounded-xl hover:opacity-90 transition-opacity"
+              >
+                Continuar de onde parei
+              </button>
+              <button
+                type="button"
+                onClick={handleStartFresh}
+                className="px-5 py-2.5 text-[14px] font-medium text-[var(--text-secondary,#6B7280)] hover:text-[var(--text-primary,#111827)] transition-colors"
+              >
+                Começar de novo
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Stage content */}
         <div className="pb-16">
-          {isSummary ? (
+          {showRestorePrompt ? null : isSummary ? (
             <ResultsStage
               lesson={lesson}
               curriculumLesson={curriculumLesson}
               stageProgress={stageProgress}
               nextLessonId={nextLessonId}
               onTryAgain={handleTryAgain}
+              onSaveComplete={handleSaveComplete}
             />
           ) : currentStageData?.type === "vocabulary" ? (
             <VocabStage
