@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { CEFRBadge, VerbGroupBadge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { PageContainer } from "@/components/ui/page-container";
 import type { HomepageData } from "@/lib/homepage-service";
+import { dismissGoalSuggestion, markStreakMilestoneSeen, markProgressMilestoneSeen } from "@/lib/goal-suggestion-service";
 
 export interface HomeStaticData {
   wordOfDay: {
@@ -38,6 +41,10 @@ function getSubtitle(data: HomepageData): string {
   const last = data.lastActiveDate;
   if (streak >= 7) return `Estás numa série de ${streak} dias — continua assim!`;
   if (streak >= 3) return `Já são ${streak} dias consecutivos!`;
+  if (data.activeGoalHealth === "on-track" && data.goalSuggestion == null) return "Estás no caminho certo para o teu objetivo!";
+  if (data.activeGoalHealth === "behind" && data.activeGoalBehindBy != null && data.activeGoalBehindBy > 0)
+    return `Estás ${data.activeGoalBehindBy} lições atrás do plano — vamos recuperar?`;
+  if (data.activeGoalHealth === "ahead") return "Estás adiantado — excelente trabalho!";
   if (last) {
     const lastDate = new Date(last);
     const today = new Date();
@@ -57,16 +64,103 @@ function getGreeting(): string {
   return "Boa noite";
 }
 
+const STREAK_MILESTONES = [3, 7, 14, 30, 60, 100];
+const STREAK_MILESTONE_MESSAGES: Record<number, string> = {
+  3: "Bom começo. Mantém o ritmo.",
+  7: "Uma semana inteira. Consistência é a chave.",
+  14: "Duas semanas. Isto já é um hábito.",
+  30: "Um mês de estudo. Impressionante.",
+  60: "Dois meses. O teu português está a evoluir.",
+  100: "100 dias. Dedicação a sério.",
+};
+
+const PROGRESS_MILESTONES = [
+  { type: "all-complete", check: (d: HomepageData) => d.totalLessonsCompleted === 44, messagePt: "Currículo completo! Parabéns!" },
+  { type: "a2-complete", check: (d: HomepageData) => d.totalLessonsCompleted === 34, messagePt: "Nível A2 completo!" },
+  { type: "a1-complete", check: (d: HomepageData) => d.totalLessonsCompleted === 18, messagePt: "Nível A1 completo!" },
+  { type: "500-words", check: (d: HomepageData) => d.totalWordsEncountered >= 500, messagePt: "500 palavras aprendidas!" },
+  { type: "100-words", check: (d: HomepageData) => d.totalWordsEncountered >= 100, messagePt: "100 palavras aprendidas!" },
+  { type: "10-lessons", check: (d: HomepageData) => d.totalLessonsCompleted === 10, messagePt: "10 lições completas!" },
+  { type: "first-lesson", check: (d: HomepageData) => d.totalLessonsCompleted === 1, messagePt: "Primeira lição completa!" },
+];
+
 export function PersonalisedHomepage({
   data,
   staticData,
+  onDataRefresh,
 }: {
   data: HomepageData;
   staticData: HomeStaticData;
+  onDataRefresh?: () => void;
 }) {
+  const router = useRouter();
+  const [suggestionDismissed, setSuggestionDismissed] = useState(false);
+  const [creatingGoal, setCreatingGoal] = useState(false);
+  const [streakBannerDismissed, setStreakBannerDismissed] = useState(false);
+  const [progressBannerDismissed, setProgressBannerDismissed] = useState(false);
+
   const greeting = getGreeting();
   const subtitle = getSubtitle(data);
   const hasWeakAreas = data.weakVerbs.length > 0 || data.weakCategories.length > 0 || data.weakGrammar.length > 0;
+
+  const showGoalSuggestion = data.goalSuggestion != null && !suggestionDismissed;
+  const streakMilestone = STREAK_MILESTONES.includes(data.currentStreak) && data.currentStreak > (data.lastMilestoneSeen ?? 0);
+  const progressMilestone = PROGRESS_MILESTONES.find(
+    (m) => m.check(data) && m.type !== (data.lastProgressMilestoneSeen ?? "")
+  );
+  const showStreakBanner = streakMilestone && !progressMilestone && !streakBannerDismissed;
+  const showProgressBanner = progressMilestone != null && !progressBannerDismissed;
+  const showOneMilestoneBanner = showProgressBanner || showStreakBanner;
+
+  const handleCreateGoal = async () => {
+    if (!data.goalSuggestion) return;
+    setCreatingGoal(true);
+    try {
+      const { createSuggestedGoal } = await import("@/lib/goal-suggestion-service");
+      const ok = await createSuggestedGoal(
+        data.goalSuggestion.goalType,
+        data.goalSuggestion.estimatedDateIso,
+        data.goalSuggestion.studyDaysPerWeek
+      );
+      if (ok) {
+        setSuggestionDismissed(true);
+        onDataRefresh?.();
+        router.push("/calendar");
+      }
+    } finally {
+      setCreatingGoal(false);
+    }
+  };
+
+  const handleDismissSuggestion = async () => {
+    setSuggestionDismissed(true);
+    await dismissGoalSuggestion();
+  };
+
+  const handleDismissStreakBanner = async () => {
+    setStreakBannerDismissed(true);
+    await markStreakMilestoneSeen(data.currentStreak);
+    onDataRefresh?.();
+  };
+
+  const handleDismissProgressBanner = async () => {
+    if (progressMilestone) {
+      setProgressBannerDismissed(true);
+      await markProgressMilestoneSeen(progressMilestone.type);
+      onDataRefresh?.();
+    }
+  };
+
+  const weekEnd = (() => {
+    const d = new Date();
+    const day = d.getDay();
+    const diff = day === 0 ? -6 : 1 - day;
+    d.setDate(d.getDate() + diff + 6);
+    return d;
+  })();
+  const weekEndStr = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"][weekEnd.getDay()];
+  const daysLeft = Math.max(0, Math.ceil((weekEnd.getTime() - Date.now()) / 86400000));
+  const showWeeklyNudge = data.weeklyStudyDays < data.weeklyTargetDays && daysLeft > 0;
 
   return (
     <>
@@ -81,6 +175,61 @@ export function PersonalisedHomepage({
         </div>
       </section>
       <PageContainer>
+        {/* Milestone banner (streak or progress) — max one */}
+        {showOneMilestoneBanner && (
+          <div className="bg-[#F0F7FF] border border-[#003399]/10 rounded-[12px] px-5 py-4 mb-4 flex items-center justify-between">
+            <div>
+              <p className="text-[15px] font-semibold text-[#003399]">
+                {showProgressBanner && progressMilestone
+                  ? progressMilestone.messagePt
+                  : `${data.currentStreak} dias consecutivos`}
+              </p>
+              {showStreakBanner && (
+                <p className="text-[13px] text-[#6B7280]">
+                  {STREAK_MILESTONE_MESSAGES[data.currentStreak] ?? "Consistência é a chave."}
+                </p>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={showProgressBanner ? handleDismissProgressBanner : handleDismissStreakBanner}
+              className="text-[#9CA3AF] hover:text-[#6B7280] text-xl leading-none"
+              aria-label="Fechar"
+            >
+              ×
+            </button>
+          </div>
+        )}
+
+        {/* Goal suggestion banner */}
+        {showGoalSuggestion && (
+          <div className="bg-[#003399]/5 border border-[#003399]/15 rounded-[12px] p-5 mb-6">
+            <p className="text-[14px] text-[#111827] mb-1">
+              Disseste que queres {data.goalSuggestion!.targetDescription}.
+            </p>
+            <p className="text-[13px] text-[#6B7280] mb-4">
+              {data.goalSuggestion!.description} Com {data.goalSuggestion!.studyDaysPerWeek} dias por semana, podes acabar até {data.goalSuggestion!.estimatedDate}.
+            </p>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleCreateGoal}
+                disabled={creatingGoal}
+                className="px-5 py-2 bg-[#003399] text-white text-[13px] font-medium rounded-[12px] hover:bg-[#002277] transition-colors disabled:opacity-60"
+              >
+                {creatingGoal ? "A criar..." : "Criar este plano"}
+              </button>
+              <button
+                type="button"
+                onClick={handleDismissSuggestion}
+                className="px-5 py-2 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors"
+              >
+                Agora não
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Continue Learning */}
         <div className="bg-white border border-[#E5E7EB] rounded-[12px] p-6 mb-6">
           {data.nextLesson ? (
@@ -188,6 +337,13 @@ export function PersonalisedHomepage({
             <p className="text-[11px] text-[#9CA3AF]">dias</p>
           </div>
         </div>
+
+        {/* Weekly target nudge */}
+        {showWeeklyNudge && (
+          <p className="text-[13px] text-[#6B7280] mb-6">
+            Esta semana: {data.weeklyStudyDays} de {data.weeklyTargetDays} dias. {data.weeklyTargetDays - data.weeklyStudyDays === 1 ? "Falta 1 dia" : `Faltam ${data.weeklyTargetDays - data.weeklyStudyDays} dias`} — tens até {weekEndStr}.
+          </p>
+        )}
 
         {/* Weekly Rhythm */}
         <div className="flex items-center justify-center gap-4 mb-8">

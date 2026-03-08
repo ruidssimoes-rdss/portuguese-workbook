@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/client";
 
+export type GoalHealth = "ahead" | "on-track" | "behind";
+
 export interface UserGoal {
   id: string;
   user_id: string;
@@ -11,6 +13,26 @@ export interface UserGoal {
   is_active: boolean;
   created_at: string;
   updated_at: string;
+}
+
+export function getGoalHealth(goal: UserGoal): GoalHealth {
+  const today = new Date();
+  const targetDate = new Date(goal.target_date + "T12:00:00");
+  const created = new Date(goal.created_at);
+  const totalDays = Math.max(
+    1,
+    Math.ceil((targetDate.getTime() - created.getTime()) / (1000 * 60 * 60 * 24))
+  );
+  const elapsedDays = Math.max(
+    0,
+    Math.ceil((today.getTime() - created.getTime()) / (1000 * 60 * 60 * 24))
+  );
+  const expectedProgress = totalDays > 0 ? (elapsedDays / totalDays) * goal.total_items : goal.total_items;
+  const actualProgress = goal.completed_items;
+
+  if (actualProgress >= expectedProgress * 1.1) return "ahead";
+  if (actualProgress >= expectedProgress * 0.85) return "on-track";
+  return "behind";
 }
 
 export interface CreateGoalWithEventsData {

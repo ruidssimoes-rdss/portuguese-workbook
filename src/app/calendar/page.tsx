@@ -19,7 +19,7 @@ import {
   type CalendarEvent,
   type WeeklyStats,
 } from "@/lib/calendar-service";
-import { getGoalsForDisplay, type UserGoal } from "@/lib/goals-service";
+import { getGoalsForDisplay, getGoalHealth, type UserGoal } from "@/lib/goals-service";
 
 // ─── Portuguese labels ───
 const MESES: string[] = [
@@ -359,8 +359,10 @@ function EditEventDrawer({ event, onClose, onSaved }: { event: CalendarEvent; on
 }
 
 // ─── Goal drawer ───
-const GOAL_OPTIONS: { id: string; label: string; type: "lessons_a1" | "verbs_a1" | "grammar_a1" }[] = [
+const GOAL_OPTIONS: { id: string; label: string; type: string }[] = [
   { id: "lessons_a1", label: "Completar todas as lições A1", type: "lessons_a1" },
+  { id: "lessons_a2", label: "Completar todas as lições A2", type: "lessons_a2" },
+  { id: "lessons_b1", label: "Completar todas as lições B1", type: "lessons_b1" },
   { id: "verbs_a1", label: "Rever todos os verbos A1", type: "verbs_a1" },
   { id: "grammar_a1", label: "Rever todos os tópicos de gramática A1", type: "grammar_a1" },
 ];
@@ -403,6 +405,8 @@ function GoalDrawer({
     (async () => {
       const lessons = (await import("@/data/resolve-lessons")).getResolvedLessons();
       const a1Lessons = lessons.filter((l) => l.cefr === "A1");
+      const a2Lessons = lessons.filter((l) => l.cefr === "A2");
+      const b1Lessons = lessons.filter((l) => l.cefr === "B1");
       const progressMap = await import("@/lib/lesson-progress").then((m) => m.getLessonProgressMap());
       const completedLessonIds = new Set(Object.entries(progressMap).filter(([, p]) => p.completed).map(([id]) => id));
       const verbsData = (await import("@/data/verbs.json")).default as { order: string[]; verbs: Record<string, { meta: { english: string } }> };
@@ -421,6 +425,18 @@ function GoalDrawer({
           label: `Completar todas as lições A1 (${a1Lessons.length} lições)`,
           total: a1Lessons.length,
           completed: a1Lessons.filter((l) => completedLessonIds.has(l.id)).length,
+        },
+        {
+          id: "lessons_a2",
+          label: `Completar todas as lições A2 (${a2Lessons.length} lições)`,
+          total: a2Lessons.length,
+          completed: a2Lessons.filter((l) => completedLessonIds.has(l.id)).length,
+        },
+        {
+          id: "lessons_b1",
+          label: `Completar todas as lições B1 (${b1Lessons.length} lições)`,
+          total: b1Lessons.length,
+          completed: b1Lessons.filter((l) => completedLessonIds.has(l.id)).length,
         },
         { id: "verbs_a1", label: `Rever todos os verbos A1 (${verbsA1.length} verbos)`, total: verbsA1.length, completed: 0 },
         { id: "grammar_a1", label: `Rever todos os tópicos de gramática A1 (${grammarA1.length} tópicos)`, total: grammarA1.length, completed: 0 },
@@ -478,6 +494,20 @@ function GoalDrawer({
         const completed = new Set(Object.entries(progressMap).filter(([, p]) => p.completed).map(([id]) => id));
         items = a1.filter((l) => !completed.has(l.id)).map((l) => ({ id: l.id, title: l.ptTitle ?? l.title }));
         linkedType = "lesson";
+      } else if (goalType === "lessons_a2") {
+        const lessons = (await import("@/data/resolve-lessons")).getResolvedLessons();
+        const a2 = lessons.filter((l) => l.cefr === "A2");
+        const progressMap = await import("@/lib/lesson-progress").then((m) => m.getLessonProgressMap());
+        const completed = new Set(Object.entries(progressMap).filter(([, p]) => p.completed).map(([id]) => id));
+        items = a2.filter((l) => !completed.has(l.id)).map((l) => ({ id: l.id, title: l.ptTitle ?? l.title }));
+        linkedType = "lesson";
+      } else if (goalType === "lessons_b1") {
+        const lessons = (await import("@/data/resolve-lessons")).getResolvedLessons();
+        const b1 = lessons.filter((l) => l.cefr === "B1");
+        const progressMap = await import("@/lib/lesson-progress").then((m) => m.getLessonProgressMap());
+        const completed = new Set(Object.entries(progressMap).filter(([, p]) => p.completed).map(([id]) => id));
+        items = b1.filter((l) => !completed.has(l.id)).map((l) => ({ id: l.id, title: l.ptTitle ?? l.title }));
+        linkedType = "lesson";
       } else if (goalType === "verbs_a1") {
         const verbsData = (await import("@/data/verbs.json")).default as { order: string[]; verbs: Record<string, { meta: { english: string } }> };
         const order = (verbsData.order ?? []).slice(0, 75);
@@ -533,6 +563,20 @@ function GoalDrawer({
         const progressMap = await import("@/lib/lesson-progress").then((m) => m.getLessonProgressMap());
         const completed = new Set(Object.entries(progressMap).filter(([, p]) => p.completed).map(([id]) => id));
         items = a1.filter((l) => !completed.has(l.id)).map((l) => ({ id: l.id, title: l.ptTitle ?? l.title }));
+        linkedType = "lesson";
+      } else if (goalType === "lessons_a2") {
+        const lessons = (await import("@/data/resolve-lessons")).getResolvedLessons();
+        const a2 = lessons.filter((l) => l.cefr === "A2");
+        const progressMap = await import("@/lib/lesson-progress").then((m) => m.getLessonProgressMap());
+        const completed = new Set(Object.entries(progressMap).filter(([, p]) => p.completed).map(([id]) => id));
+        items = a2.filter((l) => !completed.has(l.id)).map((l) => ({ id: l.id, title: l.ptTitle ?? l.title }));
+        linkedType = "lesson";
+      } else if (goalType === "lessons_b1") {
+        const lessons = (await import("@/data/resolve-lessons")).getResolvedLessons();
+        const b1 = lessons.filter((l) => l.cefr === "B1");
+        const progressMap = await import("@/lib/lesson-progress").then((m) => m.getLessonProgressMap());
+        const completed = new Set(Object.entries(progressMap).filter(([, p]) => p.completed).map(([id]) => id));
+        items = b1.filter((l) => !completed.has(l.id)).map((l) => ({ id: l.id, title: l.ptTitle ?? l.title }));
         linkedType = "lesson";
       } else if (goalType === "verbs_a1") {
         const verbsData = (await import("@/data/verbs.json")).default as { order: string[]; verbs: Record<string, { meta: { english: string } }> };
@@ -918,6 +962,10 @@ export default function CalendarPage() {
                     const itemLabel = GOAL_ITEM_LABELS[goal.goal_type] ?? "itens";
                     const percentage = goal.total_items > 0 ? Math.round((goal.completed_items / goal.total_items) * 100) : 0;
                     const isComplete = goal.completed_items >= goal.total_items;
+                    const health = !isComplete ? getGoalHealth(goal) : null;
+                    const healthConfig = health
+                      ? { ahead: { label: "Adiantado", color: "#16A34A" }, "on-track": { label: "No caminho certo", color: "#003399" }, behind: { label: "Ligeiramente atrasado", color: "#F59E0B" } }[health]
+                      : null;
                     const targetD = new Date(goal.target_date + "T12:00:00");
                     const formattedDate = `${targetD.getDate()} de ${MESES[targetD.getMonth()]}`;
                     const studyDaysStr = goal.study_days
@@ -960,6 +1008,11 @@ export default function CalendarPage() {
                             style={{ width: `${Math.min(percentage, 100)}%` }}
                           />
                         </div>
+                        {healthConfig && (
+                          <p className="text-[11px] font-medium mb-2" style={{ color: healthConfig.color }}>
+                            {healthConfig.label}
+                          </p>
+                        )}
                         <div className="flex items-center justify-between flex-wrap gap-1">
                           <p className="text-[12px] text-[#6B7280]">
                             {goal.completed_items}/{goal.total_items} {itemLabel} · {percentage}%

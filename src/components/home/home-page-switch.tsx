@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/components/auth-provider";
 import { getHomepageData } from "@/lib/homepage-service";
 import type { HomepageData } from "@/lib/homepage-service";
@@ -17,18 +17,27 @@ export function HomePageSwitch({
   const { user } = useAuth();
   const [homepageData, setHomepageData] = useState<HomepageData | null | undefined>(undefined);
 
+  const loadData = useCallback(() => {
+    if (!user) return;
+    getHomepageData().then((data) => setHomepageData(data ?? null));
+  }, [user]);
+
   useEffect(() => {
     if (!user) {
       setHomepageData(null);
       return;
     }
-    getHomepageData().then((data) => {
-      setHomepageData(data ?? null);
-    });
-  }, [user]);
+    loadData();
+  }, [user, loadData]);
 
   if (user && homepageData) {
-    return <PersonalisedHomepage data={homepageData} staticData={staticData} />;
+    return (
+      <PersonalisedHomepage
+        data={homepageData}
+        staticData={staticData}
+        onDataRefresh={loadData}
+      />
+    );
   }
 
   return <>{children}</>;

@@ -1,6 +1,9 @@
 import { createClient } from "@/lib/supabase/client";
 import { getLessonProgressMap, getRecentWrongItems } from "./lesson-progress";
 import { getEventsInRange } from "./calendar-service";
+import { getActiveGoals } from "./goals-service";
+import { getGoalHealth, type GoalHealth } from "./goals-service";
+import { getGoalSuggestion } from "./goal-suggestion-service";
 import { getResolvedLessons } from "@/data/resolve-lessons";
 import { getCurriculumLesson } from "@/data/resolve-lessons";
 import type { WrongItem } from "./lesson-progress";
@@ -36,6 +39,19 @@ export interface HomepageData {
   weakGrammar: { slug: string; title: string }[];
   totalWordsEncountered: number;
   totalVerbsDrilled: number;
+  goalSuggestion: {
+    goalType: string;
+    titlePt: string;
+    description: string;
+    estimatedDate: string;
+    estimatedDateIso: string;
+    targetDescription: string;
+    studyDaysPerWeek: number;
+  } | null;
+  activeGoalHealth: GoalHealth | null;
+  activeGoalBehindBy: number | null;
+  lastMilestoneSeen: number | null;
+  lastProgressMilestoneSeen: string | null;
 }
 
 function getWeekRange(date: Date): { weekStart: string; weekEnd: string } {
@@ -62,7 +78,7 @@ export async function getHomepageData(): Promise<HomepageData | null> {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("display_name, learning_motivation, self_assessed_level, study_days_per_week, target_goal, target_date, current_streak, longest_streak, last_active_date")
+    .select("display_name, learning_motivation, self_assessed_level, study_days_per_week, target_goal, target_date, current_streak, longest_streak, last_active_date, goal_suggestion_dismissed, goal_suggestion_dismissed_at, last_milestone_seen, last_progress_milestone_seen")
     .eq("id", user.id)
     .single();
 
@@ -163,6 +179,35 @@ export async function getHomepageData(): Promise<HomepageData | null> {
 
   const displayName = (profile.display_name as string)?.trim() || "Utilizador";
 
+  const activeGoals = await getActiveGoals();
+  const a1Completed = lessons.filter((l) => l.order >= 1 && l.order <= 18 && progressMap[l.id]?.completed).length;
+  const a2Completed = lessons.filter((l) => l.order >= 19 && l.order <= 34 && progressMap[l.id]?.completed).length;
+  const b1Completed = lessons.filter((l) => l.order >= 35 && l.order <= 44 && progressMap[l.id]?.completed).length;
+  const goalSuggestion = await getGoalSuggestion(
+    totalLessonsCompleted,
+    a1Completed,
+    a2Completed,
+    b1Completed,
+    (profile.target_goal as string) ?? "",
+    (profile.study_days_per_week as number) ?? 3,
+    activeGoals.length,
+    Boolean(profile.goal_suggestion_dismissed),
+    (profile.goal_suggestion_dismissed_at as string) ?? null
+  );
+  const firstActive = activeGoals.find((g) => g.is_active);
+  const activeGoalHealth = firstActive ? getGoalHealth(firstActive) : null;
+  let activeGoalBehindBy: number | null = null;
+  if (firstActive && activeGoalHealth === "behind") {
+    const created = new Date(firstActive.created_at);
+    const targetDate = new Date(firstActive.target_date + "T12:00:00");
+    const totalDays = Math.max(1, Math.ceil((targetDate.getTime() - created.getTime()) / (1000 * 60 * 60 * 24)));
+    const elapsed = Math.max(0, Math.ceil((Date.now() - created.getTime()) / (1000 * 60 * 60 * 24)));
+    const expected = totalDays > 0 ? Math.round((elapsed / totalDays) * firstActive.total_items) : 0;
+    activeGoalBehindBy = Math.max(0, expected - firstActive.completed_items);
+  }
+  const lastMilestoneSeen = (profile.last_milestone_seen as number) ?? null;
+  const lastProgressMilestoneSeen = (profile.last_progress_milestone_seen as string) ?? null;
+
   return {
     displayName,
     onboarding: {
@@ -187,5 +232,10 @@ export async function getHomepageData(): Promise<HomepageData | null> {
     weakGrammar,
     totalWordsEncountered,
     totalVerbsDrilled,
+    goalSuggestion,
+    activeGoalHealth,
+    activeGoalBehindBy,
+    lastMilestoneSeen,
+    lastProgressMilestoneSeen,
   };
 }
