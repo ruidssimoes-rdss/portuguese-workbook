@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/components/auth-provider";
 import { getProgress } from "@/lib/progress-service";
-import type { UserProgress } from "@/types/levels";
-import { PROGRESS_STORAGE_KEY } from "@/types/levels";
+import type { UserProgress } from "@/types/section-progress";
+import { PROGRESS_STORAGE_KEY } from "@/types/section-progress";
 
 export function HomeProgressBanner() {
   const { user } = useAuth();
@@ -57,10 +57,10 @@ export function HomeProgressBanner() {
           ))}
         </div>
         <Link
-          href="/lessons#level-tests"
+          href="/lessons"
           className="text-[13px] font-medium text-[#003399] hover:text-[#002277] mt-3 inline-block transition-colors"
         >
-          View full progress →
+          Ver progresso →
         </Link>
       </>
     );
@@ -69,16 +69,16 @@ export function HomeProgressBanner() {
   return (
     <>
       <p className="text-[14px] text-[#374151] mb-1">
-        Track your learning progress
+        Acompanha o teu progresso
       </p>
       <p className="text-[13px] text-[#9CA3AF] mb-4">
-        Take placement tests in conjugations, vocabulary, and grammar to see where you stand.
+        Continua as lições de português para evoluíres no teu ritmo.
       </p>
       <Link
-        href="/lessons#level-tests"
+        href="/lessons"
         className="inline-flex items-center justify-center px-4 py-2.5 bg-[#111827] text-white text-[13px] font-medium rounded-[10px] hover:bg-[#1F2937] transition-colors duration-200"
       >
-        Go to Level Tests →
+        Ver lições →
       </Link>
     </>
   );

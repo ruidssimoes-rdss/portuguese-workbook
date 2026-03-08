@@ -8,7 +8,7 @@ import {
   getNextLevel,
   type UserProgress,
   type SectionProgress,
-} from "@/types/levels";
+} from "@/types/section-progress";
 
 type SectionKey = "conjugations" | "vocabulary" | "grammar";
 

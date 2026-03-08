@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo, Suspense } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Topbar } from "@/components/layout/topbar";
 import { PageContainer } from "@/components/ui/page-container";
 import { PageHeader } from "@/components/ui/page-header";
@@ -44,6 +44,30 @@ const CONTEXT_COLORS: Record<string, string> = {
   verb: "text-sky-600",
   lesson: "text-[#003399]",
 };
+
+const MESES: string[] = [
+  "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+  "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+];
+
+function formatDateFilterLabel(
+  updatedDateStart: string | undefined,
+  updatedDateEnd: string | undefined,
+  updatedDate: string | undefined
+): string | null {
+  if (updatedDateStart && updatedDateEnd) {
+    const [y1, m1, d1] = updatedDateStart.split("-").map(Number);
+    const [, m2, d2] = updatedDateEnd.split("-").map(Number);
+    const monthName = MESES[m2 - 1];
+    return `A mostrar notas de ${d1} a ${d2} de ${monthName}`;
+  }
+  if (updatedDate) {
+    const [, m, d] = updatedDate.split("-").map(Number);
+    const monthName = MESES[m - 1];
+    return `A mostrar notas de ${d} de ${monthName}`;
+  }
+  return null;
+}
 
 function formatRelativeTime(dateStr: string): string {
   const d = new Date(dateStr);
@@ -405,6 +429,7 @@ function NoteEditorDrawer({
 function NotesContent() {
   const { user, loading: authLoading } = useAuth();
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [filterId, setFilterId] = useState("all");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchInput, setSearchInput] = useState("");
@@ -426,6 +451,13 @@ function NotesContent() {
   const urlContextId = searchParams.get("contextId");
   const updatedDateStart = searchParams.get("updatedDateStart") ?? undefined;
   const updatedDateEnd = searchParams.get("updatedDateEnd") ?? undefined;
+  const updatedDate = searchParams.get("updatedDate") ?? undefined;
+  const dateFilterLabel = formatDateFilterLabel(
+    updatedDateStart,
+    updatedDateEnd,
+    updatedDateStart && updatedDateEnd ? undefined : updatedDate
+  );
+  const clearDateFilter = () => router.replace("/notes");
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedSearch(searchInput), 300);
@@ -598,6 +630,20 @@ function NotesContent() {
                     {tag}{selectedTag === tag ? " ×" : ""}
                   </button>
                 ))}
+              </div>
+            )}
+
+            {dateFilterLabel && (
+              <div className="flex items-center justify-between gap-2 mb-4 px-3 py-2 rounded-[12px] bg-[#F5F5F5] border border-[#E5E7EB]">
+                <span className="text-[13px] text-[#6B7280]">{dateFilterLabel}</span>
+                <button
+                  type="button"
+                  onClick={clearDateFilter}
+                  className="shrink-0 w-7 h-7 flex items-center justify-center rounded-full text-[#6B7280] hover:bg-[#E5E7EB] hover:text-[#111827] transition-colors"
+                  aria-label="Remover filtro de data"
+                >
+                  ×
+                </button>
               </div>
             )}
 

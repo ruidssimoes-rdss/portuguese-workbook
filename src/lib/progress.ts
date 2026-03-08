@@ -1,7 +1,7 @@
 "use client";
 
-import type { UserProgress, SectionProgress } from "@/types/levels";
-import { DEFAULT_PROGRESS, PROGRESS_STORAGE_KEY, getNextLevel } from "@/types/levels";
+import type { UserProgress, SectionProgress } from "@/types/section-progress";
+import { DEFAULT_PROGRESS, PROGRESS_STORAGE_KEY, getNextLevel } from "@/types/section-progress";
 
 function defaultSection(): SectionProgress {
   return {
