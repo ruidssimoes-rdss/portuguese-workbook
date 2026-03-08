@@ -337,6 +337,14 @@ export function PersonalisedHomepage({
             <p className="text-[11px] text-[#9CA3AF]">dias</p>
           </div>
         </div>
+        <div className="flex justify-end mb-2">
+          <Link
+            href="/progress"
+            className="text-[13px] font-medium text-[#003399] hover:text-[#002277] transition-colors"
+          >
+            Ver todo o progresso
+          </Link>
+        </div>
 
         {/* Weekly target nudge */}
         {showWeeklyNudge && (

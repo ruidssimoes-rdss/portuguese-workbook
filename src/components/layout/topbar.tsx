@@ -47,6 +47,12 @@ const revisionItems: MenuItem[] = [
     href: "/lessons",
   },
   {
+    title: "Progress",
+    portuguese: "Progresso",
+    stats: ["A tua jornada", "CEFR e estatísticas"],
+    href: "/progress",
+  },
+  {
     title: "Exams",
     portuguese: "Exames",
     stats: ["CIPLE preparation", "Coming soon"],
@@ -75,7 +81,7 @@ const libraryItems: MenuItem[] = [
   },
 ];
 
-const REVISION_PATHS = ["/lessons", "/exams"];
+const REVISION_PATHS = ["/lessons", "/progress", "/exams"];
 const LIBRARY_PATHS = ["/vocabulary", "/conjugations", "/grammar"];
 const NOTES_CALENDAR_PATHS = ["/notes", "/calendar"];
 
