@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
+import { OnboardingGate } from "@/components/onboarding-gate";
 
 export const dynamic = "force-dynamic";
 import { ChangelogBanner } from "@/components/changelog-banner";
@@ -93,7 +94,7 @@ function shortPerson(person: string): string {
 
 export default function Home() {
   return (
-    <>
+    <OnboardingGate>
       <Topbar />
       {/* Hero greeting section — full width */}
       <section className="w-full bg-bg">
@@ -317,6 +318,6 @@ export default function Home() {
 
         <div className="mb-12" />
       </PageContainer>
-    </>
+    </OnboardingGate>
   );
 }
