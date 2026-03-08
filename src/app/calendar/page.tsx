@@ -16,6 +16,7 @@ import {
   deleteEvent,
   type CalendarEvent,
 } from "@/lib/calendar-service";
+import { getGoalsForDisplay, type UserGoal } from "@/lib/goals-service";
 
 // ─── Portuguese labels ───
 const MESES: string[] = [
@@ -30,6 +31,24 @@ const DIAS_SEMANA: string[] = [
 
 const DIAS_CURTOS: string[] = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
 const DIAS_HEADER: string[] = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
+
+const GOAL_TITLES: Record<string, string> = {
+  lessons_a1: "Completar todas as lições A1",
+  lessons_a2: "Completar todas as lições A2",
+  lessons_b1: "Completar todas as lições B1",
+  verbs_a1: "Rever todos os verbos A1",
+  verbs_a2: "Rever todos os verbos A2",
+  grammar_a1: "Rever todos os tópicos de gramática A1",
+};
+
+const GOAL_ITEM_LABELS: Record<string, string> = {
+  lessons_a1: "lições",
+  lessons_a2: "lições",
+  lessons_b1: "lições",
+  verbs_a1: "verbos",
+  verbs_a2: "verbos",
+  grammar_a1: "tópicos",
+};
 
 type ViewMode = "day" | "month";
 
@@ -363,7 +382,7 @@ function GoalDrawer({ onClose, onSaved }: { onClose: () => void; onSaved: () => 
       from.setHours(0, 0, 0, 0);
       const to = new Date(targetDate + "T23:59:59");
       const { getStudyDaysBetween, generateGoalPlan } = await import("@/lib/goals");
-      const { createGoalEvents } = await import("@/lib/calendar-service");
+      const { createGoalWithEvents } = await import("@/lib/goals-service");
 
       const availableDays = getStudyDaysBetween(from, to, studyDays);
       let items: { id: string; title: string }[] = [];
@@ -390,14 +409,22 @@ function GoalDrawer({ onClose, onSaved }: { onClose: () => void; onSaved: () => 
       const plan = generateGoalPlan(items, availableDays, linkedType);
       const events = plan.map((e) => ({
         title: e.title,
-        eventDate: e.date,
-        linkedType: e.linkedType,
+        date: e.date,
         linkedId: e.linkedId,
-        linkedLabel: e.title,
+        linkedType: e.linkedType,
       }));
-      await createGoalEvents(events);
-      onSaved();
-      onClose();
+      const result = await createGoalWithEvents({
+        goalType,
+        targetDate,
+        studyDays,
+        totalItems: opt.total,
+        completedItems: opt.completed,
+        events,
+      });
+      if (result) {
+        onSaved();
+        onClose();
+      }
     } finally {
       setSaving(false);
     }
@@ -488,8 +515,14 @@ export default function CalendarPage() {
   const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null);
   const [detailEvent, setDetailEvent] = useState<CalendarEvent | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<CalendarEvent | null>(null);
+  const [goals, setGoals] = useState<UserGoal[]>([]);
 
   const isLoggedIn = !authLoading && !!user;
+
+  const loadGoals = useCallback(async () => {
+    const list = await getGoalsForDisplay();
+    setGoals(list);
+  }, []);
 
   const cursor = useMemo(() => new Date(cursorDate + "T12:00:00"), [cursorDate]);
   const year = cursor.getFullYear();
@@ -520,6 +553,7 @@ export default function CalendarPage() {
     const run = async () => {
       await loadMonth();
       await loadNoteActivity();
+      await loadGoals();
       if (viewMode === "day") {
         await loadDay(cursorDate);
         const { getNoteActivityCountForDate } = await import("@/lib/notes-service");
@@ -529,7 +563,7 @@ export default function CalendarPage() {
       setLoading(false);
     };
     run();
-  }, [isLoggedIn, viewMode, year, month, cursorDate, loadMonth, loadDay, loadNoteActivity]);
+  }, [isLoggedIn, viewMode, year, month, cursorDate, loadMonth, loadDay, loadNoteActivity, loadGoals]);
 
   const eventsByDate = useMemo(() => {
     const list = viewMode === "month" ? monthEvents : dayEvents;
@@ -548,6 +582,14 @@ export default function CalendarPage() {
     planned: monthEvents.filter((e) => e.event_type === "planned").length,
     goals: monthEvents.filter((e) => e.event_type === "goal").length,
   }), [monthEvents]);
+
+  const activeGoalProgress = useMemo(() => {
+    const active = goals.filter((g) => g.is_active);
+    if (active.length === 0) return null;
+    const first = active[0];
+    const pct = first.total_items > 0 ? Math.round((first.completed_items / first.total_items) * 100) : 0;
+    return pct;
+  }, [goals]);
 
   const navPrev = () => {
     if (viewMode === "month") {
@@ -612,8 +654,88 @@ export default function CalendarPage() {
               {" · "}<span className="font-medium text-gray-700">{monthStats.exams} exame</span>
               {" · "}<span className="font-medium text-gray-700">{monthStats.practice} prática</span>
               {" · "}<span className="font-medium text-gray-700">{monthStats.planned} planeado</span>
-              {monthStats.goals > 0 && <><span className="text-gray-400"> · </span><span className="font-medium text-gray-700">{monthStats.goals} objetivo</span></>}
+              {monthStats.goals > 0 && (
+                <>
+                  <span className="text-gray-400"> · </span>
+                  <span className="font-medium text-gray-700">
+                    {monthStats.goals} objetivo{activeGoalProgress != null ? ` · ${activeGoalProgress}% concluído` : ""}
+                  </span>
+                </>
+              )}
             </p>
+
+            {/* Goals section */}
+            <div className="mb-6">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Objetivos</p>
+              {goals.length === 0 ? (
+                <p className="text-[13px] text-[#6B7280]">
+                  Ainda sem objetivos definidos. Define um objetivo para planear o teu estudo.
+                </p>
+              ) : (
+                <div className="space-y-3">
+                  {goals.map((goal) => {
+                    const title = GOAL_TITLES[goal.goal_type] ?? goal.goal_type;
+                    const itemLabel = GOAL_ITEM_LABELS[goal.goal_type] ?? "itens";
+                    const percentage = goal.total_items > 0 ? Math.round((goal.completed_items / goal.total_items) * 100) : 0;
+                    const isComplete = goal.completed_items >= goal.total_items;
+                    const targetD = new Date(goal.target_date + "T12:00:00");
+                    const formattedDate = `${targetD.getDate()} de ${MESES[targetD.getMonth()]}`;
+                    const studyDaysStr = goal.study_days
+                      .filter((d) => d >= 1 && d <= 7)
+                      .sort((a, b) => a - b)
+                      .map((d) => ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"][d - 1])
+                      .join(", ");
+                    return (
+                      <div
+                        key={goal.id}
+                        className="bg-white border border-[#E5E7EB] rounded-[12px] p-5"
+                      >
+                        <div className="flex items-start justify-between mb-3">
+                          <p className={`text-[14px] font-semibold ${isComplete ? "text-[#16A34A]" : "text-[#111827]"}`}>
+                            {isComplete && (
+                              <span className="inline-flex align-middle mr-1.5" aria-hidden>
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                              </span>
+                            )}
+                            {title}
+                          </p>
+                          {!isComplete && (
+                            <button
+                              type="button"
+                              onClick={() => setDrawerOpen("goal")}
+                              className="text-[12px] font-medium text-[#9CA3AF] hover:text-[#003399] transition-colors"
+                            >
+                              Ajustar
+                            </button>
+                          )}
+                        </div>
+                        <div className="h-1.5 bg-[#F0F0F0] rounded-full overflow-hidden mb-2">
+                          <div
+                            className={`h-full rounded-full transition-all duration-500 ${isComplete ? "bg-[#16A34A]" : "bg-[#003399]"}`}
+                            style={{ width: `${Math.min(percentage, 100)}%` }}
+                          />
+                        </div>
+                        <div className="flex items-center justify-between flex-wrap gap-1">
+                          <p className="text-[12px] text-[#6B7280]">
+                            {goal.completed_items}/{goal.total_items} {itemLabel} · {percentage}%
+                          </p>
+                          <p className="text-[11px] text-[#9CA3AF]">
+                            {isComplete
+                              ? (() => {
+                                  const updatedD = new Date(goal.updated_at);
+                                  return `Concluído a ${updatedD.getDate()} de ${MESES[updatedD.getMonth()]}`;
+                                })()
+                              : studyDaysStr ? `Até ${formattedDate} · ${studyDaysStr}` : `Até ${formattedDate}`}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
 
             <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
               <div className="flex items-center gap-2">
@@ -665,7 +787,7 @@ export default function CalendarPage() {
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]" /> Prática</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#6B7280]" /> Planeado</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#0EA5E9]" /> Objetivo</span>
-              <span className="inline-flex items-center gap-1"><span className="text-[rgba(0,0,0,0.4)]">📝</span> Notas</span>
+              <span className="inline-flex items-center gap-1">Notas</span>
             </p>
 
             {loading ? (
@@ -731,6 +853,7 @@ export default function CalendarPage() {
                 onSaved={() => {
                   setDrawerOpen(null);
                   loadMonth();
+                  loadGoals();
                   if (viewMode === "day") loadDay(cursorDate);
                 }}
               />

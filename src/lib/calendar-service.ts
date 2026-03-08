@@ -19,6 +19,7 @@ export interface CalendarEvent {
   linked_score: number | null;
   linked_passed: boolean | null;
   color: string | null;
+  goal_id: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -324,6 +325,7 @@ export async function createGoalEvents(events: CreateGoalEventData[]): Promise<C
   return data.map(mapRowToEvent);
 }
 
+// TODO: Wire up auto_practice logging when practice modes (verb drill, vocab quiz, etc.) ship and have results screens.
 export async function logPracticeSession(data: LogPracticeSessionData): Promise<CalendarEvent | null> {
   const supabase = createClient();
   const {
@@ -375,6 +377,7 @@ function mapRowToEvent(row: Record<string, unknown>): CalendarEvent {
     linked_score: row.linked_score != null ? Number(row.linked_score) : null,
     linked_passed: row.linked_passed as boolean | null,
     color: (row.color as string | null) ?? null,
+    goal_id: (row.goal_id as string | null) ?? null,
     created_at: row.created_at as string,
     updated_at: row.updated_at as string,
   };

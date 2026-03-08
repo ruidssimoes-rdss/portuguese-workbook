@@ -24,6 +24,7 @@ import {
   type WrongItem,
 } from "@/lib/lesson-progress";
 import { logLessonCompletion } from "@/lib/calendar-service";
+import { updateGoalProgress } from "@/lib/goals-service";
 
 /* ─── Shared types ─── */
 
@@ -732,8 +733,19 @@ function ResultsStage({
     if (hasSaved.current) return;
     hasSaved.current = true;
     const title = lesson.ptTitle ? `${lesson.title} (${lesson.ptTitle})` : lesson.title;
-    saveLessonAttempt(lesson.id, accuracy, passed, wrongItems).catch(() => {});
-    logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
+    (async () => {
+      await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems).catch(() => {});
+      await logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
+      if (passed && lesson.cefr === "A1") {
+        const progressMap = await getLessonProgressMap().catch(() => ({}));
+        const { getResolvedLessons } = await import("@/data/resolve-lessons");
+        const a1LessonIds = new Set(getResolvedLessons().filter((l) => l.cefr === "A1").map((l) => l.id));
+        const a1Completed = Object.entries(progressMap).filter(
+          ([id, p]) => a1LessonIds.has(id) && p.completed
+        ).length;
+        updateGoalProgress("lessons_a1", a1Completed).catch(() => {});
+      }
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- save once on mount
   }, []);
 
