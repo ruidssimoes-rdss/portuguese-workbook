@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { OnboardingGate } from "@/components/onboarding-gate";
+import { HomePageSwitch } from "@/components/home/home-page-switch";
 
 export const dynamic = "force-dynamic";
 import { ChangelogBanner } from "@/components/changelog-banner";
@@ -92,12 +93,62 @@ function shortPerson(person: string): string {
   return person.split(" ")[0];
 }
 
+function buildHomeStaticData() {
+  return {
+    wordOfDay: wordOfDay
+      ? {
+          word: {
+            portuguese: wordOfDay.word.portuguese,
+            english: wordOfDay.word.english,
+            pronunciation: wordOfDay.word.pronunciation,
+            example: wordOfDay.word.example,
+            exampleTranslation: wordOfDay.word.exampleTranslation,
+            cefr: wordOfDay.word.cefr,
+            gender: wordOfDay.word.gender ?? undefined,
+          },
+          categoryTitle: wordOfDay.categoryTitle,
+        }
+      : null,
+    verbKey: verbKey ?? null,
+    verbOfDay:
+      verbKey && verbOfDay
+        ? {
+            meta: {
+              english: verbOfDay.meta.english,
+              cefr: verbOfDay.meta.cefr,
+              group: verbOfDay.meta.group,
+            },
+            presentRows: presentRows.slice(0, 5).map((row) => ({
+              person: shortPerson(row.Person),
+              conjugation: row.Conjugation,
+            })),
+          }
+        : null,
+    sayingOfDay: sayingOfDay
+      ? {
+          portuguese: sayingOfDay.portuguese,
+          meaning: sayingOfDay.meaning,
+          literal: sayingOfDay.literal,
+          pronunciation: sayingOfDay.pronunciation,
+          cefr: sayingOfDay.cefr ?? "A2",
+        }
+      : null,
+    totalVocabWords,
+    totalVerbs,
+    totalGrammarTopics,
+    sayingsLength: sayings.length,
+  };
+}
+
 export default function Home() {
+  const staticData = buildHomeStaticData();
+
   return (
     <OnboardingGate>
       <Topbar />
-      {/* Hero greeting section — full width */}
-      <section className="w-full bg-bg">
+      <HomePageSwitch staticData={staticData}>
+        {/* Hero greeting section — full width (default homepage) */}
+        <section className="w-full bg-bg">
         <div className="max-w-[1280px] mx-auto px-6 pt-14 pb-12">
           <h1 className="text-5xl font-bold tracking-tight text-text">
             {ptGreeting}
@@ -318,6 +369,7 @@ export default function Home() {
 
         <div className="mb-12" />
       </PageContainer>
+      </HomePageSwitch>
     </OnboardingGate>
   );
 }

@@ -201,3 +201,29 @@ export async function saveLessonAttempt(
 
   return !error;
 }
+
+export async function getRecentWrongItems(): Promise<
+  { lessonId: string; wrongItems: WrongItem[] }[]
+> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const { data, error } = await supabase
+    .from("user_lesson_progress")
+    .select("lesson_id, wrong_items, updated_at")
+    .eq("user_id", user.id)
+    .order("updated_at", { ascending: false })
+    .limit(10);
+
+  if (error || !data) return [];
+
+  return data
+    .filter((row) => Array.isArray(row.wrong_items) && (row.wrong_items as WrongItem[]).length > 0)
+    .map((row) => ({
+      lessonId: row.lesson_id,
+      wrongItems: row.wrong_items as WrongItem[],
+    }));
+}

@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import { updateStreak } from "@/lib/streak-service";
 
 export type CalendarEventType = "planned" | "auto_lesson" | "auto_exam" | "auto_practice" | "goal";
 export type LinkedType = "lesson" | "exam" | "practice" | "verb" | "grammar" | null;
@@ -135,6 +136,7 @@ export async function createPlannedEvent(
     .single();
 
   if (error || !row) return null;
+  updateStreak().catch(() => {});
   return mapRowToEvent(row);
 }
 
@@ -380,6 +382,7 @@ export async function logPracticeSession(data: LogPracticeSessionData): Promise<
     .single();
 
   if (error || !row) return null;
+  updateStreak().catch(() => {});
   return mapRowToEvent(row);
 }
 

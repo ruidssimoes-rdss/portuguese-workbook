@@ -26,6 +26,7 @@ import {
   type WrongItem,
 } from "@/lib/lesson-progress";
 import { logLessonCompletion } from "@/lib/calendar-service";
+import { updateStreak } from "@/lib/streak-service";
 import { updateGoalProgress } from "@/lib/goals-service";
 
 /* ─── Shared types ─── */
@@ -762,6 +763,7 @@ function ResultsStage({
     (async () => {
       await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems).catch(() => {});
       await logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
+      await updateStreak().catch(() => {});
       if (passed) {
         const progressMap = await getLessonProgressMap().catch(() => ({}));
         const { getResolvedLessons } = await import("@/data/resolve-lessons");
