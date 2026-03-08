@@ -14,7 +14,10 @@ import {
   createPlannedEvent,
   updateEvent,
   deleteEvent,
+  getWeeklyStats,
+  getMonthlyStats,
   type CalendarEvent,
+  type WeeklyStats,
 } from "@/lib/calendar-service";
 import { getGoalsForDisplay, type UserGoal } from "@/lib/goals-service";
 
@@ -93,6 +96,58 @@ function toDateKey(d: Date): string {
   const m = String(d.getMonth() + 1).padStart(2, "0");
   const day = String(d.getDate()).padStart(2, "0");
   return `${y}-${m}-${day}`;
+}
+
+function getWeekRange(date: Date): { weekStart: string; weekEnd: string } {
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  d.setDate(d.getDate() + diff);
+  const weekStart = toDateKey(d);
+  d.setDate(d.getDate() + 6);
+  const weekEnd = toDateKey(d);
+  return { weekStart, weekEnd };
+}
+
+function generateWeeklySummary(stats: WeeklyStats): string {
+  const parts: string[] = [];
+  if (stats.studyDays > 0) {
+    parts.push(`Estudaste ${stats.studyDays} ${stats.studyDays === 1 ? "dia" : "dias"} esta semana`);
+  }
+  if (stats.notesCount > 0) {
+    parts.push(`escreveste ${stats.notesCount} ${stats.notesCount === 1 ? "nota" : "notas"}`);
+  }
+  let summary = parts.length > 0 ? parts.join(" e ") + "." : "";
+  const achievements: string[] = [];
+  if (stats.lessonsCompleted > 0) {
+    achievements.push(`${stats.lessonsCompleted} ${stats.lessonsCompleted === 1 ? "lição" : "lições"}`);
+  }
+  if (stats.practiceSessions > 0) {
+    achievements.push(`${stats.practiceSessions} ${stats.practiceSessions === 1 ? "sessão de prática" : "sessões de prática"}`);
+  }
+  if (stats.examsTaken > 0) {
+    achievements.push(`${stats.examsTaken} ${stats.examsTaken === 1 ? "exame" : "exames"}`);
+  }
+  if (achievements.length > 0) {
+    summary += (summary ? " " : "") + "Completaste " + achievements.join(" e ") + ".";
+  }
+  return summary || "Ainda sem atividade esta semana. Começa hoje!";
+}
+
+function generateMonthlySummary(stats: WeeklyStats): string {
+  const parts: string[] = [];
+  if (stats.studyDays > 0) {
+    parts.push(`Estudaste ${stats.studyDays} ${stats.studyDays === 1 ? "dia" : "dias"}`);
+  }
+  if (stats.notesCount > 0) {
+    parts.push(`escreveste ${stats.notesCount} ${stats.notesCount === 1 ? "nota" : "notas"}`);
+  }
+  if (stats.lessonsCompleted > 0) {
+    parts.push(`completaste ${stats.lessonsCompleted} ${stats.lessonsCompleted === 1 ? "lição" : "lições"}`);
+  }
+  if (parts.length === 0) return "Ainda sem atividade neste mês.";
+  if (parts.length === 1) return parts[0] + ".";
+  return parts.slice(0, -1).join(", ") + " e " + parts[parts.length - 1] + ".";
 }
 
 function getMonday(d: Date): Date {
@@ -312,7 +367,16 @@ const GOAL_OPTIONS: { id: string; label: string; type: "lessons_a1" | "verbs_a1"
 
 const WEEKDAY_LABELS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
 
-function GoalDrawer({ onClose, onSaved }: { onClose: () => void; onSaved: () => void }) {
+function GoalDrawer({
+  editingGoal,
+  onClose,
+  onSaved,
+}: {
+  editingGoal: UserGoal | null;
+  onClose: () => void;
+  onSaved: () => void;
+}) {
+  const isEditMode = editingGoal != null;
   const [goalType, setGoalType] = useState<string>("lessons_a1");
   const [targetDate, setTargetDate] = useState<string>(() => {
     const d = new Date();
@@ -323,6 +387,16 @@ function GoalDrawer({ onClose, onSaved }: { onClose: () => void; onSaved: () => 
   const [optionsWithCounts, setOptionsWithCounts] = useState<{ id: string; label: string; total: number; completed: number }[]>([]);
   const [saving, setSaving] = useState(false);
   const [preview, setPreview] = useState<{ remaining: number; days: number; label: string } | null>(null);
+  const [confirmDeleteGoal, setConfirmDeleteGoal] = useState(false);
+
+  useEffect(() => {
+    if (editingGoal) {
+      setGoalType(editingGoal.goal_type);
+      setTargetDate(editingGoal.target_date);
+      setStudyDays(editingGoal.study_days.length > 0 ? [...editingGoal.study_days].sort((a, b) => a - b) : [1, 2, 3, 4, 5]);
+      setConfirmDeleteGoal(false);
+    }
+  }, [editingGoal]);
 
   useEffect(() => {
     let cancelled = false;
@@ -356,18 +430,27 @@ function GoalDrawer({ onClose, onSaved }: { onClose: () => void; onSaved: () => 
   }, []);
 
   useEffect(() => {
+    const from = new Date();
+    from.setHours(0, 0, 0, 0);
+    const to = new Date(targetDate + "T23:59:59");
+    if (isEditMode && editingGoal) {
+      const remaining = editingGoal.total_items - editingGoal.completed_items;
+      import("@/lib/goals").then(({ getStudyDaysBetween }) => {
+        const days = getStudyDaysBetween(from, to, studyDays);
+        const label = GOAL_ITEM_LABELS[editingGoal.goal_type] ?? "itens";
+        setPreview(remaining > 0 && days.length > 0 ? { remaining, days: days.length, label } : null);
+      });
+      return;
+    }
     if (optionsWithCounts.length === 0) return;
     const opt = optionsWithCounts.find((o) => o.id === goalType);
     if (!opt) return;
     const remaining = opt.total - opt.completed;
-    const from = new Date();
-    from.setHours(0, 0, 0, 0);
-    const to = new Date(targetDate + "T23:59:59");
     import("@/lib/goals").then(({ getStudyDaysBetween }) => {
       const days = getStudyDaysBetween(from, to, studyDays);
       setPreview(remaining > 0 && days.length > 0 ? { remaining, days: days.length, label: opt.label } : null);
     });
-  }, [goalType, targetDate, studyDays, optionsWithCounts]);
+  }, [goalType, targetDate, studyDays, optionsWithCounts, isEditMode, editingGoal]);
 
   const toggleDay = (d: number) => {
     setStudyDays((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d].sort((a, b) => a - b)));
@@ -430,23 +513,98 @@ function GoalDrawer({ onClose, onSaved }: { onClose: () => void; onSaved: () => 
     }
   };
 
+  const handleUpdate = async () => {
+    if (!editingGoal || (preview && preview.remaining <= 0)) return;
+    setSaving(true);
+    try {
+      const from = new Date();
+      from.setHours(0, 0, 0, 0);
+      const to = new Date(targetDate + "T23:59:59");
+      const { getStudyDaysBetween, generateGoalPlan } = await import("@/lib/goals");
+      const { updateGoalPlan } = await import("@/lib/goals-service");
+
+      const availableDays = getStudyDaysBetween(from, to, studyDays);
+      let items: { id: string; title: string }[] = [];
+      let linkedType: "lesson" | "verb" | "grammar" = "lesson";
+
+      if (goalType === "lessons_a1") {
+        const lessons = (await import("@/data/resolve-lessons")).getResolvedLessons();
+        const a1 = lessons.filter((l) => l.cefr === "A1");
+        const progressMap = await import("@/lib/lesson-progress").then((m) => m.getLessonProgressMap());
+        const completed = new Set(Object.entries(progressMap).filter(([, p]) => p.completed).map(([id]) => id));
+        items = a1.filter((l) => !completed.has(l.id)).map((l) => ({ id: l.id, title: l.ptTitle ?? l.title }));
+        linkedType = "lesson";
+      } else if (goalType === "verbs_a1") {
+        const verbsData = (await import("@/data/verbs.json")).default as { order: string[]; verbs: Record<string, { meta: { english: string } }> };
+        const order = (verbsData.order ?? []).slice(0, 75);
+        items = order.map((key) => ({ id: key, title: `Rever: ${key} (${(verbsData.verbs as Record<string, { meta: { english: string } }>)[key]?.meta?.english ?? "verbo"})` }));
+        linkedType = "verb";
+      } else if (goalType === "grammar_a1") {
+        const grammarData = (await import("@/data/grammar.json")).default as { topics: Record<string, { id: string; titlePt: string; cefr: string }> };
+        items = Object.values(grammarData.topics ?? {}).filter((t) => t.cefr === "A1").map((t) => ({ id: t.id, title: t.titlePt ?? t.id }));
+        linkedType = "grammar";
+      }
+
+      const plan = generateGoalPlan(items, availableDays, linkedType);
+      const events = plan.map((e) => ({
+        title: e.title,
+        date: e.date,
+        linkedId: e.linkedId,
+        linkedType: e.linkedType,
+      }));
+      const result = await updateGoalPlan(editingGoal.id, { targetDate, studyDays, events });
+      if (result) {
+        onSaved();
+        onClose();
+      }
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDeleteGoal = async () => {
+    if (!editingGoal) return;
+    setSaving(true);
+    try {
+      const { deleteGoal } = await import("@/lib/goals-service");
+      const ok = await deleteGoal(editingGoal.id);
+      if (ok) {
+        onSaved();
+        onClose();
+      }
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
-    <SlideDrawer isOpen onClose={onClose} title="Definir objetivo" ariaLabel="Definir objetivo">
+    <SlideDrawer
+      isOpen
+      onClose={onClose}
+      title={isEditMode ? "Ajustar objetivo" : "Definir objetivo"}
+      ariaLabel={isEditMode ? "Ajustar objetivo" : "Definir objetivo"}
+    >
       <div className="p-4 space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">O que queres alcançar?</label>
-          <select
-            value={goalType}
-            onChange={(e) => setGoalType(e.target.value)}
-            className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
-          >
-            {optionsWithCounts.map((o) => (
-              <option key={o.id} value={o.id}>{o.label}</option>
-            ))}
-            {optionsWithCounts.length === 0 && (
-              <option value="lessons_a1">Completar todas as lições A1</option>
-            )}
-          </select>
+          {isEditMode ? (
+            <p className="px-3 py-2 rounded-[12px] text-sm text-gray-900 bg-[rgba(0,0,0,0.04)] border border-[rgba(0,0,0,0.06)]">
+              {GOAL_TITLES[goalType] ?? goalType}
+            </p>
+          ) : (
+            <select
+              value={goalType}
+              onChange={(e) => setGoalType(e.target.value)}
+              className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
+            >
+              {optionsWithCounts.map((o) => (
+                <option key={o.id} value={o.id}>{o.label}</option>
+              ))}
+              {optionsWithCounts.length === 0 && (
+                <option value="lessons_a1">Completar todas as lições A1</option>
+              )}
+            </select>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Até quando?</label>
@@ -486,15 +644,63 @@ function GoalDrawer({ onClose, onSaved }: { onClose: () => void; onSaved: () => 
           <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 border border-[rgba(0,0,0,0.08)] rounded-[12px] hover:bg-[rgba(0,0,0,0.02)]">
             Cancelar
           </button>
-          <button
-            type="button"
-            onClick={handleCreate}
-            disabled={saving || !preview || preview.remaining <= 0 || preview.days <= 0}
-            className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50"
-          >
-            {saving ? "A criar..." : "Criar plano"}
-          </button>
+          {isEditMode ? (
+            <button
+              type="button"
+              onClick={handleUpdate}
+              disabled={saving || (preview ? preview.remaining <= 0 || preview.days <= 0 : true)}
+              className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50"
+            >
+              {saving ? "A atualizar..." : "Atualizar plano"}
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={handleCreate}
+              disabled={saving || !preview || preview.remaining <= 0 || preview.days <= 0}
+              className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50"
+            >
+              {saving ? "A criar..." : "Criar plano"}
+            </button>
+          )}
         </div>
+        {isEditMode && editingGoal && (
+          <div className="pt-4 mt-4 border-t border-[rgba(0,0,0,0.06)]">
+            {!confirmDeleteGoal ? (
+              <button
+                type="button"
+                onClick={() => setConfirmDeleteGoal(true)}
+                className="text-[12px] font-medium text-red-600 hover:text-red-700"
+              >
+                Eliminar objetivo
+              </button>
+            ) : (
+              <div className="rounded-[12px] border border-[rgba(0,0,0,0.06)] p-3 bg-[rgba(0,0,0,0.02)]">
+                <p className="text-[13px] font-medium text-gray-900 mb-2">Tens a certeza?</p>
+                <p className="text-[12px] text-gray-600 mb-3">
+                  Os eventos futuros deste objetivo serão removidos. Os eventos passados ficam no calendário.
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setConfirmDeleteGoal(false)}
+                    className="px-3 py-1.5 text-sm font-medium text-gray-700 border border-[rgba(0,0,0,0.08)] rounded-[12px] hover:bg-[rgba(0,0,0,0.02)]"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleDeleteGoal}
+                    disabled={saving}
+                    className="px-3 py-1.5 text-sm font-medium text-white bg-red-600 rounded-[12px] hover:bg-red-700 disabled:opacity-50"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </SlideDrawer>
   );
@@ -516,6 +722,9 @@ export default function CalendarPage() {
   const [detailEvent, setDetailEvent] = useState<CalendarEvent | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<CalendarEvent | null>(null);
   const [goals, setGoals] = useState<UserGoal[]>([]);
+  const [editingGoal, setEditingGoal] = useState<UserGoal | null>(null);
+  const [reflectionStats, setReflectionStats] = useState<WeeklyStats | null>(null);
+  const [reflectionLoading, setReflectionLoading] = useState(false);
 
   const isLoggedIn = !authLoading && !!user;
 
@@ -564,6 +773,37 @@ export default function CalendarPage() {
     };
     run();
   }, [isLoggedIn, viewMode, year, month, cursorDate, loadMonth, loadDay, loadNoteActivity, loadGoals]);
+
+  const isCurrentMonth = useMemo(() => {
+    const now = new Date();
+    return now.getFullYear() === year && now.getMonth() + 1 === month;
+  }, [year, month]);
+
+  useEffect(() => {
+    if (!isLoggedIn || viewMode !== "month") {
+      setReflectionStats(null);
+      return;
+    }
+    setReflectionLoading(true);
+    const run = async () => {
+      try {
+        if (isCurrentMonth) {
+          const { weekStart, weekEnd } = getWeekRange(new Date());
+          const stats = await getWeeklyStats(weekStart, weekEnd);
+          setReflectionStats(stats);
+        } else {
+          const monthStart = `${year}-${String(month).padStart(2, "0")}-01`;
+          const lastDay = new Date(year, month, 0).getDate();
+          const monthEnd = `${year}-${String(month).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
+          const stats = await getMonthlyStats(monthStart, monthEnd);
+          setReflectionStats(stats);
+        }
+      } finally {
+        setReflectionLoading(false);
+      }
+    };
+    run();
+  }, [isLoggedIn, viewMode, isCurrentMonth, year, month]);
 
   const eventsByDate = useMemo(() => {
     const list = viewMode === "month" ? monthEvents : dayEvents;
@@ -704,7 +944,10 @@ export default function CalendarPage() {
                           {!isComplete && (
                             <button
                               type="button"
-                              onClick={() => setDrawerOpen("goal")}
+                              onClick={() => {
+                                setEditingGoal(goal);
+                                setDrawerOpen("goal");
+                              }}
                               className="text-[12px] font-medium text-[#9CA3AF] hover:text-[#003399] transition-colors"
                             >
                               Ajustar
@@ -736,6 +979,38 @@ export default function CalendarPage() {
                 </div>
               )}
             </div>
+
+            {/* Reflection summary — current week or viewed month */}
+            {viewMode === "month" && (
+              <div className="mb-6">
+                <div className="bg-[#FAFAFA] border border-[#E5E7EB] rounded-[12px] p-5">
+                  <p className="text-[13px] font-semibold text-[#111827] mb-2">
+                    {isCurrentMonth ? "Esta semana" : `${MESES[month - 1]} ${year}`}
+                  </p>
+                  {reflectionLoading ? (
+                    <p className="text-[13px] text-[#6B7280]">A carregar...</p>
+                  ) : reflectionStats ? (
+                    <>
+                      <p className="text-[13px] text-[#6B7280] leading-relaxed mb-3">
+                        {isCurrentMonth
+                          ? generateWeeklySummary(reflectionStats)
+                          : generateMonthlySummary(reflectionStats)}
+                      </p>
+                      {isCurrentMonth && reflectionStats.notesCount > 0 && (
+                        <Link
+                          href={`/notes?updatedDateStart=${getWeekRange(new Date()).weekStart}&updatedDateEnd=${getWeekRange(new Date()).weekEnd}`}
+                          className="text-[12px] font-medium text-[#003399] hover:underline"
+                        >
+                          Ver notas desta semana →
+                        </Link>
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-[13px] text-[#6B7280]">A carregar...</p>
+                  )}
+                </div>
+              </div>
+            )}
 
             <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
               <div className="flex items-center gap-2">
@@ -771,7 +1046,10 @@ export default function CalendarPage() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setDrawerOpen("goal")}
+                  onClick={() => {
+                    setEditingGoal(null);
+                    setDrawerOpen("goal");
+                  }}
                   className="px-4 py-2 text-sm font-medium text-gray-700 rounded-[12px] border border-[rgba(0,0,0,0.08)] hover:bg-[rgba(0,0,0,0.03)]"
                 >
                   Definir objetivo
@@ -833,6 +1111,11 @@ export default function CalendarPage() {
                   setEditingEvent(detailEvent);
                 }}
                 onDelete={() => setConfirmDelete(detailEvent)}
+                onGoalEventMoved={() => {
+                  loadMonth();
+                  if (viewMode === "day") loadDay(cursorDate);
+                  setDetailEvent(null);
+                }}
               />
             )}
 
@@ -849,9 +1132,14 @@ export default function CalendarPage() {
             )}
             {drawerOpen === "goal" && (
               <GoalDrawer
-                onClose={() => setDrawerOpen(null)}
+                editingGoal={editingGoal}
+                onClose={() => {
+                  setDrawerOpen(null);
+                  setEditingGoal(null);
+                }}
                 onSaved={() => {
                   setDrawerOpen(null);
+                  setEditingGoal(null);
                   loadMonth();
                   loadGoals();
                   if (viewMode === "day") loadDay(cursorDate);
@@ -884,14 +1172,34 @@ function EventDetailPopover({
   onClose,
   onEdit,
   onDelete,
+  onGoalEventMoved,
 }: {
   event: CalendarEvent;
   onClose: () => void;
   onEdit: () => void;
   onDelete: () => void;
+  onGoalEventMoved?: () => void;
 }) {
-  const isAuto = event.event_type === "auto_lesson" || event.event_type === "auto_exam" || event.event_type === "auto_practice";
+  const [showMoveDate, setShowMoveDate] = useState(false);
+  const [moveDate, setMoveDate] = useState(event.event_date);
+  const [moving, setMoving] = useState(false);
   const style = getEventStyle(event);
+
+  const handleMoveGoalEvent = async () => {
+    if (moveDate === event.event_date) return;
+    setMoving(true);
+    try {
+      const { moveGoalEvent } = await import("@/lib/calendar-service");
+      const updated = await moveGoalEvent(event.id, moveDate);
+      if (updated) {
+        onGoalEventMoved?.();
+        onClose();
+      }
+    } finally {
+      setMoving(false);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center p-4" onClick={onClose}>
       <div className="absolute inset-0 bg-black/20" />
@@ -915,10 +1223,33 @@ function EventDetailPopover({
             )}
           </div>
         </div>
+        {event.event_type === "goal" && showMoveDate && (
+          <div className="mt-3 pt-3 border-t border-[rgba(0,0,0,0.06)]">
+            <p className="text-[12px] font-medium text-gray-700 mb-2">Mover para outra data</p>
+            <div className="flex gap-2 items-center">
+              <input
+                type="date"
+                value={moveDate}
+                onChange={(e) => setMoveDate(e.target.value)}
+                className="flex-1 px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm"
+              />
+              <button
+                type="button"
+                onClick={handleMoveGoalEvent}
+                disabled={moving || moveDate === event.event_date}
+                className="px-3 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50"
+              >
+                {moving ? "A guardar..." : "Mover"}
+              </button>
+            </div>
+          </div>
+        )}
         <div className="flex justify-end gap-2 mt-4 pt-3 border-t border-[rgba(0,0,0,0.06)]">
           {event.event_type === "goal" && (
             <>
-              <button type="button" onClick={onEdit} className="text-sm font-medium text-gray-600 hover:text-gray-900">Ajustar</button>
+              <button type="button" onClick={() => setShowMoveDate((v) => !v)} className="text-sm font-medium text-gray-600 hover:text-gray-900">
+                {showMoveDate ? "Ocultar data" : "Ajustar"}
+              </button>
               <button type="button" onClick={onDelete} className="text-sm font-medium text-red-600 hover:text-red-700">Apagar</button>
             </>
           )}

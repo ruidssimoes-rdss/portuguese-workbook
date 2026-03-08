@@ -120,6 +120,110 @@ export async function getGoalsForDisplay(): Promise<UserGoal[]> {
   return data.map(mapRowToGoal);
 }
 
+export interface UpdateGoalPlanEventsItem {
+  title: string;
+  date: string;
+  linkedId: string;
+  linkedType: "lesson" | "verb" | "grammar";
+}
+
+/** Update goal target date/study days and regenerate future events. Caller must pass new events (from generateGoalPlan). */
+export async function updateGoalPlan(
+  goalId: string,
+  updates: {
+    targetDate: string;
+    studyDays: number[];
+    events: UpdateGoalPlanEventsItem[];
+  }
+): Promise<{ eventsDeleted: number; eventsCreated: number } | null> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data: goal } = await supabase
+    .from("user_goals")
+    .select("*")
+    .eq("id", goalId)
+    .eq("user_id", user.id)
+    .single();
+
+  if (!goal) return null;
+
+  const today = new Date().toISOString().split("T")[0];
+
+  const { data: deleted } = await supabase
+    .from("user_calendar_events")
+    .delete()
+    .eq("goal_id", goalId)
+    .gt("event_date", today)
+    .select("id");
+
+  const eventsDeleted = deleted?.length ?? 0;
+
+  if (updates.events.length > 0) {
+    const eventRows = updates.events.map((e) => ({
+      user_id: user.id,
+      title: e.title,
+      description: null,
+      event_date: e.date,
+      start_time: null,
+      end_time: null,
+      all_day: true,
+      event_type: "goal" as const,
+      linked_type: e.linkedType,
+      linked_id: e.linkedId,
+      linked_label: e.title,
+      linked_score: null,
+      linked_passed: null,
+      color: "#0EA5E9",
+      goal_id: goalId,
+    }));
+    await supabase.from("user_calendar_events").insert(eventRows);
+  }
+
+  await supabase
+    .from("user_goals")
+    .update({
+      target_date: updates.targetDate,
+      study_days: updates.studyDays,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", goalId)
+    .eq("user_id", user.id);
+
+  return {
+    eventsDeleted,
+    eventsCreated: updates.events.length,
+  };
+}
+
+/** Deactivate goal and remove future events. Past events remain. */
+export async function deleteGoal(goalId: string): Promise<boolean> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return false;
+
+  const today = new Date().toISOString().split("T")[0];
+
+  await supabase
+    .from("user_calendar_events")
+    .delete()
+    .eq("goal_id", goalId)
+    .gt("event_date", today);
+
+  const { error } = await supabase
+    .from("user_goals")
+    .update({ is_active: false, updated_at: new Date().toISOString() })
+    .eq("id", goalId)
+    .eq("user_id", user.id);
+
+  return !error;
+}
+
 export async function updateGoalProgress(
   goalType: string,
   completedCount: number

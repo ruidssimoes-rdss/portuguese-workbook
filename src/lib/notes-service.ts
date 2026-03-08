@@ -26,6 +26,9 @@ export interface NoteFilters {
   search?: string;
   /** Filter notes updated on this date (YYYY-MM-DD) */
   updatedDate?: string;
+  /** Filter notes updated within this range (inclusive) */
+  updatedDateStart?: string;
+  updatedDateEnd?: string;
 }
 
 export async function getUserNotes(
@@ -41,6 +44,7 @@ export async function getUserNotes(
     .from("user_notes")
     .select("*")
     .eq("user_id", user.id)
+    .order("is_pinned", { ascending: false })
     .order("updated_at", { ascending: false });
 
   if (filters?.isArchived !== undefined) {
@@ -55,22 +59,22 @@ export async function getUserNotes(
   if (filters?.contextId != null) {
     query = query.eq("context_id", filters.contextId);
   }
-  if (filters?.updatedDate) {
+  if (filters?.updatedDateStart && filters?.updatedDateEnd) {
+    query = query
+      .gte("updated_at", filters.updatedDateStart + "T00:00:00")
+      .lte("updated_at", filters.updatedDateEnd + "T23:59:59");
+  } else if (filters?.updatedDate) {
     query = query.gte("updated_at", filters.updatedDate + "T00:00:00").lte("updated_at", filters.updatedDate + "T23:59:59");
+  }
+  if (filters?.search?.trim()) {
+    const q = filters.search.trim().replace(/,/g, " ").replace(/'/g, "''");
+    const term = `%${q}%`;
+    query = query.or(`title.ilike.${term},content.ilike.${term}`);
   }
 
   const { data, error } = await query;
-  if (error || !data) return [];
-
-  let notes: Note[] = data.map((row) => mapRowToNote(row));
-  if (filters?.search?.trim()) {
-    const q = filters.search.trim().toLowerCase();
-    notes = notes.filter(
-      (n) =>
-        (n.title ?? "").toLowerCase().includes(q) ||
-        n.content.toLowerCase().includes(q)
-    );
-  }
+  if (error) return [];
+  const notes: Note[] = (data ?? []).map((row) => mapRowToNote(row));
   return notes;
 }
 

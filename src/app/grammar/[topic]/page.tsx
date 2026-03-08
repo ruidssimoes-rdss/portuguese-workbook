@@ -11,6 +11,7 @@ import { Divider } from "@/components/ui/divider";
 import { CEFRBadge } from "@/components/ui/badge";
 import { StudyLogButton } from "@/components/study-log-button";
 import { NoteContextActions } from "@/components/notes/note-context-actions";
+import { ContentCalendarInfo } from "@/components/calendar/content-calendar-info";
 import { SectionHeader } from "@/components/ui/section-header";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic, GrammarRule } from "@/types/grammar";
@@ -342,12 +343,13 @@ export default function GrammarTopicPage() {
                 {topic.summary}
               </p>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-4 flex-wrap shrink-0">
               <NoteContextActions
                 contextType="grammar"
                 contextId={topicId}
                 contextLabel={topic.title}
               />
+              <ContentCalendarInfo contentType="grammar" contentId={topicId} />
               <StudyLogButton contextTitle={topic.title} contextType="Grammar" />
               <CEFRBadge level={topic.cefr} />
             </div>

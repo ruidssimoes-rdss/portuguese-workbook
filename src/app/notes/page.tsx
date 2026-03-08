@@ -407,7 +407,8 @@ function NotesContent() {
   const searchParams = useSearchParams();
   const [filterId, setFilterId] = useState("all");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
-  const [search, setSearch] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -423,6 +424,13 @@ function NotesContent() {
 
   const urlContextType = searchParams.get("contextType");
   const urlContextId = searchParams.get("contextId");
+  const updatedDateStart = searchParams.get("updatedDateStart") ?? undefined;
+  const updatedDateEnd = searchParams.get("updatedDateEnd") ?? undefined;
+
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedSearch(searchInput), 300);
+    return () => clearTimeout(t);
+  }, [searchInput]);
 
   const fetchNotes = useCallback(async () => {
     setLoading(true);
@@ -434,12 +442,14 @@ function NotesContent() {
       contextId: contextIdToUse,
       isPinned: f?.isPinned,
       isArchived: f?.isArchived ?? (filterId === "all" ? false : undefined),
-      search: search.trim() || undefined,
-      updatedDate: updatedDate || undefined,
+      search: debouncedSearch.trim() || undefined,
+      updatedDate: updatedDateStart && updatedDateEnd ? undefined : updatedDate || undefined,
+      updatedDateStart: updatedDateStart || undefined,
+      updatedDateEnd: updatedDateEnd || undefined,
     });
     setNotes(list);
     setLoading(false);
-  }, [filterId, search, searchParams, urlContextId]);
+  }, [filterId, debouncedSearch, searchParams, urlContextId, updatedDateStart, updatedDateEnd]);
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -564,8 +574,8 @@ function NotesContent() {
               <div className="flex-1 min-w-[160px] max-w-xs ml-auto">
                 <input
                   type="search"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
                   placeholder="Pesquisar..."
                   className="w-full px-3 py-2 rounded-[12px] text-sm border border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.1)] focus:ring-1 focus:ring-[rgba(0,0,0,0.05)] outline-none"
                 />
@@ -592,7 +602,9 @@ function NotesContent() {
             )}
 
             {loading ? (
-              <p className="text-sm text-gray-500 py-8">A carregar...</p>
+              <p className="text-sm text-gray-500 py-8">
+                {debouncedSearch.trim() ? "A pesquisar..." : "A carregar..."}
+              </p>
             ) : sortedNotes.length === 0 ? (
               <div className="text-center py-16">
                 <h3 className="text-lg font-semibold text-gray-900">Ainda sem notas</h3>

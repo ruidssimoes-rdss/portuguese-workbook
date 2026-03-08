@@ -12,6 +12,7 @@ import { CEFRBadge, Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { StudyLogButton } from "@/components/study-log-button";
 import { NoteContextActions } from "@/components/notes/note-context-actions";
+import { ContentCalendarInfo } from "@/components/calendar/content-calendar-info";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import vocabData from "@/data/vocab.json";
 import type { VocabData, VocabWord } from "@/types/vocab";
@@ -273,12 +274,13 @@ export default function VocabCategoryPage() {
                 {CATEGORY_PT_TITLE[category.id] ?? ""}
               </span>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-4 flex-wrap shrink-0">
               <NoteContextActions
                 contextType="vocabulary"
                 contextId={category.id}
                 contextLabel={category.title}
               />
+              <ContentCalendarInfo contentType="vocabulary" contentId={category.id} />
               <StudyLogButton contextTitle={category.title} contextType="Vocabulary" />
             </div>
           </div>

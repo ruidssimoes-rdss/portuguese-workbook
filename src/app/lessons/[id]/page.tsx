@@ -7,6 +7,7 @@ import { ProtectedRoute } from "@/components/protected-route";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { CEFRBadge } from "@/components/ui/badge";
 import { NoteContextActions } from "@/components/notes/note-context-actions";
+import { ContentCalendarInfo } from "@/components/calendar/content-calendar-info";
 import {
   getResolvedLesson,
   getCurriculumLesson,
@@ -984,12 +985,13 @@ function LessonContent({ id }: { id: string }) {
                 {lesson.ptTitle}
               </p>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-4 flex-wrap shrink-0">
               <NoteContextActions
                 contextType="lesson"
                 contextId={lesson.id}
                 contextLabel={lesson.title}
               />
+              <ContentCalendarInfo contentType="lesson" contentId={lesson.id} />
               <CEFRBadge level={lesson.cefr} />
             </div>
           </div>

@@ -11,6 +11,7 @@ import { CEFRBadge, Badge } from "@/components/ui/badge";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { StudyLogButton } from "@/components/study-log-button";
 import { NoteContextActions } from "@/components/notes/note-context-actions";
+import { ContentCalendarInfo } from "@/components/calendar/content-calendar-info";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 
@@ -103,12 +104,13 @@ export default function VerbPage() {
                 {m.english} · {m.group}
               </p>
             </div>
-            <div className="flex items-center gap-3 flex-wrap shrink-0">
+            <div className="flex items-center gap-4 flex-wrap shrink-0">
               <NoteContextActions
                 contextType="verb"
                 contextId={slug}
                 contextLabel={`${slug} — ${m.english}`}
               />
+              <ContentCalendarInfo contentType="verb" contentId={slug} />
               <StudyLogButton contextTitle={`${slug} — ${m.english}`} contextType="Verbs" />
               <Badge color={
                 m.priority === "Essential" ? "text-red-700 bg-red-50"

@@ -190,6 +190,29 @@ export async function deleteEvent(eventId: string): Promise<boolean> {
   return !error;
 }
 
+/** Move a single goal event to a new date (does not regenerate the full plan). */
+export async function moveGoalEvent(
+  eventId: string,
+  newDate: string
+): Promise<CalendarEvent | null> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data: row, error } = await supabase
+    .from("user_calendar_events")
+    .update({ event_date: newDate })
+    .eq("id", eventId)
+    .eq("user_id", user.id)
+    .select()
+    .single();
+
+  if (error || !row) return null;
+  return mapRowToEvent(row);
+}
+
 const LESSON_PASSED_COLOR = "#16A34A";
 const PRACTICE_COLOR = "#8B5CF6";
 const LESSON_FAILED_COLOR = "#F59E0B";
@@ -358,6 +381,170 @@ export async function logPracticeSession(data: LogPracticeSessionData): Promise<
 
   if (error || !row) return null;
   return mapRowToEvent(row);
+}
+
+export interface ContentCalendarInfoResult {
+  completedDate?: string;
+  scheduledDate?: string;
+  lastReviewDate?: string;
+}
+
+export async function getContentCalendarInfo(
+  contentType: string,
+  contentId: string
+): Promise<ContentCalendarInfoResult> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return {};
+
+  const today = new Date().toISOString().split("T")[0];
+
+  if (contentType === "lesson") {
+    const { data: completion } = await supabase
+      .from("user_calendar_events")
+      .select("event_date")
+      .eq("user_id", user.id)
+      .eq("linked_id", contentId)
+      .eq("event_type", "auto_lesson")
+      .eq("linked_passed", true)
+      .order("event_date", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    if (completion?.event_date) return { completedDate: completion.event_date as string };
+  }
+
+  const { data: scheduled } = await supabase
+    .from("user_calendar_events")
+    .select("event_date")
+    .eq("user_id", user.id)
+    .eq("linked_id", contentId)
+    .eq("event_type", "goal")
+    .gte("event_date", today)
+    .order("event_date", { ascending: true })
+    .limit(1)
+    .maybeSingle();
+
+  if (scheduled?.event_date) return { scheduledDate: scheduled.event_date as string };
+
+  if (contentType === "lesson") return {};
+
+  const { data: review } = await supabase
+    .from("user_calendar_events")
+    .select("event_date")
+    .eq("user_id", user.id)
+    .eq("linked_id", contentId)
+    .in("event_type", ["auto_practice", "planned"])
+    .lt("event_date", today)
+    .order("event_date", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (review?.event_date) return { lastReviewDate: review.event_date as string };
+
+  return {};
+}
+
+export interface WeeklyStats {
+  studyDays: number;
+  notesCount: number;
+  lessonsCompleted: number;
+  practiceSessions: number;
+  examsTaken: number;
+}
+
+const EMPTY_STATS: WeeklyStats = {
+  studyDays: 0,
+  notesCount: 0,
+  lessonsCompleted: 0,
+  practiceSessions: 0,
+  examsTaken: 0,
+};
+
+export async function getWeeklyStats(
+  weekStart: string,
+  weekEnd: string
+): Promise<WeeklyStats> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return EMPTY_STATS;
+
+  const [eventsRes, notesRes] = await Promise.all([
+    supabase
+      .from("user_calendar_events")
+      .select("event_type, event_date, linked_passed")
+      .eq("user_id", user.id)
+      .gte("event_date", weekStart)
+      .lte("event_date", weekEnd),
+    supabase
+      .from("user_notes")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id)
+      .gte("updated_at", weekStart + "T00:00:00")
+      .lte("updated_at", weekEnd + "T23:59:59"),
+  ]);
+
+  const events = eventsRes.data ?? [];
+  const notesCount = notesRes.count ?? 0;
+
+  const studyDays = new Set(events.map((e) => e.event_date)).size;
+  const lessonsCompleted = events.filter((e) => e.event_type === "auto_lesson" && e.linked_passed).length;
+  const practiceSessions = events.filter((e) => e.event_type === "auto_practice").length;
+  const examsTaken = events.filter((e) => e.event_type === "auto_exam").length;
+
+  return {
+    studyDays,
+    notesCount,
+    lessonsCompleted,
+    practiceSessions,
+    examsTaken,
+  };
+}
+
+export async function getMonthlyStats(
+  monthStart: string,
+  monthEnd: string
+): Promise<WeeklyStats> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return EMPTY_STATS;
+
+  const [eventsRes, notesRes] = await Promise.all([
+    supabase
+      .from("user_calendar_events")
+      .select("event_type, event_date, linked_passed")
+      .eq("user_id", user.id)
+      .gte("event_date", monthStart)
+      .lte("event_date", monthEnd),
+    supabase
+      .from("user_notes")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id)
+      .gte("updated_at", monthStart + "T00:00:00")
+      .lte("updated_at", monthEnd + "T23:59:59"),
+  ]);
+
+  const events = eventsRes.data ?? [];
+  const notesCount = notesRes.count ?? 0;
+
+  const studyDays = new Set(events.map((e) => e.event_date)).size;
+  const lessonsCompleted = events.filter((e) => e.event_type === "auto_lesson" && e.linked_passed).length;
+  const practiceSessions = events.filter((e) => e.event_type === "auto_practice").length;
+  const examsTaken = events.filter((e) => e.event_type === "auto_exam").length;
+
+  return {
+    studyDays,
+    notesCount,
+    lessonsCompleted,
+    practiceSessions,
+    examsTaken,
+  };
 }
 
 function mapRowToEvent(row: Record<string, unknown>): CalendarEvent {
