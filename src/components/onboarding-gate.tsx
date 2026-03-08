@@ -28,7 +28,7 @@ export function OnboardingGate({ children }: { children: React.ReactNode }) {
   if (loading || checkingOnboarding) {
     return (
       <div className="flex items-center justify-center min-h-[50vh]">
-        <p className="text-[15px] text-[#9CA3AF]">A carregar...</p>
+        <p className="text-[15px] text-[var(--text-muted)]">A carregar...</p>
       </div>
     );
   }

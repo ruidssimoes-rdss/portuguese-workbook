@@ -137,10 +137,22 @@ export default function SettingsPage() {
     const supabase = createClient();
     const [profileRes, settingsRes, onboardingData, goals] = await Promise.all([
       supabase.from("profiles").select("*").eq("id", user.id).single(),
-      supabase.from("user_settings").select("*").eq("user_id", user.id).single(),
+      supabase.from("user_settings").select("*").eq("user_id", user.id).maybeSingle(),
       getOnboardingData(),
       getActiveGoals(),
     ]);
+
+    if (!settingsRes.data && !settingsRes.error) {
+      await supabase.from("user_settings").insert({
+        user_id: user.id,
+        pronunciation_speed: 0.85,
+        show_phonetics: true,
+        daily_goal: 10,
+        theme: "system",
+        show_translations: true,
+        preferred_study_time: "evening",
+      });
+    }
 
     if (profileRes.data) {
       setProfile(profileRes.data as Profile);
@@ -154,7 +166,7 @@ export default function SettingsPage() {
       setDailyGoal(s.daily_goal ?? 10);
       setShowTranslations(s.show_translations ?? true);
       setPreferredStudyTime(s.preferred_study_time ?? "evening");
-    } else if (!settingsRes.error || settingsRes.error.code !== "PGRST116") {
+    } else {
       setPronunciationSpeed(0.85);
       setShowPhonetics(true);
       setDailyGoal(10);

@@ -167,25 +167,25 @@ export function PersonalisedHomepage({
       <section className="w-full bg-bg">
         <div className="max-w-[1280px] mx-auto px-6 pt-14 pb-8">
           <div className="mb-8">
-            <h1 className="text-[28px] font-bold text-[#111827] tracking-tight">
+            <h1 className="text-[28px] font-bold text-[var(--text-primary)] tracking-tight">
               {greeting}, {data.displayName}
             </h1>
-            <p className="text-[15px] text-[#6B7280] mt-1">{subtitle}</p>
+            <p className="text-[15px] text-[var(--text-secondary)] mt-1">{subtitle}</p>
           </div>
         </div>
       </section>
       <PageContainer>
         {/* Milestone banner (streak or progress) — max one */}
         {showOneMilestoneBanner && (
-          <div className="bg-[#F0F7FF] border border-[#003399]/10 rounded-[12px] px-5 py-4 mb-4 flex items-center justify-between">
+          <div className="bg-[var(--brand-light)] border border-[var(--brand)]/10 rounded-[12px] px-5 py-4 mb-4 flex items-center justify-between">
             <div>
-              <p className="text-[15px] font-semibold text-[#003399]">
+              <p className="text-[15px] font-semibold text-[var(--brand)]">
                 {showProgressBanner && progressMilestone
                   ? progressMilestone.messagePt
                   : `${data.currentStreak} dias consecutivos`}
               </p>
               {showStreakBanner && (
-                <p className="text-[13px] text-[#6B7280]">
+                <p className="text-[13px] text-[var(--text-secondary)]">
                   {STREAK_MILESTONE_MESSAGES[data.currentStreak] ?? "Consistência é a chave."}
                 </p>
               )}
@@ -193,7 +193,7 @@ export function PersonalisedHomepage({
             <button
               type="button"
               onClick={showProgressBanner ? handleDismissProgressBanner : handleDismissStreakBanner}
-              className="text-[#9CA3AF] hover:text-[#6B7280] text-xl leading-none"
+              className="text-[var(--text-muted)] hover:text-[var(--text-secondary)] text-xl leading-none"
               aria-label="Fechar"
             >
               ×
@@ -203,11 +203,11 @@ export function PersonalisedHomepage({
 
         {/* Goal suggestion banner */}
         {showGoalSuggestion && (
-          <div className="bg-[#003399]/5 border border-[#003399]/15 rounded-[12px] p-5 mb-6">
-            <p className="text-[14px] text-[#111827] mb-1">
+          <div className="bg-[var(--brand-light)] border border-[var(--brand)]/15 rounded-[12px] p-5 mb-6">
+            <p className="text-[14px] text-[var(--text-primary)] mb-1">
               Disseste que queres {data.goalSuggestion!.targetDescription}.
             </p>
-            <p className="text-[13px] text-[#6B7280] mb-4">
+            <p className="text-[13px] text-[var(--text-secondary)] mb-4">
               {data.goalSuggestion!.description} Com {data.goalSuggestion!.studyDaysPerWeek} dias por semana, podes acabar até {data.goalSuggestion!.estimatedDate}.
             </p>
             <div className="flex items-center gap-3">
@@ -222,7 +222,7 @@ export function PersonalisedHomepage({
               <button
                 type="button"
                 onClick={handleDismissSuggestion}
-                className="px-5 py-2 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors"
+                className="px-5 py-2 text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
               >
                 Agora não
               </button>
@@ -231,18 +231,18 @@ export function PersonalisedHomepage({
         )}
 
         {/* Continue Learning */}
-        <div className="bg-white border border-[#E5E7EB] rounded-[12px] p-6 mb-6">
+        <div className="bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-[12px] p-6 mb-6">
           {data.nextLesson ? (
             <>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-3">
                 A tua próxima lição
               </p>
-              <h2 className="text-[20px] font-bold text-[#111827] mb-1">
+              <h2 className="text-[20px] font-bold text-[var(--text-primary)] mb-1">
                 {data.nextLesson.titlePt}
               </h2>
-              <p className="text-[14px] text-[#6B7280] mb-4">{data.nextLesson.title}</p>
+              <p className="text-[14px] text-[var(--text-secondary)] mb-4">{data.nextLesson.title}</p>
               <div className="flex items-center gap-3 mb-4">
-                <div className="flex-1 h-1.5 bg-[#F0F0F0] rounded-full overflow-hidden">
+                <div className="flex-1 h-1.5 bg-[var(--border-light)] rounded-full overflow-hidden">
                   <div
                     className="h-full bg-[#003399] rounded-full transition-all duration-500"
                     style={{
@@ -250,7 +250,7 @@ export function PersonalisedHomepage({
                     }}
                   />
                 </div>
-                <span className="text-[12px] font-medium text-[#6B7280]">
+                <span className="text-[12px] font-medium text-[var(--text-secondary)]">
                   {data.currentLevelProgress.completed}/{data.currentLevelProgress.total} lições
                 </span>
               </div>
@@ -265,11 +265,11 @@ export function PersonalisedHomepage({
             </>
           ) : data.totalLessonsCompleted >= 44 ? (
             <>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-3">
                 Currículo completo
               </p>
-              <h2 className="text-[20px] font-bold text-[#111827] mb-1">Currículo Completo</h2>
-              <p className="text-[14px] text-[#6B7280] mb-4">
+              <h2 className="text-[20px] font-bold text-[var(--text-primary)] mb-1">Currículo Completo</h2>
+              <p className="text-[14px] text-[var(--text-secondary)] mb-4">
                 Completaste todas as 44 lições. Parabéns! Continua a praticar e a rever.
               </p>
               <div className="flex justify-center gap-3">
@@ -289,11 +289,11 @@ export function PersonalisedHomepage({
             </>
           ) : (
             <>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-3">
                 Parabéns
               </p>
-              <h2 className="text-[20px] font-bold text-[#111827] mb-1">Nível completo</h2>
-              <p className="text-[14px] text-[#6B7280] mb-4">
+              <h2 className="text-[20px] font-bold text-[var(--text-primary)] mb-1">Nível completo</h2>
+              <p className="text-[14px] text-[var(--text-secondary)] mb-4">
                 Estás pronto para o próximo nível.
               </p>
               <div className="flex justify-end">
@@ -310,31 +310,31 @@ export function PersonalisedHomepage({
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <div className="bg-[#FAFAFA] border border-[#E5E7EB] rounded-[12px] p-4 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-1">Série</p>
-            <p className="text-[22px] font-bold text-[#111827]">{data.currentStreak}</p>
-            <p className="text-[11px] text-[#9CA3AF]">{data.currentStreak === 1 ? "dia" : "dias"}</p>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">Série</p>
+            <p className="text-[22px] font-bold text-[var(--text-primary)]">{data.currentStreak}</p>
+            <p className="text-[11px] text-[var(--text-muted)]">{data.currentStreak === 1 ? "dia" : "dias"}</p>
           </div>
-          <div className="bg-[#FAFAFA] border border-[#E5E7EB] rounded-[12px] p-4 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-1">Palavras</p>
-            <p className="text-[22px] font-bold text-[#111827]">{data.totalWordsEncountered}</p>
-            <p className="text-[11px] text-[#9CA3AF]">aprendidas</p>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">Palavras</p>
+            <p className="text-[22px] font-bold text-[var(--text-primary)]">{data.totalWordsEncountered}</p>
+            <p className="text-[11px] text-[var(--text-muted)]">aprendidas</p>
           </div>
-          <div className="bg-[#FAFAFA] border border-[#E5E7EB] rounded-[12px] p-4 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-1">Nível</p>
-            <p className="text-[22px] font-bold text-[#111827]">{data.currentCefrLevel}</p>
-            <p className="text-[11px] text-[#9CA3AF]">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">Nível</p>
+            <p className="text-[22px] font-bold text-[var(--text-primary)]">{data.currentCefrLevel}</p>
+            <p className="text-[11px] text-[var(--text-muted)]">
               {data.currentLevelProgress.total > 0
                 ? `${Math.round((data.currentLevelProgress.completed / data.currentLevelProgress.total) * 100)}%`
                 : "—"}
             </p>
           </div>
-          <div className="bg-[#FAFAFA] border border-[#E5E7EB] rounded-[12px] p-4 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-1">Semana</p>
-            <p className="text-[22px] font-bold text-[#111827]">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">Semana</p>
+            <p className="text-[22px] font-bold text-[var(--text-primary)]">
               {data.weeklyStudyDays}/{data.weeklyTargetDays}
             </p>
-            <p className="text-[11px] text-[#9CA3AF]">dias</p>
+            <p className="text-[11px] text-[var(--text-muted)]">dias</p>
           </div>
         </div>
         <div className="flex justify-end mb-2">
@@ -348,7 +348,7 @@ export function PersonalisedHomepage({
 
         {/* Weekly target nudge */}
         {showWeeklyNudge && (
-          <p className="text-[13px] text-[#6B7280] mb-6">
+          <p className="text-[13px] text-[var(--text-secondary)] mb-6">
             Esta semana: {data.weeklyStudyDays} de {data.weeklyTargetDays} dias. {data.weeklyTargetDays - data.weeklyStudyDays === 1 ? "Falta 1 dia" : `Faltam ${data.weeklyTargetDays - data.weeklyStudyDays} dias`} — tens até {weekEndStr}.
           </p>
         )}
@@ -357,9 +357,9 @@ export function PersonalisedHomepage({
         <div className="flex items-center justify-center gap-4 mb-8">
           {["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"].map((day, i) => (
             <div key={day} className="flex flex-col items-center gap-1.5">
-              <span className="text-[10px] font-medium text-[#9CA3AF]">{day}</span>
+              <span className="text-[10px] font-medium text-[var(--text-muted)]">{day}</span>
               <div
-                className={`w-3 h-3 rounded-full ${data.weekDayActivity[i] ? "bg-[#003399]" : "bg-[#E5E7EB]"}`}
+                className={`w-3 h-3 rounded-full ${data.weekDayActivity[i] ? "bg-[var(--brand)]" : "bg-[var(--border-primary)]"}`}
                 aria-hidden
               />
             </div>
@@ -372,10 +372,10 @@ export function PersonalisedHomepage({
             <SectionHeader className="mb-3">Rever hoje</SectionHeader>
             <div className="space-y-3">
               {data.weakVerbs.length > 0 && (
-                <div className="border border-[#E5E7EB] rounded-[12px] p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div className="border border-[var(--border-primary)] rounded-[12px] p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div>
-                    <p className="text-[15px] font-semibold text-[#111827]">Verbos para rever</p>
-                    <p className="text-[13px] text-[#6B7280] mt-0.5">
+                    <p className="text-[15px] font-semibold text-[var(--text-primary)]">Verbos para rever</p>
+                    <p className="text-[13px] text-[var(--text-secondary)] mt-0.5">
                       {data.weakVerbs.slice(0, 5).join(", ")}
                       {data.weakVerbs.length > 5 ? " — erraste estes recentemente" : " — erraste estes recentemente"}
                     </p>
@@ -389,12 +389,12 @@ export function PersonalisedHomepage({
                 </div>
               )}
               {data.weakCategories.length > 0 && (
-                <div className="border border-[#E5E7EB] rounded-[12px] p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div className="border border-[var(--border-primary)] rounded-[12px] p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div>
-                    <p className="text-[15px] font-semibold text-[#111827]">
+                    <p className="text-[15px] font-semibold text-[var(--text-primary)]">
                       Vocabulário: {data.weakCategories[0].title}
                     </p>
-                    <p className="text-[13px] text-[#6B7280] mt-0.5">Precisas de rever esta categoria</p>
+                    <p className="text-[13px] text-[var(--text-secondary)] mt-0.5">Precisas de rever esta categoria</p>
                   </div>
                   <Link
                     href={`/vocabulary/${data.weakCategories[0].id}`}
@@ -405,12 +405,12 @@ export function PersonalisedHomepage({
                 </div>
               )}
               {data.weakGrammar.length > 0 && (
-                <div className="border border-[#E5E7EB] rounded-[12px] p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div className="border border-[var(--border-primary)] rounded-[12px] p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div>
-                    <p className="text-[15px] font-semibold text-[#111827]">
+                    <p className="text-[15px] font-semibold text-[var(--text-primary)]">
                       Gramática: {data.weakGrammar[0].title}
                     </p>
-                    <p className="text-[13px] text-[#6B7280] mt-0.5">Volta a ler esta regra</p>
+                    <p className="text-[13px] text-[var(--text-secondary)] mt-0.5">Volta a ler esta regra</p>
                   </div>
                   <Link
                     href={`/grammar/${data.weakGrammar[0].slug}`}

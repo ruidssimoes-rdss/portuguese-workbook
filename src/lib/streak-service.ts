@@ -5,7 +5,8 @@ export async function updateStreak(): Promise<void> {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
 
-  const today = new Date().toISOString().split("T")[0];
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 
   const { data: profile } = await supabase
     .from("profiles")
@@ -19,9 +20,9 @@ export async function updateStreak(): Promise<void> {
 
   if (lastActive === today) return;
 
-  const yesterday = new Date();
+  const yesterday = new Date(now);
   yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayStr = yesterday.toISOString().split("T")[0];
+  const yesterdayStr = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, "0")}-${String(yesterday.getDate()).padStart(2, "0")}`;
 
   const current = (profile.current_streak as number) ?? 0;
   const longest = (profile.longest_streak as number) ?? 0;

@@ -572,11 +572,11 @@ function NotesContent() {
         </div>
 
         {!isLoggedIn ? (
-          <div className="border border-[rgba(0,0,0,0.06)] rounded-[12px] p-8 bg-white text-center">
-            <p className="text-[15px] font-semibold text-gray-900">
+          <div className="border border-[var(--border-primary)] rounded-[12px] p-8 bg-[var(--bg-card)] text-center">
+            <p className="text-[15px] font-semibold text-[var(--text-primary)]">
               Inicia sessão para usar o caderno
             </p>
-            <p className="text-[13px] text-gray-500 mt-1">
+            <p className="text-[13px] text-[var(--text-secondary)] mt-1">
               Guarda as tuas notas e sincroniza entre dispositivos.
             </p>
             <Link
@@ -596,8 +596,8 @@ function NotesContent() {
                   onClick={() => setFilterId(f.id)}
                   className={`px-3 py-1.5 rounded-[12px] text-sm font-medium border transition-all ${
                     filterId === f.id
-                      ? "bg-[rgba(0,0,0,0.05)] text-gray-900 border-[rgba(0,0,0,0.08)]"
-                      : "border-[rgba(0,0,0,0.06)] text-gray-500 hover:text-gray-700 hover:border-[rgba(0,0,0,0.1)] bg-white"
+                      ? "bg-[var(--bg-active)] text-[var(--text-primary)] border-[var(--border-primary)]"
+                      : "border-[var(--border-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-primary)] bg-[var(--bg-card)]"
                   }`}
                 >
                   {f.label}
@@ -635,7 +635,7 @@ function NotesContent() {
 
             {dateFilterLabel && (
               <div className="flex items-center justify-between gap-2 mb-4 px-3 py-2 rounded-[12px] bg-[#F5F5F5] border border-[#E5E7EB]">
-                <span className="text-[13px] text-[#6B7280]">{dateFilterLabel}</span>
+                <span className="text-[13px] text-[var(--text-secondary)]">{dateFilterLabel}</span>
                 <button
                   type="button"
                   onClick={clearDateFilter}

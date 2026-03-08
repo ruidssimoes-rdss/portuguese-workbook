@@ -14,10 +14,10 @@ interface CardProps {
 }
 
 const variantClasses: Record<CardVariant, string> = {
-  outline: "border border-border bg-bg",
-  surface: "bg-surface border border-border",
+  outline: "border border-[var(--border-primary)] bg-[var(--bg-card)]",
+  surface: "bg-[var(--bg-secondary)] border border-[var(--border-primary)]",
   ghost: "bg-transparent",
-  featured: "border border-border bg-bg border-l-[3px] border-l-[#003399]",
+  featured: "border border-[var(--border-primary)] bg-[var(--bg-card)] border-l-[3px] border-l-[var(--brand)]",
 };
 
 const paddingClasses = {
