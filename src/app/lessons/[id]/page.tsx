@@ -6,6 +6,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { ProtectedRoute } from "@/components/protected-route";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { CEFRBadge } from "@/components/ui/badge";
+import { NoteContextActions } from "@/components/notes/note-context-actions";
 import {
   getResolvedLesson,
   getCurriculumLesson,
@@ -972,15 +973,11 @@ function LessonContent({ id }: { id: string }) {
               </p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <Link
-                href={`/notes?contextType=lesson&contextId=${encodeURIComponent(lesson.id)}&contextLabel=${encodeURIComponent(lesson.title)}`}
-                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#003399] transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-                Add note
-              </Link>
+              <NoteContextActions
+                contextType="lesson"
+                contextId={lesson.id}
+                contextLabel={lesson.title}
+              />
               <CEFRBadge level={lesson.cefr} />
             </div>
           </div>

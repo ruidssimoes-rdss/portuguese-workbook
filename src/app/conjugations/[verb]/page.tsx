@@ -10,6 +10,7 @@ import { Divider } from "@/components/ui/divider";
 import { CEFRBadge, Badge } from "@/components/ui/badge";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { StudyLogButton } from "@/components/study-log-button";
+import { NoteContextActions } from "@/components/notes/note-context-actions";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 
@@ -103,15 +104,11 @@ export default function VerbPage() {
               </p>
             </div>
             <div className="flex items-center gap-3 flex-wrap shrink-0">
-              <Link
-                href={`/notes?contextType=verb&contextId=${encodeURIComponent(slug)}&contextLabel=${encodeURIComponent(`${slug} — ${m.english}`)}`}
-                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#003399] transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-                Add note
-              </Link>
+              <NoteContextActions
+                contextType="verb"
+                contextId={slug}
+                contextLabel={`${slug} — ${m.english}`}
+              />
               <StudyLogButton contextTitle={`${slug} — ${m.english}`} contextType="Verbs" />
               <Badge color={
                 m.priority === "Essential" ? "text-red-700 bg-red-50"

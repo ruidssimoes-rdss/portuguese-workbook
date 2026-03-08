@@ -10,6 +10,7 @@ import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
 import { CEFRBadge } from "@/components/ui/badge";
 import { StudyLogButton } from "@/components/study-log-button";
+import { NoteContextActions } from "@/components/notes/note-context-actions";
 import { SectionHeader } from "@/components/ui/section-header";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic, GrammarRule } from "@/types/grammar";
@@ -342,15 +343,11 @@ export default function GrammarTopicPage() {
               </p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <Link
-                href={`/notes?contextType=grammar&contextId=${encodeURIComponent(topicId)}&contextLabel=${encodeURIComponent(topic.title)}`}
-                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#003399] transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-                Add note
-              </Link>
+              <NoteContextActions
+                contextType="grammar"
+                contextId={topicId}
+                contextLabel={topic.title}
+              />
               <StudyLogButton contextTitle={topic.title} contextType="Grammar" />
               <CEFRBadge level={topic.cefr} />
             </div>

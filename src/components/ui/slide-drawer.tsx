@@ -31,7 +31,7 @@ export function SlideDrawer({
         aria-hidden
       />
       <div
-        className="relative w-full max-w-lg bg-white shadow-xl flex flex-col max-h-full animate-slide-in-right"
+        className="relative w-full max-w-[420px] bg-white shadow-xl flex flex-col max-h-full animate-slide-in-right"
         role="dialog"
         aria-label={ariaLabel}
       >

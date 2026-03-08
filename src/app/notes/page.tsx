@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, Suspense } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Topbar } from "@/components/layout/topbar";
@@ -134,11 +134,13 @@ function NoteEditorDrawer({
   const [note, setNote] = useState<Note | null>(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [newTag, setNewTag] = useState("");
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastSavedRef = useRef({ title: "", content: "" });
+  const lastSavedRef = useRef({ title: "", content: "", tags: [] as string[] });
 
   const loadNote = useCallback(async (id: string) => {
     const n = await getNoteById(id);
@@ -146,7 +148,8 @@ function NoteEditorDrawer({
       setNote(n);
       setTitle(n.title ?? "");
       setContent(n.content);
-      lastSavedRef.current = { title: n.title ?? "", content: n.content };
+      setTags(n.tags ?? []);
+      lastSavedRef.current = { title: n.title ?? "", content: n.content, tags: n.tags ?? [] };
     }
   }, []);
 
@@ -164,7 +167,8 @@ function NoteEditorDrawer({
           setNote(n);
           setTitle(n.title ?? "");
           setContent(n.content);
-          lastSavedRef.current = { title: n.title ?? "", content: n.content };
+          setTags(n.tags ?? []);
+          lastSavedRef.current = { title: n.title ?? "", content: n.content, tags: n.tags ?? [] };
           onSaved(n);
         }
       });
@@ -172,7 +176,8 @@ function NoteEditorDrawer({
       setNote(null);
       setTitle("");
       setContent("");
-      lastSavedRef.current = { title: "", content: "" };
+      setTags([]);
+      lastSavedRef.current = { title: "", content: "", tags: [] };
     }
     return () => {
       if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
@@ -182,22 +187,23 @@ function NoteEditorDrawer({
   const persist = useCallback(async () => {
     const t = title.trim();
     const c = content;
-    if (t === lastSavedRef.current.title && c === lastSavedRef.current.content) return;
+    const tagList = tags;
+    if (t === lastSavedRef.current.title && c === lastSavedRef.current.content && JSON.stringify(tagList) === JSON.stringify(lastSavedRef.current.tags)) return;
     setSaving(true);
     try {
       if (note) {
-        const updated = await updateNote(note.id, { title: t || null, content: c });
+        const updated = await updateNote(note.id, { title: t || null, content: c, tags: tagList });
         if (updated) {
           setNote(updated);
-          lastSavedRef.current = { title: updated.title ?? "", content: updated.content };
+          lastSavedRef.current = { title: updated.title ?? "", content: updated.content, tags: updated.tags ?? [] };
           setSavedAt(Date.now());
           onSaved(updated);
         }
       } else if (!initialContext && (t || c)) {
-        const created = await createNote({ title: t || null, content: c });
+        const created = await createNote({ title: t || null, content: c, tags: tagList });
         if (created) {
           setNote(created);
-          lastSavedRef.current = { title: created.title ?? "", content: created.content };
+          lastSavedRef.current = { title: created.title ?? "", content: created.content, tags: created.tags ?? [] };
           setSavedAt(Date.now());
           onSaved(created);
         }
@@ -205,15 +211,15 @@ function NoteEditorDrawer({
     } finally {
       setSaving(false);
     }
-  }, [note, title, content, initialContext, onSaved]);
+  }, [note, title, content, tags, initialContext, onSaved]);
 
   useEffect(() => {
     if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
-    saveTimeoutRef.current = setTimeout(persist, 1000);
+    saveTimeoutRef.current = setTimeout(persist, 500);
     return () => {
       if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
     };
-  }, [title, content, persist]);
+  }, [title, content, tags, persist]);
 
   const handleBlur = () => {
     persist();
@@ -255,11 +261,46 @@ function NoteEditorDrawer({
   const contextTypeKey = note?.context_type ?? initialContext?.contextType ?? null;
   const contextColor = contextTypeKey ? (CONTEXT_COLORS[contextTypeKey] ?? "text-gray-600") : "";
 
+  const linkedToHref =
+    note?.context_type && note?.context_id
+      ? note.context_type === "grammar"
+        ? `/grammar/${(note.context_id as string).replace(/\s+/g, "-").toLowerCase()}`
+        : note.context_type === "vocabulary"
+          ? "/vocabulary"
+          : note.context_type === "verb"
+            ? `/conjugations/${(note.context_id as string).toLowerCase()}`
+            : note.context_type === "lesson"
+              ? `/lessons/${note.context_id}`
+              : null
+      : initialContext
+        ? initialContext.contextType === "grammar"
+          ? `/grammar/${(initialContext.contextId as string).replace(/\s+/g, "-").toLowerCase()}`
+          : initialContext.contextType === "vocabulary"
+            ? "/vocabulary"
+            : initialContext.contextType === "verb"
+              ? `/conjugations/${(initialContext.contextId as string).toLowerCase()}`
+              : initialContext.contextType === "lesson"
+                ? `/lessons/${initialContext.contextId}`
+                : null
+        : null;
+
+  const addTag = () => {
+    const v = newTag.trim().toLowerCase();
+    if (v && !tags.includes(v)) {
+      setTags((prev) => [...prev, v]);
+      setNewTag("");
+    }
+  };
+
+  const removeTag = (tag: string) => {
+    setTags((prev) => prev.filter((t) => t !== tag));
+  };
+
   return (
     <SlideDrawer
       isOpen
       onClose={onClose}
-      title="Nota"
+      title={contextLabel ?? "Nota"}
       ariaLabel="Editar nota"
     >
       <div className="flex flex-col h-full">
@@ -268,6 +309,14 @@ function NoteEditorDrawer({
             <span className={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-[12px] mb-4 ${contextColor} bg-gray-100`}>
               {contextLabel}
             </span>
+          )}
+          {linkedToHref && (
+            <p className="text-[12px] text-gray-600 mb-3">
+              Ligado a:{" "}
+              <Link href={linkedToHref} className="text-[#003399] hover:underline">
+                {contextLabel} →
+              </Link>
+            </p>
           )}
           <input
             type="text"
@@ -282,8 +331,35 @@ function NoteEditorDrawer({
             onChange={(e) => setContent(e.target.value)}
             onBlur={handleBlur}
             placeholder="Começar a escrever..."
-            className="w-full min-h-[280px] text-[14px] text-gray-700/90 leading-[1.8] border-0 focus:ring-0 focus:outline-none resize-y placeholder:text-gray-400"
+            className="w-full min-h-[350px] text-[14px] text-gray-700/90 leading-[1.8] border-0 focus:ring-0 focus:outline-none resize-y placeholder:text-gray-400"
           />
+          <div className="mt-4">
+            <p className="text-[11px] font-medium text-gray-500 mb-2">Etiquetas</p>
+            <div className="flex flex-wrap gap-1.5 items-center">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[8px] text-[12px] border border-[rgba(0,0,0,0.08)] bg-[rgba(0,0,0,0.02)]"
+                >
+                  {tag}
+                  <button type="button" onClick={() => removeTag(tag)} className="text-gray-400 hover:text-gray-700" aria-label="Remover">×</button>
+                </span>
+              ))}
+              <span className="flex items-center gap-1">
+                <input
+                  type="text"
+                  value={newTag}
+                  onChange={(e) => setNewTag(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                  placeholder="+ Adicionar"
+                  className="w-24 px-2 py-0.5 rounded-[8px] text-[12px] border border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.1)] focus:ring-0 outline-none"
+                />
+                <button type="button" onClick={addTag} className="text-[12px] font-medium text-[#003399] hover:underline">
+                  Adicionar
+                </button>
+              </span>
+            </div>
+          </div>
         </div>
         <div
           className="shrink-0 flex items-center justify-between gap-4 px-4 py-3 rounded-[10px] mx-4 mb-4 bg-black/88 backdrop-blur-xl border border-[rgba(0,0,0,0.06)]"
@@ -330,6 +406,7 @@ function NotesContent() {
   const { user, loading: authLoading } = useAuth();
   const searchParams = useSearchParams();
   const [filterId, setFilterId] = useState("all");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
@@ -344,18 +421,25 @@ function NotesContent() {
 
   const isLoggedIn = !authLoading && !!user;
 
+  const urlContextType = searchParams.get("contextType");
+  const urlContextId = searchParams.get("contextId");
+
   const fetchNotes = useCallback(async () => {
     setLoading(true);
     const f = FILTERS.find((x) => x.id === filterId);
+    const updatedDate = searchParams.get("updatedDate") ?? undefined;
+    const contextIdToUse = urlContextId ?? undefined;
     const list = await getUserNotes({
       contextType: f?.contextType,
+      contextId: contextIdToUse,
       isPinned: f?.isPinned,
       isArchived: f?.isArchived ?? (filterId === "all" ? false : undefined),
       search: search.trim() || undefined,
+      updatedDate: updatedDate || undefined,
     });
     setNotes(list);
     setLoading(false);
-  }, [filterId, search]);
+  }, [filterId, search, searchParams, urlContextId]);
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -380,7 +464,22 @@ function NotesContent() {
     }
   }, [isLoggedIn, searchParams]);
 
-  const sortedNotes = [...notes].sort((a, b) => {
+  useEffect(() => {
+    if (!urlContextType) return;
+    const match = FILTERS.find((f) => f.contextType === urlContextType);
+    if (match) setFilterId(match.id);
+  }, [urlContextType]);
+
+  const notesFilteredByTag = selectedTag
+    ? notes.filter((n) => n.tags?.includes(selectedTag))
+    : notes;
+  const allTags = useMemo(() => {
+    const set = new Set<string>();
+    notes.forEach((n) => (n.tags ?? []).forEach((t) => set.add(t)));
+    return Array.from(set).sort();
+  }, [notes]);
+
+  const sortedNotes = [...notesFilteredByTag].sort((a, b) => {
     if (a.is_pinned && !b.is_pinned) return -1;
     if (!a.is_pinned && b.is_pinned) return 1;
     return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
@@ -411,8 +510,7 @@ function NotesContent() {
         <div className="py-5">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <PageHeader
-              title="Notes"
-              titlePt="Notas"
+              title="Notas"
               section="REVISION"
               sectionPt="Revisão"
               tagline="O teu caderno de estudo — ideias, regras e descobertas."
@@ -473,6 +571,25 @@ function NotesContent() {
                 />
               </div>
             </div>
+
+            {allTags.length > 0 && (
+              <div className="flex flex-wrap items-center gap-1.5 mb-4">
+                {allTags.map((tag) => (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => setSelectedTag((prev) => (prev === tag ? null : tag))}
+                    className={
+                      selectedTag === tag
+                        ? "px-2.5 py-1 text-[11px] font-medium text-white bg-[#003399] rounded-full"
+                        : "px-2.5 py-1 text-[11px] font-medium text-[#9CA3AF] bg-[#F5F5F5] rounded-full hover:bg-[#EBEBEB] transition-colors duration-150"
+                    }
+                  >
+                    {tag}{selectedTag === tag ? " ×" : ""}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {loading ? (
               <p className="text-sm text-gray-500 py-8">A carregar...</p>
@@ -550,11 +667,10 @@ export default function NotesPage() {
         <PageContainer>
           <div className="py-5">
             <PageHeader
-              title="Notes"
-              titlePt="Notas"
+              title="Notas"
               section="REVISION"
               sectionPt="Revisão"
-              tagline="Your study notebook — capture ideas, rules, and discoveries."
+              tagline="O teu caderno de estudo."
             />
             <Divider className="mt-4 mb-6" />
           </div>

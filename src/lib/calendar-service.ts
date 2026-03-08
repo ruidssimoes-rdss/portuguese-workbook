@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/client";
 
-export type CalendarEventType = "planned" | "auto_lesson" | "auto_exam" | "auto_practice";
-export type LinkedType = "lesson" | "exam" | "practice" | null;
+export type CalendarEventType = "planned" | "auto_lesson" | "auto_exam" | "auto_practice" | "goal";
+export type LinkedType = "lesson" | "exam" | "practice" | "verb" | "grammar" | null;
 
 export interface CalendarEvent {
   id: string;
@@ -281,6 +281,47 @@ export interface LogPracticeSessionData {
   score?: number;
   questionsTotal?: number;
   questionsCorrect?: number;
+}
+
+export interface CreateGoalEventData {
+  title: string;
+  eventDate: string;
+  linkedType: "lesson" | "verb" | "grammar";
+  linkedId: string;
+  linkedLabel: string;
+}
+
+export async function createGoalEvents(events: CreateGoalEventData[]): Promise<CalendarEvent[]> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user || events.length === 0) return [];
+
+  const rows = events.map((e) => ({
+    user_id: user.id,
+    title: e.title,
+    description: null,
+    event_date: e.eventDate,
+    start_time: null,
+    end_time: null,
+    all_day: true,
+    event_type: "goal" as const,
+    linked_type: e.linkedType,
+    linked_id: e.linkedId,
+    linked_label: e.linkedLabel,
+    linked_score: null,
+    linked_passed: null,
+    color: "#0EA5E9",
+  }));
+
+  const { data, error } = await supabase
+    .from("user_calendar_events")
+    .insert(rows)
+    .select();
+
+  if (error || !data) return [];
+  return data.map(mapRowToEvent);
 }
 
 export async function logPracticeSession(data: LogPracticeSessionData): Promise<CalendarEvent | null> {
