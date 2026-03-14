@@ -299,7 +299,7 @@ function EditEventDrawer({ event, onClose, onSaved }: { event: CalendarEvent; on
   const [title, setTitle] = useState(event.title);
   const [description, setDescription] = useState(event.description ?? "");
   const [eventDate, setEventDate] = useState(event.event_date);
-  const [allDay, setAllDay] = useState(event.all_day);
+  const [allDay, setAllDay] = useState(event.is_all_day);
   const [startTime, setStartTime] = useState(event.start_time?.slice(0, 5) ?? "19:00");
   const [endTime, setEndTime] = useState(event.end_time?.slice(0, 5) ?? "19:30");
   const [saving, setSaving] = useState(false);
@@ -308,7 +308,7 @@ function EditEventDrawer({ event, onClose, onSaved }: { event: CalendarEvent; on
     e.preventDefault();
     if (!title.trim()) return;
     setSaving(true);
-    const updated = await updateEvent(event.id, { title: title.trim(), description: description.trim() || null, event_date: eventDate, all_day: allDay, start_time: allDay ? null : startTime, end_time: allDay ? null : endTime });
+    const updated = await updateEvent(event.id, { title: title.trim(), description: description.trim() || null, event_date: eventDate, is_all_day: allDay, start_time: allDay ? null : startTime, end_time: allDay ? null : endTime });
     setSaving(false);
     if (updated) {
       onSaved();
@@ -1343,8 +1343,8 @@ function DayView({
   setConfirmDelete: (e: CalendarEvent | null) => void;
   onDelete: (e: CalendarEvent) => void;
 }) {
-  const allDay = events.filter((e) => e.all_day);
-  const timed = [...events.filter((e) => !e.all_day)].sort((a, b) => {
+  const allDay = events.filter((e) => e.is_all_day);
+  const timed = [...events.filter((e) => !e.is_all_day)].sort((a, b) => {
     const ta = a.start_time ?? "00:00";
     const tb = b.start_time ?? "00:00";
     return ta.localeCompare(tb);

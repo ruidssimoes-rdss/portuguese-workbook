@@ -12,7 +12,7 @@ export interface CalendarEvent {
   event_date: string;
   start_time: string | null;
   end_time: string | null;
-  all_day: boolean;
+  is_all_day: boolean;
   event_type: CalendarEventType;
   linked_type: LinkedType;
   linked_id: string | null;
@@ -123,7 +123,7 @@ export async function createPlannedEvent(
       event_date: data.eventDate,
       start_time: data.startTime ?? null,
       end_time: data.endTime ?? null,
-      all_day: data.allDay ?? true,
+      is_all_day: data.allDay ?? true,
       event_type: "planned",
       linked_type: null,
       linked_id: null,
@@ -145,7 +145,7 @@ export async function updateEvent(
   data: Partial<
     Pick<
       CalendarEvent,
-      "title" | "description" | "event_date" | "start_time" | "end_time" | "all_day" | "color"
+      "title" | "description" | "event_date" | "start_time" | "end_time" | "is_all_day" | "color"
     >
   >
 ): Promise<CalendarEvent | null> {
@@ -161,7 +161,7 @@ export async function updateEvent(
   if (data.event_date !== undefined) payload.event_date = data.event_date;
   if (data.start_time !== undefined) payload.start_time = data.start_time;
   if (data.end_time !== undefined) payload.end_time = data.end_time;
-  if (data.all_day !== undefined) payload.all_day = data.all_day;
+  if (data.is_all_day !== undefined) payload.is_all_day = data.is_all_day;
   if (data.color !== undefined) payload.color = data.color;
 
   const { data: row, error } = await supabase
@@ -236,28 +236,36 @@ export async function logLessonCompletion(
   const color = passed ? LESSON_PASSED_COLOR : LESSON_FAILED_COLOR;
   const today = new Date().toISOString().slice(0, 10);
 
+  const insertData = {
+    user_id: user.id,
+    title: lessonTitle,
+    description: null,
+    event_date: today,
+    start_time: null,
+    end_time: null,
+    is_all_day: true,
+    event_type: "auto_lesson" as const,
+    linked_type: "lesson" as const,
+    linked_id: lessonId,
+    linked_label: lessonTitle,
+    linked_score: score,
+    linked_passed: passed,
+    color,
+  };
+  console.log("[CALENDAR LOG] Inserting lesson event:", insertData);
+
   const { data: row, error } = await supabase
     .from("user_calendar_events")
-    .insert({
-      user_id: user.id,
-      title: lessonTitle,
-      description: null,
-      event_date: today,
-      start_time: null,
-      end_time: null,
-      all_day: true,
-      event_type: "auto_lesson",
-      linked_type: "lesson",
-      linked_id: lessonId,
-      linked_label: lessonTitle,
-      linked_score: score,
-      linked_passed: passed,
-      color,
-    })
+    .insert(insertData)
     .select()
     .single();
 
-  if (error || !row) return null;
+  if (error) {
+    console.error("[CALENDAR LOG] Insert error:", error);
+    return null;
+  }
+  if (!row) return null;
+  console.log("[CALENDAR LOG] Insert success:", row);
   return mapRowToEvent(row);
 }
 
@@ -285,7 +293,7 @@ export async function logExamAttempt(
       event_date: today,
       start_time: null,
       end_time: null,
-      all_day: true,
+      is_all_day: true,
       event_type: "auto_exam",
       linked_type: "exam",
       linked_id: examId,
@@ -331,7 +339,7 @@ export async function createGoalEvents(events: CreateGoalEventData[]): Promise<C
     event_date: e.eventDate,
     start_time: null,
     end_time: null,
-    all_day: true,
+    is_all_day: true,
     event_type: "goal" as const,
     linked_type: e.linkedType,
     linked_id: e.linkedId,
@@ -369,7 +377,7 @@ export async function logPracticeSession(data: LogPracticeSessionData): Promise<
       event_date: today,
       start_time: null,
       end_time: null,
-      all_day: true,
+      is_all_day: true,
       event_type: "auto_practice",
       linked_type: "practice",
       linked_id: data.practiceType,
@@ -559,7 +567,7 @@ function mapRowToEvent(row: Record<string, unknown>): CalendarEvent {
     event_date: row.event_date as string,
     start_time: (row.start_time as string | null) ?? null,
     end_time: (row.end_time as string | null) ?? null,
-    all_day: Boolean(row.all_day),
+    is_all_day: Boolean(row.is_all_day),
     event_type: row.event_type as CalendarEventType,
     linked_type: (row.linked_type as LinkedType) ?? null,
     linked_id: (row.linked_id as string | null) ?? null,

@@ -840,19 +840,17 @@ function ResultsStage({
       onSaveComplete?.();
       logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
       updateStreak().catch(() => {});
+      // Fetch fresh progress AFTER save — this ensures the count includes the just-saved lesson
+      const freshMap = await getLessonProgressMap().catch(() => ({}));
+      const a1Count = Object.entries(freshMap).filter(([id, p]) => id.startsWith("a1-") && p.completed).length;
+      const a2Count = Object.entries(freshMap).filter(([id, p]) => id.startsWith("a2-") && p.completed).length;
+      const b1Count = Object.entries(freshMap).filter(([id, p]) => id.startsWith("b1-") && p.completed).length;
+      setLevelCounts({ a1: a1Count, a2: a2Count, b1: b1Count, total: a1Count + a2Count + b1Count });
+
       if (passed) {
-        const progressMap = await getLessonProgressMap().catch(() => ({}));
-        const { getResolvedLessons } = await import("@/data/resolve-lessons");
-        const all = getResolvedLessons();
-        const a1Ids = new Set(all.filter((l) => l.cefr === "A1").map((l) => l.id));
-        const a2Ids = new Set(all.filter((l) => l.cefr === "A2").map((l) => l.id));
-        const b1Ids = new Set(all.filter((l) => l.cefr === "B1").map((l) => l.id));
-        const a1Completed = Object.entries(progressMap).filter(([id, p]) => a1Ids.has(id) && p.completed).length;
-        const a2Completed = Object.entries(progressMap).filter(([id, p]) => a2Ids.has(id) && p.completed).length;
-        const b1Completed = Object.entries(progressMap).filter(([id, p]) => b1Ids.has(id) && p.completed).length;
-        if (lesson.cefr === "A1") updateGoalProgress("lessons_a1", a1Completed).catch(() => {});
-        if (lesson.cefr === "A2") updateGoalProgress("lessons_a2", a2Completed).catch(() => {});
-        if (lesson.cefr === "B1") updateGoalProgress("lessons_b1", b1Completed).catch(() => {});
+        if (lesson.cefr === "A1") updateGoalProgress("lessons_a1", a1Count).catch(() => {});
+        if (lesson.cefr === "A2") updateGoalProgress("lessons_a2", a2Count).catch(() => {});
+        if (lesson.cefr === "B1") updateGoalProgress("lessons_b1", b1Count).catch(() => {});
       }
     } catch (e) {
       console.error("[LESSON SAVE] Exception during save:", e);
@@ -870,15 +868,6 @@ function ResultsStage({
   }, []);
 
   const [levelCounts, setLevelCounts] = useState<{ a1: number; a2: number; b1: number; total: number } | null>(null);
-  useEffect(() => {
-    if (!passed) return;
-    getLessonProgressMap().then((map) => {
-      const a1 = Object.entries(map).filter(([id, p]) => id.startsWith("a1-") && p.completed).length;
-      const a2 = Object.entries(map).filter(([id, p]) => id.startsWith("a2-") && p.completed).length;
-      const b1 = Object.entries(map).filter(([id, p]) => id.startsWith("b1-") && p.completed).length;
-      setLevelCounts({ a1, a2, b1, total: a1 + a2 + b1 });
-    }).catch(() => {});
-  }, [passed]);
 
   const unlockedExamId =
     levelCounts != null
