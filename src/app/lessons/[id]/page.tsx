@@ -1121,7 +1121,6 @@ function ResultsStage({
   const hasSaved = useRef(false);
 
   const doSave = async () => {
-    console.log("[LESSON SAVE] Starting save for lesson:", lesson.id, "accuracy:", accuracy, "passed:", passed);
     setIsSaving(true);
     setSaveError(false);
     const title = lesson.ptTitle ? `${lesson.title} (${lesson.ptTitle})` : lesson.title;
@@ -1133,7 +1132,6 @@ function ResultsStage({
         setIsSaving(false);
         return;
       }
-      console.log("[LESSON SAVE] Save successful");
       onSaveComplete?.();
       logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
       updateStreak().catch(() => {});

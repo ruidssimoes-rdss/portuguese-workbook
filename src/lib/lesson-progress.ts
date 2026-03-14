@@ -129,7 +129,6 @@ export interface WrongItem {
 export async function getLessonProgressMap(): Promise<
   Record<string, LessonAttemptResult>
 > {
-  console.log("[LESSON PROGRESS] Loading progress map...");
   const supabase = createClient();
   const {
     data: { user },
@@ -158,8 +157,6 @@ export async function getLessonProgressMap(): Promise<
     return {};
   }
 
-  console.log("[LESSON PROGRESS] Raw rows:", data.length);
-
   const progressMap = data.reduce(
     (acc, row) => {
       acc[row.lesson_id] = {
@@ -174,7 +171,6 @@ export async function getLessonProgressMap(): Promise<
     {} as Record<string, LessonAttemptResult>
   );
 
-  console.log("[LESSON PROGRESS] Progress map:", progressMap);
   return progressMap;
 }
 
@@ -184,7 +180,6 @@ export async function saveLessonAttempt(
   completed: boolean,
   wrongItems: WrongItem[]
 ): Promise<boolean> {
-  console.log("[LESSON SAVE] saveLessonAttempt called:", { lessonId, accuracyScore, completed });
   const supabase = createClient();
   const {
     data: { user },
@@ -199,8 +194,6 @@ export async function saveLessonAttempt(
     console.error("[LESSON SAVE] No user found — not logged in?");
     return false;
   }
-  console.log("[LESSON SAVE] Authenticated as:", user.id);
-
   // Use maybeSingle() — .single() returns PGRST116 error when no row exists
   const { data: existing, error: lookupError } = await supabase
     .from("user_lesson_progress")
@@ -242,7 +235,6 @@ export async function saveLessonAttempt(
     return false;
   }
 
-  console.log("[LESSON SAVE] Saved successfully:", data);
   return true;
 }
 

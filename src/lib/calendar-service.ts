@@ -252,8 +252,6 @@ export async function logLessonCompletion(
     linked_passed: passed,
     color,
   };
-  console.log("[CALENDAR LOG] Inserting lesson event:", insertData);
-
   const { data: row, error } = await supabase
     .from("user_calendar_events")
     .insert(insertData)
@@ -265,7 +263,6 @@ export async function logLessonCompletion(
     return null;
   }
   if (!row) return null;
-  console.log("[CALENDAR LOG] Insert success:", row);
   return mapRowToEvent(row);
 }
 
