@@ -1,3 +1,20 @@
+/*
+ * LESSON SAVE FLOW TRACE
+ * ──────────────────────
+ * 1. User finishes last practice question → clicks "Continue →" → goNext() increments currentStage past totalStages → isSummary = true
+ * 2. ResultsStage renders. Accuracy & passed are computed from stageProgress (verb + practice scores).
+ * 3. useEffect on mount → doSave() → calls saveLessonAttempt(lesson.id, accuracy, passed, wrongItems)
+ * 4. saveLessonAttempt():
+ *    a. Gets user via supabase.auth.getUser() — returns false if no user
+ *    b. Looks up existing row via .maybeSingle() for attempts/best_score
+ *    c. Upserts into user_lesson_progress (onConflict: user_id,lesson_id)
+ *    d. Returns true on success, false on any error
+ * 5. If ok: onSaveComplete() → clearLessonSession(id), then side-effects (calendar, streak, goals)
+ *    If !ok: setSaveError(true) → error banner with retry button shown to user
+ * 6. "Próxima lição" (disabled when saveError) → router.push(`/lessons/${nextLessonId}`)
+ * 7. Lessons page loads → getLessonProgressMap() → reads user_lesson_progress → builds progressMap
+ * 8. getLessonState() checks progressMap[lesson.id]?.completed to determine lock/complete states
+ */
 "use client";
 
 import { useState, use, useEffect, useRef } from "react";
@@ -803,37 +820,52 @@ function ResultsStage({
   const passed = accuracy >= passingScore;
 
   const [isSaving, setIsSaving] = useState(true);
+  const [saveError, setSaveError] = useState(false);
   const hasSaved = useRef(false);
+
+  const doSave = async () => {
+    console.log("[LESSON SAVE] Starting save for lesson:", lesson.id, "accuracy:", accuracy, "passed:", passed);
+    setIsSaving(true);
+    setSaveError(false);
+    const title = lesson.ptTitle ? `${lesson.title} (${lesson.ptTitle})` : lesson.title;
+    try {
+      const ok = await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems);
+      if (!ok) {
+        console.error("[LESSON SAVE] saveLessonAttempt returned false — save failed");
+        setSaveError(true);
+        setIsSaving(false);
+        return;
+      }
+      console.log("[LESSON SAVE] Save successful");
+      onSaveComplete?.();
+      logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
+      updateStreak().catch(() => {});
+      if (passed) {
+        const progressMap = await getLessonProgressMap().catch(() => ({}));
+        const { getResolvedLessons } = await import("@/data/resolve-lessons");
+        const all = getResolvedLessons();
+        const a1Ids = new Set(all.filter((l) => l.cefr === "A1").map((l) => l.id));
+        const a2Ids = new Set(all.filter((l) => l.cefr === "A2").map((l) => l.id));
+        const b1Ids = new Set(all.filter((l) => l.cefr === "B1").map((l) => l.id));
+        const a1Completed = Object.entries(progressMap).filter(([id, p]) => a1Ids.has(id) && p.completed).length;
+        const a2Completed = Object.entries(progressMap).filter(([id, p]) => a2Ids.has(id) && p.completed).length;
+        const b1Completed = Object.entries(progressMap).filter(([id, p]) => b1Ids.has(id) && p.completed).length;
+        if (lesson.cefr === "A1") updateGoalProgress("lessons_a1", a1Completed).catch(() => {});
+        if (lesson.cefr === "A2") updateGoalProgress("lessons_a2", a2Completed).catch(() => {});
+        if (lesson.cefr === "B1") updateGoalProgress("lessons_b1", b1Completed).catch(() => {});
+      }
+    } catch (e) {
+      console.error("[LESSON SAVE] Exception during save:", e);
+      setSaveError(true);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   useEffect(() => {
     if (hasSaved.current) return;
     hasSaved.current = true;
-    const title = lesson.ptTitle ? `${lesson.title} (${lesson.ptTitle})` : lesson.title;
-    (async () => {
-      try {
-        const ok = await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems);
-        if (ok) onSaveComplete?.();
-        logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
-        updateStreak().catch(() => {});
-        if (passed) {
-          const progressMap = await getLessonProgressMap().catch(() => ({}));
-          const { getResolvedLessons } = await import("@/data/resolve-lessons");
-          const all = getResolvedLessons();
-          const a1Ids = new Set(all.filter((l) => l.cefr === "A1").map((l) => l.id));
-          const a2Ids = new Set(all.filter((l) => l.cefr === "A2").map((l) => l.id));
-          const b1Ids = new Set(all.filter((l) => l.cefr === "B1").map((l) => l.id));
-          const a1Completed = Object.entries(progressMap).filter(([id, p]) => a1Ids.has(id) && p.completed).length;
-          const a2Completed = Object.entries(progressMap).filter(([id, p]) => a2Ids.has(id) && p.completed).length;
-          const b1Completed = Object.entries(progressMap).filter(([id, p]) => b1Ids.has(id) && p.completed).length;
-          if (lesson.cefr === "A1") updateGoalProgress("lessons_a1", a1Completed).catch(() => {});
-          if (lesson.cefr === "A2") updateGoalProgress("lessons_a2", a2Completed).catch(() => {});
-          if (lesson.cefr === "B1") updateGoalProgress("lessons_b1", b1Completed).catch(() => {});
-        }
-      } catch (e) {
-        console.error("Failed to save lesson progress:", e);
-      } finally {
-        setIsSaving(false);
-      }
-    })();
+    doSave();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- save once on mount
   }, []);
 
@@ -896,12 +928,27 @@ function ResultsStage({
             Exame {unlockedExamNum} desbloqueado!
           </p>
         )}
+        {saveError && (
+          <div className="mb-6 p-4 rounded-xl border border-[#FEE2E2] bg-[#FEF2F2] text-center">
+            <p className="text-[14px] font-medium text-[#DC2626] mb-2">
+              Erro ao guardar o progresso. O teu resultado pode não ter sido guardado.
+            </p>
+            <button
+              type="button"
+              onClick={() => { hasSaved.current = false; doSave(); }}
+              disabled={isSaving}
+              className="px-5 py-2 bg-[#DC2626] text-white text-[13px] font-semibold rounded-lg hover:bg-[#B91C1C] transition-colors disabled:opacity-60"
+            >
+              {isSaving ? "A guardar..." : "Tentar guardar novamente"}
+            </button>
+          </div>
+        )}
         <div className="flex flex-wrap items-center justify-center gap-4">
           {nextLessonId && (
             <button
               type="button"
-              disabled={isSaving}
-              onClick={() => !isSaving && router.push(`/lessons/${nextLessonId}`)}
+              disabled={isSaving || saveError}
+              onClick={() => !isSaving && !saveError && router.push(`/lessons/${nextLessonId}`)}
               className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isSaving ? "A guardar..." : "Próxima lição"}
@@ -973,6 +1020,21 @@ function ResultsStage({
         </div>
       )}
 
+      {saveError && (
+        <div className="mb-6 p-4 rounded-xl border border-[#FEE2E2] bg-[#FEF2F2] text-center">
+          <p className="text-[14px] font-medium text-[#DC2626] mb-2">
+            Erro ao guardar o progresso.
+          </p>
+          <button
+            type="button"
+            onClick={() => { hasSaved.current = false; doSave(); }}
+            disabled={isSaving}
+            className="px-5 py-2 bg-[#DC2626] text-white text-[13px] font-semibold rounded-lg hover:bg-[#B91C1C] transition-colors disabled:opacity-60"
+          >
+            {isSaving ? "A guardar..." : "Tentar guardar novamente"}
+          </button>
+        </div>
+      )}
       <div className="flex flex-wrap items-center justify-center gap-4">
         <button
           onClick={onTryAgain}

@@ -51,11 +51,13 @@ export default function LessonsPage() {
 
   useEffect(() => {
     getLessonProgressMap()
-      .then(setProgressMap)
+      .then((map) => {
+        console.log("[LESSONS PAGE] Progress map loaded:", map);
+        console.log("[LESSONS PAGE] Lesson a1-01 status:", map["a1-01"]);
+        setProgressMap(map);
+      })
       .catch((err) => {
-        if (process.env.NODE_ENV === "development") {
-          console.warn("[AulaPT] Lesson progress fetch failed:", err);
-        }
+        console.error("[LESSONS PAGE] Lesson progress fetch failed:", err);
       });
   }, []);
 

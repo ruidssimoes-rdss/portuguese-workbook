@@ -129,20 +129,38 @@ export interface WrongItem {
 export async function getLessonProgressMap(): Promise<
   Record<string, LessonAttemptResult>
 > {
+  console.log("[LESSON PROGRESS] Loading progress map...");
   const supabase = createClient();
   const {
     data: { user },
+    error: authError,
   } = await supabase.auth.getUser();
-  if (!user) return {};
+  if (authError) {
+    console.error("[LESSON PROGRESS] Auth error:", authError);
+    return {};
+  }
+  if (!user) {
+    console.error("[LESSON PROGRESS] No user — not logged in");
+    return {};
+  }
 
   const { data, error } = await supabase
     .from("user_lesson_progress")
     .select("lesson_id, completed, accuracy_score, attempts, best_score, completed_at")
     .eq("user_id", user.id);
 
-  if (error || !data) return {};
+  if (error) {
+    console.error("[LESSON PROGRESS] Query error:", error);
+    return {};
+  }
+  if (!data) {
+    console.warn("[LESSON PROGRESS] No data returned");
+    return {};
+  }
 
-  return data.reduce(
+  console.log("[LESSON PROGRESS] Raw rows:", data.length);
+
+  const progressMap = data.reduce(
     (acc, row) => {
       acc[row.lesson_id] = {
         completed: row.completed ?? false,
@@ -155,6 +173,9 @@ export async function getLessonProgressMap(): Promise<
     },
     {} as Record<string, LessonAttemptResult>
   );
+
+  console.log("[LESSON PROGRESS] Progress map:", progressMap);
+  return progressMap;
 }
 
 export async function saveLessonAttempt(
@@ -163,18 +184,34 @@ export async function saveLessonAttempt(
   completed: boolean,
   wrongItems: WrongItem[]
 ): Promise<boolean> {
+  console.log("[LESSON SAVE] saveLessonAttempt called:", { lessonId, accuracyScore, completed });
   const supabase = createClient();
   const {
     data: { user },
+    error: authError,
   } = await supabase.auth.getUser();
-  if (!user) return false;
 
-  const { data: existing } = await supabase
+  if (authError) {
+    console.error("[LESSON SAVE] Auth error:", authError);
+    return false;
+  }
+  if (!user) {
+    console.error("[LESSON SAVE] No user found — not logged in?");
+    return false;
+  }
+  console.log("[LESSON SAVE] Authenticated as:", user.id);
+
+  // Use maybeSingle() — .single() returns PGRST116 error when no row exists
+  const { data: existing, error: lookupError } = await supabase
     .from("user_lesson_progress")
     .select("attempts, best_score")
     .eq("user_id", user.id)
     .eq("lesson_id", lessonId)
-    .single();
+    .maybeSingle();
+
+  if (lookupError) {
+    console.error("[LESSON SAVE] Lookup error (non-fatal):", lookupError);
+  }
 
   const attempts = (existing?.attempts ?? 0) + 1;
   const bestScore = Math.max(
@@ -182,7 +219,7 @@ export async function saveLessonAttempt(
     accuracyScore
   );
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("user_lesson_progress")
     .upsert(
       {
@@ -197,9 +234,16 @@ export async function saveLessonAttempt(
         updated_at: new Date().toISOString(),
       },
       { onConflict: "user_id,lesson_id" }
-    );
+    )
+    .select();
 
-  return !error;
+  if (error) {
+    console.error("[LESSON SAVE] Upsert error:", error);
+    return false;
+  }
+
+  console.log("[LESSON SAVE] Saved successfully:", data);
+  return true;
 }
 
 export async function getRecentWrongItems(): Promise<
