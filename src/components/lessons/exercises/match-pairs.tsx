@@ -5,6 +5,7 @@ import type { ExerciseResult } from "@/lib/exercise-generator";
 
 interface MatchPairsProps {
   instruction: string;
+  englishInstruction?: string;
   pairs: Array<{ left: string; right: string }>;
   onComplete: (results: ExerciseResult[]) => void;
 }
@@ -18,7 +19,7 @@ function shuffle<T>(array: T[]): T[] {
   return arr;
 }
 
-export function MatchPairs({ instruction, pairs, onComplete }: MatchPairsProps) {
+export function MatchPairs({ instruction, englishInstruction, pairs, onComplete }: MatchPairsProps) {
   const shuffledLeft = useMemo(() => shuffle(pairs.map((p) => p.left)), [pairs]);
   const shuffledRight = useMemo(() => shuffle(pairs.map((p) => p.right)), [pairs]);
 
@@ -87,9 +88,13 @@ export function MatchPairs({ instruction, pairs, onComplete }: MatchPairsProps) 
 
   return (
     <div>
-      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-4">
+      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
         {instruction}
       </p>
+      {englishInstruction && (
+        <p className="text-[12px] text-[var(--text-muted)] mb-4">{englishInstruction}</p>
+      )}
+      {!englishInstruction && <div className="mb-3" />}
 
       <div className="grid grid-cols-2 gap-4">
         {/* Left column (PT) */}

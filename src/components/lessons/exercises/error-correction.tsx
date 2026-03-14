@@ -6,6 +6,7 @@ import type { ExerciseResult } from "@/lib/exercise-generator";
 
 interface ErrorCorrectionProps {
   instruction: string;
+  englishInstruction?: string;
   incorrectSentence: string;
   correctSentence: string;
   acceptedAnswers?: string[];
@@ -14,6 +15,7 @@ interface ErrorCorrectionProps {
 
 export function ErrorCorrection({
   instruction,
+  englishInstruction,
   incorrectSentence,
   correctSentence,
   acceptedAnswers,
@@ -43,9 +45,13 @@ export function ErrorCorrection({
 
   return (
     <div>
-      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-4">
+      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
         {instruction}
       </p>
+      {englishInstruction && (
+        <p className="text-[12px] text-[var(--text-muted)] mb-4">{englishInstruction}</p>
+      )}
+      {!englishInstruction && <div className="mb-3" />}
 
       <div className="border border-[var(--border-primary)] rounded-[12px] p-6 bg-[var(--bg-card)]">
         <div className="bg-[#FEF2F2] border border-[#FEE2E2] rounded-lg px-4 py-3 mb-5">

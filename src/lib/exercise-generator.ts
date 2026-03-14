@@ -74,6 +74,7 @@ export type ExerciseType =
 export interface MCExercise {
   type: "multiple-choice";
   instruction: string;
+  englishInstruction?: string;
   options: string[];
   correctIndex: number;
   correctAnswer: string;
@@ -82,6 +83,7 @@ export interface MCExercise {
 export interface FillInBlankExercise {
   type: "fill-in-blank";
   instruction: string;
+  englishInstruction?: string;
   sentencePt: string;
   sentenceEn: string;
   correctAnswer: string;
@@ -91,7 +93,9 @@ export interface FillInBlankExercise {
 export interface ConjugationDrillExercise {
   type: "conjugation-drill";
   instruction: string;
+  englishInstruction?: string;
   verb: string;
+  verbMeaning?: string;
   tense: string;
   persons: Array<{ pronoun: string; correctForm: string }>;
 }
@@ -99,6 +103,7 @@ export interface ConjugationDrillExercise {
 export interface TrueFalseExercise {
   type: "true-false";
   instruction: string;
+  englishInstruction?: string;
   statement: string;
   isTrue: boolean;
   explanation: string;
@@ -107,6 +112,7 @@ export interface TrueFalseExercise {
 export interface TranslationInputExercise {
   type: "translation-input";
   instruction: string;
+  englishInstruction?: string;
   sourceText: string;
   correctAnswer: string;
   acceptedAnswers?: string[];
@@ -115,12 +121,14 @@ export interface TranslationInputExercise {
 export interface MatchPairsExercise {
   type: "match-pairs";
   instruction: string;
+  englishInstruction?: string;
   pairs: Array<{ left: string; right: string }>;
 }
 
 export interface WordBankExercise {
   type: "word-bank";
   instruction: string;
+  englishInstruction?: string;
   textWithBlanks: string;
   blanks: Array<{ correctAnswer: string; acceptedAnswers?: string[] }>;
   wordBank: string[];
@@ -129,6 +137,7 @@ export interface WordBankExercise {
 export interface SentenceBuildExercise {
   type: "sentence-build";
   instruction: string;
+  englishInstruction?: string;
   words: string[];
   correctSentence: string;
   acceptedAnswers?: string[];
@@ -137,6 +146,7 @@ export interface SentenceBuildExercise {
 export interface ErrorCorrectionExercise {
   type: "error-correction";
   instruction: string;
+  englishInstruction?: string;
   incorrectSentence: string;
   correctSentence: string;
   acceptedAnswers?: string[];
@@ -298,10 +308,11 @@ function generateLearnItems(content: LessonContent): LearnItem[] {
 
 /* ─── Round 2: Practice Exercises ─── */
 
-function generatePracticeExercises(content: LessonContent): Exercise[] {
+function generatePracticeExercises(content: LessonContent, showEnglish: boolean): Exercise[] {
   const exercises: Exercise[] = [];
   const allPtWords = content.vocabItems.map((v) => v.word);
   const allEnWords = content.vocabItems.map((v) => v.translation);
+  const en = (text: string) => showEnglish ? text : undefined;
 
   // --- FROM VOCAB ---
 
@@ -314,6 +325,7 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
     exercises.push({
       type: "multiple-choice",
       instruction: `Qual é a tradução de "${word.word}"?`,
+      englishInstruction: en(`What is the translation of "${word.word}"?`),
       options,
       correctIndex,
       correctAnswer: word.translation,
@@ -329,6 +341,7 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
     exercises.push({
       type: "multiple-choice",
       instruction: `Como se diz "${word.translation}" em português?`,
+      englishInstruction: en(`How do you say "${word.translation}" in Portuguese?`),
       options,
       correctIndex,
       correctAnswer: word.word,
@@ -341,6 +354,7 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
     exercises.push({
       type: "match-pairs",
       instruction: "Liga os pares:",
+      englishInstruction: en("Match the pairs:"),
       pairs: pairsVocab.map((v) => ({ left: v.word, right: v.translation })),
     });
   }
@@ -349,11 +363,14 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
 
   // Conjugation drill (1 per verb/tense)
   for (const verb of content.verbItems) {
+    const tenseLabel = TENSE_LABELS[verb.tense] ?? verb.tense;
     exercises.push({
       type: "conjugation-drill",
-      instruction: `Conjuga o verbo ${verb.verb} no ${TENSE_LABELS[verb.tense] ?? verb.tense}:`,
+      instruction: `Conjuga o verbo ${verb.verb} no ${tenseLabel}:`,
+      englishInstruction: en(`Conjugate the verb ${verb.verb} in the ${tenseLabel}:`),
       verb: verb.verb,
-      tense: TENSE_LABELS[verb.tense] ?? verb.tense,
+      verbMeaning: showEnglish ? verb.verbTranslation : undefined,
+      tense: tenseLabel,
       persons: verb.conjugations.map((c) => ({
         pronoun: c.pronoun,
         correctForm: c.form,
@@ -370,9 +387,11 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
     const distractors = getDistractors(randomPerson.form, wrongForms, 3);
     if (distractors.length >= 2) {
       const { options, correctIndex } = buildMCOptions(randomPerson.form, distractors);
+      const tenseLabel = TENSE_LABELS[verb.tense] ?? verb.tense;
       exercises.push({
         type: "multiple-choice",
-        instruction: `${verb.verb}: qual é a forma para "${randomPerson.pronoun}" no ${TENSE_LABELS[verb.tense] ?? verb.tense}?`,
+        instruction: `${verb.verb}: qual é a forma para "${randomPerson.pronoun}" no ${tenseLabel}?`,
+        englishInstruction: en(`${verb.verb}: what is the form for "${randomPerson.pronoun}" in the ${tenseLabel}?`),
         options,
         correctIndex,
         correctAnswer: randomPerson.form,
@@ -390,6 +409,7 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
       exercises.push({
         type: "true-false",
         instruction: "Verdadeiro ou falso?",
+        englishInstruction: en("True or false?"),
         statement: g.rule,
         isTrue: true,
         explanation: "Esta regra está correta.",
@@ -404,6 +424,7 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
         exercises.push({
           type: "multiple-choice",
           instruction: q.questionTextPt || q.questionText,
+          englishInstruction: en(q.questionText),
           options: [...q.options],
           correctIndex: q.correctIndex,
           correctAnswer: q.options[q.correctIndex],
@@ -428,6 +449,7 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
     exercises.push({
       type: "multiple-choice",
       instruction: `O que significa "${culture.expression}"?`,
+      englishInstruction: en(`What does "${culture.expression}" mean?`),
       options,
       correctIndex,
       correctAnswer: culture.meaning,
@@ -439,15 +461,17 @@ function generatePracticeExercises(content: LessonContent): Exercise[] {
 
 /* ─── Round 3: Apply Exercises ─── */
 
-function generateApplyExercises(content: LessonContent): Exercise[] {
+function generateApplyExercises(content: LessonContent, showEnglish: boolean): Exercise[] {
   const exercises: Exercise[] = [];
   const practice = content.practiceItems;
+  const en = (text: string) => showEnglish ? text : undefined;
 
   // Fill-in-the-blank from practice sentences (primary apply exercise)
   for (const p of practice.slice(0, 4)) {
     exercises.push({
       type: "fill-in-blank",
       instruction: "Completa a frase:",
+      englishInstruction: en("Complete the sentence:"),
       sentencePt: p.sentence,
       sentenceEn: p.translation,
       correctAnswer: p.answer,
@@ -464,6 +488,7 @@ function generateApplyExercises(content: LessonContent): Exercise[] {
       exercises.push({
         type: "sentence-build",
         instruction: "Ordena as palavras:",
+        englishInstruction: en("Put the words in order:"),
         words: shuffle([...words]),
         correctSentence: fullSentence,
       });
@@ -475,6 +500,7 @@ function generateApplyExercises(content: LessonContent): Exercise[] {
     exercises.push({
       type: "translation-input",
       instruction: "Traduz para português:",
+      englishInstruction: en("Translate to Portuguese:"),
       sourceText: p.translation,
       correctAnswer: p.fullSentence,
       acceptedAnswers: p.acceptedAnswers?.map((a) => p.sentence.replace(/___/g, a)),
@@ -485,13 +511,13 @@ function generateApplyExercises(content: LessonContent): Exercise[] {
   if (practice.length >= 2 && content.vocabItems.length > 0) {
     const p = practice[practice.length - 1];
     const correctSentence = p.fullSentence;
-    // Pick a distractor word to create the error
     const wrongWord = content.vocabItems[0].word;
     const incorrectSentence = p.sentence.replace(/___/g, wrongWord);
     if (incorrectSentence !== correctSentence && !incorrectSentence.includes("___")) {
       exercises.push({
         type: "error-correction",
         instruction: "Corrige o erro:",
+        englishInstruction: en("Correct the error:"),
         incorrectSentence,
         correctSentence,
       });
@@ -503,6 +529,7 @@ function generateApplyExercises(content: LessonContent): Exercise[] {
     exercises.push({
       type: "fill-in-blank",
       instruction: "Completa a frase:",
+      englishInstruction: en("Complete the sentence:"),
       sentencePt: p.sentence,
       sentenceEn: p.translation,
       correctAnswer: p.answer,
@@ -515,11 +542,11 @@ function generateApplyExercises(content: LessonContent): Exercise[] {
 
 /* ─── Main generator ─── */
 
-export function generateLessonExercises(lesson: Lesson): GeneratedLesson {
+export function generateLessonExercises(lesson: Lesson, showEnglish: boolean = false): GeneratedLesson {
   const content = extractContent(lesson);
   return {
     learnItems: generateLearnItems(content),
-    practiceExercises: generatePracticeExercises(content),
-    applyExercises: generateApplyExercises(content),
+    practiceExercises: generatePracticeExercises(content, showEnglish),
+    applyExercises: generateApplyExercises(content, showEnglish),
   };
 }

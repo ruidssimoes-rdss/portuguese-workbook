@@ -5,6 +5,7 @@ import type { ExerciseResult } from "@/lib/exercise-generator";
 
 interface MultipleChoiceProps {
   instruction: string;
+  englishInstruction?: string;
   options: string[];
   correctIndex: number;
   onComplete: (result: ExerciseResult) => void;
@@ -12,6 +13,7 @@ interface MultipleChoiceProps {
 
 export function MultipleChoice({
   instruction,
+  englishInstruction,
   options,
   correctIndex,
   onComplete,
@@ -48,9 +50,13 @@ export function MultipleChoice({
 
   return (
     <div>
-      <p className="text-[16px] font-semibold text-[var(--text-primary)] mb-6">
+      <p className="text-[16px] font-semibold text-[var(--text-primary)] mb-1">
         {instruction}
       </p>
+      {englishInstruction && (
+        <p className="text-[12px] text-[var(--text-muted)] mb-6">{englishInstruction}</p>
+      )}
+      {!englishInstruction && <div className="mb-5" />}
       <div className="space-y-3">
         {dedupedOptions.map((option, i) => {
           const isSelected = selectedIndex === i;

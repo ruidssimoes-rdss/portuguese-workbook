@@ -72,7 +72,7 @@ import Link from "next/link";
 
 const SESSION_KEY_PREFIX = "aula-pt-lesson-v2-";
 
-type Round = "learn" | "practice" | "apply" | "results";
+type Round = "intro" | "learn" | "practice" | "apply" | "results";
 
 interface LessonSessionState {
   round: Round;
@@ -83,6 +83,7 @@ interface LessonSessionState {
   applyResults: (ExerciseResult | ExerciseResult[])[];
   generatedLesson: GeneratedLesson;
   showTransition: boolean;
+  skippedLearn: boolean;
 }
 
 function getSessionKey(lessonId: string): string {
@@ -135,6 +136,7 @@ function ExerciseRenderer({
         <MultipleChoice
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           options={exercise.options}
           correctIndex={exercise.correctIndex}
           onComplete={onComplete}
@@ -145,6 +147,7 @@ function ExerciseRenderer({
         <FillInBlank
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           sentencePt={exercise.sentencePt}
           sentenceEn={exercise.sentenceEn}
           correctAnswer={exercise.correctAnswer}
@@ -157,7 +160,9 @@ function ExerciseRenderer({
         <ConjugationDrill
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           verb={exercise.verb}
+          verbMeaning={exercise.verbMeaning}
           tense={exercise.tense}
           persons={exercise.persons}
           onComplete={(r) => onComplete(r)}
@@ -168,6 +173,7 @@ function ExerciseRenderer({
         <TrueFalse
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           statement={exercise.statement}
           isTrue={exercise.isTrue}
           explanation={exercise.explanation}
@@ -179,6 +185,7 @@ function ExerciseRenderer({
         <TranslationInput
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           sourceText={exercise.sourceText}
           correctAnswer={exercise.correctAnswer}
           acceptedAnswers={exercise.acceptedAnswers}
@@ -190,6 +197,7 @@ function ExerciseRenderer({
         <MatchPairs
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           pairs={exercise.pairs}
           onComplete={(r) => onComplete(r)}
         />
@@ -199,6 +207,7 @@ function ExerciseRenderer({
         <WordBank
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           textWithBlanks={exercise.textWithBlanks}
           blanks={exercise.blanks}
           wordBank={exercise.wordBank}
@@ -210,6 +219,7 @@ function ExerciseRenderer({
         <SentenceBuild
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           words={exercise.words}
           correctSentence={exercise.correctSentence}
           acceptedAnswers={exercise.acceptedAnswers}
@@ -221,6 +231,7 @@ function ExerciseRenderer({
         <ErrorCorrection
           key={key}
           instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
           incorrectSentence={exercise.incorrectSentence}
           correctSentence={exercise.correctSentence}
           acceptedAnswers={exercise.acceptedAnswers}
@@ -252,6 +263,94 @@ function LearnItemRenderer({ item }: { item: LearnItem }) {
     case "culture":
       return <CultureLearn data={item.data as CultureLearnData} />;
   }
+}
+
+/* ─── Intro screen ─── */
+
+function LessonIntro({
+  lesson,
+  generatedLesson,
+  showEnglish,
+  onStartExercises,
+  onReviewFirst,
+}: {
+  lesson: Lesson;
+  generatedLesson: GeneratedLesson | null;
+  showEnglish: boolean;
+  onStartExercises: () => void;
+  onReviewFirst: () => void;
+}) {
+  const learnItems = generatedLesson?.learnItems ?? [];
+  const vocabCount = learnItems.filter((i) => i.type === "vocab").length;
+  const verbCount = learnItems.filter((i) => i.type === "verb").length;
+  const grammarCount = learnItems.filter((i) => i.type === "grammar").length;
+  const cultureCount = learnItems.filter((i) => i.type === "culture").length;
+
+  return (
+    <div className="max-w-lg mx-auto text-center py-12">
+      <h2 className="text-[22px] font-bold text-[var(--text-primary)] mb-1">
+        {lesson.ptTitle}
+      </h2>
+      <p className="text-[15px] text-[var(--text-secondary)] mb-8">
+        {lesson.title}
+      </p>
+
+      <div className="text-left bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-5 mb-8">
+        <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-1">
+          Esta lição cobre:
+        </p>
+        {showEnglish && (
+          <p className="text-[12px] text-[var(--text-muted)] mb-3">This lesson covers:</p>
+        )}
+        {!showEnglish && <div className="mb-2" />}
+        <div className="space-y-2 text-[14px] text-[var(--text-primary)]">
+          {vocabCount > 0 && (
+            <p>
+              {vocabCount} palavras novas
+              {showEnglish && <span className="text-[var(--text-muted)]"> ({vocabCount} new words)</span>}
+            </p>
+          )}
+          {verbCount > 0 && (
+            <p>
+              {verbCount} {verbCount === 1 ? "verbo" : "verbos"}
+              {showEnglish && <span className="text-[var(--text-muted)]"> ({verbCount} {verbCount === 1 ? "verb" : "verbs"})</span>}
+            </p>
+          )}
+          {grammarCount > 0 && (
+            <p>
+              {grammarCount} {grammarCount === 1 ? "tópico de gramática" : "tópicos de gramática"}
+              {showEnglish && <span className="text-[var(--text-muted)]"> ({grammarCount} grammar {grammarCount === 1 ? "topic" : "topics"})</span>}
+            </p>
+          )}
+          {cultureCount > 0 && (
+            <p>
+              {cultureCount} {cultureCount === 1 ? "expressão cultural" : "expressões culturais"}
+              {showEnglish && <span className="text-[var(--text-muted)]"> ({cultureCount} cultural {cultureCount === 1 ? "expression" : "expressions"})</span>}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        <button
+          type="button"
+          onClick={onStartExercises}
+          className="w-full px-6 py-3.5 bg-[#003399] text-white text-[15px] font-semibold rounded-[12px] hover:opacity-90 transition-opacity cursor-pointer"
+        >
+          Começar os exercícios →
+          {showEnglish && <span className="block text-[12px] font-normal opacity-75 mt-0.5">Start the exercises</span>}
+        </button>
+        <button
+          type="button"
+          onClick={onReviewFirst}
+          className="w-full px-6 py-3.5 border border-[var(--border-primary)] text-[var(--text-secondary)] text-[15px] font-medium rounded-[12px] hover:border-[#003399] hover:text-[#003399] transition-colors cursor-pointer"
+        >
+          Rever o material primeiro
+          {showEnglish && <span className="block text-[12px] font-normal opacity-75 mt-0.5">Review the material first</span>}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 /* ─── Scoring helpers ─── */
@@ -318,8 +417,12 @@ function LessonContent({ id }: { id: string }) {
   const lesson = getResolvedLesson(id);
   const curriculumLesson = getCurriculumLesson(id);
 
+  // Determine CEFR level and whether to show English
+  const showEnglish = lesson?.cefr === "A1" || lesson?.cefr === "A2";
+
   // State
-  const [round, setRound] = useState<Round>("learn");
+  const [round, setRound] = useState<Round>("intro");
+  const [skippedLearn, setSkippedLearn] = useState(false);
   const [learnIndex, setLearnIndex] = useState(0);
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [applyIndex, setApplyIndex] = useState(0);
@@ -361,12 +464,12 @@ function LessonContent({ id }: { id: string }) {
   // Generate exercises on first render (if no restore)
   useEffect(() => {
     if (!lesson || showRestorePrompt || generatedLesson) return;
-    setGeneratedLesson(generateLessonExercises(lesson));
+    setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
   }, [lesson, showRestorePrompt, generatedLesson]);
 
   // Persist session
   useEffect(() => {
-    if (!generatedLesson || showRestorePrompt || round === "results") return;
+    if (!generatedLesson || showRestorePrompt || round === "results" || round === "intro") return;
     saveSession(id, {
       round,
       learnIndex,
@@ -376,8 +479,9 @@ function LessonContent({ id }: { id: string }) {
       applyResults,
       generatedLesson,
       showTransition,
+      skippedLearn,
     });
-  }, [id, round, learnIndex, practiceIndex, applyIndex, practiceResults, applyResults, generatedLesson, showTransition, showRestorePrompt]);
+  }, [id, round, learnIndex, practiceIndex, applyIndex, practiceResults, applyResults, generatedLesson, showTransition, showRestorePrompt, skippedLearn]);
 
   // Restore session
   const handleRestore = () => {
@@ -390,6 +494,7 @@ function LessonContent({ id }: { id: string }) {
       setApplyResults(savedSessionState.applyResults);
       setGeneratedLesson(savedSessionState.generatedLesson);
       setShowTransition(savedSessionState.showTransition);
+      setSkippedLearn(savedSessionState.skippedLearn ?? false);
     }
     setShowRestorePrompt(false);
   };
@@ -561,6 +666,20 @@ function LessonContent({ id }: { id: string }) {
     : 0;
 
   // Handlers
+  const handleStartExercises = () => {
+    // Skip learn, go directly to practice transition
+    setSkippedLearn(true);
+    setShowTransition(true);
+    setRound("learn"); // Use "learn" round with transition showing to get to practice
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleReviewFirst = () => {
+    setSkippedLearn(false);
+    setRound("learn");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleLearnNext = () => {
     if (learnIndex < learnTotal - 1) {
       setLearnIndex((i) => i + 1);
@@ -615,9 +734,10 @@ function LessonContent({ id }: { id: string }) {
   const handleRetryPractice = () => {
     // Skip Round 1, regenerate exercises
     if (lesson) {
-      const newGen = generateLessonExercises(lesson);
+      const newGen = generateLessonExercises(lesson, showEnglish);
       setGeneratedLesson(newGen);
     }
+    setSkippedLearn(true);
     setPracticeIndex(0);
     setApplyIndex(0);
     setPracticeResults([]);
@@ -629,11 +749,12 @@ function LessonContent({ id }: { id: string }) {
   };
 
   const handleRetryFull = () => {
-    // Full restart including Round 1
+    // Full restart including Round 1 (not intro — they've already chosen)
     if (lesson) {
-      const newGen = generateLessonExercises(lesson);
+      const newGen = generateLessonExercises(lesson, showEnglish);
       setGeneratedLesson(newGen);
     }
+    setSkippedLearn(false);
     setLearnIndex(0);
     setPracticeIndex(0);
     setApplyIndex(0);
@@ -703,9 +824,21 @@ function LessonContent({ id }: { id: string }) {
         lessonTitlePt={lesson.ptTitle}
         cefr={lesson.cefr}
         currentRound={round}
+        skippedLearn={skippedLearn}
         roundProgress={roundProgress}
         progressLabel={progressLabel}
       >
+        {/* ── INTRO: Choose path ── */}
+        {round === "intro" && (
+          <LessonIntro
+            lesson={lesson}
+            generatedLesson={generatedLesson}
+            showEnglish={showEnglish}
+            onStartExercises={handleStartExercises}
+            onReviewFirst={handleReviewFirst}
+          />
+        )}
+
         {/* ── ROUND 1: Learn ── */}
         {round === "learn" && !showTransition && (
           <>
@@ -739,7 +872,9 @@ function LessonContent({ id }: { id: string }) {
         {round === "learn" && showTransition && (
           <RoundTransition
             title="Vamos praticar!"
+            englishTitle={showEnglish ? "Let's practice!" : undefined}
             subtitle="Agora vais ser testado no que acabaste de aprender. Exercícios variados sobre vocabulário, verbos, gramática e cultura."
+            englishSubtitle={showEnglish ? "Now you'll be tested on what you just learned. Mixed exercises on vocabulary, verbs, grammar and culture." : undefined}
             buttonText="Começar →"
             onContinue={handleStartPractice}
           />
@@ -757,7 +892,9 @@ function LessonContent({ id }: { id: string }) {
         {round === "practice" && showTransition && (
           <RoundTransition
             title="Bom trabalho!"
+            englishTitle={showEnglish ? "Good work!" : undefined}
             subtitle="Agora vamos aplicar tudo junto com exercícios mais desafiantes."
+            englishSubtitle={showEnglish ? "Now let's put it all together with more challenging exercises." : undefined}
             buttonText="Continuar →"
             onContinue={handleStartApply}
           />
@@ -799,6 +936,7 @@ function LessonContent({ id }: { id: string }) {
             saveError={saveError}
             onRetrySave={handleRetrySave}
             examUnlocked={unlockedExamId}
+            showEnglish={showEnglish}
           />
         )}
       </LessonShell>

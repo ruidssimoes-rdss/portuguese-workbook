@@ -6,6 +6,7 @@ import type { ExerciseResult } from "@/lib/exercise-generator";
 
 interface SentenceBuildProps {
   instruction: string;
+  englishInstruction?: string;
   words: string[];
   correctSentence: string;
   acceptedAnswers?: string[];
@@ -14,6 +15,7 @@ interface SentenceBuildProps {
 
 export function SentenceBuild({
   instruction,
+  englishInstruction,
   words,
   correctSentence,
   acceptedAnswers,
@@ -61,9 +63,13 @@ export function SentenceBuild({
 
   return (
     <div>
-      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-4">
+      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
         {instruction}
       </p>
+      {englishInstruction && (
+        <p className="text-[12px] text-[var(--text-muted)] mb-4">{englishInstruction}</p>
+      )}
+      {!englishInstruction && <div className="mb-3" />}
 
       {/* Staging area */}
       <div className="border-2 border-dashed border-[var(--border-primary)] rounded-[12px] p-4 min-h-[60px] mb-4 bg-[var(--bg-card)]">

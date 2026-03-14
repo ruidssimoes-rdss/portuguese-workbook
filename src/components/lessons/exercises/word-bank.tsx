@@ -6,6 +6,7 @@ import type { ExerciseResult } from "@/lib/exercise-generator";
 
 interface WordBankProps {
   instruction: string;
+  englishInstruction?: string;
   textWithBlanks: string;
   blanks: Array<{ correctAnswer: string; acceptedAnswers?: string[] }>;
   wordBank: string[];
@@ -14,6 +15,7 @@ interface WordBankProps {
 
 export function WordBank({
   instruction,
+  englishInstruction,
   textWithBlanks,
   blanks,
   wordBank,
@@ -89,9 +91,13 @@ export function WordBank({
 
   return (
     <div>
-      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-4">
+      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
         {instruction}
       </p>
+      {englishInstruction && (
+        <p className="text-[12px] text-[var(--text-muted)] mb-4">{englishInstruction}</p>
+      )}
+      {!englishInstruction && <div className="mb-3" />}
 
       {/* Text with blanks */}
       <div className="border border-[var(--border-primary)] rounded-[12px] p-6 bg-[var(--bg-card)] mb-4">

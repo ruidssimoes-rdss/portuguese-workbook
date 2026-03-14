@@ -21,6 +21,7 @@ interface ResultsScreenProps {
   saveError: boolean;
   onRetrySave: () => void;
   examUnlocked: string | null;
+  showEnglish?: boolean;
 }
 
 export function ResultsScreen({
@@ -38,6 +39,7 @@ export function ResultsScreen({
   saveError,
   onRetrySave,
   examUnlocked,
+  showEnglish,
 }: ResultsScreenProps) {
   const practiceAccuracy = practiceScore.total > 0
     ? Math.round((practiceScore.correct / practiceScore.total) * 100)
@@ -67,12 +69,15 @@ export function ResultsScreen({
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">
             Lição Completa!
           </h2>
+          {showEnglish && <p className="text-[14px] text-[var(--text-muted)] mt-1">Lesson Complete!</p>}
         </div>
 
         {/* Accuracy */}
-        <p className="text-[18px] font-semibold text-[var(--text-primary)] mb-6">
+        <p className="text-[18px] font-semibold text-[var(--text-primary)] mb-1">
           Precisão: {accuracy}%
         </p>
+        {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-6">Accuracy: {accuracy}%</p>}
+        {!showEnglish && <div className="mb-5" />}
 
         {/* Score breakdown */}
         <div className="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6">
@@ -120,9 +125,11 @@ export function ResultsScreen({
         {/* Wrong answers */}
         {wrongAnswers.length > 0 && (
           <div className="text-left max-w-lg mx-auto mb-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
               Respostas erradas
             </p>
+            {showEnglish && <p className="text-[11px] text-[var(--text-muted)] mb-3">Wrong answers</p>}
+            {!showEnglish && <div className="mb-2" />}
             <div className="space-y-2">
               {wrongAnswers.map((w, i) => (
                 <div
@@ -168,6 +175,7 @@ export function ResultsScreen({
               className="px-8 py-3 bg-[var(--text-primary)] text-white text-[15px] font-semibold rounded-[12px] hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isSaving ? "A guardar..." : "Próxima lição"}
+              {showEnglish && <span className="block text-[11px] font-normal opacity-75">{isSaving ? "Saving..." : "Next lesson"}</span>}
             </button>
           )}
           <button
@@ -177,6 +185,7 @@ export function ResultsScreen({
             className="px-6 py-2.5 border border-[var(--border-primary)] rounded-[12px] text-[14px] font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             Rever lição
+            {showEnglish && <span className="block text-[11px] font-normal opacity-75">Review lesson</span>}
           </button>
           <button
             type="button"
@@ -197,21 +206,24 @@ export function ResultsScreen({
       <div className="mb-6">
         <div className="w-16 h-16 rounded-full bg-[#FEF3C7] border-2 border-[#FCD34D] flex items-center justify-center mx-auto mb-4">
           <span className="text-3xl" aria-hidden>
-            {/* Book icon via SVG */}
             <svg className="w-8 h-8 text-[#92400E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           </span>
         </div>
         <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ainda não</h2>
+        {showEnglish && <p className="text-[13px] text-[var(--text-muted)] mt-0.5">Not quite yet</p>}
         <p className="text-[13px] text-[var(--text-secondary)] mt-1">
           Precisas de 80% para passar.
         </p>
+        {showEnglish && <p className="text-[12px] text-[var(--text-muted)]">You need 80% to pass.</p>}
       </div>
 
-      <p className="text-[18px] font-semibold text-[var(--text-primary)] mb-6">
+      <p className="text-[18px] font-semibold text-[var(--text-primary)] mb-1">
         Precisão: {accuracy}%
       </p>
+      {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-6">Accuracy: {accuracy}%</p>}
+      {!showEnglish && <div className="mb-5" />}
 
       {/* Score breakdown */}
       <div className="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6">
@@ -291,6 +303,7 @@ export function ResultsScreen({
           className="px-8 py-3 bg-[var(--text-primary)] text-white text-[15px] font-semibold rounded-[12px] hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isSaving ? "A guardar..." : "Tentar novamente"}
+          {showEnglish && <span className="block text-[11px] font-normal opacity-75">{isSaving ? "Saving..." : "Try again"}</span>}
         </button>
         <button
           type="button"
@@ -299,6 +312,7 @@ export function ResultsScreen({
           className="px-6 py-2.5 border border-[var(--border-primary)] rounded-[12px] text-[14px] font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           Rever primeiro
+          {showEnglish && <span className="block text-[11px] font-normal opacity-75">Review first</span>}
         </button>
         <button
           type="button"

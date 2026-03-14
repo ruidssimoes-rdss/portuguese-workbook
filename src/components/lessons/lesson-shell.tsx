@@ -5,7 +5,7 @@ import { CEFRBadge } from "@/components/ui/badge";
 import { NoteContextActions } from "@/components/notes/note-context-actions";
 import { ContentCalendarInfo } from "@/components/calendar/content-calendar-info";
 
-type Round = "learn" | "practice" | "apply" | "results";
+type Round = "intro" | "learn" | "practice" | "apply" | "results";
 
 interface LessonShellProps {
   lessonId: string;
@@ -13,6 +13,7 @@ interface LessonShellProps {
   lessonTitlePt: string;
   cefr: string;
   currentRound: Round;
+  skippedLearn?: boolean;
   roundProgress: number;
   progressLabel: string;
   children: React.ReactNode;
@@ -31,12 +32,13 @@ export function LessonShell({
   lessonTitlePt,
   cefr,
   currentRound,
+  skippedLearn,
   roundProgress,
   progressLabel,
   children,
 }: LessonShellProps) {
   const roundIndex = ROUND_ORDER.indexOf(currentRound);
-  const showRoundNav = currentRound !== "results";
+  const showRoundNav = currentRound !== "results" && currentRound !== "intro";
 
   return (
     <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
@@ -73,30 +75,40 @@ export function LessonShell({
           <>
             {/* Round indicator */}
             <div className="flex items-center gap-6 mb-3">
-              {ROUND_ORDER.map((round, i) => (
-                <div key={round} className="flex items-center gap-2">
-                  <div
-                    className={`w-2.5 h-2.5 rounded-full ${
-                      round === currentRound
-                        ? "bg-[#003399]"
-                        : i < roundIndex
-                          ? "bg-[#059669]"
-                          : "bg-[var(--border-primary)]"
-                    }`}
-                  />
-                  <span
-                    className={`text-[13px] font-medium ${
-                      round === currentRound
-                        ? "text-[var(--text-primary)]"
-                        : i < roundIndex
-                          ? "text-[#059669]"
-                          : "text-[var(--text-muted)]"
-                    }`}
-                  >
-                    {ROUND_LABELS[round]}
-                  </span>
-                </div>
-              ))}
+              {ROUND_ORDER.map((round, i) => {
+                const isSkipped = round === "learn" && skippedLearn;
+                const isCurrent = round === currentRound;
+                const isComplete = !isSkipped && i < roundIndex;
+
+                return (
+                  <div key={round} className="flex items-center gap-2">
+                    <div
+                      className={`w-2.5 h-2.5 rounded-full ${
+                        isCurrent
+                          ? "bg-[#003399]"
+                          : isComplete
+                            ? "bg-[#059669]"
+                            : isSkipped
+                              ? "bg-[var(--border-primary)]"
+                              : "bg-[var(--border-primary)]"
+                      }`}
+                    />
+                    <span
+                      className={`text-[13px] font-medium ${
+                        isCurrent
+                          ? "text-[var(--text-primary)]"
+                          : isComplete
+                            ? "text-[#059669]"
+                            : isSkipped
+                              ? "text-[var(--text-muted)] line-through"
+                              : "text-[var(--text-muted)]"
+                      }`}
+                    >
+                      {ROUND_LABELS[round]}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Progress bar */}
