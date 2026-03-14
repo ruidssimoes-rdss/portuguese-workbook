@@ -46,6 +46,11 @@ import {
 import { logLessonCompletion } from "@/lib/calendar-service";
 import { updateStreak } from "@/lib/streak-service";
 import { updateGoalProgress } from "@/lib/goals-service";
+import { checkAnswer } from "@/lib/accent-utils";
+import grammarData from "@/data/grammar.json";
+import type { GrammarData, GrammarQuestion } from "@/types/grammar";
+
+const grammarDB = grammarData as unknown as GrammarData;
 
 /* ─── Shared types ─── */
 
@@ -128,7 +133,17 @@ function SentenceWithInput({
   );
 }
 
-/* ─── STAGE: Vocabulary (flip cards) ─── */
+/* ─── STAGE: Vocabulary (preview → multiple choice quiz) ─── */
+
+/** Shuffle array (Fisher-Yates) */
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 function VocabStage({
   stage,
@@ -137,136 +152,203 @@ function VocabStage({
   stage: LessonStage;
   onProgress: (itemId: string, data: unknown) => void;
 }) {
-  const [flipped, setFlipped] = useState<Record<string, boolean>>({});
-  const [known, setKnown] = useState<Record<string, boolean | null>>({});
-
   const items = stage.items ?? [];
-  const allAssessed = items.every(
-    (item) => known[item.id] !== undefined && known[item.id] !== null
-  );
+  const [phase, setPhase] = useState<"preview" | "quiz">("preview");
+  const [previewIndex, setPreviewIndex] = useState(0);
+  const [flipped, setFlipped] = useState(false);
 
+  // Quiz state
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [quizResults, setQuizResults] = useState<Record<string, boolean>>({});
+
+  const currentPreviewItem = items[previewIndex];
+  const currentQuizItem = items[quizIndex];
+
+  // Generate multiple choice options for quiz item
+  const quizOptions = (() => {
+    if (!currentQuizItem) return [];
+    const distractors = items
+      .filter((it) => it.id !== currentQuizItem.id)
+      .map((it) => it.word);
+    const shuffled = shuffle(distractors).slice(0, 3);
+    return shuffle([currentQuizItem.word, ...shuffled]);
+  })();
+
+  const allQuizzed = Object.keys(quizResults).length === items.length;
+  const quizCorrectCount = Object.values(quizResults).filter(Boolean).length;
+
+  if (phase === "preview") {
+    return (
+      <div>
+        <StageHeader stage={stage} />
+        <p className="text-[13px] text-[#9CA3AF] mb-4">
+          Palavra {previewIndex + 1} de {items.length}
+        </p>
+        {currentPreviewItem && (
+          <div
+            onClick={() => setFlipped((f) => !f)}
+            className="border border-[#E5E7EB] rounded-xl p-6 bg-[#FAFAFA] hover:border-[#D1D5DB] hover:shadow-sm cursor-pointer transition-all min-h-[180px] flex flex-col justify-center"
+          >
+            {!flipped ? (
+              <div className="text-center">
+                <p className="text-[18px] font-semibold text-[#111827]">{currentPreviewItem.word}</p>
+                <p className="text-[13px] text-[#9CA3AF] mt-1">{currentPreviewItem.pronunciation}</p>
+                <p className="text-[12px] text-[#D1D5DB] mt-4">Toca para revelar</p>
+              </div>
+            ) : (
+              <div>
+                <div className="flex items-start justify-between mb-2">
+                  <p className="text-[18px] font-semibold text-[#111827]">{currentPreviewItem.word}</p>
+                  <PronunciationButton text={currentPreviewItem.word} size="sm" variant="muted" />
+                </div>
+                <p className="text-[15px] text-[#6B7280]">{currentPreviewItem.translation}</p>
+                <p className="text-[13px] text-[#9CA3AF] mt-1">{currentPreviewItem.pronunciation}</p>
+                <div className="mt-3 px-3 py-2 bg-[#F9FAFB] rounded-lg">
+                  <p className="text-[13px] font-medium text-[#111827] italic">&ldquo;{currentPreviewItem.example.pt}&rdquo;</p>
+                  <p className="text-[12px] text-[#9CA3AF] mt-0.5">{currentPreviewItem.example.en}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        <div className="flex items-center justify-between mt-6">
+          <button
+            onClick={() => { setPreviewIndex((i) => i - 1); setFlipped(false); }}
+            disabled={previewIndex === 0}
+            className={`text-[13px] font-medium transition-colors ${previewIndex === 0 ? "text-[#D1D5DB]" : "text-[#6B7280] hover:text-[#111827] cursor-pointer"}`}
+          >
+            ← Anterior
+          </button>
+          {previewIndex < items.length - 1 ? (
+            <button
+              onClick={() => { setPreviewIndex((i) => i + 1); setFlipped(false); }}
+              className="px-5 py-2 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+            >
+              Seguinte →
+            </button>
+          ) : (
+            <button
+              onClick={() => setPhase("quiz")}
+              className="px-5 py-2 bg-[#003399] text-white text-[13px] font-semibold rounded-lg hover:opacity-90 transition-opacity cursor-pointer"
+            >
+              Iniciar teste
+            </button>
+          )}
+        </div>
+        {/* Progress dots */}
+        <div className="flex items-center justify-center gap-1.5 mt-4">
+          {items.map((_, i) => (
+            <div key={i} className={`h-2 rounded-full transition-all ${i === previewIndex ? "bg-[#111827] w-4" : i < previewIndex ? "bg-[#111827] w-2" : "bg-[#E5E7EB] w-2"}`} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Quiz phase
   return (
     <div>
       <StageHeader stage={stage} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {items.map((item) => (
-          <VocabCard
-            key={item.id}
-            item={item}
-            isFlipped={!!flipped[item.id]}
-            assessment={known[item.id] ?? null}
-            onFlip={() =>
-              setFlipped((prev) => ({ ...prev, [item.id]: !prev[item.id] }))
-            }
-            onAssess={(val) => {
-              setKnown((prev) => ({ ...prev, [item.id]: val }));
-              onProgress(item.id, { known: val });
-            }}
-          />
-        ))}
-      </div>
-      {allAssessed && (
-        <div className="mt-6 p-4 bg-[#F9FAFB] rounded-xl border border-[#F3F4F6] text-center">
-          <p className="text-[15px] font-semibold text-[#111827]">
-            {Object.values(known).filter((v) => v === true).length} /{" "}
-            {items.length} known
-          </p>
-          <p className="text-[13px] text-[#6B7280] mt-1">
-            {Object.values(known).filter((v) => v === false).length > 0
-              ? `${Object.values(known).filter((v) => v === false).length} marked for review`
-              : "Everything looks solid!"}
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
+      <p className="text-[13px] text-[#9CA3AF] mb-4">
+        Pergunta {Math.min(quizIndex + 1, items.length)} de {items.length}
+      </p>
 
-function VocabCard({
-  item,
-  isFlipped,
-  assessment,
-  onFlip,
-  onAssess,
-}: {
-  item: VocabItem;
-  isFlipped: boolean;
-  assessment: boolean | null;
-  onFlip: () => void;
-  onAssess: (known: boolean) => void;
-}) {
-  return (
-    <div
-      onClick={onFlip}
-      className={`border rounded-xl p-5 cursor-pointer transition-all duration-300 min-h-[160px] flex flex-col justify-between ${
-        assessment === true
-          ? "border-[#D1FAE5] bg-[#F0FDF4]"
-          : assessment === false
-            ? "border-[#FEE2E2] bg-[#FEF2F2]"
-            : isFlipped
-              ? "border-[#E5E7EB] bg-white"
-              : "border-[#E5E7EB] bg-[#FAFAFA] hover:border-[#D1D5DB] hover:shadow-sm"
-      }`}
-    >
-      {!isFlipped ? (
-        <div className="flex flex-col items-center justify-center flex-1 text-center">
-          <p className="text-[18px] font-semibold text-[#111827]">
-            {item.word}
-          </p>
-          <p className="text-[13px] text-[#9CA3AF] mt-1">
-            {item.pronunciation}
-          </p>
-          <p className="text-[12px] text-[#D1D5DB] mt-4">Tap to reveal</p>
-        </div>
-      ) : (
-        <div>
-          <div className="flex items-start justify-between mb-2">
-            <p className="text-[18px] font-semibold text-[#111827]">
-              {item.word}
-            </p>
-            <PronunciationButton text={item.word} size="sm" variant="muted" />
+      {currentQuizItem && !allQuizzed && (
+        <div className="border border-[#E5E7EB] rounded-xl p-6 bg-white">
+          <p className="text-[13px] text-[#9CA3AF] mb-2">Qual é a tradução em português?</p>
+          <p className="text-[20px] font-semibold text-[#111827] mb-6">&ldquo;{currentQuizItem.translation}&rdquo;</p>
+
+          <div className="grid grid-cols-2 gap-3">
+            {quizOptions.map((option) => {
+              const isSelected = selected === option;
+              const isCorrectOption = option === currentQuizItem.word;
+              const showResult = selected !== null;
+
+              let btnClass = "border border-[#E5E7EB] bg-[#FAFAFA] hover:border-[#D1D5DB] hover:shadow-sm cursor-pointer";
+              if (showResult && isCorrectOption) {
+                btnClass = "border-2 border-[#059669] bg-[#F0FDF4]";
+              } else if (showResult && isSelected && !isCorrectOption) {
+                btnClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
+              } else if (showResult) {
+                btnClass = "border border-[#E5E7EB] bg-white opacity-60";
+              }
+
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  disabled={selected !== null}
+                  onClick={() => {
+                    setSelected(option);
+                    const isCorrect = option === currentQuizItem.word;
+                    setQuizResults((prev) => ({ ...prev, [currentQuizItem.id]: isCorrect }));
+                    onProgress(currentQuizItem.id, { correct: isCorrect, answer: option });
+                  }}
+                  className={`rounded-xl p-4 text-[15px] font-medium text-[#111827] text-left transition-all ${btnClass}`}
+                >
+                  {option}
+                </button>
+              );
+            })}
           </div>
-          <p className="text-[15px] text-[#6B7280]">{item.translation}</p>
-          <p className="text-[13px] text-[#9CA3AF] mt-1">
-            {item.pronunciation}
-          </p>
-          <div className="mt-3 px-3 py-2 bg-[#F9FAFB] rounded-lg">
-            <p className="text-[13px] font-medium text-[#111827] italic">
-              &ldquo;{item.example.pt}&rdquo;
-            </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-0.5">
-              {item.example.en}
-            </p>
-          </div>
-          {assessment === null ? (
-            <div
-              className="flex gap-2 mt-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => onAssess(true)}
-                className="flex-1 py-2 text-[13px] font-semibold text-[#059669] border border-[#D1FAE5] rounded-lg hover:bg-[#F0FDF4] transition-colors cursor-pointer"
-              >
-                I knew this
-              </button>
-              <button
-                onClick={() => onAssess(false)}
-                className="flex-1 py-2 text-[13px] font-semibold text-[#DC2626] border border-[#FEE2E2] rounded-lg hover:bg-[#FEF2F2] transition-colors cursor-pointer"
-              >
-                Review again
-              </button>
-            </div>
-          ) : (
-            <div className="mt-4 text-center">
-              <p className="text-[12px] font-medium text-[#9CA3AF]">
-                {assessment
-                  ? "Known"
-                  : "Marked for review"}
-              </p>
+
+          {selected !== null && (
+            <div className="mt-4">
+              <div className={`p-4 rounded-xl ${selected === currentQuizItem.word ? "bg-[#F0FDF4] border border-[#D1FAE5]" : "bg-[#FEF2F2] border border-[#FEE2E2]"}`}>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-[15px] font-semibold text-[#111827]">{currentQuizItem.word}</p>
+                    <p className="text-[13px] text-[#6B7280]">{currentQuizItem.pronunciation}</p>
+                  </div>
+                  <PronunciationButton text={currentQuizItem.word} size="sm" variant="muted" />
+                </div>
+                <div className="mt-2 px-3 py-2 bg-white/60 rounded-lg">
+                  <p className="text-[13px] font-medium text-[#111827] italic">&ldquo;{currentQuizItem.example.pt}&rdquo;</p>
+                  <p className="text-[12px] text-[#9CA3AF] mt-0.5">{currentQuizItem.example.en}</p>
+                </div>
+              </div>
+              {quizIndex < items.length - 1 && (
+                <button
+                  onClick={() => { setQuizIndex((i) => i + 1); setSelected(null); }}
+                  className="mt-4 w-full py-2.5 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+                >
+                  Seguinte →
+                </button>
+              )}
             </div>
           )}
         </div>
       )}
+
+      {allQuizzed && (
+        <div className="mt-6 p-4 bg-[#F9FAFB] rounded-xl border border-[#F3F4F6] text-center">
+          <p className="text-[15px] font-semibold text-[#111827]">
+            {quizCorrectCount} / {items.length} corretas
+          </p>
+          <p className="text-[13px] text-[#6B7280] mt-1">
+            {quizCorrectCount === items.length ? "Perfeito!" : "Continua a praticar."}
+          </p>
+        </div>
+      )}
+
+      {/* Progress dots */}
+      <div className="flex items-center justify-center gap-1.5 mt-4">
+        {items.map((item, i) => (
+          <div
+            key={item.id}
+            className={`h-2 rounded-full transition-all ${
+              i === quizIndex && !allQuizzed
+                ? "bg-[#111827] w-4"
+                : quizResults[item.id] !== undefined
+                  ? quizResults[item.id]
+                    ? "bg-[#059669] w-2"
+                    : "bg-[#DC2626] w-2"
+                  : "bg-[#E5E7EB] w-2"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -309,14 +391,18 @@ function VerbStage({
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
   const [correct, setCorrect] = useState<Record<string, boolean>>({});
+  const [accentHints, setAccentHints] = useState<Record<string, string>>({});
 
   const handleSubmit = (row: ConjRow) => {
     const key = progressKey(row);
-    const userAnswer = (answers[key] || "").trim().toLowerCase();
-    const isCorrect = userAnswer === row.form.toLowerCase();
+    const userAnswer = (answers[key] || "").trim();
+    const result = checkAnswer(userAnswer, row.form);
     setSubmitted((prev) => ({ ...prev, [key]: true }));
-    setCorrect((prev) => ({ ...prev, [key]: isCorrect }));
-    onProgress(key, { correct: isCorrect, answer: userAnswer });
+    setCorrect((prev) => ({ ...prev, [key]: result.correct }));
+    if (result.accentHint) {
+      setAccentHints((prev) => ({ ...prev, [key]: result.accentHint! }));
+    }
+    onProgress(key, { correct: result.correct, answer: userAnswer });
   };
 
   const allSubmitted = rows.every((r) => submitted[progressKey(r)]);
@@ -386,9 +472,16 @@ function VerbStage({
                 <div className="flex-1 flex items-center justify-between">
                   <div>
                     {correct[key] ? (
-                      <span className="text-[15px] font-semibold text-[#059669]">
-                        {row.form}
-                      </span>
+                      <div>
+                        <span className="text-[15px] font-semibold text-[#059669]">
+                          {row.form}
+                        </span>
+                        {accentHints[key] && (
+                          <p className="text-[12px] text-[#6B7280] mt-0.5">
+                            Atenção ao acento: <span className="font-semibold text-[#111827]">{accentHints[key]}</span>
+                          </p>
+                        )}
+                      </div>
                     ) : (
                       <div>
                         <span className="text-[15px] font-semibold text-[#DC2626] line-through mr-2">
@@ -454,7 +547,7 @@ function VerbStage({
   );
 }
 
-/* ─── STAGE: Grammar (progressive reveal) ─── */
+/* ─── STAGE: Grammar (rule + examples + comprehension quiz) ─── */
 
 function GrammarStage({
   stage,
@@ -466,77 +559,174 @@ function GrammarStage({
   const grammar = stage.grammarItems?.[0];
   if (!grammar) return null;
 
+  const [phase, setPhase] = useState<"learn" | "quiz">("learn");
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
   const allRevealed = grammar.examples.every((_, i) => revealed[i]);
 
+  // Comprehension questions from grammar.json
+  const topicQuestions: GrammarQuestion[] = grammarDB.topics[grammar.topicSlug]?.questions ?? [];
+  const questions = topicQuestions.slice(0, 3);
+  const hasQuestions = questions.length > 0;
+
+  // Quiz state
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [quizResults, setQuizResults] = useState<Record<number, boolean>>({});
+
+  const currentQ = questions[quizIndex];
+  const allAnswered = Object.keys(quizResults).length === questions.length;
+  const quizCorrectCount = Object.values(quizResults).filter(Boolean).length;
+
+  if (phase === "learn") {
+    return (
+      <div>
+        <StageHeader stage={stage} />
+
+        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white mb-6">
+          <p className="text-[15px] font-semibold text-[#111827]">
+            {grammar.rule}
+          </p>
+          <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">
+            {grammar.rulePt}
+          </p>
+        </div>
+
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">
+          Exemplos
+        </p>
+        <div className="space-y-3">
+          {grammar.examples.map((ex, i) => (
+            <div
+              key={i}
+              onClick={() => {
+                if (!revealed[i]) {
+                  setRevealed((prev) => ({ ...prev, [i]: true }));
+                }
+              }}
+              className={`border rounded-xl p-4 transition-all duration-200 ${
+                revealed[i]
+                  ? "border-[#E5E7EB] bg-white"
+                  : "border-[#E5E7EB] bg-[#FAFAFA] cursor-pointer hover:border-[#D1D5DB] hover:shadow-sm"
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <PronunciationButton text={ex.pt} size="sm" variant="muted" />
+                <p className="text-[15px] font-semibold text-[#111827]">{ex.pt}</p>
+              </div>
+              {revealed[i] ? (
+                <p className="text-[13px] font-medium text-[#6B7280] mt-2 ml-10">{ex.en}</p>
+              ) : (
+                <p className="text-[12px] text-[#D1D5DB] mt-2 ml-10">Toca para revelar</p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {allRevealed && (
+          <div className="mt-6 flex items-center justify-between">
+            <Link
+              href={`/grammar/${grammar.topicSlug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[13px] font-medium text-[#003399] hover:underline"
+            >
+              Aprofundar: {grammar.topicTitle} →
+            </Link>
+            {hasQuestions && (
+              <button
+                onClick={() => setPhase("quiz")}
+                className="px-5 py-2 bg-[#003399] text-white text-[13px] font-semibold rounded-lg hover:opacity-90 transition-opacity cursor-pointer"
+              >
+                Testar compreensão
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Quiz phase
   return (
     <div>
       <StageHeader stage={stage} />
-
-      <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white mb-6">
-        <p className="text-[15px] font-semibold text-[#111827]">
-          {grammar.rule}
-        </p>
-        <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">
-          {grammar.rulePt}
-        </p>
-      </div>
-
-      <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">
-        Translate these
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-4">
+        Compreensão — Pergunta {Math.min(quizIndex + 1, questions.length)} de {questions.length}
       </p>
-      <div className="space-y-3">
-        {grammar.examples.map((ex, i) => (
-          <div
-            key={i}
-            onClick={() => {
-              if (!revealed[i]) {
-                setRevealed((prev) => ({ ...prev, [i]: true }));
-                onProgress(`grammar-example-${i}`, { revealed: true });
-              }
-            }}
-            className={`border rounded-xl p-4 transition-all duration-200 ${
-              revealed[i]
-                ? "border-[#E5E7EB] bg-white"
-                : "border-[#E5E7EB] bg-[#FAFAFA] cursor-pointer hover:border-[#D1D5DB] hover:shadow-sm"
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <PronunciationButton text={ex.pt} size="sm" variant="muted" />
-              <p className="text-[15px] font-semibold text-[#111827]">
-                {ex.pt}
-              </p>
-            </div>
-            {revealed[i] ? (
-              <p className="text-[13px] font-medium text-[#6B7280] mt-2 ml-10">
-                {ex.en}
-              </p>
-            ) : (
-              <p className="text-[12px] text-[#D1D5DB] mt-2 ml-10">
-                Tap to reveal translation
-              </p>
-            )}
-          </div>
-        ))}
-      </div>
 
-      {allRevealed && (
-        <div className="mt-6 text-center">
-          <Link
-            href={`/grammar/${grammar.topicSlug}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[13px] font-medium text-[#003399] hover:underline"
-          >
-            Deep dive: {grammar.topicTitle} →
-          </Link>
+      {currentQ && !allAnswered && (
+        <div className="border border-[#E5E7EB] rounded-xl p-6 bg-white">
+          <p className="text-[16px] font-semibold text-[#111827] mb-1">{currentQ.questionText}</p>
+          <p className="text-[13px] text-[#6B7280] italic mb-5">{currentQ.questionTextPt}</p>
+
+          <div className="space-y-2">
+            {currentQ.options.map((option, oi) => {
+              const isSelected = selectedOption === oi;
+              const isCorrectOption = oi === currentQ.correctIndex;
+              const showResult = selectedOption !== null;
+
+              let btnClass = "border border-[#E5E7EB] bg-[#FAFAFA] hover:border-[#D1D5DB] cursor-pointer";
+              if (showResult && isCorrectOption) {
+                btnClass = "border-2 border-[#059669] bg-[#F0FDF4]";
+              } else if (showResult && isSelected && !isCorrectOption) {
+                btnClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
+              } else if (showResult) {
+                btnClass = "border border-[#E5E7EB] bg-white opacity-60";
+              }
+
+              return (
+                <button
+                  key={oi}
+                  type="button"
+                  disabled={selectedOption !== null}
+                  onClick={() => {
+                    setSelectedOption(oi);
+                    const isCorrect = oi === currentQ.correctIndex;
+                    setQuizResults((prev) => ({ ...prev, [quizIndex]: isCorrect }));
+                    onProgress(`grammar-q-${quizIndex}`, { correct: isCorrect, answer: option });
+                  }}
+                  className={`w-full rounded-xl p-3 text-[14px] font-medium text-[#111827] text-left transition-all ${btnClass}`}
+                >
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+
+          {selectedOption !== null && (
+            <div className="mt-4 p-3 bg-[#F9FAFB] rounded-lg border border-[#F3F4F6]">
+              <p className="text-[13px] text-[#6B7280]">{currentQ.explanation}</p>
+              {currentQ.exampleSentence && (
+                <p className="text-[13px] font-medium text-[#111827] mt-1 italic">{currentQ.exampleSentence}</p>
+              )}
+              {currentQ.exampleTranslation && (
+                <p className="text-[12px] text-[#9CA3AF] mt-0.5">{currentQ.exampleTranslation}</p>
+              )}
+              {quizIndex < questions.length - 1 && (
+                <button
+                  onClick={() => { setQuizIndex((i) => i + 1); setSelectedOption(null); }}
+                  className="mt-3 px-5 py-2 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+                >
+                  Seguinte →
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {allAnswered && (
+        <div className="mt-6 p-4 bg-[#F9FAFB] rounded-xl border border-[#F3F4F6] text-center">
+          <p className="text-[15px] font-semibold text-[#111827]">
+            {quizCorrectCount} / {questions.length} corretas
+          </p>
         </div>
       )}
     </div>
   );
 }
 
-/* ─── STAGE: Culture (guess before reveal) ─── */
+/* ─── STAGE: Culture (multiple choice meaning guess) ─── */
 
 function CultureStage({
   stage,
@@ -545,69 +735,131 @@ function CultureStage({
   stage: LessonStage;
   onProgress: (itemId: string, data: unknown) => void;
 }) {
-  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+  const cultureItems = stage.cultureItems ?? [];
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [results, setResults] = useState<Record<string, boolean>>({});
+
+  const currentItem = cultureItems[currentIdx];
+  const allDone = Object.keys(results).length === cultureItems.length;
+
+  // Generate distractors: meanings from other culture items, plus the literal translation
+  const getOptions = (item: typeof cultureItems[0]) => {
+    const otherMeanings = cultureItems
+      .filter((c) => c.id !== item.id)
+      .map((c) => c.meaning);
+    const distractors: string[] = [];
+    // Use literal translation as one distractor if different from meaning
+    if (item.literal && item.literal !== item.meaning) {
+      distractors.push(item.literal);
+    }
+    // Fill from other culture items
+    for (const m of shuffle(otherMeanings)) {
+      if (distractors.length >= 2) break;
+      if (m !== item.meaning && !distractors.includes(m)) distractors.push(m);
+    }
+    // If still not enough, add a generic option
+    while (distractors.length < 2) {
+      distractors.push(distractors.length === 0 ? "Uma expressão comum em Portugal" : "Uma saudação formal");
+    }
+    return shuffle([item.meaning, ...distractors.slice(0, 2)]);
+  };
+
+  const options = currentItem ? getOptions(currentItem) : [];
 
   return (
     <div>
       <StageHeader stage={stage} />
-      <div className="space-y-6">
-        {stage.cultureItems?.map((item) => (
-          <div
-            key={item.id}
-            className="border border-[#E5E7EB] rounded-xl p-6 bg-white"
-          >
-            <div className="flex items-start gap-3 mb-4">
-              <PronunciationButton
-                text={item.expression}
-                size="sm"
-                variant="muted"
-                className="shrink-0 mt-0.5"
-              />
-              <p className="text-[18px] font-semibold text-[#111827] italic leading-relaxed">
-                &ldquo;{item.expression}&rdquo;
-              </p>
-            </div>
+      <p className="text-[13px] text-[#9CA3AF] mb-4">
+        {Math.min(currentIdx + 1, cultureItems.length)} de {cultureItems.length}
+      </p>
 
-            {!revealed[item.id] ? (
-              <div className="text-center py-4">
-                <p className="text-[13px] text-[#9CA3AF] mb-4">
-                  Can you guess the meaning?
-                </p>
-                <button
-                  onClick={() => {
-                    setRevealed((prev) => ({
-                      ...prev,
-                      [item.id]: true,
-                    }));
-                    onProgress(item.id, { revealed: true });
-                  }}
-                  className="px-5 py-2 border border-[#E5E7EB] rounded-lg text-[13px] font-semibold text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-colors cursor-pointer"
-                >
-                  Reveal meaning
-                </button>
-              </div>
-            ) : (
-              <div className="space-y-3 mt-2">
-                <p className="text-[15px] font-semibold text-[#111827]">
-                  {item.meaning}
-                </p>
-                <div className="px-4 py-3 bg-[#F9FAFB] rounded-lg">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1">
-                    Literal
-                  </p>
-                  <p className="text-[13px] text-[#6B7280]">{item.literal}</p>
-                </div>
-                <div className="px-4 py-3 bg-[#F9FAFB] rounded-lg">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1">
-                    When to use
-                  </p>
-                  <p className="text-[13px] text-[#6B7280]">{item.tip}</p>
-                </div>
-              </div>
-            )}
+      {currentItem && !allDone && (
+        <div className="border border-[#E5E7EB] rounded-xl p-6 bg-white">
+          <div className="flex items-start gap-3 mb-6">
+            <PronunciationButton
+              text={currentItem.expression}
+              size="sm"
+              variant="muted"
+              className="shrink-0 mt-0.5"
+            />
+            <p className="text-[18px] font-semibold text-[#111827] italic leading-relaxed">
+              &ldquo;{currentItem.expression}&rdquo;
+            </p>
           </div>
-        ))}
-      </div>
+
+          <p className="text-[13px] text-[#9CA3AF] mb-4">O que achas que significa?</p>
+
+          <div className="space-y-2">
+            {options.map((option) => {
+              const isSelected = selected === option;
+              const isCorrectOption = option === currentItem.meaning;
+              const showResult = selected !== null;
+
+              let btnClass = "border border-[#E5E7EB] bg-[#FAFAFA] hover:border-[#D1D5DB] cursor-pointer";
+              if (showResult && isCorrectOption) {
+                btnClass = "border-2 border-[#059669] bg-[#F0FDF4]";
+              } else if (showResult && isSelected && !isCorrectOption) {
+                btnClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
+              } else if (showResult) {
+                btnClass = "border border-[#E5E7EB] bg-white opacity-60";
+              }
+
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  disabled={selected !== null}
+                  onClick={() => {
+                    setSelected(option);
+                    const isCorrect = option === currentItem.meaning;
+                    setResults((prev) => ({ ...prev, [currentItem.id]: isCorrect }));
+                    onProgress(currentItem.id, { correct: isCorrect, answer: option });
+                  }}
+                  className={`w-full rounded-xl p-4 text-[14px] font-medium text-[#111827] text-left transition-all ${btnClass}`}
+                >
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+
+          {selected !== null && (
+            <div className="mt-4 space-y-3">
+              <div className="px-4 py-3 bg-[#F9FAFB] rounded-lg">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1">Significado</p>
+                <p className="text-[14px] font-medium text-[#111827]">{currentItem.meaning}</p>
+              </div>
+              {currentItem.literal && (
+                <div className="px-4 py-3 bg-[#F9FAFB] rounded-lg">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1">Literal</p>
+                  <p className="text-[13px] text-[#6B7280]">{currentItem.literal}</p>
+                </div>
+              )}
+              <div className="px-4 py-3 bg-[#F9FAFB] rounded-lg">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1">Quando usar</p>
+                <p className="text-[13px] text-[#6B7280]">{currentItem.tip}</p>
+              </div>
+              {currentIdx < cultureItems.length - 1 && (
+                <button
+                  onClick={() => { setCurrentIdx((i) => i + 1); setSelected(null); }}
+                  className="w-full mt-2 py-2.5 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+                >
+                  Seguinte →
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {allDone && (
+        <div className="mt-6 p-4 bg-[#F9FAFB] rounded-xl border border-[#F3F4F6] text-center">
+          <p className="text-[15px] font-semibold text-[#111827]">
+            {Object.values(results).filter(Boolean).length} / {cultureItems.length} corretas
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -625,6 +877,7 @@ function PracticeStage({
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
   const [correct, setCorrect] = useState<Record<string, boolean>>({});
+  const [practiceAccentHints, setPracticeAccentHints] = useState<Record<string, string>>({});
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const currentItem = items[currentIndex];
@@ -633,12 +886,13 @@ function PracticeStage({
 
   const handleCheck = (item: PracticeItem) => {
     const userAnswer = (answers[item.id] || "").trim();
-    const isCorrect = item.acceptedAnswers.some(
-      (accepted) => accepted.toLowerCase() === userAnswer.toLowerCase()
-    );
+    const result = checkAnswer(userAnswer, item.answer, item.acceptedAnswers);
     setSubmitted((prev) => ({ ...prev, [item.id]: true }));
-    setCorrect((prev) => ({ ...prev, [item.id]: isCorrect }));
-    onProgress(item.id, { correct: isCorrect, answer: userAnswer });
+    setCorrect((prev) => ({ ...prev, [item.id]: result.correct }));
+    if (result.accentHint) {
+      setPracticeAccentHints((prev) => ({ ...prev, [item.id]: result.accentHint! }));
+    }
+    onProgress(item.id, { correct: result.correct, answer: userAnswer });
   };
 
   return (
@@ -687,7 +941,7 @@ function PracticeStage({
               <p
                 className={`text-[18px] font-semibold mb-2 ${correct[currentItem.id] ? "text-[#059669]" : "text-[#DC2626]"}`}
               >
-                {correct[currentItem.id] ? "Correct!" : "Not quite"}
+                {correct[currentItem.id] ? "Correto!" : "Não é bem"}
               </p>
               <p className="text-[15px] font-semibold text-[#111827] mb-1">
                 {currentItem.fullSentence}
@@ -695,9 +949,14 @@ function PracticeStage({
               <p className="text-[13px] text-[#6B7280]">
                 {currentItem.translation}
               </p>
+              {correct[currentItem.id] && practiceAccentHints[currentItem.id] && (
+                <p className="text-[12px] text-[#6B7280] mt-2">
+                  Atenção ao acento: <span className="font-semibold text-[#111827]">{practiceAccentHints[currentItem.id]}</span>
+                </p>
+              )}
               {!correct[currentItem.id] && (
                 <p className="text-[13px] text-[#9CA3AF] mt-2">
-                  The answer was:{" "}
+                  A resposta era:{" "}
                   <span className="font-semibold text-[#111827]">
                     {currentItem.answer}
                   </span>
@@ -770,9 +1029,19 @@ function ResultsStage({
 }) {
   const router = useRouter();
   const passingScore = curriculumLesson?.scoring.passingScore ?? 60;
-  const verbStages = lesson.stages.filter((s) => s.type === "verb");
-  const practiceStage = lesson.stages.find((s) => s.type === "practice");
 
+  // ── Vocab scoring ──
+  const vocabStage = lesson.stages.find((s) => s.type === "vocabulary");
+  const vocabItems = vocabStage?.items ?? [];
+  let vocabCorrect = 0;
+  let vocabTotal = vocabItems.length;
+  vocabItems.forEach((item) => {
+    const p = (stageProgress[vocabStage?.id ?? ""] ?? {})[item.id] as { correct?: boolean } | undefined;
+    if (p?.correct) vocabCorrect++;
+  });
+
+  // ── Verb scoring ──
+  const verbStages = lesson.stages.filter((s) => s.type === "verb");
   let verbCorrect = 0;
   let verbTotal = 0;
   const wrongItems: WrongItem[] = [];
@@ -797,6 +1066,33 @@ function ResultsStage({
     }
   });
 
+  // ── Grammar comprehension scoring ──
+  const grammarStages = lesson.stages.filter((s) => s.type === "grammar");
+  let grammarCorrect = 0;
+  let grammarTotal = 0;
+  grammarStages.forEach((stage) => {
+    const topicSlug = stage.grammarItems?.[0]?.topicSlug;
+    if (!topicSlug) return;
+    const questions = (grammarDB.topics[topicSlug]?.questions ?? []).slice(0, 3);
+    grammarTotal += questions.length;
+    questions.forEach((_, qi) => {
+      const p = (stageProgress[stage.id] ?? {})[`grammar-q-${qi}`] as { correct?: boolean } | undefined;
+      if (p?.correct) grammarCorrect++;
+    });
+  });
+
+  // ── Culture scoring ──
+  const cultureStage = lesson.stages.find((s) => s.type === "culture");
+  const cultureItems = cultureStage?.cultureItems ?? [];
+  let cultureCorrect = 0;
+  let cultureTotal = cultureItems.length;
+  cultureItems.forEach((item) => {
+    const p = (stageProgress[cultureStage?.id ?? ""] ?? {})[item.id] as { correct?: boolean } | undefined;
+    if (p?.correct) cultureCorrect++;
+  });
+
+  // ── Practice scoring ──
+  const practiceStage = lesson.stages.find((s) => s.type === "practice");
   let practiceCorrect = 0;
   const practiceItems = practiceStage?.practiceItems ?? [];
   const practiceStageId = practiceStage?.id ?? "";
@@ -814,8 +1110,9 @@ function ResultsStage({
   });
   const practiceTotal = practiceItems.length;
 
-  const gradedTotal = verbTotal + practiceTotal;
-  const gradedCorrect = verbCorrect + practiceCorrect;
+  // ── Accuracy ──
+  const gradedTotal = vocabTotal + verbTotal + grammarTotal + cultureTotal + practiceTotal;
+  const gradedCorrect = vocabCorrect + verbCorrect + grammarCorrect + cultureCorrect + practiceCorrect;
   const accuracy = gradedTotal > 0 ? Math.round((gradedCorrect / gradedTotal) * 100) : 0;
   const passed = accuracy >= passingScore;
 
@@ -891,8 +1188,11 @@ function ResultsStage({
         </div>
         <p className="text-[18px] font-semibold text-[#111827] mb-6">Accuracy: {accuracy}%</p>
         <div className="flex flex-wrap justify-center gap-4 mb-6 text-[13px] text-[#6B7280]">
-          <span>Verb Drill: {verbCorrect}/{verbTotal} correct</span>
-          <span>Practice: {practiceCorrect}/{practiceTotal} correct</span>
+          {vocabTotal > 0 && <span>Vocabulário: {vocabCorrect}/{vocabTotal}</span>}
+          {verbTotal > 0 && <span>Verbos: {verbCorrect}/{verbTotal}</span>}
+          {grammarTotal > 0 && <span>Gramática: {grammarCorrect}/{grammarTotal}</span>}
+          {cultureTotal > 0 && <span>Cultura: {cultureCorrect}/{cultureTotal}</span>}
+          {practiceTotal > 0 && <span>Prática: {practiceCorrect}/{practiceTotal}</span>}
         </div>
         {levelCounts != null && (
           <p className="text-[13px] text-[#6B7280] mb-2">

@@ -147,23 +147,25 @@ function RuleCard({
   );
 
   return (
-    <Card>
-      {/* 1. Rule header */}
-      <div className="flex items-start gap-3 mb-4">
-        <span className="text-[13px] font-semibold text-[#9CA3AF] mt-0.5">{index + 1}</span>
+    <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-6 space-y-4">
+      {/* Rule number + title */}
+      <div className="flex items-start gap-3">
+        <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[var(--brand)] text-white text-[12px] font-bold flex items-center justify-center mt-0.5">
+          {index + 1}
+        </span>
         <div>
-          <p className="text-[15px] font-semibold text-[#111827]">
+          <p className="text-[16px] font-semibold text-[var(--text-primary)] leading-snug">
             {renderWithLinks(rule.rule)}
           </p>
-          <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">{rule.rulePt}</p>
+          <p className="text-[13px] text-[var(--text-muted)] italic mt-1">{rule.rulePt}</p>
         </div>
       </div>
 
-      {/* 2. Examples — THE PRIMARY CONTENT */}
+      {/* Examples — left border accent */}
       {rule.examples.length > 0 && (
-        <div className="space-y-0">
+        <div className="border-l-2 border-[var(--brand)] pl-4 space-y-2">
           {rule.examples.map((ex, i) => (
-            <div key={i} className={`flex items-center gap-3 py-2.5 ${i > 0 ? "border-t border-[#F3F4F6]" : ""}`}>
+            <div key={i} className="flex items-center gap-3">
               <PronunciationButton
                 text={ex.pt}
                 size="sm"
@@ -171,32 +173,32 @@ function RuleCard({
                 className="shrink-0"
               />
               <div className="flex-1 flex items-baseline justify-between gap-4 min-w-0">
-                <span className="text-[15px] font-semibold text-[#111827] font-mono break-words">{ex.pt}</span>
-                <span className="text-[13px] font-medium text-[#9CA3AF] text-right shrink-0">{ex.en}</span>
+                <span className="text-[14px] font-medium text-[var(--text-primary)] break-words">{ex.pt}</span>
+                <span className="text-[13px] text-[var(--text-muted)] text-right shrink-0">{ex.en}</span>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* 3. Tip callouts */}
+      {/* Tip callouts — warm amber */}
       {tips.map((tip, i) => (
-        <div key={i} className="mt-4 px-4 py-3 bg-[#F9FAFB] rounded-lg border border-[#F3F4F6]">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1.5">Tip</p>
-          <p className="text-[13px] font-medium text-[#6B7280]">{renderWithLinks(tip)}</p>
+        <div key={i} className="bg-[#FFF8E1] border border-[#FFE082] rounded-[12px] p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F59E0B] mb-2">Dica</p>
+          <p className="text-[14px] text-[#92400E] leading-relaxed">{renderWithLinks(tip)}</p>
           {tipsPt[i] && (
-            <p className="text-[13px] text-[#9CA3AF] italic mt-1">{renderWithLinks(tipsPt[i])}</p>
+            <p className="text-[13px] text-[#B45309] italic mt-1">{renderWithLinks(tipsPt[i])}</p>
           )}
         </div>
       ))}
 
-      {/* 4. "Why?" collapsible note */}
+      {/* "Why?" collapsible note */}
       {noteTexts.length > 0 && (
-        <div className="mt-4 pt-3 border-t border-[#F3F4F6]">
+        <div className="pt-3 border-t border-[var(--border-light)]">
           <button
             type="button"
             onClick={onToggleNote}
-            className="flex items-center gap-1.5 text-[13px] font-medium text-[#9CA3AF] hover:text-[#6B7280] transition-all duration-150 ease-out cursor-pointer"
+            className="flex items-center gap-1.5 text-[13px] font-medium text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-all duration-150 ease-out cursor-pointer"
           >
             <svg
               className={`w-3 h-3 transition-transform duration-200 ${isNoteExpanded ? "rotate-90" : ""}`}
@@ -207,12 +209,12 @@ function RuleCard({
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
-            Why?
+            Porquê?
           </button>
           {isNoteExpanded && (
             <div className="mt-3 space-y-2">
               {noteTexts.map((note, i) => (
-                <p key={i} className="text-[13px] text-[#9CA3AF] leading-relaxed">
+                <p key={i} className="text-[13px] text-[var(--text-muted)] leading-relaxed">
                   {renderWithLinks(note)}
                 </p>
               ))}
@@ -221,9 +223,9 @@ function RuleCard({
         </div>
       )}
 
-      {/* 5. Cross-links */}
+      {/* Cross-links */}
       {dedupedLinks.length > 0 && (
-        <div className="mt-4 pt-3 border-t border-[#F3F4F6]">
+        <div className="pt-3 border-t border-[var(--border-light)]">
           {dedupedLinks.map((link, i) => (
             <Link
               key={`${link.href}-${i}`}
@@ -235,7 +237,7 @@ function RuleCard({
           ))}
         </div>
       )}
-    </Card>
+    </div>
   );
 }
 
@@ -262,7 +264,6 @@ export default function GrammarTopicPage() {
       let bestScore = 0;
 
       topic.rules.forEach((rule, ruleIdx) => {
-        // Build searchable text from rule title, PT title, and exception notes
         const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
           ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
           : [];
@@ -310,7 +311,7 @@ export default function GrammarTopicPage() {
             href="/grammar"
             className="text-[13px] text-[#6B7280] hover:text-[#111827] transition-all duration-150 ease-out mt-4 inline-block"
           >
-            ← Grammar
+            ← Gramática
           </Link>
         </PageContainer>
       </>
@@ -329,7 +330,7 @@ export default function GrammarTopicPage() {
             href="/grammar"
             className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-all duration-150 ease-out mb-4"
           >
-            ← Grammar
+            ← Gramática
           </Link>
 
           <div className="flex items-start justify-between gap-4">
@@ -337,10 +338,7 @@ export default function GrammarTopicPage() {
               <h1 className="text-2xl font-bold text-[#111827]">{topic.title}</h1>
               <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">{topic.titlePt}</p>
               <p className="text-[13px] text-[#9CA3AF] mt-1">
-                {topic.rules.length} rules
-              </p>
-              <p className="text-[15px] text-[#6B7280] mt-2 max-w-2xl leading-relaxed line-clamp-2">
-                {topic.summary}
+                {topic.rules.length} {topic.rules.length === 1 ? "regra" : "regras"}
               </p>
             </div>
             <div className="flex items-center gap-4 flex-wrap shrink-0">
@@ -358,60 +356,80 @@ export default function GrammarTopicPage() {
 
         <Divider />
 
-        {/* Rules */}
-        <div className="space-y-4 mt-8">
-          {topic.rules.map((rule, index) => (
-            <RuleCard
-              key={index}
-              rule={rule}
-              index={index}
-              tips={ruleTipsMap[index]?.tips ?? []}
-              tipsPt={ruleTipsMap[index]?.tipsPt ?? []}
-              isNoteExpanded={expandedNoteId === index}
-              onToggleNote={() => toggleNote(index)}
-            />
-          ))}
+        <div className="space-y-8 mt-8">
+          {/* Introduction */}
+          {topic.summary && (
+            <section>
+              <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+                {topic.summary}
+              </p>
+            </section>
+          )}
+
+          {/* Rules */}
+          <section>
+            <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-4">
+              Regras
+            </h2>
+            <div className="space-y-6">
+              {topic.rules.map((rule, index) => (
+                <RuleCard
+                  key={index}
+                  rule={rule}
+                  index={index}
+                  tips={ruleTipsMap[index]?.tips ?? []}
+                  tipsPt={ruleTipsMap[index]?.tipsPt ?? []}
+                  isNoteExpanded={expandedNoteId === index}
+                  onToggleNote={() => toggleNote(index)}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* Unmatched tips */}
+          {unmatchedTips.length > 0 && (
+            <section>
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-4">
+                Mais dicas
+              </h2>
+              <div className="space-y-4">
+                {unmatchedTips.map((tip, i) => (
+                  <div key={i} className="bg-[#FFF8E1] border border-[#FFE082] rounded-[12px] p-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F59E0B] mb-2">Dica</p>
+                    <p className="text-[14px] text-[#92400E] leading-relaxed">{renderWithLinks(tip)}</p>
+                    {unmatchedTipsPt[i] && (
+                      <p className="text-[13px] text-[#B45309] italic mt-1">{renderWithLinks(unmatchedTipsPt[i])}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Related Topics */}
+          {relatedTopics.length > 0 && (
+            <section className="border-t border-[var(--border-primary)] pt-8">
+              <SectionHeader className="mb-4">Tópicos relacionados</SectionHeader>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {relatedTopics.map((related) => (
+                  <Link key={related.id} href={`/grammar/${related.id}`} className="block group">
+                    <Card interactive padding="md">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <p className="text-[15px] font-semibold text-[#111827]">{related.title}</p>
+                          <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">{related.titlePt}</p>
+                        </div>
+                        <CEFRBadge level={related.cefr} className="shrink-0" />
+                      </div>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
-        {/* Unmatched tips fallback */}
-        {unmatchedTips.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-[#F3F4F6]">
-            <SectionHeader className="mb-4">More Tips</SectionHeader>
-            <div className="space-y-3">
-              {unmatchedTips.map((tip, i) => (
-                <div key={i} className="px-4 py-3 bg-[#F9FAFB] rounded-lg border border-[#F3F4F6]">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1.5">Tip</p>
-                  <p className="text-[13px] font-medium text-[#6B7280]">{renderWithLinks(tip)}</p>
-                  {unmatchedTipsPt[i] && (
-                    <p className="text-[13px] text-[#9CA3AF] italic mt-1">{renderWithLinks(unmatchedTipsPt[i])}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Related Topics */}
-        {relatedTopics.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-[#F3F4F6] mb-12">
-            <SectionHeader className="mb-4">Related Topics</SectionHeader>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {relatedTopics.map((related) => (
-                <Link key={related.id} href={`/grammar/${related.id}`} className="block group">
-                  <Card interactive padding="md">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="text-[15px] font-semibold text-[#111827]">{related.title}</p>
-                        <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">{related.titlePt}</p>
-                      </div>
-                      <CEFRBadge level={related.cefr} className="shrink-0" />
-                    </div>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="pb-12" />
       </PageContainer>
     </>
   );

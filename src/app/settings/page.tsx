@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { ProtectedRoute } from "@/components/protected-route";
 import { useAuth } from "@/components/auth-provider";
-import { useTheme } from "@/components/theme-provider";
 import { createClient } from "@/lib/supabase/client";
 import { PageContainer } from "@/components/ui/page-container";
 import { Button } from "@/components/ui/button";
@@ -109,7 +108,6 @@ function SettingsRow({
 
 export default function SettingsPage() {
   const { user, signOut } = useAuth();
-  const { theme, setTheme } = useTheme();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [settings, setSettings] = useState<UserSettings | null>(null);
   const [onboarding, setOnboarding] = useState<OnboardingData | null>(null);
@@ -265,7 +263,6 @@ export default function SettingsPage() {
           daily_goal: dailyGoal,
           show_translations: showTranslations,
           preferred_study_time: preferredStudyTime,
-          theme: theme,
           updated_at: new Date().toISOString(),
         },
         { onConflict: "user_id" }
@@ -332,8 +329,8 @@ export default function SettingsPage() {
             <div
               className={`rounded-lg border p-3 text-sm ${
                 message.type === "ok"
-                  ? "border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-950/30 dark:text-green-200"
-                  : "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950/30 dark:text-rose-200"
+                  ? "border-green-200 bg-green-50 text-green-800"
+                  : "border-rose-200 bg-rose-50 text-rose-700"
               }`}
             >
               {message.text}
@@ -367,7 +364,7 @@ export default function SettingsPage() {
                       <p className="text-[14px] font-medium text-[var(--text-primary)] mt-0.5">
                         {motivationLabel}
                         {savedField === "onboarding" && (
-                          <span className="ml-2 text-[12px] text-green-600 dark:text-green-400">
+                          <span className="ml-2 text-[12px] text-green-600">
                             Guardado
                           </span>
                         )}
@@ -560,31 +557,6 @@ export default function SettingsPage() {
             )}
           </Section>
 
-          {/* Appearance */}
-          <Section title="Aparência">
-            <SettingsRow
-              label="Modo escuro"
-              description="Ajustar a aparência da aplicação"
-            >
-              <div className="flex bg-[var(--border-light)] rounded-[10px] p-0.5">
-                {(["light", "dark", "system"] as const).map((mode) => (
-                  <button
-                    key={mode}
-                    type="button"
-                    onClick={() => setTheme(mode)}
-                    className={`px-3 py-1.5 text-[12px] font-medium rounded-[8px] transition-all ${
-                      theme === mode
-                        ? "bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm"
-                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                    }`}
-                  >
-                    {mode === "light" ? "Claro" : mode === "dark" ? "Escuro" : "Sistema"}
-                  </button>
-                ))}
-              </div>
-            </SettingsRow>
-          </Section>
-
           {/* Learning preferences */}
           <Section title="Preferências de aprendizagem">
             <SettingsRow
@@ -734,7 +706,7 @@ export default function SettingsPage() {
               </p>
               <Button
                 variant="secondary"
-                className="border-rose-200 text-rose-700 hover:bg-rose-50 dark:border-rose-800 dark:text-rose-300 dark:hover:bg-rose-950/30"
+                className="border-rose-200 text-rose-700 hover:bg-rose-50"
                 onClick={() => setShowDeleteConfirm(true)}
               >
                 Apagar conta
