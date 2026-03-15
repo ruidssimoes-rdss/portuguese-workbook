@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 interface WrongAnswer {
   question: string;
   userAnswer: string;
@@ -50,6 +52,33 @@ export function ResultsScreen({
   const totalCorrect = practiceScore.correct + applyScore.correct;
   const totalItems = practiceScore.total + applyScore.total;
 
+  // Staggered reveal
+  const [showBreakdown, setShowBreakdown] = useState(false);
+  const [showWrongAnswers, setShowWrongAnswers] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
+  const [displayAccuracy, setDisplayAccuracy] = useState(0);
+
+  useEffect(() => {
+    // Accuracy count-up
+    const target = accuracy;
+    const duration = 800;
+    const start = performance.now();
+    const animate = (now: number) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayAccuracy(Math.round(target * eased));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+
+    // Stagger sections
+    const t1 = setTimeout(() => setShowBreakdown(true), 300);
+    const t2 = setTimeout(() => setShowWrongAnswers(true), 600);
+    const t3 = setTimeout(() => setShowButtons(true), 900);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, [accuracy]);
+
   if (passed) {
     return (
       <div className="text-center py-8">
@@ -74,13 +103,13 @@ export function ResultsScreen({
 
         {/* Accuracy */}
         <p className="text-[18px] font-semibold text-[var(--text-primary)] mb-1">
-          Precisão: {accuracy}%
+          Precisão: {displayAccuracy}%
         </p>
-        {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-6">Accuracy: {accuracy}%</p>}
+        {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-6">Accuracy: {displayAccuracy}%</p>}
         {!showEnglish && <div className="mb-5" />}
 
         {/* Score breakdown */}
-        <div className="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6">
+        <div className={`grid grid-cols-3 gap-3 max-w-md mx-auto mb-6 transition-opacity duration-300 ${showBreakdown ? "opacity-100" : "opacity-0"}`}>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
             <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
               Praticar
@@ -123,30 +152,32 @@ export function ResultsScreen({
         )}
 
         {/* Wrong answers */}
-        {wrongAnswers.length > 0 && (
-          <div className="text-left max-w-lg mx-auto mb-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
-              Respostas erradas
-            </p>
-            {showEnglish && <p className="text-[11px] text-[var(--text-muted)] mb-3">Wrong answers</p>}
-            {!showEnglish && <div className="mb-2" />}
-            <div className="space-y-2">
-              {wrongAnswers.map((w, i) => (
-                <div
-                  key={i}
-                  className="border border-[#FEE2E2] rounded-[12px] p-3 bg-[#FEF2F2]"
-                >
-                  <p className="text-[13px] text-[var(--text-secondary)]">{w.question}</p>
-                  <p className="text-[13px] mt-1">
-                    <span className="text-[#DC2626] line-through">{w.userAnswer || "(vazio)"}</span>
-                    {" → "}
-                    <span className="text-[#059669] font-semibold">{w.correctAnswer}</span>
-                  </p>
-                </div>
-              ))}
+        <div className={`transition-opacity duration-300 ${showWrongAnswers ? "opacity-100" : "opacity-0"}`}>
+          {wrongAnswers.length > 0 && (
+            <div className="text-left max-w-lg mx-auto mb-8">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
+                Respostas erradas
+              </p>
+              {showEnglish && <p className="text-[11px] text-[var(--text-muted)] mb-3">Wrong answers</p>}
+              {!showEnglish && <div className="mb-2" />}
+              <div className="space-y-2">
+                {wrongAnswers.map((w, i) => (
+                  <div
+                    key={i}
+                    className="border border-[#FEE2E2] rounded-[12px] p-3 bg-[#FEF2F2]"
+                  >
+                    <p className="text-[13px] text-[var(--text-secondary)]">{w.question}</p>
+                    <p className="text-[13px] mt-1">
+                      <span className="text-[#DC2626] line-through">{w.userAnswer || "(vazio)"}</span>
+                      {" → "}
+                      <span className="text-[#059669] font-semibold">{w.correctAnswer}</span>
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Save error */}
         {saveError && (
@@ -166,7 +197,7 @@ export function ResultsScreen({
         )}
 
         {/* Navigation */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className={`flex flex-wrap items-center justify-center gap-4 transition-opacity duration-300 ${showButtons ? "opacity-100" : "opacity-0"}`}>
           {onNextLesson && (
             <button
               type="button"
@@ -220,13 +251,13 @@ export function ResultsScreen({
       </div>
 
       <p className="text-[18px] font-semibold text-[var(--text-primary)] mb-1">
-        Precisão: {accuracy}%
+        Precisão: {displayAccuracy}%
       </p>
-      {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-6">Accuracy: {accuracy}%</p>}
+      {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-6">Accuracy: {displayAccuracy}%</p>}
       {!showEnglish && <div className="mb-5" />}
 
       {/* Score breakdown */}
-      <div className="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6">
+      <div className={`grid grid-cols-3 gap-3 max-w-md mx-auto mb-6 transition-opacity duration-300 ${showBreakdown ? "opacity-100" : "opacity-0"}`}>
         <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
             Praticar
@@ -257,30 +288,32 @@ export function ResultsScreen({
       </div>
 
       {/* Wrong answers */}
-      {wrongAnswers.length > 0 && (
-        <div className="text-left max-w-lg mx-auto mb-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
-            Respostas erradas
-          </p>
-          {showEnglish && <p className="text-[11px] text-[var(--text-muted)] mb-3">Wrong answers</p>}
-          {!showEnglish && <div className="mb-2" />}
-          <div className="space-y-2">
-            {wrongAnswers.map((w, i) => (
-              <div
-                key={i}
-                className="border border-[#FEE2E2] rounded-[12px] p-3 bg-[#FEF2F2]"
-              >
-                <p className="text-[13px] text-[var(--text-secondary)]">{w.question}</p>
-                <p className="text-[13px] mt-1">
-                  <span className="text-[#DC2626] line-through">{w.userAnswer || "(vazio)"}</span>
-                  {" → "}
-                  <span className="text-[#059669] font-semibold">{w.correctAnswer}</span>
-                </p>
-              </div>
-            ))}
+      <div className={`transition-opacity duration-300 ${showWrongAnswers ? "opacity-100" : "opacity-0"}`}>
+        {wrongAnswers.length > 0 && (
+          <div className="text-left max-w-lg mx-auto mb-8">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
+              Respostas erradas
+            </p>
+            {showEnglish && <p className="text-[11px] text-[var(--text-muted)] mb-3">Wrong answers</p>}
+            {!showEnglish && <div className="mb-2" />}
+            <div className="space-y-2">
+              {wrongAnswers.map((w, i) => (
+                <div
+                  key={i}
+                  className="border border-[#FEE2E2] rounded-[12px] p-3 bg-[#FEF2F2]"
+                >
+                  <p className="text-[13px] text-[var(--text-secondary)]">{w.question}</p>
+                  <p className="text-[13px] mt-1">
+                    <span className="text-[#DC2626] line-through">{w.userAnswer || "(vazio)"}</span>
+                    {" → "}
+                    <span className="text-[#059669] font-semibold">{w.correctAnswer}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Save error */}
       {saveError && (
@@ -300,7 +333,7 @@ export function ResultsScreen({
       )}
 
       {/* Navigation */}
-      <div className="flex flex-wrap items-center justify-center gap-4">
+      <div className={`flex flex-wrap items-center justify-center gap-4 transition-opacity duration-300 ${showButtons ? "opacity-100" : "opacity-0"}`}>
         <button
           type="button"
           disabled={isSaving}

@@ -31,11 +31,13 @@ export function Conjugation({
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [accentHint, setAccentHint] = useState<string | undefined>();
+  const [canAdvance, setCanAdvance] = useState(false);
   const completedRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+    const t = setTimeout(() => inputRef.current?.focus(), 100);
+    return () => clearTimeout(t);
   }, []);
 
   const handleSubmit = () => {
@@ -47,17 +49,22 @@ export function Conjugation({
     setCorrect(check.correct);
     setAccentHint(check.accentHint);
 
-    const delay = check.correct ? (check.accentHint ? 2000 : 1500) : 2500;
-    timerRef.current = setTimeout(() => {
-      onComplete({
-        exerciseId: id,
-        correct: check.correct,
-        userAnswer: value.trim(),
-        correctAnswer: correctForm,
-        accentHint: check.accentHint,
-        exerciseType: "conjugation",
-      });
-    }, delay);
+    if (check.correct) {
+      setCanAdvance(true);
+    } else {
+      setTimeout(() => setCanAdvance(true), 500);
+    }
+  };
+
+  const handleAdvance = () => {
+    onComplete({
+      exerciseId: id,
+      correct,
+      userAnswer: value.trim(),
+      correctAnswer: correctForm,
+      accentHint,
+      exerciseType: "conjugation",
+    });
   };
 
   return (
@@ -82,15 +89,15 @@ export function Conjugation({
           </span>
           {!submitted ? (
             <input
+              ref={inputRef}
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
+              onKeyDown={(e) => { if (e.key === "Enter" && value.trim()) handleSubmit(); }}
               placeholder="Conjugação..."
-              className="flex-1 text-[15px] font-semibold text-[var(--text-primary)] bg-transparent border-b border-[var(--border-primary)] focus:border-[var(--text-primary)] outline-none py-1 placeholder:text-[var(--text-muted)] placeholder:font-normal transition-colors"
+              className="flex-1 text-[15px] font-semibold text-[var(--text-primary)] bg-transparent border-b-2 border-[var(--border-primary)] focus:border-[#003399] outline-none py-1 placeholder:text-[var(--text-muted)] placeholder:font-normal transition-colors"
               autoComplete="off"
               spellCheck={false}
-              autoFocus
             />
           ) : (
             <div className="flex-1 flex items-center justify-between">
@@ -125,9 +132,19 @@ export function Conjugation({
         <button
           type="button"
           onClick={handleSubmit}
-          className="mt-4 w-full py-2.5 bg-[var(--text-primary)] text-white text-[13px] font-semibold rounded-lg hover:opacity-90 transition-opacity cursor-pointer"
+          className="mt-4 w-full py-2.5 bg-[#003399] text-white text-[14px] font-medium rounded-[12px] hover:opacity-90 transition-opacity cursor-pointer"
         >
           Verificar
+        </button>
+      )}
+
+      {canAdvance && (
+        <button
+          type="button"
+          onClick={handleAdvance}
+          className="mt-4 w-full py-3 bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-[var(--text-secondary)] text-[14px] font-medium rounded-[12px] hover:bg-[var(--border-light)] transition-colors cursor-pointer"
+        >
+          Próximo →
         </button>
       )}
     </div>

@@ -442,6 +442,7 @@ function LessonContent({ id }: { id: string }) {
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [applyIndex, setApplyIndex] = useState(0);
   const [showTransition, setShowTransition] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [practiceResults, setPracticeResults] = useState<ExerciseResult[]>([]);
   const [applyResults, setApplyResults] = useState<ExerciseResult[]>([]);
   const [generatedLesson, setGeneratedLesson] = useState<GeneratedLesson | null>(null);
@@ -703,13 +704,16 @@ function LessonContent({ id }: { id: string }) {
 
   const handlePracticeComplete = (result: ExerciseResult) => {
     setPracticeResults((prev) => [...prev, result]);
-    if (practiceIndex < practiceTotal - 1) {
-      setPracticeIndex((i) => i + 1);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      if (practiceIndex < practiceTotal - 1) {
+        setPracticeIndex((i) => i + 1);
+      } else {
+        setShowTransition(true);
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      // Transition to apply
-      setShowTransition(true);
-    }
+      requestAnimationFrame(() => setIsTransitioning(false));
+    }, 250);
   };
 
   const handleStartApply = () => {
@@ -720,14 +724,16 @@ function LessonContent({ id }: { id: string }) {
 
   const handleApplyComplete = (result: ExerciseResult) => {
     setApplyResults((prev) => [...prev, result]);
-    if (applyIndex < applyTotal - 1) {
-      setApplyIndex((i) => i + 1);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      if (applyIndex < applyTotal - 1) {
+        setApplyIndex((i) => i + 1);
+      } else {
+        setRound("results");
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      // Go to results
-      setRound("results");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+      requestAnimationFrame(() => setIsTransitioning(false));
+    }, 250);
   };
 
   const handleRetryPractice = () => {
@@ -870,10 +876,10 @@ function LessonContent({ id }: { id: string }) {
         {/* ── Transition: Learn → Practice ── */}
         {round === "learn" && showTransition && (
           <RoundTransition
-            title="Vamos praticar!"
-            englishTitle={showEnglish ? "Let's practice!" : undefined}
-            subtitle="Agora vais ser testado no que acabaste de aprender. Exercícios variados sobre vocabulário, verbos, gramática e cultura."
-            englishSubtitle={showEnglish ? "Now you'll be tested on what you just learned. Mixed exercises on vocabulary, verbs, grammar and culture." : undefined}
+            title="Praticar"
+            englishTitle={showEnglish ? "Practice" : undefined}
+            subtitle="Vamos testar o que aprendeste."
+            englishSubtitle={showEnglish ? "Let's test what you've learned." : undefined}
             buttonText="Começar →"
             onContinue={handleStartPractice}
           />
@@ -881,21 +887,23 @@ function LessonContent({ id }: { id: string }) {
 
         {/* ── ROUND 2: Practice ── */}
         {round === "practice" && !showTransition && generatedLesson.practiceExercises[practiceIndex] && (
-          <ExerciseRenderer
-            key={`practice-${practiceIndex}`}
-            exerciseKey={`practice-${practiceIndex}`}
-            exercise={generatedLesson.practiceExercises[practiceIndex]}
-            onComplete={handlePracticeComplete}
-          />
+          <div className={`transition-opacity duration-200 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+            <ExerciseRenderer
+              key={`practice-${practiceIndex}`}
+              exerciseKey={`practice-${practiceIndex}`}
+              exercise={generatedLesson.practiceExercises[practiceIndex]}
+              onComplete={handlePracticeComplete}
+            />
+          </div>
         )}
 
         {/* ── Transition: Practice → Apply ── */}
         {round === "practice" && showTransition && (
           <RoundTransition
-            title="Bom trabalho!"
-            englishTitle={showEnglish ? "Good work!" : undefined}
-            subtitle="Agora vamos aplicar tudo junto com exercícios mais desafiantes."
-            englishSubtitle={showEnglish ? "Now let's put it all together with more challenging exercises." : undefined}
+            title="Aplicar"
+            englishTitle={showEnglish ? "Apply" : undefined}
+            subtitle="Agora vamos juntar tudo."
+            englishSubtitle={showEnglish ? "Now let's put it all together." : undefined}
             buttonText="Continuar →"
             onContinue={handleStartApply}
           />
@@ -903,12 +911,14 @@ function LessonContent({ id }: { id: string }) {
 
         {/* ── ROUND 3: Apply ── */}
         {round === "apply" && generatedLesson.applyExercises[applyIndex] && (
-          <ExerciseRenderer
-            key={`apply-${applyIndex}`}
-            exerciseKey={`apply-${applyIndex}`}
-            exercise={generatedLesson.applyExercises[applyIndex]}
-            onComplete={handleApplyComplete}
-          />
+          <div className={`transition-opacity duration-200 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+            <ExerciseRenderer
+              key={`apply-${applyIndex}`}
+              exerciseKey={`apply-${applyIndex}`}
+              exercise={generatedLesson.applyExercises[applyIndex]}
+              onComplete={handleApplyComplete}
+            />
+          </div>
         )}
         {/* Safety: if apply round but no exercise to show, go to results */}
         {round === "apply" && !generatedLesson.applyExercises[applyIndex] && (

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
+
 interface ErrorCorrectionProps {
   instruction: string;
   englishInstruction?: string;
@@ -21,14 +22,14 @@ export function ErrorCorrection({
 }: ErrorCorrectionProps) {
   const [value, setValue] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [result, setResult] = useState<{ correct: boolean; userAnswer: string; correctAnswer: string; accentHint?: string } | null>(null);
+  const [result, setResult] = useState<{ correct: boolean; accentHint?: string } | null>(null);
+  const [canAdvance, setCanAdvance] = useState(false);
   const completedRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
+    const t = setTimeout(() => inputRef.current?.focus(), 100);
+    return () => clearTimeout(t);
   }, []);
 
   const handleSubmit = () => {
@@ -37,16 +38,22 @@ export function ErrorCorrection({
     completedRef.current = true;
 
     const check = checkAnswer(value.trim(), correctSentence, acceptedAnswers);
-    const res = {
-      correct: check.correct,
-      accentHint: check.accentHint,
+    setResult({ correct: check.correct, accentHint: check.accentHint });
+
+    if (check.correct) {
+      setCanAdvance(true);
+    } else {
+      setTimeout(() => setCanAdvance(true), 500);
+    }
+  };
+
+  const handleAdvance = () => {
+    onComplete({
+      correct: result?.correct ?? false,
+      accentHint: result?.accentHint,
       userAnswer: value.trim(),
       correctAnswer: correctSentence,
-    };
-    setResult(res);
-
-    const delay = check.correct ? (check.accentHint ? 2000 : 1500) : 2500;
-    timerRef.current = setTimeout(() => onComplete(res), delay);
+    });
   };
 
   return (
@@ -69,6 +76,7 @@ export function ErrorCorrection({
         {!submitted ? (
           <>
             <input
+              ref={inputRef}
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
@@ -76,19 +84,18 @@ export function ErrorCorrection({
                 if (e.key === "Enter" && value.trim()) handleSubmit();
               }}
               placeholder="Escreve a frase corrigida..."
-              className="w-full text-[15px] text-[var(--text-primary)] bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-lg px-4 py-3 outline-none focus:border-[var(--text-primary)] transition-colors placeholder:text-[var(--text-muted)]"
+              className="w-full text-[15px] text-[var(--text-primary)] bg-[var(--bg-secondary)] border border-[var(--border-primary)] focus:border-[#003399] rounded-lg px-4 py-3 outline-none transition-colors placeholder:text-[var(--text-muted)]"
               autoComplete="off"
               spellCheck={false}
-              autoFocus
             />
             <button
               type="button"
               onClick={handleSubmit}
               disabled={!value.trim()}
-              className={`w-full mt-3 py-2.5 text-[13px] font-semibold rounded-lg transition-colors ${
+              className={`w-full mt-3 py-2.5 text-[14px] font-medium rounded-[12px] transition-all ${
                 value.trim()
-                  ? "bg-[var(--text-primary)] text-white hover:opacity-90 cursor-pointer"
-                  : "bg-[var(--border-light)] text-[var(--text-muted)] cursor-not-allowed"
+                  ? "bg-[#003399] text-white hover:opacity-90 cursor-pointer"
+                  : "bg-[var(--bg-secondary)] text-[var(--text-muted)] cursor-not-allowed"
               }`}
             >
               Verificar
@@ -109,13 +116,23 @@ export function ErrorCorrection({
             ) : (
               <>
                 <p className="text-[15px] font-semibold text-[#DC2626]">Não é bem</p>
-                <p className="text-[13px] text-[var(--text-muted)] mt-1 line-through">{result.userAnswer}</p>
+                <p className="text-[13px] text-[var(--text-muted)] mt-1 line-through">{value}</p>
                 <p className="text-[14px] font-medium text-[var(--text-primary)] mt-2">{correctSentence}</p>
               </>
             )}
           </div>
         ) : null}
       </div>
+
+      {canAdvance && (
+        <button
+          type="button"
+          onClick={handleAdvance}
+          className="mt-4 w-full py-3 bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-[var(--text-secondary)] text-[14px] font-medium rounded-[12px] hover:bg-[var(--border-light)] transition-colors cursor-pointer"
+        >
+          Próximo →
+        </button>
+      )}
     </div>
   );
 }

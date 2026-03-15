@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
+
 interface MultipleChoiceProps {
   instruction: string;
   englishInstruction?: string;
@@ -17,16 +18,11 @@ export function MultipleChoice({
   onComplete,
 }: MultipleChoiceProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [checked, setChecked] = useState(false);
+  const [canAdvance, setCanAdvance] = useState(false);
   const completedRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resultRef = useRef<{ correct: boolean; userAnswer: string; correctAnswer: string } | null>(null);
 
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
-
-  // Deduplicate options defensively
   const seen = new Set<string>();
   const dedupedOptions = options.filter((o) => {
     const lower = o.toLowerCase();
@@ -39,20 +35,32 @@ export function MultipleChoice({
   const actualCorrectIndex = dedupedOptions.indexOf(correctAnswer);
 
   const handleSelect = (index: number) => {
-    if (selectedIndex !== null || completedRef.current) return;
+    if (checked || completedRef.current) return;
     setSelectedIndex(index);
-    completedRef.current = true;
 
-    const isCorrect = index === actualCorrectIndex;
-    const delay = isCorrect ? 1500 : 2500;
+    // Auto-check after brief highlight
+    setTimeout(() => {
+      if (completedRef.current) return;
+      completedRef.current = true;
+      setChecked(true);
 
-    timerRef.current = setTimeout(() => {
-      onComplete({
+      const isCorrect = index === actualCorrectIndex;
+      resultRef.current = {
         correct: isCorrect,
         userAnswer: dedupedOptions[index],
         correctAnswer,
-      });
-    }, delay);
+      };
+
+      if (isCorrect) {
+        setCanAdvance(true);
+      } else {
+        setTimeout(() => setCanAdvance(true), 500);
+      }
+    }, 300);
+  };
+
+  const handleAdvance = () => {
+    if (resultRef.current) onComplete(resultRef.current);
   };
 
   return (
@@ -68,15 +76,16 @@ export function MultipleChoice({
         {dedupedOptions.map((option, i) => {
           const isSelected = selectedIndex === i;
           const isCorrectOption = i === actualCorrectIndex;
-          const showResult = selectedIndex !== null;
 
           let btnClass =
             "border-[var(--border-primary)] hover:border-[#003399] hover:bg-[rgba(0,51,153,0.05)] cursor-pointer";
-          if (showResult && isCorrectOption) {
+          if (isSelected && !checked) {
+            btnClass = "border-[#003399] bg-[rgba(0,51,153,0.05)] scale-[1.01]";
+          } else if (checked && isCorrectOption) {
             btnClass = "border-[#059669] bg-[#F0FDF4]";
-          } else if (showResult && isSelected && !isCorrectOption) {
+          } else if (checked && isSelected && !isCorrectOption) {
             btnClass = "border-[#DC2626] bg-[#FEF2F2]";
-          } else if (showResult) {
+          } else if (checked) {
             btnClass = "border-[var(--border-primary)] opacity-50";
           }
 
@@ -84,29 +93,34 @@ export function MultipleChoice({
             <button
               key={`${option}-${i}`}
               type="button"
-              disabled={selectedIndex !== null}
+              disabled={checked}
               onClick={() => handleSelect(i)}
-              className={`w-full text-left px-5 py-4 rounded-[12px] border text-[15px] transition-all duration-200 ${btnClass}`}
+              className={`w-full text-left px-5 py-4 rounded-[12px] border text-[15px] transition-all duration-200 transform ${btnClass}`}
             >
               {option}
-              {showResult && isCorrectOption && (
-                <span className="float-right text-[13px] font-medium text-[#059669]">
-                  Correto!
-                </span>
+              {checked && isCorrectOption && (
+                <span className="float-right text-[13px] font-medium text-[#059669]">Correto!</span>
               )}
-              {showResult && isSelected && !isCorrectOption && (
-                <span className="float-right text-[13px] font-medium text-[#DC2626]">
-                  Incorreto
-                </span>
+              {checked && isSelected && !isCorrectOption && (
+                <span className="float-right text-[13px] font-medium text-[#DC2626]">Incorreto</span>
               )}
             </button>
           );
         })}
       </div>
-      {selectedIndex !== null && selectedIndex !== actualCorrectIndex && (
+      {checked && selectedIndex !== actualCorrectIndex && (
         <p className="text-[13px] text-[#DC2626] mt-3">
           A resposta correta é: <span className="font-semibold">{correctAnswer}</span>
         </p>
+      )}
+      {canAdvance && (
+        <button
+          type="button"
+          onClick={handleAdvance}
+          className="mt-4 w-full py-3 bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-[var(--text-secondary)] text-[14px] font-medium rounded-[12px] hover:bg-[var(--border-light)] transition-colors cursor-pointer"
+        >
+          Próximo →
+        </button>
       )}
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
+
 interface FillInBlankProps {
   instruction: string;
   englishInstruction?: string;
@@ -23,14 +24,14 @@ export function FillInBlank({
 }: FillInBlankProps) {
   const [value, setValue] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [result, setResult] = useState<{ correct: boolean; userAnswer: string; correctAnswer: string; accentHint?: string } | null>(null);
+  const [result, setResult] = useState<{ correct: boolean; accentHint?: string } | null>(null);
+  const [canAdvance, setCanAdvance] = useState(false);
   const completedRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
+    const t = setTimeout(() => inputRef.current?.focus(), 100);
+    return () => clearTimeout(t);
   }, []);
 
   const handleSubmit = () => {
@@ -39,19 +40,24 @@ export function FillInBlank({
     completedRef.current = true;
 
     const check = checkAnswer(value.trim(), correctAnswer, acceptedAnswers);
-    const res = {
-      correct: check.correct,
-      accentHint: check.accentHint,
-      userAnswer: value.trim(),
-      correctAnswer,
-    };
-    setResult(res);
+    setResult({ correct: check.correct, accentHint: check.accentHint });
 
-    const delay = check.correct ? (check.accentHint ? 2000 : 1500) : 2500;
-    timerRef.current = setTimeout(() => onComplete(res), delay);
+    if (check.correct) {
+      setCanAdvance(true);
+    } else {
+      setTimeout(() => setCanAdvance(true), 500);
+    }
   };
 
-  // Split sentence around the blank
+  const handleAdvance = () => {
+    onComplete({
+      correct: result?.correct ?? false,
+      accentHint: result?.accentHint,
+      userAnswer: value.trim(),
+      correctAnswer,
+    });
+  };
+
   const blankMatch = sentencePt.match(/_+/);
   const blankIdx = blankMatch ? sentencePt.indexOf(blankMatch[0]) : -1;
   const before = blankIdx >= 0 ? sentencePt.substring(0, blankIdx) : sentencePt;
@@ -75,14 +81,14 @@ export function FillInBlank({
                 <span>{before}</span>
                 {!submitted ? (
                   <input
+                    ref={inputRef}
                     type="text"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" && value.trim()) handleSubmit();
                     }}
-                    className="inline-block w-28 border-b-2 border-[var(--text-primary)] text-center text-[18px] font-semibold text-[var(--text-primary)] bg-transparent outline-none mx-1"
-                    autoFocus
+                    className="inline-block w-28 border-b-2 border-[var(--border-primary)] focus:border-[#003399] text-center text-[18px] font-semibold text-[var(--text-primary)] bg-transparent outline-none mx-1 transition-colors"
                     autoComplete="off"
                     spellCheck={false}
                   />
@@ -109,10 +115,10 @@ export function FillInBlank({
             type="button"
             onClick={handleSubmit}
             disabled={!value.trim()}
-            className={`w-full py-2.5 text-[13px] font-semibold rounded-lg transition-colors ${
+            className={`w-full py-2.5 text-[14px] font-medium rounded-[12px] transition-all ${
               value.trim()
-                ? "bg-[var(--text-primary)] text-white hover:opacity-90 cursor-pointer"
-                : "bg-[var(--border-light)] text-[var(--text-muted)] cursor-not-allowed"
+                ? "bg-[#003399] text-white hover:opacity-90 cursor-pointer"
+                : "bg-[var(--bg-secondary)] text-[var(--text-muted)] cursor-not-allowed"
             }`}
           >
             Verificar
@@ -120,27 +126,37 @@ export function FillInBlank({
         )}
 
         {submitted && result && (
-          <div className="mt-4">
+          <div className="mt-4 text-center">
             {result.correct ? (
-              <div className="text-center">
+              <>
                 <p className="text-[15px] font-semibold text-[#059669]">Correto!</p>
                 {result.accentHint && (
                   <p className="text-[12px] text-[var(--text-secondary)] mt-1">
                     Atenção ao acento: <span className="font-semibold text-[var(--text-primary)]">{result.accentHint}</span>
                   </p>
                 )}
-              </div>
+              </>
             ) : (
-              <div className="text-center">
+              <>
                 <p className="text-[15px] font-semibold text-[#DC2626]">Não é bem</p>
                 <p className="text-[13px] text-[var(--text-secondary)] mt-1">
                   A resposta correta é: <span className="font-semibold text-[var(--text-primary)]">{correctAnswer}</span>
                 </p>
-              </div>
+              </>
             )}
           </div>
         )}
       </div>
+
+      {canAdvance && (
+        <button
+          type="button"
+          onClick={handleAdvance}
+          className="mt-4 w-full py-3 bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-[var(--text-secondary)] text-[14px] font-medium rounded-[12px] hover:bg-[var(--border-light)] transition-colors cursor-pointer"
+        >
+          Próximo →
+        </button>
+      )}
     </div>
   );
 }

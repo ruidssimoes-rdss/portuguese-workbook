@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
+
 interface TrueFalseProps {
   instruction: string;
   englishInstruction?: string;
@@ -19,14 +20,9 @@ export function TrueFalse({
   onComplete,
 }: TrueFalseProps) {
   const [selected, setSelected] = useState<boolean | null>(null);
+  const [canAdvance, setCanAdvance] = useState(false);
   const completedRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
+  const resultRef = useRef<{ correct: boolean; userAnswer: string; correctAnswer: string } | null>(null);
 
   const handleSelect = (answer: boolean) => {
     if (selected !== null || completedRef.current) return;
@@ -34,15 +30,21 @@ export function TrueFalse({
     completedRef.current = true;
 
     const isCorrect = answer === isTrue;
-    const delay = isCorrect ? 1500 : 2500;
+    resultRef.current = {
+      correct: isCorrect,
+      userAnswer: answer ? "Verdadeiro" : "Falso",
+      correctAnswer: isTrue ? "Verdadeiro" : "Falso",
+    };
 
-    timerRef.current = setTimeout(() => {
-      onComplete({
-        correct: isCorrect,
-        userAnswer: answer ? "Verdadeiro" : "Falso",
-        correctAnswer: isTrue ? "Verdadeiro" : "Falso",
-      });
-    }, delay);
+    if (isCorrect) {
+      setCanAdvance(true);
+    } else {
+      setTimeout(() => setCanAdvance(true), 500);
+    }
+  };
+
+  const handleAdvance = () => {
+    if (resultRef.current) onComplete(resultRef.current);
   };
 
   return (
@@ -96,6 +98,16 @@ export function TrueFalse({
         <div className="mt-4 p-4 bg-[var(--bg-secondary)] rounded-[12px] border border-[var(--border-light)]">
           <p className="text-[13px] text-[var(--text-secondary)]">{explanation}</p>
         </div>
+      )}
+
+      {canAdvance && (
+        <button
+          type="button"
+          onClick={handleAdvance}
+          className="mt-4 w-full py-3 bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-[var(--text-secondary)] text-[14px] font-medium rounded-[12px] hover:bg-[var(--border-light)] transition-colors cursor-pointer"
+        >
+          Próximo →
+        </button>
       )}
     </div>
   );

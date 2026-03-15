@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import type { ExerciseResult } from "@/lib/exercise-types";
 
 interface MatchWordProps {
@@ -25,30 +25,39 @@ export function MatchWord({
   id,
 }: MatchWordProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [checked, setChecked] = useState(false);
+  const [canAdvance, setCanAdvance] = useState(false);
   const completedRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, []);
+  const resultRef = useRef<ExerciseResult | null>(null);
 
   const handleSelect = (index: number) => {
-    if (selectedIndex !== null || completedRef.current) return;
+    if (checked || completedRef.current) return;
     setSelectedIndex(index);
-    completedRef.current = true;
 
-    const isCorrect = index === correctIndex;
-    const delay = isCorrect ? 1500 : 2500;
+    setTimeout(() => {
+      if (completedRef.current) return;
+      completedRef.current = true;
+      setChecked(true);
 
-    timerRef.current = setTimeout(() => {
-      onComplete({
+      const isCorrect = index === correctIndex;
+      resultRef.current = {
         exerciseId: id,
         correct: isCorrect,
         userAnswer: options[index],
         correctAnswer,
         exerciseType: "match-word",
-      });
-    }, delay);
+      };
+
+      if (isCorrect) {
+        setCanAdvance(true);
+      } else {
+        setTimeout(() => setCanAdvance(true), 500);
+      }
+    }, 300);
+  };
+
+  const handleAdvance = () => {
+    if (resultRef.current) onComplete(resultRef.current);
   };
 
   return (
@@ -61,24 +70,23 @@ export function MatchWord({
       )}
       {!englishInstruction && <div className="mb-3" />}
 
-      {/* Portuguese word prominently displayed */}
       <div className="border border-[var(--border-primary)] rounded-[12px] p-6 bg-[var(--bg-card)] mb-4 text-center">
         <p className="text-[20px] font-bold text-[var(--text-primary)]">{portugueseWord}</p>
       </div>
 
-      {/* 2x2 grid of options */}
       <div className="grid grid-cols-2 gap-3">
         {options.map((option, i) => {
           const isSelected = selectedIndex === i;
           const isCorrectOption = i === correctIndex;
-          const showResult = selectedIndex !== null;
 
           let btnClass = "border-[var(--border-primary)] hover:border-[#003399] hover:bg-[rgba(0,51,153,0.05)] cursor-pointer";
-          if (showResult && isCorrectOption) {
+          if (isSelected && !checked) {
+            btnClass = "border-[#003399] bg-[rgba(0,51,153,0.05)] scale-[1.01]";
+          } else if (checked && isCorrectOption) {
             btnClass = "border-[#059669] bg-[#F0FDF4]";
-          } else if (showResult && isSelected && !isCorrectOption) {
+          } else if (checked && isSelected && !isCorrectOption) {
             btnClass = "border-[#DC2626] bg-[#FEF2F2]";
-          } else if (showResult) {
+          } else if (checked) {
             btnClass = "border-[var(--border-primary)] opacity-50";
           }
 
@@ -86,9 +94,9 @@ export function MatchWord({
             <button
               key={`${option}-${i}`}
               type="button"
-              disabled={selectedIndex !== null}
+              disabled={checked}
               onClick={() => handleSelect(i)}
-              className={`px-4 py-3.5 rounded-[12px] border text-[15px] font-medium text-center transition-all duration-200 ${btnClass}`}
+              className={`px-4 py-3.5 rounded-[12px] border text-[15px] font-medium text-center transition-all duration-200 transform ${btnClass}`}
             >
               {option}
             </button>
@@ -96,10 +104,20 @@ export function MatchWord({
         })}
       </div>
 
-      {selectedIndex !== null && selectedIndex !== correctIndex && (
+      {checked && selectedIndex !== correctIndex && (
         <p className="text-[13px] text-[#DC2626] mt-3 text-center">
           A resposta correta é: <span className="font-semibold">{correctAnswer}</span>
         </p>
+      )}
+
+      {canAdvance && (
+        <button
+          type="button"
+          onClick={handleAdvance}
+          className="mt-4 w-full py-3 bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-[var(--text-secondary)] text-[14px] font-medium rounded-[12px] hover:bg-[var(--border-light)] transition-colors cursor-pointer"
+        >
+          Próximo →
+        </button>
       )}
     </div>
   );
