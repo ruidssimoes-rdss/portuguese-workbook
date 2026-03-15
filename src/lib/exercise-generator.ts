@@ -1,12 +1,10 @@
 /**
- * Exercise Generator v3 — Template-based, 1 point per exercise, deterministic scoring.
+ * Exercise Generator v4 — Section-based sheets.
  *
- * Round 1 (Learn): Display-only items (unchanged from v2).
- * Round 2 (Practice): Template-defined mix, shuffled order.
- * Round 3 (Apply): Template-defined mix, shuffled order.
- *
- * Every exercise = exactly 1 point. No multi-point exercises.
- * Content is never reused across exercises in the same lesson attempt.
+ * Each section is a full page of related exercises checked at once.
+ * 8 possible sections: vocab, conjugation, grammar, fill-blank,
+ * translation, sentence-build, word-bank, error-correction.
+ * Sections with no content are skipped.
  */
 
 import type {
@@ -19,16 +17,17 @@ import type {
 } from "@/data/lessons";
 import type { GrammarData, GrammarQuestion } from "@/types/grammar";
 import grammarData from "@/data/grammar.json";
-import type { Exercise, ExerciseType, Difficulty } from "./exercise-types";
+import type { Difficulty } from "./exercise-types";
 import { getDifficulty } from "./exercise-types";
-import { getTemplate } from "./lesson-templates";
 
 const grammarDB = grammarData as unknown as GrammarData;
 
-/* ─── Re-exported types for Learn phase (unchanged) ─── */
+/* ─── Re-exported types ─── */
 
-export type { Exercise, ExerciseType, Difficulty } from "./exercise-types";
-export type { ExerciseResult } from "./exercise-types";
+export { getDifficulty } from "./exercise-types";
+export type { Difficulty, SectionResult, SectionAnswer } from "./exercise-types";
+
+/* ─── Learn phase types (unchanged) ─── */
 
 export type LearnItemType = "vocab" | "grammar" | "verb" | "culture";
 
@@ -62,10 +61,19 @@ export interface CultureLearnData {
   tip: string;
 }
 
+/* ─── Section types ─── */
+
+export interface GeneratedSection {
+  key: string;
+  namePt: string;
+  nameEn: string;
+  data: Record<string, unknown>;
+  totalQuestions: number;
+}
+
 export interface GeneratedLesson {
   learnItems: LearnItem[];
-  practiceExercises: Exercise[];
-  applyExercises: Exercise[];
+  sections: GeneratedSection[];
   totalPoints: number;
   passPoints: number;
 }
@@ -136,7 +144,7 @@ function extractContent(lesson: Lesson): LessonContent {
   return { vocabItems, verbItems, grammarItems, cultureItems, practiceItems };
 }
 
-/* ─── Round 1: Learn Items (unchanged) ─── */
+/* ─── Learn Items (unchanged) ─── */
 
 function generateLearnItems(content: LessonContent): LearnItem[] {
   const items: LearnItem[] = [];
@@ -192,186 +200,300 @@ function generateLearnItems(content: LessonContent): LearnItem[] {
   return items;
 }
 
-/* ─── Used-content tracker ─── */
+/* ─── Section generators ─── */
 
-interface UsedContent {
-  vocabIds: Set<string>;
-  verbForms: Set<string>;
-  practiceIds: Set<number>;
-  grammarQIds: Set<string>;
-  cultureIds: Set<string>;
-  grammarTfIds: Set<string>;
-}
+function generateVocabSection(content: LessonContent, showEnglish: boolean): GeneratedSection {
+  const vocab = shuffle([...content.vocabItems]);
+  const count = Math.min(vocab.length, 12);
+  const selected = vocab.slice(0, count);
+  const allPt = content.vocabItems.map((v) => v.word);
 
-function createUsedTracker(): UsedContent {
-  return {
-    vocabIds: new Set(),
-    verbForms: new Set(),
-    practiceIds: new Set(),
-    grammarQIds: new Set(),
-    cultureIds: new Set(),
-    grammarTfIds: new Set(),
-  };
-}
-
-/* ─── Slot fillers (1 exercise per call, 1 point each) ─── */
-
-function fillMcPtToEn(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  const available = content.vocabItems.filter((v) => !used.vocabIds.has(v.id));
-  if (available.length === 0) return null;
-  const word = available[Math.floor(Math.random() * available.length)];
-  used.vocabIds.add(word.id);
-
-  const distractors = getDistractors(word.translation, content.vocabItems.map((v) => v.translation));
-  if (distractors.length < 2) return null;
-  const { options, correctIndex } = buildMCOptions(word.translation, distractors.slice(0, 3));
-
-  return {
-    type: "mc-pt-to-en", id,
-    instruction: `Qual é a tradução de "${word.word}"?`,
-    englishInstruction: showEn ? `What is the translation of "${word.word}"?` : undefined,
-    data: { options, correctIndex, correctAnswer: word.translation },
-  };
-}
-
-function fillMcEnToPt(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  const available = content.vocabItems.filter((v) => !used.vocabIds.has(v.id));
-  if (available.length === 0) return null;
-  const word = available[Math.floor(Math.random() * available.length)];
-  used.vocabIds.add(word.id);
-
-  const distractors = getDistractors(word.word, content.vocabItems.map((v) => v.word));
-  if (distractors.length < 2) return null;
-  const { options, correctIndex } = buildMCOptions(word.word, distractors.slice(0, 3));
-
-  return {
-    type: "mc-en-to-pt", id,
-    instruction: `Como se diz "${word.translation}" em português?`,
-    englishInstruction: showEn ? `How do you say "${word.translation}" in Portuguese?` : undefined,
-    data: { options, correctIndex, correctAnswer: word.word },
-  };
-}
-
-function fillMatchWord(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  const available = content.vocabItems.filter((v) => !used.vocabIds.has(v.id));
-  if (available.length === 0) return null;
-  const word = available[Math.floor(Math.random() * available.length)];
-  used.vocabIds.add(word.id);
-
-  const distractors = getDistractors(word.translation, content.vocabItems.map((v) => v.translation));
-  if (distractors.length < 2) return null;
-  const { options, correctIndex } = buildMCOptions(word.translation, distractors.slice(0, 3));
-
-  return {
-    type: "match-word", id,
-    instruction: `Qual é o significado de "${word.word}"?`,
-    englishInstruction: showEn ? `What does "${word.word}" mean?` : undefined,
-    data: { portugueseWord: word.word, options, correctIndex, correctAnswer: word.translation },
-  };
-}
-
-function fillConjugation(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  for (const verb of shuffle([...content.verbItems])) {
-    for (const conj of shuffle([...verb.conjugations])) {
-      const key = `${verb.verb}-${conj.pronoun}-${verb.tense}`;
-      if (used.verbForms.has(key)) continue;
-      used.verbForms.add(key);
-
-      const tenseLabel = TENSE_LABELS[verb.tense] ?? verb.tense;
-      return {
-        type: "conjugation", id,
-        instruction: `Conjuga: ${verb.verb} (${conj.pronoun}) — ${tenseLabel}`,
-        englishInstruction: showEn ? `Conjugate: ${verb.verb} (${conj.pronoun}) — ${tenseLabel}` : undefined,
-        data: {
-          verb: verb.verb,
-          verbMeaning: showEn ? verb.verbTranslation : undefined,
-          tense: tenseLabel,
-          pronoun: conj.pronoun,
-          correctForm: conj.form,
-        },
-      };
-    }
-  }
-  return null;
-}
-
-function fillMcVerbForm(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  for (const verb of shuffle([...content.verbItems])) {
-    for (const conj of shuffle([...verb.conjugations])) {
-      const key = `mc-${verb.verb}-${conj.pronoun}-${verb.tense}`;
-      if (used.verbForms.has(key)) continue;
-      used.verbForms.add(key);
-
-      const wrongForms = verb.conjugations.filter((c) => c.form !== conj.form).map((c) => c.form);
-      const distractors = getDistractors(conj.form, wrongForms, 3);
-      if (distractors.length < 2) continue;
-      const { options, correctIndex } = buildMCOptions(conj.form, distractors);
-
-      const tenseLabel = TENSE_LABELS[verb.tense] ?? verb.tense;
-      return {
-        type: "mc-verb-form", id,
-        instruction: `${verb.verb}: qual é a forma para "${conj.pronoun}" no ${tenseLabel}?`,
-        englishInstruction: showEn ? `${verb.verb}: what is the form for "${conj.pronoun}" in the ${tenseLabel}?` : undefined,
-        data: { options, correctIndex, correctAnswer: conj.form },
-      };
-    }
-  }
-  return null;
-}
-
-function fillTrueFalse(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  for (const g of shuffle([...content.grammarItems])) {
-    const topic = grammarDB.topics[g.topicSlug];
-    if (!topic?.rules?.length) continue;
-
-    for (const rule of shuffle([...topic.rules])) {
-      if (!rule.rule) continue;
-      const key = `tf-${rule.rule.slice(0, 40)}`;
-      if (used.grammarTfIds.has(key)) continue;
-      used.grammarTfIds.add(key);
-
-      const makeFalse = Math.random() > 0.5;
-
-      if (makeFalse) {
-        const falsified = falsifyStatement(rule.rule);
-        if (!falsified) continue;
+  const questions = selected.map((word, i) => {
+    const isMC = i % 3 === 2;
+    if (isMC) {
+      const distractors = getDistractors(word.word, allPt, 3);
+      if (distractors.length >= 2) {
+        const { options, correctIndex } = buildMCOptions(word.word, distractors);
         return {
-          type: "true-false", id,
-          instruction: "Verdadeiro ou falso?",
-          englishInstruction: showEn ? "True or false?" : undefined,
-          data: {
+          id: `vocab-${i}`,
+          type: "mc" as const,
+          portugueseWord: word.word,
+          englishWord: word.translation,
+          pronunciation: word.pronunciation,
+          options,
+          correctIndex,
+        };
+      }
+    }
+    return {
+      id: `vocab-${i}`,
+      type: "type-answer" as const,
+      portugueseWord: word.word,
+      englishWord: word.translation,
+      pronunciation: word.pronunciation,
+    };
+  });
+
+  return {
+    key: "vocab",
+    namePt: "Vocabulário",
+    nameEn: "Vocabulary",
+    data: { questions, showEnglish },
+    totalQuestions: questions.length,
+  };
+}
+
+function generateConjugationSection(content: LessonContent, showEnglish: boolean): GeneratedSection {
+  const verbs = content.verbItems.map((v) => ({
+    verb: v.verb,
+    verbMeaning: showEnglish ? v.verbTranslation : undefined,
+    tense: TENSE_LABELS[v.tense] ?? v.tense,
+    tenseEnglish: showEnglish ? v.tense : undefined,
+    persons: v.conjugations.map((c) => ({ pronoun: c.pronoun, correctForm: c.form })),
+  }));
+
+  const totalQuestions = verbs.reduce((sum, v) => sum + v.persons.length, 0);
+
+  return {
+    key: "conjugation",
+    namePt: "Conjugação",
+    nameEn: "Conjugation",
+    data: { verbs, showEnglish },
+    totalQuestions,
+  };
+}
+
+function generateGrammarSection(content: LessonContent, showEnglish: boolean): GeneratedSection {
+  const questions: Array<Record<string, unknown>> = [];
+
+  for (const g of content.grammarItems) {
+    const topic = grammarDB.topics[g.topicSlug];
+
+    // True/false from rules
+    if (topic?.rules?.length) {
+      const rule = topic.rules[0];
+      if (rule.rule) {
+        questions.push({
+          id: `grammar-tf-true-${g.topicSlug}`,
+          type: "true-false",
+          statement: rule.rule,
+          statementPt: rule.rulePt,
+          isTrue: true,
+          explanation: "Verdadeiro!",
+        });
+
+        // Try to generate a false statement
+        const falsified = falsifyStatement(rule.rule);
+        if (falsified) {
+          questions.push({
+            id: `grammar-tf-false-${g.topicSlug}`,
+            type: "true-false",
             statement: falsified,
             isTrue: false,
             explanation: `Falso. ${rule.rulePt || rule.rule}`,
-          },
-        };
+          });
+        }
       }
+    }
 
-      return {
-        type: "true-false", id,
-        instruction: "Verdadeiro ou falso?",
-        englishInstruction: showEn ? "True or false?" : undefined,
-        data: {
-          statement: rule.rule,
-          isTrue: true,
-          explanation: "Verdadeiro!",
-        },
-      };
+    // MC from grammar.json
+    const topicQs: GrammarQuestion[] = topic?.questions ?? [];
+    const picked = shuffle([...topicQs]).slice(0, 3);
+    for (const q of picked) {
+      if (q.options && q.correctIndex !== undefined) {
+        questions.push({
+          id: `grammar-mc-${q.questionText.slice(0, 20).replace(/\s/g, "-")}`,
+          type: "mc",
+          question: q.questionTextPt || q.questionText,
+          questionEnglish: showEnglish ? q.questionText : undefined,
+          options: [...q.options],
+          correctIndex: q.correctIndex,
+        });
+      }
     }
   }
-  return null;
+
+  // Also add culture MC if we have culture items
+  for (const culture of content.cultureItems) {
+    const otherMeanings = content.cultureItems.filter((c) => c.meaning !== culture.meaning).map((c) => c.meaning);
+    if (culture.literal) otherMeanings.push(culture.literal);
+    if (otherMeanings.length < 2) {
+      otherMeanings.push("Uma expressão comum em Portugal");
+      otherMeanings.push("Uma saudação formal");
+    }
+    const distractors = getDistractors(culture.meaning, otherMeanings, 3);
+    const { options, correctIndex } = buildMCOptions(culture.meaning, distractors);
+    questions.push({
+      id: `grammar-culture-${culture.id}`,
+      type: "mc",
+      question: `O que significa "${culture.expression}"?`,
+      questionEnglish: showEnglish ? `What does "${culture.expression}" mean?` : undefined,
+      options,
+      correctIndex,
+    });
+  }
+
+  return {
+    key: "grammar",
+    namePt: "Gramática",
+    nameEn: "Grammar",
+    data: { questions: shuffle(questions).slice(0, 8), showEnglish },
+    totalQuestions: Math.min(questions.length, 8),
+  };
+}
+
+function generateFillBlankSection(
+  practice: PracticeItem[],
+  used: Set<number>,
+  showEnglish: boolean,
+  difficulty: Difficulty,
+): GeneratedSection {
+  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
+  const count = Math.min(available.length, 6);
+  const selected = shuffle(available).slice(0, count);
+  selected.forEach((s) => used.add(s.idx));
+
+  const sentences = selected.map((s, i) => ({
+    id: `fill-${i}`,
+    sentencePt: s.sentence,
+    sentenceEn: showEnglish ? s.translation : undefined,
+    correctAnswer: s.answer,
+    acceptedAnswers: s.acceptedAnswers,
+    hint: difficulty === "foundation" ? s.answer.charAt(0) + "..." : undefined,
+  }));
+
+  return {
+    key: "fill-blank",
+    namePt: "Completa as frases",
+    nameEn: "Complete the sentences",
+    data: { sentences, showEnglish },
+    totalQuestions: sentences.length,
+  };
+}
+
+function generateTranslationSection(
+  practice: PracticeItem[],
+  used: Set<number>,
+  showEnglish: boolean,
+): GeneratedSection {
+  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
+  const count = Math.min(available.length, 4);
+  const selected = shuffle(available).slice(0, count);
+  selected.forEach((s) => used.add(s.idx));
+
+  const sentences = selected.map((s, i) => ({
+    id: `trans-${i}`,
+    sourceText: s.translation,
+    correctAnswer: s.fullSentence,
+    acceptedAnswers: s.acceptedAnswers?.map((a) => s.sentence.replace(/___/g, a)),
+  }));
+
+  return {
+    key: "translation",
+    namePt: "Tradução",
+    nameEn: "Translation",
+    data: { sentences, showEnglish },
+    totalQuestions: sentences.length,
+  };
+}
+
+function generateSentenceBuildSection(
+  practice: PracticeItem[],
+  used: Set<number>,
+  showEnglish: boolean,
+): GeneratedSection {
+  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
+  const count = Math.min(available.length, 3);
+  const selected = shuffle(available).slice(0, count);
+  selected.forEach((s) => used.add(s.idx));
+
+  const sentences = selected.map((s, i) => ({
+    id: `build-${i}`,
+    scrambledWords: shuffle(s.fullSentence.split(/\s+/)),
+    correctSentence: s.fullSentence,
+    sentenceEnglish: showEnglish ? s.translation : undefined,
+  }));
+
+  return {
+    key: "sentence-build",
+    namePt: "Constrói a frase",
+    nameEn: "Build the sentence",
+    data: { sentences, showEnglish },
+    totalQuestions: sentences.length,
+  };
+}
+
+function generateWordBankSection(
+  practice: PracticeItem[],
+  vocab: VocabItem[],
+  used: Set<number>,
+  showEnglish: boolean,
+): GeneratedSection {
+  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
+  const count = Math.min(available.length, 5);
+  const selected = available.slice(0, count);
+  selected.forEach((s) => used.add(s.idx));
+
+  const blanks = selected.map((s, i) => ({
+    id: `wb-${i}`,
+    correctAnswer: s.answer,
+    acceptedAnswers: s.acceptedAnswers,
+  }));
+
+  const textWithBlanks = selected.map((s) => s.sentence).join(" ");
+  const correctWords = blanks.map((b) => b.correctAnswer);
+  const distractorWords = shuffle(vocab.map((v) => v.word))
+    .filter((w) => !correctWords.includes(w))
+    .slice(0, 3);
+  const wordBank = shuffle([...correctWords, ...distractorWords]);
+
+  const paragraphEnglish = showEnglish
+    ? selected.map((s) => s.translation).join(" ")
+    : undefined;
+
+  return {
+    key: "word-bank",
+    namePt: "Texto com lacunas",
+    nameEn: "Text with gaps",
+    data: { paragraph: { textWithBlanks, blanks, wordBank, paragraphEnglish }, showEnglish },
+    totalQuestions: blanks.length,
+  };
+}
+
+function generateErrorCorrectionSection(
+  practice: PracticeItem[],
+  vocab: VocabItem[],
+  used: Set<number>,
+  difficulty: Difficulty,
+  showEnglish: boolean,
+): GeneratedSection {
+  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
+  const count = Math.min(available.length, 3);
+  const selected = shuffle(available).slice(0, count);
+
+  const sentences: Array<Record<string, unknown>> = [];
+  for (const s of selected) {
+    const correctSentence = s.fullSentence;
+    const incorrect = introduceError(correctSentence, s.answer, vocab, difficulty);
+    if (incorrect) {
+      used.add(s.idx);
+      sentences.push({
+        id: `ec-${sentences.length}`,
+        incorrectSentence: incorrect,
+        correctSentence,
+        acceptedAnswers: [correctSentence],
+        hintEnglish: showEnglish ? s.translation : undefined,
+      });
+    }
+  }
+
+  return {
+    key: "error-correction",
+    namePt: "Corrige os erros",
+    nameEn: "Correct the errors",
+    data: { sentences, showEnglish },
+    totalQuestions: sentences.length,
+  };
 }
 
 function falsifyStatement(statement: string): string | null {
@@ -387,148 +509,6 @@ function falsifyStatement(statement: string): string | null {
     }
   }
   return null;
-}
-
-function fillMcGrammar(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  for (const g of shuffle([...content.grammarItems])) {
-    const topic = grammarDB.topics[g.topicSlug];
-    const questions: GrammarQuestion[] = topic?.questions ?? [];
-
-    for (const q of shuffle([...questions])) {
-      const key = `gq-${q.questionText.slice(0, 40)}`;
-      if (used.grammarQIds.has(key)) continue;
-      if (!q.options || q.correctIndex === undefined) continue;
-      used.grammarQIds.add(key);
-
-      return {
-        type: "mc-grammar", id,
-        instruction: q.questionTextPt || q.questionText,
-        englishInstruction: showEn ? q.questionText : undefined,
-        data: {
-          options: [...q.options],
-          correctIndex: q.correctIndex,
-          correctAnswer: q.options[q.correctIndex],
-        },
-      };
-    }
-  }
-  return null;
-}
-
-function fillMcCulture(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  const available = content.cultureItems.filter((c) => !used.cultureIds.has(c.id));
-  if (available.length === 0) return null;
-  const culture = available[Math.floor(Math.random() * available.length)];
-  used.cultureIds.add(culture.id);
-
-  const otherMeanings = content.cultureItems.filter((c) => c.meaning !== culture.meaning).map((c) => c.meaning);
-  if (culture.literal) otherMeanings.push(culture.literal);
-  if (otherMeanings.length < 2) {
-    otherMeanings.push("Uma expressão comum em Portugal");
-    otherMeanings.push("Uma saudação formal");
-  }
-  const distractors = getDistractors(culture.meaning, otherMeanings, 3);
-  const { options, correctIndex } = buildMCOptions(culture.meaning, distractors);
-
-  return {
-    type: "mc-culture", id,
-    instruction: `O que significa "${culture.expression}"?`,
-    englishInstruction: showEn ? `What does "${culture.expression}" mean?` : undefined,
-    data: { options, correctIndex, correctAnswer: culture.meaning },
-  };
-}
-
-function fillFillBlank(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  const available = content.practiceItems.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.practiceIds.has(p.idx));
-  if (available.length === 0) return null;
-  const p = available[Math.floor(Math.random() * available.length)];
-  used.practiceIds.add(p.idx);
-
-  return {
-    type: "fill-blank", id,
-    instruction: "Completa a frase:",
-    englishInstruction: showEn ? "Complete the sentence:" : undefined,
-    data: {
-      sentencePt: p.sentence,
-      sentenceEn: p.translation,
-      correctAnswer: p.answer,
-      acceptedAnswers: p.acceptedAnswers,
-    },
-  };
-}
-
-function fillTranslation(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  const available = content.practiceItems.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.practiceIds.has(p.idx));
-  if (available.length === 0) return null;
-  const p = available[Math.floor(Math.random() * available.length)];
-  used.practiceIds.add(p.idx);
-
-  return {
-    type: "translation", id,
-    instruction: "Traduz para português:",
-    englishInstruction: showEn ? "Translate to Portuguese:" : undefined,
-    data: {
-      sourceText: p.translation,
-      correctAnswer: p.fullSentence,
-      acceptedAnswers: p.acceptedAnswers?.map((a) => p.sentence.replace(/___/g, a)),
-    },
-  };
-}
-
-function fillSentenceBuild(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  const available = content.practiceItems.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.practiceIds.has(p.idx));
-  if (available.length === 0) return null;
-  const p = available[Math.floor(Math.random() * available.length)];
-  const fullSentence = p.fullSentence;
-  const words = fullSentence.split(/\s+/);
-  if (words.length < 3) return null;
-  used.practiceIds.add(p.idx);
-
-  return {
-    type: "sentence-build", id,
-    instruction: "Ordena as palavras:",
-    englishInstruction: showEn ? "Put the words in order:" : undefined,
-    data: {
-      words: shuffle([...words]),
-      correctSentence: fullSentence,
-      hintEnglish: showEn ? p.translation : undefined,
-    },
-  };
-}
-
-function fillErrorCorrection(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string, difficulty: Difficulty,
-): Exercise | null {
-  const available = content.practiceItems.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.practiceIds.has(p.idx));
-  if (available.length === 0) return null;
-  const p = available[Math.floor(Math.random() * available.length)];
-  const correctSentence = p.fullSentence;
-
-  const incorrect = introduceError(correctSentence, p.answer, content.vocabItems, difficulty);
-  if (!incorrect) return null;
-  used.practiceIds.add(p.idx);
-
-  return {
-    type: "error-correction", id,
-    instruction: "Corrige o erro:",
-    englishInstruction: showEn ? "Correct the error:" : undefined,
-    data: {
-      incorrectSentence: incorrect,
-      correctSentence,
-      acceptedAnswers: [correctSentence],
-      hintEnglish: showEn ? p.translation : undefined,
-    },
-  };
 }
 
 function introduceError(sentence: string, correctWord: string, vocab: VocabItem[], difficulty: Difficulty): string | null {
@@ -548,116 +528,53 @@ function introduceError(sentence: string, correctWord: string, vocab: VocabItem[
   return null;
 }
 
-function fillWordBankBlank(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  const available = content.practiceItems.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.practiceIds.has(p.idx));
-  if (available.length === 0) return null;
-  const p = available[Math.floor(Math.random() * available.length)];
-  used.practiceIds.add(p.idx);
-
-  // Build word options: correct answer + distractors from vocab + other practice answers
-  const otherAnswers = content.practiceItems.map((x) => x.answer).filter((a) => a !== p.answer);
-  const vocabWords = content.vocabItems.map((v) => v.word).filter((w) => w !== p.answer);
-  const distractorPool = [...otherAnswers, ...vocabWords];
-  const distractors = getDistractors(p.answer, distractorPool, 3);
-  const wordOptions = shuffle([p.answer, ...distractors]);
-
-  return {
-    type: "word-bank-blank", id,
-    instruction: "Escolhe a palavra correta:",
-    englishInstruction: showEn ? "Choose the correct word:" : undefined,
-    data: {
-      sentenceWithBlank: p.sentence,
-      sentenceEnglish: showEn ? p.translation : undefined,
-      wordOptions,
-      correctWord: p.answer,
-    },
-  };
-}
-
-/* ─── Slot filling dispatcher ─── */
-
-type SlotSource = "vocab" | "verbs" | "grammar" | "culture" | "practice";
-
-function fillOneSlot(
-  type: ExerciseType,
-  source: SlotSource,
-  content: LessonContent,
-  used: UsedContent,
-  showEn: boolean,
-  id: string,
-  difficulty: Difficulty,
-): Exercise | null {
-  switch (type) {
-    case "mc-pt-to-en": return fillMcPtToEn(content, used, showEn, id);
-    case "mc-en-to-pt": return fillMcEnToPt(content, used, showEn, id);
-    case "match-word": return fillMatchWord(content, used, showEn, id);
-    case "conjugation": return fillConjugation(content, used, showEn, id);
-    case "mc-verb-form": return fillMcVerbForm(content, used, showEn, id);
-    case "true-false": return fillTrueFalse(content, used, showEn, id);
-    case "mc-grammar": return fillMcGrammar(content, used, showEn, id);
-    case "mc-culture": return fillMcCulture(content, used, showEn, id);
-    case "fill-blank": return fillFillBlank(content, used, showEn, id);
-    case "translation": return fillTranslation(content, used, showEn, id);
-    case "sentence-build": return fillSentenceBuild(content, used, showEn, id);
-    case "error-correction": return fillErrorCorrection(content, used, showEn, id, difficulty);
-    case "word-bank-blank": return fillWordBankBlank(content, used, showEn, id);
-  }
-}
-
-// Fallback: try vocab MC if a slot can't be filled
-function fillFallback(
-  content: LessonContent, used: UsedContent, showEn: boolean, id: string,
-): Exercise | null {
-  return fillMcPtToEn(content, used, showEn, id)
-    ?? fillMcEnToPt(content, used, showEn, id)
-    ?? fillFillBlank(content, used, showEn, id)
-    ?? null;
-}
-
 /* ─── Main generator ─── */
 
-export function generateLessonExercises(lesson: Lesson, showEnglish: boolean = false): GeneratedLesson {
+export function generateLessonExercises(lesson: Lesson, _showEnglish: boolean = false): GeneratedLesson {
   const content = extractContent(lesson);
-  const template = getTemplate(lesson.cefr);
   const difficulty = getDifficulty(lesson.order, lesson.cefr);
-  const showEn = showEnglish;
-  const used = createUsedTracker();
+  const showEnglish = lesson.cefr === "A1" || lesson.cefr === "A2";
+  const sections: GeneratedSection[] = [];
+  const usedPractice = new Set<number>();
 
-  // Fill Round 2
-  const r2: Exercise[] = [];
-  let r2Count = 0;
-  for (const slot of template.round2) {
-    const id = `r2-${String(r2Count + 1).padStart(2, "0")}`;
-    const exercise = fillOneSlot(slot.type, slot.source, content, used, showEn, id, difficulty)
-      ?? fillFallback(content, used, showEn, id);
-    if (exercise) {
-      r2.push(exercise);
-      r2Count++;
-    }
+  if (content.vocabItems.length > 0) {
+    sections.push(generateVocabSection(content, showEnglish));
   }
 
-  // Fill Round 3
-  const r3: Exercise[] = [];
-  let r3Count = 0;
-  for (const slot of template.round3) {
-    const id = `r3-${String(r3Count + 1).padStart(2, "0")}`;
-    const exercise = fillOneSlot(slot.type, slot.source, content, used, showEn, id, difficulty)
-      ?? fillFallback(content, used, showEn, id);
-    if (exercise) {
-      r3.push(exercise);
-      r3Count++;
-    }
+  if (content.verbItems.length > 0) {
+    sections.push(generateConjugationSection(content, showEnglish));
   }
 
-  const totalPoints = r2.length + r3.length;
+  if (content.grammarItems.length > 0 || content.cultureItems.length > 0) {
+    sections.push(generateGrammarSection(content, showEnglish));
+  }
+
+  if (content.practiceItems.length > 0) {
+    sections.push(generateFillBlankSection(content.practiceItems, usedPractice, showEnglish, difficulty));
+  }
+
+  if (content.practiceItems.length > usedPractice.size) {
+    sections.push(generateTranslationSection(content.practiceItems, usedPractice, showEnglish));
+  }
+
+  if (content.practiceItems.length > usedPractice.size) {
+    sections.push(generateSentenceBuildSection(content.practiceItems, usedPractice, showEnglish));
+  }
+
+  if (content.practiceItems.length > usedPractice.size && content.vocabItems.length > 0) {
+    sections.push(generateWordBankSection(content.practiceItems, content.vocabItems, usedPractice, showEnglish));
+  }
+
+  if (content.practiceItems.length > usedPractice.size && content.vocabItems.length > 0) {
+    sections.push(generateErrorCorrectionSection(content.practiceItems, content.vocabItems, usedPractice, difficulty, showEnglish));
+  }
+
+  const totalPoints = sections.reduce((sum, s) => sum + s.totalQuestions, 0);
   const passPoints = Math.ceil(totalPoints * 0.8);
 
   return {
     learnItems: generateLearnItems(content),
-    practiceExercises: shuffle(r2),
-    applyExercises: shuffle(r3),
+    sections,
     totalPoints,
     passPoints,
   };

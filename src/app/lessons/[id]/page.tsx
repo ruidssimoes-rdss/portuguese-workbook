@@ -1,15 +1,11 @@
 /*
- * LESSON v3 — Learn → Practice → Apply
- * ──────────────────────────────────────
- * Round 1 (Learn): Vocabulary cards, grammar rules, verb tables, culture items — no scoring.
- * Round 2 (Practice): Template-defined exercise mix, shuffled order.
- * Round 3 (Apply): Template-defined exercise mix, shuffled order.
- * Results: 1 point per exercise. A1=30pts, A2=36pts, B1=42pts. Pass at 80%.
+ * LESSON v4 — Section-based sheets
+ * ─────────────────────────────────
+ * Intro → [Optional Learn] → Section 1-8 → Results
  *
- * Save flow:
- * 1. Results screen mounts → doSave() → saveLessonAttempt()
- * 2. Success → clearLessonSession(), logCalendar, updateStreak, updateGoals
- * 3. Failure → error banner with retry
+ * Each section is a full scrollable page of related questions.
+ * User fills in everything, taps "Verificar secção", sees results,
+ * then advances. Like a real test.
  */
 "use client";
 
@@ -35,18 +31,16 @@ import { updateGoalProgress } from "@/lib/goals-service";
 import {
   generateLessonExercises,
   type GeneratedLesson,
-  type Exercise,
+  type GeneratedSection,
   type LearnItem,
   type GrammarLearnData,
   type VerbLearnData,
   type CultureLearnData,
 } from "@/lib/exercise-generator";
-import type { ExerciseResult } from "@/lib/exercise-types";
+import type { SectionResult } from "@/lib/exercise-types";
 import type { VocabItem } from "@/data/lessons";
 
-// Shell & navigation
 import { LessonShell } from "@/components/lessons/lesson-shell";
-import { RoundTransition } from "@/components/lessons/round-transition";
 import { ResultsScreen } from "@/components/lessons/results-screen";
 
 // Learn components
@@ -55,213 +49,50 @@ import { GrammarLearn } from "@/components/lessons/learn/grammar-learn";
 import { VerbLearn } from "@/components/lessons/learn/verb-learn";
 import { CultureLearn } from "@/components/lessons/learn/culture-learn";
 
-// Exercise components
-import { MultipleChoice } from "@/components/lessons/exercises/multiple-choice";
-import { FillInBlank } from "@/components/lessons/exercises/fill-in-blank";
-import { Conjugation } from "@/components/lessons/exercises/conjugation";
-import { TrueFalse } from "@/components/lessons/exercises/true-false";
-import { TranslationInput } from "@/components/lessons/exercises/translation-input";
-import { MatchWord } from "@/components/lessons/exercises/match-word";
-import { WordBankBlank } from "@/components/lessons/exercises/word-bank-blank";
-import { SentenceBuild } from "@/components/lessons/exercises/sentence-build";
-import { ErrorCorrection } from "@/components/lessons/exercises/error-correction";
+// Section components
+import { VocabSection } from "@/components/lessons/sections/vocab-section";
+import { ConjugationSection } from "@/components/lessons/sections/conjugation-section";
+import { GrammarSection } from "@/components/lessons/sections/grammar-section";
+import { FillBlankSection } from "@/components/lessons/sections/fill-blank-section";
+import { TranslationSection } from "@/components/lessons/sections/translation-section";
+import { SentenceBuildSection } from "@/components/lessons/sections/sentence-build-section";
+import { WordBankSection } from "@/components/lessons/sections/word-bank-section";
+import { ErrorCorrectionSection } from "@/components/lessons/sections/error-correction-section";
 
 import Link from "next/link";
 
 /* ─── Session persistence ─── */
 
-const SESSION_KEY_PREFIX = "aula-pt-lesson-v2-";
+const SESSION_KEY_PREFIX = "aula-pt-lesson-v4-";
 
-type Round = "intro" | "learn" | "practice" | "apply" | "results";
+type LessonState = "intro" | "learn" | "sections" | "results";
 
-interface LessonSessionState {
-  round: Round;
-  learnIndex: number;
-  practiceIndex: number;
-  applyIndex: number;
-  practiceResults: ExerciseResult[];
-  applyResults: ExerciseResult[];
+interface LessonSessionData {
+  lessonState: LessonState;
+  currentSection: number;
+  sectionResults: SectionResult[];
   generatedLesson: GeneratedLesson;
-  showTransition: boolean;
   skippedLearn: boolean;
+  learnIndex: number;
 }
 
-function getSessionKey(lessonId: string): string {
-  return `${SESSION_KEY_PREFIX}${lessonId}`;
+function getSessionKey(id: string): string { return `${SESSION_KEY_PREFIX}${id}`; }
+function saveSession(id: string, data: LessonSessionData): void {
+  try { sessionStorage.setItem(getSessionKey(id), JSON.stringify(data)); } catch { /* */ }
 }
-
-function saveSession(lessonId: string, state: LessonSessionState): void {
+function restoreSession(id: string): LessonSessionData | null {
   try {
-    sessionStorage.setItem(getSessionKey(lessonId), JSON.stringify(state));
-  } catch {
-    // sessionStorage may be full or unavailable
-  }
-}
-
-function restoreSession(lessonId: string): LessonSessionState | null {
-  try {
-    const raw = sessionStorage.getItem(getSessionKey(lessonId));
-    if (raw) return JSON.parse(raw) as LessonSessionState;
-  } catch {
-    // ignore
-  }
+    const raw = sessionStorage.getItem(getSessionKey(id));
+    if (raw) return JSON.parse(raw) as LessonSessionData;
+  } catch { /* */ }
   return null;
 }
-
-function clearSession(lessonId: string): void {
+function clearSession(id: string): void {
   try {
-    sessionStorage.removeItem(getSessionKey(lessonId));
-    // Also clear old v1 session
-    sessionStorage.removeItem(`aula-pt-lesson-${lessonId}`);
-  } catch {
-    // ignore
-  }
-}
-
-/* ─── Exercise renderer ─── */
-
-function ExerciseRenderer({
-  exerciseKey,
-  exercise,
-  onComplete,
-}: {
-  exerciseKey: string;
-  exercise: Exercise;
-  onComplete: (result: ExerciseResult) => void;
-}) {
-  const key = exerciseKey;
-  const d = exercise.data as Record<string, unknown>;
-  const wrapComplete = (partial: { correct: boolean; userAnswer: string; correctAnswer: string; accentHint?: string }) => {
-    onComplete({
-      exerciseId: exercise.id,
-      exerciseType: exercise.type,
-      ...partial,
-    });
-  };
-
-  switch (exercise.type) {
-    case "mc-pt-to-en":
-    case "mc-en-to-pt":
-    case "mc-grammar":
-    case "mc-verb-form":
-    case "mc-culture":
-      return (
-        <MultipleChoice
-          key={key}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          options={d.options as string[]}
-          correctIndex={d.correctIndex as number}
-          onComplete={wrapComplete}
-        />
-      );
-    case "match-word":
-      return (
-        <MatchWord
-          key={key}
-          id={exercise.id}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          portugueseWord={d.portugueseWord as string}
-          options={d.options as string[]}
-          correctIndex={d.correctIndex as number}
-          correctAnswer={d.correctAnswer as string}
-          onComplete={onComplete}
-        />
-      );
-    case "fill-blank":
-      return (
-        <FillInBlank
-          key={key}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          sentencePt={d.sentencePt as string}
-          sentenceEn={d.sentenceEn as string}
-          correctAnswer={d.correctAnswer as string}
-          acceptedAnswers={d.acceptedAnswers as string[] | undefined}
-          onComplete={wrapComplete}
-        />
-      );
-    case "conjugation":
-      return (
-        <Conjugation
-          key={key}
-          id={exercise.id}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          verb={d.verb as string}
-          verbMeaning={d.verbMeaning as string | undefined}
-          tense={d.tense as string}
-          pronoun={d.pronoun as string}
-          correctForm={d.correctForm as string}
-          onComplete={onComplete}
-        />
-      );
-    case "true-false":
-      return (
-        <TrueFalse
-          key={key}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          statement={d.statement as string}
-          isTrue={d.isTrue as boolean}
-          explanation={d.explanation as string}
-          onComplete={wrapComplete}
-        />
-      );
-    case "translation":
-      return (
-        <TranslationInput
-          key={key}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          sourceText={d.sourceText as string}
-          correctAnswer={d.correctAnswer as string}
-          acceptedAnswers={d.acceptedAnswers as string[] | undefined}
-          onComplete={wrapComplete}
-        />
-      );
-    case "word-bank-blank":
-      return (
-        <WordBankBlank
-          key={key}
-          id={exercise.id}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          sentenceWithBlank={d.sentenceWithBlank as string}
-          sentenceEnglish={d.sentenceEnglish as string | undefined}
-          wordOptions={d.wordOptions as string[]}
-          correctWord={d.correctWord as string}
-          onComplete={onComplete}
-        />
-      );
-    case "sentence-build":
-      return (
-        <SentenceBuild
-          key={key}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          words={d.words as string[]}
-          correctSentence={d.correctSentence as string}
-          acceptedAnswers={d.acceptedAnswers as string[] | undefined}
-          onComplete={wrapComplete}
-        />
-      );
-    case "error-correction":
-      return (
-        <ErrorCorrection
-          key={key}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          incorrectSentence={d.incorrectSentence as string}
-          correctSentence={d.correctSentence as string}
-          acceptedAnswers={d.acceptedAnswers as string[] | undefined}
-          onComplete={wrapComplete}
-        />
-      );
-    default:
-      return null;
-  }
+    sessionStorage.removeItem(getSessionKey(id));
+    sessionStorage.removeItem(`aula-pt-lesson-v2-${id}`);
+    sessionStorage.removeItem(`aula-pt-lesson-${id}`);
+  } catch { /* */ }
 }
 
 /* ─── Learn item renderer ─── */
@@ -270,37 +101,51 @@ function LearnItemRenderer({ item }: { item: LearnItem }) {
   switch (item.type) {
     case "vocab": {
       const v = item.data as VocabItem;
-      return (
-        <VocabLearnCard
-          word={v.word}
-          translation={v.translation}
-          pronunciation={v.pronunciation}
-          example={v.example}
-        />
-      );
+      return <VocabLearnCard word={v.word} translation={v.translation} pronunciation={v.pronunciation} example={v.example} />;
     }
-    case "grammar":
-      return <GrammarLearn data={item.data as GrammarLearnData} />;
-    case "verb":
-      return <VerbLearn data={item.data as VerbLearnData} />;
-    case "culture":
-      return <CultureLearn data={item.data as CultureLearnData} />;
+    case "grammar": return <GrammarLearn data={item.data as GrammarLearnData} />;
+    case "verb": return <VerbLearn data={item.data as VerbLearnData} />;
+    case "culture": return <CultureLearn data={item.data as CultureLearnData} />;
   }
 }
 
-/* ─── Safety fallback ─── */
+/* ─── Section renderer ─── */
 
-function SafetyFallback({ onContinue }: { onContinue: () => void }) {
-  useEffect(() => {
-    // Auto-advance after a brief delay
-    const timer = setTimeout(onContinue, 100);
-    return () => clearTimeout(timer);
-  }, [onContinue]);
+const SECTION_MAP: Record<string, React.ComponentType<Record<string, unknown>>> = {
+  vocab: VocabSection as unknown as React.ComponentType<Record<string, unknown>>,
+  conjugation: ConjugationSection as unknown as React.ComponentType<Record<string, unknown>>,
+  grammar: GrammarSection as unknown as React.ComponentType<Record<string, unknown>>,
+  "fill-blank": FillBlankSection as unknown as React.ComponentType<Record<string, unknown>>,
+  translation: TranslationSection as unknown as React.ComponentType<Record<string, unknown>>,
+  "sentence-build": SentenceBuildSection as unknown as React.ComponentType<Record<string, unknown>>,
+  "word-bank": WordBankSection as unknown as React.ComponentType<Record<string, unknown>>,
+  "error-correction": ErrorCorrectionSection as unknown as React.ComponentType<Record<string, unknown>>,
+};
+
+function SectionRenderer({
+  section,
+  sectionIndex,
+  totalSections,
+  showEnglish,
+  onComplete,
+}: {
+  section: GeneratedSection;
+  sectionIndex: number;
+  totalSections: number;
+  showEnglish: boolean;
+  onComplete: (result: SectionResult) => void;
+}) {
+  const Component = SECTION_MAP[section.key];
+  if (!Component) return null;
 
   return (
-    <div className="text-center py-8">
-      <p className="text-[var(--text-secondary)]">A avançar...</p>
-    </div>
+    <Component
+      sectionIndex={sectionIndex}
+      totalSections={totalSections}
+      showEnglish={showEnglish}
+      onComplete={onComplete}
+      {...(section.data as Record<string, unknown>)}
+    />
   );
 }
 
@@ -324,64 +169,40 @@ function LessonIntro({
   const verbCount = learnItems.filter((i) => i.type === "verb").length;
   const grammarCount = learnItems.filter((i) => i.type === "grammar").length;
   const cultureCount = learnItems.filter((i) => i.type === "culture").length;
+  const sectionCount = generatedLesson?.sections.length ?? 0;
+  const totalPoints = generatedLesson?.totalPoints ?? 0;
 
   return (
     <div className="max-w-lg mx-auto text-center py-12">
-      <h2 className="text-[22px] font-bold text-[var(--text-primary)] mb-1">
-        {lesson.ptTitle}
-      </h2>
-      <p className="text-[15px] text-[var(--text-secondary)] mb-8">
-        {lesson.title}
-      </p>
+      <h2 className="text-[22px] font-bold text-[var(--text-primary)] mb-1">{lesson.ptTitle}</h2>
+      <p className="text-[15px] text-[var(--text-secondary)] mb-8">{lesson.title}</p>
 
       <div className="text-left bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-5 mb-8">
         <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-1">
           Esta lição cobre:
         </p>
-        {showEnglish && (
-          <p className="text-[12px] text-[var(--text-muted)] mb-3">This lesson covers:</p>
-        )}
+        {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-3">This lesson covers:</p>}
         {!showEnglish && <div className="mb-2" />}
         <div className="space-y-2 text-[14px] text-[var(--text-primary)]">
-          {vocabCount > 0 && (
-            <p>
-              {vocabCount} palavras novas
-              {showEnglish && <span className="text-[var(--text-muted)]"> ({vocabCount} new words)</span>}
-            </p>
-          )}
-          {verbCount > 0 && (
-            <p>
-              {verbCount} {verbCount === 1 ? "verbo" : "verbos"}
-              {showEnglish && <span className="text-[var(--text-muted)]"> ({verbCount} {verbCount === 1 ? "verb" : "verbs"})</span>}
-            </p>
-          )}
-          {grammarCount > 0 && (
-            <p>
-              {grammarCount} {grammarCount === 1 ? "tópico de gramática" : "tópicos de gramática"}
-              {showEnglish && <span className="text-[var(--text-muted)]"> ({grammarCount} grammar {grammarCount === 1 ? "topic" : "topics"})</span>}
-            </p>
-          )}
-          {cultureCount > 0 && (
-            <p>
-              {cultureCount} {cultureCount === 1 ? "expressão cultural" : "expressões culturais"}
-              {showEnglish && <span className="text-[var(--text-muted)]"> ({cultureCount} cultural {cultureCount === 1 ? "expression" : "expressions"})</span>}
-            </p>
-          )}
+          {vocabCount > 0 && <p>{vocabCount} palavras novas{showEnglish && <span className="text-[var(--text-muted)]"> ({vocabCount} new words)</span>}</p>}
+          {verbCount > 0 && <p>{verbCount} {verbCount === 1 ? "verbo" : "verbos"}{showEnglish && <span className="text-[var(--text-muted)]"> ({verbCount} {verbCount === 1 ? "verb" : "verbs"})</span>}</p>}
+          {grammarCount > 0 && <p>{grammarCount} {grammarCount === 1 ? "tópico de gramática" : "tópicos de gramática"}{showEnglish && <span className="text-[var(--text-muted)]"> ({grammarCount} grammar {grammarCount === 1 ? "topic" : "topics"})</span>}</p>}
+          {cultureCount > 0 && <p>{cultureCount} {cultureCount === 1 ? "expressão cultural" : "expressões culturais"}{showEnglish && <span className="text-[var(--text-muted)]"> ({cultureCount} cultural {cultureCount === 1 ? "expression" : "expressions"})</span>}</p>}
         </div>
+        <p className="text-[12px] text-[var(--text-muted)] mt-3">
+          {sectionCount} secções, {totalPoints} perguntas. Precisas de 80% para passar.
+          {showEnglish && <span className="block">{sectionCount} sections, {totalPoints} questions. You need 80% to pass.</span>}
+        </p>
       </div>
 
       <div className="space-y-3">
-        <button
-          type="button"
-          onClick={onStartExercises}
+        <button type="button" onClick={onStartExercises}
           className="w-full px-6 py-3.5 bg-[#003399] text-white text-[15px] font-semibold rounded-[12px] hover:opacity-90 transition-opacity cursor-pointer"
         >
           Começar os exercícios →
           {showEnglish && <span className="block text-[12px] font-normal opacity-75 mt-0.5">Start the exercises</span>}
         </button>
-        <button
-          type="button"
-          onClick={onReviewFirst}
+        <button type="button" onClick={onReviewFirst}
           className="w-full px-6 py-3.5 border border-[var(--border-primary)] text-[var(--text-secondary)] text-[15px] font-medium rounded-[12px] hover:border-[#003399] hover:text-[#003399] transition-colors cursor-pointer"
         >
           Rever o material primeiro
@@ -392,64 +213,25 @@ function LessonIntro({
   );
 }
 
-/* ─── Scoring helpers ─── */
-
-function calculateScore(results: ExerciseResult[]): {
-  correct: number;
-  total: number;
-} {
-  return {
-    correct: results.filter((r) => r.correct).length,
-    total: results.length,
-  };
-}
-
-function collectWrongAnswers(
-  results: ExerciseResult[],
-  exercises: Exercise[],
-): { question: string; userAnswer: string; correctAnswer: string }[] {
-  const wrong: { question: string; userAnswer: string; correctAnswer: string }[] = [];
-
-  for (let i = 0; i < results.length; i++) {
-    const r = results[i];
-    const ex = exercises[i];
-    if (!ex || r.correct) continue;
-
-    wrong.push({
-      question: ex.instruction,
-      userAnswer: r.userAnswer,
-      correctAnswer: r.correctAnswer,
-    });
-  }
-
-  return wrong;
-}
-
 /* ─── Main lesson content ─── */
 
 function LessonContent({ id }: { id: string }) {
   const router = useRouter();
   const lesson = getResolvedLesson(id);
   const curriculumLesson = getCurriculumLesson(id);
-
-  // Determine CEFR level and whether to show English
   const showEnglish = lesson?.cefr === "A1" || lesson?.cefr === "A2";
 
   // State
-  const [round, setRound] = useState<Round>("intro");
+  const [lessonState, setLessonState] = useState<LessonState>("intro");
+  const [currentSection, setCurrentSection] = useState(0);
+  const [sectionResults, setSectionResults] = useState<SectionResult[]>([]);
   const [skippedLearn, setSkippedLearn] = useState(false);
   const [learnIndex, setLearnIndex] = useState(0);
-  const [practiceIndex, setPracticeIndex] = useState(0);
-  const [applyIndex, setApplyIndex] = useState(0);
-  const [showTransition, setShowTransition] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [practiceResults, setPracticeResults] = useState<ExerciseResult[]>([]);
-  const [applyResults, setApplyResults] = useState<ExerciseResult[]>([]);
   const [generatedLesson, setGeneratedLesson] = useState<GeneratedLesson | null>(null);
 
   // Progress & session
   const [progressMap, setProgressMap] = useState<Record<string, { completed?: boolean }> | null>(null);
-  const [savedSessionState, setSavedSessionState] = useState<LessonSessionState | null>(null);
+  const [savedSession, setSavedSession] = useState<LessonSessionData | null>(null);
   const [showRestorePrompt, setShowRestorePrompt] = useState(false);
 
   // Save state
@@ -468,7 +250,7 @@ function LessonContent({ id }: { id: string }) {
     getLessonProgressMap().then((map) => {
       setProgressMap(map);
       const session = restoreSession(id);
-      setSavedSessionState(session);
+      setSavedSession(session);
       if (session && !map[id]?.completed) {
         setShowRestorePrompt(true);
       } else if (session && map[id]?.completed) {
@@ -477,72 +259,51 @@ function LessonContent({ id }: { id: string }) {
     });
   }, [id]);
 
-  // Generate exercises on first render (if no restore)
+  // Generate on first render
   useEffect(() => {
     if (!lesson || showRestorePrompt || generatedLesson) return;
     setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
-  }, [lesson, showRestorePrompt, generatedLesson]);
+  }, [lesson, showRestorePrompt, generatedLesson, showEnglish]);
 
   // Persist session
   useEffect(() => {
-    if (!generatedLesson || showRestorePrompt || round === "results" || round === "intro") return;
-    saveSession(id, {
-      round,
-      learnIndex,
-      practiceIndex,
-      applyIndex,
-      practiceResults,
-      applyResults,
-      generatedLesson,
-      showTransition,
-      skippedLearn,
-    });
-  }, [id, round, learnIndex, practiceIndex, applyIndex, practiceResults, applyResults, generatedLesson, showTransition, showRestorePrompt, skippedLearn]);
+    if (!generatedLesson || showRestorePrompt || lessonState === "results" || lessonState === "intro") return;
+    saveSession(id, { lessonState, currentSection, sectionResults, generatedLesson, skippedLearn, learnIndex });
+  }, [id, lessonState, currentSection, sectionResults, generatedLesson, showRestorePrompt, skippedLearn, learnIndex]);
 
-  // Restore session
+  // Restore
   const handleRestore = () => {
-    if (savedSessionState) {
-      setRound(savedSessionState.round);
-      setLearnIndex(savedSessionState.learnIndex);
-      setPracticeIndex(savedSessionState.practiceIndex);
-      setApplyIndex(savedSessionState.applyIndex);
-      setPracticeResults(savedSessionState.practiceResults);
-      setApplyResults(savedSessionState.applyResults);
-      setGeneratedLesson(savedSessionState.generatedLesson);
-      setShowTransition(savedSessionState.showTransition);
-      setSkippedLearn(savedSessionState.skippedLearn ?? false);
+    if (savedSession) {
+      setLessonState(savedSession.lessonState);
+      setCurrentSection(savedSession.currentSection);
+      setSectionResults(savedSession.sectionResults);
+      setGeneratedLesson(savedSession.generatedLesson);
+      setSkippedLearn(savedSession.skippedLearn);
+      setLearnIndex(savedSession.learnIndex);
     }
     setShowRestorePrompt(false);
   };
-
-  const handleStartFresh = () => {
-    clearSession(id);
-    setSavedSessionState(null);
-    setShowRestorePrompt(false);
-  };
+  const handleStartFresh = () => { clearSession(id); setSavedSession(null); setShowRestorePrompt(false); };
 
   // Save
+  const totalSections = generatedLesson?.sections.length ?? 0;
+  const totalPoints = generatedLesson?.totalPoints ?? 0;
+  const totalCorrect = sectionResults.reduce((s, r) => s + r.totalCorrect, 0);
+  const totalQuestions = sectionResults.reduce((s, r) => s + r.totalQuestions, 0);
+  const accuracy = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+  const passed = accuracy >= 80;
+
   const doSave = useCallback(async () => {
     if (!lesson || !generatedLesson) return;
     setIsSaving(true);
     setSaveError(false);
 
-    const practiceScore = calculateScore(practiceResults);
-    const applyScore = calculateScore(applyResults);
-    const totalPoints = practiceScore.total + applyScore.total;
-    const totalCorrect = practiceScore.correct + applyScore.correct;
-    const accuracy = totalPoints > 0 ? Math.round((totalCorrect / totalPoints) * 100) : 0;
-    const passed = accuracy >= 80;
-
-    // Build wrong items for storage
     const wrongItems: WrongItem[] = [];
-    for (const r of [...practiceResults, ...applyResults]) {
-      if (!r.correct) {
-        wrongItems.push({
-          type: r.exerciseType === "conjugation" ? "verb" : "practice",
-          userAnswer: r.userAnswer,
-          correctAnswer: r.correctAnswer,
-        });
+    for (const sr of sectionResults) {
+      for (const a of sr.answers) {
+        if (!a.correct) {
+          wrongItems.push({ type: sr.sectionKey === "conjugation" ? "verb" : "practice", userAnswer: a.userAnswer, correctAnswer: a.correctAnswer });
+        }
       }
     }
 
@@ -550,17 +311,12 @@ function LessonContent({ id }: { id: string }) {
 
     try {
       const ok = await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems);
-      if (!ok) {
-        setSaveError(true);
-        setIsSaving(false);
-        return;
-      }
+      if (!ok) { setSaveError(true); setIsSaving(false); return; }
 
       clearSession(id);
       logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
       updateStreak().catch(() => {});
 
-      // Fetch fresh progress
       const freshMap = await getLessonProgressMap().catch(() => ({}));
       const a1Count = Object.entries(freshMap).filter(([lid, p]) => lid.startsWith("a1-") && p.completed).length;
       const a2Count = Object.entries(freshMap).filter(([lid, p]) => lid.startsWith("a2-") && p.completed).length;
@@ -578,14 +334,13 @@ function LessonContent({ id }: { id: string }) {
     } finally {
       setIsSaving(false);
     }
-  }, [lesson, generatedLesson, practiceResults, applyResults, id]);
+  }, [lesson, generatedLesson, sectionResults, accuracy, passed, id]);
 
-  // Auto-save on results
   useEffect(() => {
-    if (round !== "results" || hasSaved.current) return;
+    if (lessonState !== "results" || hasSaved.current) return;
     hasSaved.current = true;
     doSave();
-  }, [round, doSave]);
+  }, [lessonState, doSave]);
 
   // Not found
   if (!lesson) {
@@ -594,12 +349,7 @@ function LessonContent({ id }: { id: string }) {
         <Topbar />
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
           <p className="text-[13px] text-[var(--text-muted)]">Lição não encontrada.</p>
-          <Link
-            href="/lessons"
-            className="text-[13px] font-medium text-[#003399] hover:underline mt-2 inline-block"
-          >
-            Voltar às lições
-          </Link>
+          <Link href="/lessons" className="text-[13px] font-medium text-[#003399] hover:underline mt-2 inline-block">Voltar às lições</Link>
         </main>
       </>
     );
@@ -616,165 +366,78 @@ function LessonContent({ id }: { id: string }) {
     );
   }
 
-  // Compute progress
+  // Progress
   const learnTotal = generatedLesson?.learnItems.length ?? 0;
-  const practiceTotal = generatedLesson?.practiceExercises.length ?? 0;
-  const applyTotal = generatedLesson?.applyExercises.length ?? 0;
-
-  let roundProgress = 0;
-  let progressLabel = "";
-  if (round === "learn") {
-    roundProgress = learnTotal > 0 ? (learnIndex / learnTotal) * 100 : 0;
-    const itemType = generatedLesson?.learnItems[learnIndex]?.type;
-    const typeLabels: Record<string, string> = {
-      vocab: "Vocabulário",
-      grammar: "Gramática",
-      verb: "Verbo",
-      culture: "Cultura",
-    };
-    progressLabel = `${typeLabels[itemType ?? "vocab"] ?? ""} ${learnIndex + 1} de ${learnTotal}`;
-  } else if (round === "practice") {
-    roundProgress = practiceTotal > 0 ? (practiceIndex / practiceTotal) * 100 : 0;
-    progressLabel = `Exercício ${practiceIndex + 1} de ${practiceTotal}`;
-  } else if (round === "apply") {
-    roundProgress = applyTotal > 0 ? (applyIndex / applyTotal) * 100 : 0;
-    progressLabel = `Exercício ${applyIndex + 1} de ${applyTotal}`;
-  }
-
-  // Scoring for results
-  const practiceScore = calculateScore(practiceResults);
-  const applyScore = calculateScore(applyResults);
-  const totalPoints = practiceScore.total + applyScore.total;
-  const totalCorrect = practiceScore.correct + applyScore.correct;
-  const accuracy = totalPoints > 0 ? Math.round((totalCorrect / totalPoints) * 100) : 0;
-  const passed = accuracy >= 80;
+  const sectionProgress = lessonState === "sections"
+    ? ((currentSection + 1) / totalSections) * 100
+    : lessonState === "learn"
+      ? (learnIndex / learnTotal) * 100
+      : 0;
+  const progressLabel = lessonState === "sections"
+    ? `Secção ${currentSection + 1} de ${totalSections}`
+    : lessonState === "learn"
+      ? `${learnIndex + 1} de ${learnTotal}`
+      : "";
 
   // Exam unlock
-  const unlockedExamId =
-    levelCounts != null
-      ? Object.entries(MOCK_EXAM_UNLOCKS).find(
-          ([, config]) => config.lessonsRequired === levelCounts.total
-        )?.[0] ?? null
-      : null;
-
-  // Level progress for results
   const cefrTotals: Record<string, number> = { A1: 18, A2: 16, B1: 10 };
   const cefrCompleted = levelCounts
-    ? lesson.cefr === "A1" ? levelCounts.a1
-      : lesson.cefr === "A2" ? levelCounts.a2
-      : levelCounts.b1
+    ? lesson.cefr === "A1" ? levelCounts.a1 : lesson.cefr === "A2" ? levelCounts.a2 : levelCounts.b1
     : 0;
+  const unlockedExamId = levelCounts != null
+    ? Object.entries(MOCK_EXAM_UNLOCKS).find(([, config]) => config.lessonsRequired === levelCounts.total)?.[0] ?? null
+    : null;
+
+  // Wrong answers for results
+  const wrongAnswers = sectionResults.flatMap((sr) =>
+    sr.answers.filter((a) => !a.correct).map((a) => ({
+      question: `${sr.sectionName}: ${a.correctAnswer}`,
+      userAnswer: a.userAnswer,
+      correctAnswer: a.correctAnswer,
+    }))
+  );
 
   // Handlers
-  const handleStartExercises = () => {
-    // Skip learn, go directly to practice transition
-    setSkippedLearn(true);
-    setShowTransition(true);
-    setRound("learn"); // Use "learn" round with transition showing to get to practice
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleReviewFirst = () => {
-    setSkippedLearn(false);
-    setRound("learn");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const handleStartExercises = () => { setSkippedLearn(true); setLessonState("sections"); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const handleReviewFirst = () => { setSkippedLearn(false); setLessonState("learn"); window.scrollTo({ top: 0, behavior: "smooth" }); };
 
   const handleLearnNext = () => {
-    if (learnIndex < learnTotal - 1) {
-      setLearnIndex((i) => i + 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      setShowTransition(true);
-    }
+    if (learnIndex < learnTotal - 1) { setLearnIndex((i) => i + 1); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    else { setLessonState("sections"); window.scrollTo({ top: 0, behavior: "smooth" }); }
   };
-
   const handleLearnPrev = () => {
-    if (learnIndex > 0) {
-      setLearnIndex((i) => i - 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    if (learnIndex > 0) { setLearnIndex((i) => i - 1); window.scrollTo({ top: 0, behavior: "smooth" }); }
   };
 
-  const handleStartPractice = () => {
-    setShowTransition(false);
-    setRound("practice");
+  const handleSectionComplete = (result: SectionResult) => {
+    setSectionResults((prev) => [...prev, result]);
+    const next = currentSection + 1;
+    if (next >= totalSections) { setLessonState("results"); }
+    else { setCurrentSection(next); }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handlePracticeComplete = (result: ExerciseResult) => {
-    setPracticeResults((prev) => [...prev, result]);
-    setIsTransitioning(true);
-    setTimeout(() => {
-      if (practiceIndex < practiceTotal - 1) {
-        setPracticeIndex((i) => i + 1);
-      } else {
-        setShowTransition(true);
-      }
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      requestAnimationFrame(() => setIsTransitioning(false));
-    }, 250);
-  };
-
-  const handleStartApply = () => {
-    setShowTransition(false);
-    setRound("apply");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleApplyComplete = (result: ExerciseResult) => {
-    setApplyResults((prev) => [...prev, result]);
-    setIsTransitioning(true);
-    setTimeout(() => {
-      if (applyIndex < applyTotal - 1) {
-        setApplyIndex((i) => i + 1);
-      } else {
-        setRound("results");
-      }
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      requestAnimationFrame(() => setIsTransitioning(false));
-    }, 250);
-  };
-
-  const handleRetryPractice = () => {
-    // Skip Round 1, regenerate exercises
-    if (lesson) {
-      const newGen = generateLessonExercises(lesson, showEnglish);
-      setGeneratedLesson(newGen);
-    }
-    setSkippedLearn(true);
-    setPracticeIndex(0);
-    setApplyIndex(0);
-    setPracticeResults([]);
-    setApplyResults([]);
+  const handleRetryExercises = () => {
+    if (lesson) setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
+    setCurrentSection(0);
+    setSectionResults([]);
     hasSaved.current = false;
     setSaveError(false);
-    setRound("practice");
+    setSkippedLearn(true);
+    setLessonState("sections");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleRetryFull = () => {
-    // Full restart including Round 1 (not intro — they've already chosen)
-    if (lesson) {
-      const newGen = generateLessonExercises(lesson, showEnglish);
-      setGeneratedLesson(newGen);
-    }
-    setSkippedLearn(false);
+    if (lesson) setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
     setLearnIndex(0);
-    setPracticeIndex(0);
-    setApplyIndex(0);
-    setPracticeResults([]);
-    setApplyResults([]);
+    setCurrentSection(0);
+    setSectionResults([]);
     hasSaved.current = false;
     setSaveError(false);
-    setShowTransition(false);
-    setRound("learn");
+    setSkippedLearn(false);
+    setLessonState("learn");
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleRetrySave = () => {
-    hasSaved.current = false;
-    doSave();
   };
 
   // Restore prompt
@@ -782,34 +445,12 @@ function LessonContent({ id }: { id: string }) {
     return (
       <>
         <Topbar />
-        <LessonShell
-          lessonId={lesson.id}
-          lessonTitle={lesson.title}
-          lessonTitlePt={lesson.ptTitle}
-          cefr={lesson.cefr}
-          currentRound="learn"
-          roundProgress={0}
-          progressLabel=""
-        >
+        <LessonShell lessonId={lesson.id} lessonTitle={lesson.title} lessonTitlePt={lesson.ptTitle} cefr={lesson.cefr} currentState="intro">
           <div className="p-6 rounded-[12px] border border-[var(--border-primary)] bg-[var(--bg-card)] text-center">
-            <p className="text-[15px] font-medium text-[var(--text-primary)] mb-4">
-              Tens progresso guardado nesta lição.
-            </p>
+            <p className="text-[15px] font-medium text-[var(--text-primary)] mb-4">Tens progresso guardado nesta lição.</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <button
-                type="button"
-                onClick={handleRestore}
-                className="px-5 py-2.5 bg-[#003399] text-white text-[14px] font-medium rounded-[12px] hover:opacity-90 transition-opacity"
-              >
-                Continuar de onde parei
-              </button>
-              <button
-                type="button"
-                onClick={handleStartFresh}
-                className="px-5 py-2.5 text-[14px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              >
-                Começar de novo
-              </button>
+              <button type="button" onClick={handleRestore} className="px-5 py-2.5 bg-[#003399] text-white text-[14px] font-medium rounded-[12px] hover:opacity-90 transition-opacity">Continuar de onde parei</button>
+              <button type="button" onClick={handleStartFresh} className="px-5 py-2.5 text-[14px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Começar de novo</button>
             </div>
           </div>
         </LessonShell>
@@ -819,7 +460,6 @@ function LessonContent({ id }: { id: string }) {
 
   if (!generatedLesson) return null;
 
-  // Render
   return (
     <>
       <Topbar />
@@ -828,13 +468,12 @@ function LessonContent({ id }: { id: string }) {
         lessonTitle={lesson.title}
         lessonTitlePt={lesson.ptTitle}
         cefr={lesson.cefr}
-        currentRound={round}
-        skippedLearn={skippedLearn}
-        roundProgress={roundProgress}
+        currentState={lessonState}
+        sectionProgress={sectionProgress}
         progressLabel={progressLabel}
       >
-        {/* ── INTRO: Choose path ── */}
-        {round === "intro" && (
+        {/* Intro */}
+        {lessonState === "intro" && (
           <LessonIntro
             lesson={lesson}
             generatedLesson={generatedLesson}
@@ -844,114 +483,48 @@ function LessonContent({ id }: { id: string }) {
           />
         )}
 
-        {/* ── ROUND 1: Learn ── */}
-        {round === "learn" && !showTransition && (
+        {/* Learn */}
+        {lessonState === "learn" && generatedLesson.learnItems[learnIndex] && (
           <>
             <LearnItemRenderer item={generatedLesson.learnItems[learnIndex]} />
-
             <div className="flex items-center justify-between mt-8 pt-6 border-t border-[var(--border-light)]">
-              <button
-                type="button"
-                onClick={handleLearnPrev}
-                disabled={learnIndex === 0}
-                className={`text-[13px] font-medium transition-colors ${
-                  learnIndex === 0
-                    ? "text-[var(--text-muted)] cursor-not-allowed"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer"
-                }`}
-              >
-                &larr; Anterior
-              </button>
-              <button
-                type="button"
-                onClick={handleLearnNext}
+              <button type="button" onClick={handleLearnPrev} disabled={learnIndex === 0}
+                className={`text-[13px] font-medium transition-colors ${learnIndex === 0 ? "text-[var(--text-muted)] cursor-not-allowed" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer"}`}
+              >&larr; Anterior</button>
+              <button type="button" onClick={handleLearnNext}
                 className="px-5 py-2 bg-[var(--text-primary)] text-white text-[13px] font-semibold rounded-lg hover:opacity-90 transition-opacity cursor-pointer"
-              >
-                {learnIndex < learnTotal - 1 ? "Próximo →" : "Continuar →"}
-              </button>
+              >{learnIndex < learnTotal - 1 ? "Próximo →" : "Começar exercícios →"}</button>
             </div>
           </>
         )}
 
-        {/* ── Transition: Learn → Practice ── */}
-        {round === "learn" && showTransition && (
-          <RoundTransition
-            title="Praticar"
-            englishTitle={showEnglish ? "Practice" : undefined}
-            subtitle="Vamos testar o que aprendeste."
-            englishSubtitle={showEnglish ? "Let's test what you've learned." : undefined}
-            buttonText="Começar →"
-            onContinue={handleStartPractice}
+        {/* Sections */}
+        {lessonState === "sections" && generatedLesson.sections[currentSection] && (
+          <SectionRenderer
+            key={`section-${currentSection}`}
+            section={generatedLesson.sections[currentSection]}
+            sectionIndex={currentSection}
+            totalSections={totalSections}
+            showEnglish={showEnglish}
+            onComplete={handleSectionComplete}
           />
         )}
 
-        {/* ── ROUND 2: Practice ── */}
-        {round === "practice" && !showTransition && generatedLesson.practiceExercises[practiceIndex] && (
-          <div className={`transition-opacity duration-200 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
-            <ExerciseRenderer
-              key={`practice-${practiceIndex}`}
-              exerciseKey={`practice-${practiceIndex}`}
-              exercise={generatedLesson.practiceExercises[practiceIndex]}
-              onComplete={handlePracticeComplete}
-            />
-          </div>
-        )}
-
-        {/* ── Transition: Practice → Apply ── */}
-        {round === "practice" && showTransition && (
-          <RoundTransition
-            title="Aplicar"
-            englishTitle={showEnglish ? "Apply" : undefined}
-            subtitle="Agora vamos juntar tudo."
-            englishSubtitle={showEnglish ? "Now let's put it all together." : undefined}
-            buttonText="Continuar →"
-            onContinue={handleStartApply}
-          />
-        )}
-
-        {/* ── ROUND 3: Apply ── */}
-        {round === "apply" && generatedLesson.applyExercises[applyIndex] && (
-          <div className={`transition-opacity duration-200 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
-            <ExerciseRenderer
-              key={`apply-${applyIndex}`}
-              exerciseKey={`apply-${applyIndex}`}
-              exercise={generatedLesson.applyExercises[applyIndex]}
-              onComplete={handleApplyComplete}
-            />
-          </div>
-        )}
-        {/* Safety: if apply round but no exercise to show, go to results */}
-        {round === "apply" && !generatedLesson.applyExercises[applyIndex] && (
-          <SafetyFallback onContinue={() => setRound("results")} />
-        )}
-
-        {/* ── Results ── */}
-        {round === "results" && (
+        {/* Results */}
+        {lessonState === "results" && (
           <ResultsScreen
             passed={passed}
             accuracy={accuracy}
-            practiceScore={practiceScore}
-            applyScore={applyScore}
-            wrongAnswers={collectWrongAnswers(
-              [...practiceResults, ...applyResults],
-              [...generatedLesson.practiceExercises, ...generatedLesson.applyExercises],
-            )}
-            levelProgress={{
-              completed: cefrCompleted,
-              total: cefrTotals[lesson.cefr] ?? 18,
-              level: lesson.cefr,
-            }}
-            onNextLesson={
-              nextLessonId
-                ? () => router.push(`/lessons/${nextLessonId}`)
-                : null
-            }
-            onRetryPractice={handleRetryPractice}
+            sectionResults={sectionResults}
+            wrongAnswers={wrongAnswers}
+            levelProgress={{ completed: cefrCompleted, total: cefrTotals[lesson.cefr] ?? 18, level: lesson.cefr }}
+            onNextLesson={nextLessonId ? () => router.push(`/lessons/${nextLessonId}`) : null}
+            onRetryExercises={handleRetryExercises}
             onRetryFull={handleRetryFull}
             onBackToLessons={() => router.push("/lessons")}
             isSaving={isSaving}
             saveError={saveError}
-            onRetrySave={handleRetrySave}
+            onRetrySave={() => { hasSaved.current = false; doSave(); }}
             examUnlocked={unlockedExamId}
             showEnglish={showEnglish}
           />
@@ -963,13 +536,8 @@ function LessonContent({ id }: { id: string }) {
 
 /* ─── Page wrapper ─── */
 
-export default function LessonDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default function LessonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-
   return (
     <ProtectedRoute>
       <LessonContent id={id} />

@@ -1,40 +1,23 @@
 /**
- * Exercise type definitions for the v3 exercise framework.
- * Every exercise = exactly 1 point.
+ * Types for the v4 section-based exercise system.
  */
-
-export type ExerciseType =
-  | "mc-pt-to-en"
-  | "mc-en-to-pt"
-  | "mc-grammar"
-  | "mc-verb-form"
-  | "mc-culture"
-  | "fill-blank"
-  | "conjugation"
-  | "true-false"
-  | "translation"
-  | "match-word"
-  | "word-bank-blank"
-  | "sentence-build"
-  | "error-correction";
 
 export type Difficulty = "foundation" | "building" | "consolidating";
 
-export interface Exercise {
-  type: ExerciseType;
-  id: string;
-  instruction: string;
-  englishInstruction?: string;
-  data: Record<string, unknown>;
-}
-
-export interface ExerciseResult {
-  exerciseId: string;
+export interface SectionAnswer {
+  questionId: string;
   correct: boolean;
   userAnswer: string;
   correctAnswer: string;
   accentHint?: string;
-  exerciseType: ExerciseType;
+}
+
+export interface SectionResult {
+  sectionKey: string;
+  sectionName: string;
+  answers: SectionAnswer[];
+  totalCorrect: number;
+  totalQuestions: number;
 }
 
 export function getDifficulty(lessonNumber: number, cefrLevel: string): Difficulty {
