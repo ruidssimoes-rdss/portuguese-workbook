@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { ExerciseResult } from "@/lib/exercise-generator";
 
 interface MultipleChoiceProps {
@@ -19,6 +19,14 @@ export function MultipleChoice({
   onComplete,
 }: MultipleChoiceProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const completedRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   // Deduplicate options defensively
   const seen = new Set<string>();
@@ -33,13 +41,14 @@ export function MultipleChoice({
   const actualCorrectIndex = dedupedOptions.indexOf(correctAnswer);
 
   const handleSelect = (index: number) => {
-    if (selectedIndex !== null) return;
+    if (selectedIndex !== null || completedRef.current) return;
     setSelectedIndex(index);
+    completedRef.current = true;
 
     const isCorrect = index === actualCorrectIndex;
     const delay = isCorrect ? 1500 : 2500;
 
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       onComplete({
         correct: isCorrect,
         userAnswer: dedupedOptions[index],

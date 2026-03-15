@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import type { ExerciseResult } from "@/lib/exercise-generator";
 
 interface MatchPairsProps {
@@ -28,6 +28,14 @@ export function MatchPairs({ instruction, englishInstruction, pairs, onComplete 
   const [matched, setMatched] = useState<Set<string>>(new Set());
   const [wrongFlash, setWrongFlash] = useState<{ left: string; right: string } | null>(null);
   const [results, setResults] = useState<ExerciseResult[]>([]);
+  const completedRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const pairMap = useMemo(() => {
     const map = new Map<string, string>();
@@ -53,8 +61,9 @@ export function MatchPairs({ instruction, englishInstruction, pairs, onComplete 
       const newResults = [...results, result];
       setResults(newResults);
 
-      if (newMatched.size === pairs.length) {
-        setTimeout(() => onComplete(newResults), 800);
+      if (newMatched.size === pairs.length && !completedRef.current) {
+        completedRef.current = true;
+        timerRef.current = setTimeout(() => onComplete(newResults), 800);
       }
     } else {
       setWrongFlash({ left, right });

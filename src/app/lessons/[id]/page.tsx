@@ -121,14 +121,16 @@ function clearSession(lessonId: string): void {
 /* ─── Exercise renderer ─── */
 
 function ExerciseRenderer({
+  exerciseKey,
   exercise,
   onComplete,
 }: {
+  exerciseKey: string;
   exercise: Exercise;
   onComplete: (result: ExerciseResult | ExerciseResult[]) => void;
 }) {
-  // Key forces re-mount when exercise changes
-  const key = JSON.stringify(exercise).slice(0, 100);
+  // exerciseKey from parent ensures unique key per exercise index
+  const key = exerciseKey;
 
   switch (exercise.type) {
     case "multiple-choice":
@@ -263,6 +265,22 @@ function LearnItemRenderer({ item }: { item: LearnItem }) {
     case "culture":
       return <CultureLearn data={item.data as CultureLearnData} />;
   }
+}
+
+/* ─── Safety fallback ─── */
+
+function SafetyFallback({ onContinue }: { onContinue: () => void }) {
+  useEffect(() => {
+    // Auto-advance after a brief delay
+    const timer = setTimeout(onContinue, 100);
+    return () => clearTimeout(timer);
+  }, [onContinue]);
+
+  return (
+    <div className="text-center py-8">
+      <p className="text-[var(--text-secondary)]">A avançar...</p>
+    </div>
+  );
 }
 
 /* ─── Intro screen ─── */
@@ -883,6 +901,8 @@ function LessonContent({ id }: { id: string }) {
         {/* ── ROUND 2: Practice ── */}
         {round === "practice" && !showTransition && generatedLesson.practiceExercises[practiceIndex] && (
           <ExerciseRenderer
+            key={`practice-${practiceIndex}`}
+            exerciseKey={`practice-${practiceIndex}`}
             exercise={generatedLesson.practiceExercises[practiceIndex]}
             onComplete={handlePracticeComplete}
           />
@@ -903,9 +923,15 @@ function LessonContent({ id }: { id: string }) {
         {/* ── ROUND 3: Apply ── */}
         {round === "apply" && generatedLesson.applyExercises[applyIndex] && (
           <ExerciseRenderer
+            key={`apply-${applyIndex}`}
+            exerciseKey={`apply-${applyIndex}`}
             exercise={generatedLesson.applyExercises[applyIndex]}
             onComplete={handleApplyComplete}
           />
+        )}
+        {/* Safety: if apply round but no exercise to show, go to results */}
+        {round === "apply" && !generatedLesson.applyExercises[applyIndex] && (
+          <SafetyFallback onContinue={() => setRound("results")} />
         )}
 
         {/* ── Results ── */}

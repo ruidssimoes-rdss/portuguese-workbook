@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
 import type { ExerciseResult } from "@/lib/exercise-generator";
 
@@ -25,6 +25,14 @@ export function SentenceBuild({
   const [available, setAvailable] = useState<string[]>([...words]);
   const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState<ExerciseResult | null>(null);
+  const completedRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const handleWordTap = (word: string, index: number) => {
     if (submitted) return;
@@ -43,8 +51,9 @@ export function SentenceBuild({
   };
 
   const handleSubmit = () => {
-    if (submitted || placed.length === 0) return;
+    if (submitted || placed.length === 0 || completedRef.current) return;
     setSubmitted(true);
+    completedRef.current = true;
 
     const builtSentence = placed.join(" ");
     const check = checkAnswer(builtSentence, correctSentence, acceptedAnswers);
@@ -58,7 +67,7 @@ export function SentenceBuild({
     setResult(exerciseResult);
 
     const delay = check.correct ? 1500 : 2500;
-    setTimeout(() => onComplete(exerciseResult), delay);
+    timerRef.current = setTimeout(() => onComplete(exerciseResult), delay);
   };
 
   return (

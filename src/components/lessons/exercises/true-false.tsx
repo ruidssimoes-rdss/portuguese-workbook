@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { ExerciseResult } from "@/lib/exercise-generator";
 
 interface TrueFalseProps {
@@ -21,15 +21,24 @@ export function TrueFalse({
   onComplete,
 }: TrueFalseProps) {
   const [selected, setSelected] = useState<boolean | null>(null);
+  const completedRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const handleSelect = (answer: boolean) => {
-    if (selected !== null) return;
+    if (selected !== null || completedRef.current) return;
     setSelected(answer);
+    completedRef.current = true;
 
     const isCorrect = answer === isTrue;
     const delay = isCorrect ? 1500 : 2500;
 
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       onComplete({
         correct: isCorrect,
         userAnswer: answer ? "Verdadeiro" : "Falso",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
 import type { ExerciseResult } from "@/lib/exercise-generator";
 
@@ -26,10 +26,19 @@ export function FillInBlank({
   const [value, setValue] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState<ExerciseResult | null>(null);
+  const completedRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const handleSubmit = () => {
-    if (!value.trim() || submitted) return;
+    if (!value.trim() || submitted || completedRef.current) return;
     setSubmitted(true);
+    completedRef.current = true;
 
     const check = checkAnswer(value.trim(), correctAnswer, acceptedAnswers);
     const exerciseResult: ExerciseResult = {
@@ -42,7 +51,7 @@ export function FillInBlank({
     setResult(exerciseResult);
 
     const delay = check.correct ? (check.accentHint ? 2000 : 1500) : 2500;
-    setTimeout(() => onComplete(exerciseResult), delay);
+    timerRef.current = setTimeout(() => onComplete(exerciseResult), delay);
   };
 
   // Split sentence around the blank

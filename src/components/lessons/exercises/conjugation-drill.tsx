@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
 import type { ExerciseResult } from "@/lib/exercise-generator";
 
@@ -26,10 +26,19 @@ export function ConjugationDrill({
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [results, setResults] = useState<Record<string, ExerciseResult>>({});
+  const completedRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const handleSubmit = () => {
-    if (submitted) return;
+    if (submitted || completedRef.current) return;
     setSubmitted(true);
+    completedRef.current = true;
 
     const newResults: Record<string, ExerciseResult> = {};
     const resultArray: ExerciseResult[] = [];
@@ -49,7 +58,7 @@ export function ConjugationDrill({
     }
 
     setResults(newResults);
-    setTimeout(() => onComplete(resultArray), 2500);
+    timerRef.current = setTimeout(() => onComplete(resultArray), 2500);
   };
 
   const hasAnswers = Object.values(answers).some((a) => a.trim());

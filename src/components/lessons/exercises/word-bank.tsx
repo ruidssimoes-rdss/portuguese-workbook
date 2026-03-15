@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
 import type { ExerciseResult } from "@/lib/exercise-generator";
 
@@ -27,6 +27,14 @@ export function WordBank({
   const [activeBlankIndex, setActiveBlankIndex] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [results, setResults] = useState<ExerciseResult[]>([]);
+  const completedRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   // Track which word bank items are used
   const usedWords = new Set(filledBlanks.filter(Boolean) as string[]);
@@ -35,12 +43,10 @@ export function WordBank({
     if (submitted) return;
     if (usedWords.has(word)) return;
 
-    // Fill the active blank
     const nextBlanks = [...filledBlanks];
     nextBlanks[activeBlankIndex] = word;
     setFilledBlanks(nextBlanks);
 
-    // Advance to next empty blank
     const nextEmpty = nextBlanks.findIndex((b, i) => b === null && i > activeBlankIndex);
     if (nextEmpty !== -1) {
       setActiveBlankIndex(nextEmpty);
@@ -53,7 +59,6 @@ export function WordBank({
   const handleBlankTap = (index: number) => {
     if (submitted) return;
     if (filledBlanks[index] !== null) {
-      // Remove word from blank
       const nextBlanks = [...filledBlanks];
       nextBlanks[index] = null;
       setFilledBlanks(nextBlanks);
@@ -64,8 +69,9 @@ export function WordBank({
   };
 
   const handleSubmit = () => {
-    if (submitted) return;
+    if (submitted || completedRef.current) return;
     setSubmitted(true);
+    completedRef.current = true;
 
     const exerciseResults: ExerciseResult[] = blanks.map((blank, i) => {
       const userAnswer = filledBlanks[i] ?? "";
@@ -80,13 +86,12 @@ export function WordBank({
     });
 
     setResults(exerciseResults);
-    setTimeout(() => onComplete(exerciseResults), 2500);
+    timerRef.current = setTimeout(() => onComplete(exerciseResults), 2500);
   };
 
   const allFilled = filledBlanks.every((b) => b !== null);
   const correctCount = results.filter((r) => r.correct).length;
 
-  // Split text into segments around blanks
   const segments = textWithBlanks.split(/___/);
 
   return (
