@@ -192,20 +192,24 @@ export default function LessonsPage() {
                 const progress = progressMap[lesson.id];
                 const isLocked = state === "locked";
 
+                const glowStyle = isLocked ? {} : state === "completed"
+                  ? { borderColor: "rgba(22, 163, 74, 0.2)", boxShadow: "0 0 12px rgba(22, 163, 74, 0.08)" }
+                  : state === "current"
+                    ? { borderColor: "rgba(0, 51, 153, 0.2)", boxShadow: "0 0 12px rgba(0, 51, 153, 0.08)" }
+                    : state === "attempted"
+                      ? { borderColor: "rgba(245, 158, 11, 0.2)", boxShadow: "0 0 12px rgba(245, 158, 11, 0.08)" }
+                      : {};
+
                 const cardContent = (
+                  <div
+                    className={`rounded-[12px] transition-shadow duration-200 ${
+                      isLocked ? "opacity-60 cursor-not-allowed" : "hover:shadow-lg"
+                    }`}
+                    style={glowStyle}
+                  >
                   <Card
                     interactive={!isLocked}
-                    className={`h-full flex flex-col transition-all ${
-                      isLocked
-                        ? "opacity-60 cursor-not-allowed border-l-4 border-border"
-                        : state === "completed"
-                          ? "border-l-4 border-green-500"
-                          : state === "current"
-                            ? "border-l-4 border-[var(--color-primary)] shadow-sm"
-                            : state === "attempted"
-                              ? "border-l-4 border-amber-500"
-                              : ""
-                    }`}
+                    className="h-full flex flex-col"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
@@ -245,6 +249,7 @@ export default function LessonsPage() {
                       )}
                     </div>
                   </Card>
+                  </div>
                 );
 
                 if (isLocked) {
@@ -286,20 +291,24 @@ export default function LessonsPage() {
                 const progress = progressMap[lesson.id];
                 const isLocked = state === "locked" || !a2Unlocked;
 
+                const glowStyle = isLocked ? {} : state === "completed"
+                  ? { borderColor: "rgba(22, 163, 74, 0.2)", boxShadow: "0 0 12px rgba(22, 163, 74, 0.08)" }
+                  : state === "current"
+                    ? { borderColor: "rgba(0, 51, 153, 0.2)", boxShadow: "0 0 12px rgba(0, 51, 153, 0.08)" }
+                    : state === "attempted"
+                      ? { borderColor: "rgba(245, 158, 11, 0.2)", boxShadow: "0 0 12px rgba(245, 158, 11, 0.08)" }
+                      : {};
+
                 const cardContent = (
+                  <div
+                    className={`rounded-[12px] transition-shadow duration-200 ${
+                      isLocked ? "opacity-60 cursor-not-allowed" : "hover:shadow-lg"
+                    }`}
+                    style={glowStyle}
+                  >
                   <Card
                     interactive={!isLocked}
-                    className={`h-full flex flex-col transition-all ${
-                      isLocked
-                        ? "opacity-60 cursor-not-allowed border-l-4 border-border"
-                        : state === "completed"
-                          ? "border-l-4 border-green-500"
-                          : state === "current"
-                            ? "border-l-4 border-[var(--color-primary)] shadow-sm"
-                            : state === "attempted"
-                              ? "border-l-4 border-amber-500"
-                              : ""
-                    }`}
+                    className="h-full flex flex-col"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
@@ -341,6 +350,7 @@ export default function LessonsPage() {
                       )}
                     </div>
                   </Card>
+                  </div>
                 );
 
                 if (isLocked) {
@@ -381,20 +391,24 @@ export default function LessonsPage() {
                 const progress = progressMap[lesson.id];
                 const isLocked = state === "locked" || !b1Unlocked;
 
+                const glowStyle = isLocked ? {} : state === "completed"
+                  ? { borderColor: "rgba(22, 163, 74, 0.2)", boxShadow: "0 0 12px rgba(22, 163, 74, 0.08)" }
+                  : state === "current"
+                    ? { borderColor: "rgba(0, 51, 153, 0.2)", boxShadow: "0 0 12px rgba(0, 51, 153, 0.08)" }
+                    : state === "attempted"
+                      ? { borderColor: "rgba(245, 158, 11, 0.2)", boxShadow: "0 0 12px rgba(245, 158, 11, 0.08)" }
+                      : {};
+
                 const cardContent = (
+                  <div
+                    className={`rounded-[12px] transition-shadow duration-200 ${
+                      isLocked ? "opacity-60 cursor-not-allowed" : "hover:shadow-lg"
+                    }`}
+                    style={glowStyle}
+                  >
                   <Card
                     interactive={!isLocked}
-                    className={`h-full flex flex-col transition-all ${
-                      isLocked
-                        ? "opacity-60 cursor-not-allowed border-l-4 border-border"
-                        : state === "completed"
-                          ? "border-l-4 border-green-500"
-                          : state === "current"
-                            ? "border-l-4 border-[var(--color-primary)] shadow-sm"
-                            : state === "attempted"
-                              ? "border-l-4 border-amber-500"
-                              : ""
-                    }`}
+                    className="h-full flex flex-col"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
@@ -436,6 +450,7 @@ export default function LessonsPage() {
                       )}
                     </div>
                   </Card>
+                  </div>
                 );
 
                 if (isLocked) {
