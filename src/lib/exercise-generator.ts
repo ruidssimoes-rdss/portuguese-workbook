@@ -1,10 +1,13 @@
 /**
- * Exercise Generator v4 — Section-based sheets.
+ * Exercise Generator v4.1 — Section-based sheets.
  *
  * Each section is a full page of related exercises checked at once.
  * 8 possible sections: vocab, conjugation, grammar, fill-blank,
  * translation, sentence-build, word-bank, error-correction.
- * Sections with no content are skipped.
+ *
+ * Practice sentences can be reused across up to 2 different section types
+ * (e.g. fill-blank AND sentence-build). Sections also supplement from
+ * vocab, grammar examples, and conjugation data when practice is limited.
  */
 
 import type {
@@ -116,6 +119,33 @@ function buildMCOptions(correct: string, distractors: string[]): { options: stri
   return { options, correctIndex: options.indexOf(correct) };
 }
 
+/* ─── Practice usage tracker ─── */
+
+class PracticeTracker {
+  private usage = new Map<number, Set<string>>();
+
+  /** Check if a practice sentence is available for a given section */
+  isAvailable(index: number, sectionKey: string, maxUses: number = 2): boolean {
+    const uses = this.usage.get(index);
+    if (!uses) return true;
+    if (uses.has(sectionKey)) return false;
+    return uses.size < maxUses;
+  }
+
+  /** Mark a practice sentence as used by a section */
+  mark(index: number, sectionKey: string): void {
+    if (!this.usage.has(index)) this.usage.set(index, new Set());
+    this.usage.get(index)!.add(sectionKey);
+  }
+
+  /** Get available practice items for a section */
+  getAvailable(practice: PracticeItem[], sectionKey: string, maxUses: number = 2): Array<PracticeItem & { idx: number }> {
+    return practice
+      .map((p, i) => ({ ...p, idx: i }))
+      .filter((p) => this.isAvailable(p.idx, sectionKey, maxUses));
+  }
+}
+
 /* ─── Content extraction ─── */
 
 interface LessonContent {
@@ -142,6 +172,23 @@ function extractContent(lesson: Lesson): LessonContent {
   }
 
   return { vocabItems, verbItems, grammarItems, cultureItems, practiceItems };
+}
+
+/** Collect grammar examples that are full sentences (3+ words) */
+function getGrammarExamples(content: LessonContent): Array<{ pt: string; en: string }> {
+  const examples: Array<{ pt: string; en: string }> = [];
+  for (const g of content.grammarItems) {
+    const topic = grammarDB.topics[g.topicSlug];
+    if (!topic?.rules) continue;
+    for (const rule of topic.rules) {
+      for (const ex of rule.examples ?? []) {
+        if (ex.pt && ex.en && ex.pt.split(/\s+/).length >= 3 && !ex.pt.includes("/")) {
+          examples.push(ex);
+        }
+      }
+    }
+  }
+  return examples;
 }
 
 /* ─── Learn Items (unchanged) ─── */
@@ -269,7 +316,6 @@ function generateGrammarSection(content: LessonContent, showEnglish: boolean): G
   for (const g of content.grammarItems) {
     const topic = grammarDB.topics[g.topicSlug];
 
-    // True/false from rules
     if (topic?.rules?.length) {
       const rule = topic.rules[0];
       if (rule.rule) {
@@ -282,7 +328,6 @@ function generateGrammarSection(content: LessonContent, showEnglish: boolean): G
           explanation: "Verdadeiro!",
         });
 
-        // Try to generate a false statement
         const falsified = falsifyStatement(rule.rule);
         if (falsified) {
           questions.push({
@@ -296,7 +341,6 @@ function generateGrammarSection(content: LessonContent, showEnglish: boolean): G
       }
     }
 
-    // MC from grammar.json
     const topicQs: GrammarQuestion[] = topic?.questions ?? [];
     const picked = shuffle([...topicQs]).slice(0, 3);
     for (const q of picked) {
@@ -313,7 +357,6 @@ function generateGrammarSection(content: LessonContent, showEnglish: boolean): G
     }
   }
 
-  // Also add culture MC if we have culture items
   for (const culture of content.cultureItems) {
     const otherMeanings = content.cultureItems.filter((c) => c.meaning !== culture.meaning).map((c) => c.meaning);
     if (culture.literal) otherMeanings.push(culture.literal);
@@ -342,16 +385,18 @@ function generateGrammarSection(content: LessonContent, showEnglish: boolean): G
   };
 }
 
+// Section 4: Fill-blank — exclusive first pick, up to 4
 function generateFillBlankSection(
-  practice: PracticeItem[],
-  used: Set<number>,
+  content: LessonContent,
+  tracker: PracticeTracker,
   showEnglish: boolean,
   difficulty: Difficulty,
 ): GeneratedSection {
-  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
-  const count = Math.min(available.length, 6);
+  const key = "fill-blank";
+  const available = tracker.getAvailable(content.practiceItems, key, 1); // exclusive use
+  const count = Math.min(available.length, 4);
   const selected = shuffle(available).slice(0, count);
-  selected.forEach((s) => used.add(s.idx));
+  selected.forEach((s) => tracker.mark(s.idx, key));
 
   const sentences = selected.map((s, i) => ({
     id: `fill-${i}`,
@@ -363,7 +408,7 @@ function generateFillBlankSection(
   }));
 
   return {
-    key: "fill-blank",
+    key,
     namePt: "Completa as frases",
     nameEn: "Complete the sentences",
     data: { sentences, showEnglish },
@@ -371,69 +416,128 @@ function generateFillBlankSection(
   };
 }
 
+// Section 5: Translation — practice sentences + vocab word translations
 function generateTranslationSection(
-  practice: PracticeItem[],
-  used: Set<number>,
+  content: LessonContent,
+  tracker: PracticeTracker,
   showEnglish: boolean,
 ): GeneratedSection {
-  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
-  const count = Math.min(available.length, 4);
-  const selected = shuffle(available).slice(0, count);
-  selected.forEach((s) => used.add(s.idx));
+  const key = "translation";
+  const sentences: Array<Record<string, unknown>> = [];
 
-  const sentences = selected.map((s, i) => ({
-    id: `trans-${i}`,
-    sourceText: s.translation,
-    correctAnswer: s.fullSentence,
-    acceptedAnswers: s.acceptedAnswers?.map((a) => s.sentence.replace(/___/g, a)),
-  }));
+  // Short vocab translations first (2-3)
+  const vocabForTrans = shuffle([...content.vocabItems]).slice(0, 3);
+  for (const word of vocabForTrans) {
+    sentences.push({
+      id: `trans-v-${sentences.length}`,
+      sourceText: word.translation,
+      correctAnswer: word.word,
+      acceptedAnswers: [],
+    });
+  }
+
+  // Then longer practice sentence translations (1-2)
+  const available = tracker.getAvailable(content.practiceItems, key);
+  const practicePick = shuffle(available).slice(0, 2);
+  for (const s of practicePick) {
+    tracker.mark(s.idx, key);
+    sentences.push({
+      id: `trans-p-${sentences.length}`,
+      sourceText: s.translation,
+      correctAnswer: s.fullSentence,
+      acceptedAnswers: s.acceptedAnswers?.map((a) => s.sentence.replace(/___/g, a)),
+    });
+  }
 
   return {
-    key: "translation",
+    key,
     namePt: "Tradução",
     nameEn: "Translation",
-    data: { sentences, showEnglish },
-    totalQuestions: sentences.length,
+    data: { sentences: sentences.slice(0, 4), showEnglish },
+    totalQuestions: Math.min(sentences.length, 4),
   };
 }
 
+// Section 6: Sentence-build — practice sentences + grammar examples
 function generateSentenceBuildSection(
-  practice: PracticeItem[],
-  used: Set<number>,
+  content: LessonContent,
+  tracker: PracticeTracker,
   showEnglish: boolean,
 ): GeneratedSection {
-  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
-  const count = Math.min(available.length, 3);
-  const selected = shuffle(available).slice(0, count);
-  selected.forEach((s) => used.add(s.idx));
+  const key = "sentence-build";
+  const sentences: Array<Record<string, unknown>> = [];
 
-  const sentences = selected.map((s, i) => ({
-    id: `build-${i}`,
-    scrambledWords: shuffle(s.fullSentence.split(/\s+/)),
-    correctSentence: s.fullSentence,
-    sentenceEnglish: showEnglish ? s.translation : undefined,
-  }));
+  // Practice sentences (1-2)
+  const available = tracker.getAvailable(content.practiceItems, key);
+  const practicePick = shuffle(available).slice(0, 2);
+  for (const s of practicePick) {
+    const words = s.fullSentence.split(/\s+/);
+    if (words.length >= 3) {
+      tracker.mark(s.idx, key);
+      sentences.push({
+        id: `build-p-${sentences.length}`,
+        scrambledWords: shuffle([...words]),
+        correctSentence: s.fullSentence,
+        sentenceEnglish: showEnglish ? s.translation : undefined,
+      });
+    }
+  }
+
+  // Grammar examples (1-2 to reach 3 total)
+  const grammarExamples = shuffle(getGrammarExamples(content));
+  for (const ex of grammarExamples) {
+    if (sentences.length >= 3) break;
+    const words = ex.pt.split(/\s+/);
+    if (words.length >= 3) {
+      sentences.push({
+        id: `build-g-${sentences.length}`,
+        scrambledWords: shuffle([...words]),
+        correctSentence: ex.pt,
+        sentenceEnglish: showEnglish ? ex.en : undefined,
+      });
+    }
+  }
+
+  // If still not enough, use more practice
+  if (sentences.length < 2) {
+    const morePractice = tracker.getAvailable(content.practiceItems, key);
+    for (const s of shuffle(morePractice)) {
+      if (sentences.length >= 3) break;
+      const words = s.fullSentence.split(/\s+/);
+      if (words.length >= 3) {
+        tracker.mark(s.idx, key);
+        sentences.push({
+          id: `build-f-${sentences.length}`,
+          scrambledWords: shuffle([...words]),
+          correctSentence: s.fullSentence,
+          sentenceEnglish: showEnglish ? s.translation : undefined,
+        });
+      }
+    }
+  }
 
   return {
-    key: "sentence-build",
+    key,
     namePt: "Constrói a frase",
     nameEn: "Build the sentence",
-    data: { sentences, showEnglish },
-    totalQuestions: sentences.length,
+    data: { sentences: sentences.slice(0, 3), showEnglish },
+    totalQuestions: Math.min(sentences.length, 3),
   };
 }
 
+// Section 7: Word-bank — practice sentences as paragraph with blanks
 function generateWordBankSection(
-  practice: PracticeItem[],
-  vocab: VocabItem[],
-  used: Set<number>,
+  content: LessonContent,
+  tracker: PracticeTracker,
   showEnglish: boolean,
 ): GeneratedSection {
-  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
+  const key = "word-bank";
+  const available = tracker.getAvailable(content.practiceItems, key);
   const count = Math.min(available.length, 5);
   const selected = available.slice(0, count);
-  selected.forEach((s) => used.add(s.idx));
+  selected.forEach((s) => tracker.mark(s.idx, key));
 
+  // If not enough from practice, we still generate with what we have (minimum 2)
   const blanks = selected.map((s, i) => ({
     id: `wb-${i}`,
     correctAnswer: s.answer,
@@ -442,7 +546,7 @@ function generateWordBankSection(
 
   const textWithBlanks = selected.map((s) => s.sentence).join(" ");
   const correctWords = blanks.map((b) => b.correctAnswer);
-  const distractorWords = shuffle(vocab.map((v) => v.word))
+  const distractorWords = shuffle(content.vocabItems.map((v) => v.word))
     .filter((w) => !correctWords.includes(w))
     .slice(0, 3);
   const wordBank = shuffle([...correctWords, ...distractorWords]);
@@ -452,7 +556,7 @@ function generateWordBankSection(
     : undefined;
 
   return {
-    key: "word-bank",
+    key,
     namePt: "Texto com lacunas",
     nameEn: "Text with gaps",
     data: { paragraph: { textWithBlanks, blanks, wordBank, paragraphEnglish }, showEnglish },
@@ -460,25 +564,26 @@ function generateWordBankSection(
   };
 }
 
+// Section 8: Error-correction — practice sentences + conjugation-based errors
 function generateErrorCorrectionSection(
-  practice: PracticeItem[],
-  vocab: VocabItem[],
-  used: Set<number>,
+  content: LessonContent,
+  tracker: PracticeTracker,
   difficulty: Difficulty,
   showEnglish: boolean,
 ): GeneratedSection {
-  const available = practice.map((p, i) => ({ ...p, idx: i })).filter((p) => !used.has(p.idx));
-  const count = Math.min(available.length, 3);
-  const selected = shuffle(available).slice(0, count);
-
+  const key = "error-correction";
   const sentences: Array<Record<string, unknown>> = [];
-  for (const s of selected) {
+
+  // From practice sentences (1-2)
+  const available = tracker.getAvailable(content.practiceItems, key);
+  for (const s of shuffle(available)) {
+    if (sentences.length >= 2) break;
     const correctSentence = s.fullSentence;
-    const incorrect = introduceError(correctSentence, s.answer, vocab, difficulty);
+    const incorrect = introduceError(correctSentence, s.answer, content.vocabItems, difficulty);
     if (incorrect) {
-      used.add(s.idx);
+      tracker.mark(s.idx, key);
       sentences.push({
-        id: `ec-${sentences.length}`,
+        id: `ec-p-${sentences.length}`,
         incorrectSentence: incorrect,
         correctSentence,
         acceptedAnswers: [correctSentence],
@@ -487,12 +592,53 @@ function generateErrorCorrectionSection(
     }
   }
 
+  // From conjugation data — create wrong conjugation sentences (1)
+  if (sentences.length < 3 && content.verbItems.length > 0) {
+    const verb = content.verbItems[Math.floor(Math.random() * content.verbItems.length)];
+    if (verb.conjugations.length >= 2) {
+      const person = verb.conjugations[0];
+      const wrongForm = verb.conjugations[1].form; // use a different person's form
+      const correctSentence = `${person.pronoun.charAt(0).toUpperCase() + person.pronoun.slice(1)} ${person.form}.`;
+      const incorrectSentence = `${person.pronoun.charAt(0).toUpperCase() + person.pronoun.slice(1)} ${wrongForm}.`;
+      if (correctSentence !== incorrectSentence) {
+        sentences.push({
+          id: `ec-v-${sentences.length}`,
+          incorrectSentence,
+          correctSentence,
+          acceptedAnswers: [correctSentence],
+          hintEnglish: showEnglish ? `${verb.verbTranslation} (${person.pronoun})` : undefined,
+        });
+      }
+    }
+  }
+
+  // From grammar examples — introduce an article error (1)
+  if (sentences.length < 3) {
+    const grammarExamples = getGrammarExamples(content);
+    for (const ex of shuffle(grammarExamples)) {
+      if (sentences.length >= 3) break;
+      const articleSwaps: [string, string][] = [["O ", "A "], ["A ", "O "], ["o ", "a "], ["a ", "o "]];
+      for (const [from, to] of articleSwaps) {
+        if (ex.pt.includes(from)) {
+          sentences.push({
+            id: `ec-g-${sentences.length}`,
+            incorrectSentence: ex.pt.replace(from, to),
+            correctSentence: ex.pt,
+            acceptedAnswers: [ex.pt],
+            hintEnglish: showEnglish ? ex.en : undefined,
+          });
+          break;
+        }
+      }
+    }
+  }
+
   return {
-    key: "error-correction",
+    key,
     namePt: "Corrige os erros",
     nameEn: "Correct the errors",
-    data: { sentences, showEnglish },
-    totalQuestions: sentences.length,
+    data: { sentences: sentences.slice(0, 3), showEnglish },
+    totalQuestions: Math.min(sentences.length, 3),
   };
 }
 
@@ -535,38 +681,51 @@ export function generateLessonExercises(lesson: Lesson, _showEnglish: boolean = 
   const difficulty = getDifficulty(lesson.order, lesson.cefr);
   const showEnglish = lesson.cefr === "A1" || lesson.cefr === "A2";
   const sections: GeneratedSection[] = [];
-  const usedPractice = new Set<number>();
+  const tracker = new PracticeTracker();
 
+  // Section 1: Vocab (always — every lesson has vocab)
   if (content.vocabItems.length > 0) {
     sections.push(generateVocabSection(content, showEnglish));
   }
 
+  // Section 2: Conjugation (always — every lesson has verbs)
   if (content.verbItems.length > 0) {
     sections.push(generateConjugationSection(content, showEnglish));
   }
 
+  // Section 3: Grammar + Culture (skipped if 0 grammar AND 0 culture)
   if (content.grammarItems.length > 0 || content.cultureItems.length > 0) {
     sections.push(generateGrammarSection(content, showEnglish));
   }
 
+  // Section 4: Fill-blank (exclusive first pick, up to 4 sentences)
   if (content.practiceItems.length > 0) {
-    sections.push(generateFillBlankSection(content.practiceItems, usedPractice, showEnglish, difficulty));
+    const s = generateFillBlankSection(content, tracker, showEnglish, difficulty);
+    if (s.totalQuestions >= 2) sections.push(s);
   }
 
-  if (content.practiceItems.length > usedPractice.size) {
-    sections.push(generateTranslationSection(content.practiceItems, usedPractice, showEnglish));
+  // Section 5: Translation (vocab words + practice sentences)
+  if (content.vocabItems.length >= 2 || content.practiceItems.length > 0) {
+    const s = generateTranslationSection(content, tracker, showEnglish);
+    if (s.totalQuestions >= 2) sections.push(s);
   }
 
-  if (content.practiceItems.length > usedPractice.size) {
-    sections.push(generateSentenceBuildSection(content.practiceItems, usedPractice, showEnglish));
+  // Section 6: Sentence-build (practice + grammar examples)
+  if (content.practiceItems.length > 0 || getGrammarExamples(content).length > 0) {
+    const s = generateSentenceBuildSection(content, tracker, showEnglish);
+    if (s.totalQuestions >= 2) sections.push(s);
   }
 
-  if (content.practiceItems.length > usedPractice.size && content.vocabItems.length > 0) {
-    sections.push(generateWordBankSection(content.practiceItems, content.vocabItems, usedPractice, showEnglish));
+  // Section 7: Word-bank (can reuse practice sentences)
+  if (content.practiceItems.length > 0 && content.vocabItems.length > 0) {
+    const s = generateWordBankSection(content, tracker, showEnglish);
+    if (s.totalQuestions >= 2) sections.push(s);
   }
 
-  if (content.practiceItems.length > usedPractice.size && content.vocabItems.length > 0) {
-    sections.push(generateErrorCorrectionSection(content.practiceItems, content.vocabItems, usedPractice, difficulty, showEnglish));
+  // Section 8: Error-correction (practice + conjugation + grammar errors)
+  if (content.practiceItems.length > 0 || content.verbItems.length > 0) {
+    const s = generateErrorCorrectionSection(content, tracker, difficulty, showEnglish);
+    if (s.totalQuestions >= 2) sections.push(s);
   }
 
   const totalPoints = sections.reduce((sum, s) => sum + s.totalQuestions, 0);
