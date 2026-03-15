@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import type { ExerciseResult } from "@/lib/exercise-generator";
-
 interface MultipleChoiceProps {
   instruction: string;
   englishInstruction?: string;
   options: string[];
   correctIndex: number;
-  onComplete: (result: ExerciseResult) => void;
+  onComplete: (result: { correct: boolean; userAnswer: string; correctAnswer: string }) => void;
 }
 
 export function MultipleChoice({

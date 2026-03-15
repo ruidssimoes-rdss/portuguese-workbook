@@ -1,15 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import type { ExerciseResult } from "@/lib/exercise-generator";
-
 interface TrueFalseProps {
   instruction: string;
   englishInstruction?: string;
   statement: string;
   isTrue: boolean;
   explanation: string;
-  onComplete: (result: ExerciseResult) => void;
+  onComplete: (result: { correct: boolean; userAnswer: string; correctAnswer: string }) => void;
 }
 
 export function TrueFalse({

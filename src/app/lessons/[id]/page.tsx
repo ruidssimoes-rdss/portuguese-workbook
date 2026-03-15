@@ -1,10 +1,10 @@
 /*
- * LESSON v2 — Learn → Practice → Apply
+ * LESSON v3 — Learn → Practice → Apply
  * ──────────────────────────────────────
  * Round 1 (Learn): Vocabulary cards, grammar rules, verb tables, culture items — no scoring.
- * Round 2 (Practice): Mixed exercises generated from lesson content (~15-18 exercises).
- * Round 3 (Apply): Harder combination exercises (~6-7 exercises).
- * Results: Score from Round 2 + 3 combined. Pass threshold: 80%.
+ * Round 2 (Practice): Template-defined exercise mix, shuffled order.
+ * Round 3 (Apply): Template-defined exercise mix, shuffled order.
+ * Results: 1 point per exercise. A1=30pts, A2=36pts, B1=42pts. Pass at 80%.
  *
  * Save flow:
  * 1. Results screen mounts → doSave() → saveLessonAttempt()
@@ -35,13 +35,13 @@ import { updateGoalProgress } from "@/lib/goals-service";
 import {
   generateLessonExercises,
   type GeneratedLesson,
-  type ExerciseResult,
   type Exercise,
   type LearnItem,
   type GrammarLearnData,
   type VerbLearnData,
   type CultureLearnData,
 } from "@/lib/exercise-generator";
+import type { ExerciseResult } from "@/lib/exercise-types";
 import type { VocabItem } from "@/data/lessons";
 
 // Shell & navigation
@@ -58,11 +58,11 @@ import { CultureLearn } from "@/components/lessons/learn/culture-learn";
 // Exercise components
 import { MultipleChoice } from "@/components/lessons/exercises/multiple-choice";
 import { FillInBlank } from "@/components/lessons/exercises/fill-in-blank";
-import { ConjugationDrill } from "@/components/lessons/exercises/conjugation-drill";
+import { Conjugation } from "@/components/lessons/exercises/conjugation";
 import { TrueFalse } from "@/components/lessons/exercises/true-false";
 import { TranslationInput } from "@/components/lessons/exercises/translation-input";
-import { MatchPairs } from "@/components/lessons/exercises/match-pairs";
-import { WordBank } from "@/components/lessons/exercises/word-bank";
+import { MatchWord } from "@/components/lessons/exercises/match-word";
+import { WordBankBlank } from "@/components/lessons/exercises/word-bank-blank";
 import { SentenceBuild } from "@/components/lessons/exercises/sentence-build";
 import { ErrorCorrection } from "@/components/lessons/exercises/error-correction";
 
@@ -79,8 +79,8 @@ interface LessonSessionState {
   learnIndex: number;
   practiceIndex: number;
   applyIndex: number;
-  practiceResults: (ExerciseResult | ExerciseResult[])[];
-  applyResults: (ExerciseResult | ExerciseResult[])[];
+  practiceResults: ExerciseResult[];
+  applyResults: ExerciseResult[];
   generatedLesson: GeneratedLesson;
   showTransition: boolean;
   skippedLearn: boolean;
@@ -127,47 +127,74 @@ function ExerciseRenderer({
 }: {
   exerciseKey: string;
   exercise: Exercise;
-  onComplete: (result: ExerciseResult | ExerciseResult[]) => void;
+  onComplete: (result: ExerciseResult) => void;
 }) {
-  // exerciseKey from parent ensures unique key per exercise index
   const key = exerciseKey;
+  const d = exercise.data as Record<string, unknown>;
+  const wrapComplete = (partial: { correct: boolean; userAnswer: string; correctAnswer: string; accentHint?: string }) => {
+    onComplete({
+      exerciseId: exercise.id,
+      exerciseType: exercise.type,
+      ...partial,
+    });
+  };
 
   switch (exercise.type) {
-    case "multiple-choice":
+    case "mc-pt-to-en":
+    case "mc-en-to-pt":
+    case "mc-grammar":
+    case "mc-verb-form":
+    case "mc-culture":
       return (
         <MultipleChoice
           key={key}
           instruction={exercise.instruction}
           englishInstruction={exercise.englishInstruction}
-          options={exercise.options}
-          correctIndex={exercise.correctIndex}
+          options={d.options as string[]}
+          correctIndex={d.correctIndex as number}
+          onComplete={wrapComplete}
+        />
+      );
+    case "match-word":
+      return (
+        <MatchWord
+          key={key}
+          id={exercise.id}
+          instruction={exercise.instruction}
+          englishInstruction={exercise.englishInstruction}
+          portugueseWord={d.portugueseWord as string}
+          options={d.options as string[]}
+          correctIndex={d.correctIndex as number}
+          correctAnswer={d.correctAnswer as string}
           onComplete={onComplete}
         />
       );
-    case "fill-in-blank":
+    case "fill-blank":
       return (
         <FillInBlank
           key={key}
           instruction={exercise.instruction}
           englishInstruction={exercise.englishInstruction}
-          sentencePt={exercise.sentencePt}
-          sentenceEn={exercise.sentenceEn}
-          correctAnswer={exercise.correctAnswer}
-          acceptedAnswers={exercise.acceptedAnswers}
-          onComplete={(r) => onComplete(r)}
+          sentencePt={d.sentencePt as string}
+          sentenceEn={d.sentenceEn as string}
+          correctAnswer={d.correctAnswer as string}
+          acceptedAnswers={d.acceptedAnswers as string[] | undefined}
+          onComplete={wrapComplete}
         />
       );
-    case "conjugation-drill":
+    case "conjugation":
       return (
-        <ConjugationDrill
+        <Conjugation
           key={key}
+          id={exercise.id}
           instruction={exercise.instruction}
           englishInstruction={exercise.englishInstruction}
-          verb={exercise.verb}
-          verbMeaning={exercise.verbMeaning}
-          tense={exercise.tense}
-          persons={exercise.persons}
-          onComplete={(r) => onComplete(r)}
+          verb={d.verb as string}
+          verbMeaning={d.verbMeaning as string | undefined}
+          tense={d.tense as string}
+          pronoun={d.pronoun as string}
+          correctForm={d.correctForm as string}
+          onComplete={onComplete}
         />
       );
     case "true-false":
@@ -176,44 +203,36 @@ function ExerciseRenderer({
           key={key}
           instruction={exercise.instruction}
           englishInstruction={exercise.englishInstruction}
-          statement={exercise.statement}
-          isTrue={exercise.isTrue}
-          explanation={exercise.explanation}
-          onComplete={onComplete}
+          statement={d.statement as string}
+          isTrue={d.isTrue as boolean}
+          explanation={d.explanation as string}
+          onComplete={wrapComplete}
         />
       );
-    case "translation-input":
+    case "translation":
       return (
         <TranslationInput
           key={key}
           instruction={exercise.instruction}
           englishInstruction={exercise.englishInstruction}
-          sourceText={exercise.sourceText}
-          correctAnswer={exercise.correctAnswer}
-          acceptedAnswers={exercise.acceptedAnswers}
-          onComplete={(r) => onComplete(r)}
+          sourceText={d.sourceText as string}
+          correctAnswer={d.correctAnswer as string}
+          acceptedAnswers={d.acceptedAnswers as string[] | undefined}
+          onComplete={wrapComplete}
         />
       );
-    case "match-pairs":
+    case "word-bank-blank":
       return (
-        <MatchPairs
+        <WordBankBlank
           key={key}
+          id={exercise.id}
           instruction={exercise.instruction}
           englishInstruction={exercise.englishInstruction}
-          pairs={exercise.pairs}
-          onComplete={(r) => onComplete(r)}
-        />
-      );
-    case "word-bank":
-      return (
-        <WordBank
-          key={key}
-          instruction={exercise.instruction}
-          englishInstruction={exercise.englishInstruction}
-          textWithBlanks={exercise.textWithBlanks}
-          blanks={exercise.blanks}
-          wordBank={exercise.wordBank}
-          onComplete={(r) => onComplete(r)}
+          sentenceWithBlank={d.sentenceWithBlank as string}
+          sentenceEnglish={d.sentenceEnglish as string | undefined}
+          wordOptions={d.wordOptions as string[]}
+          correctWord={d.correctWord as string}
+          onComplete={onComplete}
         />
       );
     case "sentence-build":
@@ -222,10 +241,10 @@ function ExerciseRenderer({
           key={key}
           instruction={exercise.instruction}
           englishInstruction={exercise.englishInstruction}
-          words={exercise.words}
-          correctSentence={exercise.correctSentence}
-          acceptedAnswers={exercise.acceptedAnswers}
-          onComplete={(r) => onComplete(r)}
+          words={d.words as string[]}
+          correctSentence={d.correctSentence as string}
+          acceptedAnswers={d.acceptedAnswers as string[] | undefined}
+          onComplete={wrapComplete}
         />
       );
     case "error-correction":
@@ -234,12 +253,14 @@ function ExerciseRenderer({
           key={key}
           instruction={exercise.instruction}
           englishInstruction={exercise.englishInstruction}
-          incorrectSentence={exercise.incorrectSentence}
-          correctSentence={exercise.correctSentence}
-          acceptedAnswers={exercise.acceptedAnswers}
-          onComplete={(r) => onComplete(r)}
+          incorrectSentence={d.incorrectSentence as string}
+          correctSentence={d.correctSentence as string}
+          acceptedAnswers={d.acceptedAnswers as string[] | undefined}
+          onComplete={wrapComplete}
         />
       );
+    default:
+      return null;
   }
 }
 
@@ -373,28 +394,18 @@ function LessonIntro({
 
 /* ─── Scoring helpers ─── */
 
-function calculateScore(results: (ExerciseResult | ExerciseResult[])[]): {
+function calculateScore(results: ExerciseResult[]): {
   correct: number;
   total: number;
 } {
-  let correct = 0;
-  let total = 0;
-
-  for (const r of results) {
-    if (Array.isArray(r)) {
-      total += r.length;
-      correct += r.filter((x) => x.correct).length;
-    } else {
-      total += 1;
-      if (r.correct) correct += 1;
-    }
-  }
-
-  return { correct, total };
+  return {
+    correct: results.filter((r) => r.correct).length,
+    total: results.length,
+  };
 }
 
 function collectWrongAnswers(
-  results: (ExerciseResult | ExerciseResult[])[],
+  results: ExerciseResult[],
   exercises: Exercise[],
 ): { question: string; userAnswer: string; correctAnswer: string }[] {
   const wrong: { question: string; userAnswer: string; correctAnswer: string }[] = [];
@@ -402,27 +413,13 @@ function collectWrongAnswers(
   for (let i = 0; i < results.length; i++) {
     const r = results[i];
     const ex = exercises[i];
-    if (!ex) continue;
+    if (!ex || r.correct) continue;
 
-    if (Array.isArray(r)) {
-      for (const sub of r) {
-        if (!sub.correct) {
-          wrong.push({
-            question: ex.type === "conjugation-drill"
-              ? `${(ex as { verb: string }).verb}: ${sub.correctAnswer}`
-              : (ex as { instruction: string }).instruction,
-            userAnswer: sub.userAnswer,
-            correctAnswer: sub.correctAnswer,
-          });
-        }
-      }
-    } else if (!r.correct) {
-      wrong.push({
-        question: (ex as { instruction: string }).instruction,
-        userAnswer: r.userAnswer,
-        correctAnswer: r.correctAnswer,
-      });
-    }
+    wrong.push({
+      question: ex.instruction,
+      userAnswer: r.userAnswer,
+      correctAnswer: r.correctAnswer,
+    });
   }
 
   return wrong;
@@ -445,8 +442,8 @@ function LessonContent({ id }: { id: string }) {
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [applyIndex, setApplyIndex] = useState(0);
   const [showTransition, setShowTransition] = useState(false);
-  const [practiceResults, setPracticeResults] = useState<(ExerciseResult | ExerciseResult[])[]>([]);
-  const [applyResults, setApplyResults] = useState<(ExerciseResult | ExerciseResult[])[]>([]);
+  const [practiceResults, setPracticeResults] = useState<ExerciseResult[]>([]);
+  const [applyResults, setApplyResults] = useState<ExerciseResult[]>([]);
   const [generatedLesson, setGeneratedLesson] = useState<GeneratedLesson | null>(null);
 
   // Progress & session
@@ -538,26 +535,10 @@ function LessonContent({ id }: { id: string }) {
 
     // Build wrong items for storage
     const wrongItems: WrongItem[] = [];
-    const allResults = [...practiceResults, ...applyResults];
-    const allExercises = [...generatedLesson.practiceExercises, ...generatedLesson.applyExercises];
-    for (let i = 0; i < allResults.length; i++) {
-      const r = allResults[i];
-      const ex = allExercises[i];
-      if (!ex) continue;
-
-      if (Array.isArray(r)) {
-        for (const sub of r) {
-          if (!sub.correct) {
-            wrongItems.push({
-              type: ex.type === "conjugation-drill" ? "verb" : "practice",
-              userAnswer: sub.userAnswer,
-              correctAnswer: sub.correctAnswer,
-            });
-          }
-        }
-      } else if (!r.correct) {
+    for (const r of [...practiceResults, ...applyResults]) {
+      if (!r.correct) {
         wrongItems.push({
-          type: "practice",
+          type: r.exerciseType === "conjugation" ? "verb" : "practice",
           userAnswer: r.userAnswer,
           correctAnswer: r.correctAnswer,
         });
@@ -720,7 +701,7 @@ function LessonContent({ id }: { id: string }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handlePracticeComplete = (result: ExerciseResult | ExerciseResult[]) => {
+  const handlePracticeComplete = (result: ExerciseResult) => {
     setPracticeResults((prev) => [...prev, result]);
     if (practiceIndex < practiceTotal - 1) {
       setPracticeIndex((i) => i + 1);
@@ -737,7 +718,7 @@ function LessonContent({ id }: { id: string }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleApplyComplete = (result: ExerciseResult | ExerciseResult[]) => {
+  const handleApplyComplete = (result: ExerciseResult) => {
     setApplyResults((prev) => [...prev, result]);
     if (applyIndex < applyTotal - 1) {
       setApplyIndex((i) => i + 1);

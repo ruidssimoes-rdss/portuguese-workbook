@@ -2,8 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
-import type { ExerciseResult } from "@/lib/exercise-generator";
-
 interface FillInBlankProps {
   instruction: string;
   englishInstruction?: string;
@@ -11,7 +9,7 @@ interface FillInBlankProps {
   sentenceEn: string;
   correctAnswer: string;
   acceptedAnswers?: string[];
-  onComplete: (result: ExerciseResult) => void;
+  onComplete: (result: { correct: boolean; userAnswer: string; correctAnswer: string; accentHint?: string }) => void;
 }
 
 export function FillInBlank({
@@ -25,7 +23,7 @@ export function FillInBlank({
 }: FillInBlankProps) {
   const [value, setValue] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [result, setResult] = useState<ExerciseResult | null>(null);
+  const [result, setResult] = useState<{ correct: boolean; userAnswer: string; correctAnswer: string; accentHint?: string } | null>(null);
   const completedRef = useRef(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -41,17 +39,16 @@ export function FillInBlank({
     completedRef.current = true;
 
     const check = checkAnswer(value.trim(), correctAnswer, acceptedAnswers);
-    const exerciseResult: ExerciseResult = {
+    const res = {
       correct: check.correct,
-      exactMatch: check.exactMatch,
       accentHint: check.accentHint,
       userAnswer: value.trim(),
       correctAnswer,
     };
-    setResult(exerciseResult);
+    setResult(res);
 
     const delay = check.correct ? (check.accentHint ? 2000 : 1500) : 2500;
-    timerRef.current = setTimeout(() => onComplete(exerciseResult), delay);
+    timerRef.current = setTimeout(() => onComplete(res), delay);
   };
 
   // Split sentence around the blank

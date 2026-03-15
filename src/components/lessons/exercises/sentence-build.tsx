@@ -2,15 +2,13 @@
 
 import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
-import type { ExerciseResult } from "@/lib/exercise-generator";
-
 interface SentenceBuildProps {
   instruction: string;
   englishInstruction?: string;
   words: string[];
   correctSentence: string;
   acceptedAnswers?: string[];
-  onComplete: (result: ExerciseResult) => void;
+  onComplete: (result: { correct: boolean; userAnswer: string; correctAnswer: string; accentHint?: string }) => void;
 }
 
 export function SentenceBuild({
@@ -24,7 +22,7 @@ export function SentenceBuild({
   const [placed, setPlaced] = useState<string[]>([]);
   const [available, setAvailable] = useState<string[]>([...words]);
   const [submitted, setSubmitted] = useState(false);
-  const [result, setResult] = useState<ExerciseResult | null>(null);
+  const [result, setResult] = useState<{ correct: boolean; userAnswer: string; correctAnswer: string; accentHint?: string } | null>(null);
   const completedRef = useRef(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -57,17 +55,16 @@ export function SentenceBuild({
 
     const builtSentence = placed.join(" ");
     const check = checkAnswer(builtSentence, correctSentence, acceptedAnswers);
-    const exerciseResult: ExerciseResult = {
+    const res = {
       correct: check.correct,
-      exactMatch: check.exactMatch,
       accentHint: check.accentHint,
       userAnswer: builtSentence,
       correctAnswer: correctSentence,
     };
-    setResult(exerciseResult);
+    setResult(res);
 
     const delay = check.correct ? 1500 : 2500;
-    timerRef.current = setTimeout(() => onComplete(exerciseResult), delay);
+    timerRef.current = setTimeout(() => onComplete(res), delay);
   };
 
   return (
