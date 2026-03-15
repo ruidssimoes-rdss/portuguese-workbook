@@ -11,6 +11,7 @@ interface VocabQuestion {
   portugueseWord: string;
   englishWord: string;
   pronunciation?: string;
+  acceptedAnswers?: string[];
   options?: string[];
   correctIndex?: number;
 }
@@ -45,7 +46,7 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
       if (q.type === "mc") {
         newResults[q.id] = { correct: mcSelections[q.id] === q.correctIndex };
       } else {
-        const check = checkAnswer((answers[q.id] ?? "").trim(), q.englishWord);
+        const check = checkAnswer((answers[q.id] ?? "").trim(), q.englishWord, q.acceptedAnswers);
         newResults[q.id] = { correct: check.correct, accentHint: check.accentHint };
       }
     }

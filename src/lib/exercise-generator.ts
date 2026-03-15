@@ -249,18 +249,56 @@ function generateLearnItems(content: LessonContent): LearnItem[] {
 
 /* ─── Section generators ─── */
 
+/** Common translation alternatives for A1 expressions */
+const COMMON_ALTERNATIVES: Record<string, string[]> = {
+  "okay / alright": ["okay", "alright", "ok", "it is good", "it's good", "it's okay", "that's fine", "all good"],
+  "enjoy your meal": ["have a good meal", "bon appetit", "good appetite", "enjoy the meal", "enjoy"],
+  "nice to meet you": ["pleased to meet you", "pleasure to meet you", "nice meeting you"],
+  "you're welcome": ["you are welcome", "no problem", "don't mention it", "it's nothing"],
+  "excuse me / sorry": ["excuse me", "sorry", "pardon", "i'm sorry"],
+  "see you later": ["see you", "see you soon", "later", "catch you later"],
+  "see you soon": ["see you", "see you later", "until soon"],
+  "see you tomorrow": ["until tomorrow"],
+  "thank you (m/f)": ["thank you", "thanks", "cheers"],
+  "thank you very much": ["thanks a lot", "many thanks", "thank you so much"],
+  "please": ["if you please"],
+  "hello": ["hi", "hey"],
+  "good morning": ["morning"],
+  "good afternoon": ["afternoon"],
+  "good evening / good night": ["good evening", "good night", "goodnight"],
+  "goodbye": ["bye", "bye bye", "farewell"],
+  "yes": ["yeah", "yep"],
+  "no": ["nope"],
+  "how are you?": ["how are you", "how do you do"],
+  "i'm fine": ["i am fine", "i'm good", "i am good", "fine"],
+  "what's your name?": ["what is your name", "what's your name"],
+  "my name is": ["i am called", "i'm called"],
+};
+
+function getAcceptedAlternatives(english: string): string[] {
+  const lower = english.toLowerCase().trim();
+  const alts: string[] = [];
+  for (const [key, alternatives] of Object.entries(COMMON_ALTERNATIVES)) {
+    if (key.toLowerCase() === lower || alternatives.some((a) => a.toLowerCase() === lower)) {
+      alts.push(key, ...alternatives);
+    }
+  }
+  return [...new Set(alts)];
+}
+
 function generateVocabSection(content: LessonContent, showEnglish: boolean): GeneratedSection {
-  const vocab = shuffle([...content.vocabItems]);
-  const count = Math.min(vocab.length, 12);
-  const selected = vocab.slice(0, count);
-  const allPt = content.vocabItems.map((v) => v.word);
+  const shuffled = shuffle([...content.vocabItems]);
+  const count = Math.min(shuffled.length, 12);
+  const selected = shuffled.slice(0, count);
+  const allEn = content.vocabItems.map((v) => v.translation);
 
   const questions = selected.map((word, i) => {
     const isMC = i % 3 === 2;
     if (isMC) {
-      const distractors = getDistractors(word.word, allPt, 3);
+      // PT→EN MC: show Portuguese word, pick English translation
+      const distractors = getDistractors(word.translation, allEn, 3);
       if (distractors.length >= 2) {
-        const { options, correctIndex } = buildMCOptions(word.word, distractors);
+        const { options, correctIndex } = buildMCOptions(word.translation, distractors);
         return {
           id: `vocab-${i}`,
           type: "mc" as const,
@@ -278,6 +316,7 @@ function generateVocabSection(content: LessonContent, showEnglish: boolean): Gen
       portugueseWord: word.word,
       englishWord: word.translation,
       pronunciation: word.pronunciation,
+      acceptedAnswers: [word.translation, ...getAcceptedAlternatives(word.translation)],
     };
   });
 
