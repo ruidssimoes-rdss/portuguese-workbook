@@ -53,7 +53,7 @@ export function MatchWord({
 
   return (
     <div>
-      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
+      <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
         {instruction}
       </p>
       {englishInstruction && (
@@ -63,7 +63,7 @@ export function MatchWord({
 
       {/* Portuguese word prominently displayed */}
       <div className="border border-[var(--border-primary)] rounded-[12px] p-6 bg-[var(--bg-card)] mb-4 text-center">
-        <p className="text-[22px] font-bold text-[var(--text-primary)]">{portugueseWord}</p>
+        <p className="text-[20px] font-bold text-[var(--text-primary)]">{portugueseWord}</p>
       </div>
 
       {/* 2x2 grid of options */}

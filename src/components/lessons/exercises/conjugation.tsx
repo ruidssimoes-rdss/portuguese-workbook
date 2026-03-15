@@ -62,12 +62,13 @@ export function Conjugation({
 
   return (
     <div>
-      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
+      <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
         {instruction}
       </p>
       {englishInstruction && (
-        <p className="text-[12px] text-[var(--text-muted)] mb-2">{englishInstruction}</p>
+        <p className="text-[12px] text-[var(--text-muted)] mb-4">{englishInstruction}</p>
       )}
+      {!englishInstruction && <div className="mb-3" />}
       <div className="flex items-center gap-2 mb-4">
         <h3 className="text-[18px] font-semibold text-[var(--text-primary)]">{verb}</h3>
         <span className="text-[13px] text-[var(--text-muted)]">{tense}</span>

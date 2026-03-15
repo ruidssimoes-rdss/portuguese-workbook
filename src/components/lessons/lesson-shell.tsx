@@ -128,7 +128,7 @@ export function LessonShell({
       <div className="border-t border-[var(--border-light)] mb-6" />
 
       {/* Content */}
-      <div className="pb-16">{children}</div>
+      <div className="max-w-2xl mx-auto pb-16">{children}</div>
     </main>
   );
 }

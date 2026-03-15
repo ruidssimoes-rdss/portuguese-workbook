@@ -234,6 +234,7 @@ export function ResultsScreen({
           <p className="text-[18px] font-bold text-[var(--text-primary)]">
             {practiceScore.correct}/{practiceScore.total}
           </p>
+          <p className="text-[12px] text-[var(--text-muted)]">{practiceAccuracy}%</p>
         </div>
         <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
@@ -242,6 +243,7 @@ export function ResultsScreen({
           <p className="text-[18px] font-bold text-[var(--text-primary)]">
             {applyScore.correct}/{applyScore.total}
           </p>
+          <p className="text-[12px] text-[var(--text-muted)]">{applyAccuracy}%</p>
         </div>
         <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
@@ -250,15 +252,18 @@ export function ResultsScreen({
           <p className="text-[18px] font-bold text-[var(--text-primary)]">
             {totalCorrect}/{totalItems}
           </p>
+          <p className="text-[12px] text-[var(--text-muted)]">{accuracy}%</p>
         </div>
       </div>
 
       {/* Wrong answers */}
       {wrongAnswers.length > 0 && (
         <div className="text-left max-w-lg mx-auto mb-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-3">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
             Respostas erradas
           </p>
+          {showEnglish && <p className="text-[11px] text-[var(--text-muted)] mb-3">Wrong answers</p>}
+          {!showEnglish && <div className="mb-2" />}
           <div className="space-y-2">
             {wrongAnswers.map((w, i) => (
               <div

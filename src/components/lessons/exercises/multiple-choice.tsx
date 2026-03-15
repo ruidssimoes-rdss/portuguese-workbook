@@ -57,13 +57,13 @@ export function MultipleChoice({
 
   return (
     <div>
-      <p className="text-[16px] font-semibold text-[var(--text-primary)] mb-1">
+      <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
         {instruction}
       </p>
       {englishInstruction && (
-        <p className="text-[12px] text-[var(--text-muted)] mb-6">{englishInstruction}</p>
+        <p className="text-[12px] text-[var(--text-muted)] mb-4">{englishInstruction}</p>
       )}
-      {!englishInstruction && <div className="mb-5" />}
+      {!englishInstruction && <div className="mb-3" />}
       <div className="space-y-3">
         {dedupedOptions.map((option, i) => {
           const isSelected = selectedIndex === i;

@@ -59,7 +59,7 @@ export function FillInBlank({
 
   return (
     <div>
-      <p className="text-[13px] font-medium text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
+      <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
         {instruction}
       </p>
       {englishInstruction && (
