@@ -177,49 +177,89 @@ function LessonIntro({
   const sectionCount = generatedLesson?.sections.length ?? 0;
   const totalPoints = generatedLesson?.totalPoints ?? 0;
 
-  return (
-    <div className="max-w-lg mx-auto text-center py-12">
-      <h2 className="text-[22px] font-bold text-[var(--text-primary)] mb-1">{lesson.ptTitle}</h2>
-      <p className="text-[15px] text-[var(--text-secondary)] mb-8">{lesson.title}</p>
+  const stats = [
+    { value: vocabCount, labelPt: "Palavras", labelEn: "Words" },
+    { value: verbCount, labelPt: "Verbos", labelEn: "Verbs" },
+    { value: grammarCount, labelPt: "Gramática", labelEn: "Grammar" },
+    { value: cultureCount, labelPt: "Cultura", labelEn: "Culture" },
+  ].filter((s) => s.value > 0);
 
-      <div className="text-left bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-5 mb-8">
-        <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-1">
-          Esta lição cobre:
-        </p>
-        {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-3">This lesson covers:</p>}
-        {!showEnglish && <div className="mb-2" />}
-        <div className="space-y-2 text-[14px] text-[var(--text-primary)]">
-          {vocabCount > 0 && <p>{vocabCount} palavras novas{showEnglish && <span className="text-[var(--text-muted)]"> ({vocabCount} new words)</span>}</p>}
-          {verbCount > 0 && <p>{verbCount} {verbCount === 1 ? "verbo" : "verbos"}{showEnglish && <span className="text-[var(--text-muted)]"> ({verbCount} {verbCount === 1 ? "verb" : "verbs"})</span>}</p>}
-          {grammarCount > 0 && <p>{grammarCount} {grammarCount === 1 ? "tópico de gramática" : "tópicos de gramática"}{showEnglish && <span className="text-[var(--text-muted)]"> ({grammarCount} grammar {grammarCount === 1 ? "topic" : "topics"})</span>}</p>}
-          {cultureCount > 0 && <p>{cultureCount} {cultureCount === 1 ? "expressão cultural" : "expressões culturais"}{showEnglish && <span className="text-[var(--text-muted)]"> ({cultureCount} cultural {cultureCount === 1 ? "expression" : "expressions"})</span>}</p>}
-        </div>
-        <p className="text-[12px] text-[var(--text-muted)] mt-3">
-          {sectionCount} secções, {totalPoints} perguntas. Precisas de 80% para passar.
-          {showEnglish && <span className="block">{sectionCount} sections, {totalPoints} questions. You need 80% to pass.</span>}
-        </p>
+  return (
+    <div className="max-w-lg mx-auto text-center py-8">
+      {/* Title */}
+      <h1 className="text-[26px] font-bold text-[var(--text-primary)] tracking-tight">
+        {lesson.ptTitle}
+      </h1>
+      <p className="text-[15px] text-[var(--text-secondary)] mt-1">
+        {lesson.title}
+      </p>
+
+      {/* CEFR + lesson number */}
+      <div className="flex items-center justify-center gap-2 mt-5">
+        <span className="px-3 py-1 text-[12px] font-semibold text-[#003399] bg-[rgba(0,51,153,0.05)] rounded-full">
+          {lesson.cefr}
+        </span>
+        <span className="text-[13px] text-[var(--text-muted)]">
+          Lição {lesson.order}
+        </span>
       </div>
 
-      <div className="space-y-3">
-        <button type="button" onClick={onStartExercises}
+      {/* Stat cards */}
+      <div className="flex items-center justify-center gap-3 mt-8">
+        {stats.map((stat) => (
+          <div
+            key={stat.labelPt}
+            className="flex flex-col items-center justify-center w-20 h-20 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px]"
+          >
+            <span className="text-[22px] font-bold text-[var(--text-primary)]">{stat.value}</span>
+            <span className="text-[10px] font-medium text-[var(--text-muted)] mt-0.5">{stat.labelPt}</span>
+            {showEnglish && (
+              <span className="text-[9px] text-[var(--text-muted)]">{stat.labelEn}</span>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Meta line */}
+      <p className="text-[12px] text-[var(--text-muted)] mt-5">
+        {sectionCount} secções · {totalPoints} perguntas · 80% para passar
+      </p>
+      {showEnglish && (
+        <p className="text-[11px] text-[var(--text-muted)]">
+          {sectionCount} sections · {totalPoints} questions · 80% to pass
+        </p>
+      )}
+
+      {/* CTAs */}
+      <div className="mt-8 space-y-3">
+        <button
+          type="button"
+          onClick={onStartExercises}
           className="w-full px-6 py-3.5 bg-[#003399] text-white text-[15px] font-semibold rounded-[12px] hover:opacity-90 transition-opacity cursor-pointer"
         >
           Começar os exercícios →
-          {showEnglish && <span className="block text-[12px] font-normal opacity-75 mt-0.5">Start the exercises</span>}
+          {showEnglish && (
+            <span className="block text-[12px] font-normal opacity-75 mt-0.5">Start the exercises</span>
+          )}
         </button>
-        <button type="button" onClick={onReviewFirst}
-          className="w-full px-6 py-3.5 border border-[var(--border-primary)] text-[var(--text-secondary)] text-[15px] font-medium rounded-[12px] hover:border-[#003399] hover:text-[#003399] transition-colors cursor-pointer"
+        <button
+          type="button"
+          onClick={onReviewFirst}
+          className="w-full px-6 py-3 text-[14px] font-medium text-[var(--text-secondary)] border border-[var(--border-primary)] rounded-[12px] hover:border-[#003399] hover:text-[#003399] transition-colors cursor-pointer"
         >
           Rever o material primeiro
-          {showEnglish && <span className="block text-[12px] font-normal opacity-75 mt-0.5">Review the material first</span>}
+          {showEnglish && (
+            <span className="block text-[12px] font-normal text-[var(--text-muted)] mt-0.5">Review the material first</span>
+          )}
         </button>
       </div>
 
+      {/* Reset */}
       {isCompleted && (
         <button
           type="button"
           onClick={onReset}
-          className="text-[13px] text-[var(--text-muted)] hover:text-[#DC2626] transition-colors mt-6 cursor-pointer"
+          className="text-[12px] text-[var(--text-muted)] hover:text-[#DC2626] transition-colors mt-6 cursor-pointer"
         >
           Recomeçar lição
           {showEnglish && <span className="block text-[11px]">Reset lesson</span>}
