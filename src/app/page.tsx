@@ -4,9 +4,7 @@ import { OnboardingGate } from "@/components/onboarding-gate";
 import { HomePageSwitch } from "@/components/home/home-page-switch";
 
 export const dynamic = "force-dynamic";
-import { ChangelogBanner } from "@/components/changelog-banner";
 import { PronunciationButton } from "@/components/pronunciation-button";
-import changelogData from "@/data/changelog.json";
 import verbData from "@/data/verbs.json";
 import vocabData from "@/data/vocab.json";
 import grammarData from "@/data/grammar.json";
@@ -49,7 +47,6 @@ vocab.categories.forEach((cat) => {
   });
 });
 
-const latestChangelog = (changelogData as { entries: { date: string; version: string; title: string; summary?: string; changes: string[] }[] }).entries?.[0] ?? null;
 
 const dayIndex = Math.floor(Date.now() / 86400000);
 
@@ -173,15 +170,6 @@ export default function Home() {
         </div>
       </section>
       <PageContainer>
-        {latestChangelog && (
-          <ChangelogBanner
-            version={latestChangelog.version}
-            title={latestChangelog.title}
-            summary={latestChangelog.summary}
-            firstChange={latestChangelog.changes?.[0] ?? ""}
-          />
-        )}
-
         {/* Daily prompt */}
         {todayPrompt && <HomeGreeting greeting={todayPrompt} />}
 

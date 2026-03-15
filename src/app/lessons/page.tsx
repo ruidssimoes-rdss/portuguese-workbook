@@ -43,6 +43,81 @@ function getLessonState(
   return "current";
 }
 
+const LESSON_SECTIONS = [
+  { namePt: "Vocabulário", nameEn: "Vocabulary", descPt: "Traduz palavras novas", descEn: "Translate new words" },
+  { namePt: "Conjugação", nameEn: "Conjugation", descPt: "Conjuga verbos no tempo correto", descEn: "Conjugate verbs in the correct tense" },
+  { namePt: "Gramática", nameEn: "Grammar", descPt: "Testa regras gramaticais", descEn: "Test grammar rules" },
+  { namePt: "Completa as frases", nameEn: "Complete the sentences", descPt: "Preenche os espaços em branco", descEn: "Fill in the blanks" },
+  { namePt: "Tradução", nameEn: "Translation", descPt: "Traduz frases do inglês para português", descEn: "Translate sentences from English to Portuguese" },
+  { namePt: "Constrói a frase", nameEn: "Build the sentence", descPt: "Ordena palavras para formar frases", descEn: "Order words to form sentences" },
+  { namePt: "Texto com lacunas", nameEn: "Text with gaps", descPt: "Completa um parágrafo com um banco de palavras", descEn: "Complete a paragraph with a word bank" },
+  { namePt: "Corrige os erros", nameEn: "Correct the errors", descPt: "Encontra e corrige erros em frases", descEn: "Find and fix errors in sentences" },
+];
+
+function LessonInfoSection() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="mb-6">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] px-5 py-4 hover:border-[#003399] transition-colors cursor-pointer"
+      >
+        <div>
+          <p className="text-[14px] font-medium text-[var(--text-primary)] text-left">
+            Como funcionam as lições
+          </p>
+          <p className="text-[12px] text-[var(--text-muted)] text-left">
+            How do lessons work
+          </p>
+        </div>
+        <svg
+          className={`w-4 h-4 text-[var(--text-muted)] transition-transform duration-200 shrink-0 ${isOpen ? "rotate-180" : ""}`}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div className="mt-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] px-5 py-5 space-y-4">
+          <div className="space-y-3">
+            {LESSON_SECTIONS.map((s, i) => (
+              <div key={i} className="flex gap-3">
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#003399] text-white text-[11px] font-bold flex items-center justify-center mt-0.5">
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="text-[13px] font-medium text-[var(--text-primary)]">
+                    {s.namePt} — {s.descPt}
+                  </p>
+                  <p className="text-[12px] text-[var(--text-muted)]">
+                    {s.nameEn} — {s.descEn}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="border-t border-[var(--border-light)] pt-4 space-y-2">
+            <p className="text-[13px] text-[var(--text-secondary)]">
+              Precisas de 80% para passar cada lição.
+              <span className="block text-[12px] text-[var(--text-muted)]">You need 80% to pass each lesson.</span>
+            </p>
+            <p className="text-[13px] text-[var(--text-secondary)]">
+              As lições são sequenciais — completa cada uma para desbloquear a seguinte.
+              <span className="block text-[12px] text-[var(--text-muted)]">Lessons are sequential — complete each one to unlock the next.</span>
+            </p>
+            <p className="text-[13px] text-[var(--text-secondary)]">
+              Podes rever o material antes de começar os exercícios.
+              <span className="block text-[12px] text-[var(--text-muted)]">You can review the material before starting the exercises.</span>
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function LessonsPage() {
   const { user, loading: authLoading } = useAuth();
   const [progressMap, setProgressMap] = useState<
@@ -82,16 +157,17 @@ export default function LessonsPage() {
           <PageHeader
             title="Lessons"
             titlePt="Lições"
-            section="REVISION"
-            sectionPt="Revisão"
-            tagline="Structured lessons with vocabulary, verbs, grammar, and practice. Pass with 60% or more to unlock the next lesson and earn progression."
+            tagline="Aprende português passo a passo com lições estruturadas de A1 a B1."
             stats={[
-              { value: String(A1_TOTAL), label: "A1 lessons" },
-              { value: `${a1Completed}/${A1_TOTAL}`, label: "complete" },
-              { value: "A1", label: "level" },
+              { value: String(A1_TOTAL + A2_TOTAL + B1_TOTAL), label: "lições" },
+              { value: `${a1Completed + a2Completed + b1Completed}`, label: "completas" },
             ]}
           />
-          <Divider className="mt-4 mb-6" />
+          <p className="text-[13px] text-[var(--text-muted)] mt-1 mb-4">
+            Learn Portuguese step by step with structured lessons from A1 to B1.
+          </p>
+          <Divider className="mb-6" />
+          <LessonInfoSection />
         </div>
 
         {/* ═══════════════════════════════════════════════ */}
