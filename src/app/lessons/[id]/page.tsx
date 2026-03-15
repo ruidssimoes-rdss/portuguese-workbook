@@ -23,6 +23,7 @@ import type { Lesson } from "@/data/lessons";
 import {
   saveLessonAttempt,
   getLessonProgressMap,
+  resetLessonProgress,
   type WrongItem,
 } from "@/lib/lesson-progress";
 import { logLessonCompletion } from "@/lib/calendar-service";
@@ -155,14 +156,18 @@ function LessonIntro({
   lesson,
   generatedLesson,
   showEnglish,
+  isCompleted,
   onStartExercises,
   onReviewFirst,
+  onReset,
 }: {
   lesson: Lesson;
   generatedLesson: GeneratedLesson | null;
   showEnglish: boolean;
+  isCompleted: boolean;
   onStartExercises: () => void;
   onReviewFirst: () => void;
+  onReset: () => void;
 }) {
   const learnItems = generatedLesson?.learnItems ?? [];
   const vocabCount = learnItems.filter((i) => i.type === "vocab").length;
@@ -209,6 +214,17 @@ function LessonIntro({
           {showEnglish && <span className="block text-[12px] font-normal opacity-75 mt-0.5">Review the material first</span>}
         </button>
       </div>
+
+      {isCompleted && (
+        <button
+          type="button"
+          onClick={onReset}
+          className="text-[13px] text-[var(--text-muted)] hover:text-[#DC2626] transition-colors mt-6 cursor-pointer"
+        >
+          Recomeçar lição
+          {showEnglish && <span className="block text-[11px]">Reset lesson</span>}
+        </button>
+      )}
     </div>
   );
 }
@@ -478,8 +494,17 @@ function LessonContent({ id }: { id: string }) {
             lesson={lesson}
             generatedLesson={generatedLesson}
             showEnglish={showEnglish}
+            isCompleted={!!progressMap?.[id]?.completed}
             onStartExercises={handleStartExercises}
             onReviewFirst={handleReviewFirst}
+            onReset={async () => {
+              if (!confirm("Tens a certeza? O teu progresso nesta lição será apagado.")) return;
+              const ok = await resetLessonProgress(id);
+              if (ok) {
+                clearSession(id);
+                window.location.reload();
+              }
+            }}
           />
         )}
 

@@ -238,6 +238,22 @@ export async function saveLessonAttempt(
   return true;
 }
 
+export async function resetLessonProgress(lessonId: string): Promise<boolean> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return false;
+
+  const { error } = await supabase
+    .from("user_lesson_progress")
+    .delete()
+    .eq("user_id", user.id)
+    .eq("lesson_id", lessonId);
+
+  return !error;
+}
+
 export async function getRecentWrongItems(): Promise<
   { lessonId: string; wrongItems: WrongItem[] }[]
 > {
