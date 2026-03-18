@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { ProtectedRoute } from "@/components/protected-route";
 import { getProgressStats, type ProgressStats, type TimelineEvent } from "@/lib/progress-stats-service";
+import { ProgressBlock } from "@/components/blocks/content/progress-block";
 
 function formatPortugueseDate(iso: string): string {
   const d = new Date(iso.includes("T") ? iso : iso + "T12:00:00");
@@ -100,39 +101,50 @@ function StatsGrid({ stats }: { stats: ProgressStats }) {
     ? formatPortugueseDate(stats.memberSince).split(" ").slice(1).join(" ")
     : "—";
 
-  const statCards = [
-    { label: "Lições", value: String(stats.totalLessonsCompleted), sublabel: "completas" },
-    { label: "Palavras", value: String(stats.totalWordsEncountered), sublabel: "aprendidas" },
-    { label: "Verbos", value: String(stats.totalVerbsDrilled), sublabel: "praticados" },
-    { label: "Gramática", value: String(stats.totalGrammarTopicsStudied), sublabel: "tópicos" },
-    { label: "Série", value: `${stats.currentStreak} / ${stats.longestStreak}`, sublabel: "atual / máx" },
-    { label: "Melhor nota", value: stats.bestLessonScore ? `${stats.bestLessonScore.score}%` : "—", sublabel: "numa lição" },
-    { label: "Precisão", value: `${Math.round(stats.averageAccuracy * 100)}%`, sublabel: "média" },
-    { label: "Dias ativos", value: String(stats.daysActive), sublabel: "com atividade" },
-    { label: "Notas", value: String(stats.totalNotesWritten), sublabel: "escritas" },
-    { label: "Sessões", value: String(stats.totalStudySessions + stats.totalPracticeSessions), sublabel: "de estudo" },
-    { label: "Objetivos", value: `${stats.goalsCompleted} / ${stats.goalsCompleted + stats.goalsActive}`, sublabel: "concluídos" },
-    { label: "Membro desde", value: memberSinceShort, sublabel: "" },
-  ];
-
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-      {statCards.map((stat) => (
-        <div
-          key={stat.label}
-          className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center"
-        >
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">
-            {stat.label}
-          </p>
-          <p className="text-[22px] font-bold text-[var(--text-primary)]">
-            {stat.value}
-          </p>
-          {stat.sublabel && (
-            <p className="text-[11px] text-[var(--text-muted)]">{stat.sublabel}</p>
-          )}
-        </div>
-      ))}
+    <div className="mb-8 space-y-6">
+      {/* Key metrics row */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <ProgressBlock
+          data={{ current: stats.totalLessonsCompleted, max: 44, label: "Lições", sublabel: "completas" }}
+          variant="stat"
+        />
+        <ProgressBlock
+          data={{ current: Math.round(stats.averageAccuracy * 100), max: 100, label: "Precisão", unit: "%" }}
+          variant="ring"
+        />
+        <ProgressBlock
+          data={{ current: stats.currentStreak, max: stats.longestStreak || stats.currentStreak, label: "Série", sublabel: `Máx: ${stats.longestStreak}` }}
+          variant="streak"
+        />
+        <ProgressBlock
+          data={{ current: stats.totalWordsEncountered, max: 840, label: "Palavras", sublabel: "aprendidas" }}
+          variant="stat"
+        />
+      </div>
+
+      {/* Secondary stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <ProgressBlock data={{ current: stats.totalVerbsDrilled, max: 177, label: "Verbos", sublabel: "praticados" }} variant="stat" />
+        <ProgressBlock data={{ current: stats.totalGrammarTopicsStudied, max: 31, label: "Gramática", sublabel: "tópicos" }} variant="stat" />
+        <ProgressBlock data={{ current: stats.bestLessonScore?.score ?? 0, max: 100, label: "Melhor nota", unit: "%" }} variant="stat" />
+        <ProgressBlock data={{ current: stats.daysActive, max: stats.daysActive, label: "Dias ativos", sublabel: "com atividade" }} variant="stat" />
+      </div>
+
+      {/* Tertiary stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <ProgressBlock data={{ current: stats.totalNotesWritten, max: stats.totalNotesWritten, label: "Notas", sublabel: "escritas" }} variant="stat" />
+        <ProgressBlock data={{ current: stats.totalStudySessions + stats.totalPracticeSessions, max: stats.totalStudySessions + stats.totalPracticeSessions, label: "Sessões", sublabel: "de estudo" }} variant="stat" />
+        <ProgressBlock data={{ current: stats.goalsCompleted, max: stats.goalsCompleted + stats.goalsActive, label: "Objetivos", sublabel: "concluídos" }} variant="stat" />
+        <ProgressBlock data={{ current: parseInt(memberSinceShort) || 0, max: 0, label: "Membro desde", sublabel: memberSinceShort }} variant="stat" />
+      </div>
+
+      {/* Per-level progress bars */}
+      <div className="space-y-3">
+        <ProgressBlock data={{ current: stats.a1Progress.completed, max: stats.a1Progress.total, label: "A1 — Iniciante", sublabel: `${stats.a1Progress.completed}/${stats.a1Progress.total}` }} variant="bar" />
+        <ProgressBlock data={{ current: stats.a2Progress.completed, max: stats.a2Progress.total, label: "A2 — Elementar", sublabel: `${stats.a2Progress.completed}/${stats.a2Progress.total}` }} variant="bar" />
+        <ProgressBlock data={{ current: stats.b1Progress.completed, max: stats.b1Progress.total, label: "B1 — Intermédio", sublabel: `${stats.b1Progress.completed}/${stats.b1Progress.total}` }} variant="bar" />
+      </div>
     </div>
   );
 }

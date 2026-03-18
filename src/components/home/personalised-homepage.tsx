@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { PageContainer } from "@/components/ui/page-container";
 import type { HomepageData } from "@/lib/homepage-service";
+import { ProgressBlock } from "@/components/blocks/content/progress-block";
 import { dismissGoalSuggestion, markStreakMilestoneSeen, markProgressMilestoneSeen } from "@/lib/goal-suggestion-service";
 
 export interface HomeStaticData {
@@ -310,32 +311,29 @@ export function PersonalisedHomepage({
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">Série</p>
-            <p className="text-[22px] font-bold text-[var(--text-primary)]">{data.currentStreak}</p>
-            <p className="text-[11px] text-[var(--text-muted)]">{data.currentStreak === 1 ? "dia" : "dias"}</p>
-          </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">Palavras</p>
-            <p className="text-[22px] font-bold text-[var(--text-primary)]">{data.totalWordsEncountered}</p>
-            <p className="text-[11px] text-[var(--text-muted)]">aprendidas</p>
-          </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">Nível</p>
-            <p className="text-[22px] font-bold text-[var(--text-primary)]">{data.currentCefrLevel}</p>
-            <p className="text-[11px] text-[var(--text-muted)]">
-              {data.currentLevelProgress.total > 0
-                ? `${Math.round((data.currentLevelProgress.completed / data.currentLevelProgress.total) * 100)}%`
-                : "—"}
-            </p>
-          </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] p-4 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-1">Semana</p>
-            <p className="text-[22px] font-bold text-[var(--text-primary)]">
-              {data.weeklyStudyDays}/{data.weeklyTargetDays}
-            </p>
-            <p className="text-[11px] text-[var(--text-muted)]">dias</p>
-          </div>
+          <ProgressBlock
+            data={{ current: data.currentStreak, max: data.currentStreak, label: "Série", sublabel: data.currentStreak === 1 ? "dia" : "dias" }}
+            variant="streak"
+          />
+          <ProgressBlock
+            data={{ current: data.totalWordsEncountered, max: 840, label: "Palavras", sublabel: "aprendidas" }}
+            variant="stat"
+          />
+          <ProgressBlock
+            data={{
+              current: data.currentLevelProgress.total > 0
+                ? Math.round((data.currentLevelProgress.completed / data.currentLevelProgress.total) * 100)
+                : 0,
+              max: 100,
+              label: `Nível ${data.currentCefrLevel}`,
+              unit: "%",
+            }}
+            variant="ring"
+          />
+          <ProgressBlock
+            data={{ current: data.weeklyStudyDays, max: data.weeklyTargetDays, label: "Semana", sublabel: "dias" }}
+            variant="bar"
+          />
         </div>
         <div className="flex justify-end mb-2">
           <Link
