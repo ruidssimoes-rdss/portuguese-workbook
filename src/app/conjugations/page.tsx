@@ -6,10 +6,9 @@ import { PageContainer } from "@/components/ui/page-container";
 import { PageHeader } from "@/components/ui/page-header";
 import { FilterPill } from "@/components/ui/filter-pill";
 import { SearchInput } from "@/components/ui/search-input";
-import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
 import { EmptyState } from "@/components/ui/empty-state";
-import { CEFRBadge, VerbGroupBadge } from "@/components/ui/badge";
+import { SmartVerbBlock } from "@/components/blocks/content/smart-verb-block";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 import Link from "next/link";
@@ -129,23 +128,20 @@ export default function ConjugationsPage() {
           {verbs.map((v) => {
             const m = data.verbs[v].meta;
             return (
-              <Link
-                key={v}
-                href={`/conjugations/${v.toLowerCase()}`}
-                className="block group"
-              >
-                <Card interactive className="flex flex-col min-h-[140px] h-full">
-                  <div className="text-[15px] font-semibold text-text mb-1">
-                    {v}
-                  </div>
-                  <div className="text-[13px] text-text-secondary leading-relaxed flex-1">
-                    {m.english}
-                  </div>
-                  <div className="flex gap-1.5 flex-wrap mt-auto pt-3">
-                    <VerbGroupBadge group={m.group} label={shortGroup(m.group)} />
-                    <CEFRBadge level={m.cefr} />
-                  </div>
-                </Card>
+              <Link key={v} href={`/conjugations/${v.toLowerCase()}`} className="block group">
+                <SmartVerbBlock
+                  data={{
+                    verb: v,
+                    verbTranslation: m.english,
+                    verbSlug: v.toLowerCase(),
+                    verbGroup: m.group,
+                    cefr: m.cefr,
+                    priority: m.priority,
+                    tenses: [],
+                  }}
+                  variant="collapsed"
+                  className="h-full min-h-[140px]"
+                />
               </Link>
             );
           })}

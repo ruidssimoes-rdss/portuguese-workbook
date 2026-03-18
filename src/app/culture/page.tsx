@@ -20,6 +20,7 @@ import { Divider } from "@/components/ui/divider";
 import { Card } from "@/components/ui/card";
 import { Badge, CEFRBadge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
+import { SmartCultureBlock } from "@/components/blocks/content/smart-culture-block";
 
 const sayings = (sayingsData as unknown as SayingsData).sayings;
 const falseFriends = (falseFriendsData as unknown as FalseFriendsData).falseFriends;
@@ -632,7 +633,11 @@ function CultureContent() {
                 <EmptyState message="No sayings match your filters." className="col-span-full" />
               ) : (
                 filteredSayings.map((saying) => (
-                  <SayingCard key={saying.id} saying={saying} isHighlighted={highlightId === saying.id} isExpanded={expandedId === saying.id} onToggle={() => toggleCard(saying.id)} />
+                  <SmartCultureBlock key={saying.id} type="saying" data={{
+                    id: saying.id, expression: saying.portuguese, meaning: saying.meaning,
+                    literal: saying.literal, usage: saying.usage, theme: saying.theme,
+                    cefr: saying.cefr, example: saying.example, exampleTranslation: saying.exampleTranslation,
+                  }} isExpanded={expandedId === saying.id} onToggle={() => toggleCard(saying.id)} isHighlighted={highlightId === saying.id} />
                 ))
               )}
             </>
@@ -644,7 +649,11 @@ function CultureContent() {
                 <EmptyState message="No false friends match your filters." className="col-span-full" />
               ) : (
                 filteredFalseFriends.map((item) => (
-                  <FalseFriendCard key={item.id} item={item} isHighlighted={highlightId === item.id} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} />
+                  <SmartCultureBlock key={item.id} type="false-friend" data={{
+                    id: item.id, portuguese: item.portuguese, looksLike: item.looksLike,
+                    actualMeaning: item.actualMeaning, correctWord: item.correctWord, cefr: item.cefr,
+                    falseExample: item.example, falseExampleTranslation: item.exampleTranslation, falseTip: item.tip,
+                  }} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} isHighlighted={highlightId === item.id} />
                 ))
               )}
             </>
@@ -655,7 +664,13 @@ function CultureContent() {
               {filteredEtiquette.length === 0 ? (
                 <EmptyState message="No tips match your filters." className="col-span-full" />
               ) : (
-                filteredEtiquette.map((tip) => <EtiquetteCard key={tip.id} tip={tip} isExpanded={expandedId === tip.id} onToggle={() => toggleCard(tip.id)} />)
+                filteredEtiquette.map((tip) => (
+                  <SmartCultureBlock key={tip.id} type="etiquette" data={{
+                    id: tip.id, title: tip.title, titlePt: tip.titlePt,
+                    description: tip.description, category: tip.category,
+                    doThis: tip.doThis, avoidThis: tip.avoidThis,
+                  }} isExpanded={expandedId === tip.id} onToggle={() => toggleCard(tip.id)} />
+                ))
               )}
             </>
           )}
@@ -666,7 +681,12 @@ function CultureContent() {
                 <EmptyState message="No regional expressions match your filters." className="col-span-full" />
               ) : (
                 filteredRegional.map((item) => (
-                  <RegionalCard key={item.id} item={item} isHighlighted={highlightId === item.id} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} />
+                  <SmartCultureBlock key={item.id} type="regional" data={{
+                    id: item.id, expression: item.expression, meaning: item.meaning,
+                    region: item.region, cefr: item.cefr, pronunciation: item.pronunciation,
+                    standardAlternative: item.standardAlternative,
+                    regionalExample: item.example, regionalExampleTranslation: item.exampleTranslation,
+                  }} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} isHighlighted={highlightId === item.id} />
                 ))
               )}
             </>

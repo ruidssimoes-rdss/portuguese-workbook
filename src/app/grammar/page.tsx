@@ -7,10 +7,9 @@ import { PageContainer } from "@/components/ui/page-container";
 import { PageHeader } from "@/components/ui/page-header";
 import { FilterPill } from "@/components/ui/filter-pill";
 import { SearchInput } from "@/components/ui/search-input";
-import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
-import { CEFRBadge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
+import { SmartGrammarBlock } from "@/components/blocks/content/smart-grammar-block";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic } from "@/types/grammar";
 
@@ -87,25 +86,22 @@ export default function GrammarPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
           {filteredTopics.map((topic) => (
-            <Link
-              key={topic.id}
-              href={`/grammar/${topic.id}`}
-              className="block group"
-            >
-              <Card interactive className="h-full">
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-[15px] font-semibold tracking-tight text-text">
-                    {topic.title}
-                  </h3>
-                  <CEFRBadge level={topic.cefr} />
-                </div>
-                <p className="text-[13px] text-text-secondary mt-1">
-                  {topic.titlePt}
-                </p>
-                <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
-                  {topic.summary}
-                </p>
-              </Card>
+            <Link key={topic.id} href={`/grammar/${topic.id}`} className="block group">
+              <SmartGrammarBlock
+                data={{
+                  topicSlug: topic.id,
+                  topicTitle: topic.title,
+                  topicTitlePt: topic.titlePt,
+                  cefr: topic.cefr,
+                  summary: topic.summary,
+                  rules: topic.rules.map((r) => ({
+                    rule: r.rule,
+                    rulePt: r.rulePt,
+                    examples: r.examples,
+                  })),
+                }}
+                variant="summary"
+              />
             </Link>
           ))}
         </div>

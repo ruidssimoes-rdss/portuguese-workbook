@@ -320,3 +320,28 @@
 }
 
 .pair-mismatched { animation: error-shake 300ms ease-out; }
+
+/* ── Expandable Section ───────────────────────────────────── */
+
+.expandable-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease-out;
+}
+.expandable-content.is-open {
+  grid-template-rows: 1fr;
+}
+.expandable-content > .expandable-inner {
+  overflow: hidden;
+}
+
+/* ── URL Highlight ────────────────────────────────────────── */
+
+@keyframes url-highlight-ring {
+  0% { box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.4); }
+  70% { box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(17, 24, 39, 0); }
+}
+.url-highlight {
+  animation: url-highlight-ring 2s ease-out forwards;
+}
