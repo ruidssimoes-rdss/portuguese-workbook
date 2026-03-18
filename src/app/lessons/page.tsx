@@ -16,6 +16,8 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
 import { CEFRBadge } from "@/components/ui/badge";
+import { TutorTabV2 } from "@/components/lessons/tutor-tab";
+import { patterns } from "@/lib/design-tokens";
 
 const lessons = getResolvedLessons();
 const A1_LESSONS = lessons.filter((l) => l.cefr === "A1");
@@ -120,6 +122,7 @@ function LessonInfoSection() {
 
 export default function LessonsPage() {
   const { user, loading: authLoading } = useAuth();
+  const [activeTab, setActiveTab] = useState<"curriculum" | "tutor">("curriculum");
   const [progressMap, setProgressMap] = useState<
     Record<string, LessonAttemptResult>
   >({});
@@ -167,9 +170,34 @@ export default function LessonsPage() {
             Learn Portuguese step by step with structured lessons from A1 to B1.
           </p>
           <Divider className="mb-6" />
-          <LessonInfoSection />
+
+          {/* Tab switcher */}
+          <div className="flex gap-1 mb-10">
+            <button
+              onClick={() => setActiveTab("curriculum")}
+              className={activeTab === "curriculum" ? patterns.pill.active : patterns.pill.inactive}
+            >
+              Curriculum
+            </button>
+            <button
+              onClick={() => setActiveTab("tutor")}
+              className={activeTab === "tutor" ? patterns.pill.active : patterns.pill.inactive}
+            >
+              Tutor
+            </button>
+          </div>
+
+          {activeTab === "curriculum" && <LessonInfoSection />}
         </div>
 
+        {/* Tutor tab */}
+        {activeTab === "tutor" && (
+          <TutorTabV2 />
+        )}
+
+        {/* Curriculum tab */}
+        {activeTab === "curriculum" && (
+        <>
         {/* ═══════════════════════════════════════════════ */}
         {/* A1 — Foundation                                */}
         {/* ═══════════════════════════════════════════════ */}
@@ -480,6 +508,8 @@ export default function LessonsPage() {
               Entrar
             </Link>
           </div>
+        )}
+        </>
         )}
 
         <div className="pb-16" />
