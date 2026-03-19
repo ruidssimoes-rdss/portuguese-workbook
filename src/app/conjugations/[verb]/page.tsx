@@ -28,7 +28,8 @@ const PERSON_SHORT: Record<string, string> = {
 function mapVerbToSmartData(slug: string, verb: (typeof data.verbs)[string]): SmartVerbBlockData {
   const m = verb.meta;
   const tenseMap = new Map<string, SmartVerbBlockData["tenses"][number]>();
-  for (const c of verb.conjugations) {
+  const conjugations = Array.isArray(verb.conjugations) ? verb.conjugations : [];
+  for (const c of conjugations) {
     if (!tenseMap.has(c.Tense)) {
       tenseMap.set(c.Tense, { name: c.Tense, label: c.Tense, cefr: c["CEFR (Tense)"], conjugations: [] });
     }

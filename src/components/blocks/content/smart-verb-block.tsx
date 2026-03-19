@@ -71,20 +71,21 @@ function ExpandedVariant({ data, className }: SmartVerbBlockProps) {
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [highlightForm]);
 
+  const tenses = Array.isArray(data.tenses) ? data.tenses : [];
   const filteredTenses = tenseFilter === "All"
-    ? data.tenses
-    : data.tenses.filter((t) => t.name === tenseFilter);
+    ? tenses
+    : tenses.filter((t) => t.name === tenseFilter);
 
   // Flatten all conjugations with tense context
   const rows = filteredTenses.flatMap((t) =>
-    t.conjugations.map((c) => ({ ...c, tense: t.name, tenseLabel: t.label, tenseCefr: t.cefr }))
+    (Array.isArray(t.conjugations) ? t.conjugations : []).map((c) => ({ ...c, tense: t.name, tenseLabel: t.label, tenseCefr: t.cefr }))
   );
 
   return (
     <div className={className}>
       {/* Tense filter pills */}
       <div className="flex flex-wrap items-center gap-1.5 mb-6">
-        {ALL_TENSES.filter((t) => t === "All" || data.tenses.some((dt) => dt.name === t)).map((t) => (
+        {ALL_TENSES.filter((t) => t === "All" || tenses.some((dt) => dt.name === t)).map((t) => (
           <button
             key={t}
             onClick={() => setTenseFilter(t)}
@@ -205,7 +206,7 @@ function CollapsedVariant({ data, className }: SmartVerbBlockProps) {
 // ── Drill Variant ────────────────────────────────────────
 
 function DrillVariant({ data, className }: SmartVerbBlockProps) {
-  const firstTense = data.tenses[0];
+  const firstTense = Array.isArray(data.tenses) ? data.tenses[0] : undefined;
   return (
     <div className={className}>
       <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
