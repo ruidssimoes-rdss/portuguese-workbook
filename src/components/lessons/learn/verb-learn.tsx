@@ -27,7 +27,7 @@ export function VerbLearn({ data }: VerbLearnProps) {
       </div>
 
       <div className="border border-[var(--border-primary)] rounded-[12px] overflow-hidden bg-[var(--bg-card)]">
-        {data.conjugations.map((conj, i) => (
+        {(data.conjugations ?? []).map((conj, i) => (
           <div
             key={conj.pronoun}
             className={`flex items-center gap-4 px-5 py-3.5 ${

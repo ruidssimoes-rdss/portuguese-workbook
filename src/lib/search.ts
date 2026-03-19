@@ -416,7 +416,7 @@ function runTextSearch(
         }
       }
       if (!options.verbOnly) {
-        for (const c of v.conjugations) {
+        for (const c of (v.conjugations ?? [])) {
           const conjNorm = normalizeForSearch(c.Conjugation);
           const scoreC = scoreConjugation(queryNorm, conjNorm);
           if (scoreC === 0) continue;
@@ -649,7 +649,7 @@ function buildSmartCard(
     if (matches.length === 0) return null;
     if (matches.length === 1) {
       const { infinitive, data } = matches[0];
-      const presentPreview = getPresentConjugations(data.conjugations);
+      const presentPreview = getPresentConjugations(data.conjugations ?? []);
       return {
         type: "conjugation",
         infinitive,
@@ -669,7 +669,7 @@ function buildSmartCard(
         group: data.meta.group,
         cefr: data.meta.cefr,
         href: `/conjugations/${infinitive.toLowerCase()}`,
-        presentPreview: getPresentConjugations(data.conjugations),
+        presentPreview: getPresentConjugations(data.conjugations ?? []),
       })),
     };
   }
@@ -682,7 +682,7 @@ function buildSmartCard(
     const tenseLabel = tenseConfig?.label ?? intent.tense ?? "";
     if (matches.length === 1) {
       const { infinitive, data } = matches[0];
-      const conjugations = getConjugationsForTense(data.conjugations, intent.tense);
+      const conjugations = getConjugationsForTense(data.conjugations ?? [], intent.tense);
       return {
         type: "tense",
         infinitive,
@@ -700,7 +700,7 @@ function buildSmartCard(
       verbs: matches.map(({ infinitive, data }) => ({
         infinitive,
         href: `/conjugations/${infinitive.toLowerCase()}?tense=${encodeURIComponent(intent.tense!)}`,
-        conjugations: getConjugationsForTense(data.conjugations, intent.tense!),
+        conjugations: getConjugationsForTense(data.conjugations ?? [], intent.tense!),
       })),
     };
   }

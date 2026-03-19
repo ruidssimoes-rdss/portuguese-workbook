@@ -335,7 +335,7 @@ function generateConjugationSection(content: LessonContent, showEnglish: boolean
     verbMeaning: showEnglish ? v.verbTranslation : undefined,
     tense: TENSE_LABELS[v.tense] ?? v.tense,
     tenseEnglish: showEnglish ? v.tense : undefined,
-    persons: v.conjugations.map((c) => ({ pronoun: c.pronoun, correctForm: c.form })),
+    persons: (v.conjugations ?? []).map((c) => ({ pronoun: c.pronoun, correctForm: c.form })),
   }));
 
   const totalQuestions = verbs.reduce((sum, v) => sum + v.persons.length, 0);
@@ -634,9 +634,10 @@ function generateErrorCorrectionSection(
   // From conjugation data — create wrong conjugation sentences (1)
   if (sentences.length < 3 && content.verbItems.length > 0) {
     const verb = content.verbItems[Math.floor(Math.random() * content.verbItems.length)];
-    if (verb.conjugations.length >= 2) {
-      const person = verb.conjugations[0];
-      const wrongForm = verb.conjugations[1].form; // use a different person's form
+    const verbConj = verb.conjugations ?? [];
+    if (verbConj.length >= 2) {
+      const person = verbConj[0];
+      const wrongForm = verbConj[1].form; // use a different person's form
       const correctSentence = `${person.pronoun.charAt(0).toUpperCase() + person.pronoun.slice(1)} ${person.form}.`;
       const incorrectSentence = `${person.pronoun.charAt(0).toUpperCase() + person.pronoun.slice(1)} ${wrongForm}.`;
       if (correctSentence !== incorrectSentence) {

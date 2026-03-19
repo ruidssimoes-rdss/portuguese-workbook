@@ -139,7 +139,7 @@ export function getContentInventory(): ContentInventory {
     verbSlugs.push(slug);
     const cefr = v.meta.cefr || "A1";
     if (verbsByCefr[cefr]) verbsByCefr[cefr].push(slug);
-    for (const c of v.conjugations) tenseSet.add(c.Tense);
+    for (const c of (v.conjugations ?? [])) tenseSet.add(c.Tense);
   }
 
   // Grammar
@@ -230,7 +230,7 @@ export function getVerbItems(slugs: string[], tenses: string[]): VerbItem[] {
     if (!v) continue;
 
     for (const tense of tenses) {
-      const conjugations = v.conjugations
+      const conjugations = (v.conjugations ?? [])
         .filter((c) => c.Tense === tense)
         .map((c) => ({
           pronoun: PERSON_TO_PRONOUN[c.Person] ?? c.Person.split(" ")[0],

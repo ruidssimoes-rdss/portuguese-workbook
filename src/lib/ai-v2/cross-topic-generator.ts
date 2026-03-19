@@ -58,7 +58,7 @@ export function generateCrossTopicExercises(
       if (!noun) continue;
 
       // Find the "eu" conjugation
-      const euForm = verb.conjugations.find((c) => c.pronoun === "eu");
+      const euForm = (verb.conjugations ?? []).find((c) => c.pronoun === "eu");
       if (!euForm) continue;
 
       const sentence = `Eu ${euForm.form} _____`;

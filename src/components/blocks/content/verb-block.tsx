@@ -32,7 +32,7 @@ function ExpandedVariant({ data, className }: { data: VerbBlockData; className?:
         <p className="text-[13px] text-[#9CA3AF] mt-0.5">{data.tenseLabel || data.tense}</p>
       </div>
       <div>
-        {data.conjugations.map((c, i) => (
+        {(data.conjugations ?? []).map((c, i) => (
           <div
             key={i}
             className={`flex items-center py-2.5 px-3 ${

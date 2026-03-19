@@ -488,7 +488,7 @@ function SmartCardContent({
             {card.infinitive} — {card.tenseLabel}
           </p>
           <p className="text-xs text-gray-600 mt-1">
-            {card.conjugations.join(" · ")}
+            {(card.conjugations ?? []).join(" · ")}
           </p>
           <p className="text-xs text-[#003399]/70 mt-2">View full conjugation table</p>
         </>
@@ -533,7 +533,7 @@ function SmartCardContent({
                 >
                   {v.infinitive}
                 </button>
-                <p className="text-xs text-gray-600 ml-2">{v.conjugations.join(" · ")}</p>
+                <p className="text-xs text-gray-600 ml-2">{(v.conjugations ?? []).join(" · ")}</p>
               </li>
             ))}
           </ul>

@@ -152,7 +152,7 @@ function mapSectionToExercises(
         conjugations: Array<{ pronoun: string; form: string }>;
       }>;
       for (const v of verbs ?? []) {
-        for (const c of v.conjugations) {
+        for (const c of (v.conjugations ?? [])) {
           const data: ConjugateExerciseData = {
             exerciseType: "conjugate",
             verb: v.verb,

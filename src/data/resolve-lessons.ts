@@ -138,7 +138,7 @@ function getVerbConjugations(
 ): VerbItem | null {
   const v = verbs.verbs[verbKey];
   if (!v) return null;
-  const present = v.conjugations.filter((c) => c.Tense === tense);
+  const present = (v.conjugations ?? []).filter((c) => c.Tense === tense);
   if (present.length === 0) return null;
   const conjugations = present.map((c) => ({
     pronoun: PERSON_TO_PRONOUN[c.Person] ?? c.Person.split(" ")[0],

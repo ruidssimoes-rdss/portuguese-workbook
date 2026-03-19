@@ -157,9 +157,9 @@ function generateExercisesFromContent(
         ? ["eu", "ele/ela", "eles/elas"]
         : difficulty === "developing"
           ? ["eu", "tu", "ele/ela", "nós", "eles/elas"]
-          : item.conjugations.map((c) => c.pronoun);
+          : (item.conjugations ?? []).map((c) => c.pronoun);
 
-    for (const c of item.conjugations) {
+    for (const c of (item.conjugations ?? [])) {
       if (!pronounsToUse.includes(c.pronoun)) continue;
       const data: ConjugateExerciseData = {
         exerciseType: "conjugate",
