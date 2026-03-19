@@ -43,7 +43,7 @@ export function FilterBlock({ pills, search, dropdown, count }: FilterBlockProps
                 <button
                   key={opt.value}
                   onClick={() => pills.onChange(opt.value)}
-                  className={`shrink-0 px-4 py-2 rounded-full text-[13px] border transition-colors duration-150 cursor-pointer ${
+                  className={`shrink-0 px-4 py-2 min-h-[44px] rounded-full text-[13px] border transition-colors duration-150 cursor-pointer ${
                     pills.value === opt.value
                       ? "font-medium bg-[#111827] text-white border-[#111827]"
                       : "font-normal bg-white text-[#9CA3AF] border-[#F3F4F6] hover:border-[#E5E7EB] hover:text-[#6B7280]"

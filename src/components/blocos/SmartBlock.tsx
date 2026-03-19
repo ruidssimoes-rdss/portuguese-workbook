@@ -149,9 +149,11 @@ function SmartBlockRuleCard({ rule, index }: { rule: SmartBlockRule; index: numb
             Porquê?
             <ChevronDown size={14} className={`transition-transform duration-200 ${showException ? "rotate-180" : ""}`} />
           </button>
-          {showException && (
-            <p className="text-[13px] text-[#6B7280] mt-1">{rule.exception}</p>
-          )}
+          <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${showException ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+            <div className="overflow-hidden">
+              <p className="text-[13px] text-[#6B7280] mt-1">{rule.exception}</p>
+            </div>
+          </div>
         </div>
       )}
     </div>
@@ -174,7 +176,7 @@ function SmartBlockProgress({ progress, className }: { progress: SmartBlockProgr
 
 function SmartBlockComparison({ layout }: { layout: SmartBlockComparisonLayout }) {
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div className="bg-emerald-50 rounded-lg p-4">
         <p className="text-[12px] font-medium text-emerald-700 uppercase tracking-wider mb-1">{layout.correct.label}</p>
         <p className="text-[14px] text-[#111827]">{layout.correct.value}</p>
@@ -189,7 +191,7 @@ function SmartBlockComparison({ layout }: { layout: SmartBlockComparisonLayout }
 
 function SmartBlockDoAvoid({ layout }: { layout: SmartBlockDoAvoidLayout }) {
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div className="space-y-2">
         <p className="text-[12px] font-medium text-emerald-700 uppercase tracking-wider">Do</p>
         {layout.doItems.map((item, i) => (
@@ -260,7 +262,7 @@ export function SmartBlock(props: SmartBlockProps) {
     }
   }, [highlightId]);
 
-  const shell = `bg-white border border-[#F3F4F6] rounded-xl p-6 group relative ${
+  const shell = `bg-white border border-[#F3F4F6] rounded-xl p-4 md:p-6 group relative ${
     interactive ? "hover:border-[#E5E7EB] hover:shadow-sm hover:-translate-y-[0.5px] transition-all duration-150 cursor-pointer" : ""
   } ${className ?? ""}`;
 
@@ -364,13 +366,17 @@ export function SmartBlock(props: SmartBlockProps) {
         </button>
       )}
 
-      {/* Expanded content */}
-      {(isExpanded || defaultExpanded) && (expandedContent || conjugationTable || comparisonLayout || doAvoidLayout) && (
-        <div className={!defaultExpanded ? "border-t border-[#F3F4F6] pt-4 mt-4" : "mt-4"}>
-          {expandedContent}
-          {conjugationTable}
-          {comparisonLayout && <SmartBlockComparison layout={comparisonLayout} />}
-          {doAvoidLayout && <SmartBlockDoAvoid layout={doAvoidLayout} />}
+      {/* Expanded content — animated with CSS grid-rows */}
+      {(expandedContent || conjugationTable || comparisonLayout || doAvoidLayout) && (
+        <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${(isExpanded || defaultExpanded) ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+          <div className="overflow-hidden">
+            <div className={!defaultExpanded ? "border-t border-[#F3F4F6] pt-4 mt-4" : "mt-4"}>
+              {expandedContent}
+              {conjugationTable}
+              {comparisonLayout && <SmartBlockComparison layout={comparisonLayout} />}
+              {doAvoidLayout && <SmartBlockDoAvoid layout={doAvoidLayout} />}
+            </div>
+          </div>
         </div>
       )}
     </div>

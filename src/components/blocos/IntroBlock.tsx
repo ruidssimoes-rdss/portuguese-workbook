@@ -24,7 +24,7 @@ export function IntroBlock({ title, subtitle, description, badge, meta, backLink
       {backLink && (
         <Link
           href={backLink.href}
-          className="inline-flex items-center gap-1.5 text-[14px] text-[#9CA3AF] hover:text-[#6B7280] transition-colors duration-150 mb-4"
+          className="inline-flex items-center gap-1.5 text-[14px] text-[#9CA3AF] hover:text-[#6B7280] transition-colors duration-150 mb-4 min-h-[44px]"
         >
           <ArrowLeft size={16} />
           <span>{backLink.label}</span>
@@ -32,8 +32,8 @@ export function IntroBlock({ title, subtitle, description, badge, meta, backLink
       )}
 
       {/* Title row */}
-      <div className="flex items-center justify-between gap-4">
-        <h1 className="text-[28px] font-semibold text-[#111827]">{title}</h1>
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <h1 className="text-[24px] md:text-[28px] font-semibold text-[#111827] break-words min-w-0">{title}</h1>
         {badge && (
           <span className={`text-[12px] font-normal px-2.5 py-1 rounded-full ${cefrStyles[badge.level] ?? "text-[#6B7280] bg-[#F3F4F6]"}`}>
             {badge.label}

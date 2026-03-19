@@ -48,7 +48,7 @@ function SidebarNavItem({ item, expanded }: { item: NavItem; expanded: boolean }
   return (
     <Link
       href={item.href}
-      className={`flex items-center gap-3 py-2 rounded-lg transition-colors duration-150 relative ${
+      className={`flex items-center gap-3 py-2.5 rounded-lg transition-colors duration-150 relative ${
         expanded ? "px-3" : "justify-center px-0"
       } ${
         isActive
@@ -60,7 +60,7 @@ function SidebarNavItem({ item, expanded }: { item: NavItem; expanded: boolean }
         <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-4 bg-[#003399] rounded-r" />
       )}
       <Icon size={18} className="shrink-0" />
-      {expanded && <span className="text-[14px]">{item.label}</span>}
+      {expanded && <span className={`text-[14px] transition-opacity duration-150 ${expanded ? "opacity-100 delay-75" : "opacity-0"}`}>{item.label}</span>}
     </Link>
   );
 }
