@@ -11,7 +11,7 @@
 
 import { useState, use, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Topbar } from "@/components/layout/topbar";
+import { PageLayout, IntroBlock, ContentGrid, SmartBlock } from "@/components/blocos";
 import { ProtectedRoute } from "@/components/protected-route";
 import {
   getResolvedLesson,
@@ -417,7 +417,7 @@ function LessonContent({ id }: { id: string }) {
   if (!lesson) {
     return (
       <>
-        <Topbar />
+
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
           <p className="text-[13px] text-[var(--text-muted)]">Lição não encontrada.</p>
           <Link href="/lessons" className="text-[13px] font-medium text-[#003399] hover:underline mt-2 inline-block">Voltar às lições</Link>
@@ -429,7 +429,7 @@ function LessonContent({ id }: { id: string }) {
   if (!generatedLesson && !showRestorePrompt) {
     return (
       <>
-        <Topbar />
+
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
           <p className="text-[var(--text-secondary)]">A preparar a lição...</p>
         </main>
@@ -515,7 +515,7 @@ function LessonContent({ id }: { id: string }) {
   if (showRestorePrompt) {
     return (
       <>
-        <Topbar />
+
         <LessonShell lessonId={lesson.id} lessonTitle={lesson.title} lessonTitlePt={lesson.ptTitle} cefr={lesson.cefr} currentState="intro">
           <div className="p-6 rounded-[12px] border border-[var(--border-primary)] bg-[var(--bg-card)] text-center">
             <p className="text-[15px] font-medium text-[var(--text-primary)] mb-4">Tens progresso guardado nesta lição.</p>
@@ -531,9 +531,10 @@ function LessonContent({ id }: { id: string }) {
 
   if (!generatedLesson) return null;
 
+  const isFullScreen = lessonState === "learn" || lessonState === "sections";
+
   return (
-    <>
-      <Topbar />
+    <div className={isFullScreen ? "fixed inset-0 z-50 bg-white overflow-auto" : undefined}>
       <LessonShell
         lessonId={lesson.id}
         lessonTitle={lesson.title}
@@ -610,7 +611,7 @@ function LessonContent({ id }: { id: string }) {
           />
         )}
       </LessonShell>
-    </>
+    </div>
   );
 }
 

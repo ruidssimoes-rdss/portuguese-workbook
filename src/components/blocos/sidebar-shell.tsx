@@ -7,7 +7,6 @@ import type { ReactNode } from "react";
 
 // Routes that render full-screen without sidebar
 const FULL_SCREEN_PATTERNS = [
-  /^\/lessons\/[^/]+$/, // /lessons/a1-01, /lessons/ai-session-xxx
   /^\/exams\/[^/]+$/,   // /exams/a1-mock
   /^\/auth\//,          // /auth/login, /auth/signup, etc.
   /^\/onboarding$/,     // /onboarding

@@ -101,6 +101,7 @@ const badgeColorMap: Record<SmartBlockBadge["color"], string> = {
 
 function speak(text: string) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = "pt-PT";
   u.rate = 0.85;
@@ -108,6 +109,14 @@ function speak(text: string) {
   const ptVoice = voices.find((v) => v.lang === "pt-PT") ?? voices.find((v) => v.lang.startsWith("pt"));
   if (ptVoice) u.voice = ptVoice;
   window.speechSynthesis.speak(u);
+  // Handle edge case: voices not loaded yet on some browsers
+  if (voices.length === 0) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      const v2 = window.speechSynthesis.getVoices();
+      const ptV = v2.find((v) => v.lang === "pt-PT") ?? v2.find((v) => v.lang.startsWith("pt"));
+      if (ptV) u.voice = ptV;
+    };
+  }
 }
 
 // ── Sub-components ──────────────────────────────────────
@@ -262,7 +271,7 @@ export function SmartBlock(props: SmartBlockProps) {
     }
   }, [highlightId]);
 
-  const shell = `bg-white border border-[#F3F4F6] rounded-xl p-4 md:p-6 group relative ${
+  const shell = `bg-white border border-[#F3F4F6] rounded-xl p-4 md:p-6 group relative h-full flex flex-col ${
     interactive ? "hover:border-[#E5E7EB] hover:shadow-sm hover:-translate-y-[0.5px] transition-all duration-150 cursor-pointer" : ""
   } ${className ?? ""}`;
 
@@ -270,7 +279,7 @@ export function SmartBlock(props: SmartBlockProps) {
   if (variant === "stat") {
     return (
       <div ref={ref} className={shell}>
-        <div className="flex flex-col items-center justify-center text-center py-2">
+        <div className="flex-1 flex flex-col items-center justify-center text-center py-2">
           {statValue && <p className="text-[28px] font-semibold text-[#111827]">{statValue}</p>}
           {statLabel && <p className="text-[14px] text-[#9CA3AF] mt-1">{statLabel}</p>}
           {statTrend && (
@@ -312,26 +321,28 @@ export function SmartBlock(props: SmartBlockProps) {
         </div>
       </div>
 
-      {/* Body */}
-      {description && <p className="text-[14px] text-[#6B7280] leading-relaxed mt-4">{description}</p>}
+      {/* Body — flex-1 pushes footer to bottom */}
+      <div className="flex-1">
+        {description && <p className="text-[14px] text-[#6B7280] leading-relaxed mt-4">{description}</p>}
 
-      {example && (
-        <div className="bg-[#F9FAFB] rounded-lg p-4 mt-4">
-          <p className="text-[14px] text-[#111827]">&ldquo;{example.pt}&rdquo;</p>
-          <p className="text-[14px] text-[#9CA3AF] italic mt-1">{example.en}</p>
-        </div>
-      )}
+        {example && (
+          <div className="bg-[#F9FAFB] rounded-lg p-4 mt-4">
+            <p className="text-[14px] text-[#111827]">&ldquo;{example.pt}&rdquo;</p>
+            <p className="text-[14px] text-[#9CA3AF] italic mt-1">{example.en}</p>
+          </div>
+        )}
 
-      {numberedRules && (
-        <div className="mt-4 space-y-4">
-          {numberedRules.map((rule, i) => (
-            <SmartBlockRuleCard key={i} rule={rule} index={i + 1} />
-          ))}
-        </div>
-      )}
+        {numberedRules && (
+          <div className="mt-4 space-y-4">
+            {numberedRules.map((rule, i) => (
+              <SmartBlockRuleCard key={i} rule={rule} index={i + 1} />
+            ))}
+          </div>
+        )}
 
-      {/* Progress */}
-      {progress && <SmartBlockProgress progress={progress} className="mt-4" />}
+        {/* Progress */}
+        {progress && <SmartBlockProgress progress={progress} className="mt-4" />}
+      </div>
 
       {/* Footer */}
       {(relatedItems || tipContent || copyText || crossLinks || meta) && (
@@ -383,7 +394,7 @@ export function SmartBlock(props: SmartBlockProps) {
   );
 
   if (href) {
-    return <Link href={href} className="block">{content}</Link>;
+    return <Link href={href} className="block h-full">{content}</Link>;
   }
   return content;
 }
