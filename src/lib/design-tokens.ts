@@ -49,6 +49,36 @@ export const colors = {
 
   // Accent (brand blue — used sparingly)
   accent: "#003399",
+
+  // Brand
+  brand: { blue: "#003399" },
+
+  // Backgrounds (aliases)
+  page: "#FFFFFF",
+  card: "#FFFFFF",
+
+  // Tips / warnings
+  tip: { bg: "#FFFBEB", border: "#FEF3C7", text: "#92400E" },
+
+  // Filter pills
+  filter: {
+    active: { bg: "#111827", text: "#FFFFFF", border: "#111827" },
+    inactive: { bg: "#FFFFFF", text: "#9CA3AF", border: "#F3F4F6" },
+  },
+
+  // Sidebar
+  sidebar: {
+    bg: "#FFFFFF",
+    border: "#F3F4F6",
+    item: {
+      default: "#9CA3AF",
+      hover: "#6B7280",
+      hoverBg: "#F9FAFB",
+      active: "#111827",
+      activeBg: "#F3F4F6",
+      activeAccent: "#003399",
+    },
+  },
 } as const;
 
 // ── Typography ──────────────────────────────────────────────
@@ -142,6 +172,29 @@ export function cefrBadgeClasses(cefr: string): string {
   const c = colors.cefr[level] ?? colors.cefr.fallback;
   return `${c.text} ${c.bg}`;
 }
+
+// ── Helper: Verb group badge classes ────────────────────────
+
+// ── Blocos: Responsive breakpoints ──────────────────────────
+
+export const breakpoints = {
+  mobile: "0px",
+  tablet: "768px",
+  laptop: "1024px",
+  desktop: "1280px",
+} as const;
+
+export const gridColumns = {
+  mobile: 1,
+  tablet: 2,
+  laptop: 3,
+  desktop: 4,
+} as const;
+
+export const shadows = {
+  none: "none",
+  hover: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+} as const;
 
 // ── Helper: Verb group badge classes ────────────────────────
 

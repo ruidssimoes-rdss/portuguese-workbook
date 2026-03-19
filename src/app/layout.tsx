@@ -3,6 +3,8 @@ import "./globals.css";
 import { AuthProvider } from "@/components/auth-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SidebarProvider } from "@/components/blocos/sidebar-context";
+import { SidebarShell } from "@/components/blocos/sidebar-shell";
 
 export const metadata: Metadata = {
   title: "Aula PT — European Portuguese",
@@ -42,7 +44,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-white text-[#111827]">
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <SidebarProvider>
+            <SidebarShell>{children}</SidebarShell>
+          </SidebarProvider>
+        </AuthProvider>
         <Analytics />
         <SpeedInsights />
       </body>
