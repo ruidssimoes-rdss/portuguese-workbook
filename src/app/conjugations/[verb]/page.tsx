@@ -73,7 +73,7 @@ export default function VerbPage() {
         subtitle={`${m.english} · ${m.group}`}
         badge={{ label: m.cefr, level: m.cefr as "A1" | "A2" | "B1" }}
         backLink={{ label: "Conjugations", href: "/conjugations" }}
-        meta={m.priority}
+        pills={[{ label: m.priority }]}
       />
       <SmartVerbBlock data={smartData} variant="expanded" />
     </PageLayout>

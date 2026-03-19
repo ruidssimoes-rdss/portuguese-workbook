@@ -66,8 +66,8 @@ export default function VocabCategoryPage() {
       <IntroBlock
         title={category.title}
         subtitle={CATEGORY_PT_TITLE[category.id]}
-        meta={`${category.words.length} words`}
         backLink={{ label: "Vocabulary", href: "/vocabulary" }}
+        pills={[{ label: `${category.words.length} words` }]}
       />
       <FilterBlock
         pills={{

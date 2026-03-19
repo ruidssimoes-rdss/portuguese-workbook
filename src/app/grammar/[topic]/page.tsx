@@ -191,7 +191,7 @@ export default function GrammarTopicPage() {
         subtitle={topic.titlePt}
         badge={{ label: topic.cefr, level: topic.cefr as "A1" | "A2" | "B1" }}
         backLink={{ label: "Grammar", href: "/grammar" }}
-        meta={`${topic.rules.length} ${topic.rules.length === 1 ? "rule" : "rules"}`}
+        pills={[{ label: `${topic.rules.length} ${topic.rules.length === 1 ? "rule" : "rules"}` }]}
       />
       <SmartGrammarBlock data={smartData} variant="expanded" relatedTopics={relatedTopics} />
     </PageLayout>

@@ -89,7 +89,10 @@ export default function VocabularyPage() {
         title="Vocabulary"
         subtitle="Vocabulário"
         description="Browse European Portuguese words organized by category and CEFR level."
-        meta={`${totalWords} words · ${data.categories.length} categories`}
+        pills={[
+          { label: `${totalWords} words` },
+          { label: `${data.categories.length} categories` },
+        ]}
       />
       <FilterBlock
         pills={{

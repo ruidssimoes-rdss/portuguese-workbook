@@ -155,7 +155,7 @@ export default function LessonsPage() {
           title="Lessons"
           subtitle="Lições"
           description="Learn Portuguese step by step with structured lessons from A1 to B1."
-          meta={`${a1Completed + a2Completed + b1Completed} of ${A1_TOTAL + A2_TOTAL + B1_TOTAL} completed`}
+          pills={[{ label: `${a1Completed + a2Completed + b1Completed} of ${A1_TOTAL + A2_TOTAL + B1_TOTAL} completed` }]}
         />
 
           {/* Tab switcher */}

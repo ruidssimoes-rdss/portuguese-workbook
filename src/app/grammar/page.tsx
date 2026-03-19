@@ -34,7 +34,7 @@ export default function GrammarPage() {
         title="Grammar"
         subtitle="Gramática"
         description="European Portuguese grammar topics from A1 to B1."
-        meta={`${allTopics.length} topics`}
+        pills={[{ label: `${allTopics.length} topics` }]}
       />
       <FilterBlock
         pills={{

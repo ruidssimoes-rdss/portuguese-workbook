@@ -1,62 +1,124 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ChevronLeft, Clock, FileText, BookOpen } from "lucide-react";
+
+interface MetaPill {
+  label: string;
+}
 
 interface IntroBlockProps {
+  // Row 1 — Breadcrumb
   title: string;
   subtitle?: string;
-  description?: string;
-  badge?: { label: string; level: "A1" | "A2" | "B1" };
-  meta?: string;
   backLink?: { label: string; href: string };
+  lastStudied?: string;
+
+  // Row 2 — Description
+  description?: string;
+
+  // Row 3 — Meta pills + badge
+  pills?: MetaPill[];
+  badge?: { label: string; level: "A1" | "A2" | "B1" };
+
+  // Slot
   children?: React.ReactNode;
 }
 
 const cefrStyles: Record<string, string> = {
-  A1: "text-emerald-700 bg-emerald-50",
-  A2: "text-blue-700 bg-blue-50",
-  B1: "text-amber-700 bg-amber-50",
+  A1: "text-emerald-700 bg-emerald-50 border-emerald-200",
+  A2: "text-blue-700 bg-blue-50 border-blue-200",
+  B1: "text-amber-700 bg-amber-50 border-amber-200",
 };
 
-export function IntroBlock({ title, subtitle, description, badge, meta, backLink, children }: IntroBlockProps) {
+export function IntroBlock({
+  title,
+  subtitle,
+  backLink,
+  lastStudied,
+  description,
+  pills,
+  badge,
+  children,
+}: IntroBlockProps) {
+  const hasPills = pills && pills.length > 0;
+  const hasRow3 = hasPills || badge;
+
   return (
     <div className="pb-8">
-      {/* Back link */}
-      {backLink && (
-        <Link
-          href={backLink.href}
-          className="inline-flex items-center gap-1.5 text-[14px] text-[#9CA3AF] hover:text-[#6B7280] transition-colors duration-150 mb-4 min-h-[44px]"
-        >
-          <ArrowLeft size={16} />
-          <span>{backLink.label}</span>
-        </Link>
-      )}
+      {/* Row 1 — Breadcrumb + Last Studied */}
+      <div className="flex items-baseline justify-between gap-16 flex-wrap">
+        {/* Left side — breadcrumb */}
+        <div className="flex items-baseline gap-0 min-w-0">
+          {backLink ? (
+            <>
+              <Link
+                href={backLink.href}
+                className="inline-flex items-center gap-0 text-[#9CA3AF] hover:text-[#6B7280] transition-colors duration-150 shrink-0"
+              >
+                <ChevronLeft size={18} className="shrink-0" />
+              </Link>
+              <Link
+                href={backLink.href}
+                className="text-[16px] font-medium text-[#111827] hover:text-[#6B7280] transition-colors duration-150 shrink-0"
+              >
+                {backLink.label}
+              </Link>
+              <span className="text-[16px] text-[#9CA3AF] mx-3 shrink-0">/</span>
+              <span className="text-[16px] font-semibold text-[#111827]">{title}</span>
+              {subtitle && (
+                <span className="text-[16px] font-normal text-[#003399]">&nbsp;({subtitle})</span>
+              )}
+            </>
+          ) : (
+            <>
+              <span className="text-[16px] font-semibold text-[#111827]">{title}</span>
+              {subtitle && (
+                <span className="text-[16px] font-normal text-[#003399]">&nbsp;({subtitle})</span>
+              )}
+            </>
+          )}
+        </div>
 
-      {/* Title row */}
-      <div className="flex items-center justify-between gap-4 flex-wrap">
-        <h1 className="text-[24px] md:text-[28px] font-semibold text-[#111827] break-words min-w-0">{title}</h1>
-        {badge && (
-          <span className={`text-[12px] font-normal px-2.5 py-1 rounded-full ${cefrStyles[badge.level] ?? "text-[#6B7280] bg-[#F3F4F6]"}`}>
-            {badge.label}
-          </span>
+        {/* Right side — Last Studied */}
+        {lastStudied && (
+          <div className="flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <Clock size={15} className="text-[#9CA3AF]" />
+            <span className="text-[13px] text-[#9CA3AF]">Last studied {lastStudied}</span>
+          </div>
         )}
       </div>
 
-      {/* PT subtitle */}
-      {subtitle && (
-        <p className="text-[14px] font-normal text-[#9CA3AF] italic mt-1">{subtitle}</p>
-      )}
-
-      {/* Description */}
+      {/* Row 2 — Description */}
       {description && (
-        <p className="text-[14px] text-[#6B7280] leading-relaxed mt-3 max-w-[640px]">{description}</p>
+        <div className="flex items-start gap-2 mt-4">
+          <FileText size={15} className="text-[#9CA3AF] shrink-0 mt-0.5" />
+          <p className="text-[14px] text-[#9CA3AF] max-w-[640px] leading-relaxed">{description}</p>
+        </div>
       )}
 
-      {/* Meta */}
-      {meta && (
-        <p className="text-[13px] text-[#9CA3AF] mt-3">{meta}</p>
+      {/* Row 3 — Meta pills + CEFR badge */}
+      {hasRow3 && (
+        <div className="flex items-center gap-2 mt-4 flex-wrap">
+          {hasPills &&
+            pills.map((pill) => (
+              <span
+                key={pill.label}
+                className="inline-flex items-center gap-1.5 text-[13px] font-normal text-[#9CA3AF] border border-[#E5E7EB] rounded-full py-[5px] px-3.5 bg-white whitespace-nowrap"
+              >
+                <BookOpen size={14} className="text-[#9CA3AF] shrink-0" />
+                {pill.label}
+              </span>
+            ))}
+          {badge && (
+            <span
+              className={`inline-flex items-center text-[13px] font-medium py-[5px] px-3.5 rounded-full whitespace-nowrap border ${cefrStyles[badge.level] ?? "text-[#6B7280] bg-[#F3F4F6] border-[#E5E7EB]"}`}
+            >
+              {badge.label}
+            </span>
+          )}
+        </div>
       )}
 
-      {/* Optional children (e.g. action buttons) */}
+      {/* Slot */}
       {children}
     </div>
   );

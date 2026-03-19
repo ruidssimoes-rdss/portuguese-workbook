@@ -37,11 +37,25 @@ export function SmartBlockSkeleton({ variant = "default" }: { variant?: "default
 
 export function IntroBlockSkeleton({ hasBackLink = false }: { hasBackLink?: boolean }) {
   return (
-    <div className="pb-8 space-y-3">
-      {hasBackLink && <SkeletonPulse className="h-4 w-24" />}
-      <SkeletonPulse className="h-8 w-64" />
-      <SkeletonPulse className="h-4 w-40" />
+    <div className="pb-8 space-y-4">
+      {/* Row 1 — Breadcrumb */}
+      <div className="flex items-baseline gap-3">
+        {hasBackLink && (
+          <>
+            <SkeletonPulse className="h-4 w-20" />
+            <SkeletonPulse className="h-4 w-2" />
+          </>
+        )}
+        <SkeletonPulse className="h-4 w-40" />
+        <SkeletonPulse className="h-4 w-28" />
+      </div>
+      {/* Row 2 — Description */}
       <SkeletonPulse className="h-4 w-80" />
+      {/* Row 3 — Pills */}
+      <div className="flex items-center gap-2">
+        <SkeletonPulse className="h-8 w-24 rounded-full" />
+        <SkeletonPulse className="h-8 w-20 rounded-full" />
+      </div>
     </div>
   );
 }

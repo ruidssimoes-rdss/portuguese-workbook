@@ -42,7 +42,7 @@ export default function ConjugationsPage() {
         title="Conjugations"
         subtitle="Conjugações"
         description="Practice conjugating European Portuguese verbs across all tenses."
-        meta={`${data.order.length} verbs`}
+        pills={[{ label: `${data.order.length} verbs` }]}
       />
       <FilterBlock
         pills={{

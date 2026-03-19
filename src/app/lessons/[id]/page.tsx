@@ -11,7 +11,7 @@
 
 import { useState, use, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { PageLayout, IntroBlock, ContentGrid, SmartBlock } from "@/components/blocos";
+import { PageLayout, ContentGrid, SmartBlock } from "@/components/blocos";
 import { ProtectedRoute } from "@/components/protected-route";
 import {
   getResolvedLesson,

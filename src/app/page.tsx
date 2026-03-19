@@ -145,7 +145,12 @@ export default function Home() {
       <PageLayout>
         <IntroBlock
           title={ptGreeting}
-          description={`${totalVocabWords.toLocaleString()} words · ${totalVerbs} verbs · ${totalGrammarTopics} grammar topics · ${sayings.length} sayings`}
+          pills={[
+            { label: `${totalVocabWords.toLocaleString()} words` },
+            { label: `${totalVerbs} verbs` },
+            { label: `${totalGrammarTopics} grammar topics` },
+            { label: `${sayings.length} sayings` },
+          ]}
         />
 
         {/* Daily prompt */}

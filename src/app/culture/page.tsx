@@ -574,7 +574,7 @@ function CultureContent() {
         title="Culture"
         subtitle="Cultura"
         description="Sayings, etiquette, false friends, and regional expressions — the real Portugal behind the language."
-        meta={`${totalItems} items`}
+        pills={[{ label: `${totalItems} items` }]}
       />
 
           {/* Featured Saying of the Day */}
