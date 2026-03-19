@@ -2,8 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
-import { PageContainer } from "@/components/ui/page-container";
+import { PageLayout } from "@/components/blocos";
 import { Button } from "@/components/ui/button";
 
 const sections = [
@@ -721,8 +720,7 @@ export default function GuidePage() {
 
   return (
     <>
-      <Topbar />
-      <PageContainer width="narrow" className="py-5">
+      <PageLayout className="!max-w-[896px] py-5">
         <header className="mb-6">
           <h1 className="text-2xl font-bold tracking-tight">
             How to Learn Portuguese
@@ -821,7 +819,7 @@ export default function GuidePage() {
             </Link>
           </div>
         </section>
-      </PageContainer>
+      </PageLayout>
     </>
   );
 }

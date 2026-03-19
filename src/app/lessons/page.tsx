@@ -2,22 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
 import { useAuth } from "@/components/auth-provider";
 import { getResolvedLessons } from "@/data/resolve-lessons";
 import {
   getLessonProgressMap,
   type LessonAttemptResult,
 } from "@/lib/lesson-progress";
-import { ProgressBar } from "@/components/ui/progress-bar";
-import { PageContainer } from "@/components/ui/page-container";
-import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
 import { CEFRBadge } from "@/components/ui/badge";
 import { TutorTabV2 } from "@/components/lessons/tutor-tab";
 import { patterns } from "@/lib/design-tokens";
+import { PageLayout, IntroBlock } from "@/components/blocos";
 
 const lessons = getResolvedLessons();
 const A1_LESSONS = lessons.filter((l) => l.cefr === "A1");
@@ -153,23 +150,13 @@ export default function LessonsPage() {
   const isLoggedIn = !authLoading && !!user;
 
   return (
-    <>
-      <Topbar />
-      <PageContainer>
-        <div className="py-5">
-          <PageHeader
-            title="Lessons"
-            titlePt="Lições"
-            tagline="Aprende português passo a passo com lições estruturadas de A1 a B1."
-            stats={[
-              { value: String(A1_TOTAL + A2_TOTAL + B1_TOTAL), label: "lições" },
-              { value: `${a1Completed + a2Completed + b1Completed}`, label: "completas" },
-            ]}
-          />
-          <p className="text-[13px] text-[var(--text-muted)] mt-1 mb-4">
-            Learn Portuguese step by step with structured lessons from A1 to B1.
-          </p>
-          <Divider className="mb-6" />
+    <PageLayout>
+        <IntroBlock
+          title="Lessons"
+          subtitle="Lições"
+          description="Learn Portuguese step by step with structured lessons from A1 to B1."
+          meta={`${a1Completed + a2Completed + b1Completed} of ${A1_TOTAL + A2_TOTAL + B1_TOTAL} completed`}
+        />
 
           {/* Tab switcher */}
           <div className="flex gap-1 mb-10">
@@ -188,7 +175,6 @@ export default function LessonsPage() {
           </div>
 
           {activeTab === "curriculum" && <LessonInfoSection />}
-        </div>
 
         {/* Tutor tab */}
         {activeTab === "tutor" && (
@@ -512,8 +498,6 @@ export default function LessonsPage() {
         </>
         )}
 
-        <div className="pb-16" />
-      </PageContainer>
-    </>
+    </PageLayout>
   );
 }

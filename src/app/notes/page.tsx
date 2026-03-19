@@ -3,9 +3,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Topbar } from "@/components/layout/topbar";
-import { PageContainer } from "@/components/ui/page-container";
-import { PageHeader } from "@/components/ui/page-header";
+import { PageLayout } from "@/components/blocos";
 import { Divider } from "@/components/ui/divider";
 import { SlideDrawer } from "@/components/ui/slide-drawer";
 import { useAuth } from "@/components/auth-provider";
@@ -547,16 +545,14 @@ function NotesContent() {
 
   return (
     <>
-      <Topbar />
-      <PageContainer>
+      <PageLayout>
+        <div className="pb-6">
+          <h1 className="text-[28px] font-semibold text-[#111827]">Notes</h1>
+          <p className="text-[14px] font-normal text-[#9CA3AF] italic mt-1">Notas</p>
+        </div>
         <div className="py-5">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <PageHeader
-              title="Notas"
-              section="REVISION"
-              sectionPt="Revisão"
-              tagline="O teu caderno de estudo — ideias, regras e descobertas."
-            />
+            <div />
             {isLoggedIn && (
               <button
                 type="button"
@@ -699,7 +695,7 @@ function NotesContent() {
         )}
 
         <div className="pb-16" />
-      </PageContainer>
+      </PageLayout>
 
       {isLoggedIn && drawerOpen && (
         <NoteEditorDrawer
@@ -720,22 +716,13 @@ function NotesContent() {
 export default function NotesPage() {
   return (
     <Suspense fallback={
-      <>
-        <Topbar />
-        <PageContainer>
-          <div className="py-5">
-            <PageHeader
-              title="Notas"
-              section="REVISION"
-              sectionPt="Revisão"
-              tagline="O teu caderno de estudo."
-            />
-            <Divider className="mt-4 mb-6" />
-          </div>
-          <p className="text-sm text-gray-500 py-8">A carregar...</p>
-          <div className="pb-16" />
-        </PageContainer>
-      </>
+      <PageLayout>
+        <div className="pb-8">
+          <h1 className="text-[28px] font-semibold text-[#111827]">Notes</h1>
+          <p className="text-[14px] text-[#9CA3AF] italic mt-1">Notas</p>
+        </div>
+        <p className="text-[14px] text-[#9CA3AF] py-8">Loading...</p>
+      </PageLayout>
     }>
       <NotesContent />
     </Suspense>

@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
+
 import { ProtectedRoute } from "@/components/protected-route";
 import { useAuth } from "@/components/auth-provider";
 import { createClient } from "@/lib/supabase/client";
-import { PageContainer } from "@/components/ui/page-container";
+import { PageLayout } from "@/components/blocos";
 import { Button } from "@/components/ui/button";
 import {
   getOnboardingData,
@@ -306,11 +306,10 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <>
-        <Topbar />
         <ProtectedRoute>
-          <PageContainer width="xnarrow" className="py-12">
+          <PageLayout className="!max-w-[640px] py-12">
             <p className="text-[var(--text-secondary)]">A carregar...</p>
-          </PageContainer>
+          </PageLayout>
         </ProtectedRoute>
       </>
     );
@@ -318,9 +317,8 @@ export default function SettingsPage() {
 
   return (
     <>
-      <Topbar />
       <ProtectedRoute>
-        <PageContainer width="xnarrow" className="py-12 space-y-8">
+        <PageLayout className="!max-w-[640px] py-12 space-y-8">
           <h1 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
             Definições
           </h1>
@@ -713,7 +711,7 @@ export default function SettingsPage() {
               </Button>
             </div>
           </Section>
-        </PageContainer>
+        </PageLayout>
       </ProtectedRoute>
 
       {/* Delete confirmation modal */}

@@ -52,7 +52,7 @@ export interface SmartBlockProgressBar {
 
 export interface SmartBlockProps {
   variant?: "default" | "stat";
-  title: string;
+  title?: string;
   subtitle?: string;
   pronunciation?: string;
   pronunciationText?: string;
@@ -290,14 +290,14 @@ export function SmartBlock(props: SmartBlockProps) {
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 min-w-0">
-          <h3 className="text-[16px] font-medium text-[#111827]">{title}</h3>
+          {title && <h3 className="text-[16px] font-medium text-[#111827]">{title}</h3>}
           {subtitle && <p className="text-[14px] text-[#6B7280] mt-0.5">{subtitle}</p>}
           {pronunciation && <p className="text-[13px] font-mono text-[#9CA3AF] italic mt-0.5">{pronunciation}</p>}
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {pronunciationButton && (
             <button
-              onClick={(e) => { e.stopPropagation(); e.preventDefault(); speak(pronunciationText || title); }}
+              onClick={(e) => { e.stopPropagation(); e.preventDefault(); speak(pronunciationText || title || ""); }}
               className="text-[#9CA3AF] hover:text-[#6B7280] transition-colors duration-150 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 cursor-pointer"
               aria-label="Play pronunciation"
             >

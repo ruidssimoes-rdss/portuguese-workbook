@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
 import { OnboardingGate } from "@/components/onboarding-gate";
 import { HomePageSwitch } from "@/components/home/home-page-switch";
 
@@ -13,9 +12,9 @@ import { dailyPrompts } from "@/data/daily-prompts";
 import { CEFRBadge, VerbGroupBadge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
-import { PageContainer } from "@/components/ui/page-container";
 import { HomeGreeting } from "@/components/home-greeting";
 import { LessonPreview } from "@/components/lesson-preview";
+import { PageLayout, IntroBlock, ContentGrid, SmartBlock } from "@/components/blocos";
 import type { VerbDataSet } from "@/types";
 import type { SayingsData } from "@/types/saying";
 import type { VocabData, VocabWord } from "@/types/vocab";
@@ -142,34 +141,13 @@ export default function Home() {
 
   return (
     <OnboardingGate>
-      <Topbar />
       <HomePageSwitch staticData={staticData}>
-        {/* Hero greeting section — full width (default homepage) */}
-        <section className="w-full bg-bg">
-        <div className="max-w-[1280px] mx-auto px-6 pt-14 pb-12">
-          <h1 className="text-5xl font-bold tracking-tight text-text">
-            {ptGreeting}
-          </h1>
-          <div className="mt-3 h-[2px] w-12 bg-[#003399] opacity-50 rounded-full" />
-          <div className="flex flex-wrap gap-2 mt-5">
-            {[
-              { value: totalVocabWords.toLocaleString(), label: "words" },
-              { value: totalVerbs, label: "verbs" },
-              { value: totalGrammarTopics, label: "grammar topics" },
-              { value: sayings.length, label: "sayings" },
-            ].map(({ value, label }) => (
-              <span
-                key={label}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-text-secondary bg-surface border border-border rounded-full px-3 py-1"
-              >
-                <span className="font-semibold text-text">{value}</span>
-                {label}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-      <PageContainer>
+      <PageLayout>
+        <IntroBlock
+          title={ptGreeting}
+          description={`${totalVocabWords.toLocaleString()} words · ${totalVerbs} verbs · ${totalGrammarTopics} grammar topics · ${sayings.length} sayings`}
+        />
+
         {/* Daily prompt */}
         {todayPrompt && <HomeGreeting greeting={todayPrompt} />}
 
@@ -177,50 +155,11 @@ export default function Home() {
         <LessonPreview />
 
         {/* Quick stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-          <div className="relative group bg-bg border border-border rounded-2xl p-6 hover:shadow-lg hover:border-[#003399]/20 transition-all duration-300 overflow-hidden cursor-default">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#003399] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div
-              className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center text-lg"
-              style={{ backgroundColor: "rgba(0,51,153,0.07)" }}
-            >
-              📖
-            </div>
-            <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-text-muted mb-3">Vocabulary</p>
-            <p className="text-4xl font-bold text-text tracking-tight leading-none">
-              {totalVocabWords.toLocaleString()}
-            </p>
-            <p className="text-sm text-text-muted mt-1">{totalCategories} categories · A1–B1</p>
-          </div>
-          <div className="relative group bg-bg border border-border rounded-2xl p-6 hover:shadow-lg hover:border-[#003399]/20 transition-all duration-300 overflow-hidden cursor-default">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#003399] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div
-              className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center text-lg"
-              style={{ backgroundColor: "rgba(0,51,153,0.07)" }}
-            >
-              🔤
-            </div>
-            <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-text-muted mb-3">Conjugations</p>
-            <p className="text-4xl font-bold text-text tracking-tight leading-none">
-              {totalVerbs}
-            </p>
-            <p className="text-sm text-text-muted mt-1">{totalConjugations.toLocaleString()} conjugations · 6 tenses</p>
-          </div>
-          <div className="relative group bg-bg border border-border rounded-2xl p-6 hover:shadow-lg hover:border-[#003399]/20 transition-all duration-300 overflow-hidden cursor-default">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#003399] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div
-              className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center text-lg"
-              style={{ backgroundColor: "rgba(0,51,153,0.07)" }}
-            >
-              📐
-            </div>
-            <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-text-muted mb-3">Grammar</p>
-            <p className="text-4xl font-bold text-text tracking-tight leading-none">
-              {totalGrammarTopics}
-            </p>
-            <p className="text-sm text-text-muted mt-1">A1–B1 · Rules & examples</p>
-          </div>
-        </div>
+        <ContentGrid columns={3}>
+          <SmartBlock variant="stat" statValue={totalVocabWords.toLocaleString()} statLabel="Vocabulary" />
+          <SmartBlock variant="stat" statValue={String(totalVerbs)} statLabel="Conjugations" />
+          <SmartBlock variant="stat" statValue={String(totalGrammarTopics)} statLabel="Grammar Topics" />
+        </ContentGrid>
 
         {/* Today's Picks */}
         <div className="mt-8">
@@ -330,33 +269,26 @@ export default function Home() {
 
         {/* Explore */}
         <div className="mt-8">
-          <SectionHeader className="mb-3">
-            Explore
-          </SectionHeader>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <p className="text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF] mb-4">Explore</p>
+          <ContentGrid>
             {[
               { title: "Conjugations", titlePt: "Conjugações", href: "/conjugations", stat: `${totalVerbs} verbs` },
               { title: "Vocabulary", titlePt: "Vocabulário", href: "/vocabulary", stat: `${totalVocabWords} words` },
               { title: "Grammar", titlePt: "Gramática", href: "/grammar", stat: `${totalGrammarTopics} topics` },
               { title: "Culture", titlePt: "Cultura", href: "/culture", stat: `${sayings.length} sayings` },
             ].map((s) => (
-              <Link
+              <SmartBlock
                 key={s.href}
+                title={s.title}
+                subtitle={s.titlePt}
+                meta={s.stat}
+                interactive
                 href={s.href}
-                className="block group"
-              >
-                <Card interactive className="h-full flex flex-col">
-                  <span className="text-[15px] font-semibold text-text">{s.title}</span>
-                  <span className="text-[13px] text-text-muted italic">{s.titlePt}</span>
-                  <span className="text-[12px] text-text-secondary mt-auto pt-3">{s.stat}</span>
-                </Card>
-              </Link>
+              />
             ))}
-          </div>
+          </ContentGrid>
         </div>
-
-        <div className="mb-12" />
-      </PageContainer>
+      </PageLayout>
       </HomePageSwitch>
     </OnboardingGate>
   );

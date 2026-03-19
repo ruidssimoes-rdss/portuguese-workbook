@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
+
 import { ProtectedRoute } from "@/components/protected-route";
 import { getProgressStats, type ProgressStats, type TimelineEvent } from "@/lib/progress-stats-service";
 import { ProgressBlock } from "@/components/blocks/content/progress-block";
@@ -223,7 +223,7 @@ export default function ProgressPage() {
 
   return (
     <ProtectedRoute>
-      <Topbar />
+
       <main className="max-w-[900px] mx-auto px-4 md:px-6 py-8">
         <div className="mb-8">
           <h1 className="text-[24px] font-bold text-[var(--text-primary)]">

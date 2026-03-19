@@ -2,9 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
-import { PageContainer } from "@/components/ui/page-container";
-import { PageHeader } from "@/components/ui/page-header";
+import { PageLayout } from "@/components/blocos";
 import { Divider } from "@/components/ui/divider";
 import { SlideDrawer } from "@/components/ui/slide-drawer";
 import { useAuth } from "@/components/auth-provider";
@@ -911,15 +909,18 @@ export default function CalendarPage() {
 
   return (
     <>
-      <Topbar />
-      <PageContainer>
+      <PageLayout>
         <div className="py-5">
-          <PageHeader
-            title="Calendário"
-            section="REVISION"
-            sectionPt="Revisão"
-            tagline="Acompanha o teu percurso e planeia sessões de estudo."
-          />
+          <div className="pb-10 pt-10 border-b border-border">
+            <div className="max-w-[640px]">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#003399]">REVISION</span>
+                <span className="text-[10px] text-[#003399]/50">/ Revisão</span>
+              </div>
+              <h1 className="text-[28px] md:text-[34px] leading-[1.15] font-extrabold tracking-[-0.02em] text-[var(--text-primary)]">Calendário</h1>
+              <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--text-secondary)] mt-3">Acompanha o teu percurso e planeia sessões de estudo.</p>
+            </div>
+          </div>
           <Divider className="mt-4 mb-6" />
         </div>
 
@@ -1214,7 +1215,7 @@ export default function CalendarPage() {
         )}
 
         <div className="pb-16" />
-      </PageContainer>
+      </PageLayout>
     </>
   );
 }
