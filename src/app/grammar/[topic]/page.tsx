@@ -3,13 +3,7 @@
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
-import { PageContainer } from "@/components/ui/page-container";
-import { Divider } from "@/components/ui/divider";
-import { CEFRBadge } from "@/components/ui/badge";
-import { StudyLogButton } from "@/components/study-log-button";
-import { NoteContextActions } from "@/components/notes/note-context-actions";
-import { ContentCalendarInfo } from "@/components/calendar/content-calendar-info";
+import { PageLayout, IntroBlock } from "@/components/blocos";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic } from "@/types/grammar";
 import { SmartGrammarBlock, type SmartGrammarBlockData } from "@/components/blocks/content/smart-grammar-block";
@@ -184,49 +178,22 @@ export default function GrammarTopicPage() {
 
   if (!topic || !smartData) {
     return (
-      <>
-        <Topbar />
-        <PageContainer>
-          <p className="text-[13px] text-[#6B7280]">Topic not found.</p>
-          <Link href="/grammar" className="text-[13px] text-[#6B7280] hover:text-[#111827] transition-all duration-150 ease-out mt-4 inline-block">
-            ← Gramática
-          </Link>
-        </PageContainer>
-      </>
+      <PageLayout>
+        <IntroBlock title="Topic not found" backLink={{ label: "Grammar", href: "/grammar" }} />
+      </PageLayout>
     );
   }
 
   return (
-    <>
-      <Topbar />
-      <PageContainer>
-        {/* Header */}
-        <div className="mb-8 py-5">
-          <Link href="/grammar" className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-all duration-150 ease-out mb-4">
-            ← Gramática
-          </Link>
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-[#111827]">{topic.title}</h1>
-              <p className="text-[13px] font-medium text-[#6B7280] italic mt-1">{topic.titlePt}</p>
-              <p className="text-[13px] text-[#9CA3AF] mt-1">{topic.rules.length} {topic.rules.length === 1 ? "regra" : "regras"}</p>
-            </div>
-            <div className="flex items-center gap-4 flex-wrap shrink-0">
-              <NoteContextActions contextType="grammar" contextId={topicId} contextLabel={topic.title} />
-              <ContentCalendarInfo contentType="grammar" contentId={topicId} />
-              <StudyLogButton contextTitle={topic.title} contextType="Grammar" />
-              <CEFRBadge level={topic.cefr} />
-            </div>
-          </div>
-        </div>
-
-        <Divider />
-
-        {/* SmartGrammarBlock renders all rules, tips, exceptions, and related topics */}
-        <div className="mt-8 pb-12">
-          <SmartGrammarBlock data={smartData} variant="expanded" relatedTopics={relatedTopics} />
-        </div>
-      </PageContainer>
-    </>
+    <PageLayout>
+      <IntroBlock
+        title={topic.title}
+        subtitle={topic.titlePt}
+        badge={{ label: topic.cefr, level: topic.cefr as "A1" | "A2" | "B1" }}
+        backLink={{ label: "Grammar", href: "/grammar" }}
+        meta={`${topic.rules.length} ${topic.rules.length === 1 ? "rule" : "rules"}`}
+      />
+      <SmartGrammarBlock data={smartData} variant="expanded" relatedTopics={relatedTopics} />
+    </PageLayout>
   );
 }

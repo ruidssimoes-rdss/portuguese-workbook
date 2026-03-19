@@ -21,6 +21,7 @@ import { Card } from "@/components/ui/card";
 import { Badge, CEFRBadge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { SmartCultureBlock } from "@/components/blocks/content/smart-culture-block";
+import { PageLayout, IntroBlock } from "@/components/blocos";
 
 const sayings = (sayingsData as unknown as SayingsData).sayings;
 const falseFriends = (falseFriendsData as unknown as FalseFriendsData).falseFriends;
@@ -565,24 +566,16 @@ function CultureContent() {
     return () => clearTimeout(t);
   }, [highlightId, tab]);
 
+  const totalItems = sayings.length + falseFriends.length + etiquetteTips.length + regionalExpressions.length;
+
   return (
-    <>
-      <Topbar />
-      <PageContainer>
-        <div className="py-5">
-          <PageHeader
-            title="Culture"
-            titlePt="Cultura"
-            section="CULTURE"
-            sectionPt="Cultura"
-            tagline="Sayings, etiquette, false friends, and regional expressions — the real Portugal behind the language, and why it matters for fluency."
-            stats={[
-              { value: String(sayings.length), label: "sayings" },
-              { value: String(falseFriends.length), label: "false friends" },
-              { value: String(etiquetteTips.length), label: "etiquette tips" },
-              { value: String(regionalExpressions.length), label: "regional expressions" },
-            ]}
-          />
+    <PageLayout>
+      <IntroBlock
+        title="Culture"
+        subtitle="Cultura"
+        description="Sayings, etiquette, false friends, and regional expressions — the real Portugal behind the language."
+        meta={`${totalItems} items`}
+      />
 
           {/* Featured Saying of the Day */}
           <FeaturedSaying />
@@ -623,10 +616,9 @@ function CultureContent() {
               Showing {currentFiltered.length} of {currentTotal}
             </p>
           </div>
-        </div>
 
         {/* Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-16">
           {tab === "sayings" && (
             <>
               {filteredSayings.length === 0 ? (
@@ -692,8 +684,7 @@ function CultureContent() {
             </>
           )}
         </div>
-      </PageContainer>
-    </>
+      </PageLayout>
   );
 }
 

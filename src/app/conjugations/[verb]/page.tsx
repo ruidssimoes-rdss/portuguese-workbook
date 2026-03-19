@@ -2,18 +2,10 @@
 
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
-import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
-import { PageContainer } from "@/components/ui/page-container";
-import { Divider } from "@/components/ui/divider";
-import { CEFRBadge, Badge } from "@/components/ui/badge";
-import { PronunciationButton } from "@/components/pronunciation-button";
-import { StudyLogButton } from "@/components/study-log-button";
-import { NoteContextActions } from "@/components/notes/note-context-actions";
-import { ContentCalendarInfo } from "@/components/calendar/content-calendar-info";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
 import { SmartVerbBlock, type SmartVerbBlockData } from "@/components/blocks/content/smart-verb-block";
+import { PageLayout, IntroBlock } from "@/components/blocos";
 
 const data = verbData as unknown as VerbDataSet;
 
@@ -66,48 +58,24 @@ export default function VerbPage() {
 
   if (!verb || !smartData) {
     return (
-      <>
-        <Topbar />
-        <PageContainer className="w-full py-16">
-          <p className="text-[#6B7280]">Verb not found.</p>
-          <Link href="/conjugations" className="text-[#6B7280] underline mt-2 block">← Back to all verbs</Link>
-        </PageContainer>
-      </>
+      <PageLayout>
+        <IntroBlock title="Verb not found" backLink={{ label: "Conjugations", href: "/conjugations" }} />
+      </PageLayout>
     );
   }
 
   const m = verb.meta;
 
   return (
-    <>
-      <Topbar />
-      <PageContainer className="w-full">
-        <div className="py-5">
-          <Link href="/conjugations" className="text-[#6B7280] hover:text-[#111827] text-[13px] transition-all duration-150 ease-out w-fit">← Conjugations</Link>
-          <div className="flex items-start justify-between gap-4 mt-2">
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 flex-wrap">
-                <h1 className="text-2xl font-bold text-[#111827]">{slug}</h1>
-                <PronunciationButton text={slug} size="md" variant="default" className="shrink-0" />
-                {m.pronunciation && <span className="text-sm text-[#9CA3AF] font-mono">{m.pronunciation}</span>}
-              </div>
-              <p className="mt-1 text-sm text-[#9CA3AF]">{m.english} · {m.group}</p>
-            </div>
-            <div className="flex items-center gap-4 flex-wrap shrink-0">
-              <NoteContextActions contextType="verb" contextId={slug} contextLabel={`${slug} — ${m.english}`} />
-              <ContentCalendarInfo contentType="verb" contentId={slug} />
-              <StudyLogButton contextTitle={`${slug} — ${m.english}`} contextType="Verbs" />
-              <Badge color={m.priority === "Essential" ? "text-red-700 bg-red-50" : m.priority === "Core" ? "text-blue-700 bg-blue-50" : "text-[#6B7280] bg-[#F3F4F6]"}>{m.priority}</Badge>
-              <CEFRBadge level={m.cefr} />
-            </div>
-          </div>
-          <Divider className="mt-6" />
-        </div>
-
-        <div className="mb-12">
-          <SmartVerbBlock data={smartData} variant="expanded" />
-        </div>
-      </PageContainer>
-    </>
+    <PageLayout>
+      <IntroBlock
+        title={slug}
+        subtitle={`${m.english} · ${m.group}`}
+        badge={{ label: m.cefr, level: m.cefr as "A1" | "A2" | "B1" }}
+        backLink={{ label: "Conjugations", href: "/conjugations" }}
+        meta={m.priority}
+      />
+      <SmartVerbBlock data={smartData} variant="expanded" />
+    </PageLayout>
   );
 }
