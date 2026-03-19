@@ -171,9 +171,9 @@ function FalseFriendCard({ data, isExpanded, onToggle, isHighlighted }: SmartCul
               </div>
             )}
             {data.falseTip && (
-              <div className="bg-amber-50 rounded-lg p-3">
-                <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
-                <p className="text-sm text-amber-800">{data.falseTip}</p>
+              <div className="bg-[#FFFBEB] rounded-lg p-4 border border-[#FEF3C7]">
+                <p className="text-[12px] font-medium text-[#B45309] uppercase tracking-wider mb-1">Tip</p>
+                <p className="text-[14px] text-[#92400E] leading-relaxed">{data.falseTip}</p>
               </div>
             )}
           </div>

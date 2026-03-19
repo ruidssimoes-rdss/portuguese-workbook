@@ -38,14 +38,14 @@ function CardVariant({ data, isHighlighted, className }: SmartVocabBlockProps) {
   return (
     <div
       id={data.id}
-      className={`${patterns.card.interactive} flex flex-col gap-3 ${
+      className={`group ${patterns.card.interactive} flex flex-col gap-3 ${
         isHighlighted ? "url-highlight" : ""
       } ${className ?? ""}`}
     >
       {/* Word + pronunciation */}
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-[18px] font-semibold leading-tight text-[#111827] break-words">{data.word}</h3>
-        <PronunciationButton text={data.word} size="md" />
+        <PronunciationButton text={data.word} size="md" className="md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-150" />
       </div>
 
       {/* Phonetic */}
@@ -58,8 +58,8 @@ function CardVariant({ data, isHighlighted, className }: SmartVocabBlockProps) {
 
       {/* Example */}
       {exPt && (
-        <div className="bg-[#FAFAFA] rounded-lg px-3 py-2.5 flex items-start gap-2">
-          <PronunciationButton text={exPt} size="sm" className="mt-0.5" />
+        <div className="bg-[#F9FAFB] rounded-lg p-4 flex items-start gap-2">
+          <PronunciationButton text={exPt} size="sm" className="mt-0.5 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-150" />
           <div className="min-w-0">
             <span className="text-[13px] italic leading-snug text-[#1F2937] break-words">
               &ldquo;{exPt}&rdquo;
@@ -110,7 +110,7 @@ function CardVariant({ data, isHighlighted, className }: SmartVocabBlockProps) {
         {data.tip && (
           <ContentPopover
             trigger={
-              <span className="text-[11px] font-semibold text-amber-600 bg-[#FFFBEB] border border-[#FEF3C7] px-2.5 py-[3px] rounded-full hover:bg-[#FEF3C7] transition-colors duration-150">
+              <span className="text-[12px] font-normal text-[#B45309] bg-[#FFFBEB] border border-[#FEF3C7] px-2.5 py-1 rounded-full hover:bg-[#FEF3C7] transition-colors duration-150">
                 Pro Tip
               </span>
             }

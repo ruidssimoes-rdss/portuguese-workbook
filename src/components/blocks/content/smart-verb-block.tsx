@@ -133,15 +133,15 @@ function ExpandedVariant({ data, className }: SmartVerbBlockProps) {
           </div>
         }
         desktopContent={
-          <div className="border border-[#E5E7EB] rounded-xl bg-white overflow-hidden">
-            <table className="w-full text-[13px] border-collapse table-auto">
+          <div className="rounded-xl bg-white overflow-hidden">
+            <table className="w-full text-[14px] border-collapse table-auto">
               <thead>
                 <tr>
-                  <th className="text-left text-[12px] font-semibold text-[#6B7280] px-3.5 py-2.5 border-b border-[#E5E7EB] bg-[#FAFAFA]">Tense</th>
-                  <th className="text-left text-[12px] font-semibold text-[#6B7280] px-3.5 py-2.5 border-b border-[#E5E7EB] bg-[#FAFAFA]">Person</th>
-                  <th className="text-left text-[12px] font-semibold text-[#6B7280] px-3.5 py-2.5 border-b border-[#E5E7EB] bg-[#FAFAFA]">Form</th>
-                  <th className="text-left text-[12px] font-semibold text-[#6B7280] px-3.5 py-2.5 border-b border-[#E5E7EB] bg-[#FAFAFA]">Example</th>
-                  <th className="text-left text-[12px] font-semibold text-[#6B7280] px-3.5 py-2.5 border-b border-[#E5E7EB] bg-[#FAFAFA]">CEFR</th>
+                  <th className="text-left text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF] px-4 py-3 border-b border-[#F3F4F6]">Tense</th>
+                  <th className="text-left text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF] px-4 py-3 border-b border-[#F3F4F6]">Person</th>
+                  <th className="text-left text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF] px-4 py-3 border-b border-[#F3F4F6]">Form</th>
+                  <th className="text-left text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF] px-4 py-3 border-b border-[#F3F4F6]">Example</th>
+                  <th className="text-left text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF] px-4 py-3 border-b border-[#F3F4F6]">CEFR</th>
                 </tr>
               </thead>
               <tbody>
@@ -152,25 +152,25 @@ function ExpandedVariant({ data, className }: SmartVerbBlockProps) {
                     <tr
                       key={i}
                       id={isHL ? `conj-${r.form}` : undefined}
-                      className={`hover:bg-[#FAFAFA] ${isHL && flashHighlight ? "bg-[#F3F4F6]" : ""} ${
-                        r.isException ? "bg-amber-50/50" : ""
+                      className={`hover:bg-[#F9FAFB] transition-colors duration-100 ${isHL && flashHighlight ? "bg-[#F3F4F6]" : ""} ${
+                        r.isException ? "bg-amber-50/30" : ""
                       }`}
                     >
-                      <td className="px-3.5 py-2.5 border-b border-[#F3F4F6]">
+                      <td className="px-4 py-4 border-b border-[#F9FAFB]">
                         <span className={`${patterns.badge} ${tc.text} ${tc.bg}`}>{r.tense}</span>
                       </td>
-                      <td className="px-3.5 py-2.5 border-b border-[#F3F4F6] font-medium">{r.pronoun}</td>
-                      <td className="px-3.5 py-2.5 border-b border-[#F3F4F6]">
-                        <div className="flex items-center gap-1.5">
-                          <span className="font-semibold">{r.form}</span>
-                          <PronunciationButton text={r.form} size="sm" />
+                      <td className="px-4 py-4 border-b border-[#F9FAFB] font-medium text-[#111827]">{r.pronoun}</td>
+                      <td className="px-4 py-4 border-b border-[#F9FAFB]">
+                        <div className="flex items-center gap-1.5 group">
+                          <span className="font-semibold text-[#111827]">{r.form}</span>
+                          <PronunciationButton text={r.form} size="sm" className="md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-150" />
                         </div>
                       </td>
-                      <td className="px-3.5 py-2.5 border-b border-[#F3F4F6] text-[#6B7280] italic text-[12px]">
+                      <td className="px-4 py-4 border-b border-[#F9FAFB] text-[#6B7280] italic text-[13px]">
                         {r.example}
                         {r.translation && <span className="block text-[#9CA3AF] not-italic mt-0.5">{r.translation}</span>}
                       </td>
-                      <td className="px-3.5 py-2.5 border-b border-[#F3F4F6]">
+                      <td className="px-4 py-4 border-b border-[#F9FAFB]">
                         <span className={`${patterns.badge} ${cefrBadgeClasses(r.tenseCefr)}`}>{r.tenseCefr}</span>
                       </td>
                     </tr>

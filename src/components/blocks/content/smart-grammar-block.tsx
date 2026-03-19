@@ -65,7 +65,7 @@ function RuleCard({
 
       {/* Examples with pronunciation */}
       {rule.examples.length > 0 && (
-        <div className="border-l-2 border-[#003399] pl-4 ml-3 mt-4 space-y-2">
+        <div className="bg-[#F9FAFB] rounded-lg p-4 ml-10 mt-4 space-y-2">
           {rule.examples.map((ex, i) => (
             <div key={i} className="flex items-center gap-3">
               <div className="flex-1 flex items-baseline justify-between gap-4 min-w-0">
@@ -80,8 +80,8 @@ function RuleCard({
 
       {/* Matched tip */}
       {rule.tip && (
-        <div className="bg-amber-50 rounded-lg p-3 mt-4">
-          <p className="text-[11px] font-semibold uppercase text-amber-600 mb-1">Dica</p>
+        <div className="bg-[#FFFBEB] rounded-lg p-4 border border-[#FEF3C7] mt-4">
+          <p className="text-[12px] font-medium uppercase tracking-wider text-[#B45309] mb-1">Dica</p>
           <p className="text-[13px] text-amber-700">
             <CrossLinkText text={rule.tip} />
           </p>

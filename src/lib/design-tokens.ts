@@ -1,5 +1,6 @@
 // ============================================================
 // Design Tokens — Single source of truth for the Aula PT design system
+// Notion-inspired: airy, minimal, typographically refined
 // ============================================================
 
 // ── Colors ──────────────────────────────────────────────────
@@ -17,17 +18,17 @@ export const colors = {
   // Surfaces
   surface: {
     base: "#FFFFFF",
-    subtle: "#FAFAFA",
+    subtle: "#F9FAFB",
     muted: "#F3F4F6",
     hover: "#F9FAFB",
   },
 
-  // Borders
+  // Borders — one shade lighter everywhere
   border: {
-    default: "#E5E7EB",
-    light: "#F3F4F6",
-    hover: "#D1D5DB",
-    focus: "#111827",
+    default: "#F3F4F6",
+    light: "#F9FAFB",
+    hover: "#E5E7EB",
+    focus: "#003399",
   },
 
   // CEFR levels (used for badges)
@@ -46,37 +47,39 @@ export const colors = {
     ir: { text: "text-violet-700", bg: "bg-violet-50" },
   },
 
-  // Accent (brand blue)
+  // Accent (brand blue — used sparingly)
   accent: "#003399",
 } as const;
 
 // ── Typography ──────────────────────────────────────────────
+// Hierarchy through size, not weight. font-medium > font-semibold in body text.
 
 export const typography = {
-  pageTitle: "text-2xl font-bold text-[#111827]",
-  pageTitlePt: "text-[13px] font-medium text-[#9CA3AF] italic",
-  pageSubtitle: "text-sm text-[#9CA3AF]",
+  pageTitle: "text-[28px] font-semibold text-[#111827]",
+  pageTitlePt: "text-[14px] font-normal text-[#9CA3AF] italic",
+  pageSubtitle: "text-[14px] text-[#9CA3AF]",
 
-  sectionHeader: "text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted",
+  sectionHeader: "text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF]",
 
-  cardTitle: "text-[15px] font-semibold text-text",
-  cardTitleLg: "text-[18px] font-semibold text-[#111827]",
-  cardBody: "text-[13px] text-[#6B7280]",
-  cardMeta: "text-[12px] text-[#9CA3AF]",
+  cardTitle: "text-[16px] font-medium text-[#111827]",
+  cardTitleLg: "text-[20px] font-semibold text-[#111827]",
+  cardBody: "text-[14px] text-[#6B7280] leading-relaxed",
+  cardMeta: "text-[13px] text-[#9CA3AF]",
 
-  label: "text-sm font-medium text-[#374151]",
-  caption: "text-[11px] font-semibold",
+  label: "text-[14px] font-medium text-[#374151]",
+  caption: "text-[12px] font-medium",
 } as const;
 
 // ── Spacing ─────────────────────────────────────────────────
+// Doubled air — p-6, gap-6, py-8 section gaps
 
 export const spacing = {
-  page: "max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10",
-  pageNarrow: "max-w-[896px] mx-auto px-4 md:px-6 lg:px-10",
-  pageXNarrow: "max-w-[640px] mx-auto px-4 md:px-6",
-  section: "py-5",
-  cardPadding: "p-5",
-  gridGap: "gap-4",
+  page: "max-w-[1080px] mx-auto px-6 md:px-10 lg:px-16",
+  pageNarrow: "max-w-[800px] mx-auto px-6 md:px-10 lg:px-16",
+  pageXNarrow: "max-w-[600px] mx-auto px-6",
+  section: "py-8",
+  cardPadding: "p-6",
+  gridGap: "gap-6",
 } as const;
 
 // ── Shadows & Radii ─────────────────────────────────────────
@@ -85,14 +88,14 @@ export const radii = {
   card: "rounded-xl",
   button: "rounded-lg",
   pill: "rounded-full",
-  input: "rounded-full",
+  input: "rounded-lg",
 } as const;
 
 // ── Elevation ───────────────────────────────────────────────
 
 export const elevation = {
-  low: "shadow-[0_4px_16px_rgba(0,0,0,0.06)]",
-  medium: "shadow-[0_8px_30px_rgba(0,0,0,0.08)]",
+  low: "shadow-sm",
+  medium: "shadow-md",
 } as const;
 
 // ── Transitions ─────────────────────────────────────────────
@@ -106,23 +109,29 @@ export const transitions = {
 
 export const patterns = {
   card: {
-    base: "border border-[#E5E7EB] rounded-xl p-5 bg-white",
-    interactive: "border border-[#E5E7EB] rounded-xl p-5 bg-white hover:border-[#D1D5DB] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:-translate-y-[1px] transition-all duration-150 ease-out",
-    surface: "bg-[#FAFAFA] rounded-xl p-5 border border-[#E5E7EB]",
-    featured: "border border-[#E5E7EB] rounded-xl p-5 bg-white border-l-[3px] border-l-[#003399]",
+    // Barely-there borders — defined by whitespace, not chrome
+    base: "border border-[#F3F4F6] rounded-xl p-6 bg-white",
+    interactive: "border border-[#F3F4F6] rounded-xl p-6 bg-white hover:border-[#E5E7EB] hover:shadow-sm hover:-translate-y-[0.5px] transition-all duration-150 ease-out cursor-pointer",
+    surface: "bg-[#F9FAFB] rounded-xl p-6",
   },
+
   pill: {
-    active: "px-3 py-1.5 rounded-full text-sm font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer transition-all duration-150 ease-out",
-    inactive: "px-3 py-1.5 rounded-full text-sm font-medium border border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#111827] transition-all duration-150 ease-out cursor-pointer bg-white",
+    active: "px-4 py-2 rounded-full text-[13px] font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer transition-all duration-150 ease-out",
+    inactive: "px-4 py-2 rounded-full text-[13px] font-normal border border-[#F3F4F6] text-[#9CA3AF] hover:border-[#E5E7EB] hover:text-[#6B7280] transition-all duration-150 ease-out cursor-pointer bg-white",
   },
-  badge: "text-[11px] font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap",
-  searchInput: "w-full sm:w-[240px] px-3 py-1.5 rounded-full text-sm border border-[#E5E7EB] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#D1D5DB] focus-visible:ring-2 focus-visible:ring-[#003399] focus-visible:ring-offset-2 transition-all duration-150 bg-white",
+
+  badge: "text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap",
+
+  searchInput: "w-full sm:w-[240px] px-4 py-2.5 rounded-lg text-[14px] border border-[#F3F4F6] text-[#111827] placeholder:text-[#D1D5DB] focus:outline-none focus:border-[#E5E7EB] focus-visible:ring-1 focus-visible:ring-[#003399]/20 transition-all duration-150 bg-white",
+
   divider: "border-t border-[#F3F4F6]",
-  emptyState: "text-[13px] text-text-secondary py-8",
+
+  emptyState: "text-[14px] text-[#6B7280] py-8",
+
   button: {
-    primary: "bg-[#111827] text-white text-sm font-medium rounded-lg hover:bg-[#1F2937] hover:-translate-y-[0.5px] transition-all duration-150 ease-out",
-    secondary: "border border-[#E5E7EB] text-[#6B7280] text-sm font-medium rounded-lg hover:bg-[#F9FAFB] hover:border-[#D1D5DB] hover:text-[#111827] transition-all duration-150 ease-out bg-white",
-    ghost: "text-sm font-medium text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] transition-all duration-150 ease-out",
+    primary: "bg-[#111827] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#1F2937] hover:-translate-y-[0.5px] transition-all duration-150 ease-out",
+    secondary: "border border-[#F3F4F6] text-[#6B7280] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F9FAFB] hover:border-[#E5E7EB] transition-all duration-150 ease-out bg-white",
+    ghost: "text-[14px] font-normal text-[#9CA3AF] hover:text-[#6B7280] hover:bg-[#F9FAFB] transition-all duration-150 ease-out",
   },
 } as const;
 
