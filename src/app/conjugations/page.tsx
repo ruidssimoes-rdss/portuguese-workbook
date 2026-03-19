@@ -77,6 +77,8 @@ export default function ConjugationsPage() {
               key={v}
               title={v}
               subtitle={m.english}
+              pronunciationButton
+              pronunciationText={v}
               badges={[
                 { label: m.cefr, color: cefrColor(m.cefr) },
                 { label: m.group.startsWith("Irregular") ? "Irreg." : m.group.replace("Regular ", ""), color: "neutral" },
