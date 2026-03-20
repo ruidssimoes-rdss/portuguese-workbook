@@ -54,13 +54,13 @@
   --color-bloco-progress: #003399;
 
   /* Text */
-  --color-bloco-text: #000000;
+  --color-bloco-text: #111827;
   --color-bloco-text-body: #555555;
   --color-bloco-text-secondary: #6B7280;
   --color-bloco-text-muted: #9CA3AF;
 
   /* Surfaces */
-  --color-bloco-surface: #FBFCFC;
+  --color-bloco-surface: #FFFFFF;
   --color-bloco-surface-recessed: #F9FAFB;
   --color-bloco-surface-page: #FFFFFF;
 
@@ -70,9 +70,9 @@
   --color-bloco-border-track: #F3F4F6;
 
   /* Spacing (as custom properties for non-Tailwind contexts) */
-  --bloco-padding: 20px;
-  --bloco-expanded-padding: 24px;
-  --bloco-section-gap: 20px;
+  --bloco-padding: 16px;
+  --bloco-expanded-padding: 20px;
+  --bloco-section-gap: 12px;
   --bloco-badge-gap: 8px;
   --bloco-example-padding: 12px;
   --bloco-example-gap: 8px;

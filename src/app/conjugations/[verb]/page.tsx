@@ -92,7 +92,7 @@ function TenseFilterAndCards({ tenses }: { tenses: TenseData[] }) {
             expandedContent={
               <ConjugationTable
                 tense={tense.name}
-                cefrLevel={tense.cefr as CEFRLevel}
+                hideHeader
                 conjugations={tense.conjugations.map((c) => ({
                   pronoun: c.pronoun,
                   form: c.form,
@@ -131,7 +131,7 @@ export default function VerbPage() {
   return (
     <PageLayout>
       <IntroBlock
-        title={slug}
+        title={slug.toLowerCase()}
         subtitle={`${m.english} · ${m.group}`}
         badge={{ label: m.cefr, level: m.cefr as "A1" | "A2" | "B1" }}
         backLink={{ label: "Conjugations", href: "/conjugations" }}

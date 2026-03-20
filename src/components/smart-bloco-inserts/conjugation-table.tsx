@@ -16,6 +16,8 @@ interface ConjugationTableProps {
   tense: string;
   tensePt?: string;
   cefrLevel?: CEFRLevel;
+  /** Hide the tense header when already shown by SmartBloco shell */
+  hideHeader?: boolean;
   conjugations: Conjugation[];
 }
 
@@ -25,6 +27,7 @@ export function ConjugationTable({
   tense,
   tensePt,
   cefrLevel,
+  hideHeader,
   conjugations,
 }: ConjugationTableProps) {
   function speak(text: string) {
@@ -43,34 +46,36 @@ export function ConjugationTable({
 
   return (
     <div className="flex flex-col gap-[12px]">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-baseline gap-[8px]">
-          <span className="font-[family-name:var(--font-sans)] text-[12px] font-medium uppercase tracking-[0.6px] text-[var(--color-bloco-text-muted)]">
-            {tense}
-          </span>
-          {tensePt && (
+      {/* Header (hidden when SmartBloco already shows title) */}
+      {!hideHeader && (
+        <div className="flex items-center justify-between">
+          <div className="flex items-baseline gap-[8px]">
+            <span className="font-[family-name:var(--font-sans)] text-[12px] font-medium uppercase tracking-[0.6px] text-[var(--color-bloco-text-muted)]">
+              {tense}
+            </span>
+            {tensePt && (
+              <span
+                className="font-[family-name:var(--font-content)] text-[12px] font-normal italic"
+                style={{ color: "var(--color-bloco-primary)" }}
+              >
+                {tensePt}
+              </span>
+            )}
+          </div>
+          {cefrLevel && (
             <span
-              className="font-[family-name:var(--font-content)] text-[12px] font-normal italic"
-              style={{ color: "var(--color-bloco-primary)" }}
+              className="inline-flex items-center justify-center min-w-[40px] h-[24px] rounded-[var(--bloco-radius-badge)] font-[family-name:var(--font-sans)] text-[12px] font-normal px-[10px]"
+              style={{
+                backgroundColor: `color-mix(in srgb, ${CEFR_COLORS[cefrLevel]} 10%, transparent)`,
+                border: `0.8px solid ${CEFR_COLORS[cefrLevel]}`,
+                color: CEFR_COLORS[cefrLevel],
+              }}
             >
-              {tensePt}
+              {cefrLevel}
             </span>
           )}
         </div>
-        {cefrLevel && (
-          <span
-            className="inline-flex items-center justify-center min-w-[40px] h-[24px] rounded-[var(--bloco-radius-badge)] font-[family-name:var(--font-sans)] text-[12px] font-normal px-[10px]"
-            style={{
-              backgroundColor: `color-mix(in srgb, ${CEFR_COLORS[cefrLevel]} 10%, transparent)`,
-              border: `0.8px solid ${CEFR_COLORS[cefrLevel]}`,
-              color: CEFR_COLORS[cefrLevel],
-            }}
-          >
-            {cefrLevel}
-          </span>
-        )}
-      </div>
+      )}
 
       {/* Rows */}
       <div className="flex flex-col">

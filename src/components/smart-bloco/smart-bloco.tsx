@@ -54,42 +54,40 @@ export function SmartBloco({
 
   const cardContent = (
     <>
-      {/* Badge row */}
-      <BadgeRow
-        title={title}
-        hasAudio={hasAudio}
-        cefrLevel={cefrLevel}
-        metaBadge={metaBadge}
-      />
-
       {/* Core content */}
       <div className="flex flex-col gap-[var(--bloco-section-gap)]">
-        {/* Title + pronunciation + translation row */}
+        {/* Title row with inline badges */}
         <div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-baseline gap-[20px] flex-wrap">
-              <span className="font-[family-name:var(--font-content)] text-[12px] font-normal text-[var(--color-bloco-text)]">
+          <div className="flex items-center justify-between gap-[8px]">
+            <div className="flex items-baseline gap-[12px] flex-wrap min-w-0">
+              <span className="font-[family-name:var(--font-content)] text-[13px] font-semibold text-[var(--color-bloco-text)]">
                 {title}
               </span>
               {pronunciation && (
-                <span className="font-[family-name:var(--font-mono)] text-[13px] font-normal italic text-[var(--color-bloco-text-muted)]">
+                <span className="font-[family-name:var(--font-mono)] text-[12px] font-normal italic text-[var(--color-bloco-text-muted)]">
                   {pronunciation}
                 </span>
               )}
+              {translation && (
+                <span
+                  className="font-[family-name:var(--font-content)] text-[12px] font-medium"
+                  style={{ color: "var(--color-bloco-primary)" }}
+                >
+                  {translation}
+                </span>
+              )}
             </div>
-            {translation && (
-              <span
-                className="font-[family-name:var(--font-content)] text-[12px] font-medium shrink-0"
-                style={{ color: "var(--color-bloco-primary)" }}
-              >
-                {translation}
-              </span>
-            )}
+            <BadgeRow
+              title={title}
+              hasAudio={hasAudio}
+              cefrLevel={cefrLevel}
+              metaBadge={metaBadge}
+            />
           </div>
           {subtitle && (
             <span
-              className="font-[family-name:var(--font-content)] text-[12px] font-medium block mt-[4px]"
-              style={{ color: "var(--color-bloco-primary)" }}
+              className="font-[family-name:var(--font-content)] text-[12px] font-normal block mt-[2px]"
+              style={{ color: "#003399" }}
             >
               {subtitle}
             </span>
@@ -137,7 +135,7 @@ export function SmartBloco({
   // ── Shell ────────────────────────────────────────────
 
   const hasExpanded = Boolean(expandedContent);
-  const maxWidth = hasExpanded ? "max-w-[700px]" : "max-w-[340px]";
+  const maxWidth = hasExpanded ? "max-w-[700px]" : "";
 
   const shellClasses = `
     @container

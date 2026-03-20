@@ -104,7 +104,7 @@ export function BadgeRow({ title, hasAudio, cefrLevel, metaBadge }: BadgeRowProp
   if (!hasBadges) return null;
 
   return (
-    <div className="flex items-center justify-end gap-[var(--bloco-badge-gap)]">
+    <div className="flex items-center shrink-0 gap-[var(--bloco-badge-gap)]">
       {hasAudio && <AudioBadge title={title} />}
       {cefrLevel && <CEFRBadge level={cefrLevel} />}
       {metaBadge && <MetaBadge label={metaBadge} />}

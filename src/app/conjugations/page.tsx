@@ -70,7 +70,7 @@ export default function ConjugationsPage() {
           return (
             <SmartBloco
               key={v}
-              title={v}
+              title={v.toLowerCase()}
               subtitle={m.english}
               hasAudio
               cefrLevel={m.cefr as CEFRLevel}

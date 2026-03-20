@@ -182,8 +182,6 @@ export default function GrammarTopicPage() {
 
       <SmartBloco
         title={topic.title}
-        subtitle={topic.titlePt}
-        cefrLevel={topic.cefr as CEFRLevel}
         description={topic.summary}
         expandedContent={
           <NumberedRules rules={rulesData} />
