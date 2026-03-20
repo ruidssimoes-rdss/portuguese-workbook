@@ -6,7 +6,10 @@ import Link from "next/link";
 import { PageLayout, IntroBlock } from "@/components/blocos";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData, GrammarTopic } from "@/types/grammar";
-import { SmartGrammarBlock, type SmartGrammarBlockData } from "@/components/blocks/content/smart-grammar-block";
+import { SmartBloco } from "@/components/smart-bloco";
+import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
+import { NumberedRules } from "@/components/smart-bloco-inserts";
+import type { CEFRLevel } from "@/components/smart-bloco";
 
 const data = grammarData as unknown as GrammarData;
 const allTopicIds = new Set(Object.keys(data.topics));
@@ -77,7 +80,7 @@ function getRelatedTopics(topic: GrammarTopic, topicId: string) {
   return [...related, ...sameCefr].slice(0, 3);
 }
 
-// ── Tip-to-rule matching (extracted from original) ─────────
+// ── Tip-to-rule matching ─────────────────────────────────
 
 function matchTipsToRules(topic: GrammarTopic) {
   const map: Record<number, { tips: string[]; tipsPt: string[] }> = {};
@@ -105,53 +108,7 @@ function matchTipsToRules(topic: GrammarTopic) {
     }
   });
 
-  const unmatchedTips: Array<{ en: string; pt?: string }> = [];
-  topic.tips.forEach((tip, i) => {
-    if (!matched.has(i)) unmatchedTips.push({ en: tip, pt: topic.tipsPt[i] || undefined });
-  });
-
-  return { ruleTipsMap: map, unmatchedTips };
-}
-
-// ── Map topic to SmartGrammarBlockData ──────────────────
-
-function mapTopicToSmartData(topic: GrammarTopic, topicId: string): SmartGrammarBlockData {
-  const { ruleTipsMap, unmatchedTips } = matchTipsToRules(topic);
-
-  return {
-    topicSlug: topicId,
-    topicTitle: topic.title,
-    topicTitlePt: topic.titlePt,
-    cefr: topic.cefr,
-    summary: topic.summary,
-    rules: topic.rules.map((rule, i) => {
-      const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
-        ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
-        : [];
-      const exceptions: string[] = [];
-      const crossLinks: Array<{ label: string; href: string }> = [];
-      for (const ex of rawExceptions) {
-        const rawText = normalizeExceptionText(ex);
-        if (!rawText) continue;
-        const { cleanText, links } = extractCrossLinks(rawText);
-        if (cleanText) exceptions.push(cleanText);
-        crossLinks.push(...links);
-      }
-
-      return {
-        rule: rule.rule,
-        rulePt: rule.rulePt,
-        examples: rule.examples,
-        tip: ruleTipsMap[i]?.tips[0],
-        tipPt: ruleTipsMap[i]?.tipsPt[0],
-        exceptions: exceptions.length > 0 ? exceptions : undefined,
-        crossLinks: crossLinks.length > 0 ? crossLinks.filter((l, j, arr) =>
-          arr.findIndex((o) => o.label === l.label && o.href === l.href) === j
-        ) : undefined,
-      };
-    }),
-    unmatchedTips: unmatchedTips.length > 0 ? unmatchedTips : undefined,
-  };
+  return { ruleTipsMap: map };
 }
 
 // ── Page Component ──────────────────────────────────────
@@ -161,10 +118,39 @@ export default function GrammarTopicPage() {
   const topicId = params.topic as string;
   const topic: GrammarTopic | undefined = topicId ? data.topics[topicId] : undefined;
 
-  const smartData = useMemo(() => {
-    if (!topic) return null;
-    return mapTopicToSmartData(topic, topicId);
-  }, [topic, topicId]);
+  const rulesData = useMemo(() => {
+    if (!topic) return [];
+    const { ruleTipsMap } = matchTipsToRules(topic);
+
+    return topic.rules.map((rule, i) => {
+      const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
+        ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
+        : [];
+      const exceptions: string[] = [];
+      for (const ex of rawExceptions) {
+        const rawText = normalizeExceptionText(ex);
+        if (!rawText) continue;
+        const { cleanText } = extractCrossLinks(rawText);
+        if (cleanText) exceptions.push(cleanText);
+      }
+
+      // Map to NumberedRules format
+      const calloutText = ruleTipsMap[i]?.tips[0];
+      const exceptionText = exceptions.length > 0 ? exceptions.join("; ") : undefined;
+
+      return {
+        number: i + 1,
+        text: stripLinks(rule.rule),
+        textPt: rule.rulePt,
+        example: rule.examples[0] ? { pt: rule.examples[0].pt, en: rule.examples[0].en } : undefined,
+        callout: calloutText
+          ? { type: "tip" as const, text: stripLinks(calloutText) }
+          : exceptionText
+            ? { type: "why" as const, text: exceptionText }
+            : undefined,
+      };
+    });
+  }, [topic]);
 
   const relatedTopics = useMemo(() => {
     if (!topic) return [];
@@ -176,7 +162,7 @@ export default function GrammarTopicPage() {
     }));
   }, [topic, topicId]);
 
-  if (!topic || !smartData) {
+  if (!topic) {
     return (
       <PageLayout>
         <IntroBlock title="Topic not found" backLink={{ label: "Grammar", href: "/grammar" }} />
@@ -193,7 +179,35 @@ export default function GrammarTopicPage() {
         backLink={{ label: "Grammar", href: "/grammar" }}
         pills={[{ label: `${topic.rules.length} ${topic.rules.length === 1 ? "rule" : "rules"}` }]}
       />
-      <SmartGrammarBlock data={smartData} variant="expanded" relatedTopics={relatedTopics} />
+
+      <SmartBloco
+        title={topic.title}
+        subtitle={topic.titlePt}
+        cefrLevel={topic.cefr as CEFRLevel}
+        description={topic.summary}
+        expandedContent={
+          <NumberedRules rules={rulesData} />
+        }
+        footer={{ ruleCount: topic.rules.length }}
+      />
+
+      {/* Related topics */}
+      {relatedTopics.length > 0 && (
+        <div className="mt-8 pt-8 border-t border-[#E5E7EB]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-4">Tópicos relacionados</p>
+          <BlocoGrid>
+            {relatedTopics.map((t) => (
+              <SmartBloco
+                key={t.slug}
+                title={t.title}
+                subtitle={t.titlePt}
+                cefrLevel={t.cefr as CEFRLevel}
+                href={`/grammar/${t.slug}`}
+              />
+            ))}
+          </BlocoGrid>
+        </div>
+      )}
     </PageLayout>
   );
 }

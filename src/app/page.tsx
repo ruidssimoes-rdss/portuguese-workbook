@@ -14,7 +14,9 @@ import { Card } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { HomeGreeting } from "@/components/home-greeting";
 import { LessonPreview } from "@/components/lesson-preview";
-import { PageLayout, IntroBlock, ContentGrid, SmartBlock } from "@/components/blocos";
+import { PageLayout, IntroBlock, ContentGrid } from "@/components/blocos";
+import { SmartBloco } from "@/components/smart-bloco";
+import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
 import type { VerbDataSet } from "@/types";
 import type { SayingsData } from "@/types/saying";
 import type { VocabData, VocabWord } from "@/types/vocab";
@@ -160,11 +162,11 @@ export default function Home() {
         <LessonPreview />
 
         {/* Quick stats */}
-        <ContentGrid columns={3}>
-          <SmartBlock variant="stat" statValue={totalVocabWords.toLocaleString()} statLabel="Vocabulary" />
-          <SmartBlock variant="stat" statValue={String(totalVerbs)} statLabel="Conjugations" />
-          <SmartBlock variant="stat" statValue={String(totalGrammarTopics)} statLabel="Grammar Topics" />
-        </ContentGrid>
+        <div className="flex flex-wrap gap-[20px]">
+          <SmartBloco title="Vocabulary" stat={{ value: totalVocabWords.toLocaleString(), label: "Vocabulary" }} />
+          <SmartBloco title="Conjugations" stat={{ value: String(totalVerbs), label: "Conjugations" }} />
+          <SmartBloco title="Grammar Topics" stat={{ value: String(totalGrammarTopics), label: "Grammar Topics" }} />
+        </div>
 
         {/* Today's Picks */}
         <div className="mt-8">
@@ -275,23 +277,22 @@ export default function Home() {
         {/* Explore */}
         <div className="mt-8">
           <p className="text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF] mb-4">Explore</p>
-          <ContentGrid>
+          <BlocoGrid>
             {[
               { title: "Conjugations", titlePt: "Conjugações", href: "/conjugations", stat: `${totalVerbs} verbs` },
               { title: "Vocabulary", titlePt: "Vocabulário", href: "/vocabulary", stat: `${totalVocabWords} words` },
               { title: "Grammar", titlePt: "Gramática", href: "/grammar", stat: `${totalGrammarTopics} topics` },
               { title: "Culture", titlePt: "Cultura", href: "/culture", stat: `${sayings.length} sayings` },
             ].map((s) => (
-              <SmartBlock
+              <SmartBloco
                 key={s.href}
                 title={s.title}
                 subtitle={s.titlePt}
-                meta={s.stat}
-                interactive
+                footer={{ label: s.stat }}
                 href={s.href}
               />
             ))}
-          </ContentGrid>
+          </BlocoGrid>
         </div>
       </PageLayout>
       </HomePageSwitch>

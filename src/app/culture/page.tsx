@@ -12,16 +12,18 @@ import type { FalseFriendsData, FalseFriend, EtiquetteData, EtiquetteTip, Region
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { normalizeForSearch } from "@/lib/search";
 import { PageContainer } from "@/components/ui/page-container";
-import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeader } from "@/components/ui/section-header";
 import { FilterPill } from "@/components/ui/filter-pill";
 import { SearchInput } from "@/components/ui/search-input";
 import { Divider } from "@/components/ui/divider";
 import { Card } from "@/components/ui/card";
-import { Badge, CEFRBadge } from "@/components/ui/badge";
+import { CEFRBadge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
-import { SmartCultureBlock } from "@/components/blocks/content/smart-culture-block";
 import { PageLayout, IntroBlock } from "@/components/blocos";
+import { SmartBloco } from "@/components/smart-bloco";
+import { Expression, Comparison, DoAvoid } from "@/components/smart-bloco-inserts";
+import type { CEFRLevel } from "@/components/smart-bloco";
 
 const sayings = (sayingsData as unknown as SayingsData).sayings;
 const falseFriends = (falseFriendsData as unknown as FalseFriendsData).falseFriends;
@@ -51,59 +53,15 @@ const REGION_TO_KEY: Record<string, string> = {
   Lisboa: "lisbon", Porto: "porto", North: "north", Algarve: "algarve", Azores: "azores", Madeira: "madeira",
 };
 
-const ETIQUETTE_CATEGORY_COLORS: Record<string, string> = {
-  greetings: "text-violet-700 bg-violet-50",
-  dining: "text-amber-700 bg-amber-50",
-  social: "text-sky-700 bg-sky-50",
-  shopping: "text-emerald-700 bg-emerald-50",
-  daily: "text-rose-700 bg-rose-50",
-};
-
 /* ── Utility ────────────────────────────────────────────────── */
 
-function Chevron({ expanded }: { expanded: boolean }) {
-  return (
-    <svg
-      className={`w-4 h-4 text-[#9CA3AF] transition-transform duration-200 shrink-0 ${expanded ? "rotate-180" : ""}`}
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-    </svg>
-  );
-}
-
-function ExpandableSection({ expanded, children }: { expanded: boolean; children: React.ReactNode }) {
-  return (
-    <div
-      className={`grid transition-all duration-150 ease-out ${expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
-    >
-      <div className="overflow-hidden">{children}</div>
-    </div>
-  );
-}
-
-function regionBadgeClass(region: string): string {
-  switch (region) {
-    case "lisbon": return "bg-yellow-50 text-yellow-700";
-    case "porto": return "bg-blue-50 text-blue-700";
-    case "algarve": return "bg-orange-50 text-orange-700";
-    case "north": return "bg-emerald-50 text-emerald-700";
-    case "azores": return "bg-cyan-50 text-cyan-700";
-    case "madeira": return "bg-blue-50 text-blue-700";
-    default: return "bg-[#F3F4F6] text-[#6B7280]";
-  }
+function themeLabel(themeKey: string): string {
+  return THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === themeKey) ?? themeKey;
 }
 
 function regionLabel(region: string): string {
   const map: Record<string, string> = { lisbon: "Lisboa", porto: "Porto", north: "North", algarve: "Algarve", azores: "Azores", madeira: "Madeira" };
   return map[region] ?? region;
-}
-
-function themeLabel(themeKey: string): string {
-  return THEMES.find((t) => t !== "All" && THEME_TO_KEY[t] === themeKey) ?? themeKey;
 }
 
 function etiquetteCategoryLabel(categoryKey: string): string {
@@ -133,208 +91,6 @@ function FeaturedSaying() {
         </div>
       </Card>
     </section>
-  );
-}
-
-/* ── Card Components ────────────────────────────────────────── */
-
-function SayingCard({ saying, isHighlighted, isExpanded, onToggle }: { saying: Saying; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    navigator.clipboard.writeText(saying.portuguese).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }, [saying.portuguese]);
-
-  return (
-    <Card
-      variant="outline"
-      interactive
-      padding="lg"
-      onClick={onToggle}
-      className={isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""}
-    >
-      <article id={saying.id}>
-        {/* Collapsed: always visible */}
-        <div className="flex items-start justify-between gap-3">
-          <p className="text-[15px] font-semibold italic text-[#111827] leading-snug">
-            &quot;{saying.portuguese}&quot;
-          </p>
-          <Chevron expanded={isExpanded} />
-        </div>
-        <div className="flex items-center gap-2 mt-2 flex-wrap">
-          <PronunciationButton text={saying.portuguese} size="sm" variant="muted" />
-          <CEFRBadge level={saying.cefr} />
-          <Badge>{themeLabel(saying.theme)}</Badge>
-        </div>
-        <p className="mt-3 text-sm text-[#6B7280]">{saying.meaning}</p>
-
-        {/* Expandable details */}
-        <ExpandableSection expanded={isExpanded}>
-          <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
-            <div className="bg-[#F9FAFB] rounded-lg p-3 space-y-2">
-              <div>
-                <p className="text-xs font-semibold text-[#6B7280]">Literal:</p>
-                <p className="text-sm text-[#6B7280]">{saying.literal}</p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-[#6B7280]">When to use:</p>
-                <p className="text-sm text-[#6B7280]">{saying.usage}</p>
-              </div>
-              {saying.example && (
-                <div className="pt-2 border-t border-[#E5E7EB]">
-                  <p className="text-sm text-[#111827] italic">{saying.example}</p>
-                  {saying.exampleTranslation && <p className="text-sm text-[#6B7280] mt-1">{saying.exampleTranslation}</p>}
-                </div>
-              )}
-            </div>
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={handleCopy}
-                className="text-xs text-[#9CA3AF] hover:text-[#6B7280] transition-colors"
-              >
-                {copied ? "Copied" : "Copy"}
-              </button>
-            </div>
-          </div>
-        </ExpandableSection>
-      </article>
-    </Card>
-  );
-}
-
-function FalseFriendCard({ item, isHighlighted, isExpanded, onToggle }: { item: FalseFriend; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
-  return (
-    <Card
-      variant="outline"
-      interactive
-      padding="lg"
-      onClick={onToggle}
-      className={isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""}
-    >
-      <article id={item.id}>
-        {/* Header */}
-        <div className="flex items-start justify-between gap-3">
-          <p className="font-bold text-[#111827] text-base">{item.portuguese}</p>
-          <Chevron expanded={isExpanded} />
-        </div>
-        <div className="flex items-center gap-2 mt-2">
-          <PronunciationButton text={item.portuguese} size="sm" variant="muted" />
-          <CEFRBadge level={item.cefr} />
-        </div>
-
-        {/* Side-by-side comparison */}
-        <div className="grid grid-cols-2 gap-2 mt-3">
-          <div className="rounded-lg bg-emerald-50 p-2.5">
-            <p className="text-[10px] font-semibold uppercase tracking-wide text-emerald-600 mb-0.5">Actually means</p>
-            <p className="text-sm font-medium text-emerald-800">{item.actualMeaning}</p>
-          </div>
-          <div className="rounded-lg bg-red-50 p-2.5">
-            <p className="text-[10px] font-semibold uppercase tracking-wide text-red-500 mb-0.5">Looks like</p>
-            <p className="text-sm font-medium text-red-700 line-through">{item.looksLike}</p>
-          </div>
-        </div>
-
-        {/* Expandable details */}
-        <ExpandableSection expanded={isExpanded}>
-          <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
-            <p className="text-sm text-[#6B7280]">
-              Correct word for &quot;{item.looksLike}&quot;: <span className="font-medium text-[#374151]">{item.correctWord}</span>
-            </p>
-            <div className="bg-[#F9FAFB] rounded-lg p-3">
-              <p className="text-sm text-[#111827] italic">{item.example}</p>
-              <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
-            </div>
-            <div className="bg-amber-50 rounded-lg p-3">
-              <p className="text-xs font-semibold text-amber-700 mb-1">Tip:</p>
-              <p className="text-sm text-amber-800">{item.tip}</p>
-            </div>
-          </div>
-        </ExpandableSection>
-      </article>
-    </Card>
-  );
-}
-
-function EtiquetteCard({ tip, isExpanded, onToggle }: { tip: EtiquetteTip; isExpanded: boolean; onToggle: () => void }) {
-  return (
-    <Card
-      variant="outline"
-      interactive
-      padding="lg"
-      onClick={onToggle}
-    >
-      <article id={tip.id}>
-        {/* Category badge at top */}
-        <div className="flex items-start justify-between gap-3">
-          <Badge color={ETIQUETTE_CATEGORY_COLORS[tip.category] ?? "text-[#6B7280] bg-[#F3F4F6]"}>
-            {etiquetteCategoryLabel(tip.category)}
-          </Badge>
-          <Chevron expanded={isExpanded} />
-        </div>
-
-        <p className="font-bold text-[#111827] mt-2">{tip.title}</p>
-        <p className="text-sm text-[#6B7280] italic mt-0.5">{tip.titlePt}</p>
-        <p className={`mt-3 text-sm text-[#6B7280] ${isExpanded ? "" : "line-clamp-2"}`}>{tip.description}</p>
-
-        {/* Expandable details */}
-        <ExpandableSection expanded={isExpanded}>
-          <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
-            <div className="bg-emerald-50 rounded-lg p-3">
-              <p className="text-xs font-semibold text-emerald-700 mb-1">Do:</p>
-              <p className="text-sm text-emerald-800">{tip.doThis}</p>
-            </div>
-            <div className="bg-red-50 rounded-lg p-3">
-              <p className="text-xs font-semibold text-red-500 mb-1">Avoid:</p>
-              <p className="text-sm text-red-700">{tip.avoidThis}</p>
-            </div>
-          </div>
-        </ExpandableSection>
-      </article>
-    </Card>
-  );
-}
-
-function RegionalCard({ item, isHighlighted, isExpanded, onToggle }: { item: RegionalExpression; isHighlighted?: boolean; isExpanded: boolean; onToggle: () => void }) {
-  return (
-    <Card
-      variant="outline"
-      interactive
-      padding="lg"
-      onClick={onToggle}
-      className={`bg-[#FAFBFC] ${isHighlighted ? "ring-2 ring-[#111827]/40 border-[#111827]/30" : ""}`}
-    >
-      <article id={item.id}>
-        {/* Header */}
-        <div className="flex items-start justify-between gap-3">
-          <p className="font-semibold text-[#111827] italic text-[15px]">{item.expression}</p>
-          <Chevron expanded={isExpanded} />
-        </div>
-        <div className="flex items-center gap-2 mt-2 flex-wrap">
-          <Badge color={regionBadgeClass(item.region)}>{regionLabel(item.region)}</Badge>
-          <CEFRBadge level={item.cefr} />
-          <PronunciationButton text={item.expression} size="sm" variant="muted" />
-        </div>
-        <p className="mt-3 text-sm text-[#6B7280]">{item.meaning}</p>
-
-        {/* Expandable details */}
-        <ExpandableSection expanded={isExpanded}>
-          <div className="mt-4 pt-4 border-t border-[#F3F4F6] space-y-3">
-            <p className="text-xs text-[#9CA3AF] font-mono">{item.pronunciation}</p>
-            <p className="text-sm text-[#6B7280]">
-              Standard Portuguese: <span className="font-medium text-[#374151]">{item.standardAlternative}</span>
-            </p>
-            <div className="bg-[#F9FAFB] rounded-lg p-3">
-              <p className="text-sm text-[#111827] italic">{item.example}</p>
-              <p className="text-sm text-[#6B7280] mt-1">{item.exampleTranslation}</p>
-            </div>
-          </div>
-        </ExpandableSection>
-      </article>
-    </Card>
   );
 }
 
@@ -625,11 +381,26 @@ function CultureContent() {
                 <EmptyState message="No sayings match your filters." className="col-span-full" />
               ) : (
                 filteredSayings.map((saying) => (
-                  <SmartCultureBlock key={saying.id} type="saying" data={{
-                    id: saying.id, expression: saying.portuguese, meaning: saying.meaning,
-                    literal: saying.literal, usage: saying.usage, theme: saying.theme,
-                    cefr: saying.cefr, example: saying.example, exampleTranslation: saying.exampleTranslation,
-                  }} isExpanded={expandedId === saying.id} onToggle={() => toggleCard(saying.id)} isHighlighted={highlightId === saying.id} />
+                  <SmartBloco
+                    key={saying.id}
+                    title={saying.portuguese}
+                    hasAudio
+                    cefrLevel={saying.cefr as CEFRLevel}
+                    metaBadge={themeLabel(saying.theme)}
+                    description={saying.meaning}
+                    expandedContent={
+                      expandedId === saying.id ? (
+                        <Expression
+                          meaning={saying.meaning}
+                          usage={saying.usage}
+                          quote={{ pt: saying.portuguese, en: saying.literal }}
+                          hasAudio
+                        />
+                      ) : undefined
+                    }
+                    onClick={() => toggleCard(saying.id)}
+                    className={highlightId === saying.id ? "ring-2 ring-[#111827]/40" : ""}
+                  />
                 ))
               )}
             </>
@@ -641,11 +412,23 @@ function CultureContent() {
                 <EmptyState message="No false friends match your filters." className="col-span-full" />
               ) : (
                 filteredFalseFriends.map((item) => (
-                  <SmartCultureBlock key={item.id} type="false-friend" data={{
-                    id: item.id, portuguese: item.portuguese, looksLike: item.looksLike,
-                    actualMeaning: item.actualMeaning, correctWord: item.correctWord, cefr: item.cefr,
-                    falseExample: item.example, falseExampleTranslation: item.exampleTranslation, falseTip: item.tip,
-                  }} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} isHighlighted={highlightId === item.id} />
+                  <SmartBloco
+                    key={item.id}
+                    title={item.portuguese}
+                    hasAudio
+                    cefrLevel={item.cefr as CEFRLevel}
+                    description={`Looks like "${item.looksLike}" but actually means "${item.actualMeaning}"`}
+                    expandedContent={
+                      expandedId === item.id ? (
+                        <Comparison
+                          positive={{ label: "Actually means", text: item.actualMeaning }}
+                          negative={{ label: "Looks like", text: item.looksLike }}
+                        />
+                      ) : undefined
+                    }
+                    onClick={() => toggleCard(item.id)}
+                    className={highlightId === item.id ? "ring-2 ring-[#111827]/40" : ""}
+                  />
                 ))
               )}
             </>
@@ -657,11 +440,22 @@ function CultureContent() {
                 <EmptyState message="No tips match your filters." className="col-span-full" />
               ) : (
                 filteredEtiquette.map((tip) => (
-                  <SmartCultureBlock key={tip.id} type="etiquette" data={{
-                    id: tip.id, title: tip.title, titlePt: tip.titlePt,
-                    description: tip.description, category: tip.category,
-                    doThis: tip.doThis, avoidThis: tip.avoidThis,
-                  }} isExpanded={expandedId === tip.id} onToggle={() => toggleCard(tip.id)} />
+                  <SmartBloco
+                    key={tip.id}
+                    title={tip.title}
+                    subtitle={tip.titlePt}
+                    description={tip.description}
+                    metaBadge={etiquetteCategoryLabel(tip.category)}
+                    expandedContent={
+                      expandedId === tip.id ? (
+                        <DoAvoid
+                          doItems={[tip.doThis]}
+                          avoidItems={[tip.avoidThis]}
+                        />
+                      ) : undefined
+                    }
+                    onClick={() => toggleCard(tip.id)}
+                  />
                 ))
               )}
             </>
@@ -673,12 +467,25 @@ function CultureContent() {
                 <EmptyState message="No regional expressions match your filters." className="col-span-full" />
               ) : (
                 filteredRegional.map((item) => (
-                  <SmartCultureBlock key={item.id} type="regional" data={{
-                    id: item.id, expression: item.expression, meaning: item.meaning,
-                    region: item.region, cefr: item.cefr, pronunciation: item.pronunciation,
-                    standardAlternative: item.standardAlternative,
-                    regionalExample: item.example, regionalExampleTranslation: item.exampleTranslation,
-                  }} isExpanded={expandedId === item.id} onToggle={() => toggleCard(item.id)} isHighlighted={highlightId === item.id} />
+                  <SmartBloco
+                    key={item.id}
+                    title={item.expression}
+                    subtitle={item.meaning}
+                    hasAudio
+                    cefrLevel={item.cefr as CEFRLevel}
+                    metaBadge={regionLabel(item.region)}
+                    expandedContent={
+                      expandedId === item.id ? (
+                        <Expression
+                          meaning={item.standardAlternative ? `Standard: ${item.standardAlternative}` : item.meaning}
+                          quote={{ pt: item.example, en: item.exampleTranslation }}
+                          hasAudio
+                        />
+                      ) : undefined
+                    }
+                    onClick={() => toggleCard(item.id)}
+                    className={highlightId === item.id ? "ring-2 ring-[#111827]/40" : ""}
+                  />
                 ))
               )}
             </>

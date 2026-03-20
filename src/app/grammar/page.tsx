@@ -3,17 +3,13 @@
 import { useState, useMemo } from "react";
 import grammarData from "@/data/grammar.json";
 import type { GrammarData } from "@/types/grammar";
-import { PageLayout, IntroBlock, FilterBlock, ContentGrid, SmartBlock } from "@/components/blocos";
-import type { SmartBlockBadge } from "@/components/blocos";
+import { PageLayout, IntroBlock, FilterBlock } from "@/components/blocos";
+import { SmartBloco } from "@/components/smart-bloco";
+import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
+import type { CEFRLevel } from "@/components/smart-bloco";
 
 const data = grammarData as unknown as GrammarData;
 const allTopics = Object.values(data.topics).sort((a, b) => a.title.localeCompare(b.title));
-
-function cefrColor(level: string): SmartBlockBadge["color"] {
-  if (level === "A1") return "emerald";
-  if (level === "A2") return "blue";
-  return "amber";
-}
 
 export default function GrammarPage() {
   const [cefrFilter, setCefrFilter] = useState("All");
@@ -45,16 +41,15 @@ export default function GrammarPage() {
         search={{ value: search, onChange: setSearch, placeholder: "Search grammar topics..." }}
         count={{ showing: filtered.length, total: allTopics.length }}
       />
-      <ContentGrid>
+      <BlocoGrid>
         {filtered.map((topic) => (
-          <SmartBlock
+          <SmartBloco
             key={topic.id}
             title={topic.title}
             subtitle={topic.titlePt}
-            badges={[{ label: topic.cefr, color: cefrColor(topic.cefr) }]}
+            cefrLevel={topic.cefr as CEFRLevel}
             description={topic.summary}
-            meta={`${topic.rules?.length || 0} rules · ${topic.questions?.length || 0} questions`}
-            interactive
+            footer={{ ruleCount: topic.rules?.length || 0, questionCount: topic.questions?.length || 0 }}
             href={`/grammar/${topic.id}`}
           />
         ))}
@@ -63,7 +58,7 @@ export default function GrammarPage() {
             <p className="text-[14px] text-[#9CA3AF]">No topics match your filter.</p>
           </div>
         )}
-      </ContentGrid>
+      </BlocoGrid>
     </PageLayout>
   );
 }

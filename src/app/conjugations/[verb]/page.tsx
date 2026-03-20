@@ -1,11 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
-import { useParams } from "next/navigation";
+import { useState, useEffect, useMemo } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
-import { SmartVerbBlock, type SmartVerbBlockData } from "@/components/blocks/content/smart-verb-block";
-import { PageLayout, IntroBlock } from "@/components/blocos";
+import { PageLayout, IntroBlock, FilterBlock } from "@/components/blocos";
+import { SmartBloco } from "@/components/smart-bloco";
+import { ConjugationTable } from "@/components/smart-bloco-inserts";
+import type { CEFRLevel } from "@/components/smart-bloco";
 
 const data = verbData as unknown as VerbDataSet;
 
@@ -17,9 +19,24 @@ const PERSON_SHORT: Record<string, string> = {
   "eles/elas/vocês (they/you plural formal)": "eles/elas",
 };
 
-function mapVerbToSmartData(slug: string, verb: (typeof data.verbs)[string]): SmartVerbBlockData {
-  const m = verb.meta;
-  const tenseMap = new Map<string, SmartVerbBlockData["tenses"][number]>();
+const ALL_TENSES = ["All", "Present", "Preterite", "Imperfect", "Future", "Conditional", "Present Subjunctive"];
+
+interface TenseData {
+  name: string;
+  label: string;
+  cefr: string;
+  conjugations: Array<{
+    pronoun: string;
+    form: string;
+    example?: string;
+    translation?: string;
+    note?: string;
+    isException?: boolean;
+  }>;
+}
+
+function mapVerbToTenses(verb: (typeof data.verbs)[string]): TenseData[] {
+  const tenseMap = new Map<string, TenseData>();
   const conjugations = Array.isArray(verb.conjugations) ? verb.conjugations : [];
   for (const c of conjugations) {
     if (!tenseMap.has(c.Tense)) {
@@ -34,16 +51,61 @@ function mapVerbToSmartData(slug: string, verb: (typeof data.verbs)[string]): Sm
       isException: c.Type === "Exception",
     });
   }
-  return {
-    verb: slug,
-    verbTranslation: m.english,
-    verbSlug: slug.toLowerCase(),
-    pronunciation: m.pronunciation,
-    verbGroup: m.group,
-    cefr: m.cefr,
-    priority: m.priority,
-    tenses: Array.from(tenseMap.values()),
-  };
+  return Array.from(tenseMap.values());
+}
+
+function TenseFilterAndCards({ tenses }: { tenses: TenseData[] }) {
+  const searchParams = useSearchParams();
+  const initialTense = searchParams.get("tense");
+
+  const [tenseFilter, setTenseFilter] = useState(initialTense || "All");
+
+  useEffect(() => {
+    if (initialTense && ALL_TENSES.includes(initialTense)) setTenseFilter(initialTense);
+  }, [initialTense]);
+
+  const filteredTenses = tenseFilter === "All"
+    ? tenses
+    : tenses.filter((t) => t.name === tenseFilter);
+
+  return (
+    <>
+      {/* Tense filter pills */}
+      <FilterBlock
+        pills={{
+          options: ALL_TENSES
+            .filter((t) => t === "All" || tenses.some((dt) => dt.name === t))
+            .map((t) => ({ label: t, value: t })),
+          value: tenseFilter,
+          onChange: setTenseFilter,
+        }}
+      />
+
+      {/* Tense cards */}
+      <div className="space-y-[24px]">
+        {filteredTenses.map((tense) => (
+          <SmartBloco
+            key={tense.name}
+            title={tense.name}
+            subtitle={tense.label !== tense.name ? tense.label : undefined}
+            cefrLevel={tense.cefr as CEFRLevel}
+            expandedContent={
+              <ConjugationTable
+                tense={tense.name}
+                cefrLevel={tense.cefr as CEFRLevel}
+                conjugations={tense.conjugations.map((c) => ({
+                  pronoun: c.pronoun,
+                  form: c.form,
+                  example: c.example,
+                  hasAudio: true,
+                }))}
+              />
+            }
+          />
+        ))}
+      </div>
+    </>
+  );
 }
 
 export default function VerbPage() {
@@ -51,12 +113,12 @@ export default function VerbPage() {
   const slug = (params.verb as string).toUpperCase();
   const verb = data.verbs[slug];
 
-  const smartData = useMemo(() => {
-    if (!verb) return null;
-    return mapVerbToSmartData(slug, verb);
-  }, [verb, slug]);
+  const tenses = useMemo(() => {
+    if (!verb) return [];
+    return mapVerbToTenses(verb);
+  }, [verb]);
 
-  if (!verb || !smartData) {
+  if (!verb) {
     return (
       <PageLayout>
         <IntroBlock title="Verb not found" backLink={{ label: "Conjugations", href: "/conjugations" }} />
@@ -75,7 +137,7 @@ export default function VerbPage() {
         backLink={{ label: "Conjugations", href: "/conjugations" }}
         pills={[{ label: m.priority }]}
       />
-      <SmartVerbBlock data={smartData} variant="expanded" />
+      <TenseFilterAndCards tenses={tenses} />
     </PageLayout>
   );
 }

@@ -3,17 +3,12 @@
 import { useState, useMemo } from "react";
 import verbData from "@/data/verbs.json";
 import type { VerbDataSet } from "@/types";
-import Link from "next/link";
-import { PageLayout, IntroBlock, FilterBlock, ContentGrid, SmartBlock } from "@/components/blocos";
-import type { SmartBlockBadge } from "@/components/blocos";
+import { PageLayout, IntroBlock, FilterBlock } from "@/components/blocos";
+import { SmartBloco } from "@/components/smart-bloco";
+import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
+import type { CEFRLevel } from "@/components/smart-bloco";
 
 const data = verbData as unknown as VerbDataSet;
-
-function cefrColor(level: string): SmartBlockBadge["color"] {
-  if (level === "A1") return "emerald";
-  if (level === "A2") return "blue";
-  return "amber";
-}
 
 export default function ConjugationsPage() {
   const [groupFilter, setGroupFilter] = useState("all");
@@ -69,22 +64,18 @@ export default function ConjugationsPage() {
         search={{ value: search, onChange: setSearch, placeholder: "Search verbs..." }}
         count={{ showing: filtered.length, total: data.order.length }}
       />
-      <ContentGrid>
+      <BlocoGrid>
         {filtered.map((v) => {
           const m = data.verbs[v].meta;
           return (
-            <SmartBlock
+            <SmartBloco
               key={v}
               title={v}
               subtitle={m.english}
-              pronunciationButton
-              pronunciationText={v}
-              badges={[
-                { label: m.cefr, color: cefrColor(m.cefr) },
-                { label: m.group.startsWith("Irregular") ? "Irreg." : m.group.replace("Regular ", ""), color: "neutral" },
-              ]}
-              meta={m.priority}
-              interactive
+              hasAudio
+              cefrLevel={m.cefr as CEFRLevel}
+              metaBadge={m.group.startsWith("Irregular") ? "Irreg." : m.group.replace("Regular ", "")}
+              footer={{ label: m.priority }}
               href={`/conjugations/${v.toLowerCase()}`}
             />
           );
@@ -94,7 +85,7 @@ export default function ConjugationsPage() {
             <p className="text-[14px] text-[#9CA3AF]">No verbs match your filter.</p>
           </div>
         )}
-      </ContentGrid>
+      </BlocoGrid>
     </PageLayout>
   );
 }

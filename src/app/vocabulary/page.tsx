@@ -3,7 +3,9 @@
 import { useMemo, useState } from "react";
 import vocabData from "@/data/vocab.json";
 import type { VocabData, VocabCategory } from "@/types/vocab";
-import { PageLayout, IntroBlock, FilterBlock, ContentGrid, SmartBlock } from "@/components/blocos";
+import { PageLayout, IntroBlock, FilterBlock, ContentGrid } from "@/components/blocos";
+import { SmartBloco } from "@/components/smart-bloco";
+import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
 
 const data = vocabData as unknown as VocabData;
 
@@ -103,17 +105,16 @@ export default function VocabularyPage() {
         search={{ value: search, onChange: setSearch, placeholder: "Search categories..." }}
         count={{ showing: filteredCategories.length, total: data.categories.length }}
       />
-      <ContentGrid>
+      <BlocoGrid>
         {filteredCategories.map((cat) => {
           const wordCount = cefrFilter === "All" ? cat.words.length : categoryLevelCount(cat, cefrFilter as "A1" | "A2" | "B1");
           return (
-            <SmartBlock
+            <SmartBloco
               key={cat.id}
               title={cat.title}
               subtitle={CATEGORY_PT_TITLE[cat.id]}
               description={CATEGORY_DESCRIPTION[cat.id] ?? cat.description}
-              meta={`${wordCount} words`}
-              interactive
+              footer={{ wordCount }}
               href={`/vocabulary/${cat.id}`}
             />
           );
@@ -123,7 +124,7 @@ export default function VocabularyPage() {
             <p className="text-[14px] text-[#9CA3AF]">No categories match your filter.</p>
           </div>
         )}
-      </ContentGrid>
+      </BlocoGrid>
     </PageLayout>
   );
 }

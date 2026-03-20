@@ -4,8 +4,10 @@ import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import vocabData from "@/data/vocab.json";
 import type { VocabData, VocabWord } from "@/types/vocab";
-import { PageLayout, IntroBlock, FilterBlock, ContentGrid, SmartBlock } from "@/components/blocos";
-import type { SmartBlockBadge } from "@/components/blocos";
+import { PageLayout, IntroBlock, FilterBlock } from "@/components/blocos";
+import { SmartBloco } from "@/components/smart-bloco";
+import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
+import type { CEFRLevel } from "@/components/smart-bloco";
 
 const data = vocabData as unknown as VocabData;
 
@@ -28,12 +30,6 @@ const CATEGORY_PT_TITLE: Record<string, string> = {
   "technology-internet": "Tecnologia e Internet",
   "clothing-appearance": "Roupa e Aparência",
 };
-
-function cefrColor(level: string): SmartBlockBadge["color"] {
-  if (level === "A1") return "emerald";
-  if (level === "A2") return "blue";
-  return "amber";
-}
 
 export default function VocabCategoryPage() {
   const params = useParams();
@@ -78,21 +74,17 @@ export default function VocabCategoryPage() {
         search={{ value: search, onChange: setSearch, placeholder: "Search words..." }}
         count={{ showing: filtered.length, total: category.words.length }}
       />
-      <ContentGrid>
+      <BlocoGrid>
         {filtered.map((w: VocabWord, i: number) => (
-          <SmartBlock
+          <SmartBloco
             key={`${w.portuguese}-${i}`}
             title={w.portuguese}
             subtitle={w.english}
             pronunciation={w.pronunciation ? `/${w.pronunciation}/` : undefined}
-            pronunciationButton
-            pronunciationText={w.portuguese}
-            badges={[
-              { label: w.cefr, color: cefrColor(w.cefr) },
-              ...(w.gender ? [{ label: w.gender, color: "neutral" as const }] : []),
-            ]}
-            example={w.example ? { pt: w.example, en: w.exampleTranslation || "" } : undefined}
-            highlightId={w.portuguese}
+            hasAudio
+            cefrLevel={w.cefr as CEFRLevel}
+            metaBadge={w.gender || undefined}
+            example={w.example ? { portuguese: w.example, english: w.exampleTranslation || "" } : undefined}
           />
         ))}
         {filtered.length === 0 && (
@@ -100,7 +92,7 @@ export default function VocabCategoryPage() {
             <p className="text-[14px] text-[#9CA3AF]">No words match your filter.</p>
           </div>
         )}
-      </ContentGrid>
+      </BlocoGrid>
     </PageLayout>
   );
 }

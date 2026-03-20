@@ -2,6 +2,8 @@
 
 @theme {
   --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-content: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Menlo", ui-monospace, monospace;
 
   --color-bg: #ffffff;
   --color-bg-s: #fafafa;
@@ -39,6 +41,48 @@
   --color-btn-primary: #111827;
   --color-btn-primary-hover: #1F2937;
   --color-btn-primary-text: #ffffff;
+
+  /* === smartBlocos Design Tokens === */
+
+  /* Semantic colors */
+  --color-bloco-primary: #163EA4;
+  --color-bloco-cefr-a1: #219171;
+  --color-bloco-cefr-a2: #7795E8;
+  --color-bloco-tip: #EA580C;
+  --color-bloco-warning: #BB1F1F;
+  --color-bloco-success: #059669;
+  --color-bloco-progress: #003399;
+
+  /* Text */
+  --color-bloco-text: #000000;
+  --color-bloco-text-body: #555555;
+  --color-bloco-text-secondary: #6B7280;
+  --color-bloco-text-muted: #9CA3AF;
+
+  /* Surfaces */
+  --color-bloco-surface: #FBFCFC;
+  --color-bloco-surface-recessed: #F9FAFB;
+  --color-bloco-surface-page: #FFFFFF;
+
+  /* Borders */
+  --color-bloco-border-content: #EBEBEB;
+  --color-bloco-border-divider: #CDD1D7;
+  --color-bloco-border-track: #F3F4F6;
+
+  /* Spacing (as custom properties for non-Tailwind contexts) */
+  --bloco-padding: 20px;
+  --bloco-expanded-padding: 24px;
+  --bloco-section-gap: 20px;
+  --bloco-badge-gap: 8px;
+  --bloco-example-padding: 12px;
+  --bloco-example-gap: 8px;
+
+  /* Radii */
+  --bloco-radius: 12px;
+  --bloco-radius-badge: 8px;
+  --bloco-radius-tag: 12px;
+  --bloco-radius-example: 8px;
+  --bloco-radius-pill: 9999px;
 }
 
 :root {
