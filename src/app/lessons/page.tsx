@@ -2,19 +2,24 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Lock, Check, ChevronRight, ChevronDown } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 import { getResolvedLessons } from "@/data/resolve-lessons";
 import {
   getLessonProgressMap,
   type LessonAttemptResult,
 } from "@/lib/lesson-progress";
-import { SectionHeader } from "@/components/ui/section-header";
-import { Card } from "@/components/ui/card";
-import { Divider } from "@/components/ui/divider";
-import { CEFRBadge } from "@/components/ui/badge";
 import { TutorTabV2 } from "@/components/lessons/tutor-tab";
-import { patterns } from "@/lib/design-tokens";
-import { PageLayout, IntroBlock } from "@/components/blocos";
+import { PageShell } from "@/components/layout/page-shell";
+import {
+  PageHeader,
+  SectionLabel,
+  BadgePill,
+  CardShell,
+  SegmentedFilter,
+} from "@/components/primitives";
+
+// ─── Data ───────────────────────────────────────────────────────────────────
 
 const lessons = getResolvedLessons();
 const A1_LESSONS = lessons.filter((l) => l.cefr === "A1");
@@ -24,12 +29,14 @@ const A1_TOTAL = A1_LESSONS.length;
 const A2_TOTAL = A2_LESSONS.length;
 const B1_TOTAL = B1_LESSONS.length;
 
+// ─── Lesson state logic (preserved exactly) ─────────────────────────────────
+
 type LessonCardState = "completed" | "current" | "attempted" | "locked";
 
 function getLessonState(
   lesson: (typeof lessons)[0],
   progressMap: Record<string, LessonAttemptResult>,
-  sortedLessons: (typeof lessons)
+  sortedLessons: typeof lessons
 ): LessonCardState {
   const progress = progressMap[lesson.id];
   if (progress?.completed) return "completed";
@@ -41,6 +48,8 @@ function getLessonState(
   if (progress && progress.attempts > 0) return "attempted";
   return "current";
 }
+
+// ─── How lessons work accordion ─────────────────────────────────────────────
 
 const LESSON_SECTIONS = [
   { namePt: "Vocabulário", nameEn: "Vocabulary", descPt: "Traduz palavras novas", descEn: "Translate new words" },
@@ -60,55 +69,49 @@ function LessonInfoSection() {
     <div className="mb-6">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] px-5 py-4 hover:border-[#003399] transition-colors cursor-pointer"
+        className="w-full flex items-center justify-between bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-4 py-3.5 hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
       >
         <div>
-          <p className="text-[14px] font-medium text-[var(--text-primary)] text-left">
+          <p className="text-[13px] font-medium text-[#111111] text-left">
             Como funcionam as lições
           </p>
-          <p className="text-[12px] text-[var(--text-muted)] text-left">
+          <p className="text-[11px] text-[#9B9DA3] text-left">
             How do lessons work
           </p>
         </div>
-        <svg
-          className={`w-4 h-4 text-[var(--text-muted)] transition-transform duration-200 shrink-0 ${isOpen ? "rotate-180" : ""}`}
-          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
+        <ChevronDown
+          size={16}
+          className={`text-[#9B9DA3] transition-transform duration-150 shrink-0 ${isOpen ? "rotate-180" : ""}`}
+        />
       </button>
 
       {isOpen && (
-        <div className="mt-2 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[12px] px-5 py-5 space-y-4">
-          <div className="space-y-3">
+        <div className="mt-2 bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-4 py-4 space-y-3">
+          <div className="space-y-2.5">
             {LESSON_SECTIONS.map((s, i) => (
               <div key={i} className="flex gap-3">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#003399] text-white text-[11px] font-bold flex items-center justify-center mt-0.5">
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#E6F1FB] text-[#185FA5] text-[11px] font-medium flex items-center justify-center mt-0.5">
                   {i + 1}
                 </span>
                 <div>
-                  <p className="text-[13px] font-medium text-[var(--text-primary)]">
+                  <p className="text-[12px] font-medium text-[#111111]">
                     {s.namePt} — {s.descPt}
                   </p>
-                  <p className="text-[12px] text-[var(--text-muted)]">
+                  <p className="text-[11px] text-[#9B9DA3]">
                     {s.nameEn} — {s.descEn}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          <div className="border-t border-[var(--border-light)] pt-4 space-y-2">
-            <p className="text-[13px] text-[var(--text-secondary)]">
+          <div className="border-t-[0.5px] border-[rgba(0,0,0,0.06)] pt-3 space-y-1.5">
+            <p className="text-[12px] text-[#6C6B71]">
               Precisas de 80% para passar cada lição.
-              <span className="block text-[12px] text-[var(--text-muted)]">You need 80% to pass each lesson.</span>
+              <span className="block text-[11px] text-[#9B9DA3]">You need 80% to pass each lesson.</span>
             </p>
-            <p className="text-[13px] text-[var(--text-secondary)]">
+            <p className="text-[12px] text-[#6C6B71]">
               As lições são sequenciais — completa cada uma para desbloquear a seguinte.
-              <span className="block text-[12px] text-[var(--text-muted)]">Lessons are sequential — complete each one to unlock the next.</span>
-            </p>
-            <p className="text-[13px] text-[var(--text-secondary)]">
-              Podes rever o material antes de começar os exercícios.
-              <span className="block text-[12px] text-[var(--text-muted)]">You can review the material before starting the exercises.</span>
+              <span className="block text-[11px] text-[#9B9DA3]">Lessons are sequential — complete each one to unlock the next.</span>
             </p>
           </div>
         </div>
@@ -117,9 +120,179 @@ function LessonInfoSection() {
   );
 }
 
+// ─── Lesson card renderer ───────────────────────────────────────────────────
+
+function LessonCard({
+  lesson,
+  state,
+  progress,
+  levelLocked,
+  lockMessage,
+}: {
+  lesson: (typeof lessons)[0];
+  state: LessonCardState;
+  progress: LessonAttemptResult | undefined;
+  levelLocked: boolean;
+  lockMessage: string;
+}) {
+  const isLocked = state === "locked" || levelLocked;
+
+  if (isLocked) {
+    return (
+      <CardShell className="opacity-50">
+        <div className="flex items-center gap-3">
+          <div className="w-5 h-5 rounded-full bg-[#F7F7F5] flex items-center justify-center flex-shrink-0">
+            <Lock size={12} className="text-[#9B9DA3]" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[12px] text-[#9B9DA3]">Lesson {lesson.order}</div>
+            <div className="text-[14px] font-medium text-[#9B9DA3]">{lesson.title}</div>
+            <div className="text-[12px] text-[#9B9DA3] mt-0.5">{lesson.ptTitle}</div>
+          </div>
+        </div>
+      </CardShell>
+    );
+  }
+
+  if (state === "completed") {
+    return (
+      <Link href={`/lessons/${lesson.id}`} className="block">
+        <CardShell interactive className="border-l-2 border-l-[#0F6E56]">
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 rounded-full bg-[#E1F5EE] flex items-center justify-center flex-shrink-0">
+              <Check size={12} className="text-[#0F6E56]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[12px] text-[#9B9DA3]">Lesson {lesson.order}</div>
+              <div className="text-[14px] font-medium text-[#111111]">{lesson.title}</div>
+              <div className="text-[12px] text-[#9B9DA3] mt-0.5">{lesson.ptTitle}</div>
+            </div>
+            {progress && (
+              <span className="text-[12px] text-[#0F6E56] font-medium flex-shrink-0">
+                {Math.round(progress.accuracy_score)}%
+              </span>
+            )}
+          </div>
+        </CardShell>
+      </Link>
+    );
+  }
+
+  if (state === "attempted") {
+    return (
+      <Link href={`/lessons/${lesson.id}`} className="block">
+        <CardShell interactive className="border-l-2 border-l-[#854F0B]">
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 rounded-full bg-[#FAEEDA] flex items-center justify-center flex-shrink-0">
+              <span className="text-[10px] font-medium text-[#854F0B]">!</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[12px] text-[#9B9DA3]">Lesson {lesson.order}</div>
+              <div className="text-[14px] font-medium text-[#111111]">{lesson.title}</div>
+              <div className="text-[12px] text-[#9B9DA3] mt-0.5">
+                {lesson.ptTitle} · Best: {progress ? Math.round(progress.best_score) : 0}%
+              </div>
+            </div>
+            <span className="text-[12px] text-[#854F0B] font-medium flex-shrink-0">Retry</span>
+          </div>
+        </CardShell>
+      </Link>
+    );
+  }
+
+  // current
+  return (
+    <Link href={`/lessons/${lesson.id}`} className="block">
+      <CardShell interactive className="border-l-2 border-l-[#185FA5]">
+        <div className="flex items-center gap-3">
+          <div className="w-5 h-5 rounded-full bg-[#E6F1FB] flex items-center justify-center flex-shrink-0">
+            <ChevronRight size={12} className="text-[#185FA5]" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[12px] text-[#9B9DA3]">Lesson {lesson.order}</div>
+            <div className="text-[14px] font-medium text-[#111111]">{lesson.title}</div>
+            <div className="text-[12px] text-[#9B9DA3] mt-0.5">{lesson.ptTitle}</div>
+          </div>
+          <span className="text-[12px] text-[#185FA5] font-medium flex-shrink-0">Start</span>
+        </div>
+      </CardShell>
+    </Link>
+  );
+}
+
+// ─── CEFR Section ───────────────────────────────────────────────────────────
+
+function CefrSection({
+  label,
+  lessons: sectionLessons,
+  completed,
+  total,
+  unlocked,
+  lockMessage,
+  progressMap,
+  sorted,
+}: {
+  label: string;
+  lessons: typeof A1_LESSONS;
+  completed: number;
+  total: number;
+  unlocked: boolean;
+  lockMessage: string;
+  progressMap: Record<string, LessonAttemptResult>;
+  sorted: typeof lessons;
+}) {
+  const progressPct = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+  return (
+    <div className="mb-8">
+      <div className="flex items-center justify-between mb-3">
+        <SectionLabel>{label}</SectionLabel>
+        <span className="text-[12px] text-[#9B9DA3]">
+          {completed}/{total} complete
+        </span>
+      </div>
+
+      <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mb-4">
+        <div
+          className="h-full bg-[#185FA5] rounded-full transition-all duration-300"
+          style={{ width: `${progressPct}%` }}
+        />
+      </div>
+
+      {!unlocked && (
+        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 text-center opacity-60">
+          <Lock size={20} className="text-[#9B9DA3] mx-auto mb-2" />
+          <div className="text-[13px] text-[#9B9DA3]">{lockMessage}</div>
+        </div>
+      )}
+
+      {unlocked && (
+        <div className="space-y-2">
+          {sectionLessons.map((lesson) => {
+            const state = getLessonState(lesson, progressMap, sorted);
+            const progress = progressMap[lesson.id];
+            return (
+              <LessonCard
+                key={lesson.id}
+                lesson={lesson}
+                state={state}
+                progress={progress}
+                levelLocked={false}
+                lockMessage=""
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Page ───────────────────────────────────────────────────────────────────
+
 export default function LessonsPage() {
   const { user, loading: authLoading } = useAuth();
-  const [activeTab, setActiveTab] = useState<"curriculum" | "tutor">("curriculum");
+  const [activeTab, setActiveTab] = useState("Curriculum");
   const [progressMap, setProgressMap] = useState<
     Record<string, LessonAttemptResult>
   >({});
@@ -135,369 +308,100 @@ export default function LessonsPage() {
   }, []);
 
   const sorted = [...lessons].sort((a, b) => a.order - b.order);
-  const a1Completed = A1_LESSONS.filter((l) => progressMap[l.id]?.completed).length;
-  const a2Completed = A2_LESSONS.filter((l) => progressMap[l.id]?.completed).length;
-  const b1Completed = B1_LESSONS.filter((l) => progressMap[l.id]?.completed).length;
-  const a1ProgressPct =
-    A1_TOTAL > 0 ? Math.round((a1Completed / A1_TOTAL) * 100) : 0;
-  const a2ProgressPct =
-    A2_TOTAL > 0 ? Math.round((a2Completed / A2_TOTAL) * 100) : 0;
-  const b1ProgressPct =
-    B1_TOTAL > 0 ? Math.round((b1Completed / B1_TOTAL) * 100) : 0;
+  const a1Completed = A1_LESSONS.filter(
+    (l) => progressMap[l.id]?.completed
+  ).length;
+  const a2Completed = A2_LESSONS.filter(
+    (l) => progressMap[l.id]?.completed
+  ).length;
+  const b1Completed = B1_LESSONS.filter(
+    (l) => progressMap[l.id]?.completed
+  ).length;
   const a2Unlocked = A1_TOTAL > 0 && a1Completed >= A1_TOTAL;
   const b1Unlocked = A2_TOTAL > 0 && a2Completed >= A2_TOTAL;
+  const totalCompleted = a1Completed + a2Completed + b1Completed;
 
   const isLoggedIn = !authLoading && !!user;
 
   return (
-    <PageLayout>
-        <IntroBlock
-          title="Lessons"
-          subtitle="Lições"
-          description="Learn Portuguese step by step with structured lessons from A1 to B1."
-          pills={[{ label: `${a1Completed + a2Completed + b1Completed} of ${A1_TOTAL + A2_TOTAL + B1_TOTAL} completed` }]}
+    <PageShell>
+      <PageHeader
+        title="Lições"
+        subtitle={`44 lessons · A1 to B1 · ${totalCompleted} completed`}
+      />
+
+      {/* Tab switcher */}
+      <div className="mb-6">
+        <SegmentedFilter
+          options={["Curriculum", "Tutor"]}
+          value={activeTab}
+          onChange={setActiveTab}
         />
+      </div>
 
-          {/* Tab switcher */}
-          <div className="flex gap-1 mb-10">
-            <button
-              onClick={() => setActiveTab("curriculum")}
-              className={activeTab === "curriculum" ? patterns.pill.active : patterns.pill.inactive}
-            >
-              Curriculum
-            </button>
-            <button
-              onClick={() => setActiveTab("tutor")}
-              className={activeTab === "tutor" ? patterns.pill.active : patterns.pill.inactive}
-            >
-              Tutor
-            </button>
-          </div>
+      {/* Tutor tab */}
+      {activeTab === "Tutor" && <TutorTabV2 />}
 
-          {activeTab === "curriculum" && <LessonInfoSection />}
-
-        {/* Tutor tab */}
-        {activeTab === "tutor" && (
-          <TutorTabV2 />
-        )}
-
-        {/* Curriculum tab */}
-        {activeTab === "curriculum" && (
+      {/* Curriculum tab */}
+      {activeTab === "Curriculum" && (
         <>
-        {/* ═══════════════════════════════════════════════ */}
-        {/* A1 — Foundation                                */}
-        {/* ═══════════════════════════════════════════════ */}
-        <section>
-          <SectionHeader className="mb-4">
-            A1 — Foundation · {a1Completed}/{A1_TOTAL} complete
-          </SectionHeader>
-          <div className="h-2 rounded-full bg-border-light overflow-hidden mb-6">
-            <div
-              className="h-full bg-[var(--color-cefr-a1)] transition-all duration-300"
-              style={{ width: `${a1ProgressPct}%` }}
-            />
-          </div>
+          <LessonInfoSection />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sorted
-              .filter((l) => l.cefr === "A1")
-              .map((lesson) => {
-                const state = getLessonState(lesson, progressMap, sorted);
-                const progress = progressMap[lesson.id];
-                const isLocked = state === "locked";
+          {/* A1 */}
+          <CefrSection
+            label={`A1 — Beginner · ${A1_TOTAL} lessons`}
+            lessons={sorted.filter((l) => l.cefr === "A1")}
+            completed={a1Completed}
+            total={A1_TOTAL}
+            unlocked={true}
+            lockMessage=""
+            progressMap={progressMap}
+            sorted={sorted}
+          />
 
-                const glowStyle = isLocked ? {} : state === "completed"
-                  ? { borderColor: "rgba(22, 163, 74, 0.2)", boxShadow: "0 0 12px rgba(22, 163, 74, 0.08)" }
-                  : state === "current"
-                    ? { borderColor: "rgba(0, 51, 153, 0.2)", boxShadow: "0 0 12px rgba(0, 51, 153, 0.08)" }
-                    : state === "attempted"
-                      ? { borderColor: "rgba(245, 158, 11, 0.2)", boxShadow: "0 0 12px rgba(245, 158, 11, 0.08)" }
-                      : {};
+          {/* A2 */}
+          <CefrSection
+            label={`A2 — Elementary · ${A2_TOTAL} lessons`}
+            lessons={sorted.filter((l) => l.cefr === "A2")}
+            completed={a2Completed}
+            total={A2_TOTAL}
+            unlocked={a2Unlocked}
+            lockMessage="Complete all A1 lessons to unlock"
+            progressMap={progressMap}
+            sorted={sorted}
+          />
 
-                const cardContent = (
-                  <div
-                    className={`rounded-[12px] transition-shadow duration-200 ${
-                      isLocked ? "opacity-60 cursor-not-allowed" : "hover:shadow-lg"
-                    }`}
-                    style={glowStyle}
-                  >
-                  <Card
-                    interactive={!isLocked}
-                    className="h-full flex flex-col"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
-                        Lesson {lesson.order}
-                      </p>
-                      <CEFRBadge level={lesson.cefr} className="shrink-0" />
-                    </div>
-                    <h3 className="text-[15px] font-semibold tracking-tight text-text mt-2">
-                      {lesson.title}
-                    </h3>
-                    <p className="text-[13px] text-text-secondary italic mt-0.5">
-                      {lesson.ptTitle}
-                    </p>
-                    <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
-                      {lesson.description}
-                    </p>
-                    <div className="mt-auto pt-3">
-                      {state === "completed" && progress && (
-                        <p className="text-[12px] text-green-600 font-medium">
-                          ✓ {Math.round(progress.accuracy_score)}%
-                        </p>
-                      )}
-                      {state === "attempted" && progress && (
-                        <p className="text-[12px] text-amber-600">
-                          Best: {Math.round(progress.best_score)}% — Try again
-                        </p>
-                      )}
-                      {state === "locked" && (
-                        <p className="text-[12px] text-text-muted flex items-center gap-1">
-                          <span aria-hidden>🔒</span> Complete previous lesson to unlock
-                        </p>
-                      )}
-                      {state === "current" && (
-                        <p className="text-[12px] text-[var(--color-primary)] font-medium">
-                          Start Lesson →
-                        </p>
-                      )}
-                    </div>
-                  </Card>
-                  </div>
-                );
+          {/* B1 */}
+          <CefrSection
+            label={`B1 — Intermediate · ${B1_TOTAL} lessons`}
+            lessons={sorted.filter((l) => l.cefr === "B1")}
+            completed={b1Completed}
+            total={B1_TOTAL}
+            unlocked={b1Unlocked}
+            lockMessage="Complete all A2 lessons to unlock"
+            progressMap={progressMap}
+            sorted={sorted}
+          />
 
-                if (isLocked) {
-                  return <div key={lesson.id}>{cardContent}</div>;
-                }
-                return (
-                  <Link key={lesson.id} href={`/lessons/${lesson.id}`} className="block group">
-                    {cardContent}
-                  </Link>
-                );
-              })}
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════ */}
-        {/* A2 — Elementar                                  */}
-        {/* ═══════════════════════════════════════════════ */}
-        <section className="mt-16">
-          <Divider className="mb-8" />
-          <SectionHeader className="mb-4">
-            A2 — Elementar · {a2Completed}/{A2_TOTAL} completo
-          </SectionHeader>
-          <div className="h-2 rounded-full bg-border-light overflow-hidden mb-6">
-            <div
-              className="h-full bg-[var(--color-cefr-a2)] transition-all duration-300"
-              style={{ width: `${a2ProgressPct}%` }}
-            />
-          </div>
-          {!a2Unlocked && A2_TOTAL > 0 && (
-            <p className="text-[13px] text-text-muted mb-4">
-              Completa as {A1_TOTAL} lições A1 para desbloqueares o A2.
-            </p>
+          {/* Auth CTA */}
+          {!isLoggedIn && (
+            <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-8 text-center">
+              <p className="text-[14px] font-medium text-[#111111]">
+                Sign in to save your progress
+              </p>
+              <p className="text-[12px] text-[#9B9DA3] mt-1">
+                Inicia sessão para guardar o teu progresso
+              </p>
+              <Link
+                href="/auth/login"
+                className="inline-flex items-center justify-center px-4 py-2 bg-[#111111] text-white rounded-lg text-[13px] font-medium hover:bg-[#333] transition-colors mt-4"
+              >
+                Entrar
+              </Link>
+            </div>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sorted
-              .filter((l) => l.cefr === "A2")
-              .map((lesson) => {
-                const state = getLessonState(lesson, progressMap, sorted);
-                const progress = progressMap[lesson.id];
-                const isLocked = state === "locked" || !a2Unlocked;
-
-                const glowStyle = isLocked ? {} : state === "completed"
-                  ? { borderColor: "rgba(22, 163, 74, 0.2)", boxShadow: "0 0 12px rgba(22, 163, 74, 0.08)" }
-                  : state === "current"
-                    ? { borderColor: "rgba(0, 51, 153, 0.2)", boxShadow: "0 0 12px rgba(0, 51, 153, 0.08)" }
-                    : state === "attempted"
-                      ? { borderColor: "rgba(245, 158, 11, 0.2)", boxShadow: "0 0 12px rgba(245, 158, 11, 0.08)" }
-                      : {};
-
-                const cardContent = (
-                  <div
-                    className={`rounded-[12px] transition-shadow duration-200 ${
-                      isLocked ? "opacity-60 cursor-not-allowed" : "hover:shadow-lg"
-                    }`}
-                    style={glowStyle}
-                  >
-                  <Card
-                    interactive={!isLocked}
-                    className="h-full flex flex-col"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
-                        Lição {lesson.order}
-                      </p>
-                      <CEFRBadge level={lesson.cefr} className="shrink-0" />
-                    </div>
-                    <h3 className="text-[15px] font-semibold tracking-tight text-text mt-2">
-                      {lesson.title}
-                    </h3>
-                    <p className="text-[13px] text-text-secondary italic mt-0.5">
-                      {lesson.ptTitle}
-                    </p>
-                    <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
-                      {lesson.description}
-                    </p>
-                    <div className="mt-auto pt-3">
-                      {state === "completed" && progress && (
-                        <p className="text-[12px] text-green-600 font-medium">
-                          ✓ {Math.round(progress.accuracy_score)}%
-                        </p>
-                      )}
-                      {state === "attempted" && progress && (
-                        <p className="text-[12px] text-amber-600">
-                          Melhor: {Math.round(progress.best_score)}% — Tenta outra vez
-                        </p>
-                      )}
-                      {isLocked && (
-                        <p className="text-[12px] text-text-muted">
-                          {!a2Unlocked
-                            ? "Completa o A1 para desbloquear"
-                            : "Completa a lição anterior"}
-                        </p>
-                      )}
-                      {state === "current" && a2Unlocked && (
-                        <p className="text-[12px] text-[var(--color-primary)] font-medium">
-                          Começar →
-                        </p>
-                      )}
-                    </div>
-                  </Card>
-                  </div>
-                );
-
-                if (isLocked) {
-                  return <div key={lesson.id}>{cardContent}</div>;
-                }
-                return (
-                  <Link key={lesson.id} href={`/lessons/${lesson.id}`} className="block group">
-                    {cardContent}
-                  </Link>
-                );
-              })}
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════ */}
-        {/* B1 — Intermédio                                 */}
-        {/* ═══════════════════════════════════════════════ */}
-        <section className="mt-10">
-          <SectionHeader className="mb-4">
-            B1 — Intermédio · {b1Completed}/{B1_TOTAL} completo
-          </SectionHeader>
-          <div className="h-2 rounded-full bg-border-light overflow-hidden mb-6">
-            <div
-              className="h-full bg-[var(--color-cefr-b1)] transition-all duration-300"
-              style={{ width: `${b1ProgressPct}%` }}
-            />
-          </div>
-          {!b1Unlocked && B1_TOTAL > 0 && (
-            <p className="text-[13px] text-text-muted mb-4">
-              Completa as {A2_TOTAL} lições A2 para desbloqueares o B1.
-            </p>
-          )}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sorted
-              .filter((l) => l.cefr === "B1")
-              .map((lesson) => {
-                const state = getLessonState(lesson, progressMap, sorted);
-                const progress = progressMap[lesson.id];
-                const isLocked = state === "locked" || !b1Unlocked;
-
-                const glowStyle = isLocked ? {} : state === "completed"
-                  ? { borderColor: "rgba(22, 163, 74, 0.2)", boxShadow: "0 0 12px rgba(22, 163, 74, 0.08)" }
-                  : state === "current"
-                    ? { borderColor: "rgba(0, 51, 153, 0.2)", boxShadow: "0 0 12px rgba(0, 51, 153, 0.08)" }
-                    : state === "attempted"
-                      ? { borderColor: "rgba(245, 158, 11, 0.2)", boxShadow: "0 0 12px rgba(245, 158, 11, 0.08)" }
-                      : {};
-
-                const cardContent = (
-                  <div
-                    className={`rounded-[12px] transition-shadow duration-200 ${
-                      isLocked ? "opacity-60 cursor-not-allowed" : "hover:shadow-lg"
-                    }`}
-                    style={glowStyle}
-                  >
-                  <Card
-                    interactive={!isLocked}
-                    className="h-full flex flex-col"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
-                        Lição {lesson.order}
-                      </p>
-                      <CEFRBadge level={lesson.cefr} className="shrink-0" />
-                    </div>
-                    <h3 className="text-[15px] font-semibold tracking-tight text-text mt-2">
-                      {lesson.title}
-                    </h3>
-                    <p className="text-[13px] text-text-secondary italic mt-0.5">
-                      {lesson.ptTitle}
-                    </p>
-                    <p className="text-[12px] text-text-muted mt-2 line-clamp-2">
-                      {lesson.description}
-                    </p>
-                    <div className="mt-auto pt-3">
-                      {state === "completed" && progress && (
-                        <p className="text-[12px] text-green-600 font-medium">
-                          ✓ {Math.round(progress.accuracy_score)}%
-                        </p>
-                      )}
-                      {state === "attempted" && progress && (
-                        <p className="text-[12px] text-amber-600">
-                          Melhor: {Math.round(progress.best_score)}% — Tenta outra vez
-                        </p>
-                      )}
-                      {isLocked && (
-                        <p className="text-[12px] text-text-muted">
-                          {!b1Unlocked
-                            ? "Completa o A2 para desbloquear"
-                            : "Completa a lição anterior"}
-                        </p>
-                      )}
-                      {state === "current" && b1Unlocked && (
-                        <p className="text-[12px] text-[var(--color-primary)] font-medium">
-                          Começar →
-                        </p>
-                      )}
-                    </div>
-                  </Card>
-                  </div>
-                );
-
-                if (isLocked) {
-                  return <div key={lesson.id}>{cardContent}</div>;
-                }
-                return (
-                  <Link key={lesson.id} href={`/lessons/${lesson.id}`} className="block group">
-                    {cardContent}
-                  </Link>
-                );
-              })}
-          </div>
-        </section>
-
-        {!isLoggedIn && (
-          <div className="mt-12 border border-border rounded-xl p-8 bg-surface text-center">
-            <p className="text-[15px] font-semibold text-text">
-              Sign in to save your progress and unlock lessons
-            </p>
-            <p className="text-[13px] text-text-secondary italic mt-1">
-              Inicia sessão para guardar o teu progresso
-            </p>
-            <Link
-              href="/auth/login"
-              className="inline-flex items-center justify-center h-[36px] px-5 bg-text border border-text rounded-[12px] text-[13px] font-medium text-bg hover:bg-[#1F2937] transition-colors duration-200 mt-5"
-            >
-              Entrar
-            </Link>
-          </div>
-        )}
         </>
-        )}
-
-    </PageLayout>
+      )}
+    </PageShell>
   );
 }
