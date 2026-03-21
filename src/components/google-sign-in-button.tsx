@@ -24,7 +24,7 @@ export function GoogleSignInButton() {
         type="button"
         onClick={handleClick}
         disabled={loading}
-        className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-4 py-2.5 text-[13px] font-medium text-[#111111] hover:border-[rgba(0,0,0,0.12)] hover:bg-[#F7F7F5] transition-colors flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {loading ? (
           <span className="inline-block w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
@@ -35,7 +35,7 @@ export function GoogleSignInButton() {
       </button>
       {error && (
         <div
-          className="mt-3 rounded-lg border border-rose-200 bg-rose-50 p-3 text-rose-700 text-sm"
+          className="mt-3 rounded-lg border-[0.5px] border-[rgba(220,38,38,0.2)] bg-[#fef2f2] p-3 text-[#dc2626] text-[12px]"
           role="alert"
         >
           {error}

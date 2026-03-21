@@ -4,11 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { GoogleSignInButton } from "@/components/google-sign-in-button";
-import { BrandLogo } from "@/components/brand-logo";
 
 const inputClass =
-  "w-full rounded-lg border border-gray-200 px-4 py-3 text-base focus:ring-2 focus:ring-[#111827] focus:border-[#111827] outline-none transition-colors";
-const labelClass = "block text-sm font-medium text-gray-700 mb-1";
+  "w-full px-3 py-2.5 text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg outline-none focus:border-[rgba(0,0,0,0.12)] placeholder:text-[#9B9DA3] transition-colors";
+const labelClass = "block text-[13px] font-medium text-[#111111] mb-1.5";
 
 export default function SignUpPage() {
   const [name, setName] = useState("");
@@ -48,21 +47,32 @@ export default function SignUpPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-bg">
-        <div className="w-full max-w-md mx-auto">
-          <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
-            <Link href="/" className="mb-1 flex justify-center">
-              <BrandLogo size="auth" priority />
-            </Link>
-            <h1 className="text-center text-lg font-semibold text-text mt-4 mb-2">
+      <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-white">
+        <div className="w-full max-w-[360px] mx-auto">
+          <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
+            <div className="flex flex-col items-center mb-6">
+              <div className="w-12 h-12 rounded-xl overflow-hidden mb-3">
+                <svg width="48" height="48" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="350" height="350" rx="36" fill="#1B2B61"/>
+                  <path d="M126.085 90.8203C130.072 90.124 133.462 93.4698 133.462 97.6406V173.556C133.462 177.727 130.071 181.081 126.085 180.385C104.732 176.655 88.5 158.024 88.5 135.603C88.5002 113.182 104.732 94.5503 126.085 90.8203Z" fill="white" stroke="white"/>
+                  <path d="M130.089 221.852C131.873 221.486 133.462 222.993 133.462 224.961V256.338C133.462 258.31 131.87 259.831 130.089 259.467C121.343 257.675 114.764 249.935 114.764 240.659C114.764 231.384 121.343 223.643 130.089 221.852Z" fill="white" stroke="white"/>
+                  <path d="M261.035 173.638C261.514 177.688 258.161 181.064 254.001 181.064H142.028C137.862 181.064 134.45 177.683 134.928 173.638C138.741 141.38 165.527 116.404 197.981 116.404C230.436 116.404 257.222 141.38 261.035 173.638Z" fill="white" stroke="white"/>
+                  <path d="M127.588 188.129C129.83 186.059 133.462 187.649 133.462 190.7V213.678C133.462 215.611 131.895 217.178 129.962 217.178H104.913C101.713 217.178 100.191 213.24 102.558 211.088L112.958 201.633L112.961 201.63L127.588 188.129Z" fill="white" stroke="white"/>
+                  <path d="M195.026 216.457C197.174 218.605 197.174 222.087 195.026 224.235L193.047 226.214C190.9 228.362 187.417 228.362 185.269 226.214L172.217 213.161V193.647L195.026 216.457Z" fill="white" stroke="white"/>
+                  <path d="M148.408 216.457C146.26 218.605 146.26 222.087 148.408 224.235L150.387 226.214C152.535 228.362 156.017 228.362 158.165 226.214L171.217 213.161V193.647L148.408 216.457Z" fill="white" stroke="white"/>
+                  <path d="M253.792 260.357C253.792 260.357 253.792 242.301 253.792 224.244C253.792 183.774 171.717 174.999 171.717 174.999" stroke="white" strokeWidth="13"/>
+                </svg>
+              </div>
+            </div>
+            <h1 className="text-center text-[16px] font-medium text-[#111111] mt-4 mb-2">
               Verifica o teu email
             </h1>
-            <p className="text-center text-gray-600 text-[14px]">
+            <p className="text-center text-[13px] text-[#6C6B71]">
               Enviámos um link de confirmação para <strong>{registeredEmail}</strong>. Clica no link para ativar a tua conta.
             </p>
             <Link
               href="/auth/login"
-              className="mt-6 block text-center text-[14px] font-medium text-[#003399] hover:underline"
+              className="mt-6 block text-center text-[13px] font-medium text-[#185FA5] hover:underline"
             >
               Voltar ao login
             </Link>
@@ -73,19 +83,30 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-bg">
-      <div className="w-full max-w-md mx-auto">
-        <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
-          <Link href="/" className="mb-1 flex justify-center">
-            <BrandLogo size="auth" priority />
-          </Link>
-          <p className="text-center text-gray-500 text-[15px] mb-6">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-white">
+      <div className="w-full max-w-[360px] mx-auto">
+        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
+          <div className="flex flex-col items-center mb-6">
+            <div className="w-12 h-12 rounded-xl overflow-hidden mb-3">
+              <svg width="48" height="48" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="350" height="350" rx="36" fill="#1B2B61"/>
+                <path d="M126.085 90.8203C130.072 90.124 133.462 93.4698 133.462 97.6406V173.556C133.462 177.727 130.071 181.081 126.085 180.385C104.732 176.655 88.5 158.024 88.5 135.603C88.5002 113.182 104.732 94.5503 126.085 90.8203Z" fill="white" stroke="white"/>
+                <path d="M130.089 221.852C131.873 221.486 133.462 222.993 133.462 224.961V256.338C133.462 258.31 131.87 259.831 130.089 259.467C121.343 257.675 114.764 249.935 114.764 240.659C114.764 231.384 121.343 223.643 130.089 221.852Z" fill="white" stroke="white"/>
+                <path d="M261.035 173.638C261.514 177.688 258.161 181.064 254.001 181.064H142.028C137.862 181.064 134.45 177.683 134.928 173.638C138.741 141.38 165.527 116.404 197.981 116.404C230.436 116.404 257.222 141.38 261.035 173.638Z" fill="white" stroke="white"/>
+                <path d="M127.588 188.129C129.83 186.059 133.462 187.649 133.462 190.7V213.678C133.462 215.611 131.895 217.178 129.962 217.178H104.913C101.713 217.178 100.191 213.24 102.558 211.088L112.958 201.633L112.961 201.63L127.588 188.129Z" fill="white" stroke="white"/>
+                <path d="M195.026 216.457C197.174 218.605 197.174 222.087 195.026 224.235L193.047 226.214C190.9 228.362 187.417 228.362 185.269 226.214L172.217 213.161V193.647L195.026 216.457Z" fill="white" stroke="white"/>
+                <path d="M148.408 216.457C146.26 218.605 146.26 222.087 148.408 224.235L150.387 226.214C152.535 228.362 156.017 228.362 158.165 226.214L171.217 213.161V193.647L148.408 216.457Z" fill="white" stroke="white"/>
+                <path d="M253.792 260.357C253.792 260.357 253.792 242.301 253.792 224.244C253.792 183.774 171.717 174.999 171.717 174.999" stroke="white" strokeWidth="13"/>
+              </svg>
+            </div>
+          </div>
+          <p className="text-center text-[13px] text-[#9B9DA3] mb-6">
             Criar conta
           </p>
 
           {error && (
             <div
-              className="mb-4 rounded-lg border border-rose-200 bg-rose-50 p-3 text-rose-700 text-sm"
+              className="mb-4 rounded-lg border-[0.5px] border-[rgba(220,38,38,0.2)] bg-[#fef2f2] p-3 text-[#dc2626] text-[12px]"
               role="alert"
             >
               {error}
@@ -95,9 +116,9 @@ export default function SignUpPage() {
           <GoogleSignInButton />
 
           <div className="flex items-center gap-4 my-6">
-            <div className="flex-1 border-t border-gray-200" />
-            <span className="text-sm text-gray-400">ou</span>
-            <div className="flex-1 border-t border-gray-200" />
+            <div className="flex-1 border-t-[0.5px] border-[rgba(0,0,0,0.06)]" />
+            <span className="text-[12px] text-[#9B9DA3]">ou</span>
+            <div className="flex-1 border-t-[0.5px] border-[rgba(0,0,0,0.06)]" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -153,12 +174,12 @@ export default function SignUpPage() {
                 minLength={6}
                 autoComplete="new-password"
               />
-              <p className="mt-1 text-xs text-gray-400">Mínimo 6 caracteres</p>
+              <p className="mt-1 text-[11px] text-[#9B9DA3]">Mínimo 6 caracteres</p>
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-[#111827] py-3 text-white font-medium text-[15px] hover:bg-[#1F2937] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-lg bg-[#111111] py-2.5 text-white font-medium text-[14px] hover:bg-[#333] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -171,9 +192,9 @@ export default function SignUpPage() {
             </button>
           </form>
 
-          <p className="mt-6 text-center text-[14px] text-gray-600">
+          <p className="mt-6 text-center text-[13px] text-[#9B9DA3]">
             Já tens conta?{" "}
-            <Link href="/auth/login" className="font-medium text-[#003399] hover:underline">
+            <Link href="/auth/login" className="font-medium text-[#111111] hover:underline">
               Entrar
             </Link>
           </p>
