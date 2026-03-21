@@ -111,7 +111,7 @@ export function TutorTabV2() {
     <div className="max-w-[896px] mx-auto">
       {/* Intro */}
       <div className="mb-10">
-        <h2 className="text-[22px] font-medium text-[#111111]">AI Tutor</h2>
+        <h2 className="text-[22px] font-medium text-[#111111]">Professor Elísio</h2>
         <p className="text-[13px] font-medium text-[#9B9DA3] italic mt-0.5">
           Sessões personalizadas baseadas no teu progresso
         </p>
@@ -131,7 +131,7 @@ export function TutorTabV2() {
               Ready for practice
             </p>
             <p className="text-[14px] text-[#6C6B71] mt-2 max-w-[500px]">
-              Your tutor will analyse your progress and create a personalized review session.
+              Professor Elísio will analyse your progress and create a personalized review session.
             </p>
             <button
               onClick={handleGenerate}

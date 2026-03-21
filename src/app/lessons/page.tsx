@@ -333,14 +333,14 @@ export default function LessonsPage() {
       {/* Tab switcher */}
       <div className="mb-6">
         <SegmentedFilter
-          options={["Curriculum", "Tutor"]}
+          options={["Curriculum", "Professor Elísio"]}
           value={activeTab}
           onChange={setActiveTab}
         />
       </div>
 
       {/* Tutor tab */}
-      {activeTab === "Tutor" && <TutorTabV2 />}
+      {activeTab === "Professor Elísio" && <TutorTabV2 />}
 
       {/* Curriculum tab */}
       {activeTab === "Curriculum" && (
