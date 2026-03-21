@@ -1,91 +1,117 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import verbData from "@/data/verbs.json";
-import type { VerbDataSet } from "@/types";
-import { PageLayout, IntroBlock, FilterBlock } from "@/components/blocos";
-import { SmartBloco } from "@/components/smart-bloco";
-import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
-import type { CEFRLevel } from "@/components/smart-bloco";
+import Link from "next/link";
+import { PageShell } from "@/components/layout/page-shell";
+import {
+  PageHeader,
+  FilterBar,
+  SegmentedFilter,
+  ListContainer,
+  ListRow,
+  BadgePill,
+  CountLabel,
+} from "@/components/primitives";
 
-const data = verbData as unknown as VerbDataSet;
+import verbData from "@/data/verbs.json";
+
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+function simplifyGroup(group: string): string {
+  if (group.startsWith("Regular -AR")) return "Regular -AR";
+  if (group.startsWith("Regular -ER")) return "Regular -ER";
+  if (group.startsWith("Regular -IR")) return "Regular -IR";
+  return "Irregular";
+}
+
+// ─── Constants ──────────────────────────────────────────────────────────────
+
+const cefrOptions = ["All", "A1", "A2", "B1"];
+const groupOptions = [
+  "All",
+  "Regular -AR",
+  "Regular -ER",
+  "Regular -IR",
+  "Irregular",
+];
+
+// ─── Page ───────────────────────────────────────────────────────────────────
 
 export default function ConjugationsPage() {
-  const [groupFilter, setGroupFilter] = useState("all");
-  const [levelFilter, setLevelFilter] = useState("all");
+  const [cefr, setCefr] = useState("All");
+  const [group, setGroup] = useState("All");
   const [search, setSearch] = useState("");
 
-  const filtered = useMemo(() => {
-    const q = search.toLowerCase();
-    return data.order.filter((v) => {
-      const m = data.verbs[v]?.meta;
-      if (!m) return false;
-      if (groupFilter !== "all") {
-        if (groupFilter === "ar" && !m.group.includes("-AR")) return false;
-        if (groupFilter === "er" && !m.group.includes("-ER")) return false;
-        if (groupFilter === "ir" && !m.group.includes("-IR")) return false;
+  const filteredVerbs = useMemo(() => {
+    return (verbData as any).order.filter((key: string) => {
+      const meta = (verbData as any).verbs[key].meta;
+      if (cefr !== "All" && meta.cefr !== cefr) return false;
+      if (group !== "All" && simplifyGroup(meta.group) !== group) return false;
+      if (search) {
+        const q = search.toLowerCase();
+        return (
+          key.toLowerCase().includes(q) ||
+          meta.english.toLowerCase().includes(q)
+        );
       }
-      if (levelFilter !== "all" && m.cefr !== levelFilter) return false;
-      if (q && !v.toLowerCase().includes(q) && !m.english.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [groupFilter, levelFilter, search]);
+  }, [cefr, group, search]);
 
   return (
-    <PageLayout>
-      <IntroBlock
-        title="Conjugations"
-        subtitle="Conjugações"
-        description="Practice conjugating European Portuguese verbs across all tenses."
-        pills={[{ label: `${data.order.length} verbs` }]}
+    <PageShell>
+      <PageHeader
+        title="Conjugações"
+        subtitle={`${(verbData as any).order.length} verbs · 6 tenses`}
       />
-      <FilterBlock
-        pills={{
-          options: [
-            { label: "All", value: "all" },
-            { label: "-ar", value: "ar" },
-            { label: "-er", value: "er" },
-            { label: "-ir", value: "ir" },
-          ],
-          value: groupFilter,
-          onChange: setGroupFilter,
-        }}
-        dropdown={{
-          label: "Level",
-          options: [
-            { label: "All levels", value: "all" },
-            { label: "A1", value: "A1" },
-            { label: "A2", value: "A2" },
-            { label: "B1", value: "B1" },
-          ],
-          value: levelFilter,
-          onChange: setLevelFilter,
-        }}
-        search={{ value: search, onChange: setSearch, placeholder: "Search verbs..." }}
-        count={{ showing: filtered.length, total: data.order.length }}
+
+      <FilterBar
+        filterOptions={cefrOptions}
+        filterValue={cefr}
+        onFilterChange={setCefr}
+        searchPlaceholder="Search verbs..."
+        searchValue={search}
+        onSearchChange={setSearch}
       />
-      <BlocoGrid>
-        {filtered.map((v) => {
-          const m = data.verbs[v].meta;
+      <div className="mb-6 -mt-3">
+        <SegmentedFilter
+          options={groupOptions}
+          value={group}
+          onChange={setGroup}
+        />
+      </div>
+
+      <ListContainer>
+        {filteredVerbs.map((key: string) => {
+          const meta = (verbData as any).verbs[key].meta;
           return (
-            <SmartBloco
-              key={v}
-              title={v.toLowerCase()}
-              subtitle={m.english}
-              hasAudio
-              cefrLevel={m.cefr as CEFRLevel}
-              metaBadge={m.group.startsWith("Irregular") ? "Irreg." : m.group.replace("Regular ", "")}
-              footer={{ label: m.priority }}
-              href={`/conjugations/${v.toLowerCase()}`}
-            />
+            <Link
+              key={key}
+              href={`/conjugations/${key.toLowerCase()}`}
+              className="block"
+            >
+              <ListRow>
+                <div className="grid grid-cols-[1fr_1fr_auto_auto] items-center gap-3">
+                  <span className="text-[14px] font-medium text-[#111111]">
+                    {key.toLowerCase()}
+                  </span>
+                  <span className="text-[13px] text-[#6C6B71]">
+                    {meta.english}
+                  </span>
+                  <BadgePill label={simplifyGroup(meta.group)} variant="neutral" />
+                  <BadgePill level={meta.cefr} />
+                </div>
+              </ListRow>
+            </Link>
           );
         })}
-        {filtered.length === 0 && (
-          <div className="col-span-full text-center py-16">
-            <p className="text-[14px] text-[#9CA3AF]">No verbs match your filter.</p>
-          </div>
-        )}
-      </BlocoGrid>
-    </PageLayout>
+      </ListContainer>
+
+      <CountLabel
+        showing={filteredVerbs.length}
+        total={(verbData as any).order.length}
+        noun="verbs"
+      />
+    </PageShell>
   );
 }
