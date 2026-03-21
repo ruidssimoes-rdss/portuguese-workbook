@@ -5806,6 +5806,116 @@
               "meaning": "on foot"
             }
           ]
+        },
+        {
+          "portuguese": "condutor / condutora",
+          "english": "driver",
+          "cefr": "A2",
+          "gender": "m/f",
+          "pronunciation": "kon-doo-TOR",
+          "example": "O condutor do autocarro foi muito simpático.",
+          "exampleTranslation": "The bus driver was very friendly.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "passageiro / passageira",
+          "english": "passenger",
+          "cefr": "A2",
+          "gender": "m/f",
+          "pronunciation": "puh-suh-ZHAY-roo",
+          "example": "O avião tem duzentos passageiros.",
+          "exampleTranslation": "The plane has two hundred passengers.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "estação",
+          "english": "station",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "ish-tuh-SOWNG",
+          "example": "A estação de comboios é perto do centro.",
+          "exampleTranslation": "The train station is near the centre.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "parque de estacionamento",
+          "english": "car park",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "PARK duh ish-tah-see-uh-MEN-too",
+          "example": "Há um parque de estacionamento perto do museu.",
+          "exampleTranslation": "There's a car park near the museum.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "gasolina",
+          "english": "petrol / gasoline",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "gah-zoo-LEE-nuh",
+          "example": "Preciso de pôr gasolina no carro.",
+          "exampleTranslation": "I need to put petrol in the car.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "carta de condução",
+          "english": "driving licence",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "KAR-tuh duh kon-doo-SOWNG",
+          "example": "Tirei a carta de condução aos dezoito anos.",
+          "exampleTranslation": "I got my driving licence at eighteen.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "semáforo",
+          "english": "traffic light",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "seh-MAH-foo-roo",
+          "example": "Vira à direita no semáforo.",
+          "exampleTranslation": "Turn right at the traffic light.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "passadeira",
+          "english": "pedestrian crossing",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "puh-suh-DAY-ruh",
+          "example": "Atravessa na passadeira.",
+          "exampleTranslation": "Cross at the pedestrian crossing.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "portagem",
+          "english": "toll",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "por-TAH-zheng",
+          "example": "As autoestradas em Portugal têm portagens.",
+          "exampleTranslation": "The motorways in Portugal have tolls.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "autoestrada",
+          "english": "motorway / highway",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "ow-too-ish-TRAH-duh",
+          "example": "A autoestrada para o Porto é rápida.",
+          "exampleTranslation": "The motorway to Porto is fast.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "cruzamento",
+          "english": "crossroads / intersection",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "kroo-zuh-MEN-too",
+          "example": "O acidente foi no cruzamento.",
+          "exampleTranslation": "The accident was at the crossroads.",
+          "relatedWords": []
         }
       ]
     },
@@ -7130,6 +7240,86 @@
               "meaning": "new house"
             }
           ]
+        },
+        {
+          "portuguese": "chão",
+          "english": "floor / ground",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "SHOWNG",
+          "example": "O chão da cozinha é de azulejo.",
+          "exampleTranslation": "The kitchen floor is tiled.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "teto",
+          "english": "ceiling",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "TEH-too",
+          "example": "O teto é muito alto.",
+          "exampleTranslation": "The ceiling is very high.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "parede",
+          "english": "wall",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "puh-RED",
+          "example": "Vou pintar a parede de branco.",
+          "exampleTranslation": "I'm going to paint the wall white.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "interruptor",
+          "english": "light switch",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "in-teh-roop-TOR",
+          "example": "O interruptor está ao lado da porta.",
+          "exampleTranslation": "The light switch is next to the door.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "tomada",
+          "english": "plug / socket",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "too-MAH-duh",
+          "example": "Onde é a tomada para o carregador?",
+          "exampleTranslation": "Where's the socket for the charger?",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "vassoura",
+          "english": "broom",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "vuh-SOH-ruh",
+          "example": "Vou varrer a cozinha com a vassoura.",
+          "exampleTranslation": "I'm going to sweep the kitchen with the broom.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "lixo",
+          "english": "rubbish / trash",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "LEE-shoo",
+          "example": "Podes levar o lixo lá fora?",
+          "exampleTranslation": "Can you take the rubbish out?",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "campainha",
+          "english": "doorbell",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "kam-puh-EE-nyuh",
+          "example": "Alguém tocou a campainha.",
+          "exampleTranslation": "Someone rang the doorbell.",
+          "relatedWords": []
         }
       ]
     },
@@ -8087,6 +8277,96 @@
           "pronunciation": "ee-DOH-zoo",
           "example": "O idoso atravessou a rua devagar.",
           "exampleTranslation": "The elderly man crossed the street slowly.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "gravidez",
+          "english": "pregnancy",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "gruh-vee-DEZH",
+          "example": "A gravidez dela corre muito bem.",
+          "exampleTranslation": "Her pregnancy is going very well.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "nascimento",
+          "english": "birth",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "nuh-see-MEN-too",
+          "example": "A data de nascimento está no passaporte.",
+          "exampleTranslation": "The date of birth is on the passport.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "casamento",
+          "english": "wedding / marriage",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "kuh-zuh-MEN-too",
+          "example": "O casamento é em junho.",
+          "exampleTranslation": "The wedding is in June.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "funeral",
+          "english": "funeral",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "foo-neh-RAL",
+          "example": "O funeral foi muito emotivo.",
+          "exampleTranslation": "The funeral was very emotional.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "tomar o pequeno-almoço",
+          "english": "to have breakfast",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "too-MAR oo peh-KAY-noo al-MOH-soo",
+          "example": "Tomo o pequeno-almoço às oito.",
+          "exampleTranslation": "I have breakfast at eight.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "almoçar",
+          "english": "to have lunch",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "al-moo-SAR",
+          "example": "Almoçamos juntos na cantina.",
+          "exampleTranslation": "We have lunch together in the canteen.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "passear",
+          "english": "to go for a walk",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "puh-see-AR",
+          "example": "Gosto de passear à beira-mar.",
+          "exampleTranslation": "I like to go for a walk by the sea.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "conduzir",
+          "english": "to drive",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "kon-doo-ZEER",
+          "example": "O meu pai conduz todos os dias.",
+          "exampleTranslation": "My father drives every day.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "fazer compras",
+          "english": "to go shopping",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "fuh-ZER KOM-prush",
+          "example": "Vou fazer compras ao supermercado.",
+          "exampleTranslation": "I'm going shopping at the supermarket.",
           "relatedWords": []
         }
       ]
@@ -9102,6 +9382,86 @@
           "example": "O meu pai está na reforma.",
           "exampleTranslation": "My father is retired.",
           "proTip": "Reforma = retirement. 'Estar na reforma' = to be retired. Portuguese retire around 66."
+        },
+        {
+          "portuguese": "estagiário / estagiária",
+          "english": "intern / trainee",
+          "cefr": "A2",
+          "gender": "m/f",
+          "pronunciation": "ish-tah-zhee-AH-ree-oo",
+          "example": "O estagiário começa na segunda-feira.",
+          "exampleTranslation": "The intern starts on Monday.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "desempregado / desempregada",
+          "english": "unemployed",
+          "cefr": "A2",
+          "gender": "m/f",
+          "pronunciation": "deh-zem-preh-GAH-doo",
+          "example": "Estou desempregado há três meses.",
+          "exampleTranslation": "I've been unemployed for three months.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "reformado / reformada",
+          "english": "retired",
+          "cefr": "A2",
+          "gender": "m/f",
+          "pronunciation": "reh-for-MAH-doo",
+          "example": "Os meus pais já estão reformados.",
+          "exampleTranslation": "My parents are already retired.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "formação",
+          "english": "training / qualification",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "for-muh-SOWNG",
+          "example": "A empresa oferece formação gratuita.",
+          "exampleTranslation": "The company offers free training.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "pausa",
+          "english": "break / pause",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "POW-zuh",
+          "example": "Vou fazer uma pausa para café.",
+          "exampleTranslation": "I'm going to take a coffee break.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "faculdade",
+          "english": "faculty / university (colloquial)",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "fuh-kool-DAH-duh",
+          "example": "Ela estuda na faculdade de direito.",
+          "exampleTranslation": "She studies at the law faculty.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "licenciatura",
+          "english": "degree (undergraduate)",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "lee-sen-see-uh-TOO-ruh",
+          "example": "Tenho uma licenciatura em engenharia.",
+          "exampleTranslation": "I have a degree in engineering.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "mestrado",
+          "english": "master's degree",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "mesh-TRAH-doo",
+          "example": "Está a fazer o mestrado em Lisboa.",
+          "exampleTranslation": "He's doing his master's in Lisbon.",
+          "relatedWords": []
         }
       ]
     },
@@ -9809,6 +10169,86 @@
           "pronunciation": "uh dohr duh buh-RREE-guh",
           "example": "A criança tem dor de barriga.",
           "exampleTranslation": "The child has a stomachache."
+        },
+        {
+          "portuguese": "coração",
+          "english": "heart",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "koo-ruh-SOWNG",
+          "example": "O coração dele é forte.",
+          "exampleTranslation": "His heart is strong.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "pulmão / pulmões",
+          "english": "lung(s)",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "pool-MOWNG",
+          "example": "Fumar faz mal aos pulmões.",
+          "exampleTranslation": "Smoking is bad for the lungs.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "estômago",
+          "english": "stomach",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "ish-TOH-muh-goo",
+          "example": "Tenho dores de estômago.",
+          "exampleTranslation": "I have stomach pains.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "sangue",
+          "english": "blood",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "SAN-guh",
+          "example": "Preciso de fazer análises ao sangue.",
+          "exampleTranslation": "I need to have blood tests.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "pele",
+          "english": "skin",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "PEL",
+          "example": "Tens a pele queimada do sol.",
+          "exampleTranslation": "Your skin is sunburnt.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "dieta",
+          "english": "diet",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "dee-EH-tuh",
+          "example": "Estou a fazer uma dieta saudável.",
+          "exampleTranslation": "I'm following a healthy diet.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "exercício",
+          "english": "exercise",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "eh-zer-SEE-see-oo",
+          "example": "Faço exercício três vezes por semana.",
+          "exampleTranslation": "I exercise three times a week.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "bem-estar",
+          "english": "well-being / wellness",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "beng-ish-TAR",
+          "example": "O bem-estar mental é muito importante.",
+          "exampleTranslation": "Mental well-being is very important.",
+          "relatedWords": []
         }
       ]
     },
@@ -10275,6 +10715,86 @@
           "example": "Podes fazer uma transferência bancária.",
           "exampleTranslation": "You can do a bank transfer.",
           "relatedWords": []
+        },
+        {
+          "portuguese": "euro",
+          "english": "euro",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "EW-roo",
+          "example": "Custa cinco euros.",
+          "exampleTranslation": "It costs five euros.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "cêntimo",
+          "english": "cent",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "SEN-tee-moo",
+          "example": "São noventa e nove cêntimos.",
+          "exampleTranslation": "It's ninety-nine cents.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "débito",
+          "english": "debit",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "DEH-bee-too",
+          "example": "Pago com cartão de débito.",
+          "exampleTranslation": "I pay with a debit card.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "crédito",
+          "english": "credit",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "KREH-dee-too",
+          "example": "Não gosto de usar o cartão de crédito.",
+          "exampleTranslation": "I don't like using the credit card.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "garantia",
+          "english": "guarantee / warranty",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "guh-ran-TEE-uh",
+          "example": "Este telemóvel tem dois anos de garantia.",
+          "exampleTranslation": "This phone has a two-year warranty.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "caber no orçamento",
+          "english": "to be within budget",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "kuh-BER noo or-suh-MEN-too",
+          "example": "Não cabe no orçamento este mês.",
+          "exampleTranslation": "It doesn't fit the budget this month.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "grátis",
+          "english": "free (no cost)",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "GRAH-teesh",
+          "example": "A entrada é grátis.",
+          "exampleTranslation": "Entry is free.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "custar",
+          "english": "to cost",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "koosh-TAR",
+          "example": "Quanto custa este livro?",
+          "exampleTranslation": "How much does this book cost?",
+          "relatedWords": []
         }
       ]
     },
@@ -10684,6 +11204,56 @@
           "pronunciation": "oo nush-SEHR doo sohl",
           "example": "Acordámos para ver o nascer do sol.",
           "exampleTranslation": "We woke up to see the sunrise."
+        },
+        {
+          "portuguese": "inseto",
+          "english": "insect",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "in-SEH-too",
+          "example": "Há muitos insetos no verão.",
+          "exampleTranslation": "There are many insects in summer.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "planta",
+          "english": "plant",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "PLAN-tuh",
+          "example": "Tenho muitas plantas na varanda.",
+          "exampleTranslation": "I have many plants on the balcony.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "jardim botânico",
+          "english": "botanical garden",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "zhar-DEENG boo-TAN-ee-koo",
+          "example": "O jardim botânico de Lisboa é bonito.",
+          "exampleTranslation": "The botanical garden of Lisbon is beautiful.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "serra",
+          "english": "mountain range / hills",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "SEH-ruh",
+          "example": "A Serra da Estrela tem neve no inverno.",
+          "exampleTranslation": "The Serra da Estrela has snow in winter.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "vale",
+          "english": "valley",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "VAL",
+          "example": "O vale do Douro é famoso pelo vinho.",
+          "exampleTranslation": "The Douro valley is famous for wine.",
+          "relatedWords": []
         }
       ]
     },
@@ -11513,6 +12083,66 @@
           "pronunciation": "kuh SEH-kuh",
           "example": "Que seca de filme!",
           "exampleTranslation": "What a boring film!"
+        },
+        {
+          "portuguese": "azar",
+          "english": "bad luck",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "uh-ZAR",
+          "example": "Que azar! Perdi o autocarro.",
+          "exampleTranslation": "Bad luck! I missed the bus.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "sorte",
+          "english": "luck",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "SORT",
+          "example": "Tive muita sorte no exame.",
+          "exampleTranslation": "I was very lucky in the exam.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "estragar",
+          "english": "to break / to ruin",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "ish-truh-GAR",
+          "example": "Estraguei o meu telemóvel.",
+          "exampleTranslation": "I broke my phone.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "dar-se bem",
+          "english": "to get along",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "DAR-suh BENG",
+          "example": "Dou-me bem com os meus vizinhos.",
+          "exampleTranslation": "I get along with my neighbours.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "desenrascar-se",
+          "english": "to manage / to get by",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "deh-zen-rush-KAR-suh",
+          "example": "Os portugueses sabem sempre desenrascar-se.",
+          "exampleTranslation": "The Portuguese always know how to get by.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "saudades",
+          "english": "missing someone/something",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "sow-DAH-dush",
+          "example": "Tenho muitas saudades de Portugal.",
+          "exampleTranslation": "I really miss Portugal.",
+          "relatedWords": []
         }
       ]
     },
@@ -12106,6 +12736,46 @@
           "pronunciation": "nah-veh-gah-DOHR",
           "example": "Que navegador usas?",
           "exampleTranslation": "Which browser do you use?"
+        },
+        {
+          "portuguese": "inteligência artificial",
+          "english": "artificial intelligence",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "in-teh-lee-ZHEN-see-uh ar-tee-fee-see-AL",
+          "example": "A inteligência artificial está a mudar tudo.",
+          "exampleTranslation": "Artificial intelligence is changing everything.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "dados",
+          "english": "data",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "DAH-doosh",
+          "example": "Os dados estão no telemóvel.",
+          "exampleTranslation": "The data is on the phone.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "conta",
+          "english": "account",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "KON-tuh",
+          "example": "Preciso de criar uma conta.",
+          "exampleTranslation": "I need to create an account.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "bloquear",
+          "english": "to block",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "bloo-kee-AR",
+          "example": "Vou bloquear esse número.",
+          "exampleTranslation": "I'm going to block that number.",
+          "relatedWords": []
         }
       ]
     },
