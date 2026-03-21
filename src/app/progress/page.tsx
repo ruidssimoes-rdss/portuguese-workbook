@@ -1,251 +1,252 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/components/auth-provider";
+import { PageShell } from "@/components/layout/page-shell";
+import {
+  PageHeader,
+  StatCard,
+  SectionLabel,
+  ListContainer,
+  ListRow,
+  BadgePill,
+} from "@/components/primitives";
+import {
+  getProgressStats,
+  type ProgressStats,
+  type TimelineEvent,
+} from "@/lib/progress-stats-service";
 
-import { ProtectedRoute } from "@/components/protected-route";
-import { getProgressStats, type ProgressStats, type TimelineEvent } from "@/lib/progress-stats-service";
-import { ProgressBlock } from "@/components/blocks/content/progress-block";
+// ─── Helpers ────────────────────────────────────────────────────────────────
 
-function formatPortugueseDate(iso: string): string {
+const levelLabels: Record<string, string> = {
+  A1: "Beginner",
+  A2: "Elementary",
+  B1: "Intermediate",
+};
+
+function formatDate(iso: string): string {
   const d = new Date(iso.includes("T") ? iso : iso + "T12:00:00");
-  return d.toLocaleDateString("pt-PT", {
+  return d.toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
-    year: "numeric",
   });
 }
 
-function CefrJourney({ stats }: { stats: ProgressStats }) {
-  const { a1Progress, a2Progress, b1Progress } = stats;
-  const a1Complete = a1Progress.completed === a1Progress.total;
-  const a2Complete = a2Progress.completed === a2Progress.total;
-  const a1Percent = a1Progress.total > 0 ? (a1Progress.completed / a1Progress.total) * 100 : 0;
-  const a2Percent = a2Progress.total > 0 ? (a2Progress.completed / a2Progress.total) * 100 : 0;
-  const currentLevelIndex = stats.currentLevel === "Complete" ? 2 : stats.currentLevel === "B1" ? 2 : stats.currentLevel === "A2" ? 1 : 0;
-
-  return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-[12px] p-6 md:p-8 mb-8">
-      <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-6 md:mb-8">
-        A tua jornada
-      </h2>
-
-      <div className="relative">
-        <div className="flex items-center justify-between gap-2 md:gap-4">
-          <div
-            className="flex-1 h-1 rounded-full transition-colors"
-            style={{
-              background: a1Complete
-                ? "var(--brand)"
-                : `linear-gradient(to right, var(--brand) ${a1Percent}%, var(--border-primary) ${a1Percent}%)`,
-            }}
-          />
-          <div
-            className="flex-1 h-1 mx-1 md:mx-4 rounded-full transition-colors"
-            style={{
-              background: a2Complete
-                ? "var(--brand)"
-                : a1Complete
-                  ? `linear-gradient(to right, var(--brand) ${a2Percent}%, var(--border-primary) ${a2Percent}%)`
-                  : "var(--border-primary)",
-            }}
-          />
-          <div
-            className="flex-1 h-1 rounded-full"
-            style={{
-              background: a2Complete ? "var(--brand)" : "var(--border-primary)",
-            }}
-          />
-        </div>
-
-        <div className="flex items-start justify-between mt-4 md:mt-6 gap-2">
-          {[
-            { label: "A1", sublabel: "Iniciante", progress: a1Progress },
-            { label: "A2", sublabel: "Elementar", progress: a2Progress },
-            { label: "B1", sublabel: "Intermédio", progress: b1Progress },
-          ].map((level, i) => (
-            <div key={level.label} className="flex flex-col items-center min-w-0 flex-1">
-              <div
-                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                  level.progress.completed === level.progress.total
-                    ? "bg-[var(--brand)] border-[var(--brand)]"
-                    : level.progress.completed > 0
-                      ? "bg-[var(--bg-card)] border-[var(--brand)]"
-                      : "bg-[var(--bg-card)] border-[var(--border-primary)]"
-                }`}
-              >
-                {level.progress.completed === level.progress.total && (
-                  <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                )}
-              </div>
-              <p className="text-[14px] font-bold text-[var(--text-primary)] mt-2">{level.label}</p>
-              <p className="text-[11px] text-[var(--text-muted)]">{level.sublabel}</p>
-              <p className="text-[12px] font-medium text-[var(--text-secondary)] mt-1">
-                {level.progress.completed}/{level.progress.total}
-              </p>
-              {currentLevelIndex === i && (
-                <p className="text-[11px] font-medium text-[var(--brand)] mt-1">Estás aqui</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+function eventDotColor(type: TimelineEvent["type"]): string {
+  switch (type) {
+    case "lesson":
+      return "bg-[#0F6E56]";
+    case "exam":
+      return "bg-[#185FA5]";
+    case "level-complete":
+      return "bg-[#854F0B]";
+    case "milestone":
+      return "bg-[#185FA5]";
+    case "goal-complete":
+      return "bg-[#0F6E56]";
+    case "streak":
+      return "bg-[#854F0B]";
+    default:
+      return "bg-[#9B9DA3]";
+  }
 }
 
-function StatsGrid({ stats }: { stats: ProgressStats }) {
-  const memberSinceShort = stats.memberSince
-    ? formatPortugueseDate(stats.memberSince).split(" ").slice(1).join(" ")
-    : "—";
-
-  return (
-    <div className="mb-8 space-y-6">
-      {/* Key metrics row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <ProgressBlock
-          data={{ current: stats.totalLessonsCompleted, max: 44, label: "Lições", sublabel: "completas" }}
-          variant="stat"
-        />
-        <ProgressBlock
-          data={{ current: Math.round(stats.averageAccuracy * 100), max: 100, label: "Precisão", unit: "%" }}
-          variant="ring"
-        />
-        <ProgressBlock
-          data={{ current: stats.currentStreak, max: stats.longestStreak || stats.currentStreak, label: "Série", sublabel: `Máx: ${stats.longestStreak}` }}
-          variant="streak"
-        />
-        <ProgressBlock
-          data={{ current: stats.totalWordsEncountered, max: 840, label: "Palavras", sublabel: "aprendidas" }}
-          variant="stat"
-        />
-      </div>
-
-      {/* Secondary stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <ProgressBlock data={{ current: stats.totalVerbsDrilled, max: 177, label: "Verbos", sublabel: "praticados" }} variant="stat" />
-        <ProgressBlock data={{ current: stats.totalGrammarTopicsStudied, max: 31, label: "Gramática", sublabel: "tópicos" }} variant="stat" />
-        <ProgressBlock data={{ current: stats.bestLessonScore?.score ?? 0, max: 100, label: "Melhor nota", unit: "%" }} variant="stat" />
-        <ProgressBlock data={{ current: stats.daysActive, max: stats.daysActive, label: "Dias ativos", sublabel: "com atividade" }} variant="stat" />
-      </div>
-
-      {/* Tertiary stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <ProgressBlock data={{ current: stats.totalNotesWritten, max: stats.totalNotesWritten, label: "Notas", sublabel: "escritas" }} variant="stat" />
-        <ProgressBlock data={{ current: stats.totalStudySessions + stats.totalPracticeSessions, max: stats.totalStudySessions + stats.totalPracticeSessions, label: "Sessões", sublabel: "de estudo" }} variant="stat" />
-        <ProgressBlock data={{ current: stats.goalsCompleted, max: stats.goalsCompleted + stats.goalsActive, label: "Objetivos", sublabel: "concluídos" }} variant="stat" />
-        <ProgressBlock data={{ current: parseInt(memberSinceShort) || 0, max: 0, label: "Membro desde", sublabel: memberSinceShort }} variant="stat" />
-      </div>
-
-      {/* Per-level progress bars */}
-      <div className="space-y-3">
-        <ProgressBlock data={{ current: stats.a1Progress.completed, max: stats.a1Progress.total, label: "A1 — Iniciante", sublabel: `${stats.a1Progress.completed}/${stats.a1Progress.total}` }} variant="bar" />
-        <ProgressBlock data={{ current: stats.a2Progress.completed, max: stats.a2Progress.total, label: "A2 — Elementar", sublabel: `${stats.a2Progress.completed}/${stats.a2Progress.total}` }} variant="bar" />
-        <ProgressBlock data={{ current: stats.b1Progress.completed, max: stats.b1Progress.total, label: "B1 — Intermédio", sublabel: `${stats.b1Progress.completed}/${stats.b1Progress.total}` }} variant="bar" />
-      </div>
-    </div>
-  );
-}
-
-function LearningTimeline({ timeline }: { timeline: TimelineEvent[] }) {
-  return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-[12px] p-6">
-      <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-6">
-        A tua história
-      </h2>
-
-      {timeline.length === 0 ? (
-        <p className="text-[14px] text-[var(--text-muted)] text-center py-8">
-          A tua história começa quando completares a primeira lição.
-        </p>
-      ) : (
-        <div className="space-y-0">
-          {timeline.map((event, i) => (
-            <div key={`${event.date}-${event.type}-${i}`} className="flex gap-4">
-              <div className="flex flex-col items-center">
-                <div
-                  className={`w-3 h-3 rounded-full shrink-0 ${
-                    event.type === "level-complete"
-                      ? "bg-[var(--brand)]"
-                      : event.type === "started"
-                        ? "bg-[#16A34A]"
-                        : "bg-[var(--text-muted)]"
-                  }`}
-                />
-                {i < timeline.length - 1 && (
-                  <div className="w-px flex-1 min-h-[24px] bg-[var(--border-primary)] my-1" />
-                )}
-              </div>
-              <div className="pb-6">
-                <p className="text-[11px] text-[var(--text-muted)] mb-0.5">
-                  {formatPortugueseDate(event.date)}
-                </p>
-                <p className="text-[14px] font-medium text-[var(--text-primary)]">
-                  {event.title}
-                </p>
-                {event.subtitle && (
-                  <p className="text-[13px] text-[var(--text-secondary)] mt-0.5">
-                    {event.subtitle}
-                  </p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {timeline.length === 0 && (
-        <div className="flex justify-center pt-2">
-          <Link
-            href="/lessons"
-            className="text-[14px] font-medium text-[var(--brand)] hover:underline"
-          >
-            Ir para as lições
-          </Link>
-        </div>
-      )}
-    </div>
-  );
-}
+// ─── Page ───────────────────────────────────────────────────────────────────
 
 export default function ProgressPage() {
+  const { user, loading: authLoading } = useAuth();
   const [stats, setStats] = useState<ProgressStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!user) {
+      setLoading(false);
+      return;
+    }
     getProgressStats().then((data) => {
-      setStats(data ?? null);
+      setStats(data);
       setLoading(false);
     });
-  }, []);
+  }, [user]);
+
+  // Loading state
+  if (authLoading || loading) {
+    return (
+      <PageShell>
+        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+        <div className="text-[13px] text-[#9B9DA3] text-center py-16">
+          A carregar...
+        </div>
+      </PageShell>
+    );
+  }
+
+  // Not logged in
+  if (!user) {
+    return (
+      <PageShell>
+        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+        <div className="text-center py-16">
+          <div className="text-[14px] text-[#6C6B71] mb-4">
+            Sign in to track your progress
+          </div>
+          <a
+            href="/auth/login"
+            className="inline-flex px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
+          >
+            Sign in
+          </a>
+        </div>
+      </PageShell>
+    );
+  }
+
+  // No stats (shouldn't happen if logged in, but handle gracefully)
+  if (!stats) {
+    return (
+      <PageShell>
+        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+        <div className="text-[13px] text-[#9B9DA3] text-center py-16">
+          Start your first lesson to see progress here
+        </div>
+      </PageShell>
+    );
+  }
+
+  const totalLessons = 44;
+  const totalWords = 840;
+  const overallProgress = Math.round(
+    (stats.totalLessonsCompleted / totalLessons) * 100
+  );
 
   return (
-    <ProtectedRoute>
+    <PageShell>
+      <PageHeader title="O teu progresso" subtitle="Your learning journey" />
 
-      <main className="max-w-[900px] mx-auto px-4 md:px-6 py-8">
-        <div className="mb-8">
-          <h1 className="text-[24px] font-bold text-[var(--text-primary)]">
-            O teu progresso
-          </h1>
-          <p className="text-[14px] text-[var(--text-secondary)] mt-1">
-            Acompanha a tua jornada de aprendizagem.
-          </p>
+      {/* Stats grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
+        <StatCard
+          label="Lessons completed"
+          value={String(stats.totalLessonsCompleted)}
+          total={String(totalLessons)}
+          progress={overallProgress}
+        />
+        <StatCard
+          label="Words encountered"
+          value={String(stats.totalWordsEncountered)}
+          total={String(totalWords)}
+          progress={Math.round(
+            (stats.totalWordsEncountered / totalWords) * 100
+          )}
+        />
+        <StatCard
+          label="Current level"
+          value={stats.currentLevel}
+          subtitle={levelLabels[stats.currentLevel] || "Complete"}
+        />
+      </div>
+
+      {/* Extra stats row */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <StatCard
+          label="Current streak"
+          value={`${stats.currentStreak}d`}
+          subtitle={
+            stats.longestStreak > 0
+              ? `Best: ${stats.longestStreak}d`
+              : undefined
+          }
+        />
+        <StatCard
+          label="Avg. accuracy"
+          value={`${Math.round(stats.averageAccuracy)}%`}
+        />
+        <StatCard
+          label="Grammar topics"
+          value={String(stats.totalGrammarTopicsStudied)}
+        />
+        <StatCard
+          label="Notes written"
+          value={String(stats.totalNotesWritten)}
+        />
+      </div>
+
+      {/* CEFR Journey */}
+      <SectionLabel>Your journey</SectionLabel>
+      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 mb-8">
+        <div className="flex items-center justify-between mb-4">
+          {(["A1", "A2", "B1"] as const).map((level) => {
+            const progress =
+              level === "A1"
+                ? stats.a1Progress
+                : level === "A2"
+                  ? stats.a2Progress
+                  : stats.b1Progress;
+            return (
+              <div key={level} className="text-center flex-1">
+                <div
+                  className={`text-[14px] font-medium ${
+                    level === stats.currentLevel
+                      ? "text-[#111111]"
+                      : "text-[#9B9DA3]"
+                  }`}
+                >
+                  {level}
+                </div>
+                <div className="text-[11px] text-[#9B9DA3]">
+                  {levelLabels[level]}
+                </div>
+                <div className="text-[11px] text-[#9B9DA3] mt-0.5">
+                  {progress.completed}/{progress.total}
+                </div>
+              </div>
+            );
+          })}
         </div>
+        <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden">
+          <div
+            className="h-full bg-[#185FA5] rounded-full transition-all duration-500"
+            style={{ width: `${Math.min(overallProgress, 100)}%` }}
+          />
+        </div>
+        <div className="text-[12px] text-[#9B9DA3] text-center mt-3">
+          {stats.totalLessonsCompleted} of {totalLessons} lessons complete
+        </div>
+      </div>
 
-        {loading ? (
-          <p className="text-[var(--text-secondary)]">A carregar...</p>
-        ) : stats ? (
-          <>
-            <CefrJourney stats={stats} />
-            <StatsGrid stats={stats} />
-            <LearningTimeline timeline={stats.timeline} />
-          </>
-        ) : (
-          <p className="text-[var(--text-secondary)]">Não foi possível carregar o progresso.</p>
-        )}
-      </main>
-    </ProtectedRoute>
+      {/* Recent activity */}
+      <SectionLabel>Recent activity</SectionLabel>
+      {stats.timeline.length > 0 ? (
+        <ListContainer>
+          {stats.timeline.slice(0, 10).map((event, i) => (
+            <ListRow key={i}>
+              <div className="flex items-center gap-3">
+                <div
+                  className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${eventDotColor(event.type)}`}
+                />
+                <div className="flex-1 min-w-0">
+                  <span className="text-[13px] text-[#111111]">
+                    {event.title}
+                  </span>
+                  {event.subtitle && (
+                    <span className="text-[12px] text-[#9B9DA3] ml-2">
+                      {event.subtitle}
+                    </span>
+                  )}
+                </div>
+                <span className="text-[11px] text-[#9B9DA3] flex-shrink-0">
+                  {formatDate(event.date)}
+                </span>
+              </div>
+            </ListRow>
+          ))}
+        </ListContainer>
+      ) : (
+        <div className="text-[13px] text-[#9B9DA3] text-center py-8">
+          Complete lessons to see your activity here
+        </div>
+      )}
+    </PageShell>
   );
 }
