@@ -9,6 +9,7 @@ import {
   CardShell,
   BadgePill,
   CountLabel,
+  AudioButton,
 } from "@/components/primitives";
 
 import sayingsData from "@/data/sayings.json";
@@ -143,11 +144,14 @@ export default function CulturePage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {filtered.map((item) => (
-          <CardShell key={item.id} interactive>
+          <CardShell key={item.id} interactive className="group">
             <div className="flex items-start justify-between mb-2">
               <div>
-                <div className="text-[14px] font-medium text-[#111111]">
-                  {item.title}
+                <div className="flex items-center gap-1">
+                  <span className="text-[14px] font-medium text-[#111111]">
+                    {item.title}
+                  </span>
+                  <AudioButton text={item.title} className="md:opacity-0 md:group-hover:opacity-100" />
                 </div>
                 <div className="text-[12px] text-[#9B9DA3] mt-0.5">
                   {item.subtitle}

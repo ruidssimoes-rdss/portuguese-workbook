@@ -10,6 +10,7 @@ import {
   BadgePill,
   SegmentedFilter,
   SectionLabel,
+  AudioButton,
 } from "@/components/primitives";
 
 import verbData from "@/data/verbs.json";
@@ -105,7 +106,7 @@ export default function ConjugationDetailPage() {
                 return (
                   <div
                     key={i}
-                    className={`grid grid-cols-[120px_1fr] md:grid-cols-[140px_1fr_1fr] items-center px-4 py-2.5 text-[13px] ${
+                    className={`group grid grid-cols-[120px_1fr] md:grid-cols-[140px_1fr_1fr] items-center px-4 py-2.5 text-[13px] ${
                       i > 0
                         ? "border-t-[0.5px] border-[rgba(0,0,0,0.06)]"
                         : ""
@@ -114,8 +115,9 @@ export default function ConjugationDetailPage() {
                     <span className="text-[#9B9DA3] text-[12px]">
                       {person}
                     </span>
-                    <span className="text-[#111111] font-medium">
+                    <span className="text-[#111111] font-medium flex items-center gap-1">
                       {row.Conjugation}
+                      <AudioButton text={row.Conjugation} className="md:opacity-0 md:group-hover:opacity-100" />
                     </span>
                     <span className="text-[#6C6B71] text-[12px] hidden md:block">
                       {row["Example Sentence"]}

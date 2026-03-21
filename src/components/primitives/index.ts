@@ -11,3 +11,4 @@ export { StatCard } from "./stat-card";
 export { TipBox } from "./tip-box";
 export { TabBar } from "./tab-bar";
 export { CountLabel } from "./count-label";
+export { AudioButton } from "./audio-button";

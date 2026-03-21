@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, ChevronDown } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
-import { PageHeader, BadgePill, TipBox } from "@/components/primitives";
+import { PageHeader, BadgePill, TipBox, AudioButton } from "@/components/primitives";
 
 import grammarData from "@/data/grammar.json";
 
@@ -126,10 +126,13 @@ export default function GrammarDetailPage() {
                       {rule.examples.map((ex: any, i: number) => (
                         <div
                           key={i}
-                          className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5"
+                          className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5 group"
                         >
-                          <div className="text-[13px] text-[#111111]">
-                            {ex.pt}
+                          <div className="flex items-center gap-1">
+                            <span className="text-[13px] text-[#111111]">
+                              {ex.pt}
+                            </span>
+                            <AudioButton text={ex.pt} className="md:opacity-0 md:group-hover:opacity-100" />
                           </div>
                           <div className="text-[12px] text-[#9B9DA3] italic mt-0.5">
                             {ex.en}

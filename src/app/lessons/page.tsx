@@ -157,7 +157,7 @@ function LessonCard({
   if (state === "completed") {
     return (
       <Link href={`/lessons/${lesson.id}`} className="block">
-        <CardShell interactive className="border-l-2 border-l-[#0F6E56]">
+        <CardShell interactive>
           <div className="flex items-center gap-3">
             <div className="w-5 h-5 rounded-full bg-[#E1F5EE] flex items-center justify-center flex-shrink-0">
               <Check size={12} className="text-[#0F6E56]" />
@@ -181,7 +181,7 @@ function LessonCard({
   if (state === "attempted") {
     return (
       <Link href={`/lessons/${lesson.id}`} className="block">
-        <CardShell interactive className="border-l-2 border-l-[#854F0B]">
+        <CardShell interactive>
           <div className="flex items-center gap-3">
             <div className="w-5 h-5 rounded-full bg-[#FAEEDA] flex items-center justify-center flex-shrink-0">
               <span className="text-[10px] font-medium text-[#854F0B]">!</span>
@@ -203,7 +203,7 @@ function LessonCard({
   // current
   return (
     <Link href={`/lessons/${lesson.id}`} className="block">
-      <CardShell interactive className="border-l-2 border-l-[#185FA5]">
+      <CardShell interactive className="border-[1px] border-[#185FA5]">
         <div className="flex items-center gap-3">
           <div className="w-5 h-5 rounded-full bg-[#E6F1FB] flex items-center justify-center flex-shrink-0">
             <ChevronRight size={12} className="text-[#185FA5]" />

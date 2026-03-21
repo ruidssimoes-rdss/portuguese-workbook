@@ -12,6 +12,7 @@ import {
   ListRow,
   BadgePill,
   CountLabel,
+  AudioButton,
 } from "@/components/primitives";
 
 import vocabData from "@/data/vocab.json";
@@ -86,14 +87,15 @@ export default function VocabularyDetailPage() {
 
       <ListContainer>
         {filtered.map((word) => (
-          <ListRow key={word.portuguese}>
+          <ListRow key={word.portuguese} className="group">
             <div className="grid grid-cols-[1fr_1fr_auto] items-center gap-3">
-              <div>
+              <div className="flex items-center gap-1">
                 <span className="text-[14px] font-medium text-[#111111]">
                   {word.portuguese}
                 </span>
+                <AudioButton text={word.portuguese} className="md:opacity-0 md:group-hover:opacity-100" />
                 {word.gender && (
-                  <span className="text-[11px] text-[#9B9DA3] ml-1.5 italic">
+                  <span className="text-[11px] text-[#9B9DA3] ml-0.5 italic">
                     ({word.gender})
                   </span>
                 )}
