@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { PageLayout } from "@/components/blocos";
-import { Divider } from "@/components/ui/divider";
+import { PageShell } from "@/components/layout/page-shell";
 import { SlideDrawer } from "@/components/ui/slide-drawer";
+import { PageHeader, SectionLabel } from "@/components/primitives";
 import { useAuth } from "@/components/auth-provider";
 import {
   getEventsForMonth,
@@ -234,23 +234,23 @@ function CreateEventDrawer({
       <div className="p-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+            <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Título</label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="ex.: Rever conjugações verbais"
-              className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
+              className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Data</label>
+            <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Data</label>
             <input
               type="date"
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
-              className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
+              className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -259,31 +259,31 @@ function CreateEventDrawer({
               id="allDay"
               checked={allDay}
               onChange={(e) => setAllDay(e.target.checked)}
-              className="rounded-[12px] border-gray-300 text-[#003399] focus:ring-[#003399]"
+              className="rounded-lg border-[rgba(0,0,0,0.06)] text-[#111111] focus:ring-[#111111]"
             />
-            <label htmlFor="allDay" className="text-sm text-gray-700">Dia inteiro</label>
+            <label htmlFor="allDay" className="text-[13px] text-[#6C6B71]">Dia inteiro</label>
           </div>
           {!allDay && (
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Hora início</label>
-                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm" />
+                <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Hora início</label>
+                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Hora fim</label>
-                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm" />
+                <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Hora fim</label>
+                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none" />
               </div>
             </div>
           )}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Descrição (opcional)</label>
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20 resize-none" />
+            <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Descrição (opcional)</label>
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none resize-none" />
           </div>
           <div className="flex justify-end gap-2 pt-2">
-            <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 border border-[rgba(0,0,0,0.08)] rounded-[12px] hover:bg-[rgba(0,0,0,0.02)]">
+            <button type="button" onClick={onClose} className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:bg-[rgba(0,0,0,0.02)]">
               Cancelar
             </button>
-            <button type="submit" disabled={saving || !title.trim()} className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50">
+            <button type="submit" disabled={saving || !title.trim()} className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] disabled:opacity-50">
               {saving ? "A guardar..." : "Guardar"}
             </button>
           </div>
@@ -319,36 +319,36 @@ function EditEventDrawer({ event, onClose, onSaved }: { event: CalendarEvent; on
       <div className="p-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20" required />
+            <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Título</label>
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Data</label>
-            <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20" />
+            <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Data</label>
+            <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none" />
           </div>
           <div className="flex items-center gap-2">
-            <input type="checkbox" id="editAllDay" checked={allDay} onChange={(e) => setAllDay(e.target.checked)} className="rounded-[12px] border-gray-300 text-[#003399] focus:ring-[#003399]" />
-            <label htmlFor="editAllDay" className="text-sm text-gray-700">Dia inteiro</label>
+            <input type="checkbox" id="editAllDay" checked={allDay} onChange={(e) => setAllDay(e.target.checked)} className="rounded-lg border-[rgba(0,0,0,0.06)] text-[#111111] focus:ring-[#111111]" />
+            <label htmlFor="editAllDay" className="text-[13px] text-[#6C6B71]">Dia inteiro</label>
           </div>
           {!allDay && (
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Hora início</label>
-                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm" />
+                <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Hora início</label>
+                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Hora fim</label>
-                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm" />
+                <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Hora fim</label>
+                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none" />
               </div>
             </div>
           )}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Descrição (opcional)</label>
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20 resize-none" />
+            <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Descrição (opcional)</label>
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none resize-none" />
           </div>
           <div className="flex justify-end gap-2 pt-2">
-            <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 border border-[rgba(0,0,0,0.08)] rounded-[12px] hover:bg-[rgba(0,0,0,0.02)]">Cancelar</button>
-            <button type="submit" disabled={saving || !title.trim()} className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50">{saving ? "A guardar..." : "Guardar"}</button>
+            <button type="button" onClick={onClose} className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:bg-[rgba(0,0,0,0.02)]">Cancelar</button>
+            <button type="submit" disabled={saving || !title.trim()} className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] disabled:opacity-50">{saving ? "A guardar..." : "Guardar"}</button>
           </div>
         </form>
       </div>
@@ -628,16 +628,16 @@ function GoalDrawer({
     >
       <div className="p-4 space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">O que queres alcançar?</label>
+          <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">O que queres alcançar?</label>
           {isEditMode ? (
-            <p className="px-3 py-2 rounded-[12px] text-sm text-gray-900 bg-[rgba(0,0,0,0.04)] border border-[rgba(0,0,0,0.06)]">
+            <p className="px-3 py-2 rounded-lg text-[13px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)]">
               {GOAL_TITLES[goalType] ?? goalType}
             </p>
           ) : (
             <select
               value={goalType}
               onChange={(e) => setGoalType(e.target.value)}
-              className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
+              className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none"
             >
               {optionsWithCounts.map((o) => (
                 <option key={o.id} value={o.id}>{o.label}</option>
@@ -649,24 +649,24 @@ function GoalDrawer({
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Até quando?</label>
+          <label className="block text-[12px] font-medium text-[#6C6B71] mb-1">Até quando?</label>
           <input
             type="date"
             value={targetDate}
             onChange={(e) => setTargetDate(e.target.value)}
-            className="w-full px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm focus:border-[#003399] focus:ring-1 focus:ring-[#003399]/20"
+            className="w-full px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none"
           />
         </div>
         <div>
-          <p className="text-sm font-medium text-gray-700 mb-2">Em que dias estudas?</p>
+          <p className="text-[12px] font-medium text-[#6C6B71] mb-2">Em que dias estudas?</p>
           <div className="flex flex-wrap gap-2">
             {[1, 2, 3, 4, 5, 6, 7].map((d) => (
               <button
                 key={d}
                 type="button"
                 onClick={() => toggleDay(d)}
-                className={`w-10 h-10 rounded-[12px] text-sm font-medium border transition-colors ${
-                  studyDays.includes(d) ? "bg-[rgba(0,0,0,0.06)] border-[rgba(0,0,0,0.1)] text-gray-900" : "border-[rgba(0,0,0,0.06)] text-gray-400 hover:border-[rgba(0,0,0,0.1)]"
+                className={`w-10 h-10 rounded-lg text-[13px] font-medium border-[0.5px] transition-colors ${
+                  studyDays.includes(d) ? "bg-[rgba(0,0,0,0.05)] border-[rgba(0,0,0,0.06)] text-[#111111]" : "border-[rgba(0,0,0,0.06)] text-[#9B9DA3] hover:border-[rgba(0,0,0,0.12)]"
                 }`}
               >
                 {WEEKDAY_LABELS[d - 1]}
@@ -675,15 +675,15 @@ function GoalDrawer({
           </div>
         </div>
         {preview && (
-          <div className="rounded-[12px] border border-[rgba(0,0,0,0.06)] p-3 bg-[rgba(0,0,0,0.02)]">
-            <p className="text-[12px] font-medium text-gray-700 mb-1">Plano sugerido:</p>
-            <p className="text-[12px] text-gray-600">
+          <div className="rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] p-3 bg-[#F7F7F5]">
+            <p className="text-[12px] font-medium text-[#6C6B71] mb-1">Plano sugerido:</p>
+            <p className="text-[12px] text-[#6C6B71]">
               {preview.remaining} restantes ÷ {preview.days} dias disponíveis = ~{Math.ceil(preview.remaining / preview.days)} por dia
             </p>
           </div>
         )}
         <div className="flex justify-end gap-2 pt-2">
-          <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 border border-[rgba(0,0,0,0.08)] rounded-[12px] hover:bg-[rgba(0,0,0,0.02)]">
+          <button type="button" onClick={onClose} className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:bg-[rgba(0,0,0,0.02)]">
             Cancelar
           </button>
           {isEditMode ? (
@@ -691,7 +691,7 @@ function GoalDrawer({
               type="button"
               onClick={handleUpdate}
               disabled={saving || (preview ? preview.remaining <= 0 || preview.days <= 0 : true)}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50"
+              className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] disabled:opacity-50"
             >
               {saving ? "A atualizar..." : "Atualizar plano"}
             </button>
@@ -700,7 +700,7 @@ function GoalDrawer({
               type="button"
               onClick={handleCreate}
               disabled={saving || !preview || preview.remaining <= 0 || preview.days <= 0}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50"
+              className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] disabled:opacity-50"
             >
               {saving ? "A criar..." : "Criar plano"}
             </button>
@@ -717,16 +717,16 @@ function GoalDrawer({
                 Eliminar objetivo
               </button>
             ) : (
-              <div className="rounded-[12px] border border-[rgba(0,0,0,0.06)] p-3 bg-[rgba(0,0,0,0.02)]">
-                <p className="text-[13px] font-medium text-gray-900 mb-2">Tens a certeza?</p>
-                <p className="text-[12px] text-gray-600 mb-3">
+              <div className="rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] p-3 bg-[#F7F7F5]">
+                <p className="text-[13px] font-medium text-[#111111] mb-2">Tens a certeza?</p>
+                <p className="text-[12px] text-[#6C6B71] mb-3">
                   Os eventos futuros deste objetivo serão removidos. Os eventos passados ficam no calendário.
                 </p>
                 <div className="flex gap-2">
                   <button
                     type="button"
                     onClick={() => setConfirmDeleteGoal(false)}
-                    className="px-3 py-1.5 text-sm font-medium text-gray-700 border border-[rgba(0,0,0,0.08)] rounded-[12px] hover:bg-[rgba(0,0,0,0.02)]"
+                    className="px-3 py-1.5 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:bg-[rgba(0,0,0,0.02)]"
                   >
                     Cancelar
                   </button>
@@ -734,7 +734,7 @@ function GoalDrawer({
                     type="button"
                     onClick={handleDeleteGoal}
                     disabled={saving}
-                    className="px-3 py-1.5 text-sm font-medium text-white bg-red-600 rounded-[12px] hover:bg-red-700 disabled:opacity-50"
+                    className="px-3 py-1.5 text-[13px] font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 disabled:opacity-50"
                   >
                     Eliminar
                   </button>
@@ -909,40 +909,30 @@ export default function CalendarPage() {
 
   return (
     <>
-      <PageLayout>
+      <PageShell>
         <div className="py-5">
-          <div className="pb-10 pt-10 border-b border-border">
-            <div className="max-w-[640px]">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#003399]">REVISION</span>
-                <span className="text-[10px] text-[#003399]/50">/ Revisão</span>
-              </div>
-              <h1 className="text-[28px] md:text-[34px] leading-[1.15] font-extrabold tracking-[-0.02em] text-[var(--text-primary)]">Calendário</h1>
-              <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--text-secondary)] mt-3">Acompanha o teu percurso e planeia sessões de estudo.</p>
-            </div>
-          </div>
-          <Divider className="mt-4 mb-6" />
+          <PageHeader title="Calendário" subtitle="Your learning timeline" />
         </div>
 
         {!isLoggedIn ? (
-          <div className="border border-[rgba(0,0,0,0.08)] rounded-[12px] p-8 bg-white text-center">
-            <p className="text-[15px] font-semibold text-gray-900">Inicia sessão para usar o calendário</p>
-            <p className="text-[13px] text-gray-500 italic mt-1">Inicia sessão para ver o teu calendário</p>
-            <Link href="/auth/login" className="inline-flex items-center justify-center h-9 px-5 bg-[#003399] text-white rounded-[12px] text-[13px] font-medium hover:bg-[#002266] transition-colors mt-5">
+          <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-8 bg-white text-center">
+            <p className="text-[14px] font-medium text-[#111111]">Inicia sessão para usar o calendário</p>
+            <p className="text-[13px] text-[#6C6B71] italic mt-1">Inicia sessão para ver o teu calendário</p>
+            <Link href="/auth/login" className="inline-flex items-center justify-center h-9 px-5 bg-[#111111] text-white rounded-lg text-[13px] font-medium hover:bg-[#333] transition-colors mt-5">
               Entrar
             </Link>
           </div>
         ) : (
           <>
-            <p className="text-[12px] text-gray-500 mb-4">
-              Este mês: <span className="font-medium text-gray-700">{monthStats.lessons} lições</span>
-              {" · "}<span className="font-medium text-gray-700">{monthStats.exams} exame</span>
-              {" · "}<span className="font-medium text-gray-700">{monthStats.practice} prática</span>
-              {" · "}<span className="font-medium text-gray-700">{monthStats.planned} planeado</span>
+            <p className="text-[12px] text-[#9B9DA3] mb-4">
+              Este mês: <span className="font-medium text-[#6C6B71]">{monthStats.lessons} lições</span>
+              {" · "}<span className="font-medium text-[#6C6B71]">{monthStats.exams} exame</span>
+              {" · "}<span className="font-medium text-[#6C6B71]">{monthStats.practice} prática</span>
+              {" · "}<span className="font-medium text-[#6C6B71]">{monthStats.planned} planeado</span>
               {monthStats.goals > 0 && (
                 <>
-                  <span className="text-gray-400"> · </span>
-                  <span className="font-medium text-gray-700">
+                  <span className="text-[#9B9DA3]"> · </span>
+                  <span className="font-medium text-[#6C6B71]">
                     {monthStats.goals} objetivo{activeGoalProgress != null ? ` · ${activeGoalProgress}% concluído` : ""}
                   </span>
                 </>
@@ -951,13 +941,13 @@ export default function CalendarPage() {
 
             {/* Goals section */}
             <div className="mb-6">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Objetivos</p>
+              <SectionLabel>Objetivos</SectionLabel>
               {goals.length === 0 ? (
-                <p className="text-[13px] text-[#6B7280]">
+                <p className="text-[13px] text-[#6C6B71] mt-3">
                   Ainda sem objetivos definidos. Define um objetivo para planear o teu estudo.
                 </p>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-3 mt-3">
                   {goals.map((goal) => {
                     const title = GOAL_TITLES[goal.goal_type] ?? goal.goal_type;
                     const itemLabel = GOAL_ITEM_LABELS[goal.goal_type] ?? "itens";
@@ -965,7 +955,7 @@ export default function CalendarPage() {
                     const isComplete = goal.completed_items >= goal.total_items;
                     const health = !isComplete ? getGoalHealth(goal) : null;
                     const healthConfig = health
-                      ? { ahead: { label: "Adiantado", color: "#16A34A" }, "on-track": { label: "No caminho certo", color: "#003399" }, behind: { label: "Ligeiramente atrasado", color: "#F59E0B" } }[health]
+                      ? { ahead: { label: "Adiantado", color: "#16A34A" }, "on-track": { label: "No caminho certo", color: "#185FA5" }, behind: { label: "Ligeiramente atrasado", color: "#F59E0B" } }[health]
                       : null;
                     const targetD = new Date(goal.target_date + "T12:00:00");
                     const formattedDate = `${targetD.getDate()} de ${MESES[targetD.getMonth()]}`;
@@ -977,10 +967,10 @@ export default function CalendarPage() {
                     return (
                       <div
                         key={goal.id}
-                        className="bg-white border border-[#E5E7EB] rounded-[12px] p-5"
+                        className="bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-4"
                       >
                         <div className="flex items-start justify-between mb-3">
-                          <p className={`text-[14px] font-semibold ${isComplete ? "text-[#16A34A]" : "text-[#111827]"}`}>
+                          <p className={`text-[14px] font-medium ${isComplete ? "text-[#0F6E56]" : "text-[#111111]"}`}>
                             {isComplete && (
                               <span className="inline-flex align-middle mr-1.5" aria-hidden>
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -997,15 +987,15 @@ export default function CalendarPage() {
                                 setEditingGoal(goal);
                                 setDrawerOpen("goal");
                               }}
-                              className="text-[12px] font-medium text-[#9CA3AF] hover:text-[#003399] transition-colors"
+                              className="text-[12px] font-medium text-[#9B9DA3] hover:text-[#111111] transition-colors"
                             >
                               Ajustar
                             </button>
                           )}
                         </div>
-                        <div className="h-1.5 bg-[#F0F0F0] rounded-full overflow-hidden mb-2">
+                        <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mb-2">
                           <div
-                            className={`h-full rounded-full transition-all duration-500 ${isComplete ? "bg-[#16A34A]" : "bg-[#003399]"}`}
+                            className={`h-full rounded-full transition-all duration-500 ${isComplete ? "bg-[#0F6E56]" : "bg-[#185FA5]"}`}
                             style={{ width: `${Math.min(percentage, 100)}%` }}
                           />
                         </div>
@@ -1015,10 +1005,10 @@ export default function CalendarPage() {
                           </p>
                         )}
                         <div className="flex items-center justify-between flex-wrap gap-1">
-                          <p className="text-[12px] text-[#6B7280]">
+                          <p className="text-[12px] text-[#6C6B71]">
                             {goal.completed_items}/{goal.total_items} {itemLabel} · {percentage}%
                           </p>
-                          <p className="text-[11px] text-[#9CA3AF]">
+                          <p className="text-[11px] text-[#9B9DA3]">
                             {isComplete
                               ? (() => {
                                   const updatedD = new Date(goal.updated_at);
@@ -1037,15 +1027,15 @@ export default function CalendarPage() {
             {/* Reflection summary — current week or viewed month */}
             {viewMode === "month" && (
               <div className="mb-6">
-                <div className="bg-[#FAFAFA] border border-[#E5E7EB] rounded-[12px] p-5">
-                  <p className="text-[13px] font-semibold text-[#111827] mb-2">
+                <div className="bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-4">
+                  <p className="text-[13px] font-medium text-[#111111] mb-2">
                     {isCurrentMonth ? "Esta semana" : `${MESES[month - 1]} ${year}`}
                   </p>
                   {reflectionLoading ? (
-                    <p className="text-[13px] text-[#6B7280]">A carregar...</p>
+                    <p className="text-[13px] text-[#6C6B71]">A carregar...</p>
                   ) : reflectionStats ? (
                     <>
-                      <p className="text-[13px] text-[#6B7280] leading-relaxed mb-3">
+                      <p className="text-[13px] text-[#6C6B71] leading-relaxed mb-3">
                         {isCurrentMonth
                           ? generateWeeklySummary(reflectionStats)
                           : generateMonthlySummary(reflectionStats)}
@@ -1053,14 +1043,14 @@ export default function CalendarPage() {
                       {isCurrentMonth && reflectionStats.notesCount > 0 && (
                         <Link
                           href={`/notes?updatedDateStart=${getWeekRange(new Date()).weekStart}&updatedDateEnd=${getWeekRange(new Date()).weekEnd}`}
-                          className="text-[12px] font-medium text-[#003399] hover:underline"
+                          className="text-[12px] font-medium text-[#185FA5] hover:underline"
                         >
                           Ver notas desta semana →
                         </Link>
                       )}
                     </>
                   ) : (
-                    <p className="text-[13px] text-[#6B7280]">A carregar...</p>
+                    <p className="text-[13px] text-[#6C6B71]">A carregar...</p>
                   )}
                 </div>
               </div>
@@ -1073,8 +1063,8 @@ export default function CalendarPage() {
                     key={v}
                     type="button"
                     onClick={() => setViewMode(v)}
-                    className={`px-3 py-1.5 rounded-[12px] text-sm font-medium transition-colors ${
-                      viewMode === v ? "bg-[rgba(0,0,0,0.05)] text-gray-900 border border-[rgba(0,0,0,0.08)]" : "text-[rgba(0,0,0,0.5)] hover:text-gray-700 border border-transparent"
+                    className={`px-3 py-1.5 rounded-lg text-[13px] font-medium transition-colors ${
+                      viewMode === v ? "bg-[rgba(0,0,0,0.05)] text-[#111111] border-[0.5px] border-[rgba(0,0,0,0.06)]" : "text-[#9B9DA3] hover:text-[#6C6B71] border-[0.5px] border-transparent"
                     }`}
                   >
                     {v === "month" ? "Mês" : "Dia"}
@@ -1082,11 +1072,11 @@ export default function CalendarPage() {
                 ))}
               </div>
               <div className="flex items-center gap-3">
-                <button type="button" onClick={navPrev} className="text-sm text-gray-600 hover:text-gray-900">
+                <button type="button" onClick={navPrev} className="text-[12px] text-[#9B9DA3] hover:text-[#111111]">
                   {viewMode === "month" ? "← " + MESES[month - 2 < 0 ? 11 : month - 2] : "← Dia anterior"}
                 </button>
-                <span className="text-sm font-medium text-gray-800 min-w-[200px] text-center">{navCenterLabel}</span>
-                <button type="button" onClick={navNext} className="text-sm text-gray-600 hover:text-gray-900">
+                <span className="text-[14px] font-medium text-[#111111] min-w-[200px] text-center">{navCenterLabel}</span>
+                <button type="button" onClick={navNext} className="text-[12px] text-[#9B9DA3] hover:text-[#111111]">
                   {viewMode === "month" ? MESES[month > 11 ? 0 : month] + " →" : "Próximo dia →"}
                 </button>
               </div>
@@ -1094,7 +1084,7 @@ export default function CalendarPage() {
                 <button
                   type="button"
                   onClick={() => setDrawerOpen("create")}
-                  className="px-4 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] border border-[rgba(0,0,0,0.06)]"
+                  className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] border-[0.5px] border-[rgba(0,0,0,0.06)]"
                 >
                   Planear sessão
                 </button>
@@ -1104,7 +1094,7 @@ export default function CalendarPage() {
                     setEditingGoal(null);
                     setDrawerOpen("goal");
                   }}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 rounded-[12px] border border-[rgba(0,0,0,0.08)] hover:bg-[rgba(0,0,0,0.03)]"
+                  className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] hover:text-[#111111]"
                 >
                   Definir objetivo
                 </button>
@@ -1112,7 +1102,7 @@ export default function CalendarPage() {
             </div>
 
             {/* Legend */}
-            <p className="text-[10px] text-[rgba(0,0,0,0.4)] mb-4">
+            <p className="text-[10px] text-[#9B9DA3] mb-4">
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" /> Aprovado</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" /> Ainda não</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#003399]" /> Exame</span>
@@ -1123,7 +1113,7 @@ export default function CalendarPage() {
             </p>
 
             {loading ? (
-              <p className="text-sm text-gray-500 py-8">A carregar...</p>
+              <p className="text-[13px] text-[#6C6B71] py-8">A carregar...</p>
             ) : viewMode === "month" ? (
               <MonthGridView
                 year={year}
@@ -1215,7 +1205,7 @@ export default function CalendarPage() {
         )}
 
         <div className="pb-16" />
-      </PageLayout>
+      </PageShell>
     </>
   );
 }
@@ -1258,40 +1248,40 @@ function EventDetailPopover({
     <div className="fixed inset-0 z-40 flex items-center justify-center p-4" onClick={onClose}>
       <div className="absolute inset-0 bg-black/20" />
       <div
-        className="relative bg-white rounded-[12px] border border-[rgba(0,0,0,0.08)] shadow-lg p-4 w-full max-w-sm"
+        className="relative bg-white rounded-lg border-[0.5px] border-[rgba(0,0,0,0.12)] p-4 w-full max-w-sm"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start gap-2">
           <span className="w-[6px] h-[6px] rounded-full shrink-0 mt-1.5" style={{ backgroundColor: style.color }} />
           <div className="min-w-0 flex-1">
-            <p className="text-[14px] font-semibold text-gray-900">{event.title}</p>
-            <p className="text-[11px] text-gray-500 mt-0.5">{style.label}{event.linked_score != null ? ` · ${Math.round(event.linked_score)}%` : ""}{event.linked_passed !== null ? (event.linked_passed ? " · Aprovado" : " · Ainda não") : ""}</p>
+            <p className="text-[14px] font-medium text-[#111111]">{event.title}</p>
+            <p className="text-[11px] text-[#6C6B71] mt-0.5">{style.label}{event.linked_score != null ? ` · ${Math.round(event.linked_score)}%` : ""}{event.linked_passed !== null ? (event.linked_passed ? " · Aprovado" : " · Ainda não") : ""}</p>
             {event.created_at && (
-              <p className="text-[10px] text-gray-400 mt-1">{new Date(event.created_at).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" })}</p>
+              <p className="text-[10px] text-[#9B9DA3] mt-1">{new Date(event.created_at).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" })}</p>
             )}
             {event.event_type === "auto_lesson" && event.linked_id && (
-              <Link href={`/lessons/${event.linked_id}`} className="text-[12px] text-[#003399] hover:underline mt-2 inline-block">Abrir lição</Link>
+              <Link href={`/lessons/${event.linked_id}`} className="text-[12px] text-[#185FA5] hover:underline mt-2 inline-block">Abrir lição</Link>
             )}
             {event.event_type === "auto_exam" && event.linked_id && (
-              <Link href={`/exams/${event.linked_id}`} className="text-[12px] text-[#003399] hover:underline mt-2 inline-block">Abrir exame</Link>
+              <Link href={`/exams/${event.linked_id}`} className="text-[12px] text-[#185FA5] hover:underline mt-2 inline-block">Abrir exame</Link>
             )}
           </div>
         </div>
         {event.event_type === "goal" && showMoveDate && (
           <div className="mt-3 pt-3 border-t border-[rgba(0,0,0,0.06)]">
-            <p className="text-[12px] font-medium text-gray-700 mb-2">Mover para outra data</p>
+            <p className="text-[12px] font-medium text-[#6C6B71] mb-2">Mover para outra data</p>
             <div className="flex gap-2 items-center">
               <input
                 type="date"
                 value={moveDate}
                 onChange={(e) => setMoveDate(e.target.value)}
-                className="flex-1 px-3 py-2 border border-[rgba(0,0,0,0.08)] rounded-[12px] text-sm"
+                className="flex-1 px-3 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] focus:border-[rgba(0,0,0,0.12)] focus:outline-none"
               />
               <button
                 type="button"
                 onClick={handleMoveGoalEvent}
                 disabled={moving || moveDate === event.event_date}
-                className="px-3 py-2 text-sm font-medium text-white bg-[#003399] rounded-[12px] hover:bg-[#002266] disabled:opacity-50"
+                className="px-3 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] disabled:opacity-50"
               >
                 {moving ? "A guardar..." : "Mover"}
               </button>
@@ -1301,19 +1291,19 @@ function EventDetailPopover({
         <div className="flex justify-end gap-2 mt-4 pt-3 border-t border-[rgba(0,0,0,0.06)]">
           {event.event_type === "goal" && (
             <>
-              <button type="button" onClick={() => setShowMoveDate((v) => !v)} className="text-sm font-medium text-gray-600 hover:text-gray-900">
+              <button type="button" onClick={() => setShowMoveDate((v) => !v)} className="text-[13px] font-medium text-[#6C6B71] hover:text-[#111111]">
                 {showMoveDate ? "Ocultar data" : "Ajustar"}
               </button>
-              <button type="button" onClick={onDelete} className="text-sm font-medium text-red-600 hover:text-red-700">Apagar</button>
+              <button type="button" onClick={onDelete} className="text-[13px] font-medium text-red-600 hover:text-red-700">Apagar</button>
             </>
           )}
           {event.event_type === "planned" && (
             <>
-              <button type="button" onClick={onEdit} className="text-sm font-medium text-gray-600 hover:text-gray-900">Editar</button>
-              <button type="button" onClick={onDelete} className="text-sm font-medium text-red-600 hover:text-red-700">Apagar</button>
+              <button type="button" onClick={onEdit} className="text-[13px] font-medium text-[#6C6B71] hover:text-[#111111]">Editar</button>
+              <button type="button" onClick={onDelete} className="text-[13px] font-medium text-red-600 hover:text-red-700">Apagar</button>
             </>
           )}
-          <button type="button" onClick={onClose} className="text-sm font-medium text-gray-600 hover:text-gray-900">Fechar</button>
+          <button type="button" onClick={onClose} className="text-[13px] font-medium text-[#6C6B71] hover:text-[#111111]">Fechar</button>
         </div>
       </div>
     </div>
@@ -1359,12 +1349,12 @@ function DayView({
     return "PLANEADO";
   };
   return (
-    <div className="rounded-[12px] border border-[rgba(0,0,0,0.06)] overflow-hidden bg-white">
+    <div className="rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] overflow-hidden bg-white">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(0,0,0,0.06)]">
-        <button type="button" onClick={onBackToMonth} className="text-sm font-medium text-gray-600 hover:text-gray-900">
+        <button type="button" onClick={onBackToMonth} className="text-[13px] font-medium text-[#6C6B71] hover:text-[#111111]">
           ← Voltar ao mês
         </button>
-        <span className="text-[13px] font-semibold text-gray-800">
+        <span className="text-[13px] font-medium text-[#111111]">
           {formatDayLongPT(dateKey)}
         </span>
       </div>
@@ -1373,20 +1363,20 @@ function DayView({
           const st = getEventStyle(e);
           const timeStr = e.start_time ? formatTimePT(e.start_time) : "";
           return (
-            <div key={e.id} className="rounded-[12px] border border-[rgba(0,0,0,0.06)] p-3 flex items-start gap-3">
-              {timeStr && <span className="text-[11px] text-gray-500 shrink-0 w-12">{timeStr}</span>}
+            <div key={e.id} className="rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] p-3 flex items-start gap-3">
+              {timeStr && <span className="text-[11px] text-[#6C6B71] shrink-0 w-12">{timeStr}</span>}
               <span className="w-2 h-2 rounded-full shrink-0 mt-1" style={{ backgroundColor: st.color }} />
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: st.color }}>{typeLabel(e)}</p>
-                <p className="text-[14px] font-medium text-gray-900">{e.title}</p>
+                <p className="text-[10px] font-medium uppercase tracking-wide" style={{ color: st.color }}>{typeLabel(e)}</p>
+                <p className="text-[14px] font-medium text-[#111111]">{e.title}</p>
                 {e.linked_score != null && (
-                  <p className="text-[12px] text-gray-500 mt-0.5">
+                  <p className="text-[12px] text-[#6C6B71] mt-0.5">
                     {Math.round(e.linked_score)}%{e.linked_passed !== null ? (e.linked_passed ? " Aprovado" : " Ainda não") : ""}
                   </p>
                 )}
               </div>
               {(e.event_type === "planned" || e.event_type === "goal") && (
-                <button type="button" onClick={() => onEditEvent(e)} className="text-[12px] font-medium text-[#003399] hover:underline shrink-0">
+                <button type="button" onClick={() => onEditEvent(e)} className="text-[12px] font-medium text-[#185FA5] hover:underline shrink-0">
                   {e.event_type === "goal" ? "Ajustar" : "Editar"}
                 </button>
               )}
@@ -1395,18 +1385,18 @@ function DayView({
         })}
         {allDay.length > 0 && (
           <>
-            <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide pt-2 border-t border-[rgba(0,0,0,0.06)]">──── Dia inteiro ────</p>
+            <p className="text-[10px] font-medium text-[#9B9DA3] uppercase tracking-wide pt-2 border-t border-[rgba(0,0,0,0.06)]">──── Dia inteiro ────</p>
             {allDay.map((e) => {
               const st = getEventStyle(e);
               return (
-                <div key={e.id} className="rounded-[12px] border border-[rgba(0,0,0,0.06)] p-3 flex items-start gap-3">
+                <div key={e.id} className="rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] p-3 flex items-start gap-3">
                   <span className="w-2 h-2 rounded-full shrink-0 mt-1" style={{ backgroundColor: st.color }} />
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: st.color }}>{typeLabel(e)}</p>
-                    <p className="text-[14px] font-medium text-gray-900">{e.title}</p>
+                    <p className="text-[10px] font-medium uppercase tracking-wide" style={{ color: st.color }}>{typeLabel(e)}</p>
+                    <p className="text-[14px] font-medium text-[#111111]">{e.title}</p>
                   </div>
                   {(e.event_type === "planned" || e.event_type === "goal") && (
-                    <button type="button" onClick={() => onEditEvent(e)} className="text-[12px] font-medium text-[#003399] hover:underline shrink-0">
+                    <button type="button" onClick={() => onEditEvent(e)} className="text-[12px] font-medium text-[#185FA5] hover:underline shrink-0">
                       {e.event_type === "goal" ? "Ajustar" : "Editar"}
                     </button>
                   )}
@@ -1418,8 +1408,8 @@ function DayView({
       </div>
       {dayNoteCount > 0 && (
         <div className="px-4 py-3 border-t border-[rgba(0,0,0,0.06)]">
-          <Link href={`/notes?updatedDate=${dateKey}`} className="text-[12px] text-gray-600 hover:text-[#003399]">
-            📝 Notas editadas: {dayNoteCount}
+          <Link href={`/notes?updatedDate=${dateKey}`} className="text-[12px] text-[#6C6B71] hover:text-[#185FA5]">
+            Notas editadas: {dayNoteCount}
           </Link>
         </div>
       )}
@@ -1479,15 +1469,15 @@ function MonthGridView({
   const grid = getMonthGrid(year, month);
   const todayKey = toDateKey(new Date());
   return (
-    <div className="rounded-[12px] border border-[rgba(0,0,0,0.06)] overflow-hidden bg-white">
-      <div className="grid grid-cols-7 border-b border-[rgba(0,0,0,0.03)]">
+    <div className="rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] overflow-hidden bg-white">
+      <div className="grid grid-cols-7 border-b border-[rgba(0,0,0,0.06)]">
         {DIAS_HEADER.map((d) => (
-          <div key={d} className="py-2 text-center text-[11px] font-semibold text-gray-500 uppercase tracking-wide">
+          <div key={d} className="py-2 text-center text-[11px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em]">
             {d}
           </div>
         ))}
       </div>
-      <div className="divide-y divide-[rgba(0,0,0,0.03)]">
+      <div className="divide-y divide-[rgba(0,0,0,0.06)]">
         {grid.map((row, ri) => (
           <div key={ri} className="grid grid-cols-7">
             {row.map((day, di) => {
@@ -1501,8 +1491,8 @@ function MonthGridView({
                   type="button"
                   onClick={() => dateKey && onSelectDay(dateKey)}
                   disabled={!dateKey}
-                  className={`min-h-[100px] p-2 text-left border-r border-[rgba(0,0,0,0.03)] last:border-r-0 transition-colors relative ${
-                    !dateKey ? "bg-[rgba(0,0,0,0.02)] cursor-default" : isToday ? "bg-[#003399]/[0.03]" : "hover:bg-[rgba(0,0,0,0.015)]"
+                  className={`min-h-[100px] p-2 text-left border-r border-[rgba(0,0,0,0.06)] last:border-r-0 transition-colors relative ${
+                    !dateKey ? "bg-[#F7F7F5] cursor-default" : isToday ? "bg-[rgba(0,51,153,0.05)]" : "hover:bg-[rgba(0,0,0,0.015)]"
                   }`}
                 >
                   {day != null && (
@@ -1512,7 +1502,7 @@ function MonthGridView({
                           <PencilIconSmall />
                         </span>
                       )}
-                      <span className={`inline-flex items-center justify-center w-7 h-7 rounded-[12px] text-[13px] font-semibold ${isToday ? "bg-[#003399] text-white" : "text-gray-700"}`}>
+                      <span className={`inline-flex items-center justify-center w-7 h-7 rounded-lg text-[13px] font-medium ${isToday ? "bg-[#185FA5] text-white" : "text-[#111111]"}`}>
                         {day}
                       </span>
                       <div className="mt-1 space-y-0.5">
@@ -1530,11 +1520,11 @@ function MonthGridView({
                               style={{ backgroundColor: st.color + "0F" }}
                             >
                               <span className="w-[5px] h-[5px] rounded-full shrink-0" style={{ backgroundColor: st.color }} />
-                              <span className="text-[11px] font-medium text-gray-800 truncate flex-1">{e.title}</span>
+                              <span className="text-[11px] font-medium text-[#111111] truncate flex-1">{e.title}</span>
                             </button>
                           );
                         })}
-                        {events.length > 3 && <span className="text-[10px] text-gray-400">+{events.length - 3} mais</span>}
+                        {events.length > 3 && <span className="text-[10px] text-[#9B9DA3]">+{events.length - 3} mais</span>}
                       </div>
                     </>
                   )}
