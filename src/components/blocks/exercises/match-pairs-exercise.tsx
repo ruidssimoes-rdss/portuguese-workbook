@@ -74,21 +74,21 @@ export function MatchPairsExercise({
   }
 
   function leftClass(index: number): string {
-    const base = "w-full text-left py-3 px-4 rounded-xl border text-[14px] transition-all duration-150 cursor-pointer";
+    const base = "w-full text-left py-3 px-4 rounded-lg border text-[14px] transition-all duration-150 cursor-pointer";
     if (matched.has(index)) return `${base} pair-matched`;
     if (flash?.left === index && flash.type === "wrong") return `${base} pair-mismatched`;
     if (selectedLeft === index) return `${base} pair-selected`;
-    return `${base} border-[#E5E7EB] bg-white text-[#111827] hover:border-[#D1D5DB]`;
+    return `${base} border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white text-[#111111] hover:border-[rgba(0,0,0,0.12)]`;
   }
 
   function rightClass(index: number): string {
-    const base = "w-full text-left py-3 px-4 rounded-xl border text-[14px] transition-all duration-150 cursor-pointer";
+    const base = "w-full text-left py-3 px-4 rounded-lg border text-[14px] transition-all duration-150 cursor-pointer";
     const matchedIdx = data.pairs.findIndex((p) => p.right === shuffledRight[index]);
     if (matched.has(matchedIdx)) return `${base} pair-matched`;
     if (flash?.right === index && flash.type === "wrong") return `${base} pair-mismatched`;
     if (selectedRight === index) return `${base} pair-selected`;
     const highlightTappable = selectedLeft !== null && !matched.has(matchedIdx);
-    return `${base} border-[#E5E7EB] bg-white ${highlightTappable ? "text-[#111827] border-[#D1D5DB]" : "text-[#6B7280]"} hover:border-[#D1D5DB]`;
+    return `${base} border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white ${highlightTappable ? "text-[#111111] border-[rgba(0,0,0,0.12)]" : "text-[#6C6B71]"} hover:border-[rgba(0,0,0,0.12)]`;
   }
 
   return (
@@ -131,10 +131,10 @@ export function MatchPairsExercise({
       {/* Attempts counter */}
       <div className="flex justify-center mt-3">
         {wrongAttempts > 0 && (
-          <span className="text-[11px] text-[#9CA3AF]">{wrongAttempts} wrong {wrongAttempts === 1 ? "attempt" : "attempts"}</span>
+          <span className="text-[11px] text-[#9B9DA3]">{wrongAttempts} wrong {wrongAttempts === 1 ? "attempt" : "attempts"}</span>
         )}
         {matched.size === data.pairs.length && wrongAttempts === 0 && (
-          <span className="text-[13px] font-medium text-emerald-600 fade-in">Perfect matching!</span>
+          <span className="text-[13px] font-medium text-[#0F6E56] fade-in">Perfect matching!</span>
         )}
       </div>
     </div>

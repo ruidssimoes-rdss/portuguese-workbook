@@ -37,17 +37,17 @@ export function TranslateExercise({
   const dirLabel = data.direction === "pt-to-en" ? "Translate to English" : "Translate to Portuguese";
 
   const inputStateClass = submitted
-    ? wasCorrect ? "exercise-correct" : "exercise-incorrect"
+    ? wasCorrect ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"
     : "";
 
   const containerShake = submitted && !wasCorrect ? "error-shake" : "";
 
   return (
     <div className={`flex flex-col items-center py-6 fade-in ${containerShake} ${className ?? ""}`}>
-      <p className="text-[13px] text-[#6B7280] mb-4">{dirLabel}</p>
-      <p className="text-[24px] font-bold text-[#111827]">{data.word}</p>
+      <p className="text-[13px] text-[#6C6B71] mb-4">{dirLabel}</p>
+      <p className="text-[24px] font-medium text-[#111111]">{data.word}</p>
       {data.pronunciation && data.direction === "pt-to-en" && (
-        <p className="text-[13px] text-[#9CA3AF] italic mt-1">{data.pronunciation}</p>
+        <p className="text-[13px] text-[#9B9DA3] italic mt-1">{data.pronunciation}</p>
       )}
       <input
         ref={inputRef}
@@ -58,18 +58,18 @@ export function TranslateExercise({
         disabled={disabled || submitted}
         readOnly={submitted}
         placeholder="Type your answer..."
-        className={`mt-6 w-full max-w-[400px] px-4 py-3 text-[16px] text-center border border-[#E5E7EB] rounded-full bg-white text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#003399] focus:input-focus-glow transition-all duration-150 ${inputStateClass}`}
+        className={`mt-6 w-full max-w-[400px] text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2 outline-none focus:border-[rgba(0,0,0,0.12)] text-center text-[#111111] placeholder:text-[#9B9DA3] transition-all duration-150 ${inputStateClass}`}
       />
       {input.trim() && !submitted && !disabled && (
         <button
           onClick={handleSubmit}
-          className="mt-3 text-[13px] font-medium text-[#003399] hover:text-[#002277] transition-colors fade-in cursor-pointer"
+          className="mt-3 text-[13px] font-medium text-[#185FA5] hover:text-[#185FA5]/80 transition-colors fade-in cursor-pointer"
         >
           Submit
         </button>
       )}
       {submitted && wasCorrect && data.pronunciation && (
-        <p className="text-[13px] text-[#9CA3AF] italic mt-2 fade-in">{data.pronunciation}</p>
+        <p className="text-[13px] text-[#9B9DA3] italic mt-2 fade-in">{data.pronunciation}</p>
       )}
     </div>
   );

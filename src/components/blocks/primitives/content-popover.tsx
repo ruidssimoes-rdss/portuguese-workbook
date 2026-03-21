@@ -46,7 +46,7 @@ export function ContentPopover({ trigger, children, side = "bottom", className }
         {trigger}
       </button>
       {open && (
-        <div className={`absolute z-50 w-[280px] bg-white border border-[#E5E7EB] rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-4 fade-in ${positionClasses[side]}`}>
+        <div className={`absolute z-50 w-[280px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-4 fade-in ${positionClasses[side]}`}>
           {children}
         </div>
       )}

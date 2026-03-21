@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import type { ExerciseProps, ConjugateExerciseData, AnswerResult } from "@/types/blocks";
 import { checkAnswer } from "./shared/answer-validator";
-import { patterns } from "@/lib/design-tokens";
 
 export function ConjugateExercise({
   data,
@@ -36,14 +35,14 @@ export function ConjugateExercise({
 
   return (
     <div className={`flex flex-col items-center py-6 fade-in ${className ?? ""}`}>
-      <span className={`${patterns.badge} bg-[#F3F4F6] text-[#6B7280] mb-3 fade-in`}>
+      <span className="text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap bg-[#F7F7F5] text-[#6C6B71] mb-3 fade-in">
         {data.tenseLabel || data.tense}
       </span>
-      <p className="text-[20px] font-bold text-[#111827] fade-in">{data.verb}</p>
-      <p className="text-[13px] text-[#6B7280] mt-0.5 fade-in" style={{ animationDelay: "50ms" }}>{data.verbTranslation}</p>
-      <p className="text-[16px] font-medium text-[#003399] mt-5 fade-in" style={{ animationDelay: "100ms" }}>{data.pronoun}</p>
+      <p className="text-[20px] font-medium text-[#111111] fade-in">{data.verb}</p>
+      <p className="text-[13px] text-[#9B9DA3] mt-0.5 fade-in" style={{ animationDelay: "50ms" }}>{data.verbTranslation}</p>
+      <p className="text-[16px] font-medium text-[#185FA5] mt-5 fade-in" style={{ animationDelay: "100ms" }}>{data.pronoun}</p>
 
-      <div className={`mt-4 w-full max-w-[400px] rounded-xl border border-[#E5E7EB] p-4 ${submitted ? (wasCorrect ? "exercise-correct" : "exercise-incorrect error-shake") : ""}`}>
+      <div className={`mt-4 w-full max-w-[400px] rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] p-4 ${submitted ? (wasCorrect ? "exercise-correct" : "exercise-incorrect error-shake") : ""}`}>
         <input
           ref={inputRef}
           type="text"
@@ -53,14 +52,14 @@ export function ConjugateExercise({
           disabled={disabled || submitted}
           readOnly={submitted}
           placeholder="Type the conjugated form..."
-          className="w-full text-[16px] text-center text-[#111827] bg-transparent placeholder:text-[#9CA3AF] focus:outline-none"
+          className="w-full text-[16px] text-center text-[#111111] bg-transparent placeholder:text-[#9B9DA3] focus:outline-none"
         />
       </div>
       {submitted && wasCorrect && (
-        <p className="text-[14px] font-medium text-[#003399] mt-3 success-pulse">{data.correctForm}</p>
+        <p className="text-[14px] font-medium text-[#185FA5] mt-3 success-pulse">{data.correctForm}</p>
       )}
       {submitted && !wasCorrect && (
-        <p className="text-[14px] text-[#6B7280] mt-3 fade-in">{data.correctForm}</p>
+        <p className="text-[14px] text-[#6C6B71] mt-3 fade-in">{data.correctForm}</p>
       )}
     </div>
   );

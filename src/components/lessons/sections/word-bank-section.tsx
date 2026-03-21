@@ -104,8 +104,8 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
       canVerify={allFilled} score={score}
     >
       {/* Paragraph with blanks */}
-      <div className="border border-[var(--border-primary)] rounded-[12px] p-6 bg-[var(--bg-card)]">
-        <p className="text-[16px] text-[var(--text-primary)] leading-relaxed">
+      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white">
+        <p className="text-[16px] text-[#111111] leading-relaxed">
           {segments.map((seg, i) => (
             <span key={i}>
               {seg}
@@ -114,16 +114,16 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
                   type="button"
                   onClick={() => handleBlankTap(i)}
                   disabled={state === "reviewed"}
-                  className={`inline-block min-w-[70px] mx-1 px-2 py-0.5 rounded-lg border-2 border-dashed text-center text-[15px] font-semibold transition-all ${
+                  className={`inline-block min-w-[70px] mx-1 px-2 py-0.5 rounded-lg border-2 border-dashed text-center text-[15px] font-medium transition-all ${
                     state === "reviewed"
                       ? results[i]?.correct
-                        ? "border-[#059669] bg-[#F0FDF4] text-[#059669]"
-                        : "border-[#DC2626] bg-[#FEF2F2] text-[#DC2626]"
+                        ? "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]"
+                        : "border-[#dc2626] bg-[#fef2f2] text-[#dc2626]"
                       : i === activeBlank
-                        ? "border-[#003399] bg-[rgba(0,51,153,0.05)] text-[var(--text-primary)]"
+                        ? "border-[#185FA5] bg-[rgba(24,95,165,0.05)] text-[#111111]"
                         : filledBlanks[i]
-                          ? "border-[var(--border-primary)] text-[var(--text-primary)] cursor-pointer"
-                          : "border-[var(--text-muted)] text-[var(--text-muted)] cursor-pointer"
+                          ? "border-[rgba(0,0,0,0.06)] text-[#111111] cursor-pointer"
+                          : "border-[#9B9DA3] text-[#9B9DA3] cursor-pointer"
                   }`}
                 >
                   {state === "reviewed" && !results[i]?.correct
@@ -135,14 +135,14 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
           ))}
         </p>
         {showEnglish && paragraph.paragraphEnglish && (
-          <p className="text-[13px] text-[var(--text-muted)] mt-3 italic">{paragraph.paragraphEnglish}</p>
+          <p className="text-[13px] text-[#9B9DA3] mt-3 italic">{paragraph.paragraphEnglish}</p>
         )}
       </div>
 
       {/* Word bank */}
       {state === "answering" && (
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-2">
+          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#9B9DA3] mb-2">
             Banco de palavras{showEnglish && " / Word bank"}
           </p>
           <div className="flex flex-wrap gap-2">
@@ -154,10 +154,10 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
                   type="button"
                   disabled={isUsed}
                   onClick={() => handleWordTap(word)}
-                  className={`px-4 py-2 rounded-full border text-[14px] font-medium transition-all ${
+                  className={`px-4 py-2 rounded-full border-[0.5px] text-[14px] font-medium transition-all ${
                     isUsed
-                      ? "border-[var(--border-light)] text-[var(--text-muted)] opacity-40"
-                      : "border-[var(--border-primary)] text-[var(--text-primary)] hover:border-[#003399] hover:bg-[rgba(0,51,153,0.05)] cursor-pointer active:scale-95"
+                      ? "border-[rgba(0,0,0,0.06)] text-[#9B9DA3] opacity-40"
+                      : "border-[rgba(0,0,0,0.06)] text-[#111111] hover:border-[#185FA5] hover:bg-[rgba(24,95,165,0.05)] cursor-pointer active:scale-95"
                   }`}
                 >
                   {word}

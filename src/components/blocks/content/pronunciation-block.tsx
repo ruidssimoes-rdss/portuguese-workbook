@@ -2,7 +2,6 @@
 
 import { useCallback } from "react";
 import type { PronunciationBlockData, PronunciationVariant } from "@/types/blocks";
-import { patterns } from "@/lib/design-tokens";
 
 interface PronunciationBlockProps {
   data: PronunciationBlockData;
@@ -27,7 +26,7 @@ function PlayButton({ text, size = "sm" }: { text: string; size?: "sm" | "md" })
   return (
     <button
       onClick={speak}
-      className={`${sz} rounded-full bg-[#003399] hover:bg-[#002277] text-white flex items-center justify-center transition-colors cursor-pointer shrink-0`}
+      className={`${sz} rounded-full bg-[#185FA5] hover:bg-[#185FA5]/90 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0`}
       aria-label={`Play "${text}"`}
     >
       <svg width={size === "md" ? 14 : 10} height={size === "md" ? 14 : 10} viewBox="0 0 14 14" fill="white">
@@ -40,7 +39,7 @@ function PlayButton({ text, size = "sm" }: { text: string; size?: "sm" | "md" })
 function InlineVariant({ data, className }: { data: PronunciationBlockData; className?: string }) {
   return (
     <span className={`inline-flex items-center gap-1.5 ${className ?? ""}`}>
-      <span className="text-[13px] text-[#9CA3AF] italic">{data.phonetic}</span>
+      <span className="text-[13px] text-[#9B9DA3] italic">{data.phonetic}</span>
       {data.audioAvailable && <PlayButton text={data.word} size="sm" />}
     </span>
   );
@@ -48,33 +47,33 @@ function InlineVariant({ data, className }: { data: PronunciationBlockData; clas
 
 function ExpandedVariant({ data, className }: { data: PronunciationBlockData; className?: string }) {
   return (
-    <div className={`${patterns.card.base} ${className ?? ""}`}>
+    <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white ${className ?? ""}`}>
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-[18px] font-semibold text-[#111827]">{data.word}</p>
-          <p className="text-[13px] text-[#6B7280] mt-0.5">{data.translation}</p>
+          <p className="text-[18px] font-medium text-[#111111]">{data.word}</p>
+          <p className="text-[13px] text-[#6C6B71] mt-0.5">{data.translation}</p>
         </div>
         {data.audioAvailable && <PlayButton text={data.word} size="md" />}
       </div>
 
       <div className="mt-3 space-y-1">
         {data.ipa && (
-          <p className="text-[14px] text-[#6B7280] font-mono">{data.ipa}</p>
+          <p className="text-[14px] text-[#6C6B71] font-mono">{data.ipa}</p>
         )}
-        <p className="text-[14px] text-[#9CA3AF] italic">{data.phonetic}</p>
+        <p className="text-[14px] text-[#9B9DA3] italic">{data.phonetic}</p>
       </div>
 
       {data.soundCategory && (
-        <span className={`${patterns.badge} bg-[#F3F4F6] text-[#6B7280] mt-3 inline-block`}>
+        <span className="text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap bg-[#F7F7F5] text-[#6C6B71] mt-3 inline-block">
           {data.soundCategory}
         </span>
       )}
 
       {data.tips && data.tips.length > 0 && (
-        <div className="bg-amber-50 rounded-lg p-3 mt-3">
-          <p className="text-[11px] font-semibold uppercase text-amber-600 mb-1">Pronunciation tip</p>
+        <div className="bg-[#FFFBEB] border-[0.5px] border-[#FEF3C7] rounded-lg p-3 mt-3">
+          <p className="text-[11px] font-medium uppercase text-[#854F0B] mb-1">Pronunciation tip</p>
           {data.tips.map((tip, i) => (
-            <p key={i} className="text-[13px] text-amber-700">{tip}</p>
+            <p key={i} className="text-[13px] text-[#854F0B]">{tip}</p>
           ))}
         </div>
       )}
@@ -84,24 +83,24 @@ function ExpandedVariant({ data, className }: { data: PronunciationBlockData; cl
 
 function GuideVariant({ data, className }: { data: PronunciationBlockData; className?: string }) {
   return (
-    <div className={`${patterns.card.base} ${className ?? ""}`}>
+    <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white ${className ?? ""}`}>
       {data.soundCategory && (
-        <p className="text-[16px] font-semibold text-[#111827] mb-3">
+        <p className="text-[16px] font-medium text-[#111111] mb-3">
           The &quot;{data.soundCategory}&quot; Sound
         </p>
       )}
       <div className="flex items-center gap-3 mb-3">
-        <p className="text-[18px] font-bold text-[#111827]">{data.word}</p>
+        <p className="text-[18px] font-medium text-[#111111]">{data.word}</p>
         {data.audioAvailable && <PlayButton text={data.word} size="md" />}
       </div>
-      <p className="text-[14px] text-[#6B7280] font-mono">{data.ipa}</p>
-      <p className="text-[14px] text-[#9CA3AF] italic mt-1">{data.phonetic}</p>
-      <p className="text-[13px] text-[#6B7280] mt-1">{data.translation}</p>
+      <p className="text-[14px] text-[#6C6B71] font-mono">{data.ipa}</p>
+      <p className="text-[14px] text-[#9B9DA3] italic mt-1">{data.phonetic}</p>
+      <p className="text-[13px] text-[#6C6B71] mt-1">{data.translation}</p>
 
       {data.tips && data.tips.length > 0 && (
         <div className="mt-4 space-y-2">
           {data.tips.map((tip, i) => (
-            <p key={i} className="text-[13px] text-[#374151]">{tip}</p>
+            <p key={i} className="text-[13px] text-[#6C6B71]">{tip}</p>
           ))}
         </div>
       )}

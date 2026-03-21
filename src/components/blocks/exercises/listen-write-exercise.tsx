@@ -71,10 +71,10 @@ export function ListenWriteExercise({
             disabled={isPlaying}
             className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-150 cursor-pointer ${
               isPlaying
-                ? "bg-[#003399]/80"
-                : "bg-[#003399] hover:bg-[#002277]"
+                ? "bg-[#185FA5]/80"
+                : "bg-[#185FA5] hover:bg-[#185FA5]/90"
             } ${!hasPlayed ? "success-pulse" : ""}`}
-            style={isPlaying ? { boxShadow: "0 0 0 4px rgba(0, 51, 153, 0.15)" } : undefined}
+            style={isPlaying ? { boxShadow: "0 0 0 4px rgba(24, 95, 165, 0.15)" } : undefined}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
               {isPlaying ? (
@@ -87,13 +87,13 @@ export function ListenWriteExercise({
               )}
             </svg>
           </button>
-          <p className="text-[13px] text-[#6B7280] mt-3">
+          <p className="text-[13px] text-[#6C6B71] mt-3">
             {hasPlayed ? "Listen again and type what you hear" : "Listen and type what you hear"}
           </p>
           {hasPlayed && (
             <button
               onClick={speak}
-              className="text-[13px] text-[#003399] hover:text-[#002277] transition-colors mt-1 cursor-pointer fade-in"
+              className="text-[13px] text-[#185FA5] hover:text-[#185FA5]/80 transition-colors mt-1 cursor-pointer fade-in"
             >
               Replay
             </button>
@@ -101,8 +101,8 @@ export function ListenWriteExercise({
         </>
       ) : (
         <div className="text-center">
-          <p className="text-[14px] text-[#111827] font-medium">{data.audioText}</p>
-          <p className="text-[12px] text-[#9CA3AF] mt-1">Audio not available in this browser</p>
+          <p className="text-[14px] text-[#111111] font-medium">{data.audioText}</p>
+          <p className="text-[12px] text-[#9B9DA3] mt-1">Audio not available in this browser</p>
         </div>
       )}
 
@@ -115,7 +115,7 @@ export function ListenWriteExercise({
           onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
           disabled={disabled}
           placeholder="Type what you hear..."
-          className="mt-5 w-full max-w-[400px] px-4 py-3 text-[16px] text-center border border-[#E5E7EB] rounded-full bg-white text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#003399] transition-all duration-150 fade-in"
+          className="mt-5 w-full max-w-[400px] text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2 outline-none focus:border-[rgba(0,0,0,0.12)] text-center text-[#111111] placeholder:text-[#9B9DA3] transition-all duration-150 fade-in"
         />
       )}
     </div>

@@ -82,9 +82,9 @@ export function FillBlankSection({ sectionIndex, totalSections, showEnglish, sen
         const r = results[s.id];
 
         return (
-          <div key={s.id} className="border border-[var(--border-primary)] rounded-[12px] p-5 bg-[var(--bg-card)]">
-            <span className="text-[13px] font-semibold text-[var(--text-muted)]">{i + 1}.</span>
-            <p className="text-[16px] font-semibold text-[var(--text-primary)] mt-1 leading-relaxed">
+          <div key={s.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 bg-white">
+            <span className="text-[13px] font-medium text-[#9B9DA3]">{i + 1}.</span>
+            <p className="text-[16px] font-medium text-[#111111] mt-1 leading-relaxed">
               {before}
               {state === "answering" ? (
                 <input
@@ -92,23 +92,23 @@ export function FillBlankSection({ sectionIndex, totalSections, showEnglish, sen
                   type="text"
                   value={answers[s.id] ?? ""}
                   onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                  className="inline-block w-28 border-b-2 border-[var(--border-primary)] focus:border-[#003399] text-center text-[16px] font-semibold text-[var(--text-primary)] bg-transparent outline-none mx-1 transition-colors"
+                  className="inline-block w-28 border-b-2 border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] text-center text-[16px] font-medium text-[#111111] bg-transparent outline-none mx-1 transition-colors"
                   autoComplete="off" spellCheck={false}
                   placeholder={s.hint ?? "___"}
                 />
               ) : (
-                <span className={`inline-block mx-1 px-2 py-0.5 rounded font-semibold ${r?.correct ? "text-[#059669] bg-[#F0FDF4]" : "text-[#DC2626] bg-[#FEF2F2]"}`}>
+                <span className={`inline-block mx-1 px-2 py-0.5 rounded font-medium ${r?.correct ? "text-[#0F6E56] bg-[#E1F5EE]" : "text-[#dc2626] bg-[#fef2f2]"}`}>
                   {r?.correct ? s.correctAnswer : answers[s.id]}
                 </span>
               )}
               {after}
             </p>
-            {showEnglish && s.sentenceEn && <p className="text-[13px] text-[var(--text-muted)] mt-1">{s.sentenceEn}</p>}
+            {showEnglish && s.sentenceEn && <p className="text-[13px] text-[#9B9DA3] mt-1">{s.sentenceEn}</p>}
             {state === "reviewed" && !r?.correct && (
-              <p className="text-[13px] text-[#059669] mt-1">Resposta: {s.correctAnswer}</p>
+              <p className="text-[13px] text-[#0F6E56] mt-1">Resposta: {s.correctAnswer}</p>
             )}
             {state === "reviewed" && r?.accentHint && (
-              <p className="text-[11px] text-[var(--text-muted)] mt-1">Acento: {r.accentHint}</p>
+              <p className="text-[11px] text-[#9B9DA3] mt-1">Acento: {r.accentHint}</p>
             )}
           </div>
         );

@@ -39,10 +39,10 @@ export function FillGapExercise({
 
   return (
     <div className={`py-6 fade-in ${className ?? ""}`}>
-      <p className="text-[16px] text-[#111827] leading-relaxed text-center">
+      <p className="text-[16px] text-[#111111] leading-relaxed text-center">
         {parts[0]}
         {submitted ? (
-          <span className={`inline-block px-2 py-0.5 rounded font-medium mx-1 ${wasCorrect ? "text-emerald-600 success-pulse" : "text-red-600"}`}>
+          <span className={`inline-block px-2 py-0.5 rounded font-medium mx-1 ${wasCorrect ? "text-[#0F6E56] success-pulse" : "text-[#dc2626]"}`}>
             {wasCorrect ? data.correctAnswer : data.correctAnswer}
           </span>
         ) : (
@@ -56,14 +56,14 @@ export function FillGapExercise({
               if (e.key === "Tab") e.preventDefault();
             }}
             disabled={disabled}
-            className="inline-block text-[16px] text-center text-[#111827] border-b-2 border-[#9CA3AF] focus:border-[#003399] bg-transparent outline-none mx-1 transition-colors duration-150"
+            className="inline-block text-[16px] text-center text-[#111111] border-b-2 border-[#9B9DA3] focus:border-[#185FA5] bg-transparent outline-none mx-1 transition-colors duration-150"
             style={{ width: `${inputWidth}px` }}
           />
         )}
         {parts[1]}
       </p>
       {showEnglish && data.translation && (
-        <p className="text-[13px] text-[#6B7280] italic text-center mt-3 fade-in" style={{ animationDelay: "100ms" }}>
+        <p className="text-[13px] text-[#6C6B71] italic text-center mt-3 fade-in" style={{ animationDelay: "100ms" }}>
           {data.translation}
         </p>
       )}

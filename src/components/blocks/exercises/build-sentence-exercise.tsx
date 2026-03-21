@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { ExerciseProps, BuildSentenceExerciseData, AnswerResult } from "@/types/blocks";
-import { patterns } from "@/lib/design-tokens";
 
 export function BuildSentenceExercise({
   data,
@@ -49,22 +48,22 @@ export function BuildSentenceExercise({
 
   return (
     <div className={`py-6 fade-in ${className ?? ""}`}>
-      <p className="text-[14px] text-[#6B7280] mb-4 text-center">
+      <p className="text-[14px] text-[#9B9DA3] mb-4 text-center">
         Arrange: {data.translation}
       </p>
 
       {/* Answer area */}
       <div className={`min-h-[48px] pb-3 mb-4 flex flex-wrap gap-2 items-center justify-center ${
-        placed.length === 0 ? "border-b border-dashed border-[#D1D5DB]" : "border-b border-[#E5E7EB]"
+        placed.length === 0 ? "border-b border-dashed border-[rgba(0,0,0,0.06)]" : "border-b border-[0.5px] border-[rgba(0,0,0,0.06)]"
       } ${submitted ? (wasCorrect ? "success-pulse" : "error-shake") : ""}`}>
         {placed.length === 0 && (
-          <span className="text-[13px] text-[#9CA3AF]">Tap words to build the sentence</span>
+          <span className="text-[13px] text-[#9B9DA3]">Tap words to build the sentence</span>
         )}
         {placed.map((word, i) => (
           <button
             key={`placed-${i}`}
             onClick={() => removeWord(i)}
-            className={`${patterns.pill.active} cursor-pointer word-pill-enter ${
+            className={`px-4 py-2 rounded-full text-[13px] font-medium border border-[#111111] bg-[#111111] text-white cursor-pointer transition-all duration-150 ease-out word-pill-enter ${
               submitted ? (wasCorrect ? "option-correct" : "") : ""
             }`}
             disabled={disabled || submitted}
@@ -80,7 +79,7 @@ export function BuildSentenceExercise({
           <button
             key={`bank-${i}-${word}`}
             onClick={() => placeWord(word, i)}
-            className={`${patterns.pill.inactive} cursor-pointer`}
+            className="px-4 py-2 rounded-full text-[13px] font-normal border-[0.5px] border-[rgba(0,0,0,0.06)] text-[#9B9DA3] hover:border-[rgba(0,0,0,0.12)] hover:text-[#6C6B71] transition-all duration-150 ease-out cursor-pointer bg-white"
             disabled={disabled || submitted}
             style={{ animationDelay: `${i * 50}ms` }}
           >
@@ -94,7 +93,7 @@ export function BuildSentenceExercise({
         <div className="flex justify-center mt-4 fade-in">
           <button
             onClick={handleSubmit}
-            className={`${patterns.button.primary} h-10 px-6`}
+            className="bg-[#111111] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#111111]/90 transition-all duration-150 ease-out h-10 px-6"
             disabled={disabled}
           >
             Check

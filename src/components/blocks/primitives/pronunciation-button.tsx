@@ -41,7 +41,7 @@ export function PronunciationButton({ text, size = "sm", label = "Listen", class
       onClick={(e) => { e.stopPropagation(); speak(); }}
       disabled={playing}
       aria-label={label}
-      className={`inline-flex items-center justify-center text-[#9CA3AF] hover:text-[#6B7280] transition-colors duration-150 cursor-pointer shrink-0 ${playing ? "success-pulse" : ""} ${className ?? ""}`}
+      className={`inline-flex items-center justify-center text-[#9B9DA3] hover:text-[#6C6B71] transition-colors duration-150 cursor-pointer shrink-0 ${playing ? "success-pulse" : ""} ${className ?? ""}`}
     >
       <svg className={sz} viewBox="0 0 20 20" fill="currentColor">
         <path d="M10 3.75a.75.75 0 00-1.264-.546L5.203 6H3.667a.75.75 0 00-.7.48A6.985 6.985 0 002.5 9c0 .887.165 1.736.468 2.52.111.29.39.48.699.48h1.536l3.533 2.796A.75.75 0 0010 14.25V3.75z" />

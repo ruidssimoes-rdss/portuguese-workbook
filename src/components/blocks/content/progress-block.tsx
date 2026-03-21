@@ -1,5 +1,4 @@
 import type { ProgressBlockData, ProgressVariant } from "@/types/blocks";
-import { patterns } from "@/lib/design-tokens";
 
 interface ProgressBlockProps {
   data: ProgressBlockData;
@@ -12,15 +11,15 @@ function BarVariant({ data, className }: { data: ProgressBlockData; className?: 
 
   return (
     <div className={className}>
-      <p className="text-[13px] font-medium text-[#111827]">{data.label}</p>
-      <div className="h-2 rounded-full bg-[#F3F4F6] mt-2 overflow-hidden">
+      <p className="text-[13px] font-medium text-[#111111]">{data.label}</p>
+      <div className="h-2 rounded-full bg-[#F7F7F5] mt-2 overflow-hidden">
         <div
-          className="h-2 rounded-full bg-[#003399] transition-all duration-300 ease-out"
+          className="h-2 rounded-full bg-[#185FA5] transition-all duration-300 ease-out"
           style={{ width: `${pct}%` }}
         />
       </div>
       {data.sublabel && (
-        <p className="text-[11px] text-[#9CA3AF] text-right mt-1">{data.sublabel}</p>
+        <p className="text-[11px] text-[#9B9DA3] text-right mt-1">{data.sublabel}</p>
       )}
     </div>
   );
@@ -37,11 +36,11 @@ function RingVariant({ data, className }: { data: ProgressBlockData; className?:
       <svg width="80" height="80" viewBox="0 0 80 80">
         <circle
           cx="40" cy="40" r={radius}
-          fill="none" stroke="#F3F4F6" strokeWidth="6"
+          fill="none" stroke="#F7F7F5" strokeWidth="6"
         />
         <circle
           cx="40" cy="40" r={radius}
-          fill="none" stroke="#003399" strokeWidth="6"
+          fill="none" stroke="#185FA5" strokeWidth="6"
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
@@ -52,39 +51,39 @@ function RingVariant({ data, className }: { data: ProgressBlockData; className?:
           x="40" y="40"
           textAnchor="middle"
           dominantBaseline="central"
-          className="text-[18px] font-bold fill-[#111827]"
+          className="text-[18px] font-medium fill-[#111111]"
         >
           {pct}%
         </text>
       </svg>
-      <p className="text-[13px] text-[#6B7280] mt-2">{data.label}</p>
+      <p className="text-[13px] text-[#6C6B71] mt-2">{data.label}</p>
     </div>
   );
 }
 
 function StatVariant({ data, className }: { data: ProgressBlockData; className?: string }) {
   const trendIcon = data.trend === "up" ? "\u2191" : data.trend === "down" ? "\u2193" : "\u2192";
-  const trendColor = data.trend === "up" ? "text-emerald-600" : data.trend === "down" ? "text-red-500" : "text-[#9CA3AF]";
+  const trendColor = data.trend === "up" ? "text-[#0F6E56]" : data.trend === "down" ? "text-[#dc2626]" : "text-[#9B9DA3]";
 
   return (
-    <div className={`${patterns.card.base} ${className ?? ""}`}>
+    <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white ${className ?? ""}`}>
       <div className="flex items-baseline gap-1">
-        <span className="text-[28px] font-bold text-[#111827]">{data.current}</span>
-        {data.unit && <span className="text-[16px] text-[#9CA3AF]">{data.unit}</span>}
+        <span className="text-[28px] font-medium text-[#111111]">{data.current}</span>
+        {data.unit && <span className="text-[16px] text-[#9B9DA3]">{data.unit}</span>}
         {data.trend && <span className={`text-[14px] ${trendColor} ml-2`}>{trendIcon}</span>}
       </div>
-      <p className="text-[13px] text-[#6B7280] mt-1">{data.label}</p>
+      <p className="text-[13px] text-[#6C6B71] mt-1">{data.label}</p>
     </div>
   );
 }
 
 function StreakVariant({ data, className }: { data: ProgressBlockData; className?: string }) {
   return (
-    <div className={`${patterns.card.base} ${className ?? ""}`}>
-      <p className="text-[28px] font-bold text-[#003399]">{data.current}</p>
-      <p className="text-[13px] text-[#6B7280]">day streak</p>
+    <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white ${className ?? ""}`}>
+      <p className="text-[28px] font-medium text-[#185FA5]">{data.current}</p>
+      <p className="text-[13px] text-[#6C6B71]">day streak</p>
       {data.sublabel && (
-        <p className="text-[11px] text-[#9CA3AF] mt-1">{data.sublabel}</p>
+        <p className="text-[11px] text-[#9B9DA3] mt-1">{data.sublabel}</p>
       )}
     </div>
   );

@@ -36,17 +36,17 @@ export function LessonShell({
       <div className="py-5">
         <Link
           href="/lessons"
-          className="inline-flex items-center gap-1 text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors mb-3"
+          className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6C6B71] hover:text-[#111111] transition-colors mb-3"
         >
           <span>&larr;</span> Lições
         </Link>
 
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-[var(--text-primary)]">
+            <h1 className="text-2xl font-medium text-[#111111]">
               {lessonTitle}
             </h1>
-            <p className="text-[13px] font-medium text-[var(--text-secondary)] italic">
+            <p className="text-[13px] font-medium text-[#6C6B71] italic">
               {lessonTitlePt}
             </p>
           </div>
@@ -59,20 +59,20 @@ export function LessonShell({
 
         {showProgress && sectionProgress !== undefined && (
           <>
-            <div className="h-1 bg-[var(--border-light)] rounded-full overflow-hidden mb-2">
+            <div className="h-1 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mb-2">
               <div
-                className="h-full bg-[#003399] rounded-full transition-all duration-500 ease-out"
+                className="h-full bg-[#185FA5] rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${sectionProgress}%` }}
               />
             </div>
             {progressLabel && (
-              <p className="text-[12px] text-[var(--text-muted)]">{progressLabel}</p>
+              <p className="text-[12px] text-[#9B9DA3]">{progressLabel}</p>
             )}
           </>
         )}
       </div>
 
-      <div className="border-t border-[var(--border-light)] mb-6" />
+      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] mb-6" />
 
       {/* Content */}
       <div className="max-w-2xl mx-auto pb-16">{children}</div>

@@ -1,5 +1,4 @@
 import type { GrammarBlockData, GrammarVariant } from "@/types/blocks";
-import { patterns, typography } from "@/lib/design-tokens";
 
 interface GrammarBlockProps {
   data: GrammarBlockData;
@@ -9,26 +8,26 @@ interface GrammarBlockProps {
 
 function ExpandedVariant({ data, className }: { data: GrammarBlockData; className?: string }) {
   return (
-    <div className={`${patterns.card.base} ${className ?? ""}`}>
-      <h3 className={typography.cardTitleLg}>{data.topicTitle}</h3>
-      <p className={`${typography.pageTitlePt} mt-0.5`}>{data.topicTitlePt}</p>
+    <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white ${className ?? ""}`}>
+      <h3 className="text-[20px] font-medium text-[#111111]">{data.topicTitle}</h3>
+      <p className="text-[14px] font-normal text-[#9B9DA3] italic mt-0.5">{data.topicTitlePt}</p>
 
       <div className="mt-5 space-y-5">
         {data.rules.map((rule, i) => (
           <div key={i}>
-            <p className="text-[14px] font-medium text-[#111827]">
-              <span className="text-[#9CA3AF] mr-2">{i + 1}.</span>
+            <p className="text-[14px] font-medium text-[#111111]">
+              <span className="text-[#9B9DA3] mr-2">{i + 1}.</span>
               {rule.rule}
             </p>
             {rule.rulePt && (
-              <p className="text-[13px] text-[#6B7280] italic mt-0.5 ml-6">{rule.rulePt}</p>
+              <p className="text-[13px] text-[#6C6B71] italic mt-0.5 ml-6">{rule.rulePt}</p>
             )}
             {rule.examples.length > 0 && (
-              <div className="border-l-2 border-[#E5E7EB] pl-4 ml-6 mt-2 space-y-1.5">
+              <div className="border-l-2 border-[rgba(0,0,0,0.06)] pl-4 ml-6 mt-2 space-y-1.5">
                 {rule.examples.map((ex, j) => (
                   <div key={j}>
-                    <p className="text-[13px] text-[#111827]">{ex.pt}</p>
-                    <p className="text-[13px] text-[#6B7280] italic">{ex.en}</p>
+                    <p className="text-[13px] text-[#111111]">{ex.pt}</p>
+                    <p className="text-[13px] text-[#6C6B71] italic">{ex.en}</p>
                   </div>
                 ))}
               </div>
@@ -38,10 +37,10 @@ function ExpandedVariant({ data, className }: { data: GrammarBlockData; classNam
       </div>
 
       {data.tips && data.tips.length > 0 && (
-        <div className="bg-amber-50 rounded-lg p-3 mt-5">
-          <p className="text-[11px] font-semibold uppercase text-amber-600 mb-1">Tip</p>
+        <div className="bg-[#FFFBEB] border-[0.5px] border-[#FEF3C7] rounded-lg p-3 mt-5">
+          <p className="text-[11px] font-medium uppercase text-[#854F0B] mb-1">Tip</p>
           {data.tips.map((tip, i) => (
-            <p key={i} className="text-[13px] text-amber-700">
+            <p key={i} className="text-[13px] text-[#854F0B]">
               {tip}
             </p>
           ))}
@@ -58,9 +57,9 @@ function InlineVariant({ data, className }: { data: GrammarBlockData; className?
 
   return (
     <div className={className}>
-      <p className="text-[14px] text-[#111827]">{firstRule.rule}</p>
+      <p className="text-[14px] text-[#111111]">{firstRule.rule}</p>
       {firstExample && (
-        <p className="text-[13px] text-[#6B7280] italic mt-1">
+        <p className="text-[13px] text-[#6C6B71] italic mt-1">
           {firstExample.pt} — {firstExample.en}
         </p>
       )}
@@ -70,10 +69,10 @@ function InlineVariant({ data, className }: { data: GrammarBlockData; className?
 
 function SummaryVariant({ data, className }: { data: GrammarBlockData; className?: string }) {
   return (
-    <div className={`${patterns.card.interactive} ${className ?? ""}`}>
-      <h3 className={typography.cardTitle}>{data.topicTitle}</h3>
-      <p className={`${typography.pageTitlePt} mt-0.5`}>{data.topicTitlePt}</p>
-      <p className={`${typography.cardMeta} mt-2`}>{data.rules.length} rules</p>
+    <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white hover:border-[rgba(0,0,0,0.12)] transition-all duration-150 ease-out cursor-pointer ${className ?? ""}`}>
+      <h3 className="text-[16px] font-medium text-[#111111]">{data.topicTitle}</h3>
+      <p className="text-[14px] font-normal text-[#9B9DA3] italic mt-0.5">{data.topicTitlePt}</p>
+      <p className="text-[13px] text-[#9B9DA3] mt-2">{data.rules.length} rules</p>
     </div>
   );
 }

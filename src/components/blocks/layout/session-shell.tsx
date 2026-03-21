@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { SessionShellProps, SessionResults } from "@/types/blocks";
-import { patterns, spacing } from "@/lib/design-tokens";
-import { cefrBadgeClasses } from "@/lib/design-tokens";
+import { cefrClasses } from "@/lib/design-system/tokens";
 import { SessionNarrative } from "./session-narrative";
 
 export function SessionShell({
@@ -42,9 +41,9 @@ export function SessionShell({
   // Results view
   if (results) {
     return (
-      <div className={spacing.pageNarrow}>
+      <div className="max-w-[800px] mx-auto px-6 md:px-10 lg:px-16">
         <div className="py-8">
-          <p className="text-[16px] font-semibold text-[#111827] text-center mb-1">
+          <p className="text-[16px] font-medium text-[#111111] text-center mb-1">
             {results.passed ? "Passed!" : "Not yet \u2014 keep going!"}
           </p>
 
@@ -60,14 +59,14 @@ export function SessionShell({
                   setResults(null);
                   onStageChange(0);
                 }}
-                className={`${patterns.button.secondary} h-10 px-6`}
+                className="border-[0.5px] border-[rgba(0,0,0,0.06)] text-[#6C6B71] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F7F7F5] hover:border-[rgba(0,0,0,0.12)] transition-all duration-150 ease-out bg-white h-10 px-6"
               >
                 Retry
               </button>
             )}
             <button
               onClick={() => router.push("/lessons")}
-              className={`${patterns.button.primary} h-10 px-6`}
+              className="bg-[#111111] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#111111]/90 transition-all duration-150 ease-out h-10 px-6"
             >
               {results.passed ? "Continue" : "Back to Lessons"}
             </button>
@@ -80,32 +79,32 @@ export function SessionShell({
   return (
     <div>
       {/* Header */}
-      <div className={`${spacing.pageNarrow} flex items-center justify-between py-3`}>
+      <div className="max-w-[800px] mx-auto px-6 md:px-10 lg:px-16 flex items-center justify-between py-3">
         <button
           onClick={() => router.push("/lessons")}
-          className={patterns.button.ghost}
+          className="text-[14px] font-normal text-[#9B9DA3] hover:text-[#6C6B71] hover:bg-[#F7F7F5] transition-all duration-150 ease-out"
         >
           &larr; Back
         </button>
         <div className="text-center">
-          <p className="text-[16px] font-semibold text-[#111827]">{lessonTitle}</p>
-          <p className="text-[12px] text-[#9CA3AF] italic">{lessonTitlePt}</p>
+          <p className="text-[16px] font-medium text-[#111111]">{lessonTitle}</p>
+          <p className="text-[12px] text-[#9B9DA3] italic">{lessonTitlePt}</p>
         </div>
-        <span className={`${patterns.badge} ${cefrBadgeClasses(cefr)}`}>
+        <span className={`text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap ${cefrClasses(cefr).text} ${cefrClasses(cefr).bg}`}>
           {cefr}
         </span>
       </div>
 
       {/* Progress bar */}
-      <div className="h-1 bg-[#F3F4F6]">
+      <div className="h-1 bg-[#F7F7F5]">
         <div
-          className="h-1 bg-[#003399] transition-all duration-300 ease-out"
+          className="h-1 bg-[#185FA5] transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
 
       {/* Stage pills */}
-      <div className={`${spacing.pageNarrow} py-3 overflow-x-auto`}>
+      <div className="max-w-[800px] mx-auto px-6 md:px-10 lg:px-16 py-3 overflow-x-auto">
         <div className="flex gap-2" style={{ scrollbarWidth: "none" }}>
           {stages.map((stage, i) => {
             const isCompleted = stageCompletion.has(i);
@@ -121,8 +120,8 @@ export function SessionShell({
                 disabled={isFuture}
                 className={`shrink-0 ${
                   isCurrent
-                    ? patterns.pill.active
-                    : patterns.pill.inactive
+                    ? "px-4 py-2 rounded-full text-[13px] font-medium border border-[#111111] bg-[#111111] text-white cursor-pointer transition-all duration-150 ease-out"
+                    : "px-4 py-2 rounded-full text-[13px] font-normal border-[0.5px] border-[rgba(0,0,0,0.06)] text-[#9B9DA3] hover:border-[rgba(0,0,0,0.12)] hover:text-[#6C6B71] transition-all duration-150 ease-out cursor-pointer bg-white"
                 } ${isFuture ? "opacity-40 cursor-not-allowed" : "cursor-pointer"}`}
               >
                 {isCompleted && !isCurrent ? "\u2713 " : ""}
@@ -134,16 +133,16 @@ export function SessionShell({
       </div>
 
       {/* Content */}
-      <div className={`${spacing.pageNarrow} py-6`}>
+      <div className="max-w-[800px] mx-auto px-6 md:px-10 lg:px-16 py-6">
         {children}
       </div>
 
       {/* Navigation */}
-      <div className={`${spacing.pageNarrow} flex justify-between py-4`}>
+      <div className="max-w-[800px] mx-auto px-6 md:px-10 lg:px-16 flex justify-between py-4">
         <button
           onClick={() => onStageChange(Math.max(0, currentStageIndex - 1))}
           disabled={currentStageIndex === 0}
-          className={`${patterns.button.secondary} h-10 px-5 ${
+          className={`border-[0.5px] border-[rgba(0,0,0,0.06)] text-[#6C6B71] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F7F7F5] hover:border-[rgba(0,0,0,0.12)] transition-all duration-150 ease-out bg-white h-10 px-5 ${
             currentStageIndex === 0 ? "opacity-40 cursor-not-allowed" : ""
           }`}
         >
@@ -158,7 +157,7 @@ export function SessionShell({
               onStageChange(currentStageIndex + 1);
             }
           }}
-          className={`${patterns.button.primary} h-10 px-5`}
+          className="bg-[#111111] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#111111]/90 transition-all duration-150 ease-out h-10 px-5"
         >
           {isLast ? "See Results" : "Next"}
         </button>

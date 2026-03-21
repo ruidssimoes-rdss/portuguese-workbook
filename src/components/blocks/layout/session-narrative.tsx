@@ -1,7 +1,6 @@
 "use client";
 
 import type { SessionResults, ExerciseDifficulty } from "@/types/blocks";
-import { patterns } from "@/lib/design-tokens";
 
 interface DifficultyChange {
   from: ExerciseDifficulty;
@@ -61,37 +60,37 @@ export function SessionNarrative({
       : null;
 
   return (
-    <div className={`${patterns.card.base} p-8 ${className ?? ""}`}>
-      <h3 className="text-[18px] font-bold text-[#111827]">Session Summary</h3>
-      <p className="text-[13px] text-[#9CA3AF] italic mt-0.5">Resumo da sessão</p>
+    <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-8 bg-white ${className ?? ""}`}>
+      <h3 className="text-[18px] font-medium text-[#111111]">Session Summary</h3>
+      <p className="text-[13px] text-[#9B9DA3] italic mt-0.5">Resumo da sessão</p>
 
       {/* Stats */}
       <div className="flex gap-6 mt-6">
-        <div className={`${patterns.card.base} flex-1 text-center py-4`}>
-          <p className={`text-[28px] font-bold ${results.passed ? "text-[#003399]" : "text-[#6B7280]"}`}>
+        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white flex-1 text-center py-4">
+          <p className={`text-[28px] font-medium ${results.passed ? "text-[#185FA5]" : "text-[#6C6B71]"}`}>
             {results.accuracy}%
           </p>
-          <p className="text-[13px] text-[#6B7280]">Accuracy</p>
+          <p className="text-[13px] text-[#6C6B71]">Accuracy</p>
         </div>
-        <div className={`${patterns.card.base} flex-1 text-center py-4`}>
-          <p className="text-[28px] font-bold text-[#111827]">{totalCorrect}/{results.answers.length}</p>
-          <p className="text-[13px] text-[#6B7280]">Correct</p>
+        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white flex-1 text-center py-4">
+          <p className="text-[28px] font-medium text-[#111111]">{totalCorrect}/{results.answers.length}</p>
+          <p className="text-[13px] text-[#6C6B71]">Correct</p>
         </div>
-        <div className={`${patterns.card.base} flex-1 text-center py-4`}>
-          <p className="text-[28px] font-bold text-[#111827]">{formatTime(results.timeSpentSeconds)}</p>
-          <p className="text-[13px] text-[#6B7280]">Time</p>
+        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white flex-1 text-center py-4">
+          <p className="text-[28px] font-medium text-[#111111]">{formatTime(results.timeSpentSeconds)}</p>
+          <p className="text-[13px] text-[#6C6B71]">Time</p>
         </div>
       </div>
 
       {/* Strengths */}
       {strengths.length > 0 && (
         <div className="mt-6">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-emerald-600 mb-2">
+          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#0F6E56] mb-2">
             What went well
           </p>
           <ul className="space-y-1">
             {strengths.map((s, i) => (
-              <li key={i} className="text-[14px] text-emerald-700">· {s}</li>
+              <li key={i} className="text-[14px] text-[#0F6E56]">· {s}</li>
             ))}
           </ul>
         </div>
@@ -100,12 +99,12 @@ export function SessionNarrative({
       {/* Review areas */}
       {reviewAreas.length > 0 && (
         <div className="mt-5">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-amber-600 mb-2">
+          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#854F0B] mb-2">
             What to review
           </p>
           <ul className="space-y-1">
             {reviewAreas.map((r, i) => (
-              <li key={i} className="text-[14px] text-amber-700">· {r}</li>
+              <li key={i} className="text-[14px] text-[#854F0B]">· {r}</li>
             ))}
           </ul>
         </div>
@@ -113,13 +112,13 @@ export function SessionNarrative({
 
       {/* Difficulty changes */}
       {diffNarrative && (
-        <p className="text-[13px] text-[#6B7280] mt-5">{diffNarrative}</p>
+        <p className="text-[13px] text-[#6C6B71] mt-5">{diffNarrative}</p>
       )}
 
       {/* Focus recommendation */}
       {reviewAreas.length > 0 && (
-        <div className="bg-[#FAFAFA] rounded-lg p-4 mt-5">
-          <p className="text-[14px] text-[#374151]">
+        <div className="bg-[#F7F7F5] rounded-lg p-4 mt-5">
+          <p className="text-[14px] text-[#6C6B71]">
             Focus next time on the areas above — they&apos;ll come back in your next session.
           </p>
         </div>

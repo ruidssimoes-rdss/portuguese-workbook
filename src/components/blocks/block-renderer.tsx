@@ -58,7 +58,7 @@ export function BlockRenderer({ descriptor, className, exerciseProps }: BlockRen
     default:
       console.warn(`Unknown block type: ${(descriptor as { type: string }).type}`);
       return (
-        <div className="p-4 border border-dashed border-[#E5E7EB] rounded-xl text-[13px] text-[#9CA3AF]">
+        <div className="p-4 border border-dashed border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] text-[#9B9DA3]">
           Unknown block: {(descriptor as { type: string }).type}
         </div>
       );

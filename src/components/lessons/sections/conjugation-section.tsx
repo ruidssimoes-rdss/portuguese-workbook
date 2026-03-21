@@ -92,13 +92,13 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
       score={score}
     >
       {verbs.map((v) => (
-        <div key={`${v.verb}-${v.tense}`} className="border border-[var(--border-primary)] rounded-[12px] overflow-hidden bg-[var(--bg-card)]">
-          <div className="px-5 py-4 border-b border-[var(--border-light)] bg-[var(--bg-secondary)]">
-            <h3 className="text-[16px] font-bold text-[var(--text-primary)]">
+        <div key={`${v.verb}-${v.tense}`} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden bg-white">
+          <div className="px-5 py-4 border-b border-[rgba(0,0,0,0.06)] bg-[#F7F7F5]">
+            <h3 className="text-[16px] font-medium text-[#111111]">
               {v.verb.toUpperCase()}
-              {v.verbMeaning && <span className="text-[13px] font-normal text-[var(--text-muted)] ml-2">({v.verbMeaning})</span>}
+              {v.verbMeaning && <span className="text-[13px] font-normal text-[#9B9DA3] ml-2">({v.verbMeaning})</span>}
             </h3>
-            <p className="text-[13px] text-[var(--text-muted)]">
+            <p className="text-[13px] text-[#9B9DA3]">
               {v.tense}
               {v.tenseEnglish && <span className="ml-1">/ {v.tenseEnglish}</span>}
             </p>
@@ -108,17 +108,17 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
             const r = results[key];
             const currentIdx = inputIdx++;
             return (
-              <div key={key} className={`flex items-center gap-4 px-5 py-3 border-b border-[var(--border-light)] last:border-b-0 ${
-                state === "reviewed" ? (r?.correct ? "bg-[#F0FDF4]" : "bg-[#FEF2F2]") : ""
+              <div key={key} className={`flex items-center gap-4 px-5 py-3 border-b border-[rgba(0,0,0,0.06)] last:border-b-0 ${
+                state === "reviewed" ? (r?.correct ? "bg-[#E1F5EE]" : "bg-[#fef2f2]") : ""
               }`}>
-                <span className="text-[14px] font-medium text-[var(--text-muted)] w-20 shrink-0">{p.pronoun}</span>
+                <span className="text-[14px] font-medium text-[#9B9DA3] w-20 shrink-0">{p.pronoun}</span>
                 {state === "answering" ? (
                   <input
                     ref={currentIdx === 0 ? firstInputRef : undefined}
                     type="text"
                     value={answers[key] ?? ""}
                     onChange={(e) => setAnswers((prev) => ({ ...prev, [key]: e.target.value }))}
-                    className="flex-1 text-[15px] font-medium text-[var(--text-primary)] bg-transparent border-b-2 border-[var(--border-primary)] focus:border-[#003399] outline-none py-1 transition-colors placeholder:text-[var(--text-muted)]"
+                    className="flex-1 text-[15px] font-medium text-[#111111] bg-transparent border-b-2 border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] outline-none py-1 transition-colors placeholder:text-[#9B9DA3]"
                     placeholder="..."
                     autoComplete="off"
                     spellCheck={false}
@@ -127,19 +127,19 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
                   <div className="flex-1 flex items-center justify-between">
                     <div>
                       {r?.correct ? (
-                        <span className="text-[15px] font-semibold text-[#059669]">{p.correctForm}</span>
+                        <span className="text-[15px] font-medium text-[#0F6E56]">{p.correctForm}</span>
                       ) : (
                         <>
-                          <span className="text-[15px] font-medium text-[#DC2626] line-through mr-2">{answers[key] || "(vazio)"}</span>
-                          <span className="text-[15px] font-semibold text-[#059669]">{p.correctForm}</span>
+                          <span className="text-[15px] font-medium text-[#dc2626] line-through mr-2">{answers[key] || "(vazio)"}</span>
+                          <span className="text-[15px] font-medium text-[#0F6E56]">{p.correctForm}</span>
                         </>
                       )}
-                      {r?.accentHint && <p className="text-[11px] text-[var(--text-muted)]">Acento: {r.accentHint}</p>}
+                      {r?.accentHint && <p className="text-[11px] text-[#9B9DA3]">Acento: {r.accentHint}</p>}
                     </div>
                     {r?.correct ? (
-                      <svg className="w-4 h-4 text-[#059669] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                      <svg className="w-4 h-4 text-[#0F6E56] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     ) : (
-                      <svg className="w-4 h-4 text-[#DC2626] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                      <svg className="w-4 h-4 text-[#dc2626] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                     )}
                   </div>
                 )}

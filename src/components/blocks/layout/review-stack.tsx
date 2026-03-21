@@ -46,7 +46,7 @@ function renderExercise(
     case "exercise-listen-write": return <ListenWriteExercise {...props} />;
     case "exercise-match-pairs": return <MatchPairsExercise {...props} />;
     case "exercise-speak": return <SpeakExercise {...props} />;
-    default: return <p className="text-[13px] text-[#9CA3AF]">Unknown exercise type</p>;
+    default: return <p className="text-[13px] text-[#9B9DA3]">Unknown exercise type</p>;
   }
 }
 

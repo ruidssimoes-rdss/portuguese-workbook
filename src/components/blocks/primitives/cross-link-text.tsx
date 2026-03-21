@@ -14,7 +14,7 @@ export function CrossLinkText({ text, className }: CrossLinkTextProps) {
     const match = part.match(/^\[(.*?)\]\((.*?)\)$/);
     if (match) {
       return (
-        <Link key={i} href={match[2]} className="text-[#003399] hover:underline font-medium">
+        <Link key={i} href={match[2]} className="text-[#185FA5] hover:underline font-medium">
           {match[1]}
         </Link>
       );

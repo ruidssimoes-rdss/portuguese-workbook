@@ -75,67 +75,67 @@ export function ResultsScreen({
       {/* Icon */}
       <div className="mb-6">
         <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
-          passed ? "bg-[#F0FDF4] border-2 border-[#D1FAE5]" : "bg-[#FEF3C7] border-2 border-[#FCD34D]"
+          passed ? "bg-[#E1F5EE] border-[0.5px] border-[rgba(0,0,0,0.06)]" : "bg-[#FAEEDA] border-[0.5px] border-[rgba(0,0,0,0.06)]"
         }`}>
           {passed ? (
-            <svg className="w-8 h-8 text-[#059669]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <svg className="w-8 h-8 text-[#0F6E56]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           ) : (
-            <svg className="w-8 h-8 text-[#92400E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="w-8 h-8 text-[#854F0B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           )}
         </div>
-        <h2 className="text-2xl font-bold text-[var(--text-primary)]">
+        <h2 className="text-2xl font-medium text-[#111111]">
           {passed ? "Lição Completa!" : "Ainda não"}
         </h2>
         {showEnglish && (
-          <p className="text-[13px] text-[var(--text-muted)] mt-0.5">{passed ? "Lesson Complete!" : "Not quite yet"}</p>
+          <p className="text-[13px] text-[#9B9DA3] mt-0.5">{passed ? "Lesson Complete!" : "Not quite yet"}</p>
         )}
         {!passed && (
-          <p className="text-[13px] text-[var(--text-secondary)] mt-1">
+          <p className="text-[13px] text-[#6C6B71] mt-1">
             Precisas de 80% para passar.
-            {showEnglish && <span className="text-[var(--text-muted)] ml-1">You need 80% to pass.</span>}
+            {showEnglish && <span className="text-[#9B9DA3] ml-1">You need 80% to pass.</span>}
           </p>
         )}
       </div>
 
       {/* Accuracy */}
-      <p className="text-[22px] font-bold text-[var(--text-primary)] mb-1">{displayAccuracy}%</p>
-      <p className="text-[13px] text-[var(--text-muted)] mb-6">
+      <p className="text-[28px] font-medium text-[#111111] mb-1">{displayAccuracy}%</p>
+      <p className="text-[13px] text-[#9B9DA3] mb-6">
         {totalCorrect} / {totalQuestions}
         {showEnglish && " correct"}
       </p>
 
       {/* Per-section breakdown */}
       <div className={`max-w-md mx-auto mb-6 transition-opacity duration-300 ${showBreakdown ? "opacity-100" : "opacity-0"}`}>
-        <div className="border border-[var(--border-primary)] rounded-[12px] overflow-hidden bg-[var(--bg-card)]">
+        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden bg-white">
           {sectionResults.map((sr, i) => {
             const pct = sr.totalQuestions > 0 ? Math.round((sr.totalCorrect / sr.totalQuestions) * 100) : 0;
             return (
-              <div key={sr.sectionKey} className={`flex items-center gap-3 px-4 py-3 ${i > 0 ? "border-t border-[var(--border-light)]" : ""}`}>
-                <span className="text-[13px] text-[var(--text-primary)] font-medium flex-1 text-left">{sr.sectionName}</span>
-                <span className="text-[13px] text-[var(--text-secondary)] w-12 text-right">{sr.totalCorrect}/{sr.totalQuestions}</span>
-                <div className="w-20 h-1.5 bg-[var(--border-light)] rounded-full overflow-hidden">
-                  <div className={`h-full rounded-full ${pct >= 80 ? "bg-[#059669]" : pct >= 50 ? "bg-[#F59E0B]" : "bg-[#DC2626]"}`} style={{ width: `${pct}%` }} />
+              <div key={sr.sectionKey} className={`flex items-center gap-3 px-4 py-3 ${i > 0 ? "border-t border-[rgba(0,0,0,0.06)]" : ""}`}>
+                <span className="text-[13px] text-[#111111] font-medium flex-1 text-left">{sr.sectionName}</span>
+                <span className="text-[13px] text-[#6C6B71] w-12 text-right">{sr.totalCorrect}/{sr.totalQuestions}</span>
+                <div className="w-20 h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden">
+                  <div className={`h-full rounded-full ${pct >= 80 ? "bg-[#0F6E56]" : pct >= 50 ? "bg-[#854F0B]" : "bg-[#dc2626]"}`} style={{ width: `${pct}%` }} />
                 </div>
               </div>
             );
           })}
-          <div className="flex items-center gap-3 px-4 py-3 border-t border-[var(--border-primary)] bg-[var(--bg-secondary)]">
-            <span className="text-[13px] text-[var(--text-primary)] font-bold flex-1 text-left">Total</span>
-            <span className="text-[13px] text-[var(--text-primary)] font-bold w-12 text-right">{totalCorrect}/{totalQuestions}</span>
-            <span className="text-[13px] font-bold w-20 text-right">{accuracy}%</span>
+          <div className="flex items-center gap-3 px-4 py-3 border-t border-[rgba(0,0,0,0.06)] bg-[#F7F7F5]">
+            <span className="text-[13px] text-[#111111] font-medium flex-1 text-left">Total</span>
+            <span className="text-[13px] text-[#111111] font-medium w-12 text-right">{totalCorrect}/{totalQuestions}</span>
+            <span className="text-[13px] font-medium w-20 text-right">{accuracy}%</span>
           </div>
         </div>
 
         {/* Level progress */}
-        <p className="text-[13px] text-[var(--text-secondary)] mt-3">
+        <p className="text-[13px] text-[#6C6B71] mt-3">
           Progresso {levelProgress.level}: {levelProgress.completed}/{levelProgress.total} lições
         </p>
         {examUnlocked && (
-          <p className="text-[14px] font-semibold text-[#059669] mt-2">Exame desbloqueado!</p>
+          <p className="text-[14px] font-medium text-[#0F6E56] mt-2">Exame desbloqueado!</p>
         )}
       </div>
 
@@ -146,7 +146,7 @@ export function ResultsScreen({
             <button
               type="button"
               onClick={() => setWrongExpanded((e) => !e)}
-              className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-2 hover:text-[var(--text-secondary)] transition-colors"
+              className="flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.08em] text-[#9B9DA3] mb-2 hover:text-[#6C6B71] transition-colors"
             >
               <svg className={`w-3 h-3 transition-transform ${wrongExpanded ? "rotate-90" : ""}`} fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
@@ -157,12 +157,12 @@ export function ResultsScreen({
             {wrongExpanded && (
               <div className="space-y-2">
                 {wrongAnswers.map((w, i) => (
-                  <div key={i} className="border border-[#FEE2E2] rounded-[10px] p-3 bg-[#FEF2F2]">
-                    <p className="text-[12px] text-[var(--text-secondary)]">{w.question}</p>
+                  <div key={i} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-3 bg-[#fef2f2]">
+                    <p className="text-[12px] text-[#6C6B71]">{w.question}</p>
                     <p className="text-[13px] mt-1">
-                      <span className="text-[#DC2626] line-through">{w.userAnswer || "(vazio)"}</span>
+                      <span className="text-[#dc2626] line-through">{w.userAnswer || "(vazio)"}</span>
                       {" → "}
-                      <span className="text-[#059669] font-semibold">{w.correctAnswer}</span>
+                      <span className="text-[#0F6E56] font-medium">{w.correctAnswer}</span>
                     </p>
                   </div>
                 ))}
@@ -174,12 +174,12 @@ export function ResultsScreen({
 
       {/* Save error */}
       {saveError && (
-        <div className="mb-6 p-4 rounded-[12px] border border-[#FEE2E2] bg-[#FEF2F2] text-center max-w-md mx-auto">
-          <p className="text-[14px] font-medium text-[#DC2626] mb-2">
+        <div className="mb-6 p-4 rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-[#fef2f2] text-center max-w-md mx-auto">
+          <p className="text-[14px] font-medium text-[#dc2626] mb-2">
             Erro ao guardar o progresso.
           </p>
           <button type="button" onClick={onRetrySave} disabled={isSaving}
-            className="px-5 py-2 bg-[#DC2626] text-white text-[13px] font-semibold rounded-lg hover:bg-[#B91C1C] transition-colors disabled:opacity-60"
+            className="px-4 py-2 bg-[#dc2626] text-white text-[13px] font-medium rounded-lg hover:bg-[#b91c1c] transition-colors disabled:opacity-60"
           >
             {isSaving ? "A guardar..." : "Tentar guardar novamente"}
           </button>
@@ -190,7 +190,7 @@ export function ResultsScreen({
       <div className={`flex flex-wrap items-center justify-center gap-4 transition-opacity duration-300 ${showButtons ? "opacity-100" : "opacity-0"}`}>
         {passed && onNextLesson && (
           <button type="button" disabled={isSaving || saveError} onClick={onNextLesson}
-            className="px-8 py-3 bg-[var(--text-primary)] text-white text-[15px] font-semibold rounded-[12px] hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
+            className="px-4 py-2 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSaving ? "A guardar..." : "Próxima lição"}
             {showEnglish && <span className="block text-[11px] font-normal opacity-75">{isSaving ? "Saving..." : "Next lesson"}</span>}
@@ -198,20 +198,20 @@ export function ResultsScreen({
         )}
         {!passed && (
           <button type="button" disabled={isSaving} onClick={onRetryExercises}
-            className="px-8 py-3 bg-[var(--text-primary)] text-white text-[15px] font-semibold rounded-[12px] hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
+            className="px-4 py-2 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSaving ? "A guardar..." : "Tentar novamente"}
             {showEnglish && <span className="block text-[11px] font-normal opacity-75">{isSaving ? "Saving..." : "Try again"}</span>}
           </button>
         )}
         <button type="button" disabled={isSaving} onClick={onRetryFull}
-          className="px-6 py-2.5 border border-[var(--border-primary)] rounded-[12px] text-[14px] font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-60"
+          className="px-4 py-2 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[13px] font-medium text-[#6C6B71] hover:border-[rgba(0,0,0,0.12)] transition-colors disabled:opacity-60"
         >
           {passed ? "Rever lição" : "Rever primeiro"}
           {showEnglish && <span className="block text-[11px] font-normal opacity-75">{passed ? "Review lesson" : "Review first"}</span>}
         </button>
         <button type="button" disabled={isSaving} onClick={onBackToLessons}
-          className="text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors disabled:opacity-60"
+          className="text-[13px] font-medium text-[#6C6B71] hover:text-[#111111] transition-colors disabled:opacity-60"
         >
           Voltar às lições
         </button>

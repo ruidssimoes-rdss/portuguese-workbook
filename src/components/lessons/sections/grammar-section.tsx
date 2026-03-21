@@ -85,32 +85,32 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
       canVerify={allAnswered} score={score}
     >
       {questions.map((q, i) => (
-        <div key={q.id} className="border border-[var(--border-primary)] rounded-[12px] p-5 bg-[var(--bg-card)]">
-          <span className="text-[13px] font-semibold text-[var(--text-muted)]">{i + 1}.</span>
+        <div key={q.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 bg-white">
+          <span className="text-[13px] font-medium text-[#9B9DA3]">{i + 1}.</span>
 
           {q.type === "true-false" ? (
             <div className="mt-2">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] mb-2">
+              <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#9B9DA3] mb-2">
                 Verdadeiro ou falso?{showEnglish && " / True or false?"}
               </p>
-              <p className="text-[15px] font-medium text-[var(--text-primary)] mb-3">{q.statement}</p>
+              <p className="text-[15px] font-medium text-[#111111] mb-3">{q.statement}</p>
               <div className="flex gap-3">
                 {([true, false] as const).map((val) => {
                   const label = val ? "Verdadeiro" : "Falso";
                   const isSelected = tfAnswers[q.id] === val;
                   const isCorrectOpt = val === q.isTrue;
-                  let cls = "border-[var(--border-primary)] hover:border-[#003399] cursor-pointer";
+                  let cls = "border-[rgba(0,0,0,0.06)] hover:border-[#185FA5] cursor-pointer";
                   if (state === "reviewed") {
-                    if (isCorrectOpt) cls = "border-[#059669] bg-[#F0FDF4]";
-                    else if (isSelected && !isCorrectOpt) cls = "border-[#DC2626] bg-[#FEF2F2]";
-                    else cls = "border-[var(--border-primary)] opacity-50";
+                    if (isCorrectOpt) cls = "border-[#0F6E56] bg-[#E1F5EE]";
+                    else if (isSelected && !isCorrectOpt) cls = "border-[#dc2626] bg-[#fef2f2]";
+                    else cls = "border-[rgba(0,0,0,0.06)] opacity-50";
                   } else if (isSelected) {
-                    cls = "border-[#003399] bg-[rgba(0,51,153,0.05)]";
+                    cls = "border-[#185FA5] bg-[rgba(24,95,165,0.05)]";
                   }
                   return (
                     <button key={label} type="button" disabled={state === "reviewed"}
                       onClick={() => setTfAnswers((p) => ({ ...p, [q.id]: val }))}
-                      className={`flex-1 py-2.5 rounded-[10px] border text-[14px] font-medium text-center transition-all ${cls}`}
+                      className={`flex-1 py-2.5 rounded-lg border-[0.5px] text-[14px] font-medium text-center transition-all ${cls}`}
                     >
                       {label}
                     </button>
@@ -118,31 +118,31 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
                 })}
               </div>
               {state === "reviewed" && explanations[q.id] && (
-                <p className="text-[12px] text-[var(--text-secondary)] mt-2">{explanations[q.id]}</p>
+                <p className="text-[12px] text-[#6C6B71] mt-2">{explanations[q.id]}</p>
               )}
             </div>
           ) : (
             <div className="mt-2">
-              <p className="text-[15px] font-medium text-[var(--text-primary)] mb-1">{q.question}</p>
+              <p className="text-[15px] font-medium text-[#111111] mb-1">{q.question}</p>
               {showEnglish && q.questionEnglish && (
-                <p className="text-[12px] text-[var(--text-muted)] mb-3">{q.questionEnglish}</p>
+                <p className="text-[12px] text-[#9B9DA3] mb-3">{q.questionEnglish}</p>
               )}
               <div className="space-y-2">
                 {q.options?.map((opt, oi) => {
                   const isSelected = mcAnswers[q.id] === oi;
                   const isCorrect = oi === q.correctIndex;
-                  let cls = "border-[var(--border-primary)] hover:border-[#003399] cursor-pointer";
+                  let cls = "border-[rgba(0,0,0,0.06)] hover:border-[#185FA5] cursor-pointer";
                   if (state === "reviewed") {
-                    if (isCorrect) cls = "border-[#059669] bg-[#F0FDF4]";
-                    else if (isSelected && !isCorrect) cls = "border-[#DC2626] bg-[#FEF2F2]";
-                    else cls = "border-[var(--border-primary)] opacity-50";
+                    if (isCorrect) cls = "border-[#0F6E56] bg-[#E1F5EE]";
+                    else if (isSelected && !isCorrect) cls = "border-[#dc2626] bg-[#fef2f2]";
+                    else cls = "border-[rgba(0,0,0,0.06)] opacity-50";
                   } else if (isSelected) {
-                    cls = "border-[#003399] bg-[rgba(0,51,153,0.05)]";
+                    cls = "border-[#185FA5] bg-[rgba(24,95,165,0.05)]";
                   }
                   return (
                     <button key={oi} type="button" disabled={state === "reviewed"}
                       onClick={() => setMcAnswers((p) => ({ ...p, [q.id]: oi }))}
-                      className={`w-full text-left px-4 py-2.5 rounded-[10px] border text-[14px] transition-all ${cls}`}
+                      className={`w-full text-left px-4 py-2.5 rounded-lg border-[0.5px] text-[14px] transition-all ${cls}`}
                     >
                       {opt}
                     </button>

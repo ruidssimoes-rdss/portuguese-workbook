@@ -4,13 +4,12 @@ import { useState, useCallback } from "react";
 import type { ExerciseProps, SpeakExerciseData, AnswerResult } from "@/types/blocks";
 import { useSpeechRecognition } from "@/hooks/use-speech-recognition";
 import { scorePronunciation, type PronunciationScore } from "@/lib/pronunciation-scorer";
-import { patterns } from "@/lib/design-tokens";
 
 const FEEDBACK_COLORS: Record<string, string> = {
-  excellent: "text-emerald-600",
-  good: "text-blue-600",
-  "needs-practice": "text-amber-600",
-  "try-again": "text-red-500",
+  excellent: "text-[#0F6E56]",
+  good: "text-[#185FA5]",
+  "needs-practice": "text-[#854F0B]",
+  "try-again": "text-[#dc2626]",
 };
 
 const FEEDBACK_TEXT: Record<string, string> = {
@@ -82,19 +81,19 @@ export function SpeakExercise({
 
   return (
     <div className={`flex flex-col items-center py-6 fade-in ${className ?? ""}`}>
-      <p className="text-[13px] text-[#6B7280] mb-4">Say this in Portuguese:</p>
+      <p className="text-[13px] text-[#6C6B71] mb-4">Say this in Portuguese:</p>
 
       {/* Target text */}
-      <p className="text-[24px] font-bold text-[#111827]">{data.targetText}</p>
+      <p className="text-[24px] font-medium text-[#111111]">{data.targetText}</p>
       {showEnglish && (
-        <p className="text-[13px] text-[#6B7280] mt-1">{data.targetTranslation}</p>
+        <p className="text-[13px] text-[#6C6B71] mt-1">{data.targetTranslation}</p>
       )}
-      <p className="text-[13px] text-[#9CA3AF] italic mt-1">{data.pronunciation}</p>
+      <p className="text-[13px] text-[#9B9DA3] italic mt-1">{data.pronunciation}</p>
 
       {/* Listen button */}
       <button
         onClick={speak}
-        className="mt-4 text-[13px] text-[#003399] hover:text-[#002277] transition-colors cursor-pointer flex items-center gap-1.5"
+        className="mt-4 text-[13px] text-[#185FA5] hover:text-[#185FA5]/80 transition-colors cursor-pointer flex items-center gap-1.5"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
           <path d="M3 5.5v5l4.5-2.5L3 5.5z" />
@@ -106,7 +105,7 @@ export function SpeakExercise({
       {/* Score display */}
       {score && (
         <div className="mt-6 text-center fade-in">
-          <p className={`text-[28px] font-bold ${FEEDBACK_COLORS[score.feedback]}`}>
+          <p className={`text-[28px] font-medium ${FEEDBACK_COLORS[score.feedback]}`}>
             {score.overallScore}%
           </p>
           <p className={`text-[14px] font-medium ${FEEDBACK_COLORS[score.feedback]} mt-1`}>
@@ -119,7 +118,7 @@ export function SpeakExercise({
               <span
                 key={i}
                 className={`text-[15px] font-medium ${
-                  ws.correct ? "text-emerald-600" : "text-red-500"
+                  ws.correct ? "text-[#0F6E56]" : "text-[#dc2626]"
                 }`}
               >
                 {ws.expected}
@@ -139,40 +138,40 @@ export function SpeakExercise({
                 disabled={disabled}
                 className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-150 cursor-pointer ${
                   speech.isListening
-                    ? "bg-red-500 hover:bg-red-600"
-                    : "bg-[#003399] hover:bg-[#002277]"
+                    ? "bg-[#dc2626] hover:bg-[#dc2626]/90"
+                    : "bg-[#185FA5] hover:bg-[#185FA5]/90"
                 }`}
-                style={speech.isListening ? { boxShadow: "0 0 0 4px rgba(239, 68, 68, 0.2)" } : undefined}
+                style={speech.isListening ? { boxShadow: "0 0 0 4px rgba(220, 38, 38, 0.2)" } : undefined}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
                   <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
                   <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
-              <p className="text-[13px] text-[#9CA3AF] mt-2">
+              <p className="text-[13px] text-[#9B9DA3] mt-2">
                 {speech.isListening ? "Listening..." : "Tap to speak"}
               </p>
               {speech.error && (
-                <p className="text-[12px] text-red-500 mt-1">{speech.error}</p>
+                <p className="text-[12px] text-[#dc2626] mt-1">{speech.error}</p>
               )}
             </div>
           ) : (
             /* Fallback: self-assessment */
             <div className="flex flex-col items-center gap-3">
-              <p className="text-[13px] text-[#9CA3AF]">
+              <p className="text-[13px] text-[#9B9DA3]">
                 Speech recognition not available. Listen and self-assess:
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => handleSelfAssess(true)}
-                  className={`${patterns.button.primary} h-10 px-5`}
+                  className="bg-[#111111] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#111111]/90 transition-all duration-150 ease-out h-10 px-5"
                   disabled={disabled}
                 >
                   I said it correctly
                 </button>
                 <button
                   onClick={() => handleSelfAssess(false)}
-                  className={`${patterns.button.secondary} h-10 px-5`}
+                  className="border-[0.5px] border-[rgba(0,0,0,0.06)] text-[#6C6B71] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F7F7F5] hover:border-[rgba(0,0,0,0.12)] transition-all duration-150 ease-out bg-white h-10 px-5"
                   disabled={disabled}
                 >
                   Try again

@@ -72,18 +72,18 @@ export function TranslationSection({ sectionIndex, totalSections, showEnglish, s
       onVerify={handleVerify} onNext={handleNext}
       canVerify={allAnswered} score={score}
     >
-      <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-1">
+      <p className="text-[13px] font-medium text-[#9B9DA3] uppercase tracking-[0.08em] mb-1">
         Traduz para português:
       </p>
-      {showEnglish && <p className="text-[12px] text-[var(--text-muted)] mb-4">Translate to Portuguese:</p>}
+      {showEnglish && <p className="text-[12px] text-[#9B9DA3] mb-4">Translate to Portuguese:</p>}
 
       {sentences.map((s, i) => {
         const r = results[s.id];
         return (
-          <div key={s.id} className="border border-[var(--border-primary)] rounded-[12px] p-5 bg-[var(--bg-card)]">
+          <div key={s.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 bg-white">
             <div className="flex items-baseline gap-3 mb-3">
-              <span className="text-[13px] font-semibold text-[var(--text-muted)]">{i + 1}.</span>
-              <p className="text-[15px] font-medium text-[var(--text-primary)]">&ldquo;{s.sourceText}&rdquo;</p>
+              <span className="text-[13px] font-medium text-[#9B9DA3]">{i + 1}.</span>
+              <p className="text-[15px] font-medium text-[#111111]">&ldquo;{s.sourceText}&rdquo;</p>
             </div>
             {state === "answering" ? (
               <textarea
@@ -91,17 +91,17 @@ export function TranslationSection({ sectionIndex, totalSections, showEnglish, s
                 value={answers[s.id] ?? ""}
                 onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
                 rows={2}
-                className="w-full text-[15px] text-[var(--text-primary)] bg-[var(--bg-secondary)] border border-[var(--border-primary)] focus:border-[#003399] rounded-lg px-4 py-2.5 outline-none transition-colors resize-none placeholder:text-[var(--text-muted)]"
+                className="w-full text-[15px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] rounded-lg px-4 py-2.5 outline-none transition-colors resize-none placeholder:text-[#9B9DA3]"
                 placeholder="Escreve a tradução em português..."
                 autoComplete="off" spellCheck={false}
               />
             ) : (
-              <div className={`px-4 py-2.5 rounded-lg border ${r?.correct ? "border-[#059669] bg-[#F0FDF4]" : "border-[#DC2626] bg-[#FEF2F2]"}`}>
-                <p className={`text-[15px] font-medium ${r?.correct ? "text-[#059669]" : "text-[#DC2626]"}`}>
+              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
+                <p className={`text-[15px] font-medium ${r?.correct ? "text-[#0F6E56]" : "text-[#dc2626]"}`}>
                   {answers[s.id]}
                 </p>
-                {!r?.correct && <p className="text-[13px] text-[#059669] mt-1">{s.correctAnswer}</p>}
-                {r?.accentHint && <p className="text-[11px] text-[var(--text-muted)] mt-1">Acento: {r.accentHint}</p>}
+                {!r?.correct && <p className="text-[13px] text-[#0F6E56] mt-1">{s.correctAnswer}</p>}
+                {r?.accentHint && <p className="text-[11px] text-[#9B9DA3] mt-1">Acento: {r.accentHint}</p>}
               </div>
             )}
           </div>
