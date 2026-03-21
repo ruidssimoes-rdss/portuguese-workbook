@@ -79,7 +79,7 @@ export function Sidebar() {
     <aside className="hidden md:flex w-[220px] min-w-[220px] border-r-[0.5px] border-[rgba(0,0,0,0.06)] flex-col py-4 bg-[#F7F7F5] h-dvh sticky top-0 overflow-y-auto">
       {/* Logo */}
       <div className="px-4 pb-5 flex items-center gap-2">
-        <div className="w-7 h-7 rounded-md overflow-hidden flex-shrink-0">
+        <div className="w-7 h-7 flex-shrink-0">
           <svg width="28" height="28" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="350" height="350" rx="36" fill="#1B2B61"/>
             <path d="M126.085 90.8203C130.072 90.124 133.462 93.4698 133.462 97.6406V173.556C133.462 177.727 130.071 181.081 126.085 180.385C104.732 176.655 88.5 158.024 88.5 135.603C88.5002 113.182 104.732 94.5503 126.085 90.8203Z" fill="white" stroke="white"/>

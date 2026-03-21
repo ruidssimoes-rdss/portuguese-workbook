@@ -49,7 +49,7 @@ export default function UpdatePasswordPage() {
       <div className="w-full max-w-[360px] mx-auto">
         <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
           <div className="flex flex-col items-center mb-6">
-            <div className="w-12 h-12 rounded-xl overflow-hidden mb-3">
+            <div className="w-12 h-12 mb-3">
               <svg width="48" height="48" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="350" height="350" rx="36" fill="#1B2B61"/>
                 <path d="M126.085 90.8203C130.072 90.124 133.462 93.4698 133.462 97.6406V173.556C133.462 177.727 130.071 181.081 126.085 180.385C104.732 176.655 88.5 158.024 88.5 135.603C88.5002 113.182 104.732 94.5503 126.085 90.8203Z" fill="white" stroke="white"/>
