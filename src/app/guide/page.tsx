@@ -2,8 +2,9 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { PageLayout } from "@/components/blocos";
-import { Button } from "@/components/ui/button";
+import { PageShell } from "@/components/layout/page-shell";
+import { PageHeader } from "@/components/primitives";
+import { ChevronDown } from "lucide-react";
 
 const sections = [
   {
@@ -55,13 +56,13 @@ function GuideSectionContent({ id }: { id: string }) {
     case "how-aula-pt-works":
       return (
         <>
-          <h2 className="text-[18px] font-semibold text-[#111827]">
+          <h2 className="text-[14px] font-medium text-[#111111]">
             How Aula PT Works
           </h2>
-          <p className="text-[13px] text-[#003399]/70 font-medium mt-1">
+          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
             Como Funciona o Aula PT
           </p>
-          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
             <p>
               Aula PT is designed as a learning companion, not a game. There are
               no streaks, no leaderboards, and no pressure to keep up with
@@ -69,7 +70,7 @@ function GuideSectionContent({ id }: { id: string }) {
               whenever you have time and energy to invest in your Portuguese.
             </p>
 
-            <p className="font-semibold text-[#111827]">
+            <p className="text-[13px] font-medium text-[#111111]">
               Your Daily Starting Point
             </p>
             <p>
@@ -87,7 +88,7 @@ function GuideSectionContent({ id }: { id: string }) {
               jumping-off point into vocabulary, grammar, culture, or practice.
             </p>
 
-            <p className="font-semibold text-[#111827]">Learning Content</p>
+            <p className="text-[13px] font-medium text-[#111111]">Learning Content</p>
             <p>
               Aula PT organises European Portuguese into four main areas, all
               accessible from the Learn menu. Each one plays a different role in
@@ -96,7 +97,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </p>
             <p>
               In{" "}
-              <span className="font-semibold text-[#111827]">Conjugations</span>{" "}
+              <span className="font-medium text-[#111111]">Conjugations</span>{" "}
               you will find every verb laid out clearly across six key tenses.
               Each form is accompanied by a pronunciation guide and a natural
               example sentence, so you are never looking at dry tables in
@@ -105,7 +106,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </p>
             <p>
               The{" "}
-              <span className="font-semibold text-[#111827]">Vocabulary</span>{" "}
+              <span className="font-medium text-[#111111]">Vocabulary</span>{" "}
               section contains 676 words and phrases organised into 13
               real‑world categories such as Food &amp; Drink, Travel &amp;
               Directions, Health &amp; Body, and Home &amp; Rooms. Every entry
@@ -115,7 +116,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </p>
             <p>
               In the{" "}
-              <span className="font-semibold text-[#111827]">Grammar</span>{" "}
+              <span className="font-medium text-[#111111]">Grammar</span>{" "}
               section you will find structured explanations of the rules that
               hold Portuguese together: articles and gender, pronouns, verb
               tenses, prepositions, and more. Each topic includes clear notes,
@@ -124,7 +125,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </p>
             <p>
               The{" "}
-              <span className="font-semibold text-[#111827]">Culture</span>{" "}
+              <span className="font-medium text-[#111111]">Culture</span>{" "}
               section focuses on what textbooks usually ignore: sayings and
               proverbs, false friends, etiquette, and regional slang. This is
               where you meet the language as it is actually used by Portuguese
@@ -132,7 +133,7 @@ function GuideSectionContent({ id }: { id: string }) {
               artificially simple dialogues.
             </p>
 
-            <p className="font-semibold text-[#111827]">Lessons</p>
+            <p className="text-[13px] font-medium text-[#111111]">Lessons</p>
             <p>
               Lessons in Aula PT are structured, guided revision sessions. Each
               lesson walks you through vocabulary, verb conjugation, grammar
@@ -147,23 +148,23 @@ function GuideSectionContent({ id }: { id: string }) {
               reinforce what you have learned.
             </p>
 
-            <p className="font-semibold text-[#111827]">
+            <p className="text-[13px] font-medium text-[#111111]">
               Progress, Tests, and Search
             </p>
             <p>
               As you work through conjugations, vocabulary, and grammar topics,
               progress tests help you see where you are on the A1–B1 scale. When
-              you complete a section, you do not see the word “Failed” — you see
-              “Not yet”. The difference is small on the screen but huge in your
+              you complete a section, you do not see the word &quot;Failed&quot; — you see
+              &quot;Not yet&quot;. The difference is small on the screen but huge in your
               mindset: you are not bad at Portuguese, you are just not there yet.
             </p>
             <p>
               Whenever you are unsure where to go next, press{" "}
-              <span className="font-mono text-xs text-[#6B7280]">⌘K</span> (or{" "}
-              <span className="font-mono text-xs text-[#6B7280]">Ctrl+K</span>){" "}
-              to open the smart search. You can ask natural questions like “How
-              do you say kitchen?”, “Conjugate ir”, “Past tense of fazer”, or
-              “What does saudade mean?” and jump straight to the relevant entry
+              <span className="font-mono text-[12px] text-[#9B9DA3]">⌘K</span> (or{" "}
+              <span className="font-mono text-[12px] text-[#9B9DA3]">Ctrl+K</span>){" "}
+              to open the smart search. You can ask natural questions like &quot;How
+              do you say kitchen?&quot;, &quot;Conjugate ir&quot;, &quot;Past tense of fazer&quot;, or
+              &quot;What does saudade mean?&quot; and jump straight to the relevant entry
               in vocabulary, conjugations, grammar, or culture.
             </p>
           </div>
@@ -172,13 +173,13 @@ function GuideSectionContent({ id }: { id: string }) {
     case "cefr-levels":
       return (
         <>
-          <h2 className="text-[18px] font-semibold text-[#111827]">
+          <h2 className="text-[14px] font-medium text-[#111111]">
             Understanding CEFR Levels
           </h2>
-          <p className="text-[13px] text-[#003399]/70 font-medium mt-1">
+          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
             Compreender os Níveis do QECR
           </p>
-          <p className="text-base text-[#374151] mt-4 leading-relaxed">
+          <p className="text-[13px] text-[#6C6B71] mt-4 leading-relaxed">
             CEFR (Common European Framework of Reference) is the international
             standard for describing language ability. Aula PT focuses on A1, A2,
             and B1 — the range that takes you from zero Portuguese to being able
@@ -186,56 +187,56 @@ function GuideSectionContent({ id }: { id: string }) {
           </p>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
-              <p className="text-sm font-semibold text-blue-800">
+            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+              <p className="text-[13px] font-medium text-[#111111]">
                 A1 — Beginner / Iniciante
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 At A1 you can handle basic survival situations. You can
                 introduce yourself, ask very simple questions, order food and
                 drinks, ask for directions, recognise common words on signs and
                 menus, and take part in tiny exchanges as long as the other
                 person speaks slowly and helps you.
               </p>
-              <p className="text-sm text-[#374151] mt-2">
+              <p className="text-[13px] text-[#6C6B71] mt-2">
                 You need roughly five hundred words and the core grammar of the
                 present tense, articles, basic prepositions, and the essentials
-                of <span className="font-semibold">ser</span> vs{" "}
-                <span className="font-semibold">estar</span>.
+                of <span className="font-medium">ser</span> vs{" "}
+                <span className="font-medium">estar</span>.
               </p>
             </div>
 
-            <div className="bg-cyan-50 border border-cyan-100 rounded-lg p-4">
-              <p className="text-sm font-semibold text-violet-800">
+            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+              <p className="text-[13px] font-medium text-[#111111]">
                 A2 — Elementary / Elementar
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 At A2 you can navigate daily life with growing confidence. You
                 can describe your routine, family, and work, handle shopping and
                 simple transactions, understand the main point of short texts
                 and announcements, and talk about past events in straightforward
                 sentences.
               </p>
-              <p className="text-sm text-[#374151] mt-2">
+              <p className="text-[13px] text-[#6C6B71] mt-2">
                 You need around a thousand words and grammar such as the past
-                tenses (<span className="font-semibold">pretérito perfeito</span>{" "}
-                and <span className="font-semibold">imperfeito</span>), future
+                tenses (<span className="font-medium">pretérito perfeito</span>{" "}
+                and <span className="font-medium">imperfeito</span>), future
                 forms, object pronouns, and comparatives.
               </p>
             </div>
 
-            <div className="bg-[#F9FAFB] border border-[#E9E9E9] rounded-lg p-4">
-              <p className="text-sm font-semibold text-[#111827]">
+            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+              <p className="text-[13px] font-medium text-[#111111]">
                 B1 — Intermediate / Intermédio
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 At B1 you can handle most situations that arise while travelling
                 or living in Portugal. You follow and participate in
                 conversations on familiar topics, understand the main points of
                 TV programmes and news, write messages and short texts with some
                 complexity, and express and justify your opinions.
               </p>
-              <p className="text-sm text-[#374151] mt-2">
+              <p className="text-[13px] text-[#6C6B71] mt-2">
                 You need roughly two thousand words and grammar such as basic
                 subjunctive, conditional, relative pronouns, and more complex
                 sentence patterns.
@@ -243,7 +244,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </div>
           </div>
 
-          <p className="text-sm text-[#6B7280] mt-4 leading-relaxed">
+          <p className="text-[13px] text-[#6C6B71] mt-4 leading-relaxed">
             Aula PT currently covers A1 through B1 content. That is enough to
             understand most everyday Portuguese, talk to neighbours and
             colleagues, handle bureaucracy with some patience, and feel at home
@@ -254,11 +255,11 @@ function GuideSectionContent({ id }: { id: string }) {
     case "timelines":
       return (
         <>
-          <h2 className="text-[18px] font-semibold text-[#111827]">Realistic Timelines</h2>
-          <p className="text-[13px] text-[#003399]/70 font-medium mt-1">
+          <h2 className="text-[14px] font-medium text-[#111111]">Realistic Timelines</h2>
+          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
             Prazos Realistas
           </p>
-          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
             <p>
               Be honest with yourself about how long this takes. Language
               learning is a marathon, not a sprint. Portuguese is classified as
@@ -274,40 +275,40 @@ function GuideSectionContent({ id }: { id: string }) {
             </p>
           </div>
 
-          <div className="mt-6 overflow-x-auto border border-[#F0F0F0] rounded-lg">
-            <table className="w-full text-sm border-collapse">
-              <thead className="bg-[#F9FAFB]">
+          <div className="mt-6 overflow-x-auto border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg">
+            <table className="w-full text-[13px] border-collapse">
+              <thead className="bg-[#F7F7F5]">
                 <tr>
-                  <th className="text-left px-4 py-2 font-semibold text-[#6B7280]">
+                  <th className="text-left px-4 py-2 font-medium text-[#9B9DA3]">
                     Level
                   </th>
-                  <th className="text-left px-4 py-2 font-semibold text-[#6B7280]">
+                  <th className="text-left px-4 py-2 font-medium text-[#9B9DA3]">
                     Hours of Study
                   </th>
-                  <th className="text-left px-4 py-2 font-semibold text-[#6B7280]">
+                  <th className="text-left px-4 py-2 font-medium text-[#9B9DA3]">
                     Realistic Calendar Time
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-[#F0F0F0]">
-                  <td className="px-4 py-2 font-semibold text-[#1F2937]">A1</td>
-                  <td className="px-4 py-2 text-[#374151]">60–100 hours</td>
-                  <td className="px-4 py-2 text-[#374151]">
+                <tr className="border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
+                  <td className="px-4 py-2 font-medium text-[#111111]">A1</td>
+                  <td className="px-4 py-2 text-[#6C6B71]">60–100 hours</td>
+                  <td className="px-4 py-2 text-[#6C6B71]">
                     2–3 months (about 30 minutes per day)
                   </td>
                 </tr>
-                <tr className="border-t border-[#F0F0F0] bg-[#F9FAFB]/40">
-                  <td className="px-4 py-2 font-semibold text-[#1F2937]">A2</td>
-                  <td className="px-4 py-2 text-[#374151]">150–200 hours</td>
-                  <td className="px-4 py-2 text-[#374151]">
+                <tr className="border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
+                  <td className="px-4 py-2 font-medium text-[#111111]">A2</td>
+                  <td className="px-4 py-2 text-[#6C6B71]">150–200 hours</td>
+                  <td className="px-4 py-2 text-[#6C6B71]">
                     4–6 months (about 30 minutes per day)
                   </td>
                 </tr>
-                <tr className="border-t border-[#F0F0F0]">
-                  <td className="px-4 py-2 font-semibold text-[#1F2937]">B1</td>
-                  <td className="px-4 py-2 text-[#374151]">300–400 hours</td>
-                  <td className="px-4 py-2 text-[#374151]">
+                <tr className="border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
+                  <td className="px-4 py-2 font-medium text-[#111111]">B1</td>
+                  <td className="px-4 py-2 text-[#6C6B71]">300–400 hours</td>
+                  <td className="px-4 py-2 text-[#6C6B71]">
                     8–14 months (about 30 minutes per day)
                   </td>
                 </tr>
@@ -315,7 +316,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </table>
           </div>
 
-          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
             <p>
               These estimates assume fairly consistent daily practice. They may
               be shorter if you already speak another Romance language or have
@@ -341,13 +342,13 @@ function GuideSectionContent({ id }: { id: string }) {
     case "daily-routine":
       return (
         <>
-          <h2 className="text-[18px] font-semibold text-[#111827]">
+          <h2 className="text-[14px] font-medium text-[#111111]">
             Structuring Your Daily Routine
           </h2>
-          <p className="text-[13px] text-[#003399]/70 font-medium mt-1">
+          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
             Estruturar a Tua Rotina Diária
           </p>
-          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
             <p>
               A good routine does not need to be complicated. The goal is to
               attach Portuguese to things you already do — your morning coffee,
@@ -356,102 +357,102 @@ function GuideSectionContent({ id }: { id: string }) {
             </p>
           </div>
 
-          <div className="mt-6">
-            <div className="bg-white border border-[#E9E9E9] rounded-lg p-4 mb-4">
-              <p className="text-sm font-semibold text-[#1F2937]">
+          <div className="mt-6 space-y-4">
+            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+              <p className="text-[13px] font-medium text-[#111111]">
                 The 15-Minute Day (Minimum Effective Dose)
               </p>
-              <p className="text-sm text-[#6B7280] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 For busy days when you are tempted to skip entirely. Fifteen
                 minutes is enough to keep the connection to Portuguese alive.
               </p>
-              <div className="mt-3 space-y-1.5 text-sm text-[#374151]">
+              <div className="mt-3 space-y-1.5 text-[13px] text-[#6C6B71]">
                 <p>
-                  <span className="font-semibold text-[#111827]">5 min</span>{" "}
+                  <span className="font-medium text-[#111111]">5 min</span>{" "}
                   Open Aula PT and read the Word, Verb, and Saying of the Day.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">5 min</span> Do
+                  <span className="font-medium text-[#111111]">5 min</span> Do
                   a short flashcard session (around 10 cards) focused on words
                   you marked as &quot;still learning&quot;.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">5 min</span>{" "}
+                  <span className="font-medium text-[#111111]">5 min</span>{" "}
                   Read one grammar topic or one culture entry and say the
                   example sentences out loud.
                 </p>
               </div>
             </div>
 
-            <div className="bg-white border border-[#E9E9E9] rounded-lg p-4 mb-4">
-              <p className="text-sm font-semibold text-[#1F2937]">
+            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+              <p className="text-[13px] font-medium text-[#111111]">
                 The 30-Minute Day (Sweet Spot)
               </p>
-              <p className="text-sm text-[#6B7280] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 This is the most sustainable routine for steady progress. It is
                 long enough to make real gains but short enough to fit around a
                 normal life.
               </p>
-              <div className="mt-3 space-y-1.5 text-sm text-[#374151]">
+              <div className="mt-3 space-y-1.5 text-[13px] text-[#6C6B71]">
                 <p>
-                  <span className="font-semibold text-[#111827]">5 min</span>{" "}
+                  <span className="font-medium text-[#111111]">5 min</span>{" "}
                   Check the daily word, verb, and saying.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">10 min</span>{" "}
+                  <span className="font-medium text-[#111111]">10 min</span>{" "}
                   Run a flashcard session with around 20 cards in mixed
                   direction.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">5 min</span>{" "}
+                  <span className="font-medium text-[#111111]">5 min</span>{" "}
                   Study one grammar topic and answer the test questions at the
                   end.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">5 min</span>{" "}
+                  <span className="font-medium text-[#111111]">5 min</span>{" "}
                   Read a few false friends or etiquette tips to deepen your
                   cultural understanding.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">5 min</span>{" "}
+                  <span className="font-medium text-[#111111]">5 min</span>{" "}
                   Listen to a short piece of Portuguese audio: a song, podcast
                   clip, or news headline.
                 </p>
               </div>
             </div>
 
-            <div className="bg-white border border-[#E9E9E9] rounded-lg p-4">
-              <p className="text-sm font-semibold text-[#1F2937]">
+            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+              <p className="text-[13px] font-medium text-[#111111]">
                 The 60-Minute Day (Accelerated)
               </p>
-              <p className="text-sm text-[#6B7280] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 Use this when you are motivated or have more free time. It is a
                 powerful way to move through levels faster without burning out.
               </p>
-              <div className="mt-3 space-y-1.5 text-sm text-[#374151]">
+              <div className="mt-3 space-y-1.5 text-[13px] text-[#6C6B71]">
                 <p>
-                  <span className="font-semibold text-[#111827]">5 min</span>{" "}
+                  <span className="font-medium text-[#111111]">5 min</span>{" "}
                   Daily words and saying.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">15 min</span>{" "}
+                  <span className="font-medium text-[#111111]">15 min</span>{" "}
                   Flashcards (around 50 cards) focused on difficult items.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">10 min</span>{" "}
+                  <span className="font-medium text-[#111111]">10 min</span>{" "}
                   Study a grammar topic in depth and redo the questions until
                   you are confident.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">10 min</span>{" "}
+                  <span className="font-medium text-[#111111]">10 min</span>{" "}
                   Explore a vocabulary category you have not studied yet.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">10 min</span>{" "}
+                  <span className="font-medium text-[#111111]">10 min</span>{" "}
                   Write five original sentences using today&apos;s new words.
                 </p>
                 <p>
-                  <span className="font-semibold text-[#111827]">10 min</span>{" "}
+                  <span className="font-medium text-[#111111]">10 min</span>{" "}
                   Watch or listen to native content — a YouTube video, series
                   episode, or podcast segment.
                 </p>
@@ -459,7 +460,7 @@ function GuideSectionContent({ id }: { id: string }) {
             </div>
           </div>
 
-          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
             <p>
               Choose the routine that fits your current season of life. The
               fifteen‑minute version is not a &quot;failure day&quot;; it is the
@@ -481,13 +482,13 @@ function GuideSectionContent({ id }: { id: string }) {
     case "science-of-learning":
       return (
         <>
-          <h2 className="text-[18px] font-semibold text-[#111827]">
+          <h2 className="text-[14px] font-medium text-[#111111]">
             Active Recall vs Passive Learning
           </h2>
-          <p className="text-[13px] text-[#003399]/70 font-medium mt-1">
+          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
             Recordação Ativa vs Aprendizagem Passiva
           </p>
-          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
+          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
             <p>
               Understanding how your brain stores new information will make you
               far more efficient. Most learners spend a lot of time on
@@ -505,25 +506,25 @@ function GuideSectionContent({ id }: { id: string }) {
           </div>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-emerald-50 border border-emerald-100 rounded-lg p-5">
-              <p className="text-sm font-semibold text-emerald-800">
+            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+              <p className="text-[13px] font-medium text-[#111111]">
                 Active Recall
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 Active recall means deliberately trying to remember something
                 before you look at the answer. Each time you do this, you
                 strengthen the pathways in your brain that store that piece of
                 information. Even when you fail, the act of trying makes the
                 next exposure more effective.
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 Flashcards are powerful because of the moment of effort just
                 before you flip the card. The same is true when you pause a
                 video and try to repeat what you heard, or when you cover the
                 translation of the Word of the Day and see if you can recall it
                 first.
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 In Aula PT, lean into English → Portuguese flashcards, say the
                 answer out loud before revealing it, and take grammar tests
                 before you feel &quot;ready&quot;. Struggle is not a sign that you are
@@ -531,23 +532,23 @@ function GuideSectionContent({ id }: { id: string }) {
               </p>
             </div>
 
-            <div className="bg-blue-50 border border-blue-100 rounded-lg p-5">
-              <p className="text-sm font-semibold text-blue-800">
+            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+              <p className="text-[13px] font-medium text-[#111111]">
                 Spaced Repetition
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 Your memory follows a forgetting curve: new material fades
                 quickly at first, then more slowly over time. The most efficient
                 moment to review something is right before you would forget it,
                 not immediately afterwards and not months later.
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 In practice, this means revisiting new words the same day you
                 learn them, again the next day, then after a few days, then a
                 week, then a month. Each well‑timed review flattens the
                 forgetting curve.
               </p>
-              <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
                 Aula PT already nudges you in this direction: lessons are
                 designed to be repeated, and revisiting weak areas over time
                 gives you a simple, practical form of spaced repetition.
@@ -555,18 +556,18 @@ function GuideSectionContent({ id }: { id: string }) {
             </div>
           </div>
 
-          <div className="mt-6 bg-red-50 border border-red-100 rounded-lg p-5">
-            <p className="text-sm font-semibold text-red-700">
+          <div className="mt-6 bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
+            <p className="text-[13px] font-medium text-[#111111]">
               What to Avoid
             </p>
-            <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+            <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
               Purely passive activities feel comfortable but do not move you
               forward very quickly. Reading vocabulary lists without ever
               testing yourself, watching TV in Portuguese while scrolling on
               your phone, or re‑reading grammar explanations without applying
               them in sentences all create a pleasant illusion of progress.
             </p>
-            <p className="text-sm text-[#374151] mt-2 leading-relaxed">
+            <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
               A simple rule of thumb is this: if it feels completely easy, you
               are probably not learning very much. Lean gently into tasks that
               make you think and that you occasionally get wrong. That is where
@@ -578,14 +579,14 @@ function GuideSectionContent({ id }: { id: string }) {
     case "portuguese-tips":
       return (
         <>
-          <h2 className="text-[18px] font-semibold text-[#111827]">
+          <h2 className="text-[14px] font-medium text-[#111111]">
             Tips for Portuguese Specifically
           </h2>
-          <p className="text-[13px] text-[#003399]/70 font-medium mt-1">
+          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
             Dicas para o Português
           </p>
-          <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#374151]">
-            <p className="font-semibold text-[#111827]">
+          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
+            <p className="text-[13px] font-medium text-[#111111]">
               Pronunciation is Your Biggest Challenge
             </p>
             <p>
@@ -601,13 +602,13 @@ function GuideSectionContent({ id }: { id: string }) {
             </p>
             <p>
               Pay particular attention to unstressed vowels:{" "}
-              <span className="font-semibold">o</span> often sounds like &quot;oo&quot;,
-              and <span className="font-semibold">e</span> can almost disappear.
-              Word‑final <span className="font-semibold">s</span> often sounds
+              <span className="font-medium">o</span> often sounds like &quot;oo&quot;,
+              and <span className="font-medium">e</span> can almost disappear.
+              Word‑final <span className="font-medium">s</span> often sounds
               like &quot;sh&quot; ({'"'}português{'"'} → poor‑too‑GESH),{" "}
-              <span className="font-semibold">lh</span> sounds like the &quot;lli&quot;
+              <span className="font-medium">lh</span> sounds like the &quot;lli&quot;
               in &quot;million&quot; ({'"'}trabalho{'"'} → truh‑BAH‑lyoo), and{" "}
-              <span className="font-semibold">nh</span> is the &quot;ny&quot; sound
+              <span className="font-medium">nh</span> is the &quot;ny&quot; sound
               in &quot;canyon&quot; ({'"'}amanhã{'"'} → uh‑mah‑NYAH).
             </p>
             <p>
@@ -616,7 +617,7 @@ function GuideSectionContent({ id }: { id: string }) {
               the sounds at first. You are teaching your muscles a new pattern.
             </p>
 
-            <p className="font-semibold text-[#111827] mt-4">
+            <p className="text-[13px] font-medium text-[#111111] mt-4">
               The Verb Problem
             </p>
             <p>
@@ -626,12 +627,12 @@ function GuideSectionContent({ id }: { id: string }) {
             </p>
             <p>
               Start by mastering{" "}
-              <span className="font-semibold">Presente</span> and{" "}
-              <span className="font-semibold">Pretérito Perfeito</span>. Those
+              <span className="font-medium">Presente</span> and{" "}
+              <span className="font-medium">Pretérito Perfeito</span>. Those
               two tenses let you talk about what you do and what you did — a
               huge percentage of everyday conversation. Once they feel solid,
               you can layer in the{" "}
-              <span className="font-semibold">Pretérito Imperfeito</span> for
+              <span className="font-medium">Pretérito Imperfeito</span> for
               background descriptions, then future forms and conditionals, and
               finally the subjunctive at B1.
             </p>
@@ -642,34 +643,34 @@ function GuideSectionContent({ id }: { id: string }) {
               tenses, and let the rest grow over time.
             </p>
 
-            <p className="font-semibold text-[#111827] mt-4">
+            <p className="text-[13px] font-medium text-[#111111] mt-4">
               Confusing Pairs to Watch
             </p>
             <p>
               Every language has traps, and Portuguese is no exception. The
-              classic one is <span className="font-semibold">ser</span> vs{" "}
-              <span className="font-semibold">estar</span>. A simple rule:
+              classic one is <span className="font-medium">ser</span> vs{" "}
+              <span className="font-medium">estar</span>. A simple rule:
               things that define you or are unlikely to change soon use{" "}
-              <span className="font-semibold">ser</span> (sou português, sou
+              <span className="font-medium">ser</span> (sou português, sou
               engenheiro). Temporary states and locations use{" "}
-              <span className="font-semibold">estar</span> (estou cansado, estou
+              <span className="font-medium">estar</span> (estou cansado, estou
               em casa).
             </p>
             <p>
               Other pairs to keep an eye on are{" "}
-              <span className="font-semibold">saber</span> vs{" "}
-              <span className="font-semibold">conhecer</span> (to know facts vs
+              <span className="font-medium">saber</span> vs{" "}
+              <span className="font-medium">conhecer</span> (to know facts vs
               to be familiar with people or places),{" "}
-              <span className="font-semibold">por</span> vs{" "}
-              <span className="font-semibold">para</span>, and{" "}
-              <span className="font-semibold">ir</span> vs{" "}
-              <span className="font-semibold">vir</span>. The grammar section in
+              <span className="font-medium">por</span> vs{" "}
+              <span className="font-medium">para</span>, and{" "}
+              <span className="font-medium">ir</span> vs{" "}
+              <span className="font-medium">vir</span>. The grammar section in
               Aula PT has dedicated topics for these — use them, then notice the
               same patterns appearing in vocabulary examples and culture
               entries.
             </p>
 
-            <p className="font-semibold text-[#111827] mt-4">
+            <p className="text-[13px] font-medium text-[#111111] mt-4">
               Building Immersion from Home
             </p>
             <p>
@@ -719,108 +720,70 @@ export default function GuidePage() {
   }, [openSectionId]);
 
   return (
-    <>
-      <PageLayout className="!max-w-[896px] py-5">
-        <header className="mb-6">
-          <h1 className="text-2xl font-bold tracking-tight">
-            How to Learn Portuguese
-          </h1>
-          <p className="text-[13px] text-[#003399] font-medium mt-1">
-            Como Aprender Português
-          </p>
-          <p className="text-[13px] text-text-3 mt-2 max-w-xl leading-relaxed">
-            Your complete guide to learning European Portuguese — from your first
-            words to real conversations, using Aula PT as your main companion.
-          </p>
-        </header>
+    <PageShell>
+      <div className="max-w-[896px] mx-auto py-5 px-4">
+        <PageHeader
+          title="Como aprender"
+          subtitle="Your guide to learning European Portuguese with Aula PT"
+        />
 
-        <div className="space-y-3">
-          {sections.map((s) => {
+        <div className="mt-6 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden">
+          {sections.map((s, index) => {
             const isOpen = openSectionId === s.id;
             return (
               <article
                 key={s.id}
                 id={s.id}
-                className={`bg-white border rounded-[14px] cursor-pointer transition-all min-h-[44px] ${
-                  isOpen ? "border-[#003399]/30" : "border-[#E5E5E5]"
-                } hover:border-[#D0D0D0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]`}
+                className={index > 0 ? "border-t-[0.5px] border-[rgba(0,0,0,0.06)]" : ""}
               >
                 <button
                   type="button"
                   onClick={() => toggle(s.id)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4"
+                  className="w-full flex items-center justify-between px-4 py-3.5 cursor-pointer hover:bg-[#F7F7F5] transition-colors"
                   aria-expanded={isOpen}
                   aria-controls={`${s.id}-content`}
                   id={`${s.id}-button`}
                 >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[15px] font-semibold text-[#111827]">
-                      <span className="text-sm text-[#D1D5DB] font-medium">{s.number}.</span> {s.title}
+                  <div className="flex-1 min-w-0 text-left">
+                    <p className="text-[14px] font-medium text-[#111111]">
+                      {s.title}
                     </p>
-                    <p className="text-sm text-[#003399]/60 font-medium mt-0.5">
+                    <p className="text-[12px] text-[#9B9DA3] mt-0.5">
                       {s.portuguese}
                     </p>
                     {!isOpen && (
-                      <p className="text-sm text-[#9CA3AF] mt-1">{s.teaser}</p>
+                      <p className="text-[12px] text-[#6C6B71] mt-0.5">{s.teaser}</p>
                     )}
                   </div>
-                  <svg
-                    className={`flex-shrink-0 text-[#D1D5DB] w-5 h-5 transition-transform duration-200 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden
-                  >
-                    <path d="M6 9l6 6 6-6" />
-                  </svg>
+                  <ChevronDown
+                    size={16}
+                    className={`flex-shrink-0 text-[#9B9DA3] transition-transform duration-150 ${isOpen ? "rotate-180" : ""}`}
+                  />
                 </button>
-                <div
-                  id={`${s.id}-content`}
-                  role="region"
-                  aria-labelledby={`${s.id}-button`}
-                  className={`accordion-content ${isOpen ? "open" : ""}`}
-                >
-                  <div>
-                    <div className="border-t border-[#F0F0F0] mt-4 pt-6 px-6 pb-6 text-[15px] leading-relaxed text-[#374151]">
-                      <GuideSectionContent id={s.id} />
-                    </div>
+                {isOpen && (
+                  <div
+                    id={`${s.id}-content`}
+                    role="region"
+                    aria-labelledby={`${s.id}-button`}
+                    className="px-4 pb-4 border-t-[0.5px] border-[rgba(0,0,0,0.06)] mx-4 pt-3.5"
+                  >
+                    <GuideSectionContent id={s.id} />
                   </div>
-                </div>
+                )}
               </article>
             );
           })}
         </div>
 
-        <section className="pb-8 mb-4 text-center mt-12 pt-4">
-          <p className="text-[15px] font-medium text-[#111827]">
-            You&apos;re ready.
-          </p>
-          <p className="text-[15px] text-[#6B7280] mt-2">
-            The best time to start was yesterday. The second best time is now.
-            Open any section in the Learn menu and begin.
-          </p>
-          <p className="text-[15px] text-[#003399] italic mt-4">
-            A língua portuguesa está à tua espera.
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button href="/vocabulary" size="lg" className="min-w-[190px]">
-              Start with Vocabulary →
-            </Button>
-            <Link
-              href="/lessons"
-              className="border border-[#003399] text-[#003399] px-6 py-3 rounded-lg text-sm font-medium hover:bg-sky-50 transition-colors min-w-[190px] text-center"
-            >
-              Start Lessons →
-            </Link>
+        <div className="text-center py-8 mt-8">
+          <div className="text-[14px] font-medium text-[#111111] mb-2">Estás pronto.</div>
+          <div className="text-[13px] text-[#6C6B71] mb-4">You have everything you need to start learning.</div>
+          <div className="flex gap-3 justify-center">
+            <Link href="/lessons" className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors">Start lessons</Link>
+            <Link href="/vocabulary" className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors">Browse vocabulary</Link>
           </div>
-        </section>
-      </PageLayout>
-    </>
+        </div>
+      </div>
+    </PageShell>
   );
 }
-
