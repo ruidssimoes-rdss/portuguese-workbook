@@ -73,10 +73,13 @@ export default function ConjugationsPage() {
       if (group !== "All" && simplifyGroup(meta.group) !== group) return false;
       if (search) {
         const q = search.toLowerCase();
-        return (
+        const metaMatch =
           key.toLowerCase().includes(q) ||
-          meta.english.toLowerCase().includes(q)
+          meta.english.toLowerCase().includes(q);
+        const conjMatch = ((verbData as any).verbs[key].conjugations || []).some(
+          (c: any) => (c.Conjugation || "").toLowerCase().includes(q)
         );
+        return metaMatch || conjMatch;
       }
       return true;
     });
@@ -137,6 +140,20 @@ export default function ConjugationsPage() {
                   <BadgePill level={meta.cefr} />
                   <ChevronRight size={16} className="text-[#9B9DA3]" />
                 </div>
+                {search && (() => {
+                  const q = search.toLowerCase();
+                  const metaMatch = key.toLowerCase().includes(q) || meta.english.toLowerCase().includes(q);
+                  if (metaMatch) return null;
+                  const matchingConj = ((verbData as any).verbs[key].conjugations || []).find(
+                    (c: any) => (c.Conjugation || "").toLowerCase().includes(q)
+                  );
+                  if (!matchingConj) return null;
+                  return (
+                    <div className="text-[11px] text-[#9B9DA3] mt-1">
+                      &ldquo;{matchingConj.Conjugation}&rdquo; — {matchingConj.Person}, {matchingConj.Tense}
+                    </div>
+                  );
+                })()}
               </ListRow>
             </Link>
           );

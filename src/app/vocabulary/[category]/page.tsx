@@ -29,9 +29,10 @@ function VocabularyDetailContent() {
   const slug = params.category as string;
   const category = vocabData.categories.find((c) => c.id === slug);
   const initialLevel = searchParams.get("level") || "All";
+  const initialSearch = searchParams.get("search") || "";
 
   const [cefr, setCefr] = useState(initialLevel);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialSearch);
 
   const filtered = useMemo(() => {
     if (!category) return [];

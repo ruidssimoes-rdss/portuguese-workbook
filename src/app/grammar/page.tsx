@@ -23,6 +23,7 @@ interface GrammarTopic {
   titlePt: string;
   cefr: string;
   summary: string;
+  rules: any[];
 }
 
 // ─── Constants ──────────────────────────────────────────────────────────────
@@ -42,6 +43,7 @@ export default function GrammarPage() {
       titlePt: t.titlePt,
       cefr: t.cefr,
       summary: t.summary,
+      rules: t.rules || [],
     }));
   }, []);
 
@@ -50,11 +52,21 @@ export default function GrammarPage() {
       if (cefr !== "All" && topic.cefr !== cefr) return false;
       if (search) {
         const q = search.toLowerCase();
-        return (
+        const topicMatch =
           topic.title.toLowerCase().includes(q) ||
           topic.titlePt.toLowerCase().includes(q) ||
-          topic.summary.toLowerCase().includes(q)
+          topic.summary.toLowerCase().includes(q);
+        const ruleMatch = (topic.rules || []).some(
+          (r: any) =>
+            (r.rule || "").toLowerCase().includes(q) ||
+            (r.rulePt || "").toLowerCase().includes(q) ||
+            (r.examples || []).some(
+              (ex: any) =>
+                (ex.pt || "").toLowerCase().includes(q) ||
+                (ex.en || "").toLowerCase().includes(q)
+            )
         );
+        return topicMatch || ruleMatch;
       }
       return true;
     });
@@ -88,6 +100,24 @@ export default function GrammarPage() {
                   <div className="text-[12px] text-[#9B9DA3] mt-0.5">
                     {topic.titlePt}
                   </div>
+                  {search && (() => {
+                    const q = search.toLowerCase();
+                    const topicMatch =
+                      topic.title.toLowerCase().includes(q) ||
+                      topic.titlePt.toLowerCase().includes(q);
+                    if (topicMatch) return null;
+                    const matchingRule = (topic.rules || []).find(
+                      (r: any) =>
+                        (r.rule || "").toLowerCase().includes(q) ||
+                        (r.examples || []).some((ex: any) => (ex.pt || "").toLowerCase().includes(q))
+                    );
+                    if (!matchingRule) return null;
+                    return (
+                      <div className="mt-1 text-[11px] text-[#9B9DA3] truncate">
+                        Match: &ldquo;{(matchingRule as any).rule}&rdquo;
+                      </div>
+                    );
+                  })()}
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <BadgePill level={topic.cefr} />
