@@ -86,7 +86,7 @@ export default function VocabularyPage() {
           return (
             <Link
               key={cat.id}
-              href={`/vocabulary/${cat.id}`}
+              href={cefr !== "All" ? `/vocabulary/${cat.id}?level=${cefr}` : `/vocabulary/${cat.id}`}
               className="block"
             >
               <CardShell interactive>

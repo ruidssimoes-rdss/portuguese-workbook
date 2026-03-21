@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { useParams } from "next/navigation";
+import { useState, useMemo, Suspense } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
@@ -23,12 +23,14 @@ const cefrOptions = ["All", "A1", "A2", "B1"];
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 
-export default function VocabularyDetailPage() {
+function VocabularyDetailContent() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const slug = params.category as string;
   const category = vocabData.categories.find((c) => c.id === slug);
+  const initialLevel = searchParams.get("level") || "All";
 
-  const [cefr, setCefr] = useState("All");
+  const [cefr, setCefr] = useState(initialLevel);
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
@@ -115,5 +117,13 @@ export default function VocabularyDetailPage() {
         noun="words"
       />
     </PageShell>
+  );
+}
+
+export default function VocabularyDetailPage() {
+  return (
+    <Suspense fallback={<PageShell><PageHeader title="Loading..." /></PageShell>}>
+      <VocabularyDetailContent />
+    </Suspense>
   );
 }

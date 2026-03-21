@@ -22,7 +22,7 @@ export function SegmentedFilter({
   onChange,
 }: SegmentedFilterProps) {
   return (
-    <div className="flex gap-0.5 bg-[#F7F7F5] rounded-md p-0.5">
+    <div className="inline-flex gap-0.5 bg-[#F7F7F5] rounded-md p-0.5">
       {options.map((option) => (
         <button
           key={option}
