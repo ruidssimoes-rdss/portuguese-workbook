@@ -1,211 +1,177 @@
 "use client";
 
-import { useMemo } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { PageLayout, IntroBlock } from "@/components/blocos";
+import { ChevronRight, ChevronDown } from "lucide-react";
+import { PageShell } from "@/components/layout/page-shell";
+import { PageHeader, BadgePill, TipBox } from "@/components/primitives";
+
 import grammarData from "@/data/grammar.json";
-import type { GrammarData, GrammarTopic } from "@/types/grammar";
-import { SmartBloco } from "@/components/smart-bloco";
-import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
-import { NumberedRules } from "@/components/smart-bloco-inserts";
-import type { CEFRLevel } from "@/components/smart-bloco";
 
-const data = grammarData as unknown as GrammarData;
-const allTopicIds = new Set(Object.keys(data.topics));
+// ─── Page ───────────────────────────────────────────────────────────────────
 
-// ── Utilities (kept from original) ────────────────────────
-
-function stripLinks(text: string): string {
-  return text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
-}
-
-function normalizeExceptionText(value: unknown): string {
-  if (typeof value === "string") return value;
-  if (value && typeof value === "object") {
-    const candidate = value as { pt?: unknown; en?: unknown };
-    if (typeof candidate.pt === "string") return candidate.pt;
-    if (typeof candidate.en === "string") return candidate.en;
-  }
-  return "";
-}
-
-function extractCrossLinks(text: string): { cleanText: string; links: Array<{ label: string; href: string }> } {
-  const links: Array<{ label: string; href: string }> = [];
-  const cleanText = text
-    .replace(/→\s*See:\s*\[([^\]]+)\]\(([^)]+)\)/g, (_, label: string, href: string) => {
-      links.push({ label, href });
-      return "";
-    })
-    .replace(/\s+and\s*$/, "")
-    .trim();
-  return { cleanText, links };
-}
-
-function collectCrossLinkedTopicIds(topic: GrammarTopic): string[] {
-  const ids = new Set<string>();
-  const linkPattern = /\]\(\/grammar\/([^)]+)\)/g;
-  for (const rule of topic.rules) {
-    for (const m of rule.rule.matchAll(linkPattern)) {
-      if (allTopicIds.has(m[1])) ids.add(m[1]);
-    }
-    const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
-      ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
-      : [];
-    for (const ex of rawExceptions) {
-      const text = normalizeExceptionText(ex);
-      for (const m of text.matchAll(linkPattern)) {
-        if (allTopicIds.has(m[1])) ids.add(m[1]);
-      }
-    }
-  }
-  for (const tip of topic.tips) {
-    for (const m of tip.matchAll(linkPattern)) {
-      if (allTopicIds.has(m[1])) ids.add(m[1]);
-    }
-  }
-  return Array.from(ids);
-}
-
-function getRelatedTopics(topic: GrammarTopic, topicId: string) {
-  const crossLinkedIds = collectCrossLinkedTopicIds(topic);
-  const related = crossLinkedIds
-    .filter((id) => id !== topicId)
-    .map((id) => data.topics[id])
-    .filter(Boolean);
-  if (related.length >= 3) return related.slice(0, 6);
-  const sameCefr = Object.entries(data.topics)
-    .filter(([id, t]) => id !== topicId && t.cefr === topic.cefr && !crossLinkedIds.includes(id))
-    .map(([, t]) => t);
-  return [...related, ...sameCefr].slice(0, 3);
-}
-
-// ── Tip-to-rule matching ─────────────────────────────────
-
-function matchTipsToRules(topic: GrammarTopic) {
-  const map: Record<number, { tips: string[]; tipsPt: string[] }> = {};
-  const matched = new Set<number>();
-
-  topic.tips.forEach((tip, tipIdx) => {
-    const tipText = stripLinks(tip + " " + (topic.tipsPt[tipIdx] || "")).toLowerCase();
-    let bestMatch = -1;
-    let bestScore = 0;
-    topic.rules.forEach((rule, ruleIdx) => {
-      const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
-        ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
-        : [];
-      const noteText = rawExceptions.map((ex) => normalizeExceptionText(ex)).join(" ");
-      const ruleText = stripLinks(rule.rule + " " + rule.rulePt + " " + noteText).toLowerCase();
-      const tipWords = tipText.split(/\s+/).filter((w) => w.length > 3);
-      const score = tipWords.filter((w) => ruleText.includes(w)).length;
-      if (score > bestScore) { bestScore = score; bestMatch = ruleIdx; }
-    });
-    if (bestMatch >= 0 && bestScore >= 2) {
-      if (!map[bestMatch]) map[bestMatch] = { tips: [], tipsPt: [] };
-      map[bestMatch].tips.push(tip);
-      map[bestMatch].tipsPt.push(topic.tipsPt[tipIdx] || "");
-      matched.add(tipIdx);
-    }
-  });
-
-  return { ruleTipsMap: map };
-}
-
-// ── Page Component ──────────────────────────────────────
-
-export default function GrammarTopicPage() {
+export default function GrammarDetailPage() {
   const params = useParams();
-  const topicId = params.topic as string;
-  const topic: GrammarTopic | undefined = topicId ? data.topics[topicId] : undefined;
+  const slug = params.topic as string;
+  const topic = (grammarData.topics as Record<string, any>)[slug];
 
-  const rulesData = useMemo(() => {
-    if (!topic) return [];
-    const { ruleTipsMap } = matchTipsToRules(topic);
+  const rules: any[] = topic?.rules || [];
 
-    return topic.rules.map((rule, i) => {
-      const rawExceptions = Array.isArray((rule as unknown as { exceptions?: unknown }).exceptions)
-        ? ((rule as unknown as { exceptions?: unknown[] }).exceptions ?? [])
-        : [];
-      const exceptions: string[] = [];
-      for (const ex of rawExceptions) {
-        const rawText = normalizeExceptionText(ex);
-        if (!rawText) continue;
-        const { cleanText } = extractCrossLinks(rawText);
-        if (cleanText) exceptions.push(cleanText);
-      }
+  const [expandedRule, setExpandedRule] = useState<number | null>(
+    rules.length <= 3 ? -1 : 0
+  );
 
-      // Map to NumberedRules format
-      const calloutText = ruleTipsMap[i]?.tips[0];
-      const exceptionText = exceptions.length > 0 ? exceptions.join("; ") : undefined;
+  function isExpanded(index: number) {
+    if (expandedRule === -1) return true;
+    return expandedRule === index;
+  }
 
-      return {
-        number: i + 1,
-        text: stripLinks(rule.rule),
-        textPt: rule.rulePt,
-        example: rule.examples[0] ? { pt: rule.examples[0].pt, en: rule.examples[0].en } : undefined,
-        callout: calloutText
-          ? { type: "tip" as const, text: stripLinks(calloutText) }
-          : exceptionText
-            ? { type: "why" as const, text: exceptionText }
-            : undefined,
-      };
-    });
-  }, [topic]);
-
-  const relatedTopics = useMemo(() => {
-    if (!topic) return [];
-    return getRelatedTopics(topic, topicId).map((t) => ({
-      slug: t.id,
-      title: t.title,
-      titlePt: t.titlePt,
-      cefr: t.cefr,
-    }));
-  }, [topic, topicId]);
+  function toggleRule(index: number) {
+    if (expandedRule === -1) {
+      setExpandedRule(index);
+    } else if (expandedRule === index) {
+      setExpandedRule(null);
+    } else {
+      setExpandedRule(index);
+    }
+  }
 
   if (!topic) {
     return (
-      <PageLayout>
-        <IntroBlock title="Topic not found" backLink={{ label: "Grammar", href: "/grammar" }} />
-      </PageLayout>
+      <PageShell>
+        <PageHeader title="Topic not found" />
+      </PageShell>
     );
   }
 
   return (
-    <PageLayout>
-      <IntroBlock
-        title={topic.title}
-        subtitle={topic.titlePt}
-        badge={{ label: topic.cefr, level: topic.cefr as "A1" | "A2" | "B1" }}
-        backLink={{ label: "Grammar", href: "/grammar" }}
-        pills={[{ label: `${topic.rules.length} ${topic.rules.length === 1 ? "rule" : "rules"}` }]}
-      />
+    <PageShell>
+      {/* Breadcrumb */}
+      <div className="text-[12px] text-[#9B9DA3] mb-5 flex items-center gap-1">
+        <Link
+          href="/grammar"
+          className="hover:text-[#6C6B71] transition-colors"
+        >
+          Grammar
+        </Link>
+        <ChevronRight size={12} />
+        <span className="text-[#6C6B71]">{topic.title}</span>
+      </div>
 
-      <SmartBloco
-        title={topic.title}
-        description={topic.summary}
-        expandedContent={
-          <NumberedRules rules={rulesData} />
-        }
-        footer={{ ruleCount: topic.rules.length }}
-      />
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
+          {topic.title}
+        </h1>
+        <div className="text-[13px] text-[#9B9DA3] mt-1 italic">
+          {topic.titlePt}
+        </div>
+        <div className="mt-2">
+          <BadgePill level={topic.cefr} />
+        </div>
+      </div>
 
-      {/* Related topics */}
-      {relatedTopics.length > 0 && (
-        <div className="mt-8 pt-8 border-t border-[#E5E7EB]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF] mb-4">Tópicos relacionados</p>
-          <BlocoGrid>
-            {relatedTopics.map((t) => (
-              <SmartBloco
-                key={t.slug}
-                title={t.title}
-                subtitle={t.titlePt}
-                cefrLevel={t.cefr as CEFRLevel}
-                href={`/grammar/${t.slug}`}
-              />
-            ))}
-          </BlocoGrid>
+      {/* Introduction */}
+      {topic.intro && (
+        <div className="text-[13px] text-[#6C6B71] leading-relaxed mb-8 max-w-[640px]">
+          {topic.intro}
         </div>
       )}
-    </PageLayout>
+
+      {/* Rules accordion */}
+      {rules.length > 0 && (
+        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden mb-8">
+          {rules.map((rule: any, index: number) => (
+            <div
+              key={index}
+              className={
+                index > 0
+                  ? "border-t-[0.5px] border-[rgba(0,0,0,0.06)]"
+                  : ""
+              }
+            >
+              {/* Rule header */}
+              <div
+                onClick={() => toggleRule(index)}
+                className="flex items-center gap-3 px-4 py-3.5 cursor-pointer hover:bg-[#F7F7F5] transition-colors"
+              >
+                <span className="text-[11px] font-medium text-[#185FA5] bg-[#E6F1FB] w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0">
+                  {index + 1}
+                </span>
+                <span className="text-[13px] font-medium text-[#111111] flex-1">
+                  {rule.rule}
+                </span>
+                <ChevronDown
+                  size={16}
+                  className={`text-[#9B9DA3] transition-transform duration-150 ${
+                    isExpanded(index) ? "rotate-180" : ""
+                  }`}
+                />
+              </div>
+
+              {/* Expanded content */}
+              {isExpanded(index) && (
+                <div className="px-4 pb-4 border-t-[0.5px] border-[rgba(0,0,0,0.06)] mx-4 pt-3.5">
+                  {/* Rule in Portuguese */}
+                  {rule.rulePt && (
+                    <div className="text-[12px] text-[#9B9DA3] italic mb-3">
+                      {rule.rulePt}
+                    </div>
+                  )}
+
+                  {/* Examples */}
+                  {rule.examples && rule.examples.length > 0 && (
+                    <div className="space-y-2 mb-3">
+                      {rule.examples.map((ex: any, i: number) => (
+                        <div
+                          key={i}
+                          className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5"
+                        >
+                          <div className="text-[13px] text-[#111111]">
+                            {ex.pt}
+                          </div>
+                          <div className="text-[12px] text-[#9B9DA3] italic mt-0.5">
+                            {ex.en}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Exceptions */}
+                  {rule.exceptions && rule.exceptions.length > 0 && (
+                    <div className="space-y-1.5 mb-3">
+                      {rule.exceptions.map((exc: string, i: number) => (
+                        <div
+                          key={i}
+                          className="text-[12px] text-[#6C6B71] italic"
+                        >
+                          Note: {exc}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Tips section */}
+      {topic.tips && topic.tips.length > 0 && (
+        <div>
+          <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-3">
+            Tips
+          </div>
+          <div className="space-y-2">
+            {topic.tips.map((tip: string, i: number) => (
+              <TipBox key={i}>{tip}</TipBox>
+            ))}
+          </div>
+        </div>
+      )}
+    </PageShell>
   );
 }

@@ -1,64 +1,109 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import grammarData from "@/data/grammar.json";
-import type { GrammarData } from "@/types/grammar";
-import { PageLayout, IntroBlock, FilterBlock } from "@/components/blocos";
-import { SmartBloco } from "@/components/smart-bloco";
-import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
-import type { CEFRLevel } from "@/components/smart-bloco";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { PageShell } from "@/components/layout/page-shell";
+import {
+  PageHeader,
+  FilterBar,
+  ListContainer,
+  ListRow,
+  BadgePill,
+  CountLabel,
+} from "@/components/primitives";
 
-const data = grammarData as unknown as GrammarData;
-const allTopics = Object.values(data.topics).sort((a, b) => a.title.localeCompare(b.title));
+import grammarData from "@/data/grammar.json";
+
+// ─── Types ──────────────────────────────────────────────────────────────────
+
+interface GrammarTopic {
+  id: string;
+  title: string;
+  titlePt: string;
+  cefr: string;
+  summary: string;
+}
+
+// ─── Constants ──────────────────────────────────────────────────────────────
+
+const cefrOptions = ["All", "A1", "A2", "B1"];
+
+// ─── Page ───────────────────────────────────────────────────────────────────
 
 export default function GrammarPage() {
-  const [cefrFilter, setCefrFilter] = useState("All");
+  const [cefr, setCefr] = useState("All");
   const [search, setSearch] = useState("");
 
+  const allTopics: GrammarTopic[] = useMemo(() => {
+    return Object.entries(grammarData.topics).map(([id, t]: [string, any]) => ({
+      id,
+      title: t.title,
+      titlePt: t.titlePt,
+      cefr: t.cefr,
+      summary: t.summary,
+    }));
+  }, []);
+
   const filtered = useMemo(() => {
-    const q = search.toLowerCase();
-    return allTopics.filter((t) => {
-      if (cefrFilter !== "All" && t.cefr !== cefrFilter) return false;
-      if (q && !t.title.toLowerCase().includes(q) && !t.titlePt.toLowerCase().includes(q) && !(t.summary || "").toLowerCase().includes(q)) return false;
+    return allTopics.filter((topic) => {
+      if (cefr !== "All" && topic.cefr !== cefr) return false;
+      if (search) {
+        const q = search.toLowerCase();
+        return (
+          topic.title.toLowerCase().includes(q) ||
+          topic.titlePt.toLowerCase().includes(q) ||
+          topic.summary.toLowerCase().includes(q)
+        );
+      }
       return true;
     });
-  }, [cefrFilter, search]);
+  }, [allTopics, cefr, search]);
 
   return (
-    <PageLayout>
-      <IntroBlock
-        title="Grammar"
-        subtitle="Gramática"
-        description="European Portuguese grammar topics from A1 to B1."
-        pills={[{ label: `${allTopics.length} topics` }]}
+    <PageShell>
+      <PageHeader
+        title="Gramática"
+        subtitle={`${allTopics.length} topics across A1, A2, and B1`}
       />
-      <FilterBlock
-        pills={{
-          options: [{ label: "All", value: "All" }, { label: "A1", value: "A1" }, { label: "A2", value: "A2" }, { label: "B1", value: "B1" }],
-          value: cefrFilter,
-          onChange: setCefrFilter,
-        }}
-        search={{ value: search, onChange: setSearch, placeholder: "Search grammar topics..." }}
-        count={{ showing: filtered.length, total: allTopics.length }}
+
+      <FilterBar
+        filterOptions={cefrOptions}
+        filterValue={cefr}
+        onFilterChange={setCefr}
+        searchPlaceholder="Search topics..."
+        searchValue={search}
+        onSearchChange={setSearch}
       />
-      <BlocoGrid>
+
+      <ListContainer>
         {filtered.map((topic) => (
-          <SmartBloco
-            key={topic.id}
-            title={topic.title}
-            subtitle={topic.titlePt}
-            cefrLevel={topic.cefr as CEFRLevel}
-            description={topic.summary}
-            footer={{ ruleCount: topic.rules?.length || 0, questionCount: topic.questions?.length || 0 }}
-            href={`/grammar/${topic.id}`}
-          />
+          <Link key={topic.id} href={`/grammar/${topic.id}`} className="block">
+            <ListRow>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="text-[14px] font-medium text-[#111111]">
+                    {topic.title}
+                  </div>
+                  <div className="text-[12px] text-[#9B9DA3] mt-0.5">
+                    {topic.titlePt}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <BadgePill level={topic.cefr} />
+                  <ChevronRight size={16} className="text-[#9B9DA3]" />
+                </div>
+              </div>
+            </ListRow>
+          </Link>
         ))}
-        {filtered.length === 0 && (
-          <div className="col-span-full text-center py-16">
-            <p className="text-[14px] text-[#9CA3AF]">No topics match your filter.</p>
-          </div>
-        )}
-      </BlocoGrid>
-    </PageLayout>
+      </ListContainer>
+
+      <CountLabel
+        showing={filtered.length}
+        total={allTopics.length}
+        noun="topics"
+      />
+    </PageShell>
   );
 }
