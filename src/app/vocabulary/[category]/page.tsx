@@ -2,97 +2,116 @@
 
 import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { PageShell } from "@/components/layout/page-shell";
+import {
+  PageHeader,
+  FilterBar,
+  ListContainer,
+  ListRow,
+  BadgePill,
+  CountLabel,
+} from "@/components/primitives";
+
 import vocabData from "@/data/vocab.json";
-import type { VocabData, VocabWord } from "@/types/vocab";
-import { PageLayout, IntroBlock, FilterBlock } from "@/components/blocos";
-import { SmartBloco } from "@/components/smart-bloco";
-import { BlocoGrid } from "@/components/smart-bloco/bloco-grid";
-import type { CEFRLevel } from "@/components/smart-bloco";
 
-const data = vocabData as unknown as VocabData;
+// ─── Constants ──────────────────────────────────────────────────────────────
 
-const CEFR_LEVELS = ["All", "A1", "A2", "B1"] as const;
+const cefrOptions = ["All", "A1", "A2", "B1"];
 
-const CATEGORY_PT_TITLE: Record<string, string> = {
-  "greetings-expressions": "Cumprimentos e Expressões",
-  "numbers-time": "Números e Tempo",
-  "colours-weather": "Cores e Clima",
-  "food-drink": "Comida e Bebida",
-  "home-rooms": "Casa e Divisões",
-  "family-daily-routine": "Família e Rotina Diária",
-  "shopping-money": "Compras e Dinheiro",
-  "travel-directions": "Viagens e Direções",
-  "work-education": "Trabalho e Educação",
-  "health-body": "Saúde e Corpo",
-  "nature-animals": "Natureza e Animais",
-  "emotions-personality": "Emoções e Personalidade",
-  "colloquial-slang": "Coloquial e Calão",
-  "technology-internet": "Tecnologia e Internet",
-  "clothing-appearance": "Roupa e Aparência",
-};
+// ─── Page ───────────────────────────────────────────────────────────────────
 
-export default function VocabCategoryPage() {
+export default function VocabularyDetailPage() {
   const params = useParams();
   const slug = params.category as string;
-  const category = data.categories.find((c) => c.id === slug);
+  const category = vocabData.categories.find((c) => c.id === slug);
 
-  const [cefrFilter, setCefrFilter] = useState("All");
+  const [cefr, setCefr] = useState("All");
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
     if (!category) return [];
-    const q = search.toLowerCase();
-    return category.words.filter((w: VocabWord) => {
-      if (cefrFilter !== "All" && w.cefr !== cefrFilter) return false;
-      if (q && !w.portuguese.toLowerCase().includes(q) && !w.english.toLowerCase().includes(q)) return false;
+    return category.words.filter((word) => {
+      if (cefr !== "All" && word.cefr !== cefr) return false;
+      if (search) {
+        const q = search.toLowerCase();
+        return (
+          word.portuguese.toLowerCase().includes(q) ||
+          word.english.toLowerCase().includes(q)
+        );
+      }
       return true;
     });
-  }, [category, cefrFilter, search]);
+  }, [category, cefr, search]);
 
   if (!category) {
     return (
-      <PageLayout>
-        <IntroBlock title="Category not found" backLink={{ label: "Vocabulary", href: "/vocabulary" }} />
-      </PageLayout>
+      <PageShell>
+        <PageHeader
+          title="Category not found"
+          subtitle="This vocabulary category doesn't exist."
+        />
+      </PageShell>
     );
   }
 
   return (
-    <PageLayout>
-      <IntroBlock
+    <PageShell>
+      {/* Breadcrumb */}
+      <div className="text-[12px] text-[#9B9DA3] mb-5 flex items-center gap-1">
+        <Link
+          href="/vocabulary"
+          className="hover:text-[#6C6B71] transition-colors"
+        >
+          Vocabulary
+        </Link>
+        <ChevronRight size={12} />
+        <span className="text-[#6C6B71]">{category.title}</span>
+      </div>
+
+      <PageHeader
         title={category.title}
-        subtitle={CATEGORY_PT_TITLE[category.id]}
-        backLink={{ label: "Vocabulary", href: "/vocabulary" }}
-        pills={[{ label: `${category.words.length} words` }]}
+        subtitle={`${category.words.length} words — ${category.description}`}
       />
-      <FilterBlock
-        pills={{
-          options: CEFR_LEVELS.map((l) => ({ label: l, value: l })),
-          value: cefrFilter,
-          onChange: setCefrFilter,
-        }}
-        search={{ value: search, onChange: setSearch, placeholder: "Search words..." }}
-        count={{ showing: filtered.length, total: category.words.length }}
+
+      <FilterBar
+        filterOptions={cefrOptions}
+        filterValue={cefr}
+        onFilterChange={setCefr}
+        searchPlaceholder="Search words..."
+        searchValue={search}
+        onSearchChange={setSearch}
       />
-      <BlocoGrid>
-        {filtered.map((w: VocabWord, i: number) => (
-          <SmartBloco
-            key={`${w.portuguese}-${i}`}
-            title={w.portuguese}
-            subtitle={w.english}
-            pronunciation={w.pronunciation ? `/${w.pronunciation}/` : undefined}
-            hasAudio
-            cefrLevel={w.cefr as CEFRLevel}
-            metaBadge={w.gender || undefined}
-            example={w.example ? { portuguese: w.example, english: w.exampleTranslation || "" } : undefined}
-          />
+
+      <ListContainer>
+        {filtered.map((word) => (
+          <ListRow key={word.portuguese}>
+            <div className="grid grid-cols-[1fr_1fr_auto] items-center gap-3">
+              <div>
+                <span className="text-[14px] font-medium text-[#111111]">
+                  {word.portuguese}
+                </span>
+                {word.gender && (
+                  <span className="text-[11px] text-[#9B9DA3] ml-1.5 italic">
+                    ({word.gender})
+                  </span>
+                )}
+              </div>
+              <span className="text-[13px] text-[#6C6B71]">
+                {word.english}
+              </span>
+              <BadgePill level={word.cefr} />
+            </div>
+          </ListRow>
         ))}
-        {filtered.length === 0 && (
-          <div className="col-span-full text-center py-16">
-            <p className="text-[14px] text-[#9CA3AF]">No words match your filter.</p>
-          </div>
-        )}
-      </BlocoGrid>
-    </PageLayout>
+      </ListContainer>
+
+      <CountLabel
+        showing={filtered.length}
+        total={category.words.length}
+        noun="words"
+      />
+    </PageShell>
   );
 }
