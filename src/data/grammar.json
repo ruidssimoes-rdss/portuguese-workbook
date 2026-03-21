@@ -122,7 +122,7 @@
         {"rule": "Regular verbs keep their stem and add predictable endings. Remove -ar, -er, or -ir from the infinitive to find the stem.", "rulePt": "Verbos regulares mantêm o radical e adicionam terminações previsíveis.", "examples": [{"pt": "fal-ar → eu falo", "en": "I speak (stem: fal-)"}, {"pt": "com-er → eu como", "en": "I eat (stem: com-)"}, {"pt": "part-ir → eu parto", "en": "I leave (stem: part-)"}]},
         {"rule": "Irregular verbs change their stem, their endings, or both. The most essential irregular verbs are: ser, estar, ter, ir, fazer, poder, querer, saber, dar, dizer, vir, pôr.", "rulePt": "Verbos irregulares mudam o radical, as terminações, ou ambos.", "examples": [{"pt": "ser → eu sou", "en": "I am (permanent)"}, {"pt": "ir → eu vou", "en": "I go"}, {"pt": "ter → eu tenho", "en": "I have"}, {"pt": "fazer → eu faço", "en": "I do/make"}]}
       ],
-      "tips": ["Learn the -AR pattern first — it covers the most verbs and gives you the foundation for understanding how conjugation works.", "Don't try to memorise irregular verb tables. Focus on the 10 most common irregular verbs and learn them through usage and repetition.", "Some verbs are 'almost regular' — they follow the pattern but have a small spelling change (e.g. jogar → jogo, not *jogo; ficar → fiquei, not *ficei). These aren't truly irregular; they just adjust spelling to keep the correct pronunciation."],
+      "tips": ["Learn the -AR pattern first — it covers the most verbs and gives you the foundation for understanding how conjugation works.", "Don't try to memorise irregular verb tables. Focus on the 10 most common irregular verbs and learn them through usage and repetition.", "Some verbs are 'almost regular' — they follow the pattern but have a small spelling change (e.g. jogar → jogo, not *jogo; ficar → fiquei, not *ficei). These aren't truly irregular; they just adjust spelling to keep the correct pronunciation.", "The three verb groups (-AR, -ER, -IR) are determined by the infinitive ending. -AR verbs are by far the most common — around 60% of all Portuguese verbs.", "When you encounter a new verb, check its infinitive ending first. If it ends in -ar, you already know how to conjugate it in the present tense."],
       "tipsPt": ["Aprende o padrão dos verbos em -AR primeiro — cobre a maioria dos verbos.", "Não tentes decorar tabelas de verbos irregulares. Foca nos 10 mais comuns e aprende-os pelo uso.", "Alguns verbos são 'quase regulares' — seguem o padrão mas com pequenas mudanças ortográficas para manter a pronúncia correta."],
       "questions": []
     },
@@ -205,7 +205,9 @@
       "summary": "Conjugate -ER verbs: como, comes, come, comemos, comem.",
       "intro": "Regular -ER verbs: remove -er and add -o, -es, -e, -emos, -em. Example: comer → como, comes, come, comemos, comem. The nós form is -emos (comemos). Many common verbs are -ER: beber, aprender, viver, escrever, correr.",
       "rules": [
-        {"rule": "Stem + -o (eu), -es (tu), -e (ele/ela), -emos (nós), -em (eles).", "rulePt": "Radical + -o, -es, -e, -emos, -em.", "examples": [{"pt": "como", "en": "I eat"}, {"pt": "comemos", "en": "we eat"}]}
+        {"rule": "Stem + -o (eu), -es (tu), -e (ele/ela), -emos (nós), -em (eles).", "rulePt": "Radical + -o, -es, -e, -emos, -em.", "examples": [{"pt": "como", "en": "I eat"}, {"pt": "comemos", "en": "we eat"}]},
+        {"rule": "Common -ER verbs and their patterns: comer (to eat), beber (to drink), viver (to live), escrever (to write), correr (to run).", "rulePt": "Verbos regulares em -ER comuns.", "examples": [{"pt": "Eu como peixe ao almoço.", "en": "I eat fish for lunch."}, {"pt": "Nós bebemos café todas as manhãs.", "en": "We drink coffee every morning."}, {"pt": "Eles vivem em Lisboa.", "en": "They live in Lisbon."}]},
+        {"rule": "The nós form keeps the -e- vowel: comemos, bebemos, vivemos, escrevemos. This is different from -AR verbs which use -a-.", "rulePt": "A forma 'nós' mantém a vogal -e-.", "examples": [{"pt": "Nós comemos sempre juntos.", "en": "We always eat together."}, {"pt": "Nós escrevemos cartas aos avós.", "en": "We write letters to our grandparents."}]}
       ],
       "tips": ["-ER and -IR share the same endings for eu (-o), ele (-e), and eles (-em); only tu and nós differ.", "Comer, beber, aprender, viver are all regular -ER."],
       "tipsPt": ["-ER e -IR partilham -o, -e, -em; diferem em tu e nós.", "Comer, beber, aprender são -ER regulares."],
@@ -235,7 +237,9 @@
       "summary": "Conjugate -IR verbs: parto, partes, parte, partimos, partem.",
       "intro": "Regular -IR verbs: remove -ir and add -o, -es, -e, -imos, -em. Example: partir → parto, partes, parte, partimos, partem. The nós form is -imos (partimos). Other -IR verbs: abrir, decidir, assistir, cumprir. The eu, ele and eles endings are the same as -ER; only tu (-es) and nós (-imos vs -emos) differ.",
       "rules": [
-        {"rule": "Stem + -o (eu), -es (tu), -e (ele/ela), -imos (nós), -em (eles).", "rulePt": "Radical + -o, -es, -e, -imos, -em.", "examples": [{"pt": "parto", "en": "I leave"}, {"pt": "partimos", "en": "we leave"}]}
+        {"rule": "Stem + -o (eu), -es (tu), -e (ele/ela), -imos (nós), -em (eles).", "rulePt": "Radical + -o, -es, -e, -imos, -em.", "examples": [{"pt": "parto", "en": "I leave"}, {"pt": "partimos", "en": "we leave"}]},
+        {"rule": "Common -IR verbs: partir (to leave/break), abrir (to open), decidir (to decide), assistir (to attend/watch), subir (to go up).", "rulePt": "Verbos regulares em -IR comuns.", "examples": [{"pt": "Eu parto amanhã de manhã.", "en": "I leave tomorrow morning."}, {"pt": "Tu abres a porta, por favor?", "en": "Can you open the door, please?"}, {"pt": "Eles decidem sempre tudo juntos.", "en": "They always decide everything together."}]},
+        {"rule": "The nós form uses -imos (not -emos like -ER): partimos, abrimos, decidimos. This is the KEY difference between -ER and -IR.", "rulePt": "A forma 'nós' usa -imos (não -emos).", "examples": [{"pt": "Nós partimos às oito.", "en": "We leave at eight."}, {"pt": "Nós abrimos a loja às nove.", "en": "We open the shop at nine."}]}
       ],
       "tips": ["-IR nós form is -imos (partimos); -ER nós is -emos (comemos).", "Abrir, partir, decidir, assistir are regular -IR."],
       "tipsPt": ["Nós -IR: -imos; -ER: -emos.", "Abrir, partir, decidir são -IR regulares."],
@@ -728,7 +732,8 @@
       "intro": "Regular preterite: -AR verbs take -ei, -aste, -ou, -ámos, -aram (falei, falaste, falou, falámos, falaram). In European Portuguese the nós form has an accent: falámos (preterite) vs falamos (present). -ER: -i, -este, -eu, -emos, -eram (comi, comeste, comeu, comemos, comeram). -IR: -i, -iste, -iu, -imos, -iram (parti, partiste, partiu, partimos, partiram). Spelling changes: -car → -quei (ficar→fiquei), -gar → -guei (pagar→paguei), -çar → -cei (começar→comecei).",
       "rules": [
         {"rule": "-AR preterite: -ei, -aste, -ou, -ámos, -aram.", "rulePt": "Pretérito -AR: -ei, -aste, -ou, -ámos, -aram.", "examples": [{"pt": "falei", "en": "I spoke"}, {"pt": "falámos", "en": "we spoke (EP)"}]},
-        {"rule": "-ER preterite: -i, -este, -eu, -emos, -eram.", "rulePt": "Pretérito -ER: -i, -este, -eu, -emos, -eram.", "examples": [{"pt": "comi", "en": "I ate"}, {"pt": "comeu", "en": "he/she ate"}]}
+        {"rule": "-ER preterite: -i, -este, -eu, -emos, -eram.", "rulePt": "Pretérito -ER: -i, -este, -eu, -emos, -eram.", "examples": [{"pt": "comi", "en": "I ate"}, {"pt": "comeu", "en": "he/she ate"}]},
+        {"rule": "The 1st person plural (nós) is the same in the present and preterite for -AR verbs: falamos. Context clarifies the tense. For -ER/-IR verbs, the preterite adds an accent: comemos → comemos (same spelling but different pronunciation).", "rulePt": "A 1ª pessoa do plural é igual no presente e no pretérito em verbos -AR.", "examples": [{"pt": "Nós falamos ontem.", "en": "We spoke yesterday. (preterite)"}, {"pt": "Nós falamos todos os dias.", "en": "We speak every day. (present)"}, {"pt": "Nós comemos no restaurante ontem.", "en": "We ate at the restaurant yesterday."}]}
       ],
       "tips": ["In EP, falámos (accent) = we spoke; falamos (no accent) = we speak.", "-car, -gar, -çar have spelling changes in eu form: fiquei, paguei, comecei."],
       "tipsPt": ["Em PE falámos = passado; falamos = presente.", "-car → -quei, -gar → -guei, -çar → -cei."],
@@ -759,7 +764,8 @@
       "intro": "Key irregular preterites: ser and ir share the same forms (fui, foste, foi, fomos, foram) — context tells you which. Others: ter→tive, estar→estive, fazer→fiz, dizer→disse, ver→vi, dar→dei, saber→soube, vir→vim, pôr→pus, poder→pude, querer→quis, trazer→trouxe. Many have a stressed first syllable in the eu form.",
       "rules": [
         {"rule": "SER and IR have the same preterite: fui, foste, foi, fomos, foram.", "rulePt": "SER e IR têm o mesmo pretérito.", "examples": [{"pt": "Fui a Lisboa.", "en": "I went to Lisbon."}, {"pt": "Fui professor.", "en": "I was a teacher."}]},
-        {"rule": "Common irregular stems: fazer→fiz, dizer→disse, ter→tive.", "rulePt": "Fazer→fiz, dizer→disse, ter→tive.", "examples": [{"pt": "Fiz o trabalho.", "en": "I did the work."}, {"pt": "Tive uma ideia.", "en": "I had an idea."}]}
+        {"rule": "Common irregular stems: fazer→fiz, dizer→disse, ter→tive.", "rulePt": "Fazer→fiz, dizer→disse, ter→tive.", "examples": [{"pt": "Fiz o trabalho.", "en": "I did the work."}, {"pt": "Tive uma ideia.", "en": "I had an idea."}]},
+        {"rule": "Irregular preterite verbs often have unique stems. The most important to memorise: ser/ir → fui, fazer → fiz, ter → tive, estar → estive, poder → pude, saber → soube, ver → vi, dar → dei.", "rulePt": "Os verbos irregulares no pretérito têm radicais únicos.", "examples": [{"pt": "Eu fiz o jantar ontem.", "en": "I made dinner yesterday."}, {"pt": "Nós tivemos sorte.", "en": "We were lucky."}, {"pt": "Ela soube a resposta.", "en": "She knew the answer."}, {"pt": "Eu vi um filme excelente.", "en": "I saw an excellent film."}]}
       ],
       "tips": ["Context tells you if 'fui' is 'I went' (ir) or 'I was' (ser).", "Ver→vi, dar→dei, saber→soube are common irregulars."],
       "tipsPt": ["O contexto diz se 'fui' é ir ou ser.", "Ver→vi, dar→dei, saber→soube."],
@@ -1116,7 +1122,9 @@
       "summary": "Conjugated ir + infinitive = going to do. Most common way to express future in spoken EP.",
       "intro": "Ir + infinitive is the most common way to express the future in spoken European Portuguese. Formation: conjugated form of ir + infinitive. Vou comer (I'm going to eat), Vamos viajar (We're going to travel). It can express immediate future (Vou sair agora) or planned future (Vamos viajar no verão). Compare with the synthetic future: Falarei is more formal/written; Vou falar is everyday speech.",
       "rules": [
-        {"rule": "ir (conjugated) + infinitive = future intention.", "rulePt": "ir (conjugado) + infinitivo = intenção futura.", "examples": [{"pt": "Vou comer.", "en": "I'm going to eat."}, {"pt": "Vamos viajar.", "en": "We're going to travel."}]}
+        {"rule": "ir (conjugated) + infinitive = future intention.", "rulePt": "ir (conjugado) + infinitivo = intenção futura.", "examples": [{"pt": "Vou comer.", "en": "I'm going to eat."}, {"pt": "Vamos viajar.", "en": "We're going to travel."}]},
+        {"rule": "Ir + infinitive is the most common way to express future actions in spoken EP. It's much more natural than the simple future tense.", "rulePt": "Ir + infinitivo é a forma mais natural de expressar o futuro em português falado.", "examples": [{"pt": "Vou fazer compras depois do trabalho.", "en": "I'm going to go shopping after work."}, {"pt": "Ela vai ligar-te mais tarde.", "en": "She's going to call you later."}, {"pt": "Nós vamos viajar no verão.", "en": "We're going to travel in the summer."}]},
+        {"rule": "In the negative, put 'não' before 'ir': Não vou comer isso. The infinitive always stays at the end.", "rulePt": "Na negativa, 'não' vem antes de 'ir'.", "examples": [{"pt": "Não vou sair hoje.", "en": "I'm not going to go out today."}, {"pt": "Ele não vai conseguir chegar a tempo.", "en": "He's not going to manage to arrive on time."}]}
       ],
       "tips": ["In EP speech, 'Vou falar' is much more common than 'Falarei'.", "Use it for plans and immediate future."],
       "tipsPt": ["Em PE 'Vou falar' é muito mais comum que 'Falarei'.", "Para planos e futuro próximo."],
@@ -1497,7 +1505,9 @@
       "tips": [
         "Learn the -AR pattern first — it covers the most verbs and gives you the foundation for understanding how conjugation works.",
         "Don't try to memorise irregular verb tables. Focus on the 10 most common irregular verbs and learn them through usage and repetition.",
-        "Some verbs are 'almost regular' — they follow the pattern but have a small spelling change (e.g. jogar → jogo, not *jogo; ficar → fiquei, not *ficei). These aren't truly irregular; they just adjust spelling to keep the correct pronunciation."
+        "Some verbs are 'almost regular' — they follow the pattern but have a small spelling change (e.g. jogar → jogo, not *jogo; ficar → fiquei, not *ficei). These aren't truly irregular; they just adjust spelling to keep the correct pronunciation.",
+        "The three verb groups (-AR, -ER, -IR) are determined by the infinitive ending. -AR verbs are by far the most common — around 60% of all Portuguese verbs.",
+        "When you encounter a new verb, check its infinitive ending first. If it ends in -ar, you already know how to conjugate it in the present tense."
       ],
       "tipsPt": [
         "Aprende o padrão dos verbos em -AR primeiro — cobre a maioria dos verbos.",
