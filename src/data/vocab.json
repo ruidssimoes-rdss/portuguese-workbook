@@ -683,6 +683,36 @@
             }
           ],
           "proTip": "Reassuring: 'Não faz mal' = No worries / It doesn't matter. Like 'de nada' but for apologies. 'Desculpa!' — 'Não faz mal.'"
+        },
+        {
+          "portuguese": "como se chama?",
+          "english": "what is your name? (formal)",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "KOH-moo suh SHAH-muh",
+          "example": "Como se chama? Eu chamo-me Ana.",
+          "exampleTranslation": "What is your name? My name is Ana.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "chamo-me...",
+          "english": "my name is...",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "SHAH-moo-muh",
+          "example": "Chamo-me Pedro, muito prazer.",
+          "exampleTranslation": "My name is Pedro, nice to meet you.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "tchau",
+          "english": "bye (informal)",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "CHOW",
+          "example": "Tchau, até amanhã!",
+          "exampleTranslation": "Bye, see you tomorrow!",
+          "relatedWords": []
         }
       ]
     },
@@ -1198,26 +1228,6 @@
           "proTip": "'Cedo' = early (adverb). 'De manhã cedo' = early in the morning. Don't confuse with 'cedo' in 'até logo' — different context."
         },
         {
-          "portuguese": "tarde",
-          "english": "late",
-          "cefr": "A2",
-          "gender": null,
-          "pronunciation": "TAHR-duh",
-          "example": "Cheguei tarde ao trabalho.",
-          "exampleTranslation": "I arrived late to work.",
-          "relatedWords": [
-            {
-              "word": "manhã",
-              "meaning": "morning"
-            },
-            {
-              "word": "noite",
-              "meaning": "night"
-            }
-          ],
-          "proTip": "Tarde = afternoon (noun) OR late (adverb). 'Cheguei tarde' = I arrived late. Context matters!"
-        },
-        {
           "portuguese": "entretanto",
           "english": "meanwhile",
           "cefr": "B1",
@@ -1666,6 +1676,356 @@
             }
           ],
           "proTip": "Portugal uses 24h time in writing. In speech: 'São três da tarde' or 'São quinze horas.' Always feminine: 'É uma hora.'"
+        },
+        {
+          "portuguese": "seis",
+          "english": "six",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "SAYSH",
+          "example": "Tenho seis irmãos.",
+          "exampleTranslation": "I have six siblings.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "sete",
+          "english": "seven",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "SET",
+          "example": "São sete horas da manhã.",
+          "exampleTranslation": "It's seven in the morning.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "oito",
+          "english": "eight",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "OY-too",
+          "example": "Ela trabalha oito horas por dia.",
+          "exampleTranslation": "She works eight hours a day.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "nove",
+          "english": "nine",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "NOV",
+          "example": "A loja fecha às nove.",
+          "exampleTranslation": "The shop closes at nine.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "onze",
+          "english": "eleven",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "ONZ",
+          "example": "Temos onze jogadores na equipa.",
+          "exampleTranslation": "We have eleven players on the team.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "doze",
+          "english": "twelve",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "DOHZ",
+          "example": "São doze meses no ano.",
+          "exampleTranslation": "There are twelve months in the year.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "treze",
+          "english": "thirteen",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "TREHZ",
+          "example": "Hoje é dia treze.",
+          "exampleTranslation": "Today is the thirteenth.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "catorze",
+          "english": "fourteen",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "kuh-TORZ",
+          "example": "O meu sobrinho tem catorze anos.",
+          "exampleTranslation": "My nephew is fourteen years old.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "quinze",
+          "english": "fifteen",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "KEENZ",
+          "example": "Faltam quinze minutos.",
+          "exampleTranslation": "Fifteen minutes left.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "dezasseis",
+          "english": "sixteen",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "deh-zuh-SAYSH",
+          "example": "Ela começou a trabalhar aos dezasseis.",
+          "exampleTranslation": "She started working at sixteen.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "dezassete",
+          "english": "seventeen",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "deh-zuh-SET",
+          "example": "O autocarro chega às dezassete e trinta.",
+          "exampleTranslation": "The bus arrives at seventeen thirty.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "dezoito",
+          "english": "eighteen",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "deh-ZOY-too",
+          "example": "Aos dezoito anos já podia votar.",
+          "exampleTranslation": "At eighteen he could already vote.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "dezanove",
+          "english": "nineteen",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "deh-zuh-NOV",
+          "example": "Dezanove pessoas vieram à festa.",
+          "exampleTranslation": "Nineteen people came to the party.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "trinta",
+          "english": "thirty",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "TREEN-tuh",
+          "example": "Ela tem trinta anos.",
+          "exampleTranslation": "She is thirty years old.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "quarenta",
+          "english": "forty",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "kwuh-REN-tuh",
+          "example": "Quarenta alunos estão inscritos.",
+          "exampleTranslation": "Forty students are enrolled.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "cinquenta",
+          "english": "fifty",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "seen-KWEN-tuh",
+          "example": "O livro custa cinquenta euros.",
+          "exampleTranslation": "The book costs fifty euros.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "sessenta",
+          "english": "sixty",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "seh-SEN-tuh",
+          "example": "A avó tem sessenta e cinco anos.",
+          "exampleTranslation": "Grandma is sixty-five years old.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "setenta",
+          "english": "seventy",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "seh-TEN-tuh",
+          "example": "Setenta por cento concordaram.",
+          "exampleTranslation": "Seventy percent agreed.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "oitenta",
+          "english": "eighty",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "oy-TEN-tuh",
+          "example": "O bisavô viveu até aos oitenta.",
+          "exampleTranslation": "The great-grandfather lived to eighty.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "noventa",
+          "english": "ninety",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "noh-VEN-tuh",
+          "example": "Noventa dias são três meses.",
+          "exampleTranslation": "Ninety days is three months.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "janeiro",
+          "english": "January",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "zhuh-NAY-roo",
+          "example": "O meu aniversário é em janeiro.",
+          "exampleTranslation": "My birthday is in January.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "fevereiro",
+          "english": "February",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "fev-rAY-roo",
+          "example": "Fevereiro é o mês mais curto.",
+          "exampleTranslation": "February is the shortest month.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "março",
+          "english": "March",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "MAR-soo",
+          "example": "A primavera começa em março.",
+          "exampleTranslation": "Spring starts in March.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "abril",
+          "english": "April",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "uh-BREEL",
+          "example": "Em abril, águas mil.",
+          "exampleTranslation": "In April, a thousand rains.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "maio",
+          "english": "May",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "MY-oo",
+          "example": "O Dia da Mãe é em maio.",
+          "exampleTranslation": "Mother's Day is in May.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "junho",
+          "english": "June",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "ZHOO-nyoo",
+          "example": "As festas populares são em junho.",
+          "exampleTranslation": "The popular festivals are in June.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "julho",
+          "english": "July",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "ZHOO-lyoo",
+          "example": "Julho é o mês mais quente.",
+          "exampleTranslation": "July is the hottest month.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "agosto",
+          "english": "August",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "uh-GOSH-too",
+          "example": "Vamos de férias em agosto.",
+          "exampleTranslation": "We go on holiday in August.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "setembro",
+          "english": "September",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "seh-TEM-broo",
+          "example": "As aulas começam em setembro.",
+          "exampleTranslation": "Classes start in September.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "outubro",
+          "english": "October",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "oh-TOO-broo",
+          "example": "O outono começa em outubro.",
+          "exampleTranslation": "Autumn starts in October.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "novembro",
+          "english": "November",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "noh-VEM-broo",
+          "example": "Em novembro já chove muito.",
+          "exampleTranslation": "In November it already rains a lot.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "dezembro",
+          "english": "December",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "deh-ZEM-broo",
+          "example": "O Natal é em dezembro.",
+          "exampleTranslation": "Christmas is in December.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "segundo",
+          "english": "second (ordinal / time unit)",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "seh-GOON-doo",
+          "example": "Espera um segundo, por favor.",
+          "exampleTranslation": "Wait a second, please.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "terceiro",
+          "english": "third",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "ter-SAY-roo",
+          "example": "Moro no terceiro andar.",
+          "exampleTranslation": "I live on the third floor.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "último",
+          "english": "last",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "OOL-tee-moo",
+          "example": "Este é o último dia de aulas.",
+          "exampleTranslation": "This is the last day of school.",
+          "relatedWords": []
         }
       ]
     },
@@ -2491,6 +2851,26 @@
             }
           ],
           "proTip": "'Está bom tempo' = The weather is nice. Perfect for 'Vamos dar um passeio?' (Shall we go for a walk?)."
+        },
+        {
+          "portuguese": "arco-íris",
+          "english": "rainbow",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "AR-koo-EE-reesh",
+          "example": "Depois da chuva apareceu um arco-íris.",
+          "exampleTranslation": "After the rain a rainbow appeared.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "geada",
+          "english": "frost",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "zhee-AH-duh",
+          "example": "Há geada no vidro do carro.",
+          "exampleTranslation": "There is frost on the car window.",
+          "relatedWords": []
         }
       ]
     },
@@ -3877,25 +4257,6 @@
           ]
         },
         {
-          "portuguese": "a conta",
-          "english": "the bill",
-          "cefr": "A1",
-          "gender": "f",
-          "pronunciation": "uh KON-tah",
-          "example": "A conta, por favor.",
-          "exampleTranslation": "The bill, please.",
-          "relatedWords": [
-            {
-              "word": "gorjeta",
-              "meaning": "tip"
-            },
-            {
-              "word": "pagar",
-              "meaning": "to pay"
-            }
-          ]
-        },
-        {
           "portuguese": "uma mesa para dois",
           "english": "a table for two",
           "cefr": "A1",
@@ -4012,21 +4373,6 @@
           "proTip": "Say 'Sou vegetariano/a' — Portugal has good veggie options. 'Tem opções vegetarianas?' = Do you have vegetarian options?"
         },
         {
-          "portuguese": "a ementa",
-          "english": "the menu",
-          "cefr": "A1",
-          "gender": "f",
-          "pronunciation": "uh ay-MEN-tah",
-          "example": "Posso ver a ementa?",
-          "exampleTranslation": "May I see the menu?",
-          "relatedWords": [
-            {
-              "word": "o prato do dia",
-              "meaning": "dish of the day"
-            }
-          ]
-        },
-        {
           "portuguese": "o prato do dia",
           "english": "dish of the day",
           "cefr": "A1",
@@ -4065,6 +4411,36 @@
             }
           ],
           "proTip": "Say 'Para levar' for takeaway. At a pastelaria: 'Dois cafés, para levar, se faz favor.'"
+        },
+        {
+          "portuguese": "pimenta",
+          "english": "pepper (spice)",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "pee-MEN-tuh",
+          "example": "Queres pimenta na sopa?",
+          "exampleTranslation": "Do you want pepper in the soup?",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "vinagre",
+          "english": "vinegar",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "vee-NAH-gruh",
+          "example": "Tempero a salada com azeite e vinagre.",
+          "exampleTranslation": "I dress the salad with olive oil and vinegar.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "cervejaria",
+          "english": "beer hall / brewery restaurant",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "ser-veh-zhuh-REE-uh",
+          "example": "Vamos jantar à cervejaria do bairro.",
+          "exampleTranslation": "Let's have dinner at the neighbourhood beer hall.",
+          "relatedWords": []
         }
       ]
     },
@@ -5375,25 +5751,6 @@
           ]
         },
         {
-          "portuguese": "o bilhete",
-          "english": "the ticket",
-          "cefr": "A1",
-          "gender": "m",
-          "pronunciation": "oo bee-LYAY-tuh",
-          "example": "Quero comprar um bilhete para Lisboa.",
-          "exampleTranslation": "I want to buy a ticket to Lisbon.",
-          "relatedWords": [
-            {
-              "word": "a paragem",
-              "meaning": "the stop"
-            },
-            {
-              "word": "comboio",
-              "meaning": "train"
-            }
-          ]
-        },
-        {
           "portuguese": "a paragem",
           "english": "the (bus) stop",
           "cefr": "A1",
@@ -6661,25 +7018,6 @@
           ]
         },
         {
-          "portuguese": "almofada",
-          "english": "cushion",
-          "cefr": "A2",
-          "gender": "f",
-          "pronunciation": "ahl-moo-FAH-dah",
-          "example": "As almofadas do sofá.",
-          "exampleTranslation": "The sofa cushions.",
-          "relatedWords": [
-            {
-              "word": "cama",
-              "meaning": "bed"
-            },
-            {
-              "word": "lençol",
-              "meaning": "sheet"
-            }
-          ]
-        },
-        {
           "portuguese": "comando",
           "english": "remote control",
           "cefr": "A2",
@@ -6733,25 +7071,6 @@
             {
               "word": "inverno",
               "meaning": "winter"
-            }
-          ]
-        },
-        {
-          "portuguese": "a chave",
-          "english": "the key",
-          "cefr": "A1",
-          "gender": "f",
-          "pronunciation": "uh SHAH-vuh",
-          "example": "Onde está a chave de casa?",
-          "exampleTranslation": "Where is the house key?",
-          "relatedWords": [
-            {
-              "word": "porta",
-              "meaning": "door"
-            },
-            {
-              "word": "casa",
-              "meaning": "house"
             }
           ]
         },
@@ -6811,26 +7130,6 @@
               "meaning": "new house"
             }
           ]
-        },
-        {
-          "portuguese": "o andar",
-          "english": "the floor / storey",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "oo an-DAHR",
-          "example": "Vivo no terceiro andar.",
-          "exampleTranslation": "I live on the third floor.",
-          "relatedWords": [
-            {
-              "word": "escadas",
-              "meaning": "stairs"
-            },
-            {
-              "word": "elevador",
-              "meaning": "lift"
-            }
-          ],
-          "proTip": "Andar = floor/storey. 'Moro no 3º andar' = I live on the 3rd floor. Ground = rés-do-chão."
         }
       ]
     },
@@ -7749,6 +8048,46 @@
             }
           ],
           "proTip": "Dia a dia = day to day, daily. 'Vivo dia a dia' = I live day to day."
+        },
+        {
+          "portuguese": "bebé",
+          "english": "baby",
+          "cefr": "A1",
+          "gender": "m",
+          "pronunciation": "beh-BEH",
+          "example": "O bebé está a dormir.",
+          "exampleTranslation": "The baby is sleeping.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "criança",
+          "english": "child",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "kree-AN-suh",
+          "example": "A criança brinca no parque.",
+          "exampleTranslation": "The child plays in the park.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "adulto",
+          "english": "adult",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "uh-DOOL-too",
+          "example": "Os adultos pagam preço inteiro.",
+          "exampleTranslation": "Adults pay full price.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "idoso / idosa",
+          "english": "elderly person",
+          "cefr": "A2",
+          "gender": "m/f",
+          "pronunciation": "ee-DOH-zoo",
+          "example": "O idoso atravessou a rua devagar.",
+          "exampleTranslation": "The elderly man crossed the street slowly.",
+          "relatedWords": []
         }
       ]
     },
@@ -8717,24 +9056,6 @@
           "exampleTranslation": "I did an internship at a company."
         },
         {
-          "portuguese": "o currículo",
-          "english": "the CV / resume",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "oo koo-RREE-koo-loo",
-          "example": "Enviei o meu currículo.",
-          "exampleTranslation": "I sent my CV."
-        },
-        {
-          "portuguese": "a entrevista",
-          "english": "the interview (job)",
-          "cefr": "A2",
-          "gender": "f",
-          "pronunciation": "uh en-truh-VEESH-tuh",
-          "example": "Tenho uma entrevista amanhã.",
-          "exampleTranslation": "I have a job interview tomorrow."
-        },
-        {
           "portuguese": "o patrão / a patroa",
           "english": "the boss",
           "cefr": "A2",
@@ -8752,15 +9073,6 @@
           "pronunciation": "dish-puh-DEER",
           "example": "Foi despedido na semana passada.",
           "exampleTranslation": "He was fired last week."
-        },
-        {
-          "portuguese": "o salário",
-          "english": "the salary",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "oo suh-LAH-ree-oo",
-          "example": "O salário é pago no fim do mês.",
-          "exampleTranslation": "The salary is paid at the end of the month."
         },
         {
           "portuguese": "a folga",
@@ -9463,15 +9775,6 @@
           "proTip": "'Tenho febre' = I have a fever. Thermometer = termómetro. 38°+ is febre."
         },
         {
-          "portuguese": "a receita",
-          "english": "the prescription",
-          "cefr": "A2",
-          "gender": "f",
-          "pronunciation": "uh rruh-SAY-tuh",
-          "example": "Preciso da receita do médico.",
-          "exampleTranslation": "I need the doctor's prescription."
-        },
-        {
           "portuguese": "alérgico / alérgica",
           "english": "allergic",
           "cefr": "A2",
@@ -9479,15 +9782,6 @@
           "pronunciation": "uh-LEHR-zhee-koo / uh-LEHR-zhee-kuh",
           "example": "Sou alérgico a amendoins.",
           "exampleTranslation": "I'm allergic to peanuts."
-        },
-        {
-          "portuguese": "a urgência",
-          "english": "the emergency room",
-          "cefr": "A2",
-          "gender": "f",
-          "pronunciation": "uh oor-ZHEN-see-uh",
-          "example": "Foi levado para a urgência.",
-          "exampleTranslation": "He was taken to the emergency room."
         },
         {
           "portuguese": "o seguro de saúde",
@@ -9506,15 +9800,6 @@
           "pronunciation": "shtoh kon-shtee-PAH-doo / kon-shtee-PAH-dah",
           "example": "Estou constipado, vou ficar em casa.",
           "exampleTranslation": "I have a cold, I'll stay at home."
-        },
-        {
-          "portuguese": "a dor de cabeça",
-          "english": "headache",
-          "cefr": "A1",
-          "gender": "f",
-          "pronunciation": "uh dohr duh kuh-BEH-suh",
-          "example": "Tenho uma dor de cabeça forte.",
-          "exampleTranslation": "I have a bad headache."
         },
         {
           "portuguese": "a dor de barriga",
@@ -9963,24 +10248,6 @@
           "exampleTranslation": "Keep the receipt for returns."
         },
         {
-          "portuguese": "o multibanco",
-          "english": "the ATM",
-          "cefr": "A1",
-          "gender": "m",
-          "pronunciation": "oo mool-tee-BAN-koo",
-          "example": "Onde há um multibanco?",
-          "exampleTranslation": "Where is there an ATM?"
-        },
-        {
-          "portuguese": "o desconto",
-          "english": "the discount",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "oo dish-KON-too",
-          "example": "Há desconto para estudantes?",
-          "exampleTranslation": "Is there a student discount?"
-        },
-        {
           "portuguese": "em promoção",
           "english": "on sale",
           "cefr": "A2",
@@ -9988,6 +10255,26 @@
           "pronunciation": "ayng proo-moo-SOWNG",
           "example": "Estes sapatos estão em promoção.",
           "exampleTranslation": "These shoes are on sale."
+        },
+        {
+          "portuguese": "conta bancária",
+          "english": "bank account",
+          "cefr": "A2",
+          "gender": "f",
+          "pronunciation": "KON-tuh ban-KAH-ree-uh",
+          "example": "Preciso de abrir uma conta bancária.",
+          "exampleTranslation": "I need to open a bank account.",
+          "relatedWords": []
+        },
+        {
+          "portuguese": "transferência",
+          "english": "bank transfer",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "trans-feh-REN-see-uh",
+          "example": "Podes fazer uma transferência bancária.",
+          "exampleTranslation": "You can do a bank transfer.",
+          "relatedWords": []
         }
       ]
     },
@@ -10390,24 +10677,6 @@
           "exampleTranslation": "We went for a walk by the sea."
         },
         {
-          "portuguese": "a paisagem",
-          "english": "the landscape / scenery",
-          "cefr": "A2",
-          "gender": "f",
-          "pronunciation": "uh pai-SAH-zhayng",
-          "example": "A paisagem é linda.",
-          "exampleTranslation": "The scenery is beautiful."
-        },
-        {
-          "portuguese": "o pôr do sol",
-          "english": "the sunset",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "oo pohr doo sohl",
-          "example": "Vamos ver o pôr do sol.",
-          "exampleTranslation": "Let's watch the sunset."
-        },
-        {
           "portuguese": "o nascer do sol",
           "english": "the sunrise",
           "cefr": "A2",
@@ -10415,15 +10684,6 @@
           "pronunciation": "oo nush-SEHR doo sohl",
           "example": "Acordámos para ver o nascer do sol.",
           "exampleTranslation": "We woke up to see the sunrise."
-        },
-        {
-          "portuguese": "a onda",
-          "english": "the wave (ocean)",
-          "cefr": "A2",
-          "gender": "f",
-          "pronunciation": "uh ON-duh",
-          "example": "As ondas estão grandes hoje.",
-          "exampleTranslation": "The waves are big today."
         }
       ]
     },
@@ -10510,15 +10770,6 @@
           "pronunciation": "ohr-goo-LYOH-zoo",
           "example": "Os meus pais estão orgulhosos de mim.",
           "exampleTranslation": "My parents are proud of me."
-        },
-        {
-          "portuguese": "envergonhado",
-          "english": "embarrassed",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "en-vehr-goo-NYAH-doo",
-          "example": "Senti-me envergonhado.",
-          "exampleTranslation": "I felt embarrassed."
         },
         {
           "portuguese": "entusiasmado",
@@ -10613,30 +10864,6 @@
           "exampleTranslation": "The film is funny."
         },
         {
-          "portuguese": "chateado",
-          "english": "annoyed / upset",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "shah-tee-AH-doo",
-          "example": "Estou chateado com a situação.",
-          "exampleTranslation": "I'm upset about the situation.",
-          "relatedWords": [
-            {
-              "word": "chatear",
-              "meaning": "to annoy / to upset"
-            },
-            {
-              "word": "chato",
-              "meaning": "boring / annoying"
-            },
-            {
-              "word": "irritado",
-              "meaning": "irritated (stronger)"
-            }
-          ],
-          "proTip": "'Chateado' is milder than 'zangado' (angry). 'Que chato!' (how annoying!) is one of the most common Portuguese expressions."
-        },
-        {
           "portuguese": "saudade",
           "english": "longing / missing",
           "cefr": "B1",
@@ -10707,15 +10934,6 @@
           "exampleTranslation": "I need patience."
         },
         {
-          "portuguese": "ansioso",
-          "english": "anxious / eager",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "an-see-OH-zoo",
-          "example": "Estou ansioso pelo concerto.",
-          "exampleTranslation": "I'm eager for the concert."
-        },
-        {
           "portuguese": "frustrado",
           "english": "frustrated",
           "cefr": "B1",
@@ -10741,15 +10959,6 @@
           "pronunciation": "koo-ree-OH-zoo",
           "example": "Sou muito curioso por natureza.",
           "exampleTranslation": "I'm very curious by nature."
-        },
-        {
-          "portuguese": "ciumento",
-          "english": "jealous",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "see-oo-MEN-too",
-          "example": "Ele é muito ciumento.",
-          "exampleTranslation": "He is very jealous."
         },
         {
           "portuguese": "generoso",
@@ -10786,15 +10995,6 @@
           "pronunciation": "kah-reen-YOH-zoo",
           "example": "O cão é muito carinhoso.",
           "exampleTranslation": "The dog is very affectionate."
-        },
-        {
-          "portuguese": "solitário",
-          "english": "lonely",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "soo-lee-TAH-ree-oo",
-          "example": "Sinto-me solitário às vezes.",
-          "exampleTranslation": "I feel lonely sometimes."
         },
         {
           "portuguese": "culpa",
