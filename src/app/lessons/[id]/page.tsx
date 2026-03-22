@@ -18,7 +18,12 @@ import {
   getCurriculumLesson,
   getResolvedLessons,
 } from "@/data/resolve-lessons";
-import { MOCK_EXAM_UNLOCKS } from "@/data/curriculum";
+// Exam unlock config (was MOCK_EXAM_UNLOCKS from old curriculum — simplified inline)
+const EXAM_LESSON_THRESHOLDS: Record<number, string> = {
+  6: "exam-01", 12: "exam-02", 18: "exam-03",
+  24: "exam-04", 30: "exam-05", 34: "exam-06",
+  38: "exam-07", 42: "exam-08", 44: "exam-09",
+};
 import type { Lesson } from "@/data/lessons";
 import {
   saveLessonAttempt,
@@ -559,7 +564,7 @@ function LessonContent({ id }: { id: string }) {
     ? lesson.cefr === "A1" ? levelCounts.a1 : lesson.cefr === "A2" ? levelCounts.a2 : levelCounts.b1
     : 0;
   const unlockedExamId = levelCounts != null
-    ? Object.entries(MOCK_EXAM_UNLOCKS).find(([, config]) => config.lessonsRequired === levelCounts.total)?.[0] ?? null
+    ? EXAM_LESSON_THRESHOLDS[levelCounts.total] ?? null
     : null;
 
   // Wrong answers for results

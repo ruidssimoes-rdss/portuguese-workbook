@@ -2,54 +2,26 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Lock, Check, ChevronRight, ChevronDown } from "lucide-react";
+import { Lock, ArrowRight, RotateCcw, ChevronDown } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
-import { getResolvedLessons } from "@/data/resolve-lessons";
-import {
-  getLessonProgressMap,
-  type LessonAttemptResult,
-} from "@/lib/lesson-progress";
+import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
+import { getReviewCount, type CEFRProgress } from "@/lib/learning-engine/mastery-tracker";
+import { createClient } from "@/lib/supabase/client";
 import { TutorTabV2 } from "@/components/lessons/tutor-tab";
 import { PageShell } from "@/components/layout/page-shell";
 import {
   PageHeader,
-  SectionLabel,
-  BadgePill,
-  CardShell,
   SegmentedFilter,
 } from "@/components/primitives";
 
-// ─── Data ───────────────────────────────────────────────────────────────────
+// ─── Types ──────────────────────────────────────────────
 
-const lessons = getResolvedLessons();
-const A1_LESSONS = lessons.filter((l) => l.cefr === "A1");
-const A2_LESSONS = lessons.filter((l) => l.cefr === "A2");
-const B1_LESSONS = lessons.filter((l) => l.cefr === "B1");
-const A1_TOTAL = A1_LESSONS.length;
-const A2_TOTAL = A2_LESSONS.length;
-const B1_TOTAL = B1_LESSONS.length;
-
-// ─── Lesson state logic (preserved exactly) ─────────────────────────────────
-
-type LessonCardState = "completed" | "current" | "attempted" | "locked";
-
-function getLessonState(
-  lesson: (typeof lessons)[0],
-  progressMap: Record<string, LessonAttemptResult>,
-  sortedLessons: typeof lessons
-): LessonCardState {
-  const progress = progressMap[lesson.id];
-  if (progress?.completed) return "completed";
-
-  const prevLesson = sortedLessons.find((l) => l.order === lesson.order - 1);
-  const prevCompleted = !prevLesson || progressMap[prevLesson.id]?.completed;
-  if (!prevCompleted) return "locked";
-
-  if (progress && progress.attempts > 0) return "attempted";
-  return "current";
+interface LevelProgression {
+  progress: CEFRProgress;
+  unlocked: boolean;
 }
 
-// ─── How lessons work accordion ─────────────────────────────────────────────
+// ─── How lessons work accordion ─────────────────────────
 
 const LESSON_SECTIONS = [
   { namePt: "Vocabulário", nameEn: "Vocabulary", descPt: "Traduz palavras novas", descEn: "Translate new words" },
@@ -106,13 +78,13 @@ function LessonInfoSection() {
           </div>
           <div className="border-t-[0.5px] border-[rgba(0,0,0,0.06)] pt-3 space-y-1.5">
             <p className="text-[12px] text-[#6C6B71]">
+              Cada lição adapta-se ao que precisas de aprender.
+              <span className="block text-[11px] text-[#9B9DA3]">Each lesson adapts to what you need to learn.</span>
+            </p>
+            <p className="text-[12px] text-[#6C6B71]">
               Precisas de 80% para passar cada lição.
               <span className="block text-[11px] text-[#9B9DA3]">You need 80% to pass each lesson.</span>
             </p>
-            <p className="text-[12px] text-[#6C6B71]">
-              As lições são sequenciais — completa cada uma para desbloquear a seguinte.
-              <span className="block text-[11px] text-[#9B9DA3]">Lessons are sequential — complete each one to unlock the next.</span>
-            </p>
           </div>
         </div>
       )}
@@ -120,206 +92,159 @@ function LessonInfoSection() {
   );
 }
 
-// ─── Lesson card renderer ───────────────────────────────────────────────────
+// ─── CEFR Level Card ────────────────────────────────────
 
-function LessonCard({
-  lesson,
-  state,
-  progress,
-  levelLocked,
-  lockMessage,
-}: {
-  lesson: (typeof lessons)[0];
-  state: LessonCardState;
-  progress: LessonAttemptResult | undefined;
-  levelLocked: boolean;
-  lockMessage: string;
-}) {
-  const isLocked = state === "locked" || levelLocked;
-
-  if (isLocked) {
-    return (
-      <CardShell className="opacity-50">
-        <div className="flex items-center gap-3">
-          <div className="w-5 h-5 rounded-full bg-[#F7F7F5] flex items-center justify-center flex-shrink-0">
-            <Lock size={12} className="text-[#9B9DA3]" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="text-[12px] text-[#9B9DA3]">Lesson {lesson.order}</div>
-            <div className="text-[14px] font-medium text-[#9B9DA3]">{lesson.title}</div>
-            <div className="text-[12px] text-[#9B9DA3] mt-0.5">{lesson.ptTitle}</div>
-          </div>
-        </div>
-      </CardShell>
-    );
-  }
-
-  if (state === "completed") {
-    return (
-      <Link href={`/lessons/${lesson.id}`} className="block">
-        <CardShell interactive>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 rounded-full bg-[#E1F5EE] flex items-center justify-center flex-shrink-0">
-              <Check size={12} className="text-[#0F6E56]" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[12px] text-[#9B9DA3]">Lesson {lesson.order}</div>
-              <div className="text-[14px] font-medium text-[#111111]">{lesson.title}</div>
-              <div className="text-[12px] text-[#9B9DA3] mt-0.5">{lesson.ptTitle}</div>
-            </div>
-            {progress && (
-              <span className="text-[12px] text-[#0F6E56] font-medium flex-shrink-0">
-                {Math.round(progress.accuracy_score)}%
-              </span>
-            )}
-          </div>
-        </CardShell>
-      </Link>
-    );
-  }
-
-  if (state === "attempted") {
-    return (
-      <Link href={`/lessons/${lesson.id}`} className="block">
-        <CardShell interactive>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 rounded-full bg-[#FAEEDA] flex items-center justify-center flex-shrink-0">
-              <span className="text-[10px] font-medium text-[#854F0B]">!</span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[12px] text-[#9B9DA3]">Lesson {lesson.order}</div>
-              <div className="text-[14px] font-medium text-[#111111]">{lesson.title}</div>
-              <div className="text-[12px] text-[#9B9DA3] mt-0.5">
-                {lesson.ptTitle} · Best: {progress ? Math.round(progress.best_score) : 0}%
-              </div>
-            </div>
-            <span className="text-[12px] text-[#854F0B] font-medium flex-shrink-0">Retry</span>
-          </div>
-        </CardShell>
-      </Link>
-    );
-  }
-
-  // current
-  return (
-    <Link href={`/lessons/${lesson.id}`} className="block">
-      <CardShell interactive className="border-[1px] border-[#185FA5]">
-        <div className="flex items-center gap-3">
-          <div className="w-5 h-5 rounded-full bg-[#E6F1FB] flex items-center justify-center flex-shrink-0">
-            <ChevronRight size={12} className="text-[#185FA5]" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="text-[12px] text-[#9B9DA3]">Lesson {lesson.order}</div>
-            <div className="text-[14px] font-medium text-[#111111]">{lesson.title}</div>
-            <div className="text-[12px] text-[#9B9DA3] mt-0.5">{lesson.ptTitle}</div>
-          </div>
-          <span className="text-[12px] text-[#185FA5] font-medium flex-shrink-0">Start</span>
-        </div>
-      </CardShell>
-    </Link>
-  );
-}
-
-// ─── CEFR Section ───────────────────────────────────────────────────────────
-
-function CefrSection({
+function CEFRLevelCard({
+  level,
   label,
-  lessons: sectionLessons,
-  completed,
-  total,
+  labelPt,
+  progress,
   unlocked,
-  lockMessage,
-  progressMap,
-  sorted,
+  reviewCount,
 }: {
+  level: string;
   label: string;
-  lessons: typeof A1_LESSONS;
-  completed: number;
-  total: number;
+  labelPt: string;
+  progress: CEFRProgress;
   unlocked: boolean;
-  lockMessage: string;
-  progressMap: Record<string, LessonAttemptResult>;
-  sorted: typeof lessons;
+  reviewCount: number;
 }) {
-  const progressPct = total > 0 ? Math.round((completed / total) * 100) : 0;
+  const readinessPct = Math.round(progress.readiness * 100);
+
+  if (!unlocked) {
+    return (
+      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 opacity-60">
+        <div className="flex items-center justify-between mb-2">
+          <div>
+            <h2 className="text-[16px] font-medium text-[#111111]">
+              {level} — {label}
+              <span className="text-[#9B9DA3] font-normal ml-2">{labelPt}</span>
+            </h2>
+          </div>
+          <Lock size={16} className="text-[#9B9DA3]" />
+        </div>
+        <p className="text-[13px] text-[#9B9DA3]">
+          Complete 75% of {level === "A2" ? "A1" : "A2"} to unlock
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="mb-8">
-      <div className="flex items-center justify-between mb-3">
-        <SectionLabel>{label}</SectionLabel>
-        <span className="text-[12px] text-[#9B9DA3]">
-          {completed}/{total} complete
-        </span>
+    <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-[16px] font-medium text-[#111111]">
+          {level} — {label}
+          <span className="text-[#9B9DA3] font-normal ml-2">{labelPt}</span>
+        </h2>
+        <span className="text-[22px] font-medium text-[#111111]">{readinessPct}%</span>
       </div>
 
-      <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mb-4">
+      {/* Progress bar */}
+      <div className="h-2 bg-[rgba(0,0,0,0.06)] rounded-full mb-4">
         <div
-          className="h-full bg-[#185FA5] rounded-full transition-all duration-300"
-          style={{ width: `${progressPct}%` }}
+          className="h-2 bg-[#185FA5] rounded-full transition-all duration-500"
+          style={{ width: `${readinessPct}%` }}
         />
       </div>
 
-      {!unlocked && (
-        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 text-center opacity-60">
-          <Lock size={20} className="text-[#9B9DA3] mx-auto mb-2" />
-          <div className="text-[13px] text-[#9B9DA3]">{lockMessage}</div>
+      {/* Stats */}
+      <div className="flex gap-6 mb-4">
+        <div>
+          <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em]">Items</div>
+          <div className="text-[14px] font-medium text-[#111111]">{progress.totalItems}</div>
         </div>
-      )}
+        <div>
+          <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em]">Mastered</div>
+          <div className="text-[14px] font-medium text-[#0F6E56]">{progress.mastered}</div>
+        </div>
+        <div>
+          <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em]">In progress</div>
+          <div className="text-[14px] font-medium text-[#854F0B]">{progress.familiar + progress.introduced}</div>
+        </div>
+        <div>
+          <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em]">Unseen</div>
+          <div className="text-[14px] font-medium text-[#9B9DA3]">{progress.unseen}</div>
+        </div>
+      </div>
 
-      {unlocked && (
-        <div className="space-y-2">
-          {sectionLessons.map((lesson) => {
-            const state = getLessonState(lesson, progressMap, sorted);
-            const progress = progressMap[lesson.id];
-            return (
-              <LessonCard
-                key={lesson.id}
-                lesson={lesson}
-                state={state}
-                progress={progress}
-                levelLocked={false}
-                lockMessage=""
-              />
-            );
-          })}
-        </div>
-      )}
+      {/* Breakdown bars */}
+      <div className="space-y-1.5 mb-5">
+        <SkillBar label="Vocab" value={progress.vocabProgress} />
+        <SkillBar label="Verbs" value={progress.verbProgress} />
+        <SkillBar label="Grammar" value={progress.grammarProgress} />
+      </div>
+
+      {/* Actions */}
+      <div className="flex gap-3">
+        <Link
+          href={`/lessons/next`}
+          className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
+        >
+          Start next lesson
+          <ArrowRight size={14} />
+        </Link>
+
+        {reviewCount > 0 && (
+          <Link
+            href="/lessons/review"
+            className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
+          >
+            <RotateCcw size={14} />
+            Review {reviewCount} items
+          </Link>
+        )}
+      </div>
     </div>
   );
 }
 
-// ─── Page ───────────────────────────────────────────────────────────────────
+function SkillBar({ label, value }: { label: string; value: number }) {
+  const pct = Math.round(value * 100);
+  return (
+    <div className="flex items-center gap-3">
+      <span className="text-[11px] text-[#9B9DA3] w-14">{label}</span>
+      <div className="flex-1 h-1 bg-[rgba(0,0,0,0.06)] rounded-full">
+        <div
+          className="h-1 bg-[#185FA5] rounded-full transition-all duration-500"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+      <span className="text-[11px] text-[#9B9DA3] w-8 text-right">{pct}%</span>
+    </div>
+  );
+}
+
+// ─── Page ───────────────────────────────────────────────
 
 export default function LessonsPage() {
   const { user, loading: authLoading } = useAuth();
-  const [activeTab, setActiveTab] = useState("Curriculum");
-  const [progressMap, setProgressMap] = useState<
-    Record<string, LessonAttemptResult>
-  >({});
+  const [activeTab, setActiveTab] = useState("Lessons");
+  const [progression, setProgression] = useState<{
+    a1: LevelProgression;
+    a2: LevelProgression;
+    b1: LevelProgression;
+  } | null>(null);
+  const [reviewCount, setReviewCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getLessonProgressMap()
-      .then((map) => {
-        setProgressMap(map);
-      })
-      .catch((err) => {
-        console.error("[LESSONS PAGE] Lesson progress fetch failed:", err);
-      });
-  }, []);
+    async function load() {
+      const supabase = createClient();
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      if (!currentUser) { setLoading(false); return; }
 
-  const sorted = [...lessons].sort((a, b) => a.order - b.order);
-  const a1Completed = A1_LESSONS.filter(
-    (l) => progressMap[l.id]?.completed
-  ).length;
-  const a2Completed = A2_LESSONS.filter(
-    (l) => progressMap[l.id]?.completed
-  ).length;
-  const b1Completed = B1_LESSONS.filter(
-    (l) => progressMap[l.id]?.completed
-  ).length;
-  const a2Unlocked = A1_TOTAL > 0 && a1Completed >= A1_TOTAL;
-  const b1Unlocked = A2_TOTAL > 0 && a2Completed >= A2_TOTAL;
-  const totalCompleted = a1Completed + a2Completed + b1Completed;
+      const prog = await getFullProgression(currentUser.id);
+      setProgression(prog);
+
+      const count = await getReviewCount(currentUser.id);
+      setReviewCount(count);
+
+      setLoading(false);
+    }
+    load();
+  }, []);
 
   const isLoggedIn = !authLoading && !!user;
 
@@ -327,13 +252,13 @@ export default function LessonsPage() {
     <PageShell>
       <PageHeader
         title="Lições"
-        subtitle={`44 lessons · A1 to B1 · ${totalCompleted} completed`}
+        subtitle="Your personalised learning journey"
       />
 
       {/* Tab switcher */}
       <div className="mb-6">
         <SegmentedFilter
-          options={["Curriculum", "Professor Elísio"]}
+          options={["Lessons", "Professor Elísio"]}
           value={activeTab}
           onChange={setActiveTab}
         />
@@ -342,55 +267,52 @@ export default function LessonsPage() {
       {/* Tutor tab */}
       {activeTab === "Professor Elísio" && <TutorTabV2 />}
 
-      {/* Curriculum tab */}
-      {activeTab === "Curriculum" && (
+      {/* Lessons tab */}
+      {activeTab === "Lessons" && (
         <>
           <LessonInfoSection />
 
-          {/* A1 */}
-          <CefrSection
-            label={`A1 — Beginner · ${A1_TOTAL} lessons`}
-            lessons={sorted.filter((l) => l.cefr === "A1")}
-            completed={a1Completed}
-            total={A1_TOTAL}
-            unlocked={true}
-            lockMessage=""
-            progressMap={progressMap}
-            sorted={sorted}
-          />
+          {loading ? (
+            <div className="flex items-center justify-center h-48">
+              <div className="text-[13px] text-[#9B9DA3]">A carregar o progresso...</div>
+            </div>
+          ) : progression ? (
+            <div className="space-y-4">
+              <CEFRLevelCard
+                level="A1"
+                label="Beginner"
+                labelPt="Iniciante"
+                progress={progression.a1.progress}
+                unlocked={progression.a1.unlocked}
+                reviewCount={reviewCount}
+              />
 
-          {/* A2 */}
-          <CefrSection
-            label={`A2 — Elementary · ${A2_TOTAL} lessons`}
-            lessons={sorted.filter((l) => l.cefr === "A2")}
-            completed={a2Completed}
-            total={A2_TOTAL}
-            unlocked={a2Unlocked}
-            lockMessage="Complete all A1 lessons to unlock"
-            progressMap={progressMap}
-            sorted={sorted}
-          />
+              <CEFRLevelCard
+                level="A2"
+                label="Elementary"
+                labelPt="Elementar"
+                progress={progression.a2.progress}
+                unlocked={progression.a2.unlocked}
+                reviewCount={0}
+              />
 
-          {/* B1 */}
-          <CefrSection
-            label={`B1 — Intermediate · ${B1_TOTAL} lessons`}
-            lessons={sorted.filter((l) => l.cefr === "B1")}
-            completed={b1Completed}
-            total={B1_TOTAL}
-            unlocked={b1Unlocked}
-            lockMessage="Complete all A2 lessons to unlock"
-            progressMap={progressMap}
-            sorted={sorted}
-          />
-
-          {/* Auth CTA */}
-          {!isLoggedIn && (
+              <CEFRLevelCard
+                level="B1"
+                label="Intermediate"
+                labelPt="Intermédio"
+                progress={progression.b1.progress}
+                unlocked={progression.b1.unlocked}
+                reviewCount={0}
+              />
+            </div>
+          ) : (
+            /* Not logged in — show CTA */
             <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-8 text-center">
               <p className="text-[14px] font-medium text-[#111111]">
-                Sign in to save your progress
+                Sign in to start learning
               </p>
               <p className="text-[12px] text-[#9B9DA3] mt-1">
-                Inicia sessão para guardar o teu progresso
+                Inicia sessão para começar a aprender
               </p>
               <Link
                 href="/auth/login"
