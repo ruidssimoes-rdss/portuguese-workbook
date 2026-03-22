@@ -38,7 +38,7 @@ export function LessonShell({
   const showProgress = currentState === "sections" || currentState === "learn";
 
   return (
-    <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+    <div>
       <div className="py-5">
         {/* Top bar */}
         <div className="flex items-center justify-between mb-2">
@@ -93,7 +93,7 @@ export function LessonShell({
       {!showProgress && <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] mb-6" />}
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto pb-16">{children}</div>
-    </main>
+      <div className="max-w-2xl mx-auto pb-8">{children}</div>
+    </div>
   );
 }

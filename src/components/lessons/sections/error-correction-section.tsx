@@ -97,7 +97,7 @@ export function ErrorCorrectionSection({ sectionIndex, totalSections, showEnglis
                 type="text"
                 value={answers[s.id] ?? ""}
                 onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                className="w-full text-[14px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
+                className="w-full text-[14px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
                 placeholder="Escreve a frase corrigida..."
                 autoComplete="off" spellCheck={false}
               />
@@ -107,7 +107,7 @@ export function ErrorCorrectionSection({ sectionIndex, totalSections, showEnglis
                   {answers[s.id]}
                 </p>
                 {!r?.correct && <p className="text-[13px] text-[#0F6E56] mt-1">{s.correctSentence}</p>}
-                {r?.accentHint && <p className="text-[11px] text-[#9B9DA3] mt-1">Acento: {r.accentHint}</p>}
+                {r?.accentHint && <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>}
               </div>
             )}
           </div>

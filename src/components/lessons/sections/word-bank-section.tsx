@@ -120,7 +120,7 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
                         ? "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]"
                         : "border-[#dc2626] bg-[#fef2f2] text-[#dc2626]"
                       : i === activeBlank
-                        ? "border-[#185FA5] bg-[rgba(24,95,165,0.05)] text-[#111111]"
+                        ? "border-[#185FA5] bg-[#E6F1FB] text-[#111111]"
                         : filledBlanks[i]
                           ? "border-[rgba(0,0,0,0.06)] text-[#111111] cursor-pointer"
                           : "border-[#9B9DA3] text-[#9B9DA3] cursor-pointer"
@@ -142,10 +142,10 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
       {/* Word bank */}
       {state === "answering" && (
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#9B9DA3] mb-2">
+          <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-2">
             Banco de palavras{showEnglish && " / Word bank"}
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 pt-3 border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
             {paragraph.wordBank.map((word, i) => {
               const isUsed = usedWords.has(word);
               return (
@@ -154,10 +154,10 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
                   type="button"
                   disabled={isUsed}
                   onClick={() => handleWordTap(word)}
-                  className={`px-4 py-2 rounded-full border-[0.5px] text-[14px] font-medium transition-all ${
+                  className={`px-2.5 py-1 rounded-md text-[13px] transition-colors ${
                     isUsed
-                      ? "border-[rgba(0,0,0,0.06)] text-[#9B9DA3] opacity-40"
-                      : "border-[rgba(0,0,0,0.06)] text-[#111111] hover:border-[#185FA5] hover:bg-[rgba(24,95,165,0.05)] cursor-pointer active:scale-95"
+                      ? "bg-[#F7F7F5] text-[#9B9DA3] opacity-40"
+                      : "bg-[#F7F7F5] text-[#111111] hover:bg-[rgba(0,0,0,0.08)] cursor-pointer active:scale-95"
                   }`}
                 >
                   {word}

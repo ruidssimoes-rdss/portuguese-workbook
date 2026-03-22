@@ -101,17 +101,17 @@ export function SentenceBuildSection({ sectionIndex, totalSections, showEnglish,
           </div>
 
           {/* Staging area */}
-          <div className={`border-2 border-dashed rounded-lg p-3 min-h-[48px] mb-3 ${
+          <div className={`border-[0.5px] border-dashed rounded-lg p-3 min-h-[48px] mb-3 flex flex-wrap gap-1.5 ${
             state === "reviewed"
               ? results[s.id] ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"
-              : "border-[rgba(0,0,0,0.06)]"
+              : "border-[rgba(0,0,0,0.12)]"
           }`}>
             {(placed[s.id] ?? []).length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {(placed[s.id] ?? []).map((w, wi) => (
                   <button key={`${w}-${wi}`} type="button" disabled={state === "reviewed"}
                     onClick={() => removeWord(s.id, w, wi)}
-                    className="px-3 py-1.5 rounded-lg text-[14px] font-medium bg-[rgba(24,95,165,0.05)] border-[0.5px] border-[#185FA5] text-[#185FA5] cursor-pointer hover:bg-[#185FA5] hover:text-white transition-all active:scale-95"
+                    className="px-2.5 py-1 rounded-md text-[13px] bg-[#111111] text-white cursor-pointer transition-all active:scale-95"
                   >{w}</button>
                 ))}
               </div>
@@ -128,7 +128,7 @@ export function SentenceBuildSection({ sectionIndex, totalSections, showEnglish,
               {(available[s.id] ?? []).map((w, wi) => (
                 <button key={`${w}-${wi}`} type="button"
                   onClick={() => addWord(s.id, w, wi)}
-                  className="px-3 py-1.5 rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] text-[14px] font-medium text-[#111111] hover:border-[#185FA5] hover:bg-[rgba(24,95,165,0.05)] cursor-pointer transition-all active:scale-95"
+                  className="px-2.5 py-1 rounded-md bg-[#F7F7F5] text-[13px] text-[#111111] hover:bg-[rgba(0,0,0,0.08)] cursor-pointer transition-colors active:scale-95"
                 >{w}</button>
               ))}
             </div>

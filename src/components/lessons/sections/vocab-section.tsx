@@ -107,7 +107,7 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
                   value={answers[q.id] ?? ""}
                   onChange={(e) => setAnswers((prev) => ({ ...prev, [q.id]: e.target.value }))}
                   placeholder={showEnglish ? "Type the English translation..." : "Escreve a tradução..."}
-                  className="w-full text-[14px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
+                  className="w-full text-[14px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
                   autoComplete="off"
                   spellCheck={false}
                 />
@@ -120,7 +120,7 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
                     <p className="text-[13px] text-[#0F6E56] mt-1">{q.englishWord}</p>
                   )}
                   {results[q.id]?.accentHint && (
-                    <p className="text-[12px] text-[#9B9DA3] mt-1">Atenção ao acento: {results[q.id].accentHint}</p>
+                    <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {results[q.id].accentHint}</p>
                   )}
                 </div>
               )}
@@ -136,7 +136,7 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
                   else if (isSelected && !isCorrect) cls = "border-[#dc2626] bg-[#fef2f2]";
                   else cls = "border-[rgba(0,0,0,0.06)] opacity-50";
                 } else if (isSelected) {
-                  cls = "border-[#185FA5] bg-[rgba(24,95,165,0.05)]";
+                  cls = "border-[#185FA5] bg-[#E6F1FB]";
                 }
                 return (
                   <button

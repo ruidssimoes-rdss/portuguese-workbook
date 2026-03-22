@@ -13,6 +13,7 @@ import { useState, use, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 import { ProtectedRoute } from "@/components/protected-route";
+import { PageShell } from "@/components/layout/page-shell";
 import {
   getResolvedLesson,
   getCurriculumLesson,
@@ -507,35 +508,27 @@ function LessonContent({ id }: { id: string }) {
   // Loading dynamic lesson
   if (isDynamic && dynamicLoading) {
     return (
-      <>
-        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
-          <p className="text-[#6C6B71]">A preparar a tua lição...</p>
-        </main>
-      </>
+      <div className="py-16">
+        <p className="text-[13px] text-[#6C6B71]">A preparar a tua lição...</p>
+      </div>
     );
   }
 
   // Not found
   if (!lesson) {
     return (
-      <>
-
-        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
-          <p className="text-[13px] text-[#9B9DA3]">Lição não encontrada.</p>
-          <Link href="/lessons" className="text-[13px] font-medium text-[#185FA5] hover:underline mt-2 inline-block">Voltar às lições</Link>
-        </main>
-      </>
+      <div className="py-16">
+        <p className="text-[13px] text-[#9B9DA3]">Lição não encontrada.</p>
+        <Link href="/lessons" className="text-[13px] font-medium text-[#185FA5] hover:underline mt-2 inline-block">Voltar às lições</Link>
+      </div>
     );
   }
 
   if (!generatedLesson && !showRestorePrompt) {
     return (
-      <>
-
-        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
-          <p className="text-[#6C6B71]">A preparar a lição...</p>
-        </main>
-      </>
+      <div className="py-16">
+        <p className="text-[13px] text-[#6C6B71]">A preparar a lição...</p>
+      </div>
     );
   }
 
@@ -616,18 +609,15 @@ function LessonContent({ id }: { id: string }) {
   // Restore prompt
   if (showRestorePrompt) {
     return (
-      <>
-
-        <LessonShell lessonId={lesson.id} lessonTitle={lesson.title} lessonTitlePt={lesson.ptTitle} cefr={lesson.cefr} currentState="intro">
-          <div className="p-6 rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-[#F7F7F5] text-center">
-            <p className="text-[14px] font-medium text-[#111111] mb-4">Tens progresso guardado nesta lição.</p>
-            <div className="flex items-center justify-center gap-3 flex-wrap">
-              <button type="button" onClick={handleRestore} className="px-4 py-2 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors">Continuar de onde parei</button>
-              <button type="button" onClick={handleStartFresh} className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors">Começar de novo</button>
-            </div>
+      <LessonShell lessonId={lesson.id} lessonTitle={lesson.title} lessonTitlePt={lesson.ptTitle} cefr={lesson.cefr} currentState="intro">
+        <div className="p-6 rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-[#F7F7F5] text-center">
+          <p className="text-[14px] font-medium text-[#111111] mb-4">Tens progresso guardado nesta lição.</p>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <button type="button" onClick={handleRestore} className="px-4 py-2 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors">Continuar de onde parei</button>
+            <button type="button" onClick={handleStartFresh} className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors">Começar de novo</button>
           </div>
-        </LessonShell>
-      </>
+        </div>
+      </LessonShell>
     );
   }
 
@@ -723,7 +713,9 @@ export default function LessonDetailPage({ params }: { params: Promise<{ id: str
   const { id } = use(params);
   return (
     <ProtectedRoute>
-      <LessonContent id={id} />
+      <PageShell>
+        <LessonContent id={id} />
+      </PageShell>
     </ProtectedRoute>
   );
 }

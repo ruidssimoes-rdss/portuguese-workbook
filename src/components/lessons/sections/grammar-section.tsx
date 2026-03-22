@@ -105,7 +105,7 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
                     else if (isSelected && !isCorrectOpt) cls = "border-[#dc2626] bg-[#fef2f2]";
                     else cls = "border-[rgba(0,0,0,0.06)] opacity-50";
                   } else if (isSelected) {
-                    cls = "border-[#185FA5] bg-[rgba(24,95,165,0.05)]";
+                    cls = "border-[#185FA5] bg-[#E6F1FB]";
                   }
                   return (
                     <button key={label} type="button" disabled={state === "reviewed"}
@@ -137,7 +137,7 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
                     else if (isSelected && !isCorrect) cls = "border-[#dc2626] bg-[#fef2f2]";
                     else cls = "border-[rgba(0,0,0,0.06)] opacity-50";
                   } else if (isSelected) {
-                    cls = "border-[#185FA5] bg-[rgba(24,95,165,0.05)]";
+                    cls = "border-[#185FA5] bg-[#E6F1FB]";
                   }
                   return (
                     <button key={oi} type="button" disabled={state === "reviewed"}

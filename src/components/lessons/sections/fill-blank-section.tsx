@@ -92,7 +92,7 @@ export function FillBlankSection({ sectionIndex, totalSections, showEnglish, sen
                   type="text"
                   value={answers[s.id] ?? ""}
                   onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                  className="inline-block w-28 border-b-2 border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] text-center text-[16px] font-medium text-[#111111] bg-transparent outline-none mx-1 transition-colors"
+                  className="inline-block w-28 mx-1 px-2 py-1 text-[14px] font-medium text-center border-b-[1.5px] border-[rgba(0,0,0,0.15)] outline-none focus:border-[#185FA5] bg-transparent transition-colors"
                   autoComplete="off" spellCheck={false}
                   placeholder={s.hint ?? "___"}
                 />
@@ -108,7 +108,7 @@ export function FillBlankSection({ sectionIndex, totalSections, showEnglish, sen
               <p className="text-[13px] text-[#0F6E56] mt-1">Resposta: {s.correctAnswer}</p>
             )}
             {state === "reviewed" && r?.accentHint && (
-              <p className="text-[11px] text-[#9B9DA3] mt-1">Acento: {r.accentHint}</p>
+              <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>
             )}
           </div>
         );
