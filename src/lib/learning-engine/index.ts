@@ -64,3 +64,9 @@ export {
   getFullProgression,
   getCurrentStudyLevel,
 } from "./cefr-readiness";
+
+export {
+  // Adapters
+  adaptGeneratedLesson,
+  adaptReviewSession,
+} from "./lesson-adapter";

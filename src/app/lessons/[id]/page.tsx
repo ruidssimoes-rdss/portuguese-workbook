@@ -38,6 +38,18 @@ import {
   type VerbLearnData,
   type CultureLearnData,
 } from "@/lib/exercise-generator";
+import {
+  generateLesson as generateDynamicLesson,
+  generateReviewSession,
+  adaptGeneratedLesson,
+  adaptReviewSession,
+  getCurrentStudyLevel,
+  batchUpdateMastery,
+  type PracticeItem as LearningPracticeItem,
+  type ContentType,
+  type CEFRLevel as LearningCEFRLevel,
+} from "@/lib/learning-engine";
+import { createClient } from "@/lib/supabase/client";
 import type { SectionResult } from "@/lib/exercise-types";
 import type { VocabItem } from "@/data/lessons";
 
@@ -284,10 +296,21 @@ function loadAILesson(id: string): { lesson: Lesson; exercises: GeneratedLesson 
 
 function LessonContent({ id }: { id: string }) {
   const router = useRouter();
+  const isDynamic = id === "next" || id === "review";
   const isAISession = id.startsWith("ai-session-");
   const aiData = isAISession ? loadAILesson(id) : null;
-  const lesson = isAISession ? (aiData?.lesson ?? null) : getResolvedLesson(id);
-  const curriculumLesson = isAISession ? undefined : getCurriculumLesson(id);
+
+  // Dynamic lesson state (for "next" / "review" routes)
+  const [dynamicLesson, setDynamicLesson] = useState<Lesson | null>(null);
+  const [dynamicPracticeItems, setDynamicPracticeItems] = useState<LearningPracticeItem[]>([]);
+  const [dynamicLoading, setDynamicLoading] = useState(isDynamic);
+
+  const lesson = isDynamic
+    ? dynamicLesson
+    : isAISession
+      ? (aiData?.lesson ?? null)
+      : getResolvedLesson(id);
+  const curriculumLesson = (isAISession || isDynamic) ? undefined : getCurriculumLesson(id);
   const showEnglish = lesson?.cefr === "A1" || lesson?.cefr === "A2";
 
   // State
@@ -314,7 +337,43 @@ function LessonContent({ id }: { id: string }) {
   // Next lesson
   const sortedLessons = getResolvedLessons().sort((a, b) => a.order - b.order);
   const nextLesson = lesson ? sortedLessons.find((l) => l.order === lesson.order + 1) : null;
-  const nextLessonId = nextLesson?.id ?? null;
+  const nextLessonId = isDynamic ? "next" : (nextLesson?.id ?? null);
+
+  // Dynamic lesson generation (for /lessons/next and /lessons/review)
+  useEffect(() => {
+    if (!isDynamic) return;
+    let cancelled = false;
+
+    async function loadDynamic() {
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user || cancelled) return;
+
+        if (id === "next") {
+          const cefr = await getCurrentStudyLevel(user.id);
+          const generated = await generateDynamicLesson(user.id, cefr);
+          if (cancelled) return;
+          const { lesson: adapted, practiceItems } = adaptGeneratedLesson(generated);
+          setDynamicLesson(adapted);
+          setDynamicPracticeItems(practiceItems);
+        } else if (id === "review") {
+          const review = await generateReviewSession(user.id);
+          if (cancelled) return;
+          const { lesson: adapted, practiceItems } = adaptReviewSession(review);
+          setDynamicLesson(adapted);
+          setDynamicPracticeItems(practiceItems);
+        }
+      } catch (e) {
+        console.error("[LESSON] Dynamic generation failed:", e);
+      } finally {
+        if (!cancelled) setDynamicLoading(false);
+      }
+    }
+
+    loadDynamic();
+    return () => { cancelled = true; };
+  }, [isDynamic, id]);
 
   // Initialize
   useEffect(() => {
@@ -333,8 +392,9 @@ function LessonContent({ id }: { id: string }) {
   // Generate on first render (skip for AI sessions — exercises are pre-generated)
   useEffect(() => {
     if (isAISession || !lesson || showRestorePrompt || generatedLesson) return;
+    if (isDynamic && dynamicLoading) return; // wait for dynamic lesson to load
     setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
-  }, [isAISession, lesson, showRestorePrompt, generatedLesson, showEnglish]);
+  }, [isAISession, isDynamic, dynamicLoading, lesson, showRestorePrompt, generatedLesson, showEnglish]);
 
   // Persist session
   useEffect(() => {
@@ -388,6 +448,38 @@ function LessonContent({ id }: { id: string }) {
       logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
       updateStreak().catch(() => {});
 
+      // Track mastery for dynamic lessons
+      if (isDynamic && dynamicPracticeItems.length > 0) {
+        try {
+          const supabase = createClient();
+          const { data: { user } } = await supabase.auth.getUser();
+          if (user) {
+            // Build a set of wrong answers from section results
+            const wrongAnswerSet = new Set<string>();
+            for (const sr of sectionResults) {
+              for (const a of sr.answers) {
+                if (!a.correct) wrongAnswerSet.add(a.correctAnswer.toLowerCase());
+              }
+            }
+
+            // Map practice items to mastery updates
+            // Items not directly tested are marked as "seen" (correct=true for introduction)
+            const masteryResults = dynamicPracticeItems.map((item) => ({
+              contentType: item.contentType,
+              contentId: item.contentId,
+              contentCefr: item.contentCefr,
+              contentCategory: item.contentCategory,
+              wasCorrect: !wrongAnswerSet.has(item.contentId.toLowerCase()),
+              isHighFrequency: item.isHighFrequency,
+            }));
+
+            await batchUpdateMastery(user.id, masteryResults);
+          }
+        } catch (e) {
+          console.error("[LESSON] Mastery tracking failed:", e);
+        }
+      }
+
       const freshMap = await getLessonProgressMap().catch(() => ({}));
       const a1Count = Object.entries(freshMap).filter(([lid, p]) => lid.startsWith("a1-") && p.completed).length;
       const a2Count = Object.entries(freshMap).filter(([lid, p]) => lid.startsWith("a2-") && p.completed).length;
@@ -405,13 +497,24 @@ function LessonContent({ id }: { id: string }) {
     } finally {
       setIsSaving(false);
     }
-  }, [lesson, generatedLesson, sectionResults, accuracy, passed, id]);
+  }, [lesson, generatedLesson, sectionResults, accuracy, passed, id, isDynamic, dynamicPracticeItems]);
 
   useEffect(() => {
     if (lessonState !== "results" || hasSaved.current) return;
     hasSaved.current = true;
     doSave();
   }, [lessonState, doSave]);
+
+  // Loading dynamic lesson
+  if (isDynamic && dynamicLoading) {
+    return (
+      <>
+        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
+          <p className="text-[#6C6B71]">A preparar a tua lição...</p>
+        </main>
+      </>
+    );
+  }
 
   // Not found
   if (!lesson) {
