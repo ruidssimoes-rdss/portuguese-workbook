@@ -4,7 +4,7 @@
  */
 
 import type { CurriculumLesson } from "./curriculum-types";
-import { A1_LESSONS, A2_LESSONS, B1_LESSONS } from "./curriculum";
+import { A1_LESSONS, A2_LESSONS, B1_LESSONS, EXTRA_LESSONS } from "./curriculum";
 import type {
   Lesson,
   LessonStage,
@@ -336,6 +336,7 @@ const ALL_CURRICULUM_LESSONS: CurriculumLesson[] = [
   ...A1_LESSONS,
   ...A2_LESSONS,
   ...B1_LESSONS,
+  ...EXTRA_LESSONS,
 ];
 
 let cachedLessons: Lesson[] | null = null;
