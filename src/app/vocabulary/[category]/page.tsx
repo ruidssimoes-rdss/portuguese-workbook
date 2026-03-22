@@ -62,14 +62,21 @@ function WordRow({ word }: { word: any }) {
   return (
     <ListRow className="group">
       <div className="grid grid-cols-[1fr_1fr_auto] items-center gap-3">
-        <div className="flex items-center gap-1">
-          <span className="text-[14px] font-medium text-[#111111]">
-            {word.portuguese}
-          </span>
-          <AudioButton text={word.portuguese} className="md:opacity-0 md:group-hover:opacity-100" />
-          {word.gender && (
-            <span className="text-[11px] text-[#9B9DA3] ml-0.5 italic">
-              ({word.gender})
+        <div className="flex flex-col">
+          <div className="flex items-center gap-1">
+            <span className="text-[14px] font-medium text-[#111111]">
+              {word.portuguese}
+            </span>
+            <AudioButton text={word.portuguese} className="md:opacity-0 md:group-hover:opacity-100" />
+            {word.gender && (
+              <span className="text-[11px] text-[#9B9DA3] ml-0.5 italic">
+                ({word.gender})
+              </span>
+            )}
+          </div>
+          {word.pronunciation && (
+            <span className="text-[11px] text-[#9B9DA3] font-mono">
+              /{word.pronunciation}/
             </span>
           )}
         </div>
@@ -86,11 +93,22 @@ function WordRow({ word }: { word: any }) {
 
 function WordCard({ word }: { word: any }) {
   return (
-    <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2.5 hover:border-[rgba(0,0,0,0.12)] transition-colors">
+    <div className="group border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2.5 hover:border-[rgba(0,0,0,0.12)] transition-colors">
       <div className="flex items-center justify-between">
         <span className="text-[13px] font-medium text-[#111111]">{word.portuguese}</span>
-        <BadgePill level={word.cefr} />
+        <div className="flex items-center gap-1">
+          <BadgePill level={word.cefr} />
+          <AudioButton
+            text={word.portuguese}
+            className="opacity-100 md:opacity-0 md:group-hover:opacity-100"
+          />
+        </div>
       </div>
+      {word.pronunciation && (
+        <div className="text-[10px] text-[#9B9DA3] font-mono mt-0.5">
+          /{word.pronunciation}/
+        </div>
+      )}
       <div className="text-[12px] text-[#9B9DA3] mt-0.5">{word.english}</div>
     </div>
   );
