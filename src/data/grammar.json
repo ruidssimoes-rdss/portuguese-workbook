@@ -5744,11 +5744,11 @@
     },
     "pronoun-placement": {
       "id": "pronoun-placement",
-      "title": "Pronoun Placement",
-      "titlePt": "Colocação dos Pronomes",
-      "cefr": "A2",
-      "summary": "In EP pronouns go after the verb by default. They go before with não, nunca, já, etc., and in subordinate clauses.",
-      "intro": "In European Portuguese the default is to put the pronoun AFTER the verb (enclitic): Eu vejo-te (I see you). This is a major difference from Brazilian Portuguese. The pronoun goes BEFORE the verb (proclitic) when there is a 'trigger': não, nunca, já, ainda, tudo, quem, que, onde, talvez, oxalá, or words ending in -mente. Example: Não te vejo (I don't see you). In subordinate clauses the pronoun is always before: Sei que te vejo (I know that I see you).",
+      "title": "Pronoun Placement (Clitic Rules)",
+      "titlePt": "Colocação dos Pronomes Clíticos",
+      "cefr": "B1",
+      "summary": "Where to put me, te, o, lhe in a sentence — the rules that make European Portuguese sound European.",
+      "intro": "Clitic pronoun placement is one of the most distinctive features of European Portuguese. In EP, pronouns go AFTER the verb by default (enclisis: 'Chamo-me João'), while in Brazilian Portuguese they go before. Certain trigger words — negation, question words, subordinating conjunctions, adverbs — force the pronoun before the verb (proclisis).\n\nAt B1 level, you should also know about mesoclisis (pronoun in the middle of future/conditional forms) — it's formal and literary, but distinctively Portuguese.",
       "rules": [
         {
           "rule": "Default in EP: pronoun after the verb.",
@@ -5769,6 +5769,14 @@
             {
               "pt": "Ela comprou-o no supermercado.",
               "en": "She bought it at the supermarket."
+            },
+            {
+              "pt": "Chamo-me João.",
+              "en": "My name is João. (default: after verb)"
+            },
+            {
+              "pt": "Dou-te o livro.",
+              "en": "I'll give you the book."
             }
           ]
         },
@@ -5795,17 +5803,64 @@
             {
               "pt": "Já o fiz.",
               "en": "I already did it. (já triggers proclisis)"
+            },
+            {
+              "pt": "Embora o conheça, não confio nele.",
+              "en": "Although I know him, I don't trust him. (embora triggers proclisis)"
+            },
+            {
+              "pt": "Talvez me ajude.",
+              "en": "Maybe he'll help me. (talvez triggers proclisis)"
+            }
+          ]
+        },
+        {
+          "rule": "In compound tenses: pronoun attaches to the auxiliary verb, not the participle.",
+          "rulePt": "Nos tempos compostos: o pronome liga-se ao verbo auxiliar, não ao particípio.",
+          "examples": [
+            {
+              "pt": "Tinha-lhe dito a verdade.",
+              "en": "I had told him the truth."
+            },
+            {
+              "pt": "Não lhe tinha dito nada.",
+              "en": "I hadn't told him anything. (proclisis with não)"
+            },
+            {
+              "pt": "Tínhamo-nos esquecido.",
+              "en": "We had forgotten. (reflexive)"
+            }
+          ]
+        },
+        {
+          "rule": "Mesoclisis: with future and conditional, the pronoun goes IN THE MIDDLE of the verb. Formal/literary.",
+          "rulePt": "Mesóclise: no futuro e condicional, o pronome vai no MEIO do verbo. Formal/literário.",
+          "examples": [
+            {
+              "pt": "Dar-te-ei uma resposta amanhã. (formal)",
+              "en": "I will give you an answer tomorrow."
+            },
+            {
+              "pt": "Fá-lo-ia com prazer. (formal)",
+              "en": "I would do it with pleasure."
+            },
+            {
+              "pt": "Speech: Vou dar-te uma resposta. (what people say)",
+              "en": "I'll give you an answer. (ir + infinitive avoids mesoclisis)"
             }
           ]
         }
       ],
       "tips": [
-        "Não always pulls the pronoun before: Não me digas. Not Digas-me não.",
-        "In subordination (que, se, quando): pronoun before the verb."
+        "If in doubt in spoken EP, put the pronoun AFTER the verb. It's the default and always sounds natural.",
+        "Mesoclisis (pronoun in the middle) sounds extremely formal. You'll see it in writing but almost never hear it in speech. People use ir + infinitive instead.",
+        "Brazilian Portuguese puts pronouns BEFORE the verb by default. If you hear 'Me chamo João', that's BR. EP says 'Chamo-me João'.",
+        "Key proclisis triggers: não/nunca/ninguém (negation), quem/onde/quando/como (question words), que/se/quando/embora/porque (subordinate conjunctions), já/ainda/sempre/também/só/talvez (adverbs)."
       ],
       "tipsPt": [
-        "Não atrai o pronome: Não me digas.",
-        "Em oração subordinada: pronome antes."
+        "Em caso de dúvida, coloca o pronome DEPOIS do verbo — é o padrão em PE.",
+        "A mesóclise é muito formal. Na fala, as pessoas usam ir + infinitivo.",
+        "Em PB, o pronome vem ANTES do verbo por defeito. PE: 'Chamo-me'. PB: 'Me chamo'."
       ],
       "questions": [
         {
@@ -6067,6 +6122,71 @@
           "correctAnswer": "After the verb",
           "correctIndex": 1,
           "explanation": "EP default is enclisis (after the verb): 'Ele disse-me.' Only trigger words move it before."
+        },
+        {
+          "questionText": "Where does the pronoun go in compound tenses?",
+          "questionTextPt": "Onde fica o pronome nos tempos compostos?",
+          "options": [
+            "After the participle",
+            "Before the participle",
+            "With the auxiliary verb",
+            "At the end of the sentence"
+          ],
+          "correctAnswer": "With the auxiliary verb",
+          "correctIndex": 2,
+          "explanation": "In compound tenses, the pronoun attaches to the auxiliary: tinha-lhe dito."
+        },
+        {
+          "questionText": "What is mesoclisis?",
+          "questionTextPt": "O que é a mesóclise?",
+          "options": [
+            "Pronoun after the verb",
+            "Pronoun before the verb",
+            "Pronoun in the middle of the verb",
+            "Pronoun at the start of the sentence"
+          ],
+          "correctAnswer": "Pronoun in the middle of the verb",
+          "correctIndex": 2,
+          "explanation": "Mesoclisis places the pronoun inside the verb: dar-te-ei (I will give you). It occurs with future and conditional forms."
+        },
+        {
+          "questionText": "'Dar-te-ei uma resposta.' — what register is this?",
+          "questionTextPt": "'Dar-te-ei uma resposta.' — que registo é este?",
+          "options": [
+            "Informal/spoken",
+            "Formal/literary",
+            "Brazilian Portuguese",
+            "Slang"
+          ],
+          "correctAnswer": "Formal/literary",
+          "correctIndex": 1,
+          "explanation": "Mesoclisis is formal/literary. In speech: 'Vou dar-te uma resposta.'"
+        },
+        {
+          "questionText": "Does 'embora' trigger proclisis?",
+          "questionTextPt": "'Embora' causa próclise?",
+          "options": [
+            "No",
+            "Yes",
+            "Only in formal writing",
+            "Only with reflexive verbs"
+          ],
+          "correctAnswer": "Yes",
+          "correctIndex": 1,
+          "explanation": "Subordinate conjunctions like embora trigger proclisis: 'Embora o conheça...'"
+        },
+        {
+          "questionText": "How do speakers avoid mesoclisis in everyday EP?",
+          "questionTextPt": "Como os falantes evitam a mesóclise no PE quotidiano?",
+          "options": [
+            "They use proclisis instead",
+            "They use ir + infinitive",
+            "They drop the pronoun",
+            "They use the preterite"
+          ],
+          "correctAnswer": "They use ir + infinitive",
+          "correctIndex": 1,
+          "explanation": "Instead of 'Dar-te-ei' (formal), people say 'Vou dar-te' (ir + infinitive with enclisis)."
         }
       ]
     },
@@ -7006,6 +7126,18 @@
             {
               "pt": "Ontem comi peixe.",
               "en": "Yesterday I ate fish."
+            },
+            {
+              "pt": "Ontem comi pizza.",
+              "en": "Yesterday I ate pizza. (completed action)"
+            },
+            {
+              "pt": "Ele telefonou às três horas.",
+              "en": "He called at three o'clock. (specific time)"
+            },
+            {
+              "pt": "Comprámos um carro novo.",
+              "en": "We bought a new car. (one-time event)"
             }
           ]
         },
@@ -7016,6 +7148,18 @@
             {
               "pt": "Quando era criança, comia peixe.",
               "en": "When I was a child, I used to eat fish."
+            },
+            {
+              "pt": "Quando era criança, comia pizza todos os sábados.",
+              "en": "When I was a child, I ate pizza every Saturday. (habitual)"
+            },
+            {
+              "pt": "O céu estava azul e o sol brilhava.",
+              "en": "The sky was blue and the sun was shining. (description)"
+            },
+            {
+              "pt": "Ela morava em Lisboa quando era jovem.",
+              "en": "She lived in Lisbon when she was young. (ongoing state)"
             }
           ]
         },
@@ -7026,6 +7170,14 @@
             {
               "pt": "Eu dormia quando o telefone tocou.",
               "en": "I was sleeping when the phone rang."
+            },
+            {
+              "pt": "Ele telefonou enquanto eu dormia.",
+              "en": "He called while I was sleeping. (preterite interrupts imperfect)"
+            },
+            {
+              "pt": "Estava a chover quando saí de casa.",
+              "en": "It was raining when I left the house."
             }
           ]
         }
@@ -7233,6 +7385,71 @@
           "correctAnswer": "estudava",
           "correctIndex": 1,
           "explanation": "Estudava = was studying (background). Chegou = arrived (event)."
+        },
+        {
+          "questionText": "'Ontem _____ pizza.' (I ate — completed)",
+          "questionTextPt": "'Ontem _____ pizza.'",
+          "options": [
+            "comia",
+            "comi",
+            "como",
+            "comeria"
+          ],
+          "correctAnswer": "comi",
+          "correctIndex": 1,
+          "explanation": "Completed past action with 'ontem' → preterite: comi."
+        },
+        {
+          "questionText": "'Quando era criança, _____ pizza todos os sábados.' (I used to eat)",
+          "questionTextPt": "'Quando era criança, _____ pizza todos os sábados.'",
+          "options": [
+            "comi",
+            "comia",
+            "como",
+            "comerei"
+          ],
+          "correctAnswer": "comia",
+          "correctIndex": 1,
+          "explanation": "Habitual past action → imperfect: comia."
+        },
+        {
+          "questionText": "'Ele telefonou enquanto eu _____.' (was sleeping)",
+          "questionTextPt": "'Ele telefonou enquanto eu _____.'",
+          "options": [
+            "dormi",
+            "dormia",
+            "durmo",
+            "dormirei"
+          ],
+          "correctAnswer": "dormia",
+          "correctIndex": 1,
+          "explanation": "Ongoing background action interrupted → imperfect: dormia. The interruption (telefonou) is preterite."
+        },
+        {
+          "questionText": "Which tense is used for descriptions of past scenes?",
+          "questionTextPt": "Que tempo se usa para descrever cenas no passado?",
+          "options": [
+            "Preterite",
+            "Imperfect",
+            "Pluperfect",
+            "Future"
+          ],
+          "correctAnswer": "Imperfect",
+          "correctIndex": 1,
+          "explanation": "Scene-setting and descriptions use the imperfect: 'O céu estava azul e o sol brilhava.'"
+        },
+        {
+          "questionText": "'_____ a chover quando saí de casa.' (It was raining)",
+          "questionTextPt": "'_____ a chover quando saí de casa.'",
+          "options": [
+            "Choveu",
+            "Estava",
+            "Chove",
+            "Choverá"
+          ],
+          "correctAnswer": "Estava",
+          "correctIndex": 1,
+          "explanation": "Ongoing situation → imperfect of estar: Estava a chover. The departure (saí) is preterite."
         }
       ]
     },
@@ -7255,6 +7472,18 @@
             {
               "pt": "comeremos",
               "en": "we will eat"
+            },
+            {
+              "pt": "O presidente falará amanhã.",
+              "en": "The president will speak tomorrow. (formal)"
+            },
+            {
+              "pt": "Será verdade?",
+              "en": "Could it be true? (future for conjecture)"
+            },
+            {
+              "pt": "Um dia entenderás.",
+              "en": "One day you'll understand."
             }
           ]
         },
@@ -7269,6 +7498,18 @@
             {
               "pt": "direi",
               "en": "I will say"
+            },
+            {
+              "pt": "Eu direi a verdade.",
+              "en": "I will tell the truth. (dizer → dir-)"
+            },
+            {
+              "pt": "Eles trarão os livros.",
+              "en": "They will bring the books. (trazer → trar-)"
+            },
+            {
+              "pt": "Nós faremos o possível.",
+              "en": "We will do our best. (fazer → far-)"
             }
           ]
         }
@@ -7475,6 +7716,71 @@
           "correctAnswer": "comeremos",
           "correctIndex": 1,
           "explanation": "Comer future: comeremos."
+        },
+        {
+          "questionText": "In spoken EP, which construction replaces the simple future?",
+          "questionTextPt": "No PE falado, que construção substitui o futuro simples?",
+          "options": [
+            "Present tense",
+            "Ir + infinitive",
+            "Conditional",
+            "Subjunctive"
+          ],
+          "correctAnswer": "Ir + infinitive",
+          "correctIndex": 1,
+          "explanation": "In speech, 'Vou falar' (ir + infinitive) is far more common than 'Falarei' (simple future)."
+        },
+        {
+          "questionText": "'Será verdade?' — what does the future express here?",
+          "questionTextPt": "'Será verdade?' — o que exprime o futuro aqui?",
+          "options": [
+            "A definite future event",
+            "A polite request",
+            "Conjecture/probability",
+            "A command"
+          ],
+          "correctAnswer": "Conjecture/probability",
+          "correctIndex": 2,
+          "explanation": "The future can express conjecture: 'Será verdade?' = Could it be true? / I wonder if it's true."
+        },
+        {
+          "questionText": "What is the irregular future stem of 'dizer'?",
+          "questionTextPt": "Qual é o radical irregular do futuro de 'dizer'?",
+          "options": [
+            "diz-",
+            "dizer-",
+            "dir-",
+            "dis-"
+          ],
+          "correctAnswer": "dir-",
+          "correctIndex": 2,
+          "explanation": "Dizer → dir-: direi, dirás, dirá, diremos, dirão."
+        },
+        {
+          "questionText": "'O presidente _____ amanhã.' (will speak — formal)",
+          "questionTextPt": "'O presidente _____ amanhã.'",
+          "options": [
+            "fala",
+            "falou",
+            "falará",
+            "falava"
+          ],
+          "correctAnswer": "falará",
+          "correctIndex": 2,
+          "explanation": "Formal context → simple future: falará."
+        },
+        {
+          "questionText": "Which register typically uses the simple future (falarei)?",
+          "questionTextPt": "Que registo usa tipicamente o futuro simples (falarei)?",
+          "options": [
+            "Casual speech",
+            "Formal writing and news",
+            "Children's language",
+            "Slang"
+          ],
+          "correctAnswer": "Formal writing and news",
+          "correctIndex": 1,
+          "explanation": "The simple future sounds formal/literary in EP. Casual speech uses ir + infinitive."
         }
       ]
     },
@@ -7497,6 +7803,18 @@
             {
               "pt": "comeríamos",
               "en": "we would eat"
+            },
+            {
+              "pt": "Poderia ajudar-me, por favor?",
+              "en": "Could you help me, please? (polite request)"
+            },
+            {
+              "pt": "Gostaria de um café.",
+              "en": "I would like a coffee."
+            },
+            {
+              "pt": "Seria possível mudar a reserva?",
+              "en": "Would it be possible to change the reservation?"
             }
           ]
         },
@@ -7507,6 +7825,18 @@
             {
               "pt": "Poderia ajudar-me?",
               "en": "Could you help me?"
+            },
+            {
+              "pt": "Se tivesse dinheiro, viajaria pelo mundo.",
+              "en": "If I had money, I'd travel the world."
+            },
+            {
+              "pt": "Disse que viria amanhã.",
+              "en": "He said he would come tomorrow. (reported speech)"
+            },
+            {
+              "pt": "Se pudesse, ficaria mais tempo.",
+              "en": "If I could, I'd stay longer."
             }
           ]
         }
@@ -7714,6 +8044,71 @@
           "correctAnswer": "for hypothetical situations",
           "correctIndex": 1,
           "explanation": "Se tivesse... faria = If I had... I would do."
+        },
+        {
+          "questionText": "How do you say 'Could you help me?' politely?",
+          "questionTextPt": "Como se diz 'Could you help me?' de forma educada?",
+          "options": [
+            "Pode ajudar-me?",
+            "Poderia ajudar-me?",
+            "Poderá ajudar-me?",
+            "Pudesse ajudar-me?"
+          ],
+          "correctAnswer": "Poderia ajudar-me?",
+          "correctIndex": 1,
+          "explanation": "The conditional makes requests more polite: poderia (could/would be able to)."
+        },
+        {
+          "questionText": "'Se tivesse dinheiro, _____ pelo mundo.' (I would travel)",
+          "questionTextPt": "'Se tivesse dinheiro, _____ pelo mundo.'",
+          "options": [
+            "viajo",
+            "viajei",
+            "viajaria",
+            "viaje"
+          ],
+          "correctAnswer": "viajaria",
+          "correctIndex": 2,
+          "explanation": "Hypothetical condition (se + imperfect subjunctive) → conditional: viajaria."
+        },
+        {
+          "questionText": "'Disse que _____ amanhã.' (he would come — reported speech)",
+          "questionTextPt": "'Disse que _____ amanhã.'",
+          "options": [
+            "vem",
+            "veio",
+            "viria",
+            "venha"
+          ],
+          "correctAnswer": "viria",
+          "correctIndex": 2,
+          "explanation": "In reported speech, future becomes conditional: virá → viria."
+        },
+        {
+          "questionText": "What is the conditional of 'gostar' (eu)?",
+          "questionTextPt": "Qual é o condicional de 'gostar' (eu)?",
+          "options": [
+            "gostava",
+            "gostaria",
+            "gostei",
+            "goste"
+          ],
+          "correctAnswer": "gostaria",
+          "correctIndex": 1,
+          "explanation": "Regular conditional: infinitive + -ia → gostaria."
+        },
+        {
+          "questionText": "How do you say 'I would like a coffee'?",
+          "questionTextPt": "Como se diz 'I would like a coffee'?",
+          "options": [
+            "Gosto de um café.",
+            "Gostei de um café.",
+            "Gostaria de um café.",
+            "Gostarei de um café."
+          ],
+          "correctAnswer": "Gostaria de um café.",
+          "correctIndex": 2,
+          "explanation": "Polite request using conditional: Gostaria de um café."
         }
       ]
     },
@@ -7993,6 +8388,18 @@
             {
               "pt": "Espero que estejas bem.",
               "en": "I hope you're well."
+            },
+            {
+              "pt": "Quero que faças isto.",
+              "en": "I want you to do this."
+            },
+            {
+              "pt": "Espero que tenhas um bom dia.",
+              "en": "I hope you have a good day."
+            },
+            {
+              "pt": "Desejo que sejam felizes.",
+              "en": "I wish them to be happy."
             }
           ]
         },
@@ -8003,6 +8410,18 @@
             {
               "pt": "Quero que fales.",
               "en": "I want you to speak."
+            },
+            {
+              "pt": "É importante que estudemos.",
+              "en": "It's important that we study."
+            },
+            {
+              "pt": "É necessário que ele venha.",
+              "en": "It's necessary that he comes."
+            },
+            {
+              "pt": "Fico feliz que estejas bem.",
+              "en": "I'm happy you're well."
             }
           ]
         },
@@ -8013,6 +8432,18 @@
             {
               "pt": "Talvez venha amanhã.",
               "en": "Maybe he'll come tomorrow."
+            },
+            {
+              "pt": "Duvido que ele venha.",
+              "en": "I doubt he'll come."
+            },
+            {
+              "pt": "Embora seja difícil, vou tentar.",
+              "en": "Although it's hard, I'll try."
+            },
+            {
+              "pt": "Talvez chova amanhã.",
+              "en": "Maybe it'll rain tomorrow."
             }
           ]
         }
@@ -8220,6 +8651,71 @@
           "correctAnswer": "different subjects (I / he)",
           "correctIndex": 1,
           "explanation": "I want / he come → different subjects."
+        },
+        {
+          "questionText": "'Quero que _____ isto.' (you do — tu)",
+          "questionTextPt": "'Quero que _____ isto.'",
+          "options": [
+            "fazes",
+            "faças",
+            "fizeste",
+            "fazias"
+          ],
+          "correctAnswer": "faças",
+          "correctIndex": 1,
+          "explanation": "Querer que triggers subjunctive: faças (not fazes)."
+        },
+        {
+          "questionText": "'Embora _____ difícil, vou tentar.' (it is)",
+          "questionTextPt": "'Embora _____ difícil, vou tentar.'",
+          "options": [
+            "é",
+            "seja",
+            "era",
+            "será"
+          ],
+          "correctAnswer": "seja",
+          "correctIndex": 1,
+          "explanation": "Embora always triggers subjunctive: seja."
+        },
+        {
+          "questionText": "Which emotion triggers the subjunctive after 'que'?",
+          "questionTextPt": "Que emoção exige conjuntivo depois de 'que'?",
+          "options": [
+            "I know that...",
+            "I think that...",
+            "I'm happy that...",
+            "I see that..."
+          ],
+          "correctAnswer": "I'm happy that...",
+          "correctIndex": 2,
+          "explanation": "Emotions (happy, sad, surprised) + que trigger subjunctive: 'Fico feliz que estejas bem.'"
+        },
+        {
+          "questionText": "'Duvido que ele _____.' (comes — vir)",
+          "questionTextPt": "'Duvido que ele _____.'",
+          "options": [
+            "vem",
+            "venha",
+            "veio",
+            "vinha"
+          ],
+          "correctAnswer": "venha",
+          "correctIndex": 1,
+          "explanation": "Duvidar que (doubt that) triggers subjunctive: venha."
+        },
+        {
+          "questionText": "'É importante que _____.' (we study — nós)",
+          "questionTextPt": "'É importante que _____.'",
+          "options": [
+            "estudamos",
+            "estudemos",
+            "estudámos",
+            "estudávamos"
+          ],
+          "correctAnswer": "estudemos",
+          "correctIndex": 1,
+          "explanation": "Impersonal expressions (é importante que) trigger subjunctive: estudemos."
         }
       ]
     },
@@ -8266,6 +8762,26 @@
             {
               "pt": "Espero que estejas bem.",
               "en": "I hope you're well."
+            },
+            {
+              "pt": "Espero que tenhas um bom dia.",
+              "en": "I hope you have a good day. (ter → tenha)"
+            },
+            {
+              "pt": "É melhor que vás agora.",
+              "en": "It's better that you go now. (ir → vá)"
+            },
+            {
+              "pt": "Quero que saibas a verdade.",
+              "en": "I want you to know the truth. (saber → saiba)"
+            },
+            {
+              "pt": "Embora dê trabalho, vale a pena.",
+              "en": "Although it's hard work, it's worth it. (dar → dê)"
+            },
+            {
+              "pt": "Duvido que ele esteja em casa.",
+              "en": "I doubt he's at home. (estar → esteja)"
             }
           ]
         }
@@ -8473,6 +8989,71 @@
           "correctAnswer": "dê",
           "correctIndex": 1,
           "explanation": "Dar subjunctive: dê (with accent)."
+        },
+        {
+          "questionText": "What is the present subjunctive of 'ter' (eu)?",
+          "questionTextPt": "Qual é o presente do conjuntivo de 'ter' (eu)?",
+          "options": [
+            "tenho",
+            "tinha",
+            "tenha",
+            "terei"
+          ],
+          "correctAnswer": "tenha",
+          "correctIndex": 2,
+          "explanation": "Ter is irregular in the subjunctive: tenha, tenhas, tenha, tenhamos, tenham."
+        },
+        {
+          "questionText": "What is the present subjunctive of 'ir' (eu)?",
+          "questionTextPt": "Qual é o presente do conjuntivo de 'ir' (eu)?",
+          "options": [
+            "vou",
+            "ia",
+            "vá",
+            "irei"
+          ],
+          "correctAnswer": "vá",
+          "correctIndex": 2,
+          "explanation": "Ir is irregular: vá, vás, vá, vamos, vão."
+        },
+        {
+          "questionText": "How do you form the present subjunctive of regular -AR verbs?",
+          "questionTextPt": "Como se forma o presente do conjuntivo de verbos regulares em -AR?",
+          "options": [
+            "Use -o, -as, -a endings",
+            "Use -e, -es, -e endings",
+            "Use -a, -as, -a endings",
+            "Same as present indicative"
+          ],
+          "correctAnswer": "Use -e, -es, -e endings",
+          "correctIndex": 1,
+          "explanation": "-AR verbs 'swap' to -e endings in the subjunctive: fale, fales, fale, falemos, falem."
+        },
+        {
+          "questionText": "'Espero que _____ um bom dia.' (you have — tu, ter)",
+          "questionTextPt": "'Espero que _____ um bom dia.'",
+          "options": [
+            "tens",
+            "tenhas",
+            "tiveste",
+            "tinhas"
+          ],
+          "correctAnswer": "tenhas",
+          "correctIndex": 1,
+          "explanation": "Esperar que triggers subjunctive: tenhas (not tens)."
+        },
+        {
+          "questionText": "What is the present subjunctive of 'saber' (eu)?",
+          "questionTextPt": "Qual é o presente do conjuntivo de 'saber' (eu)?",
+          "options": [
+            "sei",
+            "sabia",
+            "saiba",
+            "saberei"
+          ],
+          "correctAnswer": "saiba",
+          "correctIndex": 2,
+          "explanation": "Saber is irregular in the subjunctive: saiba, saibas, saiba, saibamos, saibam."
         }
       ]
     },
@@ -8491,6 +9072,14 @@
             {
               "pt": "O livro que comprei.",
               "en": "The book (that) I bought."
+            },
+            {
+              "pt": "O homem que vive ali é o meu vizinho.",
+              "en": "The man who lives there is my neighbour."
+            },
+            {
+              "pt": "O filme que vimos ontem era ótimo.",
+              "en": "The film that we saw yesterday was great."
             }
           ]
         },
@@ -8501,6 +9090,14 @@
             {
               "pt": "A pessoa com quem falei.",
               "en": "The person I spoke with."
+            },
+            {
+              "pt": "A pessoa com quem falei era simpática.",
+              "en": "The person I spoke with was nice."
+            },
+            {
+              "pt": "O amigo a quem emprestei o livro devolveu-o.",
+              "en": "The friend to whom I lent the book returned it."
             }
           ]
         },
@@ -8515,6 +9112,14 @@
             {
               "pt": "O homem cuja casa é grande.",
               "en": "The man whose house is big."
+            },
+            {
+              "pt": "A cidade onde nasci é pequena.",
+              "en": "The city where I was born is small."
+            },
+            {
+              "pt": "O professor cujo livro li é famoso.",
+              "en": "The professor whose book I read is famous."
             }
           ]
         }
@@ -8722,16 +9327,81 @@
           "correctAnswer": "cujo/cuja",
           "correctIndex": 2,
           "explanation": "Cujo/cuja/cujos/cujas = whose."
+        },
+        {
+          "questionText": "'O homem _____ vive ali é o meu vizinho.' — which relative pronoun?",
+          "questionTextPt": "'O homem _____ vive ali é o meu vizinho.'",
+          "options": [
+            "quem",
+            "que",
+            "onde",
+            "cujo"
+          ],
+          "correctAnswer": "que",
+          "correctIndex": 1,
+          "explanation": "Que is the most common relative pronoun — it works for both people and things as subject or object."
+        },
+        {
+          "questionText": "'A pessoa com _____ falei era simpática.' — which pronoun?",
+          "questionTextPt": "'A pessoa com _____ falei era simpática.'",
+          "options": [
+            "que",
+            "quem",
+            "onde",
+            "cujo"
+          ],
+          "correctAnswer": "quem",
+          "correctIndex": 1,
+          "explanation": "After prepositions referring to people, use quem: com quem, a quem, de quem."
+        },
+        {
+          "questionText": "'A cidade _____ nasci é pequena.' — which pronoun?",
+          "questionTextPt": "'A cidade _____ nasci é pequena.'",
+          "options": [
+            "que",
+            "quem",
+            "onde",
+            "cujo"
+          ],
+          "correctAnswer": "onde",
+          "correctIndex": 2,
+          "explanation": "Onde is used for places: a cidade onde nasci."
+        },
+        {
+          "questionText": "'O professor _____ livro li é famoso.' — which pronoun?",
+          "questionTextPt": "'O professor _____ livro li é famoso.'",
+          "options": [
+            "que",
+            "quem",
+            "onde",
+            "cujo"
+          ],
+          "correctAnswer": "cujo",
+          "correctIndex": 3,
+          "explanation": "Cujo means 'whose' — it connects a person to something they possess: cujo livro."
+        },
+        {
+          "questionText": "Does 'cujo' agree with the possessor or the thing possessed?",
+          "questionTextPt": "'Cujo' concorda com o possuidor ou a coisa possuída?",
+          "options": [
+            "The possessor",
+            "The thing possessed",
+            "Neither",
+            "Both"
+          ],
+          "correctAnswer": "The thing possessed",
+          "correctIndex": 1,
+          "explanation": "Cujo agrees with the thing possessed: cujo livro (m.), cuja casa (f.), cujos filhos (m.pl.)."
         }
       ]
     },
     "connectors": {
       "id": "connectors",
-      "title": "Connectors",
-      "titlePt": "Conectores",
+      "title": "Conjunctions & Connectors",
+      "titlePt": "Conjunções e Conectores",
       "cefr": "B1",
-      "summary": "Cause (porque, já que), contrast (mas, embora), purpose (para, para que), time (quando, enquanto), result (por isso, portanto).",
-      "intro": "Connectors link ideas. Cause: porque (because), como (since), visto que (given that), já que (since). Contrast: mas (but), porém (however), embora (although), apesar de (despite), no entanto (nevertheless). Purpose: para (to/for), para que (so that), a fim de (in order to). Time: quando (when), enquanto (while), antes de/que (before), depois de/que (after), logo que (as soon as). Addition: e (and), também (also), além disso (moreover), não só...mas também (not only...but also). Result: por isso (therefore), portanto (therefore), assim (thus), então (so/then).",
+      "summary": "Connecting ideas — although, while, since, as long as, so that — the glue that holds complex sentences together.",
+      "intro": "Conjunctions and connectors are the words that link ideas, clauses, and sentences together. Coordinating conjunctions (e, ou, mas) connect equal elements. Subordinating conjunctions (porque, embora, quando, se) create dependent clauses that add meaning to the main clause.\n\nA key B1 skill is knowing which conjunctions trigger the subjunctive — embora, antes que, para que, caso, mesmo que all require it. Mastering these connectors transforms your Portuguese from simple sentences to complex, nuanced expression.",
       "rules": [
         {
           "rule": "Cause: porque, como, já que, visto que.",
@@ -8740,6 +9410,18 @@
             {
               "pt": "Não fui porque estava doente.",
               "en": "I didn't go because I was ill."
+            },
+            {
+              "pt": "Como estava a chover, ficámos em casa.",
+              "en": "Since it was raining, we stayed home."
+            },
+            {
+              "pt": "Já que estás aqui, ajuda-me.",
+              "en": "Since you're here, help me."
+            },
+            {
+              "pt": "Visto que não há alternativa, aceito.",
+              "en": "Given that there's no alternative, I accept."
             }
           ]
         },
@@ -8750,6 +9432,18 @@
             {
               "pt": "É caro, mas vale a pena.",
               "en": "It's expensive, but worth it."
+            },
+            {
+              "pt": "Embora esteja cansado, vou sair.",
+              "en": "Although I'm tired, I'll go out. (subjunctive!)"
+            },
+            {
+              "pt": "Apesar de ser caro, comprei-o.",
+              "en": "Despite it being expensive, I bought it."
+            },
+            {
+              "pt": "Mesmo que chova, vou à praia.",
+              "en": "Even if it rains, I'll go to the beach. (subjunctive!)"
             }
           ]
         },
@@ -8760,17 +9454,65 @@
             {
               "pt": "Choveu. Por isso, fiquei em casa.",
               "en": "It rained. So I stayed home."
+            },
+            {
+              "pt": "Estudei muito, por isso passei no exame.",
+              "en": "I studied a lot, so I passed the exam."
+            },
+            {
+              "pt": "Estava doente, então fiquei em casa.",
+              "en": "I was ill, so I stayed home."
+            }
+          ]
+        },
+        {
+          "rule": "Coordinating conjunctions: e (and), ou (or), mas (but), nem (neither/nor), portanto (therefore), porém/contudo (however).",
+          "rulePt": "Conjunções coordenativas: e, ou, mas, nem, portanto, porém, contudo.",
+          "examples": [
+            {
+              "pt": "Gosto de café mas prefiro chá.",
+              "en": "I like coffee but I prefer tea."
+            },
+            {
+              "pt": "Não tenho fome nem sede.",
+              "en": "I'm neither hungry nor thirsty."
+            },
+            {
+              "pt": "Choveu muito, portanto a estrada está molhada.",
+              "en": "It rained a lot, therefore the road is wet."
+            }
+          ]
+        },
+        {
+          "rule": "Time conjunctions: quando (when), enquanto (while), assim que (as soon as), desde que (since/ever since), até que (until — subjunctive).",
+          "rulePt": "Conjunções temporais: quando, enquanto, assim que, desde que, até que (conjuntivo).",
+          "examples": [
+            {
+              "pt": "Enquanto ele cozinha, eu ponho a mesa.",
+              "en": "While he cooks, I set the table."
+            },
+            {
+              "pt": "Assim que chegar, liga-me.",
+              "en": "As soon as you arrive, call me."
+            },
+            {
+              "pt": "Desde que chegámos, não parou de chover.",
+              "en": "Since we arrived, it hasn't stopped raining."
             }
           ]
         }
       ],
       "tips": [
-        "Porque = because (reason). Por isso = therefore (result). Don't confuse.",
-        "Embora + subjunctive; apesar de + infinitive or noun."
+        "EMBORA is the #1 conjunction that trips up learners because it requires the subjunctive. 'Embora esteja' not *'embora está'.",
+        "'Como' at the start of a sentence means 'since/as'. In the middle, it usually means 'how' or 'like'.",
+        "Many conjunctions trigger the subjunctive: embora, antes que, até que, para que, caso, mesmo que. This is a key B1 skill.",
+        "Porém and contudo mean 'however' and are more formal than mas. No entanto is another alternative.",
+        "Por isso (therefore/so) vs porque (because): por isso gives the RESULT, porque gives the CAUSE."
       ],
       "tipsPt": [
-        "Porque = causa. Por isso = consequência.",
-        "Embora + conjuntivo; apesar de + infinitivo."
+        "Embora exige sempre o conjuntivo: 'Embora esteja cansado'.",
+        "'Como' no início da frase significa 'visto que/já que'.",
+        "Muitas conjunções exigem o conjuntivo: embora, antes que, até que, para que, caso."
       ],
       "questions": [
         {
@@ -8967,6 +9709,71 @@
           "correctAnswer": "since (cause)",
           "correctIndex": 1,
           "explanation": "Já que = since (because)."
+        },
+        {
+          "questionText": "'Embora _____ cansado, vou sair.' — which form?",
+          "questionTextPt": "'Embora _____ cansado, vou sair.'",
+          "options": [
+            "estou",
+            "esteja",
+            "estava",
+            "estarei"
+          ],
+          "correctAnswer": "esteja",
+          "correctIndex": 1,
+          "explanation": "Embora triggers the subjunctive: esteja, not está or estou."
+        },
+        {
+          "questionText": "Which conjunction means 'while'?",
+          "questionTextPt": "Que conjunção significa 'while'?",
+          "options": [
+            "quando",
+            "enquanto",
+            "embora",
+            "porque"
+          ],
+          "correctAnswer": "enquanto",
+          "correctIndex": 1,
+          "explanation": "Enquanto = while. Quando = when. Embora = although."
+        },
+        {
+          "questionText": "'Como estava a chover, ficámos em casa.' — what does 'como' mean here?",
+          "questionTextPt": "O que significa 'como' nesta frase?",
+          "options": [
+            "How",
+            "Like",
+            "Since/As",
+            "When"
+          ],
+          "correctAnswer": "Since/As",
+          "correctIndex": 2,
+          "explanation": "'Como' at the start of a sentence means 'since/as' (giving a reason)."
+        },
+        {
+          "questionText": "Which of these does NOT trigger the subjunctive?",
+          "questionTextPt": "Qual destas NÃO exige o conjuntivo?",
+          "options": [
+            "embora",
+            "porque",
+            "antes que",
+            "para que"
+          ],
+          "correctAnswer": "porque",
+          "correctIndex": 1,
+          "explanation": "Porque (because) takes the indicative. Embora, antes que, and para que all trigger the subjunctive."
+        },
+        {
+          "questionText": "'Não tenho fome ___ sede.' — which conjunction?",
+          "questionTextPt": "'Não tenho fome ___ sede.'",
+          "options": [
+            "e",
+            "ou",
+            "nem",
+            "mas"
+          ],
+          "correctAnswer": "nem",
+          "correctIndex": 2,
+          "explanation": "Nem = neither/nor. Used in negative sentences: não...nem."
         }
       ]
     },
@@ -11559,6 +12366,1128 @@
           "correctAnswer": "por",
           "correctIndex": 1,
           "explanation": "Por indicates duration: for (a period of) two weeks."
+        }
+      ]
+    },
+    "personal-infinitive": {
+      "id": "personal-infinitive",
+      "title": "Personal Infinitive",
+      "titlePt": "Infinitivo Pessoal",
+      "cefr": "B1",
+      "summary": "A uniquely Portuguese feature — the infinitive that conjugates for person. Essential for expressing who does what in complex sentences.",
+      "intro": "The personal infinitive is one of the few grammar features unique to Portuguese. Unlike Spanish, French, or Italian, Portuguese can conjugate the infinitive to show who the subject is. It's used after prepositions, in subordinate clauses, and when the subject of the infinitive is different from the main verb.\n\nThe endings are simple: eu (nothing), tu (-es), ele/ela (nothing), nós (-mos), eles/elas (-em). So for 'falar': falar, falares, falar, falarmos, falarem. The hardest part isn't the formation — it's knowing WHEN to use it.",
+      "rules": [
+        {
+          "rule": "Formation: add endings to the infinitive — eu: ∅, tu: -es, ele: ∅, nós: -mos, eles: -em.",
+          "rulePt": "Formação: adicionar terminações ao infinitivo — eu: ∅, tu: -es, ele: ∅, nós: -mos, eles: -em.",
+          "examples": [
+            {
+              "pt": "É importante falarmos sobre isso.",
+              "en": "It's important for us to talk about this."
+            },
+            {
+              "pt": "Antes de saíres, fecha a porta.",
+              "en": "Before you leave, close the door."
+            },
+            {
+              "pt": "É necessário estudarem mais.",
+              "en": "It's necessary for them to study more."
+            },
+            {
+              "pt": "Pedi para fazermos uma pausa.",
+              "en": "I asked for us to take a break."
+            }
+          ]
+        },
+        {
+          "rule": "Use it when the infinitive has a DIFFERENT subject from the main verb.",
+          "rulePt": "Usar quando o infinitivo tem um sujeito DIFERENTE do verbo principal.",
+          "examples": [
+            {
+              "pt": "Pedi para eles virem mais cedo.",
+              "en": "I asked them to come earlier."
+            },
+            {
+              "pt": "É difícil para nós entendermos.",
+              "en": "It's hard for us to understand."
+            },
+            {
+              "pt": "Ele saiu sem eu saber.",
+              "en": "He left without me knowing."
+            },
+            {
+              "pt": "É melhor vocês ficarem em casa.",
+              "en": "It's better for you to stay home."
+            }
+          ]
+        },
+        {
+          "rule": "Commonly used after prepositions: para, antes de, depois de, sem, ao, apesar de.",
+          "rulePt": "Usado frequentemente após preposições: para, antes de, depois de, sem, ao, apesar de.",
+          "examples": [
+            {
+              "pt": "Sem sabermos a verdade, não podemos decidir.",
+              "en": "Without knowing the truth, we can't decide."
+            },
+            {
+              "pt": "Depois de jantarmos, fomos passear.",
+              "en": "After eating dinner, we went for a walk."
+            },
+            {
+              "pt": "Ao chegarem a casa, começou a chover.",
+              "en": "When they arrived home, it started raining."
+            },
+            {
+              "pt": "Apesar de estarmos cansados, continuámos.",
+              "en": "Despite being tired, we continued."
+            }
+          ]
+        },
+        {
+          "rule": "Same subject = regular infinitive. Different subjects = personal infinitive.",
+          "rulePt": "Mesmo sujeito = infinitivo regular. Sujeitos diferentes = infinitivo pessoal.",
+          "examples": [
+            {
+              "pt": "Quero falar contigo. (same subject: eu)",
+              "en": "I want to talk to you. (regular infinitive)"
+            },
+            {
+              "pt": "É melhor falares com ele. (different: tu)",
+              "en": "It's better for you to talk to him. (personal)"
+            },
+            {
+              "pt": "Preciso de sair. (same subject: eu)",
+              "en": "I need to leave. (regular)"
+            },
+            {
+              "pt": "É preciso saírem agora. (different: eles)",
+              "en": "They need to leave now. (personal)"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "The personal infinitive is one of the hardest things for non-native speakers. Don't worry about perfecting it — even getting it roughly right marks you as an advanced learner.",
+        "In spoken EP, people sometimes skip the personal infinitive and use the regular one. You'll still be understood.",
+        "The nós (-mos) and eles/elas (-em) forms are the most useful — they clearly show who's doing the action. The eu and ele forms look identical to the regular infinitive."
+      ],
+      "tipsPt": [
+        "O infinitivo pessoal é uma das coisas mais difíceis para falantes não-nativos. Não te preocupes em aperfeiçoá-lo.",
+        "Na fala, as pessoas às vezes usam o infinitivo regular em vez do pessoal.",
+        "As formas nós (-mos) e eles (-em) são as mais úteis."
+      ],
+      "questions": [
+        {
+          "questionText": "What are the personal infinitive endings?",
+          "questionTextPt": "Quais são as terminações do infinitivo pessoal?",
+          "options": [
+            "∅, -as, -a, -amos, -am",
+            "∅, -es, ∅, -mos, -em",
+            "-o, -es, -e, -emos, -em",
+            "-ar, -ares, -ar, -armos, -arem"
+          ],
+          "correctAnswer": "∅, -es, ∅, -mos, -em",
+          "correctIndex": 1,
+          "explanation": "Personal infinitive endings: eu (nothing), tu -es, ele (nothing), nós -mos, eles -em."
+        },
+        {
+          "questionText": "When should you use the personal infinitive?",
+          "questionTextPt": "Quando se deve usar o infinitivo pessoal?",
+          "options": [
+            "Always after prepositions",
+            "When the infinitive has a different subject from the main verb",
+            "Only in formal writing",
+            "When the verb is irregular"
+          ],
+          "correctAnswer": "When the infinitive has a different subject from the main verb",
+          "correctIndex": 1,
+          "explanation": "Use the personal infinitive when the subject of the infinitive differs from the main verb's subject."
+        },
+        {
+          "questionText": "'É importante _____ sobre isso.' (for us to talk)",
+          "questionTextPt": "'É importante _____ sobre isso.' (para nós falarmos)",
+          "options": [
+            "falar",
+            "falarmos",
+            "falamos",
+            "falarem"
+          ],
+          "correctAnswer": "falarmos",
+          "correctIndex": 1,
+          "explanation": "We (nós) are the subject → falarmos (personal infinitive with -mos)."
+        },
+        {
+          "questionText": "'Antes de _____, fecha a porta.' (before you leave)",
+          "questionTextPt": "'Antes de _____, fecha a porta.' (antes de tu saíres)",
+          "options": [
+            "sair",
+            "saíres",
+            "saímos",
+            "saírem"
+          ],
+          "correctAnswer": "saíres",
+          "correctIndex": 1,
+          "explanation": "Tu is the subject → saíres (personal infinitive with -es)."
+        },
+        {
+          "questionText": "Which sentence uses the personal infinitive correctly?",
+          "questionTextPt": "Que frase usa o infinitivo pessoal corretamente?",
+          "options": [
+            "Quero falarmos contigo.",
+            "Pedi para eles virem mais cedo.",
+            "Preciso de estudarmos.",
+            "Gosto de comermos."
+          ],
+          "correctAnswer": "Pedi para eles virem mais cedo.",
+          "correctIndex": 1,
+          "explanation": "Different subjects: eu (asked) + eles (to come) → virem. The others incorrectly use personal infinitive when subjects are the same."
+        },
+        {
+          "questionText": "'Sem _____ a verdade, não podemos decidir.' (without us knowing)",
+          "questionTextPt": "'Sem _____ a verdade, não podemos decidir.'",
+          "options": [
+            "saber",
+            "sabermos",
+            "sabemos",
+            "saberem"
+          ],
+          "correctAnswer": "sabermos",
+          "correctIndex": 1,
+          "explanation": "Nós is the implicit subject → sabermos."
+        },
+        {
+          "questionText": "'Depois de _____, fomos passear.' (after we had dinner)",
+          "questionTextPt": "'Depois de _____, fomos passear.'",
+          "options": [
+            "jantar",
+            "jantarmos",
+            "jantamos",
+            "jantarem"
+          ],
+          "correctAnswer": "jantarmos",
+          "correctIndex": 1,
+          "explanation": "Nós is the subject of both clauses, but after 'depois de' the personal infinitive clarifies: jantarmos."
+        },
+        {
+          "questionText": "Is the personal infinitive unique to Portuguese?",
+          "questionTextPt": "O infinitivo pessoal é exclusivo do português?",
+          "options": [
+            "No, Spanish has it too",
+            "No, all Romance languages have it",
+            "Yes, it's uniquely Portuguese",
+            "No, Italian has it too"
+          ],
+          "correctAnswer": "Yes, it's uniquely Portuguese",
+          "correctIndex": 2,
+          "explanation": "The personal (inflected) infinitive is a distinctive feature of Portuguese — no other major Romance language has it."
+        },
+        {
+          "questionText": "'Ao _____ a casa, começou a chover.' (when they arrived)",
+          "questionTextPt": "'Ao _____ a casa, começou a chover.'",
+          "options": [
+            "chegar",
+            "chegarem",
+            "chegamos",
+            "chegares"
+          ],
+          "correctAnswer": "chegarem",
+          "correctIndex": 1,
+          "explanation": "Eles is the subject → chegarem (personal infinitive with -em)."
+        },
+        {
+          "questionText": "Why doesn't 'Quero falar contigo' need the personal infinitive?",
+          "questionTextPt": "Porque é que 'Quero falar contigo' não precisa do infinitivo pessoal?",
+          "options": [
+            "Because falar is regular",
+            "Because the subject is the same (eu) for both verbs",
+            "Because it's informal",
+            "Because there's no preposition"
+          ],
+          "correctAnswer": "Because the subject is the same (eu) for both verbs",
+          "correctIndex": 1,
+          "explanation": "Same subject (eu quero + eu falar) → regular infinitive. Personal infinitive is for different subjects."
+        },
+        {
+          "questionText": "'É melhor _____ em casa.' (for you all to stay)",
+          "questionTextPt": "'É melhor _____ em casa.' (vocês ficarem)",
+          "options": [
+            "ficar",
+            "ficares",
+            "ficarem",
+            "ficarmos"
+          ],
+          "correctAnswer": "ficarem",
+          "correctIndex": 2,
+          "explanation": "Vocês/eles is the subject → ficarem."
+        },
+        {
+          "questionText": "Which preposition does NOT commonly precede the personal infinitive?",
+          "questionTextPt": "Que preposição NÃO precede habitualmente o infinitivo pessoal?",
+          "options": [
+            "sem",
+            "para",
+            "com",
+            "depois de"
+          ],
+          "correctAnswer": "com",
+          "correctIndex": 2,
+          "explanation": "Para, sem, antes de, depois de, ao, apesar de commonly precede it. 'Com' is not typical."
+        },
+        {
+          "questionText": "'Ele saiu sem eu _____.' (without me knowing)",
+          "questionTextPt": "'Ele saiu sem eu _____.'",
+          "options": [
+            "saber",
+            "saiba",
+            "sei",
+            "sabendo"
+          ],
+          "correctAnswer": "saber",
+          "correctIndex": 0,
+          "explanation": "Eu form of the personal infinitive is identical to the regular infinitive: saber (eu saber = saber)."
+        },
+        {
+          "questionText": "Which forms of the personal infinitive look identical to the regular infinitive?",
+          "questionTextPt": "Que formas do infinitivo pessoal são iguais ao infinitivo regular?",
+          "options": [
+            "tu and nós",
+            "eu and ele/ela",
+            "nós and eles",
+            "All of them"
+          ],
+          "correctAnswer": "eu and ele/ela",
+          "correctIndex": 1,
+          "explanation": "Eu and ele/ela have no added ending, so they look the same as the regular infinitive."
+        },
+        {
+          "questionText": "'Apesar de _____ cansados, continuámos.' (despite being — us)",
+          "questionTextPt": "'Apesar de _____ cansados, continuámos.'",
+          "options": [
+            "estar",
+            "estarmos",
+            "estamos",
+            "estarem"
+          ],
+          "correctAnswer": "estarmos",
+          "correctIndex": 1,
+          "explanation": "Nós is the subject → estarmos (personal infinitive of estar)."
+        }
+      ]
+    },
+    "passive-voice": {
+      "id": "passive-voice",
+      "title": "Passive Voice",
+      "titlePt": "Voz Passiva",
+      "cefr": "B1",
+      "summary": "How to say 'the book was written by...' — shifting focus from who did it to what was done.",
+      "intro": "The passive voice shifts focus from who performs the action to what receives it. Instead of 'Saramago wrote the book' (active), you say 'The book was written by Saramago' (passive). Portuguese has two ways to form the passive: the 'ser' passive (formal, clear) and the 'se' passive (more natural in everyday EP).\n\nThe 'se' passive is everywhere in Portugal — on signs ('Vendem-se apartamentos'), in newspapers, and in conversation. It's often more natural than the 'ser' passive, which can sound formal or translated from English.",
+      "rules": [
+        {
+          "rule": "Ser passive: ser (conjugated) + past participle (agrees in gender/number). Agent introduced with 'por'.",
+          "rulePt": "Passiva com ser: ser (conjugado) + particípio passado (concorda em género/número). Agente com 'por'.",
+          "examples": [
+            {
+              "pt": "O livro foi escrito por Saramago.",
+              "en": "The book was written by Saramago."
+            },
+            {
+              "pt": "A casa foi construída em 1900.",
+              "en": "The house was built in 1900."
+            },
+            {
+              "pt": "As cartas foram enviadas ontem.",
+              "en": "The letters were sent yesterday."
+            },
+            {
+              "pt": "Os alunos foram avaliados pelo professor.",
+              "en": "The students were evaluated by the teacher."
+            }
+          ]
+        },
+        {
+          "rule": "The passive works in any tense by changing 'ser': present, preterite, imperfect, future, etc.",
+          "rulePt": "A passiva funciona em qualquer tempo, alterando 'ser': presente, pretérito, imperfeito, futuro, etc.",
+          "examples": [
+            {
+              "pt": "O jantar é preparado pela minha mãe.",
+              "en": "Dinner is prepared by my mother. (present)"
+            },
+            {
+              "pt": "O ladrão foi apanhado pela polícia.",
+              "en": "The thief was caught by the police. (preterite)"
+            },
+            {
+              "pt": "As aulas eram dadas em português.",
+              "en": "The classes were given in Portuguese. (imperfect)"
+            },
+            {
+              "pt": "O projeto será concluído em maio.",
+              "en": "The project will be completed in May. (future)"
+            }
+          ]
+        },
+        {
+          "rule": "Se passive: verb + se. Much more common in everyday EP. The verb agrees with the subject.",
+          "rulePt": "Passiva com 'se': verbo + se. Muito mais comum no PE quotidiano.",
+          "examples": [
+            {
+              "pt": "Fala-se português.",
+              "en": "Portuguese is spoken. (lit: one speaks Portuguese)"
+            },
+            {
+              "pt": "Vendem-se apartamentos.",
+              "en": "Apartments for sale. (lit: apartments sell themselves)"
+            },
+            {
+              "pt": "Aluga-se quarto.",
+              "en": "Room for rent."
+            },
+            {
+              "pt": "Aqui come-se bem.",
+              "en": "You eat well here. / The food is good here."
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "The 'se' passive is MUCH more common in everyday EP than 'ser + past participle'. Prioritise learning the 'se' construction.",
+        "Past participles must agree in gender and number with the subject: escrito/escrita/escritos/escritas.",
+        "Common irregular past participles: fazer → feito, dizer → dito, ver → visto, abrir → aberto, escrever → escrito, pôr → posto.",
+        "On signs and ads, the 'se' passive is standard: 'Procura-se empregado' (Employee wanted), 'Aceita-se cartão' (Cards accepted)."
+      ],
+      "tipsPt": [
+        "A passiva com 'se' é muito mais comum no PE do que a passiva com 'ser'.",
+        "Os particípios passados concordam em género e número com o sujeito.",
+        "Em anúncios, a passiva com 'se' é padrão: 'Vendem-se apartamentos'."
+      ],
+      "questions": [
+        {
+          "questionText": "How do you say 'The book was written by Saramago'?",
+          "questionTextPt": "Como se diz 'The book was written by Saramago'?",
+          "options": [
+            "O livro escreveu Saramago.",
+            "O livro foi escrito por Saramago.",
+            "O livro está escrito por Saramago.",
+            "O livro era escrito Saramago."
+          ],
+          "correctAnswer": "O livro foi escrito por Saramago.",
+          "correctIndex": 1,
+          "explanation": "Ser passive: ser (preterite: foi) + past participle (escrito) + por + agent."
+        },
+        {
+          "questionText": "What does 'Vendem-se apartamentos' mean?",
+          "questionTextPt": "O que significa 'Vendem-se apartamentos'?",
+          "options": [
+            "They sold apartments",
+            "Apartments for sale",
+            "We sell apartments",
+            "Apartments are sold out"
+          ],
+          "correctAnswer": "Apartments for sale",
+          "correctIndex": 1,
+          "explanation": "Se passive: Vendem-se = are sold/for sale. The verb agrees with apartamentos (plural)."
+        },
+        {
+          "questionText": "Which passive construction is more common in everyday EP?",
+          "questionTextPt": "Qual construção passiva é mais comum no PE do dia a dia?",
+          "options": [
+            "Ser + past participle",
+            "Estar + past participle",
+            "Se passive",
+            "Ter + past participle"
+          ],
+          "correctAnswer": "Se passive",
+          "correctIndex": 2,
+          "explanation": "The se passive is much more natural in everyday EP: 'Fala-se português', 'Come-se bem aqui'."
+        },
+        {
+          "questionText": "'A casa ___ construída em 1900.' — fill in:",
+          "questionTextPt": "'A casa ___ construída em 1900.'",
+          "options": [
+            "é",
+            "foi",
+            "está",
+            "tem"
+          ],
+          "correctAnswer": "foi",
+          "correctIndex": 1,
+          "explanation": "Preterite passive: foi construída (was built — completed past action)."
+        },
+        {
+          "questionText": "What is the past participle of 'fazer'?",
+          "questionTextPt": "Qual é o particípio passado de 'fazer'?",
+          "options": [
+            "fazido",
+            "feito",
+            "fazendo",
+            "fez"
+          ],
+          "correctAnswer": "feito",
+          "correctIndex": 1,
+          "explanation": "Fazer has an irregular past participle: feito (done/made)."
+        },
+        {
+          "questionText": "'As cartas foram ___ ontem.' (sent)",
+          "questionTextPt": "'As cartas foram ___ ontem.'",
+          "options": [
+            "enviado",
+            "enviada",
+            "enviados",
+            "enviadas"
+          ],
+          "correctAnswer": "enviadas",
+          "correctIndex": 3,
+          "explanation": "The participle agrees with 'as cartas' (feminine plural): enviadas."
+        },
+        {
+          "questionText": "How do you say 'Portuguese is spoken here' using the se passive?",
+          "questionTextPt": "Como se diz 'Portuguese is spoken here' com passiva de 'se'?",
+          "options": [
+            "Aqui é falado português.",
+            "Aqui fala-se português.",
+            "Aqui se fala português.",
+            "Português fala aqui."
+          ],
+          "correctAnswer": "Aqui fala-se português.",
+          "correctIndex": 1,
+          "explanation": "Se passive with EP word order: Aqui fala-se português."
+        },
+        {
+          "questionText": "'O jantar ___ preparado pela minha mãe.' (is — habitual)",
+          "questionTextPt": "'O jantar ___ preparado pela minha mãe.'",
+          "options": [
+            "foi",
+            "é",
+            "era",
+            "será"
+          ],
+          "correctAnswer": "é",
+          "correctIndex": 1,
+          "explanation": "Present passive for habitual action: é preparado (is prepared)."
+        },
+        {
+          "questionText": "What word introduces the agent in the ser passive?",
+          "questionTextPt": "Que palavra introduz o agente na passiva com 'ser'?",
+          "options": [
+            "de",
+            "para",
+            "por",
+            "com"
+          ],
+          "correctAnswer": "por",
+          "correctIndex": 2,
+          "explanation": "The agent in the passive is introduced by 'por': escrito POR Saramago."
+        },
+        {
+          "questionText": "'Aluga-se quarto' — is 'quarto' singular or plural?",
+          "questionTextPt": "'Aluga-se quarto' — 'quarto' é singular ou plural?",
+          "options": [
+            "Plural",
+            "Singular",
+            "Both",
+            "It doesn't matter"
+          ],
+          "correctAnswer": "Singular",
+          "correctIndex": 1,
+          "explanation": "Singular: aluga-se (one room). If plural: alugam-se quartos."
+        },
+        {
+          "questionText": "What is the past participle of 'ver'?",
+          "questionTextPt": "Qual é o particípio passado de 'ver'?",
+          "options": [
+            "vido",
+            "visto",
+            "vendo",
+            "viu"
+          ],
+          "correctAnswer": "visto",
+          "correctIndex": 1,
+          "explanation": "Ver has an irregular past participle: visto (seen)."
+        },
+        {
+          "questionText": "'O projeto ___ concluído em maio.' (will be)",
+          "questionTextPt": "'O projeto ___ concluído em maio.'",
+          "options": [
+            "foi",
+            "é",
+            "será",
+            "era"
+          ],
+          "correctAnswer": "será",
+          "correctIndex": 2,
+          "explanation": "Future passive: será concluído (will be completed)."
+        },
+        {
+          "questionText": "How would you see 'Room for rent' on a sign in Portugal?",
+          "questionTextPt": "Como se vê 'Room for rent' num anúncio em Portugal?",
+          "options": [
+            "Quarto é alugado.",
+            "Quarto para alugar.",
+            "Aluga-se quarto.",
+            "Alugando quarto."
+          ],
+          "correctAnswer": "Aluga-se quarto.",
+          "correctIndex": 2,
+          "explanation": "Signs in Portugal use the se passive: Aluga-se quarto."
+        },
+        {
+          "questionText": "'As aulas ___ dadas em português.' (were — habitual past)",
+          "questionTextPt": "'As aulas ___ dadas em português.'",
+          "options": [
+            "foram",
+            "eram",
+            "são",
+            "serão"
+          ],
+          "correctAnswer": "eram",
+          "correctIndex": 1,
+          "explanation": "Imperfect passive for habitual past: eram dadas (used to be given)."
+        },
+        {
+          "questionText": "What is the past participle of 'abrir'?",
+          "questionTextPt": "Qual é o particípio passado de 'abrir'?",
+          "options": [
+            "abrido",
+            "aberto",
+            "abrindo",
+            "abriu"
+          ],
+          "correctAnswer": "aberto",
+          "correctIndex": 1,
+          "explanation": "Abrir has an irregular past participle: aberto (opened)."
+        }
+      ]
+    },
+    "reported-speech": {
+      "id": "reported-speech",
+      "title": "Reported Speech",
+      "titlePt": "Discurso Indireto",
+      "cefr": "B1",
+      "summary": "How to report what someone said — 'She said that...' 'He told me that...' — and the tense shifts involved.",
+      "intro": "Reported speech (discurso indireto) is how you relay what someone else said without quoting them directly. Instead of 'He said: \"I'm tired\"' (direct speech), you say 'He said that he was tired' (reported speech).\n\nThe key challenge is tense shifting: when the reporting verb is in the past (disse, contou), the tenses in the reported clause shift back. Present becomes imperfect, preterite becomes pluperfect, and future becomes conditional.",
+      "rules": [
+        {
+          "rule": "Basic structure: dizer/contar/perguntar + que + shifted tense.",
+          "rulePt": "Estrutura básica: dizer/contar/perguntar + que + tempo ajustado.",
+          "examples": [
+            {
+              "pt": "\"Estou cansado.\" → Ele disse que estava cansado.",
+              "en": "\"I'm tired.\" → He said he was tired."
+            },
+            {
+              "pt": "\"Vou ao Porto.\" → Ela disse que ia ao Porto.",
+              "en": "\"I'm going to Porto.\" → She said she was going to Porto."
+            },
+            {
+              "pt": "\"Gosto de café.\" → Disse que gostava de café.",
+              "en": "\"I like coffee.\" → He said he liked coffee."
+            }
+          ]
+        },
+        {
+          "rule": "Tense shifts: Present → Imperfect. Preterite → Pluperfect. Future/ir+inf → Conditional/ia+inf.",
+          "rulePt": "Mudanças de tempo: Presente → Imperfeito. Pretérito → Mais-que-perfeito. Futuro → Condicional.",
+          "examples": [
+            {
+              "pt": "\"Tenho fome.\" → Disse que tinha fome.",
+              "en": "Present → Imperfect"
+            },
+            {
+              "pt": "\"Comprei um carro.\" → Disse que tinha comprado um carro.",
+              "en": "Preterite → Pluperfect"
+            },
+            {
+              "pt": "\"Vou viajar.\" → Disse que ia viajar.",
+              "en": "Ir + infinitive → ia + infinitive"
+            },
+            {
+              "pt": "\"Farei isso.\" → Disse que faria isso.",
+              "en": "Future → Conditional"
+            }
+          ]
+        },
+        {
+          "rule": "Time/place shifts: hoje → naquele dia, amanhã → no dia seguinte, aqui → ali/lá, ontem → no dia anterior.",
+          "rulePt": "Mudanças de tempo/lugar: hoje → naquele dia, amanhã → no dia seguinte, aqui → ali, ontem → no dia anterior.",
+          "examples": [
+            {
+              "pt": "\"Venho amanhã.\" → Disse que vinha no dia seguinte.",
+              "en": "\"I'll come tomorrow.\" → He said he was coming the next day."
+            },
+            {
+              "pt": "\"Estou aqui.\" → Disse que estava ali.",
+              "en": "\"I'm here.\" → He said he was there."
+            },
+            {
+              "pt": "\"Fiz isso ontem.\" → Disse que tinha feito isso no dia anterior.",
+              "en": "\"I did that yesterday.\" → He said he had done that the day before."
+            }
+          ]
+        },
+        {
+          "rule": "Reported questions: perguntar + se (yes/no) or perguntar + question word (quem, onde, quando, como).",
+          "rulePt": "Perguntas indiretas: perguntar + se (sim/não) ou perguntar + palavra interrogativa.",
+          "examples": [
+            {
+              "pt": "\"Estás bem?\" → Perguntou se eu estava bem.",
+              "en": "\"Are you OK?\" → He asked if I was OK."
+            },
+            {
+              "pt": "\"Onde moras?\" → Perguntou onde eu morava.",
+              "en": "\"Where do you live?\" → He asked where I lived."
+            },
+            {
+              "pt": "\"Quem fez isso?\" → Perguntou quem tinha feito isso.",
+              "en": "\"Who did that?\" → He asked who had done that."
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "In casual spoken EP, people often don't shift tenses fully. 'Ele disse que está cansado' (present kept) is common, even though 'estava' is technically correct.",
+        "The word 'que' is almost always required after dizer/contar. Don't drop it like English sometimes drops 'that'.",
+        "For reported questions, never use a question mark — it's a statement about what was asked, not a question itself."
+      ],
+      "tipsPt": [
+        "Na fala informal, as pessoas muitas vezes não fazem todas as mudanças de tempo.",
+        "A palavra 'que' é quase sempre necessária depois de dizer/contar.",
+        "Nas perguntas indiretas, nunca se usa ponto de interrogação."
+      ],
+      "questions": [
+        {
+          "questionText": "'\"Estou cansado.\"' → How do you report this?",
+          "questionTextPt": "'\"Estou cansado.\"' → Como se relata?",
+          "options": [
+            "Disse que está cansado.",
+            "Disse que estava cansado.",
+            "Disse que esteve cansado.",
+            "Disse que estará cansado."
+          ],
+          "correctAnswer": "Disse que estava cansado.",
+          "correctIndex": 1,
+          "explanation": "Present shifts to imperfect in reported speech: está → estava."
+        },
+        {
+          "questionText": "What tense does the present become in reported speech?",
+          "questionTextPt": "Em que tempo se transforma o presente no discurso indireto?",
+          "options": [
+            "Preterite",
+            "Imperfect",
+            "Future",
+            "Conditional"
+          ],
+          "correctAnswer": "Imperfect",
+          "correctIndex": 1,
+          "explanation": "Present → Imperfect: 'Estou' → 'Disse que estava'."
+        },
+        {
+          "questionText": "'\"Comprei um carro.\"' → How do you report this?",
+          "questionTextPt": "'\"Comprei um carro.\"' → Como se relata?",
+          "options": [
+            "Disse que comprou um carro.",
+            "Disse que comprava um carro.",
+            "Disse que tinha comprado um carro.",
+            "Disse que comprará um carro."
+          ],
+          "correctAnswer": "Disse que tinha comprado um carro.",
+          "correctIndex": 2,
+          "explanation": "Preterite shifts to pluperfect: comprei → tinha comprado."
+        },
+        {
+          "questionText": "How do you report a yes/no question?",
+          "questionTextPt": "Como se relata uma pergunta de sim/não?",
+          "options": [
+            "perguntar + que",
+            "perguntar + se",
+            "perguntar + como",
+            "perguntar + qual"
+          ],
+          "correctAnswer": "perguntar + se",
+          "correctIndex": 1,
+          "explanation": "'Estás bem?' → Perguntou SE eu estava bem."
+        },
+        {
+          "questionText": "'\"Vou viajar.\"' → Report using past reporting verb:",
+          "questionTextPt": "'\"Vou viajar.\"' → Relatar no passado:",
+          "options": [
+            "Disse que vai viajar.",
+            "Disse que ia viajar.",
+            "Disse que foi viajar.",
+            "Disse que irá viajar."
+          ],
+          "correctAnswer": "Disse que ia viajar.",
+          "correctIndex": 1,
+          "explanation": "Ir + infinitive shifts to ia + infinitive: vou → ia."
+        },
+        {
+          "questionText": "'Amanhã' in reported speech becomes:",
+          "questionTextPt": "'Amanhã' no discurso indireto torna-se:",
+          "options": [
+            "hoje",
+            "ontem",
+            "no dia seguinte",
+            "no dia anterior"
+          ],
+          "correctAnswer": "no dia seguinte",
+          "correctIndex": 2,
+          "explanation": "Tomorrow → the next day: amanhã → no dia seguinte."
+        },
+        {
+          "questionText": "'\"Onde moras?\"' → How do you report this?",
+          "questionTextPt": "'\"Onde moras?\"' → Como se relata?",
+          "options": [
+            "Perguntou onde moro.",
+            "Perguntou se eu morava.",
+            "Perguntou onde eu morava.",
+            "Perguntou onde eu moro?"
+          ],
+          "correctAnswer": "Perguntou onde eu morava.",
+          "correctIndex": 2,
+          "explanation": "Reported question with question word: perguntou onde + shifted tense. No question mark."
+        },
+        {
+          "questionText": "Should you use a question mark in reported questions?",
+          "questionTextPt": "Deve-se usar ponto de interrogação nas perguntas indiretas?",
+          "options": [
+            "Yes, always",
+            "Only for yes/no questions",
+            "No, never",
+            "Only in formal writing"
+          ],
+          "correctAnswer": "No, never",
+          "correctIndex": 2,
+          "explanation": "Reported questions are statements about what was asked — no question mark."
+        },
+        {
+          "questionText": "What does the future tense become in reported speech?",
+          "questionTextPt": "Em que se transforma o futuro no discurso indireto?",
+          "options": [
+            "Imperfect",
+            "Present",
+            "Conditional",
+            "Pluperfect"
+          ],
+          "correctAnswer": "Conditional",
+          "correctIndex": 2,
+          "explanation": "Future → Conditional: 'Farei' → 'Disse que faria'."
+        },
+        {
+          "questionText": "'\"Gosto de café.\"' → Report it:",
+          "questionTextPt": "'\"Gosto de café.\"' → Relatar:",
+          "options": [
+            "Disse que gosto de café.",
+            "Disse que gostava de café.",
+            "Disse que gostou de café.",
+            "Disse que gostará de café."
+          ],
+          "correctAnswer": "Disse que gostava de café.",
+          "correctIndex": 1,
+          "explanation": "Present → Imperfect: gosto → gostava."
+        },
+        {
+          "questionText": "Can you drop 'que' after 'disse' in Portuguese?",
+          "questionTextPt": "Pode-se omitir 'que' depois de 'disse'?",
+          "options": [
+            "Yes, like in English",
+            "No, 'que' is almost always required",
+            "Only in informal speech",
+            "Only with perguntar"
+          ],
+          "correctAnswer": "No, 'que' is almost always required",
+          "correctIndex": 1,
+          "explanation": "Unlike English (where 'that' is often optional), Portuguese almost always keeps 'que'."
+        },
+        {
+          "questionText": "'Aqui' in reported speech becomes:",
+          "questionTextPt": "'Aqui' no discurso indireto torna-se:",
+          "options": [
+            "cá",
+            "ali / lá",
+            "aí",
+            "perto"
+          ],
+          "correctAnswer": "ali / lá",
+          "correctIndex": 1,
+          "explanation": "Here → there: aqui → ali or lá."
+        },
+        {
+          "questionText": "'\"Estás bem?\"' → Report it:",
+          "questionTextPt": "'\"Estás bem?\"' → Relatar:",
+          "options": [
+            "Perguntou que eu estava bem.",
+            "Perguntou se eu estava bem.",
+            "Perguntou se eu estou bem?",
+            "Perguntou estava eu bem."
+          ],
+          "correctAnswer": "Perguntou se eu estava bem.",
+          "correctIndex": 1,
+          "explanation": "Yes/no question → perguntar + se + shifted tense. No question mark."
+        },
+        {
+          "questionText": "'\"Farei isso amanhã.\"' → Report it:",
+          "questionTextPt": "'\"Farei isso amanhã.\"' → Relatar:",
+          "options": [
+            "Disse que fará isso amanhã.",
+            "Disse que faria isso no dia seguinte.",
+            "Disse que fez isso ontem.",
+            "Disse que fazia isso hoje."
+          ],
+          "correctAnswer": "Disse que faria isso no dia seguinte.",
+          "correctIndex": 1,
+          "explanation": "Future → Conditional + time shift: farei → faria, amanhã → no dia seguinte."
+        },
+        {
+          "questionText": "In casual EP speech, do people always shift tenses in reported speech?",
+          "questionTextPt": "No PE informal, as pessoas fazem sempre as mudanças de tempo?",
+          "options": [
+            "Yes, always strictly",
+            "No, they often keep the original tense",
+            "Only in writing",
+            "Only for formal topics"
+          ],
+          "correctAnswer": "No, they often keep the original tense",
+          "correctIndex": 1,
+          "explanation": "In casual speech, 'Ele disse que está cansado' (present kept) is common and accepted."
+        }
+      ]
+    },
+    "pluperfect": {
+      "id": "pluperfect",
+      "title": "Pluperfect (Past Perfect)",
+      "titlePt": "Mais-que-perfeito",
+      "cefr": "B1",
+      "summary": "Expressing what had happened before something else — 'I had already eaten when she arrived.'",
+      "intro": "The pluperfect (mais-que-perfeito) expresses an action that happened BEFORE another past action: 'I had already eaten when she arrived.' In Portuguese, there are two forms: the compound pluperfect (tinha + past participle), which everyone uses in speech, and the simple pluperfect (-ra endings), which is literary and formal.\n\nFocus on the compound form — it's what real people say. The simple form is worth recognising when you see it in writing, but you'll rarely need to produce it.",
+      "rules": [
+        {
+          "rule": "Compound pluperfect (common): ter in the imperfect (tinha, tinhas, tinha, tínhamos, tinham) + past participle.",
+          "rulePt": "Mais-que-perfeito composto (comum): ter no imperfeito + particípio passado.",
+          "examples": [
+            {
+              "pt": "Eu tinha comido antes de ela chegar.",
+              "en": "I had eaten before she arrived."
+            },
+            {
+              "pt": "Eles tinham saído quando telefonei.",
+              "en": "They had left when I called."
+            },
+            {
+              "pt": "Já tínhamos terminado o trabalho.",
+              "en": "We had already finished the work."
+            },
+            {
+              "pt": "Ela nunca tinha visto o mar.",
+              "en": "She had never seen the sea."
+            }
+          ]
+        },
+        {
+          "rule": "Simple pluperfect (literary/formal): single verb form with -ra endings. Rare in modern speech.",
+          "rulePt": "Mais-que-perfeito simples (literário/formal): forma verbal com terminações -ra. Raro na fala moderna.",
+          "examples": [
+            {
+              "pt": "Ele fizera tudo sozinho. (literary)",
+              "en": "He had done everything alone."
+            },
+            {
+              "pt": "Speech: Ele tinha feito tudo sozinho.",
+              "en": "He had done everything alone. (what people actually say)"
+            },
+            {
+              "pt": "Nunca vira coisa igual. (literary)",
+              "en": "He had never seen such a thing."
+            }
+          ]
+        },
+        {
+          "rule": "Irregular past participles used with the pluperfect: fazer→feito, dizer→dito, ver→visto, abrir→aberto, escrever→escrito, pôr→posto, vir→vindo.",
+          "rulePt": "Particípios passados irregulares: fazer→feito, dizer→dito, ver→visto, abrir→aberto, escrever→escrito, pôr→posto.",
+          "examples": [
+            {
+              "pt": "Nunca tinha visto nada assim.",
+              "en": "I had never seen anything like that."
+            },
+            {
+              "pt": "Ela já tinha escrito a carta.",
+              "en": "She had already written the letter."
+            },
+            {
+              "pt": "Tinham posto a mesa quando cheguei.",
+              "en": "They had set the table when I arrived."
+            },
+            {
+              "pt": "Ele tinha dito a verdade desde o início.",
+              "en": "He had told the truth from the beginning."
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "Use the compound form (tinha + participle) in conversation. The simple form (-ra) sounds archaic in modern EP.",
+        "The simple pluperfect is sometimes used in place of the conditional in EP: 'Eu quisera ir' = 'I would have liked to go.' You'll see this in older texts.",
+        "Think of the pluperfect as 'the past of the past' — it's one step further back in time than the preterite."
+      ],
+      "tipsPt": [
+        "Usa a forma composta (tinha + particípio) na conversa. A forma simples (-ra) soa arcaica.",
+        "O mais-que-perfeito simples é às vezes usado em vez do condicional em textos formais.",
+        "Pensa no mais-que-perfeito como 'o passado do passado'."
+      ],
+      "questions": [
+        {
+          "questionText": "How do you say 'I had eaten' in EP (spoken form)?",
+          "questionTextPt": "Como se diz 'I had eaten' em PE (forma falada)?",
+          "options": [
+            "Eu comi.",
+            "Eu comia.",
+            "Eu tinha comido.",
+            "Eu comera."
+          ],
+          "correctAnswer": "Eu tinha comido.",
+          "correctIndex": 2,
+          "explanation": "Compound pluperfect: tinha + past participle → tinha comido."
+        },
+        {
+          "questionText": "Which form of the pluperfect do people actually use in speech?",
+          "questionTextPt": "Qual forma do mais-que-perfeito se usa na fala?",
+          "options": [
+            "Simple (-ra endings)",
+            "Compound (tinha + participle)",
+            "Both equally",
+            "Neither — they use preterite"
+          ],
+          "correctAnswer": "Compound (tinha + participle)",
+          "correctIndex": 1,
+          "explanation": "The compound form is standard in modern speech. The simple form is literary/formal."
+        },
+        {
+          "questionText": "'Eles _____ quando telefonei.' (had left)",
+          "questionTextPt": "'Eles _____ quando telefonei.'",
+          "options": [
+            "saíram",
+            "saíam",
+            "tinham saído",
+            "saindo"
+          ],
+          "correctAnswer": "tinham saído",
+          "correctIndex": 2,
+          "explanation": "Past before another past → pluperfect: tinham saído (they had left)."
+        },
+        {
+          "questionText": "What is the past participle of 'fazer'?",
+          "questionTextPt": "Qual é o particípio passado de 'fazer'?",
+          "options": [
+            "fazido",
+            "fazendo",
+            "feito",
+            "fez"
+          ],
+          "correctAnswer": "feito",
+          "correctIndex": 2,
+          "explanation": "Fazer has an irregular past participle: feito."
+        },
+        {
+          "questionText": "'Ela nunca _____ o mar.' (had seen)",
+          "questionTextPt": "'Ela nunca _____ o mar.'",
+          "options": [
+            "viu",
+            "via",
+            "tinha visto",
+            "tinha vido"
+          ],
+          "correctAnswer": "tinha visto",
+          "correctIndex": 2,
+          "explanation": "Pluperfect: tinha + visto (irregular past participle of ver)."
+        },
+        {
+          "questionText": "What tense is 'tinha' in the compound pluperfect?",
+          "questionTextPt": "Em que tempo está 'tinha' no mais-que-perfeito composto?",
+          "options": [
+            "Present",
+            "Preterite",
+            "Imperfect",
+            "Future"
+          ],
+          "correctAnswer": "Imperfect",
+          "correctIndex": 2,
+          "explanation": "The compound pluperfect uses ter in the imperfect: tinha, tinhas, tinha, tínhamos, tinham."
+        },
+        {
+          "questionText": "'Já _____ terminado o trabalho.' (we had)",
+          "questionTextPt": "'Já _____ terminado o trabalho.'",
+          "options": [
+            "temos",
+            "tivemos",
+            "tínhamos",
+            "teremos"
+          ],
+          "correctAnswer": "tínhamos",
+          "correctIndex": 2,
+          "explanation": "Nós form of ter in the imperfect: tínhamos."
+        },
+        {
+          "questionText": "What is the past participle of 'escrever'?",
+          "questionTextPt": "Qual é o particípio passado de 'escrever'?",
+          "options": [
+            "escrevido",
+            "escrito",
+            "escrevendo",
+            "escreveu"
+          ],
+          "correctAnswer": "escrito",
+          "correctIndex": 1,
+          "explanation": "Escrever has an irregular past participle: escrito."
+        },
+        {
+          "questionText": "'Ele fizera tudo sozinho' — what register is this?",
+          "questionTextPt": "'Ele fizera tudo sozinho' — que registo é este?",
+          "options": [
+            "Informal/spoken",
+            "Literary/formal",
+            "Slang",
+            "Brazilian Portuguese"
+          ],
+          "correctAnswer": "Literary/formal",
+          "correctIndex": 1,
+          "explanation": "The simple pluperfect (-ra form) is literary/formal. In speech: 'Ele tinha feito tudo sozinho.'"
+        },
+        {
+          "questionText": "'Tinham _____ a mesa quando cheguei.' (set — pôr)",
+          "questionTextPt": "'Tinham _____ a mesa quando cheguei.'",
+          "options": [
+            "pondo",
+            "pôr",
+            "ponho",
+            "posto"
+          ],
+          "correctAnswer": "posto",
+          "correctIndex": 3,
+          "explanation": "Pôr has an irregular past participle: posto."
+        },
+        {
+          "questionText": "The pluperfect expresses an action that happened:",
+          "questionTextPt": "O mais-que-perfeito exprime uma ação que aconteceu:",
+          "options": [
+            "In the future",
+            "At the same time as another past action",
+            "Before another past action",
+            "After another past action"
+          ],
+          "correctAnswer": "Before another past action",
+          "correctIndex": 2,
+          "explanation": "The pluperfect is 'the past of the past' — something that had happened before another past event."
+        },
+        {
+          "questionText": "'Ela já _____ a carta.' (had written)",
+          "questionTextPt": "'Ela já _____ a carta.'",
+          "options": [
+            "tinha escrito",
+            "tinha escrevido",
+            "escrevera",
+            "tinha escrevendo"
+          ],
+          "correctAnswer": "tinha escrito",
+          "correctIndex": 0,
+          "explanation": "Compound pluperfect: tinha + escrito (irregular past participle of escrever)."
         }
       ]
     }
