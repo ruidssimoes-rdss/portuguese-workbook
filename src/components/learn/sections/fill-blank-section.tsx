@@ -52,61 +52,60 @@ export function FillBlankSectionNew({ sectionIndex, totalSections, showEnglish, 
     onComplete({ sectionKey: "fill-blank", sectionName: "Completa as frases", answers: ans, totalCorrect: ans.filter((a) => a.correct).length, totalQuestions: ans.length });
   }
 
+  const correctCount = Object.values(results).filter((r) => r.correct).length;
+
   return (
     <div>
-      <div className="mb-6">
-        <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-1">Secção {sectionIndex + 1} de {totalSections}</p>
-        <h2 className="text-[18px] font-medium text-[#111111]">Completa as frases</h2>
-        {showEnglish && <p className="text-[13px] text-[#9B9DA3]">Complete the sentences</p>}
-      </div>
+      {sentences.map((s, i) => {
+        const blankMatch = s.sentencePt.match(/_+/);
+        const blankIdx = blankMatch ? s.sentencePt.indexOf(blankMatch[0]) : -1;
+        const before = blankIdx >= 0 ? s.sentencePt.substring(0, blankIdx) : s.sentencePt;
+        const after = blankIdx >= 0 ? s.sentencePt.substring(blankIdx + (blankMatch?.[0].length ?? 0)) : "";
+        const r = results[s.id];
 
-      <div className="space-y-3">
-        {sentences.map((s, i) => {
-          const blankMatch = s.sentencePt.match(/_+/);
-          const blankIdx = blankMatch ? s.sentencePt.indexOf(blankMatch[0]) : -1;
-          const before = blankIdx >= 0 ? s.sentencePt.substring(0, blankIdx) : s.sentencePt;
-          const after = blankIdx >= 0 ? s.sentencePt.substring(blankIdx + (blankMatch?.[0].length ?? 0)) : "";
-          const r = results[s.id];
-
-          return (
-            <div key={s.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5">
-              <span className="text-[12px] text-[#9B9DA3]">{i + 1}.</span>
-              <p className="text-[16px] font-medium text-[#111111] mt-1 leading-relaxed">
-                {before}
-                {phase === "answering" ? (
-                  <input
-                    ref={i === 0 ? firstRef : undefined}
-                    type="text" value={answers[s.id] ?? ""}
-                    onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                    className="inline-block w-28 mx-1 px-2 py-1 text-[14px] font-medium text-center border-b-[1.5px] border-[rgba(0,0,0,0.15)] outline-none focus:border-[#185FA5] bg-transparent"
-                    placeholder={s.hint ?? "___"} autoComplete="off" spellCheck={false}
-                  />
-                ) : (
-                  <span className={`inline-block mx-1 px-2 py-0.5 rounded font-medium ${r?.correct ? "text-[#0F6E56] bg-[#E1F5EE]" : "text-[#dc2626] bg-[#fef2f2]"}`}>
-                    {r?.correct ? s.correctAnswer : answers[s.id]}
-                  </span>
-                )}
-                {after}
-              </p>
-              {showEnglish && s.sentenceEn && <p className="text-[13px] text-[#9B9DA3] italic mt-1">{s.sentenceEn}</p>}
-              {phase === "reviewed" && !r?.correct && <p className="text-[13px] text-[#0F6E56] mt-1">Resposta: {s.correctAnswer}</p>}
-              {phase === "reviewed" && r?.accentHint && <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>}
+        return (
+          <div key={s.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
+            phase === "reviewed" ? (r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#FCEBEB]") : "border-[rgba(0,0,0,0.06)]"
+          }`}>
+            <div className="text-[11px] text-[#9B9DA3]">{i + 1}</div>
+            <div className="text-[14px] text-[#111111] leading-[2] mt-0.5">
+              {before}
+              {phase === "answering" ? (
+                <input
+                  ref={i === 0 ? firstRef : undefined}
+                  type="text" value={answers[s.id] ?? ""}
+                  onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
+                  className="inline-block w-20 mx-0.5 px-1 py-px text-[13px] font-medium text-center border-b-[1.5px] border-[rgba(0,0,0,0.15)] outline-none focus:border-[#185FA5] bg-transparent"
+                  placeholder={s.hint ?? "..."} autoComplete="off" spellCheck={false}
+                />
+              ) : (
+                <span className={`inline-block mx-0.5 px-1 py-px rounded font-medium ${
+                  r?.correct ? "text-[#0F6E56] border-b-[1.5px] border-[#0F6E56]" : "text-[#dc2626] border-b-[1.5px] border-[#dc2626]"
+                }`}>
+                  {r?.correct ? s.correctAnswer : answers[s.id]}
+                </span>
+              )}
+              {after}
             </div>
-          );
-        })}
-      </div>
+            {showEnglish && s.sentenceEn && <div className="text-[12px] text-[#6C6B71] italic mt-0.5">{s.sentenceEn}</div>}
+            {phase === "reviewed" && r?.correct && <div className="text-[12px] font-medium text-[#0F6E56] mt-1">Correct!</div>}
+            {phase === "reviewed" && !r?.correct && <div className="text-[12px] font-medium text-[#dc2626] mt-1">Not quite <span className="font-normal">→ {s.correctAnswer}</span></div>}
+            {phase === "reviewed" && r?.accentHint && <span className="inline-block mt-1 px-[10px] py-1 text-[11px] text-[#854F0B] bg-[#FAEEDA] rounded-[5px]">Atenção ao acento: {r.accentHint}</span>}
+          </div>
+        );
+      })}
 
-      <div className="mt-6">
+      <div className="mt-[10px]">
         {phase === "answering" && (
           <button type="button" onClick={verify} disabled={!allFilled}
-            className={`w-full py-3 text-[14px] font-medium rounded-lg transition-colors ${allFilled ? "bg-[#111111] text-white hover:bg-[#333] cursor-pointer" : "bg-[#F7F7F5] text-[#9B9DA3] cursor-not-allowed"}`}
-          >Verificar secção</button>
+            className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#111111] text-white cursor-pointer" : "bg-[#111111] text-white opacity-40 cursor-not-allowed"}`}
+          >{allFilled ? "Continue →" : "Answer all questions to continue"}</button>
         )}
         {phase === "reviewed" && (
           <div className="flex items-center justify-between">
-            <p className="text-[14px] font-medium text-[#111111]">{Object.values(results).filter((r) => r.correct).length} de {sentences.length} corretas</p>
-            <button type="button" onClick={finish} className="px-4 py-2.5 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors cursor-pointer">
-              {sectionIndex < totalSections - 1 ? "Próxima secção →" : "Ver resultados →"}
+            <span className="text-[13px] font-medium text-[#111111]">{correctCount}/{sentences.length}</span>
+            <button type="button" onClick={finish} className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#111111] rounded-[6px] cursor-pointer">
+              {sectionIndex < totalSections - 1 ? "Next section →" : "See results →"}
             </button>
           </div>
         )}

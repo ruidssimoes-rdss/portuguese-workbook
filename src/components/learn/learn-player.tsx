@@ -229,23 +229,42 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
     const Component = SECTION_MAP[section.key];
     if (!Component) return null;
 
+    const questionsSoFar = generated.sections
+      .slice(0, currentSection)
+      .reduce((sum, s) => sum + s.totalQuestions, 0);
+    const totalQuestions = generated.totalPoints;
+    const pct = totalQuestions > 0 ? ((questionsSoFar + 1) / totalQuestions) * 100 : 0;
+
     return (
-      <div>
+      <div className="max-w-[600px] mx-auto border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden bg-white">
         {/* Top bar */}
-        <div className="flex items-center justify-between py-4 mb-2">
-          <Link href="/lessons" className="text-[13px] text-[#9B9DA3] hover:text-[#6C6B71] transition-colors">
-            ← Lições
+        <div className="flex items-center justify-between px-4 py-[10px] border-b-[0.5px] border-[rgba(0,0,0,0.06)]">
+          <Link href="/lessons" className="text-[13px] text-[#6C6B71] hover:text-[#111111] transition-colors">
+            ← Lessons
           </Link>
-          <span className="text-[13px] text-[#6C6B71] font-medium">{lesson.title}</span>
+          <div className="flex items-center gap-1.5">
+            <span className="text-[12px] text-[#6C6B71]">{questionsSoFar + 1} / {totalQuestions}</span>
+            <span className={`text-[10px] font-medium px-2 py-px rounded-full ${
+              lesson.cefr === "A1" ? "text-[#0F6E56] bg-[#E1F5EE]" :
+              lesson.cefr === "A2" ? "text-[#185FA5] bg-[#E6F1FB]" :
+              "text-[#854F0B] bg-[#FAEEDA]"
+            }`}>{lesson.cefr}</span>
+          </div>
         </div>
 
-        <LearnProgress
-          current={currentSection + 1}
-          total={totalSections}
-          cefr={lesson.cefr}
-        />
+        {/* Progress bar */}
+        <div className="h-[3px] bg-[rgba(0,0,0,0.06)] mx-4 rounded-[2px]">
+          <div className="h-[3px] bg-[#185FA5] rounded-[2px] transition-all duration-300" style={{ width: `${pct}%` }} />
+        </div>
 
-        <div className="max-w-2xl mx-auto">
+        {/* Section header */}
+        <div className="flex items-center gap-2 px-4 pt-[10px] pb-[6px]">
+          <span className="text-[13px] font-medium text-[#111111]">{section.namePt}</span>
+          <span className="text-[11px] text-[#9B9DA3]">{section.totalQuestions} questions</span>
+        </div>
+
+        {/* Section body */}
+        <div className="px-4 pb-4">
           <Component
             key={`section-${currentSection}`}
             sectionIndex={currentSection}

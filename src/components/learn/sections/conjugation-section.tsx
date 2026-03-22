@@ -76,83 +76,68 @@ export function ConjugationSectionNew({
     });
   }
 
+  const correctCount = Object.values(results).filter((r) => r.correct).length;
   let inputIdx = 0;
 
   return (
     <div>
-      <div className="mb-6">
-        <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-1">
-          Secção {sectionIndex + 1} de {totalSections}
-        </p>
-        <h2 className="text-[18px] font-medium text-[#111111]">Conjugação</h2>
-        {showEnglish && <p className="text-[13px] text-[#9B9DA3]">Conjugation</p>}
-      </div>
-
-      <div className="space-y-4">
-        {verbs.map((v) => (
-          <div key={`${v.verb}-${v.tense}`} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden">
-            {/* Verb header */}
-            <div className="px-5 py-4 bg-[#F7F7F5] border-b-[0.5px] border-[rgba(0,0,0,0.06)]">
-              <h3 className="text-[16px] font-medium text-[#111111]">
-                {v.verb.toUpperCase()}
-                {v.verbMeaning && <span className="text-[13px] font-normal text-[#9B9DA3] ml-2">({v.verbMeaning})</span>}
-              </h3>
-              <p className="text-[13px] text-[#9B9DA3]">
-                {v.tense}{v.tenseEnglish && <span className="ml-1">/ {v.tenseEnglish}</span>}
-              </p>
-            </div>
-
-            {/* Person rows */}
-            {v.persons.map((p) => {
-              const key = `${v.verb}-${v.tense}-${p.pronoun}`;
-              const r = results[key];
-              const curIdx = inputIdx++;
-              return (
-                <div key={key} className="flex items-center gap-3 px-5 py-3 border-b-[0.5px] border-[rgba(0,0,0,0.06)] last:border-b-0">
-                  <span className="text-[13px] text-[#9B9DA3] w-24 shrink-0">{p.pronoun}</span>
-                  {phase === "answering" ? (
-                    <input
-                      ref={curIdx === 0 ? firstRef : undefined}
-                      type="text"
-                      value={answers[key] ?? ""}
-                      onChange={(e) => setAnswers((prev) => ({ ...prev, [key]: e.target.value }))}
-                      className="flex-1 px-3 py-2 text-[14px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg outline-none focus:border-[rgba(0,0,0,0.12)] placeholder:text-[#9B9DA3]"
-                      placeholder="..."
-                      autoComplete="off" spellCheck={false}
-                    />
-                  ) : (
-                    <div className="flex-1 flex items-center gap-2">
-                      <span className={`px-3 py-2 rounded-lg text-[14px] font-medium ${
-                        r?.correct ? "bg-[#E1F5EE] text-[#0F6E56]" : "bg-[#fef2f2] text-[#dc2626]"
-                      }`}>
-                        {r?.correct ? p.correctForm : (answers[key] || "—")}
-                      </span>
-                      {!r?.correct && (
-                        <span className="text-[12px] text-[#0F6E56] shrink-0">→ {p.correctForm}</span>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+      {verbs.map((v, vi) => (
+        <div key={`${v.verb}-${v.tense}`} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-[12px_14px] mb-1.5">
+          {/* Verb header */}
+          <div className="flex items-baseline gap-1.5 mb-2">
+            <span className="text-[11px] text-[#9B9DA3]">{vi + 1}</span>
+            <span className="text-[15px] font-medium text-[#111111]">{v.verb.toUpperCase()}</span>
+            {v.verbMeaning && <span className="text-[12px] text-[#6C6B71]">{v.verbMeaning}</span>}
+            <span className="text-[11px] text-[#9B9DA3]">{v.tense}</span>
           </div>
-        ))}
-      </div>
 
-      <div className="mt-6">
+          {/* Person rows */}
+          {v.persons.map((p) => {
+            const key = `${v.verb}-${v.tense}-${p.pronoun}`;
+            const r = results[key];
+            const curIdx = inputIdx++;
+            return (
+              <div key={key} className="flex items-center gap-2 mb-[5px]">
+                <span className="text-[12px] text-[#6C6B71] w-[60px] shrink-0">{p.pronoun}</span>
+                {phase === "answering" ? (
+                  <input
+                    ref={curIdx === 0 ? firstRef : undefined}
+                    type="text"
+                    value={answers[key] ?? ""}
+                    onChange={(e) => setAnswers((prev) => ({ ...prev, [key]: e.target.value }))}
+                    className="flex-1 px-[10px] py-[5px] text-[13px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-[6px] outline-none focus:border-[rgba(0,0,0,0.12)] placeholder:text-[#9B9DA3]"
+                    placeholder="..." autoComplete="off" spellCheck={false}
+                  />
+                ) : (
+                  <>
+                    <span className={`flex-1 px-[10px] py-[5px] text-[13px] rounded-[6px] border-[0.5px] ${
+                      r?.correct
+                        ? "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]"
+                        : "border-[#dc2626] bg-[#FCEBEB] text-[#dc2626]"
+                    }`}>
+                      {r?.correct ? p.correctForm : (answers[key] || "—")}
+                    </span>
+                    {!r?.correct && <span className="text-[11px] text-[#0F6E56] shrink-0">→ {p.correctForm}</span>}
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ))}
+
+      <div className="mt-[10px]">
         {phase === "answering" && (
           <button type="button" onClick={verify} disabled={!allFilled}
-            className={`w-full py-3 text-[14px] font-medium rounded-lg transition-colors ${allFilled ? "bg-[#111111] text-white hover:bg-[#333] cursor-pointer" : "bg-[#F7F7F5] text-[#9B9DA3] cursor-not-allowed"}`}
-          >Verificar secção</button>
+            className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#111111] text-white cursor-pointer" : "bg-[#111111] text-white opacity-40 cursor-not-allowed"}`}
+          >{allFilled ? "Continue →" : "Answer all questions to continue"}</button>
         )}
         {phase === "reviewed" && (
           <div className="flex items-center justify-between">
-            <p className="text-[14px] font-medium text-[#111111]">
-              {Object.values(results).filter((r) => r.correct).length} de {allKeys.length} corretas
-            </p>
+            <span className="text-[13px] font-medium text-[#111111]">{correctCount}/{allKeys.length}</span>
             <button type="button" onClick={finish}
-              className="px-4 py-2.5 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
-            >{sectionIndex < totalSections - 1 ? "Próxima secção →" : "Ver resultados →"}</button>
+              className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#111111] rounded-[6px] cursor-pointer"
+            >{sectionIndex < totalSections - 1 ? "Next section →" : "See results →"}</button>
           </div>
         )}
       </div>

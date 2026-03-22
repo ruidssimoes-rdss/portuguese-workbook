@@ -39,53 +39,49 @@ export function TranslationSectionNew({ sectionIndex, totalSections, showEnglish
     onComplete({ sectionKey: "translation", sectionName: "Tradução", answers: ans, totalCorrect: ans.filter((a) => a.correct).length, totalQuestions: ans.length });
   }
 
+  const correctCount = Object.values(results).filter((r) => r.correct).length;
+
   return (
     <div>
-      <div className="mb-6">
-        <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-1">Secção {sectionIndex + 1} de {totalSections}</p>
-        <h2 className="text-[18px] font-medium text-[#111111]">Tradução</h2>
-        {showEnglish && <p className="text-[13px] text-[#9B9DA3]">Translation</p>}
-      </div>
+      {sentences.map((s, i) => {
+        const r = results[s.id];
+        return (
+          <div key={s.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
+            phase === "reviewed" ? (r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#FCEBEB]") : "border-[rgba(0,0,0,0.06)]"
+          }`}>
+            <div className="text-[11px] text-[#9B9DA3]">{i + 1}</div>
+            <p className="text-[13px] font-medium text-[#111111] mt-0.5">&ldquo;{s.sourceText}&rdquo;</p>
 
-      <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-4">Traduz para português</p>
+            {phase === "answering" ? (
+              <textarea ref={i === 0 ? firstRef : undefined} value={answers[s.id] ?? ""}
+                onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))} rows={2}
+                className="w-full mt-2 px-[10px] py-[7px] text-[13px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-[6px] outline-none focus:border-[rgba(0,0,0,0.12)] resize-none placeholder:text-[#9B9DA3]"
+                placeholder="Escreve em português..." autoComplete="off" spellCheck={false}
+              />
+            ) : (
+              <>
+                <div className={`mt-2 px-[10px] py-[7px] rounded-[6px] border-[0.5px] text-[13px] font-medium ${
+                  r?.correct ? "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]" : "border-[#dc2626] bg-[#FCEBEB] text-[#dc2626]"
+                }`}>{answers[s.id]}</div>
+                {!r?.correct && <div className="text-[12px] font-medium text-[#dc2626] mt-1">Not quite <span className="font-normal">→ {s.correctAnswer}</span></div>}
+                {r?.accentHint && <span className="inline-block mt-1 px-[10px] py-1 text-[11px] text-[#854F0B] bg-[#FAEEDA] rounded-[5px]">Atenção ao acento: {r.accentHint}</span>}
+              </>
+            )}
+          </div>
+        );
+      })}
 
-      <div className="space-y-3">
-        {sentences.map((s, i) => {
-          const r = results[s.id];
-          return (
-            <div key={s.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5">
-              <span className="text-[12px] text-[#9B9DA3]">{i + 1}.</span>
-              <p className="text-[14px] font-medium text-[#111111] mt-1">&ldquo;{s.sourceText}&rdquo;</p>
-
-              {phase === "answering" ? (
-                <textarea ref={i === 0 ? firstRef : undefined} value={answers[s.id] ?? ""}
-                  onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))} rows={2}
-                  className="w-full mt-3 px-3 py-2.5 text-[14px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg outline-none focus:border-[rgba(0,0,0,0.12)] resize-none placeholder:text-[#9B9DA3]"
-                  placeholder="Escreve em português..." autoComplete="off" spellCheck={false}
-                />
-              ) : (
-                <div className={`mt-3 px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
-                  <p className={`text-[14px] font-medium ${r?.correct ? "text-[#0F6E56]" : "text-[#dc2626]"}`}>{answers[s.id]}</p>
-                  {!r?.correct && <p className="text-[13px] text-[#0F6E56] mt-1">{s.correctAnswer}</p>}
-                  {r?.accentHint && <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="mt-6">
+      <div className="mt-[10px]">
         {phase === "answering" && (
           <button type="button" onClick={verify} disabled={!allFilled}
-            className={`w-full py-3 text-[14px] font-medium rounded-lg transition-colors ${allFilled ? "bg-[#111111] text-white hover:bg-[#333] cursor-pointer" : "bg-[#F7F7F5] text-[#9B9DA3] cursor-not-allowed"}`}
-          >Verificar secção</button>
+            className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#111111] text-white cursor-pointer" : "bg-[#111111] text-white opacity-40 cursor-not-allowed"}`}
+          >{allFilled ? "Continue →" : "Answer all questions to continue"}</button>
         )}
         {phase === "reviewed" && (
           <div className="flex items-center justify-between">
-            <p className="text-[14px] font-medium text-[#111111]">{Object.values(results).filter((r) => r.correct).length} de {sentences.length} corretas</p>
-            <button type="button" onClick={finish} className="px-4 py-2.5 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors cursor-pointer">
-              {sectionIndex < totalSections - 1 ? "Próxima secção →" : "Ver resultados →"}
+            <span className="text-[13px] font-medium text-[#111111]">{correctCount}/{sentences.length}</span>
+            <button type="button" onClick={finish} className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#111111] rounded-[6px] cursor-pointer">
+              {sectionIndex < totalSections - 1 ? "Next section →" : "See results →"}
             </button>
           </div>
         )}
