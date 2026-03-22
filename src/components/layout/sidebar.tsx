@@ -15,6 +15,7 @@ import {
   Calendar,
   Settings,
   BookOpenCheck,
+  MessageCircle,
   LogIn,
   Search,
 } from "lucide-react";
@@ -27,6 +28,7 @@ const navSections = [
     items: [
       { href: "/", icon: Home, label: "Home" },
       { href: "/lessons", icon: BookOpen, label: "Lessons" },
+      { href: "/tutor", icon: MessageCircle, label: "Professor Elísio" },
       { href: "/vocabulary", icon: BookMarked, label: "Vocabulary" },
       { href: "/grammar", icon: ClipboardList, label: "Grammar" },
       { href: "/conjugations", icon: Type, label: "Conjugations" },
