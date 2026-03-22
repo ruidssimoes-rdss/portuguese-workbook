@@ -38,3 +38,29 @@ export {
   // Frequency
   isHighFrequency,
 } from "./content-pool";
+
+export {
+  // Types
+  type GeneratedLesson,
+  type PracticeItem,
+  // Generator
+  generateLesson,
+} from "./lesson-generator";
+
+export {
+  // Types
+  type ReviewSession,
+  type ReviewItem,
+  type ReviewReason,
+  // Generator
+  generateReviewSession,
+} from "./review-generator";
+
+export {
+  // Constants
+  READINESS_THRESHOLD,
+  // Functions
+  isCEFRUnlocked,
+  getFullProgression,
+  getCurrentStudyLevel,
+} from "./cefr-readiness";
