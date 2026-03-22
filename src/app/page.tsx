@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ArrowRight, RotateCcw } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 import { PageShell } from "@/components/layout/page-shell";
 import {
@@ -14,14 +14,14 @@ import {
   CardShell,
 } from "@/components/primitives";
 import {
-  getHomepageData,
-  type HomepageData,
-} from "@/lib/homepage-service";
-import {
   getProgressStats,
   type ProgressStats,
   type TimelineEvent,
 } from "@/lib/progress-stats-service";
+import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
+import { getCurrentStudyLevel, getReviewCount } from "@/lib/learning-engine";
+import { getAllContentTotals } from "@/lib/learning-engine/content-pool";
+import { createClient } from "@/lib/supabase/client";
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -62,14 +62,24 @@ function formatDate(iso: string): string {
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
+// ─── Mastery Stats ──────────────────────────────────────────────────────────
+
+interface MasteryStats {
+  currentLevel: string;
+  readinessPct: number;
+  totalMastered: number;
+  totalItems: number;
+  reviewCount: number;
+  displayName: string | null;
+}
+
 // ─── Page ───────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
   const { user, loading: authLoading } = useAuth();
-  const [homeData, setHomeData] = useState<HomepageData | null>(null);
-  const [progressStats, setProgressStats] = useState<ProgressStats | null>(
-    null
-  );
+  const [masteryStats, setMasteryStats] = useState<MasteryStats | null>(null);
+  const [progressStats, setProgressStats] = useState<ProgressStats | null>(null);
+  const [streakData, setStreakData] = useState<{ current: number; longest: number } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -78,13 +88,59 @@ export default function HomePage() {
       setLoading(false);
       return;
     }
-    Promise.all([getHomepageData(), getProgressStats()]).then(
-      ([hd, ps]) => {
-        setHomeData(hd);
+
+    async function load() {
+      const supabase = createClient();
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      if (!currentUser) { setLoading(false); return; }
+
+      // Load mastery data and timeline in parallel
+      const [progression, level, reviews, ps] = await Promise.all([
+        getFullProgression(currentUser.id),
+        getCurrentStudyLevel(currentUser.id),
+        getReviewCount(currentUser.id),
+        getProgressStats().catch(() => null),
+      ]);
+
+      // Get display name
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("google_display_name")
+        .eq("id", currentUser.id)
+        .single();
+
+      const activeProgress = progression[level.toLowerCase() as "a1" | "a2" | "b1"];
+      const totals = getAllContentTotals();
+      const totalMastered =
+        progression.a1.progress.mastered +
+        progression.a2.progress.mastered +
+        progression.b1.progress.mastered;
+      const totalItems =
+        totals.A1.vocab + totals.A1.verbs + totals.A1.grammar +
+        totals.A2.vocab + totals.A2.verbs + totals.A2.grammar +
+        totals.B1.vocab + totals.B1.verbs + totals.B1.grammar;
+
+      setMasteryStats({
+        currentLevel: level,
+        readinessPct: Math.round(activeProgress.progress.readiness * 100),
+        totalMastered,
+        totalItems,
+        reviewCount: reviews,
+        displayName: profile?.google_display_name ?? null,
+      });
+
+      if (ps) {
         setProgressStats(ps);
-        setLoading(false);
+        setStreakData({
+          current: ps.currentStreak,
+          longest: ps.longestStreak,
+        });
       }
-    );
+
+      setLoading(false);
+    }
+
+    load();
   }, [user, authLoading]);
 
   // Loading
@@ -97,94 +153,80 @@ export default function HomePage() {
   }
 
   const greeting = getGreeting();
-  const nextLesson = homeData?.nextLesson;
+  const contentTotals = getAllContentTotals();
+  const totalVocab = contentTotals.A1.vocab + contentTotals.A2.vocab + contentTotals.B1.vocab;
+  const totalVerbs = contentTotals.A1.verbs + contentTotals.A2.verbs + contentTotals.B1.verbs;
 
   return (
     <PageShell>
       {/* Header */}
       <PageHeader
         title={
-          user && homeData?.displayName
-            ? `${greeting}, ${homeData.displayName}`
+          user && masteryStats?.displayName
+            ? `${greeting}, ${masteryStats.displayName}`
             : greeting
         }
         subtitle={
-          user && homeData
-            ? nextLesson
-              ? `You're on lesson ${homeData.totalLessonsCompleted + 1} of 44 — keep going.`
-              : homeData.totalLessonsCompleted >= 44
-                ? "You've completed the entire curriculum. Parabéns!"
-                : "Learn European Portuguese at your own pace"
+          user && masteryStats
+            ? masteryStats.readinessPct > 0
+              ? `${masteryStats.currentLevel} level · ${masteryStats.readinessPct}% ready`
+              : "Start your first lesson to begin learning"
             : "Learn European Portuguese at your own pace"
         }
       />
 
-      {/* Continue learning CTA */}
-      {user && nextLesson && (
-        <Link href={`/lessons/${nextLesson.id}`} className="block mb-8">
-          <CardShell interactive>
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-1.5">
-                  Continue where you left off
-                </div>
-                <div className="text-[14px] font-medium text-[#111111]">
-                  {nextLesson.title}
-                </div>
-                <div className="text-[12px] text-[#9B9DA3] mt-0.5">
-                  {nextLesson.titlePt} · {nextLesson.cefr}
-                </div>
-              </div>
-              <ChevronRight
-                size={20}
-                className="text-[#9B9DA3] flex-shrink-0"
-              />
-            </div>
-          </CardShell>
-        </Link>
-      )}
+      {/* Quick action CTA — authenticated */}
+      {user && masteryStats && (
+        <div className="flex gap-3 mb-8">
+          <Link
+            href="/lessons/next"
+            className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
+          >
+            Start next lesson
+            <ArrowRight size={14} />
+          </Link>
 
-      {/* Stats grid — authenticated */}
-      {user && homeData && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
-          <StatCard
-            label="Lessons completed"
-            value={String(homeData.totalLessonsCompleted)}
-            total="44"
-            progress={Math.round((homeData.totalLessonsCompleted / 44) * 100)}
-          />
-          <StatCard
-            label="Words encountered"
-            value={String(homeData.totalWordsEncountered)}
-            total="840"
-            progress={Math.round(
-              (homeData.totalWordsEncountered / 840) * 100
-            )}
-          />
-          <StatCard
-            label="Current level"
-            value={homeData.currentCefrLevel}
-            subtitle={levelLabels[homeData.currentCefrLevel] || "Beginner"}
-          />
+          {masteryStats.reviewCount > 0 && (
+            <Link
+              href="/lessons/review"
+              className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
+            >
+              <RotateCcw size={14} />
+              Review {masteryStats.reviewCount} items
+            </Link>
+          )}
         </div>
       )}
 
-      {/* Streak + study days — authenticated */}
-      {user && homeData && homeData.currentStreak > 0 && (
-        <div className="grid grid-cols-2 gap-3 mb-8">
+      {/* Stats grid — authenticated */}
+      {user && masteryStats && (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           <StatCard
-            label="Current streak"
-            value={`${homeData.currentStreak}d`}
+            label="Current level"
+            value={masteryStats.currentLevel}
+            subtitle={levelLabels[masteryStats.currentLevel] || "Beginner"}
+          />
+          <StatCard
+            label="Items mastered"
+            value={String(masteryStats.totalMastered)}
+            total={String(masteryStats.totalItems)}
+            progress={Math.round((masteryStats.totalMastered / masteryStats.totalItems) * 100)}
+          />
+          <StatCard
+            label="Streak"
+            value={streakData ? `${streakData.current}d` : "0d"}
             subtitle={
-              homeData.longestStreak > homeData.currentStreak
-                ? `Best: ${homeData.longestStreak}d`
-                : undefined
+              streakData && streakData.longest > streakData.current
+                ? `Best: ${streakData.longest}d`
+                : streakData && streakData.current > 0
+                  ? "Keep going!"
+                  : undefined
             }
           />
           <StatCard
-            label="This week"
-            value={`${homeData.weeklyStudyDays}/${homeData.weeklyTargetDays}`}
-            subtitle="study days"
+            label="To review"
+            value={String(masteryStats.reviewCount)}
+            subtitle={masteryStats.reviewCount > 0 ? "Items due" : "All caught up"}
           />
         </div>
       )}
@@ -195,7 +237,7 @@ export default function HomePage() {
           <Link href="/vocabulary" className="block">
             <CardShell interactive>
               <div className="text-[14px] font-medium text-[#111111]">
-                840 words
+                {totalVocab.toLocaleString()} words
               </div>
               <div className="text-[12px] text-[#9B9DA3] mt-0.5">
                 across 16 categories
@@ -205,7 +247,7 @@ export default function HomePage() {
           <Link href="/grammar" className="block">
             <CardShell interactive>
               <div className="text-[14px] font-medium text-[#111111]">
-                31 grammar topics
+                42 grammar topics
               </div>
               <div className="text-[12px] text-[#9B9DA3] mt-0.5">
                 A1 through B1
@@ -215,7 +257,7 @@ export default function HomePage() {
           <Link href="/conjugations" className="block">
             <CardShell interactive>
               <div className="text-[14px] font-medium text-[#111111]">
-                177 verbs
+                {totalVerbs} verbs
               </div>
               <div className="text-[12px] text-[#9B9DA3] mt-0.5">
                 fully conjugated
@@ -265,7 +307,7 @@ export default function HomePage() {
               Browse vocabulary
             </div>
             <div className="text-[11px] text-[#9B9DA3] mt-0.5">
-              840 words · 16 categories
+              {totalVocab.toLocaleString()} words · 16 categories
             </div>
           </CardShell>
         </Link>
@@ -275,7 +317,7 @@ export default function HomePage() {
               Practice verbs
             </div>
             <div className="text-[11px] text-[#9B9DA3] mt-0.5">
-              177 verbs · 6 tenses
+              {totalVerbs} verbs · 6 tenses
             </div>
           </CardShell>
         </Link>
@@ -285,7 +327,7 @@ export default function HomePage() {
               Continue lessons
             </div>
             <div className="text-[11px] text-[#9B9DA3] mt-0.5">
-              44 lessons · A1 to B1
+              Adaptive · A1 to B1
             </div>
           </CardShell>
         </Link>
