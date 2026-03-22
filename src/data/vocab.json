@@ -2871,6 +2871,166 @@
           "example": "Há geada no vidro do carro.",
           "exampleTranslation": "There is frost on the car window.",
           "relatedWords": []
+        },
+        {
+          "portuguese": "nublado",
+          "english": "cloudy",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Hoje está nublado.",
+          "exampleTranslation": "It's cloudy today."
+        },
+        {
+          "portuguese": "abafado",
+          "english": "muggy / stuffy",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Está muito abafado hoje.",
+          "exampleTranslation": "It's very muggy today."
+        },
+        {
+          "portuguese": "fresco",
+          "english": "fresh / cool (weather)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "De manhã está fresco.",
+          "exampleTranslation": "It's cool in the morning."
+        },
+        {
+          "portuguese": "ameno",
+          "english": "mild (weather)",
+          "cefr": "B1",
+          "gender": null,
+          "example": "O clima em Lisboa é ameno.",
+          "exampleTranslation": "The climate in Lisbon is mild."
+        },
+        {
+          "portuguese": "brisa",
+          "english": "breeze",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Há uma brisa agradável.",
+          "exampleTranslation": "There's a pleasant breeze."
+        },
+        {
+          "portuguese": "relâmpago",
+          "english": "lightning",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vi um relâmpago ao longe.",
+          "exampleTranslation": "I saw lightning in the distance."
+        },
+        {
+          "portuguese": "trovão",
+          "english": "thunder",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O trovão assustou o cão.",
+          "exampleTranslation": "The thunder scared the dog."
+        },
+        {
+          "portuguese": "seca",
+          "english": "drought",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Este verão houve uma grande seca.",
+          "exampleTranslation": "This summer there was a big drought."
+        },
+        {
+          "portuguese": "inundação",
+          "english": "flood",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "As chuvas causaram inundações.",
+          "exampleTranslation": "The rains caused floods."
+        },
+        {
+          "portuguese": "cheias",
+          "english": "floods / flooding",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Houve cheias no Algarve.",
+          "exampleTranslation": "There was flooding in the Algarve."
+        },
+        {
+          "portuguese": "ambiente",
+          "english": "environment",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Temos de proteger o ambiente.",
+          "exampleTranslation": "We have to protect the environment."
+        },
+        {
+          "portuguese": "natureza",
+          "english": "nature",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Gosto de estar na natureza.",
+          "exampleTranslation": "I like being in nature."
+        },
+        {
+          "portuguese": "poluição",
+          "english": "pollution",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A poluição do ar é um problema.",
+          "exampleTranslation": "Air pollution is a problem."
+        },
+        {
+          "portuguese": "clima",
+          "english": "climate",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O clima em Portugal é bom.",
+          "exampleTranslation": "The climate in Portugal is good."
+        },
+        {
+          "portuguese": "energia",
+          "english": "energy",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Estamos a usar energia solar.",
+          "exampleTranslation": "We're using solar energy."
+        },
+        {
+          "portuguese": "sustentável",
+          "english": "sustainable",
+          "cefr": "B1",
+          "gender": null,
+          "example": "O turismo sustentável é importante.",
+          "exampleTranslation": "Sustainable tourism is important."
+        },
+        {
+          "portuguese": "ecológico",
+          "english": "ecological / eco-friendly",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Prefiro produtos ecológicos.",
+          "exampleTranslation": "I prefer eco-friendly products."
+        },
+        {
+          "portuguese": "orgânico",
+          "english": "organic",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Compro legumes orgânicos no mercado.",
+          "exampleTranslation": "I buy organic vegetables at the market."
+        },
+        {
+          "portuguese": "plástico",
+          "english": "plastic",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Reduzam o uso de plástico.",
+          "exampleTranslation": "Reduce the use of plastic."
+        },
+        {
+          "portuguese": "aquecimento global",
+          "english": "global warming",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O aquecimento global é real.",
+          "exampleTranslation": "Global warming is real."
         }
       ]
     },
@@ -6372,6 +6532,486 @@
           "example": "O acidente foi no cruzamento.",
           "exampleTranslation": "The accident was at the crossroads.",
           "relatedWords": []
+        },
+        {
+          "portuguese": "mota",
+          "english": "motorbike",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Ele vai de mota para o trabalho.",
+          "exampleTranslation": "He rides a motorbike to work."
+        },
+        {
+          "portuguese": "carrinha",
+          "english": "van",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A carrinha de entregas chegou.",
+          "exampleTranslation": "The delivery van arrived."
+        },
+        {
+          "portuguese": "camião",
+          "english": "lorry / truck",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O camião está estacionado na estrada.",
+          "exampleTranslation": "The truck is parked on the road."
+        },
+        {
+          "portuguese": "estrada",
+          "english": "road",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Esta estrada vai para Sintra.",
+          "exampleTranslation": "This road goes to Sintra."
+        },
+        {
+          "portuguese": "ponte",
+          "english": "bridge",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A Ponte 25 de Abril é em Lisboa.",
+          "exampleTranslation": "The 25th of April Bridge is in Lisbon."
+        },
+        {
+          "portuguese": "túnel",
+          "english": "tunnel",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O túnel tem dois quilómetros.",
+          "exampleTranslation": "The tunnel is two kilometres long."
+        },
+        {
+          "portuguese": "via",
+          "english": "lane (road)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Muda para a via da direita.",
+          "exampleTranslation": "Move to the right lane."
+        },
+        {
+          "portuguese": "trânsito",
+          "english": "traffic",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O trânsito em Lisboa é terrível.",
+          "exampleTranslation": "Traffic in Lisbon is terrible."
+        },
+        {
+          "portuguese": "acidente",
+          "english": "accident",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Houve um acidente na autoestrada.",
+          "exampleTranslation": "There was an accident on the motorway."
+        },
+        {
+          "portuguese": "multa",
+          "english": "fine / ticket",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Apanhei uma multa de estacionamento.",
+          "exampleTranslation": "I got a parking fine."
+        },
+        {
+          "portuguese": "velocidade",
+          "english": "speed",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O limite de velocidade é noventa.",
+          "exampleTranslation": "The speed limit is ninety."
+        },
+        {
+          "portuguese": "cinto de segurança",
+          "english": "seatbelt",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Põe o cinto de segurança.",
+          "exampleTranslation": "Put your seatbelt on."
+        },
+        {
+          "portuguese": "gasóleo",
+          "english": "diesel",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Este carro é a gasóleo.",
+          "exampleTranslation": "This car runs on diesel."
+        },
+        {
+          "portuguese": "pneu",
+          "english": "tyre",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O pneu está furado.",
+          "exampleTranslation": "The tyre is flat."
+        },
+        {
+          "portuguese": "lugar",
+          "english": "seat / place",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Este lugar está ocupado?",
+          "exampleTranslation": "Is this seat taken?"
+        },
+        {
+          "portuguese": "corredor",
+          "english": "aisle / corridor",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Prefiro lugar no corredor.",
+          "exampleTranslation": "I prefer an aisle seat."
+        },
+        {
+          "portuguese": "terminal",
+          "english": "terminal",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O voo parte do terminal dois.",
+          "exampleTranslation": "The flight departs from terminal two."
+        },
+        {
+          "portuguese": "cidade",
+          "english": "city",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Lisboa é uma cidade bonita.",
+          "exampleTranslation": "Lisbon is a beautiful city."
+        },
+        {
+          "portuguese": "vila",
+          "english": "town",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Óbidos é uma vila medieval.",
+          "exampleTranslation": "Óbidos is a medieval town."
+        },
+        {
+          "portuguese": "aldeia",
+          "english": "village",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A minha avó vive numa aldeia.",
+          "exampleTranslation": "My grandmother lives in a village."
+        },
+        {
+          "portuguese": "capital",
+          "english": "capital",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Lisboa é a capital de Portugal.",
+          "exampleTranslation": "Lisbon is the capital of Portugal."
+        },
+        {
+          "portuguese": "centro",
+          "english": "centre / downtown",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vamos ao centro da cidade.",
+          "exampleTranslation": "Let's go to the city centre."
+        },
+        {
+          "portuguese": "bairro",
+          "english": "neighbourhood / district",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Alfama é o bairro mais antigo.",
+          "exampleTranslation": "Alfama is the oldest neighbourhood."
+        },
+        {
+          "portuguese": "teatro",
+          "english": "theatre",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Teatro Nacional é muito bonito.",
+          "exampleTranslation": "The National Theatre is very beautiful."
+        },
+        {
+          "portuguese": "bombeiros",
+          "english": "firefighters / fire brigade",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O quartel dos bombeiros é ali.",
+          "exampleTranslation": "The fire station is over there."
+        },
+        {
+          "portuguese": "centro de saúde",
+          "english": "health centre",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O centro de saúde abre às oito.",
+          "exampleTranslation": "The health centre opens at eight."
+        },
+        {
+          "portuguese": "clínica",
+          "english": "clinic",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho consulta na clínica.",
+          "exampleTranslation": "I have an appointment at the clinic."
+        },
+        {
+          "portuguese": "quiosque",
+          "english": "kiosk / newsstand",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Comprei o jornal no quiosque.",
+          "exampleTranslation": "I bought the newspaper at the kiosk."
+        },
+        {
+          "portuguese": "parque",
+          "english": "park",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "As crianças brincam no parque.",
+          "exampleTranslation": "The children play in the park."
+        },
+        {
+          "portuguese": "miradouro",
+          "english": "viewpoint / lookout",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O miradouro tem uma vista incrível.",
+          "exampleTranslation": "The viewpoint has an incredible view."
+        },
+        {
+          "portuguese": "fonte",
+          "english": "fountain",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Há uma fonte na praça central.",
+          "exampleTranslation": "There's a fountain in the central square."
+        },
+        {
+          "portuguese": "estátua",
+          "english": "statue",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A estátua é do Marquês de Pombal.",
+          "exampleTranslation": "The statue is of the Marquis of Pombal."
+        },
+        {
+          "portuguese": "monumento",
+          "english": "monument",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Padrão dos Descobrimentos é um monumento famoso.",
+          "exampleTranslation": "The Monument to the Discoveries is a famous monument."
+        },
+        {
+          "portuguese": "calçada",
+          "english": "cobblestone pavement",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A calçada portuguesa é famosa no mundo.",
+          "exampleTranslation": "Portuguese cobblestone is famous worldwide."
+        },
+        {
+          "portuguese": "elevador",
+          "english": "elevator / lift",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Elevador de Santa Justa é uma atração turística.",
+          "exampleTranslation": "The Santa Justa Lift is a tourist attraction."
+        },
+        {
+          "portuguese": "parque infantil",
+          "english": "playground",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O parque infantil tem baloiços.",
+          "exampleTranslation": "The playground has swings."
+        },
+        {
+          "portuguese": "escada rolante",
+          "english": "escalator",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A escada rolante está avariada.",
+          "exampleTranslation": "The escalator is broken."
+        },
+        {
+          "portuguese": "socorro",
+          "english": "help! (emergency)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Socorro! Alguém me ajude!",
+          "exampleTranslation": "Help! Somebody help me!"
+        },
+        {
+          "portuguese": "ambulância",
+          "english": "ambulance",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A ambulância chegou em cinco minutos.",
+          "exampleTranslation": "The ambulance arrived in five minutes."
+        },
+        {
+          "portuguese": "incêndio",
+          "english": "fire (emergency)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Há um incêndio no prédio.",
+          "exampleTranslation": "There's a fire in the building."
+        },
+        {
+          "portuguese": "roubo",
+          "english": "theft / robbery",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Quero reportar um roubo.",
+          "exampleTranslation": "I want to report a theft."
+        },
+        {
+          "portuguese": "perigo",
+          "english": "danger",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Cuidado, há perigo!",
+          "exampleTranslation": "Careful, there's danger!"
+        },
+        {
+          "portuguese": "cuidado",
+          "english": "be careful / watch out",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Cuidado com o degrau.",
+          "exampleTranslation": "Watch out for the step."
+        },
+        {
+          "portuguese": "atenção",
+          "english": "attention / watch out",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Atenção ao comboio.",
+          "exampleTranslation": "Mind the train."
+        },
+        {
+          "portuguese": "segurança",
+          "english": "security / safety",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A segurança no aeroporto é rigorosa.",
+          "exampleTranslation": "Security at the airport is strict."
+        },
+        {
+          "portuguese": "seguro",
+          "english": "insurance",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tens seguro de viagem?",
+          "exampleTranslation": "Do you have travel insurance?"
+        },
+        {
+          "portuguese": "alarme",
+          "english": "alarm",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O alarme disparou.",
+          "exampleTranslation": "The alarm went off."
+        },
+        {
+          "portuguese": "ladrão",
+          "english": "thief",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O ladrão fugiu.",
+          "exampleTranslation": "The thief ran away."
+        },
+        {
+          "portuguese": "ferido / ferida",
+          "english": "injured",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Alguém está ferido?",
+          "exampleTranslation": "Is anyone injured?"
+        },
+        {
+          "portuguese": "vítima",
+          "english": "victim",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A vítima está consciente.",
+          "exampleTranslation": "The victim is conscious."
+        },
+        {
+          "portuguese": "saída de emergência",
+          "english": "emergency exit",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A saída de emergência é à esquerda.",
+          "exampleTranslation": "The emergency exit is on the left."
+        },
+        {
+          "portuguese": "extintor",
+          "english": "fire extinguisher",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O extintor está no corredor.",
+          "exampleTranslation": "The fire extinguisher is in the corridor."
+        },
+        {
+          "portuguese": "primeiros socorros",
+          "english": "first aid",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Sabes primeiros socorros?",
+          "exampleTranslation": "Do you know first aid?"
+        },
+        {
+          "portuguese": "queixa",
+          "english": "complaint (police)",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Fui à polícia apresentar queixa.",
+          "exampleTranslation": "I went to the police to file a complaint."
+        },
+        {
+          "portuguese": "testemunha",
+          "english": "witness",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Há alguma testemunha?",
+          "exampleTranslation": "Are there any witnesses?"
+        },
+        {
+          "portuguese": "preciso de ajuda",
+          "english": "I need help",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Por favor, preciso de ajuda.",
+          "exampleTranslation": "Please, I need help."
+        },
+        {
+          "portuguese": "chamem a polícia",
+          "english": "call the police",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Chamem a polícia, houve um roubo!",
+          "exampleTranslation": "Call the police, there's been a robbery!"
+        },
+        {
+          "portuguese": "chamem uma ambulância",
+          "english": "call an ambulance",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Chamem uma ambulância, há um ferido!",
+          "exampleTranslation": "Call an ambulance, someone's injured!"
+        },
+        {
+          "portuguese": "está bem?",
+          "english": "are you okay?",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Está bem? Precisa de ajuda?",
+          "exampleTranslation": "Are you okay? Do you need help?"
+        },
+        {
+          "portuguese": "número de emergência",
+          "english": "emergency number",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O número de emergência em Portugal é o 112.",
+          "exampleTranslation": "The emergency number in Portugal is 112."
         }
       ]
     },
@@ -7776,6 +8416,126 @@
           "example": "Alguém tocou a campainha.",
           "exampleTranslation": "Someone rang the doorbell.",
           "relatedWords": []
+        },
+        {
+          "portuguese": "aspirar",
+          "english": "to vacuum",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou aspirar a sala.",
+          "exampleTranslation": "I'm going to vacuum the living room."
+        },
+        {
+          "portuguese": "varrer",
+          "english": "to sweep",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Preciso de varrer a cozinha.",
+          "exampleTranslation": "I need to sweep the kitchen."
+        },
+        {
+          "portuguese": "lavar loiça",
+          "english": "to wash dishes",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quem lava a loiça hoje?",
+          "exampleTranslation": "Who's washing the dishes today?"
+        },
+        {
+          "portuguese": "lavar roupa",
+          "english": "to do laundry",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tenho de lavar roupa amanhã.",
+          "exampleTranslation": "I have to do laundry tomorrow."
+        },
+        {
+          "portuguese": "estender roupa",
+          "english": "to hang out laundry",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou estender a roupa na varanda.",
+          "exampleTranslation": "I'm going to hang the laundry on the balcony."
+        },
+        {
+          "portuguese": "secar",
+          "english": "to dry",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A roupa está a secar ao sol.",
+          "exampleTranslation": "The clothes are drying in the sun."
+        },
+        {
+          "portuguese": "detergente",
+          "english": "detergent",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Compra detergente no supermercado.",
+          "exampleTranslation": "Buy detergent at the supermarket."
+        },
+        {
+          "portuguese": "esfregona",
+          "english": "mop",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Passa a esfregona na cozinha.",
+          "exampleTranslation": "Mop the kitchen floor."
+        },
+        {
+          "portuguese": "balde",
+          "english": "bucket",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Enche o balde com água.",
+          "exampleTranslation": "Fill the bucket with water."
+        },
+        {
+          "portuguese": "pano",
+          "english": "cloth / rag",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Limpa a mesa com um pano.",
+          "exampleTranslation": "Wipe the table with a cloth."
+        },
+        {
+          "portuguese": "esponja",
+          "english": "sponge",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A esponja está suja.",
+          "exampleTranslation": "The sponge is dirty."
+        },
+        {
+          "portuguese": "reciclagem",
+          "english": "recycling",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A reciclagem é importante.",
+          "exampleTranslation": "Recycling is important."
+        },
+        {
+          "portuguese": "reciclar",
+          "english": "to recycle",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Em Portugal reciclamos o vidro, papel e plástico.",
+          "exampleTranslation": "In Portugal we recycle glass, paper, and plastic."
+        },
+        {
+          "portuguese": "contentor",
+          "english": "container / bin (recycling)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O contentor amarelo é para embalagens.",
+          "exampleTranslation": "The yellow bin is for packaging."
+        },
+        {
+          "portuguese": "regar",
+          "english": "to water (plants)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Rega as plantas todos os dias.",
+          "exampleTranslation": "Water the plants every day."
         }
       ]
     },
@@ -11251,6 +12011,206 @@
           "example": "Quanto custa este livro?",
           "exampleTranslation": "How much does this book cost?",
           "relatedWords": []
+        },
+        {
+          "portuguese": "carta",
+          "english": "letter",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Vou enviar uma carta para a minha mãe.",
+          "exampleTranslation": "I'm going to send a letter to my mother."
+        },
+        {
+          "portuguese": "envelope",
+          "english": "envelope",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Preciso de um envelope grande.",
+          "exampleTranslation": "I need a large envelope."
+        },
+        {
+          "portuguese": "selo",
+          "english": "stamp (postage)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Quanto custa um selo para Inglaterra?",
+          "exampleTranslation": "How much is a stamp to England?"
+        },
+        {
+          "portuguese": "código postal",
+          "english": "postcode / zip code",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Qual é o teu código postal?",
+          "exampleTranslation": "What's your postcode?"
+        },
+        {
+          "portuguese": "carteiro",
+          "english": "postman",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O carteiro passa de manhã.",
+          "exampleTranslation": "The postman comes in the morning."
+        },
+        {
+          "portuguese": "depósito",
+          "english": "deposit",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Fiz um depósito no banco.",
+          "exampleTranslation": "I made a deposit at the bank."
+        },
+        {
+          "portuguese": "levantamento",
+          "english": "withdrawal",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Preciso de fazer um levantamento.",
+          "exampleTranslation": "I need to make a withdrawal."
+        },
+        {
+          "portuguese": "empréstimo",
+          "english": "loan",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Pedi um empréstimo ao banco.",
+          "exampleTranslation": "I applied for a bank loan."
+        },
+        {
+          "portuguese": "juros",
+          "english": "interest (financial)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "A taxa de juros está alta.",
+          "exampleTranslation": "The interest rate is high."
+        },
+        {
+          "portuguese": "extrato",
+          "english": "bank statement",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Verifiquei o extrato bancário.",
+          "exampleTranslation": "I checked the bank statement."
+        },
+        {
+          "portuguese": "poupança",
+          "english": "savings",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho uma conta poupança.",
+          "exampleTranslation": "I have a savings account."
+        },
+        {
+          "portuguese": "documento",
+          "english": "document",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Traga os documentos necessários.",
+          "exampleTranslation": "Bring the necessary documents."
+        },
+        {
+          "portuguese": "formulário",
+          "english": "form (to fill in)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tem de preencher este formulário.",
+          "exampleTranslation": "You have to fill in this form."
+        },
+        {
+          "portuguese": "assinatura",
+          "english": "signature",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Ponha a sua assinatura aqui.",
+          "exampleTranslation": "Put your signature here."
+        },
+        {
+          "portuguese": "fotocópia",
+          "english": "photocopy",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Preciso de uma fotocópia do passaporte.",
+          "exampleTranslation": "I need a photocopy of the passport."
+        },
+        {
+          "portuguese": "carimbo",
+          "english": "stamp (official)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O documento precisa de um carimbo.",
+          "exampleTranslation": "The document needs a stamp."
+        },
+        {
+          "portuguese": "NIF",
+          "english": "tax number",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Preciso de um NIF para abrir conta.",
+          "exampleTranslation": "I need a tax number to open an account."
+        },
+        {
+          "portuguese": "finanças",
+          "english": "tax office",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Fui às finanças tratar do NIF.",
+          "exampleTranslation": "I went to the tax office to get my NIF."
+        },
+        {
+          "portuguese": "câmara municipal",
+          "english": "town hall / city council",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A câmara municipal fica na praça.",
+          "exampleTranslation": "The town hall is in the square."
+        },
+        {
+          "portuguese": "segurança social",
+          "english": "social security",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Está inscrito na segurança social?",
+          "exampleTranslation": "Are you registered with social security?"
+        },
+        {
+          "portuguese": "imposto",
+          "english": "tax",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O IVA é o imposto sobre o consumo.",
+          "exampleTranslation": "VAT is the consumption tax."
+        },
+        {
+          "portuguese": "taxa",
+          "english": "fee / rate",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A taxa de câmbio está favorável.",
+          "exampleTranslation": "The exchange rate is favourable."
+        },
+        {
+          "portuguese": "prazo",
+          "english": "deadline",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O prazo é até sexta-feira.",
+          "exampleTranslation": "The deadline is Friday."
+        },
+        {
+          "portuguese": "reclamação",
+          "english": "complaint",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Quero fazer uma reclamação.",
+          "exampleTranslation": "I want to make a complaint."
+        },
+        {
+          "portuguese": "atendimento",
+          "english": "customer service",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O atendimento nesta loja é ótimo.",
+          "exampleTranslation": "The customer service in this shop is great."
         }
       ]
     },
@@ -13232,6 +14192,206 @@
           "example": "Vou bloquear esse número.",
           "exampleTranslation": "I'm going to block that number.",
           "relatedWords": []
+        },
+        {
+          "portuguese": "notícia",
+          "english": "news / news story",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Viste a notícia de hoje?",
+          "exampleTranslation": "Did you see today's news?"
+        },
+        {
+          "portuguese": "artigo",
+          "english": "article",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Li um artigo interessante.",
+          "exampleTranslation": "I read an interesting article."
+        },
+        {
+          "portuguese": "programa",
+          "english": "programme / show",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Qual é o teu programa favorito?",
+          "exampleTranslation": "What's your favourite programme?"
+        },
+        {
+          "portuguese": "rádio",
+          "english": "radio",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Ouço rádio no carro.",
+          "exampleTranslation": "I listen to the radio in the car."
+        },
+        {
+          "portuguese": "canal",
+          "english": "channel",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Muda de canal.",
+          "exampleTranslation": "Change the channel."
+        },
+        {
+          "portuguese": "anúncio",
+          "english": "advertisement",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vi o anúncio na televisão.",
+          "exampleTranslation": "I saw the advert on TV."
+        },
+        {
+          "portuguese": "telefone",
+          "english": "telephone",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O telefone está a tocar.",
+          "exampleTranslation": "The phone is ringing."
+        },
+        {
+          "portuguese": "chamada",
+          "english": "phone call",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tenho de fazer uma chamada.",
+          "exampleTranslation": "I have to make a phone call."
+        },
+        {
+          "portuguese": "contacto",
+          "english": "contact",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Dá-me o teu contacto.",
+          "exampleTranslation": "Give me your contact details."
+        },
+        {
+          "portuguese": "conversa",
+          "english": "conversation / chat",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tivemos uma conversa longa.",
+          "exampleTranslation": "We had a long conversation."
+        },
+        {
+          "portuguese": "opinião",
+          "english": "opinion",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Qual é a tua opinião?",
+          "exampleTranslation": "What's your opinion?"
+        },
+        {
+          "portuguese": "ideia",
+          "english": "idea",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Tenho uma ideia!",
+          "exampleTranslation": "I have an idea!"
+        },
+        {
+          "portuguese": "discussão",
+          "english": "discussion / argument",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Tivemos uma discussão sobre política.",
+          "exampleTranslation": "We had a discussion about politics."
+        },
+        {
+          "portuguese": "concordar",
+          "english": "to agree",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Concordo contigo.",
+          "exampleTranslation": "I agree with you."
+        },
+        {
+          "portuguese": "discordar",
+          "english": "to disagree",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Discordo completamente.",
+          "exampleTranslation": "I completely disagree."
+        },
+        {
+          "portuguese": "explicar",
+          "english": "to explain",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Podes explicar-me?",
+          "exampleTranslation": "Can you explain to me?"
+        },
+        {
+          "portuguese": "descrever",
+          "english": "to describe",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Descreve o que aconteceu.",
+          "exampleTranslation": "Describe what happened."
+        },
+        {
+          "portuguese": "prometer",
+          "english": "to promise",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Prometo que venho amanhã.",
+          "exampleTranslation": "I promise I'll come tomorrow."
+        },
+        {
+          "portuguese": "avisar",
+          "english": "to warn / to notify",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou avisar a Maria.",
+          "exampleTranslation": "I'll let Maria know."
+        },
+        {
+          "portuguese": "informar",
+          "english": "to inform",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou informar o chefe.",
+          "exampleTranslation": "I'll inform the boss."
+        },
+        {
+          "portuguese": "pedir desculpa",
+          "english": "to apologise",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Peço desculpa pelo atraso.",
+          "exampleTranslation": "I apologise for the delay."
+        },
+        {
+          "portuguese": "podcast",
+          "english": "podcast",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ouço um podcast sobre Portugal.",
+          "exampleTranslation": "I listen to a podcast about Portugal."
+        },
+        {
+          "portuguese": "streaming",
+          "english": "streaming",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vemos filmes em streaming.",
+          "exampleTranslation": "We watch films on streaming."
+        },
+        {
+          "portuguese": "online",
+          "english": "online",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A loja está online.",
+          "exampleTranslation": "The shop is online."
+        },
+        {
+          "portuguese": "offline",
+          "english": "offline",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A aplicação funciona offline.",
+          "exampleTranslation": "The app works offline."
         }
       ]
     },

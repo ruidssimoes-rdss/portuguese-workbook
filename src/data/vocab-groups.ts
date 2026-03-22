@@ -253,6 +253,15 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
         "lixo", "campainha",
       ],
     },
+    {
+      label: "Cleaning & chores",
+      labelPt: "Limpeza e tarefas",
+      words: [
+        "aspirar", "varrer", "lavar loiça", "lavar roupa", "estender roupa",
+        "secar", "detergente", "esfregona", "balde", "pano", "esponja",
+        "reciclagem", "reciclar", "contentor", "regar",
+      ],
+    },
   ],
 
   "travel-directions": [
@@ -262,6 +271,7 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
       words: [
         "aeroporto", "avião", "comboio", "autocarro", "metro", "táxi",
         "carro", "bicicleta", "barco", "eléctrico", "autoestrada",
+        "mota", "carrinha", "camião",
       ],
     },
     {
@@ -270,7 +280,7 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
       words: [
         "bilhete", "o bilhete", "ida e volta", "partida", "chegada", "atraso",
         "o horário", "a paragem", "passaporte", "bagagem", "viagem", "férias",
-        "reserva", "portagem",
+        "reserva", "portagem", "lugar", "corredor", "terminal",
       ],
     },
     {
@@ -288,7 +298,8 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
       words: [
         "hotel", "quarto", "recepção", "praia", "museu", "igreja",
         "castelo", "jardim", "mercado", "farmácia", "hospital", "banco",
-        "correios", "supermercado",
+        "correios", "supermercado", "teatro", "bombeiros", "centro de saúde",
+        "clínica", "quiosque", "parque",
       ],
     },
     {
@@ -301,6 +312,34 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
         "fronteira", "câmbio", "peão", "carta de condução", "gasolina",
         "parque de estacionamento", "condutor / condutora", "passageiro / passageira",
         "estação",
+      ],
+    },
+    {
+      label: "Driving",
+      labelPt: "Condução",
+      words: [
+        "estrada", "ponte", "túnel", "via", "trânsito", "acidente", "multa",
+        "velocidade", "cinto de segurança", "gasóleo", "pneu", "estacionar",
+      ],
+    },
+    {
+      label: "City & landmarks",
+      labelPt: "Cidade e locais",
+      words: [
+        "cidade", "vila", "aldeia", "capital", "centro", "bairro",
+        "miradouro", "fonte", "estátua", "monumento", "calçada",
+        "elevador", "parque infantil", "escada rolante",
+      ],
+    },
+    {
+      label: "Emergency",
+      labelPt: "Emergências",
+      words: [
+        "socorro", "ambulância", "incêndio", "roubo", "perigo", "cuidado",
+        "atenção", "segurança", "seguro", "alarme", "ladrão", "ferido",
+        "vítima", "saída de emergência", "extintor", "primeiros socorros",
+        "queixa", "testemunha", "preciso de ajuda", "chamem a polícia",
+        "chamem uma ambulância", "está bem?", "número de emergência",
       ],
     },
   ],
@@ -450,6 +489,78 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
       label: "Portuguese traditions",
       labelPt: "Tradições portuguesas",
       words: ["tradição", "costume", "sardinha", "manjerico", "arraial"],
+    },
+  ],
+
+  "shopping-money": [
+    {
+      label: "Post office",
+      labelPt: "Correios",
+      words: [
+        "carta", "envelope", "selo", "código postal", "carteiro",
+      ],
+    },
+    {
+      label: "Banking",
+      labelPt: "Banco",
+      words: [
+        "depósito", "levantamento", "empréstimo", "juros", "extrato", "poupança",
+      ],
+    },
+    {
+      label: "Bureaucracy",
+      labelPt: "Burocracia",
+      words: [
+        "documento", "formulário", "assinatura", "fotocópia", "carimbo",
+        "nif", "finanças", "câmara municipal", "segurança social",
+        "imposto", "taxa", "prazo", "reclamação", "atendimento",
+      ],
+    },
+  ],
+
+  "colours-weather": [
+    {
+      label: "Weather",
+      labelPt: "Tempo",
+      words: [
+        "nublado", "abafado", "fresco", "ameno", "brisa",
+        "relâmpago", "trovão", "seca", "inundação", "cheias",
+      ],
+    },
+    {
+      label: "Environment",
+      labelPt: "Ambiente",
+      words: [
+        "ambiente", "natureza", "poluição", "clima", "energia",
+        "sustentável", "ecológico", "orgânico", "plástico", "aquecimento global",
+      ],
+    },
+  ],
+
+  "technology-internet": [
+    {
+      label: "Media",
+      labelPt: "Média",
+      words: [
+        "notícia", "artigo", "programa", "rádio", "canal", "anúncio",
+        "podcast", "streaming", "online", "offline",
+      ],
+    },
+    {
+      label: "Communication",
+      labelPt: "Comunicação",
+      words: [
+        "telefone", "chamada", "contacto", "conversa", "opinião",
+        "ideia", "discussão",
+      ],
+    },
+    {
+      label: "Communication verbs",
+      labelPt: "Verbos de comunicação",
+      words: [
+        "concordar", "discordar", "explicar", "descrever", "prometer",
+        "avisar", "informar", "pedir desculpa",
+      ],
     },
   ],
 };
