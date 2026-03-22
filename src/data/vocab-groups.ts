@@ -563,6 +563,111 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
       ],
     },
   ],
+
+  "greetings-expressions": [
+    {
+      label: "Question words",
+      labelPt: "Palavras interrogativas",
+      words: [
+        "quem", "o quê", "onde", "quando", "como", "porquê", "porque",
+        "qual", "quanto", "quantos",
+      ],
+    },
+    {
+      label: "Possessives & demonstratives",
+      labelPt: "Possessivos e demonstrativos",
+      words: [
+        "minha", "teu", "tua", "seu / sua", "nosso / nossa", "dele / dela",
+        "este / esta", "esse / essa", "aquele / aquela", "isto", "isso", "aquilo",
+      ],
+    },
+    {
+      label: "Pronouns & quantifiers",
+      labelPt: "Pronomes e quantificadores",
+      words: [
+        "alguém", "ninguém", "algo", "nada", "tudo", "todo / toda",
+        "cada", "outro / outra", "muito", "pouco", "bastante", "mais",
+        "menos", "suficiente", "demais",
+      ],
+    },
+    {
+      label: "Prepositions",
+      labelPt: "Preposições",
+      words: ["com", "sem", "para", "entre", "sobre", "durante"],
+    },
+  ],
+
+  "adjectives-descriptions": [
+    {
+      label: "Quality",
+      labelPt: "Qualidade",
+      words: ["bom", "mau", "melhor", "pior", "ótimo", "péssimo"],
+    },
+    {
+      label: "Right & wrong",
+      labelPt: "Certo e errado",
+      words: ["certo", "errado", "verdadeiro", "falso"],
+    },
+    {
+      label: "State",
+      labelPt: "Estado",
+      words: ["aberto", "fechado", "ocupado", "livre", "disponível"],
+    },
+    {
+      label: "Physical",
+      labelPt: "Físico",
+      words: ["molhado", "seco", "morno", "gelado"],
+    },
+    {
+      label: "Character",
+      labelPt: "Carácter",
+      words: [
+        "público", "privado", "antigo", "moderno", "tradicional", "popular",
+        "simples", "complicado", "perigoso", "silencioso", "barulhento",
+        "jovem", "profissional", "pessoal",
+      ],
+    },
+    {
+      label: "Sequence",
+      labelPt: "Sequência",
+      words: ["próximo", "seguinte", "anterior"],
+    },
+  ],
+
+  "materials-measurements": [
+    {
+      label: "Materials",
+      labelPt: "Materiais",
+      words: [
+        "madeira", "metal", "vidro", "papel", "tecido", "algodão",
+        "lã", "couro", "borracha", "cerâmica", "azulejo",
+      ],
+    },
+    {
+      label: "Shapes",
+      labelPt: "Formas",
+      words: ["redondo", "quadrado", "retângulo", "triângulo", "círculo", "reto", "curvo"],
+    },
+    {
+      label: "Measurements",
+      labelPt: "Medidas",
+      words: [
+        "comprimento", "largura", "altura", "peso", "centímetro",
+        "quilómetro", "quilograma", "litro", "distância",
+      ],
+    },
+  ],
+
+  "emotions-personality": [
+    {
+      label: "New additions",
+      labelPt: "Novos",
+      words: [
+        "extrovertido", "responsável", "divertido", "criativo", "educado",
+        "mal-educado", "sério", "otimista", "pessimista", "maduro",
+      ],
+    },
+  ],
 };
 
 /**

@@ -713,6 +713,350 @@
           "example": "Tchau, até amanhã!",
           "exampleTranslation": "Bye, see you tomorrow!",
           "relatedWords": []
+        },
+        {
+          "portuguese": "quem",
+          "english": "who",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quem é aquela pessoa?",
+          "exampleTranslation": "Who is that person?"
+        },
+        {
+          "portuguese": "o quê",
+          "english": "what",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O quê? Não ouvi.",
+          "exampleTranslation": "What? I didn't hear."
+        },
+        {
+          "portuguese": "onde",
+          "english": "where",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Onde moras?",
+          "exampleTranslation": "Where do you live?"
+        },
+        {
+          "portuguese": "quando",
+          "english": "when",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quando chegas?",
+          "exampleTranslation": "When do you arrive?"
+        },
+        {
+          "portuguese": "como",
+          "english": "how",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Como se diz isto em português?",
+          "exampleTranslation": "How do you say this in Portuguese?"
+        },
+        {
+          "portuguese": "porquê",
+          "english": "why (in questions)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Porquê? O que aconteceu?",
+          "exampleTranslation": "Why? What happened?"
+        },
+        {
+          "portuguese": "porque",
+          "english": "because",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Porque estou cansado.",
+          "exampleTranslation": "Because I'm tired."
+        },
+        {
+          "portuguese": "qual",
+          "english": "which / what",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Qual é o teu nome?",
+          "exampleTranslation": "What's your name?"
+        },
+        {
+          "portuguese": "quanto",
+          "english": "how much",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quanto custa?",
+          "exampleTranslation": "How much does it cost?"
+        },
+        {
+          "portuguese": "quantos",
+          "english": "how many",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quantos anos tens?",
+          "exampleTranslation": "How many years old are you?"
+        },
+        {
+          "portuguese": "minha",
+          "english": "my (feminine)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A minha casa é pequena.",
+          "exampleTranslation": "My house is small."
+        },
+        {
+          "portuguese": "teu",
+          "english": "your (masculine, informal)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O teu carro é novo.",
+          "exampleTranslation": "Your car is new."
+        },
+        {
+          "portuguese": "tua",
+          "english": "your (feminine, informal)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A tua mãe é simpática.",
+          "exampleTranslation": "Your mother is nice."
+        },
+        {
+          "portuguese": "seu / sua",
+          "english": "your (formal) / his / her",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A sua encomenda chegou.",
+          "exampleTranslation": "Your order has arrived."
+        },
+        {
+          "portuguese": "nosso / nossa",
+          "english": "our",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A nossa casa fica no centro.",
+          "exampleTranslation": "Our house is in the centre."
+        },
+        {
+          "portuguese": "dele / dela",
+          "english": "his / hers",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O carro dele é azul.",
+          "exampleTranslation": "His car is blue."
+        },
+        {
+          "portuguese": "este / esta",
+          "english": "this",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Este café é bom.",
+          "exampleTranslation": "This coffee is good."
+        },
+        {
+          "portuguese": "esse / essa",
+          "english": "that (near listener)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Esse livro é teu?",
+          "exampleTranslation": "Is that book yours?"
+        },
+        {
+          "portuguese": "aquele / aquela",
+          "english": "that (far)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Aquela igreja é antiga.",
+          "exampleTranslation": "That church is old."
+        },
+        {
+          "portuguese": "isto",
+          "english": "this (thing)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O que é isto?",
+          "exampleTranslation": "What is this?"
+        },
+        {
+          "portuguese": "isso",
+          "english": "that (thing, near)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Isso é verdade.",
+          "exampleTranslation": "That's true."
+        },
+        {
+          "portuguese": "aquilo",
+          "english": "that (thing, far)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O que é aquilo?",
+          "exampleTranslation": "What is that?"
+        },
+        {
+          "portuguese": "alguém",
+          "english": "someone",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Alguém está à porta.",
+          "exampleTranslation": "Someone is at the door."
+        },
+        {
+          "portuguese": "ninguém",
+          "english": "nobody / no one",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Não há ninguém em casa.",
+          "exampleTranslation": "There's nobody at home."
+        },
+        {
+          "portuguese": "algo",
+          "english": "something",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Queres algo para beber?",
+          "exampleTranslation": "Do you want something to drink?"
+        },
+        {
+          "portuguese": "nada",
+          "english": "nothing",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Não sei nada.",
+          "exampleTranslation": "I don't know anything."
+        },
+        {
+          "portuguese": "tudo",
+          "english": "everything",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Tudo bem? Tudo ótimo!",
+          "exampleTranslation": "All good? All great!"
+        },
+        {
+          "portuguese": "todo / toda",
+          "english": "all / every",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Todos os dias estudo português.",
+          "exampleTranslation": "Every day I study Portuguese."
+        },
+        {
+          "portuguese": "cada",
+          "english": "each / every",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Cada pessoa é diferente.",
+          "exampleTranslation": "Each person is different."
+        },
+        {
+          "portuguese": "outro / outra",
+          "english": "other / another",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quero outra cerveja.",
+          "exampleTranslation": "I want another beer."
+        },
+        {
+          "portuguese": "muito",
+          "english": "very / a lot",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Estou muito cansado.",
+          "exampleTranslation": "I'm very tired."
+        },
+        {
+          "portuguese": "pouco",
+          "english": "little / few",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Falo pouco português.",
+          "exampleTranslation": "I speak little Portuguese."
+        },
+        {
+          "portuguese": "bastante",
+          "english": "quite / enough",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Está bastante frio.",
+          "exampleTranslation": "It's quite cold."
+        },
+        {
+          "portuguese": "mais",
+          "english": "more",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Quero mais café.",
+          "exampleTranslation": "I want more coffee."
+        },
+        {
+          "portuguese": "menos",
+          "english": "less / fewer",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Há menos pessoas hoje.",
+          "exampleTranslation": "There are fewer people today."
+        },
+        {
+          "portuguese": "suficiente",
+          "english": "enough / sufficient",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Temos dinheiro suficiente.",
+          "exampleTranslation": "We have enough money."
+        },
+        {
+          "portuguese": "demais",
+          "english": "too much",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Isto é demais!",
+          "exampleTranslation": "This is too much!"
+        },
+        {
+          "portuguese": "com",
+          "english": "with",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vou com a minha amiga.",
+          "exampleTranslation": "I'm going with my friend."
+        },
+        {
+          "portuguese": "sem",
+          "english": "without",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Café sem açúcar, por favor.",
+          "exampleTranslation": "Coffee without sugar, please."
+        },
+        {
+          "portuguese": "para",
+          "english": "for / to",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Isto é para ti.",
+          "exampleTranslation": "This is for you."
+        },
+        {
+          "portuguese": "entre",
+          "english": "between / among",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A farmácia fica entre o banco e o café.",
+          "exampleTranslation": "The pharmacy is between the bank and the café."
+        },
+        {
+          "portuguese": "sobre",
+          "english": "about / on top of",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Falamos sobre o futuro.",
+          "exampleTranslation": "We talked about the future."
+        },
+        {
+          "portuguese": "durante",
+          "english": "during",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Durante as férias fui a Portugal.",
+          "exampleTranslation": "During the holidays I went to Portugal."
         }
       ]
     },
@@ -13135,6 +13479,86 @@
           "pronunciation": "shuh-tee-AH-doo / shuh-tee-AH-dah",
           "example": "Ele está chateado contigo.",
           "exampleTranslation": "He's upset with you."
+        },
+        {
+          "portuguese": "extrovertido",
+          "english": "extroverted / outgoing",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Ela é muito extrovertida.",
+          "exampleTranslation": "She's very outgoing."
+        },
+        {
+          "portuguese": "responsável",
+          "english": "responsible",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Ele é muito responsável.",
+          "exampleTranslation": "He's very responsible."
+        },
+        {
+          "portuguese": "divertido",
+          "english": "fun / amusing",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A festa foi muito divertida.",
+          "exampleTranslation": "The party was very fun."
+        },
+        {
+          "portuguese": "criativo",
+          "english": "creative",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Ela é muito criativa.",
+          "exampleTranslation": "She's very creative."
+        },
+        {
+          "portuguese": "educado",
+          "english": "polite / well-mannered",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Os portugueses são muito educados.",
+          "exampleTranslation": "The Portuguese are very polite."
+        },
+        {
+          "portuguese": "mal-educado",
+          "english": "rude / ill-mannered",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Que pessoa mal-educada!",
+          "exampleTranslation": "What a rude person!"
+        },
+        {
+          "portuguese": "sério",
+          "english": "serious",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Estás a falar a sério?",
+          "exampleTranslation": "Are you being serious?"
+        },
+        {
+          "portuguese": "otimista",
+          "english": "optimistic",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Sou otimista em relação ao futuro.",
+          "exampleTranslation": "I'm optimistic about the future."
+        },
+        {
+          "portuguese": "pessimista",
+          "english": "pessimistic",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Não sejas pessimista.",
+          "exampleTranslation": "Don't be pessimistic."
+        },
+        {
+          "portuguese": "maduro",
+          "english": "mature",
+          "cefr": "B1",
+          "gender": null,
+          "example": "Ela é muito madura para a idade.",
+          "exampleTranslation": "She's very mature for her age."
         }
       ]
     },
@@ -16859,6 +17283,524 @@
           "gender": "m",
           "example": "Fomos a um arraial no bairro da Alfama.",
           "exampleTranslation": "We went to a street festival in Alfama."
+        }
+      ]
+    },
+    {
+      "id": "adjectives-descriptions",
+      "title": "Adjectives & Descriptions",
+      "description": "Bom, mau, fácil, difícil — common adjectives for describing people, places, and things.",
+      "words": [
+        {
+          "portuguese": "bom",
+          "english": "good",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Este restaurante é muito bom.",
+          "exampleTranslation": "This restaurant is very good."
+        },
+        {
+          "portuguese": "mau",
+          "english": "bad",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O tempo está mau hoje.",
+          "exampleTranslation": "The weather is bad today."
+        },
+        {
+          "portuguese": "melhor",
+          "english": "better / best",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Este é o melhor café de Lisboa.",
+          "exampleTranslation": "This is the best café in Lisbon."
+        },
+        {
+          "portuguese": "pior",
+          "english": "worse / worst",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Hoje estou pior do que ontem.",
+          "exampleTranslation": "Today I'm worse than yesterday."
+        },
+        {
+          "portuguese": "ótimo",
+          "english": "great / excellent",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A comida estava ótima!",
+          "exampleTranslation": "The food was great!"
+        },
+        {
+          "portuguese": "péssimo",
+          "english": "terrible / awful",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O serviço foi péssimo.",
+          "exampleTranslation": "The service was terrible."
+        },
+        {
+          "portuguese": "certo",
+          "english": "right / correct",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A resposta está certa.",
+          "exampleTranslation": "The answer is correct."
+        },
+        {
+          "portuguese": "errado",
+          "english": "wrong / incorrect",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Desculpa, o número está errado.",
+          "exampleTranslation": "Sorry, the number is wrong."
+        },
+        {
+          "portuguese": "verdadeiro",
+          "english": "true / real",
+          "cefr": "A2",
+          "gender": null,
+          "example": "É uma história verdadeira.",
+          "exampleTranslation": "It's a true story."
+        },
+        {
+          "portuguese": "falso",
+          "english": "false / fake",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Essa notícia é falsa.",
+          "exampleTranslation": "That news is fake."
+        },
+        {
+          "portuguese": "aberto",
+          "english": "open",
+          "cefr": "A1",
+          "gender": null,
+          "example": "O museu está aberto.",
+          "exampleTranslation": "The museum is open."
+        },
+        {
+          "portuguese": "fechado",
+          "english": "closed",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A loja está fechada ao domingo.",
+          "exampleTranslation": "The shop is closed on Sundays."
+        },
+        {
+          "portuguese": "ocupado",
+          "english": "busy / occupied",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Desculpe, este lugar está ocupado.",
+          "exampleTranslation": "Sorry, this seat is taken."
+        },
+        {
+          "portuguese": "livre",
+          "english": "free (available)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Esta mesa está livre?",
+          "exampleTranslation": "Is this table free?"
+        },
+        {
+          "portuguese": "disponível",
+          "english": "available",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O quarto está disponível?",
+          "exampleTranslation": "Is the room available?"
+        },
+        {
+          "portuguese": "molhado",
+          "english": "wet",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O chão está molhado, cuidado.",
+          "exampleTranslation": "The floor is wet, be careful."
+        },
+        {
+          "portuguese": "seco",
+          "english": "dry",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A roupa já está seca.",
+          "exampleTranslation": "The clothes are already dry."
+        },
+        {
+          "portuguese": "morno",
+          "english": "warm / lukewarm",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O café está morno.",
+          "exampleTranslation": "The coffee is lukewarm."
+        },
+        {
+          "portuguese": "gelado",
+          "english": "icy / frozen / ice-cold",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A água está gelada.",
+          "exampleTranslation": "The water is ice-cold."
+        },
+        {
+          "portuguese": "público",
+          "english": "public",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Os transportes públicos são bons.",
+          "exampleTranslation": "Public transport is good."
+        },
+        {
+          "portuguese": "privado",
+          "english": "private",
+          "cefr": "A2",
+          "gender": null,
+          "example": "É uma escola privada.",
+          "exampleTranslation": "It's a private school."
+        },
+        {
+          "portuguese": "antigo",
+          "english": "old / ancient",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Alfama é o bairro mais antigo de Lisboa.",
+          "exampleTranslation": "Alfama is the oldest neighbourhood in Lisbon."
+        },
+        {
+          "portuguese": "moderno",
+          "english": "modern",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O edifício é muito moderno.",
+          "exampleTranslation": "The building is very modern."
+        },
+        {
+          "portuguese": "tradicional",
+          "english": "traditional",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Este é um prato tradicional.",
+          "exampleTranslation": "This is a traditional dish."
+        },
+        {
+          "portuguese": "popular",
+          "english": "popular",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O fado é muito popular.",
+          "exampleTranslation": "Fado is very popular."
+        },
+        {
+          "portuguese": "simples",
+          "english": "simple",
+          "cefr": "A1",
+          "gender": null,
+          "example": "A receita é muito simples.",
+          "exampleTranslation": "The recipe is very simple."
+        },
+        {
+          "portuguese": "complicado",
+          "english": "complicated",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A gramática portuguesa é complicada.",
+          "exampleTranslation": "Portuguese grammar is complicated."
+        },
+        {
+          "portuguese": "perigoso",
+          "english": "dangerous",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Esta estrada é perigosa à noite.",
+          "exampleTranslation": "This road is dangerous at night."
+        },
+        {
+          "portuguese": "silencioso",
+          "english": "quiet / silent",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A aldeia é muito silenciosa.",
+          "exampleTranslation": "The village is very quiet."
+        },
+        {
+          "portuguese": "barulhento",
+          "english": "noisy / loud",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Os vizinhos são barulhentos.",
+          "exampleTranslation": "The neighbours are noisy."
+        },
+        {
+          "portuguese": "jovem",
+          "english": "young",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Ela é muito jovem.",
+          "exampleTranslation": "She is very young."
+        },
+        {
+          "portuguese": "profissional",
+          "english": "professional",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O serviço foi muito profissional.",
+          "exampleTranslation": "The service was very professional."
+        },
+        {
+          "portuguese": "pessoal",
+          "english": "personal",
+          "cefr": "A2",
+          "gender": null,
+          "example": "É uma questão pessoal.",
+          "exampleTranslation": "It's a personal matter."
+        },
+        {
+          "portuguese": "próximo",
+          "english": "next",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A próxima paragem é a minha.",
+          "exampleTranslation": "The next stop is mine."
+        },
+        {
+          "portuguese": "seguinte",
+          "english": "following / next",
+          "cefr": "A2",
+          "gender": null,
+          "example": "No dia seguinte fomos a Sintra.",
+          "exampleTranslation": "The following day we went to Sintra."
+        },
+        {
+          "portuguese": "anterior",
+          "english": "previous",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O inquilino anterior era simpático.",
+          "exampleTranslation": "The previous tenant was nice."
+        }
+      ]
+    },
+    {
+      "id": "materials-measurements",
+      "title": "Materials & Measurements",
+      "description": "Madeira, metal, vidro — materials, shapes, sizes, and units of measurement.",
+      "words": [
+        {
+          "portuguese": "madeira",
+          "english": "wood",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A mesa é de madeira.",
+          "exampleTranslation": "The table is made of wood."
+        },
+        {
+          "portuguese": "metal",
+          "english": "metal",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A porta é de metal.",
+          "exampleTranslation": "The door is made of metal."
+        },
+        {
+          "portuguese": "vidro",
+          "english": "glass (material)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A garrafa é de vidro.",
+          "exampleTranslation": "The bottle is made of glass."
+        },
+        {
+          "portuguese": "papel",
+          "english": "paper",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Preciso de papel para a impressora.",
+          "exampleTranslation": "I need paper for the printer."
+        },
+        {
+          "portuguese": "tecido",
+          "english": "fabric / cloth",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O tecido é de algodão.",
+          "exampleTranslation": "The fabric is cotton."
+        },
+        {
+          "portuguese": "algodão",
+          "english": "cotton",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Prefiro roupa de algodão.",
+          "exampleTranslation": "I prefer cotton clothes."
+        },
+        {
+          "portuguese": "lã",
+          "english": "wool",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A camisola é de lã.",
+          "exampleTranslation": "The sweater is made of wool."
+        },
+        {
+          "portuguese": "couro",
+          "english": "leather",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os sapatos são de couro.",
+          "exampleTranslation": "The shoes are made of leather."
+        },
+        {
+          "portuguese": "borracha",
+          "english": "rubber",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "As botas são de borracha.",
+          "exampleTranslation": "The boots are made of rubber."
+        },
+        {
+          "portuguese": "cerâmica",
+          "english": "ceramic",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O prato é de cerâmica.",
+          "exampleTranslation": "The plate is ceramic."
+        },
+        {
+          "portuguese": "azulejo",
+          "english": "tile (Portuguese glazed tile)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os azulejos são típicos de Portugal.",
+          "exampleTranslation": "The tiles are typical of Portugal."
+        },
+        {
+          "portuguese": "redondo",
+          "english": "round",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A mesa é redonda.",
+          "exampleTranslation": "The table is round."
+        },
+        {
+          "portuguese": "quadrado",
+          "english": "square",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A caixa é quadrada.",
+          "exampleTranslation": "The box is square."
+        },
+        {
+          "portuguese": "retângulo",
+          "english": "rectangle",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O campo tem forma de retângulo.",
+          "exampleTranslation": "The pitch is rectangular."
+        },
+        {
+          "portuguese": "triângulo",
+          "english": "triangle",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Desenha um triângulo.",
+          "exampleTranslation": "Draw a triangle."
+        },
+        {
+          "portuguese": "círculo",
+          "english": "circle",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Sentámo-nos em círculo.",
+          "exampleTranslation": "We sat in a circle."
+        },
+        {
+          "portuguese": "reto",
+          "english": "straight",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Segue em frente, sempre reto.",
+          "exampleTranslation": "Go straight ahead."
+        },
+        {
+          "portuguese": "curvo",
+          "english": "curved",
+          "cefr": "A2",
+          "gender": null,
+          "example": "A estrada é curva.",
+          "exampleTranslation": "The road is curved."
+        },
+        {
+          "portuguese": "comprimento",
+          "english": "length",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Qual é o comprimento da mesa?",
+          "exampleTranslation": "What's the length of the table?"
+        },
+        {
+          "portuguese": "largura",
+          "english": "width",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A largura do rio é de cem metros.",
+          "exampleTranslation": "The width of the river is a hundred metres."
+        },
+        {
+          "portuguese": "altura",
+          "english": "height",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A torre tem cinquenta metros de altura.",
+          "exampleTranslation": "The tower is fifty metres high."
+        },
+        {
+          "portuguese": "peso",
+          "english": "weight",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Qual é o peso da mala?",
+          "exampleTranslation": "What's the weight of the bag?"
+        },
+        {
+          "portuguese": "centímetro",
+          "english": "centimetre",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A prateleira tem trinta centímetros.",
+          "exampleTranslation": "The shelf is thirty centimetres."
+        },
+        {
+          "portuguese": "quilómetro",
+          "english": "kilometre",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Lisboa fica a trezentos quilómetros.",
+          "exampleTranslation": "Lisbon is three hundred kilometres away."
+        },
+        {
+          "portuguese": "quilograma",
+          "english": "kilogram",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Quero meio quilograma de queijo.",
+          "exampleTranslation": "I want half a kilogram of cheese."
+        },
+        {
+          "portuguese": "litro",
+          "english": "litre",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Um litro de leite, por favor.",
+          "exampleTranslation": "A litre of milk, please."
+        },
+        {
+          "portuguese": "distância",
+          "english": "distance",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A distância é de dez quilómetros.",
+          "exampleTranslation": "The distance is ten kilometres."
         }
       ]
     }
