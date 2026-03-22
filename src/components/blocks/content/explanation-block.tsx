@@ -14,7 +14,7 @@ function InlineVariant({ data, className }: { data: ExplanationBlockData; classN
     data.severity === "correction"
       ? "border-t-2 border-t-[rgba(220,38,38,0.2)]"
       : data.severity === "tip"
-        ? "border-t-2 border-t-[#FEF3C7]"
+        ? "border-t-2 border-t-[rgba(0,0,0,0.06)]"
         : "";
 
   return (

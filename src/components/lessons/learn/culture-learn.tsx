@@ -27,7 +27,7 @@ export function CultureLearn({ data }: CultureLearnProps) {
           <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#9B9DA3] mb-1">
             Significado
           </p>
-          <p className="text-[15px] font-medium text-[#111111]">
+          <p className="text-[14px] font-medium text-[#111111]">
             {data.meaning}
           </p>
         </div>

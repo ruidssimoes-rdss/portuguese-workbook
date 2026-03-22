@@ -39,7 +39,7 @@ export function VerbLearn({ data }: VerbLearnProps) {
             </span>
             <div className="flex items-center gap-2">
               <PronunciationButton text={conj.form} size="sm" variant="muted" />
-              <span className="text-[15px] font-medium text-[#111111]">
+              <span className="text-[14px] font-medium text-[#111111]">
                 {conj.form}
               </span>
             </div>

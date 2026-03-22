@@ -12,7 +12,7 @@ function CollapsedVariant({ data, className }: { data: VerbBlockData; className?
   return (
     <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white flex items-center justify-between ${className ?? ""}`}>
       <div className="flex items-baseline gap-2">
-        <span className="text-[15px] font-medium text-[#111111]">{data.verb}</span>
+        <span className="text-[14px] font-medium text-[#111111]">{data.verb}</span>
         <span className="text-[13px] text-[#6C6B71]">{data.verbTranslation}</span>
       </div>
       <span className="text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap bg-[#F7F7F5] text-[#6C6B71]">

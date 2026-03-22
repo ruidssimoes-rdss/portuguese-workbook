@@ -211,13 +211,10 @@ function LessonIntro({
         {lesson.title}
       </p>
 
-      {/* CEFR + lesson number */}
-      <div className="flex items-center justify-center gap-2 mt-5">
+      {/* CEFR badge */}
+      <div className="flex items-center justify-center mt-5">
         <span className="px-3 py-1 text-[10px] font-medium text-[#185FA5] bg-[rgba(24,95,165,0.05)] rounded-full">
           {lesson.cefr}
-        </span>
-        <span className="text-[12px] text-[#9B9DA3]">
-          Lição {lesson.order}
         </span>
       </div>
 

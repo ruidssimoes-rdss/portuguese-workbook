@@ -93,7 +93,7 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
               <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#9B9DA3] mb-2">
                 Verdadeiro ou falso?{showEnglish && " / True or false?"}
               </p>
-              <p className="text-[15px] font-medium text-[#111111] mb-3">{q.statement}</p>
+              <p className="text-[14px] font-medium text-[#111111] mb-3">{q.statement}</p>
               <div className="flex gap-3">
                 {([true, false] as const).map((val) => {
                   const label = val ? "Verdadeiro" : "Falso";
@@ -123,7 +123,7 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
             </div>
           ) : (
             <div className="mt-2">
-              <p className="text-[15px] font-medium text-[#111111] mb-1">{q.question}</p>
+              <p className="text-[14px] font-medium text-[#111111] mb-1">{q.question}</p>
               {showEnglish && q.questionEnglish && (
                 <p className="text-[12px] text-[#9B9DA3] mb-3">{q.questionEnglish}</p>
               )}

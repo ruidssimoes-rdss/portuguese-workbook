@@ -44,7 +44,7 @@ export function SectionShell({
         )}
 
         {/* Progress bar */}
-        <div className="h-1 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mt-3">
+        <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mt-3">
           <div
             className="h-full bg-[#185FA5] rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
@@ -66,7 +66,7 @@ export function SectionShell({
             type="button"
             onClick={onVerify}
             disabled={!canVerify}
-            className={`w-full py-3.5 text-[15px] font-medium rounded-lg transition-all ${
+            className={`w-full py-3.5 text-[14px] font-medium rounded-lg transition-all ${
               canVerify
                 ? "bg-[#111111] text-white hover:bg-[#333] cursor-pointer"
                 : "bg-[#F7F7F5] text-[#9B9DA3] cursor-not-allowed"

@@ -32,7 +32,7 @@ export function GrammarLearn({ data }: GrammarLearnProps) {
                 {i + 1}
               </div>
               <div className="flex-1">
-                <p className="text-[15px] font-medium text-[#111111]">
+                <p className="text-[14px] font-medium text-[#111111]">
                   {rule.rule}
                 </p>
                 {rule.rulePt && (
@@ -70,7 +70,7 @@ export function GrammarLearn({ data }: GrammarLearnProps) {
 
       {/* Tips */}
       {data.tipsPt.length > 0 && (
-        <div className="bg-[#FFFBEB] border-[0.5px] border-[#FEF3C7] rounded-lg p-4 mb-6">
+        <div className="bg-[#FAEEDA] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-4 mb-6">
           <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#854F0B] mb-2">
             Dica
           </p>

@@ -87,7 +87,7 @@ export function ResultsScreen({
             </svg>
           )}
         </div>
-        <h2 className="text-2xl font-medium text-[#111111]">
+        <h2 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
           {passed ? "Lição Completa!" : "Ainda não"}
         </h2>
         {showEnglish && (
@@ -102,7 +102,7 @@ export function ResultsScreen({
       </div>
 
       {/* Accuracy */}
-      <p className="text-[28px] font-medium text-[#111111] mb-1">{displayAccuracy}%</p>
+      <p className="text-[48px] font-medium text-[#111111] tracking-[-0.02em] mb-1">{displayAccuracy}%</p>
       <p className="text-[13px] text-[#9B9DA3] mb-6">
         {totalCorrect} / {totalQuestions}
         {showEnglish && " correct"}

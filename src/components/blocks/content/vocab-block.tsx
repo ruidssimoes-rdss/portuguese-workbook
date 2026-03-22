@@ -92,7 +92,7 @@ function FlashcardVariant({ data, className }: { data: VocabBlockData; className
           className="absolute inset-0 flex flex-col items-center justify-center"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <p className="text-2xl font-medium text-[#111111]">{data.word}</p>
+          <p className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">{data.word}</p>
           <p className="text-[13px] text-[#9B9DA3] italic mt-2">{data.pronunciation}</p>
         </div>
         {/* Back */}
@@ -100,7 +100,7 @@ function FlashcardVariant({ data, className }: { data: VocabBlockData; className
           className="absolute inset-0 flex flex-col items-center justify-center"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <p className="text-xl font-medium text-[#111111]">{data.translation}</p>
+          <p className="text-[18px] font-medium text-[#111111]">{data.translation}</p>
           {data.example.pt && (
             <div className="mt-3 text-center max-w-[280px]">
               <p className="text-[13px] text-[#111111]">{data.example.pt}</p>

@@ -118,7 +118,7 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
                     type="text"
                     value={answers[key] ?? ""}
                     onChange={(e) => setAnswers((prev) => ({ ...prev, [key]: e.target.value }))}
-                    className="flex-1 text-[15px] font-medium text-[#111111] bg-transparent border-b-2 border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] outline-none py-1 transition-colors placeholder:text-[#9B9DA3]"
+                    className="flex-1 text-[14px] font-medium text-[#111111] bg-transparent border-b-[1.5px] border-[rgba(0,0,0,0.15)] focus:border-[#185FA5] outline-none py-1 transition-colors placeholder:text-[#9B9DA3]"
                     placeholder="..."
                     autoComplete="off"
                     spellCheck={false}
@@ -127,11 +127,11 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
                   <div className="flex-1 flex items-center justify-between">
                     <div>
                       {r?.correct ? (
-                        <span className="text-[15px] font-medium text-[#0F6E56]">{p.correctForm}</span>
+                        <span className="text-[14px] font-medium text-[#0F6E56]">{p.correctForm}</span>
                       ) : (
                         <>
-                          <span className="text-[15px] font-medium text-[#dc2626] line-through mr-2">{answers[key] || "(vazio)"}</span>
-                          <span className="text-[15px] font-medium text-[#0F6E56]">{p.correctForm}</span>
+                          <span className="text-[14px] font-medium text-[#dc2626] line-through mr-2">{answers[key] || "(vazio)"}</span>
+                          <span className="text-[14px] font-medium text-[#0F6E56]">{p.correctForm}</span>
                         </>
                       )}
                       {r?.accentHint && <p className="text-[11px] text-[#9B9DA3]">Acento: {r.accentHint}</p>}

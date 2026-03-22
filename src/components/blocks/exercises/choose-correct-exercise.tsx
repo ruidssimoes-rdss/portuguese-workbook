@@ -28,7 +28,7 @@ export function ChooseCorrectExercise({
   }
 
   function optionClass(index: number): string {
-    const base = "w-full text-left text-[15px] py-3 px-4 rounded-lg cursor-pointer transition-all duration-200";
+    const base = "w-full text-left text-[14px] py-3 px-4 rounded-lg cursor-pointer transition-all duration-200";
     if (selected === null) {
       return `${base} border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white text-[#111111] hover:border-[rgba(0,0,0,0.12)] hover:bg-[#F7F7F5]`;
     }

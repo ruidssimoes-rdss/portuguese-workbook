@@ -54,7 +54,7 @@ function CardVariant({ data, isHighlighted, className }: SmartVocabBlockProps) {
       )}
 
       {/* Translation */}
-      <span className="text-[15px] font-medium text-[#6C6B71] break-words">{data.translation}</span>
+      <span className="text-[14px] font-medium text-[#6C6B71] break-words">{data.translation}</span>
 
       {/* Example */}
       {exPt && (
@@ -78,7 +78,7 @@ function CardVariant({ data, isHighlighted, className }: SmartVocabBlockProps) {
         )}
         {data.gender && (
           <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full ${
-            data.gender === "m" ? "text-[#185FA5] bg-[#E6F1FB]" : "text-[#854F0B] bg-[#FFFBEB]"
+            data.gender === "m" ? "text-[#185FA5] bg-[#E6F1FB]" : "text-[#854F0B] bg-[#FAEEDA]"
           }`}>
             {data.gender}
           </span>
@@ -110,7 +110,7 @@ function CardVariant({ data, isHighlighted, className }: SmartVocabBlockProps) {
         {data.tip && (
           <ContentPopover
             trigger={
-              <span className="text-[12px] font-normal text-[#854F0B] bg-[#FFFBEB] border-[0.5px] border-[#FEF3C7] px-2.5 py-1 rounded-full hover:bg-[#FEF3C7] transition-colors duration-150">
+              <span className="text-[12px] font-normal text-[#854F0B] bg-[#FAEEDA] border-[0.5px] border-[rgba(0,0,0,0.06)] px-2.5 py-1 rounded-full hover:bg-[rgba(0,0,0,0.08)] transition-colors duration-150">
                 Pro Tip
               </span>
             }
@@ -166,12 +166,12 @@ function FlashcardVariant({ data, className }: SmartVocabBlockProps) {
         style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ backfaceVisibility: "hidden" }}>
-          <p className="text-2xl font-medium text-[#111111]">{data.word}</p>
+          <p className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">{data.word}</p>
           {data.pronunciation && <p className="text-[13px] text-[#9B9DA3] italic mt-2">/{data.pronunciation}/</p>}
           <PronunciationButton text={data.word} size="md" className="mt-2" />
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}>
-          <p className="text-xl font-medium text-[#111111]">{data.translation}</p>
+          <p className="text-[18px] font-medium text-[#111111]">{data.translation}</p>
         </div>
       </div>
     </div>

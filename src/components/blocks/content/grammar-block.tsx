@@ -37,7 +37,7 @@ function ExpandedVariant({ data, className }: { data: GrammarBlockData; classNam
       </div>
 
       {data.tips && data.tips.length > 0 && (
-        <div className="bg-[#FFFBEB] border-[0.5px] border-[#FEF3C7] rounded-lg p-3 mt-5">
+        <div className="bg-[#FAEEDA] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-3 mt-5">
           <p className="text-[11px] font-medium uppercase text-[#854F0B] mb-1">Tip</p>
           {data.tips.map((tip, i) => (
             <p key={i} className="text-[13px] text-[#854F0B]">

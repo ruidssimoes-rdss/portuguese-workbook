@@ -114,7 +114,7 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
                   type="button"
                   onClick={() => handleBlankTap(i)}
                   disabled={state === "reviewed"}
-                  className={`inline-block min-w-[70px] mx-1 px-2 py-0.5 rounded-lg border-2 border-dashed text-center text-[15px] font-medium transition-all ${
+                  className={`inline-block min-w-[70px] mx-1 px-2 py-0.5 rounded-lg border-[1.5px] border-dashed text-center text-[14px] font-medium transition-all ${
                     state === "reviewed"
                       ? results[i]?.correct
                         ? "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]"

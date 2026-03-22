@@ -107,13 +107,13 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
                   value={answers[q.id] ?? ""}
                   onChange={(e) => setAnswers((prev) => ({ ...prev, [q.id]: e.target.value }))}
                   placeholder={showEnglish ? "Type the English translation..." : "Escreve a tradução..."}
-                  className="w-full text-[15px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
+                  className="w-full text-[14px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[#185FA5] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
                   autoComplete="off"
                   spellCheck={false}
                 />
               ) : (
                 <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${results[q.id]?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
-                  <p className={`text-[15px] font-medium ${results[q.id]?.correct ? "text-[#0F6E56]" : "text-[#dc2626]"}`}>
+                  <p className={`text-[14px] font-medium ${results[q.id]?.correct ? "text-[#0F6E56]" : "text-[#dc2626]"}`}>
                     {answers[q.id]}
                   </p>
                   {!results[q.id]?.correct && (

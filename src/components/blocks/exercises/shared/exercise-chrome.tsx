@@ -51,9 +51,9 @@ export function ExerciseChrome({
       </div>
 
       {/* Progress bar */}
-      <div className="h-1 rounded-full bg-[#F7F7F5] mb-6 overflow-hidden">
+      <div className="h-1.5 rounded-full bg-[rgba(0,0,0,0.06)] mb-6 overflow-hidden">
         <div
-          className="h-1 rounded-full bg-[#185FA5] transition-all duration-300 ease-out"
+          className="h-1.5 rounded-full bg-[#185FA5] transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>

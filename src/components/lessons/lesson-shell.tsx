@@ -43,7 +43,7 @@ export function LessonShell({
 
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h1 className="text-2xl font-medium text-[#111111]">
+            <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
               {lessonTitle}
             </h1>
             <p className="text-[13px] font-medium text-[#6C6B71] italic">
@@ -59,14 +59,14 @@ export function LessonShell({
 
         {showProgress && sectionProgress !== undefined && (
           <>
-            <div className="h-1 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mb-2">
+            <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mb-2">
               <div
-                className="h-full bg-[#185FA5] rounded-full transition-all duration-500 ease-out"
+                className="h-1.5 bg-[#185FA5] rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${sectionProgress}%` }}
               />
             </div>
             {progressLabel && (
-              <p className="text-[12px] text-[#9B9DA3]">{progressLabel}</p>
+              <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em]">{progressLabel}</p>
             )}
           </>
         )}

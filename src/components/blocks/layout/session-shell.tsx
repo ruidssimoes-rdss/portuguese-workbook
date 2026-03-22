@@ -96,9 +96,9 @@ export function SessionShell({
       </div>
 
       {/* Progress bar */}
-      <div className="h-1 bg-[#F7F7F5]">
+      <div className="h-1.5 bg-[rgba(0,0,0,0.06)]">
         <div
-          className="h-1 bg-[#185FA5] transition-all duration-300 ease-out"
+          className="h-1.5 bg-[#185FA5] transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>

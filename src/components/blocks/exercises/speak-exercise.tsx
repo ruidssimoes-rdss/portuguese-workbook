@@ -117,7 +117,7 @@ export function SpeakExercise({
             {score.wordScores.map((ws, i) => (
               <span
                 key={i}
-                className={`text-[15px] font-medium ${
+                className={`text-[14px] font-medium ${
                   ws.correct ? "text-[#0F6E56]" : "text-[#dc2626]"
                 }`}
               >
