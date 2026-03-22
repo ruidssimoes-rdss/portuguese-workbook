@@ -17,15 +17,15 @@ import { LearnIntro } from "./learn-intro";
 import { LearnProgress } from "./learn-progress";
 import { LearnResults } from "./learn-results";
 
-// Section components (reused from the existing lesson player)
-import { VocabSection } from "@/components/lessons/sections/vocab-section";
-import { ConjugationSection } from "@/components/lessons/sections/conjugation-section";
-import { GrammarSection } from "@/components/lessons/sections/grammar-section";
-import { FillBlankSection } from "@/components/lessons/sections/fill-blank-section";
-import { TranslationSection } from "@/components/lessons/sections/translation-section";
-import { SentenceBuildSection } from "@/components/lessons/sections/sentence-build-section";
-import { WordBankSection } from "@/components/lessons/sections/word-bank-section";
-import { ErrorCorrectionSection } from "@/components/lessons/sections/error-correction-section";
+// New section components (built from scratch for /learn)
+import { VocabSectionNew } from "./sections/vocab-section";
+import { ConjugationSectionNew } from "./sections/conjugation-section";
+import { GrammarSectionNew } from "./sections/grammar-section";
+import { FillBlankSectionNew } from "./sections/fill-blank-section";
+import { TranslationSectionNew } from "./sections/translation-section";
+import { SentenceBuildSectionNew } from "./sections/sentence-build-section";
+import { WordBankSectionNew } from "./sections/word-bank-section";
+import { ErrorCorrectionSectionNew } from "./sections/error-correction-section";
 
 // Learn phase components
 import { VocabLearnCard } from "@/components/lessons/learn/vocab-learn-card";
@@ -36,14 +36,14 @@ import { CultureLearn } from "@/components/lessons/learn/culture-learn";
 // ─── Section map ────────────────────────────────────────
 
 const SECTION_MAP: Record<string, React.ComponentType<Record<string, unknown>>> = {
-  vocab: VocabSection as unknown as React.ComponentType<Record<string, unknown>>,
-  conjugation: ConjugationSection as unknown as React.ComponentType<Record<string, unknown>>,
-  grammar: GrammarSection as unknown as React.ComponentType<Record<string, unknown>>,
-  "fill-blank": FillBlankSection as unknown as React.ComponentType<Record<string, unknown>>,
-  translation: TranslationSection as unknown as React.ComponentType<Record<string, unknown>>,
-  "sentence-build": SentenceBuildSection as unknown as React.ComponentType<Record<string, unknown>>,
-  "word-bank": WordBankSection as unknown as React.ComponentType<Record<string, unknown>>,
-  "error-correction": ErrorCorrectionSection as unknown as React.ComponentType<Record<string, unknown>>,
+  vocab: VocabSectionNew as unknown as React.ComponentType<Record<string, unknown>>,
+  conjugation: ConjugationSectionNew as unknown as React.ComponentType<Record<string, unknown>>,
+  grammar: GrammarSectionNew as unknown as React.ComponentType<Record<string, unknown>>,
+  "fill-blank": FillBlankSectionNew as unknown as React.ComponentType<Record<string, unknown>>,
+  translation: TranslationSectionNew as unknown as React.ComponentType<Record<string, unknown>>,
+  "sentence-build": SentenceBuildSectionNew as unknown as React.ComponentType<Record<string, unknown>>,
+  "word-bank": WordBankSectionNew as unknown as React.ComponentType<Record<string, unknown>>,
+  "error-correction": ErrorCorrectionSectionNew as unknown as React.ComponentType<Record<string, unknown>>,
 };
 
 // ─── Types ──────────────────────────────────────────────
