@@ -4441,6 +4441,462 @@
           "example": "Vamos jantar à cervejaria do bairro.",
           "exampleTranslation": "Let's have dinner at the neighbourhood beer hall.",
           "relatedWords": []
+        },
+        {
+          "portuguese": "banana",
+          "english": "banana",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Quero uma banana para o lanche.",
+          "exampleTranslation": "I want a banana for a snack."
+        },
+        {
+          "portuguese": "morango",
+          "english": "strawberry",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Os morangos portugueses são deliciosos.",
+          "exampleTranslation": "Portuguese strawberries are delicious."
+        },
+        {
+          "portuguese": "uva",
+          "english": "grape",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "As uvas do Douro fazem bom vinho.",
+          "exampleTranslation": "Douro grapes make good wine."
+        },
+        {
+          "portuguese": "pêra",
+          "english": "pear",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Queres uma pêra?",
+          "exampleTranslation": "Do you want a pear?"
+        },
+        {
+          "portuguese": "limão",
+          "english": "lemon",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Ponho limão no peixe.",
+          "exampleTranslation": "I put lemon on the fish."
+        },
+        {
+          "portuguese": "pêssego",
+          "english": "peach",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os pêssegos estão maduros.",
+          "exampleTranslation": "The peaches are ripe."
+        },
+        {
+          "portuguese": "melão",
+          "english": "melon",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Melão com presunto é uma entrada típica.",
+          "exampleTranslation": "Melon with ham is a typical starter."
+        },
+        {
+          "portuguese": "melancia",
+          "english": "watermelon",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "No verão, comemos muita melancia.",
+          "exampleTranslation": "In summer, we eat a lot of watermelon."
+        },
+        {
+          "portuguese": "ananás",
+          "english": "pineapple",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O ananás dos Açores é famoso.",
+          "exampleTranslation": "Azorean pineapple is famous."
+        },
+        {
+          "portuguese": "cereja",
+          "english": "cherry",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A cereja do Fundão é muito conhecida.",
+          "exampleTranslation": "Fundão cherry is very well known."
+        },
+        {
+          "portuguese": "ameixa",
+          "english": "plum",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Fiz compota de ameixa.",
+          "exampleTranslation": "I made plum jam."
+        },
+        {
+          "portuguese": "figo",
+          "english": "fig",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os figos do Algarve são excelentes.",
+          "exampleTranslation": "Algarve figs are excellent."
+        },
+        {
+          "portuguese": "manga",
+          "english": "mango",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Gosto de sumo de manga.",
+          "exampleTranslation": "I like mango juice."
+        },
+        {
+          "portuguese": "framboesa",
+          "english": "raspberry",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "As framboesas são ótimas com iogurte.",
+          "exampleTranslation": "Raspberries are great with yoghurt."
+        },
+        {
+          "portuguese": "cenoura",
+          "english": "carrot",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A sopa leva cenoura e batata.",
+          "exampleTranslation": "The soup has carrot and potato."
+        },
+        {
+          "portuguese": "pepino",
+          "english": "cucumber",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Quero pepino na salada.",
+          "exampleTranslation": "I want cucumber in the salad."
+        },
+        {
+          "portuguese": "pimento",
+          "english": "pepper (bell)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Pimentos assados são muito bons.",
+          "exampleTranslation": "Roasted peppers are very good."
+        },
+        {
+          "portuguese": "couve",
+          "english": "cabbage / kale",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O caldo verde leva couve galega.",
+          "exampleTranslation": "Caldo verde uses Galician kale."
+        },
+        {
+          "portuguese": "alface",
+          "english": "lettuce",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Comprei alface para a salada.",
+          "exampleTranslation": "I bought lettuce for the salad."
+        },
+        {
+          "portuguese": "espinafre",
+          "english": "spinach",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os espinafres são muito saudáveis.",
+          "exampleTranslation": "Spinach is very healthy."
+        },
+        {
+          "portuguese": "brócolos",
+          "english": "broccoli",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Cozinhei brócolos ao vapor.",
+          "exampleTranslation": "I steamed broccoli."
+        },
+        {
+          "portuguese": "cogumelo",
+          "english": "mushroom",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A pizza tem cogumelos.",
+          "exampleTranslation": "The pizza has mushrooms."
+        },
+        {
+          "portuguese": "ervilha",
+          "english": "pea",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Arroz de ervilhas é um prato simples.",
+          "exampleTranslation": "Rice with peas is a simple dish."
+        },
+        {
+          "portuguese": "milho",
+          "english": "corn",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O broa de milho é típica do norte.",
+          "exampleTranslation": "Corn bread is typical from the north."
+        },
+        {
+          "portuguese": "abóbora",
+          "english": "pumpkin / squash",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Fiz sopa de abóbora.",
+          "exampleTranslation": "I made pumpkin soup."
+        },
+        {
+          "portuguese": "borrego",
+          "english": "lamb",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O borrego assado é típico da Páscoa.",
+          "exampleTranslation": "Roast lamb is typical at Easter."
+        },
+        {
+          "portuguese": "peru",
+          "english": "turkey",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Comemos peru no Natal.",
+          "exampleTranslation": "We eat turkey at Christmas."
+        },
+        {
+          "portuguese": "pato",
+          "english": "duck",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Arroz de pato é um prato tradicional.",
+          "exampleTranslation": "Duck rice is a traditional dish."
+        },
+        {
+          "portuguese": "atum",
+          "english": "tuna",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Quero uma sanduíche de atum.",
+          "exampleTranslation": "I want a tuna sandwich."
+        },
+        {
+          "portuguese": "salmão",
+          "english": "salmon",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O salmão grelhado é muito bom.",
+          "exampleTranslation": "Grilled salmon is very good."
+        },
+        {
+          "portuguese": "sardinha",
+          "english": "sardine",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Sardinhas assadas no São João são uma tradição.",
+          "exampleTranslation": "Grilled sardines on São João are a tradition."
+        },
+        {
+          "portuguese": "camarão",
+          "english": "shrimp / prawn",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Camarão à guilho é uma entrada deliciosa.",
+          "exampleTranslation": "Garlic shrimp is a delicious starter."
+        },
+        {
+          "portuguese": "lula",
+          "english": "squid",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Lulas grelhadas com limão são ótimas.",
+          "exampleTranslation": "Grilled squid with lemon is great."
+        },
+        {
+          "portuguese": "polvo",
+          "english": "octopus",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O polvo à lagareiro é um prato famoso.",
+          "exampleTranslation": "Polvo à lagareiro is a famous dish."
+        },
+        {
+          "portuguese": "mexilhão",
+          "english": "mussel",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Mexilhões à bulhão pato são típicos.",
+          "exampleTranslation": "Bulhão Pato mussels are typical."
+        },
+        {
+          "portuguese": "amêijoa",
+          "english": "clam",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Amêijoas à Bulhão Pato são deliciosas.",
+          "exampleTranslation": "Bulhão Pato clams are delicious."
+        },
+        {
+          "portuguese": "nata",
+          "english": "cream",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Quero café com nata.",
+          "exampleTranslation": "I want coffee with cream."
+        },
+        {
+          "portuguese": "farinha",
+          "english": "flour",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Preciso de farinha para o bolo.",
+          "exampleTranslation": "I need flour for the cake."
+        },
+        {
+          "portuguese": "fermento",
+          "english": "yeast / baking powder",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O pão precisa de fermento.",
+          "exampleTranslation": "Bread needs yeast."
+        },
+        {
+          "portuguese": "francesinha",
+          "english": "francesinha (Porto sandwich)",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A francesinha é típica do Porto.",
+          "exampleTranslation": "The francesinha is typical of Porto."
+        },
+        {
+          "portuguese": "caldo verde",
+          "english": "caldo verde (kale soup)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O caldo verde leva batata, couve e chouriço.",
+          "exampleTranslation": "Caldo verde has potato, kale, and chorizo."
+        },
+        {
+          "portuguese": "cozido à portuguesa",
+          "english": "Portuguese stew",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O cozido à portuguesa leva muitas carnes e legumes.",
+          "exampleTranslation": "Cozido à portuguesa has many meats and vegetables."
+        },
+        {
+          "portuguese": "pastéis de bacalhau",
+          "english": "codfish cakes",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os pastéis de bacalhau são uma entrada clássica.",
+          "exampleTranslation": "Codfish cakes are a classic starter."
+        },
+        {
+          "portuguese": "bifana",
+          "english": "pork steak sandwich",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Quero uma bifana com mostarda.",
+          "exampleTranslation": "I want a bifana with mustard."
+        },
+        {
+          "portuguese": "prego",
+          "english": "steak sandwich",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Um prego no pão é um clássico.",
+          "exampleTranslation": "A steak sandwich is a classic."
+        },
+        {
+          "portuguese": "tremoço",
+          "english": "lupin bean (bar snack)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tremoços com cerveja é um petisco popular.",
+          "exampleTranslation": "Lupin beans with beer is a popular snack."
+        },
+        {
+          "portuguese": "ginjinha",
+          "english": "sour cherry liqueur",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A ginjinha é um licor típico de Lisboa.",
+          "exampleTranslation": "Ginjinha is a typical Lisbon liqueur."
+        },
+        {
+          "portuguese": "vinho do porto",
+          "english": "port wine",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O vinho do Porto é famoso no mundo inteiro.",
+          "exampleTranslation": "Port wine is famous worldwide."
+        },
+        {
+          "portuguese": "aguardente",
+          "english": "brandy / spirits",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A aguardente é uma bebida forte.",
+          "exampleTranslation": "Brandy is a strong drink."
+        },
+        {
+          "portuguese": "canela",
+          "english": "cinnamon",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "O pastel de nata leva canela por cima.",
+          "exampleTranslation": "Pastel de nata has cinnamon on top."
+        },
+        {
+          "portuguese": "salsa",
+          "english": "parsley",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Ponho salsa na sopa.",
+          "exampleTranslation": "I put parsley in the soup."
+        },
+        {
+          "portuguese": "coentros",
+          "english": "coriander / cilantro",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os coentros são típicos do Alentejo.",
+          "exampleTranslation": "Coriander is typical of the Alentejo."
+        },
+        {
+          "portuguese": "louro",
+          "english": "bay leaf",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Junto louro ao cozido.",
+          "exampleTranslation": "I add bay leaf to the stew."
+        },
+        {
+          "portuguese": "colorau",
+          "english": "paprika",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O frango leva colorau e alho.",
+          "exampleTranslation": "The chicken has paprika and garlic."
+        },
+        {
+          "portuguese": "molho",
+          "english": "sauce",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Que molho queres na massa?",
+          "exampleTranslation": "What sauce do you want on the pasta?"
+        },
+        {
+          "portuguese": "mostarda",
+          "english": "mustard",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A bifana leva mostarda.",
+          "exampleTranslation": "The bifana has mustard."
+        },
+        {
+          "portuguese": "maionese",
+          "english": "mayonnaise",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Quero maionese com as batatas fritas.",
+          "exampleTranslation": "I want mayonnaise with the fries."
         }
       ]
     },
@@ -14214,6 +14670,1035 @@
               "meaning": "liar (adj/noun)"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "countries-nationalities",
+      "title": "Countries & Nationalities",
+      "description": "Portugal, Brasil, França — countries, nationalities, languages, and where you're from.",
+      "words": [
+        {
+          "portuguese": "portugal",
+          "english": "Portugal",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Portugal fica no sudoeste da Europa.",
+          "exampleTranslation": "Portugal is in the southwest of Europe."
+        },
+        {
+          "portuguese": "espanha",
+          "english": "Spain",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A Espanha faz fronteira com Portugal.",
+          "exampleTranslation": "Spain borders Portugal."
+        },
+        {
+          "portuguese": "frança",
+          "english": "France",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A França é famosa pela gastronomia.",
+          "exampleTranslation": "France is famous for its cuisine."
+        },
+        {
+          "portuguese": "alemanha",
+          "english": "Germany",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A Alemanha é o maior país da Europa Central.",
+          "exampleTranslation": "Germany is the largest country in Central Europe."
+        },
+        {
+          "portuguese": "inglaterra",
+          "english": "England",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A Inglaterra tem muita chuva.",
+          "exampleTranslation": "England has a lot of rain."
+        },
+        {
+          "portuguese": "itália",
+          "english": "Italy",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "A Itália é conhecida pela pizza e pela pasta.",
+          "exampleTranslation": "Italy is known for pizza and pasta."
+        },
+        {
+          "portuguese": "brasil",
+          "english": "Brazil",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O Brasil é o maior país da América do Sul.",
+          "exampleTranslation": "Brazil is the largest country in South America."
+        },
+        {
+          "portuguese": "estados unidos",
+          "english": "United States",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Os Estados Unidos ficam na América do Norte.",
+          "exampleTranslation": "The United States is in North America."
+        },
+        {
+          "portuguese": "china",
+          "english": "China",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A China tem uma população enorme.",
+          "exampleTranslation": "China has an enormous population."
+        },
+        {
+          "portuguese": "japão",
+          "english": "Japan",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Japão é famoso pela tecnologia.",
+          "exampleTranslation": "Japan is famous for technology."
+        },
+        {
+          "portuguese": "angola",
+          "english": "Angola",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Angola é um país lusófono em África.",
+          "exampleTranslation": "Angola is a Portuguese-speaking country in Africa."
+        },
+        {
+          "portuguese": "moçambique",
+          "english": "Mozambique",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Moçambique tem praias lindíssimas.",
+          "exampleTranslation": "Mozambique has beautiful beaches."
+        },
+        {
+          "portuguese": "cabo verde",
+          "english": "Cape Verde",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Cabo Verde é um arquipélago no Atlântico.",
+          "exampleTranslation": "Cape Verde is an archipelago in the Atlantic."
+        },
+        {
+          "portuguese": "marrocos",
+          "english": "Morocco",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Marrocos fica muito perto de Portugal.",
+          "exampleTranslation": "Morocco is very close to Portugal."
+        },
+        {
+          "portuguese": "holanda",
+          "english": "Netherlands",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A Holanda é conhecida pelas tulipas.",
+          "exampleTranslation": "The Netherlands is known for tulips."
+        },
+        {
+          "portuguese": "irlanda",
+          "english": "Ireland",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A Irlanda tem paisagens muito verdes.",
+          "exampleTranslation": "Ireland has very green landscapes."
+        },
+        {
+          "portuguese": "canadá",
+          "english": "Canada",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Canadá é um país bilingue.",
+          "exampleTranslation": "Canada is a bilingual country."
+        },
+        {
+          "portuguese": "suíça",
+          "english": "Switzerland",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A Suíça é famosa pelo chocolate.",
+          "exampleTranslation": "Switzerland is famous for chocolate."
+        },
+        {
+          "portuguese": "português",
+          "english": "Portuguese",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Sou português, nasci em Lisboa.",
+          "exampleTranslation": "I'm Portuguese, I was born in Lisbon."
+        },
+        {
+          "portuguese": "espanhol",
+          "english": "Spanish",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O meu vizinho é espanhol.",
+          "exampleTranslation": "My neighbour is Spanish."
+        },
+        {
+          "portuguese": "francês",
+          "english": "French",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O Pierre é francês, de Paris.",
+          "exampleTranslation": "Pierre is French, from Paris."
+        },
+        {
+          "portuguese": "alemão",
+          "english": "German",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Ele é alemão, mas vive em Portugal.",
+          "exampleTranslation": "He's German, but lives in Portugal."
+        },
+        {
+          "portuguese": "inglês",
+          "english": "English / British",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O professor de inglês é inglês.",
+          "exampleTranslation": "The English teacher is English."
+        },
+        {
+          "portuguese": "italiano",
+          "english": "Italian",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O Marco é italiano, de Roma.",
+          "exampleTranslation": "Marco is Italian, from Rome."
+        },
+        {
+          "portuguese": "brasileiro",
+          "english": "Brazilian",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "A minha colega é brasileira.",
+          "exampleTranslation": "My colleague is Brazilian."
+        },
+        {
+          "portuguese": "americano",
+          "english": "American",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Muitos americanos visitam Portugal.",
+          "exampleTranslation": "Many Americans visit Portugal."
+        },
+        {
+          "portuguese": "chinês",
+          "english": "Chinese",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O restaurante chinês é muito bom.",
+          "exampleTranslation": "The Chinese restaurant is very good."
+        },
+        {
+          "portuguese": "japonês",
+          "english": "Japanese",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A comida japonesa é popular em Lisboa.",
+          "exampleTranslation": "Japanese food is popular in Lisbon."
+        },
+        {
+          "portuguese": "angolano",
+          "english": "Angolan",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O músico angolano deu um concerto no Coliseu.",
+          "exampleTranslation": "The Angolan musician gave a concert at the Coliseu."
+        },
+        {
+          "portuguese": "cabo-verdiano",
+          "english": "Cape Verdean",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Há uma grande comunidade cabo-verdiana em Portugal.",
+          "exampleTranslation": "There's a large Cape Verdean community in Portugal."
+        },
+        {
+          "portuguese": "irlandês",
+          "english": "Irish",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O pub irlandês é muito popular.",
+          "exampleTranslation": "The Irish pub is very popular."
+        },
+        {
+          "portuguese": "canadiano",
+          "english": "Canadian",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ela é canadiana, de Toronto.",
+          "exampleTranslation": "She's Canadian, from Toronto."
+        },
+        {
+          "portuguese": "holandês",
+          "english": "Dutch",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O turista holandês fala um pouco de português.",
+          "exampleTranslation": "The Dutch tourist speaks a little Portuguese."
+        },
+        {
+          "portuguese": "país",
+          "english": "country",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "De que país és?",
+          "exampleTranslation": "What country are you from?"
+        },
+        {
+          "portuguese": "continente",
+          "english": "continent",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "A Europa é um continente pequeno.",
+          "exampleTranslation": "Europe is a small continent."
+        },
+        {
+          "portuguese": "europa",
+          "english": "Europe",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Portugal faz parte da Europa.",
+          "exampleTranslation": "Portugal is part of Europe."
+        },
+        {
+          "portuguese": "áfrica",
+          "english": "Africa",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Vários países em África falam português.",
+          "exampleTranslation": "Several countries in Africa speak Portuguese."
+        },
+        {
+          "portuguese": "ásia",
+          "english": "Asia",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A Ásia é o maior continente.",
+          "exampleTranslation": "Asia is the largest continent."
+        },
+        {
+          "portuguese": "américa",
+          "english": "America (continent)",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A América do Sul tem muitos países lusófonos.",
+          "exampleTranslation": "South America has many Portuguese-speaking countries."
+        },
+        {
+          "portuguese": "nacionalidade",
+          "english": "nationality",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Qual é a tua nacionalidade?",
+          "exampleTranslation": "What is your nationality?"
+        },
+        {
+          "portuguese": "língua",
+          "english": "language",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Falo duas línguas.",
+          "exampleTranslation": "I speak two languages."
+        },
+        {
+          "portuguese": "idioma",
+          "english": "language (formal)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O português é o idioma oficial de nove países.",
+          "exampleTranslation": "Portuguese is the official language of nine countries."
+        },
+        {
+          "portuguese": "sotaque",
+          "english": "accent",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O sotaque do Porto é diferente do de Lisboa.",
+          "exampleTranslation": "The Porto accent is different from Lisbon's."
+        },
+        {
+          "portuguese": "visto",
+          "english": "visa",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Preciso de um visto para viajar?",
+          "exampleTranslation": "Do I need a visa to travel?"
+        }
+      ]
+    },
+    {
+      "id": "hobbies-leisure",
+      "title": "Hobbies & Leisure",
+      "description": "Futebol, música, cinema — sports, arts, entertainment, and how you spend your free time.",
+      "words": [
+        {
+          "portuguese": "desporto",
+          "english": "sport",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Praticas algum desporto?",
+          "exampleTranslation": "Do you play any sport?"
+        },
+        {
+          "portuguese": "futebol",
+          "english": "football / soccer",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vamos ver o jogo de futebol?",
+          "exampleTranslation": "Shall we watch the football match?"
+        },
+        {
+          "portuguese": "natação",
+          "english": "swimming",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A natação é boa para as costas.",
+          "exampleTranslation": "Swimming is good for your back."
+        },
+        {
+          "portuguese": "surf",
+          "english": "surfing",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O surf é muito popular na costa portuguesa.",
+          "exampleTranslation": "Surfing is very popular on the Portuguese coast."
+        },
+        {
+          "portuguese": "corrida",
+          "english": "running / race",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Faço corrida todos os dias de manhã.",
+          "exampleTranslation": "I go running every morning."
+        },
+        {
+          "portuguese": "caminhada",
+          "english": "hike / walk",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Fizemos uma caminhada na Serra da Estrela.",
+          "exampleTranslation": "We did a hike in Serra da Estrela."
+        },
+        {
+          "portuguese": "ciclismo",
+          "english": "cycling",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O ciclismo é o meu desporto preferido.",
+          "exampleTranslation": "Cycling is my favourite sport."
+        },
+        {
+          "portuguese": "ginástica",
+          "english": "exercise / gymnastics",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Faço ginástica três vezes por semana.",
+          "exampleTranslation": "I do exercise three times a week."
+        },
+        {
+          "portuguese": "ioga",
+          "english": "yoga",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Pratico ioga para relaxar.",
+          "exampleTranslation": "I practise yoga to relax."
+        },
+        {
+          "portuguese": "equipa",
+          "english": "team",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Qual é a tua equipa de futebol?",
+          "exampleTranslation": "What's your football team?"
+        },
+        {
+          "portuguese": "jogo",
+          "english": "game / match",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O jogo começa às oito.",
+          "exampleTranslation": "The match starts at eight."
+        },
+        {
+          "portuguese": "treino",
+          "english": "training",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tenho treino de futebol ao sábado.",
+          "exampleTranslation": "I have football training on Saturday."
+        },
+        {
+          "portuguese": "competição",
+          "english": "competition",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Ela participou numa competição de natação.",
+          "exampleTranslation": "She took part in a swimming competition."
+        },
+        {
+          "portuguese": "campeonato",
+          "english": "championship",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O campeonato europeu é em junho.",
+          "exampleTranslation": "The European championship is in June."
+        },
+        {
+          "portuguese": "golo",
+          "english": "goal (sports)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Ronaldo marcou um golo incrível.",
+          "exampleTranslation": "Ronaldo scored an incredible goal."
+        },
+        {
+          "portuguese": "resultado",
+          "english": "result / score",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Qual foi o resultado do jogo?",
+          "exampleTranslation": "What was the score of the match?"
+        },
+        {
+          "portuguese": "ginásio",
+          "english": "gym",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Vou ao ginásio depois do trabalho.",
+          "exampleTranslation": "I go to the gym after work."
+        },
+        {
+          "portuguese": "piscina",
+          "english": "swimming pool",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A piscina municipal é muito boa.",
+          "exampleTranslation": "The municipal swimming pool is very good."
+        },
+        {
+          "portuguese": "estádio",
+          "english": "stadium",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O estádio da Luz é enorme.",
+          "exampleTranslation": "The Estádio da Luz is enormous."
+        },
+        {
+          "portuguese": "música",
+          "english": "music",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Gosto de ouvir música portuguesa.",
+          "exampleTranslation": "I like listening to Portuguese music."
+        },
+        {
+          "portuguese": "canção",
+          "english": "song",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Esta canção é muito bonita.",
+          "exampleTranslation": "This song is very beautiful."
+        },
+        {
+          "portuguese": "instrumento",
+          "english": "instrument",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Tocas algum instrumento?",
+          "exampleTranslation": "Do you play any instrument?"
+        },
+        {
+          "portuguese": "guitarra",
+          "english": "guitar",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Estou a aprender guitarra portuguesa.",
+          "exampleTranslation": "I'm learning Portuguese guitar."
+        },
+        {
+          "portuguese": "piano",
+          "english": "piano",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ela toca piano desde criança.",
+          "exampleTranslation": "She's been playing piano since childhood."
+        },
+        {
+          "portuguese": "concerto",
+          "english": "concert",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Fui a um concerto de fado em Alfama.",
+          "exampleTranslation": "I went to a fado concert in Alfama."
+        },
+        {
+          "portuguese": "espetáculo",
+          "english": "show / performance",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O espetáculo foi fantástico.",
+          "exampleTranslation": "The show was fantastic."
+        },
+        {
+          "portuguese": "exposição",
+          "english": "exhibition",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Há uma exposição nova no museu.",
+          "exampleTranslation": "There's a new exhibition at the museum."
+        },
+        {
+          "portuguese": "filme",
+          "english": "film / movie",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Queres ver um filme hoje?",
+          "exampleTranslation": "Do you want to watch a film today?"
+        },
+        {
+          "portuguese": "cinema",
+          "english": "cinema",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Vamos ao cinema no sábado?",
+          "exampleTranslation": "Shall we go to the cinema on Saturday?"
+        },
+        {
+          "portuguese": "série",
+          "english": "series (TV)",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Estou a ver uma série portuguesa.",
+          "exampleTranslation": "I'm watching a Portuguese series."
+        },
+        {
+          "portuguese": "documentário",
+          "english": "documentary",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Vi um documentário sobre o fado.",
+          "exampleTranslation": "I saw a documentary about fado."
+        },
+        {
+          "portuguese": "romance",
+          "english": "novel",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Li um romance de José Saramago.",
+          "exampleTranslation": "I read a novel by José Saramago."
+        },
+        {
+          "portuguese": "poesia",
+          "english": "poetry",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Fernando Pessoa é o maior poeta português.",
+          "exampleTranslation": "Fernando Pessoa is the greatest Portuguese poet."
+        },
+        {
+          "portuguese": "revista",
+          "english": "magazine",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Comprei uma revista de culinária.",
+          "exampleTranslation": "I bought a cooking magazine."
+        },
+        {
+          "portuguese": "jornal",
+          "english": "newspaper",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Lês o jornal todos os dias?",
+          "exampleTranslation": "Do you read the newspaper every day?"
+        },
+        {
+          "portuguese": "pintura",
+          "english": "painting",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A pintura é o meu passatempo preferido.",
+          "exampleTranslation": "Painting is my favourite hobby."
+        },
+        {
+          "portuguese": "desenho",
+          "english": "drawing",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Ela faz desenhos muito bonitos.",
+          "exampleTranslation": "She makes very beautiful drawings."
+        },
+        {
+          "portuguese": "escultura",
+          "english": "sculpture",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "Há esculturas incríveis neste museu.",
+          "exampleTranslation": "There are incredible sculptures in this museum."
+        },
+        {
+          "portuguese": "jogar",
+          "english": "to play (a game)",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Jogas futebol?",
+          "exampleTranslation": "Do you play football?"
+        },
+        {
+          "portuguese": "dançar",
+          "english": "to dance",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Gosto de dançar ao som do fado.",
+          "exampleTranslation": "I like to dance to fado music."
+        },
+        {
+          "portuguese": "cantar",
+          "english": "to sing",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Ela canta muito bem.",
+          "exampleTranslation": "She sings very well."
+        },
+        {
+          "portuguese": "nadar",
+          "english": "to swim",
+          "cefr": "A1",
+          "gender": null,
+          "example": "No verão, nado todos os dias.",
+          "exampleTranslation": "In summer, I swim every day."
+        },
+        {
+          "portuguese": "correr",
+          "english": "to run",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Vou correr no parque.",
+          "exampleTranslation": "I'm going to run in the park."
+        },
+        {
+          "portuguese": "ler",
+          "english": "to read",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Gosto de ler antes de dormir.",
+          "exampleTranslation": "I like to read before sleeping."
+        },
+        {
+          "portuguese": "escrever",
+          "english": "to write",
+          "cefr": "A1",
+          "gender": null,
+          "example": "Escrevo no meu diário todos os dias.",
+          "exampleTranslation": "I write in my diary every day."
+        },
+        {
+          "portuguese": "pintar",
+          "english": "to paint",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Estou a aprender a pintar com aguarelas.",
+          "exampleTranslation": "I'm learning to paint with watercolours."
+        },
+        {
+          "portuguese": "desenhar",
+          "english": "to draw",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O meu filho gosta de desenhar animais.",
+          "exampleTranslation": "My son likes to draw animals."
+        },
+        {
+          "portuguese": "pescar",
+          "english": "to fish",
+          "cefr": "A2",
+          "gender": null,
+          "example": "O meu avô gosta de pescar no Algarve.",
+          "exampleTranslation": "My grandfather likes to fish in the Algarve."
+        },
+        {
+          "portuguese": "surfar",
+          "english": "to surf",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vamos surfar na Ericeira?",
+          "exampleTranslation": "Shall we go surfing in Ericeira?"
+        },
+        {
+          "portuguese": "acampar",
+          "english": "to camp",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Acampámos perto da praia.",
+          "exampleTranslation": "We camped near the beach."
+        },
+        {
+          "portuguese": "jardinar",
+          "english": "to garden",
+          "cefr": "B1",
+          "gender": null,
+          "example": "A minha avó gosta de jardinar.",
+          "exampleTranslation": "My grandmother likes to garden."
+        }
+      ]
+    },
+    {
+      "id": "holidays-celebrations",
+      "title": "Holidays & Celebrations",
+      "description": "Natal, Santos Populares, aniversário — Portuguese holidays, traditions, and how to celebrate.",
+      "words": [
+        {
+          "portuguese": "natal",
+          "english": "Christmas",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "O Natal em Portugal é passado em família.",
+          "exampleTranslation": "Christmas in Portugal is spent with family."
+        },
+        {
+          "portuguese": "véspera de natal",
+          "english": "Christmas Eve",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A consoada é a ceia da véspera de Natal.",
+          "exampleTranslation": "The consoada is the Christmas Eve dinner."
+        },
+        {
+          "portuguese": "ano novo",
+          "english": "New Year",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Feliz Ano Novo!",
+          "exampleTranslation": "Happy New Year!"
+        },
+        {
+          "portuguese": "páscoa",
+          "english": "Easter",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Na Páscoa, comemos amêndoas de chocolate.",
+          "exampleTranslation": "At Easter, we eat chocolate almonds."
+        },
+        {
+          "portuguese": "carnaval",
+          "english": "Carnival",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Carnaval em Torres Vedras é muito famoso.",
+          "exampleTranslation": "Carnival in Torres Vedras is very famous."
+        },
+        {
+          "portuguese": "santos populares",
+          "english": "Popular Saints (June festivals)",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Os Santos Populares são em junho, em Lisboa.",
+          "exampleTranslation": "The Popular Saints festivals are in June, in Lisbon."
+        },
+        {
+          "portuguese": "dia de portugal",
+          "english": "Portugal Day (June 10)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O Dia de Portugal é a 10 de junho.",
+          "exampleTranslation": "Portugal Day is on June 10th."
+        },
+        {
+          "portuguese": "dia dos namorados",
+          "english": "Valentine's Day",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "No Dia dos Namorados, ofereço flores.",
+          "exampleTranslation": "On Valentine's Day, I give flowers."
+        },
+        {
+          "portuguese": "dia da mãe",
+          "english": "Mother's Day",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "No Dia da Mãe, fazemos um almoço especial.",
+          "exampleTranslation": "On Mother's Day, we make a special lunch."
+        },
+        {
+          "portuguese": "dia do pai",
+          "english": "Father's Day",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O Dia do Pai é a 19 de março em Portugal.",
+          "exampleTranslation": "Father's Day is on March 19th in Portugal."
+        },
+        {
+          "portuguese": "aniversário",
+          "english": "birthday / anniversary",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Parabéns! Quando é o teu aniversário?",
+          "exampleTranslation": "Happy birthday! When is your birthday?"
+        },
+        {
+          "portuguese": "festa",
+          "english": "party / celebration",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Vamos fazer uma festa no sábado.",
+          "exampleTranslation": "We're having a party on Saturday."
+        },
+        {
+          "portuguese": "presente",
+          "english": "gift / present",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "Comprei um presente para a minha mãe.",
+          "exampleTranslation": "I bought a gift for my mother."
+        },
+        {
+          "portuguese": "prenda",
+          "english": "gift / present (EP preferred)",
+          "cefr": "A1",
+          "gender": "f",
+          "example": "Adorei a prenda que me deste.",
+          "exampleTranslation": "I loved the gift you gave me."
+        },
+        {
+          "portuguese": "convidar",
+          "english": "to invite",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vou convidar os amigos para jantar.",
+          "exampleTranslation": "I'm going to invite friends for dinner."
+        },
+        {
+          "portuguese": "celebrar",
+          "english": "to celebrate",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vamos celebrar com um bom vinho.",
+          "exampleTranslation": "Let's celebrate with a good wine."
+        },
+        {
+          "portuguese": "festejar",
+          "english": "to party / celebrate",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Festejámos até à meia-noite.",
+          "exampleTranslation": "We celebrated until midnight."
+        },
+        {
+          "portuguese": "brindar",
+          "english": "to toast (with drinks)",
+          "cefr": "A2",
+          "gender": null,
+          "example": "Vamos brindar ao novo ano!",
+          "exampleTranslation": "Let's toast to the new year!"
+        },
+        {
+          "portuguese": "bolo de aniversário",
+          "english": "birthday cake",
+          "cefr": "A1",
+          "gender": "m",
+          "example": "A avó fez o bolo de aniversário.",
+          "exampleTranslation": "Grandma made the birthday cake."
+        },
+        {
+          "portuguese": "vela",
+          "english": "candle",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Sopra as velas e pede um desejo!",
+          "exampleTranslation": "Blow out the candles and make a wish!"
+        },
+        {
+          "portuguese": "balão",
+          "english": "balloon",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "Decorámos a sala com balões.",
+          "exampleTranslation": "We decorated the room with balloons."
+        },
+        {
+          "portuguese": "decoração",
+          "english": "decoration",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "A decoração de Natal está linda.",
+          "exampleTranslation": "The Christmas decoration looks beautiful."
+        },
+        {
+          "portuguese": "fogo de artifício",
+          "english": "fireworks",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Vimos o fogo de artifício no Ano Novo.",
+          "exampleTranslation": "We watched the fireworks on New Year's."
+        },
+        {
+          "portuguese": "noivo / noiva",
+          "english": "groom / bride",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O noivo e a noiva estão muito felizes.",
+          "exampleTranslation": "The groom and bride are very happy."
+        },
+        {
+          "portuguese": "batizado",
+          "english": "christening / baptism",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "O batizado do bebé é no domingo.",
+          "exampleTranslation": "The baby's christening is on Sunday."
+        },
+        {
+          "portuguese": "cerimónia",
+          "english": "ceremony",
+          "cefr": "B1",
+          "gender": "f",
+          "example": "A cerimónia foi muito emocionante.",
+          "exampleTranslation": "The ceremony was very moving."
+        },
+        {
+          "portuguese": "tradição",
+          "english": "tradition",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "É tradição comer bacalhau no Natal.",
+          "exampleTranslation": "It's tradition to eat codfish at Christmas."
+        },
+        {
+          "portuguese": "costume",
+          "english": "custom / habit",
+          "cefr": "A2",
+          "gender": "m",
+          "example": "É costume dar dois beijinhos.",
+          "exampleTranslation": "It's the custom to give two kisses."
+        },
+        {
+          "portuguese": "sardinha",
+          "english": "sardine (Santos Populares)",
+          "cefr": "A2",
+          "gender": "f",
+          "example": "Nos Santos Populares, comemos sardinhas assadas.",
+          "exampleTranslation": "During Santos Populares, we eat grilled sardines."
+        },
+        {
+          "portuguese": "manjerico",
+          "english": "basil plant (Santos Populares)",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "O manjerico é símbolo dos Santos Populares.",
+          "exampleTranslation": "The basil plant is the symbol of Santos Populares."
+        },
+        {
+          "portuguese": "arraial",
+          "english": "outdoor festival / street party",
+          "cefr": "B1",
+          "gender": "m",
+          "example": "Fomos a um arraial no bairro da Alfama.",
+          "exampleTranslation": "We went to a street festival in Alfama."
         }
       ]
     }

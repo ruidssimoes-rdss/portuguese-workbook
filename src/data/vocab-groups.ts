@@ -148,6 +148,56 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
         "pastel de nata",
       ],
     },
+    {
+      label: "Fruits",
+      labelPt: "Frutas",
+      words: [
+        "banana", "morango", "uva", "pêra", "limão", "pêssego", "melão",
+        "melancia", "ananás", "cereja", "ameixa", "figo", "manga", "framboesa",
+      ],
+    },
+    {
+      label: "Vegetables",
+      labelPt: "Legumes",
+      words: [
+        "cenoura", "pepino", "pimento", "couve", "alface", "espinafre",
+        "brócolos", "cogumelo", "ervilha", "milho", "abóbora",
+      ],
+    },
+    {
+      label: "Seafood",
+      labelPt: "Mariscos e peixes",
+      words: [
+        "sardinha", "camarão", "lula", "polvo", "mexilhão", "amêijoa",
+        "atum", "salmão", "borrego", "peru", "pato",
+      ],
+    },
+    {
+      label: "Portuguese dishes",
+      labelPt: "Pratos portugueses",
+      words: [
+        "francesinha", "caldo verde", "cozido à portuguesa",
+        "pastéis de bacalhau", "bifana", "prego", "tremoço",
+      ],
+    },
+    {
+      label: "Dairy & baking",
+      labelPt: "Laticínios e panificação",
+      words: ["nata", "farinha", "fermento"],
+    },
+    {
+      label: "Herbs & condiments",
+      labelPt: "Ervas e condimentos",
+      words: [
+        "canela", "salsa", "coentros", "louro", "colorau",
+        "molho", "mostarda", "maionese",
+      ],
+    },
+    {
+      label: "Wines & spirits",
+      labelPt: "Vinhos e licores",
+      words: ["ginjinha", "vinho do porto", "aguardente"],
+    },
   ],
 
   "home-rooms": [
@@ -305,6 +355,101 @@ export const vocabGroups: Record<string, VocabGroup[]> = {
         "estou doente", "dói-me aqui", "tenho febre",
         "estou constipado / constipada",
       ],
+    },
+  ],
+
+  "countries-nationalities": [
+    {
+      label: "Countries",
+      labelPt: "Países",
+      words: [
+        "portugal", "espanha", "frança", "alemanha", "inglaterra", "itália",
+        "brasil", "estados unidos", "china", "japão", "angola", "moçambique",
+        "cabo verde", "marrocos", "holanda", "irlanda", "canadá", "suíça",
+      ],
+    },
+    {
+      label: "Nationalities",
+      labelPt: "Nacionalidades",
+      words: [
+        "português", "espanhol", "francês", "alemão", "inglês", "italiano",
+        "brasileiro", "americano", "chinês", "japonês", "angolano",
+        "cabo-verdiano", "irlandês", "canadiano", "holandês",
+      ],
+    },
+    {
+      label: "Geography & languages",
+      labelPt: "Geografia e línguas",
+      words: [
+        "país", "continente", "europa", "áfrica", "ásia", "américa",
+        "nacionalidade", "língua", "idioma", "sotaque", "visto",
+      ],
+    },
+  ],
+
+  "hobbies-leisure": [
+    {
+      label: "Sports",
+      labelPt: "Desportos",
+      words: [
+        "desporto", "futebol", "natação", "surf", "corrida", "caminhada",
+        "ciclismo", "ginástica", "ioga", "equipa", "jogo", "treino",
+        "competição", "campeonato", "golo", "resultado", "ginásio", "piscina", "estádio",
+      ],
+    },
+    {
+      label: "Arts & entertainment",
+      labelPt: "Artes e entretenimento",
+      words: [
+        "música", "canção", "instrumento", "guitarra", "piano", "concerto",
+        "espetáculo", "exposição", "filme", "cinema", "série", "documentário",
+        "romance", "poesia", "revista", "jornal", "pintura", "desenho", "escultura",
+      ],
+    },
+    {
+      label: "Activities",
+      labelPt: "Atividades",
+      words: [
+        "jogar", "dançar", "cantar", "nadar", "correr", "ler", "escrever",
+        "pintar", "desenhar", "pescar", "surfar", "acampar", "jardinar",
+      ],
+    },
+  ],
+
+  "holidays-celebrations": [
+    {
+      label: "Holidays",
+      labelPt: "Feriados",
+      words: [
+        "natal", "véspera de natal", "ano novo", "páscoa", "carnaval",
+        "santos populares", "dia de portugal", "dia dos namorados",
+        "dia da mãe", "dia do pai",
+      ],
+    },
+    {
+      label: "Celebrations",
+      labelPt: "Celebrações",
+      words: [
+        "aniversário", "festa", "presente", "prenda", "convidar",
+        "celebrar", "festejar", "brindar",
+      ],
+    },
+    {
+      label: "Party items",
+      labelPt: "Itens de festa",
+      words: [
+        "bolo de aniversário", "vela", "balão", "decoração", "fogo de artifício",
+      ],
+    },
+    {
+      label: "Life events",
+      labelPt: "Eventos de vida",
+      words: ["noivo / noiva", "batizado", "cerimónia"],
+    },
+    {
+      label: "Portuguese traditions",
+      labelPt: "Tradições portuguesas",
+      words: ["tradição", "costume", "sardinha", "manjerico", "arraial"],
     },
   ],
 };
