@@ -47,7 +47,7 @@ export function TranslationSectionNew({ sectionIndex, totalSections, showEnglish
         const r = results[s.id];
         return (
           <div key={s.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
-            phase === "reviewed" ? (r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#FCEBEB]") : "border-[rgba(0,0,0,0.06)]"
+            phase === "reviewed" ? (r?.correct ? "border-[#0F6E56]" : "border-[#dc2626]") : "border-[rgba(0,0,0,0.06)]"
           }`}>
             <div className="text-[11px] text-[#9B9DA3]">{i + 1}</div>
             <p className="text-[13px] font-medium text-[#111111] mt-0.5">&ldquo;{s.sourceText}&rdquo;</p>
@@ -61,7 +61,7 @@ export function TranslationSectionNew({ sectionIndex, totalSections, showEnglish
             ) : (
               <>
                 <div className={`mt-2 px-[10px] py-[7px] rounded-[6px] border-[0.5px] text-[13px] font-medium ${
-                  r?.correct ? "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]" : "border-[#dc2626] bg-[#FCEBEB] text-[#dc2626]"
+                  r?.correct ? "border-[#0F6E56] text-[#0F6E56]" : "border-[#dc2626] text-[#dc2626]"
                 }`}>{answers[s.id]}</div>
                 {!r?.correct && <div className="text-[12px] font-medium text-[#dc2626] mt-1">Not quite <span className="font-normal">→ {s.correctAnswer}</span></div>}
                 {r?.accentHint && <span className="inline-block mt-1 px-[10px] py-1 text-[11px] text-[#854F0B] bg-[#FAEEDA] rounded-[5px]">Atenção ao acento: {r.accentHint}</span>}

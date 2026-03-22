@@ -47,7 +47,7 @@ export function ErrorCorrectionSectionNew({ sectionIndex, totalSections, showEng
         const r = results[s.id];
         return (
           <div key={s.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
-            phase === "reviewed" ? (r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#FCEBEB]") : "border-[rgba(0,0,0,0.06)]"
+            phase === "reviewed" ? (r?.correct ? "border-[#0F6E56]" : "border-[#dc2626]") : "border-[rgba(0,0,0,0.06)]"
           }`}>
             <div className="text-[11px] text-[#9B9DA3]">{i + 1}</div>
 

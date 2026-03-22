@@ -196,21 +196,18 @@ function LessonIntro({
   const totalPoints = generatedLesson?.totalPoints ?? 0;
 
   const stats = [
-    { value: vocabCount, labelPt: "Palavras", labelEn: "Words" },
-    { value: verbCount, labelPt: "Verbos", labelEn: "Verbs" },
-    { value: grammarCount, labelPt: "Gramática", labelEn: "Grammar" },
-    { value: cultureCount, labelPt: "Cultura", labelEn: "Culture" },
+    { value: vocabCount, label: "words" },
+    { value: verbCount, label: "verbs" },
+    { value: grammarCount, label: "topics" },
+    { value: cultureCount, label: "culture" },
   ].filter((s) => s.value > 0);
 
   return (
     <div className="max-w-md mx-auto text-center py-8">
       {/* Title */}
       <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
-        {lesson.ptTitle}
+        Your next lesson
       </h1>
-      <p className="text-[14px] text-[#9B9DA3] italic mt-1">
-        {lesson.title}
-      </p>
 
       {/* CEFR badge */}
       <div className="mt-3">
@@ -225,21 +222,18 @@ function LessonIntro({
       <div className="flex gap-3 mt-6 max-w-xs mx-auto">
         {stats.map((stat) => (
           <div
-            key={stat.labelPt}
+            key={stat.label}
             className="flex-1 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg py-4 px-2 text-center"
           >
             <div className="text-[24px] font-medium text-[#111111]">{stat.value}</div>
-            <div className="text-[11px] text-[#9B9DA3] mt-0.5">{stat.labelPt}</div>
-            {showEnglish && (
-              <div className="text-[10px] text-[#9B9DA3]">{stat.labelEn}</div>
-            )}
+            <div className="text-[11px] text-[#9B9DA3] mt-0.5">{stat.label}</div>
           </div>
         ))}
       </div>
 
       {/* Meta */}
       <p className="text-[12px] text-[#9B9DA3] mt-4">
-        {sectionCount} sections · {totalPoints} questions · 80% to pass
+        {sectionCount} exercises · 80% to pass
       </p>
 
       {/* Buttons */}
@@ -249,20 +243,14 @@ function LessonIntro({
           onClick={onStartExercises}
           className="w-full py-3.5 text-[14px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
         >
-          <span>Começar os exercícios →</span>
-          {showEnglish && (
-            <span className="block text-[12px] font-normal opacity-70 mt-0.5">Start the exercises</span>
-          )}
+          Start exercises →
         </button>
         <button
           type="button"
           onClick={onReviewFirst}
           className="w-full py-3.5 text-[14px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
         >
-          <span>Rever o material primeiro</span>
-          {showEnglish && (
-            <span className="block text-[12px] font-normal text-[#9B9DA3] mt-0.5">Review the material first</span>
-          )}
+          Review material first
         </button>
       </div>
 
@@ -273,8 +261,7 @@ function LessonIntro({
           onClick={onReset}
           className="text-[12px] text-[#9B9DA3] hover:text-[#dc2626] transition-colors mt-6 cursor-pointer"
         >
-          Recomeçar lição
-          {showEnglish && <span className="block text-[11px]">Reset lesson</span>}
+          Reset lesson
         </button>
       )}
     </div>

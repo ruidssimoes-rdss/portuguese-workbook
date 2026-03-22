@@ -36,13 +36,12 @@ export function LearnIntro({
   const grammarCount = learnItems.filter((i) => i.type === "grammar").length;
   const cultureCount = learnItems.filter((i) => i.type === "culture").length;
   const sectionCount = generated.sections.length;
-  const totalPoints = generated.totalPoints;
 
   const stats = [
-    { value: vocabCount, pt: "Palavras", en: "Words" },
-    { value: verbCount, pt: "Verbos", en: "Verbs" },
-    { value: grammarCount, pt: "Gramática", en: "Grammar" },
-    { value: cultureCount, pt: "Cultura", en: "Culture" },
+    { value: vocabCount, label: "words" },
+    { value: verbCount, label: "verbs" },
+    { value: grammarCount, label: "topics" },
+    { value: cultureCount, label: "culture" },
   ].filter((s) => s.value > 0);
 
   return (
@@ -57,11 +56,8 @@ export function LearnIntro({
 
       {/* Title */}
       <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em] mt-6">
-        {isReview ? "Review session" : lessonTitlePt || "A tua próxima lição"}
+        {isReview ? "Review session" : "Your next lesson"}
       </h1>
-      <p className="text-[14px] text-[#9B9DA3] italic mt-1">
-        {isReview ? "Sessão de revisão" : lessonTitle || "Your next lesson"}
-      </p>
 
       {/* CEFR badge */}
       {cefr && cefr !== "mixed" && (
@@ -79,8 +75,7 @@ export function LearnIntro({
               className="flex-1 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg py-4 px-2 text-center"
             >
               <div className="text-[24px] font-medium text-[#111111]">{s.value}</div>
-              <div className="text-[11px] text-[#9B9DA3] mt-0.5">{s.pt}</div>
-              <div className="text-[10px] text-[#9B9DA3]">{s.en}</div>
+              <div className="text-[11px] text-[#9B9DA3] mt-0.5">{s.label}</div>
             </div>
           ))}
         </div>
@@ -88,7 +83,7 @@ export function LearnIntro({
 
       {/* Meta */}
       <p className="text-[12px] text-[#9B9DA3] mt-4">
-        {sectionCount} sections · {totalPoints} questions · 80% to pass
+        {sectionCount} exercises · 80% to pass
       </p>
 
       {/* Buttons */}
@@ -98,12 +93,7 @@ export function LearnIntro({
           onClick={onStartExercises}
           className="w-full py-3.5 text-[14px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
         >
-          <span>{isReview ? "Start review →" : "Começar os exercícios →"}</span>
-          {!isReview && (
-            <span className="block text-[12px] font-normal opacity-70 mt-0.5">
-              Start the exercises
-            </span>
-          )}
+          {isReview ? "Start review →" : "Start exercises →"}
         </button>
         {!isReview && learnItems.length > 0 && (
           <button
@@ -111,10 +101,7 @@ export function LearnIntro({
             onClick={onReviewFirst}
             className="w-full py-3.5 text-[14px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
           >
-            <span>Rever o material primeiro</span>
-            <span className="block text-[12px] font-normal text-[#9B9DA3] mt-0.5">
-              Review the material first
-            </span>
+            Review material first
           </button>
         )}
       </div>

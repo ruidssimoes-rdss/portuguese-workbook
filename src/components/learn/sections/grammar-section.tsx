@@ -87,7 +87,7 @@ export function GrammarSectionNew({
 
         return (
           <div key={q.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
-            reviewed ? (isCorr ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#FCEBEB]") : "border-[rgba(0,0,0,0.06)]"
+            reviewed ? (isCorr ? "border-[#0F6E56]" : "border-[#dc2626]") : "border-[rgba(0,0,0,0.06)]"
           }`}>
             <div className={`text-[11px] ${reviewed ? (isCorr ? "text-[#0F6E56]" : "text-[#dc2626]") : "text-[#9B9DA3]"}`}>{i + 1}</div>
 
@@ -103,8 +103,8 @@ export function GrammarSectionNew({
                     const isRight = val === q.isTrue;
                     let cls = "py-[9px] text-[13px] font-medium text-center rounded-[6px] border-[0.5px] transition-colors ";
                     if (reviewed) {
-                      if (isRight) cls += "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]";
-                      else if (sel && !isCorr) cls += "border-[#dc2626] bg-[#FCEBEB] text-[#dc2626]";
+                      if (isRight) cls += "border-[#0F6E56] text-[#0F6E56]";
+                      else if (sel && !isCorr) cls += "border-[#dc2626] text-[#dc2626]";
                       else cls += "border-[rgba(0,0,0,0.06)] text-[#9B9DA3]";
                     } else if (sel) {
                       cls += "border-[#185FA5] bg-[#E6F1FB] text-[#111111]";
@@ -142,8 +142,8 @@ export function GrammarSectionNew({
                     const isRight = oi === q.correctIndex;
                     let cls = "px-3 py-[9px] text-[12px] text-left rounded-[6px] border-[0.5px] transition-colors ";
                     if (reviewed) {
-                      if (isRight) cls += "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]";
-                      else if (sel && !isCorr) cls += "border-[#dc2626] bg-[#FCEBEB] text-[#dc2626]";
+                      if (isRight) cls += "border-[#0F6E56] text-[#0F6E56]";
+                      else if (sel && !isCorr) cls += "border-[#dc2626] text-[#dc2626]";
                       else cls += "border-[rgba(0,0,0,0.06)] text-[#9B9DA3]";
                     } else if (sel) {
                       cls += "border-[#185FA5] bg-[#E6F1FB] text-[#111111]";

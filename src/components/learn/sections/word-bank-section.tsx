@@ -76,7 +76,7 @@ export function WordBankSectionNew({ sectionIndex, totalSections, showEnglish, p
                   >{filled[pi] || "\u00A0"}</button>
                 ) : (
                   <span className={`inline-block mx-0.5 px-1.5 py-px rounded-[4px] text-[13px] font-medium ${
-                    results[pi] ? "text-[#0F6E56] bg-[#E1F5EE]" : "text-[#dc2626] bg-[#FCEBEB]"
+                    results[pi] ? "text-[#0F6E56] border-b border-[#0F6E56]" : "text-[#dc2626] border-b border-[#dc2626]"
                   }`}>{results[pi] ? paragraph.blanks[pi].correctAnswer : (filled[pi] ?? "—")}</span>
                 )
               )}

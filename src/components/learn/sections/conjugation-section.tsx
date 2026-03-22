@@ -112,8 +112,8 @@ export function ConjugationSectionNew({
                   <>
                     <span className={`flex-1 px-[10px] py-[5px] text-[13px] rounded-[6px] border-[0.5px] ${
                       r?.correct
-                        ? "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]"
-                        : "border-[#dc2626] bg-[#FCEBEB] text-[#dc2626]"
+                        ? "border-[#0F6E56] text-[#0F6E56]"
+                        : "border-[#dc2626] text-[#dc2626]"
                     }`}>
                       {r?.correct ? p.correctForm : (answers[key] || "—")}
                     </span>

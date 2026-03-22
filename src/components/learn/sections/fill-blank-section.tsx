@@ -65,7 +65,7 @@ export function FillBlankSectionNew({ sectionIndex, totalSections, showEnglish, 
 
         return (
           <div key={s.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
-            phase === "reviewed" ? (r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#FCEBEB]") : "border-[rgba(0,0,0,0.06)]"
+            phase === "reviewed" ? (r?.correct ? "border-[#0F6E56]" : "border-[#dc2626]") : "border-[rgba(0,0,0,0.06)]"
           }`}>
             <div className="text-[11px] text-[#9B9DA3]">{i + 1}</div>
             <div className="text-[14px] text-[#111111] leading-[2] mt-0.5">

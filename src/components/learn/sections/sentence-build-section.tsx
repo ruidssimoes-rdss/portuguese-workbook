@@ -56,7 +56,7 @@ export function SentenceBuildSectionNew({ sectionIndex, totalSections, showEngli
     <div>
       {sentences.map((s, i) => (
         <div key={s.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
-          phase === "reviewed" ? (results[s.id] ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#FCEBEB]") : "border-[rgba(0,0,0,0.06)]"
+          phase === "reviewed" ? (results[s.id] ? "border-[#0F6E56]" : "border-[#dc2626]") : "border-[rgba(0,0,0,0.06)]"
         }`}>
           <div className="text-[11px] text-[#9B9DA3]">{i + 1}</div>
           {showEnglish && s.sentenceEnglish && <div className="text-[12px] text-[#6C6B71] italic mt-0.5">{s.sentenceEnglish}</div>}
