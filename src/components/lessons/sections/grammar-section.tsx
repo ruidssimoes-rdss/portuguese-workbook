@@ -99,7 +99,7 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
                   const label = val ? "Verdadeiro" : "Falso";
                   const isSelected = tfAnswers[q.id] === val;
                   const isCorrectOpt = val === q.isTrue;
-                  let cls = "border-[rgba(0,0,0,0.06)] hover:border-[#185FA5] cursor-pointer";
+                  let cls = "border-[rgba(0,0,0,0.06)] hover:border-[rgba(0,0,0,0.12)] hover:bg-[#F7F7F5] cursor-pointer";
                   if (state === "reviewed") {
                     if (isCorrectOpt) cls = "border-[#0F6E56] bg-[#E1F5EE]";
                     else if (isSelected && !isCorrectOpt) cls = "border-[#dc2626] bg-[#fef2f2]";
@@ -131,7 +131,7 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
                 {q.options?.map((opt, oi) => {
                   const isSelected = mcAnswers[q.id] === oi;
                   const isCorrect = oi === q.correctIndex;
-                  let cls = "border-[rgba(0,0,0,0.06)] hover:border-[#185FA5] cursor-pointer";
+                  let cls = "border-[rgba(0,0,0,0.06)] hover:border-[rgba(0,0,0,0.12)] hover:bg-[#F7F7F5] cursor-pointer";
                   if (state === "reviewed") {
                     if (isCorrect) cls = "border-[#0F6E56] bg-[#E1F5EE]";
                     else if (isSelected && !isCorrect) cls = "border-[#dc2626] bg-[#fef2f2]";

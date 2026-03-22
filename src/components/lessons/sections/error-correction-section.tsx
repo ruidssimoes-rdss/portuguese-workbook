@@ -97,7 +97,7 @@ export function ErrorCorrectionSection({ sectionIndex, totalSections, showEnglis
                 type="text"
                 value={answers[s.id] ?? ""}
                 onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                className="w-full text-[14px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
+                className="w-full text-[14px] text-[#111111] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
                 placeholder="Escreve a frase corrigida..."
                 autoComplete="off" spellCheck={false}
               />

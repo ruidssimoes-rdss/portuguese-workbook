@@ -107,7 +107,7 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
                   value={answers[q.id] ?? ""}
                   onChange={(e) => setAnswers((prev) => ({ ...prev, [q.id]: e.target.value }))}
                   placeholder={showEnglish ? "Type the English translation..." : "Escreve a tradução..."}
-                  className="w-full text-[14px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
+                  className="w-full text-[14px] text-[#111111] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
                   autoComplete="off"
                   spellCheck={false}
                 />
@@ -130,7 +130,7 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
               {q.options?.map((opt, oi) => {
                 const isSelected = mcSelections[q.id] === oi;
                 const isCorrect = oi === q.correctIndex;
-                let cls = "border-[rgba(0,0,0,0.06)] hover:border-[#185FA5] cursor-pointer";
+                let cls = "border-[rgba(0,0,0,0.06)] hover:border-[rgba(0,0,0,0.12)] hover:bg-[#F7F7F5] cursor-pointer";
                 if (state === "reviewed") {
                   if (isCorrect) cls = "border-[#0F6E56] bg-[#E1F5EE]";
                   else if (isSelected && !isCorrect) cls = "border-[#dc2626] bg-[#fef2f2]";

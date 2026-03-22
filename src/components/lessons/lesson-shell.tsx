@@ -36,61 +36,46 @@ export function LessonShell({
   children,
 }: LessonShellProps) {
   const showProgress = currentState === "sections" || currentState === "learn";
+  const isIntro = currentState === "intro";
 
   return (
     <div>
-      <div className="py-5">
-        {/* Top bar */}
-        <div className="flex items-center justify-between mb-2">
-          <Link
-            href="/lessons"
-            className="text-[13px] text-[#9B9DA3] hover:text-[#6C6B71] transition-colors"
-          >
-            ← Lições
-          </Link>
-          <div className="flex items-center gap-3">
-            {!showProgress && (
-              <>
-                <NoteContextActions contextType="lesson" contextId={lessonId} contextLabel={lessonTitle} />
-                <ContentCalendarInfo contentType="lesson" contentId={lessonId} />
-              </>
-            )}
-            {showProgress && (
-              <span className="text-[13px] text-[#6C6B71] font-medium">{lessonTitle}</span>
-            )}
-            <CEFRPill level={cefr} />
-          </div>
+      {/* Top bar — always visible */}
+      <div className="flex items-center justify-between py-4">
+        <Link
+          href="/lessons"
+          className="text-[13px] text-[#9B9DA3] hover:text-[#6C6B71] transition-colors"
+        >
+          ← Lições
+        </Link>
+        <div className="flex items-center gap-3">
+          {currentState === "results" && (
+            <>
+              <NoteContextActions contextType="lesson" contextId={lessonId} contextLabel={lessonTitle} />
+              <ContentCalendarInfo contentType="lesson" contentId={lessonId} />
+            </>
+          )}
+          {showProgress && (
+            <span className="text-[13px] text-[#6C6B71] font-medium">{lessonTitle}</span>
+          )}
+          <CEFRPill level={cefr} />
         </div>
-
-        {/* Intro header — full title */}
-        {!showProgress && (
-          <div className="mt-2 mb-4">
-            <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
-              {lessonTitle}
-            </h1>
-            <p className="text-[14px] text-[#9B9DA3] italic">
-              {lessonTitlePt}
-            </p>
-          </div>
-        )}
-
-        {/* Progress bar */}
-        {showProgress && sectionProgress !== undefined && (
-          <>
-            <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mb-1.5">
-              <div
-                className="h-1.5 bg-[#185FA5] rounded-full transition-all duration-300"
-                style={{ width: `${sectionProgress}%` }}
-              />
-            </div>
-            {progressLabel && (
-              <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em]">{progressLabel}</p>
-            )}
-          </>
-        )}
       </div>
 
-      {!showProgress && <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] mb-6" />}
+      {/* Progress bar — learn/sections only */}
+      {showProgress && sectionProgress !== undefined && (
+        <div className="mb-4">
+          <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden mb-1.5">
+            <div
+              className="h-1.5 bg-[#185FA5] rounded-full transition-all duration-300"
+              style={{ width: `${sectionProgress}%` }}
+            />
+          </div>
+          {progressLabel && (
+            <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em]">{progressLabel}</p>
+          )}
+        </div>
+      )}
 
       {/* Content */}
       <div className="max-w-2xl mx-auto pb-8">{children}</div>

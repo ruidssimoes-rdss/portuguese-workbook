@@ -91,7 +91,7 @@ export function TranslationSection({ sectionIndex, totalSections, showEnglish, s
                 value={answers[s.id] ?? ""}
                 onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
                 rows={2}
-                className="w-full text-[14px] text-[#111111] bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors resize-none placeholder:text-[#9B9DA3]"
+                className="w-full text-[14px] text-[#111111] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors resize-none placeholder:text-[#9B9DA3]"
                 placeholder="Escreve a tradução em português..."
                 autoComplete="off" spellCheck={false}
               />
