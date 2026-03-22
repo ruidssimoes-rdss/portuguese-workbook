@@ -8,6 +8,38 @@ import { PageShell } from "@/components/layout/page-shell";
 import { PageHeader, BadgePill, TipBox, AudioButton } from "@/components/primitives";
 
 import grammarData from "@/data/grammar.json";
+import type { ReactNode } from "react";
+
+// ─── Intro Formatter ────────────────────────────────────────────────────────
+
+/** Highlight Portuguese text between single quotes */
+function formatInlineContent(text: string): ReactNode {
+  const parts = text.split(/('.*?')/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("'") && part.endsWith("'")) {
+      return (
+        <span key={i} className="font-medium text-[#111111]">
+          {part.slice(1, -1)}
+        </span>
+      );
+    }
+    return part;
+  });
+}
+
+function FormatIntro({ text }: { text: string }) {
+  if (!text) return null;
+  const paragraphs = text.includes("\n")
+    ? text.split("\n").filter((p) => p.trim())
+    : [text];
+  return (
+    <div className="space-y-3 text-[13px] text-[#6C6B71] leading-relaxed">
+      {paragraphs.map((p, i) => (
+        <p key={i}>{formatInlineContent(p.trim())}</p>
+      ))}
+    </div>
+  );
+}
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 
@@ -74,8 +106,8 @@ export default function GrammarDetailPage() {
 
       {/* Introduction */}
       {topic.intro && (
-        <div className="text-[13px] text-[#6C6B71] leading-relaxed mb-8 max-w-[640px]">
-          {topic.intro}
+        <div className="mb-8">
+          <FormatIntro text={topic.intro} />
         </div>
       )}
 

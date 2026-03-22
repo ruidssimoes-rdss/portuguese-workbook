@@ -8,7 +8,7 @@
       "titlePt": "Género dos Nomes",
       "cefr": "A1",
       "summary": "Masculine and feminine nouns: -o/-a basics, -or/-ema/-ama, -ade/-ção/-gem/-dade, tricky nouns, and dual-gender words.",
-      "intro": "In Portuguese every noun has a gender: masculine (o) or feminine (a). The article always tells you. Basic rule: -o is usually masculine (o livro, o gato), -a is usually feminine (a casa, a mesa). Masculine endings often include -or (o computador, o professor — but a cor, a flor, a dor are feminine!), -ão (o pão, o avião — but a mão, a lição are feminine), -ema (o problema, o sistema, o tema — Greek origin), -ama (o programa, o telegrama). Feminine endings: -ade (a cidade, a saudade), -ção (a lição, a estação), -gem (a viagem, a paisagem), -dade (a felicidade). Tricky nouns: o dia, o mapa, o cinema, o planeta (end in -a but masculine); a tribo, a foto, a moto (end in -o but feminine). Dual-gender: o/a estudante, o/a jornalista (same form for both). Professions: o professor / a professora, o médico / a médica.",
+      "intro": "In Portuguese every noun has a gender: masculine (o) or feminine (a). The article always tells you. Basic rule: -o is usually masculine (o livro, o gato), -a is usually feminine (a casa, a mesa). Masculine endings often include -or (o computador, o professor — but a cor, a flor, a dor are feminine!\n\n), -ão (o pão, o avião — but a mão, a lição are feminine), -ema (o problema, o sistema, o tema — Greek origin), -ama (o programa, o telegrama). Feminine endings: -ade (a cidade, a saudade), -ção (a lição, a estação), -gem (a viagem, a paisagem), -dade (a felicidade). Tricky nouns: o dia, o mapa, o cinema, o planeta (end in -a but masculine); a tribo, a foto, a moto (end in -o but feminine). Dual-gender: o/a estudante, o/a jornalista (same form for both). Professions: o professor / a professora, o médico / a médica.",
       "rules": [
         {
           "rule": "Basic: -o = masculine, -a = feminine. Many professions have two forms.",
@@ -696,7 +696,7 @@
       "titlePt": "Pronomes Pessoais Sujeitos",
       "cefr": "A1",
       "summary": "eu, tu, ele/ela/você, nós, eles/elas/vocês. In European Portuguese 'tu' is standard informal; 'você' is formal.",
-      "intro": "Subject pronouns are: eu (I), tu (you singular informal), ele/ela/você (he/she/you formal), nós (we), eles/elas/vocês (they/you plural). In European Portuguese, 'tu' is the standard informal 'you' and 'você' is formal or respectful — the opposite of Brazilian Portuguese. The form 'vós' exists but is archaic and rarely used. Portuguese often omits the subject because the verb conjugation already shows who: 'Falo português' (I speak Portuguese) is clear without 'eu'.",
+      "intro": "Subject pronouns are: eu (I), tu (you singular informal), ele/ela/você (he/she/you formal), nós (we), eles/elas/vocês (they/you plural).\n\nIn European Portuguese, 'tu' is the standard informal 'you' and 'você' is formal or respectful — the opposite of Brazilian Portuguese.\n\nThe form 'vós' exists but is archaic and rarely used. Portuguese often omits the subject because the verb conjugation already shows who: 'Falo português' (I speak Portuguese) is clear without 'eu'.",
       "rules": [
         {
           "rule": "eu = I, tu = you (informal), ele/ela = he/she.",
@@ -1278,7 +1278,7 @@
       "titlePt": "SER vs ESTAR",
       "cefr": "A1",
       "summary": "SER for identity and permanent traits; ESTAR for location and temporary states. Same adjective with SER vs ESTAR can change meaning (e.g. ser bom vs estar bom).",
-      "intro": "SER describes permanent or defining traits: identity (Eu sou português.), profession (Ela é médica.), physical description that is permanent (Ele é alto.), character (Tu és simpático.), origin (Somos de Lisboa.), material (A mesa é de madeira.), time and dates (Hoje é segunda-feira. São três horas.), ownership (O livro é meu.). ESTAR describes temporary states, location, and conditions: location (Estou em casa.), temporary state (Estou cansado.), mood (Ela está feliz.), weather (Está frio.), health (Estou doente.), result of an action (A porta está aberta.), and progressive (Estou a trabalhar.). In European Portuguese, present continuous is ESTAR + a + infinitive: Estou a falar (I'm speaking). Some adjectives change meaning with SER vs ESTAR — see Tricky pairs.",
+      "intro": "SER describes permanent or defining traits: identity (Eu sou português.), profession (Ela é médica.), physical description that is permanent (Ele é alto.), character (Tu és simpático.), origin (Somos de Lisboa.), material (A mesa é de madeira.), time and dates (Hoje é segunda-feira. São três horas.), ownership (O livro é meu.).\n\nESTAR describes temporary states, location, and conditions: location (Estou em casa.), temporary state (Estou cansado.), mood (Ela está feliz.), weather (Está frio.), health (Estou doente.), result of an action (A porta está aberta.), and progressive (Estou a trabalhar.).\n\nIn European Portuguese, present continuous is ESTAR + a + infinitive: Estou a falar (I'm speaking). Some adjectives change meaning with SER vs ESTAR — see Tricky pairs.",
       "rules": [
         {
           "rule": "SER: identity, profession, origin, time, permanent traits, material, ownership.",
@@ -1631,7 +1631,7 @@
       "titlePt": "Presente -AR",
       "cefr": "A1",
       "summary": "Conjugate -AR verbs: falo, falas, fala, falamos, falam. Spelling changes: -CAR→qu, -GAR→gu. EP progressive: estar a + infinitive.",
-      "intro": "Regular -AR verbs in the present: remove -ar and add -o (eu), -as (tu), -a (ele/ela/você), -amos (nós), -am (eles/elas). Example: falar → falo, falas, fala, falamos, falam. The nós form has an accent on the a in EP when you need to distinguish present (falamos) from preterite (falámos). -AR verbs are the largest group in Portuguese; most new verbs are -AR. Common regular -AR: falar, morar, trabalhar, gostar, comprar, andar, estudar, chamar, ajudar, pensar, esperar, voltar, deixar, passar, entrar, mudar, enviar, viajar, acreditar. Spelling changes (orthographic, not irregular): -CAR verbs use qu before e (ficar→fico but ficquei, fique; tocar→toquei); -GAR use gu (chegar→cheguei, pagar→paguei); -ÇAR: ç before a/o, c before e/i (começar→começo, comecei). In EP the present continuous is 'estar a + infinitive': Estou a falar (I am speaking). Negation: just 'não' before the verb: Não falo inglês.",
+      "intro": "Regular -AR verbs in the present: remove -ar and add -o (eu), -as (tu), -a (ele/ela/você), -amos (nós), -am (eles/elas). Example: falar → falo, falas, fala, falamos, falam.\n\nThe nós form has an accent on the a in EP when you need to distinguish present (falamos) from preterite (falámos). -AR verbs are the largest group in Portuguese; most new verbs are -AR.\n\nCommon regular -AR: falar, morar, trabalhar, gostar, comprar, andar, estudar, chamar, ajudar, pensar, esperar, voltar, deixar, passar, entrar, mudar, enviar, viajar, acreditar. Spelling changes (orthographic, not irregular): -CAR verbs use qu before e (ficar→fico but ficquei, fique; tocar→toquei); -GAR use gu (chegar→cheguei, pagar→paguei); -ÇAR: ç before a/o, c before e/i (começar→começo, comecei).\n\nIn EP the present continuous is 'estar a + infinitive': Estou a falar (I am speaking). Negation: just 'não' before the verb: Não falo inglês.",
       "rules": [
         {
           "rule": "Stem + -o (eu), -as (tu), -a (ele/ela), -amos (nós), -am (eles). Nós form in EP often written with accent on a (falamos = present).",
@@ -2178,7 +2178,7 @@
       "titlePt": "Presente -IR",
       "cefr": "A1",
       "summary": "Conjugate -IR verbs: parto, partes, parte, partimos, partem.",
-      "intro": "Regular -IR verbs: remove -ir and add -o, -es, -e, -imos, -em. Example: partir → parto, partes, parte, partimos, partem. The nós form is -imos (partimos). Other -IR verbs: abrir, decidir, assistir, cumprir. The eu, ele and eles endings are the same as -ER; only tu (-es) and nós (-imos vs -emos) differ.",
+      "intro": "Regular -IR verbs: remove -ir and add -o, -es, -e, -imos, -em. Example: partir → parto, partes, parte, partimos, partem. The nós form is -imos (partimos). Other -IR verbs: abrir, decidir, assistir, cumprir.\n\nThe eu, ele and eles endings are the same as -ER; only tu (-es) and nós (-imos vs -emos) differ.",
       "rules": [
         {
           "rule": "Stem + -o (eu), -es (tu), -e (ele/ela), -imos (nós), -em (eles).",
@@ -2439,7 +2439,7 @@
       "titlePt": "Estrutura da Frase",
       "cefr": "A1",
       "summary": "How Portuguese sentences are built: word order, negation, questions, compound sentences, pronoun placement, and how structure changes across tenses.",
-      "intro": "Understanding sentence structure is the backbone of speaking and writing Portuguese. While Portuguese shares the basic Subject-Verb-Object (SVO) order with English, the similarities end quickly. Adjectives usually follow nouns, negation sits right before the verb, pronouns jump around depending on the sentence type, and forming questions often relies on nothing more than your voice going up at the end. This topic is your structural roadmap — it shows you how the pieces of Portuguese fit together. For the full details on individual grammar points (like negation rules or pronoun placement), you will find links to their dedicated pages throughout.",
+      "intro": "Understanding sentence structure is the backbone of speaking and writing Portuguese. While Portuguese shares the basic Subject-Verb-Object (SVO) order with English, the similarities end quickly.\n\nAdjectives usually follow nouns, negation sits right before the verb, pronouns jump around depending on the sentence type, and forming questions often relies on nothing more than your voice going up at the end.\n\nThis topic is your structural roadmap — it shows you how the pieces of Portuguese fit together. For the full details on individual grammar points (like negation rules or pronoun placement), you will find links to their dedicated pages throughout.",
       "rules": [
         {
           "rule": "Standard word order is Subject + Verb + Object (SVO).",
@@ -3004,7 +3004,7 @@
       "titlePt": "Negação",
       "cefr": "A1",
       "summary": "Put 'não' before the verb. Double negation is correct. Know já não, ainda não, and common negative expressions.",
-      "intro": "Basic negation: put 'não' before the verb (Eu não falo inglês. Não quero. Subject can be dropped.). Double negation is correct and expected in Portuguese — unlike English: Não como nada (I don't eat anything), Não vejo ninguém (I don't see anyone), Não vou nunca (I never go). When nunca or ninguém comes first as subject, no 'não' is needed: Nunca vou. Ninguém veio. Negative words: não (not), nada (nothing), ninguém (nobody), nunca (never), nenhum/nenhuma (no/none), nem (not even), nem...nem (neither...nor). Já não = no longer / not anymore (Já não moro ali.). Ainda não = not yet (Ainda não chegou.). Answering negatively: Não, obrigado. Foste? — Não, não fui. (double 'não' in the reply). Common expressions: De maneira nenhuma (No way), Nem pensar (Don't even think about it), Não faz mal (No worries), Não vale a pena (It's not worth it), Não me digas (You don't say).",
+      "intro": "Basic negation: put 'não' before the verb (Eu não falo inglês. Não quero. Subject can be dropped.). Double negation is correct and expected in Portuguese — unlike English: Não como nada (I don't eat anything), Não vejo ninguém (I don't see anyone), Não vou nunca (I never go).\n\nWhen nunca or ninguém comes first as subject, no 'não' is needed: Nunca vou. Ninguém veio. Negative words: não (not), nada (nothing), ninguém (nobody), nunca (never), nenhum/nenhuma (no/none), nem (not even), nem...nem (neither...\n\nnor). Já não = no longer / not anymore (Já não moro ali.). Ainda não = not yet (Ainda não chegou.). Answering negatively: Não, obrigado. Foste? — Não, não fui. (double 'não' in the reply). Common expressions: De maneira nenhuma (No way), Nem pensar (Don't even think about it), Não faz mal (No worries), Não vale a pena (It's not worth it), Não me digas (You don't say).",
       "rules": [
         {
           "rule": "Put 'não' before the verb. Subject can be dropped.",
@@ -3380,7 +3380,7 @@
       "titlePt": "Perguntas",
       "cefr": "A1",
       "summary": "Yes/no by intonation. Question words and 'é que'. Porquê vs por que vs porque. Tag questions.",
-      "intro": "Yes/no questions: same word order as the statement, just raise your voice at the end. No auxiliary like English 'do': Tu falas português? (Do you speak Portuguese?). In EP you can drop the subject: Falas português? Question words: O que/O quê (what), Quem (who), Onde (where), Quando (when), Como (how), Porquê/Por que (why), Quanto/Quantos/Quantas (how much/many), Qual/Quais (which). The 'é que' construction is very common in spoken EP: Onde é que moras? (Where do you live?) — same meaning, more natural. Porquê (with accent) = why at the end or alone (Não vieste. Porquê?). Por que (é que) = why at the start (Por que é que não vieste?). Porque = because in answers (Porque estava doente.). Tag questions: não é? (isn't it?), pois não? (right?), certo? (right?).",
+      "intro": "Yes/no questions: same word order as the statement, just raise your voice at the end. No auxiliary like English 'do': Tu falas português? (Do you speak Portuguese?).\n\nIn EP you can drop the subject: Falas português? Question words: O que/O quê (what), Quem (who), Onde (where), Quando (when), Como (how), Porquê/Por que (why), Quanto/Quantos/Quantas (how much/many), Qual/Quais (which).\n\nThe 'é que' construction is very common in spoken EP: Onde é que moras? (Where do you live?) — same meaning, more natural. Porquê (with accent) = why at the end or alone (Não vieste. Porquê?\n\n). Por que (é que) = why at the start (Por que é que não vieste?). Porque = because in answers (Porque estava doente.). Tag questions: não é? (isn't it?), pois não? (right?), certo? (right?).",
       "rules": [
         {
           "rule": "Yes/no: same word order as statement, rising intonation. No 'do'. Subject can be dropped in EP.",
@@ -3734,7 +3734,7 @@
       "titlePt": "Preposições",
       "cefr": "A1",
       "summary": "Core prepositions: de, em, a, para, por, com, sem. A vs PARA (movement). POR vs PARA (cause vs purpose). Contractions mandatory.",
-      "intro": "Core prepositions: de (of, from), em (in, on, at), a (to, at), para (to, for), por (by, through, for reason), com (with), sem (without), entre (between), sobre (about, on top of), até (until, up to). They contract with articles — you cannot say 'de o' or 'em a'; use do, da, no, na, ao, à, etc. A vs PARA is critical in EP: a = short/temporary movement, going and coming back (Vou ao supermercado.); para = longer or permanent movement (Vou para o Brasil.). POR = because of, cause (Obrigado por ajudar.); PARA = in order to, purpose (Isto é para comer.). Common expressions: ao lado de (next to), em frente de (in front of), perto de (near), longe de (far from), antes de / depois de (before/after).",
+      "intro": "Core prepositions: de (of, from), em (in, on, at), a (to, at), para (to, for), por (by, through, for reason), com (with), sem (without), entre (between), sobre (about, on top of), até (until, up to). They contract with articles — you cannot say 'de o' or 'em a'; use do, da, no, na, ao, à, etc. A vs PARA is critical in EP: a = short/temporary movement, going and coming back (Vou ao supermercado.); para = longer or permanent movement (Vou para o Brasil.\n\n). POR = because of, cause (Obrigado por ajudar.); PARA = in order to, purpose (Isto é para comer.). Common expressions: ao lado de (next to), em frente de (in front of), perto de (near), longe de (far from), antes de / depois de (before/after).",
       "rules": [
         {
           "rule": "de = of/from; em = in/on/at; a = to/at; para = to/for; por = by/through/for (reason); com = with; sem = without; entre = between; sobre = about; até = until.",
@@ -4066,7 +4066,7 @@
       "titlePt": "Contrações",
       "cefr": "A1",
       "summary": "de+o=do, em+a=na, a+a=à, etc. These are mandatory in Portuguese.",
-      "intro": "In Portuguese, prepositions contract with articles. You cannot say 'de o' or 'em a' — you must use the contraction. De + o = do, de + a = da, de + os = dos, de + as = das. Em + o = no, em + a = na, em + os = nos, em + as = nas. A + o = ao, A + a = à (with grave accent), a + os = aos, a + as = às. Por + o = pelo, por + a = pela, etc. Indefinite: de + um = dum, em + um = num. These are mandatory in European Portuguese.",
+      "intro": "In Portuguese, prepositions contract with articles. You cannot say 'de o' or 'em a' — you must use the contraction. De + o = do, de + a = da, de + os = dos, de + as = das. Em + o = no, em + a = na, em + os = nos, em + as = nas.\n\nA + o = ao, A + a = à (with grave accent), a + os = aos, a + as = às. Por + o = pelo, por + a = pela, etc. Indefinite: de + um = dum, em + um = num. These are mandatory in European Portuguese.",
       "rules": [
         {
           "rule": "de + definite article: do, da, dos, das.",
@@ -4310,7 +4310,7 @@
       "titlePt": "Pretérito Perfeito Regular",
       "cefr": "A2",
       "summary": "Past tense: -AR falei/falaste/falou/falámos/falaram; -ER/-IR comi/parti. Note nós -AR: falámos (accent in EP).",
-      "intro": "Regular preterite: -AR verbs take -ei, -aste, -ou, -ámos, -aram (falei, falaste, falou, falámos, falaram). In European Portuguese the nós form has an accent: falámos (preterite) vs falamos (present). -ER: -i, -este, -eu, -emos, -eram (comi, comeste, comeu, comemos, comeram). -IR: -i, -iste, -iu, -imos, -iram (parti, partiste, partiu, partimos, partiram). Spelling changes: -car → -quei (ficar→fiquei), -gar → -guei (pagar→paguei), -çar → -cei (começar→comecei).",
+      "intro": "Regular preterite: -AR verbs take -ei, -aste, -ou, -ámos, -aram (falei, falaste, falou, falámos, falaram). In European Portuguese the nós form has an accent: falámos (preterite) vs falamos (present).\n\n-ER: -i, -este, -eu, -emos, -eram (comi, comeste, comeu, comemos, comeram). -IR: -i, -iste, -iu, -imos, -iram (parti, partiste, partiu, partimos, partiram). Spelling changes: -car → -quei (ficar→fiquei), -gar → -guei (pagar→paguei), -çar → -cei (começar→comecei).",
       "rules": [
         {
           "rule": "-AR preterite: -ei, -aste, -ou, -ámos, -aram.",
@@ -4836,7 +4836,7 @@
       "titlePt": "Possessivos",
       "cefr": "A2",
       "summary": "meu/minha, teu/tua, seu/sua, nosso/nossa. In EP always use the article (o meu carro). Use dele/dela to avoid ambiguity. Possessive agrees with the thing possessed.",
-      "intro": "Possessive determiners: o meu / a minha (my), o teu / a tua (your informal), o seu / a sua (his/her/your formal/their), o nosso / a nossa (our). Critical EP rule: possessives almost always take the definite article — O meu carro é azul. (My car is blue.) NOT *Meu carro é azul. Exception: with close family (mãe, pai) the article is sometimes dropped: Minha mãe, but A minha mãe is also correct and common. The possessive agrees with the THING POSSESSED, not the possessor: O João tem a minha caneta (João has my pen — minha is feminine because caneta is feminine). Ambiguity: seu/sua can mean his, her, your, their. EP uses dele/dela/deles/delas after the noun for clarity: O carro dele (his car), A casa dela (her house). Possessive pronouns (standalone): Este livro é meu. O meu é melhor. De quem é isto? É teu.",
+      "intro": "Possessive determiners: o meu / a minha (my), o teu / a tua (your informal), o seu / a sua (his/her/your formal/their), o nosso / a nossa (our). Critical EP rule: possessives almost always take the definite article — O meu carro é azul. (My car is blue.) NOT *Meu carro é azul. Exception: with close family (mãe, pai) the article is sometimes dropped: Minha mãe, but A minha mãe is also correct and common.\n\nThe possessive agrees with the THING POSSESSED, not the possessor: O João tem a minha caneta (João has my pen — minha is feminine because caneta is feminine).\n\nAmbiguity: seu/sua can mean his, her, your, their. EP uses dele/dela/deles/delas after the noun for clarity: O carro dele (his car), A casa dela (her house). Possessive pronouns (standalone): Este livro é meu. O meu é melhor. De quem é isto? É teu.",
       "rules": [
         {
           "rule": "Possessive determiners: o meu/a minha, o teu/a tua, o seu/a sua, o nosso/a nossa. Agree in gender/number with the thing possessed.",
@@ -5126,7 +5126,7 @@
       "titlePt": "Demonstrativos",
       "cefr": "A2",
       "summary": "Three levels: este (near me), esse (near you), aquele (over there). Invariable isto/isso/aquilo. Contract with de, em, a.",
-      "intro": "Portuguese has three levels of distance (English only has two). ESTE/ESTA/ESTES/ESTAS = this/these — near the speaker. ESSE/ESSA/ESSES/ESSAS = that/those — near the listener. AQUELE/AQUELA/AQUELES/AQUELAS = that/those over there — far from both. For abstract or unspecified things we use the invariable pronouns: ISTO (this thing/matter, near me), ISSO (that thing/matter, near you or just said), AQUILO (that thing over there). In practice many speakers use 'esse' where formally 'este' would apply; ESSE is also used for something just mentioned (e.g. Foste ao Porto? Essa cidade é linda.). Demonstratives contract with prepositions: de+este=deste, desta; de+esse=desse, dessa; de+aquele=daquele, daquela; em+este=neste, nesta; em+esse=nesse, nessa; em+aquele=naquele, naquela; a+aquele=àquele, a+aquela=àquela, a+aquilo=àquilo (grave accent).",
+      "intro": "Portuguese has three levels of distance (English only has two). ESTE/ESTA/ESTES/ESTAS = this/these — near the speaker. ESSE/ESSA/ESSES/ESSAS = that/those — near the listener. AQUELE/AQUELA/AQUELES/AQUELAS = that/those over there — far from both. For abstract or unspecified things we use the invariable pronouns: ISTO (this thing/matter, near me), ISSO (that thing/matter, near you or just said), AQUILO (that thing over there).\n\nIn practice many speakers use 'esse' where formally 'este' would apply; ESSE is also used for something just mentioned (e.g. Foste ao Porto? Essa cidade é linda.). Demonstratives contract with prepositions: de+este=deste, desta; de+esse=desse, dessa; de+aquele=daquele, daquela; em+este=neste, nesta; em+esse=nesse, nessa; em+aquele=naquele, naquela; a+aquele=àquele, a+aquela=àquela, a+aquilo=àquilo (grave accent).",
       "rules": [
         {
           "rule": "Three levels: ESTE (near speaker), ESSE (near listener), AQUELE (far from both). Full table: Masc.Sing. este, esse, aquele | Fem.Sing. esta, essa, aquela | Masc.Pl. estes, esses, aqueles | Fem.Pl. estas, essas, aquelas.",
@@ -6196,7 +6196,7 @@
       "titlePt": "Verbos Reflexos",
       "cefr": "A2",
       "summary": "Verbs with -se: levantar-se, vestir-se. Pronouns: me, te, se, nos, se. In EP pronoun goes AFTER the verb by default; BEFORE with não, question words, conjunctions, adverbs.",
-      "intro": "Reflexive verbs: the action reflects back on the subject (subject does the action to themselves). Identified by -se on the infinitive: lavar-se (to wash oneself), vestir-se (to get dressed). Reflexive pronouns: eu→me, tu→te, ele/ela/você→se, nós→nos, eles/elas/vocês→se. In European Portuguese the pronoun normally goes AFTER the verb (enclisis): Levanto-me cedo. Ela chama-se Ana. The pronoun goes BEFORE the verb (proclisis) when preceded by: negation (Não me levanto.), question words (Como te chamas?), subordinating conjunctions (que, quando, se, porque: Sei que se chama Maria.), or certain adverbs (já, ainda, também, sempre: Já me vesti.). In Brazilian Portuguese the pronoun is always before the verb — that is wrong in EP. Common reflexive verbs: levantar-se, deitar-se, sentar-se, lavar-se, vestir-se, chamar-se (to be called), lembrar-se de, esquecer-se de, encontrar-se com, mudar-se, sentir-se, queixar-se de, divertir-se, preocupar-se com. Meaning changes: lavar (wash something) vs lavar-se (wash oneself); chamar (call) vs chamar-se (be called); encontrar (find) vs encontrar-se (meet up); lembrar (remind) vs lembrar-se de (remember). Mesoclisis: in formal EP, future/conditional can have the pronoun in the middle — Levantar-me-ei cedo. In spoken EP people often say Vou levantar-me cedo instead.",
+      "intro": "Reflexive verbs: the action reflects back on the subject (subject does the action to themselves). Identified by -se on the infinitive: lavar-se (to wash oneself), vestir-se (to get dressed). Reflexive pronouns: eu→me, tu→te, ele/ela/você→se, nós→nos, eles/elas/vocês→se.\n\nIn European Portuguese the pronoun normally goes AFTER the verb (enclisis): Levanto-me cedo. Ela chama-se Ana. The pronoun goes BEFORE the verb (proclisis) when preceded by: negation (Não me levanto.), question words (Como te chamas?\n\n), subordinating conjunctions (que, quando, se, porque: Sei que se chama Maria.), or certain adverbs (já, ainda, também, sempre: Já me vesti.).\n\nIn Brazilian Portuguese the pronoun is always before the verb — that is wrong in EP. Common reflexive verbs: levantar-se, deitar-se, sentar-se, lavar-se, vestir-se, chamar-se (to be called), lembrar-se de, esquecer-se de, encontrar-se com, mudar-se, sentir-se, queixar-se de, divertir-se, preocupar-se com. Meaning changes: lavar (wash something) vs lavar-se (wash oneself); chamar (call) vs chamar-se (be called); encontrar (find) vs encontrar-se (meet up); lembrar (remind) vs lembrar-se de (remember). Mesoclisis: in formal EP, future/conditional can have the pronoun in the middle — Levantar-me-ei cedo.\n\nIn spoken EP people often say Vou levantar-me cedo instead.",
       "rules": [
         {
           "rule": "Reflexive pronouns: me (eu), te (tu), se (ele/ela/você), nos (nós), se (eles/elas).",
@@ -6864,7 +6864,7 @@
       "titlePt": "Pretérito Imperfeito",
       "cefr": "B1",
       "summary": "-AR: falava/falávamos; -ER/-IR: comia/partia. Only 4 irregulars: ser→era, ter→tinha, vir→vinha, pôr→punha.",
-      "intro": "The imperfect is used for ongoing or habitual past actions and descriptions. -AR: falava, falavas, falava, falávamos, falavam. -ER: comia, comias, comia, comíamos, comiam. -IR: partia, partias, partia, partíamos, partiam. Only 4 verbs are irregular in the imperfect: ser (era), ter (tinha), vir (vinha), pôr (punha). Much more regular than the preterite.",
+      "intro": "The imperfect is used for ongoing or habitual past actions and descriptions. -AR: falava, falavas, falava, falávamos, falavam. -ER: comia, comias, comia, comíamos, comiam.\n\n-IR: partia, partias, partia, partíamos, partiam. Only 4 verbs are irregular in the imperfect: ser (era), ter (tinha), vir (vinha), pôr (punha). Much more regular than the preterite.",
       "rules": [
         {
           "rule": "-AR imperfect: -ava, -avas, -ava, -ávamos, -avam.",
@@ -7117,7 +7117,7 @@
       "titlePt": "Perfeito vs Imperfeito",
       "cefr": "B1",
       "summary": "Preterite: completed actions, specific moments. Imperfect: habitual past, descriptions, ongoing. Often used together.",
-      "intro": "Use the preterite for completed actions and specific moments in the past: Ontem comi peixe (Yesterday I ate fish). Use the imperfect for habitual past actions, descriptions, and ongoing states: Quando era criança, comia peixe todos os dias (When I was a child, I used to eat fish every day). They often appear together: the imperfect sets the scene, the preterite interrupts: Eu dormia quando o telefone tocou (I was sleeping when the phone rang). Signal words: ontem, uma vez, de repente (preterite) vs sempre, normalmente, antigamente, enquanto (imperfect).",
+      "intro": "Use the preterite for completed actions and specific moments in the past: Ontem comi peixe (Yesterday I ate fish). Use the imperfect for habitual past actions, descriptions, and ongoing states: Quando era criança, comia peixe todos os dias (When I was a child, I used to eat fish every day).\n\nThey often appear together: the imperfect sets the scene, the preterite interrupts: Eu dormia quando o telefone tocou (I was sleeping when the phone rang). Signal words: ontem, uma vez, de repente (preterite) vs sempre, normalmente, antigamente, enquanto (imperfect).",
       "rules": [
         {
           "rule": "Preterite: completed actions, specific events.",
@@ -7459,7 +7459,7 @@
       "titlePt": "Futuro",
       "cefr": "B1",
       "summary": "Infinitive + ei, ás, á, emos, ão. Irregular stems: fazer→far-, dizer→dir-, trazer→trar-. In spoken EP 'ir + infinitive' is more common.",
-      "intro": "The synthetic future is formed by adding endings to the infinitive: ei, ás, á, emos, ão (falar→falarei, falarás, falará, falaremos, falarão). Only 3 verbs have irregular stems: fazer→far- (farei), dizer→dir- (direi), trazer→trar- (trarei). In European Portuguese spoken language, 'ir + infinitive' is more common for the near future: Vou falar com ele (I'm going to talk to him). The synthetic future is used more in formal/written EP and for certainty or promises.",
+      "intro": "The synthetic future is formed by adding endings to the infinitive: ei, ás, á, emos, ão (falar→falarei, falarás, falará, falaremos, falarão). Only 3 verbs have irregular stems: fazer→far- (farei), dizer→dir- (direi), trazer→trar- (trarei).\n\nIn European Portuguese spoken language, 'ir + infinitive' is more common for the near future: Vou falar com ele (I'm going to talk to him).\n\nThe synthetic future is used more in formal/written EP and for certainty or promises.",
       "rules": [
         {
           "rule": "Future: infinitive + ei, ás, á, emos, ão.",
@@ -7790,7 +7790,7 @@
       "titlePt": "Condicional",
       "cefr": "B1",
       "summary": "Infinitive + ia, ias, ia, íamos, iam. Same irregular stems as future: faria, diria, traria. Uses: polite requests, hypotheticals.",
-      "intro": "The conditional is formed by adding -ia, -ias, -ia, -íamos, -iam to the infinitive (or to the same irregular stem as the future). Falar→falaría, comer→comeria. Same 3 irregulars: faria, diria, traria. Uses: polite requests (Poderia ajudar-me?), hypothetical situations (Eu viajaria mais se tivesse dinheiro), and advice (Eu no teu lugar, falaria com ele).",
+      "intro": "The conditional is formed by adding -ia, -ias, -ia, -íamos, -iam to the infinitive (or to the same irregular stem as the future). Falar→falaría, comer→comeria.\n\nSame 3 irregulars: faria, diria, traria. Uses: polite requests (Poderia ajudar-me?), hypothetical situations (Eu viajaria mais se tivesse dinheiro), and advice (Eu no teu lugar, falaria com ele).",
       "rules": [
         {
           "rule": "Conditional: infinitive + ia, ias, ia, íamos, iam.",
@@ -8118,7 +8118,7 @@
       "titlePt": "Ir + Infinitivo",
       "cefr": "B1",
       "summary": "Conjugated ir + infinitive = going to do. Most common way to express future in spoken EP.",
-      "intro": "Ir + infinitive is the most common way to express the future in spoken European Portuguese. Formation: conjugated form of ir + infinitive. Vou comer (I'm going to eat), Vamos viajar (We're going to travel). It can express immediate future (Vou sair agora) or planned future (Vamos viajar no verão). Compare with the synthetic future: Falarei is more formal/written; Vou falar is everyday speech.",
+      "intro": "Ir + infinitive is the most common way to express the future in spoken European Portuguese. Formation: conjugated form of ir + infinitive.\n\nVou comer (I'm going to eat), Vamos viajar (We're going to travel). It can express immediate future (Vou sair agora) or planned future (Vamos viajar no verão). Compare with the synthetic future: Falarei is more formal/written; Vou falar is everyday speech.",
       "rules": [
         {
           "rule": "ir (conjugated) + infinitive = future intention.",
@@ -8379,7 +8379,7 @@
       "titlePt": "Conjuntivo — Quando Usar",
       "cefr": "B1",
       "summary": "After wishes (espero que), emotions (tenho medo que), doubt (talvez), necessity (é preciso que), and conjunctions (embora, para que). Different subject after 'que'.",
-      "intro": "The subjunctive is used after certain triggers. Wishes/desires: espero que, quero que, desejo que. Emotions: tenho medo que, fico feliz que, lamento que. Doubt: duvido que, não acredito que, talvez. Necessity: é preciso que, é necessário que, é importante que. Conjunctions: embora (although), antes que (before), para que (so that), sem que (without), até que (until). Crucially, after 'que' when the subject of the two clauses is different: Quero que TU fales (I want YOU to speak) — subjunctive because the subject of 'falar' is different from 'eu'.",
+      "intro": "The subjunctive is used after certain triggers. Wishes/desires: espero que, quero que, desejo que. Emotions: tenho medo que, fico feliz que, lamento que.\n\nDoubt: duvido que, não acredito que, talvez. Necessity: é preciso que, é necessário que, é importante que. Conjunctions: embora (although), antes que (before), para que (so that), sem que (without), até que (until). Crucially, after 'que' when the subject of the two clauses is different: Quero que TU fales (I want YOU to speak) — subjunctive because the subject of 'falar' is different from 'eu'.",
       "rules": [
         {
           "rule": "Wishes: espero que, quero que + subjunctive.",
@@ -8725,7 +8725,7 @@
       "titlePt": "Presente do Conjuntivo",
       "cefr": "B1",
       "summary": "Take eu form of present, drop -o, add -e/-es/-e/-emos/-em (-AR) or -a/-as/-a/-amos/-am (-ER/-IR). Irregulars: ser→seja, estar→esteja, ter→tenha.",
-      "intro": "To form the present subjunctive: take the eu form of the present indicative, drop the -o, and add the subjunctive endings. -AR verbs: -e, -es, -e, -emos, -em (fale, fales, fale, falemos, falem). -ER and -IR: -a, -as, -a, -amos, -am (coma, comas, coma, comamos, comam; parta, partas, parta, partamos, partam). Key irregulars: ser→seja, estar→esteja, ter→tenha, ir→vá, dar→dê, saber→saiba, haver→haja, querer→queira. Example: Espero que estejas bem (I hope you're well).",
+      "intro": "To form the present subjunctive: take the eu form of the present indicative, drop the -o, and add the subjunctive endings. -AR verbs: -e, -es, -e, -emos, -em (fale, fales, fale, falemos, falem).\n\n-ER and -IR: -a, -as, -a, -amos, -am (coma, comas, coma, comamos, comam; parta, partas, parta, partamos, partam). Key irregulars: ser→seja, estar→esteja, ter→tenha, ir→vá, dar→dê, saber→saiba, haver→haja, querer→queira. Example: Espero que estejas bem (I hope you're well).",
       "rules": [
         {
           "rule": "-AR subjunctive: -e, -es, -e, -emos, -em (from present eu -o).",
@@ -9063,7 +9063,7 @@
       "titlePt": "Pronomes Relativos",
       "cefr": "B1",
       "summary": "que (that/which/who), quem (who, after prepositions), onde (where), o qual/a qual (formal), cujo/cuja (whose).",
-      "intro": "Relative pronouns introduce relative clauses. Que is the most common — for people and things: O homem que vi (The man that I saw). Quem is only for people and is used after prepositions: A pessoa com quem falei (The person I spoke with). Onde is for places: A cidade onde nasci (The city where I was born). O qual, a qual, os quais, as quais are more formal, often after prepositions: A razão pela qual parti (The reason why I left). Cujo/cuja/cujos/cujas mean 'whose': O homem cuja casa é grande (The man whose house is big).",
+      "intro": "Relative pronouns introduce relative clauses. Que is the most common — for people and things: O homem que vi (The man that I saw). Quem is only for people and is used after prepositions: A pessoa com quem falei (The person I spoke with).\n\nOnde is for places: A cidade onde nasci (The city where I was born). O qual, a qual, os quais, as quais are more formal, often after prepositions: A razão pela qual parti (The reason why I left). Cujo/cuja/cujos/cujas mean 'whose': O homem cuja casa é grande (The man whose house is big).",
       "rules": [
         {
           "rule": "que = who/that/which (people and things).",
@@ -9783,7 +9783,7 @@
       "titlePt": "Opostos e Formação de Palavras",
       "cefr": "A2",
       "summary": "How to form and use opposites in Portuguese — from prefix rules that let you decode unfamiliar words, to common antonym pairs every learner needs.",
-      "intro": "Portuguese has two main ways to express opposites. The first is using prefixes to transform a word into its opposite — much like English uses 'un-', 'in-', or 'dis-'. The second is simply knowing the antonym pairs (grande/pequeno, quente/frio). Learning the prefix rules is especially powerful because it gives you a tool to understand new words you have never seen before. If you know 'feliz' means happy, you can immediately decode 'infeliz' as unhappy. This topic covers both strategies.",
+      "intro": "Portuguese has two main ways to express opposites. The first is using prefixes to transform a word into its opposite — much like English uses 'un-', 'in-', or 'dis-'.\n\nThe second is simply knowing the antonym pairs (grande/pequeno, quente/frio). Learning the prefix rules is especially powerful because it gives you a tool to understand new words you have never seen before. If you know 'feliz' means happy, you can immediately decode 'infeliz' as unhappy.\n\nThis topic covers both strategies.",
       "rules": [
         {
           "rule": "The prefix 'in-' is the most common way to form adjective opposites. It works like English 'un-' or 'in-'. Before words starting with 'b', 'm', or 'p', it changes to 'im-'.",
