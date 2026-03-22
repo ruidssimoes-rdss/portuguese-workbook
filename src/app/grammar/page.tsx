@@ -6,7 +6,8 @@ import { ChevronRight } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
 import {
   PageHeader,
-  FilterBar,
+  SegmentedFilter,
+  SearchInput,
   ListContainer,
   ListRow,
   BadgePill,
@@ -79,14 +80,20 @@ export default function GrammarPage() {
         subtitle={`${allTopics.length} topics across A1, A2, and B1`}
       />
 
-      <FilterBar
-        filterOptions={cefrOptions}
-        filterValue={cefr}
-        onFilterChange={setCefr}
-        searchPlaceholder="Search topics..."
-        searchValue={search}
-        onSearchChange={setSearch}
-      />
+      {/* ─── Filter bar (standard layout) ──────────────────────────────── */}
+      <div className="flex items-center gap-3 mb-3 flex-wrap">
+        <SegmentedFilter
+          options={cefrOptions}
+          value={cefr}
+          onChange={setCefr}
+        />
+        <div className="flex-1" />
+        <SearchInput
+          placeholder="Search topics..."
+          value={search}
+          onChange={setSearch}
+        />
+      </div>
 
       <ListContainer>
         {filtered.map((topic) => (

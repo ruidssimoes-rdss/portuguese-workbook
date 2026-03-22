@@ -5,7 +5,8 @@ import { PageShell } from "@/components/layout/page-shell";
 import {
   PageHeader,
   TabBar,
-  FilterBar,
+  SegmentedFilter,
+  SearchInput,
   CardShell,
   BadgePill,
   CountLabel,
@@ -133,14 +134,20 @@ export default function CulturePage() {
         }}
       />
 
-      <FilterBar
-        filterOptions={cefrOptions}
-        filterValue={cefr}
-        onFilterChange={setCefr}
-        searchPlaceholder="Search culture..."
-        searchValue={search}
-        onSearchChange={setSearch}
-      />
+      {/* ─── Filter bar (standard layout) ──────────────────────────────── */}
+      <div className="flex items-center gap-3 mb-3 flex-wrap">
+        <SegmentedFilter
+          options={cefrOptions}
+          value={cefr}
+          onChange={setCefr}
+        />
+        <div className="flex-1" />
+        <SearchInput
+          placeholder="Search culture..."
+          value={search}
+          onChange={setSearch}
+        />
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {filtered.map((item) => (
