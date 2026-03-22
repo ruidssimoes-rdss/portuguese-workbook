@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, SlidersHorizontal, X } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
 import {
   PageHeader,
@@ -139,6 +139,7 @@ function VocabularyDetailContent() {
   const [cefr, setCefr] = useState(initialLevel);
   const [search, setSearch] = useState(initialSearch);
   const [sortBy, setSortBy] = useState<"default" | "alpha">("default");
+  const [filterOpen, setFilterOpen] = useState(false);
   const [view, setView] = useState<"list" | "grid">(() => {
     if (typeof window !== "undefined") {
       return (localStorage.getItem("vocab-view") as "list" | "grid") || "list";
@@ -182,6 +183,8 @@ function VocabularyDetailContent() {
     return getWordGroups(slug, sortedWords);
   }, [slug, sortedWords, sortBy, search]);
 
+  const hasGroups = groups && groups.length > 1;
+
   if (!category) {
     return (
       <PageShell>
@@ -219,6 +222,57 @@ function VocabularyDetailContent() {
           value={cefr}
           onChange={setCefr}
         />
+
+        {/* Filter dropdown — only when sections exist */}
+        {hasGroups && (
+          <div className="relative">
+            <button
+              onClick={() => setFilterOpen(!filterOpen)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] rounded-lg border-[0.5px] transition-colors ${
+                filterOpen
+                  ? "border-[rgba(0,0,0,0.12)] text-[#111111]"
+                  : "border-[rgba(0,0,0,0.06)] text-[#9B9DA3] hover:border-[rgba(0,0,0,0.12)] hover:text-[#6C6B71]"
+              }`}
+            >
+              <SlidersHorizontal size={13} />
+              <span>Filter</span>
+            </button>
+
+            {filterOpen && (
+              <>
+                <div className="fixed inset-0 z-10" onClick={() => setFilterOpen(false)} />
+                <div className="absolute top-full left-0 mt-1.5 z-20 bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg shadow-lg w-[260px] max-h-[400px] overflow-y-auto">
+                  {/* Header with close */}
+                  <div className="flex items-center justify-between px-3 pt-3 pb-2">
+                    <span className="text-[11px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em]">Sections</span>
+                    <button onClick={() => setFilterOpen(false)} className="text-[#9B9DA3] hover:text-[#6C6B71]">
+                      <X size={14} />
+                    </button>
+                  </div>
+                  {/* Section list */}
+                  <div className="px-3 pb-3">
+                    <div className="space-y-0.5">
+                      {groups.map((g, i) => (
+                        <button
+                          key={i}
+                          onClick={() => {
+                            document.getElementById(`group-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                            setFilterOpen(false);
+                          }}
+                          className="flex items-center justify-between w-full px-2 py-1.5 rounded text-[12px] text-[#6C6B71] hover:bg-[#F7F7F5] transition-colors text-left"
+                        >
+                          <span className="truncate">{g.label}</span>
+                          <span className="text-[10px] text-[#9B9DA3] ml-2 flex-shrink-0">{g.words.length}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
         <div className="flex-1" />
         <div className="flex items-center gap-1">
           <button
@@ -257,24 +311,6 @@ function VocabularyDetailContent() {
           onChange={setSearch}
         />
       </div>
-
-      {/* ─── Jump nav pills ──────────────────────────────────────────── */}
-      {groups && groups.length > 1 && (
-        <div className="flex gap-1.5 mb-4 flex-wrap">
-          {groups.map((g, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                document.getElementById(`group-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
-              className="px-2 py-0.5 rounded text-[10px] text-[#9B9DA3] hover:text-[#6C6B71] hover:bg-[rgba(0,0,0,0.03)] transition-colors"
-            >
-              {g.label}
-              <span className="ml-0.5 text-[#C8C8CC]">{g.words.length}</span>
-            </button>
-          ))}
-        </div>
-      )}
 
       {/* ─── List View ─────────────────────────────────────────────────── */}
       {view === "list" && groups && (

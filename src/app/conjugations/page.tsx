@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { ChevronRight, SlidersHorizontal } from "lucide-react";
+import { ChevronRight, SlidersHorizontal, X } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
 import {
   PageHeader,
@@ -26,7 +26,7 @@ function simplifyGroup(group: string): string {
   return "Irregular";
 }
 
-/** Strip prefixes for short jump nav labels */
+/** Strip prefixes for short dropdown labels */
 function shortLabel(label: string): string {
   return label
     .replace(/^Regular -[A-Z]{2}: /, "")
@@ -70,7 +70,13 @@ function GridIcon({ active }: { active: boolean }) {
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const cefrOptions = ["All", "A1", "A2", "B1"];
-const groupFilterOptions = ["All", "Regular -AR", "Regular -ER", "Regular -IR", "Irregular"];
+const groupFilterOptions = [
+  { value: "All", label: "All" },
+  { value: "Regular -AR", label: "Regular -AR" },
+  { value: "Regular -ER", label: "Regular -ER" },
+  { value: "Regular -IR", label: "Regular -IR" },
+  { value: "Irregular", label: "Irregular" },
+];
 
 const groupExplainers: Record<string, { title: string; description: string }> = {
   "Regular -AR": {
@@ -251,6 +257,8 @@ export default function ConjugationsPage() {
     return result.length > 0 ? result : null;
   }, [sortedVerbs, sortBy, search]);
 
+  const hasGroups = groups && groups.length > 1;
+
   return (
     <PageShell>
       <PageHeader
@@ -271,15 +279,15 @@ export default function ConjugationsPage() {
           <button
             onClick={() => setFilterOpen(!filterOpen)}
             className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] rounded-lg border-[0.5px] transition-colors ${
-              activeFilterCount > 0
-                ? "border-[#111111] text-[#111111] bg-[#F7F7F5]"
+              activeFilterCount > 0 || filterOpen
+                ? "border-[rgba(0,0,0,0.12)] text-[#111111]"
                 : "border-[rgba(0,0,0,0.06)] text-[#9B9DA3] hover:border-[rgba(0,0,0,0.12)] hover:text-[#6C6B71]"
             }`}
           >
             <SlidersHorizontal size={13} />
-            Filter
+            <span>Filter</span>
             {activeFilterCount > 0 && (
-              <span className="ml-1 text-[10px] bg-[#111111] text-white rounded-full w-4 h-4 flex items-center justify-center">
+              <span className="text-[10px] bg-[#111111] text-white rounded-full w-4 h-4 flex items-center justify-center">
                 {activeFilterCount}
               </span>
             )}
@@ -288,28 +296,84 @@ export default function ConjugationsPage() {
           {filterOpen && (
             <>
               <div className="fixed inset-0 z-10" onClick={() => setFilterOpen(false)} />
-              <div className="absolute top-full left-0 mt-1 z-20 bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg shadow-md p-3 min-w-[200px]">
-                <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-1">
-                  Conjugation type
+              <div className="absolute top-full left-0 mt-1.5 z-20 bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg shadow-lg w-[260px] max-h-[400px] overflow-y-auto">
+                {/* Header with close */}
+                <div className="flex items-center justify-between px-3 pt-3 pb-2">
+                  <span className="text-[11px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em]">Filters</span>
+                  <button onClick={() => setFilterOpen(false)} className="text-[#9B9DA3] hover:text-[#6C6B71]">
+                    <X size={14} />
+                  </button>
                 </div>
-                <div className="space-y-0.5">
-                  {groupFilterOptions.map((opt) => (
+
+                {/* Sections — jump to group */}
+                {hasGroups && (
+                  <div className="px-3 pb-3">
+                    <div className="text-[10px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em] mb-1.5">Sections</div>
+                    <div className="space-y-0.5">
+                      {groups.map((g, i) => (
+                        <button
+                          key={i}
+                          onClick={() => {
+                            document.getElementById(`vgroup-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                            setFilterOpen(false);
+                          }}
+                          className="flex items-center justify-between w-full px-2 py-1.5 rounded text-[12px] text-[#6C6B71] hover:bg-[#F7F7F5] transition-colors text-left"
+                        >
+                          <span className="truncate">{shortLabel(g.label)}</span>
+                          <span className="text-[10px] text-[#9B9DA3] ml-2 flex-shrink-0">{g.verbs.length}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Divider */}
+                {hasGroups && (
+                  <div className="border-t-[0.5px] border-[rgba(0,0,0,0.06)] mx-3" />
+                )}
+
+                {/* Conjugation type filter */}
+                <div className="px-3 py-3">
+                  <div className="text-[10px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em] mb-1.5">
+                    Conjugation type
+                  </div>
+                  <div className="space-y-0.5">
+                    {groupFilterOptions.map((opt) => (
+                      <button
+                        key={opt.value}
+                        onClick={() => setGroupFilter(opt.value)}
+                        className={`flex items-center w-full px-2 py-1.5 rounded text-[12px] transition-colors text-left ${
+                          groupFilter === opt.value
+                            ? "bg-[#F7F7F5] text-[#111111] font-medium"
+                            : "text-[#6C6B71] hover:bg-[#F7F7F5]"
+                        }`}
+                      >
+                        <span className={`w-3 h-3 rounded-full border mr-2 flex-shrink-0 flex items-center justify-center ${
+                          groupFilter === opt.value
+                            ? "border-[#111111] bg-[#111111]"
+                            : "border-[rgba(0,0,0,0.15)]"
+                        }`}>
+                          {groupFilter === opt.value && (
+                            <span className="block w-1.5 h-1.5 rounded-full bg-white" />
+                          )}
+                        </span>
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Clear all */}
+                {activeFilterCount > 0 && (
+                  <div className="border-t-[0.5px] border-[rgba(0,0,0,0.06)] px-3 py-2">
                     <button
-                      key={opt}
-                      onClick={() => {
-                        setGroupFilter(opt);
-                        setFilterOpen(false);
-                      }}
-                      className={`block w-full text-left px-2 py-1.5 rounded text-[12px] transition-colors ${
-                        groupFilter === opt
-                          ? "bg-[#F7F7F5] text-[#111111]"
-                          : "text-[#6C6B71] hover:bg-[#F7F7F5]"
-                      }`}
+                      onClick={() => { setGroupFilter("All"); setFilterOpen(false); }}
+                      className="text-[11px] text-[#9B9DA3] hover:text-[#6C6B71]"
                     >
-                      {opt}
+                      Clear all filters
                     </button>
-                  ))}
-                </div>
+                  </div>
+                )}
               </div>
             </>
           )}
@@ -368,26 +432,6 @@ export default function ConjugationsPage() {
           <div className="text-[12px] text-[#6C6B71] leading-relaxed">
             {groupExplainers[groupFilter].description}
           </div>
-        </div>
-      )}
-
-      {/* ─── Jump Nav pills ──────────────────────────────────────────── */}
-      {groups && groups.length > 1 && (
-        <div className="flex gap-1.5 mb-4 flex-wrap">
-          {groups.map((g, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                document
-                  .getElementById(`vgroup-${i}`)
-                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
-              className="px-2 py-0.5 rounded text-[10px] text-[#9B9DA3] hover:text-[#6C6B71] hover:bg-[rgba(0,0,0,0.03)] transition-colors"
-            >
-              {shortLabel(g.label)}
-              <span className="ml-0.5 text-[#C8C8CC]">{g.verbs.length}</span>
-            </button>
-          ))}
         </div>
       )}
 
