@@ -77,7 +77,7 @@ export function AudioButton({ text, className = "" }: AudioButtonProps) {
       aria-label={`Listen to "${text}"`}
       title="Listen"
     >
-      <Volume2 size={14} strokeWidth={1.5} />
+      <Volume2 size={14} strokeWidth={1.5} className={speaking ? "animate-pulse" : ""} />
     </button>
   );
 }

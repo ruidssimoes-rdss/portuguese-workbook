@@ -67,7 +67,7 @@ function WordRow({ word }: { word: any }) {
             <span className="text-[14px] font-medium text-[#111111]">
               {word.portuguese}
             </span>
-            <AudioButton text={word.portuguese} className="md:opacity-0 md:group-hover:opacity-100" />
+            <AudioButton text={word.portuguese} />
             {word.gender && (
               <span className="text-[11px] text-[#9B9DA3] ml-0.5 italic">
                 ({word.gender})
@@ -100,7 +100,7 @@ function WordCard({ word }: { word: any }) {
           <BadgePill level={word.cefr} />
           <AudioButton
             text={word.portuguese}
-            className="opacity-100 md:opacity-0 md:group-hover:opacity-100"
+            className=""
           />
         </div>
       </div>

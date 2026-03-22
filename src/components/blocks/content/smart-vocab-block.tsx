@@ -45,7 +45,7 @@ function CardVariant({ data, isHighlighted, className }: SmartVocabBlockProps) {
       {/* Word + pronunciation */}
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-[18px] font-medium leading-tight text-[#111111] break-words">{data.word}</h3>
-        <PronunciationButton text={data.word} size="md" className="md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-150" />
+        <PronunciationButton text={data.word} size="md" />
       </div>
 
       {/* Phonetic */}
@@ -59,7 +59,7 @@ function CardVariant({ data, isHighlighted, className }: SmartVocabBlockProps) {
       {/* Example */}
       {exPt && (
         <div className="bg-[#F7F7F5] rounded-lg p-4 flex items-start gap-2">
-          <PronunciationButton text={exPt} size="sm" className="mt-0.5 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-150" />
+          <PronunciationButton text={exPt} size="sm" className="mt-0.5" />
           <div className="min-w-0">
             <span className="text-[13px] italic leading-snug text-[#111111] break-words">
               &ldquo;{exPt}&rdquo;

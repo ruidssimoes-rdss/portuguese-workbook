@@ -151,7 +151,7 @@ export default function CulturePage() {
                   <span className="text-[14px] font-medium text-[#111111]">
                     {item.title}
                   </span>
-                  <AudioButton text={item.title} className="md:opacity-0 md:group-hover:opacity-100" />
+                  <AudioButton text={item.title} />
                 </div>
                 <div className="text-[12px] text-[#9B9DA3] mt-0.5">
                   {item.subtitle}

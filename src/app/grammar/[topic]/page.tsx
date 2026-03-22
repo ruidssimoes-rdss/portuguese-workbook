@@ -132,7 +132,7 @@ export default function GrammarDetailPage() {
                             <span className="text-[13px] text-[#111111]">
                               {ex.pt}
                             </span>
-                            <AudioButton text={ex.pt} className="md:opacity-0 md:group-hover:opacity-100" />
+                            <AudioButton text={ex.pt} />
                           </div>
                           <div className="text-[12px] text-[#9B9DA3] italic mt-0.5">
                             {ex.en}

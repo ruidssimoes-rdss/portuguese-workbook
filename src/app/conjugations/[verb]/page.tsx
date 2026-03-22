@@ -117,7 +117,7 @@ export default function ConjugationDetailPage() {
                     </span>
                     <span className="text-[#111111] font-medium flex items-center gap-1">
                       {row.Conjugation}
-                      <AudioButton text={row.Conjugation} className="md:opacity-0 md:group-hover:opacity-100" />
+                      <AudioButton text={row.Conjugation} />
                     </span>
                     <span className="text-[#6C6B71] text-[12px] hidden md:block">
                       {row["Example Sentence"]}
