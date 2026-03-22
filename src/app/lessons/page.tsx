@@ -145,7 +145,7 @@ function CEFRLevelCard({
 
       <div className="flex gap-3">
         <Link
-          href="/lessons/next"
+          href="/learn"
           className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
         >
           Start next lesson
@@ -154,7 +154,7 @@ function CEFRLevelCard({
 
         {reviewCount > 0 && (
           <Link
-            href="/lessons/review"
+            href="/learn?mode=review"
             className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
           >
             <RotateCcw size={14} />
