@@ -33,7 +33,7 @@ export function SectionShell({
     <div>
       {/* Section header */}
       <div className="mb-6">
-        <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#9B9DA3] mb-1">
+        <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-1">
           Secção {sectionIndex + 1} de {totalSections}
         </p>
         <h2 className="text-[18px] font-medium text-[#111111]">

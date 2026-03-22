@@ -202,66 +202,63 @@ function LessonIntro({
   ].filter((s) => s.value > 0);
 
   return (
-    <div className="max-w-lg mx-auto text-center py-8">
+    <div className="max-w-md mx-auto text-center py-8">
       {/* Title */}
-      <h1 className="text-[22px] font-medium text-[#111111] tracking-tight">
+      <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
         {lesson.ptTitle}
       </h1>
-      <p className="text-[13px] text-[#6C6B71] mt-1">
+      <p className="text-[14px] text-[#9B9DA3] italic mt-1">
         {lesson.title}
       </p>
 
       {/* CEFR badge */}
-      <div className="flex items-center justify-center mt-5">
-        <span className="px-3 py-1 text-[10px] font-medium text-[#185FA5] bg-[rgba(24,95,165,0.05)] rounded-full">
-          {lesson.cefr}
-        </span>
+      <div className="mt-3">
+        <span className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full ${
+          lesson.cefr === "A1" ? "text-[#0F6E56] bg-[#E1F5EE]" :
+          lesson.cefr === "A2" ? "text-[#185FA5] bg-[#E6F1FB]" :
+          "text-[#854F0B] bg-[#FAEEDA]"
+        }`}>{lesson.cefr}</span>
       </div>
 
-      {/* Stat cards */}
-      <div className="flex items-center justify-center gap-3 mt-8">
+      {/* Stat boxes */}
+      <div className="flex gap-3 mt-6 max-w-xs mx-auto">
         {stats.map((stat) => (
           <div
             key={stat.labelPt}
-            className="flex flex-col items-center justify-center w-20 h-20 bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg"
+            className="flex-1 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg py-4 px-2 text-center"
           >
-            <span className="text-[22px] font-medium text-[#111111]">{stat.value}</span>
-            <span className="text-[10px] font-medium text-[#9B9DA3] mt-0.5">{stat.labelPt}</span>
+            <div className="text-[24px] font-medium text-[#111111]">{stat.value}</div>
+            <div className="text-[11px] text-[#9B9DA3] mt-0.5">{stat.labelPt}</div>
             {showEnglish && (
-              <span className="text-[9px] text-[#9B9DA3]">{stat.labelEn}</span>
+              <div className="text-[10px] text-[#9B9DA3]">{stat.labelEn}</div>
             )}
           </div>
         ))}
       </div>
 
-      {/* Meta line */}
-      <p className="text-[11px] text-[#9B9DA3] mt-5">
-        {sectionCount} secções · {totalPoints} perguntas · 80% para passar
+      {/* Meta */}
+      <p className="text-[12px] text-[#9B9DA3] mt-4">
+        {sectionCount} sections · {totalPoints} questions · 80% to pass
       </p>
-      {showEnglish && (
-        <p className="text-[11px] text-[#9B9DA3]">
-          {sectionCount} sections · {totalPoints} questions · 80% to pass
-        </p>
-      )}
 
-      {/* CTAs */}
-      <div className="mt-8 space-y-3">
+      {/* Buttons */}
+      <div className="mt-6 space-y-2 max-w-xs mx-auto">
         <button
           type="button"
           onClick={onStartExercises}
-          className="w-full px-4 py-2 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
+          className="w-full py-3.5 text-[14px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
         >
-          Começar os exercícios →
+          <span>Começar os exercícios →</span>
           {showEnglish && (
-            <span className="block text-[12px] font-normal opacity-75 mt-0.5">Start the exercises</span>
+            <span className="block text-[12px] font-normal opacity-70 mt-0.5">Start the exercises</span>
           )}
         </button>
         <button
           type="button"
           onClick={onReviewFirst}
-          className="w-full px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
+          className="w-full py-3.5 text-[14px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
         >
-          Rever o material primeiro
+          <span>Rever o material primeiro</span>
           {showEnglish && (
             <span className="block text-[12px] font-normal text-[#9B9DA3] mt-0.5">Review the material first</span>
           )}
