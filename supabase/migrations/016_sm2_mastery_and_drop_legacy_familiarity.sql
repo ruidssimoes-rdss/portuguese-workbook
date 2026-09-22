@@ -8,10 +8,10 @@ ALTER TABLE public.user_content_mastery
   ADD COLUMN IF NOT EXISTS interval_days INTEGER NOT NULL DEFAULT 0,
   ADD COLUMN IF NOT EXISTS repetitions   INTEGER NOT NULL DEFAULT 0;
 
-ALTER TABLE public.user_vocabulary
+ALTER TABLE IF EXISTS public.user_vocabulary
   DROP COLUMN IF EXISTS familiarity,
   DROP COLUMN IF EXISTS next_review;
 
-ALTER TABLE public.user_verbs
+ALTER TABLE IF EXISTS public.user_verbs
   DROP COLUMN IF EXISTS familiarity,
   DROP COLUMN IF EXISTS next_review;

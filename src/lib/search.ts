@@ -1,9 +1,8 @@
 /**
  * Search — server only.
  *
- * Builds a lightweight index once at module load: word, meaning, type and
- * slug per entry (plus a little display metadata). No conjugation tables —
- * verbs are indexed by infinitive and meaning only. Served by /api/search.
+ * Builds text and conjugated-form indexes on the server. Only matching
+ * results and small form previews are returned by /api/search.
  */
 
 import "server-only";
@@ -26,6 +25,7 @@ import type {
   SearchResult,
   SmartResultCard,
   VerbCardEntry,
+  VerbForm,
 } from "./search-types";
 
 export type { DetectedIntent, SearchOutput, SearchResult, SmartResultCard } from "./search-types";
@@ -118,7 +118,8 @@ function buildIndex(): IndexEntry[] {
       primary: normalizeForSearch(infinitive),
       secondary: normalizeForSearch(v.meta.english),
       extra: [],
-      verb: { infinitive, english: v.meta.english, group: v.meta.group, cefr: v.meta.cefr, href },
+      verb: { infinitive, english: v.meta.english, group: v.meta.group, cefr: v.meta.cefr, href,
+        forms: v.conjugations.map((row) => ({ form: row.Conjugation, tense: row.Tense, person: row.Person })) },
       result: {
         type: "verb",
         title: infinitive,
@@ -218,6 +219,26 @@ function buildIndex(): IndexEntry[] {
 }
 
 const INDEX: IndexEntry[] = buildIndex();
+const FORM_TO_VERBS = new Map<string, Map<string, VerbForm[]>>();
+for (const entry of INDEX) {
+  if (!entry.verb) continue;
+  for (const form of entry.verb.forms) {
+    const key = normalizeForSearch(form.form.trim());
+    if (!key) continue;
+    const verbs = FORM_TO_VERBS.get(key) ?? new Map<string, VerbForm[]>();
+    const forms = verbs.get(entry.verb.infinitive) ?? [];
+    forms.push(form);
+    verbs.set(entry.verb.infinitive, forms);
+    FORM_TO_VERBS.set(key, verbs);
+  }
+}
+
+function verbPreview(verb: VerbCardEntry, query: string, tense?: string): VerbCardEntry {
+  const matched = FORM_TO_VERBS.get(query)?.get(verb.infinitive);
+  const forms = tense ? verb.forms.filter((form) => form.tense === tense)
+    : matched ?? verb.forms.filter((form) => form.tense === "Present");
+  return { ...verb, forms: forms.slice(0, 6) };
+}
 const GRAMMAR_BY_ID = new Map<string, IndexEntry>(
   INDEX.filter((e) => e.result.type === "grammar").map((e) => [e.result.href.replace("/grammar/", ""), e])
 );
@@ -408,9 +429,12 @@ function runTextSearch(queryNorm: string, opts: SearchOptions = {}): Array<{ res
     const t = e.result.type;
     if (opts.verbOnly && t !== "verb") continue;
     if (opts.grammarOnly && t !== "grammar") continue;
-    const score = scoreEntry(e, queryNorm, opts);
+    const matchedForms = e.verb ? FORM_TO_VERBS.get(queryNorm)?.get(e.verb.infinitive) : undefined;
+    const score = Math.max(scoreEntry(e, queryNorm, opts), matchedForms ? 900 : 0);
     if (score > 0) {
-      const result = t === "vocabulary" ? { ...e.result, matchField: e.primary === queryNorm ? "portuguese" : "english" } : e.result;
+      const result = matchedForms ? { ...e.result, matchField: "conjugation", matchedForms,
+        subtitle: `${e.result.subtitle} · ${matchedForms.map((f) => `${f.form} — ${f.tense} (${f.person})`).join("; ")}` }
+        : t === "vocabulary" ? { ...e.result, matchField: e.primary === queryNorm ? "portuguese" : "english" } : e.result;
       out.push({ result, score });
     }
   }
@@ -418,8 +442,10 @@ function runTextSearch(queryNorm: string, opts: SearchOptions = {}): Array<{ res
   return out;
 }
 
-function findVerbsByQuery(term: string): VerbCardEntry[] {
+function findVerbsByQuery(term: string, tense?: string): VerbCardEntry[] {
   const norm = normalizeForSearch(term);
+  const exact = INDEX.find((entry) => entry.verb && entry.primary === norm);
+  if (exact?.verb) return [verbPreview(exact.verb, norm, tense)];
   const out: VerbCardEntry[] = [];
   for (const e of INDEX) {
     if (!e.verb) continue;
@@ -427,7 +453,9 @@ function findVerbsByQuery(term: string): VerbCardEntry[] {
     const en = e.secondary;
     const matchInfinitive = inf === norm || inf.startsWith(norm) || norm.startsWith(inf);
     const matchEnglish = en === norm || en.startsWith(norm) || norm.startsWith(en) || en.includes(norm) || norm.includes(en);
-    if (matchInfinitive || matchEnglish) out.push(e.verb);
+    if (matchInfinitive || matchEnglish || FORM_TO_VERBS.get(norm)?.has(e.verb.infinitive)) {
+      out.push(verbPreview(e.verb, norm, tense));
+    }
   }
   return out;
 }
@@ -458,7 +486,7 @@ function buildSmartCard(intent: DetectedIntent, textResults: Array<{ result: Sea
 
   if (intent.type === "tense" && intent.tense) {
     if (!VERB_TENSES.includes(intent.tense)) return null;
-    const matches = findVerbsByQuery(intent.extractedQuery);
+    const matches = findVerbsByQuery(intent.extractedQuery, intent.tense);
     if (matches.length === 0) return null;
     const tenseLabel = TENSE_PATTERNS.find((p) => p.tense === intent.tense)?.label ?? intent.tense;
     const withTense = matches.map((v) => ({ ...v, href: `${v.href}?tense=${encodeURIComponent(intent.tense!)}` }));

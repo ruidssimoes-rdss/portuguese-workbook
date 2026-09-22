@@ -21,6 +21,7 @@ export interface SearchResult {
   pronunciation?: string;
   href: string;
   matchField: string;
+  matchedForms?: VerbForm[];
   meta?: {
     categoryId?: string;
     categoryTitle?: string;
@@ -39,12 +40,19 @@ export interface DetectedIntent {
   comparisonTerms?: string[];
 }
 
+export interface VerbForm {
+  form: string;
+  tense: string;
+  person: string;
+}
+
 export interface VerbCardEntry {
   infinitive: string;
   english: string;
   group: string;
   cefr: string;
   href: string;
+  forms: VerbForm[];
 }
 
 export type SmartResultCard =

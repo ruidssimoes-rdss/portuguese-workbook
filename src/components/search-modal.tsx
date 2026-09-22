@@ -6,10 +6,23 @@ import type {
   SearchResult,
   SearchOutput,
   SmartResultCard,
+  VerbForm,
 } from "@/lib/search-types";
 import { PronunciationButton } from "@/components/pronunciation-button";
 
 const DEBOUNCE_MS = 150;
+
+function FormPreview({ forms }: { forms: VerbForm[] }) {
+  return (
+    <ul className="mt-2 space-y-1 text-[12px] text-[#64666B]">
+      {forms.map((form, index) => (
+        <li key={`${form.tense}-${form.person}-${index}`}>
+          {form.person}: <span className="font-medium text-[#111111]">{form.form}</span> · {form.tense}
+        </li>
+      ))}
+    </ul>
+  );
+}
 const MIN_QUERY_LENGTH = 2;
 const PLACEHOLDER_INTERVAL_MS = 3000;
 
@@ -489,6 +502,7 @@ function SmartCardContent({
           <p className="text-[12px] text-[#9B9DA3] mt-0.5">
             {card.group} · {card.cefr}
           </p>
+          <FormPreview forms={card.forms} />
           <p className="text-[11px] text-[#185FA5] mt-2">View all conjugations</p>
         </>
       )}
@@ -498,6 +512,7 @@ function SmartCardContent({
             {card.infinitive} — {card.tenseLabel}
           </p>
           <p className="text-[12px] text-[#9B9DA3] mt-0.5">{card.english}</p>
+          <FormPreview forms={card.forms} />
           <p className="text-[11px] text-[#185FA5] mt-2">View full conjugation table</p>
         </>
       )}
@@ -518,6 +533,7 @@ function SmartCardContent({
                   {v.infinitive} — {v.english}
                 </button>
                 <p className="text-[12px] text-[#9B9DA3] ml-2">{v.group} · {v.cefr}</p>
+                <FormPreview forms={v.forms} />
               </li>
             ))}
           </ul>
@@ -541,6 +557,7 @@ function SmartCardContent({
                   {v.infinitive}
                 </button>
                 <p className="text-[12px] text-[#9B9DA3] ml-2">{v.english}</p>
+                <FormPreview forms={v.forms} />
               </li>
             ))}
           </ul>
