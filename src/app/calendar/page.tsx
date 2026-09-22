@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { PageShell } from "@/components/layout/page-shell";
-import { SlideDrawer } from "@/components/ui/slide-drawer";
+import { SlideDrawer } from "@/components/primitives/slide-drawer";
 import { PageHeader, SectionLabel } from "@/components/primitives";
 import { useAuth } from "@/components/auth-provider";
 import {

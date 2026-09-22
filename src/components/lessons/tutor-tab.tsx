@@ -1,12 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/components/auth-provider";
 import { createClient } from "@/lib/supabase/client";
-import type { LessonBlockPlan } from "@/types/blocks";
-
-type Status = "idle" | "generating" | "ready" | "error";
 
 interface PastSession {
   id: string;
@@ -19,13 +15,6 @@ interface PastSession {
   created_at: string;
 }
 
-const LOADING_MESSAGES = [
-  "Analysing your progress...",
-  "Building your session...",
-  "Selecting content...",
-  "Almost ready...",
-];
-
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60_000);
@@ -37,16 +26,14 @@ function timeAgo(dateStr: string): string {
   return `${days}d ago`;
 }
 
+/**
+ * TutorTabV2 — Professor Elísio is offline.
+ * The LLM session planner (/api/ai-v2) was removed; this is a placeholder
+ * until a replacement generator exists. Past sessions are still listed.
+ */
 export function TutorTabV2() {
-  const router = useRouter();
   const { user } = useAuth();
-  const [status, setStatus] = useState<Status>("idle");
-  const [plan, setPlan] = useState<LessonBlockPlan | null>(null);
-  const [source, setSource] = useState<"ai" | "fallback" | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [pastSessions, setPastSessions] = useState<PastSession[]>([]);
-  const [loadingMsg, setLoadingMsg] = useState(LOADING_MESSAGES[0]);
-  const msgInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Fetch past sessions
   useEffect(() => {
@@ -63,50 +50,6 @@ export function TutorTabV2() {
       });
   }, [user]);
 
-  // Rotate loading messages
-  useEffect(() => {
-    if (status === "generating") {
-      let idx = 0;
-      msgInterval.current = setInterval(() => {
-        idx = (idx + 1) % LOADING_MESSAGES.length;
-        setLoadingMsg(LOADING_MESSAGES[idx]);
-      }, 2000);
-      return () => {
-        if (msgInterval.current) clearInterval(msgInterval.current);
-      };
-    }
-  }, [status]);
-
-  const handleGenerate = useCallback(async () => {
-    setStatus("generating");
-    setError(null);
-    setLoadingMsg(LOADING_MESSAGES[0]);
-
-    try {
-      const res = await fetch("/api/ai-v2/session", { method: "POST" });
-      const data = await res.json();
-
-      if (!res.ok) {
-        setStatus("error");
-        setError(data.error || "Failed to generate session.");
-        return;
-      }
-
-      setPlan(data.plan);
-      setSource(data.source);
-      setStatus("ready");
-    } catch {
-      setStatus("error");
-      setError("Network error. Check your connection.");
-    }
-  }, []);
-
-  const handleStart = useCallback(() => {
-    if (!plan) return;
-    sessionStorage.setItem(`ai-session-${plan.meta.id}`, JSON.stringify(plan));
-    router.push(`/lessons/${plan.meta.id}`);
-  }, [plan, router]);
-
   return (
     <div className="max-w-[896px] mx-auto">
       {/* Intro */}
@@ -122,111 +65,18 @@ export function TutorTabV2() {
         </p>
       </div>
 
-      {/* Session card */}
+      {/* Offline state */}
       <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white">
-        {/* Idle state */}
-        {status === "idle" && (
-          <div>
-            <p className="text-[16px] font-medium text-[#111111]">
-              Ready for practice
-            </p>
-            <p className="text-[14px] text-[#6C6B71] mt-2 max-w-[500px]">
-              Professor Elísio will analyse your progress and create a personalized review session.
-            </p>
-            <button
-              onClick={handleGenerate}
-              className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors mt-5"
-            >
-              Generate Session
-            </button>
-            <p className="text-[12px] text-[#9B9DA3] mt-3">
-              Powered by AI · Adapts to your weak areas
-            </p>
-          </div>
-        )}
-
-        {/* Generating state */}
-        {status === "generating" && (
-          <div>
-            <div className="space-y-3 animate-pulse">
-              <div className="h-5 bg-[#F7F7F5] rounded w-2/3" />
-              <div className="h-3 bg-[#F7F7F5] rounded w-1/3" />
-              <div className="h-16 bg-[#F7F7F5] rounded w-full mt-3" />
-              <div className="flex gap-8 mt-3">
-                <div className="h-8 bg-[#F7F7F5] rounded w-16" />
-                <div className="h-8 bg-[#F7F7F5] rounded w-16" />
-                <div className="h-8 bg-[#F7F7F5] rounded w-16" />
-              </div>
-            </div>
-            <p className="text-[13px] text-[#9B9DA3] mt-5">{loadingMsg}</p>
-          </div>
-        )}
-
-        {/* Error state */}
-        {status === "error" && (
-          <div>
-            <p className="text-[14px] font-medium text-[#111111]">Something went wrong</p>
-            <p className="text-[13px] text-[#6C6B71] mt-1">{error}</p>
-            <button
-              onClick={handleGenerate}
-              className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors mt-4"
-            >
-              Try again
-            </button>
-          </div>
-        )}
-
-        {/* Ready state */}
-        {status === "ready" && plan && (
-          <div>
-            <h3 className="text-[18px] font-medium text-[#111111]">
-              {plan.meta.title}
-            </h3>
-            <p className="text-[13px] text-[#9B9DA3] italic mt-1">
-              {plan.meta.ptTitle}
-            </p>
-
-            <div className="flex gap-8 mt-5">
-              <div>
-                <p className="text-[20px] font-medium text-[#111111]">
-                  {plan.learnBlocks.length + plan.exerciseBlocks.length}
-                </p>
-                <p className="text-[11px] text-[#9B9DA3]">Items</p>
-              </div>
-              <div>
-                <p className="text-[20px] font-medium text-[#111111]">
-                  {plan.meta.estimatedMinutes}
-                </p>
-                <p className="text-[11px] text-[#9B9DA3]">Minutes</p>
-              </div>
-              <div>
-                <p className="text-[20px] font-medium text-[#111111]">{plan.meta.cefr}</p>
-                <p className="text-[11px] text-[#9B9DA3]">Level</p>
-              </div>
-            </div>
-
-            {source === "fallback" && (
-              <p className="text-[12px] text-[#9B9DA3] mt-3">
-                Generated without AI (offline mode)
-              </p>
-            )}
-
-            <div className="flex items-center gap-3 mt-6">
-              <button
-                onClick={handleStart}
-                className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
-              >
-                Start Session
-              </button>
-              <button
-                onClick={handleGenerate}
-                className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
-              >
-                Generate New
-              </button>
-            </div>
-          </div>
-        )}
+        <p className="text-[16px] font-medium text-[#111111]">
+          Professor Elísio is offline
+        </p>
+        <p className="text-[14px] text-[#6C6B71] mt-2 max-w-[500px]">
+          Personalised sessions are paused for now. Your past sessions are still
+          listed below, and the rest of the app works as usual.
+        </p>
+        <p className="text-[12px] text-[#9B9DA3] mt-3">
+          O Professor Elísio está offline · Voltamos em breve
+        </p>
       </div>
 
       {/* Past sessions */}

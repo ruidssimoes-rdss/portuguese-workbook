@@ -69,14 +69,14 @@ import { VerbLearn } from "@/components/lessons/learn/verb-learn";
 import { CultureLearn } from "@/components/lessons/learn/culture-learn";
 
 // Section components
-import { VocabSection } from "@/components/lessons/sections/vocab-section";
-import { ConjugationSection } from "@/components/lessons/sections/conjugation-section";
-import { GrammarSection } from "@/components/lessons/sections/grammar-section";
-import { FillBlankSection } from "@/components/lessons/sections/fill-blank-section";
-import { TranslationSection } from "@/components/lessons/sections/translation-section";
-import { SentenceBuildSection } from "@/components/lessons/sections/sentence-build-section";
-import { WordBankSection } from "@/components/lessons/sections/word-bank-section";
-import { ErrorCorrectionSection } from "@/components/lessons/sections/error-correction-section";
+import { VocabSectionNew as VocabSection } from "@/components/learn/sections/vocab-section";
+import { ConjugationSectionNew as ConjugationSection } from "@/components/learn/sections/conjugation-section";
+import { GrammarSectionNew as GrammarSection } from "@/components/learn/sections/grammar-section";
+import { FillBlankSectionNew as FillBlankSection } from "@/components/learn/sections/fill-blank-section";
+import { TranslationSectionNew as TranslationSection } from "@/components/learn/sections/translation-section";
+import { SentenceBuildSectionNew as SentenceBuildSection } from "@/components/learn/sections/sentence-build-section";
+import { WordBankSectionNew as WordBankSection } from "@/components/learn/sections/word-bank-section";
+import { ErrorCorrectionSectionNew as ErrorCorrectionSection } from "@/components/learn/sections/error-correction-section";
 
 import Link from "next/link";
 

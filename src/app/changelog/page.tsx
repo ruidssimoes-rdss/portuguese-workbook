@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
-import { PageContainer } from "@/components/ui/page-container";
+import { PageContainer } from "@/components/primitives/page-container";
 import changelogData from "@/data/changelog.json";
 
 type ChangelogEntry = {

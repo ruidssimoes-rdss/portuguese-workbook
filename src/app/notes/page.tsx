@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef, useMemo, Suspense } from "rea
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { PageShell } from "@/components/layout/page-shell";
-import { SlideDrawer } from "@/components/ui/slide-drawer";
+import { SlideDrawer } from "@/components/primitives/slide-drawer";
 import { PageHeader, SectionLabel, BadgePill } from "@/components/primitives";
 import { useAuth } from "@/components/auth-provider";
 import {

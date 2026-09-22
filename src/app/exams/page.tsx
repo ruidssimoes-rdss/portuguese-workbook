@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
-import { PageContainer } from "@/components/ui/page-container";
-import { PageHeader } from "@/components/ui/page-header";
-import { Card } from "@/components/ui/card";
-import { Divider } from "@/components/ui/divider";
-import { SectionHeader } from "@/components/ui/section-header";
+import { PageContainer } from "@/components/primitives/page-container";
+import { PageHeader } from "@/components/primitives/page-header";
+import { Card } from "@/components/primitives/card";
+import { Divider } from "@/components/primitives/divider";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { getAllExams } from "@/data/exams";
 import { MOCK_EXAM_UNLOCKS } from "@/data/curriculum";
 import { getResolvedLessons } from "@/data/resolve-lessons";
@@ -97,15 +97,7 @@ export default function ExamsPage() {
         <div className="py-5">
           <PageHeader
             title="Exams"
-            titlePt="Exames"
-            section="REVISION"
-            sectionPt="Revisão"
-            tagline="Monthly mock exams that mirror the real CIPLE A2 format — three sections, timed, and scored exactly as the certification body does it."
-            stats={[
-              { value: "12", label: "mock exams" },
-              { value: "3", label: "sections each" },
-              { value: "~120", label: "min per exam" },
-            ]}
+            subtitle="Monthly mock exams that mirror the real CIPLE A2 format — three sections, timed, and scored exactly as the certification body does it."
           />
           <Divider className="mt-4 mb-6" />
         </div>
