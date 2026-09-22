@@ -1,7 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useAuth } from "@/components/auth-provider";
 import { PageShell } from "@/components/layout/page-shell";
 import {
   PageHeader,
@@ -25,7 +21,10 @@ import {
   type ProgressStats,
   type TimelineEvent,
 } from "@/lib/progress-stats-service";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
+import type { SupabaseClient } from "@supabase/supabase-js";
+
+export const dynamic = "force-dynamic";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -79,11 +78,11 @@ function timeAgo(iso: string): string {
 
 // ─── Data Loading ───────────────────────────────────────
 
-async function loadMasteryData(userId: string): Promise<MasteryData> {
+async function loadMasteryData(userId: string, client: SupabaseClient): Promise<MasteryData> {
   const [progression, allMastery, reviews] = await Promise.all([
-    getFullProgression(userId),
-    getUserMastery(userId),
-    getReviewCount(userId),
+    getFullProgression(userId, client),
+    getUserMastery(userId, undefined, client),
+    getReviewCount(userId, client),
   ]);
 
   // Build mastery lookup
@@ -325,55 +324,18 @@ function MasteryItemList({
 
 // ─── Page ───────────────────────────────────────────────
 
-export default function ProgressPage() {
-  const { user, loading: authLoading } = useAuth();
-  const [mastery, setMastery] = useState<MasteryData | null>(null);
-  const [legacyStats, setLegacyStats] = useState<ProgressStats | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (!user) {
-      setLoading(false);
-      return;
-    }
-
-    async function load() {
-      const supabase = createClient();
-      const { data: { user: currentUser } } = await supabase.auth.getUser();
-      if (!currentUser) { setLoading(false); return; }
-
-      const [masteryData, stats] = await Promise.all([
-        loadMasteryData(currentUser.id),
-        getProgressStats().catch(() => null),
-      ]);
-
-      setMastery(masteryData);
-      setLegacyStats(stats);
-      setLoading(false);
-    }
-
-    load();
-  }, [user]);
-
-  if (authLoading || loading) {
-    return (
-      <PageShell>
-        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
-        <div className="text-[13px] text-[#9B9DA3] text-center py-16">
-          A carregar...
-        </div>
-      </PageShell>
-    );
-  }
+export default async function ProgressPage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     return (
       <PageShell>
         <PageHeader title="O teu progresso" subtitle="Your learning journey" />
         <div className="text-center py-16">
-          <div className="text-[14px] text-[#6C6B71] mb-4">
-            Sign in to track your progress
-          </div>
+          <div className="text-[14px] text-[#6C6B71] mb-4">Sign in to track your progress</div>
           <a
             href="/auth/login"
             className="inline-flex px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
@@ -385,16 +347,10 @@ export default function ProgressPage() {
     );
   }
 
-  if (!mastery) {
-    return (
-      <PageShell>
-        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
-        <div className="text-[13px] text-[#9B9DA3] text-center py-16">
-          Start your first lesson to see progress here
-        </div>
-      </PageShell>
-    );
-  }
+  const [mastery, legacyStats] = await Promise.all([
+    loadMasteryData(user.id, supabase),
+    getProgressStats(supabase, user.id).catch(() => null),
+  ]);
 
   const totals = getAllContentTotals();
   const totalItems =

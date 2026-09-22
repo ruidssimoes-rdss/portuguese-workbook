@@ -1,69 +1,14 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Lock, ArrowRight, RotateCcw, ChevronDown } from "lucide-react";
-import { useAuth } from "@/components/auth-provider";
+import { Lock, ArrowRight, RotateCcw } from "lucide-react";
+import { createClient } from "@/lib/supabase/server";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
 import { getReviewCount, type CEFRProgress } from "@/lib/learning-engine/mastery-tracker";
-import { createClient } from "@/lib/supabase/client";
+import { getResolvedLessons } from "@/data/resolve-lessons";
 import { PageShell } from "@/components/layout/page-shell";
-import { PageHeader } from "@/components/primitives";
+import { PageHeader, SectionLabel } from "@/components/primitives";
+import { HowItWorks } from "@/components/learn/how-it-works";
 
-// ─── Types ──────────────────────────────────────────────
-
-interface LevelProgression {
-  progress: CEFRProgress;
-  unlocked: boolean;
-}
-
-// ─── How it works (collapsible) ─────────────────────────
-
-function HowItWorks() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="mb-6">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-5 py-3.5 hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
-      >
-        <div>
-          <p className="text-[13px] font-medium text-[#111111] text-left">
-            Como funcionam as lições
-          </p>
-          <p className="text-[11px] text-[#9B9DA3] text-left">
-            How lessons work
-          </p>
-        </div>
-        <ChevronDown
-          size={16}
-          className={`text-[#9B9DA3] transition-transform duration-150 shrink-0 ${isOpen ? "rotate-180" : ""}`}
-        />
-      </button>
-
-      {isOpen && (
-        <div className="mt-2 bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-5 py-4 space-y-3 text-[13px] text-[#6C6B71] leading-relaxed">
-          <p>Each lesson is generated for you based on what you need to learn next. No two lessons are the same.</p>
-          <p>Every lesson includes:</p>
-          <ul className="space-y-1.5 ml-1">
-            <li className="flex gap-2"><span className="text-[#9B9DA3]">·</span> New vocabulary, verbs, and grammar to learn</li>
-            <li className="flex gap-2"><span className="text-[#9B9DA3]">·</span> Practice exercises on what you just learned</li>
-            <li className="flex gap-2"><span className="text-[#9B9DA3]">·</span> Review of things you&apos;ve seen before</li>
-            <li className="flex gap-2"><span className="text-[#9B9DA3]">·</span> Spot-checks on content you&apos;ve already mastered</li>
-          </ul>
-          <p>
-            You need <span className="font-medium text-[#111111]">80%</span> to pass each lesson.
-            As you master more content, the next CEFR level unlocks at <span className="font-medium text-[#111111]">75%</span> readiness.
-          </p>
-          <p>
-            Use <span className="font-medium text-[#111111]">Review</span> to revisit items you&apos;re struggling with — the system tracks what needs attention.
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
+export const dynamic = "force-dynamic";
 
 // ─── CEFR Level Card ────────────────────────────────────
 
@@ -112,10 +57,7 @@ function CEFRLevelCard({
       </div>
 
       <div className="h-2 bg-[rgba(0,0,0,0.06)] rounded-full mb-4">
-        <div
-          className="h-2 bg-[#185FA5] rounded-full transition-all duration-500"
-          style={{ width: `${readinessPct}%` }}
-        />
+        <div className="h-2 bg-[#185FA5] rounded-full transition-all duration-500" style={{ width: `${readinessPct}%` }} />
       </div>
 
       <div className="flex gap-6 mb-4">
@@ -145,7 +87,7 @@ function CEFRLevelCard({
 
       <div className="flex gap-3">
         <Link
-          href="/learn"
+          href={`/learn?level=${level}`}
           className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
         >
           Start next lesson
@@ -172,95 +114,135 @@ function SkillBar({ label, value }: { label: string; value: number }) {
     <div className="flex items-center gap-3">
       <span className="text-[11px] text-[#9B9DA3] w-14">{label}</span>
       <div className="flex-1 h-1 bg-[rgba(0,0,0,0.06)] rounded-full">
-        <div
-          className="h-1 bg-[#185FA5] rounded-full transition-all duration-500"
-          style={{ width: `${pct}%` }}
-        />
+        <div className="h-1 bg-[#185FA5] rounded-full transition-all duration-500" style={{ width: `${pct}%` }} />
       </div>
       <span className="text-[11px] text-[#9B9DA3] w-8 text-right">{pct}%</span>
     </div>
   );
 }
 
+// ─── Curriculum lesson list ─────────────────────────────
+
+interface CurriculumRow {
+  id: string;
+  title: string;
+  ptTitle: string;
+  cefr: "A1" | "A2" | "B1";
+  order: number;
+  completed: boolean;
+  bestScore: number | null;
+}
+
+function CurriculumList({ rows }: { rows: CurriculumRow[] }) {
+  const levels: Array<{ level: CurriculumRow["cefr"]; label: string }> = [
+    { level: "A1", label: "A1 — Beginner" },
+    { level: "A2", label: "A2 — Elementary" },
+    { level: "B1", label: "B1 — Intermediate" },
+  ];
+
+  return (
+    <div className="mt-10">
+      <SectionLabel>Curriculum lessons</SectionLabel>
+      <p className="text-[12px] text-[#9B9DA3] mb-4 -mt-2">
+        Fixed lessons in order. They play through the same player and count towards the same mastery.
+      </p>
+      <div className="space-y-6">
+        {levels.map(({ level, label }) => {
+          const list = rows.filter((r) => r.cefr === level);
+          if (list.length === 0) return null;
+          return (
+            <div key={level}>
+              <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-2">{label}</div>
+              <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden">
+                {list.map((row, i) => (
+                  <Link
+                    key={row.id}
+                    href={`/learn?lesson=${encodeURIComponent(row.id)}`}
+                    className={`flex items-center justify-between gap-3 px-4 py-2.5 hover:bg-[#F7F7F5] transition-colors ${
+                      i > 0 ? "border-t-[0.5px] border-[rgba(0,0,0,0.06)]" : ""
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="text-[11px] text-[#9B9DA3] w-6 shrink-0">{row.order}</span>
+                      <div className="min-w-0">
+                        <div className="text-[13px] font-medium text-[#111111] truncate">{row.title}</div>
+                        <div className="text-[12px] text-[#9B9DA3] truncate">{row.ptTitle}</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      {row.completed ? (
+                        <span className="text-[12px] font-medium text-[#0F6E56]">
+                          {row.bestScore != null ? `${Math.round(row.bestScore)}%` : "Done"}
+                        </span>
+                      ) : (
+                        <span className="text-[12px] text-[#9B9DA3]">Start</span>
+                      )}
+                      <ArrowRight size={14} className="text-[#9B9DA3]" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ─── Page ───────────────────────────────────────────────
 
-export default function LessonsPage() {
-  const { user, loading: authLoading } = useAuth();
-  const [progression, setProgression] = useState<{
-    a1: LevelProgression;
-    a2: LevelProgression;
-    b1: LevelProgression;
-  } | null>(null);
-  const [reviewCount, setReviewCount] = useState(0);
-  const [loading, setLoading] = useState(true);
+export default async function LessonsPage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  useEffect(() => {
-    async function load() {
-      const supabase = createClient();
-      const { data: { user: currentUser } } = await supabase.auth.getUser();
-      if (!currentUser) { setLoading(false); return; }
+  const [progression, reviewCount, progressRows] = user
+    ? await Promise.all([
+        getFullProgression(user.id, supabase),
+        getReviewCount(user.id, supabase),
+        supabase
+          .from("user_lesson_progress")
+          .select("lesson_id, completed, best_score")
+          .eq("user_id", user.id)
+          .then(({ data }) => data ?? []),
+      ])
+    : [null, 0, []];
 
-      const prog = await getFullProgression(currentUser.id);
-      setProgression(prog);
-
-      const count = await getReviewCount(currentUser.id);
-      setReviewCount(count);
-
-      setLoading(false);
-    }
-    load();
-  }, []);
-
-  const isLoggedIn = !authLoading && !!user;
+  const progressById = new Map(progressRows.map((r) => [r.lesson_id as string, r]));
+  const curriculum: CurriculumRow[] = getResolvedLessons()
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .map((l) => {
+      const p = progressById.get(l.id);
+      return {
+        id: l.id,
+        title: l.title,
+        ptTitle: l.ptTitle,
+        cefr: l.cefr,
+        order: l.order,
+        completed: Boolean(p?.completed),
+        bestScore: p?.best_score ?? null,
+      };
+    });
 
   return (
     <PageShell>
-      <PageHeader
-        title="Lições"
-        subtitle="Your personalised learning journey"
-      />
+      <PageHeader title="Lições" subtitle="Your personalised learning journey" />
 
       <HowItWorks />
 
-      {loading ? (
-        <div className="flex items-center justify-center h-48">
-          <div className="text-[13px] text-[#9B9DA3]">A carregar o progresso...</div>
-        </div>
-      ) : progression ? (
+      {progression ? (
         <div className="space-y-4">
-          <CEFRLevelCard
-            level="A1"
-            label="Beginner"
-            labelPt="Iniciante"
-            progress={progression.a1.progress}
-            unlocked={progression.a1.unlocked}
-            reviewCount={reviewCount}
-          />
-          <CEFRLevelCard
-            level="A2"
-            label="Elementary"
-            labelPt="Elementar"
-            progress={progression.a2.progress}
-            unlocked={progression.a2.unlocked}
-            reviewCount={0}
-          />
-          <CEFRLevelCard
-            level="B1"
-            label="Intermediate"
-            labelPt="Intermédio"
-            progress={progression.b1.progress}
-            unlocked={progression.b1.unlocked}
-            reviewCount={0}
-          />
+          <CEFRLevelCard level="A1" label="Beginner" labelPt="Iniciante" progress={progression.a1.progress} unlocked={progression.a1.unlocked} reviewCount={reviewCount} />
+          <CEFRLevelCard level="A2" label="Elementary" labelPt="Elementar" progress={progression.a2.progress} unlocked={progression.a2.unlocked} reviewCount={0} />
+          <CEFRLevelCard level="B1" label="Intermediate" labelPt="Intermédio" progress={progression.b1.progress} unlocked={progression.b1.unlocked} reviewCount={0} />
         </div>
       ) : (
         <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-8 text-center">
-          <p className="text-[14px] font-medium text-[#111111]">
-            Sign in to start learning
-          </p>
-          <p className="text-[12px] text-[#9B9DA3] mt-1">
-            Inicia sessão para começar a aprender
-          </p>
+          <p className="text-[14px] font-medium text-[#111111]">Sign in to start learning</p>
+          <p className="text-[12px] text-[#9B9DA3] mt-1">Inicia sessão para começar a aprender</p>
           <Link
             href="/auth/login"
             className="inline-flex items-center justify-center px-4 py-2 bg-[#111111] text-white rounded-lg text-[13px] font-medium hover:bg-[#333] transition-colors mt-4"
@@ -269,6 +251,8 @@ export default function LessonsPage() {
           </Link>
         </div>
       )}
+
+      <CurriculumList rows={curriculum} />
     </PageShell>
   );
 }

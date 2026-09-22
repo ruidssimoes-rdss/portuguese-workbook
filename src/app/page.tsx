@@ -1,9 +1,6 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronRight, ArrowRight, RotateCcw } from "lucide-react";
-import { useAuth } from "@/components/auth-provider";
+import { ArrowRight, RotateCcw } from "lucide-react";
+import { createClient } from "@/lib/supabase/server";
 import { PageShell } from "@/components/layout/page-shell";
 import {
   PageHeader,
@@ -13,24 +10,17 @@ import {
   ListRow,
   CardShell,
 } from "@/components/primitives";
-import {
-  getProgressStats,
-  type ProgressStats,
-  type TimelineEvent,
-} from "@/lib/progress-stats-service";
-import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
-import { getCurrentStudyLevel, getReviewCount } from "@/lib/learning-engine";
+import { getProgressStats, type ProgressStats, type TimelineEvent } from "@/lib/progress-stats-service";
+import { getFullProgression, getCurrentStudyLevel } from "@/lib/learning-engine/cefr-readiness";
+import { getReviewCount } from "@/lib/learning-engine/mastery-tracker";
 import { getAllContentTotals } from "@/lib/learning-engine/content-pool";
-import { createClient } from "@/lib/supabase/client";
+import { HomeLoadError } from "@/components/home/home-load-error";
+import { Greeting } from "@/components/home/greeting";
+import type { SupabaseClient } from "@supabase/supabase-js";
+
+export const dynamic = "force-dynamic";
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
-
-function getGreeting(): string {
-  const hour = new Date().getHours();
-  if (hour < 12) return "Bom dia";
-  if (hour < 18) return "Boa tarde";
-  return "Boa noite";
-}
 
 const levelLabels: Record<string, string> = {
   A1: "Beginner",
@@ -62,165 +52,100 @@ function formatDate(iso: string): string {
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
-// ─── Mastery Stats ──────────────────────────────────────────────────────────
+// ─── Data ───────────────────────────────────────────────────────────────────
 
-interface MasteryStats {
+interface HomeData {
   currentLevel: string;
   readinessPct: number;
   totalMastered: number;
   totalItems: number;
   reviewCount: number;
   displayName: string | null;
+  progressStats: ProgressStats | null;
+}
+
+/** One round trip per source, one auth read (the caller already knows the user). */
+async function loadHomeData(supabase: SupabaseClient, userId: string): Promise<HomeData> {
+  const [progression, level, reviewCount, progressStats, profileRes] = await Promise.all([
+    getFullProgression(userId, supabase),
+    getCurrentStudyLevel(userId, supabase),
+    getReviewCount(userId, supabase),
+    getProgressStats(supabase, userId).catch(() => null),
+    supabase.from("profiles").select("google_display_name").eq("id", userId).maybeSingle(),
+  ]);
+
+  const activeProgress = progression[level.toLowerCase() as "a1" | "a2" | "b1"];
+  const totals = getAllContentTotals();
+  const totalMastered =
+    progression.a1.progress.mastered + progression.a2.progress.mastered + progression.b1.progress.mastered;
+  const totalItems =
+    totals.A1.vocab + totals.A1.verbs + totals.A1.grammar +
+    totals.A2.vocab + totals.A2.verbs + totals.A2.grammar +
+    totals.B1.vocab + totals.B1.verbs + totals.B1.grammar;
+
+  return {
+    currentLevel: level,
+    readinessPct: Math.round(activeProgress.progress.readiness * 100),
+    totalMastered,
+    totalItems,
+    reviewCount,
+    displayName: profileRes.data?.google_display_name ?? null,
+    progressStats,
+  };
 }
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 
-export default function HomePage() {
-  const { user, loading: authLoading } = useAuth();
-  const [masteryStats, setMasteryStats] = useState<MasteryStats | null>(null);
-  const [progressStats, setProgressStats] = useState<ProgressStats | null>(null);
-  const [streakData, setStreakData] = useState<{ current: number; longest: number } | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [loadError, setLoadError] = useState<string | null>(null);
-  const [loadAttempt, setLoadAttempt] = useState(0);
+export default async function HomePage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  useEffect(() => {
-    if (authLoading) return;
-    if (!user) {
-      setLoading(false);
-      return;
-    }
-
-    let cancelled = false;
-
-    async function load() {
-      const supabase = createClient();
-      const { data: { user: currentUser } } = await supabase.auth.getUser();
-      if (!currentUser) { setLoading(false); return; }
-
-      // Load mastery data and timeline in parallel
-      const [progression, level, reviews, ps] = await Promise.all([
-        getFullProgression(currentUser.id),
-        getCurrentStudyLevel(currentUser.id),
-        getReviewCount(currentUser.id),
-        getProgressStats().catch(() => null),
-      ]);
-
-      // Get display name
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("google_display_name")
-        .eq("id", currentUser.id)
-        .single();
-
-      const activeProgress = progression[level.toLowerCase() as "a1" | "a2" | "b1"];
-      const totals = getAllContentTotals();
-      const totalMastered =
-        progression.a1.progress.mastered +
-        progression.a2.progress.mastered +
-        progression.b1.progress.mastered;
-      const totalItems =
-        totals.A1.vocab + totals.A1.verbs + totals.A1.grammar +
-        totals.A2.vocab + totals.A2.verbs + totals.A2.grammar +
-        totals.B1.vocab + totals.B1.verbs + totals.B1.grammar;
-
-      setMasteryStats({
-        currentLevel: level,
-        readinessPct: Math.round(activeProgress.progress.readiness * 100),
-        totalMastered,
-        totalItems,
-        reviewCount: reviews,
-        displayName: profile?.google_display_name ?? null,
-      });
-
-      if (ps) {
-        setProgressStats(ps);
-        setStreakData({
-          current: ps.currentStreak,
-          longest: ps.longestStreak,
-        });
-      }
-
-      setLoading(false);
-    }
-
-    load().catch((err: unknown) => {
-      if (cancelled) return;
-      console.error("Home page load error:", err);
-      setLoadError(err instanceof Error ? err.message : "Could not load your progress.");
-      setLoading(false);
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [user, authLoading, loadAttempt]);
-
-  function retryLoad() {
-    setLoadError(null);
-    setLoading(true);
-    setLoadAttempt((n) => n + 1);
-  }
-
-  // Loading
-  if (authLoading || loading) {
-    return (
-      <PageShell>
-        <PageHeader title={getGreeting()} subtitle="Loading..." />
-      </PageShell>
-    );
-  }
-
-  // Load failed — say so, never leave "Loading..." forever
-  if (loadError) {
-    return (
-      <PageShell>
-        <PageHeader title={getGreeting()} subtitle="We couldn't load your progress." />
-        <div
-          role="alert"
-          className="flex items-start justify-between gap-3 px-4 py-3 bg-[#FAEEDA] border-[0.5px] border-[#E8C98A] rounded-lg mb-8"
-        >
-          <div>
-            <p className="text-[13px] font-medium text-[#854F0B]">Something went wrong</p>
-            <p className="text-[12px] text-[#854F0B] mt-0.5">{loadError}</p>
-          </div>
-          <button
-            type="button"
-            onClick={retryLoad}
-            className="shrink-0 px-3 py-1.5 text-[12px] font-medium text-[#854F0B] border-[0.5px] border-[#E8C98A] rounded-md hover:bg-[#F5E3C0] transition-colors cursor-pointer"
-          >
-            Retry
-          </button>
-        </div>
-      </PageShell>
-    );
-  }
-
-  const greeting = getGreeting();
   const contentTotals = getAllContentTotals();
   const totalVocab = contentTotals.A1.vocab + contentTotals.A2.vocab + contentTotals.B1.vocab;
   const totalVerbs = contentTotals.A1.verbs + contentTotals.A2.verbs + contentTotals.B1.verbs;
+
+  let data: HomeData | null = null;
+  let loadError: string | null = null;
+  if (user) {
+    try {
+      data = await loadHomeData(supabase, user.id);
+    } catch (err) {
+      console.error("Home page load error:", err);
+      loadError = err instanceof Error ? err.message : "Could not load your progress.";
+    }
+  }
+
+  if (user && loadError) {
+    return (
+      <PageShell>
+        <PageHeader title={<Greeting name={null} />} subtitle="We couldn't load your progress." />
+        <HomeLoadError message={loadError} />
+      </PageShell>
+    );
+  }
+
+  const streak = data?.progressStats
+    ? { current: data.progressStats.currentStreak, longest: data.progressStats.longestStreak }
+    : null;
 
   return (
     <PageShell>
       {/* Header */}
       <PageHeader
-        title={
-          user && masteryStats?.displayName
-            ? `${greeting}, ${masteryStats.displayName}`
-            : greeting
-        }
+        title={<Greeting name={user ? data?.displayName ?? null : null} />}
         subtitle={
-          user && masteryStats
-            ? masteryStats.readinessPct > 0
-              ? `${masteryStats.currentLevel} level · ${masteryStats.readinessPct}% ready`
+          user && data
+            ? data.readinessPct > 0
+              ? `${data.currentLevel} level · ${data.readinessPct}% ready`
               : "Start your first lesson to begin learning"
             : "Learn European Portuguese at your own pace"
         }
       />
 
       {/* Quick action CTA — authenticated */}
-      {user && masteryStats && (
+      {user && data && (
         <div className="flex gap-3 mb-8">
           <Link
             href="/learn"
@@ -230,47 +155,47 @@ export default function HomePage() {
             <ArrowRight size={14} />
           </Link>
 
-          {masteryStats.reviewCount > 0 && (
+          {data.reviewCount > 0 && (
             <Link
               href="/learn?mode=review"
               className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
             >
               <RotateCcw size={14} />
-              Review {masteryStats.reviewCount} items
+              Review {data.reviewCount} items
             </Link>
           )}
         </div>
       )}
 
       {/* Stats grid — authenticated */}
-      {user && masteryStats && (
+      {user && data && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           <StatCard
             label="Current level"
-            value={masteryStats.currentLevel}
-            subtitle={levelLabels[masteryStats.currentLevel] || "Beginner"}
+            value={data.currentLevel}
+            subtitle={levelLabels[data.currentLevel] || "Beginner"}
           />
           <StatCard
             label="Items mastered"
-            value={String(masteryStats.totalMastered)}
-            total={String(masteryStats.totalItems)}
-            progress={Math.round((masteryStats.totalMastered / masteryStats.totalItems) * 100)}
+            value={String(data.totalMastered)}
+            total={String(data.totalItems)}
+            progress={Math.round((data.totalMastered / data.totalItems) * 100)}
           />
           <StatCard
             label="Streak"
-            value={streakData ? `${streakData.current}d` : "0d"}
+            value={streak ? `${streak.current}d` : "0d"}
             subtitle={
-              streakData && streakData.longest > streakData.current
-                ? `Best: ${streakData.longest}d`
-                : streakData && streakData.current > 0
+              streak && streak.longest > streak.current
+                ? `Best: ${streak.longest}d`
+                : streak && streak.current > 0
                   ? "Keep going!"
                   : undefined
             }
           />
           <StatCard
             label="To review"
-            value={String(masteryStats.reviewCount)}
-            subtitle={masteryStats.reviewCount > 0 ? "Items due" : "All caught up"}
+            value={String(data.reviewCount)}
+            subtitle={data.reviewCount > 0 ? "Items due" : "All caught up"}
           />
         </div>
       )}
@@ -280,61 +205,41 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
           <Link href="/vocabulary" className="block">
             <CardShell interactive>
-              <div className="text-[14px] font-medium text-[#111111]">
-                {totalVocab.toLocaleString()} words
-              </div>
-              <div className="text-[12px] text-[#9B9DA3] mt-0.5">
-                across 16 categories
-              </div>
+              <div className="text-[14px] font-medium text-[#111111]">{totalVocab.toLocaleString()} words</div>
+              <div className="text-[12px] text-[#9B9DA3] mt-0.5">across 16 categories</div>
             </CardShell>
           </Link>
           <Link href="/grammar" className="block">
             <CardShell interactive>
-              <div className="text-[14px] font-medium text-[#111111]">
-                42 grammar topics
-              </div>
-              <div className="text-[12px] text-[#9B9DA3] mt-0.5">
-                A1 through B1
-              </div>
+              <div className="text-[14px] font-medium text-[#111111]">42 grammar topics</div>
+              <div className="text-[12px] text-[#9B9DA3] mt-0.5">A1 through B1</div>
             </CardShell>
           </Link>
           <Link href="/conjugations" className="block">
             <CardShell interactive>
-              <div className="text-[14px] font-medium text-[#111111]">
-                {totalVerbs} verbs
-              </div>
-              <div className="text-[12px] text-[#9B9DA3] mt-0.5">
-                fully conjugated
-              </div>
+              <div className="text-[14px] font-medium text-[#111111]">{totalVerbs} verbs</div>
+              <div className="text-[12px] text-[#9B9DA3] mt-0.5">fully conjugated</div>
             </CardShell>
           </Link>
         </div>
       )}
 
       {/* Recent activity — authenticated */}
-      {user && progressStats && progressStats.timeline.length > 0 && (
+      {user && data?.progressStats && data.progressStats.timeline.length > 0 && (
         <div className="mb-8">
           <SectionLabel>Recent activity</SectionLabel>
           <ListContainer>
-            {progressStats.timeline.slice(0, 5).map((event, i) => (
+            {data.progressStats.timeline.slice(0, 5).map((event, i) => (
               <ListRow key={i}>
                 <div className="flex items-center gap-3">
-                  <div
-                    className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${eventDotColor(event.type)}`}
-                  />
+                  <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${eventDotColor(event.type)}`} />
                   <div className="flex-1 min-w-0">
-                    <span className="text-[13px] text-[#111111]">
-                      {event.title}
-                    </span>
+                    <span className="text-[13px] text-[#111111]">{event.title}</span>
                     {event.subtitle && (
-                      <span className="text-[12px] text-[#9B9DA3] ml-2">
-                        {event.subtitle}
-                      </span>
+                      <span className="text-[12px] text-[#9B9DA3] ml-2">{event.subtitle}</span>
                     )}
                   </div>
-                  <span className="text-[11px] text-[#9B9DA3] flex-shrink-0">
-                    {formatDate(event.date)}
-                  </span>
+                  <span className="text-[11px] text-[#9B9DA3] flex-shrink-0">{formatDate(event.date)}</span>
                 </div>
               </ListRow>
             ))}
@@ -347,32 +252,20 @@ export default function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <Link href="/vocabulary" className="block">
           <CardShell interactive>
-            <div className="text-[13px] font-medium text-[#111111]">
-              Browse vocabulary
-            </div>
-            <div className="text-[11px] text-[#9B9DA3] mt-0.5">
-              {totalVocab.toLocaleString()} words · 16 categories
-            </div>
+            <div className="text-[13px] font-medium text-[#111111]">Browse vocabulary</div>
+            <div className="text-[11px] text-[#9B9DA3] mt-0.5">{totalVocab.toLocaleString()} words · 16 categories</div>
           </CardShell>
         </Link>
         <Link href="/conjugations" className="block">
           <CardShell interactive>
-            <div className="text-[13px] font-medium text-[#111111]">
-              Practice verbs
-            </div>
-            <div className="text-[11px] text-[#9B9DA3] mt-0.5">
-              {totalVerbs} verbs · 6 tenses
-            </div>
+            <div className="text-[13px] font-medium text-[#111111]">Practice verbs</div>
+            <div className="text-[11px] text-[#9B9DA3] mt-0.5">{totalVerbs} verbs · 6 tenses</div>
           </CardShell>
         </Link>
         <Link href="/lessons" className="block">
           <CardShell interactive>
-            <div className="text-[13px] font-medium text-[#111111]">
-              Continue lessons
-            </div>
-            <div className="text-[11px] text-[#9B9DA3] mt-0.5">
-              Adaptive · A1 to B1
-            </div>
+            <div className="text-[13px] font-medium text-[#111111]">Continue lessons</div>
+            <div className="text-[11px] text-[#9B9DA3] mt-0.5">Adaptive · A1 to B1</div>
           </CardShell>
         </Link>
       </div>

@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-import { ProtectedRoute } from "@/components/protected-route";
 import { useAuth } from "@/components/auth-provider";
 import { createClient } from "@/lib/supabase/client";
 import { PageShell } from "@/components/layout/page-shell";
@@ -303,21 +302,16 @@ export default function SettingsPage() {
 
   if (loading) {
     return (
-      <>
-        <ProtectedRoute>
-          <PageShell>
-            <div className="max-w-[640px] space-y-8">
-              <p className="text-[13px] text-[#6C6B71]">A carregar...</p>
-            </div>
-          </PageShell>
-        </ProtectedRoute>
-      </>
+      <PageShell>
+        <div className="max-w-[640px] space-y-8">
+          <p className="text-[13px] text-[#6C6B71]">A carregar...</p>
+        </div>
+      </PageShell>
     );
   }
 
   return (
     <>
-      <ProtectedRoute>
         <PageShell>
           <div className="max-w-[640px] space-y-8">
             <PageHeader title="Definições" subtitle="Manage your account and preferences" />
@@ -727,7 +721,6 @@ export default function SettingsPage() {
             </Section>
           </div>
         </PageShell>
-      </ProtectedRoute>
 
       {/* Delete confirmation modal */}
       {showDeleteConfirm && (

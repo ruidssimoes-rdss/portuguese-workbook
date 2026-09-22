@@ -7,6 +7,7 @@
  */
 
 import { createClient } from "@/lib/supabase/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { applySm2, deriveMasteryLevel } from "./sm2";
 import { selectReviewCandidates } from "./review-selector";
 
@@ -73,9 +74,10 @@ export async function getUserMastery(
     cefr?: CEFRLevel;
     masteryLevel?: MasteryLevel;
     dueForReview?: boolean;
-  }
+  },
+  client?: SupabaseClient
 ): Promise<MasteryRecord[]> {
-  const supabase = createClient();
+  const supabase = client ?? createClient();
 
   let query = supabase
     .from("user_content_mastery")
@@ -103,9 +105,10 @@ export async function getUserMastery(
 export async function getItemMastery(
   userId: string,
   contentType: ContentType,
-  contentId: string
+  contentId: string,
+  client?: SupabaseClient
 ): Promise<MasteryRecord | null> {
-  const supabase = createClient();
+  const supabase = client ?? createClient();
 
   const { data, error } = await supabase
     .from("user_content_mastery")
@@ -136,9 +139,10 @@ export async function getMasteryLevel(
  */
 export async function getMasteryMap(
   userId: string,
-  cefr?: CEFRLevel
+  cefr?: CEFRLevel,
+  client?: SupabaseClient
 ): Promise<Map<string, MasteryRecord>> {
-  const records = await getUserMastery(userId, { cefr });
+  const records = await getUserMastery(userId, { cefr }, client);
   const map = new Map<string, MasteryRecord>();
   for (const r of records) {
     map.set(`${r.content_type}:${r.content_id}`, r);
@@ -279,9 +283,10 @@ export interface CEFRProgress {
 export async function getCEFRProgress(
   userId: string,
   cefr: CEFRLevel,
-  contentTotals: { vocab: number; verbs: number; grammar: number }
+  contentTotals: { vocab: number; verbs: number; grammar: number },
+  client?: SupabaseClient
 ): Promise<CEFRProgress> {
-  const records = await getUserMastery(userId, { cefr });
+  const records = await getUserMastery(userId, { cefr }, client);
 
   const vocabRecords = records.filter((r) => r.content_type === "vocab");
   const verbRecords = records.filter((r) => r.content_type === "verb");
@@ -331,9 +336,10 @@ export async function getCEFRProgress(
  */
 export async function getDueForReview(
   userId: string,
-  limit: number = 20
+  limit: number = 20,
+  client?: SupabaseClient
 ): Promise<MasteryRecord[]> {
-  const supabase = createClient();
+  const supabase = client ?? createClient();
 
   const { data, error } = await supabase
     .from("user_content_mastery")
@@ -355,7 +361,7 @@ export async function getDueForReview(
  * Count the items a review session would deliver right now.
  * Uses the same selector as generateReviewSession so the two always agree.
  */
-export async function getReviewCount(userId: string): Promise<number> {
-  const records = await getUserMastery(userId);
+export async function getReviewCount(userId: string, client?: SupabaseClient): Promise<number> {
+  const records = await getUserMastery(userId, undefined, client);
   return selectReviewCandidates(records).length;
 }

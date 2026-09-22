@@ -246,38 +246,6 @@ export async function deleteGoal(goalId: string): Promise<boolean> {
   return !error;
 }
 
-export async function updateGoalProgress(
-  goalType: string,
-  completedCount: number
-): Promise<void> {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return;
-
-  const { data: goal } = await supabase
-    .from("user_goals")
-    .select("id, total_items")
-    .eq("user_id", user.id)
-    .eq("goal_type", goalType)
-    .eq("is_active", true)
-    .maybeSingle();
-
-  if (!goal) return;
-
-  const isComplete = completedCount >= goal.total_items;
-
-  await supabase
-    .from("user_goals")
-    .update({
-      completed_items: completedCount,
-      is_active: !isComplete,
-      updated_at: new Date().toISOString(),
-    })
-    .eq("id", goal.id);
-}
-
 function mapRowToGoal(row: Record<string, unknown>): UserGoal {
   return {
     id: row.id as string,

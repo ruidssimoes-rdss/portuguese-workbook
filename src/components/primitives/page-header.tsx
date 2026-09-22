@@ -7,7 +7,7 @@
  */
 
 interface PageHeaderProps {
-  title: string;
+  title: React.ReactNode;
   subtitle?: string;
   children?: React.ReactNode; // For custom content below the subtitle
 }

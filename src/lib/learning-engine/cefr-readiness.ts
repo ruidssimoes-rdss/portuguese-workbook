@@ -7,6 +7,7 @@
 
 import { getCEFRProgress, type CEFRLevel, type CEFRProgress } from "./mastery-tracker";
 import { getContentTotals } from "./content-pool";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 // ─── Constants ──────────────────────────────────────────
 
@@ -20,13 +21,14 @@ export const READINESS_THRESHOLD = 0.75;
  */
 export async function isCEFRUnlocked(
   userId: string,
-  cefr: CEFRLevel
+  cefr: CEFRLevel,
+  client?: SupabaseClient
 ): Promise<boolean> {
   if (cefr === "A1") return true;
 
   const prevLevel: CEFRLevel = cefr === "A2" ? "A1" : "A2";
   const prevTotals = getContentTotals(prevLevel);
-  const prevProgress = await getCEFRProgress(userId, prevLevel, prevTotals);
+  const prevProgress = await getCEFRProgress(userId, prevLevel, prevTotals, client);
 
   return prevProgress.readiness >= READINESS_THRESHOLD;
 }
@@ -40,7 +42,8 @@ interface LevelProgression {
  * Get full progression data for all CEFR levels
  */
 export async function getFullProgression(
-  userId: string
+  userId: string,
+  client?: SupabaseClient
 ): Promise<{
   a1: LevelProgression;
   a2: LevelProgression;
@@ -50,9 +53,11 @@ export async function getFullProgression(
   const a2Totals = getContentTotals("A2");
   const b1Totals = getContentTotals("B1");
 
-  const a1Progress = await getCEFRProgress(userId, "A1", a1Totals);
-  const a2Progress = await getCEFRProgress(userId, "A2", a2Totals);
-  const b1Progress = await getCEFRProgress(userId, "B1", b1Totals);
+  const [a1Progress, a2Progress, b1Progress] = await Promise.all([
+    getCEFRProgress(userId, "A1", a1Totals, client),
+    getCEFRProgress(userId, "A2", a2Totals, client),
+    getCEFRProgress(userId, "B1", b1Totals, client),
+  ]);
 
   return {
     a1: { progress: a1Progress, unlocked: true },
@@ -72,9 +77,10 @@ export async function getFullProgression(
  * Returns the highest unlocked level that isn't fully mastered.
  */
 export async function getCurrentStudyLevel(
-  userId: string
+  userId: string,
+  client?: SupabaseClient
 ): Promise<CEFRLevel> {
-  const progression = await getFullProgression(userId);
+  const progression = await getFullProgression(userId, client);
 
   if (progression.b1.unlocked && progression.b1.progress.readiness < 0.95)
     return "B1";

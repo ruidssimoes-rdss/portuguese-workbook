@@ -1,9 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { PageContainer } from "@/components/primitives/page-container";
 import changelogData from "@/data/changelog.json";
+import { getContentCounts } from "@/lib/content-counts";
 
 type ChangelogEntry = {
   date: string;
@@ -33,7 +32,7 @@ export default function ChangelogPage() {
 
   return (
     <>
-      <Topbar />
+      <Topbar counts={getContentCounts()} />
       <PageContainer width="narrow" className="pb-16">
         <header className="py-5">
           <h1 className="text-2xl font-bold tracking-tight text-text">

@@ -2,12 +2,11 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import {
-  search,
-  type SearchResult,
-  type SearchOutput,
-  type SmartResultCard,
-} from "@/lib/search";
+import type {
+  SearchResult,
+  SearchOutput,
+  SmartResultCard,
+} from "@/lib/search-types";
 import { PronunciationButton } from "@/components/pronunciation-button";
 
 const DEBOUNCE_MS = 150;
@@ -37,7 +36,6 @@ const suggestions = [
 const GROUP_LABELS: Record<SearchResult["type"], string> = {
   vocabulary: "Vocabulário",
   verb: "Verbos",
-  conjugation: "Conjugações",
   grammar: "Gramática",
   saying: "Cultura",
   false_friend: "Cultura",
@@ -71,8 +69,6 @@ function typeToBadge(
       return { label: "VOC", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
     case "verb":
       return { label: "VERB", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
-    case "conjugation":
-      return { label: "CONJ", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
     case "grammar":
       return { label: "GRAM", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
     case "saying":
@@ -110,6 +106,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [output, setOutput] = useState<SearchOutput | null>(null);
+  const [searching, setSearching] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [placeholderFading, setPlaceholderFading] = useState(false);
@@ -136,16 +133,30 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
     return () => clearTimeout(t);
   }, [query, open]);
 
-  // Run search when debounced query changes
+  // Run search on the server when the debounced query changes
   useEffect(() => {
     if (debouncedQuery.length < MIN_QUERY_LENGTH) {
       setOutput(null);
       setHighlightedIndex(0);
       return;
     }
-    const out = search(debouncedQuery);
-    setOutput(out);
-    setHighlightedIndex(0);
+    const controller = new AbortController();
+    setSearching(true);
+    fetch(`/api/search?q=${encodeURIComponent(debouncedQuery)}`, { signal: controller.signal })
+      .then((res) => (res.ok ? (res.json() as Promise<SearchOutput>) : null))
+      .then((out) => {
+        if (controller.signal.aborted) return;
+        setOutput(out);
+        setHighlightedIndex(0);
+        setSearching(false);
+      })
+      .catch((err: unknown) => {
+        if (controller.signal.aborted) return;
+        console.error("Search failed:", err);
+        setOutput(null);
+        setSearching(false);
+      });
+    return () => controller.abort();
   }, [debouncedQuery]);
 
   // Rotating placeholder (only when input empty and modal open)
@@ -320,7 +331,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
           )}
 
           {debouncedQuery.length >= MIN_QUERY_LENGTH && results.length === 0 && !smartCard && (
-            <p className="px-4 py-3 text-[12px] text-[#9B9DA3]">No results found.</p>
+            <p className="px-4 py-3 text-[12px] text-[#9B9DA3]">{searching ? "Searching…" : "No results found."}</p>
           )}
 
           {smartCard && (
@@ -478,7 +489,6 @@ function SmartCardContent({
           <p className="text-[12px] text-[#9B9DA3] mt-0.5">
             {card.group} · {card.cefr}
           </p>
-          <p className="text-[12px] text-[#9B9DA3] mt-1">{card.presentPreview}</p>
           <p className="text-[11px] text-[#185FA5] mt-2">View all conjugations</p>
         </>
       )}
@@ -487,9 +497,7 @@ function SmartCardContent({
           <p className="font-medium text-[13px] text-[#111111]">
             {card.infinitive} — {card.tenseLabel}
           </p>
-          <p className="text-[12px] text-[#9B9DA3] mt-1">
-            {(card.conjugations ?? []).join(" · ")}
-          </p>
+          <p className="text-[12px] text-[#9B9DA3] mt-0.5">{card.english}</p>
           <p className="text-[11px] text-[#185FA5] mt-2">View full conjugation table</p>
         </>
       )}
@@ -510,7 +518,6 @@ function SmartCardContent({
                   {v.infinitive} — {v.english}
                 </button>
                 <p className="text-[12px] text-[#9B9DA3] ml-2">{v.group} · {v.cefr}</p>
-                <p className="text-[12px] text-[#9B9DA3] ml-2">{v.presentPreview}</p>
               </li>
             ))}
           </ul>
@@ -533,7 +540,7 @@ function SmartCardContent({
                 >
                   {v.infinitive}
                 </button>
-                <p className="text-[12px] text-[#9B9DA3] ml-2">{(v.conjugations ?? []).join(" · ")}</p>
+                <p className="text-[12px] text-[#9B9DA3] ml-2">{v.english}</p>
               </li>
             ))}
           </ul>

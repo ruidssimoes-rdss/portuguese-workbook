@@ -2,7 +2,7 @@
 
 import { PageShell } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/primitives";
-import { TutorTabV2 } from "@/components/lessons/tutor-tab";
+import { TutorTabV2 } from "@/components/tutor/tutor-tab";
 
 export default function TutorPage() {
   return (

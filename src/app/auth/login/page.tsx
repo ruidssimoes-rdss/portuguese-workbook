@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { GoogleSignInButton } from "@/components/google-sign-in-button";
+import { safeNextPath } from "@/lib/auth-utils";
 
 const inputClass =
   "w-full px-3 py-2.5 text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg outline-none focus:border-[rgba(0,0,0,0.12)] placeholder:text-[#9B9DA3] transition-colors";
@@ -17,6 +18,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const nextPath = safeNextPath(searchParams.get("next"));
 
   useEffect(() => {
     const err = searchParams.get("error");
@@ -46,7 +48,7 @@ function LoginForm() {
         setLoading(false);
         return;
       }
-      router.push("/");
+      router.push(nextPath);
       router.refresh();
     } catch {
       setError("Ocorreu um erro. Tenta novamente.");
@@ -85,7 +87,7 @@ function LoginForm() {
             </div>
           )}
 
-          <GoogleSignInButton />
+          <GoogleSignInButton next={nextPath} />
 
           <div className="flex items-center gap-4 my-6">
             <div className="flex-1 border-t-[0.5px] border-[rgba(0,0,0,0.06)]" />

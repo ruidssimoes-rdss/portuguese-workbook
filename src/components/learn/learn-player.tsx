@@ -2,7 +2,8 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import type { Lesson, VocabItem } from "@/data/lessons";
+import type { VocabItem } from "@/data/lessons";
+import type { LessonMeta } from "@/lib/learning-engine/session-payload";
 import type {
   GeneratedLesson,
   GeneratedSection,
@@ -28,10 +29,10 @@ import { WordBankSectionNew } from "./sections/word-bank-section";
 import { ErrorCorrectionSectionNew } from "./sections/error-correction-section";
 
 // Learn phase components
-import { VocabLearnCard } from "@/components/lessons/learn/vocab-learn-card";
-import { GrammarLearn } from "@/components/lessons/learn/grammar-learn";
-import { VerbLearn } from "@/components/lessons/learn/verb-learn";
-import { CultureLearn } from "@/components/lessons/learn/culture-learn";
+import { VocabLearnCard } from "@/components/learn/items/vocab-learn-card";
+import { GrammarLearn } from "@/components/learn/items/grammar-learn";
+import { VerbLearn } from "@/components/learn/items/verb-learn";
+import { CultureLearn } from "@/components/learn/items/culture-learn";
 
 // ─── Section map ────────────────────────────────────────
 
@@ -51,7 +52,7 @@ const SECTION_MAP: Record<string, React.ComponentType<Record<string, unknown>>> 
 type PlayerState = "intro" | "learn" | "sections" | "results";
 
 interface LearnPlayerProps {
-  lesson: Lesson;
+  lesson: LessonMeta;
   generated: GeneratedLesson;
   isReview: boolean;
   onComplete: (sectionResults: SectionResult[]) => void;

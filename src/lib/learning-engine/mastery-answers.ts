@@ -10,12 +10,12 @@
 import type { GeneratedLesson } from "@/lib/exercise-generator";
 import type { SectionResult } from "@/lib/exercise-types";
 import type { MasteryAnswer, CEFRLevel } from "./mastery-tracker";
-import type { PracticeItem } from "./lesson-generator";
+import type { SessionPracticeItem } from "./session-payload";
 
 export function buildMasteryAnswers(
   generated: Pick<GeneratedLesson, "sections">,
   sectionResults: SectionResult[],
-  practiceItems: PracticeItem[],
+  practiceItems: SessionPracticeItem[],
   fallbackCefr: CEFRLevel
 ): MasteryAnswer[] {
   const meta = new Map(practiceItems.map((p) => [`${p.contentType}:${p.contentId}`, p]));

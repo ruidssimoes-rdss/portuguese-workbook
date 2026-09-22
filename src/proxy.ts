@@ -1,35 +1,41 @@
-import { createServerClient } from "@supabase/ssr";
-import { type NextRequest, NextResponse } from "next/server";
+/**
+ * Auth middleware (Next.js 16 calls this file `proxy.ts`).
+ *
+ * Every route requires a session except /auth/* and static assets.
+ * Unauthenticated page requests redirect to /auth/login?next=<path>;
+ * unauthenticated API requests get a 401.
+ */
+
+import { NextResponse, type NextRequest } from "next/server";
+import { updateSession } from "@/lib/supabase/middleware";
+
+function isPublicPath(pathname: string): boolean {
+  return pathname === "/auth" || pathname.startsWith("/auth/");
+}
 
 export async function proxy(request: NextRequest) {
-  let response = NextResponse.next();
-
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (url && key) {
-    const supabase = createServerClient(url, key, {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next();
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
-          );
-        },
-      },
-    });
-    // Refresh session — do NOT remove this line
-    await supabase.auth.getUser();
+  if (!url || !key) return NextResponse.next();
+
+  const { response, user } = await updateSession(request);
+  const { pathname, search } = request.nextUrl;
+
+  if (user || isPublicPath(pathname)) return response;
+
+  if (pathname.startsWith("/api/")) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
-  return response;
+  const login = request.nextUrl.clone();
+  login.pathname = "/auth/login";
+  login.search = "";
+  login.searchParams.set("next", `${pathname}${search}`);
+  return NextResponse.redirect(login);
 }
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|icon.png|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml|json)$).*)",
   ],
 };

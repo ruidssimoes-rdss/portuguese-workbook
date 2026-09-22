@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { getResolvedLessons } from "@/data/resolve-lessons";
 import { getCurriculumLesson } from "@/data/resolve-lessons";
 
@@ -43,12 +44,20 @@ export interface TimelineEvent {
 
 const STREAK_MILESTONES = [7, 14, 30, 60, 100];
 
-export async function getProgressStats(): Promise<ProgressStats | null> {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return null;
+export async function getProgressStats(
+  client?: SupabaseClient,
+  knownUserId?: string
+): Promise<ProgressStats | null> {
+  const supabase = client ?? createClient();
+  let userId = knownUserId;
+  if (!userId) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return null;
+    userId = user.id;
+  }
+  const user = { id: userId };
 
   const lessons = getResolvedLessons().sort((a, b) => a.order - b.order);
 

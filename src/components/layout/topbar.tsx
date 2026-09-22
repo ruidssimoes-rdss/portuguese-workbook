@@ -6,29 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { SearchModal } from "@/components/search-modal";
 import { useAuth } from "@/components/auth-provider";
 import { BrandLogo } from "@/components/brand-logo";
-import { getResolvedLessons } from "@/data/resolve-lessons";
-import verbData from "@/data/verbs.json";
-import vocabData from "@/data/vocab.json";
-import grammarData from "@/data/grammar.json";
-import sayingsData from "@/data/sayings.json";
-import type { VerbDataSet } from "@/types";
-import type { VocabData } from "@/types/vocab";
-import type { GrammarData } from "@/types/grammar";
-import type { SayingsData } from "@/types/saying";
-
-const verbs = verbData as unknown as VerbDataSet;
-const vocab = vocabData as unknown as VocabData;
-const grammar = grammarData as unknown as GrammarData;
-const sayings = (sayingsData as unknown as SayingsData).sayings;
-
-const lessonCount = getResolvedLessons().length;
-const verbCount = verbs.order.length;
-const tenseCount = new Set(
-  verbs.order.flatMap((k) => verbs.verbs[k]?.conjugations?.map((c) => c.Tense) ?? [])
-).size;
-const wordCount = vocab.categories.reduce((s, c) => s + (c.words?.length ?? 0), 0);
-const categoryCount = vocab.categories.length;
-const topicCount = Object.keys(grammar.topics).length;
+import type { ContentCounts } from "@/lib/content-counts";
 
 /* ─── Menu data ─── */
 
@@ -39,11 +17,12 @@ interface MenuItem {
   href: string;
 }
 
-const revisionItems: MenuItem[] = [
+function buildRevisionItems(counts: ContentCounts): MenuItem[] {
+  return [
   {
     title: "Lessons",
     portuguese: "Lições",
-    stats: [`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"}`, "A1 progression"],
+    stats: [`${counts.lessons} ${counts.lessons === 1 ? "lesson" : "lessons"}`, "A1 progression"],
     href: "/lessons",
   },
   {
@@ -58,28 +37,31 @@ const revisionItems: MenuItem[] = [
     stats: ["CIPLE preparation", "Coming soon"],
     href: "/exams",
   },
-];
+  ];
+}
 
-const libraryItems: MenuItem[] = [
+function buildLibraryItems(counts: ContentCounts): MenuItem[] {
+  return [
   {
     title: "Vocabulary",
     portuguese: "Vocabulário",
-    stats: [`${wordCount} words`, `${categoryCount} categories`],
+    stats: [`${counts.words} words`, `${counts.categories} categories`],
     href: "/vocabulary",
   },
   {
     title: "Conjugations",
     portuguese: "Conjugações",
-    stats: [`${verbCount} verbs`, `${tenseCount} tenses`],
+    stats: [`${counts.verbs} verbs`, `${counts.tenses} tenses`],
     href: "/conjugations",
   },
   {
     title: "Grammar",
     portuguese: "Gramática",
-    stats: [`${topicCount} topics`, "A1–B1"],
+    stats: [`${counts.topics} topics`, "A1–B1"],
     href: "/grammar",
   },
-];
+  ];
+}
 
 const REVISION_PATHS = ["/lessons", "/progress", "/exams"];
 const LIBRARY_PATHS = ["/vocabulary", "/conjugations", "/grammar"];
@@ -168,7 +150,9 @@ function MegaPanel({
 
 /* ─── Topbar ─── */
 
-export function Topbar() {
+export function Topbar({ counts }: { counts: ContentCounts }) {
+  const revisionItems = buildRevisionItems(counts);
+  const libraryItems = buildLibraryItems(counts);
   const pathname = usePathname();
   const router = useRouter();
   const { user, loading: authLoading, signOut } = useAuth();

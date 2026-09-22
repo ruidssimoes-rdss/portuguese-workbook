@@ -6,8 +6,8 @@
  * readiness increases.
  */
 
+import type { SupabaseClient } from "@supabase/supabase-js";
 import {
-  getUserMastery,
   getMasteryMap,
   type MasteryRecord,
   type CEFRLevel,
@@ -100,10 +100,11 @@ const DEFAULT_CONFIG: GeneratorConfig = {
 export async function generateLesson(
   userId: string,
   cefr: CEFRLevel,
-  recentPerformance?: { avgAccuracy: number; lessonCount: number }
+  recentPerformance?: { avgAccuracy: number; lessonCount: number },
+  client?: SupabaseClient
 ): Promise<GeneratedLesson> {
-  // 1. Load user mastery data
-  const masteryMap = await getMasteryMap(userId);
+  // 1. Load user mastery data (server-side callers pass their own client)
+  const masteryMap = await getMasteryMap(userId, undefined, client);
 
   // 2. Calculate adaptive config
   const config = getAdaptiveConfig(masteryMap, cefr, recentPerformance);

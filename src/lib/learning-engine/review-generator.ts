@@ -6,6 +6,7 @@
  * in a learn phase — the adapter sends them straight to exercises.
  */
 
+import type { SupabaseClient } from "@supabase/supabase-js";
 import {
   getUserMastery,
   type CEFRLevel,
@@ -54,9 +55,10 @@ export interface ReviewItem {
 
 export async function generateReviewSession(
   userId: string,
-  maxItems: number = REVIEW_SESSION_MAX
+  maxItems: number = REVIEW_SESSION_MAX,
+  client?: SupabaseClient
 ): Promise<ReviewSession> {
-  const allRecords = await getUserMastery(userId);
+  const allRecords = await getUserMastery(userId, undefined, client);
   const selected = selectReviewCandidates(allRecords, new Date(), maxItems);
 
   const items: ReviewItem[] = selected.map(({ record, reason }) => ({

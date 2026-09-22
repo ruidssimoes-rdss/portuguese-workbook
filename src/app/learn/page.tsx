@@ -2,48 +2,27 @@
 
 import { useEffect, useRef, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
-import {
-  generateLesson as generateDynamicLesson,
-  generateReviewSession,
-  adaptGeneratedLesson,
-  adaptReviewSession,
-  getCurrentStudyLevel,
-  batchUpdateMastery,
-  buildMasteryAnswers,
-  type CEFRLevel as LearningCEFRLevel,
-  type PracticeItem,
-} from "@/lib/learning-engine";
-import {
-  generateLessonExercises,
-  type GeneratedLesson,
-} from "@/lib/exercise-generator";
-import type { Lesson } from "@/data/lessons";
+import { useAuth } from "@/components/auth-provider";
+import { batchUpdateMastery } from "@/lib/learning-engine/mastery-tracker";
+import { buildMasteryAnswers } from "@/lib/learning-engine/mastery-answers";
+import type { SessionPayload, SessionRequest } from "@/lib/learning-engine/session-payload";
 import type { SectionResult } from "@/lib/exercise-types";
-import {
-  saveLessonAttempt,
-  getLessonProgressMap,
-  type WrongItem,
-} from "@/lib/lesson-progress";
+import { saveLessonAttempt, type WrongItem } from "@/lib/lesson-progress";
 import { logLessonCompletion } from "@/lib/calendar-service";
 import { updateStreak } from "@/lib/streak-service";
 import { incrementGoalProgress } from "@/lib/goals-service";
 import { LearnPlayer } from "@/components/learn/learn-player";
 import type { SaveStatus } from "@/components/learn/learn-results";
 
-// ─── Page ───────────────────────────────────────────────
-
 function LearnPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode");
-  const requestedLevel = searchParams.get("level") as LearningCEFRLevel | null;
+  const requestedLevel = searchParams.get("level");
+  const curriculumId = searchParams.get("lesson");
+  const { user } = useAuth();
 
-  const [userId, setUserId] = useState<string | null>(null);
-  const [lesson, setLesson] = useState<Lesson | null>(null);
-  const [generated, setGenerated] = useState<GeneratedLesson | null>(null);
-  const [practiceItems, setPracticeItems] = useState<PracticeItem[]>([]);
-  const [isReview, setIsReview] = useState(false);
+  const [session, setSession] = useState<SessionPayload | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>({ state: "idle" });
@@ -53,46 +32,31 @@ function LearnPageContent() {
   const persistedRef = useRef({ attempt: false, mastery: false, sideEffects: false });
 
   useEffect(() => {
-    let cancelled = false;
+    const controller = new AbortController();
 
     async function init() {
       try {
-        const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
-          router.push("/auth/login");
-          return;
+        const body: SessionRequest = {};
+        if (curriculumId) body.lesson = curriculumId;
+        else if (mode === "review") body.mode = "review";
+        else if (requestedLevel === "A1" || requestedLevel === "A2" || requestedLevel === "B1") body.level = requestedLevel;
+
+        const res = await fetch("/api/learn/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+          signal: controller.signal,
+        });
+        if (!res.ok) {
+          const detail = (await res.json().catch(() => ({}))) as { error?: string };
+          throw new Error(detail.error ?? `Could not generate a session (${res.status})`);
         }
-        setUserId(user.id);
-
-        // Real lesson number: completed lessons + 1 — drives exercise difficulty
-        const progressMap = await getLessonProgressMap();
-        const completedCount = Object.values(progressMap).filter((p) => p.completed).length;
-        const order = completedCount + 1;
-
-        let adapted: ReturnType<typeof adaptGeneratedLesson>;
-
-        if (mode === "review") {
-          const review = await generateReviewSession(user.id);
-          adapted = adaptReviewSession(review, { order });
-          setIsReview(true);
-        } else {
-          const cefr = requestedLevel || await getCurrentStudyLevel(user.id);
-          const dynamicLesson = await generateDynamicLesson(user.id, cefr);
-          adapted = adaptGeneratedLesson(dynamicLesson, { order });
-        }
-
-        if (cancelled) return;
-
-        // New content is learned then exercised; review content is exercised only
-        const exs = generateLessonExercises(adapted.lesson, adapted.exerciseOnly);
-
-        setLesson(adapted.lesson);
-        setGenerated(exs);
-        setPracticeItems(adapted.practiceItems);
+        const payload = (await res.json()) as SessionPayload;
+        if (controller.signal.aborted) return;
+        setSession(payload);
         setLoading(false);
       } catch (err: unknown) {
-        if (cancelled) return;
+        if (controller.signal.aborted) return;
         console.error("Learn page init error:", err);
         setError(err instanceof Error ? err.message : "Failed to generate lesson");
         setLoading(false);
@@ -100,11 +64,12 @@ function LearnPageContent() {
     }
 
     init();
-    return () => { cancelled = true; };
-  }, [mode, requestedLevel, router]);
+    return () => controller.abort();
+  }, [mode, requestedLevel, curriculumId]);
 
   async function persist(sectionResults: SectionResult[]) {
-    if (!userId || !lesson || !generated) return;
+    if (!session || !user) return;
+    const { lesson, generated, practiceItems, isReview } = session;
 
     setSaveStatus({ state: "saving" });
 
@@ -133,7 +98,7 @@ function LearnPageContent() {
     if (!persistedRef.current.mastery) {
       const answers = buildMasteryAnswers(generated, sectionResults, practiceItems, lesson.cefr);
       try {
-        await batchUpdateMastery(userId, answers);
+        await batchUpdateMastery(user.id, answers);
         persistedRef.current.mastery = true;
       } catch (e) {
         console.error("Failed to save mastery:", e);
@@ -182,6 +147,8 @@ function LearnPageContent() {
     if (lastResultsRef.current) void persist(lastResultsRef.current);
   }
 
+  const isReview = session?.isReview ?? mode === "review";
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -209,7 +176,7 @@ function LearnPageContent() {
     );
   }
 
-  if (!lesson || !generated || generated.sections.length === 0) {
+  if (!session || session.generated.sections.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-64 gap-4">
         <p className="text-[14px] text-[#6C6B71]">
@@ -227,9 +194,9 @@ function LearnPageContent() {
 
   return (
     <LearnPlayer
-      lesson={lesson}
-      generated={generated}
-      isReview={isReview}
+      lesson={session.lesson}
+      generated={session.generated}
+      isReview={session.isReview}
       onComplete={handleComplete}
       saveStatus={saveStatus}
       onRetrySave={handleRetrySave}

@@ -64,11 +64,7 @@ export default function OnboardingPage() {
   const [saveError, setSaveError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (authLoading) return;
-    if (!user) {
-      router.push("/auth/login");
-      return;
-    }
+    if (authLoading || !user) return;
     hasCompletedOnboarding().then((completed) => {
       if (completed) {
         router.push("/");

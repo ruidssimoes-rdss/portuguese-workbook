@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { signInWithGoogle } from "@/lib/auth-utils";
 
-export function GoogleSignInButton() {
+export function GoogleSignInButton({ next }: { next?: string } = {}) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleClick = async () => {
     setError(null);
     setLoading(true);
-    const { error: err } = await signInWithGoogle();
+    const { error: err } = await signInWithGoogle(next);
     if (err) {
       setError(err.message);
       setLoading(false);
