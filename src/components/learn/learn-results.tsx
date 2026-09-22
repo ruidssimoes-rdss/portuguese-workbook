@@ -3,14 +3,28 @@
 import Link from "next/link";
 import type { SectionResult } from "@/lib/exercise-types";
 
+export interface SaveStatus {
+  state: "idle" | "saving" | "saved" | "error";
+  message?: string;
+}
+
 interface LearnResultsProps {
   passed: boolean;
   accuracy: number;
   sectionResults: SectionResult[];
   onRetry: () => void;
+  saveStatus?: SaveStatus;
+  onRetrySave?: () => void;
 }
 
-export function LearnResults({ passed, accuracy, sectionResults, onRetry }: LearnResultsProps) {
+export function LearnResults({
+  passed,
+  accuracy,
+  sectionResults,
+  onRetry,
+  saveStatus,
+  onRetrySave,
+}: LearnResultsProps) {
   const displayAccuracy = Math.round(accuracy);
   const totalCorrect = sectionResults.reduce((s, r) => s + r.totalCorrect, 0);
   const totalQuestions = sectionResults.reduce((s, r) => s + r.totalQuestions, 0);
@@ -41,6 +55,33 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
           <p className="text-[16px] font-medium text-[#854F0B]">Not quite yet</p>
           <p className="text-[13px] text-[#9B9DA3] italic mt-1">Ainda não — tenta outra vez</p>
         </div>
+      )}
+
+      {/* Save status — failures must be visible, never silent */}
+      {saveStatus?.state === "error" && (
+        <div
+          role="alert"
+          className="mt-5 flex items-start justify-between gap-3 px-4 py-3 text-left bg-[#FAEEDA] border-[0.5px] border-[#E8C98A] rounded-lg"
+        >
+          <div>
+            <p className="text-[13px] font-medium text-[#854F0B]">Progress not saved</p>
+            <p className="text-[12px] text-[#854F0B] mt-0.5">
+              {saveStatus.message ?? "Something went wrong while saving this session."}
+            </p>
+          </div>
+          {onRetrySave && (
+            <button
+              type="button"
+              onClick={onRetrySave}
+              className="shrink-0 px-3 py-1.5 text-[12px] font-medium text-[#854F0B] border-[0.5px] border-[#E8C98A] rounded-md hover:bg-[#F5E3C0] transition-colors cursor-pointer"
+            >
+              Retry
+            </button>
+          )}
+        </div>
+      )}
+      {saveStatus?.state === "saving" && (
+        <p className="mt-5 text-[12px] text-[#9B9DA3]">Saving progress…</p>
       )}
 
       {/* Section breakdown */}

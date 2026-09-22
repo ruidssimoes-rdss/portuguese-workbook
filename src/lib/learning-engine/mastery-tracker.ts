@@ -1,12 +1,14 @@
 /**
  * Learning Engine — Mastery Tracker
  *
- * Per-item tracking system that records every interaction a user has with
- * content (vocab words, verbs, grammar topics). Implements spaced repetition
- * with mastery levels 0-5.
+ * `user_content_mastery` is the sole source of truth for what a user knows.
+ * One row per (user, content item). Scheduling is SM-2 (see ./sm2.ts);
+ * mastery_level is derived from repetitions and accuracy, never set by hand.
  */
 
 import { createClient } from "@/lib/supabase/client";
+import { applySm2, deriveMasteryLevel } from "./sm2";
+import { selectReviewCandidates } from "./review-selector";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -26,6 +28,9 @@ export interface MasteryRecord {
   times_incorrect: number;
   streak: number;
   mastery_level: MasteryLevel;
+  ease_factor: number;
+  interval_days: number;
+  repetitions: number;
   last_seen_at: string | null;
   last_correct_at: string | null;
   next_review_at: string | null;
@@ -35,6 +40,14 @@ export interface MasteryUpdate {
   content_type: ContentType;
   content_id: string;
   was_correct: boolean;
+}
+
+export interface MasteryAnswer {
+  contentType: ContentType;
+  contentId: string;
+  contentCefr: CEFRLevel;
+  contentCategory?: string;
+  wasCorrect: boolean;
 }
 
 // ─── Mastery Level Definitions ──────────────────────────
@@ -48,12 +61,7 @@ export const MASTERY_LABELS: Record<MasteryLevel, string> = {
   5: "Permanent",
 };
 
-// Spaced repetition intervals (days until next review) per mastery level
-// High-frequency items (top 200 words) get shorter intervals
-const BASE_INTERVALS = [0, 1, 3, 7, 14, 30];
-const HIGH_FREQ_INTERVALS = [0, 0.5, 1, 3, 7, 14];
-
-// ─── Core Functions ─────────────────────────────────────
+// ─── Reads ──────────────────────────────────────────────
 
 /**
  * Get all mastery records for a user, optionally filtered
@@ -105,7 +113,7 @@ export async function getItemMastery(
     .eq("user_id", userId)
     .eq("content_type", contentType)
     .eq("content_id", contentId)
-    .single();
+    .maybeSingle();
 
   if (error) return null;
   return data;
@@ -141,69 +149,51 @@ export async function getMasteryMap(
 // ─── Mastery Calculation ────────────────────────────────
 
 /**
- * Calculate new mastery state after an answer.
- * Pure function — no side effects.
+ * Calculate the new mastery state after an answer.
+ * Pure function — SM-2 scheduling plus derived mastery level.
  */
 export function calculateMasteryUpdate(
   current: Partial<MasteryRecord>,
   wasCorrect: boolean,
-  isHighFrequency: boolean = false
+  now: Date = new Date()
 ): Partial<MasteryRecord> {
   const timesSeen = (current.times_seen || 0) + 1;
   const timesCorrect = (current.times_correct || 0) + (wasCorrect ? 1 : 0);
   const timesIncorrect = (current.times_incorrect || 0) + (wasCorrect ? 0 : 1);
   const streak = wasCorrect ? (current.streak || 0) + 1 : 0;
-  const accuracy = timesCorrect / timesSeen;
 
-  // Determine mastery level based on stats
-  let newLevel: MasteryLevel = (current.mastery_level || 0) as MasteryLevel;
+  const sm2 = applySm2(
+    {
+      ease_factor: current.ease_factor,
+      interval_days: current.interval_days,
+      repetitions: current.repetitions,
+    },
+    wasCorrect,
+    now
+  );
 
-  if (timesSeen === 1) {
-    newLevel = 1; // Introduced
-  } else if (timesSeen >= 5 && accuracy >= 0.85 && streak >= 3) {
-    newLevel = 4; // Mastered
-  } else if (timesSeen >= 3 && accuracy >= 0.7) {
-    newLevel = 3; // Learned
-  } else if (timesSeen >= 2) {
-    newLevel = 2; // Familiar
-  }
-
-  // Never downgrade mastery level — but streak resets shorten the interval
-  const currentLevel = (current.mastery_level || 0) as MasteryLevel;
-  if (newLevel < currentLevel) {
-    newLevel = currentLevel;
-  }
-
-  // Calculate next review date
-  const intervals = isHighFrequency ? HIGH_FREQ_INTERVALS : BASE_INTERVALS;
-  const intervalDays = intervals[Math.min(newLevel, 5)];
-  const nextReview = new Date();
-
-  if (!wasCorrect) {
-    // Wrong answer → review tomorrow regardless of level
-    nextReview.setDate(nextReview.getDate() + 1);
-  } else {
-    nextReview.setDate(nextReview.getDate() + intervalDays);
-  }
-
-  const now = new Date().toISOString();
+  const nowIso = now.toISOString();
 
   return {
     times_seen: timesSeen,
     times_correct: timesCorrect,
     times_incorrect: timesIncorrect,
     streak,
-    mastery_level: newLevel,
-    last_seen_at: now,
-    last_correct_at: wasCorrect ? now : (current.last_correct_at ?? null),
-    next_review_at: nextReview.toISOString(),
+    ease_factor: sm2.ease_factor,
+    interval_days: sm2.interval_days,
+    repetitions: sm2.repetitions,
+    mastery_level: deriveMasteryLevel(sm2.repetitions, timesSeen, timesCorrect),
+    last_seen_at: nowIso,
+    last_correct_at: wasCorrect ? nowIso : (current.last_correct_at ?? null),
+    next_review_at: sm2.next_review_at,
   };
 }
 
-// ─── Database Operations ────────────────────────────────
+// ─── Writes ─────────────────────────────────────────────
 
 /**
- * Update mastery for a single item after an answer
+ * Update mastery for a single item after an answer.
+ * Throws on a database error so callers can surface it.
  */
 export async function updateItemMastery(
   userId: string,
@@ -211,28 +201,21 @@ export async function updateItemMastery(
   contentId: string,
   contentCefr: CEFRLevel,
   wasCorrect: boolean,
-  contentCategory?: string,
-  isHighFrequency?: boolean
+  contentCategory?: string
 ): Promise<void> {
   const supabase = createClient();
 
-  // Get existing record
   const existing = await getItemMastery(userId, contentType, contentId);
-
-  // Calculate update
-  const update = calculateMasteryUpdate(
-    existing || {},
-    wasCorrect,
-    isHighFrequency
-  );
+  const update = calculateMasteryUpdate(existing || {}, wasCorrect);
 
   if (existing) {
-    await supabase
+    const { error } = await supabase
       .from("user_content_mastery")
       .update(update)
       .eq("id", existing.id);
+    if (error) throw new Error(`Mastery update failed for ${contentType}:${contentId}: ${error.message}`);
   } else {
-    await supabase.from("user_content_mastery").insert({
+    const { error } = await supabase.from("user_content_mastery").insert({
       user_id: userId,
       content_type: contentType,
       content_id: contentId,
@@ -240,33 +223,37 @@ export async function updateItemMastery(
       content_category: contentCategory || null,
       ...update,
     });
+    if (error) throw new Error(`Mastery insert failed for ${contentType}:${contentId}: ${error.message}`);
   }
 }
 
 /**
- * Batch update mastery after a lesson.
- * Processes sequentially to avoid race conditions on same items.
+ * Batch update mastery after a lesson. Every entry is one real answer.
+ * Processes sequentially to avoid races on the same item.
+ * Throws if any item failed, after attempting all of them.
  */
 export async function batchUpdateMastery(
   userId: string,
-  results: Array<{
-    contentType: ContentType;
-    contentId: string;
-    contentCefr: CEFRLevel;
-    contentCategory?: string;
-    wasCorrect: boolean;
-    isHighFrequency?: boolean;
-  }>
+  results: MasteryAnswer[]
 ): Promise<void> {
+  const failures: string[] = [];
   for (const result of results) {
-    await updateItemMastery(
-      userId,
-      result.contentType,
-      result.contentId,
-      result.contentCefr,
-      result.wasCorrect,
-      result.contentCategory,
-      result.isHighFrequency
+    try {
+      await updateItemMastery(
+        userId,
+        result.contentType,
+        result.contentId,
+        result.contentCefr,
+        result.wasCorrect,
+        result.contentCategory
+      );
+    } catch (e) {
+      failures.push(e instanceof Error ? e.message : String(e));
+    }
+  }
+  if (failures.length > 0) {
+    throw new Error(
+      `${failures.length} of ${results.length} mastery updates failed. ${failures[0]}`
     );
   }
 }
@@ -340,7 +327,7 @@ export async function getCEFRProgress(
 }
 
 /**
- * Get items due for review
+ * Get items due for review (ordered by most overdue)
  */
 export async function getDueForReview(
   userId: string,
@@ -353,7 +340,7 @@ export async function getDueForReview(
     .select("*")
     .eq("user_id", userId)
     .lte("next_review_at", new Date().toISOString())
-    .gte("mastery_level", 1) // Only review items that have been introduced
+    .gte("mastery_level", 1)
     .order("next_review_at", { ascending: true })
     .limit(limit);
 
@@ -365,18 +352,10 @@ export async function getDueForReview(
 }
 
 /**
- * Count items due for review (for showing badge/prompt)
+ * Count the items a review session would deliver right now.
+ * Uses the same selector as generateReviewSession so the two always agree.
  */
 export async function getReviewCount(userId: string): Promise<number> {
-  const supabase = createClient();
-
-  const { count, error } = await supabase
-    .from("user_content_mastery")
-    .select("*", { count: "exact", head: true })
-    .eq("user_id", userId)
-    .lte("next_review_at", new Date().toISOString())
-    .gte("mastery_level", 1);
-
-  if (error) return 0;
-  return count || 0;
+  const records = await getUserMastery(userId);
+  return selectReviewCandidates(records).length;
 }

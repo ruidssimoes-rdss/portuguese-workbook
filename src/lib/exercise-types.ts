@@ -35,3 +35,29 @@ export function getDifficulty(lessonNumber: number, cefrLevel: string): Difficul
   if (lessonNumber <= 42) return "building";
   return "consolidating";
 }
+
+/* ─── Content attribution ─── */
+
+import type { PracticeItem as LessonPracticeItem, VocabItem, VerbItem, GrammarItem } from "@/data/lessons";
+
+export type TrackedContentType = "vocab" | "verb" | "grammar";
+
+/** Which content-pool item a question tests. */
+export interface ContentRef {
+  contentType: TrackedContentType;
+  contentId: string;
+}
+
+/** A practice sentence that knows which pool item it tests. */
+export type AttributedPracticeItem = LessonPracticeItem & { contentRef?: ContentRef };
+
+/**
+ * Content that is exercised but never shown in the learn phase
+ * (review, spot-check and carry-forward items).
+ */
+export interface ExerciseOnlyContent {
+  vocabItems?: VocabItem[];
+  verbItems?: VerbItem[];
+  grammarItems?: GrammarItem[];
+  practiceItems?: AttributedPracticeItem[];
+}

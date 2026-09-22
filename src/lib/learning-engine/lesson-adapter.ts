@@ -2,13 +2,19 @@
  * Learning Engine — Lesson Adapter
  *
  * Transforms a GeneratedLesson (from the learning engine) into the exact
- * Lesson shape the existing exercise engine expects.
+ * Lesson shape the exercise engine expects.
+ *
+ * Two outputs:
+ *   lesson        — new content, shown in the learn phase and then exercised
+ *   exerciseOnly  — review / spot-check / carry-forward content, exercised
+ *                   but never shown in the learn phase
  *
  * CRITICAL: Verb handling groups all persons for a given verb+tense into
  * ONE conjugation drill stage. Never flatten into individual rows.
  */
 
-import type { Lesson, LessonStage, VocabItem, VerbItem, GrammarItem, PracticeItem as LessonPracticeItem } from "@/data/lessons";
+import type { Lesson, LessonStage, VocabItem, VerbItem, GrammarItem } from "@/data/lessons";
+import type { ExerciseOnlyContent, AttributedPracticeItem, ContentRef } from "@/lib/exercise-types";
 import type { GeneratedLesson, PracticeItem } from "./lesson-generator";
 import type { ReviewSession } from "./review-generator";
 import type { PoolVocabItem, PoolVerbItem, PoolGrammarItem } from "./content-pool";
@@ -42,12 +48,30 @@ const PERSON_TO_PRONOUN: Record<string, string> = {
   "eles/elas/vocês (they/you plural formal)": "eles/elas",
 };
 
+// ─── Types ──────────────────────────────────────────────
+
+export interface AdaptedLesson {
+  lesson: Lesson;
+  /** Every pool item this session can test (new + review + spot-check + carry-forward) */
+  practiceItems: PracticeItem[];
+  /** Content exercised but never shown in the learn phase */
+  exerciseOnly: ExerciseOnlyContent;
+}
+
+export interface AdaptOptions {
+  /**
+   * The user's real lesson number (completed lessons + 1). Drives
+   * getDifficulty — foundation / building / consolidating.
+   */
+  order?: number;
+}
+
 // ─── Adapt Generated Lesson → Lesson ────────────────────
 
-export function adaptGeneratedLesson(generated: GeneratedLesson): {
-  lesson: Lesson;
-  practiceItems: PracticeItem[];
-} {
+export function adaptGeneratedLesson(
+  generated: GeneratedLesson,
+  options: AdaptOptions = {}
+): AdaptedLesson {
   const stages: LessonStage[] = [];
   const lessonId = generated.id;
   const cefr = generated.cefr;
@@ -66,8 +90,8 @@ export function adaptGeneratedLesson(generated: GeneratedLesson): {
   }
 
   // ── Verbs: ONE stage per verb+tense, CEFR-filtered, capped ──
-  const verbStages = adaptVerbsGrouped(generated.learn.verbs, cefr, lessonId);
-  stages.push(...verbStages);
+  const verbItems = adaptVerbsGrouped(generated.learn.verbs, cefr);
+  stages.push(...verbItemsToStages(verbItems, lessonId));
 
   // ── Grammar: ONE stage per topic ──
   const grammarItems = generated.learn.grammar.map(adaptGrammar);
@@ -82,8 +106,8 @@ export function adaptGeneratedLesson(generated: GeneratedLesson): {
     });
   }
 
-  // ── Practice: ONE stage with fill-in-blank sentences ──
-  const practiceItems = generatePracticeFromContent(generated);
+  // ── Practice: ONE stage with fill-in-blank sentences from new vocab ──
+  const practiceItems = buildPracticeSentences(generated.learn.vocab, lessonId, "practice");
   if (practiceItems.length > 0) {
     stages.push({
       id: `${lessonId}-practice`,
@@ -97,45 +121,106 @@ export function adaptGeneratedLesson(generated: GeneratedLesson): {
 
   const lesson: Lesson = {
     id: lessonId,
-    title: buildTitle(generated),
-    ptTitle: buildTitlePt(generated),
-    description: buildDescription(generated),
+    title: "Your next lesson",
+    ptTitle: "Your next lesson",
+    description: `${generated.totalItems} items · ${generated.cefr} level`,
     cefr,
     estimatedMinutes: 20,
-    order: 0,
+    order: options.order ?? 1,
     stages,
   };
 
-  const allPracticeItems = [
-    ...generated.practice.newContentItems,
+  // ── Review / spot-check / carry-forward: exercises only, never learn phase ──
+  const reviewPool = [
     ...generated.practice.reviewItems,
     ...generated.practice.spotCheckItems,
     ...generated.practice.carryForwardItems,
   ];
+  const exerciseOnly = practiceItemsToExerciseContent(reviewPool, cefr, lessonId);
 
-  return { lesson, practiceItems: allPracticeItems };
+  const allPracticeItems = [...generated.practice.newContentItems, ...reviewPool];
+
+  return { lesson, practiceItems: allPracticeItems, exerciseOnly };
+}
+
+// ─── Review Session Adapter ─────────────────────────────
+
+/**
+ * A review session has no learn phase at all: every item is exercised
+ * directly. The lesson shell is empty; all content is exercise-only.
+ */
+export function adaptReviewSession(
+  review: ReviewSession,
+  options: AdaptOptions = {}
+): AdaptedLesson {
+  const lessonId = review.id;
+
+  const allPracticeItems: PracticeItem[] = review.items.map((item) => ({
+    contentType: item.contentType,
+    contentId: item.contentId,
+    contentCefr: item.contentCefr,
+    contentCategory: item.contentCategory,
+    isHighFrequency: item.isHighFrequency,
+    data: item.data,
+  }));
+
+  // Reviews span levels — use the A2 tense allowlist for broad coverage
+  const exerciseOnly = practiceItemsToExerciseContent(allPracticeItems, "A2", lessonId);
+
+  const lesson: Lesson = {
+    id: lessonId,
+    title: "Review Session",
+    ptTitle: "Review Session",
+    description: `${review.totalItems} items to review`,
+    cefr: "A1",
+    estimatedMinutes: 15,
+    order: options.order ?? 1,
+    stages: [],
+  };
+
+  return { lesson, practiceItems: allPracticeItems, exerciseOnly };
+}
+
+// ─── Practice items → exercise-only content ─────────────
+
+function practiceItemsToExerciseContent(
+  items: PracticeItem[],
+  cefr: CEFRLevel,
+  lessonId: string
+): ExerciseOnlyContent {
+  const vocabPool = items
+    .filter((i) => i.contentType === "vocab")
+    .map((i) => i.data as PoolVocabItem);
+  const verbPool = items
+    .filter((i) => i.contentType === "verb")
+    .map((i) => i.data as PoolVerbItem);
+  const grammarPool = items
+    .filter((i) => i.contentType === "grammar")
+    .map((i) => i.data as PoolGrammarItem);
+
+  return {
+    vocabItems: vocabPool.map(adaptVocab),
+    verbItems: adaptVerbsGrouped(verbPool, cefr),
+    grammarItems: grammarPool.map(adaptGrammar),
+    practiceItems: buildPracticeSentences(vocabPool, lessonId, "review-practice"),
+  };
 }
 
 // ─── Verb grouping (the critical fix) ───────────────────
 
 /**
- * Convert PoolVerbItems into grouped verb stages.
- * Each stage = one verb + one tense, with ALL persons as a single drill.
+ * Convert PoolVerbItems into grouped VerbItems.
+ * Each VerbItem = one verb + one tense, with ALL persons as a single drill.
  *
  * Filters tenses by CEFR level, caps tenses per verb and total verbs.
  */
-function adaptVerbsGrouped(
-  verbs: PoolVerbItem[],
-  cefr: CEFRLevel,
-  lessonId: string
-): LessonStage[] {
+function adaptVerbsGrouped(verbs: PoolVerbItem[], cefr: CEFRLevel): VerbItem[] {
   const allowedCEFRs = TENSE_CEFR_LEVELS[cefr] || ["A1"];
   const maxTenses = MAX_TENSES_PER_VERB[cefr] || 1;
   const maxVerbs = MAX_VERBS[cefr] || 4;
 
-  // Cap number of verbs
   const selectedVerbs = verbs.slice(0, maxVerbs);
-  const stages: LessonStage[] = [];
+  const items: VerbItem[] = [];
 
   for (const pool of selectedVerbs) {
     // Group conjugations by tense, filtering to allowed CEFR levels
@@ -154,116 +239,33 @@ function adaptVerbsGrouped(
       });
     }
 
-    // Cap tenses per verb
     const tenseEntries = [...byTense.entries()].slice(0, maxTenses);
 
     for (const [tense, conjugations] of tenseEntries) {
       const slug = pool.key.toLowerCase();
-      const verbItem: VerbItem = {
+      items.push({
         id: `verb-${slug}-${tense}`,
         verb: slug,
         verbTranslation: pool.english,
         tense,
         conjugations,
         verbSlug: slug,
-      };
-
-      stages.push({
-        id: `${lessonId}-verb-${slug}-${tense}`,
-        type: "verb",
-        title: `Verb: ${slug}`,
-        ptTitle: `Verbo: ${slug}`,
-        description: `Conjugation of '${slug}' (${pool.english}).`,
-        verbs: [verbItem],
       });
     }
   }
 
-  return stages;
+  return items;
 }
 
-// ─── Review Session Adapter ─────────────────────────────
-
-export function adaptReviewSession(review: ReviewSession): {
-  lesson: Lesson;
-  practiceItems: PracticeItem[];
-} {
-  const stages: LessonStage[] = [];
-  const lessonId = review.id;
-
-  // Vocab: one stage
-  const vocabItems = review.items
-    .filter((i) => i.contentType === "vocab")
-    .map((i) => adaptVocab(i.data as PoolVocabItem));
-  if (vocabItems.length > 0) {
-    stages.push({
-      id: `${lessonId}-vocab`,
-      type: "vocabulary",
-      title: "Review: Vocabulary",
-      ptTitle: "Revisão: Vocabulário",
-      description: "Words due for review.",
-      items: vocabItems,
-    });
-  }
-
-  // Verbs: grouped by verb+tense (use A2 allowlist for reviews — broad coverage)
-  const verbPools = review.items
-    .filter((i) => i.contentType === "verb")
-    .map((i) => i.data as PoolVerbItem);
-  const verbStages = adaptVerbsGrouped(verbPools, "A2", lessonId);
-  stages.push(...verbStages);
-
-  // Grammar
-  const grammarItems = review.items
-    .filter((i) => i.contentType === "grammar")
-    .map((i) => adaptGrammar(i.data as PoolGrammarItem));
-  for (const g of grammarItems) {
-    stages.push({
-      id: `${lessonId}-grammar-${g.topicSlug}`,
-      type: "grammar",
-      title: `Review: ${g.topicTitle}`,
-      ptTitle: `Revisão: ${g.topicTitle}`,
-      description: "Grammar review.",
-      grammarItems: [g],
-    });
-  }
-
-  // Practice from vocab examples
-  const practiceFromVocab = vocabItems
-    .filter((v) => v.example.pt && v.word)
-    .map((v, i) => buildPracticeFromVocab(v, i, lessonId));
-  if (practiceFromVocab.length > 0) {
-    stages.push({
-      id: `${lessonId}-practice`,
-      type: "practice",
-      title: "Review Practice",
-      ptTitle: "Prática de Revisão",
-      description: "Fill in the missing word.",
-      practiceItems: practiceFromVocab,
-    });
-  }
-
-  const lesson: Lesson = {
-    id: lessonId,
-    title: "Review Session",
-    ptTitle: "Review Session",
-    description: `${review.totalItems} items to review`,
-    cefr: "A1",
-    estimatedMinutes: 15,
-    order: 0,
-    stages,
-  };
-
-  const allPracticeItems: PracticeItem[] = review.items.map((item) => ({
-    contentType: item.contentType,
-    contentId: item.contentId,
-    contentCefr: item.contentCefr,
-    contentCategory: item.contentCategory,
-    isHighFrequency: item.isHighFrequency,
-    data: item.data,
+function verbItemsToStages(items: VerbItem[], lessonId: string): LessonStage[] {
+  return items.map((verbItem) => ({
+    id: `${lessonId}-verb-${verbItem.verbSlug}-${verbItem.tense}`,
+    type: "verb" as const,
+    title: `Verb: ${verbItem.verbSlug}`,
+    ptTitle: `Verbo: ${verbItem.verbSlug}`,
+    description: `Conjugation of '${verbItem.verbSlug}' (${verbItem.verbTranslation}).`,
+    verbs: [verbItem],
   }));
-
-  return { lesson, practiceItems: allPracticeItems };
 }
 
 // ─── Content Converters ─────────────────────────────────
@@ -292,61 +294,34 @@ function adaptGrammar(pool: PoolGrammarItem): GrammarItem {
 
 // ─── Practice Sentence Generation ───────────────────────
 
-function generatePracticeFromContent(generated: GeneratedLesson): LessonPracticeItem[] {
-  const sentences: LessonPracticeItem[] = [];
-  const lessonId = generated.id;
+/**
+ * Fill-in-the-blank sentences from vocab example sentences. Each sentence
+ * carries a contentRef so an answer can be attributed to the vocab word.
+ */
+function buildPracticeSentences(
+  vocab: PoolVocabItem[],
+  lessonId: string,
+  idPrefix: string
+): AttributedPracticeItem[] {
+  const sentences: AttributedPracticeItem[] = [];
 
-  for (const v of generated.learn.vocab) {
+  for (const v of vocab) {
     if (!v.example || !v.exampleTranslation) continue;
-    const item = buildPracticeFromPoolVocab(v, sentences.length, lessonId);
-    if (item) sentences.push(item);
+    const word = v.portuguese.split(" / ")[0].split(" (")[0].trim();
+    if (!word || !v.example.includes(word)) continue;
+    const contentRef: ContentRef = { contentType: "vocab", contentId: v.portuguese };
+    sentences.push({
+      id: `${lessonId}-${idPrefix}-${sentences.length}`,
+      sentence: v.example.replace(word, "___"),
+      answer: word,
+      fullSentence: v.example,
+      translation: v.exampleTranslation ?? "",
+      acceptedAnswers: [word],
+      contentRef,
+    });
   }
 
   return shuffleArray(sentences).slice(0, 8);
-}
-
-function buildPracticeFromPoolVocab(
-  v: PoolVocabItem, index: number, lessonId: string
-): LessonPracticeItem | null {
-  const word = v.portuguese.split(" / ")[0].split(" (")[0].trim();
-  if (!v.example || !v.example.includes(word)) return null;
-  return {
-    id: `${lessonId}-practice-${index}`,
-    sentence: v.example.replace(word, "___"),
-    answer: word,
-    fullSentence: v.example,
-    translation: v.exampleTranslation ?? "",
-    acceptedAnswers: [word],
-  };
-}
-
-function buildPracticeFromVocab(
-  v: VocabItem, index: number, lessonId: string
-): LessonPracticeItem {
-  const word = v.word.split(" / ")[0].split(" (")[0].trim();
-  const hasBlanked = v.example.pt.includes(word);
-  return {
-    id: `${lessonId}-practice-${index}`,
-    sentence: hasBlanked ? v.example.pt.replace(word, "___") : `___ ${v.example.pt}`,
-    answer: word,
-    fullSentence: v.example.pt,
-    translation: v.example.en,
-    acceptedAnswers: [word],
-  };
-}
-
-// ─── Title Helpers ──────────────────────────────────────
-
-function buildTitle(g: GeneratedLesson): string {
-  return `Your next lesson`;
-}
-
-function buildTitlePt(g: GeneratedLesson): string {
-  return `Your next lesson`;
-}
-
-function buildDescription(g: GeneratedLesson): string {
-  return `${g.totalItems} items · ${g.cefr} level`;
 }
 
 // ─── Utility ────────────────────────────────────────────

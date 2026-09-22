@@ -28,9 +28,7 @@ export interface UserVocabulary {
   user_id: string;
   word_portuguese: string;
   category: string;
-  familiarity: number; // 0-4
   last_reviewed: string | null;
-  next_review: string | null;
   times_correct: number;
   times_incorrect: number;
   created_at: string;
@@ -41,9 +39,7 @@ export interface UserVerb {
   id: string;
   user_id: string;
   verb: string;
-  familiarity: number;
   last_reviewed: string | null;
-  next_review: string | null;
   times_correct: number;
   times_incorrect: number;
   created_at: string;

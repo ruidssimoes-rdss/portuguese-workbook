@@ -81,6 +81,8 @@ export default function HomePage() {
   const [progressStats, setProgressStats] = useState<ProgressStats | null>(null);
   const [streakData, setStreakData] = useState<{ current: number; longest: number } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [loadAttempt, setLoadAttempt] = useState(0);
 
   useEffect(() => {
     if (authLoading) return;
@@ -88,6 +90,8 @@ export default function HomePage() {
       setLoading(false);
       return;
     }
+
+    let cancelled = false;
 
     async function load() {
       const supabase = createClient();
@@ -140,14 +144,54 @@ export default function HomePage() {
       setLoading(false);
     }
 
-    load();
-  }, [user, authLoading]);
+    load().catch((err: unknown) => {
+      if (cancelled) return;
+      console.error("Home page load error:", err);
+      setLoadError(err instanceof Error ? err.message : "Could not load your progress.");
+      setLoading(false);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user, authLoading, loadAttempt]);
+
+  function retryLoad() {
+    setLoadError(null);
+    setLoading(true);
+    setLoadAttempt((n) => n + 1);
+  }
 
   // Loading
   if (authLoading || loading) {
     return (
       <PageShell>
         <PageHeader title={getGreeting()} subtitle="Loading..." />
+      </PageShell>
+    );
+  }
+
+  // Load failed — say so, never leave "Loading..." forever
+  if (loadError) {
+    return (
+      <PageShell>
+        <PageHeader title={getGreeting()} subtitle="We couldn't load your progress." />
+        <div
+          role="alert"
+          className="flex items-start justify-between gap-3 px-4 py-3 bg-[#FAEEDA] border-[0.5px] border-[#E8C98A] rounded-lg mb-8"
+        >
+          <div>
+            <p className="text-[13px] font-medium text-[#854F0B]">Something went wrong</p>
+            <p className="text-[12px] text-[#854F0B] mt-0.5">{loadError}</p>
+          </div>
+          <button
+            type="button"
+            onClick={retryLoad}
+            className="shrink-0 px-3 py-1.5 text-[12px] font-medium text-[#854F0B] border-[0.5px] border-[#E8C98A] rounded-md hover:bg-[#F5E3C0] transition-colors cursor-pointer"
+          >
+            Retry
+          </button>
+        </div>
       </PageShell>
     );
   }

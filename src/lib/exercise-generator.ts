@@ -20,7 +20,12 @@ import type {
 } from "@/data/lessons";
 import type { GrammarData, GrammarQuestion } from "@/types/grammar";
 import grammarData from "@/data/grammar.json";
-import type { Difficulty } from "./exercise-types";
+import type {
+  Difficulty,
+  ContentRef,
+  ExerciseOnlyContent,
+  AttributedPracticeItem,
+} from "./exercise-types";
 import { getDifficulty } from "./exercise-types";
 
 const grammarDB = grammarData as unknown as GrammarData;
@@ -28,7 +33,14 @@ const grammarDB = grammarData as unknown as GrammarData;
 /* ─── Re-exported types ─── */
 
 export { getDifficulty } from "./exercise-types";
-export type { Difficulty, SectionResult, SectionAnswer } from "./exercise-types";
+export type {
+  Difficulty,
+  SectionResult,
+  SectionAnswer,
+  ContentRef,
+  ExerciseOnlyContent,
+  AttributedPracticeItem,
+} from "./exercise-types";
 
 /* ─── Learn phase types (unchanged) ─── */
 
@@ -72,6 +84,8 @@ export interface GeneratedSection {
   nameEn: string;
   data: Record<string, unknown>;
   totalQuestions: number;
+  /** questionId → the pool item that question tests (used to record mastery) */
+  attribution: Record<string, ContentRef>;
 }
 
 export interface GeneratedLesson {
@@ -156,7 +170,15 @@ interface LessonContent {
   practiceItems: PracticeItem[];
 }
 
-function extractContent(lesson: Lesson): LessonContent {
+/**
+ * Split lesson content into what is shown in the learn phase and what is
+ * exercised. Exercise-only content (review / spot-check / carry-forward)
+ * is never shown in the learn phase — it goes straight to the sections.
+ */
+function extractContent(
+  lesson: Lesson,
+  exerciseOnly?: ExerciseOnlyContent
+): { learn: LessonContent; all: LessonContent } {
   const vocabItems: VocabItem[] = [];
   const verbItems: VerbItem[] = [];
   const grammarItems: GrammarItem[] = [];
@@ -171,19 +193,63 @@ function extractContent(lesson: Lesson): LessonContent {
     else if (stage.type === "practice" && stage.practiceItems) practiceItems.push(...stage.practiceItems);
   }
 
-  return { vocabItems, verbItems, grammarItems, cultureItems, practiceItems };
+  const learn: LessonContent = { vocabItems, verbItems, grammarItems, cultureItems, practiceItems };
+  const all: LessonContent = {
+    vocabItems: [...vocabItems, ...(exerciseOnly?.vocabItems ?? [])],
+    verbItems: [...verbItems, ...(exerciseOnly?.verbItems ?? [])],
+    grammarItems: [...grammarItems, ...(exerciseOnly?.grammarItems ?? [])],
+    cultureItems,
+    practiceItems: [...practiceItems, ...(exerciseOnly?.practiceItems ?? [])],
+  };
+
+  return { learn, all };
+}
+
+/* ─── Attribution helpers ─── */
+
+function vocabRef(word: VocabItem): ContentRef {
+  return { contentType: "vocab", contentId: word.word };
+}
+
+function verbRef(verb: VerbItem): ContentRef {
+  return { contentType: "verb", contentId: verb.verbSlug.toUpperCase() };
+}
+
+function grammarRef(g: GrammarItem): ContentRef {
+  return { contentType: "grammar", contentId: g.topicSlug };
+}
+
+function baseWord(word: string): string {
+  return word.split(" / ")[0].split(" (")[0].trim();
+}
+
+/**
+ * Which pool item a practice sentence tests. Adapter-built sentences carry
+ * an explicit contentRef; curriculum sentences fall back to the vocab word
+ * whose base form is the answer.
+ */
+function practiceRef(p: PracticeItem, content: LessonContent): ContentRef | null {
+  const explicit = (p as AttributedPracticeItem).contentRef;
+  if (explicit) return explicit;
+  const answer = p.answer.trim().toLowerCase();
+  const match = content.vocabItems.find((v) => baseWord(v.word).toLowerCase() === answer);
+  return match ? vocabRef(match) : null;
+}
+
+function setRef(attribution: Record<string, ContentRef>, id: string, ref: ContentRef | null): void {
+  if (ref) attribution[id] = ref;
 }
 
 /** Collect grammar examples that are full sentences (3+ words) */
-function getGrammarExamples(content: LessonContent): Array<{ pt: string; en: string }> {
-  const examples: Array<{ pt: string; en: string }> = [];
+function getGrammarExamples(content: LessonContent): Array<{ pt: string; en: string; topicSlug: string }> {
+  const examples: Array<{ pt: string; en: string; topicSlug: string }> = [];
   for (const g of content.grammarItems) {
     const topic = grammarDB.topics[g.topicSlug];
     if (!topic?.rules) continue;
     for (const rule of topic.rules) {
       for (const ex of rule.examples ?? []) {
         if (ex.pt && ex.en && ex.pt.split(/\s+/).length >= 3 && !ex.pt.includes("/")) {
-          examples.push(ex);
+          examples.push({ pt: ex.pt, en: ex.en, topicSlug: g.topicSlug });
         }
       }
     }
@@ -291,8 +357,10 @@ function generateVocabSection(content: LessonContent, showEnglish: boolean): Gen
   const count = Math.min(shuffled.length, 12);
   const selected = shuffled.slice(0, count);
   const allEn = content.vocabItems.map((v) => v.translation);
+  const attribution: Record<string, ContentRef> = {};
 
   const questions = selected.map((word, i) => {
+    attribution[`vocab-${i}`] = vocabRef(word);
     const isMC = i % 3 === 2;
     if (isMC) {
       // PT→EN MC: show Portuguese word, pick English translation
@@ -326,17 +394,25 @@ function generateVocabSection(content: LessonContent, showEnglish: boolean): Gen
     nameEn: "Vocabulary",
     data: { questions, showEnglish },
     totalQuestions: questions.length,
+    attribution,
   };
 }
 
 function generateConjugationSection(content: LessonContent, showEnglish: boolean): GeneratedSection {
-  const verbs = content.verbItems.map((v) => ({
-    verb: v.verb,
-    verbMeaning: showEnglish ? v.verbTranslation : undefined,
-    tense: TENSE_LABELS[v.tense] ?? v.tense,
-    tenseEnglish: showEnglish ? v.tense : undefined,
-    persons: (v.conjugations ?? []).map((c) => ({ pronoun: c.pronoun, correctForm: c.form })),
-  }));
+  const attribution: Record<string, ContentRef> = {};
+  const verbs = content.verbItems.map((v) => {
+    const tenseLabel = TENSE_LABELS[v.tense] ?? v.tense;
+    const persons = (v.conjugations ?? []).map((c) => ({ pronoun: c.pronoun, correctForm: c.form }));
+    // The section component keys each answer as `${verb}-${tense}-${pronoun}`
+    for (const p of persons) attribution[`${v.verb}-${tenseLabel}-${p.pronoun}`] = verbRef(v);
+    return {
+      verb: v.verb,
+      verbMeaning: showEnglish ? v.verbTranslation : undefined,
+      tense: tenseLabel,
+      tenseEnglish: showEnglish ? v.tense : undefined,
+      persons,
+    };
+  });
 
   const totalQuestions = verbs.reduce((sum, v) => sum + v.persons.length, 0);
 
@@ -346,52 +422,86 @@ function generateConjugationSection(content: LessonContent, showEnglish: boolean
     nameEn: "Conjugation",
     data: { verbs, showEnglish },
     totalQuestions,
+    attribution,
   };
 }
 
+type GrammarQuestionData = Record<string, unknown> & { id: string; type: "true-false" | "mc"; isTrue?: boolean };
+
+/**
+ * Pick up to `max` grammar questions. A section must never consist of
+ * true/false questions whose answers are all "Verdadeiro": if the picked
+ * set has true/false questions but no false one, swap one in.
+ */
+function pickGrammarQuestions(pool: GrammarQuestionData[], max: number): GrammarQuestionData[] {
+  const picked = shuffle(pool).slice(0, max);
+  const tfPicked = picked.filter((q) => q.type === "true-false");
+  const hasFalse = tfPicked.some((q) => q.isTrue === false);
+  if (tfPicked.length > 0 && !hasFalse) {
+    const spareFalse = pool.find((q) => q.type === "true-false" && q.isTrue === false && !picked.includes(q));
+    const trueIdx = picked.findIndex((q) => q.type === "true-false" && q.isTrue === true);
+    if (spareFalse && trueIdx !== -1) {
+      picked[trueIdx] = spareFalse;
+    } else {
+      // No false statement available at all — drop the true/false questions
+      return picked.filter((q) => q.type !== "true-false");
+    }
+  }
+  return picked;
+}
+
 function generateGrammarSection(content: LessonContent, showEnglish: boolean): GeneratedSection {
-  const questions: Array<Record<string, unknown>> = [];
+  const questions: GrammarQuestionData[] = [];
+  const attribution: Record<string, ContentRef> = {};
 
   for (const g of content.grammarItems) {
     const topic = grammarDB.topics[g.topicSlug];
+    const ref = grammarRef(g);
+    let hasTrueFalse = false;
 
     if (topic?.rules?.length) {
       const rule = topic.rules[0];
-      if (rule.rule) {
+      // Only emit a true/false pair when the statement can actually be falsified.
+      // A topic that cannot be falsified falls back to multiple choice below.
+      const falsified = rule.rule ? falsifyStatement(rule.rule) : null;
+      if (rule.rule && falsified) {
+        hasTrueFalse = true;
+        const trueId = `grammar-tf-true-${g.topicSlug}`;
+        const falseId = `grammar-tf-false-${g.topicSlug}`;
         questions.push({
-          id: `grammar-tf-true-${g.topicSlug}`,
+          id: trueId,
           type: "true-false",
           statement: rule.rule,
           statementPt: rule.rulePt,
           isTrue: true,
           explanation: "Verdadeiro!",
         });
-
-        const falsified = falsifyStatement(rule.rule);
-        if (falsified) {
-          questions.push({
-            id: `grammar-tf-false-${g.topicSlug}`,
-            type: "true-false",
-            statement: falsified,
-            isTrue: false,
-            explanation: `Falso. ${rule.rulePt || rule.rule}`,
-          });
-        }
+        questions.push({
+          id: falseId,
+          type: "true-false",
+          statement: falsified,
+          isTrue: false,
+          explanation: `Falso. ${rule.rulePt || rule.rule}`,
+        });
+        attribution[trueId] = ref;
+        attribution[falseId] = ref;
       }
     }
 
     const topicQs: GrammarQuestion[] = topic?.questions ?? [];
-    const picked = shuffle([...topicQs]).slice(0, 3);
+    const picked = shuffle([...topicQs]).slice(0, hasTrueFalse ? 3 : 4);
     for (const q of picked) {
       if (q.options && q.correctIndex !== undefined) {
+        const id = `grammar-mc-${g.topicSlug}-${q.questionText.slice(0, 20).replace(/\s/g, "-")}`;
         questions.push({
-          id: `grammar-mc-${q.questionText.slice(0, 20).replace(/\s/g, "-")}`,
+          id,
           type: "mc",
           question: q.questionTextPt || q.questionText,
           questionEnglish: showEnglish ? q.questionText : undefined,
           options: [...q.options],
           correctIndex: q.correctIndex,
         });
+        attribution[id] = ref;
       }
     }
   }
@@ -415,12 +525,20 @@ function generateGrammarSection(content: LessonContent, showEnglish: boolean): G
     });
   }
 
+  const picked = pickGrammarQuestions(questions, 8);
+  const pickedIds = new Set(picked.map((q) => q.id));
+  const pickedAttribution: Record<string, ContentRef> = {};
+  for (const [id, ref] of Object.entries(attribution)) {
+    if (pickedIds.has(id)) pickedAttribution[id] = ref;
+  }
+
   return {
     key: "grammar",
     namePt: "Gramática",
     nameEn: "Grammar",
-    data: { questions: shuffle(questions).slice(0, 8), showEnglish },
-    totalQuestions: Math.min(questions.length, 8),
+    data: { questions: picked, showEnglish },
+    totalQuestions: picked.length,
+    attribution: pickedAttribution,
   };
 }
 
@@ -437,14 +555,18 @@ function generateFillBlankSection(
   const selected = shuffle(available).slice(0, count);
   selected.forEach((s) => tracker.mark(s.idx, key));
 
-  const sentences = selected.map((s, i) => ({
-    id: `fill-${i}`,
-    sentencePt: s.sentence,
-    sentenceEn: showEnglish ? s.translation : undefined,
-    correctAnswer: s.answer,
-    acceptedAnswers: s.acceptedAnswers,
-    hint: difficulty === "foundation" ? s.answer.charAt(0) + "..." : undefined,
-  }));
+  const attribution: Record<string, ContentRef> = {};
+  const sentences = selected.map((s, i) => {
+    setRef(attribution, `fill-${i}`, practiceRef(s, content));
+    return {
+      id: `fill-${i}`,
+      sentencePt: s.sentence,
+      sentenceEn: showEnglish ? s.translation : undefined,
+      correctAnswer: s.answer,
+      acceptedAnswers: s.acceptedAnswers,
+      hint: difficulty === "foundation" ? s.answer.charAt(0) + "..." : undefined,
+    };
+  });
 
   return {
     key,
@@ -452,6 +574,7 @@ function generateFillBlankSection(
     nameEn: "Complete the sentences",
     data: { sentences, showEnglish },
     totalQuestions: sentences.length,
+    attribution,
   };
 }
 
@@ -463,12 +586,15 @@ function generateTranslationSection(
 ): GeneratedSection {
   const key = "translation";
   const sentences: Array<Record<string, unknown>> = [];
+  const attribution: Record<string, ContentRef> = {};
 
   // Short vocab translations first (2-3)
   const vocabForTrans = shuffle([...content.vocabItems]).slice(0, 3);
   for (const word of vocabForTrans) {
+    const id = `trans-v-${sentences.length}`;
+    attribution[id] = vocabRef(word);
     sentences.push({
-      id: `trans-v-${sentences.length}`,
+      id,
       sourceText: word.translation,
       correctAnswer: word.word,
       acceptedAnswers: [],
@@ -480,20 +606,24 @@ function generateTranslationSection(
   const practicePick = shuffle(available).slice(0, 2);
   for (const s of practicePick) {
     tracker.mark(s.idx, key);
+    const id = `trans-p-${sentences.length}`;
+    setRef(attribution, id, practiceRef(s, content));
     sentences.push({
-      id: `trans-p-${sentences.length}`,
+      id,
       sourceText: s.translation,
       correctAnswer: s.fullSentence,
       acceptedAnswers: s.acceptedAnswers?.map((a) => s.sentence.replace(/___/g, a)),
     });
   }
 
+  const kept = sentences.slice(0, 4);
   return {
     key,
     namePt: "Tradução",
     nameEn: "Translation",
-    data: { sentences: sentences.slice(0, 4), showEnglish },
-    totalQuestions: Math.min(sentences.length, 4),
+    data: { sentences: kept, showEnglish },
+    totalQuestions: kept.length,
+    attribution: keepAttribution(attribution, kept),
   };
 }
 
@@ -505,6 +635,7 @@ function generateSentenceBuildSection(
 ): GeneratedSection {
   const key = "sentence-build";
   const sentences: Array<Record<string, unknown>> = [];
+  const attribution: Record<string, ContentRef> = {};
 
   // Practice sentences (1-2)
   const available = tracker.getAvailable(content.practiceItems, key);
@@ -513,8 +644,10 @@ function generateSentenceBuildSection(
     const words = s.fullSentence.split(/\s+/);
     if (words.length >= 3) {
       tracker.mark(s.idx, key);
+      const id = `build-p-${sentences.length}`;
+      setRef(attribution, id, practiceRef(s, content));
       sentences.push({
-        id: `build-p-${sentences.length}`,
+        id,
         scrambledWords: shuffle([...words]),
         correctSentence: s.fullSentence,
         sentenceEnglish: showEnglish ? s.translation : undefined,
@@ -528,8 +661,10 @@ function generateSentenceBuildSection(
     if (sentences.length >= 3) break;
     const words = ex.pt.split(/\s+/);
     if (words.length >= 3) {
+      const id = `build-g-${sentences.length}`;
+      attribution[id] = { contentType: "grammar", contentId: ex.topicSlug };
       sentences.push({
-        id: `build-g-${sentences.length}`,
+        id,
         scrambledWords: shuffle([...words]),
         correctSentence: ex.pt,
         sentenceEnglish: showEnglish ? ex.en : undefined,
@@ -545,8 +680,10 @@ function generateSentenceBuildSection(
       const words = s.fullSentence.split(/\s+/);
       if (words.length >= 3) {
         tracker.mark(s.idx, key);
+        const id = `build-f-${sentences.length}`;
+        setRef(attribution, id, practiceRef(s, content));
         sentences.push({
-          id: `build-f-${sentences.length}`,
+          id,
           scrambledWords: shuffle([...words]),
           correctSentence: s.fullSentence,
           sentenceEnglish: showEnglish ? s.translation : undefined,
@@ -555,12 +692,14 @@ function generateSentenceBuildSection(
     }
   }
 
+  const kept = sentences.slice(0, 3);
   return {
     key,
     namePt: "Constrói a frase",
     nameEn: "Build the sentence",
-    data: { sentences: sentences.slice(0, 3), showEnglish },
-    totalQuestions: Math.min(sentences.length, 3),
+    data: { sentences: kept, showEnglish },
+    totalQuestions: kept.length,
+    attribution: keepAttribution(attribution, kept),
   };
 }
 
@@ -577,11 +716,15 @@ function generateWordBankSection(
   selected.forEach((s) => tracker.mark(s.idx, key));
 
   // If not enough from practice, we still generate with what we have (minimum 2)
-  const blanks = selected.map((s, i) => ({
-    id: `wb-${i}`,
-    correctAnswer: s.answer,
-    acceptedAnswers: s.acceptedAnswers,
-  }));
+  const attribution: Record<string, ContentRef> = {};
+  const blanks = selected.map((s, i) => {
+    setRef(attribution, `wb-${i}`, practiceRef(s, content));
+    return {
+      id: `wb-${i}`,
+      correctAnswer: s.answer,
+      acceptedAnswers: s.acceptedAnswers,
+    };
+  });
 
   const textWithBlanks = selected.map((s) => s.sentence).join(" ");
   const correctWords = blanks.map((b) => b.correctAnswer);
@@ -600,6 +743,7 @@ function generateWordBankSection(
     nameEn: "Text with gaps",
     data: { paragraph: { textWithBlanks, blanks, wordBank, paragraphEnglish }, showEnglish },
     totalQuestions: blanks.length,
+    attribution,
   };
 }
 
@@ -612,6 +756,7 @@ function generateErrorCorrectionSection(
 ): GeneratedSection {
   const key = "error-correction";
   const sentences: Array<Record<string, unknown>> = [];
+  const attribution: Record<string, ContentRef> = {};
 
   // From practice sentences (1-2)
   const available = tracker.getAvailable(content.practiceItems, key);
@@ -621,6 +766,7 @@ function generateErrorCorrectionSection(
     const incorrect = introduceError(correctSentence, s.answer, content.vocabItems, difficulty);
     if (incorrect) {
       tracker.mark(s.idx, key);
+      setRef(attribution, `ec-p-${sentences.length}`, practiceRef(s, content));
       sentences.push({
         id: `ec-p-${sentences.length}`,
         incorrectSentence: incorrect,
@@ -641,6 +787,7 @@ function generateErrorCorrectionSection(
       const correctSentence = `${person.pronoun.charAt(0).toUpperCase() + person.pronoun.slice(1)} ${person.form}.`;
       const incorrectSentence = `${person.pronoun.charAt(0).toUpperCase() + person.pronoun.slice(1)} ${wrongForm}.`;
       if (correctSentence !== incorrectSentence) {
+        attribution[`ec-v-${sentences.length}`] = verbRef(verb);
         sentences.push({
           id: `ec-v-${sentences.length}`,
           incorrectSentence,
@@ -660,6 +807,7 @@ function generateErrorCorrectionSection(
       const articleSwaps: [string, string][] = [["O ", "A "], ["A ", "O "], ["o ", "a "], ["a ", "o "]];
       for (const [from, to] of articleSwaps) {
         if (ex.pt.includes(from)) {
+          attribution[`ec-g-${sentences.length}`] = { contentType: "grammar", contentId: ex.topicSlug };
           sentences.push({
             id: `ec-g-${sentences.length}`,
             incorrectSentence: ex.pt.replace(from, to),
@@ -673,13 +821,26 @@ function generateErrorCorrectionSection(
     }
   }
 
+  const kept = sentences.slice(0, 3);
   return {
     key,
     namePt: "Corrige os erros",
     nameEn: "Correct the errors",
-    data: { sentences: sentences.slice(0, 3), showEnglish },
-    totalQuestions: Math.min(sentences.length, 3),
+    data: { sentences: kept, showEnglish },
+    totalQuestions: kept.length,
+    attribution: keepAttribution(attribution, kept),
   };
+}
+
+/** Keep only the attribution entries for questions that survived a slice */
+function keepAttribution(
+  attribution: Record<string, ContentRef>,
+  kept: Array<Record<string, unknown>>
+): Record<string, ContentRef> {
+  const ids = new Set(kept.map((q) => q.id as string));
+  const out: Record<string, ContentRef> = {};
+  for (const [id, ref] of Object.entries(attribution)) if (ids.has(id)) out[id] = ref;
+  return out;
 }
 
 function falsifyStatement(statement: string): string | null {
@@ -716,8 +877,15 @@ function introduceError(sentence: string, correctWord: string, vocab: VocabItem[
 
 /* ─── Main generator ─── */
 
-export function generateLessonExercises(lesson: Lesson, _showEnglish: boolean = false): GeneratedLesson {
-  const content = extractContent(lesson);
+/**
+ * Build the learn items and exercise sections for a lesson.
+ *
+ * @param lesson        Learn-phase content (shown, then exercised).
+ * @param exerciseOnly  Review / spot-check / carry-forward content — exercised
+ *                      but never shown in the learn phase.
+ */
+export function generateLessonExercises(lesson: Lesson, exerciseOnly?: ExerciseOnlyContent): GeneratedLesson {
+  const { learn, all: content } = extractContent(lesson, exerciseOnly);
   const difficulty = getDifficulty(lesson.order, lesson.cefr);
   const showEnglish = lesson.cefr === "A1" || lesson.cefr === "A2";
   const sections: GeneratedSection[] = [];
@@ -772,7 +940,7 @@ export function generateLessonExercises(lesson: Lesson, _showEnglish: boolean = 
   const passPoints = Math.ceil(totalPoints * 0.8);
 
   return {
-    learnItems: generateLearnItems(content),
+    learnItems: generateLearnItems(learn),
     sections,
     totalPoints,
     passPoints,

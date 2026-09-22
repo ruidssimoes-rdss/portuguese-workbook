@@ -1,17 +1,21 @@
 /**
  * Learning Engine — Review Generator
  *
- * Generates targeted review sessions focusing on weak items:
- * overdue for review, low accuracy, broken streaks.
+ * Builds a targeted review session from the shared review selector
+ * (overdue, low accuracy, broken streak). Review items are never shown
+ * in a learn phase — the adapter sends them straight to exercises.
  */
 
 import {
   getUserMastery,
-  type MasteryRecord,
   type CEFRLevel,
   type ContentType,
 } from "./mastery-tracker";
-
+import {
+  selectReviewCandidates,
+  REVIEW_SESSION_MAX,
+  type ReviewReason,
+} from "./review-selector";
 import {
   getVocabPool,
   getVerbPool,
@@ -22,9 +26,9 @@ import {
   type PoolGrammarItem,
 } from "./content-pool";
 
-// ─── Types ──────────────────────────────────────────────
+export type { ReviewReason } from "./review-selector";
 
-export type ReviewReason = "overdue" | "low_accuracy" | "broken_streak";
+// ─── Types ──────────────────────────────────────────────
 
 export interface ReviewSession {
   id: string;
@@ -48,74 +52,12 @@ export interface ReviewItem {
 
 // ─── Generator ──────────────────────────────────────────
 
-/**
- * Generate a targeted review session.
- * Focuses on weak items: overdue, low accuracy, broken streaks.
- */
 export async function generateReviewSession(
   userId: string,
-  maxItems: number = 15
+  maxItems: number = REVIEW_SESSION_MAX
 ): Promise<ReviewSession> {
   const allRecords = await getUserMastery(userId);
-
-  const now = new Date();
-  const candidates: Array<{
-    record: MasteryRecord;
-    reason: ReviewReason;
-    priority: number;
-  }> = [];
-
-  for (const record of allRecords) {
-    // Skip unseen items (nothing to review)
-    if (record.mastery_level === 0) continue;
-
-    // Overdue for review
-    if (record.next_review_at && new Date(record.next_review_at) <= now) {
-      const daysOverdue =
-        (now.getTime() - new Date(record.next_review_at).getTime()) /
-        (1000 * 60 * 60 * 24);
-      candidates.push({
-        record,
-        reason: "overdue",
-        priority: 100 + daysOverdue,
-      });
-    }
-
-    // Low accuracy (seen 3+ times, <60% correct)
-    if (record.times_seen >= 3) {
-      const accuracy = record.times_correct / record.times_seen;
-      if (accuracy < 0.6) {
-        candidates.push({
-          record,
-          reason: "low_accuracy",
-          priority: 80 + (1 - accuracy) * 50,
-        });
-      }
-    }
-
-    // Broken streak (was doing well, then got it wrong)
-    if (
-      record.streak === 0 &&
-      record.mastery_level >= 2 &&
-      record.times_incorrect > 0
-    ) {
-      candidates.push({ record, reason: "broken_streak", priority: 60 });
-    }
-  }
-
-  // Sort by priority (highest first)
-  candidates.sort((a, b) => b.priority - a.priority);
-
-  // Deduplicate — same item might appear for multiple reasons
-  const seen = new Set<string>();
-  const deduped = candidates.filter((c) => {
-    const key = `${c.record.content_type}:${c.record.content_id}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-
-  const selected = deduped.slice(0, maxItems);
+  const selected = selectReviewCandidates(allRecords, new Date(), maxItems);
 
   const items: ReviewItem[] = selected.map(({ record, reason }) => ({
     contentType: record.content_type as ContentType,

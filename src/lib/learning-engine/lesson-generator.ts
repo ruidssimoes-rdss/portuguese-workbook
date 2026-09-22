@@ -262,7 +262,8 @@ function selectNewGrammar(
 }
 
 /**
- * Select items due for review (mastery level 2-3, next_review_at in the past)
+ * Select items due for review: any introduced item (level >= 1, below
+ * spot-check territory) whose SM-2 next_review_at is in the past.
  */
 function selectReviewItems(
   masteryMap: Map<string, MasteryRecord>,
@@ -274,7 +275,7 @@ function selectReviewItems(
 
   masteryMap.forEach((record) => {
     if (record.content_cefr !== cefr) return;
-    if (record.mastery_level < 2 || record.mastery_level > 3) return;
+    if (record.mastery_level < 1 || record.mastery_level > 3) return;
     if (!record.next_review_at) return;
 
     const reviewDate = new Date(record.next_review_at);

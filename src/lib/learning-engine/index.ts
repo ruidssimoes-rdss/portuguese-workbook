@@ -5,6 +5,7 @@ export {
   type MasteryLevel,
   type MasteryRecord,
   type MasteryUpdate,
+  type MasteryAnswer,
   type CEFRProgress,
   // Constants
   MASTERY_LABELS,
@@ -47,6 +48,21 @@ export {
   generateLesson,
 } from "./lesson-generator";
 
+export { buildMasteryAnswers } from "./mastery-answers";
+
+export {
+  applySm2,
+  deriveMasteryLevel,
+  type Sm2State,
+  type Sm2Result,
+} from "./sm2";
+
+export {
+  selectReviewCandidates,
+  REVIEW_SESSION_MAX,
+  type ReviewCandidate,
+} from "./review-selector";
+
 export {
   // Types
   type ReviewSession,
@@ -69,4 +85,6 @@ export {
   // Adapters
   adaptGeneratedLesson,
   adaptReviewSession,
+  type AdaptedLesson,
+  type AdaptOptions,
 } from "./lesson-adapter";

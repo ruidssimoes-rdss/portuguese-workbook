@@ -15,7 +15,7 @@ import type { SectionResult } from "@/lib/exercise-types";
 
 import { LearnIntro } from "./learn-intro";
 import { LearnProgress } from "./learn-progress";
-import { LearnResults } from "./learn-results";
+import { LearnResults, type SaveStatus } from "./learn-results";
 
 // New section components (built from scratch for /learn)
 import { VocabSectionNew } from "./sections/vocab-section";
@@ -55,11 +55,20 @@ interface LearnPlayerProps {
   generated: GeneratedLesson;
   isReview: boolean;
   onComplete: (sectionResults: SectionResult[]) => void;
+  saveStatus?: SaveStatus;
+  onRetrySave?: () => void;
 }
 
 // ─── Player ─────────────────────────────────────────────
 
-export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPlayerProps) {
+export function LearnPlayer({
+  lesson,
+  generated,
+  isReview,
+  onComplete,
+  saveStatus,
+  onRetrySave,
+}: LearnPlayerProps) {
   const [state, setState] = useState<PlayerState>("intro");
   const [currentSection, setCurrentSection] = useState(0);
   const [sectionResults, setSectionResults] = useState<SectionResult[]>([]);
@@ -84,6 +93,11 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
   }
 
   function handleReviewFirst() {
+    // Review sessions have no learn phase — go straight to exercises
+    if (learnTotal === 0) {
+      handleStartExercises();
+      return;
+    }
     setState("learn");
     setLearnIndex(0);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -169,6 +183,8 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
         accuracy={accuracy}
         sectionResults={sectionResults}
         onRetry={handleRetry}
+        saveStatus={saveStatus}
+        onRetrySave={onRetrySave}
       />
     );
   }

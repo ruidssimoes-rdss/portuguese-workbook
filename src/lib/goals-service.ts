@@ -292,3 +292,41 @@ function mapRowToGoal(row: Record<string, unknown>): UserGoal {
     updated_at: row.updated_at as string,
   };
 }
+
+/**
+ * Increment the active goal of a given type by `delta` completed items.
+ * Unlike updateGoalProgress (which sets an absolute count), this is safe to
+ * call once per completed lesson without knowing the running total.
+ */
+export async function incrementGoalProgress(
+  goalType: string,
+  delta: number = 1
+): Promise<void> {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return;
+
+  const { data: goal } = await supabase
+    .from("user_goals")
+    .select("id, total_items, completed_items")
+    .eq("user_id", user.id)
+    .eq("goal_type", goalType)
+    .eq("is_active", true)
+    .maybeSingle();
+
+  if (!goal) return;
+
+  const completed = Math.min(goal.total_items, (goal.completed_items ?? 0) + delta);
+  const isComplete = completed >= goal.total_items;
+
+  await supabase
+    .from("user_goals")
+    .update({
+      completed_items: completed,
+      is_active: !isComplete,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", goal.id);
+}

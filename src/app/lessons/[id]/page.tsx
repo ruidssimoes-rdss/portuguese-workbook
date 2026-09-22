@@ -380,7 +380,7 @@ function LessonContent({ id }: { id: string }) {
   useEffect(() => {
     if (isAISession || !lesson || showRestorePrompt || generatedLesson) return;
     if (isDynamic && dynamicLoading) return; // wait for dynamic lesson to load
-    setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
+    setGeneratedLesson(generateLessonExercises(lesson));
   }, [isAISession, isDynamic, dynamicLoading, lesson, showRestorePrompt, generatedLesson, showEnglish]);
 
   // Persist session
@@ -571,7 +571,7 @@ function LessonContent({ id }: { id: string }) {
   };
 
   const handleRetryExercises = () => {
-    if (lesson) setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
+    if (lesson) setGeneratedLesson(generateLessonExercises(lesson));
     setCurrentSection(0);
     setSectionResults([]);
     hasSaved.current = false;
@@ -582,7 +582,7 @@ function LessonContent({ id }: { id: string }) {
   };
 
   const handleRetryFull = () => {
-    if (lesson) setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
+    if (lesson) setGeneratedLesson(generateLessonExercises(lesson));
     setLearnIndex(0);
     setCurrentSection(0);
     setSectionResults([]);
