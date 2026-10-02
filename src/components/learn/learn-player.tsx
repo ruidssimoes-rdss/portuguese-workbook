@@ -80,13 +80,13 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
   function handleStartExercises() {
     setState("sections");
     setCurrentSection(0);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleReviewFirst() {
     setState("learn");
     setLearnIndex(0);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleLearnNext() {
@@ -96,12 +96,12 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
       setState("sections");
       setCurrentSection(0);
     }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleLearnPrev() {
     if (learnIndex > 0) setLearnIndex((i) => i - 1);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
   }
 
   const handleSectionComplete = useCallback(
@@ -116,7 +116,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
       } else {
         setCurrentSection(next);
       }
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
     },
     [sectionResults, currentSection, totalSections, onComplete]
   );
@@ -125,7 +125,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
     setSectionResults([]);
     setCurrentSection(0);
     setState("sections");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
   }
 
   // ─── Progress ───────────────────────────────────────

@@ -1,7 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  /* === Aula shell tokens (Figma: Aula / Semantic) === */
+  --color-aula-canvas: #f7f7f6;      /* surface/side — grey canvas behind panels */
+  --color-aula-panel: #ffffff;       /* surface/raised — floating panels */
+  --color-aula-sunken: #f7f7f6;      /* surface/sunken */
+  --color-aula-selected: #efefed;    /* surface/selected — active nav pill */
+  --color-aula-line: #efefed;        /* border/subtle — panel outline */
+  --color-aula-border: #e6e6e4;      /* border/default */
+  --color-aula-text: #1f1f1f;        /* text/primary */
+  --color-aula-text-2: #6b6b69;      /* text/secondary */
+  --color-aula-text-3: #98988f;      /* text/tertiary */
+  --color-aula-text-4: #b5b5ae;      /* text/quaternary */
+  --color-aula-accent: #1b2b61;      /* accent/default — navy */
+  --color-aula-accent-hover: #14214c;
+  --color-aula-accent-faint: #f3f5fa;
+  --color-aula-overdue: #b94a32;     /* coral — overdue / wrong only */
+
+  --font-sans: var(--font-geist), system-ui, -apple-system, sans-serif;
   --font-content: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "Menlo", ui-monospace, monospace;
 
