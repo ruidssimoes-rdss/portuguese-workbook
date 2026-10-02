@@ -1,62 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import { PronunciationButton } from "@/components/pronunciation-button";
+import { ArrowRight } from "lucide-react";
+import { AudioButton } from "@/components/primitives";
+import { TENSE_PT } from "@/components/aula";
 import type { VerbLearnData } from "@/lib/exercise-generator";
 
-interface VerbLearnProps {
-  data: VerbLearnData;
-}
-
-export function VerbLearn({ data }: VerbLearnProps) {
+/** Learn phase · verb in one tense (matches the Conjugações verb page). */
+export function VerbLearn({ data }: { data: VerbLearnData }) {
   return (
-    <div>
-      <div className="mb-4">
-        <div className="flex items-center gap-2">
-          <PronunciationButton text={data.verb} size="sm" variant="muted" />
-          <h3 className="text-[20px] font-medium text-[#1F1F1F]">
-            {data.verb}
-          </h3>
-        </div>
-        <p className="text-[14px] text-[#6B6B69] mt-1">
-          {data.verbTranslation}
-        </p>
-        <p className="text-[13px] text-[#98988F] mt-0.5">
-          {data.tenseLabel}
-        </p>
+    <div className="rounded-xl border border-aula-border bg-white p-6">
+      <p className="mb-2 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3">Verbo</p>
+      <div className="flex flex-wrap items-center gap-2">
+        <h2 className="text-[26px] font-semibold tracking-[-0.02em] text-aula-text">{data.verb.toLowerCase()}</h2>
+        <AudioButton text={data.verb.toLowerCase()} />
+        <span className="rounded-md bg-aula-accent-faint px-1.5 py-[1px] text-[11px] font-medium text-aula-accent">{TENSE_PT[data.tenseLabel] ?? data.tenseLabel}</span>
       </div>
+      <p className="mt-1 text-[14px] text-aula-text-2">{data.verbTranslation}</p>
 
-      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg overflow-hidden bg-white">
-        {(data.conjugations ?? []).map((conj, i) => (
-          <div
-            key={conj.pronoun}
-            className={`flex items-center gap-4 px-5 py-3.5 ${
-              i > 0 ? "border-t border-[#E6E6E4]" : ""
-            }`}
-          >
-            <span className="text-[14px] font-medium text-[#98988F] w-20 shrink-0">
-              {conj.pronoun}
+      <div className="mt-5 divide-y divide-aula-line rounded-[10px] border border-aula-border">
+        {(data.conjugations ?? []).map((c) => (
+          <div key={c.pronoun} className="grid h-11 grid-cols-[110px_1fr] items-center px-4">
+            <span className="text-[12.5px] text-aula-text-3">{c.pronoun}</span>
+            <span className="flex items-center gap-1 text-[14px] font-medium text-aula-text">
+              {c.form}
+              <AudioButton text={c.form} />
             </span>
-            <div className="flex items-center gap-2">
-              <PronunciationButton text={conj.form} size="sm" variant="muted" />
-              <span className="text-[14px] font-medium text-[#1F1F1F]">
-                {conj.form}
-              </span>
-            </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-4">
-        <Link
-          href={`/conjugations/${data.verbSlug}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[13px] font-medium text-[#1B2B61] hover:underline"
-        >
-          Ver todos os tempos →
-        </Link>
-      </div>
+      <Link href={`/conjugations/${data.verbSlug}`} target="_blank" className="mt-4 inline-flex items-center gap-1 text-[12.5px] font-medium text-aula-accent">
+        Ver todos os tempos <ArrowRight size={12} strokeWidth={1.5} />
+      </Link>
     </div>
   );
 }

@@ -1,7 +1,14 @@
 "use client";
 
+/**
+ * Lesson results: score, per-section breakdown, and what to look at again.
+ * Wrong answers stay coral (your answer struck through, the right one beside it).
+ */
+
 import Link from "next/link";
+import { ArrowRight, RotateCcw } from "lucide-react";
 import type { SectionResult } from "@/lib/exercise-types";
+import { Track } from "@/components/aula";
 
 interface LearnResultsProps {
   passed: boolean;
@@ -11,112 +18,98 @@ interface LearnResultsProps {
 }
 
 export function LearnResults({ passed, accuracy, sectionResults, onRetry }: LearnResultsProps) {
-  const displayAccuracy = Math.round(accuracy);
+  const pct = Math.round(accuracy);
   const totalCorrect = sectionResults.reduce((s, r) => s + r.totalCorrect, 0);
   const totalQuestions = sectionResults.reduce((s, r) => s + r.totalQuestions, 0);
-
-  const wrongAnswers = sectionResults.flatMap((sr) =>
-    sr.answers.filter((a) => !a.correct).map((a) => ({
-      section: sr.sectionName,
-      userAnswer: a.userAnswer,
-      correctAnswer: a.correctAnswer,
-    }))
-  );
+  const wrong = sectionResults.flatMap((sr) => sr.answers.filter((a) => !a.correct).map((a) => ({ section: sr.sectionName, ...a })));
 
   return (
-    <div className="max-w-md mx-auto text-center py-12">
-      {/* Score */}
-      <div className="text-[48px] font-medium text-[#1F1F1F] tracking-[-0.02em]">
-        {displayAccuracy}%
+    <div className="mx-auto max-w-[620px] pt-6">
+      <div className="mb-4 flex items-center gap-2 text-[12px]">
+        <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
+          Lições
+        </Link>
+        <span className="text-aula-text-4">/</span>
+        <span className="text-aula-text-2">Resultado</span>
       </div>
 
-      {/* Pass / fail */}
-      {passed ? (
-        <div className="mt-2">
-          <p className="text-[16px] font-medium text-[#1F7A68]">Lesson complete!</p>
-          <p className="text-[13px] text-[#98988F] italic mt-1">Lição completa</p>
+      <div className="rounded-xl border border-aula-border bg-white p-6">
+        <div className="flex items-end gap-4">
+          <span className={`text-[44px] font-semibold leading-none tracking-[-0.03em] ${passed ? "text-[#1F7A68]" : "text-aula-text"}`}>{pct}%</span>
+          <div className="pb-1">
+            <p className={`text-[15px] font-semibold ${passed ? "text-[#1F7A68]" : "text-[#5B45B8]"}`}>{passed ? "Lição concluída" : "Ainda não"}</p>
+            <p className="text-[12px] text-aula-text-2">
+              {totalCorrect} de {totalQuestions} certas{passed ? "" : " · precisas de 80% para passar"}
+            </p>
+          </div>
         </div>
-      ) : (
-        <div className="mt-2">
-          <p className="text-[16px] font-medium text-[#5B45B8]">Not quite yet</p>
-          <p className="text-[13px] text-[#98988F] italic mt-1">Ainda não — tenta outra vez</p>
+        <div className="relative mt-5">
+          <Track value={accuracy / 100} tone={passed ? "accent" : "learning"} />
+          <span className="absolute top-[-3px] h-[10px] w-px bg-aula-text-3" style={{ left: "80%" }} title="80%" />
         </div>
-      )}
 
-      {/* Section breakdown */}
-      <div className="mt-6 space-y-1.5 text-left">
-        {sectionResults.map((sr, i) => {
-          const pct = sr.totalQuestions > 0 ? sr.totalCorrect / sr.totalQuestions : 0;
-          return (
-            <div
-              key={i}
-              className="flex items-center justify-between px-4 py-2.5 border-[0.5px] border-[#E6E6E4] rounded-lg"
-            >
-              <span className="text-[13px] text-[#1F1F1F]">{sr.sectionName}</span>
-              <span
-                className={`text-[13px] font-medium ${pct >= 0.8 ? "text-[#1F7A68]" : "text-[#5B45B8]"}`}
-              >
-                {sr.totalCorrect}/{sr.totalQuestions}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Summary */}
-      <div className="mt-4 border-[0.5px] border-[#E6E6E4] rounded-lg p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-[13px] text-[#6B6B69]">Respostas certas</span>
-          <span className={`text-[14px] font-medium ${passed ? "text-[#1F7A68]" : "text-[#5B45B8]"}`}>
-            {totalCorrect} / {totalQuestions}
-          </span>
+        <div className="mt-6">
+          <p className="mb-1.5 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3">Por secção</p>
+          {sectionResults.map((sr, i) => {
+            const p = sr.totalQuestions ? sr.totalCorrect / sr.totalQuestions : 0;
+            return (
+              <div key={i} className="flex h-9 items-center gap-4 text-[13px]">
+                <span className="flex-1 text-aula-text">{sr.sectionName}</span>
+                <div className="w-[120px]">
+                  <Track value={p} tone={p >= 0.8 ? "accent" : "learning"} />
+                </div>
+                <span className={`w-12 text-right text-[12px] font-medium ${p >= 0.8 ? "text-[#1F7A68]" : "text-aula-text-2"}`}>
+                  {sr.totalCorrect}/{sr.totalQuestions}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Wrong answers */}
-      {wrongAnswers.length > 0 && (
-        <div className="mt-4 text-left">
-          <p className="text-[10px] text-[#98988F] uppercase tracking-[0.05em] mb-2">
-            Precisa de prática
+      {wrong.length > 0 && (
+        <div className="mt-6">
+          <p className="mb-2 px-1 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3">
+            Para rever · {wrong.length} {wrong.length === 1 ? "resposta" : "respostas"}
           </p>
-          <div className="space-y-1.5">
-            {wrongAnswers.slice(0, 8).map((w, i) => (
-              <div key={i} className="flex items-center justify-between px-3 py-2 bg-[#FBE9E4] rounded-lg">
-                <span className="text-[13px] text-[#B94A32] truncate mr-2">
-                  {w.correctAnswer}
-                </span>
-                <span className="text-[12px] text-[#98988F] shrink-0">
-                  {w.section}
-                </span>
+          <div className="divide-y divide-aula-line rounded-xl border border-aula-border bg-white">
+            {wrong.slice(0, 12).map((w, i) => (
+              <div key={i} className="flex items-center gap-3 px-4 py-2.5">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-aula-overdue" />
+                <div className="min-w-0 flex-1 text-[13px]">
+                  {w.userAnswer && <span className="mr-2 text-aula-overdue line-through decoration-aula-overdue/60">{w.userAnswer}</span>}
+                  <span className="text-aula-text">{w.correctAnswer}</span>
+                </div>
+                <span className="shrink-0 text-[11px] text-aula-text-3">{w.section}</span>
               </div>
             ))}
           </div>
+          <p className="mt-2 px-1 text-[11.5px] text-aula-text-3">Voltam nas próximas revisões, mais cedo do que o resto.</p>
         </div>
       )}
 
-      {/* Buttons */}
-      <div className="mt-8 space-y-2">
+      <div className="mt-6 flex flex-wrap gap-2">
         {passed ? (
-          <Link
-            href="/lessons"
-            className="block w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors text-center"
+          <a
+            href="/learn"
+            className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-aula-accent px-5 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
           >
-            Continuar a aprender →
-          </Link>
+            Próxima lição <ArrowRight size={14} strokeWidth={1.5} />
+          </a>
         ) : (
           <button
             type="button"
             onClick={onRetry}
-            className="w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
+            className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-aula-accent px-5 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
           >
-            Tentar outra vez
+            <RotateCcw size={14} strokeWidth={1.5} /> Tentar outra vez
           </button>
         )}
         <Link
-          href="/lessons"
-          className="block w-full py-3.5 text-[14px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors text-center"
+          href="/"
+          className="inline-flex h-10 items-center rounded-lg border border-aula-border bg-white px-4 text-[13px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
         >
-          Voltar às lições
+          Voltar a Hoje
         </Link>
       </div>
     </div>
