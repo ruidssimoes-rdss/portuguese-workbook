@@ -97,6 +97,8 @@ export function useSidebarCollapsed() {
   const [collapsed, setCollapsed] = useState(false);
   useEffect(() => {
     try {
+      // Read after mount so server and client markup match.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCollapsed(localStorage.getItem(COLLAPSE_KEY) === "1");
     } catch {}
   }, []);

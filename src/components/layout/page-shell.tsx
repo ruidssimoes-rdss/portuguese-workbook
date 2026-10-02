@@ -11,8 +11,7 @@
  * The lesson player (/lessons/[id]) does NOT use this — it's full-screen.
  */
 
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Sidebar, AppLogo, useSidebarCollapsed } from "./sidebar";
@@ -33,9 +32,6 @@ export function PageShell({
 }) {
   const { collapsed, toggle } = useSidebarCollapsed();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => setMobileOpen(false), [pathname]);
 
   return (
     <div className="flex h-dvh bg-aula-canvas">
