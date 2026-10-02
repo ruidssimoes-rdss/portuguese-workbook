@@ -206,7 +206,7 @@ function LessonIntro({
     <div className="max-w-md mx-auto text-center py-8">
       {/* Title */}
       <h1 className="text-[22px] font-medium text-[#1F1F1F] tracking-[-0.02em]">
-        Your next lesson
+        A tua próxima lição
       </h1>
 
       {/* CEFR badge */}
@@ -243,14 +243,14 @@ function LessonIntro({
           onClick={onStartExercises}
           className="w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
         >
-          Start exercises →
+          Começar exercícios →
         </button>
         <button
           type="button"
           onClick={onReviewFirst}
           className="w-full py-3.5 text-[14px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors cursor-pointer"
         >
-          Review material first
+          Rever a matéria primeiro
         </button>
       </div>
 
@@ -259,9 +259,9 @@ function LessonIntro({
         <button
           type="button"
           onClick={onReset}
-          className="text-[12px] text-[#98988F] hover:text-[#dc2626] transition-colors mt-6 cursor-pointer"
+          className="text-[12px] text-[#98988F] hover:text-[#B94A32] transition-colors mt-6 cursor-pointer"
         >
-          Reset lesson
+          Recomeçar lição
         </button>
       )}
     </div>

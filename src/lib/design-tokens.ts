@@ -58,7 +58,7 @@ export const colors = {
   card: "#FFFFFF",
 
   // Tips / warnings
-  tip: { bg: "#FFFBEB", border: "#FEF3C7", text: "#92400E" },
+  tip: { bg: "#F3F5FA", border: "#D3DAEB", text: "#1B2B61" },
 
   // Filter pills
   filter: {

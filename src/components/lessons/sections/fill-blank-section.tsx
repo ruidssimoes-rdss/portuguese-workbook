@@ -97,7 +97,7 @@ export function FillBlankSection({ sectionIndex, totalSections, showEnglish, sen
                   placeholder={s.hint ?? "___"}
                 />
               ) : (
-                <span className={`inline-block mx-1 px-2 py-0.5 rounded font-medium ${r?.correct ? "text-[#1F7A68] bg-[#E1F2ED]" : "text-[#dc2626] bg-[#fef2f2]"}`}>
+                <span className={`inline-block mx-1 px-2 py-0.5 rounded font-medium ${r?.correct ? "text-[#1F7A68] bg-[#E1F2ED]" : "text-[#B94A32] bg-[#FBE9E4]"}`}>
                   {r?.correct ? s.correctAnswer : answers[s.id]}
                 </span>
               )}

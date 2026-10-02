@@ -63,7 +63,7 @@ function RingVariant({ data, className }: { data: ProgressBlockData; className?:
 
 function StatVariant({ data, className }: { data: ProgressBlockData; className?: string }) {
   const trendIcon = data.trend === "up" ? "\u2191" : data.trend === "down" ? "\u2193" : "\u2192";
-  const trendColor = data.trend === "up" ? "text-[#1F7A68]" : data.trend === "down" ? "text-[#dc2626]" : "text-[#98988F]";
+  const trendColor = data.trend === "up" ? "text-[#1F7A68]" : data.trend === "down" ? "text-[#B94A32]" : "text-[#98988F]";
 
   return (
     <div className={`border-[0.5px] border-[#E6E6E4] rounded-lg p-6 bg-white ${className ?? ""}`}>

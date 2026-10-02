@@ -85,8 +85,8 @@ export function ErrorCorrectionSection({ sectionIndex, totalSections, showEnglis
         return (
           <div key={s.id} className="border-[0.5px] border-[#E6E6E4] rounded-lg p-5 bg-white">
             <span className="text-[13px] font-medium text-[#98988F]">{i + 1}.</span>
-            <div className="bg-[#fef2f2] border-[0.5px] border-[#E6E6E4] rounded-lg px-4 py-2.5 mt-2 mb-3">
-              <p className="text-[14px] font-medium text-[#dc2626]">{s.incorrectSentence}</p>
+            <div className="bg-[#FBE9E4] border-[0.5px] border-[#E6E6E4] rounded-lg px-4 py-2.5 mt-2 mb-3">
+              <p className="text-[14px] font-medium text-[#B94A32]">{s.incorrectSentence}</p>
             </div>
             {showEnglish && s.hintEnglish && (
               <p className="text-[12px] text-[#98988F] mb-2">{s.hintEnglish}</p>
@@ -102,8 +102,8 @@ export function ErrorCorrectionSection({ sectionIndex, totalSections, showEnglis
                 autoComplete="off" spellCheck={false}
               />
             ) : (
-              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
-                <p className={`text-[14px] font-medium ${r?.correct ? "text-[#1F7A68]" : "text-[#dc2626]"}`}>
+              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"}`}>
+                <p className={`text-[14px] font-medium ${r?.correct ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
                   {answers[s.id]}
                 </p>
                 {!r?.correct && <p className="text-[13px] text-[#1F7A68] mt-1">{s.correctSentence}</p>}

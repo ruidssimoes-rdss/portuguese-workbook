@@ -96,8 +96,8 @@ export function TranslationSection({ sectionIndex, totalSections, showEnglish, s
                 autoComplete="off" spellCheck={false}
               />
             ) : (
-              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
-                <p className={`text-[14px] font-medium ${r?.correct ? "text-[#1F7A68]" : "text-[#dc2626]"}`}>
+              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"}`}>
+                <p className={`text-[14px] font-medium ${r?.correct ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
                   {answers[s.id]}
                 </p>
                 {!r?.correct && <p className="text-[13px] text-[#1F7A68] mt-1">{s.correctAnswer}</p>}

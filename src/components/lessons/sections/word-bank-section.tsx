@@ -118,7 +118,7 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
                     state === "reviewed"
                       ? results[i]?.correct
                         ? "border-[#1F7A68] bg-[#E1F2ED] text-[#1F7A68]"
-                        : "border-[#dc2626] bg-[#fef2f2] text-[#dc2626]"
+                        : "border-[#B94A32] bg-[#FBE9E4] text-[#B94A32]"
                       : i === activeBlank
                         ? "border-[#1B2B61] bg-[#E8ECF6] text-[#1F1F1F]"
                         : filledBlanks[i]

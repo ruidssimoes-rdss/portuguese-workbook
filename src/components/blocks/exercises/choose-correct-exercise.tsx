@@ -33,7 +33,7 @@ export function ChooseCorrectExercise({
       return `${base} border-[0.5px] border-[#E6E6E4] bg-white text-[#1F1F1F] hover:border-[#CFCFCB] hover:bg-[#F7F7F6]`;
     }
     if (index === data.correctIndex) return `${base} border-[1px] border-[#1F7A68] bg-[#E1F2ED]`;
-    if (index === selected) return `${base} border-[1px] border-[#dc2626] bg-[#fef2f2]`;
+    if (index === selected) return `${base} border-[1px] border-[#B94A32] bg-[#FBE9E4]`;
     return `${base} option-disabled border-[0.5px] border-[#E6E6E4] bg-white`;
   }
 

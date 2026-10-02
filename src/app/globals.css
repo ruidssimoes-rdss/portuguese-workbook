@@ -65,7 +65,7 @@
   --color-bloco-cefr-a1: #1F7A68;
   --color-bloco-cefr-a2: #1B2B61;
   --color-bloco-tip: #5B45B8;
-  --color-bloco-warning: #dc2626;
+  --color-bloco-warning: #B94A32;
   --color-bloco-success: #1F7A68;
   --color-bloco-progress: #1B2B61;
 
@@ -331,8 +331,8 @@
 }
 
 .exercise-incorrect {
-  background-color: #fef2f2;
-  border-color: #dc2626;
+  background-color: #FBE9E4;
+  border-color: #B94A32;
   transition: all 200ms ease-out;
 }
 
@@ -346,9 +346,9 @@
 }
 
 .option-incorrect {
-  background-color: #fef2f2;
-  border-color: #dc2626;
-  color: #dc2626;
+  background-color: #FBE9E4;
+  border-color: #B94A32;
+  color: #B94A32;
   transition: all 200ms ease-out;
 }
 

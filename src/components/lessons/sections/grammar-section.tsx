@@ -102,7 +102,7 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
                   let cls = "border-[#E6E6E4] hover:border-[#CFCFCB] hover:bg-[#F7F7F6] cursor-pointer";
                   if (state === "reviewed") {
                     if (isCorrectOpt) cls = "border-[#1F7A68] bg-[#E1F2ED]";
-                    else if (isSelected && !isCorrectOpt) cls = "border-[#dc2626] bg-[#fef2f2]";
+                    else if (isSelected && !isCorrectOpt) cls = "border-[#B94A32] bg-[#FBE9E4]";
                     else cls = "border-[#E6E6E4] opacity-50";
                   } else if (isSelected) {
                     cls = "border-[#1B2B61] bg-[#E8ECF6]";
@@ -134,7 +134,7 @@ export function GrammarSection({ sectionIndex, totalSections, showEnglish, quest
                   let cls = "border-[#E6E6E4] hover:border-[#CFCFCB] hover:bg-[#F7F7F6] cursor-pointer";
                   if (state === "reviewed") {
                     if (isCorrect) cls = "border-[#1F7A68] bg-[#E1F2ED]";
-                    else if (isSelected && !isCorrect) cls = "border-[#dc2626] bg-[#fef2f2]";
+                    else if (isSelected && !isCorrect) cls = "border-[#B94A32] bg-[#FBE9E4]";
                     else cls = "border-[#E6E6E4] opacity-50";
                   } else if (isSelected) {
                     cls = "border-[#1B2B61] bg-[#E8ECF6]";

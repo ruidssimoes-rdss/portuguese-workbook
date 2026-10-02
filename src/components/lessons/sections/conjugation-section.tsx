@@ -109,7 +109,7 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
             const currentIdx = inputIdx++;
             return (
               <div key={key} className={`flex items-center gap-4 px-5 py-3 border-b border-[#E6E6E4] last:border-b-0 ${
-                state === "reviewed" ? (r?.correct ? "bg-[#E1F2ED]" : "bg-[#fef2f2]") : ""
+                state === "reviewed" ? (r?.correct ? "bg-[#E1F2ED]" : "bg-[#FBE9E4]") : ""
               }`}>
                 <span className="text-[14px] font-medium text-[#98988F] w-20 shrink-0">{p.pronoun}</span>
                 {state === "answering" ? (
@@ -130,7 +130,7 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
                         <span className="text-[14px] font-medium text-[#1F7A68]">{p.correctForm}</span>
                       ) : (
                         <>
-                          <span className="text-[14px] font-medium text-[#dc2626] line-through mr-2">{answers[key] || "(vazio)"}</span>
+                          <span className="text-[14px] font-medium text-[#B94A32] line-through mr-2">{answers[key] || "(vazio)"}</span>
                           <span className="text-[14px] font-medium text-[#1F7A68]">{p.correctForm}</span>
                         </>
                       )}
@@ -139,7 +139,7 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
                     {r?.correct ? (
                       <svg className="w-4 h-4 text-[#1F7A68] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     ) : (
-                      <svg className="w-4 h-4 text-[#dc2626] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                      <svg className="w-4 h-4 text-[#B94A32] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                     )}
                   </div>
                 )}

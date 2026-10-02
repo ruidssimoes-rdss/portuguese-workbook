@@ -327,7 +327,7 @@ export default function SettingsPage() {
                 className={`rounded-lg p-3 text-[12px] ${
                   message.type === "ok"
                     ? "border-[0.5px] border-[#E1F2ED] bg-[#E1F2ED] text-[#1F7A68]"
-                    : "border-[0.5px] border-[#fecaca] bg-[#fef2f2] text-[#dc2626]"
+                    : "border-[0.5px] border-[#F0C9BE] bg-[#FBE9E4] text-[#B94A32]"
                 }`}
               >
                 {message.text}
@@ -719,7 +719,7 @@ export default function SettingsPage() {
                 <button
                   type="button"
                   onClick={() => setShowDeleteConfirm(true)}
-                  className="px-4 py-2 text-[13px] font-medium text-[#dc2626] border-[0.5px] border-[#dc2626] rounded-lg hover:bg-[#fef2f2] transition-colors"
+                  className="px-4 py-2 text-[13px] font-medium text-[#B94A32] border-[0.5px] border-[#B94A32] rounded-lg hover:bg-[#FBE9E4] transition-colors"
                 >
                   Apagar conta
                 </button>
@@ -766,7 +766,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={handleDeleteConfirm}
                 disabled={deleteConfirmText.trim().toUpperCase() !== "APAGAR"}
-                className="px-4 py-2 text-[13px] font-medium text-white bg-[#dc2626] rounded-lg hover:bg-[#b91c1c] disabled:opacity-50 transition-colors"
+                className="px-4 py-2 text-[13px] font-medium text-white bg-[#B94A32] rounded-lg hover:bg-[#B94A32] disabled:opacity-50 transition-colors"
               >
                 Apagar permanentemente
               </button>

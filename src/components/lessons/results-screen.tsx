@@ -118,7 +118,7 @@ export function ResultsScreen({
                 <span className="text-[13px] text-[#1F1F1F] font-medium flex-1 text-left">{sr.sectionName}</span>
                 <span className="text-[13px] text-[#6B6B69] w-12 text-right">{sr.totalCorrect}/{sr.totalQuestions}</span>
                 <div className="w-20 h-1.5 bg-[#E6E6E4] rounded-full overflow-hidden">
-                  <div className={`h-full rounded-full ${pct >= 80 ? "bg-[#1F7A68]" : pct >= 50 ? "bg-[#5B45B8]" : "bg-[#dc2626]"}`} style={{ width: `${pct}%` }} />
+                  <div className={`h-full rounded-full ${pct >= 80 ? "bg-[#1F7A68]" : pct >= 50 ? "bg-[#5B45B8]" : "bg-[#B94A32]"}`} style={{ width: `${pct}%` }} />
                 </div>
               </div>
             );
@@ -157,10 +157,10 @@ export function ResultsScreen({
             {wrongExpanded && (
               <div className="space-y-2">
                 {wrongAnswers.map((w, i) => (
-                  <div key={i} className="border-[0.5px] border-[#E6E6E4] rounded-lg p-3 bg-[#fef2f2]">
+                  <div key={i} className="border-[0.5px] border-[#E6E6E4] rounded-lg p-3 bg-[#FBE9E4]">
                     <p className="text-[12px] text-[#6B6B69]">{w.question}</p>
                     <p className="text-[13px] mt-1">
-                      <span className="text-[#dc2626] line-through">{w.userAnswer || "(vazio)"}</span>
+                      <span className="text-[#B94A32] line-through">{w.userAnswer || "(vazio)"}</span>
                       {" → "}
                       <span className="text-[#1F7A68] font-medium">{w.correctAnswer}</span>
                     </p>
@@ -174,12 +174,12 @@ export function ResultsScreen({
 
       {/* Save error */}
       {saveError && (
-        <div className="mb-6 p-4 rounded-lg border-[0.5px] border-[#E6E6E4] bg-[#fef2f2] text-center max-w-md mx-auto">
-          <p className="text-[14px] font-medium text-[#dc2626] mb-2">
+        <div className="mb-6 p-4 rounded-lg border-[0.5px] border-[#E6E6E4] bg-[#FBE9E4] text-center max-w-md mx-auto">
+          <p className="text-[14px] font-medium text-[#B94A32] mb-2">
             Erro ao guardar o progresso.
           </p>
           <button type="button" onClick={onRetrySave} disabled={isSaving}
-            className="px-4 py-2 bg-[#dc2626] text-white text-[13px] font-medium rounded-lg hover:bg-[#b91c1c] transition-colors disabled:opacity-60"
+            className="px-4 py-2 bg-[#B94A32] text-white text-[13px] font-medium rounded-lg hover:bg-[#B94A32] transition-colors disabled:opacity-60"
           >
             {isSaving ? "A guardar..." : "Tentar guardar novamente"}
           </button>

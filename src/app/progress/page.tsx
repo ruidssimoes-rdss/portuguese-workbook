@@ -287,7 +287,7 @@ function MasteryItemList({
   if (items.length === 0) return null;
 
   const dotColor =
-    variant === "success" ? "bg-[#1F7A68]" : "bg-[#dc2626]";
+    variant === "success" ? "bg-[#1F7A68]" : "bg-[#B94A32]";
   const icon = variant === "success" ? "✓" : "✗";
 
   return (
@@ -301,7 +301,7 @@ function MasteryItemList({
             key={`${r.content_type}:${r.content_id}`}
             className="flex items-center gap-2 text-[13px]"
           >
-            <span className={`w-4 text-center ${variant === "success" ? "text-[#1F7A68]" : "text-[#dc2626]"}`}>
+            <span className={`w-4 text-center ${variant === "success" ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
               {icon}
             </span>
             <span className="text-[#1F1F1F]">

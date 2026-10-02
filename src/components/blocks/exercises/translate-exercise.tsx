@@ -37,7 +37,7 @@ export function TranslateExercise({
   const dirLabel = data.direction === "pt-to-en" ? "Translate to English" : "Translate to Portuguese";
 
   const inputStateClass = submitted
-    ? wasCorrect ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#dc2626] bg-[#fef2f2]"
+    ? wasCorrect ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"
     : "";
 
   const containerShake = submitted && !wasCorrect ? "error-shake" : "";

@@ -51,12 +51,12 @@ export function LearnIntro({
         href="/lessons"
         className="text-[13px] text-[#98988F] hover:text-[#6B6B69] transition-colors"
       >
-        ← Back to lessons
+        ← Voltar às lições
       </Link>
 
       {/* Title */}
       <h1 className="text-[22px] font-medium text-[#1F1F1F] tracking-[-0.02em] mt-6">
-        {isReview ? "Review session" : "Your next lesson"}
+        {isReview ? "Sessão de revisão" : "A tua próxima lição"}
       </h1>
 
       {/* CEFR badge */}
@@ -93,7 +93,7 @@ export function LearnIntro({
           onClick={onStartExercises}
           className="w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
         >
-          {isReview ? "Start review →" : "Start exercises →"}
+          {isReview ? "Começar revisão →" : "Começar exercícios →"}
         </button>
         {!isReview && learnItems.length > 0 && (
           <button
@@ -101,7 +101,7 @@ export function LearnIntro({
             onClick={onReviewFirst}
             className="w-full py-3.5 text-[14px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors cursor-pointer"
           >
-            Review material first
+            Rever a matéria primeiro
           </button>
         )}
       </div>

@@ -54,20 +54,20 @@ const GOAL_ITEM_LABELS: Record<string, string> = {
 type ViewMode = "day" | "month";
 
 const EVENT_COLORS: Record<string, string> = {
-  lesson_passed: "#16A34A",
-  lesson_failed: "#D97706",
+  lesson_passed: "#1F7A68",
+  lesson_failed: "#5B45B8",
   exam_passed: "#1B2B61",
-  exam_failed: "#D97706",
+  exam_failed: "#5B45B8",
   practice: "#7C3AED",
   planned: "#6B6B69",
   goal: "#0EA5E9",
 };
 
 const EVENT_STYLE: Record<string, { color: string; label: string }> = {
-  auto_lesson_passed: { color: "#16A34A", label: "Lição" },
-  auto_lesson_failed: { color: "#D97706", label: "Lição" },
+  auto_lesson_passed: { color: "#1F7A68", label: "Lição" },
+  auto_lesson_failed: { color: "#5B45B8", label: "Lição" },
   auto_exam_passed: { color: "#1B2B61", label: "Exame" },
-  auto_exam_failed: { color: "#D97706", label: "Exame" },
+  auto_exam_failed: { color: "#5B45B8", label: "Exame" },
   auto_practice: { color: "#7C3AED", label: "Prática" },
   planned: { color: "#6B6B69", label: "Planeado" },
   goal: { color: "#0EA5E9", label: "Objetivo" },
@@ -955,7 +955,7 @@ export default function CalendarPage() {
                     const isComplete = goal.completed_items >= goal.total_items;
                     const health = !isComplete ? getGoalHealth(goal) : null;
                     const healthConfig = health
-                      ? { ahead: { label: "Adiantado", color: "#16A34A" }, "on-track": { label: "No caminho certo", color: "#1B2B61" }, behind: { label: "Ligeiramente atrasado", color: "#F59E0B" } }[health]
+                      ? { ahead: { label: "Adiantado", color: "#1F7A68" }, "on-track": { label: "No caminho certo", color: "#1B2B61" }, behind: { label: "Ligeiramente atrasado", color: "#5B45B8" } }[health]
                       : null;
                     const targetD = new Date(goal.target_date + "T12:00:00");
                     const formattedDate = `${targetD.getDate()} de ${MESES[targetD.getMonth()]}`;
@@ -1103,8 +1103,8 @@ export default function CalendarPage() {
 
             {/* Legend */}
             <p className="text-[10px] text-[#98988F] mb-4">
-              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" /> Aprovado</span>
-              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" /> Ainda não</span>
+              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#1F7A68]" /> Aprovado</span>
+              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#5B45B8]" /> Ainda não</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#1B2B61]" /> Exame</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]" /> Prática</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#6B6B69]" /> Planeado</span>

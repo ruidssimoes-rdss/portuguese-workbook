@@ -76,7 +76,7 @@ export function WordBankSectionNew({ sectionIndex, totalSections, showEnglish, p
                   >{filled[pi] || "\u00A0"}</button>
                 ) : (
                   <span className={`inline-block mx-0.5 px-1.5 py-px rounded-[4px] text-[13px] font-medium ${
-                    results[pi] ? "text-[#1F7A68] border-b border-[#1F7A68]" : "text-[#dc2626] border-b border-[#dc2626]"
+                    results[pi] ? "text-[#1F7A68] border-b border-[#1F7A68]" : "text-[#B94A32] border-b border-[#B94A32]"
                   }`}>{results[pi] ? paragraph.blanks[pi].correctAnswer : (filled[pi] ?? "—")}</span>
                 )
               )}
@@ -114,13 +114,13 @@ export function WordBankSectionNew({ sectionIndex, totalSections, showEnglish, p
         {phase === "answering" && (
           <button type="button" onClick={verify} disabled={!allFilled}
             className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#1B2B61] text-white cursor-pointer" : "bg-[#1B2B61] text-white opacity-40 cursor-not-allowed"}`}
-          >{allFilled ? "Continue →" : "Answer all questions to continue"}</button>
+          >{allFilled ? "Continuar →" : "Responde a todas para continuar"}</button>
         )}
         {phase === "reviewed" && (
           <div className="flex items-center justify-between">
             <span className="text-[13px] font-medium text-[#1F1F1F]">{correctCount}/{paragraph.blanks.length}</span>
             <button type="button" onClick={finish} className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#1B2B61] rounded-[6px] cursor-pointer">
-              {sectionIndex < totalSections - 1 ? "Next section →" : "See results →"}
+              {sectionIndex < totalSections - 1 ? "Secção seguinte →" : "Ver resultados →"}
             </button>
           </div>
         )}

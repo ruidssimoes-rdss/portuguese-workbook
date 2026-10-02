@@ -112,8 +112,8 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
                   spellCheck={false}
                 />
               ) : (
-                <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${results[q.id]?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
-                  <p className={`text-[14px] font-medium ${results[q.id]?.correct ? "text-[#1F7A68]" : "text-[#dc2626]"}`}>
+                <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${results[q.id]?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"}`}>
+                  <p className={`text-[14px] font-medium ${results[q.id]?.correct ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
                     {answers[q.id]}
                   </p>
                   {!results[q.id]?.correct && (
@@ -133,7 +133,7 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
                 let cls = "border-[#E6E6E4] hover:border-[#CFCFCB] hover:bg-[#F7F7F6] cursor-pointer";
                 if (state === "reviewed") {
                   if (isCorrect) cls = "border-[#1F7A68] bg-[#E1F2ED]";
-                  else if (isSelected && !isCorrect) cls = "border-[#dc2626] bg-[#fef2f2]";
+                  else if (isSelected && !isCorrect) cls = "border-[#B94A32] bg-[#FBE9E4]";
                   else cls = "border-[#E6E6E4] opacity-50";
                 } else if (isSelected) {
                   cls = "border-[#1B2B61] bg-[#E8ECF6]";

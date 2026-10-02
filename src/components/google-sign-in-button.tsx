@@ -35,7 +35,7 @@ export function GoogleSignInButton() {
       </button>
       {error && (
         <div
-          className="mt-3 rounded-lg border-[0.5px] border-[rgba(220,38,38,0.2)] bg-[#fef2f2] p-3 text-[#dc2626] text-[12px]"
+          className="mt-3 rounded-lg border-[0.5px] border-[rgba(220,38,38,0.2)] bg-[#FBE9E4] p-3 text-[#B94A32] text-[12px]"
           role="alert"
         >
           {error}

@@ -113,9 +113,9 @@ function MCQuestion({
 
           if (submitted) {
             if (i === q.correctIndex) {
-              optClass = "border-2 border-[#059669] bg-[#F0FDF4]";
+              optClass = "border-2 border-[#1F7A68] bg-[#E1F2ED]";
             } else if (i === answer && i !== q.correctIndex) {
-              optClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
+              optClass = "border-2 border-[#B94A32] bg-[#FBE9E4]";
             } else {
               optClass = "border border-[#EFEFED] bg-[#F7F7F6] opacity-50";
             }
@@ -131,16 +131,16 @@ function MCQuestion({
               <span
                 className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 text-[12px] font-semibold ${
                   submitted && i === q.correctIndex
-                    ? "border-[#059669] bg-[#059669] text-white"
+                    ? "border-[#1F7A68] bg-[#1F7A68] text-white"
                     : submitted && i === answer
-                      ? "border-[#DC2626] bg-[#DC2626] text-white"
+                      ? "border-[#B94A32] bg-[#B94A32] text-white"
                       : "border-[#B5B5AE] text-[#98988F]"
                 }`}
               >
                 {String.fromCharCode(65 + i)}
               </span>
               <span
-                className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#059669]" : submitted && i === answer ? "font-semibold text-[#DC2626]" : "text-[#1F1F1F]"}`}
+                className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#1F7A68]" : submitted && i === answer ? "font-semibold text-[#B94A32]" : "text-[#1F1F1F]"}`}
               >
                 {opt}
               </span>
@@ -152,10 +152,10 @@ function MCQuestion({
       {/* Explanation after answering */}
       {submitted && (
         <div
-          className={`p-4 rounded-xl border ${answer === q.correctIndex ? "bg-[#F0FDF4] border-[#D1FAE5]" : "bg-[#FEF2F2] border-[#FEE2E2]"}`}
+          className={`p-4 rounded-xl border ${answer === q.correctIndex ? "bg-[#E1F2ED] border-[#D1FAE5]" : "bg-[#FBE9E4] border-[#FBE9E4]"}`}
         >
           <p
-            className={`text-[13px] font-semibold mb-1 ${answer === q.correctIndex ? "text-[#059669]" : "text-[#DC2626]"}`}
+            className={`text-[13px] font-semibold mb-1 ${answer === q.correctIndex ? "text-[#1F7A68]" : "text-[#B94A32]"}`}
           >
             {answer === q.correctIndex ? "Correto!" : "Incorreto"}
           </p>
@@ -203,9 +203,9 @@ function MatchingQuestionUI({
               key={i}
               className={`flex items-center gap-4 border rounded-xl p-4 transition-all ${
                 isCorrect
-                  ? "border-[#059669] bg-[#F0FDF4]"
+                  ? "border-[#1F7A68] bg-[#E1F2ED]"
                   : isWrong
-                    ? "border-[#DC2626] bg-[#FEF2F2]"
+                    ? "border-[#B94A32] bg-[#FBE9E4]"
                     : "border-[#E6E6E4] bg-white"
               }`}
             >
@@ -226,7 +226,7 @@ function MatchingQuestionUI({
                 ))}
               </select>
               {submitted && isWrong && (
-                <span className="text-[12px] text-[#059669] font-medium shrink-0">
+                <span className="text-[12px] text-[#1F7A68] font-medium shrink-0">
                   {pair.right}
                 </span>
               )}
@@ -325,8 +325,8 @@ function WritingTaskUI({
               wc === 0
                 ? "text-[#98988F]"
                 : meetsMin
-                  ? "text-[#059669]"
-                  : "text-[#DC2626]"
+                  ? "text-[#1F7A68]"
+                  : "text-[#B94A32]"
             }`}
           >
             {wc} {wc === 1 ? "palavra" : "palavras"}
@@ -365,8 +365,8 @@ function WritingTaskUI({
               {task.sampleResponseEn}
             </p>
           </div>
-          <div className="p-3 rounded-lg bg-[#F0FDF4] border border-[#D1FAE5]">
-            <p className="text-[13px] text-[#059669] font-medium">
+          <div className="p-3 rounded-lg bg-[#E1F2ED] border border-[#D1FAE5]">
+            <p className="text-[13px] text-[#1F7A68] font-medium">
               {countKeyPhraseMatches(response, task.keyPhrases)} /{" "}
               {task.keyPhrases.length} key elements found ·{" "}
               {scoreWrittenResponse(
@@ -452,8 +452,8 @@ function ListeningQuestionUI({
           </span>
         </div>
       ) : (
-        <div className="border border-[#FEE2E2] rounded-xl p-5 bg-[#FEF2F2]">
-          <p className="text-[13px] font-medium text-[#DC2626] mb-2">
+        <div className="border border-[#FBE9E4] rounded-xl p-5 bg-[#FBE9E4]">
+          <p className="text-[13px] font-medium text-[#B94A32] mb-2">
             Audio not available on this device. Transcript shown instead:
           </p>
           <p className="text-[14px] text-[#1F1F1F] italic leading-relaxed">
@@ -479,9 +479,9 @@ function ListeningQuestionUI({
 
               if (submitted) {
                 if (i === q.correctIndex) {
-                  optClass = "border-2 border-[#059669] bg-[#F0FDF4]";
+                  optClass = "border-2 border-[#1F7A68] bg-[#E1F2ED]";
                 } else if (i === answer && i !== q.correctIndex) {
-                  optClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
+                  optClass = "border-2 border-[#B94A32] bg-[#FBE9E4]";
                 } else {
                   optClass =
                     "border border-[#EFEFED] bg-[#F7F7F6] opacity-50";
@@ -498,16 +498,16 @@ function ListeningQuestionUI({
                   <span
                     className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 text-[12px] font-semibold ${
                       submitted && i === q.correctIndex
-                        ? "border-[#059669] bg-[#059669] text-white"
+                        ? "border-[#1F7A68] bg-[#1F7A68] text-white"
                         : submitted && i === answer
-                          ? "border-[#DC2626] bg-[#DC2626] text-white"
+                          ? "border-[#B94A32] bg-[#B94A32] text-white"
                           : "border-[#B5B5AE] text-[#98988F]"
                     }`}
                   >
                     {String.fromCharCode(65 + i)}
                   </span>
                   <span
-                    className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#059669]" : submitted && i === answer ? "font-semibold text-[#DC2626]" : "text-[#1F1F1F]"}`}
+                    className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#1F7A68]" : submitted && i === answer ? "font-semibold text-[#B94A32]" : "text-[#1F1F1F]"}`}
                   >
                     {opt}
                   </span>
@@ -518,10 +518,10 @@ function ListeningQuestionUI({
 
           {submitted && (
             <div
-              className={`p-4 rounded-xl border ${answer === q.correctIndex ? "bg-[#F0FDF4] border-[#D1FAE5]" : "bg-[#FEF2F2] border-[#FEE2E2]"}`}
+              className={`p-4 rounded-xl border ${answer === q.correctIndex ? "bg-[#E1F2ED] border-[#D1FAE5]" : "bg-[#FBE9E4] border-[#FBE9E4]"}`}
             >
               <p
-                className={`text-[13px] font-semibold mb-1 ${answer === q.correctIndex ? "text-[#059669]" : "text-[#DC2626]"}`}
+                className={`text-[13px] font-semibold mb-1 ${answer === q.correctIndex ? "text-[#1F7A68]" : "text-[#B94A32]"}`}
               >
                 {answer === q.correctIndex ? "Correto!" : "Incorreto"}
               </p>
@@ -635,8 +635,8 @@ function SpeakingPromptUI({
               wc === 0
                 ? "text-[#98988F]"
                 : meetsMin
-                  ? "text-[#059669]"
-                  : "text-[#DC2626]"
+                  ? "text-[#1F7A68]"
+                  : "text-[#B94A32]"
             }`}
           >
             {wc} {wc === 1 ? "palavra" : "palavras"}
@@ -700,7 +700,7 @@ function SpeakingPromptUI({
                     key={i}
                     className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-medium ${
                       found
-                        ? "bg-[#F0FDF4] text-[#059669] border border-[#D1FAE5]"
+                        ? "bg-[#E1F2ED] text-[#1F7A68] border border-[#D1FAE5]"
                         : "bg-[#EFEFED] text-[#98988F] border border-[#E6E6E4]"
                     }`}
                   >
@@ -720,8 +720,8 @@ function SpeakingPromptUI({
             </div>
           </div>
 
-          <div className="p-3 rounded-lg bg-[#F0FDF4] border border-[#D1FAE5]">
-            <p className="text-[13px] text-[#059669] font-medium">
+          <div className="p-3 rounded-lg bg-[#E1F2ED] border border-[#D1FAE5]">
+            <p className="text-[13px] text-[#1F7A68] font-medium">
               {countKeyPhraseMatches(response, sp.keyElements)} /{" "}
               {sp.keyElements.length} key elements found ·{" "}
               {scoreWrittenResponse(
@@ -908,7 +908,7 @@ function SummaryScreen({
             {saving ? "A guardar..." : "Concluir Exame"}
           </button>
         ) : (
-          <p className="text-[15px] font-semibold text-[#059669]">
+          <p className="text-[15px] font-semibold text-[#1F7A68]">
             Resultado guardado!
           </p>
         )}
@@ -1319,7 +1319,7 @@ function ExamContent({ id }: { id: string }) {
                     isActive
                       ? "bg-[#1F1F1F] text-white"
                       : isCompleted
-                        ? "bg-[#F0FDF4] text-[#059669] border border-[#D1FAE5]"
+                        ? "bg-[#E1F2ED] text-[#1F7A68] border border-[#D1FAE5]"
                         : isLocked
                           ? "bg-[#F7F7F6] text-[#B5B5AE] cursor-not-allowed"
                           : "bg-[#F7F7F6] text-[#6B6B69] hover:bg-[#EFEFED] cursor-pointer"

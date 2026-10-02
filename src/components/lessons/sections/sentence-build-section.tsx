@@ -103,7 +103,7 @@ export function SentenceBuildSection({ sectionIndex, totalSections, showEnglish,
           {/* Staging area */}
           <div className={`border-[0.5px] border-dashed rounded-lg p-3 min-h-[48px] mb-3 flex flex-wrap gap-1.5 ${
             state === "reviewed"
-              ? results[s.id] ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#dc2626] bg-[#fef2f2]"
+              ? results[s.id] ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"
               : "border-[#CFCFCB]"
           }`}>
             {(placed[s.id] ?? []).length > 0 ? (

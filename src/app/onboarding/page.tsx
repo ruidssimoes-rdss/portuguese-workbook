@@ -347,7 +347,7 @@ export default function OnboardingPage() {
       </div>
 
       {saveError && (
-        <p className="mt-4 text-[13px] text-[#DC2626]">{saveError}</p>
+        <p className="mt-4 text-[13px] text-[#B94A32]">{saveError}</p>
       )}
 
       <button

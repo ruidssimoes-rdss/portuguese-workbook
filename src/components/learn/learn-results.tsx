@@ -66,7 +66,7 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
       {/* Summary */}
       <div className="mt-4 border-[0.5px] border-[#E6E6E4] rounded-lg p-4">
         <div className="flex items-center justify-between">
-          <span className="text-[13px] text-[#6B6B69]">Total correct</span>
+          <span className="text-[13px] text-[#6B6B69]">Respostas certas</span>
           <span className={`text-[14px] font-medium ${passed ? "text-[#1F7A68]" : "text-[#5B45B8]"}`}>
             {totalCorrect} / {totalQuestions}
           </span>
@@ -77,12 +77,12 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
       {wrongAnswers.length > 0 && (
         <div className="mt-4 text-left">
           <p className="text-[10px] text-[#98988F] uppercase tracking-[0.05em] mb-2">
-            Needs practice
+            Precisa de prática
           </p>
           <div className="space-y-1.5">
             {wrongAnswers.slice(0, 8).map((w, i) => (
-              <div key={i} className="flex items-center justify-between px-3 py-2 bg-[#fef2f2] rounded-lg">
-                <span className="text-[13px] text-[#dc2626] truncate mr-2">
+              <div key={i} className="flex items-center justify-between px-3 py-2 bg-[#FBE9E4] rounded-lg">
+                <span className="text-[13px] text-[#B94A32] truncate mr-2">
                   {w.correctAnswer}
                 </span>
                 <span className="text-[12px] text-[#98988F] shrink-0">
@@ -101,7 +101,7 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
             href="/lessons"
             className="block w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors text-center"
           >
-            Continue learning →
+            Continuar a aprender →
           </Link>
         ) : (
           <button
@@ -109,14 +109,14 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
             onClick={onRetry}
             className="w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
           >
-            Try again
+            Tentar outra vez
           </button>
         )}
         <Link
           href="/lessons"
           className="block w-full py-3.5 text-[14px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors text-center"
         >
-          Back to lessons
+          Voltar às lições
         </Link>
       </div>
     </div>

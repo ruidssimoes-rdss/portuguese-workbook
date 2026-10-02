@@ -113,7 +113,7 @@ export function ConjugationSectionNew({
                     <span className={`flex-1 px-[10px] py-[5px] text-[13px] rounded-[6px] border-[0.5px] ${
                       r?.correct
                         ? "border-[#1F7A68] text-[#1F7A68]"
-                        : "border-[#dc2626] text-[#dc2626]"
+                        : "border-[#B94A32] text-[#B94A32]"
                     }`}>
                       {r?.correct ? p.correctForm : (answers[key] || "—")}
                     </span>
@@ -130,14 +130,14 @@ export function ConjugationSectionNew({
         {phase === "answering" && (
           <button type="button" onClick={verify} disabled={!allFilled}
             className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#1B2B61] text-white cursor-pointer" : "bg-[#1B2B61] text-white opacity-40 cursor-not-allowed"}`}
-          >{allFilled ? "Continue →" : "Answer all questions to continue"}</button>
+          >{allFilled ? "Continuar →" : "Responde a todas para continuar"}</button>
         )}
         {phase === "reviewed" && (
           <div className="flex items-center justify-between">
             <span className="text-[13px] font-medium text-[#1F1F1F]">{correctCount}/{allKeys.length}</span>
             <button type="button" onClick={finish}
               className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#1B2B61] rounded-[6px] cursor-pointer"
-            >{sectionIndex < totalSections - 1 ? "Next section →" : "See results →"}</button>
+            >{sectionIndex < totalSections - 1 ? "Secção seguinte →" : "Ver resultados →"}</button>
           </div>
         )}
       </div>

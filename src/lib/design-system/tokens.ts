@@ -43,7 +43,7 @@ export const colors = {
   // Status
   status: {
     success: { text: "#1F7A68", bg: "#E1F2ED" },
-    warning: { text: "#92400E", bg: "#FFFBEB", border: "#FEF3C7" },
+    warning: { text: "#1B2B61", bg: "#F3F5FA", border: "#D3DAEB" },
     info: { text: "#1B2B61", bg: "#E8ECF6" },
   },
 } as const;

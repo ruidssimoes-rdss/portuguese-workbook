@@ -99,7 +99,7 @@ export default function ResetPasswordPage() {
 
           {error && (
             <div
-              className="mb-4 rounded-lg border-[0.5px] border-[rgba(220,38,38,0.2)] bg-[#fef2f2] p-3 text-[#dc2626] text-[12px]"
+              className="mb-4 rounded-lg border-[0.5px] border-[rgba(220,38,38,0.2)] bg-[#FBE9E4] p-3 text-[#B94A32] text-[12px]"
               role="alert"
             >
               {error}

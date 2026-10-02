@@ -75,7 +75,7 @@ function LearnPageContent() {
       } catch (err: any) {
         if (cancelled) return;
         console.error("Learn page init error:", err);
-        setError(err.message || "Failed to generate lesson");
+        setError(err.message || "Não foi possível preparar a lição");
         setLoading(false);
       }
     }
@@ -130,7 +130,7 @@ function LearnPageContent() {
       await Promise.allSettled([
         logLessonCompletion(
           lesson.id,
-          isReview ? "Review session" : `${lesson.cefr} lesson`,
+          isReview ? "Sessão de revisão" : `Lição ${lesson.cefr}`,
           accuracy,
           passed
         ),
@@ -148,7 +148,7 @@ function LearnPageContent() {
         <div className="text-center">
           <div className="w-6 h-6 border-2 border-[#1B2B61] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
           <p className="text-[13px] text-[#98988F]">
-            {isReview ? "Building review session..." : "Generating your lesson..."}
+            {isReview ? "A preparar a revisão…" : "A preparar a tua lição…"}
           </p>
         </div>
       </div>
@@ -158,12 +158,12 @@ function LearnPageContent() {
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center h-64 gap-4">
-        <p className="text-[14px] text-[#dc2626]">{error}</p>
+        <p className="text-[14px] text-[#B94A32]">{error}</p>
         <button
           onClick={() => router.push("/lessons")}
           className="px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
         >
-          Back to lessons
+          Voltar às lições
         </button>
       </div>
     );
@@ -177,7 +177,7 @@ function LearnPageContent() {
           onClick={() => router.push("/lessons")}
           className="px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
         >
-          Back to lessons
+          Voltar às lições
         </button>
       </div>
     );
