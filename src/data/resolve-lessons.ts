@@ -241,6 +241,9 @@ export function resolveCurriculumLesson(cl: CurriculumLesson): Lesson {
     Future: "Futuro",
     Conditional: "Condicional",
     "Present Subjunctive": "Presente do Conjuntivo",
+    "Imperfect Subjunctive": "Pretérito Imperfeito do Conjuntivo",
+    "Future Subjunctive": "Futuro do Conjuntivo",
+    Imperative: "Imperativo",
   };
   for (let i = 0; i < cl.stages.verbs.verbs.length; i++) {
     const vRef = cl.stages.verbs.verbs[i];

@@ -90,6 +90,9 @@ const TENSE_LABELS: Record<string, string> = {
   Future: "Futuro",
   Conditional: "Condicional",
   "Present Subjunctive": "Presente do Conjuntivo",
+  "Imperfect Subjunctive": "Pretérito Imperfeito do Conjuntivo",
+  "Future Subjunctive": "Futuro do Conjuntivo",
+  Imperative: "Imperativo",
 };
 
 function shuffle<T>(array: T[]): T[] {
