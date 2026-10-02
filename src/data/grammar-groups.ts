@@ -26,6 +26,7 @@ export const grammarGroups: GrammarGroup[] = [
       "object-pronouns",
       "pronoun-placement",
       "relative-pronouns",
+      "indefinites",
     ],
   },
   {
@@ -48,6 +49,7 @@ export const grammarGroups: GrammarGroup[] = [
       "imperfect-formation",
       "preterite-vs-imperfect",
       "pluperfect",
+      "present-perfect-composto",
     ],
   },
   {
@@ -66,6 +68,9 @@ export const grammarGroups: GrammarGroup[] = [
       "subjunctive-triggers",
       "present-subjunctive-formation",
       "personal-infinitive",
+      "future-subjunctive",
+      "imperfect-subjunctive",
+      "conditional-sentences",
     ],
   },
   {
@@ -92,6 +97,7 @@ export const grammarGroups: GrammarGroup[] = [
       "reported-speech",
       "reflexive-verbs",
       "comparatives",
+      "common-verb-phrases",
     ],
   },
   {

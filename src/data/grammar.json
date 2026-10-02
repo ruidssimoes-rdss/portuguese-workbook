@@ -6862,7 +6862,7 @@
       "id": "imperfect-formation",
       "title": "Imperfect Tense Formation",
       "titlePt": "Pretérito Imperfeito",
-      "cefr": "B1",
+      "cefr": "A2",
       "summary": "-AR: falava/falávamos; -ER/-IR: comia/partia. Only 4 irregulars: ser→era, ter→tinha, vir→vinha, pôr→punha.",
       "intro": "The imperfect is used for ongoing or habitual past actions and descriptions. -AR: falava, falavas, falava, falávamos, falavam. -ER: comia, comias, comia, comíamos, comiam.\n\n-IR: partia, partias, partia, partíamos, partiam. Only 4 verbs are irregular in the imperfect: ser (era), ter (tinha), vir (vinha), pôr (punha). Much more regular than the preterite.",
       "rules": [
@@ -7115,7 +7115,7 @@
       "id": "preterite-vs-imperfect",
       "title": "Preterite vs Imperfect",
       "titlePt": "Perfeito vs Imperfeito",
-      "cefr": "B1",
+      "cefr": "A2",
       "summary": "Preterite: completed actions, specific moments. Imperfect: habitual past, descriptions, ongoing. Often used together.",
       "intro": "Use the preterite for completed actions and specific moments in the past: Ontem comi peixe (Yesterday I ate fish). Use the imperfect for habitual past actions, descriptions, and ongoing states: Quando era criança, comia peixe todos os dias (When I was a child, I used to eat fish every day).\n\nThey often appear together: the imperfect sets the scene, the preterite interrupts: Eu dormia quando o telefone tocou (I was sleeping when the phone rang). Signal words: ontem, uma vez, de repente (preterite) vs sempre, normalmente, antigamente, enquanto (imperfect).",
       "rules": [
@@ -13488,6 +13488,1322 @@
           "correctAnswer": "tinha escrito",
           "correctIndex": 0,
           "explanation": "Compound pluperfect: tinha + escrito (irregular past participle of escrever)."
+        }
+      ]
+    },
+    "future-subjunctive": {
+      "id": "future-subjunctive",
+      "title": "Future Subjunctive",
+      "titlePt": "Futuro do Conjuntivo",
+      "cefr": "B1",
+      "summary": "Quando chegares, se puderes, assim que souber: the future subjunctive after quando, se, assim que, enquanto, como, onde and quem when they point to the future.",
+      "intro": "The future subjunctive is everywhere in European Portuguese and has no equivalent in English. You use it after quando, se, assim que, logo que, enquanto, sempre que, como, onde and quem when the action is still to come: «Quando chegares, liga-me» (When you arrive, call me), «Se puderes, vem cedo» (If you can, come early).\n\nTo form it, take the 3rd person plural of the preterite, drop -ram and add -r, -res, -r, -rmos, -rem. For regular verbs it looks like the infinitive: falar → falaram → falar, falares, falar, falarmos, falarem. For irregular verbs it follows the irregular preterite: fazer → fizeram → fizer; ter → tiveram → tiver; ser and ir → foram → for.\n\nThe big learner mistake is using the present after quando or se for the future: «Quando chego» describes a habit (whenever I arrive), «quando chegar» is a specific future moment.",
+      "rules": [
+        {
+          "rule": "Form: 3rd person plural preterite minus -ram, plus -r, -res, -r, -rmos, -rem.",
+          "rulePt": "Formação: 3.ª pessoa do plural do pretérito perfeito sem -ram, mais -r, -res, -r, -rmos, -rem.",
+          "examples": [
+            {
+              "pt": "falaram → falar, falares, falar, falarmos, falarem",
+              "en": "speak"
+            },
+            {
+              "pt": "comeram → comer, comeres, comer, comermos, comerem",
+              "en": "eat"
+            },
+            {
+              "pt": "partiram → partir, partires, partir, partirmos, partirem",
+              "en": "leave"
+            }
+          ]
+        },
+        {
+          "rule": "Irregular verbs follow their irregular preterite stem.",
+          "rulePt": "Os verbos irregulares seguem o radical irregular do pretérito.",
+          "examples": [
+            {
+              "pt": "fazer → fizer",
+              "en": "do/make"
+            },
+            {
+              "pt": "ter → tiver · estar → estiver",
+              "en": "have · be"
+            },
+            {
+              "pt": "ser / ir → for",
+              "en": "be / go"
+            },
+            {
+              "pt": "poder → puder · querer → quiser · saber → souber",
+              "en": "can · want · know"
+            },
+            {
+              "pt": "vir → vier · ver → vir · dizer → disser · pôr → puser",
+              "en": "come · see · say · put"
+            }
+          ]
+        },
+        {
+          "rule": "After quando, assim que, logo que, enquanto and sempre que for future actions.",
+          "rulePt": "Depois de quando, assim que, logo que, enquanto e sempre que, para ações futuras.",
+          "examples": [
+            {
+              "pt": "Quando chegares, liga-me.",
+              "en": "When you arrive, call me."
+            },
+            {
+              "pt": "Assim que souber, digo-te.",
+              "en": "As soon as I know, I'll tell you."
+            },
+            {
+              "pt": "Enquanto estiveres em Lisboa, fica connosco.",
+              "en": "While you're in Lisbon, stay with us."
+            }
+          ]
+        },
+        {
+          "rule": "After se for real possibilities in the future (with present or future in the main clause).",
+          "rulePt": "Depois de se, para possibilidades reais no futuro.",
+          "examples": [
+            {
+              "pt": "Se puderes, vem cedo.",
+              "en": "If you can, come early."
+            },
+            {
+              "pt": "Se chover, ficamos em casa.",
+              "en": "If it rains, we'll stay home."
+            },
+            {
+              "pt": "Se tiveres dúvidas, pergunta.",
+              "en": "If you have questions, ask."
+            }
+          ]
+        },
+        {
+          "rule": "After como, onde, quem and o que when they refer to something not yet known.",
+          "rulePt": "Depois de como, onde, quem e o que, quando se referem a algo ainda indefinido.",
+          "examples": [
+            {
+              "pt": "Faz como quiseres.",
+              "en": "Do it however you like."
+            },
+            {
+              "pt": "Senta-te onde quiseres.",
+              "en": "Sit wherever you want."
+            },
+            {
+              "pt": "Quem chegar primeiro abre a porta.",
+              "en": "Whoever arrives first opens the door."
+            }
+          ]
+        },
+        {
+          "rule": "Habit vs future: present indicative for habits, future subjunctive for a specific future moment.",
+          "rulePt": "Hábito vs futuro: presente do indicativo para hábitos, futuro do conjuntivo para um momento futuro.",
+          "examples": [
+            {
+              "pt": "Quando chego a casa, janto.",
+              "en": "When(ever) I get home, I have dinner."
+            },
+            {
+              "pt": "Quando chegar a casa, janto.",
+              "en": "When I get home (later today), I'll have dinner."
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "Regular verbs: the future subjunctive looks like the infinitive — but irregular verbs don't (fizer, tiver, for).",
+        "If you can say «when… (in the future)» or «if… (it might happen)», reach for the future subjunctive.",
+        "Ver → vir and vir → vier: «quando o vir» = when I see him; «quando ele vier» = when he comes.",
+        "Brazilians use it too, but you'll hear it constantly in Portugal: «se calhar», «quando der», «como quiseres»."
+      ],
+      "tipsPt": [
+        "Verbos regulares: o futuro do conjuntivo parece o infinitivo — os irregulares não (fizer, tiver, for).",
+        "Se dá para dizer «quando… (no futuro)» ou «se… (pode acontecer)», usa o futuro do conjuntivo.",
+        "Ver → vir e vir → vier: «quando o vir» / «quando ele vier».",
+        "Ouves isto a toda a hora em Portugal: «quando der», «como quiseres»."
+      ],
+      "questions": [
+        {
+          "questionText": "Complete: Quando ___ (tu, chegar), liga-me.",
+          "questionTextPt": "Completa: Quando ___ (tu, chegar), liga-me.",
+          "options": [
+            "chegas",
+            "chegares",
+            "chegaste",
+            "chegues"
+          ],
+          "correctAnswer": "chegares",
+          "correctIndex": 1,
+          "explanation": "Specific future moment after quando → future subjunctive: chegares."
+        },
+        {
+          "questionText": "Complete: Se ___ (tu, poder), vem cedo.",
+          "questionTextPt": "Completa: Se ___ (tu, poder), vem cedo.",
+          "options": [
+            "podes",
+            "puderes",
+            "pudesses",
+            "possas"
+          ],
+          "correctAnswer": "puderes",
+          "correctIndex": 1,
+          "explanation": "Poder → puderam → puder, puderes."
+        },
+        {
+          "questionText": "What is the future subjunctive of «fazer» (eu)?",
+          "questionTextPt": "Qual é o futuro do conjuntivo de «fazer» (eu)?",
+          "options": [
+            "fazer",
+            "fizer",
+            "faça",
+            "fizesse"
+          ],
+          "correctAnswer": "fizer",
+          "correctIndex": 1,
+          "explanation": "Fizeram → fizer."
+        },
+        {
+          "questionText": "Complete: Assim que ___ (eu, saber), digo-te.",
+          "questionTextPt": "Completa: Assim que ___ (eu, saber), digo-te.",
+          "options": [
+            "sei",
+            "saiba",
+            "souber",
+            "soubesse"
+          ],
+          "correctAnswer": "souber",
+          "correctIndex": 2,
+          "explanation": "Saber → souberam → souber."
+        },
+        {
+          "questionText": "Complete: Se ___ (chover), ficamos em casa.",
+          "questionTextPt": "Completa: Se ___ (chover), ficamos em casa.",
+          "options": [
+            "chove",
+            "chova",
+            "chover",
+            "chovesse"
+          ],
+          "correctAnswer": "chover",
+          "correctIndex": 2,
+          "explanation": "Real future possibility after se → chover."
+        },
+        {
+          "questionText": "Which sentence describes a habit?",
+          "questionTextPt": "Que frase descreve um hábito?",
+          "options": [
+            "Quando chego a casa, janto.",
+            "Quando chegar a casa, janto.",
+            "Quando chegasse a casa, jantava.",
+            "Quando chegares a casa, janta."
+          ],
+          "correctAnswer": "Quando chego a casa, janto.",
+          "correctIndex": 0,
+          "explanation": "Present indicative after quando = whenever, a habit."
+        },
+        {
+          "questionText": "Complete: Senta-te onde ___ (tu, querer).",
+          "questionTextPt": "Completa: Senta-te onde ___ (tu, querer).",
+          "options": [
+            "queres",
+            "queiras",
+            "quiseres",
+            "quisesses"
+          ],
+          "correctAnswer": "quiseres",
+          "correctIndex": 2,
+          "explanation": "Querer → quiseram → quiser, quiseres."
+        },
+        {
+          "questionText": "What is the future subjunctive of «ser» and «ir» (ele)?",
+          "questionTextPt": "Qual é o futuro do conjuntivo de «ser» e «ir» (ele)?",
+          "options": [
+            "seja / vá",
+            "for / for",
+            "fosse / fosse",
+            "ser / ir"
+          ],
+          "correctAnswer": "for / for",
+          "correctIndex": 1,
+          "explanation": "Both come from foram → for."
+        },
+        {
+          "questionText": "Complete: Quando o ___ (eu, ver), dou-lhe o recado.",
+          "questionTextPt": "Completa: Quando o ___ (eu, ver), dou-lhe o recado.",
+          "options": [
+            "ver",
+            "vir",
+            "vier",
+            "visse"
+          ],
+          "correctAnswer": "vir",
+          "correctIndex": 1,
+          "explanation": "Ver → viram → vir. Careful: «vier» is from vir (to come)."
+        },
+        {
+          "questionText": "Complete: Quem ___ (chegar) primeiro abre a porta.",
+          "questionTextPt": "Completa: Quem ___ (chegar) primeiro abre a porta.",
+          "options": [
+            "chega",
+            "chegue",
+            "chegar",
+            "chegasse"
+          ],
+          "correctAnswer": "chegar",
+          "correctIndex": 2,
+          "explanation": "Quem + unknown future person → future subjunctive."
+        }
+      ]
+    },
+    "imperfect-subjunctive": {
+      "id": "imperfect-subjunctive",
+      "title": "Imperfect Subjunctive",
+      "titlePt": "Pretérito Imperfeito do Conjuntivo",
+      "cefr": "B1",
+      "summary": "Se eu tivesse, queria que viesses, como se fosse: the imperfect subjunctive after past triggers, in hypotheticals and after como se.",
+      "intro": "The imperfect subjunctive is the past version of the present subjunctive. When the trigger is in the past or the conditional, the subjunctive moves to the imperfect: «Quero que venhas» → «Queria que viesses» (I wanted you to come).\n\nIt is also the verb you use for hypotheticals with se: «Se eu tivesse tempo, ia» (If I had time, I'd go), and after como se: «Fala como se fosse o chefe» (He talks as if he were the boss).\n\nFormation uses the same stem as the future subjunctive: 3rd person plural preterite minus -ram, plus -sse, -sses, -sse, -ssemos, -ssem. The nós form always takes an accent: falássemos, comêssemos, partíssemos, fizéssemos, fôssemos.",
+      "rules": [
+        {
+          "rule": "Form: 3rd person plural preterite minus -ram, plus -sse, -sses, -sse, -ssemos, -ssem.",
+          "rulePt": "Formação: 3.ª pessoa do plural do pretérito sem -ram, mais -sse, -sses, -sse, -ssemos, -ssem.",
+          "examples": [
+            {
+              "pt": "falaram → falasse, falasses, falasse, falássemos, falassem",
+              "en": "speak"
+            },
+            {
+              "pt": "comeram → comesse … comêssemos",
+              "en": "eat"
+            },
+            {
+              "pt": "partiram → partisse … partíssemos",
+              "en": "leave"
+            }
+          ]
+        },
+        {
+          "rule": "Irregulars follow the irregular preterite stem.",
+          "rulePt": "Os irregulares seguem o radical irregular do pretérito.",
+          "examples": [
+            {
+              "pt": "ter → tivesse · estar → estivesse",
+              "en": "have · be"
+            },
+            {
+              "pt": "ser / ir → fosse",
+              "en": "be / go"
+            },
+            {
+              "pt": "fazer → fizesse · dizer → dissesse · vir → viesse",
+              "en": "do · say · come"
+            },
+            {
+              "pt": "poder → pudesse · querer → quisesse · saber → soubesse",
+              "en": "can · want · know"
+            }
+          ]
+        },
+        {
+          "rule": "After a past or conditional trigger (queria que, era bom que, pediu que, gostava que).",
+          "rulePt": "Depois de um verbo no passado ou no condicional (queria que, era bom que, pediu que, gostava que).",
+          "examples": [
+            {
+              "pt": "Queria que viesses ao jantar.",
+              "en": "I wanted you to come to dinner."
+            },
+            {
+              "pt": "Pediu-me que falasse mais devagar.",
+              "en": "She asked me to speak more slowly."
+            },
+            {
+              "pt": "Gostava que estivesses aqui.",
+              "en": "I wish you were here."
+            }
+          ]
+        },
+        {
+          "rule": "In hypotheticals with se (unlikely or imaginary situations).",
+          "rulePt": "Em hipóteses com se (situações improváveis ou imaginárias).",
+          "examples": [
+            {
+              "pt": "Se eu tivesse dinheiro, comprava uma casa.",
+              "en": "If I had money, I'd buy a house."
+            },
+            {
+              "pt": "Se fosses tu, o que fazias?",
+              "en": "If it were you, what would you do?"
+            }
+          ]
+        },
+        {
+          "rule": "After como se (as if) — always the imperfect subjunctive.",
+          "rulePt": "Depois de como se — sempre o imperfeito do conjuntivo.",
+          "examples": [
+            {
+              "pt": "Fala como se fosse o chefe.",
+              "en": "He talks as if he were the boss."
+            },
+            {
+              "pt": "Olhou para mim como se não me conhecesse.",
+              "en": "She looked at me as if she didn't know me."
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "Present trigger → present subjunctive; past trigger → imperfect subjunctive: quero que venhas / queria que viesses.",
+        "The nós form always has an accent: falássemos, fizéssemos, fôssemos.",
+        "«Gostava que…» (I'd like it if…) is the polite everyday way to use it in Portugal.",
+        "Same stem as the future subjunctive: fizeram → fizer / fizesse."
+      ],
+      "tipsPt": [
+        "Presente → presente do conjuntivo; passado → imperfeito do conjuntivo: quero que venhas / queria que viesses.",
+        "O «nós» leva sempre acento: falássemos, fizéssemos, fôssemos.",
+        "«Gostava que…» é a forma educada do dia a dia.",
+        "Mesmo radical do futuro do conjuntivo: fizeram → fizer / fizesse."
+      ],
+      "questions": [
+        {
+          "questionText": "Complete: Queria que tu ___ (vir) ao jantar.",
+          "questionTextPt": "Completa: Queria que tu ___ (vir) ao jantar.",
+          "options": [
+            "venhas",
+            "vieres",
+            "viesses",
+            "vens"
+          ],
+          "correctAnswer": "viesses",
+          "correctIndex": 2,
+          "explanation": "Past trigger (queria que) → imperfect subjunctive: viesses."
+        },
+        {
+          "questionText": "Complete: Se eu ___ (ter) tempo, ia contigo.",
+          "questionTextPt": "Completa: Se eu ___ (ter) tempo, ia contigo.",
+          "options": [
+            "tenho",
+            "tiver",
+            "tivesse",
+            "tenha"
+          ],
+          "correctAnswer": "tivesse",
+          "correctIndex": 2,
+          "explanation": "Hypothetical with se → tivesse."
+        },
+        {
+          "questionText": "Complete: Fala como se ___ (ser) o chefe.",
+          "questionTextPt": "Completa: Fala como se ___ (ser) o chefe.",
+          "options": [
+            "é",
+            "seja",
+            "for",
+            "fosse"
+          ],
+          "correctAnswer": "fosse",
+          "correctIndex": 3,
+          "explanation": "Como se is always followed by the imperfect subjunctive."
+        },
+        {
+          "questionText": "What is the nós form of «falar» in the imperfect subjunctive?",
+          "questionTextPt": "Qual é a forma «nós» de «falar» no imperfeito do conjuntivo?",
+          "options": [
+            "falassemos",
+            "falássemos",
+            "falarmos",
+            "falemos"
+          ],
+          "correctAnswer": "falássemos",
+          "correctIndex": 1,
+          "explanation": "The nós form always carries an accent."
+        },
+        {
+          "questionText": "Complete: Pediu-me que ___ (eu, falar) mais devagar.",
+          "questionTextPt": "Completa: Pediu-me que ___ (eu, falar) mais devagar.",
+          "options": [
+            "falo",
+            "fale",
+            "falasse",
+            "falar"
+          ],
+          "correctAnswer": "falasse",
+          "correctIndex": 2,
+          "explanation": "Pediu (past) → imperfect subjunctive."
+        },
+        {
+          "questionText": "Complete: Gostava que ___ (tu, estar) aqui.",
+          "questionTextPt": "Completa: Gostava que ___ (tu, estar) aqui.",
+          "options": [
+            "estás",
+            "estejas",
+            "estivesses",
+            "estiveres"
+          ],
+          "correctAnswer": "estivesses",
+          "correctIndex": 2,
+          "explanation": "Gostava que → imperfect subjunctive."
+        },
+        {
+          "questionText": "Which is correct?",
+          "questionTextPt": "Qual está correta?",
+          "options": [
+            "Quero que viesses.",
+            "Queria que venhas.",
+            "Queria que viesses.",
+            "Quero que vieres."
+          ],
+          "correctAnswer": "Queria que viesses.",
+          "correctIndex": 2,
+          "explanation": "Past trigger + imperfect subjunctive."
+        },
+        {
+          "questionText": "What is the imperfect subjunctive of «fazer» (eles)?",
+          "questionTextPt": "Qual é o imperfeito do conjuntivo de «fazer» (eles)?",
+          "options": [
+            "fizessem",
+            "fazessem",
+            "façam",
+            "fizerem"
+          ],
+          "correctAnswer": "fizessem",
+          "correctIndex": 0,
+          "explanation": "Fizeram → fizessem."
+        },
+        {
+          "questionText": "Complete: Se ___ (nós, poder), ficávamos mais um dia.",
+          "questionTextPt": "Completa: Se ___ (nós, poder), ficávamos mais um dia.",
+          "options": [
+            "podemos",
+            "pudermos",
+            "pudéssemos",
+            "possamos"
+          ],
+          "correctAnswer": "pudéssemos",
+          "correctIndex": 2,
+          "explanation": "Hypothetical → pudéssemos."
+        },
+        {
+          "questionText": "Complete: Era bom que ele ___ (dizer) a verdade.",
+          "questionTextPt": "Completa: Era bom que ele ___ (dizer) a verdade.",
+          "options": [
+            "diz",
+            "diga",
+            "disser",
+            "dissesse"
+          ],
+          "correctAnswer": "dissesse",
+          "correctIndex": 3,
+          "explanation": "Era bom que (past) → dissesse."
+        }
+      ]
+    },
+    "conditional-sentences": {
+      "id": "conditional-sentences",
+      "title": "Conditional Sentences (If…)",
+      "titlePt": "Frases Condicionais",
+      "cefr": "B1",
+      "summary": "Three kinds of «se» sentence: real future (se puder, vou), hypothetical (se pudesse, ia) and past unreal (se tivesse podido, tinha ido).",
+      "intro": "Portuguese «se» sentences come in three types, and each one locks in a pair of tenses.\n\n1. Real future: se + future subjunctive, then present, future or imperative. «Se puder, vou» (If I can, I'll go).\n2. Hypothetical present: se + imperfect subjunctive, then conditional. «Se pudesse, iria». In spoken European Portuguese the main clause is almost always the imperfect indicative instead: «Se pudesse, ia».\n3. Past unreal: se + pluperfect subjunctive (tivesse + participle), then the compound conditional — in speech, tinha + participle. «Se tivesse sabido, tinha vindo» (If I had known, I'd have come).\n\nThe most common learner error is putting the conditional after se: never «se eu iria».",
+      "rules": [
+        {
+          "rule": "Type 1 (real future): se + future subjunctive → present / future / imperative.",
+          "rulePt": "Tipo 1 (real): se + futuro do conjuntivo → presente / futuro / imperativo.",
+          "examples": [
+            {
+              "pt": "Se puder, vou.",
+              "en": "If I can, I'll go."
+            },
+            {
+              "pt": "Se chover, ficamos em casa.",
+              "en": "If it rains, we'll stay home."
+            },
+            {
+              "pt": "Se precisares, liga-me.",
+              "en": "If you need to, call me."
+            }
+          ]
+        },
+        {
+          "rule": "Type 2 (hypothetical): se + imperfect subjunctive → conditional (formal) or imperfect indicative (spoken EP).",
+          "rulePt": "Tipo 2 (hipotético): se + imperfeito do conjuntivo → condicional ou, na fala, imperfeito do indicativo.",
+          "examples": [
+            {
+              "pt": "Se tivesse tempo, iria. / Se tivesse tempo, ia.",
+              "en": "If I had time, I'd go."
+            },
+            {
+              "pt": "Se morasses em Lisboa, víamo-nos mais.",
+              "en": "If you lived in Lisbon, we'd see each other more."
+            }
+          ]
+        },
+        {
+          "rule": "Type 3 (past unreal): se + tivesse + participle → teria / tinha + participle.",
+          "rulePt": "Tipo 3 (passado irreal): se + tivesse + particípio → teria / tinha + particípio.",
+          "examples": [
+            {
+              "pt": "Se tivesse sabido, tinha vindo.",
+              "en": "If I'd known, I'd have come."
+            },
+            {
+              "pt": "Se tivéssemos saído mais cedo, não tínhamos perdido o comboio.",
+              "en": "If we'd left earlier, we wouldn't have missed the train."
+            }
+          ]
+        },
+        {
+          "rule": "Never use the conditional or the present subjunctive straight after se.",
+          "rulePt": "Nunca uses o condicional nem o presente do conjuntivo logo a seguir a se.",
+          "examples": [
+            {
+              "pt": "✗ Se eu iria… → ✓ Se eu fosse…",
+              "en": "If I went…"
+            },
+            {
+              "pt": "✗ Se eu possa… → ✓ Se eu puder…",
+              "en": "If I can…"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "Real chance → future subjunctive; imaginary → imperfect subjunctive.",
+        "In Portugal people say «se pudesse, ia» far more than «se pudesse, iria». Both are correct.",
+        "The se-clause can come first or second: «Ia, se pudesse».",
+        "Never put the conditional right after se."
+      ],
+      "tipsPt": [
+        "Possibilidade real → futuro do conjuntivo; imaginária → imperfeito do conjuntivo.",
+        "Em Portugal diz-se mais «se pudesse, ia» do que «iria». Ambas estão certas.",
+        "A oração com se pode vir antes ou depois.",
+        "Nunca ponhas o condicional logo a seguir a se."
+      ],
+      "questions": [
+        {
+          "questionText": "Complete: Se ___ (eu, poder), vou à festa.",
+          "questionTextPt": "Completa: Se ___ (eu, poder), vou à festa.",
+          "options": [
+            "posso",
+            "puder",
+            "pudesse",
+            "poderia"
+          ],
+          "correctAnswer": "puder",
+          "correctIndex": 1,
+          "explanation": "Real future → future subjunctive."
+        },
+        {
+          "questionText": "Complete: Se ___ (eu, ter) dinheiro, comprava um carro.",
+          "questionTextPt": "Completa: Se ___ (eu, ter) dinheiro, comprava um carro.",
+          "options": [
+            "tenho",
+            "tiver",
+            "tivesse",
+            "teria"
+          ],
+          "correctAnswer": "tivesse",
+          "correctIndex": 2,
+          "explanation": "Hypothetical → imperfect subjunctive."
+        },
+        {
+          "questionText": "Which main clause is typical in spoken European Portuguese? «Se pudesse, ___.»",
+          "questionTextPt": "Que oração principal é típica na fala? «Se pudesse, ___.»",
+          "options": [
+            "vou",
+            "ia",
+            "irei",
+            "vá"
+          ],
+          "correctAnswer": "ia",
+          "correctIndex": 1,
+          "explanation": "Spoken EP uses the imperfect indicative for the hypothetical result."
+        },
+        {
+          "questionText": "Complete: Se tivesse sabido, ___ vindo.",
+          "questionTextPt": "Completa: Se tivesse sabido, ___ vindo.",
+          "options": [
+            "tenho",
+            "tinha",
+            "tive",
+            "tiver"
+          ],
+          "correctAnswer": "tinha",
+          "correctIndex": 1,
+          "explanation": "Past unreal: tinha (or teria) + participle."
+        },
+        {
+          "questionText": "Which sentence is wrong?",
+          "questionTextPt": "Que frase está errada?",
+          "options": [
+            "Se eu fosse rico, viajava.",
+            "Se eu iria, avisava-te.",
+            "Se chover, fico em casa.",
+            "Se precisares, liga-me."
+          ],
+          "correctAnswer": "Se eu iria, avisava-te.",
+          "correctIndex": 1,
+          "explanation": "Never the conditional right after se."
+        },
+        {
+          "questionText": "Complete: Se ___ (tu, precisar), liga-me.",
+          "questionTextPt": "Completa: Se ___ (tu, precisar), liga-me.",
+          "options": [
+            "precisas",
+            "precisares",
+            "precisasses",
+            "precises"
+          ],
+          "correctAnswer": "precisares",
+          "correctIndex": 1,
+          "explanation": "Real possibility + imperative → future subjunctive."
+        },
+        {
+          "questionText": "Complete: Se morasses em Lisboa, ___ (nós, ver-se) mais.",
+          "questionTextPt": "Completa: Se morasses em Lisboa, ___ mais.",
+          "options": [
+            "vemo-nos",
+            "víamo-nos",
+            "veremo-nos",
+            "vejamo-nos"
+          ],
+          "correctAnswer": "víamo-nos",
+          "correctIndex": 1,
+          "explanation": "Hypothetical result, spoken EP → imperfect: víamo-nos."
+        },
+        {
+          "questionText": "Complete: Se ___ (nós, sair) mais cedo, não tínhamos perdido o comboio.",
+          "questionTextPt": "Completa: Se ___ mais cedo, não tínhamos perdido o comboio.",
+          "options": [
+            "saímos",
+            "sairmos",
+            "tivéssemos saído",
+            "temos saído"
+          ],
+          "correctAnswer": "tivéssemos saído",
+          "correctIndex": 2,
+          "explanation": "Past unreal → pluperfect subjunctive."
+        }
+      ]
+    },
+    "present-perfect-composto": {
+      "id": "present-perfect-composto",
+      "title": "The Perfeito Composto",
+      "titlePt": "Pretérito Perfeito Composto",
+      "cefr": "B1",
+      "summary": "«Tenho feito» means something repeated or ongoing up to now — not the English «I have done». For a single finished action, Portuguese uses the simple preterite.",
+      "intro": "The pretérito perfeito composto (ter in the present + participle) looks like the English present perfect, but it means something different. «Tenho estudado muito» means I've been studying a lot lately — a repeated or continuing action up to now.\n\nFor one completed action, even a recent one, European Portuguese uses the simple preterite: «Já comi» (I've already eaten), «Nunca fui ao Porto» (I've never been to Porto), «Acabei o relatório» (I've finished the report).\n\nSo «I have eaten» is never «tenho comido». Use the composto only for «lately», «these days», «recently» situations: «Tenho dormido mal» (I haven't been sleeping well).",
+      "rules": [
+        {
+          "rule": "Form: ter (present) + past participle. The participle doesn't change.",
+          "rulePt": "Formação: ter (presente) + particípio passado, invariável.",
+          "examples": [
+            {
+              "pt": "tenho falado, tens comido, tem feito",
+              "en": "I've been speaking, you've been eating, he's been doing"
+            },
+            {
+              "pt": "temos visto, têm trabalhado",
+              "en": "we've been seeing, they've been working"
+            }
+          ]
+        },
+        {
+          "rule": "Use it for a repeated or ongoing action from the past up to now.",
+          "rulePt": "Usa-se para uma ação repetida ou contínua do passado até agora.",
+          "examples": [
+            {
+              "pt": "Tenho estudado muito este mês.",
+              "en": "I've been studying a lot this month."
+            },
+            {
+              "pt": "Tens dormido bem?",
+              "en": "Have you been sleeping well?"
+            },
+            {
+              "pt": "Ultimamente tem chovido imenso.",
+              "en": "It's been raining loads lately."
+            }
+          ]
+        },
+        {
+          "rule": "For a single finished action (even «already», «never», «just»), use the simple preterite.",
+          "rulePt": "Para uma ação única e terminada (já, nunca, ainda não), usa-se o pretérito perfeito simples.",
+          "examples": [
+            {
+              "pt": "Já comi.",
+              "en": "I've already eaten."
+            },
+            {
+              "pt": "Nunca fui aos Açores.",
+              "en": "I've never been to the Azores."
+            },
+            {
+              "pt": "Ainda não li esse livro.",
+              "en": "I haven't read that book yet."
+            }
+          ]
+        },
+        {
+          "rule": "Signal words: ultimamente, nos últimos tempos, este mês, desde…",
+          "rulePt": "Palavras-sinal: ultimamente, nos últimos tempos, este mês, desde…",
+          "examples": [
+            {
+              "pt": "Nos últimos tempos tenho pensado em mudar de casa.",
+              "en": "Lately I've been thinking about moving house."
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "English «I have done» is usually the simple preterite in Portuguese: «já fiz».",
+        "Ask yourself: lately / repeatedly? → tenho feito. Once? → fiz.",
+        "With já and nunca, almost always the simple preterite.",
+        "The participle never agrees with ter: «Tenho visto as minhas amigas»."
+      ],
+      "tipsPt": [
+        "«I have done» em inglês é quase sempre o pretérito simples: «já fiz».",
+        "Ultimamente / repetidamente? → tenho feito. Uma vez? → fiz.",
+        "Com já e nunca, quase sempre o pretérito simples.",
+        "O particípio não concorda com ter."
+      ],
+      "questions": [
+        {
+          "questionText": "How do you say «I've already eaten»?",
+          "questionTextPt": "Como se diz «I've already eaten»?",
+          "options": [
+            "Já tenho comido.",
+            "Já comi.",
+            "Já como.",
+            "Já tinha comido."
+          ],
+          "correctAnswer": "Já comi.",
+          "correctIndex": 1,
+          "explanation": "A single finished action → simple preterite."
+        },
+        {
+          "questionText": "Complete: Ultimamente ___ (eu, dormir) mal.",
+          "questionTextPt": "Completa: Ultimamente ___ mal.",
+          "options": [
+            "dormi",
+            "tenho dormido",
+            "durmo",
+            "dormia"
+          ],
+          "correctAnswer": "tenho dormido",
+          "correctIndex": 1,
+          "explanation": "Ongoing «lately» situation → perfeito composto."
+        },
+        {
+          "questionText": "What does «Tenho estudado muito» mean?",
+          "questionTextPt": "O que significa «Tenho estudado muito»?",
+          "options": [
+            "I have studied a lot (once).",
+            "I've been studying a lot lately.",
+            "I had studied a lot.",
+            "I will study a lot."
+          ],
+          "correctAnswer": "I've been studying a lot lately.",
+          "correctIndex": 1,
+          "explanation": "Repeated / ongoing up to now."
+        },
+        {
+          "questionText": "How do you say «I've never been to Porto»?",
+          "questionTextPt": "Como se diz «I've never been to Porto»?",
+          "options": [
+            "Nunca tenho ido ao Porto.",
+            "Nunca fui ao Porto.",
+            "Nunca vou ao Porto.",
+            "Nunca tinha ido ao Porto."
+          ],
+          "correctAnswer": "Nunca fui ao Porto.",
+          "correctIndex": 1,
+          "explanation": "Nunca + simple preterite."
+        },
+        {
+          "questionText": "Complete: Nos últimos tempos ___ (chover) muito.",
+          "questionTextPt": "Completa: Nos últimos tempos ___ muito.",
+          "options": [
+            "choveu",
+            "tem chovido",
+            "chove",
+            "chovia"
+          ],
+          "correctAnswer": "tem chovido",
+          "correctIndex": 1,
+          "explanation": "Lately → tem chovido."
+        },
+        {
+          "questionText": "Complete: Ainda não ___ (eu, ler) esse livro.",
+          "questionTextPt": "Completa: Ainda não ___ esse livro.",
+          "options": [
+            "tenho lido",
+            "li",
+            "leio",
+            "lia"
+          ],
+          "correctAnswer": "li",
+          "correctIndex": 1,
+          "explanation": "Ainda não + simple preterite for a single action."
+        },
+        {
+          "questionText": "Which sentence is natural in European Portuguese?",
+          "questionTextPt": "Que frase é natural em português europeu?",
+          "options": [
+            "Tenho comido o almoço.",
+            "Tenho visto muitos filmes este mês.",
+            "Tenho chegado agora.",
+            "Tenho nascido em Lisboa."
+          ],
+          "correctAnswer": "Tenho visto muitos filmes este mês.",
+          "correctIndex": 1,
+          "explanation": "Repeated action over a period up to now."
+        },
+        {
+          "questionText": "Complete: Tens ___ (fazer) exercício?",
+          "questionTextPt": "Completa: Tens ___ exercício?",
+          "options": [
+            "fazido",
+            "feito",
+            "fez",
+            "fazer"
+          ],
+          "correctAnswer": "feito",
+          "correctIndex": 1,
+          "explanation": "Irregular participle: feito."
+        }
+      ]
+    },
+    "indefinites": {
+      "id": "indefinites",
+      "title": "Indefinites",
+      "titlePt": "Indefinidos",
+      "cefr": "A2",
+      "summary": "Algum, nenhum, alguém, ninguém, algo, nada, tudo, todo, qualquer, outro, cada — and Portuguese double negation (não vi ninguém).",
+      "intro": "Indefinites talk about people and things without naming them. Some agree in gender and number like adjectives (algum, alguma, alguns, algumas; nenhum, nenhuma; todo, toda, todos, todas; outro, outra), others never change (alguém, ninguém, algo, nada, tudo, cada).\n\nPortuguese uses double negation: «Não vi ninguém» (I didn't see anyone), «Não quero nada» (I don't want anything). If the negative word comes before the verb, drop the não: «Ninguém veio».\n\nTwo pairs trip learners up: tudo (everything, on its own) vs todo/toda (the whole, before a noun): «Comi tudo» vs «Comi o bolo todo». And qualquer (any at all) vs algum (some): «Qualquer pessoa pode vir».",
+      "rules": [
+        {
+          "rule": "Algum / nenhum agree with the noun. Nenhum is usually singular.",
+          "rulePt": "Algum / nenhum concordam com o nome. Nenhum usa-se quase sempre no singular.",
+          "examples": [
+            {
+              "pt": "Tens alguma pergunta?",
+              "en": "Do you have any questions?"
+            },
+            {
+              "pt": "Não tenho nenhuma dúvida.",
+              "en": "I have no doubts."
+            },
+            {
+              "pt": "Alguns amigos vieram.",
+              "en": "Some friends came."
+            }
+          ]
+        },
+        {
+          "rule": "Alguém / ninguém (people), algo / alguma coisa / nada (things) never change.",
+          "rulePt": "Alguém / ninguém (pessoas), algo / alguma coisa / nada (coisas) são invariáveis.",
+          "examples": [
+            {
+              "pt": "Está alguém em casa?",
+              "en": "Is anyone home?"
+            },
+            {
+              "pt": "Queres alguma coisa?",
+              "en": "Do you want anything?"
+            },
+            {
+              "pt": "Não se passa nada.",
+              "en": "Nothing's going on."
+            }
+          ]
+        },
+        {
+          "rule": "Double negation: não + verb + ninguém / nada / nenhum. If the negative word comes first, no não.",
+          "rulePt": "Dupla negação: não + verbo + ninguém / nada / nenhum. Se a palavra negativa vier antes, sem não.",
+          "examples": [
+            {
+              "pt": "Não vi ninguém.",
+              "en": "I didn't see anyone."
+            },
+            {
+              "pt": "Ninguém me disse nada.",
+              "en": "Nobody told me anything."
+            }
+          ]
+        },
+        {
+          "rule": "Tudo = everything (alone). Todo / toda + article + noun = the whole; todos / todas = all, every.",
+          "rulePt": "Tudo = everything. Todo / toda + artigo + nome = inteiro; todos / todas = todos.",
+          "examples": [
+            {
+              "pt": "Está tudo bem.",
+              "en": "Everything's fine."
+            },
+            {
+              "pt": "Trabalhei o dia todo.",
+              "en": "I worked all day."
+            },
+            {
+              "pt": "Todos os dias acordo às sete.",
+              "en": "Every day I wake up at seven."
+            }
+          ]
+        },
+        {
+          "rule": "Qualquer (plural quaisquer) = any at all; cada = each; outro = another / other.",
+          "rulePt": "Qualquer (pl. quaisquer) = any; cada = each; outro = another.",
+          "examples": [
+            {
+              "pt": "Qualquer dia vou ao Porto.",
+              "en": "One of these days I'll go to Porto."
+            },
+            {
+              "pt": "Cada pessoa paga a sua parte.",
+              "en": "Each person pays their share."
+            },
+            {
+              "pt": "Queres outro café?",
+              "en": "Do you want another coffee?"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "Double negation is correct and normal: «Não sei nada».",
+        "«Tudo» never goes before a noun — use todo/toda: «a casa toda».",
+        "«Todo o dia» = the whole day; «todos os dias» = every day.",
+        "Algum after the noun means «none at all» in emphatic speech: «Não tenho dúvida alguma»."
+      ],
+      "tipsPt": [
+        "A dupla negação é correta e normal: «Não sei nada».",
+        "«Tudo» nunca vai antes de um nome: «a casa toda».",
+        "«Todo o dia» = o dia inteiro; «todos os dias» = every day.",
+        "«Não tenho dúvida alguma» = nenhuma, com ênfase."
+      ],
+      "questions": [
+        {
+          "questionText": "Complete: Não vi ___ na rua.",
+          "questionTextPt": "Completa: Não vi ___ na rua.",
+          "options": [
+            "alguém",
+            "ninguém",
+            "nada",
+            "nenhum"
+          ],
+          "correctAnswer": "ninguém",
+          "correctIndex": 1,
+          "explanation": "People + negation → ninguém (double negation)."
+        },
+        {
+          "questionText": "Complete: Está ___ bem?",
+          "questionTextPt": "Completa: Está ___ bem?",
+          "options": [
+            "todo",
+            "tudo",
+            "toda",
+            "todos"
+          ],
+          "correctAnswer": "tudo",
+          "correctIndex": 1,
+          "explanation": "Tudo = everything, on its own."
+        },
+        {
+          "questionText": "Complete: Trabalhei o dia ___.",
+          "questionTextPt": "Completa: Trabalhei o dia ___.",
+          "options": [
+            "tudo",
+            "todo",
+            "todos",
+            "toda"
+          ],
+          "correctAnswer": "todo",
+          "correctIndex": 1,
+          "explanation": "Todo after the noun = the whole day."
+        },
+        {
+          "questionText": "Complete: Tens ___ pergunta?",
+          "questionTextPt": "Completa: Tens ___ pergunta?",
+          "options": [
+            "algum",
+            "alguma",
+            "alguém",
+            "algo"
+          ],
+          "correctAnswer": "alguma",
+          "correctIndex": 1,
+          "explanation": "Pergunta is feminine → alguma."
+        },
+        {
+          "questionText": "Which is correct?",
+          "questionTextPt": "Qual está correta?",
+          "options": [
+            "Ninguém não veio.",
+            "Não veio ninguém.",
+            "Não veio alguém.",
+            "Ninguém veio não."
+          ],
+          "correctAnswer": "Não veio ninguém.",
+          "correctIndex": 1,
+          "explanation": "Não + verb + ninguém, or Ninguém + verb with no não."
+        },
+        {
+          "questionText": "Complete: ___ pessoa paga a sua parte.",
+          "questionTextPt": "Completa: ___ pessoa paga a sua parte.",
+          "options": [
+            "Cada",
+            "Todo",
+            "Qualquer",
+            "Outra"
+          ],
+          "correctAnswer": "Cada",
+          "correctIndex": 0,
+          "explanation": "Each → cada."
+        },
+        {
+          "questionText": "Complete: Queres ___ café?",
+          "questionTextPt": "Completa: Queres ___ café?",
+          "options": [
+            "outro",
+            "um outro",
+            "mais um outro",
+            "outra"
+          ],
+          "correctAnswer": "outro",
+          "correctIndex": 0,
+          "explanation": "Another coffee → outro café (no um)."
+        },
+        {
+          "questionText": "Complete: Não quero ___, obrigado.",
+          "questionTextPt": "Completa: Não quero ___, obrigado.",
+          "options": [
+            "algo",
+            "nada",
+            "tudo",
+            "alguma"
+          ],
+          "correctAnswer": "nada",
+          "correctIndex": 1,
+          "explanation": "Things + negation → nada."
+        }
+      ]
+    },
+    "common-verb-phrases": {
+      "id": "common-verb-phrases",
+      "title": "Everyday Verb Phrases",
+      "titlePt": "Expressões Verbais do Dia a Dia",
+      "cefr": "A2",
+      "summary": "Acabar de, voltar a, costumar, estar com fome, ter saudades de, há dois anos, há três anos que: the verb phrases you hear every day.",
+      "intro": "A handful of verb phrases do a lot of work in everyday Portuguese and don't translate word for word.\n\nAcabar de + infinitive = to have just done something: «Acabei de chegar». Voltar a + infinitive = to do again: «Voltei a ligar». Costumar + infinitive = to usually do: «Costumo jantar às oito».\n\nPhysical states use estar com: «Estou com fome / frio / sono / pressa / medo» — or ter: «Tenho fome». Time uses há: «há dois anos» (two years ago), and «há … que» or «desde» for how long something has been going on: «Há três anos que vivo aqui» = «Vivo aqui há três anos» (I've been living here for three years) — note the present tense.",
+      "rules": [
+        {
+          "rule": "Acabar de + infinitive = to have just done.",
+          "rulePt": "Acabar de + infinitivo = ter feito há muito pouco tempo.",
+          "examples": [
+            {
+              "pt": "Acabei de chegar.",
+              "en": "I've just arrived."
+            },
+            {
+              "pt": "Ela acabou de sair.",
+              "en": "She's just left."
+            }
+          ]
+        },
+        {
+          "rule": "Voltar a + infinitive = to do again.",
+          "rulePt": "Voltar a + infinitivo = fazer outra vez.",
+          "examples": [
+            {
+              "pt": "Voltei a ligar, mas ninguém atendeu.",
+              "en": "I called again, but nobody answered."
+            },
+            {
+              "pt": "Não volto a fazer isso.",
+              "en": "I won't do that again."
+            }
+          ]
+        },
+        {
+          "rule": "Costumar + infinitive = to usually do.",
+          "rulePt": "Costumar + infinitivo = fazer habitualmente.",
+          "examples": [
+            {
+              "pt": "Costumo jantar às oito.",
+              "en": "I usually have dinner at eight."
+            },
+            {
+              "pt": "Costumavas vir aqui?",
+              "en": "Did you use to come here?"
+            }
+          ]
+        },
+        {
+          "rule": "Estar com / ter + fome, sede, frio, calor, sono, pressa, medo.",
+          "rulePt": "Estar com / ter + fome, sede, frio, calor, sono, pressa, medo.",
+          "examples": [
+            {
+              "pt": "Estou com fome.",
+              "en": "I'm hungry."
+            },
+            {
+              "pt": "Tens frio?",
+              "en": "Are you cold?"
+            },
+            {
+              "pt": "Estamos com pressa.",
+              "en": "We're in a hurry."
+            }
+          ]
+        },
+        {
+          "rule": "Há + time = ago. Há … que / desde + present = for / since (still true now).",
+          "rulePt": "Há + tempo = ago. Há … que / desde + presente = algo que ainda continua.",
+          "examples": [
+            {
+              "pt": "Mudei-me há dois anos.",
+              "en": "I moved two years ago."
+            },
+            {
+              "pt": "Há três anos que vivo aqui. / Vivo aqui há três anos.",
+              "en": "I've been living here for three years."
+            },
+            {
+              "pt": "Trabalho aqui desde março.",
+              "en": "I've been working here since March."
+            }
+          ]
+        },
+        {
+          "rule": "Ter saudades de = to miss (someone / something).",
+          "rulePt": "Ter saudades de = sentir a falta de.",
+          "examples": [
+            {
+              "pt": "Tenho saudades tuas.",
+              "en": "I miss you."
+            },
+            {
+              "pt": "Tens saudades de Portugal?",
+              "en": "Do you miss Portugal?"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        "«Há três anos que vivo aqui» uses the present — the situation is still true.",
+        "Estar com fome and ter fome both work; estar com is very common in Portugal.",
+        "«Acabei de» is the natural way to say «I've just…» — not «tenho acabado».",
+        "«Costumava» = used to: «Costumava fumar»."
+      ],
+      "tipsPt": [
+        "«Há três anos que vivo aqui» usa o presente — ainda é verdade.",
+        "Estar com fome e ter fome: as duas funcionam.",
+        "«Acabei de» = I've just…",
+        "«Costumava» = used to."
+      ],
+      "questions": [
+        {
+          "questionText": "How do you say «I've just arrived»?",
+          "questionTextPt": "Como se diz «I've just arrived»?",
+          "options": [
+            "Tenho chegado.",
+            "Acabei de chegar.",
+            "Voltei a chegar.",
+            "Costumo chegar."
+          ],
+          "correctAnswer": "Acabei de chegar.",
+          "correctIndex": 1,
+          "explanation": "Acabar de + infinitive."
+        },
+        {
+          "questionText": "Complete: ___ jantar às oito. (I usually…)",
+          "questionTextPt": "Completa: ___ jantar às oito.",
+          "options": [
+            "Acabo de",
+            "Costumo",
+            "Volto a",
+            "Estou a"
+          ],
+          "correctAnswer": "Costumo",
+          "correctIndex": 1,
+          "explanation": "Costumar + infinitive = usually."
+        },
+        {
+          "questionText": "Complete: Estou ___ fome.",
+          "questionTextPt": "Completa: Estou ___ fome.",
+          "options": [
+            "de",
+            "com",
+            "em",
+            "a"
+          ],
+          "correctAnswer": "com",
+          "correctIndex": 1,
+          "explanation": "Estar com fome."
+        },
+        {
+          "questionText": "Complete: Mudei-me para cá ___ dois anos.",
+          "questionTextPt": "Completa: Mudei-me para cá ___ dois anos.",
+          "options": [
+            "desde",
+            "há",
+            "faz que",
+            "para"
+          ],
+          "correctAnswer": "há",
+          "correctIndex": 1,
+          "explanation": "Há + time = ago."
+        },
+        {
+          "questionText": "How do you say «I've been living here for three years»?",
+          "questionTextPt": "Como se diz «I've been living here for three years»?",
+          "options": [
+            "Vivi aqui há três anos.",
+            "Vivo aqui há três anos.",
+            "Tenho vivido aqui três anos.",
+            "Vivia aqui desde três anos."
+          ],
+          "correctAnswer": "Vivo aqui há três anos.",
+          "correctIndex": 1,
+          "explanation": "Still true now → present + há."
+        },
+        {
+          "questionText": "Complete: Voltei ___ ligar, mas ninguém atendeu.",
+          "questionTextPt": "Completa: Voltei ___ ligar.",
+          "options": [
+            "de",
+            "a",
+            "para",
+            "com"
+          ],
+          "correctAnswer": "a",
+          "correctIndex": 1,
+          "explanation": "Voltar a + infinitive = again."
+        },
+        {
+          "questionText": "How do you say «I miss you»?",
+          "questionTextPt": "Como se diz «I miss you»?",
+          "options": [
+            "Tenho saudades tuas.",
+            "Estou com saudades a ti.",
+            "Perco-te.",
+            "Falto-te."
+          ],
+          "correctAnswer": "Tenho saudades tuas.",
+          "correctIndex": 0,
+          "explanation": "Ter saudades de alguém — «tuas» for you."
+        },
+        {
+          "questionText": "Complete: Trabalho aqui ___ março.",
+          "questionTextPt": "Completa: Trabalho aqui ___ março.",
+          "options": [
+            "há",
+            "desde",
+            "para",
+            "em"
+          ],
+          "correctAnswer": "desde",
+          "correctIndex": 1,
+          "explanation": "Desde + starting point."
         }
       ]
     }
