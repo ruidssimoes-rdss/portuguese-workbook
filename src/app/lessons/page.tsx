@@ -1,196 +1,53 @@
 "use client";
 
-import { useState, useEffect } from "react";
+/**
+ * Lições — the level path (Figma: Lições — índice + O teu percurso).
+ * Aula's lessons are generated for you from what you need next, so the index
+ * is the A1 → A2 → B1 path: readiness per level, skills, and the next action.
+ */
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Lock, ArrowRight, RotateCcw, ChevronDown } from "lucide-react";
+import { Lock, ArrowRight, RotateCcw, Check } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
 import { getReviewCount, type CEFRProgress } from "@/lib/learning-engine/mastery-tracker";
 import { createClient } from "@/lib/supabase/client";
-import { PageShell } from "@/components/layout/page-shell";
-import { PageHeader } from "@/components/primitives";
-
-// ─── Types ──────────────────────────────────────────────
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
+import { Label, ScreenTitle, PanelCard, Track, KV } from "@/components/aula";
 
 interface LevelProgression {
   progress: CEFRProgress;
   unlocked: boolean;
 }
 
-// ─── How it works (collapsible) ─────────────────────────
-
-function HowItWorks() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="mb-6">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-[#F7F7F6] border-[0.5px] border-[#E6E6E4] rounded-lg px-5 py-3.5 hover:border-[#CFCFCB] transition-colors cursor-pointer"
-      >
-        <div>
-          <p className="text-[13px] font-medium text-[#1F1F1F] text-left">
-            Como funcionam as lições
-          </p>
-          <p className="text-[11px] text-[#98988F] text-left">
-            How lessons work
-          </p>
-        </div>
-        <ChevronDown
-          size={16}
-          className={`text-[#98988F] transition-transform duration-150 shrink-0 ${isOpen ? "rotate-180" : ""}`}
-        />
-      </button>
-
-      {isOpen && (
-        <div className="mt-2 bg-[#F7F7F6] border-[0.5px] border-[#E6E6E4] rounded-lg px-5 py-4 space-y-3 text-[13px] text-[#6B6B69] leading-relaxed">
-          <p>Each lesson is generated for you based on what you need to learn next. No two lessons are the same.</p>
-          <p>Every lesson includes:</p>
-          <ul className="space-y-1.5 ml-1">
-            <li className="flex gap-2"><span className="text-[#98988F]">·</span> New vocabulary, verbs, and grammar to learn</li>
-            <li className="flex gap-2"><span className="text-[#98988F]">·</span> Practice exercises on what you just learned</li>
-            <li className="flex gap-2"><span className="text-[#98988F]">·</span> Review of things you&apos;ve seen before</li>
-            <li className="flex gap-2"><span className="text-[#98988F]">·</span> Spot-checks on content you&apos;ve already mastered</li>
-          </ul>
-          <p>
-            You need <span className="font-medium text-[#1F1F1F]">80%</span> to pass each lesson.
-            As you master more content, the next CEFR level unlocks at <span className="font-medium text-[#1F1F1F]">75%</span> readiness.
-          </p>
-          <p>
-            Use <span className="font-medium text-[#1F1F1F]">Review</span> to revisit items you&apos;re struggling with — the system tracks what needs attention.
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─── CEFR Level Card ────────────────────────────────────
-
-function CEFRLevelCard({
-  level,
-  label,
-  labelPt,
-  progress,
-  unlocked,
-  reviewCount,
-}: {
-  level: string;
-  label: string;
-  labelPt: string;
-  progress: CEFRProgress;
-  unlocked: boolean;
-  reviewCount: number;
-}) {
-  const readinessPct = Math.round(progress.readiness * 100);
-
-  if (!unlocked) {
-    return (
-      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6 opacity-60">
-        <div className="flex items-center justify-between mb-2">
-          <h2 className="text-[16px] font-medium text-[#1F1F1F]">
-            {level} — {label}
-            <span className="text-[#98988F] font-normal ml-2">{labelPt}</span>
-          </h2>
-          <Lock size={16} className="text-[#98988F]" />
-        </div>
-        <p className="text-[13px] text-[#98988F]">
-          Complete 75% of {level === "A2" ? "A1" : "A2"} to unlock
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-[16px] font-medium text-[#1F1F1F]">
-          {level} — {label}
-          <span className="text-[#98988F] font-normal ml-2">{labelPt}</span>
-        </h2>
-        <span className="text-[22px] font-medium text-[#1F1F1F]">{readinessPct}%</span>
-      </div>
-
-      <div className="h-2 bg-[#E6E6E4] rounded-full mb-4">
-        <div
-          className="h-2 bg-[#1B2B61] rounded-full transition-all duration-500"
-          style={{ width: `${readinessPct}%` }}
-        />
-      </div>
-
-      <div className="flex gap-6 mb-4">
-        <div>
-          <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em]">Items</div>
-          <div className="text-[14px] font-medium text-[#1F1F1F]">{progress.totalItems}</div>
-        </div>
-        <div>
-          <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em]">Mastered</div>
-          <div className="text-[14px] font-medium text-[#1F7A68]">{progress.mastered}</div>
-        </div>
-        <div>
-          <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em]">In progress</div>
-          <div className="text-[14px] font-medium text-[#5B45B8]">{progress.familiar + progress.introduced}</div>
-        </div>
-        <div>
-          <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em]">Unseen</div>
-          <div className="text-[14px] font-medium text-[#98988F]">{progress.unseen}</div>
-        </div>
-      </div>
-
-      <div className="space-y-1.5 mb-5">
-        <SkillBar label="Vocab" value={progress.vocabProgress} />
-        <SkillBar label="Verbs" value={progress.verbProgress} />
-        <SkillBar label="Grammar" value={progress.grammarProgress} />
-      </div>
-
-      <div className="flex gap-3">
-        <Link
-          href="/learn"
-          className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
-        >
-          Start next lesson
-          <ArrowRight size={14} />
-        </Link>
-
-        {reviewCount > 0 && (
-          <Link
-            href="/learn?mode=review"
-            className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
-          >
-            <RotateCcw size={14} />
-            Review {reviewCount} items
-          </Link>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function SkillBar({ label, value }: { label: string; value: number }) {
-  const pct = Math.round(value * 100);
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-[11px] text-[#98988F] w-14">{label}</span>
-      <div className="flex-1 h-1 bg-[#E6E6E4] rounded-full">
-        <div
-          className="h-1 bg-[#1B2B61] rounded-full transition-all duration-500"
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-      <span className="text-[11px] text-[#98988F] w-8 text-right">{pct}%</span>
-    </div>
-  );
-}
-
-// ─── Page ───────────────────────────────────────────────
+const LEVELS = [
+  {
+    key: "a1" as const,
+    level: "A1",
+    name: "Iniciação",
+    can: ["Apresentar-te e cumprimentar", "Pedir um café e pagar", "Dizer as horas, os dias, os números"],
+    exam: null,
+  },
+  {
+    key: "a2" as const,
+    level: "A2",
+    name: "Sobreviver no dia a dia",
+    can: ["Falar do que fizeste ontem e de como era", "Ir ao médico, à farmácia, às compras", "Escrever uma mensagem curta a um vizinho"],
+    exam: "CIPLE · o exame oficial de A2",
+  },
+  {
+    key: "b1" as const,
+    level: "B1",
+    name: "Conversar à vontade",
+    can: ["Contar uma história com princípio, meio e fim", "Dar a tua opinião e justificá-la", "Tratar de assuntos nas Finanças ou no banco"],
+    exam: "DEPLE · o exame oficial de B1",
+  },
+];
 
 export default function LessonsPage() {
   const { user, loading: authLoading } = useAuth();
-  const [progression, setProgression] = useState<{
-    a1: LevelProgression;
-    a2: LevelProgression;
-    b1: LevelProgression;
-  } | null>(null);
+  const [progression, setProgression] = useState<Record<"a1" | "a2" | "b1", LevelProgression> | null>(null);
   const [reviewCount, setReviewCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -198,77 +55,155 @@ export default function LessonsPage() {
     async function load() {
       const supabase = createClient();
       const { data: { user: currentUser } } = await supabase.auth.getUser();
-      if (!currentUser) { setLoading(false); return; }
-
-      const prog = await getFullProgression(currentUser.id);
+      if (!currentUser) {
+        setLoading(false);
+        return;
+      }
+      const [prog, count] = await Promise.all([getFullProgression(currentUser.id), getReviewCount(currentUser.id)]);
       setProgression(prog);
-
-      const count = await getReviewCount(currentUser.id);
       setReviewCount(count);
-
       setLoading(false);
     }
     load();
   }, []);
 
-  const isLoggedIn = !authLoading && !!user;
+  // Current level = highest unlocked level that isn't finished.
+  const current = progression
+    ? (LEVELS.filter((l) => progression[l.key].unlocked && progression[l.key].progress.readiness < 1).at(-1)?.key ??
+      LEVELS.filter((l) => progression[l.key].unlocked).at(-1)?.key ??
+      "a1")
+    : null;
+  const cur = current && progression ? progression[current] : null;
+  const curMeta = LEVELS.find((l) => l.key === current);
+
+  const panel = (
+    <div className="flex flex-col gap-6">
+      {cur && curMeta && (
+        <PanelCard title={`Nível ${curMeta.level}`} aside={<span className="text-[12px] font-medium text-aula-accent">{Math.round(cur.progress.readiness * 100)}%</span>}>
+          <div className="mb-3">
+            <Track value={cur.progress.readiness} />
+          </div>
+          <KV k="Itens dominados" v={`${cur.progress.mastered} de ${cur.progress.totalItems}`} />
+          <KV k="A aprender" v={cur.progress.familiar + cur.progress.introduced} />
+          <KV k="Revisões em atraso" v={reviewCount} tone={reviewCount > 0 ? "overdue" : undefined} />
+          <Link href="/learn" className="mt-3 flex h-8 items-center justify-center gap-1.5 rounded-lg bg-aula-accent text-[12px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
+            Próxima lição <ArrowRight size={13} strokeWidth={1.5} />
+          </Link>
+        </PanelCard>
+      )}
+      <div>
+        <Label className="mb-2">Como funcionam as lições</Label>
+        <div className="flex flex-col gap-2 text-[12px] leading-relaxed text-aula-text-2">
+          <p>Cada lição é feita para ti a partir do que precisas de aprender a seguir. Não há duas iguais.</p>
+          <p>Mistura palavras e regras novas, exercícios sobre o que acabaste de ver, revisões do que já viste e verificações do que já dominas.</p>
+          <p>
+            Passas uma lição com <span className="font-medium text-aula-text">80%</span>. O nível seguinte abre quando estiveres <span className="font-medium text-aula-text">75%</span> pronto.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <PageShell>
-      <PageHeader
-        title="Lições"
-        subtitle="Your personalised learning journey"
-      />
+    <PageShell header={<Crumbs items={[{ label: "Lições" }]} />} panel={panel}>
+      <div className="mx-auto max-w-[680px]">
+        <ScreenTitle title="Lições" subtitle="Três níveis, do primeiro «olá» a conversar sem pensar. As lições adaptam-se ao que precisas." />
 
-      <HowItWorks />
-
-      {loading ? (
-        <div className="flex items-center justify-center h-48">
-          <div className="text-[13px] text-[#98988F]">A carregar o progresso...</div>
-        </div>
-      ) : progression ? (
-        <div className="space-y-4">
-          <CEFRLevelCard
-            level="A1"
-            label="Beginner"
-            labelPt="Iniciante"
-            progress={progression.a1.progress}
-            unlocked={progression.a1.unlocked}
-            reviewCount={reviewCount}
-          />
-          <CEFRLevelCard
-            level="A2"
-            label="Elementary"
-            labelPt="Elementar"
-            progress={progression.a2.progress}
-            unlocked={progression.a2.unlocked}
-            reviewCount={0}
-          />
-          <CEFRLevelCard
-            level="B1"
-            label="Intermediate"
-            labelPt="Intermédio"
-            progress={progression.b1.progress}
-            unlocked={progression.b1.unlocked}
-            reviewCount={0}
-          />
-        </div>
-      ) : (
-        <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-8 text-center">
-          <p className="text-[14px] font-medium text-[#1F1F1F]">
-            Sign in to start learning
-          </p>
-          <p className="text-[12px] text-[#98988F] mt-1">
-            Inicia sessão para começar a aprender
-          </p>
-          <Link
-            href="/auth/login"
-            className="inline-flex items-center justify-center px-4 py-2 bg-[#1B2B61] text-white rounded-lg text-[13px] font-medium hover:bg-[#14214C] transition-colors mt-4"
-          >
-            Entrar
-          </Link>
-        </div>
-      )}
+        {loading || authLoading ? (
+          <div className="py-16 text-center text-[13px] text-aula-text-3">A carregar o teu progresso…</div>
+        ) : !user || !progression ? (
+          <div className="rounded-xl border border-aula-border p-8 text-center">
+            <p className="text-[15px] font-semibold text-aula-text">Entra para começar</p>
+            <p className="mx-auto mt-1.5 max-w-[360px] text-[13px] text-aula-text-2">As lições adaptam-se ao teu progresso, por isso precisam de saber quem és.</p>
+            <Link href="/auth/login" className="mt-4 inline-flex h-8 items-center rounded-lg bg-aula-accent px-4 text-[12.5px] font-medium text-white">
+              Entrar
+            </Link>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2.5">
+            {LEVELS.map((L) => {
+              const p = progression[L.key];
+              const pct = Math.round(p.progress.readiness * 100);
+              const isCur = L.key === current;
+              const done = p.unlocked && p.progress.readiness >= 1;
+              const locked = !p.unlocked;
+              return (
+                <div
+                  key={L.key}
+                  className={`flex gap-4 rounded-xl border p-[18px] ${isCur ? "border-[#D3DAEB] bg-aula-accent-faint" : "border-aula-border bg-white"} ${locked ? "opacity-70" : ""}`}
+                >
+                  <span
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[9px] text-[12px] font-semibold ${
+                      done ? "bg-[#E8ECF6] text-aula-accent" : isCur ? "bg-aula-accent text-white" : "bg-aula-sunken text-aula-text-3"
+                    }`}
+                  >
+                    {L.level}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className={`text-[13px] font-medium ${locked ? "text-aula-text-2" : "text-aula-text"}`}>{L.name}</span>
+                      <span className="flex-1" />
+                      <span className={`text-[11px] ${isCur ? "text-aula-accent" : "text-aula-text-3"}`}>
+                        {locked ? (
+                          <span className="inline-flex items-center gap-1">
+                            <Lock size={11} strokeWidth={1.5} /> abre com 75% do nível anterior
+                          </span>
+                        ) : done ? (
+                          "Concluído"
+                        ) : isCur ? (
+                          `Estás aqui · ${pct}%`
+                        ) : (
+                          `${pct}%`
+                        )}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-[11px] text-aula-text-3">No fim deste nível consegues:</p>
+                    <ul className="mt-1 flex flex-col gap-0.5">
+                      {L.can.map((c) => (
+                        <li key={c} className={`flex items-center gap-2 text-[12px] ${locked ? "text-aula-text-2" : "text-aula-text"}`}>
+                          <Check size={12} strokeWidth={1.5} className={done ? "text-aula-accent" : "text-aula-text-3"} /> {c}
+                        </li>
+                      ))}
+                    </ul>
+                    {!locked && (
+                      <div className="mt-3 flex flex-col gap-1.5">
+                        <Skill label="Vocabulário" value={p.progress.vocabProgress} />
+                        <Skill label="Verbos" value={p.progress.verbProgress} />
+                        <Skill label="Gramática" value={p.progress.grammarProgress} />
+                      </div>
+                    )}
+                    {L.exam && <p className="mt-2.5 text-[11px] text-aula-accent">{L.exam}</p>}
+                    {isCur && (
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <Link href="/learn" className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-aula-accent px-3.5 text-[12px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
+                          Próxima lição <ArrowRight size={13} strokeWidth={1.5} />
+                        </Link>
+                        {reviewCount > 0 && (
+                          <Link href="/learn?mode=review" className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-aula-border bg-white px-3.5 text-[12px] font-medium text-aula-text transition-colors hover:border-aula-text-4">
+                            <RotateCcw size={13} strokeWidth={1.5} /> Rever {reviewCount}
+                          </Link>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </PageShell>
+  );
+}
+
+function Skill({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="w-[76px] text-[11px] text-aula-text-3">{label}</span>
+      <div className="flex-1">
+        <Track value={value} />
+      </div>
+      <span className="w-8 text-right text-[11px] text-aula-text-3">{Math.round(value * 100)}%</span>
+    </div>
   );
 }
