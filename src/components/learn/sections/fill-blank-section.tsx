@@ -75,12 +75,12 @@ export function FillBlankSectionNew({ sectionIndex, totalSections, showEnglish, 
                   ref={i === 0 ? firstRef : undefined}
                   type="text" value={answers[s.id] ?? ""}
                   onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                  className="inline-block w-20 mx-0.5 px-1 py-px text-[13px] font-medium text-center border-b-[1.5px] border-[rgba(0,0,0,0.15)] outline-none focus:border-[#1B2B61] bg-transparent"
+                  className="inline-block w-24 mx-0.5 h-6 px-1.5 text-[13px] font-medium text-center rounded-md border border-[#E6E6E4] bg-[#F7F7F6] outline-none focus:border-[#1B2B61] focus:bg-white"
                   placeholder={s.hint ?? "..."} autoComplete="off" spellCheck={false}
                 />
               ) : (
                 <span className={`inline-block mx-0.5 px-1 py-px rounded font-medium ${
-                  r?.correct ? "text-[#1F7A68] border-b-[1.5px] border-[#1F7A68]" : "text-[#B94A32] border-b-[1.5px] border-[#B94A32]"
+                  r?.correct ? "text-[#1F7A68] bg-[#E1F2ED] border border-[#BFE3D8]" : "text-[#B94A32] bg-[#FBE9E4] border border-[#F0C9BE]"
                 }`}>
                   {r?.correct ? s.correctAnswer : answers[s.id]}
                 </span>

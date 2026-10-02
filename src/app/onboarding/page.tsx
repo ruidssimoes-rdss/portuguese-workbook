@@ -312,7 +312,7 @@ export default function OnboardingPage() {
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="O teu nome"
-              className="w-full text-center text-[22px] font-bold text-[#1F1F1F] border-b-2 border-[#E6E6E4] focus:border-[#1B2B61] outline-none pb-3 bg-transparent transition-colors duration-200"
+              className="w-full h-12 rounded-xl text-center text-[20px] font-semibold text-[#1F1F1F] border border-[#E6E6E4] bg-[#F7F7F6] focus:border-[#1B2B61] focus:bg-white outline-none transition-colors duration-200"
             />
           </div>
         </div>

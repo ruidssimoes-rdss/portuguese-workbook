@@ -118,7 +118,7 @@ export function ConjugationSection({ sectionIndex, totalSections, showEnglish, v
                     type="text"
                     value={answers[key] ?? ""}
                     onChange={(e) => setAnswers((prev) => ({ ...prev, [key]: e.target.value }))}
-                    className="flex-1 text-[14px] font-medium text-[#1F1F1F] bg-transparent border-b-[1.5px] border-[rgba(0,0,0,0.15)] focus:border-[#1B2B61] outline-none py-1 transition-colors placeholder:text-[#98988F]"
+                    className="flex-1 h-8 px-2.5 rounded-lg text-[14px] font-medium text-[#1F1F1F] bg-[#F7F7F6] border border-[#E6E6E4] focus:border-[#1B2B61] focus:bg-white outline-none transition-colors placeholder:text-[#98988F]"
                     placeholder="..."
                     autoComplete="off"
                     spellCheck={false}

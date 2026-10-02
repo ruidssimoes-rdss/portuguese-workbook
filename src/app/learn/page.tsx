@@ -172,7 +172,7 @@ function LearnPageContent() {
   if (!lesson || !generated || generated.sections.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-64 gap-4">
-        <p className="text-[14px] text-[#6B6B69]">No exercises available at this level yet.</p>
+        <p className="text-[14px] text-[#6B6B69]">Ainda não há exercícios para este nível.</p>
         <button
           onClick={() => router.push("/lessons")}
           className="px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"

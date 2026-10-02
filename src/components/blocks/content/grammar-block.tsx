@@ -23,7 +23,7 @@ function ExpandedVariant({ data, className }: { data: GrammarBlockData; classNam
               <p className="text-[13px] text-[#6B6B69] italic mt-0.5 ml-6">{rule.rulePt}</p>
             )}
             {rule.examples.length > 0 && (
-              <div className="border-l-2 border-[#E6E6E4] pl-4 ml-6 mt-2 space-y-1.5">
+              <div className="ml-6 mt-2 space-y-1.5 rounded-lg bg-[#F7F7F6] px-4 py-2">
                 {rule.examples.map((ex, j) => (
                   <div key={j}>
                     <p className="text-[13px] text-[#1F1F1F]">{ex.pt}</p>

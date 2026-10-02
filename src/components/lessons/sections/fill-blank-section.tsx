@@ -92,7 +92,7 @@ export function FillBlankSection({ sectionIndex, totalSections, showEnglish, sen
                   type="text"
                   value={answers[s.id] ?? ""}
                   onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                  className="inline-block w-28 mx-1 px-2 py-1 text-[14px] font-medium text-center border-b-[1.5px] border-[rgba(0,0,0,0.15)] outline-none focus:border-[#1B2B61] bg-transparent transition-colors"
+                  className="inline-block w-28 mx-1 h-7 px-2 text-[14px] font-medium text-center rounded-md border border-[#E6E6E4] bg-[#F7F7F6] outline-none focus:border-[#1B2B61] focus:bg-white transition-colors"
                   autoComplete="off" spellCheck={false}
                   placeholder={s.hint ?? "___"}
                 />

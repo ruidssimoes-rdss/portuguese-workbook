@@ -49,7 +49,7 @@ export function GrammarLearn({ data }: GrammarLearnProps) {
                 {rule.examples.map((ex, j) => (
                   <div
                     key={j}
-                    className="border-l-2 border-[#1B2B61]/20 pl-4 py-1"
+                    className="rounded-lg bg-[#F3F5FA] px-4 py-2"
                   >
                     <div className="flex items-center gap-2">
                       <PronunciationButton text={ex.pt} size="sm" variant="muted" />
