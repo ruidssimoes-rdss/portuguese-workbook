@@ -38,7 +38,7 @@ function normalizeSayings(): CultureItem[] {
     subtitle: s.literal,
     description: s.meaning,
     cefr: s.cefr,
-    category: "Sayings",
+    category: "Ditados",
   }));
 }
 
@@ -46,10 +46,10 @@ function normalizeFalseFriends(): CultureItem[] {
   return falseFriendsData.falseFriends.map((f) => ({
     id: f.id,
     title: f.portuguese,
-    subtitle: `Looks like "${f.looksLike}" — actually means: ${f.actualMeaning}`,
+    subtitle: `Parece «${f.looksLike}» — quer dizer: ${f.actualMeaning}`,
     description: f.tip,
     cefr: f.cefr,
-    category: "False friends",
+    category: "Falsos amigos",
   }));
 }
 
@@ -60,7 +60,7 @@ function normalizeEtiquette(): CultureItem[] {
     subtitle: e.title,
     description: e.description,
     cefr: "A2",
-    category: "Etiquette",
+    category: "Etiqueta",
   }));
 }
 
@@ -77,14 +77,14 @@ function normalizeRegional(): CultureItem[] {
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const tabs = ["All", "Sayings", "False friends", "Etiquette", "Regional"];
-const cefrOptions = ["All", "A1", "A2", "B1"];
+const tabs = ["Tudo", "Ditados", "Falsos amigos", "Etiqueta", "Regional"];
+const cefrOptions = ["Todos", "A1", "A2", "B1"];
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 
 export default function CulturePage() {
-  const [tab, setTab] = useState("All");
-  const [cefr, setCefr] = useState("All");
+  const [tab, setTab] = useState("Tudo");
+  const [cefr, setCefr] = useState("Todos");
   const [search, setSearch] = useState("");
 
   const allItems: CultureItem[] = useMemo(() => {
@@ -98,8 +98,8 @@ export default function CulturePage() {
 
   const filtered = useMemo(() => {
     return allItems.filter((item) => {
-      if (tab !== "All" && item.category !== tab) return false;
-      if (cefr !== "All" && item.cefr !== cefr) return false;
+      if (tab !== "Tudo" && item.category !== tab) return false;
+      if (cefr !== "Todos" && item.cefr !== cefr) return false;
       if (search) {
         const q = search.toLowerCase();
         return (
@@ -112,13 +112,42 @@ export default function CulturePage() {
     });
   }, [allItems, tab, cefr, search]);
 
+  // Same saying for everyone all week.
+  const week = Math.floor(Date.now() / (7 * 86_400_000));
+  const saying = sayingsData.sayings[week % sayingsData.sayings.length];
+
   const totalForTab =
-    tab === "All"
+    tab === "Tudo"
       ? allItems.length
       : allItems.filter((i) => i.category === tab).length;
 
   return (
-    <PageShell header={<Crumbs items={[{ label: "Cultura" }]} />}>
+    <PageShell
+      header={<Crumbs items={[{ label: "Cultura" }]} />}
+      panel={
+        <div className="flex flex-col gap-6">
+          <div className="rounded-[10px] border border-[#D3DAEB] bg-aula-accent-faint p-4">
+            <div className="mb-1.5 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-accent">Ditado da semana</div>
+            <div className="text-[15px] font-semibold leading-snug text-aula-text">«{saying.portuguese.replace(/\.$/, "")}»</div>
+            <p className="mt-1.5 text-[12px] leading-relaxed text-aula-text-2">{saying.meaning}</p>
+          </div>
+          <div>
+            <div className="mb-2 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3">Coleções</div>
+            {tabs.slice(1).map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`flex h-7 w-full items-center rounded-md px-2 text-[12.5px] ${tab === t ? "bg-aula-selected font-medium text-aula-text" : "text-aula-text-2 hover:bg-aula-sunken"}`}
+              >
+                {t}
+                <span className="flex-1" />
+                <span className="text-[11px] text-aula-text-3">{allItems.filter((i) => i.category === t).length}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      }
+    >
       <PageHeader
         title="Cultura"
         subtitle={`${allItems.length} notas sobre como se vive e se fala em Portugal`}
@@ -129,7 +158,7 @@ export default function CulturePage() {
         value={tab}
         onChange={(t) => {
           setTab(t);
-          setCefr("All");
+          setCefr("Todos");
           setSearch("");
         }}
       />
@@ -143,7 +172,7 @@ export default function CulturePage() {
         />
         <div className="flex-1" />
         <SearchInput
-          placeholder="Search culture..."
+          placeholder="Procurar na cultura…"
           value={search}
           onChange={setSearch}
         />
