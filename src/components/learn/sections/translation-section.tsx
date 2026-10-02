@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
 import type { SectionResult } from "@/lib/exercise-types";
+import { Item, Prompt, AnswerInput, AccentNote, SectionFooter, type Mark } from "../kit";
 
 interface TransSentence { id: string; sourceText: string; correctAnswer: string; acceptedAnswers?: string[]; }
 
@@ -11,81 +12,63 @@ interface Props {
   sentences: TransSentence[]; onComplete: (result: SectionResult) => void;
 }
 
-export function TranslationSectionNew({ sectionIndex, totalSections, showEnglish, sentences, onComplete }: Props) {
+export function TranslationSectionNew({ sectionIndex, totalSections, sentences, onComplete }: Props) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [phase, setPhase] = useState<"answering" | "reviewed">("answering");
-  const [results, setResults] = useState<Record<string, { correct: boolean; accentHint?: string }>>({});
-  const firstRef = useRef<HTMLTextAreaElement>(null);
+  const [results, setResults] = useState<Record<string, { correct: boolean; accentHint?: string }> | null>(null);
+  const refs = useRef<(HTMLTextAreaElement | null)[]>([]);
 
-  useEffect(() => { const t = setTimeout(() => firstRef.current?.focus(), 100); return () => clearTimeout(t); }, []);
+  useEffect(() => { const t = setTimeout(() => refs.current[0]?.focus(), 100); return () => clearTimeout(t); }, []);
 
-  const allFilled = sentences.every((s) => (answers[s.id] ?? "").trim() !== "");
+  const remaining = sentences.filter((s) => !(answers[s.id] ?? "").trim()).length;
 
   function verify() {
-    const r: typeof results = {};
+    if (remaining > 0) return;
+    const r: NonNullable<typeof results> = {};
     for (const s of sentences) {
       const chk = checkAnswer((answers[s.id] ?? "").trim(), s.correctAnswer, s.acceptedAnswers);
       r[s.id] = { correct: chk.correct, accentHint: chk.accentHint };
     }
-    setResults(r); setPhase("reviewed");
+    setResults(r);
   }
 
   function finish() {
     const ans = sentences.map((s) => ({
-      questionId: s.id, correct: results[s.id]?.correct ?? false,
+      questionId: s.id, correct: results?.[s.id]?.correct ?? false,
       userAnswer: (answers[s.id] ?? "").trim(), correctAnswer: s.correctAnswer,
-      accentHint: results[s.id]?.accentHint,
+      accentHint: results?.[s.id]?.accentHint,
     }));
     onComplete({ sectionKey: "translation", sectionName: "Tradução", answers: ans, totalCorrect: ans.filter((a) => a.correct).length, totalQuestions: ans.length });
   }
 
-  const correctCount = Object.values(results).filter((r) => r.correct).length;
-
   return (
     <div>
-      {sentences.map((s, i) => {
-        const r = results[s.id];
-        return (
-          <div key={s.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
-            phase === "reviewed" ? (r?.correct ? "border-[#1F7A68]" : "border-[#B94A32]") : "border-[#E6E6E4]"
-          }`}>
-            <div className="text-[11px] text-[#98988F]">{i + 1}</div>
-            <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">&ldquo;{s.sourceText}&rdquo;</p>
-
-            {phase === "answering" ? (
-              <textarea ref={i === 0 ? firstRef : undefined} value={answers[s.id] ?? ""}
-                onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))} rows={2}
-                className="w-full mt-2 px-[10px] py-[7px] text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-[6px] outline-none focus:border-[#CFCFCB] resize-none placeholder:text-[#98988F]"
-                placeholder="Escreve em português..." autoComplete="off" spellCheck={false}
+      <div className="divide-y divide-[#EFEFED]">
+        {sentences.map((s, i) => {
+          const r = results?.[s.id];
+          const mark: Mark = !r ? "idle" : r.correct ? "correct" : "wrong";
+          return (
+            <Item key={s.id} n={i + 1} mark={mark}>
+              <Prompt>«{s.sourceText}»</Prompt>
+              <AnswerInput
+                ref={(el) => { refs.current[i] = el; }}
+                multiline
+                value={answers[s.id] ?? ""}
+                onChange={(v) => setAnswers((p) => ({ ...p, [s.id]: v }))}
+                mark={mark}
+                correct={s.correctAnswer}
+                placeholder="Escreve a tradução…"
+                onEnter={() => (i < sentences.length - 1 ? refs.current[i + 1]?.focus() : verify())}
               />
-            ) : (
-              <>
-                <div className={`mt-2 px-[10px] py-[7px] rounded-[6px] border-[0.5px] text-[13px] font-medium ${
-                  r?.correct ? "border-[#1F7A68] text-[#1F7A68]" : "border-[#B94A32] text-[#B94A32]"
-                }`}>{answers[s.id]}</div>
-                {!r?.correct && <div className="text-[12px] font-medium text-[#B94A32] mt-1">Not quite <span className="font-normal">→ {s.correctAnswer}</span></div>}
-                {r?.accentHint && <span className="inline-block mt-1 px-[10px] py-1 text-[11px] text-[#5B45B8] bg-[#ECE8F8] rounded-[5px]">Atenção ao acento: {r.accentHint}</span>}
-              </>
-            )}
-          </div>
-        );
-      })}
-
-      <div className="mt-[10px]">
-        {phase === "answering" && (
-          <button type="button" onClick={verify} disabled={!allFilled}
-            className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#1B2B61] text-white cursor-pointer" : "bg-[#1B2B61] text-white opacity-40 cursor-not-allowed"}`}
-          >{allFilled ? "Continuar →" : "Responde a todas para continuar"}</button>
-        )}
-        {phase === "reviewed" && (
-          <div className="flex items-center justify-between">
-            <span className="text-[13px] font-medium text-[#1F1F1F]">{correctCount}/{sentences.length}</span>
-            <button type="button" onClick={finish} className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#1B2B61] rounded-[6px] cursor-pointer">
-              {sectionIndex < totalSections - 1 ? "Secção seguinte →" : "Ver resultados →"}
-            </button>
-          </div>
-        )}
+              {r?.correct && <AccentNote hint={r.accentHint} />}
+            </Item>
+          );
+        })}
       </div>
+      <SectionFooter
+        checked={!!results} ready={remaining === 0} remaining={remaining}
+        correct={Object.values(results ?? {}).filter((r) => r.correct).length} total={sentences.length}
+        isLast={sectionIndex === totalSections - 1} onCheck={verify} onNext={finish}
+      />
     </div>
   );
 }

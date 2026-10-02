@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
 import type { SectionResult } from "@/lib/exercise-types";
+import { AudioButton } from "@/components/primitives";
+import { Item, AnswerInput, Choice, choiceResult, AccentNote, SectionFooter, type Mark } from "../kit";
 
 interface VocabQuestion {
   id: string;
@@ -23,175 +25,101 @@ interface Props {
   onComplete: (result: SectionResult) => void;
 }
 
-export function VocabSectionNew({
-  sectionIndex,
-  totalSections,
-  showEnglish,
-  questions,
-  onComplete,
-}: Props) {
+export function VocabSectionNew({ sectionIndex, totalSections, questions, onComplete }: Props) {
   const [typed, setTyped] = useState<Record<string, string>>({});
-  const [mcPicks, setMcPicks] = useState<Record<string, number>>({});
-  const [phase, setPhase] = useState<"answering" | "reviewed">("answering");
-  const [results, setResults] = useState<Record<string, { correct: boolean; accentHint?: string }>>({});
-  const firstRef = useRef<HTMLInputElement>(null);
+  const [picks, setPicks] = useState<Record<string, number>>({});
+  const [results, setResults] = useState<Record<string, { correct: boolean; accentHint?: string }> | null>(null);
+  const refs = useRef<Record<string, HTMLInputElement | null>>({});
 
   useEffect(() => {
-    const t = setTimeout(() => firstRef.current?.focus(), 100);
+    const first = questions.find((q) => q.type === "type-answer");
+    const t = setTimeout(() => first && refs.current[first.id]?.focus(), 100);
     return () => clearTimeout(t);
-  }, []);
+  }, [questions]);
 
-  const allFilled = questions.every((q) =>
-    q.type === "mc" ? mcPicks[q.id] !== undefined : (typed[q.id] ?? "").trim() !== ""
-  );
+  const answered = (q: VocabQuestion) => (q.type === "mc" ? picks[q.id] !== undefined : !!(typed[q.id] ?? "").trim());
+  const remaining = questions.filter((q) => !answered(q)).length;
 
   function verify() {
-    const r: typeof results = {};
+    if (remaining > 0) return;
+    const r: NonNullable<typeof results> = {};
     for (const q of questions) {
-      if (q.type === "mc") {
-        r[q.id] = { correct: mcPicks[q.id] === q.correctIndex };
-      } else {
+      if (q.type === "mc") r[q.id] = { correct: picks[q.id] === q.correctIndex };
+      else {
         const chk = checkAnswer((typed[q.id] ?? "").trim(), q.englishWord, q.acceptedAnswers);
         r[q.id] = { correct: chk.correct, accentHint: chk.accentHint };
       }
     }
     setResults(r);
-    setPhase("reviewed");
   }
 
   function finish() {
     const answers = questions.map((q) => ({
       questionId: q.id,
-      correct: results[q.id]?.correct ?? false,
-      userAnswer: q.type === "mc" ? (q.options?.[mcPicks[q.id] ?? 0] ?? "") : (typed[q.id] ?? "").trim(),
+      correct: results?.[q.id]?.correct ?? false,
+      userAnswer: q.type === "mc" ? (q.options?.[picks[q.id] ?? 0] ?? "") : (typed[q.id] ?? "").trim(),
       correctAnswer: q.type === "mc" ? (q.options?.[q.correctIndex ?? 0] ?? "") : q.englishWord,
-      accentHint: results[q.id]?.accentHint,
+      accentHint: results?.[q.id]?.accentHint,
     }));
-    onComplete({
-      sectionKey: "vocab",
-      sectionName: "Vocabulário",
-      answers,
-      totalCorrect: answers.filter((a) => a.correct).length,
-      totalQuestions: answers.length,
-    });
+    onComplete({ sectionKey: "vocab", sectionName: "Vocabulário", answers, totalCorrect: answers.filter((a) => a.correct).length, totalQuestions: answers.length });
   }
 
-  const correctCount = Object.values(results).filter((r) => r.correct).length;
+  function focusNextTyped(after: number) {
+    const next = questions.slice(after + 1).find((q) => q.type === "type-answer");
+    if (next) refs.current[next.id]?.focus();
+    else verify();
+  }
 
   return (
     <div>
-      {questions.map((q, i) => {
-        const r = results[q.id];
-        const cardCls = phase === "reviewed"
-          ? r?.correct
-            ? "border-[#1F7A68]"
-            : "border-[#B94A32]"
-          : "border-[#E6E6E4]";
-
-        return (
-          <div key={q.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${cardCls}`}>
-            <div className={`text-[11px] ${phase === "reviewed" ? (r?.correct ? "text-[#1F7A68]" : "text-[#B94A32]") : "text-[#98988F]"}`}>{i + 1}</div>
-            <div className={`text-[15px] font-medium mt-0.5 ${phase === "reviewed" ? (r?.correct ? "text-[#1F7A68]" : "text-[#B94A32]") : "text-[#1F1F1F]"}`}>
-              &ldquo;{q.portugueseWord}&rdquo;
-            </div>
-            {q.pronunciation && <div className="text-[11px] text-[#98988F] font-mono mt-px">{q.pronunciation}</div>}
-
-            {/* MC */}
-            {q.type === "mc" && q.options && (
-              <div className="grid grid-cols-2 gap-[5px] mt-2">
-                {q.options.map((opt, oi) => {
-                  const sel = mcPicks[q.id] === oi;
-                  const isCorr = oi === q.correctIndex;
-                  let cls = "px-3 py-[9px] text-[12px] text-left rounded-[6px] border-[0.5px] transition-colors ";
-                  if (phase === "reviewed") {
-                    if (isCorr) cls += "border-[#1F7A68] text-[#1F7A68]";
-                    else if (sel && !r?.correct) cls += "border-[#B94A32] text-[#B94A32]";
-                    else cls += "border-[#E6E6E4] text-[#98988F]";
-                  } else if (sel) {
-                    cls += "border-[#1B2B61] bg-[#E8ECF6] text-[#1F1F1F]";
-                  } else {
-                    cls += "border-[#E6E6E4] text-[#1F1F1F] hover:border-[#CFCFCB] hover:bg-[#F7F7F6] cursor-pointer";
-                  }
-                  return (
-                    <button key={oi} type="button" disabled={phase === "reviewed"}
-                      onClick={() => setMcPicks((p) => ({ ...p, [q.id]: oi }))}
-                      className={cls}
-                    >{opt}</button>
-                  );
-                })}
+      <div className="divide-y divide-[#EFEFED]">
+        {questions.map((q, i) => {
+          const r = results?.[q.id];
+          const mark: Mark = !r ? "idle" : r.correct ? "correct" : "wrong";
+          return (
+            <Item key={q.id} n={i + 1} mark={mark}>
+              <div className="mb-2.5 flex items-center gap-1.5">
+                <span className="text-[17px] font-semibold tracking-[-0.01em] text-[#1F1F1F]">{q.portugueseWord}</span>
+                <AudioButton text={q.portugueseWord} />
+                {q.pronunciation && <span className="text-[12px] text-[#98988F]">/{q.pronunciation.replace(/^\/|\/$/g, "")}/</span>}
               </div>
-            )}
-
-            {/* Type answer */}
-            {q.type === "type-answer" && phase === "answering" && (
-              <div className="flex gap-1.5 mt-2">
-                <input
-                  ref={i === 0 ? firstRef : undefined}
-                  type="text"
-                  value={typed[q.id] ?? ""}
-                  onChange={(e) => setTyped((p) => ({ ...p, [q.id]: e.target.value }))}
-                  placeholder={showEnglish ? "Tradução em inglês…" : "Tradução..."}
-                  className="flex-1 px-[10px] py-[7px] text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-[6px] outline-none focus:border-[#CFCFCB] placeholder:text-[#98988F]"
-                  autoComplete="off" spellCheck={false}
-                />
-                <button type="button"
-                  onClick={() => {
-                    if ((typed[q.id] ?? "").trim()) {
-                      const chk = checkAnswer((typed[q.id] ?? "").trim(), q.englishWord, q.acceptedAnswers);
-                      setResults((prev) => ({ ...prev, [q.id]: { correct: chk.correct, accentHint: chk.accentHint } }));
-                    }
-                  }}
-                  className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#1B2B61] rounded-[6px] shrink-0 cursor-pointer"
-                >Verificar</button>
-              </div>
-            )}
-
-            {/* Reviewed type-answer result */}
-            {q.type === "type-answer" && phase === "reviewed" && !results[q.id] && (
-              <div className="text-[12px] font-medium text-[#B94A32] mt-1.5">
-                Not answered <span className="font-normal">→ {q.englishWord}</span>
-              </div>
-            )}
-
-            {/* Inline feedback */}
-            {r && (
-              <div className="mt-1.5">
-                {r.correct ? (
-                  <div className="text-[12px] font-medium text-[#1F7A68]">
-                    {q.type === "type-answer" ? typed[q.id] : null}
-                  </div>
-                ) : (
-                  <div className="text-[12px] font-medium text-[#B94A32]">
-                    Not quite <span className="font-normal">→ {q.englishWord}</span>
-                  </div>
-                )}
-                {r.accentHint && (
-                  <span className="inline-block mt-1 px-[10px] py-1 text-[11px] text-[#5B45B8] bg-[#ECE8F8] rounded-[5px]">
-                    Atenção ao acento: {r.accentHint}
-                  </span>
-                )}
-              </div>
-            )}
-          </div>
-        );
-      })}
-
-      {/* Submit */}
-      <div className="mt-[10px]">
-        {phase === "answering" && (
-          <button type="button" onClick={verify} disabled={!allFilled}
-            className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] transition-colors ${allFilled ? "bg-[#1B2B61] text-white cursor-pointer" : "bg-[#1B2B61] text-white opacity-40 cursor-not-allowed"}`}
-          >{allFilled ? "Continuar →" : "Responde a todas para continuar"}</button>
-        )}
-        {phase === "reviewed" && (
-          <div className="flex items-center justify-between">
-            <span className="text-[13px] font-medium text-[#1F1F1F]">{correctCount}/{questions.length}</span>
-            <button type="button" onClick={finish}
-              className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#1B2B61] rounded-[6px] cursor-pointer"
-            >{sectionIndex < totalSections - 1 ? "Secção seguinte →" : "Ver resultados →"}</button>
-          </div>
-        )}
+              {q.type === "mc" && q.options ? (
+                <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {q.options.map((opt, oi) => (
+                    <Choice
+                      key={oi}
+                      n={oi + 1}
+                      label={opt}
+                      selected={picks[q.id] === oi}
+                      result={choiceResult(oi, picks[q.id], q.correctIndex, !!results)}
+                      disabled={!!results}
+                      onClick={() => setPicks((p) => ({ ...p, [q.id]: oi }))}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <>
+                  <AnswerInput
+                    ref={(el) => { refs.current[q.id] = el; }}
+                    value={typed[q.id] ?? ""}
+                    onChange={(v) => setTyped((p) => ({ ...p, [q.id]: v }))}
+                    mark={mark}
+                    correct={q.englishWord}
+                    placeholder="O que quer dizer?"
+                    onEnter={() => focusNextTyped(i)}
+                  />
+                  {r?.correct && <AccentNote hint={r.accentHint} />}
+                </>
+              )}
+            </Item>
+          );
+        })}
       </div>
+      <SectionFooter
+        checked={!!results} ready={remaining === 0} remaining={remaining}
+        correct={Object.values(results ?? {}).filter((r) => r.correct).length} total={questions.length}
+        isLast={sectionIndex === totalSections - 1} onCheck={verify} onNext={finish}
+      />
     </div>
   );
 }

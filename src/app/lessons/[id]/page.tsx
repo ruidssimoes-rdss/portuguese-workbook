@@ -1,23 +1,16 @@
 /*
- * LESSON v4 — Section-based sheets
- * ─────────────────────────────────
- * Intro → [Optional Learn] → Section 1-8 → Results
- *
- * Each section is a full scrollable page of related questions.
- * User fills in everything, taps "Verificar secção", sees results,
- * then advances. Like a real test.
+ * /lessons/[id] — curriculum lessons, /lessons/next|review and Elísio's
+ * AI sessions. Rendering is the shared LearnPlayer; this page loads the
+ * lesson, resumes a session left half-way, and saves the result.
  */
 "use client";
 
 import { useState, use, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/navigation";
 
 import { ProtectedRoute } from "@/components/protected-route";
 import { PageShell } from "@/components/layout/page-shell";
 import {
   getResolvedLesson,
-  getCurriculumLesson,
-  getResolvedLessons,
 } from "@/data/resolve-lessons";
 // Exam unlock config (was MOCK_EXAM_UNLOCKS from old curriculum — simplified inline)
 const EXAM_LESSON_THRESHOLDS: Record<number, string> = {
@@ -29,7 +22,6 @@ import type { Lesson } from "@/data/lessons";
 import {
   saveLessonAttempt,
   getLessonProgressMap,
-  resetLessonProgress,
   type WrongItem,
 } from "@/lib/lesson-progress";
 import { logLessonCompletion } from "@/lib/calendar-service";
@@ -38,11 +30,6 @@ import { updateGoalProgress } from "@/lib/goals-service";
 import {
   generateLessonExercises,
   type GeneratedLesson,
-  type GeneratedSection,
-  type LearnItem,
-  type GrammarLearnData,
-  type VerbLearnData,
-  type CultureLearnData,
 } from "@/lib/exercise-generator";
 import {
   generateLesson as generateDynamicLesson,
@@ -52,31 +39,12 @@ import {
   getCurrentStudyLevel,
   batchUpdateMastery,
   type PracticeItem as LearningPracticeItem,
-  type ContentType,
-  type CEFRLevel as LearningCEFRLevel,
 } from "@/lib/learning-engine";
 import { createClient } from "@/lib/supabase/client";
 import type { SectionResult } from "@/lib/exercise-types";
-import type { VocabItem } from "@/data/lessons";
 
-import { LessonShell } from "@/components/lessons/lesson-shell";
-import { ResultsScreen } from "@/components/lessons/results-screen";
+import { LearnPlayer, type PlayerSnapshot } from "@/components/learn/learn-player";
 
-// Learn components
-import { VocabLearnCard } from "@/components/lessons/learn/vocab-learn-card";
-import { GrammarLearn } from "@/components/lessons/learn/grammar-learn";
-import { VerbLearn } from "@/components/lessons/learn/verb-learn";
-import { CultureLearn } from "@/components/lessons/learn/culture-learn";
-
-// Section components
-import { VocabSection } from "@/components/lessons/sections/vocab-section";
-import { ConjugationSection } from "@/components/lessons/sections/conjugation-section";
-import { GrammarSection } from "@/components/lessons/sections/grammar-section";
-import { FillBlankSection } from "@/components/lessons/sections/fill-blank-section";
-import { TranslationSection } from "@/components/lessons/sections/translation-section";
-import { SentenceBuildSection } from "@/components/lessons/sections/sentence-build-section";
-import { WordBankSection } from "@/components/lessons/sections/word-bank-section";
-import { ErrorCorrectionSection } from "@/components/lessons/sections/error-correction-section";
 
 import Link from "next/link";
 
@@ -114,163 +82,6 @@ function clearSession(id: string): void {
   } catch { /* */ }
 }
 
-/* ─── Learn item renderer ─── */
-
-function LearnItemRenderer({ item }: { item: LearnItem }) {
-  switch (item.type) {
-    case "vocab": {
-      const v = item.data as VocabItem;
-      return <VocabLearnCard word={v.word} translation={v.translation} pronunciation={v.pronunciation} example={v.example} />;
-    }
-    case "grammar": return <GrammarLearn data={item.data as GrammarLearnData} />;
-    case "verb": return <VerbLearn data={item.data as VerbLearnData} />;
-    case "culture": return <CultureLearn data={item.data as CultureLearnData} />;
-  }
-}
-
-/* ─── Section renderer ─── */
-
-const SECTION_MAP: Record<string, React.ComponentType<Record<string, unknown>>> = {
-  vocab: VocabSection as unknown as React.ComponentType<Record<string, unknown>>,
-  conjugation: ConjugationSection as unknown as React.ComponentType<Record<string, unknown>>,
-  grammar: GrammarSection as unknown as React.ComponentType<Record<string, unknown>>,
-  "fill-blank": FillBlankSection as unknown as React.ComponentType<Record<string, unknown>>,
-  translation: TranslationSection as unknown as React.ComponentType<Record<string, unknown>>,
-  "sentence-build": SentenceBuildSection as unknown as React.ComponentType<Record<string, unknown>>,
-  "word-bank": WordBankSection as unknown as React.ComponentType<Record<string, unknown>>,
-  "error-correction": ErrorCorrectionSection as unknown as React.ComponentType<Record<string, unknown>>,
-};
-
-function SectionRenderer({
-  section,
-  sectionIndex,
-  totalSections,
-  showEnglish,
-  onComplete,
-}: {
-  section: GeneratedSection;
-  sectionIndex: number;
-  totalSections: number;
-  showEnglish: boolean;
-  onComplete: (result: SectionResult) => void;
-}) {
-  const Component = SECTION_MAP[section.key];
-  if (!Component) return null;
-
-  return (
-    <Component
-      sectionIndex={sectionIndex}
-      totalSections={totalSections}
-      showEnglish={showEnglish}
-      onComplete={onComplete}
-      {...(section.data as Record<string, unknown>)}
-    />
-  );
-}
-
-/* ─── Intro screen ─── */
-
-function LessonIntro({
-  lesson,
-  generatedLesson,
-  showEnglish,
-  isCompleted,
-  onStartExercises,
-  onReviewFirst,
-  onReset,
-}: {
-  lesson: Lesson;
-  generatedLesson: GeneratedLesson | null;
-  showEnglish: boolean;
-  isCompleted: boolean;
-  onStartExercises: () => void;
-  onReviewFirst: () => void;
-  onReset: () => void;
-}) {
-  const learnItems = generatedLesson?.learnItems ?? [];
-  const vocabCount = learnItems.filter((i) => i.type === "vocab").length;
-  const verbCount = learnItems.filter((i) => i.type === "verb").length;
-  const grammarCount = learnItems.filter((i) => i.type === "grammar").length;
-  const cultureCount = learnItems.filter((i) => i.type === "culture").length;
-  const sectionCount = generatedLesson?.sections.length ?? 0;
-  const totalPoints = generatedLesson?.totalPoints ?? 0;
-
-  const stats = [
-    { value: vocabCount, label: "words" },
-    { value: verbCount, label: "verbs" },
-    { value: grammarCount, label: "topics" },
-    { value: cultureCount, label: "culture" },
-  ].filter((s) => s.value > 0);
-
-  return (
-    <div className="max-w-md mx-auto text-center py-8">
-      {/* Title */}
-      <h1 className="text-[22px] font-medium text-[#1F1F1F] tracking-[-0.02em]">
-        A tua próxima lição
-      </h1>
-
-      {/* CEFR badge */}
-      <div className="mt-3">
-        <span className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full ${
-          lesson.cefr === "A1" ? "text-[#1F7A68] bg-[#E1F2ED]" :
-          lesson.cefr === "A2" ? "text-[#1B2B61] bg-[#E8ECF6]" :
-          "text-[#5B45B8] bg-[#ECE8F8]"
-        }`}>{lesson.cefr}</span>
-      </div>
-
-      {/* Stat boxes */}
-      <div className="flex gap-3 mt-6 max-w-xs mx-auto">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="flex-1 border-[0.5px] border-[#E6E6E4] rounded-lg py-4 px-2 text-center"
-          >
-            <div className="text-[24px] font-medium text-[#1F1F1F]">{stat.value}</div>
-            <div className="text-[11px] text-[#98988F] mt-0.5">{stat.label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Meta */}
-      <p className="text-[12px] text-[#98988F] mt-4">
-        {sectionCount} exercises · 80% to pass
-      </p>
-
-      {/* Buttons */}
-      <div className="mt-6 space-y-2 max-w-xs mx-auto">
-        <button
-          type="button"
-          onClick={onStartExercises}
-          className="w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
-        >
-          Começar exercícios →
-        </button>
-        <button
-          type="button"
-          onClick={onReviewFirst}
-          className="w-full py-3.5 text-[14px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors cursor-pointer"
-        >
-          Rever a matéria primeiro
-        </button>
-      </div>
-
-      {/* Reset */}
-      {isCompleted && (
-        <button
-          type="button"
-          onClick={onReset}
-          className="text-[12px] text-[#98988F] hover:text-[#B94A32] transition-colors mt-6 cursor-pointer"
-        >
-          Recomeçar lição
-        </button>
-      )}
-    </div>
-  );
-}
-
-/* ─── Main lesson content ─── */
-
-/** Load AI session lesson + exercises from sessionStorage */
 function loadAILesson(id: string): { lesson: Lesson; exercises: GeneratedLesson } | null {
   try {
     const raw = sessionStorage.getItem(`aula-pt-ai-lesson-${id}`);
@@ -282,7 +93,6 @@ function loadAILesson(id: string): { lesson: Lesson; exercises: GeneratedLesson 
 }
 
 function LessonContent({ id }: { id: string }) {
-  const router = useRouter();
   const isDynamic = id === "next" || id === "review";
   const isAISession = id.startsWith("ai-session-");
   const aiData = isAISession ? loadAILesson(id) : null;
@@ -297,34 +107,23 @@ function LessonContent({ id }: { id: string }) {
     : isAISession
       ? (aiData?.lesson ?? null)
       : getResolvedLesson(id);
-  const curriculumLesson = (isAISession || isDynamic) ? undefined : getCurriculumLesson(id);
   const showEnglish = lesson?.cefr === "A1" || lesson?.cefr === "A2";
 
   // State
   const [lessonState, setLessonState] = useState<LessonState>("intro");
-  const [currentSection, setCurrentSection] = useState(0);
   const [sectionResults, setSectionResults] = useState<SectionResult[]>([]);
-  const [skippedLearn, setSkippedLearn] = useState(false);
-  const [learnIndex, setLearnIndex] = useState(0);
   const [generatedLesson, setGeneratedLesson] = useState<GeneratedLesson | null>(
     isAISession && aiData?.exercises ? aiData.exercises : null,
   );
 
   // Progress & session
-  const [progressMap, setProgressMap] = useState<Record<string, { completed?: boolean }> | null>(null);
   const [savedSession, setSavedSession] = useState<LessonSessionData | null>(null);
   const [showRestorePrompt, setShowRestorePrompt] = useState(false);
 
   // Save state
-  const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState(false);
   const hasSaved = useRef(false);
   const [levelCounts, setLevelCounts] = useState<{ a1: number; a2: number; b1: number; total: number } | null>(null);
-
-  // Next lesson
-  const sortedLessons = getResolvedLessons().sort((a, b) => a.order - b.order);
-  const nextLesson = lesson ? sortedLessons.find((l) => l.order === lesson.order + 1) : null;
-  const nextLessonId = isDynamic ? "next" : (nextLesson?.id ?? null);
 
   // Dynamic lesson generation (for /lessons/next and /lessons/review)
   useEffect(() => {
@@ -365,7 +164,6 @@ function LessonContent({ id }: { id: string }) {
   // Initialize
   useEffect(() => {
     getLessonProgressMap().then((map) => {
-      setProgressMap(map);
       const session = restoreSession(id);
       setSavedSession(session);
       if (session && !map[id]?.completed) {
@@ -383,29 +181,40 @@ function LessonContent({ id }: { id: string }) {
     setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
   }, [isAISession, isDynamic, dynamicLoading, lesson, showRestorePrompt, generatedLesson, showEnglish]);
 
-  // Persist session
-  useEffect(() => {
-    if (!generatedLesson || showRestorePrompt || lessonState === "results" || lessonState === "intro") return;
-    saveSession(id, { lessonState, currentSection, sectionResults, generatedLesson, skippedLearn, learnIndex });
-  }, [id, lessonState, currentSection, sectionResults, generatedLesson, showRestorePrompt, skippedLearn, learnIndex]);
+  // Resume point handed to the player after "Continuar de onde parei".
+  const [resume, setResume] = useState<PlayerSnapshot | undefined>(undefined);
 
-  // Restore
+  // Persist the player's position so a reload can resume mid-lesson.
+  const persist = useCallback(
+    (snap: PlayerSnapshot) => {
+      if (!generatedLesson || snap.state === "intro" || snap.state === "results") return;
+      saveSession(id, {
+        lessonState: snap.state,
+        currentSection: snap.currentSection,
+        sectionResults: snap.sectionResults,
+        generatedLesson,
+        skippedLearn: false,
+        learnIndex: snap.learnIndex,
+      });
+    },
+    [id, generatedLesson],
+  );
+
   const handleRestore = () => {
     if (savedSession) {
-      setLessonState(savedSession.lessonState);
-      setCurrentSection(savedSession.currentSection);
-      setSectionResults(savedSession.sectionResults);
       setGeneratedLesson(savedSession.generatedLesson);
-      setSkippedLearn(savedSession.skippedLearn);
-      setLearnIndex(savedSession.learnIndex);
+      setResume({
+        state: savedSession.lessonState,
+        currentSection: savedSession.currentSection,
+        sectionResults: savedSession.sectionResults,
+        learnIndex: savedSession.learnIndex,
+      });
     }
     setShowRestorePrompt(false);
   };
   const handleStartFresh = () => { clearSession(id); setSavedSession(null); setShowRestorePrompt(false); };
 
   // Save
-  const totalSections = generatedLesson?.sections.length ?? 0;
-  const totalPoints = generatedLesson?.totalPoints ?? 0;
   const totalCorrect = sectionResults.reduce((s, r) => s + r.totalCorrect, 0);
   const totalQuestions = sectionResults.reduce((s, r) => s + r.totalQuestions, 0);
   const accuracy = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
@@ -413,7 +222,6 @@ function LessonContent({ id }: { id: string }) {
 
   const doSave = useCallback(async () => {
     if (!lesson || !generatedLesson) return;
-    setIsSaving(true);
     setSaveError(false);
 
     const wrongItems: WrongItem[] = [];
@@ -429,7 +237,7 @@ function LessonContent({ id }: { id: string }) {
 
     try {
       const ok = await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems);
-      if (!ok) { setSaveError(true); setIsSaving(false); return; }
+      if (!ok) { setSaveError(true); return; }
 
       clearSession(id);
       logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
@@ -482,7 +290,6 @@ function LessonContent({ id }: { id: string }) {
       console.error("[LESSON] Save exception:", e);
       setSaveError(true);
     } finally {
-      setIsSaving(false);
     }
   }, [lesson, generatedLesson, sectionResults, accuracy, passed, id, isDynamic, dynamicPracticeItems]);
 
@@ -492,205 +299,80 @@ function LessonContent({ id }: { id: string }) {
     doSave();
   }, [lessonState, doSave]);
 
-  // Loading dynamic lesson
-  if (isDynamic && dynamicLoading) {
-    return (
-      <div className="py-16">
-        <p className="text-[13px] text-[#6B6B69]">A preparar a tua lição...</p>
-      </div>
-    );
-  }
-
-  // Not found
-  if (!lesson) {
-    return (
-      <div className="py-16">
-        <p className="text-[13px] text-[#98988F]">Lição não encontrada.</p>
-        <Link href="/lessons" className="text-[13px] font-medium text-[#1B2B61] hover:underline mt-2 inline-block">Voltar às lições</Link>
-      </div>
-    );
-  }
-
-  if (!generatedLesson && !showRestorePrompt) {
-    return (
-      <div className="py-16">
-        <p className="text-[13px] text-[#6B6B69]">A preparar a lição...</p>
-      </div>
-    );
-  }
-
-  // Progress
-  const learnTotal = generatedLesson?.learnItems.length ?? 0;
-  const sectionProgress = lessonState === "sections"
-    ? ((currentSection + 1) / totalSections) * 100
-    : lessonState === "learn"
-      ? (learnIndex / learnTotal) * 100
-      : 0;
-  const progressLabel = lessonState === "sections"
-    ? `Secção ${currentSection + 1} de ${totalSections}`
-    : lessonState === "learn"
-      ? `${learnIndex + 1} de ${learnTotal}`
-      : "";
-
-  // Exam unlock
-  const cefrTotals: Record<string, number> = { A1: 18, A2: 16, B1: 10 };
-  const cefrCompleted = levelCounts
-    ? lesson.cefr === "A1" ? levelCounts.a1 : lesson.cefr === "A2" ? levelCounts.a2 : levelCounts.b1
-    : 0;
-  const unlockedExamId = levelCounts != null
-    ? EXAM_LESSON_THRESHOLDS[levelCounts.total] ?? null
-    : null;
-
-  // Wrong answers for results
-  const wrongAnswers = sectionResults.flatMap((sr) =>
-    sr.answers.filter((a) => !a.correct).map((a) => ({
-      question: `${sr.sectionName}: ${a.correctAnswer}`,
-      userAnswer: a.userAnswer,
-      correctAnswer: a.correctAnswer,
-    }))
+  const msg = (text: string) => (
+    <div className="mx-auto max-w-[620px] py-16 text-center text-[13px] text-aula-text-3">{text}</div>
   );
 
-  // Handlers
-  const handleStartExercises = () => { setSkippedLearn(true); setLessonState("sections"); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const handleReviewFirst = () => { setSkippedLearn(false); setLessonState("learn"); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  if (isDynamic && dynamicLoading) return msg("A preparar a tua lição…");
 
-  const handleLearnNext = () => {
-    if (learnIndex < learnTotal - 1) { setLearnIndex((i) => i + 1); window.scrollTo({ top: 0, behavior: "smooth" }); }
-    else { setLessonState("sections"); window.scrollTo({ top: 0, behavior: "smooth" }); }
-  };
-  const handleLearnPrev = () => {
-    if (learnIndex > 0) { setLearnIndex((i) => i - 1); window.scrollTo({ top: 0, behavior: "smooth" }); }
-  };
-
-  const handleSectionComplete = (result: SectionResult) => {
-    setSectionResults((prev) => [...prev, result]);
-    const next = currentSection + 1;
-    if (next >= totalSections) { setLessonState("results"); }
-    else { setCurrentSection(next); }
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleRetryExercises = () => {
-    if (lesson) setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
-    setCurrentSection(0);
-    setSectionResults([]);
-    hasSaved.current = false;
-    setSaveError(false);
-    setSkippedLearn(true);
-    setLessonState("sections");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleRetryFull = () => {
-    if (lesson) setGeneratedLesson(generateLessonExercises(lesson, showEnglish));
-    setLearnIndex(0);
-    setCurrentSection(0);
-    setSectionResults([]);
-    hasSaved.current = false;
-    setSaveError(false);
-    setSkippedLearn(false);
-    setLessonState("learn");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  // Restore prompt
-  if (showRestorePrompt) {
+  if (!lesson) {
     return (
-      <LessonShell lessonId={lesson.id} lessonTitle={lesson.title} lessonTitlePt={lesson.ptTitle} cefr={lesson.cefr} currentState="intro">
-        <div className="p-6 rounded-lg border-[0.5px] border-[#E6E6E4] bg-[#F7F7F6] text-center">
-          <p className="text-[14px] font-medium text-[#1F1F1F] mb-4">Tens progresso guardado nesta lição.</p>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <button type="button" onClick={handleRestore} className="px-4 py-2 bg-[#1B2B61] text-white text-[13px] font-medium rounded-lg hover:bg-[#14214C] transition-colors">Continuar de onde parei</button>
-            <button type="button" onClick={handleStartFresh} className="px-4 py-2 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors">Começar de novo</button>
-          </div>
-        </div>
-      </LessonShell>
+      <div className="mx-auto max-w-[620px] py-16 text-center">
+        <p className="text-[13px] text-aula-text-2">Lição não encontrada.</p>
+        <Link href="/lessons" className="mt-2 inline-block text-[13px] font-medium text-aula-accent">
+          Voltar às lições
+        </Link>
+      </div>
     );
   }
 
-  if (!generatedLesson) return null;
+  if (showRestorePrompt) {
+    return (
+      <div className="mx-auto max-w-[620px] pt-10">
+        <div className="rounded-xl border border-aula-border bg-white p-6">
+          <p className="text-[15px] font-semibold text-aula-text">Tens esta lição a meio</p>
+          <p className="mt-1 text-[12.5px] text-aula-text-2">Podes continuar onde ficaste ou começar de novo.</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button type="button" onClick={handleRestore} className="inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
+              Continuar onde parei
+            </button>
+            <button type="button" onClick={handleStartFresh} className="inline-flex h-9 items-center rounded-lg border border-aula-border bg-white px-4 text-[13px] font-medium text-aula-text transition-colors hover:border-aula-text-4">
+              Começar de novo
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-  const isFullScreen = lessonState === "learn" || lessonState === "sections";
+  if (!generatedLesson) return msg("A preparar a lição…");
+
+  const unlockedExamId = levelCounts != null ? (EXAM_LESSON_THRESHOLDS[levelCounts.total] ?? null) : null;
 
   return (
-    <div className={isFullScreen ? "fixed inset-0 z-50 bg-white overflow-auto" : undefined}>
-      <LessonShell
-        lessonId={lesson.id}
-        lessonTitle={lesson.title}
-        lessonTitlePt={lesson.ptTitle}
-        cefr={lesson.cefr}
-        currentState={lessonState}
-        sectionProgress={sectionProgress}
-        progressLabel={progressLabel}
-      >
-        {/* Intro */}
-        {lessonState === "intro" && (
-          <LessonIntro
-            lesson={lesson}
-            generatedLesson={generatedLesson}
-            showEnglish={showEnglish}
-            isCompleted={!!progressMap?.[id]?.completed}
-            onStartExercises={handleStartExercises}
-            onReviewFirst={handleReviewFirst}
-            onReset={async () => {
-              if (!confirm("Tens a certeza? O teu progresso nesta lição será apagado.")) return;
-              const ok = await resetLessonProgress(id);
-              if (ok) {
-                clearSession(id);
-                window.location.reload();
-              }
-            }}
-          />
-        )}
-
-        {/* Learn */}
-        {lessonState === "learn" && generatedLesson.learnItems[learnIndex] && (
-          <>
-            <LearnItemRenderer item={generatedLesson.learnItems[learnIndex]} />
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#E6E6E4]">
-              <button type="button" onClick={handleLearnPrev} disabled={learnIndex === 0}
-                className={`text-[13px] font-medium transition-colors ${learnIndex === 0 ? "text-[#98988F] cursor-not-allowed" : "text-[#6B6B69] hover:text-[#1F1F1F] cursor-pointer"}`}
-              >&larr; Anterior</button>
-              <button type="button" onClick={handleLearnNext}
-                className="px-4 py-2 bg-[#1B2B61] text-white text-[13px] font-medium rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
-              >{learnIndex < learnTotal - 1 ? "Próximo →" : "Começar exercícios →"}</button>
+    <>
+      {lessonState === "results" && (saveError || unlockedExamId) && (
+        <div className="mx-auto mb-[-8px] max-w-[620px] pt-6">
+          {saveError ? (
+            <div className="flex items-center gap-3 rounded-[10px] border border-[#B94A32] bg-[#FBE9E4] px-4 py-2.5 text-[12.5px] text-aula-text">
+              <span className="flex-1">Não foi possível guardar o resultado.</span>
+              <button type="button" onClick={() => { hasSaved.current = false; doSave(); }} className="font-medium text-aula-overdue">
+                Tentar outra vez
+              </button>
             </div>
-          </>
-        )}
-
-        {/* Sections */}
-        {lessonState === "sections" && generatedLesson.sections[currentSection] && (
-          <SectionRenderer
-            key={`section-${currentSection}`}
-            section={generatedLesson.sections[currentSection]}
-            sectionIndex={currentSection}
-            totalSections={totalSections}
-            showEnglish={showEnglish}
-            onComplete={handleSectionComplete}
-          />
-        )}
-
-        {/* Results */}
-        {lessonState === "results" && (
-          <ResultsScreen
-            passed={passed}
-            accuracy={accuracy}
-            sectionResults={sectionResults}
-            wrongAnswers={wrongAnswers}
-            levelProgress={{ completed: cefrCompleted, total: cefrTotals[lesson.cefr] ?? 18, level: lesson.cefr }}
-            onNextLesson={nextLessonId ? () => router.push(`/lessons/${nextLessonId}`) : null}
-            onRetryExercises={handleRetryExercises}
-            onRetryFull={handleRetryFull}
-            onBackToLessons={() => router.push("/lessons")}
-            isSaving={isSaving}
-            saveError={saveError}
-            onRetrySave={() => { hasSaved.current = false; doSave(); }}
-            examUnlocked={unlockedExamId}
-            showEnglish={showEnglish}
-          />
-        )}
-      </LessonShell>
-    </div>
+          ) : (
+            <Link href={`/exams/${unlockedExamId}`} className="flex items-center gap-3 rounded-[10px] border border-[#D3DAEB] bg-aula-accent-faint px-4 py-2.5 text-[12.5px] text-aula-text">
+              <span className="flex-1">Desbloqueaste um novo exame simulado.</span>
+              <span className="font-medium text-aula-accent">Ver exame →</span>
+            </Link>
+          )}
+        </div>
+      )}
+      <LearnPlayer
+        key={resume ? "resumed" : "fresh"}
+        lesson={lesson}
+        generated={generatedLesson}
+        isReview={id === "review"}
+        initial={resume}
+        onProgress={persist}
+        onComplete={(results) => {
+          setSectionResults(results);
+          hasSaved.current = false;
+          setSaveError(false);
+          setLessonState("results");
+        }}
+      />
+    </>
   );
 }
 

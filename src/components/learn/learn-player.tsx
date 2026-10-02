@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import type { Lesson, VocabItem } from "@/data/lessons";
 import type {
   GeneratedLesson,
-  GeneratedSection,
   LearnItem,
   GrammarLearnData,
   VerbLearnData,
@@ -14,7 +13,6 @@ import type {
 import type { SectionResult } from "@/lib/exercise-types";
 
 import { LearnIntro } from "./learn-intro";
-import { LearnProgress } from "./learn-progress";
 import { LearnResults } from "./learn-results";
 
 // New section components (built from scratch for /learn)
@@ -48,25 +46,40 @@ const SECTION_MAP: Record<string, React.ComponentType<Record<string, unknown>>> 
 
 // ─── Types ──────────────────────────────────────────────
 
-type PlayerState = "intro" | "learn" | "sections" | "results";
+export type PlayerState = "intro" | "learn" | "sections" | "results";
+
+export interface PlayerSnapshot {
+  state: PlayerState;
+  currentSection: number;
+  sectionResults: SectionResult[];
+  learnIndex: number;
+}
 
 interface LearnPlayerProps {
   lesson: Lesson;
   generated: GeneratedLesson;
   isReview: boolean;
   onComplete: (sectionResults: SectionResult[]) => void;
+  /** Resume from a saved point (e.g. sessionStorage). */
+  initial?: PlayerSnapshot;
+  /** Called whenever the position changes, so the caller can persist it. */
+  onProgress?: (snap: PlayerSnapshot) => void;
 }
 
 // ─── Player ─────────────────────────────────────────────
 
-export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPlayerProps) {
-  const [state, setState] = useState<PlayerState>("intro");
-  const [currentSection, setCurrentSection] = useState(0);
-  const [sectionResults, setSectionResults] = useState<SectionResult[]>([]);
-  const [learnIndex, setLearnIndex] = useState(0);
+export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, onProgress }: LearnPlayerProps) {
+  const [state, setState] = useState<PlayerState>(initial?.state ?? "intro");
+  const [currentSection, setCurrentSection] = useState(initial?.currentSection ?? 0);
+  const [sectionResults, setSectionResults] = useState<SectionResult[]>(initial?.sectionResults ?? []);
+  const [learnIndex, setLearnIndex] = useState(initial?.learnIndex ?? 0);
+
+  useEffect(() => {
+    onProgress?.({ state, currentSection, sectionResults, learnIndex });
+  }, [onProgress, state, currentSection, sectionResults, learnIndex]);
+  const [attempt, setAttempt] = useState(0);
 
   const totalSections = generated.sections.length;
-  const totalPoints = generated.totalPoints;
   const learnItems = generated.learnItems ?? [];
   const learnTotal = learnItems.length;
 
@@ -122,27 +135,12 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
   );
 
   function handleRetry() {
+    setAttempt((a) => a + 1);
     setSectionResults([]);
     setCurrentSection(0);
     setState("sections");
     (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
   }
-
-  // ─── Progress ───────────────────────────────────────
-
-  const sectionProgress =
-    state === "learn"
-      ? ((learnIndex + 1) / learnTotal) * 100
-      : state === "sections"
-        ? ((currentSection + 1) / totalSections) * 100
-        : 0;
-
-  const progressLabel =
-    state === "learn"
-      ? `${learnIndex + 1} / ${learnTotal}`
-      : state === "sections"
-        ? `Secção ${currentSection + 1} de ${totalSections}`
-        : "";
 
   // ─── Render ─────────────────────────────────────────
 
@@ -173,112 +171,95 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
     );
   }
 
-  // Learn phase
-  if (state === "learn" && learnItems[learnIndex]) {
-    const item = learnItems[learnIndex];
-    return (
-      <div>
-        {/* Top bar */}
-        <div className="flex items-center justify-between py-4 mb-2">
-          <Link href="/lessons" className="text-[13px] text-[#98988F] hover:text-[#6B6B69] transition-colors">
-            ← Lições
-          </Link>
-          <span className="text-[13px] text-[#6B6B69] font-medium">Learn</span>
-        </div>
+  // Learn phase + sections share one frame: header, progress, body.
+  const learnItem = state === "learn" ? learnItems[learnIndex] : undefined;
+  const section = state === "sections" ? generated.sections[currentSection] : undefined;
+  const Component = section ? SECTION_MAP[section.key] : undefined;
+  if (!learnItem && !(section && Component)) return null;
 
-        <LearnProgress
-          current={learnIndex + 1}
-          total={learnTotal}
-          cefr={lesson.cefr}
-          label={`${learnIndex + 1} / ${learnTotal}`}
-        />
+  return (
+    <div className="mx-auto max-w-[680px]">
+      <div className="mb-4 flex items-center gap-2 text-[12px]">
+        <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
+          Lições
+        </Link>
+        <span className="text-aula-text-4">/</span>
+        <span className="text-aula-text-2">{isReview ? "Revisão" : `Lição ${lesson.cefr}`}</span>
+        <span className="flex-1" />
+        <span className="text-aula-text-3">
+          {learnItem ? `Matéria · ${learnIndex + 1} de ${learnTotal}` : `Secção ${currentSection + 1} de ${totalSections}`}
+        </span>
+      </div>
 
-        <div className="max-w-2xl mx-auto">
-          <LearnItemRenderer item={item} />
+      {/* One segment per section; the learn phase fills the first track. */}
+      <div className="mb-7 flex gap-1">
+        {learnItem ? (
+          <div className="h-1 flex-1 overflow-hidden rounded-full bg-aula-line">
+            <div className="h-full rounded-full bg-aula-accent transition-all duration-300" style={{ width: `${((learnIndex + 1) / learnTotal) * 100}%` }} />
+          </div>
+        ) : (
+          generated.sections.map((s, i) => {
+            const done = sectionResults[i];
+            const pct = done && done.totalQuestions ? done.totalCorrect / done.totalQuestions : 0;
+            return (
+              <div
+                key={i}
+                title={s.namePt}
+                className={`h-1 flex-1 rounded-full ${
+                  done ? (pct >= 0.8 ? "bg-[#1F7A68]" : "bg-[#5B45B8]") : i === currentSection ? "bg-aula-accent" : "bg-aula-line"
+                }`}
+              />
+            );
+          })
+        )}
+      </div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t-[0.5px] border-[#E6E6E4]">
+      {learnItem ? (
+        <>
+          <LearnItemRenderer item={learnItem} />
+          <div className="mt-8 flex items-center justify-between">
             <button
               type="button"
               onClick={handleLearnPrev}
               disabled={learnIndex === 0}
-              className={`text-[13px] font-medium transition-colors ${
-                learnIndex === 0
-                  ? "text-[#98988F] cursor-not-allowed"
-                  : "text-[#6B6B69] hover:text-[#1F1F1F] cursor-pointer"
-              }`}
+              className="inline-flex h-9 items-center rounded-lg px-3 text-[13px] font-medium text-aula-text-2 transition-colors hover:bg-aula-sunken disabled:cursor-not-allowed disabled:opacity-40"
             >
               ← Anterior
             </button>
             <button
               type="button"
               onClick={handleLearnNext}
-              className="px-4 py-2.5 bg-[#1B2B61] text-white text-[13px] font-medium rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
+              className="inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
             >
-              {learnIndex < learnTotal - 1 ? "Próximo →" : "Começar exercícios →"}
+              {learnIndex < learnTotal - 1 ? "Seguinte →" : "Começar exercícios →"}
             </button>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Sections
-  if (state === "sections" && generated.sections[currentSection]) {
-    const section = generated.sections[currentSection];
-    const Component = SECTION_MAP[section.key];
-    if (!Component) return null;
-
-    const questionsSoFar = generated.sections
-      .slice(0, currentSection)
-      .reduce((sum, s) => sum + s.totalQuestions, 0);
-    const totalQuestions = generated.totalPoints;
-    const pct = totalQuestions > 0 ? ((questionsSoFar + 1) / totalQuestions) * 100 : 0;
-
-    return (
-      <div className="max-w-[600px] mx-auto border-[0.5px] border-[#E6E6E4] rounded-lg overflow-hidden bg-white">
-        {/* Top bar */}
-        <div className="flex items-center justify-between px-4 py-[10px] border-b-[0.5px] border-[#E6E6E4]">
-          <Link href="/lessons" className="text-[13px] text-[#6B6B69] hover:text-[#1F1F1F] transition-colors">
-            ← Lessons
-          </Link>
-          <div className="flex items-center gap-1.5">
-            <span className="text-[12px] text-[#6B6B69]">{questionsSoFar + 1} / {totalQuestions}</span>
-            <span className={`text-[10px] font-medium px-2 py-px rounded-full ${
-              lesson.cefr === "A1" ? "text-[#1F7A68] bg-[#E1F2ED]" :
-              lesson.cefr === "A2" ? "text-[#1B2B61] bg-[#E8ECF6]" :
-              "text-[#5B45B8] bg-[#ECE8F8]"
-            }`}>{lesson.cefr}</span>
-          </div>
-        </div>
-
-        {/* Progress bar */}
-        <div className="h-[3px] bg-[#E6E6E4] mx-4 rounded-[2px]">
-          <div className="h-[3px] bg-[#1B2B61] rounded-[2px] transition-all duration-300" style={{ width: `${pct}%` }} />
-        </div>
-
-        {/* Section header */}
-        <div className="flex items-center gap-2 px-4 pt-[10px] pb-[6px]">
-          <span className="text-[13px] font-medium text-[#1F1F1F]">{section.namePt}</span>
-          <span className="text-[11px] text-[#98988F]">{section.totalQuestions} questions</span>
-        </div>
-
-        {/* Section body */}
-        <div className="px-4 pb-4">
-          <Component
-            key={`section-${currentSection}`}
-            sectionIndex={currentSection}
-            totalSections={totalSections}
-            showEnglish={lesson.cefr === "A1" || lesson.cefr === "A2"}
-            onComplete={handleSectionComplete}
-            {...(section.data as Record<string, unknown>)}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  return null;
+        </>
+      ) : (
+        section &&
+        Component && (
+          <>
+            <div className="mb-3 flex items-baseline gap-2.5">
+              <h1 className="text-[20px] font-semibold tracking-[-0.02em] text-aula-text">{section.namePt}</h1>
+              <span className="text-[12px] text-aula-text-3">
+                {section.totalQuestions} {section.totalQuestions === 1 ? "pergunta" : "perguntas"}
+              </span>
+            </div>
+            <div className="rounded-xl border border-aula-border bg-white px-6 pt-3">
+              <Component
+                key={`section-${currentSection}-${attempt}`}
+                sectionIndex={currentSection}
+                totalSections={totalSections}
+                showEnglish={lesson.cefr === "A1" || lesson.cefr === "A2"}
+                onComplete={handleSectionComplete}
+                {...(section.data as Record<string, unknown>)}
+              />
+            </div>
+          </>
+        )
+      )}
+    </div>
+  );
 }
 
 // ─── Learn item renderer ────────────────────────────────

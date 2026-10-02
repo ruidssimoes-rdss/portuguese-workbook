@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { SectionResult } from "@/lib/exercise-types";
+import { Item, Prompt, Chip, SectionFooter, type Mark } from "../kit";
 
 interface BuildSentence { id: string; scrambledWords: string[]; correctSentence: string; acceptedAnswers?: string[]; sentenceEnglish?: string; }
 
@@ -10,105 +11,93 @@ interface Props {
   sentences: BuildSentence[]; onComplete: (result: SectionResult) => void;
 }
 
+const normalize = (str: string) => str.trim().toLowerCase().replace(/[.!?¿¡,;:]+/g, "").replace(/\s+/g, " ");
+
 export function SentenceBuildSectionNew({ sectionIndex, totalSections, showEnglish, sentences, onComplete }: Props) {
-  const [placed, setPlaced] = useState<Record<string, string[]>>(Object.fromEntries(sentences.map((s) => [s.id, []])));
-  const [available, setAvailable] = useState<Record<string, string[]>>(Object.fromEntries(sentences.map((s) => [s.id, [...s.scrambledWords]])));
-  const [phase, setPhase] = useState<"answering" | "reviewed">("answering");
-  const [results, setResults] = useState<Record<string, boolean>>({});
+  // Placed = indexes into scrambledWords, in the order the learner tapped them.
+  const [placed, setPlaced] = useState<Record<string, number[]>>({});
+  const [results, setResults] = useState<Record<string, boolean> | null>(null);
 
-  const allFilled = sentences.every((s) => (available[s.id] ?? []).length === 0);
+  const sentenceOf = (s: BuildSentence) => (placed[s.id] ?? []).map((i) => s.scrambledWords[i]).join(" ");
+  const remaining = sentences.filter((s) => (placed[s.id] ?? []).length < s.scrambledWords.length).length;
 
-  function addWord(sid: string, word: string, idx: number) {
-    if (phase !== "answering") return;
-    setPlaced((p) => ({ ...p, [sid]: [...(p[sid] ?? []), word] }));
-    setAvailable((p) => { const arr = [...(p[sid] ?? [])]; arr.splice(idx, 1); return { ...p, [sid]: arr }; });
-  }
-
-  function removeWord(sid: string, idx: number) {
-    if (phase !== "answering") return;
-    const word = placed[sid]?.[idx]; if (!word) return;
-    setPlaced((p) => { const arr = [...(p[sid] ?? [])]; arr.splice(idx, 1); return { ...p, [sid]: arr }; });
-    setAvailable((p) => ({ ...p, [sid]: [...(p[sid] ?? []), word] }));
+  function toggle(s: BuildSentence, wi: number) {
+    if (results) return;
+    setPlaced((p) => {
+      const cur = p[s.id] ?? [];
+      return { ...p, [s.id]: cur.includes(wi) ? cur.filter((x) => x !== wi) : [...cur, wi] };
+    });
   }
 
   function verify() {
-    const r: Record<string, boolean> = {};
-    for (const s of sentences) {
-      const userSentence = (placed[s.id] ?? []).join(" ");
-      const normalize = (str: string) => str.trim().toLowerCase().replace(/[.!?¿¡,;:]+/g, "").replace(/\s+/g, " ");
-      const accepted = [s.correctSentence, ...(s.acceptedAnswers ?? [])];
-      r[s.id] = accepted.some((a) => normalize(userSentence) === normalize(a));
-    }
-    setResults(r); setPhase("reviewed");
+    if (remaining > 0) return;
+    setResults(
+      Object.fromEntries(
+        sentences.map((s) => [s.id, [s.correctSentence, ...(s.acceptedAnswers ?? [])].some((a) => normalize(sentenceOf(s)) === normalize(a))]),
+      ),
+    );
   }
 
   function finish() {
-    const ans = sentences.map((s) => ({
-      questionId: s.id, correct: results[s.id] ?? false,
-      userAnswer: (placed[s.id] ?? []).join(" "), correctAnswer: s.correctSentence,
-    }));
+    const ans = sentences.map((s) => ({ questionId: s.id, correct: results?.[s.id] ?? false, userAnswer: sentenceOf(s), correctAnswer: s.correctSentence }));
     onComplete({ sectionKey: "sentence-build", sectionName: "Constrói a frase", answers: ans, totalCorrect: ans.filter((a) => a.correct).length, totalQuestions: ans.length });
   }
 
-  const correctCount = Object.values(results).filter(Boolean).length;
-
   return (
     <div>
-      {sentences.map((s, i) => (
-        <div key={s.id} className={`border-[0.5px] rounded-lg p-[12px_14px] mb-1.5 ${
-          phase === "reviewed" ? (results[s.id] ? "border-[#1F7A68]" : "border-[#B94A32]") : "border-[#E6E6E4]"
-        }`}>
-          <div className="text-[11px] text-[#98988F]">{i + 1}</div>
-          {showEnglish && s.sentenceEnglish && <div className="text-[12px] text-[#6B6B69] italic mt-0.5">{s.sentenceEnglish}</div>}
+      <div className="divide-y divide-[#EFEFED]">
+        {sentences.map((s, i) => {
+          const ok = results?.[s.id];
+          const mark: Mark = results ? (ok ? "correct" : "wrong") : "idle";
+          const order = placed[s.id] ?? [];
+          return (
+            <Item key={s.id} n={i + 1} mark={mark}>
+              <Prompt>{showEnglish && s.sentenceEnglish ? s.sentenceEnglish : "Põe as palavras por ordem"}</Prompt>
 
-          {/* Drop zone */}
-          <div className={`min-h-[36px] rounded-[6px] p-1.5 flex flex-wrap gap-1 mt-2 ${
-            phase === "reviewed"
-              ? results[s.id] ? "border-[0.5px] border-[#1F7A68]" : "border-[0.5px] border-[#B94A32]"
-              : "border border-dashed border-[rgba(0,0,0,0.1)]"
-          }`}>
-            {(placed[s.id] ?? []).map((w, wi) => (
-              <button key={wi} type="button" onClick={() => removeWord(s.id, wi)} disabled={phase === "reviewed"}
-                className="px-[10px] py-1 text-[12px] text-white bg-[#1B2B61] rounded-[5px] cursor-pointer"
-              >{w}</button>
-            ))}
-          </div>
+              <div
+                className={`flex min-h-[46px] flex-wrap items-center gap-1.5 rounded-[10px] border px-2 py-1.5 ${
+                  mark === "correct" ? "border-[#1F7A68] bg-[#E1F2ED]" : mark === "wrong" ? "border-[#B94A32] bg-[#FBE9E4]" : "border-[#E6E6E4] bg-[#F7F7F6]"
+                }`}
+              >
+                {order.length === 0 && <span className="px-1.5 text-[12.5px] text-[#B5B5AE]">Toca nas palavras abaixo…</span>}
+                {order.map((wi) =>
+                  results ? (
+                    <span key={wi} className={`px-1 text-[14px] ${ok ? "text-[#1F7A68]" : "text-[#B94A32] line-through decoration-[#B94A32]/60"}`}>
+                      {s.scrambledWords[wi]}
+                    </span>
+                  ) : (
+                    <Chip key={wi} state="placed" onClick={() => toggle(s, wi)}>
+                      {s.scrambledWords[wi]}
+                    </Chip>
+                  ),
+                )}
+              </div>
 
-          {/* Word bank */}
-          {phase === "answering" && (
-            <div className="flex flex-wrap gap-1 mt-1.5">
-              {(available[s.id] ?? []).map((w, wi) => (
-                <button key={wi} type="button" onClick={() => addWord(s.id, w, wi)}
-                  className="px-[10px] py-1 text-[12px] text-[#1F1F1F] bg-[#F7F7F6] rounded-[5px] cursor-pointer hover:bg-[rgba(0,0,0,0.08)]"
-                >{w}</button>
-              ))}
-            </div>
-          )}
-
-          {phase === "reviewed" && !results[s.id] && (
-            <div className="text-[12px] font-medium text-[#B94A32] mt-1.5">Not quite <span className="font-normal">→ {s.correctSentence}</span></div>
-          )}
-          {phase === "reviewed" && results[s.id] && (
-            <div className="text-[12px] font-medium text-[#1F7A68] mt-1.5">Correct!</div>
-          )}
-        </div>
-      ))}
-
-      <div className="mt-[10px]">
-        {phase === "answering" && (
-          <button type="button" onClick={verify} disabled={!allFilled}
-            className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#1B2B61] text-white cursor-pointer" : "bg-[#1B2B61] text-white opacity-40 cursor-not-allowed"}`}
-          >{allFilled ? "Continuar →" : "Responde a todas para continuar"}</button>
-        )}
-        {phase === "reviewed" && (
-          <div className="flex items-center justify-between">
-            <span className="text-[13px] font-medium text-[#1F1F1F]">{correctCount}/{sentences.length}</span>
-            <button type="button" onClick={finish} className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#1B2B61] rounded-[6px] cursor-pointer">
-              {sectionIndex < totalSections - 1 ? "Secção seguinte →" : "Ver resultados →"}
-            </button>
-          </div>
-        )}
+              {!results ? (
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {s.scrambledWords.map((w, wi) => (
+                    <Chip key={wi} state={order.includes(wi) ? "used" : "available"} onClick={() => toggle(s, wi)}>
+                      {w}
+                    </Chip>
+                  ))}
+                </div>
+              ) : (
+                !ok && (
+                  <p className="mt-2 flex items-baseline gap-2.5 px-1">
+                    <span className="text-[11px] text-[#98988F]">Resposta</span>
+                    <span className="text-[14px] text-[#1F1F1F]">{s.correctSentence}</span>
+                  </p>
+                )
+              )}
+            </Item>
+          );
+        })}
       </div>
+      <SectionFooter
+        checked={!!results} ready={remaining === 0} remaining={remaining}
+        correct={Object.values(results ?? {}).filter(Boolean).length} total={sentences.length}
+        isLast={sectionIndex === totalSections - 1} onCheck={verify} onNext={finish}
+      />
     </div>
   );
 }
