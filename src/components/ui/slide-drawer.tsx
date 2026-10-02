@@ -1,6 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
+import { X } from "lucide-react";
 
 interface SlideDrawerProps {
   isOpen: boolean;
@@ -24,32 +25,26 @@ export function SlideDrawer({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end">
+    <div className="fixed inset-0 z-50 flex justify-end p-2">
+      <div className="absolute inset-0 bg-black/20" onClick={onClose} aria-hidden />
       <div
-        className="absolute inset-0 bg-black/30 transition-opacity duration-200"
-        onClick={onClose}
-        aria-hidden
-      />
-      <div
-        className="relative w-full max-w-[420px] bg-[var(--bg-card)] shadow-xl flex flex-col max-h-full animate-slide-in-right"
+        className="animate-slide-in-right relative flex max-h-full w-full max-w-[440px] flex-col overflow-hidden rounded-2xl border border-aula-border bg-white shadow-[0_12px_40px_rgba(0,0,0,0.12)]"
         role="dialog"
         aria-label={ariaLabel}
       >
-        <div className="flex items-center justify-between p-4 border-b border-[var(--border-primary)] shrink-0">
-          <h2 className="text-lg font-semibold text-[var(--text-primary)]">{title}</h2>
-          <div className="flex items-center gap-2">
-            {headerExtra}
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-3 py-1.5 rounded-[12px] text-[13px] font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] border border-[var(--border-primary)] transition-colors"
-              aria-label="Fechar"
-            >
-              Fechar
-            </button>
-          </div>
+        <div className="flex h-12 shrink-0 items-center gap-2 border-b border-aula-line px-4">
+          <h2 className="flex-1 truncate text-[13px] font-medium text-aula-text">{title}</h2>
+          {headerExtra}
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex h-7 w-7 items-center justify-center rounded-md text-aula-text-3 transition-colors hover:bg-aula-sunken hover:text-aula-text"
+            aria-label="Fechar"
+          >
+            <X size={15} strokeWidth={1.5} />
+          </button>
         </div>
-        <div className="flex-1 overflow-y-auto min-h-0">{children}</div>
+        <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
       </div>
     </div>
   );

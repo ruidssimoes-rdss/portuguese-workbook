@@ -343,7 +343,7 @@ export async function createGoalEvents(events: CreateGoalEventData[]): Promise<C
     linked_label: e.linkedLabel,
     linked_score: null,
     linked_passed: null,
-    color: "#0EA5E9",
+    color: "#98988F",
   }));
 
   const { data, error } = await supabase

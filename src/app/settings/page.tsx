@@ -7,7 +7,8 @@ import { ProtectedRoute } from "@/components/protected-route";
 import { useAuth } from "@/components/auth-provider";
 import { createClient } from "@/lib/supabase/client";
 import { PageShell, Crumbs } from "@/components/layout/page-shell";
-import { PageHeader, SectionLabel } from "@/components/primitives";
+import { Pencil } from "lucide-react";
+import { ScreenTitle, Label } from "@/components/aula";
 import {
   getOnboardingData,
   saveOnboardingData,
@@ -72,35 +73,43 @@ function formatTargetDate(iso?: string | null): string {
   return d.toLocaleDateString("pt-PT", { day: "numeric", month: "long", year: "numeric" });
 }
 
-function Section({
-  title,
-  children,
-}: { title: string; children: React.ReactNode }) {
+function Section({ id, title, children }: { id?: string; title: string; children: React.ReactNode }) {
   return (
-    <div>
-      <SectionLabel>{title}</SectionLabel>
-      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg divide-y divide-[#E6E6E4]">
-        {children}
+    <section id={id} className="scroll-mt-16">
+      <Label className="mb-2 px-1">{title}</Label>
+      <div className="divide-y divide-aula-line rounded-xl border border-aula-border bg-white">{children}</div>
+    </section>
+  );
+}
+
+function SettingsRow({ label, description, children }: { label: string; description?: string; children: React.ReactNode }) {
+  return (
+    <div className="flex min-h-[52px] items-center justify-between gap-6 px-4 py-2.5">
+      <div className="min-w-0">
+        <p className="text-[13px] text-aula-text">{label}</p>
+        {description && <p className="mt-0.5 text-[11.5px] text-aula-text-3">{description}</p>}
       </div>
+      <div className="shrink-0">{children}</div>
     </div>
   );
 }
 
-function SettingsRow({
-  label,
-  description,
-  children,
-}: { label: string; description?: string; children: React.ReactNode }) {
+const FIELD = "h-8 rounded-lg border border-aula-border bg-white px-2.5 text-[12.5px] text-aula-text outline-none transition-colors focus:border-aula-accent";
+const BTN_PRIMARY = "inline-flex h-8 items-center rounded-lg bg-aula-accent px-3.5 text-[12.5px] font-medium text-white transition-colors hover:bg-aula-accent-hover disabled:opacity-50";
+const BTN_SECONDARY = "inline-flex h-8 items-center rounded-lg border border-aula-border bg-white px-3.5 text-[12.5px] font-medium text-aula-text transition-colors hover:border-aula-text-4 disabled:opacity-50";
+
+function Switch({ on, onChange, label }: { on: boolean; onChange: () => void; label: string }) {
   return (
-    <div className="flex items-center justify-between px-4 py-3">
-      <div>
-        <p className="text-[13px] font-medium text-[#1F1F1F]">{label}</p>
-        {description && (
-          <p className="text-[12px] text-[#98988F] mt-0.5">{description}</p>
-        )}
-      </div>
-      <div>{children}</div>
-    </div>
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      aria-label={label}
+      onClick={onChange}
+      className={`relative inline-flex h-5 w-[34px] shrink-0 items-center rounded-full transition-colors ${on ? "bg-aula-accent" : "bg-[#CFCFCB]"}`}
+    >
+      <span className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${on ? "translate-x-[16px]" : "translate-x-[2px]"}`} />
+    </button>
   );
 }
 
@@ -305,266 +314,120 @@ export default function SettingsPage() {
     return (
       <>
         <ProtectedRoute>
-          <PageShell>
-            <div className="max-w-[640px] space-y-8">
-              <p className="text-[13px] text-[#6B6B69]">A carregar...</p>
-            </div>
+          <PageShell header={<Crumbs items={[{ label: "Definições" }]} />}>
+            <p className="py-16 text-center text-[13px] text-aula-text-3">A carregar…</p>
           </PageShell>
         </ProtectedRoute>
       </>
     );
   }
 
+  const profileRows: {
+    key: string;
+    label: string;
+    value: string;
+    current: string;
+    options?: { value: string | number; label: string }[];
+    save: (v: string) => void;
+  }[] = [
+    { key: "motivation", label: "Motivação", value: motivationLabel, current: onboarding?.learningMotivation ?? "", options: MOTIVATION_OPTIONS, save: (v) => saveOnboardingField({ learningMotivation: v }) },
+    { key: "level", label: "Nível atual", value: levelLabel, current: onboarding?.selfAssessedLevel ?? "", options: LEVEL_OPTIONS, save: (v) => saveOnboardingField({ selfAssessedLevel: v }) },
+    { key: "studyDays", label: "Dias de estudo", value: studyDaysLabel, current: String(onboarding?.studyDaysPerWeek ?? 3), options: STUDY_DAYS_OPTIONS, save: (v) => saveOnboardingField({ studyDaysPerWeek: Number(v) }) },
+    { key: "targetGoal", label: "Objetivo", value: targetGoalLabel, current: onboarding?.targetGoal ?? "", options: TARGET_GOAL_OPTIONS, save: (v) => saveOnboardingField({ targetGoal: v }) },
+    { key: "targetDate", label: "Data alvo", value: formatTargetDate(onboarding?.targetDate), current: onboarding?.targetDate ?? "", save: (v) => saveOnboardingField({ targetDate: v || undefined }) },
+  ];
+
+  const panel = (
+    <div className="flex flex-col gap-6">
+      <div>
+        <Label className="mb-2">Nesta página</Label>
+        {[
+          { id: "perfil", label: "Perfil de aprendizagem" },
+          { id: "preferencias", label: "Preferências" },
+          { id: "conta", label: "Conta" },
+        ].map((x) => (
+          <a key={x.id} href={`#${x.id}`} className="flex h-7 items-center rounded-md px-2 text-[12.5px] text-aula-text-2 hover:bg-aula-sunken hover:text-aula-text">
+            {x.label}
+          </a>
+        ))}
+      </div>
+      <p className="text-[11.5px] leading-relaxed text-aula-text-3">As mudanças no perfil ficam guardadas logo. As preferências e o nome guardam-se com o botão de cada secção.</p>
+    </div>
+  );
+
   return (
     <>
       <ProtectedRoute>
-        <PageShell header={<Crumbs items={[{ label: "Definições" }]} />}>
-          <div className="max-w-[640px] space-y-8">
-            <PageHeader title="Definições" subtitle="A tua conta e as tuas preferências" />
+        <PageShell header={<Crumbs items={[{ label: "Definições" }]} />} panel={panel}>
+          <div className="mx-auto flex max-w-[680px] flex-col gap-8 pb-16">
+            <ScreenTitle title="Definições" subtitle="A tua conta e as tuas preferências" />
 
             {message && (
               <div
-                className={`rounded-lg p-3 text-[12px] ${
-                  message.type === "ok"
-                    ? "border-[0.5px] border-[#E1F2ED] bg-[#E1F2ED] text-[#1F7A68]"
-                    : "border-[0.5px] border-[#F0C9BE] bg-[#FBE9E4] text-[#B94A32]"
+                className={`rounded-[10px] border px-3.5 py-2.5 text-[12.5px] ${
+                  message.type === "ok" ? "border-[#BFE3D8] bg-[#E1F2ED] text-[#1F7A68]" : "border-[#F0C9BE] bg-[#FBE9E4] text-aula-overdue"
                 }`}
               >
                 {message.text}
               </div>
             )}
 
-            {/* Learning profile */}
-            <Section title="O teu perfil de aprendizagem">
+            <Section id="perfil" title="Perfil de aprendizagem">
               {onboardingComplete ? (
                 <>
-                  <div className="px-4 py-3 flex items-center justify-between gap-4">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#98988F]">Motivação</p>
-                      {editingField === "motivation" ? (
-                        <select
-                          autoFocus
-                          value={onboarding?.learningMotivation ?? ""}
-                          onChange={(e) =>
-                            saveOnboardingField({ learningMotivation: e.target.value })
-                          }
-                          onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
-                        >
-                          {MOTIVATION_OPTIONS.map((o) => (
-                            <option key={o.value} value={o.value}>
-                              {o.label}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
-                          {motivationLabel}
-                          {savedField === "onboarding" && (
-                            <span className="ml-2 text-[12px] text-[#1F7A68]">
-                              Guardado
-                            </span>
-                          )}
-                        </p>
-                      )}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setEditingField((f) => (f === "motivation" ? null : "motivation"))}
-                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
-                      aria-label="Editar motivação"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="px-4 py-3 flex items-center justify-between gap-4">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#98988F]">Nível atual</p>
-                      {editingField === "level" ? (
-                        <select
-                          autoFocus
-                          value={onboarding?.selfAssessedLevel ?? ""}
-                          onChange={(e) =>
-                            saveOnboardingField({ selfAssessedLevel: e.target.value })
-                          }
-                          onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
-                        >
-                          {LEVEL_OPTIONS.map((o) => (
-                            <option key={o.value} value={o.value}>
-                              {o.label}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
-                          {levelLabel}
-                        </p>
-                      )}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setEditingField((f) => (f === "level" ? null : "level"))}
-                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
-                      aria-label="Editar nível"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="px-4 py-3 flex items-center justify-between gap-4">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#98988F]">Dias de estudo</p>
-                      {editingField === "studyDays" ? (
-                        <select
-                          autoFocus
-                          value={onboarding?.studyDaysPerWeek ?? 3}
-                          onChange={(e) =>
-                            saveOnboardingField({
-                              studyDaysPerWeek: Number(e.target.value),
-                            })
-                          }
-                          onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
-                        >
-                          {STUDY_DAYS_OPTIONS.map((o) => (
-                            <option key={o.value} value={o.value}>
-                              {o.label}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
-                          {studyDaysLabel}
-                        </p>
-                      )}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setEditingField((f) => (f === "studyDays" ? null : "studyDays"))}
-                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
-                      aria-label="Editar dias de estudo"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="px-4 py-3 flex items-center justify-between gap-4">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#98988F]">Objetivo</p>
-                      {editingField === "targetGoal" ? (
-                        <select
-                          autoFocus
-                          value={onboarding?.targetGoal ?? ""}
-                          onChange={(e) =>
-                            saveOnboardingField({ targetGoal: e.target.value })
-                          }
-                          onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
-                        >
-                          {TARGET_GOAL_OPTIONS.map((o) => (
-                            <option key={o.value} value={o.value}>
-                              {o.label}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
-                          {targetGoalLabel}
-                        </p>
-                      )}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setEditingField((f) => (f === "targetGoal" ? null : "targetGoal"))}
-                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
-                      aria-label="Editar objetivo"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="px-4 py-3 flex items-center justify-between gap-4">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#98988F]">Data alvo</p>
-                      {editingField === "targetDate" ? (
-                        <input
-                          type="date"
-                          autoFocus
-                          value={onboarding?.targetDate ?? ""}
-                          onChange={(e) =>
-                            saveOnboardingField({ targetDate: e.target.value || undefined })
-                          }
-                          onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
-                        />
-                      ) : (
-                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
-                          {formatTargetDate(onboarding?.targetDate)}
-                        </p>
-                      )}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setEditingField((f) => (f === "targetDate" ? null : "targetDate"))}
-                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
-                      aria-label="Editar data alvo"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                      </svg>
-                    </button>
-                  </div>
-                  {showGoalRecalcPrompt && (
-                    <div className="bg-[rgba(0,51,153,0.05)] border-t-[0.5px] border-[#E6E6E4] rounded-b-lg px-4 py-3">
-                      <p className="text-[13px] text-[#1F1F1F] mb-2">
-                        As tuas preferências mudaram. Queres atualizar o teu plano de estudo?
-                      </p>
-                      <Link
-                        href="/calendar"
-                        className="text-[13px] font-medium text-[#1B2B61] hover:underline"
+                  {profileRows.map((r) => (
+                    <div key={r.key} className="flex min-h-[52px] items-center gap-4 px-4 py-2.5">
+                      <span className="w-[120px] shrink-0 text-[12.5px] text-aula-text-3">{r.label}</span>
+                      <div className="min-w-0 flex-1">
+                        {editingField === r.key ? (
+                          r.options ? (
+                            <select autoFocus value={r.current} onChange={(e) => r.save(e.target.value)} onBlur={() => setEditingField(null)} className={`${FIELD} w-full`}>
+                              {r.options.map((o) => (
+                                <option key={String(o.value)} value={String(o.value)}>
+                                  {o.label}
+                                </option>
+                              ))}
+                            </select>
+                          ) : (
+                            <input type="date" autoFocus value={r.current} onChange={(e) => r.save(e.target.value)} onBlur={() => setEditingField(null)} className={`${FIELD} w-full`} />
+                          )
+                        ) : (
+                          <span className="text-[13px] text-aula-text">{r.value}</span>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setEditingField((f) => (f === r.key ? null : r.key))}
+                        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-aula-text-3 transition-colors hover:bg-aula-sunken hover:text-aula-text"
+                        aria-label={`Editar ${r.label.toLowerCase()}`}
                       >
-                        Ir para objetivos no calendário
+                        <Pencil size={13} strokeWidth={1.5} />
+                      </button>
+                    </div>
+                  ))}
+                  {savedField === "onboarding" && <p className="px-4 py-2 text-[11.5px] text-[#1F7A68]">Guardado</p>}
+                  {showGoalRecalcPrompt && (
+                    <div className="flex items-center gap-3 rounded-b-xl bg-aula-accent-faint px-4 py-3">
+                      <p className="flex-1 text-[12.5px] text-aula-text">As tuas preferências mudaram. Queres ajustar o plano de estudo?</p>
+                      <Link href="/calendar" className="text-[12.5px] font-medium text-aula-accent">
+                        Ver objetivos →
                       </Link>
                     </div>
                   )}
                 </>
               ) : (
-                <div className="px-4 py-3">
-                  <p className="text-[13px] text-[#6B6B69] mb-3">
-                    Não fizeste a configuração inicial?
-                  </p>
-                  <Link
-                    href="/onboarding"
-                    className="text-[13px] font-medium text-[#1B2B61] hover:underline"
-                  >
+                <div className="flex items-center gap-3 px-4 py-3.5">
+                  <p className="flex-1 text-[13px] text-aula-text-2">Ainda não fizeste a configuração inicial.</p>
+                  <Link href="/onboarding" className={BTN_PRIMARY}>
                     Configurar agora
                   </Link>
                 </div>
               )}
             </Section>
 
-            {/* Learning preferences */}
-            <Section title="Preferências de aprendizagem">
-              <SettingsRow
-                label="Velocidade da pronúncia"
-                description="Lento, normal ou rápido"
-              >
-                <select
-                  value={pronunciationSpeed}
-                  onChange={(e) => setPronunciationSpeed(Number(e.target.value))}
-                  className="text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB]"
-                >
+            <Section id="preferencias" title="Preferências">
+              <SettingsRow label="Velocidade da pronúncia" description="Lento, normal ou rápido">
+                <select value={pronunciationSpeed} onChange={(e) => setPronunciationSpeed(Number(e.target.value))} className={FIELD}>
                   {SPEED_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
                       {o.label}
@@ -572,36 +435,14 @@ export default function SettingsPage() {
                   ))}
                 </select>
               </SettingsRow>
-              <SettingsRow
-                label="Mostrar fonética"
-                description="Transcrição fonética nas palavras"
-              >
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={showPhonetics}
-                  onClick={() => setShowPhonetics((v) => !v)}
-                  className={`relative inline-flex h-[18px] w-8 shrink-0 rounded-full transition-colors ${
-                    showPhonetics ? "bg-[#1B2B61]" : "bg-[#CFCFCB]"
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-[14px] w-[14px] rounded-full bg-white shadow-sm transition-transform ${
-                      showPhonetics ? "translate-x-[14px]" : "translate-x-0.5"
-                    }`}
-                    style={{ marginTop: 2 }}
-                  />
-                </button>
+              <SettingsRow label="Mostrar fonética" description="A pronúncia escrita ao lado de cada palavra">
+                <Switch on={showPhonetics} onChange={() => setShowPhonetics((v) => !v)} label="Mostrar fonética" />
               </SettingsRow>
-              <SettingsRow
-                label="Objetivo diário (palavras)"
-                description="Palavras por dia no vocabulário"
-              >
-                <select
-                  value={dailyGoal}
-                  onChange={(e) => setDailyGoal(Number(e.target.value))}
-                  className="text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB]"
-                >
+              <SettingsRow label="Mostrar traduções em inglês" description="Desliga para uma experiência mais imersiva">
+                <Switch on={showTranslations} onChange={() => setShowTranslations((v) => !v)} label="Mostrar traduções em inglês" />
+              </SettingsRow>
+              <SettingsRow label="Palavras novas por dia">
+                <select value={dailyGoal} onChange={(e) => setDailyGoal(Number(e.target.value))} className={FIELD}>
                   {DAILY_GOAL_OPTIONS.map((n) => (
                     <option key={n} value={n}>
                       {n}
@@ -609,36 +450,8 @@ export default function SettingsPage() {
                   ))}
                 </select>
               </SettingsRow>
-              <SettingsRow
-                label="Mostrar traduções em inglês"
-                description="Esconde as traduções para uma experiência mais imersiva."
-              >
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={showTranslations}
-                  onClick={() => setShowTranslations((v) => !v)}
-                  className={`relative inline-flex h-[18px] w-8 shrink-0 rounded-full transition-colors ${
-                    showTranslations ? "bg-[#1B2B61]" : "bg-[#CFCFCB]"
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-[14px] w-[14px] rounded-full bg-white shadow-sm transition-transform ${
-                      showTranslations ? "translate-x-[14px]" : "translate-x-0.5"
-                    }`}
-                    style={{ marginTop: 2 }}
-                  />
-                </button>
-              </SettingsRow>
-              <SettingsRow
-                label="Melhor hora para estudar"
-                description="Para futuras notificações e lembretes."
-              >
-                <select
-                  value={preferredStudyTime}
-                  onChange={(e) => setPreferredStudyTime(e.target.value)}
-                  className="text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB]"
-                >
+              <SettingsRow label="Melhor hora para estudar" description="Para lembretes no futuro">
+                <select value={preferredStudyTime} onChange={(e) => setPreferredStudyTime(e.target.value)} className={FIELD}>
                   {PREFERRED_STUDY_TIME_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
                       {o.label}
@@ -646,84 +459,48 @@ export default function SettingsPage() {
                   ))}
                 </select>
               </SettingsRow>
-              <div className="px-4 py-3">
-                <button
-                  type="button"
-                  onClick={saveSettings}
-                  disabled={saving}
-                  className="px-4 py-2 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors disabled:opacity-50"
-                >
-                  {saving ? "A guardar..." : "Guardar preferências"}
+              <div className="flex justify-end px-4 py-3">
+                <button type="button" onClick={saveSettings} disabled={saving} className={BTN_PRIMARY}>
+                  {saving ? "A guardar…" : "Guardar preferências"}
                 </button>
               </div>
             </Section>
 
-            {/* Account */}
-            <Section title="Conta">
+            <Section id="conta" title="Conta">
               <SettingsRow label="Nome">
-                <input
-                  type="text"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-[180px] text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB]"
-                />
+                <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} className={`${FIELD} w-[200px]`} />
               </SettingsRow>
               <SettingsRow label="Email">
-                <p className="text-[13px] text-[#6B6B69]">{user?.email ?? "—"}</p>
+                <span className="text-[12.5px] text-aula-text-2">{user?.email ?? "—"}</span>
               </SettingsRow>
-              <div className="px-4 py-3 flex flex-wrap items-center gap-3">
-                <button
-                  type="button"
-                  onClick={saveProfile}
-                  disabled={saving}
-                  className="px-4 py-2 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors disabled:opacity-50"
-                >
-                  {saving ? "A guardar..." : "Guardar perfil"}
-                </button>
-                <Link
-                  href="/auth/update-password"
-                  className="text-[13px] font-medium text-[#1B2B61] hover:underline"
-                >
+              <div className="flex items-center gap-2 px-4 py-3">
+                <Link href="/auth/update-password" className="text-[12.5px] font-medium text-aula-accent">
                   Alterar palavra-passe
                 </Link>
+                <span className="flex-1" />
+                <button type="button" onClick={saveProfile} disabled={saving} className={BTN_PRIMARY}>
+                  {saving ? "A guardar…" : "Guardar perfil"}
+                </button>
               </div>
-              <SettingsRow
-                label="Exportar os meus dados"
-                description="Descarrega um ficheiro JSON com o teu perfil, progresso, notas, eventos e objetivos."
-              >
-                <button
-                  type="button"
-                  onClick={handleExport}
-                  disabled={exporting}
-                  className="px-4 py-2 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
-                >
-                  {exporting ? "A exportar..." : "Exportar"}
+              <SettingsRow label="Exportar os meus dados" description="Um ficheiro JSON com perfil, progresso, notas, eventos e objetivos">
+                <button type="button" onClick={handleExport} disabled={exporting} className={BTN_SECONDARY}>
+                  {exporting ? "A exportar…" : "Exportar"}
                 </button>
               </SettingsRow>
-              <div className="px-4 py-3">
-                <button
-                  type="button"
-                  onClick={handleSignOut}
-                  className="px-4 py-2 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
-                >
+              <SettingsRow label="Sair da conta">
+                <button type="button" onClick={handleSignOut} className={BTN_SECONDARY}>
                   Sair
                 </button>
-              </div>
-              <div className="px-4 py-3 border-t border-[#E6E6E4]">
-                <p className="text-[13px] font-medium text-[#1F1F1F] mb-1">
-                  Apagar a minha conta
-                </p>
-                <p className="text-[12px] text-[#98988F] mb-3">
-                  Isto apagará permanentemente a tua conta e todos os dados associados.
-                </p>
+              </SettingsRow>
+              <SettingsRow label="Apagar a minha conta" description="Apaga para sempre a conta e todos os dados">
                 <button
                   type="button"
                   onClick={() => setShowDeleteConfirm(true)}
-                  className="px-4 py-2 text-[13px] font-medium text-[#B94A32] border-[0.5px] border-[#B94A32] rounded-lg hover:bg-[#FBE9E4] transition-colors"
+                  className="inline-flex h-8 items-center rounded-lg border border-[#F0C9BE] bg-white px-3.5 text-[12.5px] font-medium text-aula-overdue transition-colors hover:bg-[#FBE9E4]"
                 >
                   Apagar conta
                 </button>
-              </div>
+              </SettingsRow>
             </Section>
           </div>
         </PageShell>
@@ -732,16 +509,16 @@ export default function SettingsPage() {
       {/* Delete confirmation modal */}
       {showDeleteConfirm && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/30"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/20 p-4"
           role="dialog"
           aria-modal="true"
           aria-label="Confirmar apagar conta"
         >
-          <div className="bg-white border-[0.5px] border-[#CFCFCB] rounded-lg max-w-md w-full p-6">
-            <h3 className="text-[16px] font-medium text-[#1F1F1F] mb-2">
+          <div className="w-full max-w-md rounded-2xl border border-aula-border bg-white p-6 shadow-[0_12px_40px_rgba(0,0,0,0.12)]">
+            <h3 className="mb-1.5 text-[15px] font-semibold text-aula-text">
               Tens a certeza?
             </h3>
-            <p className="text-[13px] text-[#6B6B69] mb-4">
+            <p className="mb-4 text-[12.5px] text-aula-text-2">
               Esta ação é irreversível. Escreve &quot;APAGAR&quot; para confirmar:
             </p>
             <input
@@ -749,16 +526,16 @@ export default function SettingsPage() {
               value={deleteConfirmText}
               onChange={(e) => setDeleteConfirmText(e.target.value)}
               placeholder="APAGAR"
-              className="w-full text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB] placeholder:text-[#98988F] mb-4"
+              className="mb-4 h-9 w-full rounded-lg border border-aula-border bg-white px-3 text-[13px] outline-none placeholder:text-aula-text-4 focus:border-aula-accent"
             />
-            <div className="flex gap-3 justify-end">
+            <div className="flex justify-end gap-2">
               <button
                 type="button"
                 onClick={() => {
                   setShowDeleteConfirm(false);
                   setDeleteConfirmText("");
                 }}
-                className="px-4 py-2 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
+                className={BTN_SECONDARY}
               >
                 Cancelar
               </button>
@@ -766,7 +543,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={handleDeleteConfirm}
                 disabled={deleteConfirmText.trim().toUpperCase() !== "APAGAR"}
-                className="px-4 py-2 text-[13px] font-medium text-white bg-[#B94A32] rounded-lg hover:bg-[#B94A32] disabled:opacity-50 transition-colors"
+                className="inline-flex h-8 items-center rounded-lg bg-aula-overdue px-3.5 text-[12.5px] font-medium text-white transition-colors disabled:opacity-40"
               >
                 Apagar permanentemente
               </button>
