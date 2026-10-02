@@ -1445,46 +1445,51 @@
   {
     "categoryId": "opinions-connectors",
     "word": {
-      "portuguese": "a vantagem",
-      "english": "the advantage",
+      "portuguese": "ainda que",
+      "english": "even though; even if",
       "cefr": "B1",
-      "gender": "f",
-      "pronunciation": "uh vahn-TAH-zhayng",
-      "example": "A grande vantagem desta casa é a localização.",
-      "exampleTranslation": "The big advantage of this house is the location.",
+      "gender": null,
+      "pronunciation": "uh-EEN-duh kuh",
+      "example": "Ainda que seja caro, vale a pena ir ao concerto.",
+      "exampleTranslation": "Even though it's expensive, the concert is worth going to.",
       "relatedWords": [
         {
-          "word": "a desvantagem",
-          "meaning": "the disadvantage"
+          "word": "embora",
+          "meaning": "although"
         },
         {
-          "word": "vantajoso",
-          "meaning": "advantageous"
+          "word": "mesmo que",
+          "meaning": "even if"
         }
-      ]
+      ],
+      "proTip": "Like «embora», it always takes the conjuntivo — «ainda que tenhas razão», never «ainda que tens»."
     }
   },
   {
     "categoryId": "opinions-connectors",
     "word": {
-      "portuguese": "a desvantagem",
-      "english": "the disadvantage",
+      "portuguese": "em conclusão",
+      "english": "in conclusion",
       "cefr": "B1",
-      "gender": "f",
-      "pronunciation": "uh duhzh-vahn-TAH-zhayng",
-      "example": "A única desvantagem é que não tem elevador.",
-      "exampleTranslation": "The only disadvantage is that it has no lift.",
+      "gender": null,
+      "pronunciation": "ayng kohng-kloo-ZOWNG",
+      "example": "Em conclusão, acho que a proposta tem mais vantagens do que problemas.",
+      "exampleTranslation": "In conclusion, I think the proposal has more advantages than problems.",
       "relatedWords": [
         {
-          "word": "a vantagem",
-          "meaning": "the advantage"
+          "word": "em suma",
+          "meaning": "in short"
         },
         {
-          "word": "o inconveniente",
-          "meaning": "the drawback"
+          "word": "para concluir",
+          "meaning": "to conclude"
+        },
+        {
+          "word": "concluir",
+          "meaning": "to conclude"
         }
       ],
-      "proTip": "«Vantagens e desvantagens» is a classic DEPLE writing prompt — learn both together."
+      "proTip": "A safe way to open the last paragraph of a DEPLE opinion text."
     }
   },
   {
@@ -1535,21 +1540,21 @@
   {
     "categoryId": "opinions-connectors",
     "word": {
-      "portuguese": "defender",
-      "english": "to defend; to argue for",
+      "portuguese": "sem dúvida",
+      "english": "without a doubt; definitely",
       "cefr": "B1",
       "gender": null,
-      "pronunciation": "duh-fayn-DEHR",
-      "example": "Ele defende que os transportes deviam ser gratuitos.",
-      "exampleTranslation": "He argues that public transport should be free.",
+      "pronunciation": "sayng DOO-vee-duh",
+      "example": "O Porto é, sem dúvida, a cidade mais bonita do Norte.",
+      "exampleTranslation": "Porto is, without a doubt, the prettiest city in the North.",
       "relatedWords": [
         {
-          "word": "a defesa",
-          "meaning": "the defence"
+          "word": "com certeza",
+          "meaning": "certainly"
         },
         {
-          "word": "defender uma ideia",
-          "meaning": "to stand up for an idea"
+          "word": "não há dúvida",
+          "meaning": "there's no doubt"
         }
       ]
     }

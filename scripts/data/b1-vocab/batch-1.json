@@ -1,0 +1,2466 @@
+[
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a senha",
+      "english": "queue ticket",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "SUH-nyuh",
+      "example": "Tira uma senha e espera que chamem o teu número.",
+      "exampleTranslation": "Take a ticket and wait for them to call your number.",
+      "relatedWords": [
+        {
+          "word": "tirar senha",
+          "meaning": "to take a queue ticket"
+        },
+        {
+          "word": "o número da senha",
+          "meaning": "the ticket number"
+        }
+      ],
+      "proTip": "At a counter, senha means the numbered paper ticket. For a computer password, people say palavra-passe (or also senha)."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a fila",
+      "english": "queue, line",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "FEE-luh",
+      "example": "A fila para os correios hoje está enorme.",
+      "exampleTranslation": "The queue at the post office is huge today.",
+      "relatedWords": [
+        {
+          "word": "estar na fila",
+          "meaning": "to be in the queue"
+        },
+        {
+          "word": "passar à frente",
+          "meaning": "to jump the queue"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o balcão",
+      "english": "counter, service desk",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "bahl-KOWNG",
+      "example": "Dirija-se ao balcão número três, por favor.",
+      "exampleTranslation": "Please go to counter number three.",
+      "relatedWords": [
+        {
+          "word": "o balcão de atendimento",
+          "meaning": "the service counter"
+        },
+        {
+          "word": "ao balcão",
+          "meaning": "at the counter"
+        }
+      ],
+      "proTip": "Banks also call a branch um balcão: «o balcão do Saldanha» means the Saldanha branch."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o guiché",
+      "english": "ticket window, counter window",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "ghee-SHEH",
+      "example": "O guiché fecha à hora de almoço.",
+      "exampleTranslation": "The window closes at lunchtime.",
+      "relatedWords": [
+        {
+          "word": "o balcão",
+          "meaning": "the counter"
+        },
+        {
+          "word": "a bilheteira",
+          "meaning": "the ticket office"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "preencher",
+      "english": "to fill in (a form)",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "pree-ayng-SHEHR",
+      "example": "Tem de preencher este formulário antes de ser atendido.",
+      "exampleTranslation": "You have to fill in this form before being served.",
+      "relatedWords": [
+        {
+          "word": "preencher um impresso",
+          "meaning": "to fill in a printed form"
+        },
+        {
+          "word": "em branco",
+          "meaning": "blank"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o cartão de cidadão",
+      "english": "Portuguese citizen ID card",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "kar-TOWNG duh see-dah-DOWNG",
+      "example": "Pode mostrar-me o cartão de cidadão, por favor?",
+      "exampleTranslation": "Can you show me your citizen card, please?",
+      "relatedWords": [
+        {
+          "word": "o CC",
+          "meaning": "the citizen card (abbreviation)"
+        },
+        {
+          "word": "renovar o cartão",
+          "meaning": "to renew the card"
+        }
+      ],
+      "proTip": "The cartão de cidadão combines ID, NIF, Segurança Social and health numbers in one card. People often just say «o CC»."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a morada",
+      "english": "address",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "moo-RAH-duh",
+      "example": "Qual é a sua morada completa?",
+      "exampleTranslation": "What is your full address?",
+      "relatedWords": [
+        {
+          "word": "mudar de morada",
+          "meaning": "to change address"
+        },
+        {
+          "word": "o código postal",
+          "meaning": "the postcode"
+        }
+      ],
+      "proTip": "In Portugal «endereço» is mostly used for email or web addresses; your home address is a morada."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "abrir conta",
+      "english": "to open an account",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-BREER KOHN-tuh",
+      "example": "Quero abrir conta neste banco. O que é preciso?",
+      "exampleTranslation": "I want to open an account at this bank. What do I need?",
+      "relatedWords": [
+        {
+          "word": "a conta à ordem",
+          "meaning": "the current account"
+        },
+        {
+          "word": "fechar a conta",
+          "meaning": "to close the account"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o código PIN",
+      "english": "PIN code",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "KOH-dee-goo PEEN",
+      "example": "Introduza o código PIN e carregue em verde.",
+      "exampleTranslation": "Enter your PIN and press the green button.",
+      "relatedWords": [
+        {
+          "word": "o código",
+          "meaning": "the code"
+        },
+        {
+          "word": "bloquear o cartão",
+          "meaning": "to block the card"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o pacote",
+      "english": "parcel, package",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "pah-KOHT",
+      "example": "Chegou um pacote para ti, deixei-o na portaria.",
+      "exampleTranslation": "A parcel arrived for you, I left it at the front desk.",
+      "relatedWords": [
+        {
+          "word": "a encomenda",
+          "meaning": "the order / parcel"
+        },
+        {
+          "word": "embrulhar",
+          "meaning": "to wrap"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "assinar",
+      "english": "to sign",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-see-NAR",
+      "example": "Assine aqui e aqui, por favor.",
+      "exampleTranslation": "Sign here and here, please.",
+      "relatedWords": [
+        {
+          "word": "a assinatura",
+          "meaning": "the signature"
+        },
+        {
+          "word": "assinar o contrato",
+          "meaning": "to sign the contract"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a data de nascimento",
+      "english": "date of birth",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "DAH-tuh duh nush-see-MAYNG-too",
+      "example": "Escreva a data de nascimento no formato dia, mês, ano.",
+      "exampleTranslation": "Write your date of birth as day, month, year.",
+      "relatedWords": [
+        {
+          "word": "a naturalidade",
+          "meaning": "place of birth"
+        },
+        {
+          "word": "a idade",
+          "meaning": "age"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o apelido",
+      "english": "surname, last name",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "uh-puh-LEE-doo",
+      "example": "Pode soletrar o seu apelido, por favor?",
+      "exampleTranslation": "Can you spell your surname, please?",
+      "relatedWords": [
+        {
+          "word": "o nome próprio",
+          "meaning": "first name"
+        },
+        {
+          "word": "o nome completo",
+          "meaning": "full name"
+        }
+      ],
+      "proTip": "False friend: apelido is your surname, not a nickname (that's alcunha). Portuguese people often have four or more names."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o estado civil",
+      "english": "marital status",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "ush-TAH-doo see-VEEL",
+      "example": "No formulário, pedem o estado civil e a profissão.",
+      "exampleTranslation": "On the form, they ask for marital status and profession.",
+      "relatedWords": [
+        {
+          "word": "solteiro",
+          "meaning": "single"
+        },
+        {
+          "word": "casado",
+          "meaning": "married"
+        },
+        {
+          "word": "em união de facto",
+          "meaning": "in a civil partnership"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a profissão",
+      "english": "profession, occupation",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "proo-fee-SOWNG",
+      "example": "No campo da profissão, escrevi «engenheiro».",
+      "exampleTranslation": "In the occupation field, I wrote 'engineer'.",
+      "relatedWords": [
+        {
+          "word": "a ocupação",
+          "meaning": "occupation"
+        },
+        {
+          "word": "o local de trabalho",
+          "meaning": "workplace"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "tirar senha",
+      "english": "to take a queue ticket",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "tee-RAR SUH-nyuh",
+      "example": "Primeiro tens de tirar senha na máquina à entrada.",
+      "exampleTranslation": "First you have to take a ticket from the machine at the entrance.",
+      "relatedWords": [
+        {
+          "word": "a senha",
+          "meaning": "the ticket"
+        },
+        {
+          "word": "a máquina das senhas",
+          "meaning": "the ticket machine"
+        }
+      ],
+      "proTip": "In Loja do Cidadão, Finanças and many banks, nobody serves you without a senha, even if the place looks empty."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "estar na fila",
+      "english": "to be in the queue",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "ush-TAR nuh FEE-luh",
+      "example": "Estou na fila há meia hora e ainda faltam vinte pessoas.",
+      "exampleTranslation": "I've been in the queue for half an hour and there are still twenty people.",
+      "relatedWords": [
+        {
+          "word": "a fila",
+          "meaning": "the queue"
+        },
+        {
+          "word": "esperar a vez",
+          "meaning": "to wait one's turn"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "quem é o último?",
+      "english": "who's last in the queue?",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "kayng EH oo OOL-tee-moo",
+      "example": "Bom dia, quem é o último? Ah, então fico atrás de si.",
+      "exampleTranslation": "Good morning, who's last? Ah, then I'll stand behind you.",
+      "relatedWords": [
+        {
+          "word": "a fila",
+          "meaning": "the queue"
+        },
+        {
+          "word": "atrás de",
+          "meaning": "behind"
+        }
+      ],
+      "proTip": "Where there are no tickets (pharmacies, cafés, small shops, health centres), Portuguese people ask this on arrival to keep track of the queue."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "é a minha vez",
+      "english": "it's my turn",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "EH uh MEE-nyuh VAYSH",
+      "example": "Desculpe, mas acho que é a minha vez.",
+      "exampleTranslation": "Excuse me, but I think it's my turn.",
+      "relatedWords": [
+        {
+          "word": "a vez",
+          "meaning": "the turn"
+        },
+        {
+          "word": "à vez",
+          "meaning": "one at a time"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a sala de espera",
+      "english": "waiting room",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "SAH-luh duh ush-PEH-ruh",
+      "example": "Aguarde na sala de espera até ver o seu número.",
+      "exampleTranslation": "Wait in the waiting room until you see your number.",
+      "relatedWords": [
+        {
+          "word": "aguardar",
+          "meaning": "to wait"
+        },
+        {
+          "word": "o ecrã",
+          "meaning": "the screen"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "atender",
+      "english": "to serve (a customer); to answer (the phone)",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-tayng-DEHR",
+      "example": "Já está a ser atendido ou posso ajudar?",
+      "exampleTranslation": "Are you being served, or can I help?",
+      "relatedWords": [
+        {
+          "word": "o atendimento",
+          "meaning": "service"
+        },
+        {
+          "word": "atender o telefone",
+          "meaning": "to answer the phone"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o funcionário / a funcionária",
+      "english": "employee, clerk",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "foong-syoo-NAH-ryoo / foong-syoo-NAH-ryuh",
+      "example": "A funcionária disse-me para voltar amanhã com o comprovativo.",
+      "exampleTranslation": "The clerk told me to come back tomorrow with the proof.",
+      "relatedWords": [
+        {
+          "word": "o funcionário público",
+          "meaning": "civil servant"
+        },
+        {
+          "word": "o balcão",
+          "meaning": "the counter"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o pedido",
+      "english": "request, application",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "puh-DEE-doo",
+      "example": "O meu pedido ainda está a ser analisado.",
+      "exampleTranslation": "My application is still being reviewed.",
+      "relatedWords": [
+        {
+          "word": "fazer um pedido",
+          "meaning": "to make a request"
+        },
+        {
+          "word": "o pedido de renovação",
+          "meaning": "the renewal application"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a entrega",
+      "english": "delivery; submission",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "ayng-TREH-guh",
+      "example": "A entrega da encomenda está prevista para quinta-feira.",
+      "exampleTranslation": "Delivery of the parcel is scheduled for Thursday.",
+      "relatedWords": [
+        {
+          "word": "entregar",
+          "meaning": "to deliver / hand in"
+        },
+        {
+          "word": "o prazo de entrega",
+          "meaning": "the delivery deadline"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "cancelar",
+      "english": "to cancel",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "kahn-suh-LAR",
+      "example": "Liguei para cancelar a marcação de amanhã.",
+      "exampleTranslation": "I called to cancel tomorrow's appointment.",
+      "relatedWords": [
+        {
+          "word": "o cancelamento",
+          "meaning": "the cancellation"
+        },
+        {
+          "word": "desmarcar",
+          "meaning": "to call off (an appointment)"
+        }
+      ],
+      "proTip": "For appointments, Portuguese people often say desmarcar instead of cancelar."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o valor",
+      "english": "amount, value",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "vuh-LOHR",
+      "example": "Qual é o valor a pagar este mês?",
+      "exampleTranslation": "What's the amount to pay this month?",
+      "relatedWords": [
+        {
+          "word": "o valor total",
+          "meaning": "the total amount"
+        },
+        {
+          "word": "o montante",
+          "meaning": "the sum"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "pagar com cartão",
+      "english": "to pay by card",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "puh-GAR kohng kar-TOWNG",
+      "example": "Posso pagar com cartão ou só aceitam dinheiro?",
+      "exampleTranslation": "Can I pay by card or do you only take cash?",
+      "relatedWords": [
+        {
+          "word": "pagar em numerário",
+          "meaning": "to pay in cash"
+        },
+        {
+          "word": "o multibanco",
+          "meaning": "card payment / ATM"
+        }
+      ],
+      "proTip": "Many small places will say «só aceitamos multibanco», meaning Portuguese debit cards, sometimes not foreign credit cards."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "válido",
+      "english": "valid",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "VAH-lee-doo",
+      "example": "O seu passaporte ainda é válido até 2028.",
+      "exampleTranslation": "Your passport is still valid until 2028.",
+      "relatedWords": [
+        {
+          "word": "a validade",
+          "meaning": "validity, expiry date"
+        },
+        {
+          "word": "caducado",
+          "meaning": "expired"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a marcação",
+      "english": "appointment, booking",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "mar-kuh-SOWNG",
+      "example": "Sem marcação, só atendem a partir das três.",
+      "exampleTranslation": "Without an appointment, they only serve after three.",
+      "relatedWords": [
+        {
+          "word": "fazer uma marcação",
+          "meaning": "to book an appointment"
+        },
+        {
+          "word": "sem marcação",
+          "meaning": "walk-in, without appointment"
+        }
+      ],
+      "proTip": "Most public services (Finanças, Segurança Social, AIMA) now work mainly by marcação, booked online or by phone."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "aberto ao público",
+      "english": "open to the public",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-BEHR-too ow POO-blee-koo",
+      "example": "Os serviços estão abertos ao público das nove às quatro.",
+      "exampleTranslation": "The offices are open to the public from nine to four.",
+      "relatedWords": [
+        {
+          "word": "o horário de atendimento",
+          "meaning": "opening hours for service"
+        },
+        {
+          "word": "encerrado",
+          "meaning": "closed"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a Loja do Cidadão",
+      "english": "Citizen's Shop (one-stop public services office)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "LOH-zhuh doo see-dah-DOWNG",
+      "example": "Fui à Loja do Cidadão renovar o cartão e tratar da carta.",
+      "exampleTranslation": "I went to the Loja do Cidadão to renew my card and sort out my licence.",
+      "relatedWords": [
+        {
+          "word": "o Espaço Cidadão",
+          "meaning": "smaller local service point"
+        },
+        {
+          "word": "a marcação",
+          "meaning": "the appointment"
+        }
+      ],
+      "proTip": "Loja do Cidadão gathers several services (Finanças, Segurança Social, IRN, utilities) under one roof. Arrive early: senhas often run out by mid-morning."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o Portal das Finanças",
+      "english": "the tax authority's website",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "poor-TAHL duhsh fee-NAHN-suhsh",
+      "example": "Podes pedir a segunda via no Portal das Finanças.",
+      "exampleTranslation": "You can request the duplicate on the Portal das Finanças.",
+      "relatedWords": [
+        {
+          "word": "a senha de acesso",
+          "meaning": "the login password"
+        },
+        {
+          "word": "as Finanças",
+          "meaning": "the tax office"
+        }
+      ],
+      "proTip": "Almost everything tax-related (IRS, morada fiscal, e-fatura) can be done on the portal once you have your password, which arrives by post."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o número de contribuinte",
+      "english": "taxpayer number (NIF)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "NOO-muh-roo duh kohn-tree-BWEENT",
+      "example": "Quer o número de contribuinte na fatura?",
+      "exampleTranslation": "Do you want your taxpayer number on the receipt?",
+      "relatedWords": [
+        {
+          "word": "o NIF",
+          "meaning": "tax ID number"
+        },
+        {
+          "word": "o contribuinte",
+          "meaning": "the taxpayer"
+        }
+      ],
+      "proTip": "You'll hear «Contribuinte?» at almost every till. Saying yes lets you deduct some expenses on your IRS."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a morada fiscal",
+      "english": "tax address",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "moo-RAH-duh feesh-KAHL",
+      "example": "Tens de atualizar a morada fiscal nas Finanças depois da mudança.",
+      "exampleTranslation": "You have to update your tax address at Finanças after the move.",
+      "relatedWords": [
+        {
+          "word": "o domicílio fiscal",
+          "meaning": "tax domicile"
+        },
+        {
+          "word": "a morada",
+          "meaning": "address"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o representante fiscal",
+      "english": "tax representative",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ruh-pruh-zayng-TAHNT feesh-KAHL",
+      "example": "Como ainda vivo fora, preciso de um representante fiscal.",
+      "exampleTranslation": "As I still live abroad, I need a tax representative.",
+      "relatedWords": [
+        {
+          "word": "o NIF",
+          "meaning": "tax ID number"
+        },
+        {
+          "word": "não residente",
+          "meaning": "non-resident"
+        }
+      ],
+      "proTip": "Non-EU residents abroad usually need one to get a NIF; EU citizens generally don't."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o NISS",
+      "english": "Social Security number",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "NEESH",
+      "example": "Para começar a trabalhar, a empresa pediu-me o NISS.",
+      "exampleTranslation": "To start working, the company asked me for my NISS.",
+      "relatedWords": [
+        {
+          "word": "a Segurança Social",
+          "meaning": "Social Security"
+        },
+        {
+          "word": "o NIF",
+          "meaning": "tax number"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a AIMA",
+      "english": "Portuguese immigration and asylum agency",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ah-EE-muh",
+      "example": "Finalmente consegui marcação na AIMA para o mês que vem.",
+      "exampleTranslation": "I finally got an appointment at AIMA for next month.",
+      "relatedWords": [
+        {
+          "word": "a autorização de residência",
+          "meaning": "residence permit"
+        },
+        {
+          "word": "o agendamento",
+          "meaning": "scheduling"
+        }
+      ],
+      "proTip": "AIMA replaced the old SEF in 2023 for residence permits. You'll still hear older people say «o SEF»."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a autorização de residência",
+      "english": "residence permit",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ow-too-ree-zuh-SOWNG duh ruh-zee-DAYNG-syuh",
+      "example": "A minha autorização de residência caduca em março.",
+      "exampleTranslation": "My residence permit expires in March.",
+      "relatedWords": [
+        {
+          "word": "o título de residência",
+          "meaning": "residence card"
+        },
+        {
+          "word": "renovar",
+          "meaning": "to renew"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o atestado de residência",
+      "english": "certificate of residence (from the parish council)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "uh-tush-TAH-doo duh ruh-zee-DAYNG-syuh",
+      "example": "Pedi um atestado de residência na junta de freguesia.",
+      "exampleTranslation": "I asked for a certificate of residence at the parish council.",
+      "relatedWords": [
+        {
+          "word": "a junta de freguesia",
+          "meaning": "parish council"
+        },
+        {
+          "word": "as testemunhas",
+          "meaning": "witnesses"
+        }
+      ],
+      "proTip": "Juntas often ask for two local voters as witnesses, or a contract or bill in your name, before issuing it."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o comprovativo de morada",
+      "english": "proof of address",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kohm-proo-vah-TEE-voo duh moo-RAH-duh",
+      "example": "Para abrir conta no banco, pedem um comprovativo de morada.",
+      "exampleTranslation": "To open a bank account, they ask for proof of address.",
+      "relatedWords": [
+        {
+          "word": "a fatura",
+          "meaning": "the bill / invoice"
+        },
+        {
+          "word": "o comprovativo",
+          "meaning": "proof, receipt"
+        }
+      ],
+      "proTip": "Banks and Finanças usually accept a recent utility bill (água, luz, gás) as comprovativo de morada."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a certidão",
+      "english": "certificate (official copy of a record)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "sir-tee-DOWNG",
+      "example": "Preciso de uma certidão de nascimento recente para o casamento.",
+      "exampleTranslation": "I need a recent birth certificate for the wedding.",
+      "relatedWords": [
+        {
+          "word": "a certidão de nascimento",
+          "meaning": "birth certificate"
+        },
+        {
+          "word": "a certidão de casamento",
+          "meaning": "marriage certificate"
+        }
+      ],
+      "proTip": "Many offices only accept certidões issued within the last six months. You can order most online."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o registo criminal",
+      "english": "criminal record certificate",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ruh-ZHEESH-too kree-mee-NAHL",
+      "example": "A escola pediu-me o registo criminal antes de assinar o contrato.",
+      "exampleTranslation": "The school asked for my criminal record certificate before signing the contract.",
+      "relatedWords": [
+        {
+          "word": "o certificado",
+          "meaning": "certificate"
+        },
+        {
+          "word": "pedir online",
+          "meaning": "to request online"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a conservatória",
+      "english": "registry office",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kohn-sir-vuh-TOH-ryuh",
+      "example": "O registo do casamento faz-se na conservatória.",
+      "exampleTranslation": "The marriage is registered at the registry office.",
+      "relatedWords": [
+        {
+          "word": "o registo civil",
+          "meaning": "civil registry"
+        },
+        {
+          "word": "a conservatória do registo predial",
+          "meaning": "land registry"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o registo civil",
+      "english": "civil registry",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ruh-ZHEESH-too see-VEEL",
+      "example": "Os nascimentos e casamentos ficam no registo civil.",
+      "exampleTranslation": "Births and marriages are kept in the civil registry.",
+      "relatedWords": [
+        {
+          "word": "a conservatória",
+          "meaning": "registry office"
+        },
+        {
+          "word": "registar",
+          "meaning": "to register"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o notário",
+      "english": "notary",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "noo-TAH-ryoo",
+      "example": "Fomos ao notário para fazer a escritura da casa.",
+      "exampleTranslation": "We went to the notary to sign the house deed.",
+      "relatedWords": [
+        {
+          "word": "a escritura",
+          "meaning": "the deed"
+        },
+        {
+          "word": "o cartório",
+          "meaning": "notary's office"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o cartório",
+      "english": "notary's office",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kar-TOH-ryoo",
+      "example": "O cartório fica aberto até às cinco e meia.",
+      "exampleTranslation": "The notary's office is open until half past five.",
+      "relatedWords": [
+        {
+          "word": "o cartório notarial",
+          "meaning": "notary's office"
+        },
+        {
+          "word": "o notário",
+          "meaning": "notary"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o solicitador",
+      "english": "solicitor (legal agent for procedures)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "soo-lee-see-tuh-DOHR",
+      "example": "Um solicitador tratou de todos os papéis da herança.",
+      "exampleTranslation": "A solicitor dealt with all the inheritance papers.",
+      "relatedWords": [
+        {
+          "word": "o advogado",
+          "meaning": "lawyer"
+        },
+        {
+          "word": "reconhecer uma assinatura",
+          "meaning": "to certify a signature"
+        }
+      ],
+      "proTip": "In Portugal a solicitador is a separate profession from advogado, often cheaper for paperwork like certifying documents or registering property."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a procuração",
+      "english": "power of attorney",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "proo-koo-ruh-SOWNG",
+      "example": "Deixei uma procuração ao meu irmão para assinar por mim.",
+      "exampleTranslation": "I left my brother power of attorney to sign for me.",
+      "relatedWords": [
+        {
+          "word": "o procurador",
+          "meaning": "the attorney-in-fact"
+        },
+        {
+          "word": "passar uma procuração",
+          "meaning": "to grant power of attorney"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "reconhecer uma assinatura",
+      "english": "to have a signature certified",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ruh-koo-nyuh-SEHR OO-muh uh-see-nuh-TOO-ruh",
+      "example": "Tens de reconhecer a assinatura num notário ou advogado.",
+      "exampleTranslation": "You have to get the signature certified at a notary or lawyer.",
+      "relatedWords": [
+        {
+          "word": "o reconhecimento de assinatura",
+          "meaning": "signature certification"
+        },
+        {
+          "word": "presencial",
+          "meaning": "in person"
+        }
+      ],
+      "proTip": "Lawyers, solicitadores, notaries and some post offices can do it; bring your ID and sign in front of them."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a cópia autenticada",
+      "english": "certified copy",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KOH-pyuh ow-tayng-tee-KAH-duh",
+      "example": "Não aceitam fotocópias simples, só cópias autenticadas.",
+      "exampleTranslation": "They don't accept plain photocopies, only certified copies.",
+      "relatedWords": [
+        {
+          "word": "o original",
+          "meaning": "the original"
+        },
+        {
+          "word": "autenticar",
+          "meaning": "to certify"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a fotografia tipo passe",
+      "english": "passport-style photo",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "foo-too-gruh-FEE-uh TEE-poo PAHS",
+      "example": "Leva duas fotografias tipo passe recentes.",
+      "exampleTranslation": "Bring two recent passport-style photos.",
+      "relatedWords": [
+        {
+          "word": "a máquina de fotografias",
+          "meaning": "photo booth"
+        },
+        {
+          "word": "o fundo branco",
+          "meaning": "white background"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o requerimento",
+      "english": "formal application, petition",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ruh-kuh-ree-MAYNG-too",
+      "example": "Entreguei o requerimento na câmara municipal na semana passada.",
+      "exampleTranslation": "I handed in the application at the town hall last week.",
+      "relatedWords": [
+        {
+          "word": "requerer",
+          "meaning": "to apply for"
+        },
+        {
+          "word": "o requerente",
+          "meaning": "the applicant"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "requerer",
+      "english": "to apply for, to request formally",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ruh-kuh-REHR",
+      "example": "Pode requerer o apoio através do site da Segurança Social.",
+      "exampleTranslation": "You can apply for the benefit through the Social Security website.",
+      "relatedWords": [
+        {
+          "word": "o requerimento",
+          "meaning": "the application"
+        },
+        {
+          "word": "pedir",
+          "meaning": "to ask for"
+        }
+      ],
+      "proTip": "Requerer is formal; in conversation people just say pedir."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o requerente",
+      "english": "applicant",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ruh-kuh-RAYNT",
+      "example": "O requerente deve assinar na última página.",
+      "exampleTranslation": "The applicant must sign on the last page.",
+      "relatedWords": [
+        {
+          "word": "o titular",
+          "meaning": "holder"
+        },
+        {
+          "word": "o requerimento",
+          "meaning": "application"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "deferido",
+      "english": "approved (application)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-fuh-REE-doo",
+      "example": "Boa notícia: o meu pedido foi deferido!",
+      "exampleTranslation": "Good news: my application was approved!",
+      "relatedWords": [
+        {
+          "word": "indeferido",
+          "meaning": "rejected"
+        },
+        {
+          "word": "o despacho",
+          "meaning": "the official decision"
+        }
+      ],
+      "proTip": "Official letters say deferido / indeferido rather than aprovado / recusado."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o processo",
+      "english": "case, file, procedure",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "proo-SEH-soo",
+      "example": "Qual é o número do seu processo?",
+      "exampleTranslation": "What's your case number?",
+      "relatedWords": [
+        {
+          "word": "o número de processo",
+          "meaning": "case number"
+        },
+        {
+          "word": "o andamento",
+          "meaning": "progress"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a papelada",
+      "english": "paperwork",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "puh-puh-LAH-duh",
+      "example": "Passei a manhã toda a tratar da papelada do carro.",
+      "exampleTranslation": "I spent the whole morning dealing with the car paperwork.",
+      "relatedWords": [
+        {
+          "word": "os papéis",
+          "meaning": "papers, documents"
+        },
+        {
+          "word": "tratar de",
+          "meaning": "to deal with"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a burocracia",
+      "english": "bureaucracy, red tape",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "boo-roo-kruh-SEE-uh",
+      "example": "A burocracia em Portugal às vezes é de loucos.",
+      "exampleTranslation": "Bureaucracy in Portugal is sometimes insane.",
+      "relatedWords": [
+        {
+          "word": "burocrático",
+          "meaning": "bureaucratic"
+        },
+        {
+          "word": "a papelada",
+          "meaning": "paperwork"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a repartição",
+      "english": "government office (department)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ruh-par-tee-SOWNG",
+      "example": "Fui à repartição de Finanças do meu bairro.",
+      "exampleTranslation": "I went to the tax office in my neighbourhood.",
+      "relatedWords": [
+        {
+          "word": "o serviço",
+          "meaning": "office, service"
+        },
+        {
+          "word": "a delegação",
+          "meaning": "branch office"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "tratar de um assunto",
+      "english": "to deal with a matter",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "truh-TAR duh oong uh-SOONG-too",
+      "example": "Vim tratar de um assunto da minha pensão.",
+      "exampleTranslation": "I've come to sort out a matter about my pension.",
+      "relatedWords": [
+        {
+          "word": "o assunto",
+          "meaning": "the matter"
+        },
+        {
+          "word": "tratar de",
+          "meaning": "to take care of"
+        }
+      ],
+      "proTip": "Classic opening at a counter: «Bom dia, vinha tratar de um assunto...» — the imperfect vinha sounds polite."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "pedir uma segunda via",
+      "english": "to request a duplicate/replacement",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puh-DEER OO-muh suh-GOONG-duh VEE-uh",
+      "example": "Perdi o cartão e tive de pedir uma segunda via.",
+      "exampleTranslation": "I lost the card and had to request a replacement.",
+      "relatedWords": [
+        {
+          "word": "a segunda via",
+          "meaning": "the duplicate"
+        },
+        {
+          "word": "o extravio",
+          "meaning": "the loss"
+        }
+      ],
+      "proTip": "Segunda via is used for any reissued document: a lost card, a bill, a receipt."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a Chave Móvel Digital",
+      "english": "Portuguese digital ID login",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "SHAHV MOH-vehl dee-zhee-TAHL",
+      "example": "Com a Chave Móvel Digital, assino documentos sem sair de casa.",
+      "exampleTranslation": "With the Chave Móvel Digital, I sign documents without leaving home.",
+      "relatedWords": [
+        {
+          "word": "o código de autenticação",
+          "meaning": "authentication code"
+        },
+        {
+          "word": "autenticar-se",
+          "meaning": "to log in"
+        }
+      ],
+      "proTip": "It links your phone to your ID and lets you log into Finanças, Segurança Social and SNS sites. Worth activating early."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "dirigir-se a",
+      "english": "to go to, to head to (formal)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dee-ree-ZHEER-suh uh",
+      "example": "Senha A42, dirija-se ao balcão cinco.",
+      "exampleTranslation": "Ticket A42, please go to counter five.",
+      "relatedWords": [
+        {
+          "word": "o balcão",
+          "meaning": "the counter"
+        },
+        {
+          "word": "encaminhar",
+          "meaning": "to direct, refer"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "aguardar",
+      "english": "to wait (formal)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-gwar-DAR",
+      "example": "Aguarde um momento, vou verificar no sistema.",
+      "exampleTranslation": "Please wait a moment, I'll check the system.",
+      "relatedWords": [
+        {
+          "word": "esperar",
+          "meaning": "to wait"
+        },
+        {
+          "word": "aguarde a sua vez",
+          "meaning": "wait your turn"
+        }
+      ],
+      "proTip": "Aguardar is the formal word you'll see on screens and hear from clerks; esperar is the everyday one."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "por ordem de chegada",
+      "english": "in order of arrival, first come first served",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poor OHR-dayng duh shuh-GAH-duh",
+      "example": "Sem marcação, o atendimento é por ordem de chegada.",
+      "exampleTranslation": "Without an appointment, service is first come, first served.",
+      "relatedWords": [
+        {
+          "word": "a chegada",
+          "meaning": "arrival"
+        },
+        {
+          "word": "a senha",
+          "meaning": "the ticket"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "prioritário",
+      "english": "priority",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "pree-oo-ree-TAH-ryoo",
+      "example": "As grávidas e os idosos têm atendimento prioritário.",
+      "exampleTranslation": "Pregnant women and the elderly get priority service.",
+      "relatedWords": [
+        {
+          "word": "a prioridade",
+          "meaning": "priority"
+        },
+        {
+          "word": "a senha prioritária",
+          "meaning": "priority ticket"
+        }
+      ],
+      "proTip": "By law, pregnant women, people over 65, people with disabilities and adults with babies get priority at counters."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a naturalidade",
+      "english": "place of birth (on forms)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "nuh-too-ruh-lee-DAHD",
+      "example": "Na naturalidade, ponho a cidade onde nasci?",
+      "exampleTranslation": "Under 'naturalidade', do I put the city where I was born?",
+      "relatedWords": [
+        {
+          "word": "a nacionalidade",
+          "meaning": "nationality"
+        },
+        {
+          "word": "natural de",
+          "meaning": "born in"
+        }
+      ],
+      "proTip": "Don't confuse with nacionalidade: naturalidade is where you were born (town or country)."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "em maiúsculas",
+      "english": "in capital letters",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng muh-YOOSH-koo-luhsh",
+      "example": "Preencha o formulário em maiúsculas e com caneta azul.",
+      "exampleTranslation": "Fill in the form in capital letters with a blue pen.",
+      "relatedWords": [
+        {
+          "word": "as minúsculas",
+          "meaning": "lower case"
+        },
+        {
+          "word": "a letra legível",
+          "meaning": "legible handwriting"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "anexar",
+      "english": "to attach",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-nehk-SAR",
+      "example": "Tem de anexar uma cópia do contrato ao pedido.",
+      "exampleTranslation": "You have to attach a copy of the contract to the application.",
+      "relatedWords": [
+        {
+          "word": "o anexo",
+          "meaning": "the attachment"
+        },
+        {
+          "word": "em anexo",
+          "meaning": "attached"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "digitalizar",
+      "english": "to scan",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dee-zhee-tuh-lee-ZAR",
+      "example": "Podes digitalizar o documento e enviar por email?",
+      "exampleTranslation": "Can you scan the document and send it by email?",
+      "relatedWords": [
+        {
+          "word": "o scanner",
+          "meaning": "scanner"
+        },
+        {
+          "word": "o PDF",
+          "meaning": "PDF"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a validade",
+      "english": "validity, expiry date",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "vuh-lee-DAHD",
+      "example": "Verifica a validade do cartão antes de viajar.",
+      "exampleTranslation": "Check your card's expiry date before travelling.",
+      "relatedWords": [
+        {
+          "word": "válido até",
+          "meaning": "valid until"
+        },
+        {
+          "word": "caducar",
+          "meaning": "to expire"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "caducado",
+      "english": "expired",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kuh-doo-KAH-doo",
+      "example": "Não posso viajar, tenho o passaporte caducado.",
+      "exampleTranslation": "I can't travel, my passport has expired.",
+      "relatedWords": [
+        {
+          "word": "caducar",
+          "meaning": "to expire"
+        },
+        {
+          "word": "fora da validade",
+          "meaning": "out of date"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "isento",
+      "english": "exempt",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-ZAYNG-too",
+      "example": "No primeiro ano, os trabalhadores independentes estão isentos de contribuições.",
+      "exampleTranslation": "In the first year, self-employed workers are exempt from contributions.",
+      "relatedWords": [
+        {
+          "word": "a isenção",
+          "meaning": "exemption"
+        },
+        {
+          "word": "isento de IVA",
+          "meaning": "VAT-exempt"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a declaração",
+      "english": "declaration, statement, official letter",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "duh-kluh-ruh-SOWNG",
+      "example": "A empresa passou-me uma declaração de que trabalho lá.",
+      "exampleTranslation": "The company gave me a letter confirming that I work there.",
+      "relatedWords": [
+        {
+          "word": "a declaração de IRS",
+          "meaning": "tax return"
+        },
+        {
+          "word": "passar uma declaração",
+          "meaning": "to issue a statement"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a agência",
+      "english": "bank branch; agency",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-ZHAYNG-syuh",
+      "example": "Tive de ir à agência porque a app não funcionava.",
+      "exampleTranslation": "I had to go to the branch because the app wasn't working.",
+      "relatedWords": [
+        {
+          "word": "o balcão",
+          "meaning": "branch, counter"
+        },
+        {
+          "word": "a agência de viagens",
+          "meaning": "travel agency"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a conta à ordem",
+      "english": "current account",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KOHN-tuh ah OHR-dayng",
+      "example": "O ordenado cai na conta à ordem no dia 25.",
+      "exampleTranslation": "My salary goes into the current account on the 25th.",
+      "relatedWords": [
+        {
+          "word": "a conta poupança",
+          "meaning": "savings account"
+        },
+        {
+          "word": "o saldo",
+          "meaning": "balance"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a conta poupança",
+      "english": "savings account",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KOHN-tuh poh-PAHN-suh",
+      "example": "Todos os meses ponho cem euros na conta poupança.",
+      "exampleTranslation": "Every month I put a hundred euros in the savings account.",
+      "relatedWords": [
+        {
+          "word": "poupar",
+          "meaning": "to save"
+        },
+        {
+          "word": "os juros",
+          "meaning": "interest"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o titular",
+      "english": "holder (of an account or document)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "tee-too-LAR",
+      "example": "Só o titular da conta pode fazer esta alteração.",
+      "exampleTranslation": "Only the account holder can make this change.",
+      "relatedWords": [
+        {
+          "word": "o titular do contrato",
+          "meaning": "contract holder"
+        },
+        {
+          "word": "o segundo titular",
+          "meaning": "joint holder"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o gestor de conta",
+      "english": "account manager (at a bank)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "zhush-TOHR duh KOHN-tuh",
+      "example": "Liguei ao meu gestor de conta para perguntar pelo crédito.",
+      "exampleTranslation": "I called my account manager to ask about the loan.",
+      "relatedWords": [
+        {
+          "word": "a agência",
+          "meaning": "branch"
+        },
+        {
+          "word": "marcar uma reunião",
+          "meaning": "to book a meeting"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o homebanking",
+      "english": "online banking",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ohm-BAN-keeng",
+      "example": "Fiz a transferência pelo homebanking em dois minutos.",
+      "exampleTranslation": "I made the transfer through online banking in two minutes.",
+      "relatedWords": [
+        {
+          "word": "a app do banco",
+          "meaning": "banking app"
+        },
+        {
+          "word": "o código de acesso",
+          "meaning": "access code"
+        }
+      ],
+      "proTip": "Portuguese banks really do use the English word homebanking for their online services."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o débito direto",
+      "english": "direct debit",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "DEH-bee-too dee-REH-too",
+      "example": "A conta da luz é paga por débito direto.",
+      "exampleTranslation": "The electricity bill is paid by direct debit.",
+      "relatedWords": [
+        {
+          "word": "a autorização de débito",
+          "meaning": "debit authorisation"
+        },
+        {
+          "word": "cancelar o débito",
+          "meaning": "to cancel the debit"
+        }
+      ],
+      "proTip": "Many companies give a small discount if you pay by débito direto and receive fatura eletrónica."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "em numerário",
+      "english": "in cash (formal)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng noo-muh-RAH-ryoo",
+      "example": "Pagamentos acima de três mil euros não podem ser feitos em numerário.",
+      "exampleTranslation": "Payments over three thousand euros can't be made in cash.",
+      "relatedWords": [
+        {
+          "word": "em dinheiro",
+          "meaning": "in cash (everyday)"
+        },
+        {
+          "word": "pagar com cartão",
+          "meaning": "to pay by card"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "pagar por referência",
+      "english": "to pay by Multibanco reference",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puh-GAR poor ruh-fuh-RAYNG-syuh",
+      "example": "Podes pagar por referência no multibanco ou na app do banco.",
+      "exampleTranslation": "You can pay by reference at the ATM or in your bank app.",
+      "relatedWords": [
+        {
+          "word": "a referência",
+          "meaning": "the reference number"
+        },
+        {
+          "word": "a entidade",
+          "meaning": "the entity number"
+        }
+      ],
+      "proTip": "Bills and online shops give you an entidade (5 digits), a referência (9 digits) and an amount; you enter them under «Pagamentos de serviços»."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a entidade",
+      "english": "entity number (for payments); organisation",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ayng-tee-DAHD",
+      "example": "Primeiro introduz a entidade, depois a referência e o valor.",
+      "exampleTranslation": "First enter the entity number, then the reference and the amount.",
+      "relatedWords": [
+        {
+          "word": "a referência",
+          "meaning": "reference"
+        },
+        {
+          "word": "a entidade patronal",
+          "meaning": "employer"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a coima",
+      "english": "administrative fine",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KOY-muh",
+      "example": "Entreguei o IRS fora de prazo e apanhei uma coima.",
+      "exampleTranslation": "I filed my tax return late and got a fine.",
+      "relatedWords": [
+        {
+          "word": "a multa",
+          "meaning": "fine"
+        },
+        {
+          "word": "pagar a coima",
+          "meaning": "to pay the fine"
+        }
+      ],
+      "proTip": "Coima is the fine from public bodies like Finanças; multa is the general word, e.g. for parking or a speeding ticket."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "os juros de mora",
+      "english": "late payment interest",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ZHOO-roosh duh MOH-ruh",
+      "example": "Se pagares depois do prazo, há juros de mora.",
+      "exampleTranslation": "If you pay after the deadline, there's late interest.",
+      "relatedWords": [
+        {
+          "word": "os juros",
+          "meaning": "interest"
+        },
+        {
+          "word": "em atraso",
+          "meaning": "overdue"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "em atraso",
+      "english": "overdue, in arrears",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng uh-TRAH-zoo",
+      "example": "Tenho duas faturas em atraso, tenho de pagar hoje.",
+      "exampleTranslation": "I've got two overdue bills, I have to pay today.",
+      "relatedWords": [
+        {
+          "word": "o atraso",
+          "meaning": "delay"
+        },
+        {
+          "word": "a dívida",
+          "meaning": "debt"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "fora de prazo",
+      "english": "past the deadline, late",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "FOH-ruh duh PRAH-zoo",
+      "example": "O pedido foi recusado porque o entreguei fora de prazo.",
+      "exampleTranslation": "The application was refused because I handed it in late.",
+      "relatedWords": [
+        {
+          "word": "dentro do prazo",
+          "meaning": "on time, within the deadline"
+        },
+        {
+          "word": "o prazo",
+          "meaning": "deadline"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "cobrar",
+      "english": "to charge",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "koo-BRAR",
+      "example": "O banco cobra cinco euros por mês de manutenção.",
+      "exampleTranslation": "The bank charges five euros a month in maintenance fees.",
+      "relatedWords": [
+        {
+          "word": "a cobrança",
+          "meaning": "charge, collection"
+        },
+        {
+          "word": "cobrar a mais",
+          "meaning": "to overcharge"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a mensalidade",
+      "english": "monthly fee",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "mayng-suh-lee-DAHD",
+      "example": "A mensalidade do ginásio sobe em janeiro.",
+      "exampleTranslation": "The gym's monthly fee goes up in January.",
+      "relatedWords": [
+        {
+          "word": "a anuidade",
+          "meaning": "annual fee"
+        },
+        {
+          "word": "mensal",
+          "meaning": "monthly"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a fatura-recibo",
+      "english": "invoice-receipt (for freelancers)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "fuh-TOO-ruh ruh-SEE-boo",
+      "example": "Passo uma fatura-recibo no Portal das Finanças depois de cada trabalho.",
+      "exampleTranslation": "I issue an invoice-receipt on the Portal das Finanças after every job.",
+      "relatedWords": [
+        {
+          "word": "passar recibo",
+          "meaning": "to issue a receipt"
+        },
+        {
+          "word": "o trabalhador independente",
+          "meaning": "self-employed worker"
+        }
+      ],
+      "proTip": "This is the modern version of the «recibo verde» that self-employed people issue through the Finanças website."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o IMI",
+      "english": "municipal property tax",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ee-EH-mee",
+      "example": "O IMI paga-se em maio, ou em prestações ao longo do ano.",
+      "exampleTranslation": "IMI is paid in May, or in instalments over the year.",
+      "relatedWords": [
+        {
+          "word": "o proprietário",
+          "meaning": "owner"
+        },
+        {
+          "word": "a caderneta predial",
+          "meaning": "property register record"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "os CTT",
+      "english": "Portuguese postal service",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "seh-teh-TEH",
+      "example": "Vou aos CTT enviar isto por correio registado.",
+      "exampleTranslation": "I'm going to the post office to send this by registered mail.",
+      "relatedWords": [
+        {
+          "word": "os correios",
+          "meaning": "post office"
+        },
+        {
+          "word": "a loja CTT",
+          "meaning": "post office branch"
+        }
+      ],
+      "proTip": "People say «vou aos CTT» and «vou aos correios» interchangeably. CTT stands for Correios, Telégrafos e Telefones."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a carta registada",
+      "english": "registered letter",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KAR-tuh ruh-zhush-TAH-duh",
+      "example": "As Finanças mandaram-me uma carta registada.",
+      "exampleTranslation": "Finanças sent me a registered letter.",
+      "relatedWords": [
+        {
+          "word": "o aviso de receção",
+          "meaning": "proof of delivery"
+        },
+        {
+          "word": "enviar registado",
+          "meaning": "to send registered"
+        }
+      ],
+      "proTip": "If you're not home, the postman leaves an aviso and you collect the letter at the post office within a set number of days."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o aviso de receção",
+      "english": "proof of delivery (signed return receipt)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "uh-VEE-zoo duh ruh-seh-SOWNG",
+      "example": "Envia a carta registada com aviso de receção para teres prova.",
+      "exampleTranslation": "Send the letter registered with proof of delivery so you have proof.",
+      "relatedWords": [
+        {
+          "word": "a carta registada",
+          "meaning": "registered letter"
+        },
+        {
+          "word": "o destinatário",
+          "meaning": "recipient"
+        }
+      ],
+      "proTip": "Often written «AR». Essential when terminating contracts or sending notice to a landlord."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "levantar uma encomenda",
+      "english": "to collect a parcel",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "luh-vahn-TAR OO-muh ayng-koo-MAYNG-duh",
+      "example": "Tenho de levantar uma encomenda nos correios até sexta.",
+      "exampleTranslation": "I have to collect a parcel at the post office by Friday.",
+      "relatedWords": [
+        {
+          "word": "o ponto de recolha",
+          "meaning": "pickup point"
+        },
+        {
+          "word": "o aviso",
+          "meaning": "notice slip"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o remetente",
+      "english": "sender",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ruh-muh-TAYNT",
+      "example": "Não reconheço o remetente desta carta.",
+      "exampleTranslation": "I don't recognise the sender of this letter.",
+      "relatedWords": [
+        {
+          "word": "o destinatário",
+          "meaning": "recipient"
+        },
+        {
+          "word": "devolver ao remetente",
+          "meaning": "return to sender"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o destinatário",
+      "english": "recipient, addressee",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "dush-tee-nuh-TAH-ryoo",
+      "example": "Escreve o nome do destinatário no meio do envelope.",
+      "exampleTranslation": "Write the recipient's name in the middle of the envelope.",
+      "relatedWords": [
+        {
+          "word": "o remetente",
+          "meaning": "sender"
+        },
+        {
+          "word": "a morada",
+          "meaning": "address"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o marco do correio",
+      "english": "postbox",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "MAR-koo doo koo-RAY-oo",
+      "example": "Deixei a carta no marco do correio ao pé de casa.",
+      "exampleTranslation": "I dropped the letter in the postbox near home.",
+      "relatedWords": [
+        {
+          "word": "os CTT",
+          "meaning": "postal service"
+        },
+        {
+          "word": "o selo",
+          "meaning": "stamp"
+        }
+      ],
+      "proTip": "Portuguese postboxes are red; the blue ones are for «correio azul», the faster priority service."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o número de seguimento",
+      "english": "tracking number",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "NOO-muh-roo duh suh-ghee-MAYNG-too",
+      "example": "Mandaram-me o número de seguimento por email.",
+      "exampleTranslation": "They sent me the tracking number by email.",
+      "relatedWords": [
+        {
+          "word": "seguir a encomenda",
+          "meaning": "to track the parcel"
+        },
+        {
+          "word": "o estado do envio",
+          "meaning": "shipment status"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "ao domicílio",
+      "english": "to your home, home (delivery/service)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ow doo-mee-SEE-lyoo",
+      "example": "A loja faz entregas ao domicílio sem custos.",
+      "exampleTranslation": "The shop does free home delivery.",
+      "relatedWords": [
+        {
+          "word": "a entrega",
+          "meaning": "delivery"
+        },
+        {
+          "word": "o domicílio",
+          "meaning": "residence"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o ponto de recolha",
+      "english": "pickup point",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "POHN-too duh ruh-KOH-lyuh",
+      "example": "A encomenda ficou num ponto de recolha perto do metro.",
+      "exampleTranslation": "The parcel was left at a pickup point near the metro.",
+      "relatedWords": [
+        {
+          "word": "o cacifo",
+          "meaning": "parcel locker"
+        },
+        {
+          "word": "levantar",
+          "meaning": "to collect"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a cláusula",
+      "english": "clause",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KLOW-zoo-luh",
+      "example": "Lê bem esta cláusula antes de assinares.",
+      "exampleTranslation": "Read this clause carefully before you sign.",
+      "relatedWords": [
+        {
+          "word": "o contrato",
+          "meaning": "contract"
+        },
+        {
+          "word": "as letras pequeninas",
+          "meaning": "the small print"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a fidelização",
+      "english": "minimum contract period, lock-in",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "fee-duh-lee-zuh-SOWNG",
+      "example": "Este tarifário tem uma fidelização de 24 meses.",
+      "exampleTranslation": "This plan has a 24-month lock-in period.",
+      "relatedWords": [
+        {
+          "word": "o tarifário",
+          "meaning": "plan, tariff"
+        },
+        {
+          "word": "a penalização",
+          "meaning": "penalty"
+        }
+      ],
+      "proTip": "Phone, internet and TV contracts in Portugal usually have fidelização; leaving early means paying a penalty."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "os termos e condições",
+      "english": "terms and conditions",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "TEHR-moosh ee kohn-dee-SOYNGSH",
+      "example": "Ninguém lê os termos e condições até ao fim.",
+      "exampleTranslation": "Nobody reads the terms and conditions to the end.",
+      "relatedWords": [
+        {
+          "word": "aceitar",
+          "meaning": "to accept"
+        },
+        {
+          "word": "a cláusula",
+          "meaning": "clause"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "rubricar",
+      "english": "to initial (each page)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "roo-bree-KAR",
+      "example": "Tem de rubricar todas as páginas e assinar a última.",
+      "exampleTranslation": "You have to initial every page and sign the last one.",
+      "relatedWords": [
+        {
+          "word": "a rubrica",
+          "meaning": "initials"
+        },
+        {
+          "word": "assinar",
+          "meaning": "to sign"
+        }
+      ],
+      "proTip": "Portuguese contracts are normally initialled on every page, not just signed at the end."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o montante",
+      "english": "sum, amount",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "mohn-TAHNT",
+      "example": "O montante em dívida é de 230 euros.",
+      "exampleTranslation": "The amount owed is 230 euros.",
+      "relatedWords": [
+        {
+          "word": "o valor",
+          "meaning": "amount"
+        },
+        {
+          "word": "o montante total",
+          "meaning": "total sum"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "o livro de reclamações",
+      "english": "official complaints book",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "LEE-vroo duh ruh-kluh-muh-SOYNGSH",
+      "example": "Se não resolverem, peço o livro de reclamações.",
+      "exampleTranslation": "If they don't sort it out, I'll ask for the complaints book.",
+      "relatedWords": [
+        {
+          "word": "a reclamação",
+          "meaning": "complaint"
+        },
+        {
+          "word": "o livro de reclamações eletrónico",
+          "meaning": "online complaints book"
+        }
+      ],
+      "proTip": "Every business and public service must have one and hand it over on request. Just asking for it often solves the problem."
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a data de vencimento",
+      "english": "due date",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "DAH-tuh duh vayng-see-MAYNG-too",
+      "example": "A data de vencimento da fatura é dia 15.",
+      "exampleTranslation": "The bill's due date is the 15th.",
+      "relatedWords": [
+        {
+          "word": "vencer",
+          "meaning": "to fall due"
+        },
+        {
+          "word": "o prazo",
+          "meaning": "deadline"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "services-bureaucracy",
+    "word": {
+      "portuguese": "a linha de apoio",
+      "english": "helpline",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "LEE-nyuh duh uh-POY-oo",
+      "example": "Liguei para a linha de apoio e fiquei quarenta minutos à espera.",
+      "exampleTranslation": "I called the helpline and was on hold for forty minutes.",
+      "relatedWords": [
+        {
+          "word": "o apoio ao cliente",
+          "meaning": "customer service"
+        },
+        {
+          "word": "a chamada gratuita",
+          "meaning": "free call"
+        }
+      ]
+    }
+  }
+]

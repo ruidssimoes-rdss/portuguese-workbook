@@ -1,0 +1,2234 @@
+[
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o vidrão",
+      "english": "glass recycling bin (green)",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "vee-DROWNG",
+      "example": "Vou levar estas garrafas vazias ao vidrão.",
+      "exampleTranslation": "I'm taking these empty bottles to the glass bin.",
+      "relatedWords": [
+        {
+          "word": "o ecoponto",
+          "meaning": "the recycling point"
+        },
+        {
+          "word": "a garrafa de vidro",
+          "meaning": "the glass bottle"
+        }
+      ],
+      "proTip": "The vidrão is the green bin. Lids and corks go elsewhere — only the bottles and jars go in."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o papelão",
+      "english": "paper recycling bin (blue)",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "pah-puh-LOWNG",
+      "example": "As caixas de cartão vão para o papelão.",
+      "exampleTranslation": "Cardboard boxes go in the paper bin.",
+      "relatedWords": [
+        {
+          "word": "o cartão",
+          "meaning": "the cardboard"
+        },
+        {
+          "word": "o jornal",
+          "meaning": "the newspaper"
+        }
+      ],
+      "proTip": "Papelão is the blue bin. Flatten the boxes first — neighbours do complain when the bin fills up with air."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o embalão",
+      "english": "packaging recycling bin (yellow)",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "ayng-bah-LOWNG",
+      "example": "Os pacotes de leite e as latas vão para o embalão.",
+      "exampleTranslation": "Milk cartons and cans go in the packaging bin.",
+      "relatedWords": [
+        {
+          "word": "a embalagem",
+          "meaning": "the packaging"
+        },
+        {
+          "word": "a lata",
+          "meaning": "the can"
+        }
+      ],
+      "proTip": "Yellow bin: plastic, metal and drink cartons. Greasy pizza boxes don't belong in the papelão either — they go in the general waste."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "deitar fora",
+      "english": "to throw away",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "day-TAR FOH-ruh",
+      "example": "Não deites fora o pão, ainda dá para torradas.",
+      "exampleTranslation": "Don't throw the bread away, it's still good for toast.",
+      "relatedWords": [
+        {
+          "word": "o caixote do lixo",
+          "meaning": "the bin"
+        },
+        {
+          "word": "o lixo",
+          "meaning": "the rubbish"
+        }
+      ],
+      "proTip": "This is the everyday way to say 'throw away' in Portugal. 'Jogar fora' is Brazilian."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a onda de calor",
+      "english": "heatwave",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "OHN-duh duh kuh-LOR",
+      "example": "Esta semana há uma onda de calor no Alentejo.",
+      "exampleTranslation": "There's a heatwave in the Alentejo this week.",
+      "relatedWords": [
+        {
+          "word": "o calor",
+          "meaning": "the heat"
+        },
+        {
+          "word": "a temperatura máxima",
+          "meaning": "the maximum temperature"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o painel solar",
+      "english": "solar panel",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "pie-NEL soo-LAR",
+      "example": "Os meus pais puseram painéis solares no telhado.",
+      "exampleTranslation": "My parents put solar panels on the roof.",
+      "relatedWords": [
+        {
+          "word": "a energia solar",
+          "meaning": "solar energy"
+        },
+        {
+          "word": "o telhado",
+          "meaning": "the roof"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "poupar água",
+      "english": "to save water",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "poh-PAR AH-gwuh",
+      "example": "Para poupar água, tomo duches mais curtos.",
+      "exampleTranslation": "To save water, I take shorter showers.",
+      "relatedWords": [
+        {
+          "word": "poupar energia",
+          "meaning": "to save energy"
+        },
+        {
+          "word": "fechar a torneira",
+          "meaning": "to turn off the tap"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o saco de plástico",
+      "english": "plastic bag",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "SAH-koo duh PLASH-tee-koo",
+      "example": "No supermercado, o saco de plástico custa dez cêntimos.",
+      "exampleTranslation": "At the supermarket, a plastic bag costs ten cents.",
+      "relatedWords": [
+        {
+          "word": "o saco reutilizável",
+          "meaning": "the reusable bag"
+        },
+        {
+          "word": "trazer o saco",
+          "meaning": "to bring your own bag"
+        }
+      ],
+      "proTip": "Plastic bags are charged in Portuguese shops, so most people keep a reusable bag in the car or backpack."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "os transportes públicos",
+      "english": "public transport",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "oosh trush-POR-tush POO-blee-koosh",
+      "example": "Em Lisboa uso sempre os transportes públicos.",
+      "exampleTranslation": "In Lisbon I always use public transport.",
+      "relatedWords": [
+        {
+          "word": "o passe",
+          "meaning": "the travel pass"
+        },
+        {
+          "word": "o metro",
+          "meaning": "the metro"
+        }
+      ],
+      "proTip": "The Navegante passe covers Carris, Metro, CP trains and ferries in the Lisbon area for a flat monthly price."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o carro elétrico",
+      "english": "electric car",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "KAH-roo ee-LEH-tree-koo",
+      "example": "O meu vizinho comprou um carro elétrico.",
+      "exampleTranslation": "My neighbour bought an electric car.",
+      "relatedWords": [
+        {
+          "word": "carregar o carro",
+          "meaning": "to charge the car"
+        },
+        {
+          "word": "o posto de carregamento",
+          "meaning": "the charging point"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a bicicleta partilhada",
+      "english": "shared bike",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "bee-see-KLEH-tuh par-tee-LYAH-duh",
+      "example": "Vou para o trabalho de bicicleta partilhada.",
+      "exampleTranslation": "I go to work on a shared bike.",
+      "relatedWords": [
+        {
+          "word": "a ciclovia",
+          "meaning": "the bike lane"
+        },
+        {
+          "word": "a trotinete",
+          "meaning": "the scooter"
+        }
+      ],
+      "proTip": "In Lisbon the city bike-share scheme is called GIRA."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "proteger",
+      "english": "to protect",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "proo-tuh-ZHER",
+      "example": "Temos de proteger a natureza para os nossos filhos.",
+      "exampleTranslation": "We have to protect nature for our children.",
+      "relatedWords": [
+        {
+          "word": "a proteção",
+          "meaning": "the protection"
+        },
+        {
+          "word": "protegido",
+          "meaning": "protected"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o planeta",
+      "english": "planet",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "plah-NAY-tuh",
+      "example": "Só temos um planeta, temos de cuidar dele.",
+      "exampleTranslation": "We only have one planet, we have to look after it.",
+      "relatedWords": [
+        {
+          "word": "a Terra",
+          "meaning": "the Earth"
+        },
+        {
+          "word": "o mundo",
+          "meaning": "the world"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o fumo",
+      "english": "smoke",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "FOO-moo",
+      "example": "Vê-se o fumo do incêndio desde Lisboa.",
+      "exampleTranslation": "You can see the smoke from the fire from Lisbon.",
+      "relatedWords": [
+        {
+          "word": "o fogo",
+          "meaning": "the fire"
+        },
+        {
+          "word": "cheirar a fumo",
+          "meaning": "to smell of smoke"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a água da torneira",
+      "english": "tap water",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "AH-gwuh duh toor-NAY-ruh",
+      "example": "Em Lisboa podes beber a água da torneira.",
+      "exampleTranslation": "In Lisbon you can drink the tap water.",
+      "relatedWords": [
+        {
+          "word": "a água engarrafada",
+          "meaning": "bottled water"
+        },
+        {
+          "word": "a garrafa",
+          "meaning": "the bottle"
+        }
+      ],
+      "proTip": "Tap water is safe across Portugal. In restaurants ask for 'um jarro de água da torneira' if you don't want bottled."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "as alterações climáticas",
+      "english": "climate change",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uz ahl-tuh-ruh-SOYNGSH klee-MAH-tee-kush",
+      "example": "As alterações climáticas estão a tornar os verões mais quentes.",
+      "exampleTranslation": "Climate change is making summers hotter.",
+      "relatedWords": [
+        {
+          "word": "o aquecimento global",
+          "meaning": "global warming"
+        },
+        {
+          "word": "o clima",
+          "meaning": "the climate"
+        }
+      ],
+      "proTip": "Portuguese news says 'alterações climáticas' (plural). 'Mudança climática' is the Brazilian preference."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o incêndio florestal",
+      "english": "forest fire, wildfire",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "eeng-SEN-dyoo floo-rush-TAL",
+      "example": "Todos os verões há incêndios florestais no centro do país.",
+      "exampleTranslation": "Every summer there are forest fires in the centre of the country.",
+      "relatedWords": [
+        {
+          "word": "os bombeiros",
+          "meaning": "the firefighters"
+        },
+        {
+          "word": "a área ardida",
+          "meaning": "the burnt area"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a energia solar",
+      "english": "solar energy",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-ner-ZHEE-uh soo-LAR",
+      "example": "Portugal tem muito sol, por isso aposta na energia solar.",
+      "exampleTranslation": "Portugal gets a lot of sun, so it's investing in solar energy.",
+      "relatedWords": [
+        {
+          "word": "o painel solar",
+          "meaning": "the solar panel"
+        },
+        {
+          "word": "a energia renovável",
+          "meaning": "renewable energy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a energia eólica",
+      "english": "wind energy",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-ner-ZHEE-uh ee-OH-lee-kuh",
+      "example": "Nas serras do norte há muitas torres de energia eólica.",
+      "exampleTranslation": "In the northern hills there are lots of wind turbines.",
+      "relatedWords": [
+        {
+          "word": "o vento",
+          "meaning": "the wind"
+        },
+        {
+          "word": "o parque eólico",
+          "meaning": "the wind farm"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a energia renovável",
+      "english": "renewable energy",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-ner-ZHEE-uh ruh-noo-VAH-vel",
+      "example": "Grande parte da eletricidade vem de energia renovável.",
+      "exampleTranslation": "A large share of electricity comes from renewable energy.",
+      "relatedWords": [
+        {
+          "word": "a energia eólica",
+          "meaning": "wind energy"
+        },
+        {
+          "word": "a energia hídrica",
+          "meaning": "hydroelectric energy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o desperdício",
+      "english": "waste, wastefulness",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "dush-pur-DEE-syoo",
+      "example": "Deitar comida fora é um desperdício.",
+      "exampleTranslation": "Throwing food away is a waste.",
+      "relatedWords": [
+        {
+          "word": "desperdiçar",
+          "meaning": "to waste"
+        },
+        {
+          "word": "o desperdício alimentar",
+          "meaning": "food waste"
+        }
+      ],
+      "proTip": "'Que desperdício!' is a very common reaction — to food, money or time."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "reutilizar",
+      "english": "to reuse",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ree-oo-tee-lee-ZAR",
+      "example": "Costumo reutilizar os frascos de vidro para guardar arroz.",
+      "exampleTranslation": "I usually reuse glass jars to store rice.",
+      "relatedWords": [
+        {
+          "word": "reciclar",
+          "meaning": "to recycle"
+        },
+        {
+          "word": "reutilizável",
+          "meaning": "reusable"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a espécie em vias de extinção",
+      "english": "endangered species",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush-PEH-syuh ayng VEE-ush duh ush-teeng-SOWNG",
+      "example": "O lince ibérico é uma espécie em vias de extinção.",
+      "exampleTranslation": "The Iberian lynx is an endangered species.",
+      "relatedWords": [
+        {
+          "word": "extinto",
+          "meaning": "extinct"
+        },
+        {
+          "word": "a espécie protegida",
+          "meaning": "the protected species"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o eucalipto",
+      "english": "eucalyptus",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ay-oo-kuh-LEEP-too",
+      "example": "O eucalipto arde muito depressa nos incêndios.",
+      "exampleTranslation": "Eucalyptus burns very quickly in fires.",
+      "relatedWords": [
+        {
+          "word": "o pinheiro",
+          "meaning": "the pine tree"
+        },
+        {
+          "word": "a celulose",
+          "meaning": "the pulp industry"
+        }
+      ],
+      "proTip": "Eucalyptus is Portugal's most planted tree (for the paper industry) and a hot political topic after every fire season."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a pegada ecológica",
+      "english": "ecological footprint",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "puh-GAH-duh ee-koo-LOH-zhee-kuh",
+      "example": "Comer menos carne reduz a pegada ecológica.",
+      "exampleTranslation": "Eating less meat reduces your ecological footprint.",
+      "relatedWords": [
+        {
+          "word": "a pegada de carbono",
+          "meaning": "the carbon footprint"
+        },
+        {
+          "word": "reduzir",
+          "meaning": "to reduce"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "as emissões",
+      "english": "emissions",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uz ee-mee-SOYNGSH",
+      "example": "O governo quer reduzir as emissões de CO2.",
+      "exampleTranslation": "The government wants to cut CO2 emissions.",
+      "relatedWords": [
+        {
+          "word": "o dióxido de carbono",
+          "meaning": "carbon dioxide"
+        },
+        {
+          "word": "os gases",
+          "meaning": "the gases"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o combustível",
+      "english": "fuel",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kohm-boosh-TEE-vel",
+      "example": "O preço do combustível voltou a subir esta semana.",
+      "exampleTranslation": "The price of fuel went up again this week.",
+      "relatedWords": [
+        {
+          "word": "a gasolina",
+          "meaning": "petrol"
+        },
+        {
+          "word": "abastecer",
+          "meaning": "to fill up"
+        }
+      ],
+      "proTip": "Fuel prices change every Monday in Portugal, and the news announces them on Friday."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o pilhão",
+      "english": "battery recycling bin (red)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "pee-LYOWNG",
+      "example": "As pilhas gastas põem-se no pilhão, não no lixo.",
+      "exampleTranslation": "Used batteries go in the battery bin, not in the rubbish.",
+      "relatedWords": [
+        {
+          "word": "a pilha",
+          "meaning": "the battery"
+        },
+        {
+          "word": "o ecoponto",
+          "meaning": "the recycling point"
+        }
+      ],
+      "proTip": "The small red pilhão sits next to the ecoponto; supermarkets also have collection boxes."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "os resíduos",
+      "english": "waste (formal)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oosh ruh-ZEE-dwoosh",
+      "example": "A câmara recolhe os resíduos orgânicos à porta.",
+      "exampleTranslation": "The council collects organic waste at the door.",
+      "relatedWords": [
+        {
+          "word": "os resíduos orgânicos",
+          "meaning": "food waste"
+        },
+        {
+          "word": "a recolha",
+          "meaning": "the collection"
+        }
+      ],
+      "proTip": "'Resíduos' is the word on official signs and council leaflets; in conversation people just say 'lixo'."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "separar o lixo",
+      "english": "to sort the rubbish",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "suh-pah-RAR oo LEE-shoo",
+      "example": "Lá em casa separamos o lixo todos os dias.",
+      "exampleTranslation": "At home we sort the rubbish every day.",
+      "relatedWords": [
+        {
+          "word": "o ecoponto",
+          "meaning": "the recycling point"
+        },
+        {
+          "word": "reciclar",
+          "meaning": "to recycle"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o efeito de estufa",
+      "english": "greenhouse effect",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ee-FAY-too duh ush-TOO-fuh",
+      "example": "Os gases com efeito de estufa aquecem a atmosfera.",
+      "exampleTranslation": "Greenhouse gases warm the atmosphere.",
+      "relatedWords": [
+        {
+          "word": "a estufa",
+          "meaning": "the greenhouse"
+        },
+        {
+          "word": "o aquecimento global",
+          "meaning": "global warming"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a desflorestação",
+      "english": "deforestation",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "dush-floo-rush-tuh-SOWNG",
+      "example": "A desflorestação da Amazónia preocupa o mundo inteiro.",
+      "exampleTranslation": "Deforestation in the Amazon worries the whole world.",
+      "relatedWords": [
+        {
+          "word": "a floresta",
+          "meaning": "the forest"
+        },
+        {
+          "word": "abater árvores",
+          "meaning": "to cut down trees"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a biodiversidade",
+      "english": "biodiversity",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "byoh-dee-vur-see-DAH-duh",
+      "example": "A Ria Formosa tem uma biodiversidade enorme.",
+      "exampleTranslation": "The Ria Formosa has huge biodiversity.",
+      "relatedWords": [
+        {
+          "word": "a espécie",
+          "meaning": "the species"
+        },
+        {
+          "word": "o ecossistema",
+          "meaning": "the ecosystem"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "poluir",
+      "english": "to pollute",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poo-LWEER",
+      "example": "As fábricas antigas poluíam muito o rio.",
+      "exampleTranslation": "The old factories polluted the river a lot.",
+      "relatedWords": [
+        {
+          "word": "a poluição",
+          "meaning": "pollution"
+        },
+        {
+          "word": "poluente",
+          "meaning": "polluting"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "poluído",
+      "english": "polluted",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poo-LWEE-doo",
+      "example": "O ar na Segunda Circular está muito poluído.",
+      "exampleTranslation": "The air on the Segunda Circular is very polluted.",
+      "relatedWords": [
+        {
+          "word": "limpo",
+          "meaning": "clean"
+        },
+        {
+          "word": "a poluição",
+          "meaning": "pollution"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "reciclável",
+      "english": "recyclable",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ruh-see-KLAH-vel",
+      "example": "Esta embalagem não é reciclável, vai para o lixo comum.",
+      "exampleTranslation": "This packaging isn't recyclable, it goes in the general rubbish.",
+      "relatedWords": [
+        {
+          "word": "reciclar",
+          "meaning": "to recycle"
+        },
+        {
+          "word": "o lixo indiferenciado",
+          "meaning": "general waste"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "amigo do ambiente",
+      "english": "environmentally friendly",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-MEE-goo doo ahm-BYEN-tuh",
+      "example": "Estes detergentes são mais amigos do ambiente.",
+      "exampleTranslation": "These detergents are more environmentally friendly.",
+      "relatedWords": [
+        {
+          "word": "sustentável",
+          "meaning": "sustainable"
+        },
+        {
+          "word": "ecológico",
+          "meaning": "eco-friendly"
+        }
+      ],
+      "proTip": "It agrees like an adjective: 'uma marca amiga do ambiente', 'produtos amigos do ambiente'."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o aviso vermelho",
+      "english": "red alert (weather warning)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "uh-VEE-zoo vur-MAY-lyoo",
+      "example": "O IPMA pôs o distrito de Évora em aviso vermelho.",
+      "exampleTranslation": "IPMA put the Évora district on red alert.",
+      "relatedWords": [
+        {
+          "word": "o aviso amarelo",
+          "meaning": "yellow warning"
+        },
+        {
+          "word": "o aviso laranja",
+          "meaning": "orange warning"
+        }
+      ],
+      "proTip": "IPMA is Portugal's weather service. Warnings go amarelo → laranja → vermelho, and schools may close on red."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o nível do mar",
+      "english": "sea level",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "NEE-vel doo MAR",
+      "example": "A subida do nível do mar ameaça a costa portuguesa.",
+      "exampleTranslation": "Rising sea levels threaten the Portuguese coast.",
+      "relatedWords": [
+        {
+          "word": "a subida",
+          "meaning": "the rise"
+        },
+        {
+          "word": "a costa",
+          "meaning": "the coast"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "derreter",
+      "english": "to melt",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-ruh-TER",
+      "example": "Com este calor, o gelado derrete num minuto.",
+      "exampleTranslation": "In this heat, ice cream melts in a minute.",
+      "relatedWords": [
+        {
+          "word": "o gelo",
+          "meaning": "the ice"
+        },
+        {
+          "word": "o glaciar",
+          "meaning": "the glacier"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a qualidade do ar",
+      "english": "air quality",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kwuh-lee-DAH-duh doo AR",
+      "example": "Hoje a qualidade do ar está má por causa das poeiras.",
+      "exampleTranslation": "Air quality is bad today because of the dust.",
+      "relatedWords": [
+        {
+          "word": "o ar",
+          "meaning": "the air"
+        },
+        {
+          "word": "respirar",
+          "meaning": "to breathe"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o consumo",
+      "english": "consumption",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kohn-SOO-moo",
+      "example": "Este frigorífico tem um consumo de energia baixo.",
+      "exampleTranslation": "This fridge has low energy consumption.",
+      "relatedWords": [
+        {
+          "word": "consumir",
+          "meaning": "to consume"
+        },
+        {
+          "word": "o consumidor",
+          "meaning": "the consumer"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a queimada",
+      "english": "controlled burn (of farm waste)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kay-MAH-duh",
+      "example": "No verão as queimadas são proibidas por causa do risco de incêndio.",
+      "exampleTranslation": "In summer, burning farm waste is banned because of the fire risk.",
+      "relatedWords": [
+        {
+          "word": "queimar",
+          "meaning": "to burn"
+        },
+        {
+          "word": "o risco de incêndio",
+          "meaning": "the fire risk"
+        }
+      ],
+      "proTip": "Rural burns must be registered with the câmara; doing one in the critical summer period can lead to a heavy fine."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a área ardida",
+      "english": "burnt area",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "AH-ryuh ar-DEE-duh",
+      "example": "Este ano a área ardida foi menor do que no ano passado.",
+      "exampleTranslation": "This year the burnt area was smaller than last year.",
+      "relatedWords": [
+        {
+          "word": "arder",
+          "meaning": "to burn"
+        },
+        {
+          "word": "o hectare",
+          "meaning": "the hectare"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "combater",
+      "english": "to fight (a fire, a problem)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kohm-buh-TER",
+      "example": "Mais de mil bombeiros estão a combater o incêndio.",
+      "exampleTranslation": "More than a thousand firefighters are fighting the fire.",
+      "relatedWords": [
+        {
+          "word": "o combate",
+          "meaning": "the fight"
+        },
+        {
+          "word": "combater a poluição",
+          "meaning": "to fight pollution"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a compostagem",
+      "english": "composting",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kohm-poosh-TAH-zhaym",
+      "example": "A junta oferece compostores para a compostagem doméstica.",
+      "exampleTranslation": "The parish council gives out composters for home composting.",
+      "relatedWords": [
+        {
+          "word": "o composto",
+          "meaning": "the compost"
+        },
+        {
+          "word": "os restos de comida",
+          "meaning": "food scraps"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o petróleo",
+      "english": "oil, petroleum",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "puh-TROH-lyoo",
+      "example": "Precisamos de depender menos do petróleo.",
+      "exampleTranslation": "We need to depend less on oil.",
+      "relatedWords": [
+        {
+          "word": "o gás natural",
+          "meaning": "natural gas"
+        },
+        {
+          "word": "o carvão",
+          "meaning": "coal"
+        }
+      ],
+      "proTip": "False friend: 'petróleo' is crude oil, not 'petrol'. Petrol is 'gasolina'."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a trotinete",
+      "english": "e-scooter, kick scooter",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "troh-tee-NEH-tuh",
+      "example": "Há trotinetes elétricas espalhadas por todo o lado em Lisboa.",
+      "exampleTranslation": "There are electric scooters scattered everywhere in Lisbon.",
+      "relatedWords": [
+        {
+          "word": "a trotinete elétrica",
+          "meaning": "the e-scooter"
+        },
+        {
+          "word": "o passeio",
+          "meaning": "the pavement"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a ciclovia",
+      "english": "bike lane",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "see-kloh-VEE-uh",
+      "example": "A ciclovia vai de Belém até ao Cais do Sodré.",
+      "exampleTranslation": "The bike lane goes from Belém to Cais do Sodré.",
+      "relatedWords": [
+        {
+          "word": "a bicicleta",
+          "meaning": "the bike"
+        },
+        {
+          "word": "o ciclista",
+          "meaning": "the cyclist"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a escassez de água",
+      "english": "water shortage",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush-kuh-SESH duh AH-gwuh",
+      "example": "O Algarve enfrenta uma escassez de água grave.",
+      "exampleTranslation": "The Algarve is facing a serious water shortage.",
+      "relatedWords": [
+        {
+          "word": "a seca",
+          "meaning": "the drought"
+        },
+        {
+          "word": "o racionamento",
+          "meaning": "rationing"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a albufeira",
+      "english": "reservoir",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ahl-boo-FAY-ruh",
+      "example": "As albufeiras do sul estão quase vazias.",
+      "exampleTranslation": "The reservoirs in the south are almost empty.",
+      "relatedWords": [
+        {
+          "word": "a barragem",
+          "meaning": "the dam"
+        },
+        {
+          "word": "o nível da água",
+          "meaning": "the water level"
+        }
+      ],
+      "proTip": "Not to be confused with the town of Albufeira in the Algarve — the common noun means a reservoir behind a dam."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o lince ibérico",
+      "english": "Iberian lynx",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "LEENG-suh ee-BEH-ree-koo",
+      "example": "O lince ibérico voltou a viver no Alentejo.",
+      "exampleTranslation": "The Iberian lynx is living in the Alentejo again.",
+      "relatedWords": [
+        {
+          "word": "a espécie",
+          "meaning": "the species"
+        },
+        {
+          "word": "a reintrodução",
+          "meaning": "the reintroduction"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a erosão costeira",
+      "english": "coastal erosion",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-roo-ZOWNG koosh-TAY-ruh",
+      "example": "A erosão costeira está a destruir algumas praias.",
+      "exampleTranslation": "Coastal erosion is destroying some beaches.",
+      "relatedWords": [
+        {
+          "word": "a costa",
+          "meaning": "the coast"
+        },
+        {
+          "word": "a arriba",
+          "meaning": "the cliff"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a transição energética",
+      "english": "energy transition",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "trahn-zee-SOWNG ee-ner-ZHEH-tee-kuh",
+      "example": "A transição energética exige muito investimento.",
+      "exampleTranslation": "The energy transition needs a lot of investment.",
+      "relatedWords": [
+        {
+          "word": "a energia renovável",
+          "meaning": "renewable energy"
+        },
+        {
+          "word": "o carvão",
+          "meaning": "coal"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a barragem",
+      "english": "dam",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "buh-RAH-zhaym",
+      "example": "A barragem do Alqueva é a maior do país.",
+      "exampleTranslation": "The Alqueva dam is the biggest in the country.",
+      "relatedWords": [
+        {
+          "word": "a albufeira",
+          "meaning": "the reservoir"
+        },
+        {
+          "word": "a energia hídrica",
+          "meaning": "hydroelectric power"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o sobreiro",
+      "english": "cork oak",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "soo-BRAY-roo",
+      "example": "O sobreiro é a árvore nacional de Portugal.",
+      "exampleTranslation": "The cork oak is Portugal's national tree.",
+      "relatedWords": [
+        {
+          "word": "a cortiça",
+          "meaning": "the cork"
+        },
+        {
+          "word": "o montado",
+          "meaning": "the cork-oak woodland"
+        }
+      ],
+      "proTip": "Cutting down a sobreiro without a licence is illegal in Portugal — it's a protected tree."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a Proteção Civil",
+      "english": "Civil Protection (emergency agency)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "proo-teh-SOWNG see-VEEL",
+      "example": "A Proteção Civil enviou um SMS a avisar do calor.",
+      "exampleTranslation": "Civil Protection sent a text warning about the heat.",
+      "relatedWords": [
+        {
+          "word": "os bombeiros",
+          "meaning": "the firefighters"
+        },
+        {
+          "word": "o alerta",
+          "meaning": "the alert"
+        }
+      ],
+      "proTip": "In a wildfire or storm, the SMS alerts you get on your telemóvel come from the ANEPC, known simply as Proteção Civil."
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "evacuar",
+      "english": "to evacuate",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-vuh-KWAR",
+      "example": "Tiveram de evacuar a aldeia por causa das chamas.",
+      "exampleTranslation": "They had to evacuate the village because of the flames.",
+      "relatedWords": [
+        {
+          "word": "a evacuação",
+          "meaning": "the evacuation"
+        },
+        {
+          "word": "as chamas",
+          "meaning": "the flames"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "o/a ambientalista",
+      "english": "environmentalist",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "ahm-byen-tuh-LEESH-tuh",
+      "example": "Os ambientalistas protestaram contra o novo aeroporto.",
+      "exampleTranslation": "Environmentalists protested against the new airport.",
+      "relatedWords": [
+        {
+          "word": "o ativista",
+          "meaning": "the activist"
+        },
+        {
+          "word": "a associação ambientalista",
+          "meaning": "the environmental group"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "environment",
+    "word": {
+      "portuguese": "a eficiência energética",
+      "english": "energy efficiency",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-fee-SYEN-syuh ee-ner-ZHEH-tee-kuh",
+      "example": "As janelas novas melhoraram a eficiência energética da casa.",
+      "exampleTranslation": "The new windows improved the house's energy efficiency.",
+      "relatedWords": [
+        {
+          "word": "o certificado energético",
+          "meaning": "the energy certificate"
+        },
+        {
+          "word": "o isolamento",
+          "meaning": "the insulation"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a despensa",
+      "english": "pantry, larder",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "dush-PEN-suh",
+      "example": "Vai à despensa buscar uma lata de atum.",
+      "exampleTranslation": "Go to the pantry and get a tin of tuna.",
+      "relatedWords": [
+        {
+          "word": "a mercearia",
+          "meaning": "groceries / grocery shop"
+        },
+        {
+          "word": "guardar",
+          "meaning": "to store"
+        }
+      ],
+      "proTip": "Don't mix it up with 'dispensar' (to do without) — despensa is the food cupboard or small store room off the kitchen."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o corrimão",
+      "english": "handrail, banister",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "koo-ree-MOWNG",
+      "example": "Agarra-te ao corrimão, que as escadas são íngremes.",
+      "exampleTranslation": "Hold on to the handrail, the stairs are steep.",
+      "relatedWords": [
+        {
+          "word": "as escadas",
+          "meaning": "the stairs"
+        },
+        {
+          "word": "o degrau",
+          "meaning": "the step"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o autoclismo",
+      "english": "toilet flush, cistern",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ow-toh-KLEESH-moo",
+      "example": "O autoclismo não para de correr.",
+      "exampleTranslation": "The toilet cistern keeps running.",
+      "relatedWords": [
+        {
+          "word": "puxar o autoclismo",
+          "meaning": "to flush the toilet"
+        },
+        {
+          "word": "a sanita",
+          "meaning": "the toilet bowl"
+        }
+      ],
+      "proTip": "To flush is 'puxar o autoclismo' (or 'carregar no autoclismo' with a button). 'Descarga' is the Brazilian word."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a canalização",
+      "english": "plumbing",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kuh-nuh-lee-zuh-SOWNG",
+      "example": "A canalização deste prédio é muito antiga.",
+      "exampleTranslation": "The plumbing in this building is very old.",
+      "relatedWords": [
+        {
+          "word": "o canalizador",
+          "meaning": "the plumber"
+        },
+        {
+          "word": "o cano",
+          "meaning": "the pipe"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o soalho",
+      "english": "wooden floor, floorboards",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "soo-AH-lyoo",
+      "example": "O apartamento tem soalho de madeira em todas as divisões.",
+      "exampleTranslation": "The flat has wooden floors in every room.",
+      "relatedWords": [
+        {
+          "word": "o chão",
+          "meaning": "the floor"
+        },
+        {
+          "word": "a tijoleira",
+          "meaning": "the floor tiles"
+        }
+      ],
+      "proTip": "Old Lisbon flats often have original 'soalho' — lovely, but it creaks and carries noise to the neighbours below."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a lâmpada fundida",
+      "english": "blown light bulb",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "LAHM-puh-duh foong-DEE-duh",
+      "example": "A lâmpada da cozinha está fundida, tenho de a trocar.",
+      "exampleTranslation": "The kitchen bulb has blown, I need to change it.",
+      "relatedWords": [
+        {
+          "word": "fundir-se",
+          "meaning": "to blow (a bulb)"
+        },
+        {
+          "word": "trocar a lâmpada",
+          "meaning": "to change the bulb"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a caldeira",
+      "english": "boiler",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kahl-DAY-ruh",
+      "example": "A caldeira do aquecimento central avariou outra vez.",
+      "exampleTranslation": "The central heating boiler broke down again.",
+      "relatedWords": [
+        {
+          "word": "o aquecimento central",
+          "meaning": "central heating"
+        },
+        {
+          "word": "o técnico",
+          "meaning": "the technician"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a máquina da loiça",
+      "english": "dishwasher",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "MAH-kee-nuh duh LOY-suh",
+      "example": "Põe os pratos na máquina da loiça, por favor.",
+      "exampleTranslation": "Put the plates in the dishwasher, please.",
+      "relatedWords": [
+        {
+          "word": "lavar a loiça",
+          "meaning": "to do the dishes"
+        },
+        {
+          "word": "o detergente",
+          "meaning": "the detergent"
+        }
+      ],
+      "proTip": "Everyday Portuguese for dishwasher; the full name 'máquina de lavar loiça' appears in shops and adverts."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "limpar o pó",
+      "english": "to dust",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "leeng-PAR oo POH",
+      "example": "Ao sábado limpo o pó dos móveis.",
+      "exampleTranslation": "On Saturdays I dust the furniture.",
+      "relatedWords": [
+        {
+          "word": "o pó",
+          "meaning": "the dust"
+        },
+        {
+          "word": "o pano do pó",
+          "meaning": "the duster"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o caixote do lixo",
+      "english": "rubbish bin",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kie-SHOH-tuh doo LEE-shoo",
+      "example": "O caixote do lixo está cheio, podes despejá-lo?",
+      "exampleTranslation": "The bin is full, can you empty it?",
+      "relatedWords": [
+        {
+          "word": "o saco do lixo",
+          "meaning": "the bin bag"
+        },
+        {
+          "word": "despejar",
+          "meaning": "to empty"
+        }
+      ],
+      "proTip": "Indoors it's the caixote do lixo; the big street bins are 'contentores'. Bin bags go down after 8 p.m. in many Lisbon areas."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o ferro de engomar",
+      "english": "iron (for clothes)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "FEH-roo duh ayng-goo-MAR",
+      "example": "O ferro de engomar está na despensa.",
+      "exampleTranslation": "The iron is in the pantry.",
+      "relatedWords": [
+        {
+          "word": "engomar",
+          "meaning": "to iron"
+        },
+        {
+          "word": "passar a ferro",
+          "meaning": "to iron"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a tábua de engomar",
+      "english": "ironing board",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "TAH-bwuh duh ayng-goo-MAR",
+      "example": "Montei a tábua de engomar na sala.",
+      "exampleTranslation": "I set up the ironing board in the living room.",
+      "relatedWords": [
+        {
+          "word": "o ferro de engomar",
+          "meaning": "the iron"
+        },
+        {
+          "word": "a camisa",
+          "meaning": "the shirt"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "dobrar a roupa",
+      "english": "to fold the laundry",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "doo-BRAR uh ROH-puh",
+      "example": "Enquanto vejo televisão, dobro a roupa.",
+      "exampleTranslation": "While I watch TV, I fold the laundry.",
+      "relatedWords": [
+        {
+          "word": "arrumar a roupa",
+          "meaning": "to put the clothes away"
+        },
+        {
+          "word": "a roupa lavada",
+          "meaning": "the clean laundry"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a mola da roupa",
+      "english": "clothes peg",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "MOH-luh duh ROH-puh",
+      "example": "O vento levou a toalha porque faltavam molas.",
+      "exampleTranslation": "The wind took the towel because there weren't enough pegs.",
+      "relatedWords": [
+        {
+          "word": "o estendal",
+          "meaning": "the clothes line"
+        },
+        {
+          "word": "estender a roupa",
+          "meaning": "to hang out the washing"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o cesto da roupa suja",
+      "english": "laundry basket",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "SESH-too duh ROH-puh SOO-zhuh",
+      "example": "Põe as meias no cesto da roupa suja.",
+      "exampleTranslation": "Put the socks in the laundry basket.",
+      "relatedWords": [
+        {
+          "word": "a roupa suja",
+          "meaning": "the dirty laundry"
+        },
+        {
+          "word": "a máquina de lavar",
+          "meaning": "the washing machine"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a lixívia",
+      "english": "bleach",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "lee-SHEE-vyuh",
+      "example": "Lavo a casa de banho com lixívia.",
+      "exampleTranslation": "I clean the bathroom with bleach.",
+      "relatedWords": [
+        {
+          "word": "o detergente",
+          "meaning": "the detergent"
+        },
+        {
+          "word": "desinfetar",
+          "meaning": "to disinfect"
+        }
+      ],
+      "proTip": "Portuguese homes use lixívia for almost everything; never mix it with other cleaning products."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a sanita",
+      "english": "toilet (bowl)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "suh-NEE-tuh",
+      "example": "A sanita está entupida, temos de chamar o canalizador.",
+      "exampleTranslation": "The toilet is blocked, we have to call the plumber.",
+      "relatedWords": [
+        {
+          "word": "o autoclismo",
+          "meaning": "the flush"
+        },
+        {
+          "word": "o tampo da sanita",
+          "meaning": "the toilet seat"
+        }
+      ],
+      "proTip": "The object is 'a sanita'; the room is 'a casa de banho'. Don't ask for 'a sanita' when you want the toilets in a café."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a base de duche",
+      "english": "shower tray",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "BAH-zuh duh DOO-shuh",
+      "example": "Trocámos a banheira por uma base de duche.",
+      "exampleTranslation": "We swapped the bathtub for a shower tray.",
+      "relatedWords": [
+        {
+          "word": "o duche",
+          "meaning": "the shower"
+        },
+        {
+          "word": "a banheira",
+          "meaning": "the bathtub"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o roupeiro",
+      "english": "wardrobe",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "roh-PAY-roo",
+      "example": "O quarto tem um roupeiro embutido.",
+      "exampleTranslation": "The bedroom has a built-in wardrobe.",
+      "relatedWords": [
+        {
+          "word": "o cabide",
+          "meaning": "the hanger"
+        },
+        {
+          "word": "a gaveta",
+          "meaning": "the drawer"
+        }
+      ],
+      "proTip": "In flat listings, 'roupeiro embutido' means built-in wardrobes — a real plus, since many old flats have none."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o edredão",
+      "english": "duvet, quilt",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ee-druh-DOWNG",
+      "example": "No inverno durmo com um edredão grosso.",
+      "exampleTranslation": "In winter I sleep with a thick duvet.",
+      "relatedWords": [
+        {
+          "word": "a capa de edredão",
+          "meaning": "the duvet cover"
+        },
+        {
+          "word": "o lençol",
+          "meaning": "the sheet"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a mesa de cabeceira",
+      "english": "bedside table",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "MAY-zuh duh kuh-buh-SAY-ruh",
+      "example": "Deixei o telemóvel na mesa de cabeceira.",
+      "exampleTranslation": "I left my phone on the bedside table.",
+      "relatedWords": [
+        {
+          "word": "a cabeceira",
+          "meaning": "the headboard"
+        },
+        {
+          "word": "o candeeiro",
+          "meaning": "the lamp"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a cómoda",
+      "english": "chest of drawers",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KOH-moo-duh",
+      "example": "Guardo as camisolas na cómoda.",
+      "exampleTranslation": "I keep my jumpers in the chest of drawers.",
+      "relatedWords": [
+        {
+          "word": "a gaveta",
+          "meaning": "the drawer"
+        },
+        {
+          "word": "o roupeiro",
+          "meaning": "the wardrobe"
+        }
+      ],
+      "proTip": "False friend: 'cómoda' is furniture, not a toilet. The adjective 'cómodo' means comfortable/convenient."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o exaustor",
+      "english": "extractor fan (cooker hood)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ee-zow-SHTOR",
+      "example": "Liga o exaustor, que a cozinha está cheia de fumo.",
+      "exampleTranslation": "Turn on the extractor fan, the kitchen is full of smoke.",
+      "relatedWords": [
+        {
+          "word": "o fogão",
+          "meaning": "the cooker"
+        },
+        {
+          "word": "o filtro",
+          "meaning": "the filter"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a placa",
+      "english": "hob, cooktop",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "PLAH-kuh",
+      "example": "A cozinha tem placa de indução e forno.",
+      "exampleTranslation": "The kitchen has an induction hob and an oven.",
+      "relatedWords": [
+        {
+          "word": "a placa de indução",
+          "meaning": "the induction hob"
+        },
+        {
+          "word": "o forno",
+          "meaning": "the oven"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a extensão",
+      "english": "extension lead",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush-ten-SOWNG",
+      "example": "Preciso de uma extensão para ligar o computador.",
+      "exampleTranslation": "I need an extension lead to plug in the computer.",
+      "relatedWords": [
+        {
+          "word": "a tomada",
+          "meaning": "the socket"
+        },
+        {
+          "word": "a ficha",
+          "meaning": "the plug"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o puxador",
+      "english": "handle (of a door or drawer)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "poo-shuh-DOR",
+      "example": "O puxador da gaveta partiu-se.",
+      "exampleTranslation": "The drawer handle broke.",
+      "relatedWords": [
+        {
+          "word": "puxar",
+          "meaning": "to pull"
+        },
+        {
+          "word": "a maçaneta",
+          "meaning": "the doorknob"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o telhado",
+      "english": "roof",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "tuh-LYAH-doo",
+      "example": "Há uma telha partida e o telhado mete água.",
+      "exampleTranslation": "There's a broken tile and the roof lets in water.",
+      "relatedWords": [
+        {
+          "word": "a telha",
+          "meaning": "the roof tile"
+        },
+        {
+          "word": "o terraço",
+          "meaning": "the terrace"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o patamar",
+      "english": "landing (on stairs)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "puh-tuh-MAR",
+      "example": "Deixaram as bicicletas no patamar.",
+      "exampleTranslation": "They left the bikes on the landing.",
+      "relatedWords": [
+        {
+          "word": "as escadas",
+          "meaning": "the stairs"
+        },
+        {
+          "word": "o vizinho do lado",
+          "meaning": "the next-door neighbour"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o degrau",
+      "english": "step, stair",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "duh-GROW",
+      "example": "Cuidado com o degrau à entrada.",
+      "exampleTranslation": "Mind the step at the entrance.",
+      "relatedWords": [
+        {
+          "word": "as escadas",
+          "meaning": "the stairs"
+        },
+        {
+          "word": "o corrimão",
+          "meaning": "the handrail"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o radiador",
+      "english": "radiator, heater",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ruh-dyuh-DOR",
+      "example": "Pus a roupa a secar em cima do radiador.",
+      "exampleTranslation": "I put the clothes to dry on the radiator.",
+      "relatedWords": [
+        {
+          "word": "o aquecedor a óleo",
+          "meaning": "the oil heater"
+        },
+        {
+          "word": "o aquecimento",
+          "meaning": "the heating"
+        }
+      ],
+      "proTip": "Most Portuguese homes have no central heating; people rely on portable 'aquecedores a óleo' instead."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "desentupir",
+      "english": "to unblock (a drain or pipe)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-zayng-too-PEER",
+      "example": "Usei água a ferver para desentupir o lava-loiça.",
+      "exampleTranslation": "I used boiling water to unblock the sink.",
+      "relatedWords": [
+        {
+          "word": "entupido",
+          "meaning": "blocked"
+        },
+        {
+          "word": "o desentupidor",
+          "meaning": "the plunger"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "pingar",
+      "english": "to drip",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "peeng-GAR",
+      "example": "A torneira da cozinha está sempre a pingar.",
+      "exampleTranslation": "The kitchen tap is always dripping.",
+      "relatedWords": [
+        {
+          "word": "a gota",
+          "meaning": "the drop"
+        },
+        {
+          "word": "a fuga de água",
+          "meaning": "the water leak"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "as tarefas domésticas",
+      "english": "household chores",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush tuh-REH-fush doo-MESH-tee-kush",
+      "example": "Lá em casa dividimos as tarefas domésticas.",
+      "exampleTranslation": "At home we split the household chores.",
+      "relatedWords": [
+        {
+          "word": "as lides da casa",
+          "meaning": "the housework"
+        },
+        {
+          "word": "dividir",
+          "meaning": "to split"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a mulher a dias",
+      "english": "cleaning lady (paid by the day/hour)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "moo-LYER uh DEE-ush",
+      "example": "A mulher a dias vem cá às sextas-feiras.",
+      "exampleTranslation": "The cleaning lady comes on Fridays.",
+      "relatedWords": [
+        {
+          "word": "a empregada de limpeza",
+          "meaning": "the cleaner"
+        },
+        {
+          "word": "a limpeza",
+          "meaning": "the cleaning"
+        }
+      ],
+      "proTip": "Very common in Portugal, usually paid by the hour. 'Empregada de limpeza' is the more neutral term."
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o hall de entrada",
+      "english": "entrance hall",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "OHL duh ayng-TRAH-duh",
+      "example": "Deixa os sapatos no hall de entrada.",
+      "exampleTranslation": "Leave your shoes in the entrance hall.",
+      "relatedWords": [
+        {
+          "word": "a entrada",
+          "meaning": "the entrance"
+        },
+        {
+          "word": "o corredor",
+          "meaning": "the corridor"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "esfregar",
+      "english": "to scrub",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ush-fruh-GAR",
+      "example": "Tive de esfregar o fogão durante meia hora.",
+      "exampleTranslation": "I had to scrub the cooker for half an hour.",
+      "relatedWords": [
+        {
+          "word": "a esponja",
+          "meaning": "the sponge"
+        },
+        {
+          "word": "a esfregona",
+          "meaning": "the mop"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o ralo",
+      "english": "drain (in a shower or floor)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "RAH-loo",
+      "example": "O ralo do duche está cheio de cabelos.",
+      "exampleTranslation": "The shower drain is full of hair.",
+      "relatedWords": [
+        {
+          "word": "entupido",
+          "meaning": "blocked"
+        },
+        {
+          "word": "o cano",
+          "meaning": "the pipe"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o quarto de hóspedes",
+      "english": "spare room, guest room",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "KWAR-too duh OSH-puh-dush",
+      "example": "Quando os meus pais vêm, ficam no quarto de hóspedes.",
+      "exampleTranslation": "When my parents come, they stay in the guest room.",
+      "relatedWords": [
+        {
+          "word": "o hóspede",
+          "meaning": "the guest"
+        },
+        {
+          "word": "o sofá-cama",
+          "meaning": "the sofa bed"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "a máquina de secar",
+      "english": "tumble dryer",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "MAH-kee-nuh duh suh-KAR",
+      "example": "No inverno uso a máquina de secar porque a roupa não seca.",
+      "exampleTranslation": "In winter I use the tumble dryer because the washing won't dry.",
+      "relatedWords": [
+        {
+          "word": "o estendal",
+          "meaning": "the clothes line"
+        },
+        {
+          "word": "secar",
+          "meaning": "to dry"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "o sofá-cama",
+      "english": "sofa bed",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "soo-FAH KUH-muh",
+      "example": "Se quiseres, podes dormir no sofá-cama.",
+      "exampleTranslation": "If you like, you can sleep on the sofa bed.",
+      "relatedWords": [
+        {
+          "word": "o quarto de hóspedes",
+          "meaning": "the guest room"
+        },
+        {
+          "word": "o colchão",
+          "meaning": "the mattress"
+        }
+      ]
+    }
+  }
+]
