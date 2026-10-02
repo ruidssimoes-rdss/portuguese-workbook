@@ -1,0 +1,2120 @@
+[
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "o trimestre",
+      "english": "the quarter (three months); school term",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo tree-MESH-truh",
+      "example": "As contas da luz chegam uma vez por trimestre.",
+      "exampleTranslation": "The electricity bills arrive once a quarter.",
+      "relatedWords": [
+        {
+          "word": "trimestral",
+          "meaning": "quarterly"
+        },
+        {
+          "word": "o semestre",
+          "meaning": "the semester"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "o semestre",
+      "english": "the semester / half-year",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo suh-MESH-truh",
+      "example": "No segundo semestre tenho aulas à noite.",
+      "exampleTranslation": "In the second semester I have evening classes.",
+      "relatedWords": [
+        {
+          "word": "semestral",
+          "meaning": "half-yearly"
+        },
+        {
+          "word": "o ano letivo",
+          "meaning": "the school year"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "de vez em quando",
+      "english": "from time to time",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh VAYSH ayng KWAN-doo",
+      "example": "De vez em quando vamos jantar a Alfama.",
+      "exampleTranslation": "From time to time we go out to dinner in Alfama.",
+      "relatedWords": [
+        {
+          "word": "às vezes",
+          "meaning": "sometimes"
+        },
+        {
+          "word": "raramente",
+          "meaning": "rarely"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "ultimamente",
+      "english": "lately",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ool-tee-muh-MAYN-tuh",
+      "example": "Ultimamente tenho dormido muito mal.",
+      "exampleTranslation": "Lately I've been sleeping really badly.",
+      "relatedWords": [
+        {
+          "word": "recentemente",
+          "meaning": "recently"
+        },
+        {
+          "word": "nos últimos tempos",
+          "meaning": "in recent times"
+        }
+      ],
+      "proTip": "Pairs naturally with the pretérito perfeito composto: «Ultimamente tenho trabalhado muito» = an ongoing, repeated situation."
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "há pouco",
+      "english": "a little while ago",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "AH POH-koo",
+      "example": "O teu irmão ligou há pouco.",
+      "exampleTranslation": "Your brother called a little while ago.",
+      "relatedWords": [
+        {
+          "word": "há bocado",
+          "meaning": "a moment ago"
+        },
+        {
+          "word": "há muito tempo",
+          "meaning": "a long time ago"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "daqui a pouco",
+      "english": "in a little while",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-KEE uh POH-koo",
+      "example": "Espera, daqui a pouco já estou pronto.",
+      "exampleTranslation": "Wait, I'll be ready in a little while.",
+      "relatedWords": [
+        {
+          "word": "daqui a uma hora",
+          "meaning": "an hour from now"
+        },
+        {
+          "word": "já a seguir",
+          "meaning": "right after"
+        }
+      ],
+      "proTip": "«Daqui a» looks forward, «há» looks back: daqui a dois dias (in two days) vs há dois dias (two days ago)."
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "a meio da semana",
+      "english": "midweek",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh MAY-oo duh suh-MAH-nuh",
+      "example": "Prefiro ir ao ginásio a meio da semana.",
+      "exampleTranslation": "I prefer to go to the gym midweek.",
+      "relatedWords": [
+        {
+          "word": "a meio do mês",
+          "meaning": "in the middle of the month"
+        },
+        {
+          "word": "ao fim da tarde",
+          "meaning": "in the late afternoon"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "o fim de semana prolongado",
+      "english": "the long weekend",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo FEENG duh suh-MAH-nuh proo-lohng-GAH-doo",
+      "example": "Vamos ao Algarve no fim de semana prolongado.",
+      "exampleTranslation": "We're going to the Algarve on the long weekend.",
+      "relatedWords": [
+        {
+          "word": "o feriado",
+          "meaning": "the public holiday"
+        },
+        {
+          "word": "fazer ponte",
+          "meaning": "to take the bridge day off"
+        }
+      ],
+      "proTip": "When a holiday falls on a Tuesday or Thursday, many people «fazem ponte» and take the Monday or Friday off too."
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "a véspera",
+      "english": "the eve / the day before",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh VESH-puh-ruh",
+      "example": "Na véspera de Natal janta-se bacalhau.",
+      "exampleTranslation": "On Christmas Eve people eat salt cod for dinner.",
+      "relatedWords": [
+        {
+          "word": "a consoada",
+          "meaning": "Christmas Eve dinner"
+        },
+        {
+          "word": "o dia seguinte",
+          "meaning": "the next day"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "a meia dúzia",
+      "english": "half a dozen",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh MAY-uh DOO-zee-uh",
+      "example": "Dê-me meia dúzia de pastéis de nata, por favor.",
+      "exampleTranslation": "Give me half a dozen custard tarts, please.",
+      "relatedWords": [
+        {
+          "word": "a dúzia",
+          "meaning": "the dozen"
+        },
+        {
+          "word": "o par",
+          "meaning": "the pair"
+        }
+      ],
+      "proTip": "Eggs and pastéis de nata are often sold by the dúzia or meia dúzia; «meia dúzia de pessoas» also means just a handful of people."
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "o dobro",
+      "english": "double / twice as much",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo DOH-broo",
+      "example": "A renda aqui custa o dobro do que pagava.",
+      "exampleTranslation": "The rent here costs double what I used to pay.",
+      "relatedWords": [
+        {
+          "word": "o triplo",
+          "meaning": "triple"
+        },
+        {
+          "word": "duplicar",
+          "meaning": "to double"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "a metade",
+      "english": "half",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh muh-TAH-duh",
+      "example": "Comi só metade da francesinha.",
+      "exampleTranslation": "I only ate half of the francesinha.",
+      "relatedWords": [
+        {
+          "word": "meio / meia",
+          "meaning": "half (adjective)"
+        },
+        {
+          "word": "dividir ao meio",
+          "meaning": "to split in half"
+        }
+      ],
+      "proTip": "Use «metade» for half of something (metade do bolo) and «meio/meia» before a noun (meia hora, meio quilo)."
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "o terço",
+      "english": "a third",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo TAYR-soo",
+      "example": "Um terço do ordenado vai para a renda.",
+      "exampleTranslation": "A third of my salary goes on rent.",
+      "relatedWords": [
+        {
+          "word": "o quarto",
+          "meaning": "a quarter"
+        },
+        {
+          "word": "dois terços",
+          "meaning": "two thirds"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "por cento",
+      "english": "percent",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poor SAYN-too",
+      "example": "Os preços subiram cinco por cento este ano.",
+      "exampleTranslation": "Prices went up five percent this year.",
+      "relatedWords": [
+        {
+          "word": "a percentagem",
+          "meaning": "the percentage"
+        },
+        {
+          "word": "o desconto",
+          "meaning": "the discount"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "a década",
+      "english": "the decade",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh DEH-kuh-duh",
+      "example": "Vivo em Lisboa há quase uma década.",
+      "exampleTranslation": "I've lived in Lisbon for almost a decade.",
+      "relatedWords": [
+        {
+          "word": "os anos oitenta",
+          "meaning": "the eighties"
+        },
+        {
+          "word": "o século",
+          "meaning": "the century"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "com antecedência",
+      "english": "in advance",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kohng ahn-tuh-suh-DAYN-see-uh",
+      "example": "Convém marcar mesa com antecedência ao sábado.",
+      "exampleTranslation": "It's best to book a table in advance on Saturdays.",
+      "relatedWords": [
+        {
+          "word": "antecipadamente",
+          "meaning": "beforehand"
+        },
+        {
+          "word": "à última hora",
+          "meaning": "at the last minute"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "a tempo",
+      "english": "in time",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh TAYM-poo",
+      "example": "Corri muito, mas cheguei a tempo ao comboio.",
+      "exampleTranslation": "I ran a lot, but I got to the train in time.",
+      "relatedWords": [
+        {
+          "word": "a horas",
+          "meaning": "on time"
+        },
+        {
+          "word": "atrasado",
+          "meaning": "late"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "a hora de ponta",
+      "english": "rush hour",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh OH-ruh duh POHN-tuh",
+      "example": "Evita o metro à hora de ponta.",
+      "exampleTranslation": "Avoid the metro at rush hour.",
+      "relatedWords": [
+        {
+          "word": "o trânsito",
+          "meaning": "the traffic"
+        },
+        {
+          "word": "a fila",
+          "meaning": "the queue"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "o milhão",
+      "english": "the million",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo mee-LYOWNG",
+      "example": "A cidade recebe milhões de turistas por ano.",
+      "exampleTranslation": "The city receives millions of tourists a year.",
+      "relatedWords": [
+        {
+          "word": "o milhar",
+          "meaning": "the thousand (approx.)"
+        },
+        {
+          "word": "o bilião",
+          "meaning": "the trillion (EP)"
+        }
+      ],
+      "proTip": "In Portugal «bilião» means a million million (10¹²); a thousand million is «mil milhões»."
+    }
+  },
+  {
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "o dia útil",
+      "english": "the working day",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo DEE-uh OO-teel",
+      "example": "A encomenda chega em três dias úteis.",
+      "exampleTranslation": "The order arrives in three working days.",
+      "relatedWords": [
+        {
+          "word": "o fim de semana",
+          "meaning": "the weekend"
+        },
+        {
+          "word": "o prazo",
+          "meaning": "the deadline"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "o genro",
+      "english": "the son-in-law",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ZHAYN-roo",
+      "example": "O meu genro ajuda-me sempre com o computador.",
+      "exampleTranslation": "My son-in-law always helps me with the computer.",
+      "relatedWords": [
+        {
+          "word": "a nora",
+          "meaning": "the daughter-in-law"
+        },
+        {
+          "word": "o sogro",
+          "meaning": "the father-in-law"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "a nora",
+      "english": "the daughter-in-law",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh NOH-ruh",
+      "example": "A minha nora é enfermeira em Coimbra.",
+      "exampleTranslation": "My daughter-in-law is a nurse in Coimbra.",
+      "relatedWords": [
+        {
+          "word": "o genro",
+          "meaning": "the son-in-law"
+        },
+        {
+          "word": "a sogra",
+          "meaning": "the mother-in-law"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "o padrasto",
+      "english": "the stepfather",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo puh-DRASH-too",
+      "example": "Dou-me muito bem com o meu padrasto.",
+      "exampleTranslation": "I get on really well with my stepfather.",
+      "relatedWords": [
+        {
+          "word": "a madrasta",
+          "meaning": "the stepmother"
+        },
+        {
+          "word": "o enteado",
+          "meaning": "the stepson"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "a madrasta",
+      "english": "the stepmother",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh muh-DRASH-tuh",
+      "example": "A madrasta dela mora connosco há dez anos.",
+      "exampleTranslation": "Her stepmother has lived with us for ten years.",
+      "relatedWords": [
+        {
+          "word": "o padrasto",
+          "meaning": "the stepfather"
+        },
+        {
+          "word": "a enteada",
+          "meaning": "the stepdaughter"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "o meio-irmão",
+      "english": "the half-brother",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo MAY-oo eer-MOWNG",
+      "example": "Tenho um meio-irmão que vive no Porto.",
+      "exampleTranslation": "I have a half-brother who lives in Porto.",
+      "relatedWords": [
+        {
+          "word": "a meia-irmã",
+          "meaning": "the half-sister"
+        },
+        {
+          "word": "o irmão",
+          "meaning": "the brother"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "o afilhado",
+      "english": "the godson",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo uh-fee-LYAH-doo",
+      "example": "Comprei uma bicicleta ao meu afilhado.",
+      "exampleTranslation": "I bought my godson a bike.",
+      "relatedWords": [
+        {
+          "word": "a afilhada",
+          "meaning": "the goddaughter"
+        },
+        {
+          "word": "o padrinho",
+          "meaning": "the godfather"
+        }
+      ],
+      "proTip": "Godparents matter in Portugal: the padrinho/madrinha traditionally gives the folar to their afilhado at Easter."
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "casar-se",
+      "english": "to get married",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kuh-ZAR-suh",
+      "example": "Casámo-nos numa quinta perto de Sintra.",
+      "exampleTranslation": "We got married at a country estate near Sintra.",
+      "relatedWords": [
+        {
+          "word": "o casamento",
+          "meaning": "the wedding"
+        },
+        {
+          "word": "o noivado",
+          "meaning": "the engagement"
+        }
+      ],
+      "proTip": "Both «casar» and «casar-se» are used; note the EP past «casámos» (with accent) vs the present «casamos»."
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "divorciar-se",
+      "english": "to get divorced",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dee-voor-see-AR-suh",
+      "example": "Os pais dele divorciaram-se quando ele era pequeno.",
+      "exampleTranslation": "His parents got divorced when he was little.",
+      "relatedWords": [
+        {
+          "word": "o divórcio",
+          "meaning": "the divorce"
+        },
+        {
+          "word": "separar-se",
+          "meaning": "to separate"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "criar",
+      "english": "to raise (children)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kree-AR",
+      "example": "Foi a minha avó que me criou.",
+      "exampleTranslation": "It was my grandmother who raised me.",
+      "relatedWords": [
+        {
+          "word": "educar",
+          "meaning": "to bring up / educate"
+        },
+        {
+          "word": "crescer",
+          "meaning": "to grow up"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "a rotina",
+      "english": "the routine",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh roo-TEE-nuh",
+      "example": "Com os miúdos, a rotina da manhã é uma correria.",
+      "exampleTranslation": "With the kids, the morning routine is a mad rush.",
+      "relatedWords": [
+        {
+          "word": "o dia a dia",
+          "meaning": "everyday life"
+        },
+        {
+          "word": "o hábito",
+          "meaning": "the habit"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "cuidar de",
+      "english": "to look after / care for",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kwee-DAR duh",
+      "example": "Ela cuida da mãe, que já tem noventa anos.",
+      "exampleTranslation": "She looks after her mother, who's already ninety.",
+      "relatedWords": [
+        {
+          "word": "o cuidador",
+          "meaning": "the carer"
+        },
+        {
+          "word": "tratar de",
+          "meaning": "to take care of / deal with"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "tomar conta de",
+      "english": "to look after / mind",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "too-MAR KOHN-tuh duh",
+      "example": "Podes tomar conta do cão no fim de semana?",
+      "exampleTranslation": "Can you look after the dog at the weekend?",
+      "relatedWords": [
+        {
+          "word": "ficar com",
+          "meaning": "to keep / stay with"
+        },
+        {
+          "word": "a ama",
+          "meaning": "the childminder"
+        }
+      ],
+      "proTip": "«Tomar conta» is the everyday choice for babysitting or minding something short-term; «cuidar» feels more ongoing and caring."
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "a creche",
+      "english": "the nursery (0–3 years)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh KREH-shuh",
+      "example": "Deixo o bebé na creche às oito.",
+      "exampleTranslation": "I drop the baby off at nursery at eight.",
+      "relatedWords": [
+        {
+          "word": "o infantário",
+          "meaning": "the kindergarten"
+        },
+        {
+          "word": "a lista de espera",
+          "meaning": "the waiting list"
+        }
+      ],
+      "proTip": "Creche places in Lisbon are scarce: many parents sign up during the pregnancy. Creche Feliz makes many places free."
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "o infantário",
+      "english": "the kindergarten / preschool",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo eeng-fahn-TAH-ree-oo",
+      "example": "A nossa filha entra no infantário em setembro.",
+      "exampleTranslation": "Our daughter starts kindergarten in September.",
+      "relatedWords": [
+        {
+          "word": "o jardim de infância",
+          "meaning": "the preschool (official term)"
+        },
+        {
+          "word": "a creche",
+          "meaning": "the nursery"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "o divórcio",
+      "english": "the divorce",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo dee-VOR-see-oo",
+      "example": "O divórcio foi difícil, mas já passou.",
+      "exampleTranslation": "The divorce was hard, but it's over now.",
+      "relatedWords": [
+        {
+          "word": "divorciado / divorciada",
+          "meaning": "divorced"
+        },
+        {
+          "word": "a pensão de alimentos",
+          "meaning": "child support"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "a lua de mel",
+      "english": "the honeymoon",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh LOO-uh duh MEL",
+      "example": "Fomos aos Açores em lua de mel.",
+      "exampleTranslation": "We went to the Azores on our honeymoon.",
+      "relatedWords": [
+        {
+          "word": "os recém-casados",
+          "meaning": "the newlyweds"
+        },
+        {
+          "word": "a viagem",
+          "meaning": "the trip"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "o viúvo",
+      "english": "the widower",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo vee-OO-voo",
+      "example": "O vizinho de baixo é viúvo e vive sozinho.",
+      "exampleTranslation": "The downstairs neighbour is a widower and lives alone.",
+      "relatedWords": [
+        {
+          "word": "a viúva",
+          "meaning": "the widow"
+        },
+        {
+          "word": "ficar viúvo",
+          "meaning": "to be widowed"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "o casal",
+      "english": "the couple",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kuh-ZAHL",
+      "example": "No prédio mora um casal de reformados ingleses.",
+      "exampleTranslation": "A couple of retired English people live in the building.",
+      "relatedWords": [
+        {
+          "word": "o par",
+          "meaning": "the pair"
+        },
+        {
+          "word": "os namorados",
+          "meaning": "boyfriend and girlfriend"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "separar-se",
+      "english": "to separate / split up",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "suh-puh-RAR-suh",
+      "example": "Separaram-se depois de quinze anos juntos.",
+      "exampleTranslation": "They split up after fifteen years together.",
+      "relatedWords": [
+        {
+          "word": "acabar com",
+          "meaning": "to break up with"
+        },
+        {
+          "word": "o divórcio",
+          "meaning": "the divorce"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "engravidar",
+      "english": "to get pregnant",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng-gruh-vee-DAR",
+      "example": "A minha irmã engravidou do segundo filho.",
+      "exampleTranslation": "My sister got pregnant with her second child.",
+      "relatedWords": [
+        {
+          "word": "estar grávida",
+          "meaning": "to be pregnant"
+        },
+        {
+          "word": "dar à luz",
+          "meaning": "to give birth"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "a licença parental",
+      "english": "parental leave",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh lee-SAYN-suh puh-rayn-TAHL",
+      "example": "Ele vai tirar um mês de licença parental.",
+      "exampleTranslation": "He's going to take a month of parental leave.",
+      "relatedWords": [
+        {
+          "word": "a licença de maternidade",
+          "meaning": "maternity leave"
+        },
+        {
+          "word": "o recém-nascido",
+          "meaning": "the newborn"
+        }
+      ],
+      "proTip": "Portugal's licença parental is shared between both parents, and part of the father's leave is compulsory."
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "os parentes",
+      "english": "the relatives",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oosh puh-RAYN-tush",
+      "example": "No Natal juntam-se os parentes todos em casa da avó.",
+      "exampleTranslation": "At Christmas all the relatives get together at Grandma's.",
+      "relatedWords": [
+        {
+          "word": "a família",
+          "meaning": "the family"
+        },
+        {
+          "word": "o familiar",
+          "meaning": "the family member"
+        }
+      ],
+      "proTip": "False friend: «os parentes» are relatives in general, not parents; parents are «os pais»."
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "a família alargada",
+      "english": "the extended family",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh fuh-MEE-lee-uh uh-lar-GAH-duh",
+      "example": "Em Portugal a família alargada ainda é muito próxima.",
+      "exampleTranslation": "In Portugal the extended family is still very close.",
+      "relatedWords": [
+        {
+          "word": "os avós",
+          "meaning": "the grandparents"
+        },
+        {
+          "word": "os primos",
+          "meaning": "the cousins"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "ir buscar",
+      "english": "to pick up / collect",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "EER boosh-KAR",
+      "example": "Hoje sou eu que vou buscar os miúdos à escola.",
+      "exampleTranslation": "Today I'm the one picking the kids up from school.",
+      "relatedWords": [
+        {
+          "word": "levar",
+          "meaning": "to take / drop off"
+        },
+        {
+          "word": "deixar",
+          "meaning": "to drop off"
+        }
+      ],
+      "proTip": "«Ir buscar» = go and fetch; «levar» = take somewhere. Vou levar os miúdos à escola e depois vou buscá-los."
+    }
+  },
+  {
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "os miúdos",
+      "english": "the kids",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oosh mee-OO-doosh",
+      "example": "Os miúdos estão a brincar no jardim.",
+      "exampleTranslation": "The kids are playing in the garden.",
+      "relatedWords": [
+        {
+          "word": "a criança",
+          "meaning": "the child"
+        },
+        {
+          "word": "o puto",
+          "meaning": "the kid (slang)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "a candidatura",
+      "english": "the (job) application",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh kahn-dee-duh-TOO-ruh",
+      "example": "Enviei a candidatura pelo site da empresa.",
+      "exampleTranslation": "I sent the application through the company's website.",
+      "relatedWords": [
+        {
+          "word": "o currículo",
+          "meaning": "the CV"
+        },
+        {
+          "word": "a vaga",
+          "meaning": "the vacancy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "candidatar-se",
+      "english": "to apply",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kahn-dee-duh-TAR-suh",
+      "example": "Candidatei-me a três vagas esta semana.",
+      "exampleTranslation": "I applied for three vacancies this week.",
+      "relatedWords": [
+        {
+          "word": "concorrer",
+          "meaning": "to compete / apply"
+        },
+        {
+          "word": "a candidatura",
+          "meaning": "the application"
+        }
+      ],
+      "proTip": "Use «candidatar-se a»: candidatar-se a um emprego, a uma bolsa, a um mestrado."
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o contrato a termo",
+      "english": "the fixed-term contract",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kohn-TRAH-too uh TAYR-moo",
+      "example": "Tenho um contrato a termo de seis meses.",
+      "exampleTranslation": "I have a six-month fixed-term contract.",
+      "relatedWords": [
+        {
+          "word": "renovar",
+          "meaning": "to renew"
+        },
+        {
+          "word": "o contrato sem termo",
+          "meaning": "the permanent contract"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o contrato sem termo",
+      "english": "the permanent contract",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kohn-TRAH-too sayng TAYR-moo",
+      "example": "Finalmente passei a contrato sem termo.",
+      "exampleTranslation": "I finally got moved onto a permanent contract.",
+      "relatedWords": [
+        {
+          "word": "efetivo",
+          "meaning": "permanent (staff)"
+        },
+        {
+          "word": "o contrato a termo",
+          "meaning": "the fixed-term contract"
+        }
+      ],
+      "proTip": "Landlords and banks often ask whether you have a contrato sem termo before renting or lending."
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o recibo verde",
+      "english": "freelance receipt / self-employed status",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ruh-SEE-boo VAYR-duh",
+      "example": "Trabalho a recibos verdes há dois anos.",
+      "exampleTranslation": "I've been working as a freelancer for two years.",
+      "relatedWords": [
+        {
+          "word": "o trabalhador independente",
+          "meaning": "the self-employed worker"
+        },
+        {
+          "word": "as Finanças",
+          "meaning": "the tax office"
+        }
+      ],
+      "proTip": "«Estar a recibos verdes» means working self-employed; receipts are now issued online on the Portal das Finanças."
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o período experimental",
+      "english": "the probation period",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo puh-REE-oo-doo ish-puh-ree-mayn-TAHL",
+      "example": "Ainda estou no período experimental.",
+      "exampleTranslation": "I'm still on my probation period.",
+      "relatedWords": [
+        {
+          "word": "o contrato",
+          "meaning": "the contract"
+        },
+        {
+          "word": "a avaliação",
+          "meaning": "the evaluation"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "as férias pagas",
+      "english": "paid holidays",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush FEH-ree-ush PAH-gush",
+      "example": "Tenho direito a vinte e dois dias de férias pagas.",
+      "exampleTranslation": "I'm entitled to twenty-two days of paid holiday.",
+      "relatedWords": [
+        {
+          "word": "marcar férias",
+          "meaning": "to book holidays"
+        },
+        {
+          "word": "o dia de folga",
+          "meaning": "the day off"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o subsídio de férias",
+      "english": "the holiday bonus (extra month's pay)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo soob-SEE-dee-oo duh FEH-ree-ush",
+      "example": "O subsídio de férias costuma vir em junho.",
+      "exampleTranslation": "The holiday bonus usually comes in June.",
+      "relatedWords": [
+        {
+          "word": "o subsídio de Natal",
+          "meaning": "the Christmas bonus"
+        },
+        {
+          "word": "o ordenado",
+          "meaning": "the salary"
+        }
+      ],
+      "proTip": "In Portugal salaries are paid 14 times a year: 12 months plus the subsídio de férias and the subsídio de Natal."
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o subsídio de Natal",
+      "english": "the Christmas bonus (13th month)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo soob-SEE-dee-oo duh nuh-TAHL",
+      "example": "Com o subsídio de Natal pago as prendas.",
+      "exampleTranslation": "I pay for the presents with my Christmas bonus.",
+      "relatedWords": [
+        {
+          "word": "o décimo terceiro mês",
+          "meaning": "the 13th month"
+        },
+        {
+          "word": "o subsídio de férias",
+          "meaning": "the holiday bonus"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "a baixa médica",
+      "english": "sick leave",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh BYE-shuh MEH-dee-kuh",
+      "example": "Estive de baixa médica uma semana.",
+      "exampleTranslation": "I was on sick leave for a week.",
+      "relatedWords": [
+        {
+          "word": "estar de baixa",
+          "meaning": "to be off sick"
+        },
+        {
+          "word": "o médico de família",
+          "meaning": "the GP"
+        }
+      ],
+      "proTip": "You don't call in «sick» casually: for more than a few days you need the baixa from a doctor, sent to the Segurança Social."
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "demitir-se",
+      "english": "to resign / quit",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-mee-TEER-suh",
+      "example": "Demiti-me porque o ambiente era péssimo.",
+      "exampleTranslation": "I quit because the atmosphere was awful.",
+      "relatedWords": [
+        {
+          "word": "despedir",
+          "meaning": "to fire"
+        },
+        {
+          "word": "o aviso prévio",
+          "meaning": "the notice period"
+        }
+      ],
+      "proTip": "Careful: «demitir-se» is you leaving; «ser despedido» is being fired."
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "a chefia",
+      "english": "management / the bosses",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh shuh-FEE-uh",
+      "example": "A chefia ainda não aprovou as minhas férias.",
+      "exampleTranslation": "Management still hasn't approved my holidays.",
+      "relatedWords": [
+        {
+          "word": "o chefe",
+          "meaning": "the boss"
+        },
+        {
+          "word": "a direção",
+          "meaning": "the board / management"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "as propinas",
+      "english": "tuition fees",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush proo-PEE-nush",
+      "example": "As propinas da faculdade pagam-se em prestações.",
+      "exampleTranslation": "University tuition fees are paid in instalments.",
+      "relatedWords": [
+        {
+          "word": "a matrícula",
+          "meaning": "the enrolment"
+        },
+        {
+          "word": "a prestação",
+          "meaning": "the instalment"
+        }
+      ],
+      "proTip": "False friend: «propina» means tuition fee, not a tip; a tip is «a gorjeta»."
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "a bolsa de estudo",
+      "english": "the scholarship / grant",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh BOHL-suh duh ISH-too-doo",
+      "example": "Consegui uma bolsa de estudo para o mestrado.",
+      "exampleTranslation": "I got a scholarship for my master's.",
+      "relatedWords": [
+        {
+          "word": "o bolseiro",
+          "meaning": "the grant holder"
+        },
+        {
+          "word": "as propinas",
+          "meaning": "tuition fees"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o ordenado",
+      "english": "the wage / monthly pay",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo or-duh-NAH-doo",
+      "example": "O ordenado cai na conta no dia vinte e cinco.",
+      "exampleTranslation": "My pay goes into my account on the 25th.",
+      "relatedWords": [
+        {
+          "word": "o salário mínimo",
+          "meaning": "the minimum wage"
+        },
+        {
+          "word": "o recibo de vencimento",
+          "meaning": "the payslip"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "as horas extraordinárias",
+      "english": "overtime",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uzh OH-rush ish-truh-or-dee-NAH-ree-ush",
+      "example": "Fiz horas extraordinárias para acabar o projeto.",
+      "exampleTranslation": "I did overtime to finish the project.",
+      "relatedWords": [
+        {
+          "word": "as horas extra",
+          "meaning": "overtime (colloquial)"
+        },
+        {
+          "word": "o turno",
+          "meaning": "the shift"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o teletrabalho",
+      "english": "remote work / working from home",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo teh-leh-truh-BAH-lyoo",
+      "example": "Faço teletrabalho às segundas e sextas.",
+      "exampleTranslation": "I work from home on Mondays and Fridays.",
+      "relatedWords": [
+        {
+          "word": "o regime híbrido",
+          "meaning": "hybrid working"
+        },
+        {
+          "word": "o escritório",
+          "meaning": "the office"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o sindicato",
+      "english": "the trade union",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo seeng-dee-KAH-too",
+      "example": "O sindicato convocou uma greve para sexta.",
+      "exampleTranslation": "The union has called a strike for Friday.",
+      "relatedWords": [
+        {
+          "word": "a greve",
+          "meaning": "the strike"
+        },
+        {
+          "word": "os direitos",
+          "meaning": "rights"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "a greve",
+      "english": "the strike",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh GREH-vuh",
+      "example": "Amanhã há greve na CP, não há comboios.",
+      "exampleTranslation": "Tomorrow there's a strike at CP, there are no trains.",
+      "relatedWords": [
+        {
+          "word": "fazer greve",
+          "meaning": "to go on strike"
+        },
+        {
+          "word": "os serviços mínimos",
+          "meaning": "minimum services"
+        }
+      ],
+      "proTip": "Transport strikes are common; check whether «serviços mínimos» have been set before you travel."
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o aumento",
+      "english": "the pay rise",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ow-MAYN-too",
+      "example": "Vou pedir um aumento ao meu chefe.",
+      "exampleTranslation": "I'm going to ask my boss for a raise.",
+      "relatedWords": [
+        {
+          "word": "aumentar",
+          "meaning": "to increase"
+        },
+        {
+          "word": "a promoção",
+          "meaning": "the promotion"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "a vaga",
+      "english": "the vacancy / opening",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh VAH-guh",
+      "example": "Há uma vaga para rececionista no hotel.",
+      "exampleTranslation": "There's an opening for a receptionist at the hotel.",
+      "relatedWords": [
+        {
+          "word": "a oferta de emprego",
+          "meaning": "the job offer"
+        },
+        {
+          "word": "candidatar-se",
+          "meaning": "to apply"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o turno",
+      "english": "the shift",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo TOOR-noo",
+      "example": "Esta semana estou no turno da noite.",
+      "exampleTranslation": "This week I'm on the night shift.",
+      "relatedWords": [
+        {
+          "word": "trabalhar por turnos",
+          "meaning": "to work shifts"
+        },
+        {
+          "word": "a folga",
+          "meaning": "the day off"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "o despedimento",
+      "english": "the dismissal / layoff",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo dish-puh-dee-MAYN-too",
+      "example": "Houve despedimentos na fábrica este mês.",
+      "exampleTranslation": "There were layoffs at the factory this month.",
+      "relatedWords": [
+        {
+          "word": "despedir",
+          "meaning": "to fire"
+        },
+        {
+          "word": "a indemnização",
+          "meaning": "the severance pay"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "a carta de apresentação",
+      "english": "the cover letter",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh KAR-tuh duh uh-pruh-zayn-tuh-SOWNG",
+      "example": "Junta uma carta de apresentação ao currículo.",
+      "exampleTranslation": "Attach a cover letter to your CV.",
+      "relatedWords": [
+        {
+          "word": "o currículo",
+          "meaning": "the CV"
+        },
+        {
+          "word": "a candidatura",
+          "meaning": "the application"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "chumbar",
+      "english": "to fail (an exam)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shoom-BAR",
+      "example": "Chumbei no exame de condução à primeira vez.",
+      "exampleTranslation": "I failed my driving test the first time.",
+      "relatedWords": [
+        {
+          "word": "passar",
+          "meaning": "to pass"
+        },
+        {
+          "word": "repetir o ano",
+          "meaning": "to repeat the year"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "o médico de família",
+      "english": "the GP / family doctor",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo MEH-dee-koo duh fuh-MEE-lee-uh",
+      "example": "Ainda não tenho médico de família no centro de saúde.",
+      "exampleTranslation": "I still don't have a GP at the health centre.",
+      "relatedWords": [
+        {
+          "word": "o centro de saúde",
+          "meaning": "the health centre"
+        },
+        {
+          "word": "o número de utente",
+          "meaning": "the SNS patient number"
+        }
+      ],
+      "proTip": "Many residents wait years for a médico de família; without one you can still get seen at the centro de saúde for urgent cases."
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a farmácia de serviço",
+      "english": "the duty (late-night) pharmacy",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh far-MAH-see-uh duh suhr-VEE-soo",
+      "example": "Às duas da manhã só a farmácia de serviço está aberta.",
+      "exampleTranslation": "At two in the morning only the duty pharmacy is open.",
+      "relatedWords": [
+        {
+          "word": "a farmácia",
+          "meaning": "the pharmacy"
+        },
+        {
+          "word": "o horário",
+          "meaning": "the opening hours"
+        }
+      ],
+      "proTip": "Every pharmacy posts on its door which farmácia de serviço is open that night in the area."
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a radiografia",
+      "english": "the X-ray",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh ruh-dee-oo-gruh-FEE-uh",
+      "example": "Fizeram-me uma radiografia ao pulso.",
+      "exampleTranslation": "They X-rayed my wrist.",
+      "relatedWords": [
+        {
+          "word": "o raio-X",
+          "meaning": "the X-ray (colloquial)"
+        },
+        {
+          "word": "a ecografia",
+          "meaning": "the ultrasound"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "o efeito secundário",
+      "english": "the side effect",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ee-FAY-too suh-koon-DAH-ree-oo",
+      "example": "Este medicamento pode ter efeitos secundários.",
+      "exampleTranslation": "This medicine can have side effects.",
+      "relatedWords": [
+        {
+          "word": "o folheto informativo",
+          "meaning": "the patient leaflet"
+        },
+        {
+          "word": "o medicamento",
+          "meaning": "the medicine"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a tensão arterial",
+      "english": "blood pressure",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh tayn-SOWNG ar-tuh-ree-AHL",
+      "example": "A enfermeira mediu-me a tensão arterial.",
+      "exampleTranslation": "The nurse took my blood pressure.",
+      "relatedWords": [
+        {
+          "word": "a tensão alta",
+          "meaning": "high blood pressure"
+        },
+        {
+          "word": "medir",
+          "meaning": "to measure"
+        }
+      ],
+      "proTip": "In everyday speech people just say «a tensão»: «Tenho a tensão alta.»"
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "torcer o tornozelo",
+      "english": "to sprain one's ankle",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "toor-SAYR oo toor-noo-ZAY-loo",
+      "example": "Torci o tornozelo a descer a calçada.",
+      "exampleTranslation": "I sprained my ankle going down the cobbled street.",
+      "relatedWords": [
+        {
+          "word": "o tornozelo",
+          "meaning": "the ankle"
+        },
+        {
+          "word": "inchado",
+          "meaning": "swollen"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "partir um braço",
+      "english": "to break an arm",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "par-TEER oom BRAH-soo",
+      "example": "O meu filho partiu um braço a jogar à bola.",
+      "exampleTranslation": "My son broke his arm playing football.",
+      "relatedWords": [
+        {
+          "word": "o gesso",
+          "meaning": "the plaster cast"
+        },
+        {
+          "word": "partir a perna",
+          "meaning": "to break a leg"
+        }
+      ],
+      "proTip": "EP uses «partir» for breaking bones and objects; «quebrar» sounds Brazilian or very formal."
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a pomada",
+      "english": "the ointment / cream",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh poo-MAH-duh",
+      "example": "Põe esta pomada duas vezes por dia.",
+      "exampleTranslation": "Put this ointment on twice a day.",
+      "relatedWords": [
+        {
+          "word": "o creme",
+          "meaning": "the cream"
+        },
+        {
+          "word": "aplicar",
+          "meaning": "to apply"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "recuperar",
+      "english": "to recover",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ruh-koo-puh-RAR",
+      "example": "Já recuperei da gripe, felizmente.",
+      "exampleTranslation": "I've already recovered from the flu, luckily.",
+      "relatedWords": [
+        {
+          "word": "a recuperação",
+          "meaning": "the recovery"
+        },
+        {
+          "word": "melhorar",
+          "meaning": "to get better"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a fisioterapia",
+      "english": "physiotherapy",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh fee-zee-oo-tuh-ruh-PEE-uh",
+      "example": "Depois da operação fiz fisioterapia dois meses.",
+      "exampleTranslation": "After the operation I did physiotherapy for two months.",
+      "relatedWords": [
+        {
+          "word": "o fisioterapeuta",
+          "meaning": "the physiotherapist"
+        },
+        {
+          "word": "a sessão",
+          "meaning": "the session"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "o xarope",
+      "english": "the cough syrup",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo shuh-ROH-puh",
+      "example": "A farmacêutica recomendou-me um xarope para a tosse.",
+      "exampleTranslation": "The pharmacist recommended a cough syrup.",
+      "relatedWords": [
+        {
+          "word": "a tosse",
+          "meaning": "the cough"
+        },
+        {
+          "word": "a colher",
+          "meaning": "the spoon"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a injeção",
+      "english": "the injection",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh eeng-zheh-SOWNG",
+      "example": "A enfermeira deu-me uma injeção no braço.",
+      "exampleTranslation": "The nurse gave me an injection in my arm.",
+      "relatedWords": [
+        {
+          "word": "a vacina",
+          "meaning": "the vaccine"
+        },
+        {
+          "word": "a seringa",
+          "meaning": "the syringe"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a ligadura",
+      "english": "the bandage",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh lee-guh-DOO-ruh",
+      "example": "Tens de manter a ligadura durante três dias.",
+      "exampleTranslation": "You have to keep the bandage on for three days.",
+      "relatedWords": [
+        {
+          "word": "o penso",
+          "meaning": "the plaster / dressing"
+        },
+        {
+          "word": "ligar",
+          "meaning": "to bandage"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "o gesso",
+      "english": "the plaster cast",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ZHAY-soo",
+      "example": "Andei seis semanas com o braço no gesso.",
+      "exampleTranslation": "I had my arm in a cast for six weeks.",
+      "relatedWords": [
+        {
+          "word": "engessado",
+          "meaning": "in a cast"
+        },
+        {
+          "word": "as muletas",
+          "meaning": "the crutches"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "o termómetro",
+      "english": "the thermometer",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo tuhr-MOH-muh-troo",
+      "example": "Põe o termómetro para ver se tens febre.",
+      "exampleTranslation": "Use the thermometer to see if you have a fever.",
+      "relatedWords": [
+        {
+          "word": "a temperatura",
+          "meaning": "the temperature"
+        },
+        {
+          "word": "a febre",
+          "meaning": "the fever"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "o antibiótico",
+      "english": "the antibiotic",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ahn-tee-bee-OH-tee-koo",
+      "example": "O médico receitou-me um antibiótico para sete dias.",
+      "exampleTranslation": "The doctor prescribed me a seven-day course of antibiotics.",
+      "relatedWords": [
+        {
+          "word": "receitar",
+          "meaning": "to prescribe"
+        },
+        {
+          "word": "a receita",
+          "meaning": "the prescription"
+        }
+      ],
+      "proTip": "Antibiotics need a prescription in Portugal; pharmacists won't sell them over the counter."
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "o número de utente",
+      "english": "the SNS patient number",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo NOO-muh-roo duh oo-TAYN-tuh",
+      "example": "Na receção pedem sempre o número de utente.",
+      "exampleTranslation": "At reception they always ask for your patient number.",
+      "relatedWords": [
+        {
+          "word": "o utente",
+          "meaning": "the patient (SNS user)"
+        },
+        {
+          "word": "o cartão de cidadão",
+          "meaning": "the citizen card"
+        }
+      ],
+      "proTip": "New residents get their número de utente at the local centro de saúde; you need it for SNS appointments and prescriptions."
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "doer",
+      "english": "to hurt / ache",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "doo-AYR",
+      "example": "Dói-me a cabeça desde manhã.",
+      "exampleTranslation": "My head has been hurting since this morning.",
+      "relatedWords": [
+        {
+          "word": "a dor",
+          "meaning": "the pain"
+        },
+        {
+          "word": "magoar-se",
+          "meaning": "to hurt oneself"
+        }
+      ],
+      "proTip": "The thing that hurts is the subject: «Doem-me as costas» (my back hurts), with plural agreement."
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "sentir-se mal",
+      "english": "to feel unwell",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "sayn-TEER-suh MAHL",
+      "example": "Senti-me mal no metro e tive de sair.",
+      "exampleTranslation": "I felt unwell on the metro and had to get off.",
+      "relatedWords": [
+        {
+          "word": "sentir-se bem",
+          "meaning": "to feel well"
+        },
+        {
+          "word": "desmaiar",
+          "meaning": "to faint"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "magoar-se",
+      "english": "to hurt oneself",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "muh-goo-AR-suh",
+      "example": "Caí da bicicleta, mas não me magoei.",
+      "exampleTranslation": "I fell off my bike, but I didn't hurt myself.",
+      "relatedWords": [
+        {
+          "word": "doer",
+          "meaning": "to hurt"
+        },
+        {
+          "word": "ferido",
+          "meaning": "injured"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "enjoado / enjoada",
+      "english": "nauseous / seasick",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng-zhoo-AH-doo / ayng-zhoo-AH-duh",
+      "example": "Fiquei enjoado no barco para Cacilhas.",
+      "exampleTranslation": "I got seasick on the boat to Cacilhas.",
+      "relatedWords": [
+        {
+          "word": "vomitar",
+          "meaning": "to vomit"
+        },
+        {
+          "word": "o enjoo",
+          "meaning": "nausea"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a nódoa negra",
+      "english": "the bruise",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh NOH-doo-uh NAY-gruh",
+      "example": "Bati na mesa e fiquei com uma nódoa negra.",
+      "exampleTranslation": "I bumped into the table and got a bruise.",
+      "relatedWords": [
+        {
+          "word": "a nódoa",
+          "meaning": "the stain"
+        },
+        {
+          "word": "bater",
+          "meaning": "to bump / hit"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "a comichão",
+      "english": "the itch",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh koo-mee-SHOWNG",
+      "example": "Esta picada de mosquito faz-me imensa comichão.",
+      "exampleTranslation": "This mosquito bite is really itchy.",
+      "relatedWords": [
+        {
+          "word": "a picada",
+          "meaning": "the bite / sting"
+        },
+        {
+          "word": "coçar",
+          "meaning": "to scratch"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "o sintoma",
+      "english": "the symptom",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo seeng-TOH-muh",
+      "example": "Que sintomas tem, além da febre?",
+      "exampleTranslation": "What symptoms do you have, apart from the fever?",
+      "relatedWords": [
+        {
+          "word": "a linha SNS 24",
+          "meaning": "the SNS 24 helpline"
+        },
+        {
+          "word": "o diagnóstico",
+          "meaning": "the diagnosis"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "marcar uma consulta",
+      "english": "to book a doctor's appointment",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "mar-KAR OO-muh kohn-SOOL-tuh",
+      "example": "Liguei para o centro de saúde para marcar uma consulta.",
+      "exampleTranslation": "I rang the health centre to book an appointment.",
+      "relatedWords": [
+        {
+          "word": "desmarcar",
+          "meaning": "to cancel"
+        },
+        {
+          "word": "a marcação",
+          "meaning": "the booking"
+        }
+      ]
+    }
+  }
+]

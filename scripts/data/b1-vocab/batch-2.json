@@ -1,0 +1,1787 @@
+[
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o senhorio",
+      "english": "the landlord",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "suh-nyoo-REE-oo",
+      "example": "O senhorio vem cá amanhã ver o esquentador.",
+      "exampleTranslation": "The landlord is coming round tomorrow to look at the water heater.",
+      "relatedWords": [
+        {
+          "word": "a senhoria",
+          "meaning": "the landlady"
+        },
+        {
+          "word": "o proprietário",
+          "meaning": "the owner"
+        }
+      ],
+      "proTip": "In Portugal \"senhorio\" is the standard word in contracts and conversation; \"proprietário\" sounds more formal."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o inquilino",
+      "english": "the tenant",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "eeng-kee-LEE-noo",
+      "example": "Os inquilinos do segundo andar mudaram-se no mês passado.",
+      "exampleTranslation": "The tenants on the second floor moved out last month.",
+      "relatedWords": [
+        {
+          "word": "a inquilina",
+          "meaning": "the (female) tenant"
+        },
+        {
+          "word": "o arrendatário",
+          "meaning": "the lessee (legal term)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "arrendar",
+      "english": "to rent (out / from)",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-rrayn-DAR",
+      "example": "Arrendámos um T2 em Arroios por dois anos.",
+      "exampleTranslation": "We rented a two-bedroom flat in Arroios for two years.",
+      "relatedWords": [
+        {
+          "word": "arrenda-se",
+          "meaning": "for rent (sign)"
+        },
+        {
+          "word": "o arrendamento",
+          "meaning": "the rental / lease"
+        }
+      ],
+      "proTip": "\"Arrendar\" works both ways: the landlord \"arrenda\" the flat to you, and you \"arrendas\" it from him. Signs say \"Arrenda-se\"."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o T1",
+      "english": "the one-bedroom flat",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "oo tay-OONG",
+      "example": "Estou à procura de um T1 perto do metro.",
+      "exampleTranslation": "I'm looking for a one-bedroom flat near the metro.",
+      "relatedWords": [
+        {
+          "word": "o T2",
+          "meaning": "the two-bedroom flat"
+        },
+        {
+          "word": "o T3",
+          "meaning": "the three-bedroom flat"
+        }
+      ],
+      "proTip": "The number after T counts bedrooms only, not the living room: a T2 has two bedrooms plus a sala."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o rés-do-chão",
+      "english": "the ground floor",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "RESH-doo-SHOWNG",
+      "example": "Moramos no rés-do-chão, por isso não precisamos de elevador.",
+      "exampleTranslation": "We live on the ground floor, so we don't need a lift.",
+      "relatedWords": [
+        {
+          "word": "o primeiro andar",
+          "meaning": "the first floor"
+        },
+        {
+          "word": "a cave",
+          "meaning": "the basement"
+        }
+      ],
+      "proTip": "In addresses it's shortened to \"r/c\", e.g. \"Rua X, 12, r/c esq.\" (ground floor, left)."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o barulho",
+      "english": "the noise",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "buh-ROO-lyoo",
+      "example": "Os vizinhos de cima fazem imenso barulho à noite.",
+      "exampleTranslation": "The upstairs neighbours make a huge amount of noise at night.",
+      "relatedWords": [
+        {
+          "word": "fazer barulho",
+          "meaning": "to make noise"
+        },
+        {
+          "word": "barulhento",
+          "meaning": "noisy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a fechadura",
+      "english": "the lock",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "fuh-shuh-DOO-ruh",
+      "example": "A chave já não roda bem na fechadura.",
+      "exampleTranslation": "The key doesn't turn properly in the lock any more.",
+      "relatedWords": [
+        {
+          "word": "a chave",
+          "meaning": "the key"
+        },
+        {
+          "word": "o trinco",
+          "meaning": "the latch"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o aquecimento",
+      "english": "the heating",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "uh-kuh-see-MAYN-too",
+      "example": "A casa não tem aquecimento central, só um aquecedor elétrico.",
+      "exampleTranslation": "The house has no central heating, just an electric heater.",
+      "relatedWords": [
+        {
+          "word": "o aquecimento central",
+          "meaning": "central heating"
+        },
+        {
+          "word": "o aquecedor",
+          "meaning": "the heater"
+        }
+      ],
+      "proTip": "Most older Portuguese flats have no central heating, so winters indoors can feel colder than in northern Europe. Ask about it on viewings."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o ar condicionado",
+      "english": "the air conditioning",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "AR kohn-dee-syoo-NAH-doo",
+      "example": "No verão ligamos o ar condicionado no quarto.",
+      "exampleTranslation": "In summer we turn on the air conditioning in the bedroom.",
+      "relatedWords": [
+        {
+          "word": "ligar o ar condicionado",
+          "meaning": "to turn on the AC"
+        },
+        {
+          "word": "a ventoinha",
+          "meaning": "the fan"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a imobiliária",
+      "english": "the estate agency",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "ee-moo-bee-lee-AH-ree-uh",
+      "example": "Vi o apartamento no site de uma imobiliária.",
+      "exampleTranslation": "I saw the flat on an estate agency's website.",
+      "relatedWords": [
+        {
+          "word": "o agente imobiliário",
+          "meaning": "the estate agent"
+        },
+        {
+          "word": "a comissão",
+          "meaning": "the commission"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "mobilado",
+      "english": "furnished",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "moo-bee-LAH-doo",
+      "example": "Prefiro um apartamento mobilado, porque não tenho móveis.",
+      "exampleTranslation": "I'd rather have a furnished flat because I don't have furniture.",
+      "relatedWords": [
+        {
+          "word": "semimobilado",
+          "meaning": "part-furnished"
+        },
+        {
+          "word": "sem mobília",
+          "meaning": "unfurnished"
+        }
+      ],
+      "proTip": "Portugal uses \"mobilado\"; \"mobiliado\" is the Brazilian form."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o gás",
+      "english": "the gas (supply)",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "oo GAHSH",
+      "example": "O fogão é a gás, mas o forno é elétrico.",
+      "exampleTranslation": "The hob runs on gas, but the oven is electric.",
+      "relatedWords": [
+        {
+          "word": "o gás natural",
+          "meaning": "mains gas"
+        },
+        {
+          "word": "a botija de gás",
+          "meaning": "the gas cylinder"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o eletricista",
+      "english": "the electrician",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "ee-leh-tree-SEESH-tuh",
+      "example": "Temos de chamar um eletricista, as tomadas da cozinha não funcionam.",
+      "exampleTranslation": "We need to call an electrician, the kitchen sockets don't work.",
+      "relatedWords": [
+        {
+          "word": "a eletricidade",
+          "meaning": "electricity"
+        },
+        {
+          "word": "o canalizador",
+          "meaning": "the plumber"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "pagar a renda",
+      "english": "to pay the rent",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "puh-GAR uh RAYN-duh",
+      "example": "Pago a renda por transferência até dia oito.",
+      "exampleTranslation": "I pay the rent by bank transfer by the eighth.",
+      "relatedWords": [
+        {
+          "word": "a renda em atraso",
+          "meaning": "overdue rent"
+        },
+        {
+          "word": "o recibo de renda",
+          "meaning": "the rent receipt"
+        }
+      ],
+      "proTip": "Landlords must issue an electronic rent receipt on the Portal das Finanças each month; you need it for your IRS deductions."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "visitar um apartamento",
+      "english": "to view a flat",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "vee-zee-TAR oong uh-par-tuh-MAYN-too",
+      "example": "Vamos visitar um apartamento em Benfica no sábado.",
+      "exampleTranslation": "We're going to view a flat in Benfica on Saturday.",
+      "relatedWords": [
+        {
+          "word": "a visita",
+          "meaning": "the viewing"
+        },
+        {
+          "word": "marcar uma visita",
+          "meaning": "to book a viewing"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "partilhar casa",
+      "english": "to share a flat",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "par-tee-LYAR KAH-zuh",
+      "example": "Partilho casa com duas colegas da faculdade.",
+      "exampleTranslation": "I share a flat with two friends from university.",
+      "relatedWords": [
+        {
+          "word": "o quarto para arrendar",
+          "meaning": "the room to rent"
+        },
+        {
+          "word": "as despesas",
+          "meaning": "the bills / expenses"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o/a colega de casa",
+      "english": "the flatmate",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "koo-LEH-guh duh KAH-zuh",
+      "example": "A minha colega de casa trabalha de noite.",
+      "exampleTranslation": "My flatmate works nights.",
+      "relatedWords": [
+        {
+          "word": "partilhar casa",
+          "meaning": "to share a flat"
+        },
+        {
+          "word": "o quarto",
+          "meaning": "the bedroom"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a lâmpada",
+      "english": "the light bulb",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "LAHM-puh-duh",
+      "example": "Fundiu-se a lâmpada da casa de banho.",
+      "exampleTranslation": "The bathroom light bulb has blown.",
+      "relatedWords": [
+        {
+          "word": "fundir-se",
+          "meaning": "to blow (bulb)"
+        },
+        {
+          "word": "o candeeiro",
+          "meaning": "the lamp"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a torneira",
+      "english": "the tap",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "toor-NAY-ruh",
+      "example": "A torneira da cozinha está sempre a pingar.",
+      "exampleTranslation": "The kitchen tap is always dripping.",
+      "relatedWords": [
+        {
+          "word": "abrir a torneira",
+          "meaning": "to turn on the tap"
+        },
+        {
+          "word": "pingar",
+          "meaning": "to drip"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o estore",
+      "english": "the roller shutter",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "SHTOH-ruh",
+      "example": "Fecha o estore, o sol está a bater no ecrã.",
+      "exampleTranslation": "Close the shutter, the sun is hitting the screen.",
+      "relatedWords": [
+        {
+          "word": "subir o estore",
+          "meaning": "to raise the shutter"
+        },
+        {
+          "word": "a persiana",
+          "meaning": "the blind"
+        }
+      ],
+      "proTip": "Almost every Portuguese flat has external roller shutters; a broken \"estore\" is one of the most common repair requests."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o prédio",
+      "english": "the apartment building",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "oo PREH-dyoo",
+      "example": "O nosso prédio não tem elevador, só escadas.",
+      "exampleTranslation": "Our building has no lift, only stairs.",
+      "relatedWords": [
+        {
+          "word": "o edifício",
+          "meaning": "the building"
+        },
+        {
+          "word": "a porta do prédio",
+          "meaning": "the main door"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a moradia",
+      "english": "the detached house",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "moo-ruh-DEE-uh",
+      "example": "Os meus sogros vivem numa moradia com jardim.",
+      "exampleTranslation": "My in-laws live in a detached house with a garden.",
+      "relatedWords": [
+        {
+          "word": "a vivenda",
+          "meaning": "the house / villa"
+        },
+        {
+          "word": "o apartamento",
+          "meaning": "the flat"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "reparar",
+      "english": "to repair",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "ruh-puh-RAR",
+      "example": "O senhorio prometeu reparar o estore esta semana.",
+      "exampleTranslation": "The landlord promised to repair the shutter this week.",
+      "relatedWords": [
+        {
+          "word": "a reparação",
+          "meaning": "the repair"
+        },
+        {
+          "word": "consertar",
+          "meaning": "to fix"
+        }
+      ],
+      "proTip": "Careful: \"reparar\" also means \"to notice\" (\"reparar em\"): \"Reparaste no bolor?\" = Did you notice the mould?"
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "avariado",
+      "english": "broken down / out of order",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-vuh-ree-AH-doo",
+      "example": "A máquina de lavar está avariada outra vez.",
+      "exampleTranslation": "The washing machine is broken down again.",
+      "relatedWords": [
+        {
+          "word": "a avaria",
+          "meaning": "the breakdown"
+        },
+        {
+          "word": "estragado",
+          "meaning": "broken / damaged"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a mobília",
+      "english": "the furniture",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "moo-BEE-lyuh",
+      "example": "A mobília da sala já vinha com o apartamento.",
+      "exampleTranslation": "The living-room furniture came with the flat.",
+      "relatedWords": [
+        {
+          "word": "os móveis",
+          "meaning": "the furniture (pieces)"
+        },
+        {
+          "word": "mobilado",
+          "meaning": "furnished"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o T0",
+      "english": "the studio flat",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo tay-ZEH-roo",
+      "example": "Um T0 no centro de Lisboa custa uma fortuna.",
+      "exampleTranslation": "A studio in central Lisbon costs a fortune.",
+      "relatedWords": [
+        {
+          "word": "o estúdio",
+          "meaning": "the studio"
+        },
+        {
+          "word": "o T1",
+          "meaning": "the one-bedroom flat"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a caução",
+      "english": "the deposit",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kow-SOWNG",
+      "example": "Pediram dois meses de caução e um de renda adiantada.",
+      "exampleTranslation": "They asked for two months' deposit and one month's rent upfront.",
+      "relatedWords": [
+        {
+          "word": "devolver a caução",
+          "meaning": "to return the deposit"
+        },
+        {
+          "word": "a renda adiantada",
+          "meaning": "rent in advance"
+        }
+      ],
+      "proTip": "Typical in Lisbon: one or two months' caução plus one or two months' rent in advance. Get the flat's condition in writing so you get the caução back."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o fiador",
+      "english": "the guarantor",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "fee-uh-DOR",
+      "example": "Sem fiador, o senhorio pediu mais um mês de caução.",
+      "exampleTranslation": "Without a guarantor, the landlord asked for an extra month's deposit.",
+      "relatedWords": [
+        {
+          "word": "a fiança",
+          "meaning": "the guarantee"
+        },
+        {
+          "word": "o avalista",
+          "meaning": "the co-signer"
+        }
+      ],
+      "proTip": "Many landlords want a Portuguese-resident fiador; foreigners without one often pay extra months up front instead."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o contrato de arrendamento",
+      "english": "the tenancy agreement",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kohn-TRAH-too duh uh-rrayn-duh-MAYN-too",
+      "example": "Lê bem o contrato de arrendamento antes de assinar.",
+      "exampleTranslation": "Read the tenancy agreement carefully before you sign.",
+      "relatedWords": [
+        {
+          "word": "assinar o contrato",
+          "meaning": "to sign the contract"
+        },
+        {
+          "word": "o prazo",
+          "meaning": "the term"
+        }
+      ],
+      "proTip": "The landlord must register the contract with Finanças; ask for proof, as you need it for your address and tax deductions."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a assoalhada",
+      "english": "the main room (bedroom or living room)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-soo-uh-LYAH-duh",
+      "example": "É um apartamento de três assoalhadas, perto da Avenida de Roma.",
+      "exampleTranslation": "It's a three-room flat near Avenida de Roma.",
+      "relatedWords": [
+        {
+          "word": "a divisão",
+          "meaning": "the room"
+        },
+        {
+          "word": "o T2",
+          "meaning": "the two-bedroom flat"
+        }
+      ],
+      "proTip": "An \"assoalhada\" counts bedrooms and living rooms but not the kitchen or bathroom, so \"três assoalhadas\" usually equals a T2."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o condomínio",
+      "english": "the building's owners' association / service charge",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kohn-doo-MEE-nyoo",
+      "example": "O condomínio está incluído na renda?",
+      "exampleTranslation": "Is the building service charge included in the rent?",
+      "relatedWords": [
+        {
+          "word": "a quota do condomínio",
+          "meaning": "the monthly service charge"
+        },
+        {
+          "word": "as partes comuns",
+          "meaning": "the common areas"
+        }
+      ],
+      "proTip": "\"Condomínio\" means both the owners' association of a building and the fee they pay. In Portugal it's normally the owner's cost, not the tenant's."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a administração do condomínio",
+      "english": "the building management",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uhd-mee-neesh-truh-SOWNG doo kohn-doo-MEE-nyoo",
+      "example": "Liga para a administração do condomínio por causa do elevador.",
+      "exampleTranslation": "Call the building management about the lift.",
+      "relatedWords": [
+        {
+          "word": "o administrador",
+          "meaning": "the building manager"
+        },
+        {
+          "word": "o condomínio",
+          "meaning": "the owners' association"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a portaria",
+      "english": "the reception desk / porter's lodge",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "poor-tuh-REE-uh",
+      "example": "Deixaram a encomenda na portaria do prédio.",
+      "exampleTranslation": "They left the parcel at the building's reception desk.",
+      "relatedWords": [
+        {
+          "word": "o porteiro",
+          "meaning": "the porter / doorman"
+        },
+        {
+          "word": "a encomenda",
+          "meaning": "the parcel"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o contador",
+      "english": "the meter",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kohn-tuh-DOR",
+      "example": "O contador da luz fica na entrada do prédio.",
+      "exampleTranslation": "The electricity meter is in the building's entrance.",
+      "relatedWords": [
+        {
+          "word": "o contador da água",
+          "meaning": "the water meter"
+        },
+        {
+          "word": "a leitura",
+          "meaning": "the reading"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "ligar a luz",
+      "english": "to get the electricity connected",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "lee-GAR uh LOOSH",
+      "example": "Quando me mudei, demoraram uma semana a ligar a luz.",
+      "exampleTranslation": "When I moved in, it took a week to get the electricity connected.",
+      "relatedWords": [
+        {
+          "word": "o contrato da luz",
+          "meaning": "the electricity contract"
+        },
+        {
+          "word": "o fornecedor",
+          "meaning": "the supplier"
+        }
+      ],
+      "proTip": "Context matters: \"ligar a luz\" also simply means \"switch on the light\". When moving, people say \"ligar a luz/água/gás\" for setting up the supply in their name."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a leitura do contador",
+      "english": "the meter reading",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "lay-TOO-ruh doo kohn-tuh-DOR",
+      "example": "Envia a leitura do contador para não pagares por estimativa.",
+      "exampleTranslation": "Send the meter reading so you don't pay an estimated bill.",
+      "relatedWords": [
+        {
+          "word": "comunicar a leitura",
+          "meaning": "to submit the reading"
+        },
+        {
+          "word": "a estimativa",
+          "meaning": "the estimate"
+        }
+      ],
+      "proTip": "Water and gas companies bill by estimate unless you send readings, often via app or SMS on set days of the month."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a avaria",
+      "english": "the breakdown / fault",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-vuh-REE-uh",
+      "example": "Já comuniquei a avaria do esquentador ao senhorio.",
+      "exampleTranslation": "I've already reported the water heater fault to the landlord.",
+      "relatedWords": [
+        {
+          "word": "avariado",
+          "meaning": "broken down"
+        },
+        {
+          "word": "comunicar uma avaria",
+          "meaning": "to report a fault"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a fuga de água",
+      "english": "the water leak",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "FOO-guh DAH-gwuh",
+      "example": "Há uma fuga de água por baixo do lava-loiça.",
+      "exampleTranslation": "There's a water leak under the kitchen sink.",
+      "relatedWords": [
+        {
+          "word": "a infiltração",
+          "meaning": "the damp seepage"
+        },
+        {
+          "word": "fechar a água",
+          "meaning": "to turn off the water"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a humidade",
+      "english": "the damp / humidity",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "oo-mee-DAH-duh",
+      "example": "No inverno, as paredes do quarto ficam cheias de humidade.",
+      "exampleTranslation": "In winter, the bedroom walls get covered in damp.",
+      "relatedWords": [
+        {
+          "word": "húmido",
+          "meaning": "damp"
+        },
+        {
+          "word": "o desumidificador",
+          "meaning": "the dehumidifier"
+        }
+      ],
+      "proTip": "Damp is a classic problem in Lisbon's older flats. Many people run a \"desumidificador\" all winter."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o bolor",
+      "english": "the mould",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "boo-LOR",
+      "example": "Apareceu bolor no teto da casa de banho.",
+      "exampleTranslation": "Mould has appeared on the bathroom ceiling.",
+      "relatedWords": [
+        {
+          "word": "a humidade",
+          "meaning": "the damp"
+        },
+        {
+          "word": "arejar",
+          "meaning": "to air out"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "as obras",
+      "english": "the building work / renovations",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uhz OH-bruhsh",
+      "example": "O prédio ao lado está em obras desde março.",
+      "exampleTranslation": "The building next door has been under renovation since March.",
+      "relatedWords": [
+        {
+          "word": "estar em obras",
+          "meaning": "to be under renovation"
+        },
+        {
+          "word": "o empreiteiro",
+          "meaning": "the builder / contractor"
+        }
+      ],
+      "proTip": "Noise from obras is restricted to weekdays 8:00–20:00 under Portuguese noise law — useful to know when you complain."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a empresa de mudanças",
+      "english": "the removal company",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ayng-PREH-zuh duh moo-DAHN-suhsh",
+      "example": "Contratámos uma empresa de mudanças para levar os móveis.",
+      "exampleTranslation": "We hired a removal company to take the furniture.",
+      "relatedWords": [
+        {
+          "word": "a carrinha",
+          "meaning": "the van"
+        },
+        {
+          "word": "o caixote",
+          "meaning": "the moving box"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a arrecadação",
+      "english": "the storage room",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-rruh-kuh-duh-SOWNG",
+      "example": "O apartamento tem uma arrecadação na cave.",
+      "exampleTranslation": "The flat comes with a storage room in the basement.",
+      "relatedWords": [
+        {
+          "word": "a despensa",
+          "meaning": "the pantry"
+        },
+        {
+          "word": "guardar",
+          "meaning": "to store / keep"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o lugar de garagem",
+      "english": "the parking space",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "loo-GAR duh guh-RAH-zhayng",
+      "example": "A renda inclui lugar de garagem?",
+      "exampleTranslation": "Does the rent include a parking space?",
+      "relatedWords": [
+        {
+          "word": "a garagem",
+          "meaning": "the garage"
+        },
+        {
+          "word": "estacionar",
+          "meaning": "to park"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o isolamento",
+      "english": "the insulation",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ee-zoo-luh-MAYN-too",
+      "example": "Este prédio é antigo e não tem isolamento nenhum.",
+      "exampleTranslation": "This building is old and has no insulation at all.",
+      "relatedWords": [
+        {
+          "word": "as janelas de vidro duplo",
+          "meaning": "double-glazed windows"
+        },
+        {
+          "word": "isolar",
+          "meaning": "to insulate"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "avariar",
+      "english": "to break down",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-vuh-ree-AR",
+      "example": "O frigorífico avariou mesmo antes das férias.",
+      "exampleTranslation": "The fridge broke down just before the holidays.",
+      "relatedWords": [
+        {
+          "word": "a avaria",
+          "meaning": "the breakdown"
+        },
+        {
+          "word": "estragar-se",
+          "meaning": "to get damaged"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "entregar as chaves",
+      "english": "to hand over the keys",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayn-truh-GAR uhsh SHAH-vuhsh",
+      "example": "Temos de entregar as chaves até ao fim do mês.",
+      "exampleTranslation": "We have to hand over the keys by the end of the month.",
+      "relatedWords": [
+        {
+          "word": "receber as chaves",
+          "meaning": "to get the keys"
+        },
+        {
+          "word": "a vistoria",
+          "meaning": "the inspection"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o esquentador",
+      "english": "the gas water heater",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo shkayn-tuh-DOR",
+      "example": "O esquentador não acende, por isso não há água quente.",
+      "exampleTranslation": "The water heater won't light, so there's no hot water.",
+      "relatedWords": [
+        {
+          "word": "o termoacumulador",
+          "meaning": "the electric hot-water tank"
+        },
+        {
+          "word": "a água quente",
+          "meaning": "hot water"
+        }
+      ],
+      "proTip": "Many Portuguese flats heat water with a gas \"esquentador\" in the kitchen; it needs a yearly check and must not be in a closed room."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o aquecedor",
+      "english": "the heater",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo uh-keh-suh-DOR",
+      "example": "Ligamos o aquecedor a óleo só à noite, por causa da conta.",
+      "exampleTranslation": "We only switch on the oil heater at night because of the bill.",
+      "relatedWords": [
+        {
+          "word": "o aquecedor a óleo",
+          "meaning": "the oil-filled radiator"
+        },
+        {
+          "word": "o aquecimento",
+          "meaning": "the heating"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a infiltração",
+      "english": "the damp seepage / leak",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "eeng-feel-truh-SOWNG",
+      "example": "A infiltração vem do apartamento de cima.",
+      "exampleTranslation": "The leak is coming from the flat upstairs.",
+      "relatedWords": [
+        {
+          "word": "a fuga de água",
+          "meaning": "the water leak"
+        },
+        {
+          "word": "o seguro da casa",
+          "meaning": "home insurance"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "entupido",
+      "english": "blocked / clogged",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayn-too-PEE-doo",
+      "example": "O lava-loiça está entupido outra vez.",
+      "exampleTranslation": "The kitchen sink is blocked again.",
+      "relatedWords": [
+        {
+          "word": "desentupir",
+          "meaning": "to unblock"
+        },
+        {
+          "word": "o cano",
+          "meaning": "the pipe"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o cano",
+      "english": "the pipe",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo KUH-noo",
+      "example": "Rebentou um cano e a cozinha ficou inundada.",
+      "exampleTranslation": "A pipe burst and the kitchen flooded.",
+      "relatedWords": [
+        {
+          "word": "rebentar",
+          "meaning": "to burst"
+        },
+        {
+          "word": "a canalização",
+          "meaning": "the plumbing"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o quadro elétrico",
+      "english": "the fuse box",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "KWAH-droo ee-LEH-tree-koo",
+      "example": "A luz foi abaixo; vai ver o quadro elétrico.",
+      "exampleTranslation": "The power's gone off; go and check the fuse box.",
+      "relatedWords": [
+        {
+          "word": "o disjuntor",
+          "meaning": "the circuit breaker"
+        },
+        {
+          "word": "ir abaixo",
+          "meaning": "to trip / go off"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "pedir um orçamento",
+      "english": "to ask for a quote",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puh-DEER oong or-suh-MAYN-too",
+      "example": "Antes de pintar, vamos pedir um orçamento a duas empresas.",
+      "exampleTranslation": "Before painting, we'll ask two companies for a quote.",
+      "relatedWords": [
+        {
+          "word": "o orçamento",
+          "meaning": "the quote / budget"
+        },
+        {
+          "word": "sem compromisso",
+          "meaning": "no obligation"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a quota do condomínio",
+      "english": "the monthly service charge",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KWOH-tuh doo kohn-doo-MEE-nyoo",
+      "example": "A quota do condomínio subiu por causa das obras no telhado.",
+      "exampleTranslation": "The service charge went up because of the roof works.",
+      "relatedWords": [
+        {
+          "word": "o condomínio",
+          "meaning": "the owners' association"
+        },
+        {
+          "word": "pagar as quotas",
+          "meaning": "to pay the fees"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o aviso prévio",
+      "english": "the notice period",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo uh-VEE-zoo PREH-vyoo",
+      "example": "Para sair, tenho de dar dois meses de aviso prévio.",
+      "exampleTranslation": "To leave, I have to give two months' notice.",
+      "relatedWords": [
+        {
+          "word": "a carta registada",
+          "meaning": "the recorded-delivery letter"
+        },
+        {
+          "word": "denunciar o contrato",
+          "meaning": "to give notice on the contract"
+        }
+      ],
+      "proTip": "Notice to end a tenancy is normally sent by \"carta registada com aviso de receção\" — an email isn't enough legally."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "renovar o contrato",
+      "english": "to renew the contract",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ruh-noo-VAR oo kohn-TRAH-too",
+      "example": "O senhorio não quer renovar o contrato no próximo ano.",
+      "exampleTranslation": "The landlord doesn't want to renew the contract next year.",
+      "relatedWords": [
+        {
+          "word": "a renovação automática",
+          "meaning": "automatic renewal"
+        },
+        {
+          "word": "o prazo",
+          "meaning": "the term"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "rescindir o contrato",
+      "english": "to terminate the contract",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ruhsh-seeng-DEER oo kohn-TRAH-too",
+      "example": "Se rescindires o contrato antes, perdes a caução.",
+      "exampleTranslation": "If you terminate the contract early, you lose the deposit.",
+      "relatedWords": [
+        {
+          "word": "a rescisão",
+          "meaning": "the termination"
+        },
+        {
+          "word": "a multa",
+          "meaning": "the penalty"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o despejo",
+      "english": "the eviction",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo dush-PAY-zhoo",
+      "example": "Com três meses de renda em atraso, pode haver despejo.",
+      "exampleTranslation": "With three months' rent overdue, there can be an eviction.",
+      "relatedWords": [
+        {
+          "word": "a ação de despejo",
+          "meaning": "the eviction proceedings"
+        },
+        {
+          "word": "a renda em atraso",
+          "meaning": "overdue rent"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "as despesas incluídas",
+      "english": "bills included",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uhsh dush-PEH-zuhsh eeng-kloo-EE-duhsh",
+      "example": "O quarto custa quinhentos euros com despesas incluídas.",
+      "exampleTranslation": "The room costs five hundred euros with bills included.",
+      "relatedWords": [
+        {
+          "word": "as despesas",
+          "meaning": "the bills / expenses"
+        },
+        {
+          "word": "dividir as contas",
+          "meaning": "to split the bills"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o certificado energético",
+      "english": "the energy certificate",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "sur-tee-fee-KAH-doo ee-nur-ZHEH-tee-koo",
+      "example": "O anúncio diz que o certificado energético é classe C.",
+      "exampleTranslation": "The ad says the energy certificate is class C.",
+      "relatedWords": [
+        {
+          "word": "a classe energética",
+          "meaning": "the energy rating"
+        },
+        {
+          "word": "a eficiência",
+          "meaning": "the efficiency"
+        }
+      ],
+      "proTip": "Every flat advertised for rent or sale in Portugal must show its energy class; a low letter (E or F) usually means a cold, damp winter."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "soalheiro",
+      "english": "sunny (getting lots of sun)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "soo-uh-LYAY-roo",
+      "example": "A sala é muito soalheira de manhã.",
+      "exampleTranslation": "The living room gets lots of sun in the morning.",
+      "relatedWords": [
+        {
+          "word": "virado a sul",
+          "meaning": "south-facing"
+        },
+        {
+          "word": "luminoso",
+          "meaning": "bright"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "luminoso",
+      "english": "bright / full of light",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "loo-mee-NOH-zoo",
+      "example": "Procuro um apartamento luminoso, com janelas grandes.",
+      "exampleTranslation": "I'm looking for a bright flat with big windows.",
+      "relatedWords": [
+        {
+          "word": "a luz natural",
+          "meaning": "natural light"
+        },
+        {
+          "word": "escuro",
+          "meaning": "dark"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "arejado",
+      "english": "airy / well-ventilated",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-ruh-ZHAH-doo",
+      "example": "O quarto é pequeno mas bem arejado.",
+      "exampleTranslation": "The bedroom is small but well ventilated.",
+      "relatedWords": [
+        {
+          "word": "arejar a casa",
+          "meaning": "to air the house"
+        },
+        {
+          "word": "abafado",
+          "meaning": "stuffy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "espaçoso",
+      "english": "spacious",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shpuh-SOH-zoo",
+      "example": "A cozinha é espaçosa e tem despensa.",
+      "exampleTranslation": "The kitchen is spacious and has a pantry.",
+      "relatedWords": [
+        {
+          "word": "amplo",
+          "meaning": "roomy"
+        },
+        {
+          "word": "apertado",
+          "meaning": "cramped"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "remodelado",
+      "english": "renovated",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ruh-moo-duh-LAH-doo",
+      "example": "É um T2 remodelado, com cozinha nova.",
+      "exampleTranslation": "It's a renovated two-bedroom flat with a new kitchen.",
+      "relatedWords": [
+        {
+          "word": "a remodelação",
+          "meaning": "the renovation"
+        },
+        {
+          "word": "para remodelar",
+          "meaning": "needs renovation"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "agendar uma visita",
+      "english": "to schedule a viewing",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-zhayn-DAR OO-muh vee-ZEE-tuh",
+      "example": "Liguei para a imobiliária para agendar uma visita.",
+      "exampleTranslation": "I called the agency to schedule a viewing.",
+      "relatedWords": [
+        {
+          "word": "marcar",
+          "meaning": "to book"
+        },
+        {
+          "word": "a disponibilidade",
+          "meaning": "the availability"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "consertar",
+      "english": "to fix",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kohn-sur-TAR",
+      "example": "O meu pai ajudou-me a consertar o estore.",
+      "exampleTranslation": "My dad helped me fix the shutter.",
+      "relatedWords": [
+        {
+          "word": "o conserto",
+          "meaning": "the repair"
+        },
+        {
+          "word": "reparar",
+          "meaning": "to repair"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "arranjar",
+      "english": "to fix / to get (something)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-rrahn-ZHAR",
+      "example": "Tens de arranjar alguém para arranjar a torneira.",
+      "exampleTranslation": "You need to find someone to fix the tap.",
+      "relatedWords": [
+        {
+          "word": "arranjar casa",
+          "meaning": "to find a place to live"
+        },
+        {
+          "word": "arranjado",
+          "meaning": "fixed / tidy"
+        }
+      ],
+      "proTip": "\"Arranjar\" is very common in Portugal: \"arranjar casa\" = find a home, \"arranjar a máquina\" = fix the machine."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a botija de gás",
+      "english": "the gas cylinder",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "boo-TEE-zhuh duh GAHSH",
+      "example": "Acabou o gás, temos de trocar a botija.",
+      "exampleTranslation": "We've run out of gas, we need to swap the cylinder.",
+      "relatedWords": [
+        {
+          "word": "o gás canalizado",
+          "meaning": "mains gas"
+        },
+        {
+          "word": "trocar a botija",
+          "meaning": "to swap the cylinder"
+        }
+      ],
+      "proTip": "Buildings without mains gas use bottled gas: you swap the empty \"botija\" at a petrol station or have it delivered."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o estendal",
+      "english": "the clothes airer / drying rack",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo shtayn-DAHL",
+      "example": "Põe o estendal na varanda, está um dia de sol.",
+      "exampleTranslation": "Put the drying rack on the balcony, it's a sunny day.",
+      "relatedWords": [
+        {
+          "word": "estender a roupa",
+          "meaning": "to hang out the washing"
+        },
+        {
+          "word": "a mola",
+          "meaning": "the clothes peg"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "incomodar",
+      "english": "to bother / disturb",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "eeng-koo-moo-DAR",
+      "example": "Desculpe incomodar, mas a música está muito alta.",
+      "exampleTranslation": "Sorry to bother you, but the music is very loud.",
+      "relatedWords": [
+        {
+          "word": "o incómodo",
+          "meaning": "the inconvenience"
+        },
+        {
+          "word": "perturbar",
+          "meaning": "to disturb"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o ruído",
+      "english": "the noise (formal)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo RWEE-doo",
+      "example": "O regulamento proíbe ruído depois das onze da noite.",
+      "exampleTranslation": "The rules forbid noise after eleven at night.",
+      "relatedWords": [
+        {
+          "word": "o barulho",
+          "meaning": "the noise (everyday)"
+        },
+        {
+          "word": "a lei do ruído",
+          "meaning": "the noise law"
+        }
+      ],
+      "proTip": "\"Ruído\" is the official word (Regulamento Geral do Ruído); in conversation people say \"barulho\"."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a marquise",
+      "english": "the enclosed balcony",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "mar-KEE-zuh",
+      "example": "Fechámos a varanda e agora temos uma marquise.",
+      "exampleTranslation": "We enclosed the balcony and now we have a sunroom.",
+      "relatedWords": [
+        {
+          "word": "a varanda",
+          "meaning": "the balcony"
+        },
+        {
+          "word": "a lavandaria",
+          "meaning": "the utility area"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a cozinha equipada",
+      "english": "the fitted kitchen (with appliances)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "koo-ZEE-nyuh ee-kee-PAH-duh",
+      "example": "O apartamento tem cozinha equipada com forno e placa.",
+      "exampleTranslation": "The flat has a fitted kitchen with an oven and hob.",
+      "relatedWords": [
+        {
+          "word": "os eletrodomésticos",
+          "meaning": "the appliances"
+        },
+        {
+          "word": "a placa",
+          "meaning": "the hob"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o intercomunicador",
+      "english": "the intercom",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "een-tehr-koo-moo-nee-kuh-DOR",
+      "example": "O intercomunicador está avariado; liga-me quando chegares.",
+      "exampleTranslation": "The intercom is broken; call me when you arrive.",
+      "relatedWords": [
+        {
+          "word": "tocar à campainha",
+          "meaning": "to ring the bell"
+        },
+        {
+          "word": "abrir a porta",
+          "meaning": "to buzz someone in"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "trocar a fechadura",
+      "english": "to change the lock",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "troo-KAR uh fuh-shuh-DOO-ruh",
+      "example": "Perdi as chaves e tive de trocar a fechadura.",
+      "exampleTranslation": "I lost my keys and had to change the lock.",
+      "relatedWords": [
+        {
+          "word": "o serralheiro",
+          "meaning": "the locksmith"
+        },
+        {
+          "word": "a cópia da chave",
+          "meaning": "the spare key"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o ecoponto",
+      "english": "the recycling bins",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo eh-koh-POHN-too",
+      "example": "Há um ecoponto mesmo à porta do prédio.",
+      "exampleTranslation": "There's a recycling point right outside the building.",
+      "relatedWords": [
+        {
+          "word": "o vidrão",
+          "meaning": "the glass bank"
+        },
+        {
+          "word": "separar o lixo",
+          "meaning": "to sort the rubbish"
+        }
+      ],
+      "proTip": "Colours: yellow for plastic and metal, blue for paper and cardboard, green for glass."
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "o morador",
+      "english": "the resident",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo moo-ruh-DOR",
+      "example": "Os moradores do prédio fizeram queixa do barulho.",
+      "exampleTranslation": "The building's residents complained about the noise.",
+      "relatedWords": [
+        {
+          "word": "a moradora",
+          "meaning": "the (female) resident"
+        },
+        {
+          "word": "morar",
+          "meaning": "to live"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "renting-home-life",
+    "word": {
+      "portuguese": "a assembleia de condomínio",
+      "english": "the residents' meeting",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-sayng-BLAY-uh duh kohn-doo-MEE-nyoo",
+      "example": "Na assembleia de condomínio decidiram pintar a fachada.",
+      "exampleTranslation": "At the residents' meeting they decided to paint the façade.",
+      "relatedWords": [
+        {
+          "word": "a ata",
+          "meaning": "the minutes"
+        },
+        {
+          "word": "votar",
+          "meaning": "to vote"
+        }
+      ]
+    }
+  }
+]

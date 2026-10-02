@@ -1,0 +1,3567 @@
+[
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "o passe",
+      "english": "monthly travel pass",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo PAH-suh",
+      "example": "Uso o passe para apanhar o metro e o autocarro.",
+      "exampleTranslation": "I use my travel pass to take the metro and the bus.",
+      "relatedWords": [
+        {
+          "word": "o passe mensal",
+          "meaning": "the monthly pass"
+        },
+        {
+          "word": "o cartão Navegante",
+          "meaning": "Lisbon's transport card"
+        }
+      ],
+      "proTip": "In Lisbon the Navegante pass covers metro, Carris, CP trains and ferries across the whole metro area for a flat monthly price."
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "carregar o passe",
+      "english": "to top up / renew the travel pass",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kah-ruh-GAR oo PAH-suh",
+      "example": "Tenho de carregar o passe antes do dia um.",
+      "exampleTranslation": "I have to top up my pass before the first of the month.",
+      "relatedWords": [
+        {
+          "word": "a máquina de venda",
+          "meaning": "the ticket machine"
+        },
+        {
+          "word": "o carregamento",
+          "meaning": "the top-up"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "o revisor",
+      "english": "ticket inspector",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ruh-vee-ZOR",
+      "example": "O revisor pediu-me o bilhete logo a seguir a Sintra.",
+      "exampleTranslation": "The inspector asked for my ticket right after Sintra.",
+      "relatedWords": [
+        {
+          "word": "a multa",
+          "meaning": "the fine"
+        },
+        {
+          "word": "validar",
+          "meaning": "to validate"
+        }
+      ],
+      "proTip": "Fines for travelling without a validated ticket are steep, and «esqueci-me» rarely works with the revisor."
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "a Via Verde",
+      "english": "electronic toll tag (Portugal)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh VEE-uh VEHR-duh",
+      "example": "Com a Via Verde não precisas de parar nas portagens.",
+      "exampleTranslation": "With Via Verde you don't need to stop at the tolls.",
+      "relatedWords": [
+        {
+          "word": "a portagem",
+          "meaning": "the toll"
+        },
+        {
+          "word": "o identificador",
+          "meaning": "the toll transponder"
+        }
+      ],
+      "proTip": "Via Verde also pays for many car parks and some petrol stations. Rental cars usually offer it for a small daily fee."
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "o desvio",
+      "english": "detour / diversion",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo duhzh-VEE-oo",
+      "example": "Por causa das obras, há um desvio na Avenida da Liberdade.",
+      "exampleTranslation": "Because of the roadworks, there's a diversion on Avenida da Liberdade.",
+      "relatedWords": [
+        {
+          "word": "desviar",
+          "meaning": "to divert"
+        },
+        {
+          "word": "as obras",
+          "meaning": "the roadworks"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "o engarrafamento",
+      "english": "traffic jam",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ayng-gah-ruh-fuh-MAYNG-too",
+      "example": "Apanhei um engarrafamento enorme na Ponte 25 de Abril.",
+      "exampleTranslation": "I got stuck in a huge traffic jam on the 25 de Abril bridge.",
+      "relatedWords": [
+        {
+          "word": "a fila",
+          "meaning": "the queue (of traffic)"
+        },
+        {
+          "word": "a hora de ponta",
+          "meaning": "rush hour"
+        }
+      ],
+      "proTip": "On the radio you'll also hear «trânsito condicionado» for slow or restricted traffic."
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "perder o comboio",
+      "english": "to miss the train",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puhr-DEHR oo kohm-BOY-oo",
+      "example": "Se não te despachas, vamos perder o comboio.",
+      "exampleTranslation": "If you don't hurry up, we'll miss the train.",
+      "relatedWords": [
+        {
+          "word": "apanhar o comboio",
+          "meaning": "to catch the train"
+        },
+        {
+          "word": "despachar-se",
+          "meaning": "to hurry up"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "o cais",
+      "english": "platform / quay",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo KAISH",
+      "example": "O comboio para o Porto parte do cais número cinco.",
+      "exampleTranslation": "The train to Porto leaves from platform five.",
+      "relatedWords": [
+        {
+          "word": "a linha",
+          "meaning": "the track / line"
+        },
+        {
+          "word": "o cais do Sodré",
+          "meaning": "a Lisbon station by the river"
+        }
+      ],
+      "proTip": "Stations show «linha» for the track number; «cais» is the platform itself and also the riverside quay."
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "a bagagem de mão",
+      "english": "hand luggage",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh buh-GAH-zhayng duh MOWNG",
+      "example": "Só levo bagagem de mão para não pagar mais.",
+      "exampleTranslation": "I'm only taking hand luggage so I don't pay extra.",
+      "relatedWords": [
+        {
+          "word": "despachar a mala",
+          "meaning": "to check in a bag"
+        },
+        {
+          "word": "o peso",
+          "meaning": "the weight"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "o cartão de embarque",
+      "english": "boarding pass",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kar-TOWNG duh ayng-BAR-kuh",
+      "example": "Tens o cartão de embarque no telemóvel?",
+      "exampleTranslation": "Do you have the boarding pass on your phone?",
+      "relatedWords": [
+        {
+          "word": "a porta de embarque",
+          "meaning": "the boarding gate"
+        },
+        {
+          "word": "embarcar",
+          "meaning": "to board"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "a escala",
+      "english": "layover / stopover",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh shKAH-luh",
+      "example": "O voo para Luanda tem escala em Lisboa.",
+      "exampleTranslation": "The flight to Luanda has a stopover in Lisbon.",
+      "relatedWords": [
+        {
+          "word": "fazer escala",
+          "meaning": "to stop over"
+        },
+        {
+          "word": "o voo direto",
+          "meaning": "the direct flight"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "alugar um carro",
+      "english": "to rent a car",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-loo-GAR oong KAH-roo",
+      "example": "Para conhecer o Alentejo, o melhor é alugar um carro.",
+      "exampleTranslation": "To see the Alentejo, the best thing is to rent a car.",
+      "relatedWords": [
+        {
+          "word": "o aluguer",
+          "meaning": "the rental"
+        },
+        {
+          "word": "o seguro",
+          "meaning": "the insurance"
+        }
+      ],
+      "proTip": "Use «alugar» for cars and flats alike; «arrendar» is only for long-term property rental."
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "validar o bilhete",
+      "english": "to validate the ticket",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "vuh-lee-DAR oo beel-YET",
+      "example": "Não te esqueças de validar o bilhete à entrada.",
+      "exampleTranslation": "Don't forget to validate your ticket when you get on.",
+      "relatedWords": [
+        {
+          "word": "o validador",
+          "meaning": "the card reader"
+        },
+        {
+          "word": "o revisor",
+          "meaning": "the ticket inspector"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "o transbordo",
+      "english": "change / transfer (between lines)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo trunzh-BOR-doo",
+      "example": "Para ir a Belém, fazes transbordo no Cais do Sodré.",
+      "exampleTranslation": "To get to Belém, you change at Cais do Sodré.",
+      "relatedWords": [
+        {
+          "word": "mudar de linha",
+          "meaning": "to change lines"
+        },
+        {
+          "word": "a ligação",
+          "meaning": "the connection"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "a bomba de gasolina",
+      "english": "petrol station",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh BOHM-buh duh guh-zoo-LEE-nuh",
+      "example": "Temos de parar na próxima bomba de gasolina.",
+      "exampleTranslation": "We need to stop at the next petrol station.",
+      "relatedWords": [
+        {
+          "word": "abastecer",
+          "meaning": "to fill up"
+        },
+        {
+          "word": "o gasóleo",
+          "meaning": "diesel"
+        }
+      ],
+      "proTip": "«Atestar» means to fill the tank right up: «Atesta, se faz favor.»"
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "estacionar",
+      "english": "to park",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shtuh-syoo-NAR",
+      "example": "É impossível estacionar em Alfama ao fim de semana.",
+      "exampleTranslation": "It's impossible to park in Alfama at the weekend.",
+      "relatedWords": [
+        {
+          "word": "o lugar",
+          "meaning": "the parking space"
+        },
+        {
+          "word": "a EMEL",
+          "meaning": "Lisbon's parking authority"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "a porta de embarque",
+      "english": "boarding gate",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh POR-tuh duh ayng-BAR-kuh",
+      "example": "A porta de embarque mudou para a quarenta e dois.",
+      "exampleTranslation": "The boarding gate changed to forty-two.",
+      "relatedWords": [
+        {
+          "word": "embarcar",
+          "meaning": "to board"
+        },
+        {
+          "word": "o atraso",
+          "meaning": "the delay"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "a estação de serviço",
+      "english": "motorway service station",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh shtuh-SOWNG duh suhr-VEE-soo",
+      "example": "Parámos numa estação de serviço para tomar um café.",
+      "exampleTranslation": "We stopped at a service station for a coffee.",
+      "relatedWords": [
+        {
+          "word": "a área de serviço",
+          "meaning": "service area"
+        },
+        {
+          "word": "a autoestrada",
+          "meaning": "the motorway"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "o sentido único",
+      "english": "one-way street",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo sayng-TEE-doo OO-nee-koo",
+      "example": "Não podes virar aqui, essa rua é de sentido único.",
+      "exampleTranslation": "You can't turn here, that street is one-way.",
+      "relatedWords": [
+        {
+          "word": "o sentido proibido",
+          "meaning": "no entry"
+        },
+        {
+          "word": "virar",
+          "meaning": "to turn"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "travel-directions",
+    "word": {
+      "portuguese": "dar boleia",
+      "english": "to give a lift",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dar boo-LAY-uh",
+      "example": "Podes dar-me boleia até à estação?",
+      "exampleTranslation": "Can you give me a lift to the station?",
+      "relatedWords": [
+        {
+          "word": "pedir boleia",
+          "meaning": "to ask for a lift / hitchhike"
+        },
+        {
+          "word": "apanhar",
+          "meaning": "to pick up"
+        }
+      ],
+      "proTip": "Brazilians say «dar carona»; in Portugal it's always «boleia»."
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "a dose",
+      "english": "full portion",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh DOH-zuh",
+      "example": "Uma dose de bacalhau chega bem para duas pessoas.",
+      "exampleTranslation": "One portion of bacalhau is plenty for two people.",
+      "relatedWords": [
+        {
+          "word": "a meia dose",
+          "meaning": "the half portion"
+        },
+        {
+          "word": "o prato",
+          "meaning": "the dish"
+        }
+      ],
+      "proTip": "Portuguese portions are big; sharing one dose between two is completely normal."
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "a meia dose",
+      "english": "half portion",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh MAY-uh DOH-zuh",
+      "example": "Pode ser meia dose de polvo, se faz favor?",
+      "exampleTranslation": "Could I have a half portion of octopus, please?",
+      "relatedWords": [
+        {
+          "word": "a dose",
+          "meaning": "the full portion"
+        },
+        {
+          "word": "dividir",
+          "meaning": "to share"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "o couvert",
+      "english": "bread and starters put on the table",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo koo-VEHR",
+      "example": "Não comemos o couvert, por isso não o pagamos.",
+      "exampleTranslation": "We didn't eat the couvert, so we don't pay for it.",
+      "relatedWords": [
+        {
+          "word": "as azeitonas",
+          "meaning": "olives"
+        },
+        {
+          "word": "o pão",
+          "meaning": "the bread"
+        }
+      ],
+      "proTip": "Bread, olives and butter brought to your table aren't free. By law you only pay for what you touch, so just send it back if you don't want it."
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "pedir a conta",
+      "english": "to ask for the bill",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puh-DEER uh KOHN-tuh",
+      "example": "Vamos pedir a conta, que já está a ficar tarde.",
+      "exampleTranslation": "Let's ask for the bill, it's getting late.",
+      "relatedWords": [
+        {
+          "word": "a conta, por favor",
+          "meaning": "the bill, please"
+        },
+        {
+          "word": "pagar com cartão",
+          "meaning": "to pay by card"
+        }
+      ],
+      "proTip": "Waiters won't bring the bill until you ask. Catching their eye and miming signing is fine."
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "a tasca",
+      "english": "small traditional tavern",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh TAHSH-kuh",
+      "example": "Almoçámos numa tasca em Alfama com comida caseira.",
+      "exampleTranslation": "We had lunch at a little tavern in Alfama with home cooking.",
+      "relatedWords": [
+        {
+          "word": "a comida caseira",
+          "meaning": "home cooking"
+        },
+        {
+          "word": "o tasco",
+          "meaning": "tavern (variant)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "a esplanada",
+      "english": "outdoor café terrace",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh shpluh-NAH-duh",
+      "example": "Está um dia lindo, vamos sentar-nos na esplanada.",
+      "exampleTranslation": "It's a lovely day, let's sit on the terrace.",
+      "relatedWords": [
+        {
+          "word": "ao ar livre",
+          "meaning": "outdoors"
+        },
+        {
+          "word": "o quiosque",
+          "meaning": "the kiosk"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "assado",
+      "english": "roast(ed)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-SAH-doo",
+      "example": "Ao domingo a minha mãe faz frango assado no forno.",
+      "exampleTranslation": "On Sundays my mum makes roast chicken in the oven.",
+      "relatedWords": [
+        {
+          "word": "assar",
+          "meaning": "to roast"
+        },
+        {
+          "word": "o leitão assado",
+          "meaning": "roast suckling pig"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "cozer",
+      "english": "to boil / cook in water",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "koo-ZEHR",
+      "example": "Põe as batatas a cozer durante vinte minutos.",
+      "exampleTranslation": "Put the potatoes on to boil for twenty minutes.",
+      "relatedWords": [
+        {
+          "word": "cozido",
+          "meaning": "boiled"
+        },
+        {
+          "word": "ferver",
+          "meaning": "to boil (liquid)"
+        }
+      ],
+      "proTip": "Don't confuse «cozer» (to cook/boil) with «coser» (to sew); they sound the same."
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "estufado",
+      "english": "stewed / braised",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shtoo-FAH-doo",
+      "example": "Hoje há borrego estufado com batatas.",
+      "exampleTranslation": "Today there's stewed lamb with potatoes.",
+      "relatedWords": [
+        {
+          "word": "o guisado",
+          "meaning": "stew"
+        },
+        {
+          "word": "em lume brando",
+          "meaning": "on a low heat"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "frito",
+      "english": "fried",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "FREE-too",
+      "example": "Prefiro o peixe grelhado ao peixe frito.",
+      "exampleTranslation": "I prefer grilled fish to fried fish.",
+      "relatedWords": [
+        {
+          "word": "fritar",
+          "meaning": "to fry"
+        },
+        {
+          "word": "as batatas fritas",
+          "meaning": "chips / crisps"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "temperar",
+      "english": "to season",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "tayng-puh-RAR",
+      "example": "Tempera a salada com azeite, vinagre e sal.",
+      "exampleTranslation": "Dress the salad with olive oil, vinegar and salt.",
+      "relatedWords": [
+        {
+          "word": "o tempero",
+          "meaning": "the seasoning"
+        },
+        {
+          "word": "sem sal",
+          "meaning": "unsalted"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "mal passado",
+      "english": "rare (meat)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "mahl puh-SAH-doo",
+      "example": "Gosto do bife mal passado, por favor.",
+      "exampleTranslation": "I like my steak rare, please.",
+      "relatedWords": [
+        {
+          "word": "médio",
+          "meaning": "medium"
+        },
+        {
+          "word": "o bife",
+          "meaning": "the steak"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "bem passado",
+      "english": "well done (meat)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "bayng puh-SAH-doo",
+      "example": "Para mim, o bife bem passado, se faz favor.",
+      "exampleTranslation": "For me, the steak well done, please.",
+      "relatedWords": [
+        {
+          "word": "mal passado",
+          "meaning": "rare"
+        },
+        {
+          "word": "o ponto",
+          "meaning": "how it's cooked"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "o bitoque",
+      "english": "steak with egg and chips",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo bee-TOH-kuh",
+      "example": "Quando não sei o que pedir, peço um bitoque.",
+      "exampleTranslation": "When I don't know what to order, I get a bitoque.",
+      "relatedWords": [
+        {
+          "word": "o ovo estrelado",
+          "meaning": "the fried egg"
+        },
+        {
+          "word": "o prato do dia",
+          "meaning": "the dish of the day"
+        }
+      ],
+      "proTip": "A cheap café classic: thin steak, fried egg on top, chips, rice and salad."
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "os caracóis",
+      "english": "snails (as a snack)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oosh kuh-ruh-KOYSH",
+      "example": "No verão, há sempre um prato de caracóis com imperial.",
+      "exampleTranslation": "In summer there's always a plate of snails with a beer.",
+      "relatedWords": [
+        {
+          "word": "a imperial",
+          "meaning": "small draught beer"
+        },
+        {
+          "word": "o petisco",
+          "meaning": "the snack"
+        }
+      ],
+      "proTip": "Look for the sign «Há caracóis» in café windows from May to August."
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "o vinho da casa",
+      "english": "house wine",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo VEEN-yoo duh KAH-zuh",
+      "example": "O vinho da casa é barato e bastante bom.",
+      "exampleTranslation": "The house wine is cheap and pretty good.",
+      "relatedWords": [
+        {
+          "word": "o jarro",
+          "meaning": "the jug"
+        },
+        {
+          "word": "o vinho tinto",
+          "meaning": "red wine"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "o galão",
+      "english": "milky coffee in a glass",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo guh-LOWNG",
+      "example": "Ao pequeno-almoço bebo um galão e como uma torrada.",
+      "exampleTranslation": "For breakfast I drink a galão and eat some toast.",
+      "relatedWords": [
+        {
+          "word": "a meia de leite",
+          "meaning": "coffee with milk in a cup"
+        },
+        {
+          "word": "a torrada",
+          "meaning": "buttered toast"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "a bica",
+      "english": "espresso (Lisbon)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh BEE-kuh",
+      "example": "Depois do almoço, uma bica e volto ao trabalho.",
+      "exampleTranslation": "After lunch, an espresso and I'm back to work.",
+      "relatedWords": [
+        {
+          "word": "o café",
+          "meaning": "espresso (most of Portugal)"
+        },
+        {
+          "word": "o cimbalino",
+          "meaning": "espresso (Porto)"
+        }
+      ],
+      "proTip": "Say «uma bica» in Lisbon; elsewhere just «um café». A «café cheio» is a slightly longer pour."
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "a tosta mista",
+      "english": "ham and cheese toastie",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh TOHSH-tuh MEESH-tuh",
+      "example": "Queria uma tosta mista e um sumo de laranja.",
+      "exampleTranslation": "I'd like a ham and cheese toastie and an orange juice.",
+      "relatedWords": [
+        {
+          "word": "o fiambre",
+          "meaning": "ham"
+        },
+        {
+          "word": "a torrada",
+          "meaning": "toast"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "o sumo natural",
+      "english": "freshly squeezed juice",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo SOO-moo nuh-too-RAHL",
+      "example": "O sumo natural de laranja aqui é feito na hora.",
+      "exampleTranslation": "The fresh orange juice here is squeezed to order.",
+      "relatedWords": [
+        {
+          "word": "feito na hora",
+          "meaning": "made fresh"
+        },
+        {
+          "word": "a laranjada",
+          "meaning": "orange soda"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "o tarifário",
+      "english": "phone / data plan",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo tuh-ree-FAR-yoo",
+      "example": "Mudei de tarifário e agora pago menos por mês.",
+      "exampleTranslation": "I changed my plan and now I pay less a month.",
+      "relatedWords": [
+        {
+          "word": "o pacote",
+          "meaning": "the bundle (TV, internet, phone)"
+        },
+        {
+          "word": "a fidelização",
+          "meaning": "the minimum contract period"
+        }
+      ],
+      "proTip": "Most home bundles come with a 24-month «fidelização»; cancelling early costs money."
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "os dados móveis",
+      "english": "mobile data",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oosh DAH-doosh MOH-vaysh",
+      "example": "Fiquei sem dados móveis a meio do mês.",
+      "exampleTranslation": "I ran out of mobile data halfway through the month.",
+      "relatedWords": [
+        {
+          "word": "o roaming",
+          "meaning": "roaming"
+        },
+        {
+          "word": "os gigas",
+          "meaning": "gigabytes (informal)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "a captura de ecrã",
+      "english": "screenshot",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh kahp-TOO-ruh duh eh-KRANG",
+      "example": "Manda-me uma captura de ecrã da mensagem de erro.",
+      "exampleTranslation": "Send me a screenshot of the error message.",
+      "relatedWords": [
+        {
+          "word": "o ecrã",
+          "meaning": "the screen"
+        },
+        {
+          "word": "o print",
+          "meaning": "screenshot (informal)"
+        }
+      ],
+      "proTip": "In casual speech most people just say «um print»."
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "a mensagem de voz",
+      "english": "voice message",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh mayng-SAH-zhayng duh VOSH",
+      "example": "Deixei-te uma mensagem de voz no WhatsApp.",
+      "exampleTranslation": "I left you a voice message on WhatsApp.",
+      "relatedWords": [
+        {
+          "word": "o áudio",
+          "meaning": "voice note (informal)"
+        },
+        {
+          "word": "o correio de voz",
+          "meaning": "voicemail"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "a videochamada",
+      "english": "video call",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh vee-dyoo-shuh-MAH-duh",
+      "example": "Faço uma videochamada com os meus pais todos os domingos.",
+      "exampleTranslation": "I video call my parents every Sunday.",
+      "relatedWords": [
+        {
+          "word": "a chamada",
+          "meaning": "the call"
+        },
+        {
+          "word": "a câmara",
+          "meaning": "the camera"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "a cópia de segurança",
+      "english": "backup",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh KOH-pyuh duh suh-goo-RUN-suh",
+      "example": "Faz uma cópia de segurança antes de atualizar o telemóvel.",
+      "exampleTranslation": "Back up before updating your phone.",
+      "relatedWords": [
+        {
+          "word": "o backup",
+          "meaning": "backup (common loanword)"
+        },
+        {
+          "word": "guardar",
+          "meaning": "to save"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "a assistência técnica",
+      "english": "technical support / repair service",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh uh-seesh-TAYNG-syuh TEHK-nee-kuh",
+      "example": "O portátil avariou e está na assistência técnica.",
+      "exampleTranslation": "The laptop broke down and it's at the repair service.",
+      "relatedWords": [
+        {
+          "word": "a garantia",
+          "meaning": "the warranty"
+        },
+        {
+          "word": "avariar",
+          "meaning": "to break down"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "a pen",
+      "english": "USB stick",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh PEHN",
+      "example": "Passa-me os ficheiros para esta pen, por favor.",
+      "exampleTranslation": "Put the files on this USB stick for me, please.",
+      "relatedWords": [
+        {
+          "word": "o ficheiro",
+          "meaning": "the file"
+        },
+        {
+          "word": "o disco externo",
+          "meaning": "external hard drive"
+        }
+      ],
+      "proTip": "In Portugal a USB flash drive is simply «uma pen»."
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "o modo de avião",
+      "english": "airplane mode",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo MOH-doo duh uh-VYOWNG",
+      "example": "Põe o telemóvel em modo de avião durante a descolagem.",
+      "exampleTranslation": "Put your phone on airplane mode during take-off.",
+      "relatedWords": [
+        {
+          "word": "desligar",
+          "meaning": "to turn off"
+        },
+        {
+          "word": "a descolagem",
+          "meaning": "take-off"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "as definições",
+      "english": "settings",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush duh-fee-nee-SOYNGSH",
+      "example": "Vai às definições e desliga as notificações.",
+      "exampleTranslation": "Go to settings and turn off notifications.",
+      "relatedWords": [
+        {
+          "word": "a configuração",
+          "meaning": "the configuration"
+        },
+        {
+          "word": "a privacidade",
+          "meaning": "privacy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "o carregamento",
+      "english": "top-up (prepaid credit)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kuh-ruh-guh-MAYNG-too",
+      "example": "Fiz um carregamento de dez euros no multibanco.",
+      "exampleTranslation": "I topped up ten euros at the cash machine.",
+      "relatedWords": [
+        {
+          "word": "o saldo",
+          "meaning": "the balance"
+        },
+        {
+          "word": "o pré-pago",
+          "meaning": "prepaid"
+        }
+      ],
+      "proTip": "You can top up a prepaid phone at any Multibanco machine under «Carregamentos»."
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "instalar",
+      "english": "to install",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "eensh-tuh-LAR",
+      "example": "Tens de instalar a aplicação do banco.",
+      "exampleTranslation": "You have to install the bank's app.",
+      "relatedWords": [
+        {
+          "word": "desinstalar",
+          "meaning": "to uninstall"
+        },
+        {
+          "word": "a aplicação",
+          "meaning": "the app"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "reiniciar",
+      "english": "to restart / reboot",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "rray-nee-SYAR",
+      "example": "Se não funcionar, experimenta reiniciar o router.",
+      "exampleTranslation": "If it doesn't work, try restarting the router.",
+      "relatedWords": [
+        {
+          "word": "desligar e voltar a ligar",
+          "meaning": "turn it off and on again"
+        },
+        {
+          "word": "o router",
+          "meaning": "the router"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "o código de verificação",
+      "english": "verification code",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo KOH-dee-goo duh vuh-ree-fee-kuh-SOWNG",
+      "example": "Recebi um código de verificação por SMS.",
+      "exampleTranslation": "I got a verification code by text.",
+      "relatedWords": [
+        {
+          "word": "a autenticação",
+          "meaning": "authentication"
+        },
+        {
+          "word": "o SMS",
+          "meaning": "text message"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "sem rede",
+      "english": "no signal",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "sayng RRAY-duh",
+      "example": "No comboio para Sintra fico sempre sem rede.",
+      "exampleTranslation": "On the train to Sintra I always lose signal.",
+      "relatedWords": [
+        {
+          "word": "a rede",
+          "meaning": "network / signal"
+        },
+        {
+          "word": "ir abaixo",
+          "meaning": "to go down (of a service)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "a fibra",
+      "english": "fibre-optic broadband",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh FEE-bruh",
+      "example": "O apartamento já tem fibra instalada.",
+      "exampleTranslation": "The flat already has fibre installed.",
+      "relatedWords": [
+        {
+          "word": "o operador",
+          "meaning": "the provider"
+        },
+        {
+          "word": "a velocidade",
+          "meaning": "the speed"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "o operador",
+      "english": "telecom provider",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo oo-puh-ruh-DOR",
+      "example": "Liguei para o operador por causa da internet.",
+      "exampleTranslation": "I called the provider about the internet.",
+      "relatedWords": [
+        {
+          "word": "a loja do operador",
+          "meaning": "the provider's shop"
+        },
+        {
+          "word": "o tarifário",
+          "meaning": "the plan"
+        }
+      ],
+      "proTip": "The big three are MEO, NOS and Vodafone; Digi has shaken up prices recently."
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "a caixa de entrada",
+      "english": "inbox",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh KAI-shuh duh ayng-TRAH-duh",
+      "example": "Vê na caixa de entrada e também no spam.",
+      "exampleTranslation": "Check your inbox and the spam folder too.",
+      "relatedWords": [
+        {
+          "word": "o lixo eletrónico",
+          "meaning": "spam folder"
+        },
+        {
+          "word": "o correio eletrónico",
+          "meaning": "email"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "reencaminhar",
+      "english": "to forward (a message)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "rree-ayng-kuh-meen-YAR",
+      "example": "Podes reencaminhar-me o email da senhoria?",
+      "exampleTranslation": "Can you forward me the landlady's email?",
+      "relatedWords": [
+        {
+          "word": "responder",
+          "meaning": "to reply"
+        },
+        {
+          "word": "responder a todos",
+          "meaning": "reply all"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "technology-internet",
+    "word": {
+      "portuguese": "imprimir",
+      "english": "to print",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "eeng-pree-MEER",
+      "example": "Preciso de imprimir o contrato antes da reunião.",
+      "exampleTranslation": "I need to print the contract before the meeting.",
+      "relatedWords": [
+        {
+          "word": "a impressora",
+          "meaning": "the printer"
+        },
+        {
+          "word": "a impressão",
+          "meaning": "the printout"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "o casaco de malha",
+      "english": "cardigan",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kuh-ZAH-koo duh MAHL-yuh",
+      "example": "Leva um casaco de malha, que à noite arrefece.",
+      "exampleTranslation": "Take a cardigan, it gets cold at night.",
+      "relatedWords": [
+        {
+          "word": "a malha",
+          "meaning": "knitwear"
+        },
+        {
+          "word": "a camisola",
+          "meaning": "jumper"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "as sapatilhas",
+      "english": "trainers / sneakers",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush suh-puh-TEEL-yush",
+      "example": "Para andar em Lisboa, sapatilhas confortáveis são essenciais.",
+      "exampleTranslation": "For walking around Lisbon, comfy trainers are essential.",
+      "relatedWords": [
+        {
+          "word": "os ténis",
+          "meaning": "trainers (also common)"
+        },
+        {
+          "word": "a calçada",
+          "meaning": "cobbled pavement"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "o cachecol",
+      "english": "scarf",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kahsh-KOHL",
+      "example": "Comprei um cachecol do Benfica para o meu sobrinho.",
+      "exampleTranslation": "I bought a Benfica scarf for my nephew.",
+      "relatedWords": [
+        {
+          "word": "o lenço",
+          "meaning": "light scarf / handkerchief"
+        },
+        {
+          "word": "o gorro",
+          "meaning": "the beanie"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "as luvas",
+      "english": "gloves",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ush LOO-vush",
+      "example": "Em Trás-os-Montes no inverno precisas mesmo de luvas.",
+      "exampleTranslation": "In Trás-os-Montes in winter you really need gloves.",
+      "relatedWords": [
+        {
+          "word": "calçar as luvas",
+          "meaning": "to put on gloves"
+        },
+        {
+          "word": "o par",
+          "meaning": "the pair"
+        }
+      ],
+      "proTip": "Gloves, like shoes, are «calçadas», not «vestidas»: «calça as luvas»."
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "a moda",
+      "english": "fashion",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh MOH-duh",
+      "example": "Essas calças largas voltaram a estar na moda.",
+      "exampleTranslation": "Those baggy trousers are back in fashion.",
+      "relatedWords": [
+        {
+          "word": "estar na moda",
+          "meaning": "to be in fashion"
+        },
+        {
+          "word": "fora de moda",
+          "meaning": "out of fashion"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "o gorro",
+      "english": "beanie / woolly hat",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo GOH-rroo",
+      "example": "Põe o gorro, que está um frio de rachar.",
+      "exampleTranslation": "Put your beanie on, it's freezing.",
+      "relatedWords": [
+        {
+          "word": "o chapéu",
+          "meaning": "the hat"
+        },
+        {
+          "word": "o cachecol",
+          "meaning": "the scarf"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "o fato de banho",
+      "english": "swimsuit",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo FAH-too duh BUN-yoo",
+      "example": "Não te esqueças do fato de banho e da toalha.",
+      "exampleTranslation": "Don't forget your swimsuit and towel.",
+      "relatedWords": [
+        {
+          "word": "o biquíni",
+          "meaning": "bikini"
+        },
+        {
+          "word": "os calções de banho",
+          "meaning": "swim shorts"
+        }
+      ],
+      "proTip": "«Fato» in Portugal is a suit; «fato de banho» is a swimsuit and «fato de treino» a tracksuit."
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "assentar bem",
+      "english": "to fit well / suit",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-sayng-TAR bayng",
+      "example": "Esse casaco assenta-te mesmo bem nos ombros.",
+      "exampleTranslation": "That jacket fits you really well on the shoulders.",
+      "relatedWords": [
+        {
+          "word": "ficar largo",
+          "meaning": "to be too loose"
+        },
+        {
+          "word": "ficar apertado",
+          "meaning": "to be too tight"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "o fato de treino",
+      "english": "tracksuit",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo FAH-too duh TRAY-noo",
+      "example": "Ao domingo passo o dia de fato de treino.",
+      "exampleTranslation": "On Sundays I spend the day in my tracksuit.",
+      "relatedWords": [
+        {
+          "word": "o treino",
+          "meaning": "workout"
+        },
+        {
+          "word": "as sapatilhas",
+          "meaning": "trainers"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "a gabardina",
+      "english": "trench coat / raincoat",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh guh-bar-DEE-nuh",
+      "example": "Em novembro uso a gabardina quase todos os dias.",
+      "exampleTranslation": "In November I wear my trench coat almost every day.",
+      "relatedWords": [
+        {
+          "word": "o impermeável",
+          "meaning": "waterproof jacket"
+        },
+        {
+          "word": "o guarda-chuva",
+          "meaning": "umbrella"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "fazer a bainha",
+      "english": "to take up a hem",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "fuh-ZEHR uh buh-EEN-yuh",
+      "example": "As calças são compridas, tenho de fazer a bainha.",
+      "exampleTranslation": "The trousers are long, I need to get them hemmed.",
+      "relatedWords": [
+        {
+          "word": "a bainha",
+          "meaning": "the hem"
+        },
+        {
+          "word": "encurtar",
+          "meaning": "to shorten"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "a costureira",
+      "english": "seamstress / alterations person",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh koosh-too-RAY-ruh",
+      "example": "Levei o vestido à costureira para o apertar.",
+      "exampleTranslation": "I took the dress to the seamstress to take it in.",
+      "relatedWords": [
+        {
+          "word": "os arranjos de costura",
+          "meaning": "clothing alterations"
+        },
+        {
+          "word": "coser",
+          "meaning": "to sew"
+        }
+      ],
+      "proTip": "Neighbourhood shops with a sign «Arranjos de costura» do hems and repairs cheaply."
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "o pijama",
+      "english": "pyjamas",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo pee-ZHUH-muh",
+      "example": "Ainda estou de pijama e já é meio-dia.",
+      "exampleTranslation": "I'm still in my pyjamas and it's already midday.",
+      "relatedWords": [
+        {
+          "word": "o roupão",
+          "meaning": "dressing gown"
+        },
+        {
+          "word": "as pantufas",
+          "meaning": "slippers"
+        }
+      ],
+      "proTip": "Note it's singular in Portuguese: «o pijama»."
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "o cabide",
+      "english": "coat hanger",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kuh-BEE-duh",
+      "example": "Pendura a camisa num cabide para não amarrotar.",
+      "exampleTranslation": "Hang the shirt on a hanger so it doesn't crease.",
+      "relatedWords": [
+        {
+          "word": "pendurar",
+          "meaning": "to hang up"
+        },
+        {
+          "word": "amarrotado",
+          "meaning": "creased"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "a etiqueta",
+      "english": "label / price tag",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh ee-tee-KEH-tuh",
+      "example": "Vê na etiqueta se pode ir à máquina.",
+      "exampleTranslation": "Check the label to see if it can go in the machine.",
+      "relatedWords": [
+        {
+          "word": "o preço",
+          "meaning": "the price"
+        },
+        {
+          "word": "lavar à mão",
+          "meaning": "hand wash"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o trilho",
+      "english": "trail / footpath",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo TREEL-yoo",
+      "example": "Fizemos o trilho dos Sete Vales Suspensos no Algarve.",
+      "exampleTranslation": "We did the Seven Hanging Valleys trail in the Algarve.",
+      "relatedWords": [
+        {
+          "word": "o percurso pedestre",
+          "meaning": "walking route"
+        },
+        {
+          "word": "fazer uma caminhada",
+          "meaning": "to go on a hike"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "a praia fluvial",
+      "english": "river beach",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh PRAI-uh floo-VYAHL",
+      "example": "No verão vamos a uma praia fluvial perto de Coimbra.",
+      "exampleTranslation": "In summer we go to a river beach near Coimbra.",
+      "relatedWords": [
+        {
+          "word": "o rio",
+          "meaning": "the river"
+        },
+        {
+          "word": "a água doce",
+          "meaning": "fresh water"
+        }
+      ],
+      "proTip": "Inland Portugal is full of praias fluviais with lifeguards, bars and warm water, especially in the Centro region."
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "a estreia",
+      "english": "premiere / opening night",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh shTRAY-uh",
+      "example": "O filme tem estreia nos cinemas na quinta-feira.",
+      "exampleTranslation": "The film opens in cinemas on Thursday.",
+      "relatedWords": [
+        {
+          "word": "estrear",
+          "meaning": "to premiere / use for the first time"
+        },
+        {
+          "word": "a sessão",
+          "meaning": "the showing"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o fado ao vivo",
+      "english": "live fado",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo FAH-doo ow VEE-voo",
+      "example": "Jantámos em Alfama com fado ao vivo.",
+      "exampleTranslation": "We had dinner in Alfama with live fado.",
+      "relatedWords": [
+        {
+          "word": "a casa de fados",
+          "meaning": "fado house"
+        },
+        {
+          "word": "o fadista",
+          "meaning": "fado singer"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o clube de leitura",
+      "english": "book club",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo KLOO-buh duh lay-TOO-ruh",
+      "example": "A biblioteca tem um clube de leitura uma vez por mês.",
+      "exampleTranslation": "The library has a book club once a month.",
+      "relatedWords": [
+        {
+          "word": "o livro",
+          "meaning": "the book"
+        },
+        {
+          "word": "a biblioteca municipal",
+          "meaning": "public library"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "inscrever-se",
+      "english": "to sign up / enrol",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "eensh-kruh-VEHR-suh",
+      "example": "Inscrevi-me nas aulas de surf para o verão.",
+      "exampleTranslation": "I signed up for surf lessons for the summer.",
+      "relatedWords": [
+        {
+          "word": "a inscrição",
+          "meaning": "the registration"
+        },
+        {
+          "word": "o formulário",
+          "meaning": "the form"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "a bilheteira",
+      "english": "box office / ticket office",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh beel-yuh-TAY-ruh",
+      "example": "Os bilhetes compram-se na bilheteira ou online.",
+      "exampleTranslation": "Tickets can be bought at the box office or online.",
+      "relatedWords": [
+        {
+          "word": "esgotado",
+          "meaning": "sold out"
+        },
+        {
+          "word": "o bilhete",
+          "meaning": "the ticket"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o piquenique",
+      "english": "picnic",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo pee-kuh-NEE-kuh",
+      "example": "Vamos fazer um piquenique no Parque de Monsanto.",
+      "exampleTranslation": "Let's have a picnic in Monsanto Park.",
+      "relatedWords": [
+        {
+          "word": "o parque de merendas",
+          "meaning": "picnic area"
+        },
+        {
+          "word": "a manta",
+          "meaning": "blanket"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o passatempo",
+      "english": "hobby / pastime",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo puh-suh-TAYNG-poo",
+      "example": "O meu passatempo preferido é fotografar a cidade.",
+      "exampleTranslation": "My favourite hobby is photographing the city.",
+      "relatedWords": [
+        {
+          "word": "os tempos livres",
+          "meaning": "free time"
+        },
+        {
+          "word": "o hobby",
+          "meaning": "hobby (loanword)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o festival",
+      "english": "music festival",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo fush-tee-VAHL",
+      "example": "Este ano vamos ao festival em Paredes de Coura.",
+      "exampleTranslation": "This year we're going to the festival in Paredes de Coura.",
+      "relatedWords": [
+        {
+          "word": "o palco",
+          "meaning": "the stage"
+        },
+        {
+          "word": "o passe de três dias",
+          "meaning": "three-day pass"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o jogo de tabuleiro",
+      "english": "board game",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ZHOH-goo duh tuh-boo-LAY-roo",
+      "example": "À sexta à noite jogamos jogos de tabuleiro em casa.",
+      "exampleTranslation": "On Friday nights we play board games at home.",
+      "relatedWords": [
+        {
+          "word": "as cartas",
+          "meaning": "cards"
+        },
+        {
+          "word": "o dado",
+          "meaning": "the die"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "a casa de fados",
+      "english": "fado house",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh KAH-zuh duh FAH-doosh",
+      "example": "Há casas de fados menos turísticas na Mouraria.",
+      "exampleTranslation": "There are less touristy fado houses in Mouraria.",
+      "relatedWords": [
+        {
+          "word": "o fado vadio",
+          "meaning": "amateur fado"
+        },
+        {
+          "word": "silêncio, que se vai cantar o fado",
+          "meaning": "silence, fado is about to be sung"
+        }
+      ],
+      "proTip": "Talking during a song is a big faux pas. Try a «fado vadio» night for a local, amateur vibe."
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o sócio",
+      "english": "member (of a club)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo SOH-syoo",
+      "example": "O meu pai é sócio do Sporting há quarenta anos.",
+      "exampleTranslation": "My dad has been a Sporting member for forty years.",
+      "relatedWords": [
+        {
+          "word": "a quota",
+          "meaning": "membership fee"
+        },
+        {
+          "word": "o clube",
+          "meaning": "the club"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "o voluntariado",
+      "english": "volunteering",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo voo-loon-tuh-RYAH-doo",
+      "example": "Faço voluntariado num banco alimentar ao sábado.",
+      "exampleTranslation": "I volunteer at a food bank on Saturdays.",
+      "relatedWords": [
+        {
+          "word": "o/a voluntário/a",
+          "meaning": "volunteer"
+        },
+        {
+          "word": "o Banco Alimentar",
+          "meaning": "national food bank charity"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "hobbies-leisure",
+    "word": {
+      "portuguese": "a sessão",
+      "english": "showing / session",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh suh-SOWNG",
+      "example": "Vamos à sessão das nove e meia?",
+      "exampleTranslation": "Shall we go to the half-nine showing?",
+      "relatedWords": [
+        {
+          "word": "o cinema",
+          "meaning": "the cinema"
+        },
+        {
+          "word": "legendado",
+          "meaning": "subtitled"
+        }
+      ],
+      "proTip": "Films in Portugal are subtitled, not dubbed, except children's films («versão portuguesa»)."
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "emigrar",
+      "english": "to emigrate",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-mee-GRAR",
+      "example": "O meu avô emigrou para França nos anos sessenta.",
+      "exampleTranslation": "My grandfather emigrated to France in the sixties.",
+      "relatedWords": [
+        {
+          "word": "a emigração",
+          "meaning": "emigration"
+        },
+        {
+          "word": "imigrar",
+          "meaning": "to immigrate"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "o/a emigrante",
+      "english": "emigrant",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "oo ee-mee-GRUN-tuh",
+      "example": "Em agosto as aldeias enchem-se de emigrantes.",
+      "exampleTranslation": "In August the villages fill up with emigrants.",
+      "relatedWords": [
+        {
+          "word": "o/a imigrante",
+          "meaning": "immigrant"
+        },
+        {
+          "word": "a saudade",
+          "meaning": "longing"
+        }
+      ],
+      "proTip": "August is known jokingly as the month of «os avecs», emigrants back from France."
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "a comunidade portuguesa",
+      "english": "Portuguese community (abroad)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh koo-moo-nee-DAH-duh poor-too-GAY-zuh",
+      "example": "A comunidade portuguesa no Luxemburgo é enorme.",
+      "exampleTranslation": "The Portuguese community in Luxembourg is huge.",
+      "relatedWords": [
+        {
+          "word": "a diáspora",
+          "meaning": "diaspora"
+        },
+        {
+          "word": "o consulado",
+          "meaning": "the consulate"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "os PALOP",
+      "english": "Portuguese-speaking African countries",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oosh puh-LOHP",
+      "example": "Muitos estudantes dos PALOP vêm estudar para Lisboa.",
+      "exampleTranslation": "Many students from the PALOP come to study in Lisbon.",
+      "relatedWords": [
+        {
+          "word": "Angola",
+          "meaning": "Angola"
+        },
+        {
+          "word": "Cabo Verde",
+          "meaning": "Cape Verde"
+        }
+      ],
+      "proTip": "PALOP = Países Africanos de Língua Oficial Portuguesa: Angola, Cabo Verde, Guiné-Bissau, Moçambique, São Tomé e Príncipe (and Guiné Equatorial)."
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "a lusofonia",
+      "english": "the Portuguese-speaking world",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh loo-zoo-foo-NEE-uh",
+      "example": "O festival celebra a música de toda a lusofonia.",
+      "exampleTranslation": "The festival celebrates music from the whole Portuguese-speaking world.",
+      "relatedWords": [
+        {
+          "word": "lusófono",
+          "meaning": "Portuguese-speaking"
+        },
+        {
+          "word": "a CPLP",
+          "meaning": "Community of Portuguese-Language Countries"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "a dupla nacionalidade",
+      "english": "dual citizenship",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh DOO-pluh nuh-syoo-nuh-lee-DAH-duh",
+      "example": "Ela tem dupla nacionalidade, portuguesa e sul-africana.",
+      "exampleTranslation": "She has dual citizenship, Portuguese and South African.",
+      "relatedWords": [
+        {
+          "word": "a nacionalidade",
+          "meaning": "nationality"
+        },
+        {
+          "word": "o cartão de cidadão",
+          "meaning": "Portuguese ID card"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "naturalizar-se",
+      "english": "to become a naturalised citizen",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nuh-too-ruh-lee-ZAR-suh",
+      "example": "Depois de anos em Portugal, decidiu naturalizar-se.",
+      "exampleTranslation": "After years in Portugal, he decided to become a citizen.",
+      "relatedWords": [
+        {
+          "word": "a naturalização",
+          "meaning": "naturalisation"
+        },
+        {
+          "word": "o pedido",
+          "meaning": "the application"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "o/a lusodescendente",
+      "english": "person of Portuguese descent",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "oo loo-zoo-dush-sayn-DAYN-tuh",
+      "example": "Ele é lusodescendente, nasceu em Toronto.",
+      "exampleTranslation": "He's of Portuguese descent, he was born in Toronto.",
+      "relatedWords": [
+        {
+          "word": "os descendentes",
+          "meaning": "descendants"
+        },
+        {
+          "word": "as raízes",
+          "meaning": "roots"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "o país de origem",
+      "english": "country of origin",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo puh-EESH duh oo-REE-zhayng",
+      "example": "Muitos imigrantes mandam dinheiro para o país de origem.",
+      "exampleTranslation": "Many immigrants send money to their home country.",
+      "relatedWords": [
+        {
+          "word": "a terra natal",
+          "meaning": "homeland"
+        },
+        {
+          "word": "regressar",
+          "meaning": "to return"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "countries-nationalities",
+    "word": {
+      "portuguese": "o consulado",
+      "english": "consulate",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kohn-soo-LAH-doo",
+      "example": "Tive de ir ao consulado renovar o passaporte.",
+      "exampleTranslation": "I had to go to the consulate to renew my passport.",
+      "relatedWords": [
+        {
+          "word": "a embaixada",
+          "meaning": "the embassy"
+        },
+        {
+          "word": "o cônsul",
+          "meaning": "the consul"
+        }
+      ],
+      "proTip": "Portuguese consulates abroad handle Cartão de Cidadão and passport renewals for emigrants; book online first."
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a falésia",
+      "english": "cliff",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh fuh-LEH-zyuh",
+      "example": "As falésias do Algarve são lindas ao pôr do sol.",
+      "exampleTranslation": "The Algarve cliffs are beautiful at sunset.",
+      "relatedWords": [
+        {
+          "word": "a arriba",
+          "meaning": "sea cliff (technical)"
+        },
+        {
+          "word": "a praia",
+          "meaning": "the beach"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a ria",
+      "english": "estuary lagoon / ria",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh RREE-uh",
+      "example": "Fizemos um passeio de barco na Ria de Aveiro.",
+      "exampleTranslation": "We took a boat trip on the Aveiro lagoon.",
+      "relatedWords": [
+        {
+          "word": "a Ria Formosa",
+          "meaning": "lagoon system in the Algarve"
+        },
+        {
+          "word": "o moliceiro",
+          "meaning": "Aveiro boat"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a foz",
+      "english": "river mouth",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh FOSH",
+      "example": "Moramos perto da foz do Douro, no Porto.",
+      "exampleTranslation": "We live near the mouth of the Douro, in Porto.",
+      "relatedWords": [
+        {
+          "word": "desaguar",
+          "meaning": "to flow into (the sea)"
+        },
+        {
+          "word": "o estuário",
+          "meaning": "estuary"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "o pinhal",
+      "english": "pine forest",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo peen-YAHL",
+      "example": "O pinhal de Leiria ardeu quase todo em 2017.",
+      "exampleTranslation": "The Leiria pine forest almost entirely burned in 2017.",
+      "relatedWords": [
+        {
+          "word": "o pinheiro",
+          "meaning": "pine tree"
+        },
+        {
+          "word": "a pinha",
+          "meaning": "pine cone"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "o montado",
+      "english": "cork-oak woodland pasture",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo mohn-TAH-doo",
+      "example": "No montado alentejano, os porcos pretos comem bolota.",
+      "exampleTranslation": "In the Alentejo woodland, the black pigs eat acorns.",
+      "relatedWords": [
+        {
+          "word": "a bolota",
+          "meaning": "acorn"
+        },
+        {
+          "word": "o porco preto",
+          "meaning": "black Iberian pig"
+        }
+      ],
+      "proTip": "The montado is a man-made landscape of scattered cork and holm oaks; it's where porco preto and cork come from."
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a oliveira",
+      "english": "olive tree",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh oo-lee-VAY-ruh",
+      "example": "A minha avó tem oliveiras com mais de cem anos.",
+      "exampleTranslation": "My grandma has olive trees over a hundred years old.",
+      "relatedWords": [
+        {
+          "word": "a azeitona",
+          "meaning": "olive"
+        },
+        {
+          "word": "o olival",
+          "meaning": "olive grove"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a cegonha",
+      "english": "stork",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh suh-GOHN-yuh",
+      "example": "No Alentejo vês ninhos de cegonha em todo o lado.",
+      "exampleTranslation": "In the Alentejo you see stork nests everywhere.",
+      "relatedWords": [
+        {
+          "word": "o ninho",
+          "meaning": "the nest"
+        },
+        {
+          "word": "a ave",
+          "meaning": "the bird"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a gaivota",
+      "english": "seagull",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh gai-VOH-tuh",
+      "example": "Cuidado com a sandes, que as gaivotas roubam tudo.",
+      "exampleTranslation": "Watch your sandwich, the seagulls steal everything.",
+      "relatedWords": [
+        {
+          "word": "o mar",
+          "meaning": "the sea"
+        },
+        {
+          "word": "o porto",
+          "meaning": "harbour"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "o javali",
+      "english": "wild boar",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo zhuh-vuh-LEE",
+      "example": "À noite os javalis descem à aldeia à procura de comida.",
+      "exampleTranslation": "At night the wild boars come down to the village looking for food.",
+      "relatedWords": [
+        {
+          "word": "a caça",
+          "meaning": "hunting"
+        },
+        {
+          "word": "o porco",
+          "meaning": "pig"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "o veado",
+      "english": "deer",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo vee-AH-doo",
+      "example": "Na Serra da Lousã é fácil ver veados ao entardecer.",
+      "exampleTranslation": "In the Lousã mountains it's easy to see deer at dusk.",
+      "relatedWords": [
+        {
+          "word": "o corço",
+          "meaning": "roe deer"
+        },
+        {
+          "word": "a caça",
+          "meaning": "hunting"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a duna",
+      "english": "sand dune",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh DOO-nuh",
+      "example": "É proibido pisar as dunas para proteger a vegetação.",
+      "exampleTranslation": "Walking on the dunes is forbidden to protect the plants.",
+      "relatedWords": [
+        {
+          "word": "o passadiço",
+          "meaning": "boardwalk"
+        },
+        {
+          "word": "a areia",
+          "meaning": "sand"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a planície",
+      "english": "plain",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh pluh-NEE-syuh",
+      "example": "O Alentejo é uma grande planície de trigo e sobreiros.",
+      "exampleTranslation": "The Alentejo is a huge plain of wheat and cork oaks.",
+      "relatedWords": [
+        {
+          "word": "plano",
+          "meaning": "flat"
+        },
+        {
+          "word": "a montanha",
+          "meaning": "mountain"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a amendoeira",
+      "english": "almond tree",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh uh-mayn-doo-AY-ruh",
+      "example": "Em fevereiro as amendoeiras do Algarve ficam todas em flor.",
+      "exampleTranslation": "In February the Algarve almond trees are all in blossom.",
+      "relatedWords": [
+        {
+          "word": "a amêndoa",
+          "meaning": "almond"
+        },
+        {
+          "word": "estar em flor",
+          "meaning": "to be in blossom"
+        }
+      ],
+      "proTip": "Local legend says a Moorish king planted them so his Nordic wife could see «snow» in winter."
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "o castanheiro",
+      "english": "chestnut tree",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kush-tun-YAY-roo",
+      "example": "Em Trás-os-Montes há castanheiros enormes.",
+      "exampleTranslation": "In Trás-os-Montes there are huge chestnut trees.",
+      "relatedWords": [
+        {
+          "word": "a castanha",
+          "meaning": "chestnut"
+        },
+        {
+          "word": "o magusto",
+          "meaning": "chestnut festival"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "a lagartixa",
+      "english": "small lizard / wall gecko",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh luh-gar-TEE-shuh",
+      "example": "No verão há lagartixas em todas as paredes do quintal.",
+      "exampleTranslation": "In summer there are little lizards on every wall in the yard.",
+      "relatedWords": [
+        {
+          "word": "o lagarto",
+          "meaning": "lizard (larger)"
+        },
+        {
+          "word": "o quintal",
+          "meaning": "backyard"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "o Santo António",
+      "english": "St Anthony's festival (Lisbon, 12–13 June)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo SUN-too un-TOH-nyoo",
+      "example": "No Santo António, Lisboa inteira cheira a sardinha assada.",
+      "exampleTranslation": "On Santo António, all of Lisbon smells of grilled sardines.",
+      "relatedWords": [
+        {
+          "word": "o manjerico",
+          "meaning": "potted basil plant"
+        },
+        {
+          "word": "a sardinha",
+          "meaning": "sardine"
+        }
+      ],
+      "proTip": "St Anthony is Lisbon's matchmaker saint; couples marry in the «casamentos de Santo António»."
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "o São João",
+      "english": "St John's festival (Porto, 23–24 June)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo SOWNG zhoo-OWNG",
+      "example": "No São João, toda a gente bate com martelinhos na cabeça.",
+      "exampleTranslation": "At São João, everyone bops each other with little hammers.",
+      "relatedWords": [
+        {
+          "word": "o martelinho",
+          "meaning": "plastic squeaky hammer"
+        },
+        {
+          "word": "o balão",
+          "meaning": "paper lantern"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "a marcha popular",
+      "english": "neighbourhood parade (Santos Populares)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh MAR-shuh poo-poo-LAR",
+      "example": "A marcha popular de Alfama ganhou este ano.",
+      "exampleTranslation": "Alfama's parade won this year.",
+      "relatedWords": [
+        {
+          "word": "a Avenida da Liberdade",
+          "meaning": "parade route"
+        },
+        {
+          "word": "o bairro",
+          "meaning": "the neighbourhood"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "a consoada",
+      "english": "Christmas Eve dinner",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh kohn-soo-AH-duh",
+      "example": "Na consoada comemos bacalhau com couves e batatas.",
+      "exampleTranslation": "On Christmas Eve we eat salt cod with cabbage and potatoes.",
+      "relatedWords": [
+        {
+          "word": "a véspera de Natal",
+          "meaning": "Christmas Eve"
+        },
+        {
+          "word": "as rabanadas",
+          "meaning": "Portuguese French toast"
+        }
+      ],
+      "proTip": "The big family meal is the night of the 24th; presents are often opened at midnight."
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "o bolo-rei",
+      "english": "king cake (Christmas cake)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo BOH-loo RRAY",
+      "example": "Quem calhar com a fava paga o bolo-rei para o ano.",
+      "exampleTranslation": "Whoever gets the bean pays for the king cake next year.",
+      "relatedWords": [
+        {
+          "word": "a fava",
+          "meaning": "the dried bean"
+        },
+        {
+          "word": "o bolo-rainha",
+          "meaning": "version without candied fruit"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "a passagem de ano",
+      "english": "New Year's Eve",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh puh-SAH-zhayng duh UH-noo",
+      "example": "Vamos passar a passagem de ano na Madeira.",
+      "exampleTranslation": "We're spending New Year's Eve in Madeira.",
+      "relatedWords": [
+        {
+          "word": "as doze passas",
+          "meaning": "the twelve raisins"
+        },
+        {
+          "word": "o fogo de artifício",
+          "meaning": "fireworks"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "o Carnaval de Torres",
+      "english": "Torres Vedras Carnival",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo kar-nuh-VAHL duh TOH-rrush",
+      "example": "O Carnaval de Torres é o mais português de Portugal.",
+      "exampleTranslation": "The Torres Vedras Carnival is the most Portuguese in Portugal.",
+      "relatedWords": [
+        {
+          "word": "as matrafonas",
+          "meaning": "men dressed as women (Torres tradition)"
+        },
+        {
+          "word": "o desfile",
+          "meaning": "the parade"
+        }
+      ],
+      "proTip": "Its slogan is literally «o Carnaval mais português de Portugal» — satirical, homemade and very different from Brazil's."
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "a romaria",
+      "english": "religious festival / pilgrimage fair",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh rroo-muh-REE-uh",
+      "example": "Em agosto há romarias em quase todas as aldeias do Minho.",
+      "exampleTranslation": "In August there are pilgrimage fairs in almost every Minho village.",
+      "relatedWords": [
+        {
+          "word": "a procissão",
+          "meaning": "procession"
+        },
+        {
+          "word": "o padroeiro",
+          "meaning": "patron saint"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "o presépio",
+      "english": "nativity scene",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo pruh-ZEH-pyoo",
+      "example": "As crianças ajudaram a montar o presépio.",
+      "exampleTranslation": "The kids helped set up the nativity scene.",
+      "relatedWords": [
+        {
+          "word": "a árvore de Natal",
+          "meaning": "Christmas tree"
+        },
+        {
+          "word": "o Menino Jesus",
+          "meaning": "baby Jesus"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "holidays-celebrations",
+    "word": {
+      "portuguese": "o 25 de Abril",
+      "english": "Freedom Day (25 April)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo veeng-tee-SEENG-koo duh uh-BREEL",
+      "example": "No 25 de Abril, as pessoas levam cravos vermelhos na rua.",
+      "exampleTranslation": "On 25 April people carry red carnations in the street.",
+      "relatedWords": [
+        {
+          "word": "o cravo",
+          "meaning": "the carnation"
+        },
+        {
+          "word": "a Revolução dos Cravos",
+          "meaning": "Carnation Revolution"
+        }
+      ],
+      "proTip": "It marks the 1974 revolution that ended the dictatorship; expect parades on Avenida da Liberdade."
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "estar-se nas tintas",
+      "english": "to not give a damn",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shTAR-suh nush TEENG-tush",
+      "example": "Ele está-se nas tintas para o que os outros pensam.",
+      "exampleTranslation": "He couldn't care less what others think.",
+      "relatedWords": [
+        {
+          "word": "estar-se a borrifar",
+          "meaning": "to not care (similar)"
+        },
+        {
+          "word": "tanto faz",
+          "meaning": "it doesn't matter"
+        }
+      ],
+      "proTip": "Informal and a bit dismissive; fine with friends, avoid at work."
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "ficar a ver navios",
+      "english": "to be left empty-handed",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "fee-KAR uh vehr nuh-VEE-oosh",
+      "example": "Esperei por ele duas horas e fiquei a ver navios.",
+      "exampleTranslation": "I waited two hours for him and was left high and dry.",
+      "relatedWords": [
+        {
+          "word": "ficar pendurado",
+          "meaning": "to be stood up"
+        },
+        {
+          "word": "a desilusão",
+          "meaning": "disappointment"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "pôr-se a andar",
+      "english": "to clear off / leave",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "POR-suh uh un-DAR",
+      "example": "Quando a conversa ficou chata, pus-me a andar.",
+      "exampleTranslation": "When the conversation got boring, I took off.",
+      "relatedWords": [
+        {
+          "word": "põe-te a andar!",
+          "meaning": "get lost!"
+        },
+        {
+          "word": "bazar",
+          "meaning": "to leave (slang)"
+        }
+      ],
+      "proTip": "«Põe-te a andar!» is a rude «get lost»; «pus-me a andar» about yourself is harmless."
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "dar uma mão",
+      "english": "to lend a hand",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dar OO-muh MOWNG",
+      "example": "Podes dar-me uma mão com as mudanças no sábado?",
+      "exampleTranslation": "Can you give me a hand with the move on Saturday?",
+      "relatedWords": [
+        {
+          "word": "ajudar",
+          "meaning": "to help"
+        },
+        {
+          "word": "dar uma ajudinha",
+          "meaning": "to help out a bit"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "meter água",
+      "english": "to mess up / put your foot in it",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "muh-TEHR AH-gwuh",
+      "example": "Meti água na reunião, disse o nome errado do cliente.",
+      "exampleTranslation": "I messed up in the meeting, I said the wrong client name.",
+      "relatedWords": [
+        {
+          "word": "fazer asneira",
+          "meaning": "to screw up"
+        },
+        {
+          "word": "a gafe",
+          "meaning": "blunder"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "custar os olhos da cara",
+      "english": "to cost an arm and a leg",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "koosh-TAR ooz OHL-yoosh duh KAH-ruh",
+      "example": "As casas em Lisboa custam os olhos da cara.",
+      "exampleTranslation": "Houses in Lisbon cost an arm and a leg.",
+      "relatedWords": [
+        {
+          "word": "caro",
+          "meaning": "expensive"
+        },
+        {
+          "word": "uma pipa de massa",
+          "meaning": "a fortune"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "à grande e à francesa",
+      "english": "lavishly / in grand style",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ah GRUN-duh ee ah frun-SAY-zuh",
+      "example": "Fizeram o casamento à grande e à francesa.",
+      "exampleTranslation": "They had a lavish, no-expense-spared wedding.",
+      "relatedWords": [
+        {
+          "word": "gastar à grande",
+          "meaning": "to spend big"
+        },
+        {
+          "word": "o luxo",
+          "meaning": "luxury"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "estar com a pulga atrás da orelha",
+      "english": "to be suspicious",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shTAR kohng uh POOL-guh uh-TRAHZH duh oo-RAYL-yuh",
+      "example": "Fiquei com a pulga atrás da orelha com aquela proposta.",
+      "exampleTranslation": "That offer made me suspicious.",
+      "relatedWords": [
+        {
+          "word": "desconfiar",
+          "meaning": "to suspect"
+        },
+        {
+          "word": "desconfiado",
+          "meaning": "suspicious"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "estar feito ao bife",
+      "english": "to be done for / in trouble",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shTAR FAY-too ow BEE-fuh",
+      "example": "Se o chefe descobre, estamos feitos ao bife.",
+      "exampleTranslation": "If the boss finds out, we're toast.",
+      "relatedWords": [
+        {
+          "word": "estar tramado",
+          "meaning": "to be in trouble"
+        },
+        {
+          "word": "estar lixado",
+          "meaning": "to be screwed (informal)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "ter lata",
+      "english": "to have a nerve / be cheeky",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "tehr LAH-tuh",
+      "example": "Tens cá uma lata, chegar duas horas atrasado!",
+      "exampleTranslation": "You've got some nerve, turning up two hours late!",
+      "relatedWords": [
+        {
+          "word": "que lata!",
+          "meaning": "what a nerve!"
+        },
+        {
+          "word": "descarado",
+          "meaning": "shameless"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "na boa",
+      "english": "no worries / it's cool",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nuh BOH-uh",
+      "example": "– Desculpa o atraso. – Na boa, acabei de chegar.",
+      "exampleTranslation": "– Sorry I'm late. – No worries, I just got here.",
+      "relatedWords": [
+        {
+          "word": "tranquilo",
+          "meaning": "chill / fine"
+        },
+        {
+          "word": "está-se bem",
+          "meaning": "all good"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "baril",
+      "english": "great / cool (Lisbon slang)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "buh-REEL",
+      "example": "O concerto de ontem foi mesmo baril.",
+      "exampleTranslation": "Yesterday's concert was really cool.",
+      "relatedWords": [
+        {
+          "word": "fixe",
+          "meaning": "cool"
+        },
+        {
+          "word": "espetacular",
+          "meaning": "amazing"
+        }
+      ],
+      "proTip": "Strongly associated with Lisbon and slightly dated; younger people say «brutal» or «top»."
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "dar graxa",
+      "english": "to suck up / flatter",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dar GRAH-shuh",
+      "example": "Está sempre a dar graxa ao chefe.",
+      "exampleTranslation": "He's always sucking up to the boss.",
+      "relatedWords": [
+        {
+          "word": "o graxista",
+          "meaning": "a suck-up"
+        },
+        {
+          "word": "bajular",
+          "meaning": "to flatter (formal)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "armar-se em esperto",
+      "english": "to act like a smart-arse",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ar-MAR-suh ayng shPEHR-too",
+      "example": "Não te armes em esperto, que eu vi tudo.",
+      "exampleTranslation": "Don't try to be clever, I saw everything.",
+      "relatedWords": [
+        {
+          "word": "armar-se em",
+          "meaning": "to act like / pretend to be"
+        },
+        {
+          "word": "o chico-esperto",
+          "meaning": "a wise guy"
+        }
+      ],
+      "proTip": "Very productive pattern: «armar-se em parvo», «armar-se em rico». Informal."
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "cuscar",
+      "english": "to snoop / gossip",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "koosh-KAR",
+      "example": "A vizinha passa o dia à janela a cuscar.",
+      "exampleTranslation": "The neighbour spends all day at the window snooping.",
+      "relatedWords": [
+        {
+          "word": "o/a cusco/a",
+          "meaning": "a nosy person"
+        },
+        {
+          "word": "a cusquice",
+          "meaning": "gossip"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "andar à nora",
+      "english": "to be confused / at a loss",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "un-DAR ah NOH-ruh",
+      "example": "Com tanta burocracia, ando completamente à nora.",
+      "exampleTranslation": "With all this bureaucracy, I'm completely lost.",
+      "relatedWords": [
+        {
+          "word": "perdido",
+          "meaning": "lost"
+        },
+        {
+          "word": "baralhado",
+          "meaning": "muddled"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "é canja",
+      "english": "it's a piece of cake",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "eh KUN-zhuh",
+      "example": "Esse exame é canja, não te preocupes.",
+      "exampleTranslation": "That exam is a piece of cake, don't worry.",
+      "relatedWords": [
+        {
+          "word": "a canja",
+          "meaning": "chicken broth"
+        },
+        {
+          "word": "fácil",
+          "meaning": "easy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "não ter pachorra",
+      "english": "to have no patience for",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nowng tehr puh-SHOH-rruh",
+      "example": "Hoje não tenho pachorra para reuniões.",
+      "exampleTranslation": "I can't be bothered with meetings today.",
+      "relatedWords": [
+        {
+          "word": "a paciência",
+          "meaning": "patience"
+        },
+        {
+          "word": "que pachorra!",
+          "meaning": "how tedious!"
+        }
+      ],
+      "proTip": "Casual but not rude; very common in Lisbon when you're fed up."
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "uma pipa de massa",
+      "english": "a load of money",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "OO-muh PEE-puh duh MAH-suh",
+      "example": "Gastaram uma pipa de massa nas obras da casa.",
+      "exampleTranslation": "They spent a fortune on the house renovations.",
+      "relatedWords": [
+        {
+          "word": "a massa",
+          "meaning": "money (slang)"
+        },
+        {
+          "word": "o guito",
+          "meaning": "cash (slang)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "o puto",
+      "english": "kid / young lad (informal)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo POO-too",
+      "example": "Os putos estão a jogar à bola na rua.",
+      "exampleTranslation": "The kids are playing football in the street.",
+      "relatedWords": [
+        {
+          "word": "os miúdos",
+          "meaning": "the kids"
+        },
+        {
+          "word": "a miúda",
+          "meaning": "girl / kid (f)"
+        }
+      ],
+      "proTip": "Perfectly normal for «kid» in Portugal, but the feminine is a swear word and in Brazil «puto» means «furious». Use «miúda» for a girl."
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "o aviso amarelo",
+      "english": "yellow weather warning",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo uh-VEE-zoo uh-muh-REH-loo",
+      "example": "O IPMA emitiu aviso amarelo por causa da chuva.",
+      "exampleTranslation": "IPMA issued a yellow warning because of the rain.",
+      "relatedWords": [
+        {
+          "word": "o IPMA",
+          "meaning": "Portugal's weather institute"
+        },
+        {
+          "word": "emitir",
+          "meaning": "to issue"
+        }
+      ],
+      "proTip": "IPMA's scale goes verde, amarelo, laranja, vermelho. Check ipma.pt before hiking or going to the beach."
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "o aviso laranja",
+      "english": "orange weather warning",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo uh-VEE-zoo luh-RUN-zhuh",
+      "example": "Há aviso laranja para a costa por causa da agitação marítima.",
+      "exampleTranslation": "There's an orange warning for the coast because of rough seas.",
+      "relatedWords": [
+        {
+          "word": "a agitação marítima",
+          "meaning": "rough seas"
+        },
+        {
+          "word": "o aviso vermelho",
+          "meaning": "red warning"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "fresquinho",
+      "english": "chilly / nice and cool",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "frush-KEEN-yoo",
+      "example": "Leva um casaco, que à noite está fresquinho.",
+      "exampleTranslation": "Bring a jacket, it's chilly at night.",
+      "relatedWords": [
+        {
+          "word": "fresco",
+          "meaning": "cool"
+        },
+        {
+          "word": "ameno",
+          "meaning": "mild"
+        }
+      ],
+      "proTip": "The diminutive softens it: «está fresquinho» is chilly but pleasant, never freezing."
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "os aguaceiros",
+      "english": "showers (rain)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ooz uh-gwuh-SAY-roosh",
+      "example": "A previsão é de aguaceiros durante a tarde.",
+      "exampleTranslation": "The forecast is for showers in the afternoon.",
+      "relatedWords": [
+        {
+          "word": "a chuva fraca",
+          "meaning": "light rain"
+        },
+        {
+          "word": "o guarda-chuva",
+          "meaning": "umbrella"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "o céu limpo",
+      "english": "clear sky",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo SEH-oo LEEM-poo",
+      "example": "Amanhã vamos ter céu limpo e muito sol.",
+      "exampleTranslation": "Tomorrow we'll have clear skies and lots of sun.",
+      "relatedWords": [
+        {
+          "word": "o sol",
+          "meaning": "the sun"
+        },
+        {
+          "word": "a nebulosidade",
+          "meaning": "cloud cover"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "o céu encoberto",
+      "english": "overcast sky",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo SEH-oo ayng-koo-BEHR-too",
+      "example": "De manhã o céu vai estar encoberto no litoral.",
+      "exampleTranslation": "In the morning the sky will be overcast on the coast.",
+      "relatedWords": [
+        {
+          "word": "nublado",
+          "meaning": "cloudy"
+        },
+        {
+          "word": "cinzento",
+          "meaning": "grey"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "a onda de frio",
+      "english": "cold snap",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh OHN-duh duh FREE-oo",
+      "example": "Esta onda de frio fez disparar a conta da luz.",
+      "exampleTranslation": "This cold snap sent the electricity bill soaring.",
+      "relatedWords": [
+        {
+          "word": "as temperaturas negativas",
+          "meaning": "sub-zero temperatures"
+        },
+        {
+          "word": "o aquecedor",
+          "meaning": "heater"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "as abertas",
+      "english": "sunny spells",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uz uh-BEHR-tush",
+      "example": "Vai haver aguaceiros com algumas abertas à tarde.",
+      "exampleTranslation": "There'll be showers with some sunny spells in the afternoon.",
+      "relatedWords": [
+        {
+          "word": "abrir",
+          "meaning": "to clear up (weather)"
+        },
+        {
+          "word": "o sol",
+          "meaning": "the sun"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "a nortada",
+      "english": "strong north wind (summer, west coast)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh nor-TAH-duh",
+      "example": "Na Costa da Caparica a nortada estragou o dia de praia.",
+      "exampleTranslation": "At Costa da Caparica the north wind ruined the beach day.",
+      "relatedWords": [
+        {
+          "word": "o vento",
+          "meaning": "wind"
+        },
+        {
+          "word": "o para-vento",
+          "meaning": "windbreak"
+        }
+      ],
+      "proTip": "The summer «nortada» is why Portuguese beachgoers carry windbreaks."
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "a rajada de vento",
+      "english": "gust of wind",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh rruh-ZHAH-duh duh VAYNG-too",
+      "example": "Uma rajada de vento levou-me o guarda-chuva.",
+      "exampleTranslation": "A gust of wind took my umbrella.",
+      "relatedWords": [
+        {
+          "word": "forte",
+          "meaning": "strong"
+        },
+        {
+          "word": "soprar",
+          "meaning": "to blow"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "instável",
+      "english": "unsettled (weather)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "eensh-TAH-vehl",
+      "example": "O tempo vai continuar instável até ao fim de semana.",
+      "exampleTranslation": "The weather will stay unsettled until the weekend.",
+      "relatedWords": [
+        {
+          "word": "a instabilidade",
+          "meaning": "instability"
+        },
+        {
+          "word": "mudar",
+          "meaning": "to change"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "estar um frio de rachar",
+      "english": "to be freezing cold",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shTAR oong FREE-oo duh rruh-SHAR",
+      "example": "Está um frio de rachar, nem consigo sentir os dedos.",
+      "exampleTranslation": "It's freezing, I can't even feel my fingers.",
+      "relatedWords": [
+        {
+          "word": "gelado",
+          "meaning": "freezing"
+        },
+        {
+          "word": "o calor de morrer",
+          "meaning": "deadly heat"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "a chuva miudinha",
+      "english": "drizzle / fine rain",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh SHOO-vuh myoo-DEEN-yuh",
+      "example": "É só chuva miudinha, mas molha muito.",
+      "exampleTranslation": "It's only drizzle, but it gets you soaked.",
+      "relatedWords": [
+        {
+          "word": "molhar",
+          "meaning": "to wet"
+        },
+        {
+          "word": "chover",
+          "meaning": "to rain"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "o orvalho",
+      "english": "dew",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo or-VAHL-yoo",
+      "example": "De manhã a relva está cheia de orvalho.",
+      "exampleTranslation": "In the morning the grass is covered in dew.",
+      "relatedWords": [
+        {
+          "word": "a madrugada",
+          "meaning": "early morning"
+        },
+        {
+          "word": "húmido",
+          "meaning": "damp"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "o azul-marinho",
+      "english": "navy blue",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo uh-ZOOL muh-REEN-yoo",
+      "example": "Para a entrevista, levo o fato azul-marinho.",
+      "exampleTranslation": "For the interview, I'll wear the navy blue suit.",
+      "relatedWords": [
+        {
+          "word": "azul-claro",
+          "meaning": "light blue"
+        },
+        {
+          "word": "azul-escuro",
+          "meaning": "dark blue"
+        }
+      ]
+    }
+  }
+]

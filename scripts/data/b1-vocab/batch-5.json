@@ -1,0 +1,2267 @@
+[
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "acho que",
+      "english": "I think that",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "AH-shoo kuh",
+      "example": "Acho que o restaurante fecha às dez.",
+      "exampleTranslation": "I think the restaurant closes at ten.",
+      "relatedWords": [
+        {
+          "word": "achar",
+          "meaning": "to think / to find"
+        },
+        {
+          "word": "acho que não",
+          "meaning": "I don't think so"
+        },
+        {
+          "word": "o que é que achas?",
+          "meaning": "what do you think?"
+        }
+      ],
+      "proTip": "«Acho que sim» and «acho que não» are the everyday way to say «I think so / I don't think so»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "na minha opinião",
+      "english": "in my opinion",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "nuh MEE-nyuh oh-pee-NYOWNG",
+      "example": "Na minha opinião, o metro é mais rápido que o autocarro.",
+      "exampleTranslation": "In my opinion, the metro is faster than the bus.",
+      "relatedWords": [
+        {
+          "word": "a opinião",
+          "meaning": "the opinion"
+        },
+        {
+          "word": "mudar de opinião",
+          "meaning": "to change one's mind"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "depende",
+      "english": "it depends",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "duh-PAYN-duh",
+      "example": "Vais à praia no sábado? Depende do tempo.",
+      "exampleTranslation": "Are you going to the beach on Saturday? It depends on the weather.",
+      "relatedWords": [
+        {
+          "word": "depender de",
+          "meaning": "to depend on"
+        },
+        {
+          "word": "depende de ti",
+          "meaning": "it's up to you"
+        }
+      ],
+      "proTip": "Note the «de»: it's always «depende de», never «depende em»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "é verdade",
+      "english": "that's true; it's true",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "EH vuhr-DAHD",
+      "example": "É verdade, as rendas em Lisboa estão caríssimas.",
+      "exampleTranslation": "It's true, rents in Lisbon are really expensive.",
+      "relatedWords": [
+        {
+          "word": "a verdade",
+          "meaning": "the truth"
+        },
+        {
+          "word": "é mentira",
+          "meaning": "that's a lie / not true"
+        }
+      ],
+      "proTip": "With rising intonation, «É verdade!» also means «Oh, by the way!» — used when you suddenly remember something."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "por exemplo",
+      "english": "for example",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "poor ee-ZAYM-ploo",
+      "example": "Gosto de fruta da época, por exemplo cerejas e pêssegos.",
+      "exampleTranslation": "I like seasonal fruit, for example cherries and peaches.",
+      "relatedWords": [
+        {
+          "word": "o exemplo",
+          "meaning": "the example"
+        },
+        {
+          "word": "dar um exemplo",
+          "meaning": "to give an example"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "por isso",
+      "english": "so; that's why",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "poor EE-soo",
+      "example": "Perdi o comboio, por isso cheguei atrasado.",
+      "exampleTranslation": "I missed the train, so I arrived late.",
+      "relatedWords": [
+        {
+          "word": "portanto",
+          "meaning": "therefore"
+        },
+        {
+          "word": "é por isso que",
+          "meaning": "that's why"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "além disso",
+      "english": "besides; moreover",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "ah-LAYNG DEE-soo",
+      "example": "A casa é grande e, além disso, tem varanda.",
+      "exampleTranslation": "The house is big and, besides, it has a balcony.",
+      "relatedWords": [
+        {
+          "word": "além de",
+          "meaning": "apart from / besides"
+        },
+        {
+          "word": "também",
+          "meaning": "also"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "finalmente",
+      "english": "finally; at last",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "fee-nahl-MAYN-tuh",
+      "example": "Finalmente recebi a resposta das Finanças.",
+      "exampleTranslation": "I finally got the reply from the tax office.",
+      "relatedWords": [
+        {
+          "word": "por fim",
+          "meaning": "lastly"
+        },
+        {
+          "word": "o fim",
+          "meaning": "the end"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "por causa de",
+      "english": "because of",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "poor KOW-zuh duh",
+      "example": "O voo atrasou por causa do nevoeiro.",
+      "exampleTranslation": "The flight was delayed because of the fog.",
+      "relatedWords": [
+        {
+          "word": "a causa",
+          "meaning": "the cause"
+        },
+        {
+          "word": "porque",
+          "meaning": "because"
+        }
+      ],
+      "proTip": "It contracts with articles: «por causa do trânsito», «por causa da chuva»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "na verdade",
+      "english": "actually; in fact",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "nuh vuhr-DAHD",
+      "example": "Na verdade, prefiro ficar em casa esta noite.",
+      "exampleTranslation": "Actually, I'd rather stay home tonight.",
+      "relatedWords": [
+        {
+          "word": "a verdade",
+          "meaning": "the truth"
+        },
+        {
+          "word": "de facto",
+          "meaning": "indeed"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "se calhar",
+      "english": "maybe; probably",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "suh kuh-LYAR",
+      "example": "Se calhar chove amanhã, leva o guarda-chuva.",
+      "exampleTranslation": "It might rain tomorrow, take the umbrella.",
+      "relatedWords": [
+        {
+          "word": "talvez",
+          "meaning": "perhaps"
+        },
+        {
+          "word": "se calhar não",
+          "meaning": "maybe not"
+        }
+      ],
+      "proTip": "Hugely common in Portugal and rare in Brazil. Unlike «talvez», it takes the indicative: «se calhar vou», not «se calhar vá»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "tanto faz",
+      "english": "it doesn't matter; whatever",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "TAHN-too FASH",
+      "example": "Queres ir ao cinema ou jantar fora? Tanto faz.",
+      "exampleTranslation": "Do you want to go to the cinema or eat out? I don't mind.",
+      "relatedWords": [
+        {
+          "word": "é igual",
+          "meaning": "it's all the same"
+        },
+        {
+          "word": "não me importa",
+          "meaning": "I don't mind"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "pelo menos",
+      "english": "at least",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "PEH-loo MEH-noosh",
+      "example": "Bebe pelo menos dois litros de água por dia.",
+      "exampleTranslation": "Drink at least two litres of water a day.",
+      "relatedWords": [
+        {
+          "word": "no mínimo",
+          "meaning": "at the minimum"
+        },
+        {
+          "word": "no máximo",
+          "meaning": "at most"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "estar de acordo",
+      "english": "to agree",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "shtar duh uh-KOR-doo",
+      "example": "Estou de acordo contigo, o plano é bom.",
+      "exampleTranslation": "I agree with you, the plan is good.",
+      "relatedWords": [
+        {
+          "word": "o acordo",
+          "meaning": "the agreement"
+        },
+        {
+          "word": "de acordo!",
+          "meaning": "agreed!"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "quer dizer",
+      "english": "I mean; that is to say",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "kehr dee-ZEHR",
+      "example": "Chego às oito, quer dizer, mais ou menos.",
+      "exampleTranslation": "I'll arrive at eight, I mean, more or less.",
+      "relatedWords": [
+        {
+          "word": "o que quer dizer...?",
+          "meaning": "what does ... mean?"
+        },
+        {
+          "word": "ou seja",
+          "meaning": "in other words"
+        }
+      ],
+      "proTip": "«O que quer dizer isto?» is how you ask what a word means."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "a meu ver",
+      "english": "as I see it",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh MEH-oo VEHR",
+      "example": "A meu ver, a reunião foi uma perda de tempo.",
+      "exampleTranslation": "As I see it, the meeting was a waste of time.",
+      "relatedWords": [
+        {
+          "word": "na minha opinião",
+          "meaning": "in my opinion"
+        },
+        {
+          "word": "do meu ponto de vista",
+          "meaning": "from my point of view"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "parece-me que",
+      "english": "it seems to me that",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puh-REHS-muh kuh",
+      "example": "Parece-me que o senhorio não vai baixar a renda.",
+      "exampleTranslation": "It seems to me the landlord won't lower the rent.",
+      "relatedWords": [
+        {
+          "word": "parecer",
+          "meaning": "to seem"
+        },
+        {
+          "word": "não me parece",
+          "meaning": "I don't think so"
+        }
+      ],
+      "proTip": "«Não me parece» is a polite, very Portuguese way to disagree without saying «não»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "por um lado",
+      "english": "on the one hand",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poor oom LAH-doo",
+      "example": "Por um lado, o trabalho paga bem; por outro, é longe.",
+      "exampleTranslation": "On the one hand, the job pays well; on the other, it's far.",
+      "relatedWords": [
+        {
+          "word": "por outro lado",
+          "meaning": "on the other hand"
+        },
+        {
+          "word": "o lado",
+          "meaning": "the side"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "por outro lado",
+      "english": "on the other hand",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poor OH-troo LAH-doo",
+      "example": "Viver no centro é caro; por outro lado, poupas no carro.",
+      "exampleTranslation": "Living downtown is expensive; on the other hand, you save on a car.",
+      "relatedWords": [
+        {
+          "word": "por um lado",
+          "meaning": "on the one hand"
+        },
+        {
+          "word": "no entanto",
+          "meaning": "however"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "no entanto",
+      "english": "however; nevertheless",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "noo ayn-TAHN-too",
+      "example": "O apartamento é pequeno. No entanto, tem muita luz.",
+      "exampleTranslation": "The flat is small. However, it gets a lot of light.",
+      "relatedWords": [
+        {
+          "word": "contudo",
+          "meaning": "however"
+        },
+        {
+          "word": "mas",
+          "meaning": "but"
+        }
+      ],
+      "proTip": "Don't confuse it with «entretanto», which means «meanwhile»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "contudo",
+      "english": "however; yet",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kohn-TOO-doo",
+      "example": "Estudei muito; contudo, não passei no exame.",
+      "exampleTranslation": "I studied a lot; however, I didn't pass the exam.",
+      "relatedWords": [
+        {
+          "word": "no entanto",
+          "meaning": "however"
+        },
+        {
+          "word": "porém",
+          "meaning": "however"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "porém",
+      "english": "however; but",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poo-RAYNG",
+      "example": "O curso é gratuito; porém, as vagas são limitadas.",
+      "exampleTranslation": "The course is free; however, places are limited.",
+      "relatedWords": [
+        {
+          "word": "contudo",
+          "meaning": "however"
+        },
+        {
+          "word": "todavia",
+          "meaning": "nevertheless"
+        }
+      ],
+      "proTip": "More common in writing than in speech — useful for the DEPLE written test."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "aliás",
+      "english": "in fact; besides; or rather",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-LEE-ash",
+      "example": "Não gosto de fado. Aliás, nunca fui a uma casa de fados.",
+      "exampleTranslation": "I don't like fado. In fact, I've never been to a fado house.",
+      "relatedWords": [
+        {
+          "word": "além disso",
+          "meaning": "besides"
+        },
+        {
+          "word": "ou melhor",
+          "meaning": "or rather"
+        }
+      ],
+      "proTip": "Used constantly in speech to add or correct: «Encontramo-nos às oito, aliás, às oito e meia.»"
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "portanto",
+      "english": "so; therefore",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poor-TAHN-too",
+      "example": "O banco fecha às três, portanto temos de ir já.",
+      "exampleTranslation": "The bank closes at three, so we have to go now.",
+      "relatedWords": [
+        {
+          "word": "por isso",
+          "meaning": "so / that's why"
+        },
+        {
+          "word": "então",
+          "meaning": "so / then"
+        }
+      ],
+      "proTip": "In casual speech, «portanto» is also a filler word, like «so...» at the start of a sentence."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "ou seja",
+      "english": "in other words; that is",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "oh SAY-zhuh",
+      "example": "Chego daqui a uma semana, ou seja, no dia dez.",
+      "exampleTranslation": "I arrive in a week, in other words, on the tenth.",
+      "relatedWords": [
+        {
+          "word": "isto é",
+          "meaning": "that is"
+        },
+        {
+          "word": "quer dizer",
+          "meaning": "I mean"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "isto é",
+      "english": "that is; i.e.",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "EESH-too EH",
+      "example": "Pagas a caução, isto é, dois meses de renda.",
+      "exampleTranslation": "You pay the deposit, that is, two months' rent.",
+      "relatedWords": [
+        {
+          "word": "ou seja",
+          "meaning": "in other words"
+        },
+        {
+          "word": "por exemplo",
+          "meaning": "for example"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "apesar de",
+      "english": "despite; in spite of",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-puh-ZAR duh",
+      "example": "Apesar de ser caro, o jantar valeu a pena.",
+      "exampleTranslation": "Despite being expensive, the dinner was worth it.",
+      "relatedWords": [
+        {
+          "word": "apesar disso",
+          "meaning": "despite that"
+        },
+        {
+          "word": "embora",
+          "meaning": "although"
+        }
+      ],
+      "proTip": "Followed by an infinitive or a noun: «apesar de chover», «apesar do frio». For a full clause, use «embora» + conjuntivo."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "embora",
+      "english": "although; even though",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "aym-BOH-ruh",
+      "example": "Embora esteja cansado, vou ao jantar de anos.",
+      "exampleTranslation": "Although I'm tired, I'm going to the birthday dinner.",
+      "relatedWords": [
+        {
+          "word": "apesar de",
+          "meaning": "despite"
+        },
+        {
+          "word": "se bem que",
+          "meaning": "although"
+        }
+      ],
+      "proTip": "Always takes the conjuntivo: «embora seja», «embora tenha», never «embora é»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "mesmo assim",
+      "english": "even so; still",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "MAYZH-moo uh-SEENG",
+      "example": "Choveu o dia todo e, mesmo assim, fomos à praia.",
+      "exampleTranslation": "It rained all day and we still went to the beach.",
+      "relatedWords": [
+        {
+          "word": "ainda assim",
+          "meaning": "even so"
+        },
+        {
+          "word": "apesar disso",
+          "meaning": "despite that"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "de facto",
+      "english": "indeed; in fact",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh FAH-too",
+      "example": "De facto, o serviço nas Finanças está mais rápido.",
+      "exampleTranslation": "Indeed, service at the tax office is faster now.",
+      "relatedWords": [
+        {
+          "word": "na verdade",
+          "meaning": "actually"
+        },
+        {
+          "word": "realmente",
+          "meaning": "really"
+        }
+      ],
+      "proTip": "Portugal keeps the «c» in «facto» (Brazil writes «fato», which in Portugal means a suit)."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "pelos vistos",
+      "english": "apparently; so it seems",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "PEH-loosh VEESH-toosh",
+      "example": "Pelos vistos, a greve dos comboios continua amanhã.",
+      "exampleTranslation": "Apparently, the train strike carries on tomorrow.",
+      "relatedWords": [
+        {
+          "word": "aparentemente",
+          "meaning": "apparently"
+        },
+        {
+          "word": "ao que parece",
+          "meaning": "so it seems"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "ainda por cima",
+      "english": "on top of that; to make matters worse",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-EEN-duh poor SEE-muh",
+      "example": "O táxi chegou tarde e, ainda por cima, era caro.",
+      "exampleTranslation": "The taxi arrived late and, on top of that, it was expensive.",
+      "relatedWords": [
+        {
+          "word": "além disso",
+          "meaning": "besides"
+        },
+        {
+          "word": "para cúmulo",
+          "meaning": "to top it all"
+        }
+      ],
+      "proTip": "Usually adds a complaint to another complaint — very handy for venting about bureaucracy."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "em primeiro lugar",
+      "english": "firstly; in the first place",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "aym pree-MAY-roo loo-GAR",
+      "example": "Em primeiro lugar, quero agradecer a todos por virem.",
+      "exampleTranslation": "First of all, I want to thank everyone for coming.",
+      "relatedWords": [
+        {
+          "word": "em segundo lugar",
+          "meaning": "secondly"
+        },
+        {
+          "word": "por fim",
+          "meaning": "lastly"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "em suma",
+      "english": "in short; in sum",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "aym SOO-muh",
+      "example": "Em suma, foi uma viagem cara mas inesquecível.",
+      "exampleTranslation": "In short, it was an expensive but unforgettable trip.",
+      "relatedWords": [
+        {
+          "word": "resumindo",
+          "meaning": "to sum up"
+        },
+        {
+          "word": "em conclusão",
+          "meaning": "in conclusion"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "graças a",
+      "english": "thanks to",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "GRAH-suhz uh",
+      "example": "Graças à tua ajuda, consegui o emprego.",
+      "exampleTranslation": "Thanks to your help, I got the job.",
+      "relatedWords": [
+        {
+          "word": "por causa de",
+          "meaning": "because of"
+        },
+        {
+          "word": "agradecer",
+          "meaning": "to thank"
+        }
+      ],
+      "proTip": "Contracts with the article: «graças ao», «graças à». Use it for positive causes; «por causa de» is neutral or negative."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "visto que",
+      "english": "since; given that",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "VEESH-too kuh",
+      "example": "Visto que está a chover, vamos de táxi.",
+      "exampleTranslation": "Since it's raining, let's take a taxi.",
+      "relatedWords": [
+        {
+          "word": "já que",
+          "meaning": "since"
+        },
+        {
+          "word": "uma vez que",
+          "meaning": "since"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "já que",
+      "english": "since; seeing as",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ZHAH kuh",
+      "example": "Já que estás aqui, ajuda-me com as malas.",
+      "exampleTranslation": "Since you're here, help me with the suitcases.",
+      "relatedWords": [
+        {
+          "word": "visto que",
+          "meaning": "given that"
+        },
+        {
+          "word": "como",
+          "meaning": "as / since"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "caso",
+      "english": "in case; if",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "KAH-zoo",
+      "example": "Caso chova, o jantar é dentro de casa.",
+      "exampleTranslation": "If it rains, the dinner will be indoors.",
+      "relatedWords": [
+        {
+          "word": "no caso de",
+          "meaning": "in the event of"
+        },
+        {
+          "word": "se",
+          "meaning": "if"
+        }
+      ],
+      "proTip": "«Caso» takes the conjuntivo (caso chova, caso precises), while «se» takes the indicative in the present."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "a não ser que",
+      "english": "unless",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh nowng SEHR kuh",
+      "example": "Vou a pé, a não ser que esteja a chover.",
+      "exampleTranslation": "I'll walk, unless it's raining.",
+      "relatedWords": [
+        {
+          "word": "a menos que",
+          "meaning": "unless"
+        },
+        {
+          "word": "exceto se",
+          "meaning": "except if"
+        }
+      ],
+      "proTip": "Always followed by the conjuntivo: «a não ser que tenhas tempo»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "desde que",
+      "english": "as long as; provided that",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "DAYZH-duh kuh",
+      "example": "Podes levar o carro, desde que o tragas cheio.",
+      "exampleTranslation": "You can take the car, as long as you bring it back full.",
+      "relatedWords": [
+        {
+          "word": "contanto que",
+          "meaning": "provided that"
+        },
+        {
+          "word": "desde",
+          "meaning": "since"
+        }
+      ],
+      "proTip": "With the conjuntivo it means «as long as»; with the indicative it means «since» (time): «desde que cheguei»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "no fundo",
+      "english": "deep down; basically",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "noo FOON-doo",
+      "example": "Ele parece antipático, mas no fundo é boa pessoa.",
+      "exampleTranslation": "He seems unfriendly, but deep down he's a good person.",
+      "relatedWords": [
+        {
+          "word": "o fundo",
+          "meaning": "the bottom"
+        },
+        {
+          "word": "basicamente",
+          "meaning": "basically"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "sinceramente",
+      "english": "honestly; to be honest",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "seen-seh-ruh-MAYN-tuh",
+      "example": "Sinceramente, não percebo porque é que ele se zangou.",
+      "exampleTranslation": "Honestly, I don't understand why he got angry.",
+      "relatedWords": [
+        {
+          "word": "sincero",
+          "meaning": "sincere"
+        },
+        {
+          "word": "francamente",
+          "meaning": "frankly"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "não faz sentido",
+      "english": "it doesn't make sense",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nowng FASH sayn-TEE-doo",
+      "example": "Pagar mais por menos serviço não faz sentido nenhum.",
+      "exampleTranslation": "Paying more for less service makes no sense at all.",
+      "relatedWords": [
+        {
+          "word": "o sentido",
+          "meaning": "the sense / meaning"
+        },
+        {
+          "word": "faz sentido",
+          "meaning": "it makes sense"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "vale a pena",
+      "english": "it's worth it",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "VAH-luh PEH-nuh",
+      "example": "Vale a pena ir a Sintra num dia de semana.",
+      "exampleTranslation": "It's worth going to Sintra on a weekday.",
+      "relatedWords": [
+        {
+          "word": "não vale a pena",
+          "meaning": "it's not worth it / no point"
+        },
+        {
+          "word": "a pena",
+          "meaning": "the pity / trouble"
+        }
+      ],
+      "proTip": "«Não vale a pena» is also a gentle «don't bother»: «Não vale a pena pagares, eu convido.»"
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "não tem nada a ver",
+      "english": "it has nothing to do with it",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nowng tayng NAH-duh uh VEHR",
+      "example": "Isso não tem nada a ver com o que eu disse.",
+      "exampleTranslation": "That has nothing to do with what I said.",
+      "relatedWords": [
+        {
+          "word": "ter a ver com",
+          "meaning": "to have to do with"
+        },
+        {
+          "word": "não tem nada a ver!",
+          "meaning": "not at all the same!"
+        }
+      ],
+      "proTip": "Also used to say two things are totally different: «Lisboa e Porto? Não tem nada a ver!»"
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "enfim",
+      "english": "anyway; well; in short",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayn-FEENG",
+      "example": "Enfim, não vale a pena discutir mais isso.",
+      "exampleTranslation": "Anyway, there's no point arguing about it any more.",
+      "relatedWords": [
+        {
+          "word": "pronto",
+          "meaning": "right / okay then"
+        },
+        {
+          "word": "em suma",
+          "meaning": "in short"
+        }
+      ],
+      "proTip": "Often a resigned sigh — «Enfim...» — closing a topic you can't change."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "pelo contrário",
+      "english": "on the contrary",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "PEH-loo kohn-TRAH-ryoo",
+      "example": "Não estou chateado, pelo contrário, estou contente.",
+      "exampleTranslation": "I'm not annoyed; on the contrary, I'm happy.",
+      "relatedWords": [
+        {
+          "word": "ao contrário de",
+          "meaning": "unlike"
+        },
+        {
+          "word": "o contrário",
+          "meaning": "the opposite"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "de qualquer forma",
+      "english": "anyway; in any case",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh kwahl-KEHR FOR-muh",
+      "example": "Não sei se vou, mas de qualquer forma aviso-te.",
+      "exampleTranslation": "I don't know if I'll go, but I'll let you know anyway.",
+      "relatedWords": [
+        {
+          "word": "de qualquer maneira",
+          "meaning": "anyway"
+        },
+        {
+          "word": "seja como for",
+          "meaning": "be that as it may"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "seja como for",
+      "english": "be that as it may; anyway",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "SAY-zhuh KOH-moo FOR",
+      "example": "Seja como for, temos de entregar isto até sexta.",
+      "exampleTranslation": "Be that as it may, we have to hand this in by Friday.",
+      "relatedWords": [
+        {
+          "word": "de qualquer forma",
+          "meaning": "in any case"
+        },
+        {
+          "word": "enfim",
+          "meaning": "anyway"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "sobretudo",
+      "english": "above all; especially",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "soo-bruh-TOO-doo",
+      "example": "Gosto de Lisboa, sobretudo na primavera.",
+      "exampleTranslation": "I like Lisbon, especially in spring.",
+      "relatedWords": [
+        {
+          "word": "principalmente",
+          "meaning": "mainly"
+        },
+        {
+          "word": "o sobretudo",
+          "meaning": "the overcoat"
+        }
+      ],
+      "proTip": "As a noun, «o sobretudo» is a winter overcoat — context tells you which."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "ainda assim",
+      "english": "even so; still",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-EEN-duh uh-SEENG",
+      "example": "A casa precisa de obras; ainda assim, vamos comprá-la.",
+      "exampleTranslation": "The house needs work; even so, we're going to buy it.",
+      "relatedWords": [
+        {
+          "word": "mesmo assim",
+          "meaning": "even so"
+        },
+        {
+          "word": "no entanto",
+          "meaning": "however"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "se bem que",
+      "english": "although; mind you",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "suh BAYNG kuh",
+      "example": "O hotel era bom, se bem que o pequeno-almoço fosse fraco.",
+      "exampleTranslation": "The hotel was good, although the breakfast was poor.",
+      "relatedWords": [
+        {
+          "word": "embora",
+          "meaning": "although"
+        },
+        {
+          "word": "apesar de",
+          "meaning": "despite"
+        }
+      ],
+      "proTip": "Like «embora», it takes the conjuntivo, and often adds an afterthought at the end of a sentence."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "uma vez que",
+      "english": "since; given that",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "OO-muh VEHSH kuh",
+      "example": "Uma vez que já pagaste, não precisas de fazer mais nada.",
+      "exampleTranslation": "Since you've already paid, you don't need to do anything else.",
+      "relatedWords": [
+        {
+          "word": "visto que",
+          "meaning": "given that"
+        },
+        {
+          "word": "dado que",
+          "meaning": "given that"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "dado que",
+      "english": "given that",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "DAH-doo kuh",
+      "example": "Dado que o voo foi cancelado, temos direito a reembolso.",
+      "exampleTranslation": "Given that the flight was cancelled, we're entitled to a refund.",
+      "relatedWords": [
+        {
+          "word": "visto que",
+          "meaning": "since"
+        },
+        {
+          "word": "uma vez que",
+          "meaning": "since"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "mesmo que",
+      "english": "even if",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "MAYZH-moo kuh",
+      "example": "Mesmo que chova, o jogo não é adiado.",
+      "exampleTranslation": "Even if it rains, the match won't be postponed.",
+      "relatedWords": [
+        {
+          "word": "ainda que",
+          "meaning": "even though"
+        },
+        {
+          "word": "mesmo assim",
+          "meaning": "even so"
+        }
+      ],
+      "proTip": "Always followed by the conjuntivo: «mesmo que queiras», «mesmo que fosse»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "em relação a",
+      "english": "regarding; in relation to",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "aym ruh-luh-SOWNG uh",
+      "example": "Em relação ao contrato, ainda tenho algumas dúvidas.",
+      "exampleTranslation": "Regarding the contract, I still have some questions.",
+      "relatedWords": [
+        {
+          "word": "relativamente a",
+          "meaning": "with regard to"
+        },
+        {
+          "word": "quanto a",
+          "meaning": "as for"
+        }
+      ],
+      "proTip": "Very common in work emails: «Em relação ao seu pedido...»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "quanto a",
+      "english": "as for; as regards",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "KWAHN-too uh",
+      "example": "Quanto ao preço, podemos falar depois.",
+      "exampleTranslation": "As for the price, we can talk later.",
+      "relatedWords": [
+        {
+          "word": "em relação a",
+          "meaning": "regarding"
+        },
+        {
+          "word": "no que diz respeito a",
+          "meaning": "as far as ... is concerned"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "afinal",
+      "english": "after all; so in the end",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-fee-NAHL",
+      "example": "Afinal, o restaurante estava aberto!",
+      "exampleTranslation": "So the restaurant was open after all!",
+      "relatedWords": [
+        {
+          "word": "afinal de contas",
+          "meaning": "after all"
+        },
+        {
+          "word": "no fim",
+          "meaning": "in the end"
+        }
+      ],
+      "proTip": "Signals a surprise or a reversal: «Afinal não vens?» = «So you're not coming after all?»"
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "pois é",
+      "english": "exactly; that's right; I know",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "POYZ EH",
+      "example": "Está um calor horrível hoje. — Pois é!",
+      "exampleTranslation": "It's horribly hot today. — I know, right!",
+      "relatedWords": [
+        {
+          "word": "pois",
+          "meaning": "well / yes"
+        },
+        {
+          "word": "pois claro",
+          "meaning": "of course"
+        }
+      ],
+      "proTip": "The Portuguese way to agree or commiserate. Said with a sigh, it means «tell me about it»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "lá está",
+      "english": "there you go; exactly",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "LAH SHTAH",
+      "example": "Lá está, eu disse-te que ia chover!",
+      "exampleTranslation": "There you go, I told you it was going to rain!",
+      "relatedWords": [
+        {
+          "word": "pois é",
+          "meaning": "exactly"
+        },
+        {
+          "word": "estás a ver?",
+          "meaning": "you see?"
+        }
+      ],
+      "proTip": "Used when something confirms what you just said or predicted — a very typical Lisbon expression."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "nem pensar",
+      "english": "no way; out of the question",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nayng payn-SAR",
+      "example": "Pagar vinte euros por uma bica? Nem pensar!",
+      "exampleTranslation": "Pay twenty euros for an espresso? No way!",
+      "relatedWords": [
+        {
+          "word": "de maneira nenhuma",
+          "meaning": "no way"
+        },
+        {
+          "word": "nunca",
+          "meaning": "never"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "duvido que",
+      "english": "I doubt that",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "doo-VEE-doo kuh",
+      "example": "Duvido que o autocarro chegue a horas.",
+      "exampleTranslation": "I doubt the bus will arrive on time.",
+      "relatedWords": [
+        {
+          "word": "duvidar",
+          "meaning": "to doubt"
+        },
+        {
+          "word": "a dúvida",
+          "meaning": "the doubt / question"
+        }
+      ],
+      "proTip": "Takes the conjuntivo: «duvido que seja», «duvido que tenham»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "ter a certeza",
+      "english": "to be sure",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "TEHR uh suhr-TEH-zuh",
+      "example": "Tens a certeza de que fechaste a porta?",
+      "exampleTranslation": "Are you sure you locked the door?",
+      "relatedWords": [
+        {
+          "word": "a certeza",
+          "meaning": "certainty"
+        },
+        {
+          "word": "com certeza",
+          "meaning": "certainly"
+        }
+      ],
+      "proTip": "In Portugal you «tens a certeza», not «estás seguro» — «seguro» is mostly about safety or insurance."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "o ponto de vista",
+      "english": "the point of view",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo POHN-too duh VEESH-tuh",
+      "example": "Do meu ponto de vista, o projeto é viável.",
+      "exampleTranslation": "From my point of view, the project is viable.",
+      "relatedWords": [
+        {
+          "word": "a perspetiva",
+          "meaning": "the perspective"
+        },
+        {
+          "word": "a meu ver",
+          "meaning": "as I see it"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "ainda que",
+      "english": "even though; even if",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-EEN-duh kuh",
+      "example": "Ainda que seja caro, vale a pena ir ao concerto.",
+      "exampleTranslation": "Even though it's expensive, the concert is worth going to.",
+      "relatedWords": [
+        {
+          "word": "embora",
+          "meaning": "although"
+        },
+        {
+          "word": "mesmo que",
+          "meaning": "even if"
+        }
+      ],
+      "proTip": "Like «embora», it always takes the conjuntivo — «ainda que tenhas razão», never «ainda que tens»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "em conclusão",
+      "english": "in conclusion",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng kohng-kloo-ZOWNG",
+      "example": "Em conclusão, acho que a proposta tem mais vantagens do que problemas.",
+      "exampleTranslation": "In conclusion, I think the proposal has more advantages than problems.",
+      "relatedWords": [
+        {
+          "word": "em suma",
+          "meaning": "in short"
+        },
+        {
+          "word": "para concluir",
+          "meaning": "to conclude"
+        },
+        {
+          "word": "concluir",
+          "meaning": "to conclude"
+        }
+      ],
+      "proTip": "A safe way to open the last paragraph of a DEPLE opinion text."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "o argumento",
+      "english": "the argument (reasoning)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo ar-goo-MAYN-too",
+      "example": "Esse argumento não me convence nada.",
+      "exampleTranslation": "That argument doesn't convince me at all.",
+      "relatedWords": [
+        {
+          "word": "argumentar",
+          "meaning": "to argue a point"
+        },
+        {
+          "word": "a discussão",
+          "meaning": "the argument / quarrel"
+        }
+      ],
+      "proTip": "False friend: «argumento» is a line of reasoning; a heated row is «uma discussão»."
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "convencer",
+      "english": "to convince",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kohn-vayn-SEHR",
+      "example": "Ela convenceu-me a fazer o curso de português.",
+      "exampleTranslation": "She convinced me to take the Portuguese course.",
+      "relatedWords": [
+        {
+          "word": "convencido",
+          "meaning": "convinced / smug"
+        },
+        {
+          "word": "convincente",
+          "meaning": "convincing"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "sem dúvida",
+      "english": "without a doubt; definitely",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "sayng DOO-vee-duh",
+      "example": "O Porto é, sem dúvida, a cidade mais bonita do Norte.",
+      "exampleTranslation": "Porto is, without a doubt, the prettiest city in the North.",
+      "relatedWords": [
+        {
+          "word": "com certeza",
+          "meaning": "certainly"
+        },
+        {
+          "word": "não há dúvida",
+          "meaning": "there's no doubt"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opinions-connectors",
+    "word": {
+      "portuguese": "por acaso",
+      "english": "by chance; actually",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poor uh-KAH-zoo",
+      "example": "Por acaso, tens o número do canalizador?",
+      "exampleTranslation": "Do you happen to have the plumber's number?",
+      "relatedWords": [
+        {
+          "word": "o acaso",
+          "meaning": "chance"
+        },
+        {
+          "word": "por coincidência",
+          "meaning": "by coincidence"
+        }
+      ],
+      "proTip": "Also a mild «actually»: «Por acaso até gostei do filme» = «Actually, I quite liked the film»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "desculpe o incómodo",
+      "english": "sorry to bother you",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dush-KOOL-puh oo eeng-KOH-moo-doo",
+      "example": "Desculpe o incómodo, sabe onde fica a farmácia?",
+      "exampleTranslation": "Sorry to bother you, do you know where the pharmacy is?",
+      "relatedWords": [
+        {
+          "word": "o incómodo",
+          "meaning": "the inconvenience"
+        },
+        {
+          "word": "incomodar",
+          "meaning": "to bother"
+        }
+      ],
+      "proTip": "The polite opener for stopping a stranger in the street. Portugal spells «incómodo» with an acute accent."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "ainda bem",
+      "english": "good; thank goodness",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-EEN-duh BAYNG",
+      "example": "Já te sentes melhor? Ainda bem!",
+      "exampleTranslation": "You're feeling better already? That's good!",
+      "relatedWords": [
+        {
+          "word": "ainda bem que",
+          "meaning": "it's a good thing that"
+        },
+        {
+          "word": "que bom",
+          "meaning": "how nice"
+        }
+      ],
+      "proTip": "«Ainda bem que vieste» = «I'm glad you came». It has nothing to do with «still»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "ora essa",
+      "english": "not at all; don't mention it",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "OH-ruh EH-suh",
+      "example": "Obrigado pela ajuda! — Ora essa, não foi nada.",
+      "exampleTranslation": "Thanks for the help! — Don't mention it, it was nothing.",
+      "relatedWords": [
+        {
+          "word": "de nada",
+          "meaning": "you're welcome"
+        },
+        {
+          "word": "não tem de quê",
+          "meaning": "not at all"
+        }
+      ],
+      "proTip": "Said in reply to thanks or an apology. With a different tone it can also mean «Well, really!» in indignation."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "já agora",
+      "english": "by the way; while we're at it",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ZHAH uh-GOH-ruh",
+      "example": "Já agora, sabes a que horas abre o mercado?",
+      "exampleTranslation": "By the way, do you know what time the market opens?",
+      "relatedWords": [
+        {
+          "word": "a propósito",
+          "meaning": "by the way"
+        },
+        {
+          "word": "aproveitar",
+          "meaning": "to take the chance"
+        }
+      ],
+      "proTip": "Extremely common for tacking on an extra question or request: «Já agora, traga-me também um café.»"
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "força!",
+      "english": "go for it!; come on!",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "FOR-suh",
+      "example": "Tens a entrevista amanhã? Força!",
+      "exampleTranslation": "You have the interview tomorrow? Go for it!",
+      "relatedWords": [
+        {
+          "word": "a força",
+          "meaning": "the strength"
+        },
+        {
+          "word": "boa sorte",
+          "meaning": "good luck"
+        }
+      ],
+      "proTip": "Used to encourage someone; «Força, Portugal!» is the football chant."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "as melhoras",
+      "english": "get well soon",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uzh muh-LYOH-ruhsh",
+      "example": "Estás com gripe? Então as melhoras!",
+      "exampleTranslation": "You've got the flu? Get well soon, then!",
+      "relatedWords": [
+        {
+          "word": "melhorar",
+          "meaning": "to get better"
+        },
+        {
+          "word": "estar doente",
+          "meaning": "to be ill"
+        }
+      ],
+      "proTip": "The standard thing to say to anyone who's ill — short for «desejo-te as melhoras»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "os meus pêsames",
+      "english": "my condolences",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "oozh MEH-oosh PEH-zuh-muhsh",
+      "example": "Soube do teu avô. Os meus pêsames.",
+      "exampleTranslation": "I heard about your grandfather. My condolences.",
+      "relatedWords": [
+        {
+          "word": "os meus sentimentos",
+          "meaning": "my sympathies"
+        },
+        {
+          "word": "o funeral",
+          "meaning": "the funeral"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "os meus sentimentos",
+      "english": "my sympathies",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "oozh MEH-oosh sayn-tee-MAYN-toosh",
+      "example": "Os meus sentimentos a toda a família.",
+      "exampleTranslation": "My sympathies to the whole family.",
+      "relatedWords": [
+        {
+          "word": "os meus pêsames",
+          "meaning": "my condolences"
+        },
+        {
+          "word": "lamento muito",
+          "meaning": "I'm very sorry"
+        }
+      ],
+      "proTip": "In everyday speech this is softer and more common than «os meus pêsames», which can sound formal."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "bom proveito",
+      "english": "enjoy your meal",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "bohng proo-VAY-too",
+      "example": "Aqui está a sua francesinha. Bom proveito!",
+      "exampleTranslation": "Here's your francesinha. Enjoy!",
+      "relatedWords": [
+        {
+          "word": "bom apetite",
+          "meaning": "enjoy your meal"
+        },
+        {
+          "word": "o proveito",
+          "meaning": "the benefit"
+        }
+      ],
+      "proTip": "You'll hear it when walking past people eating, or from a waiter — reply «Obrigado»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "prazer em conhecê-lo",
+      "english": "pleased to meet you",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "pruh-ZEHR ayng koo-nyuh-SEH-loo",
+      "example": "Sou a Marta, a nova vizinha. Prazer em conhecê-lo.",
+      "exampleTranslation": "I'm Marta, the new neighbour. Pleased to meet you.",
+      "relatedWords": [
+        {
+          "word": "conhecer",
+          "meaning": "to meet / know"
+        },
+        {
+          "word": "muito gosto",
+          "meaning": "pleased to meet you"
+        }
+      ],
+      "proTip": "Use «conhecê-lo» for a man, «conhecê-la» for a woman. With friends, «Muito gosto» is simpler."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "cumprimentos à família",
+      "english": "regards to the family",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "koom-pree-MAYN-toosh AH fuh-MEE-lyuh",
+      "example": "Até à próxima, e cumprimentos à família!",
+      "exampleTranslation": "Until next time, and my regards to the family!",
+      "relatedWords": [
+        {
+          "word": "os cumprimentos",
+          "meaning": "greetings / regards"
+        },
+        {
+          "word": "cumprimentar",
+          "meaning": "to greet"
+        }
+      ],
+      "proTip": "Emails often end with «Cumprimentos» or «Com os melhores cumprimentos» — the equivalent of «Kind regards»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "com todo o gosto",
+      "english": "with pleasure",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kohng TOH-doo oo GOHSH-too",
+      "example": "Ajudas-me com a mudança? — Com todo o gosto!",
+      "exampleTranslation": "Will you help me move? — With pleasure!",
+      "relatedWords": [
+        {
+          "word": "o gosto",
+          "meaning": "the pleasure / taste"
+        },
+        {
+          "word": "claro que sim",
+          "meaning": "of course"
+        }
+      ],
+      "proTip": "Note «todo o gosto» with the article — Portugal says «todo o dia», «todo o gosto»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "não tem de quê",
+      "english": "don't mention it",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nowng tayng duh KEH",
+      "example": "Muito obrigada pela boleia. — Não tem de quê.",
+      "exampleTranslation": "Thanks a lot for the lift. — Don't mention it.",
+      "relatedWords": [
+        {
+          "word": "de nada",
+          "meaning": "you're welcome"
+        },
+        {
+          "word": "ora essa",
+          "meaning": "not at all"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "disponha",
+      "english": "you're welcome; at your service",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "deesh-POH-nyuh",
+      "example": "Obrigado pela informação. — Disponha.",
+      "exampleTranslation": "Thanks for the information. — You're welcome.",
+      "relatedWords": [
+        {
+          "word": "dispor",
+          "meaning": "to have available"
+        },
+        {
+          "word": "às ordens",
+          "meaning": "at your service"
+        }
+      ],
+      "proTip": "Typical of shop staff and service workers — it means «I'm at your disposal»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "o gosto é todo meu",
+      "english": "the pleasure is all mine",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "oo GOHSH-too EH TOH-doo MEH-oo",
+      "example": "Muito gosto em conhecê-la. — O gosto é todo meu.",
+      "exampleTranslation": "Very nice to meet you. — The pleasure is all mine.",
+      "relatedWords": [
+        {
+          "word": "muito gosto",
+          "meaning": "nice to meet you"
+        },
+        {
+          "word": "igualmente",
+          "meaning": "likewise"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "boa viagem",
+      "english": "have a good trip",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "BOH-uh vee-AH-zhayng",
+      "example": "Partes amanhã para Madrid? Boa viagem!",
+      "exampleTranslation": "You leave for Madrid tomorrow? Have a good trip!",
+      "relatedWords": [
+        {
+          "word": "a viagem",
+          "meaning": "the trip"
+        },
+        {
+          "word": "boas férias",
+          "meaning": "have a good holiday"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "bem-vindo",
+      "english": "welcome",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "bayng-VEEN-doo",
+      "example": "Bem-vindos a Lisboa! Espero que gostem da cidade.",
+      "exampleTranslation": "Welcome to Lisbon! I hope you enjoy the city.",
+      "relatedWords": [
+        {
+          "word": "dar as boas-vindas",
+          "meaning": "to welcome"
+        },
+        {
+          "word": "bem-vinda",
+          "meaning": "welcome (to a woman)"
+        }
+      ],
+      "proTip": "It agrees with the person: bem-vindo, bem-vinda, bem-vindos, bem-vindas."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "boa continuação",
+      "english": "have a good rest of the day; carry on well",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "BOH-uh kohn-tee-noo-uh-SOWNG",
+      "example": "Obrigado pelo café. Boa continuação!",
+      "exampleTranslation": "Thanks for the coffee. Have a good rest of your day!",
+      "relatedWords": [
+        {
+          "word": "continuar",
+          "meaning": "to continue"
+        },
+        {
+          "word": "bom resto de dia",
+          "meaning": "have a nice rest of the day"
+        }
+      ],
+      "proTip": "A very Portuguese goodbye when leaving someone in the middle of their day, meal or work."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "bom fim de semana",
+      "english": "have a nice weekend",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "bohng FEENG duh suh-MAH-nuh",
+      "example": "Até segunda, e bom fim de semana!",
+      "exampleTranslation": "See you Monday, and have a nice weekend!",
+      "relatedWords": [
+        {
+          "word": "o fim de semana",
+          "meaning": "the weekend"
+        },
+        {
+          "word": "igualmente",
+          "meaning": "you too"
+        }
+      ],
+      "proTip": "The usual reply is «Igualmente!» or «Para ti também!»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "boas festas",
+      "english": "happy holidays; season's greetings",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "BOH-uzh FESH-tuhsh",
+      "example": "Boas festas e um feliz ano novo!",
+      "exampleTranslation": "Happy holidays and a happy new year!",
+      "relatedWords": [
+        {
+          "word": "feliz Natal",
+          "meaning": "merry Christmas"
+        },
+        {
+          "word": "a passagem de ano",
+          "meaning": "New Year's Eve"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "bom descanso",
+      "english": "have a good rest",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "bohng dush-KAHN-soo",
+      "example": "Já vais para casa? Bom descanso!",
+      "exampleTranslation": "Heading home already? Get some good rest!",
+      "relatedWords": [
+        {
+          "word": "descansar",
+          "meaning": "to rest"
+        },
+        {
+          "word": "dorme bem",
+          "meaning": "sleep well"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "que pena",
+      "english": "what a pity; too bad",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kuh PEH-nuh",
+      "example": "Não podes vir ao jantar? Que pena!",
+      "exampleTranslation": "You can't come to the dinner? What a pity!",
+      "relatedWords": [
+        {
+          "word": "ter pena de",
+          "meaning": "to feel sorry for"
+        },
+        {
+          "word": "é pena",
+          "meaning": "it's a shame"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "que chatice",
+      "english": "what a pain; how annoying",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kuh shuh-TEE-suh",
+      "example": "Perdeste a carteira? Que chatice!",
+      "exampleTranslation": "You lost your wallet? What a pain!",
+      "relatedWords": [
+        {
+          "word": "chato",
+          "meaning": "annoying / boring"
+        },
+        {
+          "word": "a chatice",
+          "meaning": "the hassle"
+        }
+      ],
+      "proTip": "Informal but perfectly polite — the go-to reaction to someone's minor misfortune."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "deixa estar",
+      "english": "never mind; leave it",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "DAY-shuh shtar",
+      "example": "Deixa estar, eu lavo a loiça depois.",
+      "exampleTranslation": "Never mind, I'll do the dishes later.",
+      "relatedWords": [
+        {
+          "word": "deixar",
+          "meaning": "to leave / let"
+        },
+        {
+          "word": "não faz mal",
+          "meaning": "it doesn't matter"
+        }
+      ],
+      "proTip": "Formal version: «Deixe estar». Also used to refuse help or payment politely."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "não te preocupes",
+      "english": "don't worry",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nowng tuh pree-oo-KOO-puhsh",
+      "example": "Não te preocupes, eu levo-te ao aeroporto.",
+      "exampleTranslation": "Don't worry, I'll take you to the airport.",
+      "relatedWords": [
+        {
+          "word": "preocupar-se",
+          "meaning": "to worry"
+        },
+        {
+          "word": "fica descansado",
+          "meaning": "rest assured"
+        }
+      ],
+      "proTip": "It's a negative command, so it uses the conjuntivo. Formal: «Não se preocupe»."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "felicidades",
+      "english": "all the best; best wishes",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "fuh-lee-see-DAH-duhsh",
+      "example": "Vais casar? Muitas felicidades aos dois!",
+      "exampleTranslation": "You're getting married? All the best to you both!",
+      "relatedWords": [
+        {
+          "word": "feliz",
+          "meaning": "happy"
+        },
+        {
+          "word": "a felicidade",
+          "meaning": "happiness"
+        }
+      ],
+      "proTip": "Used for weddings, new jobs and big life events — also a common sign-off on birthday cards."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "à nossa!",
+      "english": "cheers! (to us!)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "AH NOH-suh",
+      "example": "Levantem os copos: à nossa!",
+      "exampleTranslation": "Raise your glasses: cheers!",
+      "relatedWords": [
+        {
+          "word": "saúde!",
+          "meaning": "cheers!"
+        },
+        {
+          "word": "brindar",
+          "meaning": "to make a toast"
+        }
+      ],
+      "proTip": "«Saúde!» is the most common toast; «À nossa!» is a warmer, friendly alternative."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "até à próxima",
+      "english": "until next time",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-TEH AH PROH-see-muh",
+      "example": "Foi ótimo ver-te. Até à próxima!",
+      "exampleTranslation": "It was great to see you. Until next time!",
+      "relatedWords": [
+        {
+          "word": "até breve",
+          "meaning": "see you soon"
+        },
+        {
+          "word": "adeus",
+          "meaning": "goodbye"
+        }
+      ],
+      "proTip": "Portugal says «até à próxima» with the «à»; Brazil drops it."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "até breve",
+      "english": "see you soon",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-TEH BREH-vuh",
+      "example": "Obrigado por tudo, e até breve!",
+      "exampleTranslation": "Thanks for everything, and see you soon!",
+      "relatedWords": [
+        {
+          "word": "até já",
+          "meaning": "see you in a bit"
+        },
+        {
+          "word": "até logo",
+          "meaning": "see you later"
+        }
+      ],
+      "proTip": "Vaguer than «até já» (minutes) or «até logo» (later today): «até breve» means some time soon, no date set."
+    }
+  },
+  {
+    "categoryId": "greetings-expressions",
+    "word": {
+      "portuguese": "fica bem",
+      "english": "take care",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "FEE-kuh BAYNG",
+      "example": "Pronto, tenho de ir. Fica bem!",
+      "exampleTranslation": "Right, I have to go. Take care!",
+      "relatedWords": [
+        {
+          "word": "cuida-te",
+          "meaning": "look after yourself"
+        },
+        {
+          "word": "fique bem",
+          "meaning": "take care (formal)"
+        }
+      ]
+    }
+  }
+]
