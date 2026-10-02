@@ -8,26 +8,26 @@
 export const colors = {
   // Text hierarchy
   text: {
-    primary: "#111827",
-    secondary: "#6B7280",
-    muted: "#9CA3AF",
-    disabled: "#D1D5DB",
+    primary: "#1F1F1F",
+    secondary: "#6B6B69",
+    muted: "#98988F",
+    disabled: "#B5B5AE",
     inverse: "#FFFFFF",
   },
 
   // Surfaces
   surface: {
     base: "#FFFFFF",
-    subtle: "#F9FAFB",
-    muted: "#F3F4F6",
-    hover: "#F9FAFB",
+    subtle: "#F7F7F6",
+    muted: "#EFEFED",
+    hover: "#F7F7F6",
   },
 
   // Borders — one shade lighter everywhere
   border: {
-    default: "#F3F4F6",
-    light: "#F9FAFB",
-    hover: "#E5E7EB",
+    default: "#EFEFED",
+    light: "#F7F7F6",
+    hover: "#E6E6E4",
     focus: "#1B2B61",
   },
 
@@ -36,7 +36,7 @@ export const colors = {
     A1: { text: "text-emerald-700", bg: "bg-emerald-50" },
     A2: { text: "text-blue-700", bg: "bg-blue-50" },
     B1: { text: "text-amber-700", bg: "bg-amber-50" },
-    fallback: { text: "text-[#6B7280]", bg: "bg-[#F3F4F6]" },
+    fallback: { text: "text-[#6B6B69]", bg: "bg-[#EFEFED]" },
   },
 
   // Verb group colors
@@ -62,20 +62,20 @@ export const colors = {
 
   // Filter pills
   filter: {
-    active: { bg: "#111827", text: "#FFFFFF", border: "#111827" },
-    inactive: { bg: "#FFFFFF", text: "#9CA3AF", border: "#F3F4F6" },
+    active: { bg: "#1F1F1F", text: "#FFFFFF", border: "#1F1F1F" },
+    inactive: { bg: "#FFFFFF", text: "#98988F", border: "#EFEFED" },
   },
 
   // Sidebar
   sidebar: {
     bg: "#FFFFFF",
-    border: "#F3F4F6",
+    border: "#EFEFED",
     item: {
-      default: "#9CA3AF",
-      hover: "#6B7280",
-      hoverBg: "#F9FAFB",
-      active: "#111827",
-      activeBg: "#F3F4F6",
+      default: "#98988F",
+      hover: "#6B6B69",
+      hoverBg: "#F7F7F6",
+      active: "#1F1F1F",
+      activeBg: "#EFEFED",
       activeAccent: "#1B2B61",
     },
   },
@@ -85,18 +85,18 @@ export const colors = {
 // Hierarchy through size, not weight. font-medium > font-semibold in body text.
 
 export const typography = {
-  pageTitle: "text-[28px] font-semibold text-[#111827]",
-  pageTitlePt: "text-[14px] font-normal text-[#9CA3AF] italic",
-  pageSubtitle: "text-[14px] text-[#9CA3AF]",
+  pageTitle: "text-[28px] font-semibold text-[#1F1F1F]",
+  pageTitlePt: "text-[14px] font-normal text-[#98988F] italic",
+  pageSubtitle: "text-[14px] text-[#98988F]",
 
-  sectionHeader: "text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF]",
+  sectionHeader: "text-[12px] font-medium uppercase tracking-wider text-[#98988F]",
 
-  cardTitle: "text-[16px] font-medium text-[#111827]",
-  cardTitleLg: "text-[20px] font-semibold text-[#111827]",
-  cardBody: "text-[14px] text-[#6B7280] leading-relaxed",
-  cardMeta: "text-[13px] text-[#9CA3AF]",
+  cardTitle: "text-[16px] font-medium text-[#1F1F1F]",
+  cardTitleLg: "text-[20px] font-semibold text-[#1F1F1F]",
+  cardBody: "text-[14px] text-[#6B6B69] leading-relaxed",
+  cardMeta: "text-[13px] text-[#98988F]",
 
-  label: "text-[14px] font-medium text-[#374151]",
+  label: "text-[14px] font-medium text-[#1F1F1F]",
   caption: "text-[12px] font-medium",
 } as const;
 
@@ -140,28 +140,28 @@ export const transitions = {
 export const patterns = {
   card: {
     // Barely-there borders — defined by whitespace, not chrome
-    base: "border border-[#F3F4F6] rounded-xl p-6 bg-white",
-    interactive: "border border-[#F3F4F6] rounded-xl p-6 bg-white hover:border-[#E5E7EB] hover:shadow-sm hover:-translate-y-[0.5px] transition-all duration-150 ease-out cursor-pointer",
-    surface: "bg-[#F9FAFB] rounded-xl p-6",
+    base: "border border-[#EFEFED] rounded-xl p-6 bg-white",
+    interactive: "border border-[#EFEFED] rounded-xl p-6 bg-white hover:border-[#E6E6E4] hover:shadow-sm hover:-translate-y-[0.5px] transition-all duration-150 ease-out cursor-pointer",
+    surface: "bg-[#F7F7F6] rounded-xl p-6",
   },
 
   pill: {
-    active: "px-4 py-2 rounded-full text-[13px] font-medium border border-[#111827] bg-[#111827] text-white cursor-pointer transition-all duration-150 ease-out",
-    inactive: "px-4 py-2 rounded-full text-[13px] font-normal border border-[#F3F4F6] text-[#9CA3AF] hover:border-[#E5E7EB] hover:text-[#6B7280] transition-all duration-150 ease-out cursor-pointer bg-white",
+    active: "px-4 py-2 rounded-full text-[13px] font-medium border border-[#1F1F1F] bg-[#1F1F1F] text-white cursor-pointer transition-all duration-150 ease-out",
+    inactive: "px-4 py-2 rounded-full text-[13px] font-normal border border-[#EFEFED] text-[#98988F] hover:border-[#E6E6E4] hover:text-[#6B6B69] transition-all duration-150 ease-out cursor-pointer bg-white",
   },
 
   badge: "text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap",
 
-  searchInput: "w-full sm:w-[240px] px-4 py-2.5 rounded-lg text-[14px] border border-[#F3F4F6] text-[#111827] placeholder:text-[#D1D5DB] focus:outline-none focus:border-[#E5E7EB] focus-visible:ring-1 focus-visible:ring-[#1B2B61]/20 transition-all duration-150 bg-white",
+  searchInput: "w-full sm:w-[240px] px-4 py-2.5 rounded-lg text-[14px] border border-[#EFEFED] text-[#1F1F1F] placeholder:text-[#B5B5AE] focus:outline-none focus:border-[#E6E6E4] focus-visible:ring-1 focus-visible:ring-[#1B2B61]/20 transition-all duration-150 bg-white",
 
-  divider: "border-t border-[#F3F4F6]",
+  divider: "border-t border-[#EFEFED]",
 
-  emptyState: "text-[14px] text-[#6B7280] py-8",
+  emptyState: "text-[14px] text-[#6B6B69] py-8",
 
   button: {
-    primary: "bg-[#111827] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#1F2937] hover:-translate-y-[0.5px] transition-all duration-150 ease-out",
-    secondary: "border border-[#F3F4F6] text-[#6B7280] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F9FAFB] hover:border-[#E5E7EB] transition-all duration-150 ease-out bg-white",
-    ghost: "text-[14px] font-normal text-[#9CA3AF] hover:text-[#6B7280] hover:bg-[#F9FAFB] transition-all duration-150 ease-out",
+    primary: "bg-[#1F1F1F] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#1F1F1F] hover:-translate-y-[0.5px] transition-all duration-150 ease-out",
+    secondary: "border border-[#EFEFED] text-[#6B6B69] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F7F7F6] hover:border-[#E6E6E4] transition-all duration-150 ease-out bg-white",
+    ghost: "text-[14px] font-normal text-[#98988F] hover:text-[#6B6B69] hover:bg-[#F7F7F6] transition-all duration-150 ease-out",
   },
 } as const;
 

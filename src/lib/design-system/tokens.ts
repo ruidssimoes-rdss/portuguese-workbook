@@ -17,7 +17,7 @@ export const colors = {
   // Backgrounds
   bgPrimary: "#FFFFFF",
   bgSecondary: "#F7F7F6",
-  bgSurface: "#F9FAFB",
+  bgSurface: "#F7F7F6",
 
   // Text
   textPrimary: "#1F1F1F",

@@ -64,7 +64,7 @@ export function ContentCalendarInfo({ contentType, contentId }: ContentCalendarI
 
   if (info.lastReviewDate) {
     return (
-      <span className="flex items-center gap-1.5 text-[12px] font-medium text-[#9CA3AF]">
+      <span className="flex items-center gap-1.5 text-[12px] font-medium text-[#98988F]">
         Última revisão: {formatPortugueseDate(info.lastReviewDate)}
       </span>
     );

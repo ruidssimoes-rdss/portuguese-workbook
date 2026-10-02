@@ -113,8 +113,7 @@ export default function CulturePage() {
   }, [allItems, tab, cefr, search]);
 
   // Same saying for everyone all week.
-  const week = Math.floor(Date.now() / (7 * 86_400_000));
-  const saying = sayingsData.sayings[week % sayingsData.sayings.length];
+  const [saying] = useState(() => sayingsData.sayings[Math.floor(Date.now() / (7 * 86_400_000)) % sayingsData.sayings.length]);
 
   const totalForTab =
     tab === "Tudo"

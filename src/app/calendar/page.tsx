@@ -59,7 +59,7 @@ const EVENT_COLORS: Record<string, string> = {
   exam_passed: "#1B2B61",
   exam_failed: "#D97706",
   practice: "#7C3AED",
-  planned: "#6B7280",
+  planned: "#6B6B69",
   goal: "#0EA5E9",
 };
 
@@ -69,7 +69,7 @@ const EVENT_STYLE: Record<string, { color: string; label: string }> = {
   auto_exam_passed: { color: "#1B2B61", label: "Exame" },
   auto_exam_failed: { color: "#D97706", label: "Exame" },
   auto_practice: { color: "#7C3AED", label: "Prática" },
-  planned: { color: "#6B7280", label: "Planeado" },
+  planned: { color: "#6B6B69", label: "Planeado" },
   goal: { color: "#0EA5E9", label: "Objetivo" },
 };
 
@@ -1107,7 +1107,7 @@ export default function CalendarPage() {
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" /> Ainda não</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#1B2B61]" /> Exame</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]" /> Prática</span>
-              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#6B7280]" /> Planeado</span>
+              <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#6B6B69]" /> Planeado</span>
               <span className="inline-flex items-center gap-1 mr-3"><span className="w-1.5 h-1.5 rounded-full bg-[#0EA5E9]" /> Objetivo</span>
               <span className="inline-flex items-center gap-1">Notas</span>
             </p>

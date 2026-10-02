@@ -2,7 +2,7 @@
 
 import { useState, useCallback, use } from "react";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { ProtectedRoute } from "@/components/protected-route";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import {
@@ -84,32 +84,32 @@ function MCQuestion({
     <div className="space-y-4">
       {/* Context label */}
       {q.stimulusContext && (
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F]">
           {q.stimulusContext}
         </p>
       )}
 
       {/* Stimulus card */}
-      <div className="border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA]">
-        <p className="text-[15px] text-[#111827] leading-relaxed whitespace-pre-line">
+      <div className="border border-[#E6E6E4] rounded-xl p-5 bg-[#F7F7F6]">
+        <p className="text-[15px] text-[#1F1F1F] leading-relaxed whitespace-pre-line">
           {q.stimulus}
         </p>
       </div>
 
       {/* Instruction */}
-      <p className="text-[13px] text-[#9CA3AF] italic">{q.instructionEn}</p>
+      <p className="text-[13px] text-[#98988F] italic">{q.instructionEn}</p>
 
       {/* Question */}
-      <p className="text-[15px] font-semibold text-[#111827]">{q.question}</p>
+      <p className="text-[15px] font-semibold text-[#1F1F1F]">{q.question}</p>
       {q.questionEn && (
-        <p className="text-[13px] text-[#6B7280] -mt-2">{q.questionEn}</p>
+        <p className="text-[13px] text-[#6B6B69] -mt-2">{q.questionEn}</p>
       )}
 
       {/* Options */}
       <div className="space-y-2">
         {q.options.map((opt, i) => {
           let optClass =
-            "border border-[#E5E7EB] bg-white hover:border-[#D1D5DB] hover:shadow-sm cursor-pointer";
+            "border border-[#E6E6E4] bg-white hover:border-[#B5B5AE] hover:shadow-sm cursor-pointer";
 
           if (submitted) {
             if (i === q.correctIndex) {
@@ -117,7 +117,7 @@ function MCQuestion({
             } else if (i === answer && i !== q.correctIndex) {
               optClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
             } else {
-              optClass = "border border-[#F3F4F6] bg-[#FAFAFA] opacity-50";
+              optClass = "border border-[#EFEFED] bg-[#F7F7F6] opacity-50";
             }
           }
 
@@ -134,13 +134,13 @@ function MCQuestion({
                     ? "border-[#059669] bg-[#059669] text-white"
                     : submitted && i === answer
                       ? "border-[#DC2626] bg-[#DC2626] text-white"
-                      : "border-[#D1D5DB] text-[#9CA3AF]"
+                      : "border-[#B5B5AE] text-[#98988F]"
                 }`}
               >
                 {String.fromCharCode(65 + i)}
               </span>
               <span
-                className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#059669]" : submitted && i === answer ? "font-semibold text-[#DC2626]" : "text-[#374151]"}`}
+                className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#059669]" : submitted && i === answer ? "font-semibold text-[#DC2626]" : "text-[#1F1F1F]"}`}
               >
                 {opt}
               </span>
@@ -159,8 +159,8 @@ function MCQuestion({
           >
             {answer === q.correctIndex ? "Correto!" : "Incorreto"}
           </p>
-          <p className="text-[13px] text-[#374151]">{q.explanation}</p>
-          <p className="text-[12px] text-[#9CA3AF] mt-1 italic">
+          <p className="text-[13px] text-[#1F1F1F]">{q.explanation}</p>
+          <p className="text-[12px] text-[#98988F] mt-1 italic">
             {q.explanationEn}
           </p>
         </div>
@@ -187,8 +187,8 @@ function MatchingQuestionUI({
 
   return (
     <div className="space-y-4">
-      <p className="text-[13px] text-[#9CA3AF] italic">{q.instructionEn}</p>
-      <p className="text-[15px] font-semibold text-[#111827]">
+      <p className="text-[13px] text-[#98988F] italic">{q.instructionEn}</p>
+      <p className="text-[15px] font-semibold text-[#1F1F1F]">
         {q.instruction}
       </p>
 
@@ -206,17 +206,17 @@ function MatchingQuestionUI({
                   ? "border-[#059669] bg-[#F0FDF4]"
                   : isWrong
                     ? "border-[#DC2626] bg-[#FEF2F2]"
-                    : "border-[#E5E7EB] bg-white"
+                    : "border-[#E6E6E4] bg-white"
               }`}
             >
-              <p className="text-[14px] font-medium text-[#111827] flex-1 min-w-0">
+              <p className="text-[14px] font-medium text-[#1F1F1F] flex-1 min-w-0">
                 {pair.left}
               </p>
               <select
                 value={selected}
                 onChange={(e) => onAnswer(i, e.target.value)}
                 disabled={submitted}
-                className="border border-[#E5E7EB] rounded-lg px-3 py-2 text-[13px] text-[#374151] bg-white min-w-[180px] focus:outline-none focus:ring-2 focus:ring-[#111827] focus:ring-offset-1 disabled:opacity-60"
+                className="border border-[#E6E6E4] rounded-lg px-3 py-2 text-[13px] text-[#1F1F1F] bg-white min-w-[180px] focus:outline-none focus:ring-2 focus:ring-[#1F1F1F] focus:ring-offset-1 disabled:opacity-60"
               >
                 <option value="">Selecione...</option>
                 {rightOptions.map((opt, j) => (
@@ -238,15 +238,15 @@ function MatchingQuestionUI({
       {allAnswered && !submitted && (
         <button
           onClick={() => setSubmitted(true)}
-          className="w-full py-2.5 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+          className="w-full py-2.5 bg-[#1F1F1F] text-white text-[13px] font-semibold rounded-lg hover:bg-[#1F1F1F] transition-colors cursor-pointer"
         >
           Verificar respostas
         </button>
       )}
 
       {submitted && (
-        <div className="p-4 rounded-xl bg-[#F9FAFB] border border-[#F3F4F6]">
-          <p className="text-[13px] font-semibold text-[#111827]">
+        <div className="p-4 rounded-xl bg-[#F7F7F6] border border-[#EFEFED]">
+          <p className="text-[13px] font-semibold text-[#1F1F1F]">
             {q.pairs.filter((p, i) => answers[`match-${i}`] === p.right).length}{" "}
             / {q.pairs.length} corretas
           </p>
@@ -274,30 +274,30 @@ function WritingTaskUI({
 
   return (
     <div className="space-y-4">
-      <p className="text-[13px] text-[#9CA3AF] italic">{task.instructionEn}</p>
+      <p className="text-[13px] text-[#98988F] italic">{task.instructionEn}</p>
 
       {/* Scenario card */}
-      <div className="border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA]">
-        <p className="text-[15px] font-semibold text-[#111827]">
+      <div className="border border-[#E6E6E4] rounded-xl p-5 bg-[#F7F7F6]">
+        <p className="text-[15px] font-semibold text-[#1F1F1F]">
           {task.scenario}
         </p>
-        <p className="text-[13px] text-[#6B7280] mt-1">{task.scenarioEn}</p>
+        <p className="text-[13px] text-[#6B6B69] mt-1">{task.scenarioEn}</p>
       </div>
 
       {/* Hints */}
       {task.hints && task.hints.length > 0 && (
         <div className="space-y-1">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F]">
             Indicações
           </p>
           <ul className="space-y-1">
             {task.hints.map((hint, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="text-[#D1D5DB] mt-0.5">·</span>
-                <span className="text-[13px] text-[#6B7280]">
+                <span className="text-[#B5B5AE] mt-0.5">·</span>
+                <span className="text-[13px] text-[#6B6B69]">
                   {hint}
                   {task.hintsEn?.[i] && (
-                    <span className="text-[#9CA3AF]">
+                    <span className="text-[#98988F]">
                       {" "}
                       — {task.hintsEn[i]}
                     </span>
@@ -316,14 +316,14 @@ function WritingTaskUI({
           onChange={(e) => onResponse(e.target.value)}
           disabled={submitted}
           rows={6}
-          className="w-full border border-[#E5E7EB] rounded-xl p-4 text-[14px] text-[#111827] bg-white focus:outline-none focus:ring-2 focus:ring-[#111827] focus:ring-offset-1 resize-y disabled:opacity-60 disabled:bg-[#FAFAFA]"
+          className="w-full border border-[#E6E6E4] rounded-xl p-4 text-[14px] text-[#1F1F1F] bg-white focus:outline-none focus:ring-2 focus:ring-[#1F1F1F] focus:ring-offset-1 resize-y disabled:opacity-60 disabled:bg-[#F7F7F6]"
           placeholder="Escreva a sua resposta aqui..."
         />
         <div className="flex items-center justify-between mt-1">
           <p
             className={`text-[12px] font-medium ${
               wc === 0
-                ? "text-[#9CA3AF]"
+                ? "text-[#98988F]"
                 : meetsMin
                   ? "text-[#059669]"
                   : "text-[#DC2626]"
@@ -331,7 +331,7 @@ function WritingTaskUI({
           >
             {wc} {wc === 1 ? "palavra" : "palavras"}
           </p>
-          <p className="text-[12px] text-[#9CA3AF]">
+          <p className="text-[12px] text-[#98988F]">
             {task.minWords}–{task.maxWords} palavras
           </p>
         </div>
@@ -343,8 +343,8 @@ function WritingTaskUI({
           disabled={!meetsMin}
           className={`w-full py-2.5 text-[13px] font-semibold rounded-lg transition-colors cursor-pointer ${
             meetsMin
-              ? "bg-[#111827] text-white hover:bg-[#374151]"
-              : "bg-[#F3F4F6] text-[#D1D5DB] cursor-not-allowed"
+              ? "bg-[#1F1F1F] text-white hover:bg-[#1F1F1F]"
+              : "bg-[#EFEFED] text-[#B5B5AE] cursor-not-allowed"
           }`}
         >
           Submeter resposta
@@ -354,14 +354,14 @@ function WritingTaskUI({
       {/* After submission: show sample response */}
       {submitted && (
         <div className="space-y-3">
-          <div className="p-4 rounded-xl bg-[#F9FAFB] border border-[#F3F4F6]">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+          <div className="p-4 rounded-xl bg-[#F7F7F6] border border-[#EFEFED]">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F] mb-2">
               Resposta modelo
             </p>
-            <p className="text-[13px] text-[#374151] leading-relaxed">
+            <p className="text-[13px] text-[#1F1F1F] leading-relaxed">
               {task.sampleResponse}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-2 italic">
+            <p className="text-[12px] text-[#98988F] mt-2 italic">
               {task.sampleResponseEn}
             </p>
           </div>
@@ -417,18 +417,18 @@ function ListeningQuestionUI({
 
   return (
     <div className="space-y-4">
-      <p className="text-[13px] text-[#9CA3AF] italic">{q.instructionEn}</p>
+      <p className="text-[13px] text-[#98988F] italic">{q.instructionEn}</p>
 
       {/* Audio player */}
       {!ttsUnavailable ? (
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA] flex items-center justify-between">
+        <div className="border border-[#E6E6E4] rounded-xl p-5 bg-[#F7F7F6] flex items-center justify-between">
           <button
             onClick={handlePlay}
             disabled={!canPlay}
             className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold transition-colors cursor-pointer ${
               canPlay
-                ? "bg-[#111827] text-white hover:bg-[#374151]"
-                : "bg-[#F3F4F6] text-[#D1D5DB] cursor-not-allowed"
+                ? "bg-[#1F1F1F] text-white hover:bg-[#1F1F1F]"
+                : "bg-[#EFEFED] text-[#B5B5AE] cursor-not-allowed"
             }`}
           >
             <svg
@@ -447,7 +447,7 @@ function ListeningQuestionUI({
             </svg>
             {playCount === 0 ? "Ouvir áudio" : "Ouvir novamente"}
           </button>
-          <span className="text-[12px] font-medium text-[#9CA3AF]">
+          <span className="text-[12px] font-medium text-[#98988F]">
             {playCount} / {q.playLimit} reproduções
           </span>
         </div>
@@ -456,7 +456,7 @@ function ListeningQuestionUI({
           <p className="text-[13px] font-medium text-[#DC2626] mb-2">
             Audio not available on this device. Transcript shown instead:
           </p>
-          <p className="text-[14px] text-[#374151] italic leading-relaxed">
+          <p className="text-[14px] text-[#1F1F1F] italic leading-relaxed">
             &ldquo;{q.audioText}&rdquo;
           </p>
         </div>
@@ -465,17 +465,17 @@ function ListeningQuestionUI({
       {/* Question + options (always visible after at least 1 play, or if TTS unavailable) */}
       {(playCount > 0 || ttsUnavailable) && (
         <>
-          <p className="text-[15px] font-semibold text-[#111827]">
+          <p className="text-[15px] font-semibold text-[#1F1F1F]">
             {q.question}
           </p>
           {q.questionEn && (
-            <p className="text-[13px] text-[#6B7280] -mt-2">{q.questionEn}</p>
+            <p className="text-[13px] text-[#6B6B69] -mt-2">{q.questionEn}</p>
           )}
 
           <div className="space-y-2">
             {q.options.map((opt, i) => {
               let optClass =
-                "border border-[#E5E7EB] bg-white hover:border-[#D1D5DB] hover:shadow-sm cursor-pointer";
+                "border border-[#E6E6E4] bg-white hover:border-[#B5B5AE] hover:shadow-sm cursor-pointer";
 
               if (submitted) {
                 if (i === q.correctIndex) {
@@ -484,7 +484,7 @@ function ListeningQuestionUI({
                   optClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
                 } else {
                   optClass =
-                    "border border-[#F3F4F6] bg-[#FAFAFA] opacity-50";
+                    "border border-[#EFEFED] bg-[#F7F7F6] opacity-50";
                 }
               }
 
@@ -501,13 +501,13 @@ function ListeningQuestionUI({
                         ? "border-[#059669] bg-[#059669] text-white"
                         : submitted && i === answer
                           ? "border-[#DC2626] bg-[#DC2626] text-white"
-                          : "border-[#D1D5DB] text-[#9CA3AF]"
+                          : "border-[#B5B5AE] text-[#98988F]"
                     }`}
                   >
                     {String.fromCharCode(65 + i)}
                   </span>
                   <span
-                    className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#059669]" : submitted && i === answer ? "font-semibold text-[#DC2626]" : "text-[#374151]"}`}
+                    className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#059669]" : submitted && i === answer ? "font-semibold text-[#DC2626]" : "text-[#1F1F1F]"}`}
                   >
                     {opt}
                   </span>
@@ -525,16 +525,16 @@ function ListeningQuestionUI({
               >
                 {answer === q.correctIndex ? "Correto!" : "Incorreto"}
               </p>
-              <p className="text-[13px] text-[#374151]">{q.explanation}</p>
-              <p className="text-[12px] text-[#9CA3AF] mt-1 italic">
+              <p className="text-[13px] text-[#1F1F1F]">{q.explanation}</p>
+              <p className="text-[12px] text-[#98988F] mt-1 italic">
                 {q.explanationEn}
               </p>
               {/* Show transcript after answering */}
-              <div className="mt-3 pt-3 border-t border-[#E5E7EB]">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1">
+              <div className="mt-3 pt-3 border-t border-[#E6E6E4]">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F] mb-1">
                   Transcrição
                 </p>
-                <p className="text-[13px] text-[#374151] italic">
+                <p className="text-[13px] text-[#1F1F1F] italic">
                   &ldquo;{q.audioText}&rdquo;
                 </p>
               </div>
@@ -574,22 +574,22 @@ function SpeakingPromptUI({
 
   return (
     <div className="space-y-4">
-      <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F]">
         {partLabels[sp.part] ?? `Parte ${sp.part}`}
       </p>
 
       {/* Instruction */}
-      <p className="text-[13px] text-[#6B7280] italic">{sp.instructionEn}</p>
+      <p className="text-[13px] text-[#6B6B69] italic">{sp.instructionEn}</p>
 
       {/* Examiner prompt — speech bubble */}
-      <div className="relative border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA]">
+      <div className="relative border border-[#E6E6E4] rounded-xl p-5 bg-[#F7F7F6]">
         <div className="flex items-start gap-3">
           <PronunciationButton text={sp.prompt} size="sm" variant="muted" className="shrink-0 mt-0.5" />
           <div>
-            <p className="text-[15px] font-semibold text-[#111827] leading-relaxed">
+            <p className="text-[15px] font-semibold text-[#1F1F1F] leading-relaxed">
               &ldquo;{sp.prompt}&rdquo;
             </p>
-            <p className="text-[13px] text-[#9CA3AF] mt-1 italic">
+            <p className="text-[13px] text-[#98988F] mt-1 italic">
               {sp.promptEn}
             </p>
           </div>
@@ -598,17 +598,17 @@ function SpeakingPromptUI({
 
       {/* Guidance checklist */}
       <div className="space-y-1">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F]">
           Orientação
         </p>
         <ul className="space-y-1">
           {sp.guidance.map((g, i) => (
             <li key={i} className="flex items-start gap-2">
-              <span className="text-[#D1D5DB] mt-0.5">·</span>
-              <span className="text-[13px] text-[#9CA3AF]">
+              <span className="text-[#B5B5AE] mt-0.5">·</span>
+              <span className="text-[13px] text-[#98988F]">
                 {g}
                 {sp.guidanceEn[i] && (
-                  <span className="text-[#D1D5DB]">
+                  <span className="text-[#B5B5AE]">
                     {" "}
                     — {sp.guidanceEn[i]}
                   </span>
@@ -626,14 +626,14 @@ function SpeakingPromptUI({
           onChange={(e) => onResponse(e.target.value)}
           disabled={submitted}
           rows={5}
-          className="w-full border border-[#E5E7EB] rounded-xl p-4 text-[14px] text-[#111827] bg-white focus:outline-none focus:ring-2 focus:ring-[#111827] focus:ring-offset-1 resize-y disabled:opacity-60 disabled:bg-[#FAFAFA]"
+          className="w-full border border-[#E6E6E4] rounded-xl p-4 text-[14px] text-[#1F1F1F] bg-white focus:outline-none focus:ring-2 focus:ring-[#1F1F1F] focus:ring-offset-1 resize-y disabled:opacity-60 disabled:bg-[#F7F7F6]"
           placeholder="Escreva a sua resposta aqui..."
         />
         <div className="flex items-center justify-between mt-1">
           <p
             className={`text-[12px] font-medium ${
               wc === 0
-                ? "text-[#9CA3AF]"
+                ? "text-[#98988F]"
                 : meetsMin
                   ? "text-[#059669]"
                   : "text-[#DC2626]"
@@ -641,7 +641,7 @@ function SpeakingPromptUI({
           >
             {wc} {wc === 1 ? "palavra" : "palavras"}
           </p>
-          <p className="text-[12px] text-[#9CA3AF]">
+          <p className="text-[12px] text-[#98988F]">
             min. {sp.minWords} palavras
           </p>
         </div>
@@ -653,8 +653,8 @@ function SpeakingPromptUI({
           disabled={!meetsMin}
           className={`w-full py-2.5 text-[13px] font-semibold rounded-lg transition-colors cursor-pointer ${
             meetsMin
-              ? "bg-[#111827] text-white hover:bg-[#374151]"
-              : "bg-[#F3F4F6] text-[#D1D5DB] cursor-not-allowed"
+              ? "bg-[#1F1F1F] text-white hover:bg-[#1F1F1F]"
+              : "bg-[#EFEFED] text-[#B5B5AE] cursor-not-allowed"
           }`}
         >
           Submeter resposta
@@ -664,21 +664,21 @@ function SpeakingPromptUI({
       {/* After submission: show comparison */}
       {submitted && (
         <div className="space-y-3">
-          <div className="p-4 rounded-xl bg-[#F9FAFB] border border-[#F3F4F6]">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+          <div className="p-4 rounded-xl bg-[#F7F7F6] border border-[#EFEFED]">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F] mb-2">
               Resposta modelo
             </p>
-            <p className="text-[13px] text-[#374151] leading-relaxed">
+            <p className="text-[13px] text-[#1F1F1F] leading-relaxed">
               {sp.sampleResponse}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-2 italic">
+            <p className="text-[12px] text-[#98988F] mt-2 italic">
               {sp.sampleResponseEn}
             </p>
           </div>
 
           {/* Key elements check */}
-          <div className="p-3 rounded-lg bg-[#F9FAFB] border border-[#F3F4F6]">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+          <div className="p-3 rounded-lg bg-[#F7F7F6] border border-[#EFEFED]">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F] mb-2">
               Elementos-chave
             </p>
             <div className="flex flex-wrap gap-2">
@@ -701,7 +701,7 @@ function SpeakingPromptUI({
                     className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-medium ${
                       found
                         ? "bg-[#F0FDF4] text-[#059669] border border-[#D1FAE5]"
-                        : "bg-[#F3F4F6] text-[#9CA3AF] border border-[#E5E7EB]"
+                        : "bg-[#EFEFED] text-[#98988F] border border-[#E6E6E4]"
                     }`}
                   >
                     {found ? (
@@ -817,36 +817,36 @@ function SummaryScreen({
   const classification = getClassification(finalPct);
 
   const tierStyles: Record<string, string> = {
-    "muito-bom": "from-amber-50 to-yellow-50 border-amber-200",
-    bom: "from-blue-50 to-sky-50 border-blue-200",
-    suficiente: "from-emerald-50 to-green-50 border-emerald-200",
-    "not-yet": "from-gray-50 to-slate-50 border-gray-200",
+    "muito-bom": "bg-[#F3F5FA] border-[#D3DAEB]",
+    bom: "bg-[#F3F5FA] border-[#D3DAEB]",
+    suficiente: "bg-[#E1F2ED] border-[#BFE3D8]",
+    "not-yet": "bg-[#F7F7F6] border-[#E6E6E4]",
   };
 
   const tierText: Record<string, string> = {
-    "muito-bom": "text-amber-700",
-    bom: "text-blue-700",
-    suficiente: "text-emerald-700",
-    "not-yet": "text-[#6B7280]",
+    "muito-bom": "text-[#1B2B61]",
+    bom: "text-[#1B2B61]",
+    suficiente: "text-[#1F7A68]",
+    "not-yet": "text-[#6B6B69]",
   };
 
   return (
     <div className="py-8">
       {/* Main classification card */}
       <div
-        className={`border-2 rounded-2xl p-8 bg-gradient-to-br text-center mb-8 ${tierStyles[classification.tier]}`}
+        className={`border rounded-xl p-8 text-center mb-8 ${tierStyles[classification.tier]}`}
       >
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F] mb-3">
           Resultado Final
         </p>
-        <p className="text-[48px] font-bold text-[#111827]">
+        <p className="text-[48px] font-bold text-[#1F1F1F]">
           {Math.round(finalPct)}%
         </p>
         <p className={`text-[24px] font-bold mt-1 ${tierText[classification.tier]}`}>
           {classification.labelPt}
         </p>
         {classification.tier === "not-yet" && (
-          <p className="text-[13px] text-[#6B7280] mt-3 max-w-md mx-auto">
+          <p className="text-[13px] text-[#6B6B69] mt-3 max-w-md mx-auto">
             Keep practising — you&apos;re building a strong foundation. Review the areas below and try again when you&apos;re ready.
           </p>
         )}
@@ -854,44 +854,44 @@ function SummaryScreen({
 
       {/* Per-section breakdown */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+        <div className="border border-[#E6E6E4] rounded-xl p-5 bg-white">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F] mb-2">
             Leitura e Escrita
           </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
+          <p className="text-[18px] font-semibold text-[#1F1F1F]">
             {Math.round(rwPoints)} / {rwTotal} pts
           </p>
-          <p className="text-[13px] text-[#6B7280] mt-1">
+          <p className="text-[13px] text-[#6B6B69] mt-1">
             {Math.round(rwPct)}% · peso {Math.round(rwSection.weight * 100)}%
           </p>
         </div>
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+        <div className="border border-[#E6E6E4] rounded-xl p-5 bg-white">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F] mb-2">
             Compreensão Oral
           </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
+          <p className="text-[18px] font-semibold text-[#1F1F1F]">
             {Math.round(liPoints)} / {liTotal} pts
           </p>
-          <p className="text-[13px] text-[#6B7280] mt-1">
+          <p className="text-[13px] text-[#6B6B69] mt-1">
             {Math.round(liPct)}% · peso {Math.round(liSection.weight * 100)}%
           </p>
         </div>
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+        <div className="border border-[#E6E6E4] rounded-xl p-5 bg-white">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F] mb-2">
             Produção Oral
           </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
+          <p className="text-[18px] font-semibold text-[#1F1F1F]">
             {Math.round(spPoints)} / {spTotal} pts
           </p>
-          <p className="text-[13px] text-[#6B7280] mt-1">
+          <p className="text-[13px] text-[#6B6B69] mt-1">
             {Math.round(spPct)}% · peso {Math.round(spSection.weight * 100)}%
           </p>
         </div>
       </div>
 
       {/* Scoring formula */}
-      <div className="border border-[#E5E7EB] rounded-xl p-4 bg-[#FAFAFA] mb-8">
-        <p className="text-[12px] text-[#9CA3AF] text-center font-mono">
+      <div className="border border-[#E6E6E4] rounded-xl p-4 bg-[#F7F7F6] mb-8">
+        <p className="text-[12px] text-[#98988F] text-center font-mono">
           ({Math.round(rwPct)}% x 0.45) + ({Math.round(liPct)}% x 0.30) + (
           {Math.round(spPct)}% x 0.25) = {Math.round(finalPct)}%
         </p>
@@ -903,7 +903,7 @@ function SummaryScreen({
           <button
             onClick={onSave}
             disabled={saving}
-            className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors cursor-pointer disabled:opacity-50"
+            className="px-8 py-3 bg-[#1F1F1F] text-white text-[15px] font-semibold rounded-xl hover:bg-[#1F1F1F] transition-colors cursor-pointer disabled:opacity-50"
           >
             {saving ? "A guardar..." : "Concluir Exame"}
           </button>
@@ -914,7 +914,7 @@ function SummaryScreen({
         )}
         <Link
           href="/exams"
-          className="text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors"
+          className="text-[13px] font-medium text-[#6B6B69] hover:text-[#1F1F1F] transition-colors"
         >
           Voltar aos exames
         </Link>
@@ -946,40 +946,38 @@ function ExamContent({ id }: { id: string }) {
 
   if (!exam) {
     return (
-      <>
-        <Topbar />
-        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
-          <p className="text-[13px] text-[#9CA3AF]">Exam not found.</p>
+      <PageShell header={<Crumbs items={[{ label: "Exames", href: "/exams" }, { label: "Exame" }]} />}>
+        <div className="mx-auto max-w-[760px]">
+          <p className="text-[13px] text-[#98988F]">Exame não encontrado.</p>
           <Link
             href="/exams"
             className="text-[13px] font-medium text-[#1B2B61] hover:underline mt-2 inline-block"
           >
-            Back to Exams
+            Voltar aos exames
           </Link>
-        </main>
-      </>
+        </div>
+      </PageShell>
     );
   }
 
   if (!exam.available) {
     return (
-      <>
-        <Topbar />
-        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16 text-center">
-          <p className="text-[18px] font-semibold text-[#111827]">
+      <PageShell header={<Crumbs items={[{ label: "Exames", href: "/exams" }, { label: exam.titlePt }]} />}>
+        <div className="mx-auto max-w-[760px]">
+          <p className="text-[18px] font-semibold text-[#1F1F1F]">
             Em breve
           </p>
-          <p className="text-[13px] text-[#9CA3AF] mt-1">
-            This exam is not available yet.
+          <p className="text-[13px] text-[#98988F] mt-1">
+            Este exame ainda não está disponível.
           </p>
           <Link
             href="/exams"
             className="text-[13px] font-medium text-[#1B2B61] hover:underline mt-4 inline-block"
           >
-            Back to Exams
+            Voltar aos exames
           </Link>
-        </main>
-      </>
+        </div>
+      </PageShell>
     );
   }
 
@@ -1091,28 +1089,27 @@ function ExamContent({ id }: { id: string }) {
   // ─── Exam Start Screen ───
   if (!started) {
     return (
-      <>
-        <Topbar />
-        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageShell header={<Crumbs items={[{ label: "Exames", href: "/exams" }, { label: exam.titlePt }]} />}>
+        <div className="mx-auto max-w-[760px]">
           <div className="py-5">
             <Link
               href="/exams"
-              className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors mb-3"
+              className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B6B69] hover:text-[#1F1F1F] transition-colors mb-3"
             >
               <span>←</span> Exames
             </Link>
-            <h1 className="text-2xl font-bold text-[#111827]">
+            <h1 className="text-2xl font-bold text-[#1F1F1F]">
               {exam.titlePt}
             </h1>
-            <p className="text-[13px] font-medium text-[#6B7280] italic">
+            <p className="text-[13px] font-medium text-[#6B6B69] italic">
               {exam.title}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-1">{exam.monthPt}</p>
+            <p className="text-[12px] text-[#98988F] mt-1">{exam.monthPt}</p>
           </div>
 
-          <div className="border-t border-[#F3F4F6] mb-6" />
+          <div className="border-t border-[#EFEFED] mb-6" />
 
-          <p className="text-[13px] text-[#6B7280] mb-6 leading-relaxed">
+          <p className="text-[13px] text-[#6B6B69] mb-6 leading-relaxed">
             {exam.descriptionPt}
           </p>
 
@@ -1121,24 +1118,24 @@ function ExamContent({ id }: { id: string }) {
             {exam.sections.map((sec, i) => (
               <div
                 key={sec.id}
-                className="border border-[#E5E7EB] rounded-xl p-4 bg-white flex items-center justify-between"
+                className="border border-[#E6E6E4] rounded-xl p-4 bg-white flex items-center justify-between"
               >
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#98988F]">
                     Secção {i + 1}
                   </p>
-                  <p className="text-[15px] font-semibold text-[#111827] mt-1">
+                  <p className="text-[15px] font-semibold text-[#1F1F1F] mt-1">
                     {sec.title}
                   </p>
-                  <p className="text-[13px] text-[#6B7280] italic">
+                  <p className="text-[13px] text-[#6B6B69] italic">
                     {sec.titleEn}
                   </p>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="text-[13px] font-semibold text-[#111827]">
+                  <p className="text-[13px] font-semibold text-[#1F1F1F]">
                     {Math.round(sec.weight * 100)}%
                   </p>
-                  <p className="text-[12px] text-[#9CA3AF]">
+                  <p className="text-[12px] text-[#98988F]">
                     {sec.timeMinutes} min
                   </p>
                 </div>
@@ -1146,39 +1143,38 @@ function ExamContent({ id }: { id: string }) {
             ))}
           </div>
 
-          <p className="text-[12px] text-[#9CA3AF] mb-6">
+          <p className="text-[12px] text-[#98988F] mb-6">
             You can pause and return to this exam at any time. Your progress
             will be saved when you complete the exam.
           </p>
 
           <button
             onClick={() => setStarted(true)}
-            className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors cursor-pointer"
+            className="px-8 py-3 bg-[#1F1F1F] text-white text-[15px] font-semibold rounded-xl hover:bg-[#1F1F1F] transition-colors cursor-pointer"
           >
             Iniciar Exame
           </button>
 
           <div className="mb-16" />
-        </main>
-      </>
+        </div>
+      </PageShell>
     );
   }
 
   // ─── Summary Screen ───
   if (showSummary) {
     return (
-      <>
-        <Topbar />
-        <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+      <PageShell header={<Crumbs items={[{ label: "Exames", href: "/exams" }, { label: exam.titlePt }]} />}>
+        <div className="mx-auto max-w-[760px]">
           <div className="py-5">
-            <h1 className="text-2xl font-bold text-[#111827]">
+            <h1 className="text-2xl font-bold text-[#1F1F1F]">
               {exam.titlePt}
             </h1>
-            <p className="text-[13px] font-medium text-[#6B7280] italic">
+            <p className="text-[13px] font-medium text-[#6B6B69] italic">
               Resultado
             </p>
           </div>
-          <div className="border-t border-[#F3F4F6] mb-6" />
+          <div className="border-t border-[#EFEFED] mb-6" />
           <SummaryScreen
             exam={exam}
             sectionStates={sectionStates}
@@ -1187,8 +1183,8 @@ function ExamContent({ id }: { id: string }) {
             saved={saved}
           />
           <div className="mb-16" />
-        </main>
-      </>
+        </div>
+      </PageShell>
     );
   }
 
@@ -1287,19 +1283,18 @@ function ExamContent({ id }: { id: string }) {
   const progressPct = itemCount > 0 ? ((currentQuestion + 1) / itemCount) * 100 : 0;
 
   return (
-    <>
-      <Topbar />
-      <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
+    <PageShell header={<Crumbs items={[{ label: "Exames", href: "/exams" }, { label: exam.titlePt }]} />}>
+        <div className="mx-auto max-w-[760px]">
         {/* Header */}
         <div className="py-5">
           <Link
             href="/exams"
-            className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors mb-3"
+            className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B6B69] hover:text-[#1F1F1F] transition-colors mb-3"
           >
             <span>←</span> Exames
           </Link>
 
-          <h1 className="text-2xl font-bold text-[#111827]">
+          <h1 className="text-2xl font-bold text-[#1F1F1F]">
             {exam.titlePt}
           </h1>
 
@@ -1322,12 +1317,12 @@ function ExamContent({ id }: { id: string }) {
                   disabled={isLocked}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12px] font-semibold transition-all ${
                     isActive
-                      ? "bg-[#111827] text-white"
+                      ? "bg-[#1F1F1F] text-white"
                       : isCompleted
                         ? "bg-[#F0FDF4] text-[#059669] border border-[#D1FAE5]"
                         : isLocked
-                          ? "bg-[#F9FAFB] text-[#D1D5DB] cursor-not-allowed"
-                          : "bg-[#F9FAFB] text-[#6B7280] hover:bg-[#F3F4F6] cursor-pointer"
+                          ? "bg-[#F7F7F6] text-[#B5B5AE] cursor-not-allowed"
+                          : "bg-[#F7F7F6] text-[#6B6B69] hover:bg-[#EFEFED] cursor-pointer"
                   }`}
                 >
                   {isCompleted && (
@@ -1350,19 +1345,19 @@ function ExamContent({ id }: { id: string }) {
 
           {/* Progress within section */}
           <div className="flex items-center gap-3 mt-3">
-            <div className="flex-1 h-1 bg-[#F3F4F6] rounded-full overflow-hidden">
+            <div className="flex-1 h-1 bg-[#EFEFED] rounded-full overflow-hidden">
               <div
-                className="h-full bg-[#111827] rounded-full transition-all duration-500"
+                className="h-full bg-[#1F1F1F] rounded-full transition-all duration-500"
                 style={{ width: `${progressPct}%` }}
               />
             </div>
-            <span className="text-[12px] font-medium text-[#9CA3AF] shrink-0">
+            <span className="text-[12px] font-medium text-[#98988F] shrink-0">
               {currentQuestion + 1} / {itemCount}
             </span>
           </div>
         </div>
 
-        <div className="border-t border-[#F3F4F6] mb-6" />
+        <div className="border-t border-[#EFEFED] mb-6" />
 
         {/* Current item */}
         <div className="pb-8">
@@ -1370,7 +1365,7 @@ function ExamContent({ id }: { id: string }) {
         </div>
 
         {/* Navigation footer */}
-        <div className="flex items-center justify-between py-6 border-t border-[#F3F4F6] mb-8">
+        <div className="flex items-center justify-between py-6 border-t border-[#EFEFED] mb-8">
           <button
             onClick={() => {
               if (currentQuestion > 0) {
@@ -1381,8 +1376,8 @@ function ExamContent({ id }: { id: string }) {
             disabled={currentQuestion === 0}
             className={`text-[13px] font-medium transition-colors cursor-pointer ${
               currentQuestion === 0
-                ? "text-[#D1D5DB] cursor-not-allowed"
-                : "text-[#6B7280] hover:text-[#111827]"
+                ? "text-[#B5B5AE] cursor-not-allowed"
+                : "text-[#6B6B69] hover:text-[#1F1F1F]"
             }`}
           >
             ← Anterior
@@ -1394,14 +1389,14 @@ function ExamContent({ id }: { id: string }) {
                 setCurrentQuestion((prev) => prev + 1);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="px-5 py-2 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+              className="px-5 py-2 bg-[#1F1F1F] text-white text-[13px] font-semibold rounded-lg hover:bg-[#1F1F1F] transition-colors cursor-pointer"
             >
               Seguinte →
             </button>
           ) : (
             <button
               onClick={completeSection}
-              className="px-5 py-2 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+              className="px-5 py-2 bg-[#1F1F1F] text-white text-[13px] font-semibold rounded-lg hover:bg-[#1F1F1F] transition-colors cursor-pointer"
             >
               {currentSection < 2
                 ? "Secção seguinte →"
@@ -1409,8 +1404,8 @@ function ExamContent({ id }: { id: string }) {
             </button>
           )}
         </div>
-      </main>
-    </>
+      </div>
+      </PageShell>
   );
 }
 

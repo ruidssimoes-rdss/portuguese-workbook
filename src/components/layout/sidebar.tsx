@@ -12,6 +12,7 @@ import {
   Type,
   Globe,
   Award,
+  Compass,
   PenLine,
   Clock,
   Search,
@@ -51,6 +52,7 @@ const NAV: NavGroup[] = [
       { href: "/exams", icon: Award, label: "Exames" },
       { href: "/notes", icon: PenLine, label: "Notas" },
       { href: "/calendar", icon: Clock, label: "Calendário" },
+      { href: "/guide", icon: Compass, label: "Como funciona" },
     ],
   },
 ];

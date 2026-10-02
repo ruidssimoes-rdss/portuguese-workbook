@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
-import { PageContainer } from "@/components/ui/page-container";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import changelogData from "@/data/changelog.json";
 
 type ChangelogEntry = {
@@ -17,11 +16,11 @@ type ChangelogData = { entries: ChangelogEntry[] };
 
 const data = changelogData as unknown as ChangelogData;
 
-const ACCENT = "#111827";
+const ACCENT = "#1F1F1F";
 
 function formatDate(iso: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("en-GB", {
+  return d.toLocaleDateString("pt-PT", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -32,15 +31,14 @@ export default function ChangelogPage() {
   const entries = data.entries ?? [];
 
   return (
-    <>
-      <Topbar />
-      <PageContainer width="narrow" className="pb-16">
+    <PageShell header={<Crumbs items={[{ label: "Novidades" }]} />}>
+      <div className="mx-auto max-w-[620px] pb-16">
         <header className="py-5">
-          <h1 className="text-2xl font-bold tracking-tight text-text">
-            What&apos;s New
+          <h1 className="text-[22px] font-semibold tracking-[-0.02em] text-aula-text">
+            Novidades
           </h1>
           <p className="text-[13px] text-text-3 mt-1">
-            Latest updates and improvements to Aula PT
+            O que mudou no Aula
           </p>
         </header>
 
@@ -53,10 +51,10 @@ export default function ChangelogPage() {
                 style={{ width: "8px", height: "8px", backgroundColor: ACCENT }}
               />
               <div className="flex flex-wrap items-baseline gap-2 mb-1.5">
-                <time className="text-sm text-[#6B7280]">
+                <time className="text-sm text-[#6B6B69]">
                   {formatDate(entry.date)}
                 </time>
-                <span className="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+                <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#F3F5FA] text-[#1B2B61] border border-[#D3DAEB]">
                   v{entry.version}
                 </span>
               </div>
@@ -64,11 +62,11 @@ export default function ChangelogPage() {
                 {entry.title}
               </h2>
               {entry.summary ? (
-                <p className="text-[15px] text-[#6B7280] mb-2 leading-snug">
+                <p className="text-[15px] text-[#6B6B69] mb-2 leading-snug">
                   {entry.summary}
                 </p>
               ) : null}
-              <ul className="list-disc list-inside space-y-1 text-sm text-[#374151] pl-1">
+              <ul className="list-disc list-inside space-y-1 text-sm text-[#1F1F1F] pl-1">
                 {entry.changes.map((change, j) => (
                   <li key={j}>{change}</li>
                 ))}
@@ -76,7 +74,7 @@ export default function ChangelogPage() {
             </div>
           ))}
         </div>
-      </PageContainer>
-    </>
+      </div>
+    </PageShell>
   );
 }

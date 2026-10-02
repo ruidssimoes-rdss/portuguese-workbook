@@ -144,7 +144,7 @@ export default function OnboardingPage() {
   if (!pageReady || authLoading || !user) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-[15px] text-[#9CA3AF]">A carregar...</p>
+        <p className="text-[15px] text-[#98988F]">A carregar...</p>
       </div>
     );
   }
@@ -156,7 +156,7 @@ export default function OnboardingPage() {
           <div
             key={i}
             className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-              i <= currentStep ? "bg-[#1B2B61]" : "bg-[#E5E7EB]"
+              i <= currentStep ? "bg-[#1B2B61]" : "bg-[#E6E6E4]"
             }`}
             aria-hidden
           />
@@ -166,10 +166,10 @@ export default function OnboardingPage() {
       {currentStep === 0 && (
         <div className="w-full max-w-lg animate-fade-in">
           <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#111827] mb-2 leading-tight">
+            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
               Porque queres aprender português?
             </h1>
-            <p className="text-[15px] text-[#9CA3AF]">Why are you learning Portuguese?</p>
+            <p className="text-[15px] text-[#98988F]">Why are you learning Portuguese?</p>
           </div>
           <div className="space-y-3 mb-12">
             {MOTIVATION_OPTIONS.map((opt) => (
@@ -180,13 +180,13 @@ export default function OnboardingPage() {
                 className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
                   motivation === opt.value
                     ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
-                    : "border-[#E5E7EB] hover:border-[#D1D5DB] hover:bg-[#FAFAFA]"
+                    : "border-[#E6E6E4] hover:border-[#B5B5AE] hover:bg-[#F7F7F6]"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${motivation === opt.value ? "text-[#1B2B61]" : "text-[#111827]"}`}>
+                <p className={`text-[15px] font-medium ${motivation === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>
                   {opt.labelPt}
                 </p>
-                <p className="text-[13px] text-[#9CA3AF] mt-0.5">{opt.labelEn}</p>
+                <p className="text-[13px] text-[#98988F] mt-0.5">{opt.labelEn}</p>
               </button>
             ))}
           </div>
@@ -196,10 +196,10 @@ export default function OnboardingPage() {
       {currentStep === 1 && (
         <div className="w-full max-w-lg animate-fade-in">
           <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#111827] mb-2 leading-tight">
+            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
               Como descreverias o teu nível atual?
             </h1>
-            <p className="text-[15px] text-[#9CA3AF]">How would you describe your current level?</p>
+            <p className="text-[15px] text-[#98988F]">How would you describe your current level?</p>
           </div>
           <div className="space-y-3 mb-12">
             {LEVEL_OPTIONS.map((opt) => (
@@ -210,13 +210,13 @@ export default function OnboardingPage() {
                 className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
                   level === opt.value
                     ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
-                    : "border-[#E5E7EB] hover:border-[#D1D5DB] hover:bg-[#FAFAFA]"
+                    : "border-[#E6E6E4] hover:border-[#B5B5AE] hover:bg-[#F7F7F6]"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${level === opt.value ? "text-[#1B2B61]" : "text-[#111827]"}`}>
+                <p className={`text-[15px] font-medium ${level === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>
                   {opt.labelPt}
                 </p>
-                <p className="text-[13px] text-[#9CA3AF] mt-0.5">{opt.labelEn}</p>
+                <p className="text-[13px] text-[#98988F] mt-0.5">{opt.labelEn}</p>
               </button>
             ))}
           </div>
@@ -226,10 +226,10 @@ export default function OnboardingPage() {
       {currentStep === 2 && (
         <div className="w-full max-w-lg animate-fade-in">
           <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#111827] mb-2 leading-tight">
+            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
               Quantos dias por semana podes estudar?
             </h1>
-            <p className="text-[15px] text-[#9CA3AF]">How many days per week can you study?</p>
+            <p className="text-[15px] text-[#98988F]">How many days per week can you study?</p>
           </div>
           <div className="grid grid-cols-2 gap-3 mb-12">
             {FREQUENCY_OPTIONS.map((opt) => (
@@ -240,13 +240,13 @@ export default function OnboardingPage() {
                 className={`text-center px-4 py-6 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
                   studyDays === opt.value
                     ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
-                    : "border-[#E5E7EB] hover:border-[#D1D5DB]"
+                    : "border-[#E6E6E4] hover:border-[#B5B5AE]"
                 }`}
               >
-                <p className={`text-[20px] font-bold mb-1 ${studyDays === opt.value ? "text-[#1B2B61]" : "text-[#111827]"}`}>
+                <p className={`text-[20px] font-bold mb-1 ${studyDays === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>
                   {opt.days}
                 </p>
-                <p className="text-[13px] text-[#9CA3AF]">{opt.labelPt}</p>
+                <p className="text-[13px] text-[#98988F]">{opt.labelPt}</p>
               </button>
             ))}
           </div>
@@ -256,10 +256,10 @@ export default function OnboardingPage() {
       {currentStep === 3 && (
         <div className="w-full max-w-lg animate-fade-in">
           <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#111827] mb-2 leading-tight">
+            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
               Qual é o teu objetivo?
             </h1>
-            <p className="text-[15px] text-[#9CA3AF]">What&apos;s your target?</p>
+            <p className="text-[15px] text-[#98988F]">What&apos;s your target?</p>
           </div>
           <div className="space-y-3 mb-6">
             {GOAL_OPTIONS.map((opt) => (
@@ -270,19 +270,19 @@ export default function OnboardingPage() {
                 className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
                   targetGoal === opt.value
                     ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
-                    : "border-[#E5E7EB] hover:border-[#D1D5DB] hover:bg-[#FAFAFA]"
+                    : "border-[#E6E6E4] hover:border-[#B5B5AE] hover:bg-[#F7F7F6]"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${targetGoal === opt.value ? "text-[#1B2B61]" : "text-[#111827]"}`}>
+                <p className={`text-[15px] font-medium ${targetGoal === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>
                   {opt.labelPt}
                 </p>
-                <p className="text-[13px] text-[#9CA3AF] mt-0.5">{opt.labelEn}</p>
+                <p className="text-[13px] text-[#98988F] mt-0.5">{opt.labelEn}</p>
               </button>
             ))}
           </div>
           {showDatePicker && (
             <div className="mb-12">
-              <label htmlFor="target-date" className="block text-center text-[14px] font-medium text-[#6B7280] mb-2">
+              <label htmlFor="target-date" className="block text-center text-[14px] font-medium text-[#6B6B69] mb-2">
                 Até quando? / By when?
               </label>
               <input
@@ -290,7 +290,7 @@ export default function OnboardingPage() {
                 type="date"
                 value={targetDate}
                 onChange={(e) => setTargetDate(e.target.value)}
-                className="w-full max-w-[240px] mx-auto block rounded-[12px] border border-[#E5E7EB] px-4 py-3 text-[15px] text-[#111827] focus:border-[#1B2B61] focus:ring-1 focus:ring-[#1B2B61] outline-none"
+                className="w-full max-w-[240px] mx-auto block rounded-[12px] border border-[#E6E6E4] px-4 py-3 text-[15px] text-[#1F1F1F] focus:border-[#1B2B61] focus:ring-1 focus:ring-[#1B2B61] outline-none"
               />
             </div>
           )}
@@ -301,10 +301,10 @@ export default function OnboardingPage() {
       {currentStep === 4 && (
         <div className="w-full max-w-lg animate-fade-in">
           <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#111827] mb-2 leading-tight">
+            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
               Como te chamas?
             </h1>
-            <p className="text-[15px] text-[#9CA3AF]">What should we call you?</p>
+            <p className="text-[15px] text-[#98988F]">What should we call you?</p>
           </div>
           <div className="mb-12">
             <input
@@ -312,7 +312,7 @@ export default function OnboardingPage() {
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="O teu nome"
-              className="w-full text-center text-[22px] font-bold text-[#111827] border-b-2 border-[#E5E7EB] focus:border-[#1B2B61] outline-none pb-3 bg-transparent transition-colors duration-200"
+              className="w-full text-center text-[22px] font-bold text-[#1F1F1F] border-b-2 border-[#E6E6E4] focus:border-[#1B2B61] outline-none pb-3 bg-transparent transition-colors duration-200"
             />
           </div>
         </div>
@@ -323,7 +323,7 @@ export default function OnboardingPage() {
           <button
             type="button"
             onClick={goBack}
-            className="text-[14px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors"
+            className="text-[14px] font-medium text-[#6B6B69] hover:text-[#1F1F1F] transition-colors"
           >
             ← Anterior
           </button>
@@ -354,7 +354,7 @@ export default function OnboardingPage() {
         type="button"
         onClick={handleSkip}
         disabled={saving}
-        className="mt-8 text-[13px] text-[#9CA3AF] hover:text-[#6B7280] transition-colors disabled:opacity-50 min-h-[44px]"
+        className="mt-8 text-[13px] text-[#98988F] hover:text-[#6B6B69] transition-colors disabled:opacity-50 min-h-[44px]"
       >
         Saltar configuração
       </button>

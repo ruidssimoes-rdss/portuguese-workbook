@@ -99,6 +99,9 @@ export default function LessonsPage() {
           <p>
             Passas uma lição com <span className="font-medium text-aula-text">80%</span>. O nível seguinte abre quando estiveres <span className="font-medium text-aula-text">75%</span> pronto.
           </p>
+          <Link href="/guide" className="inline-flex items-center gap-1 font-medium text-aula-accent">
+            Como funciona o Aula <ArrowRight size={12} strokeWidth={1.5} />
+          </Link>
         </div>
       </div>
     </div>
