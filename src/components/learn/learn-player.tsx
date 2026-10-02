@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import type { Lesson, VocabItem } from "@/data/lessons";
 import type {
@@ -46,22 +46,37 @@ const SECTION_MAP: Record<string, React.ComponentType<Record<string, unknown>>> 
 
 // ─── Types ──────────────────────────────────────────────
 
-type PlayerState = "intro" | "learn" | "sections" | "results";
+export type PlayerState = "intro" | "learn" | "sections" | "results";
+
+export interface PlayerSnapshot {
+  state: PlayerState;
+  currentSection: number;
+  sectionResults: SectionResult[];
+  learnIndex: number;
+}
 
 interface LearnPlayerProps {
   lesson: Lesson;
   generated: GeneratedLesson;
   isReview: boolean;
   onComplete: (sectionResults: SectionResult[]) => void;
+  /** Resume from a saved point (e.g. sessionStorage). */
+  initial?: PlayerSnapshot;
+  /** Called whenever the position changes, so the caller can persist it. */
+  onProgress?: (snap: PlayerSnapshot) => void;
 }
 
 // ─── Player ─────────────────────────────────────────────
 
-export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPlayerProps) {
-  const [state, setState] = useState<PlayerState>("intro");
-  const [currentSection, setCurrentSection] = useState(0);
-  const [sectionResults, setSectionResults] = useState<SectionResult[]>([]);
-  const [learnIndex, setLearnIndex] = useState(0);
+export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, onProgress }: LearnPlayerProps) {
+  const [state, setState] = useState<PlayerState>(initial?.state ?? "intro");
+  const [currentSection, setCurrentSection] = useState(initial?.currentSection ?? 0);
+  const [sectionResults, setSectionResults] = useState<SectionResult[]>(initial?.sectionResults ?? []);
+  const [learnIndex, setLearnIndex] = useState(initial?.learnIndex ?? 0);
+
+  useEffect(() => {
+    onProgress?.({ state, currentSection, sectionResults, learnIndex });
+  }, [onProgress, state, currentSection, sectionResults, learnIndex]);
   const [attempt, setAttempt] = useState(0);
 
   const totalSections = generated.sections.length;
