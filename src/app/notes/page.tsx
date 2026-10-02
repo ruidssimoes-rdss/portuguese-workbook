@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { SlideDrawer } from "@/components/ui/slide-drawer";
-import { PageHeader, SectionLabel, BadgePill } from "@/components/primitives";
+import { Pin, Plus, Search } from "lucide-react";
+import { Label, ScreenTitle } from "@/components/aula";
 import { useAuth } from "@/components/auth-provider";
 import {
   getUserNotes,
@@ -75,60 +76,34 @@ function formatRelativeTime(dateStr: string): string {
   return d.toLocaleDateString("pt-PT", { day: "numeric", month: "short" });
 }
 
-function NoteRow({
-  note,
-  onClick,
-}: {
-  note: Note;
-  onClick: () => void;
-}) {
-  const preview = note.content.slice(0, 80).trim();
-  const previewText = preview.length < note.content.length ? `${preview}…` : preview;
-  const contextLabel = note.context_type
-    ? `${CONTEXT_LABELS[note.context_type] ?? note.context_type}${note.context_label ? ` — ${note.context_label}` : ""}`
-    : null;
-
+function NoteRow({ note, onClick }: { note: Note; onClick: () => void }) {
+  const preview = note.content.replace(/\s+/g, " ").trim();
+  const ctx = note.context_type ? (note.context_label || CONTEXT_LABELS[note.context_type] || note.context_type) : null;
   return (
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left flex items-center gap-3 px-4 py-3 bg-white hover:bg-[#F7F7F6] transition-colors duration-100 cursor-pointer"
+      className="flex w-full items-start gap-3 rounded-[10px] px-3 py-2.5 text-left transition-colors hover:bg-aula-sunken"
     >
-      <span
-        className={`w-[3px] shrink-0 self-stretch rounded-full ${note.is_pinned ? "bg-[#1B2B61]" : "bg-transparent"}`}
-        aria-hidden
-      />
-      <div className="min-w-0 flex-1 flex items-center gap-3">
-        <div className="min-w-0 flex-1">
-          <h3 className="text-[14px] font-medium text-[#1F1F1F] truncate">
-            {note.title?.trim() || "Sem título"}
-          </h3>
-          <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-            {contextLabel && (
-              <BadgePill label={contextLabel} variant="neutral" />
-            )}
-            <p className="text-[12px] text-[#6B6B69] truncate">{previewText || "Sem conteúdo"}</p>
-          </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-1.5">
+          {note.is_pinned && <Pin size={11} strokeWidth={1.75} className="shrink-0 text-aula-accent" />}
+          <span className="truncate text-[13px] font-medium text-aula-text">{note.title?.trim() || "Sem título"}</span>
         </div>
-        <span className="text-[11px] text-[#98988F] shrink-0">{formatRelativeTime(note.updated_at)}</span>
+        <p className="mt-0.5 line-clamp-2 text-[12px] leading-relaxed text-aula-text-2">{preview || "Sem conteúdo"}</p>
+        {(ctx || (note.tags?.length ?? 0) > 0) && (
+          <div className="mt-1.5 flex flex-wrap items-center gap-1">
+            {ctx && <span className="rounded-md bg-aula-accent-faint px-1.5 py-[1px] text-[10.5px] font-medium text-aula-accent">{ctx}</span>}
+            {(note.tags ?? []).map((t) => (
+              <span key={t} className="rounded-md bg-aula-sunken px-1.5 py-[1px] text-[10.5px] text-aula-text-3">
+                #{t}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
+      <span className="shrink-0 pt-[1px] text-[11px] text-aula-text-3">{formatRelativeTime(note.updated_at)}</span>
     </button>
-  );
-}
-
-function PencilIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-    </svg>
-  );
-}
-
-function TrashIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-    </svg>
   );
 }
 
@@ -319,17 +294,14 @@ function NoteEditorDrawer({
       <div className="flex flex-col h-full">
         <div className="flex-1 overflow-y-auto px-6 py-6">
           {contextLabel && (
-            <span className="inline-block text-[11px] font-medium px-2.5 py-1 rounded-lg mb-4 text-[#6B6B69] bg-[#F7F7F6]">
-              {contextLabel}
-            </span>
-          )}
-          {linkedToHref && (
-            <p className="text-[12px] text-[#6B6B69] mb-3">
-              Ligado a:{" "}
-              <Link href={linkedToHref} className="text-[#1B2B61] hover:underline">
-                {contextLabel} →
-              </Link>
-            </p>
+            <div className="mb-4 flex items-center gap-2">
+              <span className="rounded-md bg-aula-accent-faint px-1.5 py-[1px] text-[11px] font-medium text-aula-accent">{contextLabel}</span>
+              {linkedToHref && (
+                <Link href={linkedToHref} className="text-[11.5px] text-aula-text-3 hover:text-aula-accent">
+                  Abrir →
+                </Link>
+              )}
+            </div>
           )}
           <input
             type="text"
@@ -337,22 +309,22 @@ function NoteEditorDrawer({
             onChange={(e) => setTitle(e.target.value)}
             onBlur={handleBlur}
             placeholder="Título"
-            className="w-full text-[20px] font-medium text-[#1F1F1F] border-0 focus:ring-0 focus:outline-none placeholder:text-[#98988F] mb-2"
+            className="mb-2 w-full border-0 bg-transparent text-[20px] font-semibold tracking-[-0.01em] text-aula-text placeholder:text-aula-text-4 focus:outline-none focus:ring-0"
           />
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             onBlur={handleBlur}
-            placeholder="Começar a escrever..."
-            className="w-full min-h-[350px] text-[13px] text-[#6B6B69] leading-[1.8] border-0 focus:ring-0 focus:outline-none resize-y placeholder:text-[#98988F]"
+            placeholder="Começa a escrever…"
+            className="min-h-[350px] w-full resize-y border-0 bg-transparent text-[13.5px] leading-[1.8] text-aula-text placeholder:text-aula-text-4 focus:outline-none focus:ring-0"
           />
           <div className="mt-4">
-            <p className="text-[11px] font-medium text-[#98988F] mb-2">Etiquetas</p>
+            <Label className="mb-2">Etiquetas</Label>
             <div className="flex flex-wrap gap-1.5 items-center">
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] border-[0.5px] border-[#E6E6E4] bg-[#F7F7F6]"
+                  className="inline-flex h-6 items-center gap-1 rounded-md bg-aula-sunken px-2 text-[11.5px] text-aula-text-2"
                 >
                   {tag}
                   <button type="button" onClick={() => removeTag(tag)} className="text-[#98988F] hover:text-[#1F1F1F]" aria-label="Remover">×</button>
@@ -364,25 +336,22 @@ function NoteEditorDrawer({
                   value={newTag}
                   onChange={(e) => setNewTag(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
-                  placeholder="+ Adicionar"
-                  className="w-24 px-2 py-0.5 rounded-lg text-[12px] border-[0.5px] border-[#E6E6E4] focus:border-[#CFCFCB] focus:ring-0 outline-none"
+                  placeholder="+ etiqueta"
+                  className="h-6 w-24 rounded-md border border-aula-border bg-white px-2 text-[11.5px] outline-none focus:border-aula-accent"
                 />
-                <button type="button" onClick={addTag} className="text-[12px] font-medium text-[#1B2B61] hover:underline">
-                  Adicionar
-                </button>
               </span>
             </div>
           </div>
         </div>
         <div
-          className="shrink-0 flex items-center justify-between gap-4 px-4 py-3 rounded-[10px] mx-4 mb-4 bg-black/88 backdrop-blur-xl border border-[#E6E6E4]"
+          className="flex shrink-0 items-center justify-between gap-4 border-t border-aula-line px-4 py-2.5"
         >
           <div className="flex items-center gap-1">
             {note && (
               <button
                 type="button"
                 onClick={handlePin}
-                className="px-3 py-1.5 text-[11px] font-medium rounded-[12px] text-white/40 hover:text-white/[0.85] transition-colors"
+                className="h-7 rounded-md px-2.5 text-[12px] font-medium text-aula-text-2 transition-colors hover:bg-aula-sunken hover:text-aula-text"
               >
                 {note.is_pinned ? "Desfixar" : "Fixar"}
               </button>
@@ -391,7 +360,7 @@ function NoteEditorDrawer({
               <button
                 type="button"
                 onClick={handleArchive}
-                className="px-3 py-1.5 text-[11px] font-medium rounded-[12px] text-white/40 hover:text-white/[0.85] transition-colors"
+                className="h-7 rounded-md px-2.5 text-[12px] font-medium text-aula-text-2 transition-colors hover:bg-aula-sunken hover:text-aula-text"
               >
                 Arquivar
               </button>
@@ -400,14 +369,14 @@ function NoteEditorDrawer({
               <button
                 type="button"
                 onClick={handleDelete}
-                className={`px-3 py-1.5 text-[11px] font-medium rounded-[12px] transition-colors ${confirmDelete ? "text-red-400 hover:text-red-300" : "text-white/40 hover:text-red-400"}`}
+                className={`h-7 rounded-md px-2.5 text-[12px] font-medium transition-colors ${confirmDelete ? "bg-[#FBE9E4] text-aula-overdue" : "text-aula-text-2 hover:bg-aula-sunken hover:text-aula-overdue"}`}
               >
-                {confirmDelete ? "Confirmar apagar" : "Apagar"}
+                {confirmDelete ? "Apagar mesmo?" : "Apagar"}
               </button>
             )}
           </div>
-          <span className="text-[10px] font-medium text-white/[0.35]">
-            {saving ? "A guardar..." : savedAt != null ? "Guardado" : ""}
+          <span className="text-[11px] text-aula-text-3">
+            {saving ? "A guardar…" : savedAt != null ? "Guardado" : ""}
           </span>
         </div>
       </div>
@@ -534,151 +503,121 @@ function NotesContent() {
     setDrawerContext(null);
   };
 
+  const pinned = sortedNotes.filter((n) => n.is_pinned);
+  const recent = sortedNotes.filter((n) => !n.is_pinned);
+  const showSections = filterId === "all" && pinned.length > 0;
+
+  const panel = isLoggedIn ? (
+    <div className="flex flex-col gap-6">
+      <div>
+        <Label className="mb-2">Coleções</Label>
+        {FILTERS.map((f) => (
+          <button
+            key={f.id}
+            type="button"
+            onClick={() => setFilterId(f.id)}
+            className={`flex h-7 w-full items-center rounded-md px-2 text-left text-[12.5px] ${filterId === f.id ? "bg-aula-selected font-medium text-aula-text" : "text-aula-text-2 hover:bg-aula-sunken"}`}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+      {allTags.length > 0 && (
+        <div>
+          <Label className="mb-2">Etiquetas</Label>
+          <div className="flex flex-wrap gap-1">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => setSelectedTag((prev) => (prev === tag ? null : tag))}
+                className={`h-6 rounded-md px-2 text-[11.5px] transition-colors ${selectedTag === tag ? "bg-aula-accent text-white" : "bg-aula-sunken text-aula-text-2 hover:text-aula-text"}`}
+              >
+                #{tag}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      <p className="text-[11.5px] leading-relaxed text-aula-text-3">
+        Também podes criar uma nota a partir de qualquer palavra, verbo ou regra. Fica ligada a ela.
+      </p>
+    </div>
+  ) : undefined;
+
   return (
     <>
-      <PageShell header={<Crumbs items={[{ label: "Notas" }]} />}>
-        <PageHeader title="Notas" subtitle="O teu caderno de estudo" />
-
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <div />
-          {isLoggedIn && (
-            <button
-              type="button"
-              onClick={openNewNote}
-              className="shrink-0 flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
-            >
-              <PencilIcon className="w-4 h-4" />
-              Nova nota
-            </button>
-          )}
-        </div>
-
-        {!isLoggedIn ? (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            <p className="text-[14px] font-medium text-[#1F1F1F] mb-2">
-              Inicia sessão para usar o caderno
-            </p>
-            <p className="text-[13px] text-[#98988F] mb-6">
-              Guarda as tuas notas e sincroniza entre dispositivos.
-            </p>
-            <Link
-              href="/auth/login"
-              className="inline-flex items-center justify-center px-3 py-1.5 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
-            >
-              Entrar
-            </Link>
+      <PageShell header={<Crumbs items={[{ label: "Notas" }]} />} panel={panel}>
+        <div className="mx-auto max-w-[680px]">
+          <div className="flex items-start gap-3">
+            <div className="flex-1">
+              <ScreenTitle title="Notas" subtitle="O teu caderno de estudo" />
+            </div>
+            {isLoggedIn && (
+              <button
+                type="button"
+                onClick={openNewNote}
+                className="mt-1 inline-flex h-8 items-center gap-1.5 rounded-lg bg-aula-accent px-3 text-[12.5px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+              >
+                <Plus size={14} strokeWidth={1.75} /> Nova nota
+              </button>
+            )}
           </div>
-        ) : (
-          <>
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              {FILTERS.map((f) => (
-                <button
-                  key={f.id}
-                  type="button"
-                  onClick={() => setFilterId(f.id)}
-                  className={`px-3 py-1.5 rounded-[5px] text-[12px] border-none cursor-pointer transition-all duration-100 ${
-                    filterId === f.id
-                      ? "text-[#1F1F1F] font-medium bg-[rgba(0,0,0,0.05)]"
-                      : "text-[#98988F] hover:text-[#6B6B69]"
-                  }`}
-                >
-                  {f.label}
-                </button>
-              ))}
-              <div className="flex-1 min-w-[160px] max-w-xs ml-auto">
+
+          {!isLoggedIn ? (
+            <div className="rounded-xl border border-aula-border p-8 text-center">
+              <p className="text-[15px] font-semibold text-aula-text">Entra para usar o caderno</p>
+              <p className="mx-auto mt-1.5 max-w-[360px] text-[13px] text-aula-text-2">Guarda as tuas notas e tem-nas em todos os dispositivos.</p>
+              <Link href="/auth/login" className="mt-4 inline-flex h-8 items-center rounded-lg bg-aula-accent px-4 text-[12.5px] font-medium text-white">
+                Entrar
+              </Link>
+            </div>
+          ) : (
+            <>
+              <label className="mb-5 flex h-8 items-center gap-2 rounded-lg border border-aula-line bg-aula-sunken px-2.5 focus-within:border-aula-border focus-within:bg-white">
+                <Search size={14} strokeWidth={1.5} className="text-aula-text-3" />
                 <input
                   type="search"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
-                  placeholder="Pesquisar..."
-                  className="pl-8 pr-3 py-1.5 border-[0.5px] border-[#E6E6E4] rounded-lg text-[12px] w-[220px] bg-white text-[#1F1F1F] outline-none placeholder:text-[#98988F] focus:border-[#CFCFCB] transition-colors"
+                  placeholder="Procurar nas notas…"
+                  className="w-full bg-transparent text-[12px] text-aula-text outline-none placeholder:text-aula-text-3"
                 />
-              </div>
-            </div>
+              </label>
 
-            {allTags.length > 0 && (
-              <div className="flex flex-wrap items-center gap-1.5 mb-4">
-                {allTags.map((tag) => (
-                  <button
-                    key={tag}
-                    type="button"
-                    onClick={() => setSelectedTag((prev) => (prev === tag ? null : tag))}
-                    className={
-                      selectedTag === tag
-                        ? "px-2 py-0.5 text-[10px] font-medium text-white bg-[#1B2B61] rounded-full"
-                        : "px-2 py-0.5 text-[10px] text-[#98988F] bg-[#F7F7F6] rounded-full hover:bg-[#E6E6E4]"
-                    }
-                  >
-                    {tag}{selectedTag === tag ? " ×" : ""}
+              {dateFilterLabel && (
+                <div className="mb-4 flex items-center justify-between gap-2 rounded-lg bg-aula-accent-faint px-3 py-2">
+                  <span className="text-[12.5px] text-aula-accent">{dateFilterLabel}</span>
+                  <button type="button" onClick={clearDateFilter} className="text-[12px] font-medium text-aula-accent" aria-label="Remover filtro de data">
+                    Limpar
                   </button>
-                ))}
-              </div>
-            )}
+                </div>
+              )}
 
-            {dateFilterLabel && (
-              <div className="flex items-center justify-between gap-2 mb-4 bg-[#F7F7F6] border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-2">
-                <span className="text-[13px] text-[#6B6B69]">{dateFilterLabel}</span>
-                <button
-                  type="button"
-                  onClick={clearDateFilter}
-                  className="shrink-0 w-7 h-7 flex items-center justify-center rounded-full text-[#98988F] hover:bg-[#E6E6E4] hover:text-[#1F1F1F] transition-colors"
-                  aria-label="Remover filtro de data"
-                >
-                  ×
-                </button>
-              </div>
-            )}
-
-            {loading ? (
-              <p className="text-[13px] text-[#98988F] py-8">
-                {debouncedSearch.trim() ? "A pesquisar..." : "A carregar..."}
-              </p>
-            ) : sortedNotes.length === 0 ? (
-              <div className="text-[13px] text-[#98988F] text-center py-16">
-                <h3 className="text-[14px] font-medium text-[#1F1F1F] mb-2">Ainda sem notas</h3>
-                <p className="mb-6">
-                  Começa a capturar as tuas descobertas.
-                </p>
-                <button
-                  type="button"
-                  onClick={openNewNote}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
-                >
-                  <PencilIcon className="w-4 h-4" />
-                  Nova nota
-                </button>
-              </div>
-            ) : (
-              <div className="space-y-1">
-                {(() => {
-                  const pinned = sortedNotes.filter((n) => n.is_pinned);
-                  const recent = sortedNotes.filter((n) => !n.is_pinned);
-                  const showSections = filterId === "all" && pinned.length > 0;
-                  return (
-                    <>
-                      {showSections && (
-                        <SectionLabel>Fixadas</SectionLabel>
-                      )}
-                      {pinned.map((note) => (
-                        <NoteRow key={note.id} note={note} onClick={() => openEditor(note)} />
-                      ))}
-                      {showSections && recent.length > 0 && (
-                        <div className="mt-6">
-                          <SectionLabel>Recentes</SectionLabel>
-                        </div>
-                      )}
-                      {recent.map((note) => (
-                        <NoteRow key={note.id} note={note} onClick={() => openEditor(note)} />
-                      ))}
-                    </>
-                  );
-                })()}
-              </div>
-            )}
-          </>
-        )}
-
-        <div className="pb-16" />
+              {loading ? (
+                <p className="py-8 text-center text-[13px] text-aula-text-3">{debouncedSearch.trim() ? "A procurar…" : "A carregar…"}</p>
+              ) : sortedNotes.length === 0 ? (
+                <div className="rounded-xl border border-dashed border-aula-border px-6 py-12 text-center">
+                  <p className="text-[14px] font-semibold text-aula-text">{debouncedSearch.trim() || selectedTag || filterId !== "all" ? "Nada aqui" : "Ainda sem notas"}</p>
+                  <p className="mx-auto mt-1 max-w-[340px] text-[12.5px] text-aula-text-2">
+                    {debouncedSearch.trim() || selectedTag || filterId !== "all" ? "Nenhuma nota com estes filtros." : "Aponta o que te custa, frases que ouviste, dúvidas para o Elísio."}
+                  </p>
+                </div>
+              ) : (
+                <>
+                  {showSections && <Label className="mb-1 px-3">Fixadas</Label>}
+                  {pinned.map((note) => (
+                    <NoteRow key={note.id} note={note} onClick={() => openEditor(note)} />
+                  ))}
+                  {showSections && recent.length > 0 && <Label className="mb-1 mt-6 px-3">Recentes</Label>}
+                  {recent.map((note) => (
+                    <NoteRow key={note.id} note={note} onClick={() => openEditor(note)} />
+                  ))}
+                </>
+              )}
+            </>
+          )}
+        </div>
       </PageShell>
 
       {isLoggedIn && drawerOpen && (
@@ -701,8 +640,7 @@ export default function NotesPage() {
   return (
     <Suspense fallback={
       <PageShell header={<Crumbs items={[{ label: "Notas" }]} />}>
-        <PageHeader title="Notas" subtitle="O teu caderno de estudo" />
-        <p className="text-[13px] text-[#98988F] py-8">Loading...</p>
+        <p className="py-16 text-center text-[13px] text-aula-text-3">A carregar…</p>
       </PageShell>
     }>
       <NotesContent />
