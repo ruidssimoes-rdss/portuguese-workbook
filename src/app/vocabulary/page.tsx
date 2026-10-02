@@ -100,14 +100,14 @@ export default function VocabularyPage() {
             >
               <CardShell interactive>
                 <div className="flex items-start justify-between mb-1.5">
-                  <div className="text-[14px] font-medium text-[#111111]">
+                  <div className="text-[14px] font-medium text-[#1F1F1F]">
                     {cat.title}
                   </div>
-                  <span className="text-[12px] text-[#9B9DA3] flex-shrink-0 ml-3">
+                  <span className="text-[12px] text-[#98988F] flex-shrink-0 ml-3">
                     {wordCount} words
                   </span>
                 </div>
-                <div className="text-[12px] text-[#6C6B71] leading-relaxed mb-3">
+                <div className="text-[12px] text-[#6B6B69] leading-relaxed mb-3">
                   {cat.description}
                 </div>
                 <div className="flex gap-1">
@@ -131,18 +131,18 @@ export default function VocabularyPage() {
                   if (matchingWords.length === 0) return null;
                   const shown = matchingWords.slice(0, 3);
                   return (
-                    <div className="mt-2 pt-2 border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
-                      <div className="text-[11px] text-[#9B9DA3] mb-1">
+                    <div className="mt-2 pt-2 border-t-[0.5px] border-[#E6E6E4]">
+                      <div className="text-[11px] text-[#98988F] mb-1">
                         {matchingWords.length} matching word{matchingWords.length !== 1 ? "s" : ""}
                       </div>
                       {shown.map((w: any, i: number) => (
-                        <div key={i} className="text-[12px] text-[#6C6B71]">
-                          <span className="font-medium text-[#111111]">{w.portuguese}</span>
+                        <div key={i} className="text-[12px] text-[#6B6B69]">
+                          <span className="font-medium text-[#1F1F1F]">{w.portuguese}</span>
                           {" — "}{w.english}
                         </div>
                       ))}
                       {matchingWords.length > 3 && (
-                        <div className="text-[11px] text-[#9B9DA3] mt-0.5">
+                        <div className="text-[11px] text-[#98988F] mt-0.5">
                           +{matchingWords.length - 3} more
                         </div>
                       )}

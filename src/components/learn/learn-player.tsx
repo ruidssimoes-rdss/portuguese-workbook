@@ -180,10 +180,10 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
       <div>
         {/* Top bar */}
         <div className="flex items-center justify-between py-4 mb-2">
-          <Link href="/lessons" className="text-[13px] text-[#9B9DA3] hover:text-[#6C6B71] transition-colors">
+          <Link href="/lessons" className="text-[13px] text-[#98988F] hover:text-[#6B6B69] transition-colors">
             ← Lições
           </Link>
-          <span className="text-[13px] text-[#6C6B71] font-medium">Learn</span>
+          <span className="text-[13px] text-[#6B6B69] font-medium">Learn</span>
         </div>
 
         <LearnProgress
@@ -197,15 +197,15 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
           <LearnItemRenderer item={item} />
 
           {/* Navigation */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t-[0.5px] border-[#E6E6E4]">
             <button
               type="button"
               onClick={handleLearnPrev}
               disabled={learnIndex === 0}
               className={`text-[13px] font-medium transition-colors ${
                 learnIndex === 0
-                  ? "text-[#9B9DA3] cursor-not-allowed"
-                  : "text-[#6C6B71] hover:text-[#111111] cursor-pointer"
+                  ? "text-[#98988F] cursor-not-allowed"
+                  : "text-[#6B6B69] hover:text-[#1F1F1F] cursor-pointer"
               }`}
             >
               ← Anterior
@@ -213,7 +213,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
             <button
               type="button"
               onClick={handleLearnNext}
-              className="px-4 py-2.5 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
+              className="px-4 py-2.5 bg-[#1B2B61] text-white text-[13px] font-medium rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
             >
               {learnIndex < learnTotal - 1 ? "Próximo →" : "Começar exercícios →"}
             </button>
@@ -236,31 +236,31 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete }: LearnPl
     const pct = totalQuestions > 0 ? ((questionsSoFar + 1) / totalQuestions) * 100 : 0;
 
     return (
-      <div className="max-w-[600px] mx-auto border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden bg-white">
+      <div className="max-w-[600px] mx-auto border-[0.5px] border-[#E6E6E4] rounded-lg overflow-hidden bg-white">
         {/* Top bar */}
-        <div className="flex items-center justify-between px-4 py-[10px] border-b-[0.5px] border-[rgba(0,0,0,0.06)]">
-          <Link href="/lessons" className="text-[13px] text-[#6C6B71] hover:text-[#111111] transition-colors">
+        <div className="flex items-center justify-between px-4 py-[10px] border-b-[0.5px] border-[#E6E6E4]">
+          <Link href="/lessons" className="text-[13px] text-[#6B6B69] hover:text-[#1F1F1F] transition-colors">
             ← Lessons
           </Link>
           <div className="flex items-center gap-1.5">
-            <span className="text-[12px] text-[#6C6B71]">{questionsSoFar + 1} / {totalQuestions}</span>
+            <span className="text-[12px] text-[#6B6B69]">{questionsSoFar + 1} / {totalQuestions}</span>
             <span className={`text-[10px] font-medium px-2 py-px rounded-full ${
-              lesson.cefr === "A1" ? "text-[#0F6E56] bg-[#E1F5EE]" :
-              lesson.cefr === "A2" ? "text-[#185FA5] bg-[#E6F1FB]" :
-              "text-[#854F0B] bg-[#FAEEDA]"
+              lesson.cefr === "A1" ? "text-[#1F7A68] bg-[#E1F2ED]" :
+              lesson.cefr === "A2" ? "text-[#1B2B61] bg-[#E8ECF6]" :
+              "text-[#5B45B8] bg-[#ECE8F8]"
             }`}>{lesson.cefr}</span>
           </div>
         </div>
 
         {/* Progress bar */}
-        <div className="h-[3px] bg-[rgba(0,0,0,0.06)] mx-4 rounded-[2px]">
-          <div className="h-[3px] bg-[#185FA5] rounded-[2px] transition-all duration-300" style={{ width: `${pct}%` }} />
+        <div className="h-[3px] bg-[#E6E6E4] mx-4 rounded-[2px]">
+          <div className="h-[3px] bg-[#1B2B61] rounded-[2px] transition-all duration-300" style={{ width: `${pct}%` }} />
         </div>
 
         {/* Section header */}
         <div className="flex items-center gap-2 px-4 pt-[10px] pb-[6px]">
-          <span className="text-[13px] font-medium text-[#111111]">{section.namePt}</span>
-          <span className="text-[11px] text-[#9B9DA3]">{section.totalQuestions} questions</span>
+          <span className="text-[13px] font-medium text-[#1F1F1F]">{section.namePt}</span>
+          <span className="text-[11px] text-[#98988F]">{section.totalQuestions} questions</span>
         </div>
 
         {/* Section body */}

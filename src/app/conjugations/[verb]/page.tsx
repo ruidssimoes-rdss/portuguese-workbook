@@ -60,23 +60,23 @@ export default function ConjugationDetailPage() {
   return (
     <PageShell>
       {/* Breadcrumb */}
-      <div className="text-[12px] text-[#9B9DA3] mb-5 flex items-center gap-1">
+      <div className="text-[12px] text-[#98988F] mb-5 flex items-center gap-1">
         <Link
           href="/conjugations"
-          className="hover:text-[#6C6B71] transition-colors"
+          className="hover:text-[#6B6B69] transition-colors"
         >
           Conjugations
         </Link>
         <ChevronRight size={12} />
-        <span className="text-[#6C6B71]">{slug.toLowerCase()}</span>
+        <span className="text-[#6B6B69]">{slug.toLowerCase()}</span>
       </div>
 
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
+        <h1 className="text-[22px] font-medium text-[#1F1F1F] tracking-[-0.02em]">
           {slug.toLowerCase()}
         </h1>
-        <div className="text-[13px] text-[#6C6B71] mt-1">{meta.english}</div>
+        <div className="text-[13px] text-[#6B6B69] mt-1">{meta.english}</div>
         <div className="flex gap-1.5 mt-3">
           <BadgePill level={meta.cefr} />
           <BadgePill label={meta.group} variant="neutral" />
@@ -100,7 +100,7 @@ export default function ConjugationDetailPage() {
         {Object.entries(grouped).map(([tense, rows]) => (
           <div key={tense}>
             <SectionLabel>{tense}</SectionLabel>
-            <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden">
+            <div className="border-[0.5px] border-[#E6E6E4] rounded-lg overflow-hidden">
               {(rows as any[]).map((row, i) => {
                 const person = row.Person.split(" (")[0];
                 return (
@@ -108,18 +108,18 @@ export default function ConjugationDetailPage() {
                     key={i}
                     className={`group grid grid-cols-[120px_1fr] md:grid-cols-[140px_1fr_1fr] items-center px-4 py-2.5 text-[13px] ${
                       i > 0
-                        ? "border-t-[0.5px] border-[rgba(0,0,0,0.06)]"
+                        ? "border-t-[0.5px] border-[#E6E6E4]"
                         : ""
                     }`}
                   >
-                    <span className="text-[#9B9DA3] text-[12px]">
+                    <span className="text-[#98988F] text-[12px]">
                       {person}
                     </span>
-                    <span className="text-[#111111] font-medium flex items-center gap-1">
+                    <span className="text-[#1F1F1F] font-medium flex items-center gap-1">
                       {row.Conjugation}
                       <AudioButton text={row.Conjugation} />
                     </span>
-                    <span className="text-[#6C6B71] text-[12px] hidden md:block">
+                    <span className="text-[#6B6B69] text-[12px] hidden md:block">
                       {row["Example Sentence"]}
                     </span>
                   </div>

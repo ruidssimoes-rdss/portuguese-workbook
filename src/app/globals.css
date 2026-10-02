@@ -31,59 +31,59 @@
   --color-text-3: #a3a3a3;
 
   /* === Accent & Brand === */
-  --color-accent: #185FA5;
-  --color-accent-light: #E6F1FB;
-  --color-accent-border: rgba(24, 95, 165, 0.15);
-  --color-accent-hover: #144d87;
-  --color-accent-muted: rgba(24, 95, 165, 0.6);
+  --color-accent: #1B2B61;
+  --color-accent-light: #E8ECF6;
+  --color-accent-border: #D3DAEB;
+  --color-accent-hover: #14214C;
+  --color-accent-muted: #3F589F;
 
   /* === Text Hierarchy === */
-  --color-text-secondary: #6C6B71;
-  --color-text-muted: #9B9DA3;
+  --color-text-secondary: #6B6B69;
+  --color-text-muted: #98988F;
 
   /* === Surfaces === */
-  --color-surface: #F7F7F5;
-  --color-surface-hover: #F7F7F5;
+  --color-surface: #F7F7F6;
+  --color-surface-hover: #F7F7F6;
 
   /* === Borders === */
-  --color-border-light: rgba(0, 0, 0, 0.06);
+  --color-border-light: #E6E6E4;
 
   /* === CEFR Level Colors === */
-  --color-cefr-a1: #0F6E56;
-  --color-cefr-a2: #185FA5;
-  --color-cefr-b1: #854F0B;
+  --color-cefr-a1: #1F7A68;
+  --color-cefr-a2: #1B2B61;
+  --color-cefr-b1: #5B45B8;
 
   /* === Monochrome UI === */
-  --color-btn-primary: #111111;
+  --color-btn-primary: #1F1F1F;
   --color-btn-primary-hover: #333333;
   --color-btn-primary-text: #ffffff;
 
   /* === smartBlocos Design Tokens === */
 
   /* Semantic colors */
-  --color-bloco-primary: #185FA5;
-  --color-bloco-cefr-a1: #0F6E56;
-  --color-bloco-cefr-a2: #185FA5;
-  --color-bloco-tip: #854F0B;
+  --color-bloco-primary: #1B2B61;
+  --color-bloco-cefr-a1: #1F7A68;
+  --color-bloco-cefr-a2: #1B2B61;
+  --color-bloco-tip: #5B45B8;
   --color-bloco-warning: #dc2626;
-  --color-bloco-success: #0F6E56;
-  --color-bloco-progress: #185FA5;
+  --color-bloco-success: #1F7A68;
+  --color-bloco-progress: #1B2B61;
 
   /* Text */
-  --color-bloco-text: #111111;
-  --color-bloco-text-body: #6C6B71;
-  --color-bloco-text-secondary: #6C6B71;
-  --color-bloco-text-muted: #9B9DA3;
+  --color-bloco-text: #1F1F1F;
+  --color-bloco-text-body: #6B6B69;
+  --color-bloco-text-secondary: #6B6B69;
+  --color-bloco-text-muted: #98988F;
 
   /* Surfaces */
   --color-bloco-surface: #FFFFFF;
-  --color-bloco-surface-recessed: #F7F7F5;
+  --color-bloco-surface-recessed: #F7F7F6;
   --color-bloco-surface-page: #FFFFFF;
 
   /* Borders */
-  --color-bloco-border-content: rgba(0, 0, 0, 0.06);
-  --color-bloco-border-divider: rgba(0, 0, 0, 0.12);
-  --color-bloco-border-track: rgba(0, 0, 0, 0.06);
+  --color-bloco-border-content: #E6E6E4;
+  --color-bloco-border-divider: #CFCFCB;
+  --color-bloco-border-track: #E6E6E4;
 
   /* Spacing (as custom properties for non-Tailwind contexts) */
   --bloco-padding: 16px;
@@ -103,17 +103,17 @@
 
 :root {
   --bg-primary: #ffffff;
-  --bg-secondary: #F7F7F5;
+  --bg-secondary: #F7F7F6;
   --bg-card: #ffffff;
-  --bg-hover: #F7F7F5;
-  --bg-active: #E6F1FB;
-  --text-primary: #111111;
-  --text-secondary: #6C6B71;
-  --text-muted: #9B9DA3;
-  --border-primary: rgba(0, 0, 0, 0.06);
-  --border-light: rgba(0, 0, 0, 0.06);
-  --brand: #185FA5;
-  --brand-light: #E6F1FB;
+  --bg-hover: #F7F7F6;
+  --bg-active: #E8ECF6;
+  --text-primary: #1F1F1F;
+  --text-secondary: #6B6B69;
+  --text-muted: #98988F;
+  --border-primary: #E6E6E4;
+  --border-light: #E6E6E4;
+  --brand: #1B2B61;
+  --brand-light: #E8ECF6;
   --shadow-sm: none;
 }
 
@@ -326,7 +326,7 @@
 
 .exercise-correct {
   background-color: #E1F5EE;
-  border-color: #0F6E56;
+  border-color: #1F7A68;
   transition: all 200ms ease-out;
 }
 
@@ -340,8 +340,8 @@
 
 .option-correct {
   background-color: #E1F5EE;
-  border-color: #0F6E56;
-  color: #0F6E56;
+  border-color: #1F7A68;
+  color: #1F7A68;
   transition: all 200ms ease-out;
 }
 
@@ -366,14 +366,14 @@
 /* ── Match Pair States ──────────────────────────────────────── */
 
 .pair-selected {
-  border-color: #185FA5;
-  background-color: #E6F1FB;
+  border-color: #1B2B61;
+  background-color: #E8ECF6;
   transition: all 150ms ease-out;
 }
 
 .pair-matched {
   background-color: #E1F5EE;
-  border-color: #0F6E56;
+  border-color: #1F7A68;
   opacity: 0.7;
   transition: all 200ms ease-out;
 }

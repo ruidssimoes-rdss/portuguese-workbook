@@ -7,8 +7,8 @@ import { createClient } from "@/lib/supabase/client";
 import { GoogleSignInButton } from "@/components/google-sign-in-button";
 
 const inputClass =
-  "w-full px-3 py-2.5 text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg outline-none focus:border-[rgba(0,0,0,0.12)] placeholder:text-[#9B9DA3] transition-colors";
-const labelClass = "block text-[13px] font-medium text-[#111111] mb-1.5";
+  "w-full px-3 py-2.5 text-[14px] border-[0.5px] border-[#E6E6E4] rounded-lg outline-none focus:border-[#CFCFCB] placeholder:text-[#98988F] transition-colors";
+const labelClass = "block text-[13px] font-medium text-[#1F1F1F] mb-1.5";
 
 function LoginForm() {
   const router = useRouter();
@@ -57,7 +57,7 @@ function LoginForm() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-white">
       <div className="w-full max-w-[360px] mx-auto">
-        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
+        <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6">
           <div className="flex flex-col items-center mb-6">
             <div className="w-12 h-12 mb-3">
               <svg width="48" height="48" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@ function LoginForm() {
               </svg>
             </div>
           </div>
-          <p className="text-center text-[13px] text-[#9B9DA3] mb-6">
+          <p className="text-center text-[13px] text-[#98988F] mb-6">
             Bem-vindo de volta
           </p>
 
@@ -88,9 +88,9 @@ function LoginForm() {
           <GoogleSignInButton />
 
           <div className="flex items-center gap-4 my-6">
-            <div className="flex-1 border-t-[0.5px] border-[rgba(0,0,0,0.06)]" />
-            <span className="text-[12px] text-[#9B9DA3]">ou</span>
-            <div className="flex-1 border-t-[0.5px] border-[rgba(0,0,0,0.06)]" />
+            <div className="flex-1 border-t-[0.5px] border-[#E6E6E4]" />
+            <span className="text-[12px] text-[#98988F]">ou</span>
+            <div className="flex-1 border-t-[0.5px] border-[#E6E6E4]" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -131,7 +131,7 @@ function LoginForm() {
               <p className="mt-1.5 text-[13px]">
                 <Link
                   href="/auth/reset-password"
-                  className="text-[#185FA5] hover:underline"
+                  className="text-[#1B2B61] hover:underline"
                 >
                   Esqueceste a palavra-passe?
                 </Link>
@@ -140,7 +140,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-[#111111] py-2.5 text-white font-medium text-[14px] hover:bg-[#333] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-lg bg-[#1B2B61] py-2.5 text-white font-medium text-[14px] hover:bg-[#14214C] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -153,9 +153,9 @@ function LoginForm() {
             </button>
           </form>
 
-          <p className="mt-6 text-center text-[13px] text-[#9B9DA3]">
+          <p className="mt-6 text-center text-[13px] text-[#98988F]">
             Ainda não tens conta?{" "}
-            <Link href="/auth/signup" className="font-medium text-[#111111] hover:underline">
+            <Link href="/auth/signup" className="font-medium text-[#1F1F1F] hover:underline">
               Criar conta
             </Link>
           </p>
@@ -169,7 +169,7 @@ export default function LoginPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-[#9B9DA3]">A carregar...</div>
+        <div className="text-[#98988F]">A carregar...</div>
       </div>
     }>
       <LoginForm />

@@ -26,7 +26,7 @@ export function ListRow({ children, onClick, className = "" }: ListRowProps) {
     <div
       onClick={onClick}
       className={`bg-white px-4 py-3 transition-colors duration-100 ${
-        onClick ? "cursor-pointer hover:bg-[#F7F7F5]" : ""
+        onClick ? "cursor-pointer hover:bg-aula-sunken" : ""
       } ${className}`}
     >
       {children}

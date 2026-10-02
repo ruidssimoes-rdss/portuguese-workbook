@@ -7,9 +7,9 @@ interface LearnProgressProps {
 
 function CEFRPill({ level }: { level: string }) {
   const c =
-    level === "A1" ? "text-[#0F6E56] bg-[#E1F5EE]" :
-    level === "A2" ? "text-[#185FA5] bg-[#E6F1FB]" :
-    "text-[#854F0B] bg-[#FAEEDA]";
+    level === "A1" ? "text-[#1F7A68] bg-[#E1F2ED]" :
+    level === "A2" ? "text-[#1B2B61] bg-[#E8ECF6]" :
+    "text-[#5B45B8] bg-[#ECE8F8]";
   return <span className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full ${c}`}>{level}</span>;
 }
 
@@ -19,14 +19,14 @@ export function LearnProgress({ current, total, cefr, label }: LearnProgressProp
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-[13px] text-[#9B9DA3]">
+        <span className="text-[13px] text-[#98988F]">
           {label || `Secção ${current} de ${total}`}
         </span>
         {cefr && cefr !== "mixed" && <CEFRPill level={cefr} />}
       </div>
-      <div className="h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full">
+      <div className="h-1.5 bg-[#E6E6E4] rounded-full">
         <div
-          className="h-1.5 bg-[#185FA5] rounded-full transition-all duration-300"
+          className="h-1.5 bg-[#1B2B61] rounded-full transition-all duration-300"
           style={{ width: `${pct}%` }}
         />
       </div>

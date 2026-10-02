@@ -51,7 +51,7 @@ export function SpotErrorExercise({
 
   return (
     <div className={`py-6 fade-in ${className ?? ""}`}>
-      <p className="text-[13px] text-[#6C6B71] mb-4">
+      <p className="text-[13px] text-[#6B6B69] mb-4">
         {step === "tap" ? "Find the error" : "Type the correction"}
       </p>
 
@@ -66,11 +66,11 @@ export function SpotErrorExercise({
               key={i}
               onClick={() => handleWordTap(word)}
               disabled={disabled || step === "type"}
-              className={`inline-block py-1 px-2 rounded text-[16px] text-[#111111] transition-all duration-150 ${
+              className={`inline-block py-1 px-2 rounded text-[16px] text-[#1F1F1F] transition-all duration-150 ${
                 isSelected ? "bg-[#fef2f2] border-[1px] border-[#dc2626]" :
                 isShaking ? "error-shake bg-[#fef2f2]" :
                 isFoundError ? "opacity-50" :
-                step === "tap" ? "hover:bg-[#F7F7F5] cursor-pointer" : ""
+                step === "tap" ? "hover:bg-[#F7F7F6] cursor-pointer" : ""
               }`}
             >
               {word}
@@ -89,7 +89,7 @@ export function SpotErrorExercise({
             onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
             disabled={disabled}
             placeholder="Type the correct word..."
-            className="w-full max-w-[300px] text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2 outline-none focus:border-[rgba(0,0,0,0.12)] text-center text-[#111111] placeholder:text-[#9B9DA3] transition-all duration-150"
+            className="w-full max-w-[300px] text-[14px] border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-2 outline-none focus:border-[#CFCFCB] text-center text-[#1F1F1F] placeholder:text-[#98988F] transition-all duration-150"
           />
         </div>
       )}

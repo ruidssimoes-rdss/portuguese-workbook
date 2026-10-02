@@ -104,8 +104,8 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
       canVerify={allFilled} score={score}
     >
       {/* Paragraph with blanks */}
-      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white">
-        <p className="text-[16px] text-[#111111] leading-relaxed">
+      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6 bg-white">
+        <p className="text-[16px] text-[#1F1F1F] leading-relaxed">
           {segments.map((seg, i) => (
             <span key={i}>
               {seg}
@@ -117,13 +117,13 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
                   className={`inline-block min-w-[70px] mx-1 px-2 py-0.5 rounded-lg border-[1.5px] border-dashed text-center text-[14px] font-medium transition-all ${
                     state === "reviewed"
                       ? results[i]?.correct
-                        ? "border-[#0F6E56] bg-[#E1F5EE] text-[#0F6E56]"
+                        ? "border-[#1F7A68] bg-[#E1F2ED] text-[#1F7A68]"
                         : "border-[#dc2626] bg-[#fef2f2] text-[#dc2626]"
                       : i === activeBlank
-                        ? "border-[#185FA5] bg-[#E6F1FB] text-[#111111]"
+                        ? "border-[#1B2B61] bg-[#E8ECF6] text-[#1F1F1F]"
                         : filledBlanks[i]
-                          ? "border-[rgba(0,0,0,0.06)] text-[#111111] cursor-pointer"
-                          : "border-[#9B9DA3] text-[#9B9DA3] cursor-pointer"
+                          ? "border-[#E6E6E4] text-[#1F1F1F] cursor-pointer"
+                          : "border-[#98988F] text-[#98988F] cursor-pointer"
                   }`}
                 >
                   {state === "reviewed" && !results[i]?.correct
@@ -135,17 +135,17 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
           ))}
         </p>
         {showEnglish && paragraph.paragraphEnglish && (
-          <p className="text-[13px] text-[#9B9DA3] mt-3 italic">{paragraph.paragraphEnglish}</p>
+          <p className="text-[13px] text-[#98988F] mt-3 italic">{paragraph.paragraphEnglish}</p>
         )}
       </div>
 
       {/* Word bank */}
       {state === "answering" && (
         <div>
-          <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-2">
+          <p className="text-[10px] text-[#98988F] uppercase tracking-[0.05em] mb-2">
             Banco de palavras{showEnglish && " / Word bank"}
           </p>
-          <div className="flex flex-wrap gap-1.5 pt-3 border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
+          <div className="flex flex-wrap gap-1.5 pt-3 border-t-[0.5px] border-[#E6E6E4]">
             {paragraph.wordBank.map((word, i) => {
               const isUsed = usedWords.has(word);
               return (
@@ -156,8 +156,8 @@ export function WordBankSection({ sectionIndex, totalSections, showEnglish, para
                   onClick={() => handleWordTap(word)}
                   className={`px-2.5 py-1 rounded-md text-[13px] transition-colors ${
                     isUsed
-                      ? "bg-[#F7F7F5] text-[#9B9DA3] opacity-40"
-                      : "bg-[#F7F7F5] text-[#111111] hover:bg-[rgba(0,0,0,0.08)] cursor-pointer active:scale-95"
+                      ? "bg-[#F7F7F6] text-[#98988F] opacity-40"
+                      : "bg-[#F7F7F6] text-[#1F1F1F] hover:bg-[rgba(0,0,0,0.08)] cursor-pointer active:scale-95"
                   }`}
                 >
                   {word}

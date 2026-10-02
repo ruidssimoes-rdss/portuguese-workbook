@@ -28,7 +28,7 @@ export const colors = {
     default: "#F3F4F6",
     light: "#F9FAFB",
     hover: "#E5E7EB",
-    focus: "#003399",
+    focus: "#1B2B61",
   },
 
   // CEFR levels (used for badges)
@@ -48,10 +48,10 @@ export const colors = {
   },
 
   // Accent (brand blue — used sparingly)
-  accent: "#003399",
+  accent: "#1B2B61",
 
   // Brand
-  brand: { blue: "#003399" },
+  brand: { blue: "#1B2B61" },
 
   // Backgrounds (aliases)
   page: "#FFFFFF",
@@ -76,7 +76,7 @@ export const colors = {
       hoverBg: "#F9FAFB",
       active: "#111827",
       activeBg: "#F3F4F6",
-      activeAccent: "#003399",
+      activeAccent: "#1B2B61",
     },
   },
 } as const;
@@ -152,7 +152,7 @@ export const patterns = {
 
   badge: "text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap",
 
-  searchInput: "w-full sm:w-[240px] px-4 py-2.5 rounded-lg text-[14px] border border-[#F3F4F6] text-[#111827] placeholder:text-[#D1D5DB] focus:outline-none focus:border-[#E5E7EB] focus-visible:ring-1 focus-visible:ring-[#003399]/20 transition-all duration-150 bg-white",
+  searchInput: "w-full sm:w-[240px] px-4 py-2.5 rounded-lg text-[14px] border border-[#F3F4F6] text-[#111827] placeholder:text-[#D1D5DB] focus:outline-none focus:border-[#E5E7EB] focus-visible:ring-1 focus-visible:ring-[#1B2B61]/20 transition-all duration-150 bg-white",
 
   divider: "border-t border-[#F3F4F6]",
 

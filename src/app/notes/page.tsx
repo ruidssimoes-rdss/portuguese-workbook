@@ -92,25 +92,25 @@ function NoteRow({
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left flex items-center gap-3 px-4 py-3 bg-white hover:bg-[#F7F7F5] transition-colors duration-100 cursor-pointer"
+      className="w-full text-left flex items-center gap-3 px-4 py-3 bg-white hover:bg-[#F7F7F6] transition-colors duration-100 cursor-pointer"
     >
       <span
-        className={`w-[3px] shrink-0 self-stretch rounded-full ${note.is_pinned ? "bg-[#185FA5]" : "bg-transparent"}`}
+        className={`w-[3px] shrink-0 self-stretch rounded-full ${note.is_pinned ? "bg-[#1B2B61]" : "bg-transparent"}`}
         aria-hidden
       />
       <div className="min-w-0 flex-1 flex items-center gap-3">
         <div className="min-w-0 flex-1">
-          <h3 className="text-[14px] font-medium text-[#111111] truncate">
+          <h3 className="text-[14px] font-medium text-[#1F1F1F] truncate">
             {note.title?.trim() || "Sem título"}
           </h3>
           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
             {contextLabel && (
               <BadgePill label={contextLabel} variant="neutral" />
             )}
-            <p className="text-[12px] text-[#6C6B71] truncate">{previewText || "Sem conteúdo"}</p>
+            <p className="text-[12px] text-[#6B6B69] truncate">{previewText || "Sem conteúdo"}</p>
           </div>
         </div>
-        <span className="text-[11px] text-[#9B9DA3] shrink-0">{formatRelativeTime(note.updated_at)}</span>
+        <span className="text-[11px] text-[#98988F] shrink-0">{formatRelativeTime(note.updated_at)}</span>
       </div>
     </button>
   );
@@ -319,14 +319,14 @@ function NoteEditorDrawer({
       <div className="flex flex-col h-full">
         <div className="flex-1 overflow-y-auto px-6 py-6">
           {contextLabel && (
-            <span className="inline-block text-[11px] font-medium px-2.5 py-1 rounded-lg mb-4 text-[#6C6B71] bg-[#F7F7F5]">
+            <span className="inline-block text-[11px] font-medium px-2.5 py-1 rounded-lg mb-4 text-[#6B6B69] bg-[#F7F7F6]">
               {contextLabel}
             </span>
           )}
           {linkedToHref && (
-            <p className="text-[12px] text-[#6C6B71] mb-3">
+            <p className="text-[12px] text-[#6B6B69] mb-3">
               Ligado a:{" "}
-              <Link href={linkedToHref} className="text-[#185FA5] hover:underline">
+              <Link href={linkedToHref} className="text-[#1B2B61] hover:underline">
                 {contextLabel} →
               </Link>
             </p>
@@ -337,25 +337,25 @@ function NoteEditorDrawer({
             onChange={(e) => setTitle(e.target.value)}
             onBlur={handleBlur}
             placeholder="Título"
-            className="w-full text-[20px] font-medium text-[#111111] border-0 focus:ring-0 focus:outline-none placeholder:text-[#9B9DA3] mb-2"
+            className="w-full text-[20px] font-medium text-[#1F1F1F] border-0 focus:ring-0 focus:outline-none placeholder:text-[#98988F] mb-2"
           />
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             onBlur={handleBlur}
             placeholder="Começar a escrever..."
-            className="w-full min-h-[350px] text-[13px] text-[#6C6B71] leading-[1.8] border-0 focus:ring-0 focus:outline-none resize-y placeholder:text-[#9B9DA3]"
+            className="w-full min-h-[350px] text-[13px] text-[#6B6B69] leading-[1.8] border-0 focus:ring-0 focus:outline-none resize-y placeholder:text-[#98988F]"
           />
           <div className="mt-4">
-            <p className="text-[11px] font-medium text-[#9B9DA3] mb-2">Etiquetas</p>
+            <p className="text-[11px] font-medium text-[#98988F] mb-2">Etiquetas</p>
             <div className="flex flex-wrap gap-1.5 items-center">
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] border-[0.5px] border-[rgba(0,0,0,0.06)] bg-[#F7F7F5]"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] border-[0.5px] border-[#E6E6E4] bg-[#F7F7F6]"
                 >
                   {tag}
-                  <button type="button" onClick={() => removeTag(tag)} className="text-[#9B9DA3] hover:text-[#111111]" aria-label="Remover">×</button>
+                  <button type="button" onClick={() => removeTag(tag)} className="text-[#98988F] hover:text-[#1F1F1F]" aria-label="Remover">×</button>
                 </span>
               ))}
               <span className="flex items-center gap-1">
@@ -365,9 +365,9 @@ function NoteEditorDrawer({
                   onChange={(e) => setNewTag(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
                   placeholder="+ Adicionar"
-                  className="w-24 px-2 py-0.5 rounded-lg text-[12px] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] focus:ring-0 outline-none"
+                  className="w-24 px-2 py-0.5 rounded-lg text-[12px] border-[0.5px] border-[#E6E6E4] focus:border-[#CFCFCB] focus:ring-0 outline-none"
                 />
-                <button type="button" onClick={addTag} className="text-[12px] font-medium text-[#185FA5] hover:underline">
+                <button type="button" onClick={addTag} className="text-[12px] font-medium text-[#1B2B61] hover:underline">
                   Adicionar
                 </button>
               </span>
@@ -375,7 +375,7 @@ function NoteEditorDrawer({
           </div>
         </div>
         <div
-          className="shrink-0 flex items-center justify-between gap-4 px-4 py-3 rounded-[10px] mx-4 mb-4 bg-black/88 backdrop-blur-xl border border-[rgba(0,0,0,0.06)]"
+          className="shrink-0 flex items-center justify-between gap-4 px-4 py-3 rounded-[10px] mx-4 mb-4 bg-black/88 backdrop-blur-xl border border-[#E6E6E4]"
         >
           <div className="flex items-center gap-1">
             {note && (
@@ -545,7 +545,7 @@ function NotesContent() {
             <button
               type="button"
               onClick={openNewNote}
-              className="shrink-0 flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
+              className="shrink-0 flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
             >
               <PencilIcon className="w-4 h-4" />
               Nova nota
@@ -555,15 +555,15 @@ function NotesContent() {
 
         {!isLoggedIn ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <p className="text-[14px] font-medium text-[#111111] mb-2">
+            <p className="text-[14px] font-medium text-[#1F1F1F] mb-2">
               Inicia sessão para usar o caderno
             </p>
-            <p className="text-[13px] text-[#9B9DA3] mb-6">
+            <p className="text-[13px] text-[#98988F] mb-6">
               Guarda as tuas notas e sincroniza entre dispositivos.
             </p>
             <Link
               href="/auth/login"
-              className="inline-flex items-center justify-center px-3 py-1.5 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
+              className="inline-flex items-center justify-center px-3 py-1.5 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
             >
               Entrar
             </Link>
@@ -578,8 +578,8 @@ function NotesContent() {
                   onClick={() => setFilterId(f.id)}
                   className={`px-3 py-1.5 rounded-[5px] text-[12px] border-none cursor-pointer transition-all duration-100 ${
                     filterId === f.id
-                      ? "text-[#111111] font-medium bg-[rgba(0,0,0,0.05)]"
-                      : "text-[#9B9DA3] hover:text-[#6C6B71]"
+                      ? "text-[#1F1F1F] font-medium bg-[rgba(0,0,0,0.05)]"
+                      : "text-[#98988F] hover:text-[#6B6B69]"
                   }`}
                 >
                   {f.label}
@@ -591,7 +591,7 @@ function NotesContent() {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   placeholder="Pesquisar..."
-                  className="pl-8 pr-3 py-1.5 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg text-[12px] w-[220px] bg-white text-[#111111] outline-none placeholder:text-[#9B9DA3] focus:border-[rgba(0,0,0,0.12)] transition-colors"
+                  className="pl-8 pr-3 py-1.5 border-[0.5px] border-[#E6E6E4] rounded-lg text-[12px] w-[220px] bg-white text-[#1F1F1F] outline-none placeholder:text-[#98988F] focus:border-[#CFCFCB] transition-colors"
                 />
               </div>
             </div>
@@ -605,8 +605,8 @@ function NotesContent() {
                     onClick={() => setSelectedTag((prev) => (prev === tag ? null : tag))}
                     className={
                       selectedTag === tag
-                        ? "px-2 py-0.5 text-[10px] font-medium text-white bg-[#111111] rounded-full"
-                        : "px-2 py-0.5 text-[10px] text-[#9B9DA3] bg-[#F7F7F5] rounded-full hover:bg-[rgba(0,0,0,0.06)]"
+                        ? "px-2 py-0.5 text-[10px] font-medium text-white bg-[#1B2B61] rounded-full"
+                        : "px-2 py-0.5 text-[10px] text-[#98988F] bg-[#F7F7F6] rounded-full hover:bg-[#E6E6E4]"
                     }
                   >
                     {tag}{selectedTag === tag ? " ×" : ""}
@@ -616,12 +616,12 @@ function NotesContent() {
             )}
 
             {dateFilterLabel && (
-              <div className="flex items-center justify-between gap-2 mb-4 bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2">
-                <span className="text-[13px] text-[#6C6B71]">{dateFilterLabel}</span>
+              <div className="flex items-center justify-between gap-2 mb-4 bg-[#F7F7F6] border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-2">
+                <span className="text-[13px] text-[#6B6B69]">{dateFilterLabel}</span>
                 <button
                   type="button"
                   onClick={clearDateFilter}
-                  className="shrink-0 w-7 h-7 flex items-center justify-center rounded-full text-[#9B9DA3] hover:bg-[rgba(0,0,0,0.06)] hover:text-[#111111] transition-colors"
+                  className="shrink-0 w-7 h-7 flex items-center justify-center rounded-full text-[#98988F] hover:bg-[#E6E6E4] hover:text-[#1F1F1F] transition-colors"
                   aria-label="Remover filtro de data"
                 >
                   ×
@@ -630,19 +630,19 @@ function NotesContent() {
             )}
 
             {loading ? (
-              <p className="text-[13px] text-[#9B9DA3] py-8">
+              <p className="text-[13px] text-[#98988F] py-8">
                 {debouncedSearch.trim() ? "A pesquisar..." : "A carregar..."}
               </p>
             ) : sortedNotes.length === 0 ? (
-              <div className="text-[13px] text-[#9B9DA3] text-center py-16">
-                <h3 className="text-[14px] font-medium text-[#111111] mb-2">Ainda sem notas</h3>
+              <div className="text-[13px] text-[#98988F] text-center py-16">
+                <h3 className="text-[14px] font-medium text-[#1F1F1F] mb-2">Ainda sem notas</h3>
                 <p className="mb-6">
                   Começa a capturar as tuas descobertas.
                 </p>
                 <button
                   type="button"
                   onClick={openNewNote}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
                 >
                   <PencilIcon className="w-4 h-4" />
                   Nova nota
@@ -702,7 +702,7 @@ export default function NotesPage() {
     <Suspense fallback={
       <PageShell>
         <PageHeader title="Notas" subtitle="Your study notebook" />
-        <p className="text-[13px] text-[#9B9DA3] py-8">Loading...</p>
+        <p className="text-[13px] text-[#98988F] py-8">Loading...</p>
       </PageShell>
     }>
       <NotesContent />

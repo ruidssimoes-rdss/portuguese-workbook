@@ -71,8 +71,8 @@ export function ListenWriteExercise({
             disabled={isPlaying}
             className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-150 cursor-pointer ${
               isPlaying
-                ? "bg-[#185FA5]/80"
-                : "bg-[#185FA5] hover:bg-[#185FA5]/90"
+                ? "bg-[#1B2B61]/80"
+                : "bg-[#1B2B61] hover:bg-[#1B2B61]/90"
             } ${!hasPlayed ? "success-pulse" : ""}`}
             style={isPlaying ? { boxShadow: "0 0 0 4px rgba(24, 95, 165, 0.15)" } : undefined}
           >
@@ -87,13 +87,13 @@ export function ListenWriteExercise({
               )}
             </svg>
           </button>
-          <p className="text-[13px] text-[#6C6B71] mt-3">
+          <p className="text-[13px] text-[#6B6B69] mt-3">
             {hasPlayed ? "Listen again and type what you hear" : "Listen and type what you hear"}
           </p>
           {hasPlayed && (
             <button
               onClick={speak}
-              className="text-[13px] text-[#185FA5] hover:text-[#185FA5]/80 transition-colors mt-1 cursor-pointer fade-in"
+              className="text-[13px] text-[#1B2B61] hover:text-[#1B2B61]/80 transition-colors mt-1 cursor-pointer fade-in"
             >
               Replay
             </button>
@@ -101,8 +101,8 @@ export function ListenWriteExercise({
         </>
       ) : (
         <div className="text-center">
-          <p className="text-[14px] text-[#111111] font-medium">{data.audioText}</p>
-          <p className="text-[12px] text-[#9B9DA3] mt-1">Audio not available in this browser</p>
+          <p className="text-[14px] text-[#1F1F1F] font-medium">{data.audioText}</p>
+          <p className="text-[12px] text-[#98988F] mt-1">Audio not available in this browser</p>
         </div>
       )}
 
@@ -115,7 +115,7 @@ export function ListenWriteExercise({
           onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
           disabled={disabled}
           placeholder="Type what you hear..."
-          className="mt-5 w-full max-w-[400px] text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2 outline-none focus:border-[rgba(0,0,0,0.12)] text-center text-[#111111] placeholder:text-[#9B9DA3] transition-all duration-150 fade-in"
+          className="mt-5 w-full max-w-[400px] text-[14px] border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-2 outline-none focus:border-[#CFCFCB] text-center text-[#1F1F1F] placeholder:text-[#98988F] transition-all duration-150 fade-in"
         />
       )}
     </div>

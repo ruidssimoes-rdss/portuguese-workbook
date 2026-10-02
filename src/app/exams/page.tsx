@@ -252,7 +252,7 @@ export default function ExamsPage() {
                       </div>
                     ) : (
                       <div className="mt-2">
-                        <span className="text-[12px] font-medium text-[#003399]">
+                        <span className="text-[12px] font-medium text-[#1B2B61]">
                           Iniciar exame →
                         </span>
                       </div>

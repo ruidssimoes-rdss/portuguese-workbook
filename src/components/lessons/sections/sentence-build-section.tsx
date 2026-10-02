@@ -92,31 +92,31 @@ export function SentenceBuildSection({ sectionIndex, totalSections, showEnglish,
       canVerify={allAnswered} score={score}
     >
       {sentences.map((s, i) => (
-        <div key={s.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 bg-white">
+        <div key={s.id} className="border-[0.5px] border-[#E6E6E4] rounded-lg p-5 bg-white">
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-[13px] font-medium text-[#9B9DA3]">{i + 1}.</span>
+            <span className="text-[13px] font-medium text-[#98988F]">{i + 1}.</span>
             {showEnglish && s.sentenceEnglish && (
-              <p className="text-[14px] text-[#6C6B71]">&ldquo;{s.sentenceEnglish}&rdquo;</p>
+              <p className="text-[14px] text-[#6B6B69]">&ldquo;{s.sentenceEnglish}&rdquo;</p>
             )}
           </div>
 
           {/* Staging area */}
           <div className={`border-[0.5px] border-dashed rounded-lg p-3 min-h-[48px] mb-3 flex flex-wrap gap-1.5 ${
             state === "reviewed"
-              ? results[s.id] ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"
-              : "border-[rgba(0,0,0,0.12)]"
+              ? results[s.id] ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#dc2626] bg-[#fef2f2]"
+              : "border-[#CFCFCB]"
           }`}>
             {(placed[s.id] ?? []).length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {(placed[s.id] ?? []).map((w, wi) => (
                   <button key={`${w}-${wi}`} type="button" disabled={state === "reviewed"}
                     onClick={() => removeWord(s.id, w, wi)}
-                    className="px-2.5 py-1 rounded-md text-[13px] bg-[#111111] text-white cursor-pointer transition-all active:scale-95"
+                    className="px-2.5 py-1 rounded-md text-[13px] bg-[#1B2B61] text-white cursor-pointer transition-all active:scale-95"
                   >{w}</button>
                 ))}
               </div>
             ) : (
-              <p className="text-[13px] text-[#9B9DA3] text-center">
+              <p className="text-[13px] text-[#98988F] text-center">
                 {showEnglish ? "Tap words below" : "Toca nas palavras abaixo"}
               </p>
             )}
@@ -128,14 +128,14 @@ export function SentenceBuildSection({ sectionIndex, totalSections, showEnglish,
               {(available[s.id] ?? []).map((w, wi) => (
                 <button key={`${w}-${wi}`} type="button"
                   onClick={() => addWord(s.id, w, wi)}
-                  className="px-2.5 py-1 rounded-md bg-[#F7F7F5] text-[13px] text-[#111111] hover:bg-[rgba(0,0,0,0.08)] cursor-pointer transition-colors active:scale-95"
+                  className="px-2.5 py-1 rounded-md bg-[#F7F7F6] text-[13px] text-[#1F1F1F] hover:bg-[rgba(0,0,0,0.08)] cursor-pointer transition-colors active:scale-95"
                 >{w}</button>
               ))}
             </div>
           )}
 
           {state === "reviewed" && !results[s.id] && (
-            <p className="text-[13px] text-[#0F6E56] mt-2">{s.correctSentence}</p>
+            <p className="text-[13px] text-[#1F7A68] mt-2">{s.correctSentence}</p>
           )}
         </div>
       ))}

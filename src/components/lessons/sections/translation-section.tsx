@@ -72,18 +72,18 @@ export function TranslationSection({ sectionIndex, totalSections, showEnglish, s
       onVerify={handleVerify} onNext={handleNext}
       canVerify={allAnswered} score={score}
     >
-      <p className="text-[13px] font-medium text-[#9B9DA3] uppercase tracking-[0.08em] mb-1">
+      <p className="text-[13px] font-medium text-[#98988F] uppercase tracking-[0.08em] mb-1">
         Traduz para português:
       </p>
-      {showEnglish && <p className="text-[12px] text-[#9B9DA3] mb-4">Translate to Portuguese:</p>}
+      {showEnglish && <p className="text-[12px] text-[#98988F] mb-4">Translate to Portuguese:</p>}
 
       {sentences.map((s, i) => {
         const r = results[s.id];
         return (
-          <div key={s.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 bg-white">
+          <div key={s.id} className="border-[0.5px] border-[#E6E6E4] rounded-lg p-5 bg-white">
             <div className="flex items-baseline gap-3 mb-3">
-              <span className="text-[13px] font-medium text-[#9B9DA3]">{i + 1}.</span>
-              <p className="text-[14px] font-medium text-[#111111]">&ldquo;{s.sourceText}&rdquo;</p>
+              <span className="text-[13px] font-medium text-[#98988F]">{i + 1}.</span>
+              <p className="text-[14px] font-medium text-[#1F1F1F]">&ldquo;{s.sourceText}&rdquo;</p>
             </div>
             {state === "answering" ? (
               <textarea
@@ -91,17 +91,17 @@ export function TranslationSection({ sectionIndex, totalSections, showEnglish, s
                 value={answers[s.id] ?? ""}
                 onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
                 rows={2}
-                className="w-full text-[14px] text-[#111111] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors resize-none placeholder:text-[#9B9DA3]"
+                className="w-full text-[14px] text-[#1F1F1F] border-[0.5px] border-[#E6E6E4] focus:border-[#CFCFCB] rounded-lg px-4 py-2.5 outline-none transition-colors resize-none placeholder:text-[#98988F]"
                 placeholder="Escreve a tradução em português..."
                 autoComplete="off" spellCheck={false}
               />
             ) : (
-              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
-                <p className={`text-[14px] font-medium ${r?.correct ? "text-[#0F6E56]" : "text-[#dc2626]"}`}>
+              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
+                <p className={`text-[14px] font-medium ${r?.correct ? "text-[#1F7A68]" : "text-[#dc2626]"}`}>
                   {answers[s.id]}
                 </p>
-                {!r?.correct && <p className="text-[13px] text-[#0F6E56] mt-1">{s.correctAnswer}</p>}
-                {r?.accentHint && <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>}
+                {!r?.correct && <p className="text-[13px] text-[#1F7A68] mt-1">{s.correctAnswer}</p>}
+                {r?.accentHint && <p className="text-[12px] text-[#5B45B8] mt-2 bg-[#ECE8F8] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>}
               </div>
             )}
           </div>

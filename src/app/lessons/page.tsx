@@ -26,38 +26,38 @@ function HowItWorks() {
     <div className="mb-6">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-5 py-3.5 hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
+        className="w-full flex items-center justify-between bg-[#F7F7F6] border-[0.5px] border-[#E6E6E4] rounded-lg px-5 py-3.5 hover:border-[#CFCFCB] transition-colors cursor-pointer"
       >
         <div>
-          <p className="text-[13px] font-medium text-[#111111] text-left">
+          <p className="text-[13px] font-medium text-[#1F1F1F] text-left">
             Como funcionam as lições
           </p>
-          <p className="text-[11px] text-[#9B9DA3] text-left">
+          <p className="text-[11px] text-[#98988F] text-left">
             How lessons work
           </p>
         </div>
         <ChevronDown
           size={16}
-          className={`text-[#9B9DA3] transition-transform duration-150 shrink-0 ${isOpen ? "rotate-180" : ""}`}
+          className={`text-[#98988F] transition-transform duration-150 shrink-0 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
       {isOpen && (
-        <div className="mt-2 bg-[#F7F7F5] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-5 py-4 space-y-3 text-[13px] text-[#6C6B71] leading-relaxed">
+        <div className="mt-2 bg-[#F7F7F6] border-[0.5px] border-[#E6E6E4] rounded-lg px-5 py-4 space-y-3 text-[13px] text-[#6B6B69] leading-relaxed">
           <p>Each lesson is generated for you based on what you need to learn next. No two lessons are the same.</p>
           <p>Every lesson includes:</p>
           <ul className="space-y-1.5 ml-1">
-            <li className="flex gap-2"><span className="text-[#9B9DA3]">·</span> New vocabulary, verbs, and grammar to learn</li>
-            <li className="flex gap-2"><span className="text-[#9B9DA3]">·</span> Practice exercises on what you just learned</li>
-            <li className="flex gap-2"><span className="text-[#9B9DA3]">·</span> Review of things you&apos;ve seen before</li>
-            <li className="flex gap-2"><span className="text-[#9B9DA3]">·</span> Spot-checks on content you&apos;ve already mastered</li>
+            <li className="flex gap-2"><span className="text-[#98988F]">·</span> New vocabulary, verbs, and grammar to learn</li>
+            <li className="flex gap-2"><span className="text-[#98988F]">·</span> Practice exercises on what you just learned</li>
+            <li className="flex gap-2"><span className="text-[#98988F]">·</span> Review of things you&apos;ve seen before</li>
+            <li className="flex gap-2"><span className="text-[#98988F]">·</span> Spot-checks on content you&apos;ve already mastered</li>
           </ul>
           <p>
-            You need <span className="font-medium text-[#111111]">80%</span> to pass each lesson.
-            As you master more content, the next CEFR level unlocks at <span className="font-medium text-[#111111]">75%</span> readiness.
+            You need <span className="font-medium text-[#1F1F1F]">80%</span> to pass each lesson.
+            As you master more content, the next CEFR level unlocks at <span className="font-medium text-[#1F1F1F]">75%</span> readiness.
           </p>
           <p>
-            Use <span className="font-medium text-[#111111]">Review</span> to revisit items you&apos;re struggling with — the system tracks what needs attention.
+            Use <span className="font-medium text-[#1F1F1F]">Review</span> to revisit items you&apos;re struggling with — the system tracks what needs attention.
           </p>
         </div>
       )}
@@ -86,15 +86,15 @@ function CEFRLevelCard({
 
   if (!unlocked) {
     return (
-      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 opacity-60">
+      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6 opacity-60">
         <div className="flex items-center justify-between mb-2">
-          <h2 className="text-[16px] font-medium text-[#111111]">
+          <h2 className="text-[16px] font-medium text-[#1F1F1F]">
             {level} — {label}
-            <span className="text-[#9B9DA3] font-normal ml-2">{labelPt}</span>
+            <span className="text-[#98988F] font-normal ml-2">{labelPt}</span>
           </h2>
-          <Lock size={16} className="text-[#9B9DA3]" />
+          <Lock size={16} className="text-[#98988F]" />
         </div>
-        <p className="text-[13px] text-[#9B9DA3]">
+        <p className="text-[13px] text-[#98988F]">
           Complete 75% of {level === "A2" ? "A1" : "A2"} to unlock
         </p>
       </div>
@@ -102,38 +102,38 @@ function CEFRLevelCard({
   }
 
   return (
-    <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
+    <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-[16px] font-medium text-[#111111]">
+        <h2 className="text-[16px] font-medium text-[#1F1F1F]">
           {level} — {label}
-          <span className="text-[#9B9DA3] font-normal ml-2">{labelPt}</span>
+          <span className="text-[#98988F] font-normal ml-2">{labelPt}</span>
         </h2>
-        <span className="text-[22px] font-medium text-[#111111]">{readinessPct}%</span>
+        <span className="text-[22px] font-medium text-[#1F1F1F]">{readinessPct}%</span>
       </div>
 
-      <div className="h-2 bg-[rgba(0,0,0,0.06)] rounded-full mb-4">
+      <div className="h-2 bg-[#E6E6E4] rounded-full mb-4">
         <div
-          className="h-2 bg-[#185FA5] rounded-full transition-all duration-500"
+          className="h-2 bg-[#1B2B61] rounded-full transition-all duration-500"
           style={{ width: `${readinessPct}%` }}
         />
       </div>
 
       <div className="flex gap-6 mb-4">
         <div>
-          <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em]">Items</div>
-          <div className="text-[14px] font-medium text-[#111111]">{progress.totalItems}</div>
+          <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em]">Items</div>
+          <div className="text-[14px] font-medium text-[#1F1F1F]">{progress.totalItems}</div>
         </div>
         <div>
-          <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em]">Mastered</div>
-          <div className="text-[14px] font-medium text-[#0F6E56]">{progress.mastered}</div>
+          <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em]">Mastered</div>
+          <div className="text-[14px] font-medium text-[#1F7A68]">{progress.mastered}</div>
         </div>
         <div>
-          <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em]">In progress</div>
-          <div className="text-[14px] font-medium text-[#854F0B]">{progress.familiar + progress.introduced}</div>
+          <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em]">In progress</div>
+          <div className="text-[14px] font-medium text-[#5B45B8]">{progress.familiar + progress.introduced}</div>
         </div>
         <div>
-          <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em]">Unseen</div>
-          <div className="text-[14px] font-medium text-[#9B9DA3]">{progress.unseen}</div>
+          <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em]">Unseen</div>
+          <div className="text-[14px] font-medium text-[#98988F]">{progress.unseen}</div>
         </div>
       </div>
 
@@ -146,7 +146,7 @@ function CEFRLevelCard({
       <div className="flex gap-3">
         <Link
           href="/learn"
-          className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
+          className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
         >
           Start next lesson
           <ArrowRight size={14} />
@@ -155,7 +155,7 @@ function CEFRLevelCard({
         {reviewCount > 0 && (
           <Link
             href="/learn?mode=review"
-            className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
           >
             <RotateCcw size={14} />
             Review {reviewCount} items
@@ -170,14 +170,14 @@ function SkillBar({ label, value }: { label: string; value: number }) {
   const pct = Math.round(value * 100);
   return (
     <div className="flex items-center gap-3">
-      <span className="text-[11px] text-[#9B9DA3] w-14">{label}</span>
-      <div className="flex-1 h-1 bg-[rgba(0,0,0,0.06)] rounded-full">
+      <span className="text-[11px] text-[#98988F] w-14">{label}</span>
+      <div className="flex-1 h-1 bg-[#E6E6E4] rounded-full">
         <div
-          className="h-1 bg-[#185FA5] rounded-full transition-all duration-500"
+          className="h-1 bg-[#1B2B61] rounded-full transition-all duration-500"
           style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="text-[11px] text-[#9B9DA3] w-8 text-right">{pct}%</span>
+      <span className="text-[11px] text-[#98988F] w-8 text-right">{pct}%</span>
     </div>
   );
 }
@@ -224,7 +224,7 @@ export default function LessonsPage() {
 
       {loading ? (
         <div className="flex items-center justify-center h-48">
-          <div className="text-[13px] text-[#9B9DA3]">A carregar o progresso...</div>
+          <div className="text-[13px] text-[#98988F]">A carregar o progresso...</div>
         </div>
       ) : progression ? (
         <div className="space-y-4">
@@ -254,16 +254,16 @@ export default function LessonsPage() {
           />
         </div>
       ) : (
-        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-8 text-center">
-          <p className="text-[14px] font-medium text-[#111111]">
+        <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-8 text-center">
+          <p className="text-[14px] font-medium text-[#1F1F1F]">
             Sign in to start learning
           </p>
-          <p className="text-[12px] text-[#9B9DA3] mt-1">
+          <p className="text-[12px] text-[#98988F] mt-1">
             Inicia sessão para começar a aprender
           </p>
           <Link
             href="/auth/login"
-            className="inline-flex items-center justify-center px-4 py-2 bg-[#111111] text-white rounded-lg text-[13px] font-medium hover:bg-[#333] transition-colors mt-4"
+            className="inline-flex items-center justify-center px-4 py-2 bg-[#1B2B61] text-white rounded-lg text-[13px] font-medium hover:bg-[#14214C] transition-colors mt-4"
           >
             Entrar
           </Link>

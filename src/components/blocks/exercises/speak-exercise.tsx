@@ -6,9 +6,9 @@ import { useSpeechRecognition } from "@/hooks/use-speech-recognition";
 import { scorePronunciation, type PronunciationScore } from "@/lib/pronunciation-scorer";
 
 const FEEDBACK_COLORS: Record<string, string> = {
-  excellent: "text-[#0F6E56]",
-  good: "text-[#185FA5]",
-  "needs-practice": "text-[#854F0B]",
+  excellent: "text-[#1F7A68]",
+  good: "text-[#1B2B61]",
+  "needs-practice": "text-[#5B45B8]",
   "try-again": "text-[#dc2626]",
 };
 
@@ -81,19 +81,19 @@ export function SpeakExercise({
 
   return (
     <div className={`flex flex-col items-center py-6 fade-in ${className ?? ""}`}>
-      <p className="text-[13px] text-[#6C6B71] mb-4">Say this in Portuguese:</p>
+      <p className="text-[13px] text-[#6B6B69] mb-4">Say this in Portuguese:</p>
 
       {/* Target text */}
-      <p className="text-[24px] font-medium text-[#111111]">{data.targetText}</p>
+      <p className="text-[24px] font-medium text-[#1F1F1F]">{data.targetText}</p>
       {showEnglish && (
-        <p className="text-[13px] text-[#6C6B71] mt-1">{data.targetTranslation}</p>
+        <p className="text-[13px] text-[#6B6B69] mt-1">{data.targetTranslation}</p>
       )}
-      <p className="text-[13px] text-[#9B9DA3] italic mt-1">{data.pronunciation}</p>
+      <p className="text-[13px] text-[#98988F] italic mt-1">{data.pronunciation}</p>
 
       {/* Listen button */}
       <button
         onClick={speak}
-        className="mt-4 text-[13px] text-[#185FA5] hover:text-[#185FA5]/80 transition-colors cursor-pointer flex items-center gap-1.5"
+        className="mt-4 text-[13px] text-[#1B2B61] hover:text-[#1B2B61]/80 transition-colors cursor-pointer flex items-center gap-1.5"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
           <path d="M3 5.5v5l4.5-2.5L3 5.5z" />
@@ -118,7 +118,7 @@ export function SpeakExercise({
               <span
                 key={i}
                 className={`text-[14px] font-medium ${
-                  ws.correct ? "text-[#0F6E56]" : "text-[#dc2626]"
+                  ws.correct ? "text-[#1F7A68]" : "text-[#dc2626]"
                 }`}
               >
                 {ws.expected}
@@ -139,7 +139,7 @@ export function SpeakExercise({
                 className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-150 cursor-pointer ${
                   speech.isListening
                     ? "bg-[#dc2626] hover:bg-[#dc2626]/90"
-                    : "bg-[#185FA5] hover:bg-[#185FA5]/90"
+                    : "bg-[#1B2B61] hover:bg-[#1B2B61]/90"
                 }`}
                 style={speech.isListening ? { boxShadow: "0 0 0 4px rgba(220, 38, 38, 0.2)" } : undefined}
               >
@@ -148,7 +148,7 @@ export function SpeakExercise({
                   <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
-              <p className="text-[13px] text-[#9B9DA3] mt-2">
+              <p className="text-[13px] text-[#98988F] mt-2">
                 {speech.isListening ? "Listening..." : "Tap to speak"}
               </p>
               {speech.error && (
@@ -158,20 +158,20 @@ export function SpeakExercise({
           ) : (
             /* Fallback: self-assessment */
             <div className="flex flex-col items-center gap-3">
-              <p className="text-[13px] text-[#9B9DA3]">
+              <p className="text-[13px] text-[#98988F]">
                 Speech recognition not available. Listen and self-assess:
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => handleSelfAssess(true)}
-                  className="bg-[#111111] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#111111]/90 transition-all duration-150 ease-out h-10 px-5"
+                  className="bg-[#1B2B61] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#1B2B61]/90 transition-all duration-150 ease-out h-10 px-5"
                   disabled={disabled}
                 >
                   I said it correctly
                 </button>
                 <button
                   onClick={() => handleSelfAssess(false)}
-                  className="border-[0.5px] border-[rgba(0,0,0,0.06)] text-[#6C6B71] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F7F7F5] hover:border-[rgba(0,0,0,0.12)] transition-all duration-150 ease-out bg-white h-10 px-5"
+                  className="border-[0.5px] border-[#E6E6E4] text-[#6B6B69] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F7F7F6] hover:border-[#CFCFCB] transition-all duration-150 ease-out bg-white h-10 px-5"
                   disabled={disabled}
                 >
                   Try again

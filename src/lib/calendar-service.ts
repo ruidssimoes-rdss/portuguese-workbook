@@ -218,7 +218,7 @@ export async function moveGoalEvent(
 const LESSON_PASSED_COLOR = "#16A34A";
 const PRACTICE_COLOR = "#8B5CF6";
 const LESSON_FAILED_COLOR = "#F59E0B";
-const EXAM_PASSED_COLOR = "#003399";
+const EXAM_PASSED_COLOR = "#1B2B61";
 const EXAM_FAILED_COLOR = "#F59E0B";
 
 export async function logLessonCompletion(

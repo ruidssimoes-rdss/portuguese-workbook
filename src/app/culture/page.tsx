@@ -155,12 +155,12 @@ export default function CulturePage() {
             <div className="flex items-start justify-between mb-2">
               <div>
                 <div className="flex items-center gap-1">
-                  <span className="text-[14px] font-medium text-[#111111]">
+                  <span className="text-[14px] font-medium text-[#1F1F1F]">
                     {item.title}
                   </span>
                   <AudioButton text={item.title} />
                 </div>
-                <div className="text-[12px] text-[#9B9DA3] mt-0.5">
+                <div className="text-[12px] text-[#98988F] mt-0.5">
                   {item.subtitle}
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function CulturePage() {
                 <BadgePill label={item.category} variant="neutral" />
               </div>
             </div>
-            <div className="text-[12px] text-[#6C6B71] leading-relaxed">
+            <div className="text-[12px] text-[#6B6B69] leading-relaxed">
               {item.description}
             </div>
           </CardShell>

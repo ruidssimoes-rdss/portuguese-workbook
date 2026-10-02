@@ -82,9 +82,9 @@ export function FillBlankSection({ sectionIndex, totalSections, showEnglish, sen
         const r = results[s.id];
 
         return (
-          <div key={s.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 bg-white">
-            <span className="text-[13px] font-medium text-[#9B9DA3]">{i + 1}.</span>
-            <p className="text-[16px] font-medium text-[#111111] mt-1 leading-relaxed">
+          <div key={s.id} className="border-[0.5px] border-[#E6E6E4] rounded-lg p-5 bg-white">
+            <span className="text-[13px] font-medium text-[#98988F]">{i + 1}.</span>
+            <p className="text-[16px] font-medium text-[#1F1F1F] mt-1 leading-relaxed">
               {before}
               {state === "answering" ? (
                 <input
@@ -92,23 +92,23 @@ export function FillBlankSection({ sectionIndex, totalSections, showEnglish, sen
                   type="text"
                   value={answers[s.id] ?? ""}
                   onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                  className="inline-block w-28 mx-1 px-2 py-1 text-[14px] font-medium text-center border-b-[1.5px] border-[rgba(0,0,0,0.15)] outline-none focus:border-[#185FA5] bg-transparent transition-colors"
+                  className="inline-block w-28 mx-1 px-2 py-1 text-[14px] font-medium text-center border-b-[1.5px] border-[rgba(0,0,0,0.15)] outline-none focus:border-[#1B2B61] bg-transparent transition-colors"
                   autoComplete="off" spellCheck={false}
                   placeholder={s.hint ?? "___"}
                 />
               ) : (
-                <span className={`inline-block mx-1 px-2 py-0.5 rounded font-medium ${r?.correct ? "text-[#0F6E56] bg-[#E1F5EE]" : "text-[#dc2626] bg-[#fef2f2]"}`}>
+                <span className={`inline-block mx-1 px-2 py-0.5 rounded font-medium ${r?.correct ? "text-[#1F7A68] bg-[#E1F2ED]" : "text-[#dc2626] bg-[#fef2f2]"}`}>
                   {r?.correct ? s.correctAnswer : answers[s.id]}
                 </span>
               )}
               {after}
             </p>
-            {showEnglish && s.sentenceEn && <p className="text-[13px] text-[#9B9DA3] mt-1">{s.sentenceEn}</p>}
+            {showEnglish && s.sentenceEn && <p className="text-[13px] text-[#98988F] mt-1">{s.sentenceEn}</p>}
             {state === "reviewed" && !r?.correct && (
-              <p className="text-[13px] text-[#0F6E56] mt-1">Resposta: {s.correctAnswer}</p>
+              <p className="text-[13px] text-[#1F7A68] mt-1">Resposta: {s.correctAnswer}</p>
             )}
             {state === "reviewed" && r?.accentHint && (
-              <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>
+              <p className="text-[12px] text-[#5B45B8] mt-2 bg-[#ECE8F8] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>
             )}
           </div>
         );

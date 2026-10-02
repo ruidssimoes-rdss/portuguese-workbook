@@ -15,9 +15,9 @@ interface LearnIntroProps {
 
 function CEFRPill({ level }: { level: string }) {
   const c =
-    level === "A1" ? "text-[#0F6E56] bg-[#E1F5EE]" :
-    level === "A2" ? "text-[#185FA5] bg-[#E6F1FB]" :
-    "text-[#854F0B] bg-[#FAEEDA]";
+    level === "A1" ? "text-[#1F7A68] bg-[#E1F2ED]" :
+    level === "A2" ? "text-[#1B2B61] bg-[#E8ECF6]" :
+    "text-[#5B45B8] bg-[#ECE8F8]";
   return <span className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full ${c}`}>{level}</span>;
 }
 
@@ -49,13 +49,13 @@ export function LearnIntro({
       {/* Back */}
       <Link
         href="/lessons"
-        className="text-[13px] text-[#9B9DA3] hover:text-[#6C6B71] transition-colors"
+        className="text-[13px] text-[#98988F] hover:text-[#6B6B69] transition-colors"
       >
         ← Back to lessons
       </Link>
 
       {/* Title */}
-      <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em] mt-6">
+      <h1 className="text-[22px] font-medium text-[#1F1F1F] tracking-[-0.02em] mt-6">
         {isReview ? "Review session" : "Your next lesson"}
       </h1>
 
@@ -72,17 +72,17 @@ export function LearnIntro({
           {stats.map((s, i) => (
             <div
               key={i}
-              className="flex-1 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg py-4 px-2 text-center"
+              className="flex-1 border-[0.5px] border-[#E6E6E4] rounded-lg py-4 px-2 text-center"
             >
-              <div className="text-[24px] font-medium text-[#111111]">{s.value}</div>
-              <div className="text-[11px] text-[#9B9DA3] mt-0.5">{s.label}</div>
+              <div className="text-[24px] font-medium text-[#1F1F1F]">{s.value}</div>
+              <div className="text-[11px] text-[#98988F] mt-0.5">{s.label}</div>
             </div>
           ))}
         </div>
       )}
 
       {/* Meta */}
-      <p className="text-[12px] text-[#9B9DA3] mt-4">
+      <p className="text-[12px] text-[#98988F] mt-4">
         {sectionCount} exercises · 80% to pass
       </p>
 
@@ -91,7 +91,7 @@ export function LearnIntro({
         <button
           type="button"
           onClick={onStartExercises}
-          className="w-full py-3.5 text-[14px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
+          className="w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
         >
           {isReview ? "Start review →" : "Start exercises →"}
         </button>
@@ -99,7 +99,7 @@ export function LearnIntro({
           <button
             type="button"
             onClick={onReviewFirst}
-            className="w-full py-3.5 text-[14px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
+            className="w-full py-3.5 text-[14px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors cursor-pointer"
           >
             Review material first
           </button>

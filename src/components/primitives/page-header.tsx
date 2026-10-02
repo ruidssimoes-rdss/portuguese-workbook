@@ -15,11 +15,11 @@ interface PageHeaderProps {
 export function PageHeader({ title, subtitle, children }: PageHeaderProps) {
   return (
     <div className="mb-8">
-      <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em] m-0">
+      <h1 className="text-[22px] font-semibold text-aula-text tracking-[-0.02em] m-0">
         {title}
       </h1>
       {subtitle && (
-        <p className="text-[13px] text-[#6C6B71] mt-1 m-0">{subtitle}</p>
+        <p className="text-[13px] text-aula-text-2 mt-1 m-0">{subtitle}</p>
       )}
       {children}
     </div>

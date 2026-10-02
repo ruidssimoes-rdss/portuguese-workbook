@@ -349,14 +349,14 @@ export function Topbar() {
   const tabClass = (active: boolean, menuOpen: boolean) =>
     `text-[13px] font-medium flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200 ${
       active || menuOpen
-        ? "text-[#003399] font-semibold bg-[#003399]/8"
+        ? "text-[#1B2B61] font-semibold bg-[#1B2B61]/8"
         : "text-text-secondary hover:text-text hover:bg-surface"
     }`;
 
   const directLinkClass = (active: boolean) =>
     `px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200 ${
       active
-        ? "text-[#003399] font-semibold bg-[#003399]/8"
+        ? "text-[#1B2B61] font-semibold bg-[#1B2B61]/8"
         : "text-text-secondary hover:text-text hover:bg-surface"
     }`;
 
@@ -367,7 +367,7 @@ export function Topbar() {
           <div
             className={`flex items-center justify-between h-12 px-4 bg-[var(--bg-card)]/90 backdrop-blur-xl border border-[var(--border-primary)] rounded-2xl shadow-[0_4px_24px_rgba(0,51,153,0.07),0_1px_4px_rgba(0,0,0,0.04)] transition-all duration-300 ease-out ${
               isScrolled
-                ? "shadow-[0_8px_32px_rgba(0,51,153,0.10),0_2px_8px_rgba(0,0,0,0.06)]"
+                ? "shadow-[0_8px_32px_rgba(0,51,153,0.10),0_2px_8px_#E6E6E4]"
                 : ""
             }`}
           >
@@ -576,7 +576,7 @@ export function Topbar() {
             ) : (
               <Link
                 href="/auth/login"
-                className="shrink-0 rounded-xl px-4 py-2 bg-[#003399] text-white text-sm font-medium hover:bg-[#002277] transition-colors"
+                className="shrink-0 rounded-xl px-4 py-2 bg-[#1B2B61] text-white text-sm font-medium hover:bg-[#002277] transition-colors"
               >
                 Entrar
               </Link>
@@ -626,7 +626,7 @@ export function Topbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                      isCurrent ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
+                      isCurrent ? "bg-surface text-text border-l-2 border-[#1B2B61]" : "text-text-2 hover:bg-surface hover:text-text"
                     }`}
                   >
                     <span className="text-[15px] font-medium">{item.title}</span>
@@ -642,7 +642,7 @@ export function Topbar() {
                 href="/notes"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                  pathname === "/notes" ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
+                  pathname === "/notes" ? "bg-surface text-text border-l-2 border-[#1B2B61]" : "text-text-2 hover:bg-surface hover:text-text"
                 }`}
               >
                 <span className="text-[15px] font-medium">Notes</span>
@@ -652,7 +652,7 @@ export function Topbar() {
                 href="/calendar"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                  pathname === "/calendar" ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
+                  pathname === "/calendar" ? "bg-surface text-text border-l-2 border-[#1B2B61]" : "text-text-2 hover:bg-surface hover:text-text"
                 }`}
               >
                 <span className="text-[15px] font-medium">Calendar</span>
@@ -666,7 +666,7 @@ export function Topbar() {
                 href="/guide"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                  pathname === "/guide" ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
+                  pathname === "/guide" ? "bg-surface text-text border-l-2 border-[#1B2B61]" : "text-text-2 hover:bg-surface hover:text-text"
                 }`}
               >
                 <span className="text-[15px] font-medium">How to Learn</span>
@@ -676,7 +676,7 @@ export function Topbar() {
                 href="/culture"
                 onClick={closeMobileMenu}
                 className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                  pathname === "/culture" || pathname?.startsWith("/culture/") ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
+                  pathname === "/culture" || pathname?.startsWith("/culture/") ? "bg-surface text-text border-l-2 border-[#1B2B61]" : "text-text-2 hover:bg-surface hover:text-text"
                 }`}
               >
                 <span className="text-[15px] font-medium">Culture</span>
@@ -697,7 +697,7 @@ export function Topbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     className={`min-h-[44px] px-4 py-3 flex flex-col justify-center transition-colors ${
-                      isCurrent ? "bg-surface text-text border-l-2 border-[#003399]" : "text-text-2 hover:bg-surface hover:text-text"
+                      isCurrent ? "bg-surface text-text border-l-2 border-[#1B2B61]" : "text-text-2 hover:bg-surface hover:text-text"
                     }`}
                   >
                     <span className="text-[15px] font-medium">{item.title}</span>
@@ -745,7 +745,7 @@ export function Topbar() {
                     <Link
                       href="/auth/login"
                       onClick={closeMobileMenu}
-                      className="px-4 py-3 rounded-xl bg-[#003399] text-white text-sm font-medium hover:bg-[#002277] min-h-[44px] flex items-center transition-colors"
+                      className="px-4 py-3 rounded-xl bg-[#1B2B61] text-white text-sm font-medium hover:bg-[#002277] min-h-[44px] flex items-center transition-colors"
                     >
                       Entrar
                     </Link>

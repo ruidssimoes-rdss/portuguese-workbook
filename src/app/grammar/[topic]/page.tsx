@@ -18,7 +18,7 @@ function formatInlineContent(text: string): ReactNode {
   return parts.map((part, i) => {
     if (part.startsWith("'") && part.endsWith("'")) {
       return (
-        <span key={i} className="font-medium text-[#111111]">
+        <span key={i} className="font-medium text-[#1F1F1F]">
           {part.slice(1, -1)}
         </span>
       );
@@ -33,7 +33,7 @@ function FormatIntro({ text }: { text: string }) {
     ? text.split("\n").filter((p) => p.trim())
     : [text];
   return (
-    <div className="space-y-3 text-[13px] text-[#6C6B71] leading-relaxed">
+    <div className="space-y-3 text-[13px] text-[#6B6B69] leading-relaxed">
       {paragraphs.map((p, i) => (
         <p key={i}>{formatInlineContent(p.trim())}</p>
       ))}
@@ -80,23 +80,23 @@ export default function GrammarDetailPage() {
   return (
     <PageShell>
       {/* Breadcrumb */}
-      <div className="text-[12px] text-[#9B9DA3] mb-5 flex items-center gap-1">
+      <div className="text-[12px] text-[#98988F] mb-5 flex items-center gap-1">
         <Link
           href="/grammar"
-          className="hover:text-[#6C6B71] transition-colors"
+          className="hover:text-[#6B6B69] transition-colors"
         >
           Grammar
         </Link>
         <ChevronRight size={12} />
-        <span className="text-[#6C6B71]">{topic.title}</span>
+        <span className="text-[#6B6B69]">{topic.title}</span>
       </div>
 
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
+        <h1 className="text-[22px] font-medium text-[#1F1F1F] tracking-[-0.02em]">
           {topic.title}
         </h1>
-        <div className="text-[13px] text-[#9B9DA3] mt-1 italic">
+        <div className="text-[13px] text-[#98988F] mt-1 italic">
           {topic.titlePt}
         </div>
         <div className="mt-2">
@@ -113,30 +113,30 @@ export default function GrammarDetailPage() {
 
       {/* Rules accordion */}
       {rules.length > 0 && (
-        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden mb-8">
+        <div className="border-[0.5px] border-[#E6E6E4] rounded-lg overflow-hidden mb-8">
           {rules.map((rule: any, index: number) => (
             <div
               key={index}
               className={
                 index > 0
-                  ? "border-t-[0.5px] border-[rgba(0,0,0,0.06)]"
+                  ? "border-t-[0.5px] border-[#E6E6E4]"
                   : ""
               }
             >
               {/* Rule header */}
               <div
                 onClick={() => toggleRule(index)}
-                className="flex items-center gap-3 px-4 py-3.5 cursor-pointer hover:bg-[#F7F7F5] transition-colors"
+                className="flex items-center gap-3 px-4 py-3.5 cursor-pointer hover:bg-[#F7F7F6] transition-colors"
               >
-                <span className="text-[11px] font-medium text-[#185FA5] bg-[#E6F1FB] w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-[11px] font-medium text-[#1B2B61] bg-[#E8ECF6] w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0">
                   {index + 1}
                 </span>
-                <span className="text-[13px] font-medium text-[#111111] flex-1">
+                <span className="text-[13px] font-medium text-[#1F1F1F] flex-1">
                   {rule.rule}
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`text-[#9B9DA3] transition-transform duration-150 ${
+                  className={`text-[#98988F] transition-transform duration-150 ${
                     isExpanded(index) ? "rotate-180" : ""
                   }`}
                 />
@@ -144,10 +144,10 @@ export default function GrammarDetailPage() {
 
               {/* Expanded content */}
               {isExpanded(index) && (
-                <div className="px-4 pb-4 border-t-[0.5px] border-[rgba(0,0,0,0.06)] mx-4 pt-3.5">
+                <div className="px-4 pb-4 border-t-[0.5px] border-[#E6E6E4] mx-4 pt-3.5">
                   {/* Rule in Portuguese */}
                   {rule.rulePt && (
-                    <div className="text-[12px] text-[#9B9DA3] italic mb-3">
+                    <div className="text-[12px] text-[#98988F] italic mb-3">
                       {rule.rulePt}
                     </div>
                   )}
@@ -158,15 +158,15 @@ export default function GrammarDetailPage() {
                       {rule.examples.map((ex: any, i: number) => (
                         <div
                           key={i}
-                          className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5 group"
+                          className="bg-[#F7F7F6] rounded-lg px-3.5 py-2.5 group"
                         >
                           <div className="flex items-center gap-1">
-                            <span className="text-[13px] text-[#111111]">
+                            <span className="text-[13px] text-[#1F1F1F]">
                               {ex.pt}
                             </span>
                             <AudioButton text={ex.pt} />
                           </div>
-                          <div className="text-[12px] text-[#9B9DA3] italic mt-0.5">
+                          <div className="text-[12px] text-[#98988F] italic mt-0.5">
                             {ex.en}
                           </div>
                         </div>
@@ -180,7 +180,7 @@ export default function GrammarDetailPage() {
                       {rule.exceptions.map((exc: string, i: number) => (
                         <div
                           key={i}
-                          className="text-[12px] text-[#6C6B71] italic"
+                          className="text-[12px] text-[#6B6B69] italic"
                         >
                           Note: {exc}
                         </div>
@@ -197,7 +197,7 @@ export default function GrammarDetailPage() {
       {/* Tips section */}
       {topic.tips && topic.tips.length > 0 && (
         <div>
-          <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-3">
+          <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#98988F] mb-3">
             Tips
           </div>
           <div className="space-y-2">

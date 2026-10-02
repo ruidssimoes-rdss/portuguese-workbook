@@ -36,7 +36,7 @@ function SortIcon() {
 function ListIcon({ active }: { active: boolean }) {
   return (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-      className={active ? "text-[#111111]" : "text-[#9B9DA3]"}>
+      className={active ? "text-[#1F1F1F]" : "text-[#98988F]"}>
       <line x1="3" y1="6" x2="21" y2="6" />
       <line x1="3" y1="12" x2="21" y2="12" />
       <line x1="3" y1="18" x2="21" y2="18" />
@@ -47,7 +47,7 @@ function ListIcon({ active }: { active: boolean }) {
 function GridIcon({ active }: { active: boolean }) {
   return (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-      className={active ? "text-[#111111]" : "text-[#9B9DA3]"}>
+      className={active ? "text-[#1F1F1F]" : "text-[#98988F]"}>
       <rect x="3" y="3" width="7" height="7" rx="1" />
       <rect x="14" y="3" width="7" height="7" rx="1" />
       <rect x="3" y="14" width="7" height="7" rx="1" />
@@ -64,23 +64,23 @@ function WordRow({ word }: { word: any }) {
       <div className="grid grid-cols-[1fr_1fr_auto] items-center gap-3">
         <div className="flex flex-col">
           <div className="flex items-center gap-1">
-            <span className="text-[14px] font-medium text-[#111111]">
+            <span className="text-[14px] font-medium text-[#1F1F1F]">
               {word.portuguese}
             </span>
             <AudioButton text={word.portuguese} />
             {word.gender && (
-              <span className="text-[11px] text-[#9B9DA3] ml-0.5 italic">
+              <span className="text-[11px] text-[#98988F] ml-0.5 italic">
                 ({word.gender})
               </span>
             )}
           </div>
           {word.pronunciation && (
-            <span className="text-[11px] text-[#9B9DA3] font-mono">
+            <span className="text-[11px] text-[#98988F] font-mono">
               /{word.pronunciation}/
             </span>
           )}
         </div>
-        <span className="text-[13px] text-[#6C6B71]">
+        <span className="text-[13px] text-[#6B6B69]">
           {word.english}
         </span>
         <BadgePill level={word.cefr} />
@@ -93,20 +93,20 @@ function WordRow({ word }: { word: any }) {
 
 function WordCard({ word }: { word: any }) {
   return (
-    <div className="group border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2.5 hover:border-[rgba(0,0,0,0.12)] transition-colors">
+    <div className="group border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-2.5 hover:border-[#CFCFCB] transition-colors">
       <div className="flex items-center justify-between">
-        <span className="text-[13px] font-medium text-[#111111]">{word.portuguese}</span>
+        <span className="text-[13px] font-medium text-[#1F1F1F]">{word.portuguese}</span>
         <div className="flex items-center gap-1">
           <BadgePill level={word.cefr} />
           <AudioButton text={word.portuguese} />
         </div>
       </div>
       {word.pronunciation && (
-        <div className="text-[10px] text-[#9B9DA3] font-mono mt-0.5">
+        <div className="text-[10px] text-[#98988F] font-mono mt-0.5">
           /{word.pronunciation}/
         </div>
       )}
-      <div className="text-[12px] text-[#9B9DA3] mt-0.5">{word.english}</div>
+      <div className="text-[12px] text-[#98988F] mt-0.5">{word.english}</div>
     </div>
   );
 }
@@ -115,7 +115,7 @@ function WordCard({ word }: { word: any }) {
 
 function GroupHeader({ label, labelPt }: { label: string; labelPt?: string }) {
   return (
-    <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-2">
+    <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#98988F] mb-2">
       {label}
       {labelPt && (
         <span className="ml-2 normal-case tracking-normal italic font-normal">
@@ -199,15 +199,15 @@ function VocabularyDetailContent() {
   return (
     <PageShell>
       {/* Breadcrumb */}
-      <div className="text-[12px] text-[#9B9DA3] mb-5 flex items-center gap-1">
+      <div className="text-[12px] text-[#98988F] mb-5 flex items-center gap-1">
         <Link
           href="/vocabulary"
-          className="hover:text-[#6C6B71] transition-colors"
+          className="hover:text-[#6B6B69] transition-colors"
         >
           Vocabulary
         </Link>
         <ChevronRight size={12} />
-        <span className="text-[#6C6B71]">{category.title}</span>
+        <span className="text-[#6B6B69]">{category.title}</span>
       </div>
 
       <PageHeader
@@ -230,8 +230,8 @@ function VocabularyDetailContent() {
               onClick={() => setFilterOpen(!filterOpen)}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] rounded-lg border-[0.5px] transition-colors ${
                 filterOpen
-                  ? "border-[rgba(0,0,0,0.12)] text-[#111111]"
-                  : "border-[rgba(0,0,0,0.06)] text-[#9B9DA3] hover:border-[rgba(0,0,0,0.12)] hover:text-[#6C6B71]"
+                  ? "border-[#CFCFCB] text-[#1F1F1F]"
+                  : "border-[#E6E6E4] text-[#98988F] hover:border-[#CFCFCB] hover:text-[#6B6B69]"
               }`}
             >
               <SlidersHorizontal size={13} />
@@ -241,11 +241,11 @@ function VocabularyDetailContent() {
             {filterOpen && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setFilterOpen(false)} />
-                <div className="absolute top-full left-0 mt-1.5 z-20 bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg shadow-lg w-[260px] max-h-[400px] overflow-y-auto">
+                <div className="absolute top-full left-0 mt-1.5 z-20 bg-white border-[0.5px] border-[#E6E6E4] rounded-lg shadow-lg w-[260px] max-h-[400px] overflow-y-auto">
                   {/* Header with close */}
                   <div className="flex items-center justify-between px-3 pt-3 pb-2">
-                    <span className="text-[11px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em]">Sections</span>
-                    <button onClick={() => setFilterOpen(false)} className="text-[#9B9DA3] hover:text-[#6C6B71]">
+                    <span className="text-[11px] font-medium text-[#98988F] uppercase tracking-[0.05em]">Sections</span>
+                    <button onClick={() => setFilterOpen(false)} className="text-[#98988F] hover:text-[#6B6B69]">
                       <X size={14} />
                     </button>
                   </div>
@@ -259,10 +259,10 @@ function VocabularyDetailContent() {
                             document.getElementById(`group-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
                             setFilterOpen(false);
                           }}
-                          className="flex items-center justify-between w-full px-2 py-1.5 rounded text-[12px] text-[#6C6B71] hover:bg-[#F7F7F5] transition-colors text-left"
+                          className="flex items-center justify-between w-full px-2 py-1.5 rounded text-[12px] text-[#6B6B69] hover:bg-[#F7F7F6] transition-colors text-left"
                         >
                           <span className="truncate">{g.label}</span>
-                          <span className="text-[10px] text-[#9B9DA3] ml-2 flex-shrink-0">{g.words.length}</span>
+                          <span className="text-[10px] text-[#98988F] ml-2 flex-shrink-0">{g.words.length}</span>
                         </button>
                       ))}
                     </div>
@@ -279,8 +279,8 @@ function VocabularyDetailContent() {
             onClick={() => setSortBy((s) => (s === "default" ? "alpha" : "default"))}
             className={`flex items-center gap-1 px-2 py-1.5 rounded-md text-[12px] transition-colors ${
               sortBy === "alpha"
-                ? "bg-[#F7F7F5] text-[#111111]"
-                : "text-[#9B9DA3] hover:text-[#6C6B71]"
+                ? "bg-[#F7F7F6] text-[#1F1F1F]"
+                : "text-[#98988F] hover:text-[#6B6B69]"
             }`}
           >
             <SortIcon />
@@ -289,7 +289,7 @@ function VocabularyDetailContent() {
           <button
             onClick={() => setView("list")}
             className={`p-1.5 rounded-md transition-colors ${
-              view === "list" ? "bg-[#F7F7F5] text-[#111111]" : "text-[#9B9DA3] hover:text-[#6C6B71]"
+              view === "list" ? "bg-[#F7F7F6] text-[#1F1F1F]" : "text-[#98988F] hover:text-[#6B6B69]"
             }`}
             aria-label="List view"
           >
@@ -298,7 +298,7 @@ function VocabularyDetailContent() {
           <button
             onClick={() => setView("grid")}
             className={`p-1.5 rounded-md transition-colors ${
-              view === "grid" ? "bg-[#F7F7F5] text-[#111111]" : "text-[#9B9DA3] hover:text-[#6C6B71]"
+              view === "grid" ? "bg-[#F7F7F6] text-[#1F1F1F]" : "text-[#98988F] hover:text-[#6B6B69]"
             }`}
             aria-label="Grid view"
           >

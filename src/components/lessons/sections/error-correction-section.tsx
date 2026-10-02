@@ -73,23 +73,23 @@ export function ErrorCorrectionSection({ sectionIndex, totalSections, showEnglis
       onVerify={handleVerify} onNext={handleNext}
       canVerify={allAnswered} score={score}
     >
-      <p className="text-[13px] font-medium text-[#9B9DA3] uppercase tracking-[0.08em] mb-1">
+      <p className="text-[13px] font-medium text-[#98988F] uppercase tracking-[0.08em] mb-1">
         Cada frase tem um erro. Escreve a versão correta:
       </p>
       {showEnglish && (
-        <p className="text-[12px] text-[#9B9DA3] mb-4">Each sentence has one error. Write the correct version:</p>
+        <p className="text-[12px] text-[#98988F] mb-4">Each sentence has one error. Write the correct version:</p>
       )}
 
       {sentences.map((s, i) => {
         const r = results[s.id];
         return (
-          <div key={s.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 bg-white">
-            <span className="text-[13px] font-medium text-[#9B9DA3]">{i + 1}.</span>
-            <div className="bg-[#fef2f2] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-4 py-2.5 mt-2 mb-3">
+          <div key={s.id} className="border-[0.5px] border-[#E6E6E4] rounded-lg p-5 bg-white">
+            <span className="text-[13px] font-medium text-[#98988F]">{i + 1}.</span>
+            <div className="bg-[#fef2f2] border-[0.5px] border-[#E6E6E4] rounded-lg px-4 py-2.5 mt-2 mb-3">
               <p className="text-[14px] font-medium text-[#dc2626]">{s.incorrectSentence}</p>
             </div>
             {showEnglish && s.hintEnglish && (
-              <p className="text-[12px] text-[#9B9DA3] mb-2">{s.hintEnglish}</p>
+              <p className="text-[12px] text-[#98988F] mb-2">{s.hintEnglish}</p>
             )}
             {state === "answering" ? (
               <input
@@ -97,17 +97,17 @@ export function ErrorCorrectionSection({ sectionIndex, totalSections, showEnglis
                 type="text"
                 value={answers[s.id] ?? ""}
                 onChange={(e) => setAnswers((p) => ({ ...p, [s.id]: e.target.value }))}
-                className="w-full text-[14px] text-[#111111] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
+                className="w-full text-[14px] text-[#1F1F1F] border-[0.5px] border-[#E6E6E4] focus:border-[#CFCFCB] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#98988F]"
                 placeholder="Escreve a frase corrigida..."
                 autoComplete="off" spellCheck={false}
               />
             ) : (
-              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
-                <p className={`text-[14px] font-medium ${r?.correct ? "text-[#0F6E56]" : "text-[#dc2626]"}`}>
+              <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${r?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
+                <p className={`text-[14px] font-medium ${r?.correct ? "text-[#1F7A68]" : "text-[#dc2626]"}`}>
                   {answers[s.id]}
                 </p>
-                {!r?.correct && <p className="text-[13px] text-[#0F6E56] mt-1">{s.correctSentence}</p>}
-                {r?.accentHint && <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>}
+                {!r?.correct && <p className="text-[13px] text-[#1F7A68] mt-1">{s.correctSentence}</p>}
+                {r?.accentHint && <p className="text-[12px] text-[#5B45B8] mt-2 bg-[#ECE8F8] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {r.accentHint}</p>}
               </div>
             )}
           </div>

@@ -29,7 +29,7 @@ export function PageHeader({
         <div className="max-w-[640px]">
           {section && (
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#003399]">
+              <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#1B2B61]">
                 {section}
               </span>
               {sectionPt && (

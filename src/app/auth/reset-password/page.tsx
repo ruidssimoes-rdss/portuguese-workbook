@@ -5,8 +5,8 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 const inputClass =
-  "w-full px-3 py-2.5 text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg outline-none focus:border-[rgba(0,0,0,0.12)] placeholder:text-[#9B9DA3] transition-colors";
-const labelClass = "block text-[13px] font-medium text-[#111111] mb-1.5";
+  "w-full px-3 py-2.5 text-[14px] border-[0.5px] border-[#E6E6E4] rounded-lg outline-none focus:border-[#CFCFCB] placeholder:text-[#98988F] transition-colors";
+const labelClass = "block text-[13px] font-medium text-[#1F1F1F] mb-1.5";
 
 export default function ResetPasswordPage() {
   const [email, setEmail] = useState("");
@@ -42,7 +42,7 @@ export default function ResetPasswordPage() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-white">
         <div className="w-full max-w-[360px] mx-auto">
-          <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
+          <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6">
             <div className="flex flex-col items-center mb-6">
               <div className="w-12 h-12 mb-3">
                 <svg width="48" height="48" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,15 +57,15 @@ export default function ResetPasswordPage() {
                 </svg>
               </div>
             </div>
-            <h1 className="text-center text-[16px] font-medium text-[#111111] mt-4 mb-2">
+            <h1 className="text-center text-[16px] font-medium text-[#1F1F1F] mt-4 mb-2">
               Verifica o teu email
             </h1>
-            <p className="text-center text-[13px] text-[#6C6B71]">
+            <p className="text-center text-[13px] text-[#6B6B69]">
               Enviámos um link para redefinir a palavra-passe para <strong>{sentEmail}</strong>. Clica no link para escolher uma nova palavra-passe.
             </p>
             <Link
               href="/auth/login"
-              className="mt-6 block text-center text-[13px] font-medium text-[#185FA5] hover:underline"
+              className="mt-6 block text-center text-[13px] font-medium text-[#1B2B61] hover:underline"
             >
               Voltar ao login
             </Link>
@@ -78,7 +78,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-white">
       <div className="w-full max-w-[360px] mx-auto">
-        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
+        <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6">
           <div className="flex flex-col items-center mb-6">
             <div className="w-12 h-12 mb-3">
               <svg width="48" height="48" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +93,7 @@ export default function ResetPasswordPage() {
               </svg>
             </div>
           </div>
-          <p className="text-center text-[13px] text-[#9B9DA3] mb-6">
+          <p className="text-center text-[13px] text-[#98988F] mb-6">
             Redefinir palavra-passe
           </p>
 
@@ -128,7 +128,7 @@ export default function ResetPasswordPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-[#111111] py-2.5 text-white font-medium text-[14px] hover:bg-[#333] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-lg bg-[#1B2B61] py-2.5 text-white font-medium text-[14px] hover:bg-[#14214C] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -141,8 +141,8 @@ export default function ResetPasswordPage() {
             </button>
           </form>
 
-          <p className="mt-6 text-center text-[13px] text-[#9B9DA3]">
-            <Link href="/auth/login" className="font-medium text-[#185FA5] hover:underline">
+          <p className="mt-6 text-center text-[13px] text-[#98988F]">
+            <Link href="/auth/login" className="font-medium text-[#1B2B61] hover:underline">
               Voltar ao login
             </Link>
           </p>

@@ -8,7 +8,7 @@
  * - Never use raw color/spacing values in components — always reference tokens
  * - Never add font-weight 700 (bold) — only 400, 500, 600
  * - Never use shadows on flat layout elements
- * - Brand blue (#003399) is used sparingly: focus rings, progress fills, active sidebar indicator
+ * - Brand blue (#1B2B61) is used sparingly: focus rings, progress fills, active sidebar indicator
  */
 
 // ─── Colors ─────────────────────────────────────────────────────────────────
@@ -16,35 +16,35 @@
 export const colors = {
   // Backgrounds
   bgPrimary: "#FFFFFF",
-  bgSecondary: "#F7F7F5",
+  bgSecondary: "#F7F7F6",
   bgSurface: "#F9FAFB",
 
   // Text
-  textPrimary: "#111111",
-  textSecondary: "#6C6B71",
-  textTertiary: "#9B9DA3",
+  textPrimary: "#1F1F1F",
+  textSecondary: "#6B6B69",
+  textTertiary: "#98988F",
 
   // Borders
-  borderLight: "rgba(0, 0, 0, 0.06)",
-  borderMid: "rgba(0, 0, 0, 0.12)",
-  borderFocus: "#003399",
+  borderLight: "#E6E6E4",
+  borderMid: "#CFCFCB",
+  borderFocus: "#1B2B61",
 
   // Brand
-  brand: "#003399",
+  brand: "#1B2B61",
   brandSubtle: "rgba(0, 51, 153, 0.08)",
 
   // CEFR Level Colors
   cefr: {
-    a1: { text: "#0F6E56", bg: "#E1F5EE" },
-    a2: { text: "#185FA5", bg: "#E6F1FB" },
-    b1: { text: "#854F0B", bg: "#FAEEDA" },
+    a1: { text: "#1F7A68", bg: "#E1F2ED" },
+    a2: { text: "#1B2B61", bg: "#E8ECF6" },
+    b1: { text: "#5B45B8", bg: "#ECE8F8" },
   },
 
   // Status
   status: {
-    success: { text: "#0F6E56", bg: "#E1F5EE" },
+    success: { text: "#1F7A68", bg: "#E1F2ED" },
     warning: { text: "#92400E", bg: "#FFFBEB", border: "#FEF3C7" },
-    info: { text: "#185FA5", bg: "#E6F1FB" },
+    info: { text: "#1B2B61", bg: "#E8ECF6" },
   },
 } as const;
 
@@ -90,8 +90,8 @@ export const spacing = {
 // ─── Borders & Radius ───────────────────────────────────────────────────────
 
 export const borders = {
-  light: "border-[0.5px] border-[rgba(0,0,0,0.06)]",
-  mid: "border-[0.5px] border-[rgba(0,0,0,0.12)]",
+  light: "border-[0.5px] border-[#E6E6E4]",
+  mid: "border-[0.5px] border-[#CFCFCB]",
   radius: "rounded-lg",        // 8px — the ONE radius for everything
   radiusPill: "rounded-full",   // For badges only
 } as const;
@@ -100,16 +100,16 @@ export const borders = {
 
 export const sidebar = {
   width: "w-[220px] min-w-[220px]",
-  bg: "bg-[#F7F7F5]",
-  borderRight: "border-r-[0.5px] border-[rgba(0,0,0,0.06)]",
+  bg: "bg-[#F7F7F6]",
+  borderRight: "border-r-[0.5px] border-[#E6E6E4]",
 } as const;
 
 // ─── CEFR Helpers ───────────────────────────────────────────────────────────
 
 export function cefrClasses(level: string): { text: string; bg: string } {
   const l = level.toUpperCase();
-  if (l === "A1") return { text: "text-[#0F6E56]", bg: "bg-[#E1F5EE]" };
-  if (l === "A2") return { text: "text-[#185FA5]", bg: "bg-[#E6F1FB]" };
-  if (l === "B1") return { text: "text-[#854F0B]", bg: "bg-[#FAEEDA]" };
-  return { text: "text-[#9B9DA3]", bg: "bg-[#F7F7F5]" };
+  if (l === "A1") return { text: "text-[#1F7A68]", bg: "bg-[#E1F2ED]" };
+  if (l === "A2") return { text: "text-[#1B2B61]", bg: "bg-[#E8ECF6]" };
+  if (l === "B1") return { text: "text-[#5B45B8]", bg: "bg-[#ECE8F8]" };
+  return { text: "text-[#98988F]", bg: "bg-[#F7F7F6]" };
 }

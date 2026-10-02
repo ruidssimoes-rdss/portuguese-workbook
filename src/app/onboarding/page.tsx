@@ -156,7 +156,7 @@ export default function OnboardingPage() {
           <div
             key={i}
             className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-              i <= currentStep ? "bg-[#003399]" : "bg-[#E5E7EB]"
+              i <= currentStep ? "bg-[#1B2B61]" : "bg-[#E5E7EB]"
             }`}
             aria-hidden
           />
@@ -179,11 +179,11 @@ export default function OnboardingPage() {
                 onClick={() => setMotivation(opt.value)}
                 className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
                   motivation === opt.value
-                    ? "border-[#003399] bg-[#003399]/5 shadow-sm"
+                    ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
                     : "border-[#E5E7EB] hover:border-[#D1D5DB] hover:bg-[#FAFAFA]"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${motivation === opt.value ? "text-[#003399]" : "text-[#111827]"}`}>
+                <p className={`text-[15px] font-medium ${motivation === opt.value ? "text-[#1B2B61]" : "text-[#111827]"}`}>
                   {opt.labelPt}
                 </p>
                 <p className="text-[13px] text-[#9CA3AF] mt-0.5">{opt.labelEn}</p>
@@ -209,11 +209,11 @@ export default function OnboardingPage() {
                 onClick={() => setLevel(opt.value)}
                 className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
                   level === opt.value
-                    ? "border-[#003399] bg-[#003399]/5 shadow-sm"
+                    ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
                     : "border-[#E5E7EB] hover:border-[#D1D5DB] hover:bg-[#FAFAFA]"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${level === opt.value ? "text-[#003399]" : "text-[#111827]"}`}>
+                <p className={`text-[15px] font-medium ${level === opt.value ? "text-[#1B2B61]" : "text-[#111827]"}`}>
                   {opt.labelPt}
                 </p>
                 <p className="text-[13px] text-[#9CA3AF] mt-0.5">{opt.labelEn}</p>
@@ -239,11 +239,11 @@ export default function OnboardingPage() {
                 onClick={() => setStudyDays(opt.value)}
                 className={`text-center px-4 py-6 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
                   studyDays === opt.value
-                    ? "border-[#003399] bg-[#003399]/5 shadow-sm"
+                    ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
                     : "border-[#E5E7EB] hover:border-[#D1D5DB]"
                 }`}
               >
-                <p className={`text-[20px] font-bold mb-1 ${studyDays === opt.value ? "text-[#003399]" : "text-[#111827]"}`}>
+                <p className={`text-[20px] font-bold mb-1 ${studyDays === opt.value ? "text-[#1B2B61]" : "text-[#111827]"}`}>
                   {opt.days}
                 </p>
                 <p className="text-[13px] text-[#9CA3AF]">{opt.labelPt}</p>
@@ -269,11 +269,11 @@ export default function OnboardingPage() {
                 onClick={() => setTargetGoal(opt.value)}
                 className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
                   targetGoal === opt.value
-                    ? "border-[#003399] bg-[#003399]/5 shadow-sm"
+                    ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
                     : "border-[#E5E7EB] hover:border-[#D1D5DB] hover:bg-[#FAFAFA]"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${targetGoal === opt.value ? "text-[#003399]" : "text-[#111827]"}`}>
+                <p className={`text-[15px] font-medium ${targetGoal === opt.value ? "text-[#1B2B61]" : "text-[#111827]"}`}>
                   {opt.labelPt}
                 </p>
                 <p className="text-[13px] text-[#9CA3AF] mt-0.5">{opt.labelEn}</p>
@@ -290,7 +290,7 @@ export default function OnboardingPage() {
                 type="date"
                 value={targetDate}
                 onChange={(e) => setTargetDate(e.target.value)}
-                className="w-full max-w-[240px] mx-auto block rounded-[12px] border border-[#E5E7EB] px-4 py-3 text-[15px] text-[#111827] focus:border-[#003399] focus:ring-1 focus:ring-[#003399] outline-none"
+                className="w-full max-w-[240px] mx-auto block rounded-[12px] border border-[#E5E7EB] px-4 py-3 text-[15px] text-[#111827] focus:border-[#1B2B61] focus:ring-1 focus:ring-[#1B2B61] outline-none"
               />
             </div>
           )}
@@ -312,7 +312,7 @@ export default function OnboardingPage() {
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="O teu nome"
-              className="w-full text-center text-[22px] font-bold text-[#111827] border-b-2 border-[#E5E7EB] focus:border-[#003399] outline-none pb-3 bg-transparent transition-colors duration-200"
+              className="w-full text-center text-[22px] font-bold text-[#111827] border-b-2 border-[#E5E7EB] focus:border-[#1B2B61] outline-none pb-3 bg-transparent transition-colors duration-200"
             />
           </div>
         </div>
@@ -335,7 +335,7 @@ export default function OnboardingPage() {
           type="button"
           onClick={goNext}
           disabled={!canProceed || saving}
-          className="inline-flex items-center justify-center px-8 py-3 bg-[#003399] text-white text-[14px] font-medium rounded-[12px] hover:bg-[#002277] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
+          className="inline-flex items-center justify-center px-8 py-3 bg-[#1B2B61] text-white text-[14px] font-medium rounded-[12px] hover:bg-[#002277] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
         >
           {saving ? (
             <>

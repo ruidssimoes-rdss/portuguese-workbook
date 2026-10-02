@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 const inputClass =
-  "w-full px-3 py-2.5 text-[14px] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg outline-none focus:border-[rgba(0,0,0,0.12)] placeholder:text-[#9B9DA3] transition-colors";
-const labelClass = "block text-[13px] font-medium text-[#111111] mb-1.5";
+  "w-full px-3 py-2.5 text-[14px] border-[0.5px] border-[#E6E6E4] rounded-lg outline-none focus:border-[#CFCFCB] placeholder:text-[#98988F] transition-colors";
+const labelClass = "block text-[13px] font-medium text-[#1F1F1F] mb-1.5";
 
 export default function UpdatePasswordPage() {
   const router = useRouter();
@@ -47,7 +47,7 @@ export default function UpdatePasswordPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-white">
       <div className="w-full max-w-[360px] mx-auto">
-        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6">
+        <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-6">
           <div className="flex flex-col items-center mb-6">
             <div className="w-12 h-12 mb-3">
               <svg width="48" height="48" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@ export default function UpdatePasswordPage() {
               </svg>
             </div>
           </div>
-          <p className="text-center text-[13px] text-[#9B9DA3] mb-6">
+          <p className="text-center text-[13px] text-[#98988F] mb-6">
             Nova palavra-passe
           </p>
 
@@ -94,7 +94,7 @@ export default function UpdatePasswordPage() {
                 autoFocus
                 autoComplete="new-password"
               />
-              <p className="mt-1 text-[11px] text-[#9B9DA3]">Mínimo 6 caracteres</p>
+              <p className="mt-1 text-[11px] text-[#98988F]">Mínimo 6 caracteres</p>
             </div>
             <div>
               <label htmlFor="update-confirm" className={labelClass}>
@@ -117,7 +117,7 @@ export default function UpdatePasswordPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-[#111111] py-2.5 text-white font-medium text-[14px] hover:bg-[#333] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full rounded-lg bg-[#1B2B61] py-2.5 text-white font-medium text-[14px] hover:bg-[#14214C] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -130,8 +130,8 @@ export default function UpdatePasswordPage() {
             </button>
           </form>
 
-          <p className="mt-6 text-center text-[13px] text-[#9B9DA3]">
-            <Link href="/auth/login" className="font-medium text-[#185FA5] hover:underline">
+          <p className="mt-6 text-center text-[13px] text-[#98988F]">
+            <Link href="/auth/login" className="font-medium text-[#1B2B61] hover:underline">
               Voltar ao login
             </Link>
           </p>

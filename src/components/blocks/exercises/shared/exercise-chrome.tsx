@@ -37,13 +37,13 @@ export function ExerciseChrome({
     <div>
       {/* Top bar */}
       <div className="flex items-center justify-between mb-2">
-        <span className="text-[13px] text-[#9B9DA3]" key={currentIndex}>
+        <span className="text-[13px] text-[#98988F]" key={currentIndex}>
           <span className="fade-in">{currentIndex + 1}</span> of {totalCount}
         </span>
         {onSkip && showSkip && (
           <button
             onClick={onSkip}
-            className="text-[13px] text-[#6C6B71] hover:text-[#111111] transition-colors cursor-pointer fade-in"
+            className="text-[13px] text-[#6B6B69] hover:text-[#1F1F1F] transition-colors cursor-pointer fade-in"
           >
             Skip
           </button>
@@ -51,9 +51,9 @@ export function ExerciseChrome({
       </div>
 
       {/* Progress bar */}
-      <div className="h-1.5 rounded-full bg-[rgba(0,0,0,0.06)] mb-6 overflow-hidden">
+      <div className="h-1.5 rounded-full bg-[#E6E6E4] mb-6 overflow-hidden">
         <div
-          className="h-1.5 rounded-full bg-[#185FA5] transition-all duration-300 ease-out"
+          className="h-1.5 rounded-full bg-[#1B2B61] transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>

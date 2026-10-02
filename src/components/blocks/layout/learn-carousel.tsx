@@ -68,7 +68,7 @@ export function LearnCarousel({
     >
       {/* Counter */}
       <div className="flex justify-end mb-3">
-        <span className="text-[13px] text-[#9B9DA3]">
+        <span className="text-[13px] text-[#98988F]">
           {currentIndex + 1} of {total}
         </span>
       </div>
@@ -91,7 +91,7 @@ export function LearnCarousel({
         <button
           onClick={goPrev}
           disabled={currentIndex === 0}
-          className={`border-[0.5px] border-[rgba(0,0,0,0.06)] text-[#6C6B71] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F7F7F5] hover:border-[rgba(0,0,0,0.12)] transition-all duration-150 ease-out bg-white h-10 px-5 ${
+          className={`border-[0.5px] border-[#E6E6E4] text-[#6B6B69] text-[14px] font-normal rounded-lg px-5 py-2.5 hover:bg-[#F7F7F6] hover:border-[#CFCFCB] transition-all duration-150 ease-out bg-white h-10 px-5 ${
             currentIndex === 0 ? "opacity-40 cursor-not-allowed" : ""
           }`}
         >
@@ -100,7 +100,7 @@ export function LearnCarousel({
         <button
           onClick={goNext}
           disabled={isLast && !allViewed}
-          className={`bg-[#111111] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#111111]/90 transition-all duration-150 ease-out h-10 px-5 ${
+          className={`bg-[#1B2B61] text-white text-[14px] font-medium rounded-lg px-5 py-2.5 hover:bg-[#1B2B61]/90 transition-all duration-150 ease-out h-10 px-5 ${
             isLast && !allViewed ? "opacity-40 cursor-not-allowed" : ""
           }`}
           title={isLast && !allViewed ? "View all items first" : undefined}
@@ -116,10 +116,10 @@ export function LearnCarousel({
             key={i}
             className={`w-2 h-2 rounded-full transition-all duration-150 ${
               i === currentIndex
-                ? "bg-[#111111]"
+                ? "bg-[#1B2B61]"
                 : viewedItems.has(i)
-                  ? "bg-[#111111] opacity-40"
-                  : "bg-[rgba(0,0,0,0.06)]"
+                  ? "bg-[#1B2B61] opacity-40"
+                  : "bg-[#E6E6E4]"
             }`}
           />
         ))}

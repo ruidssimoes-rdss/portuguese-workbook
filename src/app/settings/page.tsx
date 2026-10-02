@@ -79,7 +79,7 @@ function Section({
   return (
     <div>
       <SectionLabel>{title}</SectionLabel>
-      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg divide-y divide-[rgba(0,0,0,0.06)]">
+      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg divide-y divide-[#E6E6E4]">
         {children}
       </div>
     </div>
@@ -94,9 +94,9 @@ function SettingsRow({
   return (
     <div className="flex items-center justify-between px-4 py-3">
       <div>
-        <p className="text-[13px] font-medium text-[#111111]">{label}</p>
+        <p className="text-[13px] font-medium text-[#1F1F1F]">{label}</p>
         {description && (
-          <p className="text-[12px] text-[#9B9DA3] mt-0.5">{description}</p>
+          <p className="text-[12px] text-[#98988F] mt-0.5">{description}</p>
         )}
       </div>
       <div>{children}</div>
@@ -307,7 +307,7 @@ export default function SettingsPage() {
         <ProtectedRoute>
           <PageShell>
             <div className="max-w-[640px] space-y-8">
-              <p className="text-[13px] text-[#6C6B71]">A carregar...</p>
+              <p className="text-[13px] text-[#6B6B69]">A carregar...</p>
             </div>
           </PageShell>
         </ProtectedRoute>
@@ -326,7 +326,7 @@ export default function SettingsPage() {
               <div
                 className={`rounded-lg p-3 text-[12px] ${
                   message.type === "ok"
-                    ? "border-[0.5px] border-[#E1F5EE] bg-[#E1F5EE] text-[#0F6E56]"
+                    ? "border-[0.5px] border-[#E1F2ED] bg-[#E1F2ED] text-[#1F7A68]"
                     : "border-[0.5px] border-[#fecaca] bg-[#fef2f2] text-[#dc2626]"
                 }`}
               >
@@ -340,7 +340,7 @@ export default function SettingsPage() {
                 <>
                   <div className="px-4 py-3 flex items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#9B9DA3]">Motivação</p>
+                      <p className="text-[12px] text-[#98988F]">Motivação</p>
                       {editingField === "motivation" ? (
                         <select
                           autoFocus
@@ -349,7 +349,7 @@ export default function SettingsPage() {
                             saveOnboardingField({ learningMotivation: e.target.value })
                           }
                           onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white px-3 py-1.5 text-[13px] text-[#111111] focus:border-[rgba(0,0,0,0.12)] outline-none"
+                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
                         >
                           {MOTIVATION_OPTIONS.map((o) => (
                             <option key={o.value} value={o.value}>
@@ -358,10 +358,10 @@ export default function SettingsPage() {
                           ))}
                         </select>
                       ) : (
-                        <p className="text-[13px] font-medium text-[#111111] mt-0.5">
+                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
                           {motivationLabel}
                           {savedField === "onboarding" && (
-                            <span className="ml-2 text-[12px] text-[#0F6E56]">
+                            <span className="ml-2 text-[12px] text-[#1F7A68]">
                               Guardado
                             </span>
                           )}
@@ -371,7 +371,7 @@ export default function SettingsPage() {
                     <button
                       type="button"
                       onClick={() => setEditingField((f) => (f === "motivation" ? null : "motivation"))}
-                      className="shrink-0 p-2 rounded-lg text-[#9B9DA3] hover:bg-[#F7F7F5] hover:text-[#111111]"
+                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
                       aria-label="Editar motivação"
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -382,7 +382,7 @@ export default function SettingsPage() {
                   </div>
                   <div className="px-4 py-3 flex items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#9B9DA3]">Nível atual</p>
+                      <p className="text-[12px] text-[#98988F]">Nível atual</p>
                       {editingField === "level" ? (
                         <select
                           autoFocus
@@ -391,7 +391,7 @@ export default function SettingsPage() {
                             saveOnboardingField({ selfAssessedLevel: e.target.value })
                           }
                           onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white px-3 py-1.5 text-[13px] text-[#111111] focus:border-[rgba(0,0,0,0.12)] outline-none"
+                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
                         >
                           {LEVEL_OPTIONS.map((o) => (
                             <option key={o.value} value={o.value}>
@@ -400,7 +400,7 @@ export default function SettingsPage() {
                           ))}
                         </select>
                       ) : (
-                        <p className="text-[13px] font-medium text-[#111111] mt-0.5">
+                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
                           {levelLabel}
                         </p>
                       )}
@@ -408,7 +408,7 @@ export default function SettingsPage() {
                     <button
                       type="button"
                       onClick={() => setEditingField((f) => (f === "level" ? null : "level"))}
-                      className="shrink-0 p-2 rounded-lg text-[#9B9DA3] hover:bg-[#F7F7F5] hover:text-[#111111]"
+                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
                       aria-label="Editar nível"
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -419,7 +419,7 @@ export default function SettingsPage() {
                   </div>
                   <div className="px-4 py-3 flex items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#9B9DA3]">Dias de estudo</p>
+                      <p className="text-[12px] text-[#98988F]">Dias de estudo</p>
                       {editingField === "studyDays" ? (
                         <select
                           autoFocus
@@ -430,7 +430,7 @@ export default function SettingsPage() {
                             })
                           }
                           onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white px-3 py-1.5 text-[13px] text-[#111111] focus:border-[rgba(0,0,0,0.12)] outline-none"
+                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
                         >
                           {STUDY_DAYS_OPTIONS.map((o) => (
                             <option key={o.value} value={o.value}>
@@ -439,7 +439,7 @@ export default function SettingsPage() {
                           ))}
                         </select>
                       ) : (
-                        <p className="text-[13px] font-medium text-[#111111] mt-0.5">
+                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
                           {studyDaysLabel}
                         </p>
                       )}
@@ -447,7 +447,7 @@ export default function SettingsPage() {
                     <button
                       type="button"
                       onClick={() => setEditingField((f) => (f === "studyDays" ? null : "studyDays"))}
-                      className="shrink-0 p-2 rounded-lg text-[#9B9DA3] hover:bg-[#F7F7F5] hover:text-[#111111]"
+                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
                       aria-label="Editar dias de estudo"
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -458,7 +458,7 @@ export default function SettingsPage() {
                   </div>
                   <div className="px-4 py-3 flex items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#9B9DA3]">Objetivo</p>
+                      <p className="text-[12px] text-[#98988F]">Objetivo</p>
                       {editingField === "targetGoal" ? (
                         <select
                           autoFocus
@@ -467,7 +467,7 @@ export default function SettingsPage() {
                             saveOnboardingField({ targetGoal: e.target.value })
                           }
                           onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white px-3 py-1.5 text-[13px] text-[#111111] focus:border-[rgba(0,0,0,0.12)] outline-none"
+                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
                         >
                           {TARGET_GOAL_OPTIONS.map((o) => (
                             <option key={o.value} value={o.value}>
@@ -476,7 +476,7 @@ export default function SettingsPage() {
                           ))}
                         </select>
                       ) : (
-                        <p className="text-[13px] font-medium text-[#111111] mt-0.5">
+                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
                           {targetGoalLabel}
                         </p>
                       )}
@@ -484,7 +484,7 @@ export default function SettingsPage() {
                     <button
                       type="button"
                       onClick={() => setEditingField((f) => (f === "targetGoal" ? null : "targetGoal"))}
-                      className="shrink-0 p-2 rounded-lg text-[#9B9DA3] hover:bg-[#F7F7F5] hover:text-[#111111]"
+                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
                       aria-label="Editar objetivo"
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -495,7 +495,7 @@ export default function SettingsPage() {
                   </div>
                   <div className="px-4 py-3 flex items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <p className="text-[12px] text-[#9B9DA3]">Data alvo</p>
+                      <p className="text-[12px] text-[#98988F]">Data alvo</p>
                       {editingField === "targetDate" ? (
                         <input
                           type="date"
@@ -505,10 +505,10 @@ export default function SettingsPage() {
                             saveOnboardingField({ targetDate: e.target.value || undefined })
                           }
                           onBlur={() => setEditingField(null)}
-                          className="mt-1 w-full rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white px-3 py-1.5 text-[13px] text-[#111111] focus:border-[rgba(0,0,0,0.12)] outline-none"
+                          className="mt-1 w-full rounded-lg border-[0.5px] border-[#E6E6E4] bg-white px-3 py-1.5 text-[13px] text-[#1F1F1F] focus:border-[#CFCFCB] outline-none"
                         />
                       ) : (
-                        <p className="text-[13px] font-medium text-[#111111] mt-0.5">
+                        <p className="text-[13px] font-medium text-[#1F1F1F] mt-0.5">
                           {formatTargetDate(onboarding?.targetDate)}
                         </p>
                       )}
@@ -516,7 +516,7 @@ export default function SettingsPage() {
                     <button
                       type="button"
                       onClick={() => setEditingField((f) => (f === "targetDate" ? null : "targetDate"))}
-                      className="shrink-0 p-2 rounded-lg text-[#9B9DA3] hover:bg-[#F7F7F5] hover:text-[#111111]"
+                      className="shrink-0 p-2 rounded-lg text-[#98988F] hover:bg-[#F7F7F6] hover:text-[#1F1F1F]"
                       aria-label="Editar data alvo"
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -526,13 +526,13 @@ export default function SettingsPage() {
                     </button>
                   </div>
                   {showGoalRecalcPrompt && (
-                    <div className="bg-[rgba(0,51,153,0.05)] border-t-[0.5px] border-[rgba(0,0,0,0.06)] rounded-b-lg px-4 py-3">
-                      <p className="text-[13px] text-[#111111] mb-2">
+                    <div className="bg-[rgba(0,51,153,0.05)] border-t-[0.5px] border-[#E6E6E4] rounded-b-lg px-4 py-3">
+                      <p className="text-[13px] text-[#1F1F1F] mb-2">
                         As tuas preferências mudaram. Queres atualizar o teu plano de estudo?
                       </p>
                       <Link
                         href="/calendar"
-                        className="text-[13px] font-medium text-[#185FA5] hover:underline"
+                        className="text-[13px] font-medium text-[#1B2B61] hover:underline"
                       >
                         Ir para objetivos no calendário
                       </Link>
@@ -541,12 +541,12 @@ export default function SettingsPage() {
                 </>
               ) : (
                 <div className="px-4 py-3">
-                  <p className="text-[13px] text-[#6C6B71] mb-3">
+                  <p className="text-[13px] text-[#6B6B69] mb-3">
                     Não fizeste a configuração inicial?
                   </p>
                   <Link
                     href="/onboarding"
-                    className="text-[13px] font-medium text-[#185FA5] hover:underline"
+                    className="text-[13px] font-medium text-[#1B2B61] hover:underline"
                   >
                     Configurar agora
                   </Link>
@@ -563,7 +563,7 @@ export default function SettingsPage() {
                 <select
                   value={pronunciationSpeed}
                   onChange={(e) => setPronunciationSpeed(Number(e.target.value))}
-                  className="text-[13px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-1.5 outline-none focus:border-[rgba(0,0,0,0.12)]"
+                  className="text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB]"
                 >
                   {SPEED_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -582,7 +582,7 @@ export default function SettingsPage() {
                   aria-checked={showPhonetics}
                   onClick={() => setShowPhonetics((v) => !v)}
                   className={`relative inline-flex h-[18px] w-8 shrink-0 rounded-full transition-colors ${
-                    showPhonetics ? "bg-[#185FA5]" : "bg-[rgba(0,0,0,0.12)]"
+                    showPhonetics ? "bg-[#1B2B61]" : "bg-[#CFCFCB]"
                   }`}
                 >
                   <span
@@ -600,7 +600,7 @@ export default function SettingsPage() {
                 <select
                   value={dailyGoal}
                   onChange={(e) => setDailyGoal(Number(e.target.value))}
-                  className="text-[13px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-1.5 outline-none focus:border-[rgba(0,0,0,0.12)]"
+                  className="text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB]"
                 >
                   {DAILY_GOAL_OPTIONS.map((n) => (
                     <option key={n} value={n}>
@@ -619,7 +619,7 @@ export default function SettingsPage() {
                   aria-checked={showTranslations}
                   onClick={() => setShowTranslations((v) => !v)}
                   className={`relative inline-flex h-[18px] w-8 shrink-0 rounded-full transition-colors ${
-                    showTranslations ? "bg-[#185FA5]" : "bg-[rgba(0,0,0,0.12)]"
+                    showTranslations ? "bg-[#1B2B61]" : "bg-[#CFCFCB]"
                   }`}
                 >
                   <span
@@ -637,7 +637,7 @@ export default function SettingsPage() {
                 <select
                   value={preferredStudyTime}
                   onChange={(e) => setPreferredStudyTime(e.target.value)}
-                  className="text-[13px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-1.5 outline-none focus:border-[rgba(0,0,0,0.12)]"
+                  className="text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB]"
                 >
                   {PREFERRED_STUDY_TIME_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -651,7 +651,7 @@ export default function SettingsPage() {
                   type="button"
                   onClick={saveSettings}
                   disabled={saving}
-                  className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors disabled:opacity-50"
+                  className="px-4 py-2 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors disabled:opacity-50"
                 >
                   {saving ? "A guardar..." : "Guardar preferências"}
                 </button>
@@ -665,24 +665,24 @@ export default function SettingsPage() {
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-[180px] text-[13px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-1.5 outline-none focus:border-[rgba(0,0,0,0.12)]"
+                  className="w-[180px] text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB]"
                 />
               </SettingsRow>
               <SettingsRow label="Email">
-                <p className="text-[13px] text-[#6C6B71]">{user?.email ?? "—"}</p>
+                <p className="text-[13px] text-[#6B6B69]">{user?.email ?? "—"}</p>
               </SettingsRow>
               <div className="px-4 py-3 flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   onClick={saveProfile}
                   disabled={saving}
-                  className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors disabled:opacity-50"
+                  className="px-4 py-2 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors disabled:opacity-50"
                 >
                   {saving ? "A guardar..." : "Guardar perfil"}
                 </button>
                 <Link
                   href="/auth/update-password"
-                  className="text-[13px] font-medium text-[#185FA5] hover:underline"
+                  className="text-[13px] font-medium text-[#1B2B61] hover:underline"
                 >
                   Alterar palavra-passe
                 </Link>
@@ -695,7 +695,7 @@ export default function SettingsPage() {
                   type="button"
                   onClick={handleExport}
                   disabled={exporting}
-                  className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
+                  className="px-4 py-2 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
                 >
                   {exporting ? "A exportar..." : "Exportar"}
                 </button>
@@ -704,16 +704,16 @@ export default function SettingsPage() {
                 <button
                   type="button"
                   onClick={handleSignOut}
-                  className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
+                  className="px-4 py-2 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
                 >
                   Sair
                 </button>
               </div>
-              <div className="px-4 py-3 border-t border-[rgba(0,0,0,0.06)]">
-                <p className="text-[13px] font-medium text-[#111111] mb-1">
+              <div className="px-4 py-3 border-t border-[#E6E6E4]">
+                <p className="text-[13px] font-medium text-[#1F1F1F] mb-1">
                   Apagar a minha conta
                 </p>
-                <p className="text-[12px] text-[#9B9DA3] mb-3">
+                <p className="text-[12px] text-[#98988F] mb-3">
                   Isto apagará permanentemente a tua conta e todos os dados associados.
                 </p>
                 <button
@@ -737,11 +737,11 @@ export default function SettingsPage() {
           aria-modal="true"
           aria-label="Confirmar apagar conta"
         >
-          <div className="bg-white border-[0.5px] border-[rgba(0,0,0,0.12)] rounded-lg max-w-md w-full p-6">
-            <h3 className="text-[16px] font-medium text-[#111111] mb-2">
+          <div className="bg-white border-[0.5px] border-[#CFCFCB] rounded-lg max-w-md w-full p-6">
+            <h3 className="text-[16px] font-medium text-[#1F1F1F] mb-2">
               Tens a certeza?
             </h3>
-            <p className="text-[13px] text-[#6C6B71] mb-4">
+            <p className="text-[13px] text-[#6B6B69] mb-4">
               Esta ação é irreversível. Escreve &quot;APAGAR&quot; para confirmar:
             </p>
             <input
@@ -749,7 +749,7 @@ export default function SettingsPage() {
               value={deleteConfirmText}
               onChange={(e) => setDeleteConfirmText(e.target.value)}
               placeholder="APAGAR"
-              className="w-full text-[13px] bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-1.5 outline-none focus:border-[rgba(0,0,0,0.12)] placeholder:text-[#9B9DA3] mb-4"
+              className="w-full text-[13px] bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-3 py-1.5 outline-none focus:border-[#CFCFCB] placeholder:text-[#98988F] mb-4"
             />
             <div className="flex gap-3 justify-end">
               <button
@@ -758,7 +758,7 @@ export default function SettingsPage() {
                   setShowDeleteConfirm(false);
                   setDeleteConfirmText("");
                 }}
-                className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
+                className="px-4 py-2 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
               >
                 Cancelar
               </button>

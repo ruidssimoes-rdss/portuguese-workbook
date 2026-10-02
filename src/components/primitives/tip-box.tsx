@@ -1,15 +1,14 @@
 /**
- * TipBox — yellow highlighted tip/note box.
- * Used in grammar expanded sections.
+ * TipBox — fully enclosed navy callout (Figma: Callout / Accent).
  *
  * <TipBox>Unlike English, Portuguese uses articles with proper nouns.</TipBox>
  */
 
-export function TipBox({ children }: { children: React.ReactNode }) {
+export function TipBox({ children, label = "Dica" }: { children: React.ReactNode; label?: string }) {
   return (
-    <div className="bg-[#FFFBEB] border-[0.5px] border-[#FEF3C7] rounded-lg px-3.5 py-2.5">
-      <div className="text-[12px] text-[#92400E] leading-relaxed">
-        <span className="font-medium">Tip: </span>
+    <div className="rounded-[10px] border border-[#D3DAEB] bg-aula-accent-faint px-3.5 py-2.5">
+      <div className="text-[12.5px] leading-relaxed text-aula-text">
+        <span className="font-semibold text-aula-accent">{label}: </span>
         {children}
       </div>
     </div>

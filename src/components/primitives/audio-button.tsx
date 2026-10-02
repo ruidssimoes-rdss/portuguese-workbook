@@ -71,8 +71,8 @@ export function AudioButton({ text, className = "" }: AudioButtonProps) {
       disabled={!voicesReady}
       className={`inline-flex items-center justify-center w-7 h-7 rounded-md transition-colors disabled:opacity-30 ${
         speaking
-          ? "text-[#185FA5] bg-[#E6F1FB]"
-          : "text-[#9B9DA3] hover:text-[#6C6B71] hover:bg-[#F7F7F5]"
+          ? "text-[#1B2B61] bg-[#E8ECF6]"
+          : "text-[#98988F] hover:text-[#6B6B69] hover:bg-[#F7F7F6]"
       } ${className}`}
       aria-label={`Listen to "${text}"`}
       title="Listen"

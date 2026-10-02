@@ -31,7 +31,7 @@ export function CopyButton({ text, label = "Copy", className }: CopyButtonProps)
       type="button"
       onClick={handleCopy}
       className={`text-[12px] transition-colors duration-150 cursor-pointer ${
-        copied ? "text-[#0F6E56]" : "text-[#9B9DA3] hover:text-[#6C6B71]"
+        copied ? "text-[#1F7A68]" : "text-[#98988F] hover:text-[#6B6B69]"
       } ${className ?? ""}`}
     >
       {copied ? "Copied" : label}

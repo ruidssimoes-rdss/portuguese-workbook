@@ -36,7 +36,7 @@ const cefrOptions = ["All", "A1", "A2", "B1"];
 
 function GroupHeader({ label, labelPt }: { label: string; labelPt: string }) {
   return (
-    <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-2">
+    <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#98988F] mb-2">
       {label}
       <span className="ml-2 normal-case tracking-normal italic font-normal">
         {labelPt}
@@ -53,10 +53,10 @@ function TopicRow({ topic, search }: { topic: GrammarTopic; search: string }) {
       <ListRow>
         <div className="flex items-center justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <div className="text-[14px] font-medium text-[#111111]">
+            <div className="text-[14px] font-medium text-[#1F1F1F]">
               {topic.title}
             </div>
-            <div className="text-[12px] text-[#9B9DA3] mt-0.5">
+            <div className="text-[12px] text-[#98988F] mt-0.5">
               {topic.titlePt}
             </div>
             {search && (() => {
@@ -72,7 +72,7 @@ function TopicRow({ topic, search }: { topic: GrammarTopic; search: string }) {
               );
               if (!matchingRule) return null;
               return (
-                <div className="mt-1 text-[11px] text-[#9B9DA3] truncate">
+                <div className="mt-1 text-[11px] text-[#98988F] truncate">
                   Match: &ldquo;{(matchingRule as any).rule}&rdquo;
                 </div>
               );
@@ -80,7 +80,7 @@ function TopicRow({ topic, search }: { topic: GrammarTopic; search: string }) {
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             <BadgePill level={topic.cefr} />
-            <ChevronRight size={16} className="text-[#9B9DA3]" />
+            <ChevronRight size={16} className="text-[#98988F]" />
           </div>
         </div>
       </ListRow>
@@ -159,8 +159,8 @@ export default function GrammarPage() {
               onClick={() => setFilterOpen(!filterOpen)}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] rounded-lg border-[0.5px] transition-colors ${
                 filterOpen
-                  ? "border-[rgba(0,0,0,0.12)] text-[#111111]"
-                  : "border-[rgba(0,0,0,0.06)] text-[#9B9DA3] hover:border-[rgba(0,0,0,0.12)] hover:text-[#6C6B71]"
+                  ? "border-[#CFCFCB] text-[#1F1F1F]"
+                  : "border-[#E6E6E4] text-[#98988F] hover:border-[#CFCFCB] hover:text-[#6B6B69]"
               }`}
             >
               <SlidersHorizontal size={13} />
@@ -170,18 +170,18 @@ export default function GrammarPage() {
             {filterOpen && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setFilterOpen(false)} />
-                <div className="absolute top-full left-0 mt-1.5 z-20 bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg shadow-lg w-[260px] max-h-[400px] overflow-y-auto">
+                <div className="absolute top-full left-0 mt-1.5 z-20 bg-white border-[0.5px] border-[#E6E6E4] rounded-lg shadow-lg w-[260px] max-h-[400px] overflow-y-auto">
                   {/* Header with close */}
                   <div className="flex items-center justify-between px-3 pt-3 pb-2">
-                    <span className="text-[11px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em]">Sections</span>
-                    <button onClick={() => setFilterOpen(false)} className="text-[#9B9DA3] hover:text-[#6C6B71]">
+                    <span className="text-[11px] font-medium text-[#98988F] uppercase tracking-[0.05em]">Sections</span>
+                    <button onClick={() => setFilterOpen(false)} className="text-[#98988F] hover:text-[#6B6B69]">
                       <X size={14} />
                     </button>
                   </div>
                   {/* Section groups */}
                   {groups.map((g, i) => (
                     <div key={i} className="px-3 pb-2">
-                      <div className="text-[10px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em] mb-1">{g.label}</div>
+                      <div className="text-[10px] font-medium text-[#98988F] uppercase tracking-[0.05em] mb-1">{g.label}</div>
                       <div className="space-y-0.5">
                         {g.topics.map((t: any) => (
                           <button
@@ -190,10 +190,10 @@ export default function GrammarPage() {
                               document.getElementById(`grammar-${t.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
                               setFilterOpen(false);
                             }}
-                            className="flex items-center justify-between w-full px-2 py-1.5 rounded text-[12px] text-[#6C6B71] hover:bg-[#F7F7F5] transition-colors text-left"
+                            className="flex items-center justify-between w-full px-2 py-1.5 rounded text-[12px] text-[#6B6B69] hover:bg-[#F7F7F6] transition-colors text-left"
                           >
                             <span className="truncate">{t.title}</span>
-                            <span className="text-[10px] text-[#9B9DA3] ml-2 flex-shrink-0">{t.cefr}</span>
+                            <span className="text-[10px] text-[#98988F] ml-2 flex-shrink-0">{t.cefr}</span>
                           </button>
                         ))}
                       </div>

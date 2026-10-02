@@ -22,26 +22,26 @@ export function StatCard({
   progress,
 }: StatCardProps) {
   return (
-    <div className="bg-[#F7F7F5] rounded-lg p-4">
-      <div className="text-[12px] text-[#9B9DA3] mb-2">{label}</div>
-      <div className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
+    <div className="bg-aula-sunken rounded-[10px] px-3.5 py-3">
+      <div className="text-[11px] text-aula-text-3 mb-1.5">{label}</div>
+      <div className="text-[17px] font-semibold text-aula-text tracking-[-0.01em]">
         {value}
         {total && (
-          <span className="text-[14px] font-normal text-[#9B9DA3]">
+          <span className="text-[14px] font-normal text-[#98988F]">
             {" "}/ {total}
           </span>
         )}
       </div>
       {progress !== undefined && (
-        <div className="h-[3px] bg-[rgba(0,0,0,0.06)] rounded-full mt-2.5 overflow-hidden">
+        <div className="h-[3px] bg-[#E6E6E4] rounded-full mt-2.5 overflow-hidden">
           <div
-            className="h-full bg-[#185FA5] rounded-full transition-all duration-300"
+            className="h-full bg-[#1B2B61] rounded-full transition-all duration-300"
             style={{ width: `${Math.max(progress, 2)}%` }}
           />
         </div>
       )}
       {subtitle && (
-        <div className="text-[12px] text-[#9B9DA3] mt-1.5">{subtitle}</div>
+        <div className="text-[12px] text-[#98988F] mt-1.5">{subtitle}</div>
       )}
     </div>
   );

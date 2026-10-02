@@ -146,8 +146,8 @@ function LearnPageContent() {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
-          <div className="w-6 h-6 border-2 border-[#185FA5] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-[13px] text-[#9B9DA3]">
+          <div className="w-6 h-6 border-2 border-[#1B2B61] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <p className="text-[13px] text-[#98988F]">
             {isReview ? "Building review session..." : "Generating your lesson..."}
           </p>
         </div>
@@ -161,7 +161,7 @@ function LearnPageContent() {
         <p className="text-[14px] text-[#dc2626]">{error}</p>
         <button
           onClick={() => router.push("/lessons")}
-          className="px-4 py-2.5 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
+          className="px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
         >
           Back to lessons
         </button>
@@ -172,10 +172,10 @@ function LearnPageContent() {
   if (!lesson || !generated || generated.sections.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-64 gap-4">
-        <p className="text-[14px] text-[#6C6B71]">No exercises available at this level yet.</p>
+        <p className="text-[14px] text-[#6B6B69]">No exercises available at this level yet.</p>
         <button
           onClick={() => router.push("/lessons")}
-          className="px-4 py-2.5 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
+          className="px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
         >
           Back to lessons
         </button>
@@ -198,7 +198,7 @@ export default function LearnPage() {
     <Suspense
       fallback={
         <div className="flex items-center justify-center h-64">
-          <p className="text-[13px] text-[#9B9DA3]">Loading...</p>
+          <p className="text-[13px] text-[#98988F]">Loading...</p>
         </div>
       }
     >

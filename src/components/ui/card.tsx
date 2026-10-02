@@ -40,7 +40,7 @@ export function Card({
   const v = variantClasses[variant];
   const p = paddingClasses[padding];
   const hover = interactive
-    ? "hover:border-[#003399]/20 hover:shadow-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003399]/30 focus-visible:ring-offset-2"
+    ? "hover:border-[#1B2B61]/20 hover:shadow-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B2B61]/30 focus-visible:ring-offset-2"
     : "";
   const active = interactive && pressed ? "scale-[0.995]" : "";
   const clickable = onClick ? "cursor-pointer" : "";
