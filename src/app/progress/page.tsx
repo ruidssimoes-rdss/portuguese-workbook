@@ -45,9 +45,9 @@ interface MasteryData {
 // ─── Helpers ────────────────────────────────────────────
 
 const LEVEL_LABELS: Record<string, string> = {
-  A1: "Beginner",
-  A2: "Elementary",
-  B1: "Intermediate",
+  A1: "Iniciação",
+  A2: "Dia a dia",
+  B1: "Conversar à vontade",
 };
 
 function eventDotColor(type: TimelineEvent["type"]): string {
@@ -64,17 +64,17 @@ function eventDotColor(type: TimelineEvent["type"]): string {
 
 function formatDate(iso: string): string {
   const d = new Date(iso.includes("T") ? iso : iso + "T12:00:00");
-  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  return d.toLocaleDateString("pt-PT", { day: "numeric", month: "short" });
 }
 
 function timeAgo(iso: string): string {
   const ms = Date.now() - new Date(iso).getTime();
   const hours = Math.floor(ms / (1000 * 60 * 60));
-  if (hours < 1) return "just now";
-  if (hours < 24) return `${hours}h ago`;
+  if (hours < 1) return "agora mesmo";
+  if (hours < 24) return `há ${hours} h`;
   const days = Math.floor(hours / 24);
-  if (days === 1) return "yesterday";
-  return `${days}d ago`;
+  if (days === 1) return "ontem";
+  return `há ${days} dias`;
 }
 
 // ─── Data Loading ───────────────────────────────────────
@@ -185,7 +185,7 @@ function CEFRProgressCard({
   const readiness = Math.round(progress.readiness * 100);
 
   return (
-    <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-5">
+    <div className="border border-aula-border rounded-xl p-5">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-[14px] font-medium text-[#1F1F1F]">
           {level}{" "}
@@ -201,17 +201,17 @@ function CEFRProgressCard({
       <ProgressBar value={progress.readiness} className="mb-3" />
 
       <div className="flex gap-4 text-[11px]">
-        <span className="text-[#1F7A68]">{progress.mastered} mastered</span>
+        <span className="text-[#1F7A68]">{progress.mastered} dominados</span>
         <span className="text-[#5B45B8]">
-          {progress.familiar + progress.introduced} in progress
+          {progress.familiar + progress.introduced} a aprender
         </span>
-        <span className="text-[#98988F]">{progress.unseen} unseen</span>
+        <span className="text-[#98988F]">{progress.unseen} por ver</span>
       </div>
 
       <div className="space-y-1 mt-3">
-        <SkillRow label="Vocab" value={progress.vocabProgress} />
-        <SkillRow label="Verbs" value={progress.verbProgress} />
-        <SkillRow label="Grammar" value={progress.grammarProgress} />
+        <SkillRow label="Vocabulário" value={progress.vocabProgress} />
+        <SkillRow label="Verbos" value={progress.verbProgress} />
+        <SkillRow label="Gramática" value={progress.grammarProgress} />
       </div>
     </div>
   );
@@ -221,7 +221,7 @@ function SkillRow({ label, value }: { label: string; value: number }) {
   const pct = Math.round(value * 100);
   return (
     <div className="flex items-center gap-3">
-      <span className="text-[11px] text-[#98988F] w-14">{label}</span>
+      <span className="text-[11px] text-[#98988F] w-[76px]">{label}</span>
       <div className="flex-1 h-1 bg-[#E6E6E4] rounded-full">
         <div
           className="h-1 bg-[#1B2B61] rounded-full transition-all duration-500"
@@ -247,7 +247,7 @@ function CategoryBreakdown({
   return (
     <div className="mb-8">
       <SectionLabel>{title}</SectionLabel>
-      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg divide-y divide-[#E6E6E4]">
+      <div className="border border-aula-border rounded-xl divide-y divide-[#E6E6E4]">
         {items.map((item) => {
           const pct =
             item.total > 0
@@ -360,7 +360,7 @@ export default function ProgressPage() {
       <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
         <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
         <div className="text-[13px] text-[#98988F] text-center py-16">
-          A carregar...
+          A carregar…
         </div>
       </PageShell>
     );
@@ -372,13 +372,13 @@ export default function ProgressPage() {
         <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
         <div className="text-center py-16">
           <div className="text-[14px] text-[#6B6B69] mb-4">
-            Sign in to track your progress
+            Entra para acompanhares o teu progresso
           </div>
           <a
             href="/auth/login"
             className="inline-flex px-4 py-2 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
           >
-            Sign in
+            Entrar
           </a>
         </div>
       </PageShell>
@@ -390,7 +390,7 @@ export default function ProgressPage() {
       <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
         <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
         <div className="text-[13px] text-[#98988F] text-center py-16">
-          Start your first lesson to see progress here
+          Faz a tua primeira lição para veres aqui o progresso
         </div>
       </PageShell>
     );
@@ -414,33 +414,33 @@ export default function ProgressPage() {
       {/* Overall stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
         <StatCard
-          label="Items mastered"
+          label="Itens dominados"
           value={String(totalMastered)}
           total={String(totalItems)}
           progress={overallPct}
         />
         <StatCard
-          label="To review"
+          label="Para rever"
           value={String(mastery.reviewCount)}
-          subtitle={mastery.reviewCount > 0 ? "Items due" : "All caught up"}
+          subtitle={mastery.reviewCount > 0 ? "Em atraso" : "Tudo em dia"}
         />
         <StatCard
-          label="Streak"
+          label="Sequência"
           value={legacyStats ? `${legacyStats.currentStreak}d` : "0d"}
           subtitle={
             legacyStats && legacyStats.longestStreak > 0
-              ? `Best: ${legacyStats.longestStreak}d`
+              ? `Recorde: ${legacyStats.longestStreak}d`
               : undefined
           }
         />
         <StatCard
-          label="Notes"
+          label="Notas"
           value={String(legacyStats?.totalNotesWritten ?? 0)}
         />
       </div>
 
       {/* CEFR level progression */}
-      <SectionLabel>Level progression</SectionLabel>
+      <SectionLabel>Níveis</SectionLabel>
       <div className="space-y-3 mb-8">
         <CEFRProgressCard level="A1" progress={mastery.progression.a1.progress} />
         <CEFRProgressCard level="A2" progress={mastery.progression.a2.progress} />
@@ -449,32 +449,32 @@ export default function ProgressPage() {
 
       {/* Vocab by category */}
       <CategoryBreakdown
-        title="Vocabulary by category"
+        title="Vocabulário por categoria"
         items={mastery.vocabByCategory}
       />
 
       {/* Verbs by group */}
       <CategoryBreakdown
-        title="Verbs by group"
+        title="Verbos por grupo"
         items={mastery.verbsByGroup}
       />
 
       {/* Recently mastered + Needs attention */}
-      <SectionLabel>Status</SectionLabel>
-      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-5 mb-8">
+      <SectionLabel>Estado</SectionLabel>
+      <div className="border border-aula-border rounded-xl p-5 mb-8">
         <MasteryItemList
-          title="Recently mastered"
+          title="Dominados recentemente"
           items={mastery.recentlyMastered}
           variant="success"
         />
         <MasteryItemList
-          title="Needs attention"
+          title="Precisa de atenção"
           items={mastery.needsAttention}
           variant="warning"
         />
         {mastery.recentlyMastered.length === 0 && mastery.needsAttention.length === 0 && (
           <p className="text-[13px] text-[#98988F] text-center py-4">
-            Complete lessons to see your mastery status here
+            Faz algumas lições para veres aqui o teu domínio
           </p>
         )}
       </div>
@@ -482,8 +482,8 @@ export default function ProgressPage() {
       {/* Timeline */}
       {legacyStats && legacyStats.timeline.length > 0 && (
         <>
-          <SectionLabel>Recent activity</SectionLabel>
-          <div className="border-[0.5px] border-[#E6E6E4] rounded-lg divide-y divide-[#E6E6E4]">
+          <SectionLabel>Atividade recente</SectionLabel>
+          <div className="border border-aula-border rounded-xl divide-y divide-[#E6E6E4]">
             {legacyStats.timeline.slice(0, 10).map((event, i) => (
               <div key={i} className="flex items-center gap-3 px-4 py-3">
                 <div
