@@ -88,7 +88,7 @@ export async function createGoalWithEvents(
     linked_label: e.title,
     linked_score: null,
     linked_passed: null,
-    color: "#0EA5E9",
+    color: "#98988F",
     goal_id: goal.id,
   }));
 
@@ -199,7 +199,7 @@ export async function updateGoalPlan(
       linked_label: e.title,
       linked_score: null,
       linked_passed: null,
-      color: "#0EA5E9",
+      color: "#98988F",
       goal_id: goalId,
     }));
     await supabase.from("user_calendar_events").insert(eventRows);
