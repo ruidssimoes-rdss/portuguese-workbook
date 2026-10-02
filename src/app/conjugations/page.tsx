@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight, SlidersHorizontal, X } from "lucide-react";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import {
   PageHeader,
   SegmentedFilter,
@@ -260,10 +260,10 @@ export default function ConjugationsPage() {
   const hasGroups = groups && groups.length > 1;
 
   return (
-    <PageShell>
+    <PageShell header={<Crumbs items={[{ label: "Conjugações" }]} />}>
       <PageHeader
         title="Conjugações"
-        subtitle={`${(verbData as any).order.length} verbs · 6 tenses`}
+        subtitle={`${(verbData as any).order.length} verbos · 9 tempos`}
       />
 
       {/* ─── Filter bar (standard layout) ──────────────────────────────── */}

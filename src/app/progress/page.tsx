@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useAuth } from "@/components/auth-provider";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import {
   PageHeader,
   StatCard,
@@ -357,8 +357,8 @@ export default function ProgressPage() {
 
   if (authLoading || loading) {
     return (
-      <PageShell>
-        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+      <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
+        <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
         <div className="text-[13px] text-[#98988F] text-center py-16">
           A carregar...
         </div>
@@ -368,8 +368,8 @@ export default function ProgressPage() {
 
   if (!user) {
     return (
-      <PageShell>
-        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+      <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
+        <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
         <div className="text-center py-16">
           <div className="text-[14px] text-[#6B6B69] mb-4">
             Sign in to track your progress
@@ -387,8 +387,8 @@ export default function ProgressPage() {
 
   if (!mastery) {
     return (
-      <PageShell>
-        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+      <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
+        <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
         <div className="text-[13px] text-[#98988F] text-center py-16">
           Start your first lesson to see progress here
         </div>
@@ -408,8 +408,8 @@ export default function ProgressPage() {
   const overallPct = totalItems > 0 ? Math.round((totalMastered / totalItems) * 100) : 0;
 
   return (
-    <PageShell>
-      <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+    <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
+      <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
 
       {/* Overall stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { PageContainer } from "@/components/ui/page-container";
 import { PageHeader } from "@/components/ui/page-header";
 import { Card } from "@/components/ui/card";
@@ -91,13 +91,12 @@ export default function ExamsPage() {
   ).length;
 
   return (
-    <>
-      <Topbar />
+    <PageShell header={<Crumbs items={[{ label: "Exames" }]} />}>
       <PageContainer>
         <div className="py-5">
           <PageHeader
-            title="Exams"
-            titlePt="Exames"
+            title="Exames"
+            titlePt="Exames simulados"
             section="REVISION"
             sectionPt="Revisão"
             tagline="Monthly mock exams that mirror the real CIPLE A2 format — three sections, timed, and scored exactly as the certification body does it."
@@ -264,6 +263,6 @@ export default function ExamsPage() {
           })}
         </div>
       </PageContainer>
-    </>
+    </PageShell>
   );
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { SlideDrawer } from "@/components/ui/slide-drawer";
 import { PageHeader, SectionLabel, BadgePill } from "@/components/primitives";
 import { useAuth } from "@/components/auth-provider";
@@ -536,8 +536,8 @@ function NotesContent() {
 
   return (
     <>
-      <PageShell>
-        <PageHeader title="Notas" subtitle="Your study notebook" />
+      <PageShell header={<Crumbs items={[{ label: "Notas" }]} />}>
+        <PageHeader title="Notas" subtitle="O teu caderno de estudo" />
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div />
@@ -700,8 +700,8 @@ function NotesContent() {
 export default function NotesPage() {
   return (
     <Suspense fallback={
-      <PageShell>
-        <PageHeader title="Notas" subtitle="Your study notebook" />
+      <PageShell header={<Crumbs items={[{ label: "Notas" }]} />}>
+        <PageHeader title="Notas" subtitle="O teu caderno de estudo" />
         <p className="text-[13px] text-[#98988F] py-8">Loading...</p>
       </PageShell>
     }>

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ProtectedRoute } from "@/components/protected-route";
 import { useAuth } from "@/components/auth-provider";
 import { createClient } from "@/lib/supabase/client";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { PageHeader, SectionLabel } from "@/components/primitives";
 import {
   getOnboardingData,
@@ -318,9 +318,9 @@ export default function SettingsPage() {
   return (
     <>
       <ProtectedRoute>
-        <PageShell>
+        <PageShell header={<Crumbs items={[{ label: "Definições" }]} />}>
           <div className="max-w-[640px] space-y-8">
-            <PageHeader title="Definições" subtitle="Manage your account and preferences" />
+            <PageHeader title="Definições" subtitle="A tua conta e as tuas preferências" />
 
             {message && (
               <div

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/primitives";
 import { ChevronDown } from "lucide-react";
 
@@ -720,11 +720,11 @@ export default function GuidePage() {
   }, [openSectionId]);
 
   return (
-    <PageShell>
+    <PageShell header={<Crumbs items={[{ label: "Como aprender" }]} />}>
       <div className="max-w-[896px] mx-auto py-5 px-4">
         <PageHeader
           title="Como aprender"
-          subtitle="Your guide to learning European Portuguese with Aula PT"
+          subtitle="O teu guia para aprender português europeu com o Aula"
         />
 
         <div className="mt-6 border-[0.5px] border-[#E6E6E4] rounded-lg overflow-hidden">

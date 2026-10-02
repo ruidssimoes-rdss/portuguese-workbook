@@ -120,3 +120,17 @@ export const CATEGORY_PT: Record<string, string> = {
 export function wordHref(categoryId: string, portuguese: string) {
   return `/vocabulary/${categoryId}/${encodeURIComponent(portuguese)}`;
 }
+
+/** Portuguese tense names for the verb data. */
+export const TENSE_PT: Record<string, string> = {
+  Present: "Presente",
+  Preterite: "Pretérito perfeito",
+  Imperfect: "Imperfeito",
+  Future: "Futuro",
+  Conditional: "Condicional",
+  "Present Subjunctive": "Conjuntivo presente",
+  "Imperfect Subjunctive": "Conjuntivo imperfeito",
+  "Future Subjunctive": "Conjuntivo futuro",
+  Imperative: "Imperativo",
+};
+

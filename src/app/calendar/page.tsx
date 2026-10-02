@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { SlideDrawer } from "@/components/ui/slide-drawer";
 import { PageHeader, SectionLabel } from "@/components/primitives";
 import { useAuth } from "@/components/auth-provider";
@@ -909,9 +909,9 @@ export default function CalendarPage() {
 
   return (
     <>
-      <PageShell>
+      <PageShell header={<Crumbs items={[{ label: "Calendário" }]} />}>
         <div className="py-5">
-          <PageHeader title="Calendário" subtitle="Your learning timeline" />
+          <PageHeader title="Calendário" subtitle="Os teus dias de estudo e o que vem a seguir" />
         </div>
 
         {!isLoggedIn ? (

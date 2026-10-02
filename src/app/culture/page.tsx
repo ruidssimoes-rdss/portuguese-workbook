@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import {
   PageHeader,
   TabBar,
@@ -118,10 +118,10 @@ export default function CulturePage() {
       : allItems.filter((i) => i.category === tab).length;
 
   return (
-    <PageShell>
+    <PageShell header={<Crumbs items={[{ label: "Cultura" }]} />}>
       <PageHeader
-        title="Cultura portuguesa"
-        subtitle={`${allItems.length} items — traditions, etiquette, expressions, and regional language`}
+        title="Cultura"
+        subtitle={`${allItems.length} notas sobre como se vive e se fala em Portugal`}
       />
 
       <TabBar
