@@ -1,495 +1,193 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
-import Link from "next/link";
-import { ChevronRight, SlidersHorizontal, X } from "lucide-react";
-import { PageShell } from "@/components/layout/page-shell";
-import {
-  PageHeader,
-  SegmentedFilter,
-  SearchInput,
-  ListContainer,
-  ListRow,
-  BadgePill,
-  CountLabel,
-} from "@/components/primitives";
+/**
+ * Conjugações — índice (Figma: Ecrãs / Conjugações — índice).
+ * Verbs grouped by conjugation pattern with mastery and next review;
+ * panel with your verb stats and the four families.
+ */
 
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { Search } from "lucide-react";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
+import { SegmentedFilter } from "@/components/primitives";
+import { Pips, LevelTag, Label, ScreenTitle, PanelCard, KV } from "@/components/aula";
+import { useMastery, stateOf, dueLabel, type WordState } from "@/lib/use-mastery";
 import verbData from "@/data/verbs.json";
 import { getGroupedVerbs } from "@/data/verb-groups";
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
-
-function simplifyGroup(group: string): string {
-  if (group.startsWith("Regular -AR")) return "Regular -AR";
-  if (group.startsWith("Regular -ER")) return "Regular -ER";
-  if (group.startsWith("Regular -IR")) return "Regular -IR";
-  return "Irregular";
+interface Conj {
+  Conjugation: string;
+  Person: string;
+  Tense: string;
 }
-
-/** Strip prefixes for short dropdown labels */
-function shortLabel(label: string): string {
-  return label
-    .replace(/^Regular -[A-Z]{2}: /, "")
-    .replace(/^Irregular -[A-Z]{2}: /, "")
-    .replace(/^Irregular: /, "");
+interface Verb {
+  meta: { english: string; group: string; cefr: string };
+  conjugations: Conj[];
 }
+const VERBS = (verbData as unknown as { verbs: Record<string, Verb> }).verbs;
+const ORDER = (verbData as unknown as { order: string[] }).order;
 
-// ─── Icons ──────────────────────────────────────────────────────────────────
+const LEVELS = ["Todos", "A1", "A2", "B1"];
+const STATE_FILTERS = ["Todos", "Em atraso", "A aprender", "Por ver"];
+const FILTER_STATE: Record<string, WordState | null> = { Todos: null, "Em atraso": "overdue", "A aprender": "learning", "Por ver": "unseen" };
 
-function SortIcon() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M3 6h7M3 12h5M3 18h3M16 6l4 4M16 6v14" />
-    </svg>
-  );
-}
-
-function ListIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-      className={active ? "text-[#111111]" : "text-[#9B9DA3]"}>
-      <line x1="3" y1="6" x2="21" y2="6" />
-      <line x1="3" y1="12" x2="21" y2="12" />
-      <line x1="3" y1="18" x2="21" y2="18" />
-    </svg>
-  );
-}
-
-function GridIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-      className={active ? "text-[#111111]" : "text-[#9B9DA3]"}>
-      <rect x="3" y="3" width="7" height="7" rx="1" />
-      <rect x="14" y="3" width="7" height="7" rx="1" />
-      <rect x="3" y="14" width="7" height="7" rx="1" />
-      <rect x="14" y="14" width="7" height="7" rx="1" />
-    </svg>
-  );
-}
-
-// ─── Constants ──────────────────────────────────────────────────────────────
-
-const cefrOptions = ["All", "A1", "A2", "B1"];
-const groupFilterOptions = [
-  { value: "All", label: "All" },
-  { value: "Regular -AR", label: "Regular -AR" },
-  { value: "Regular -ER", label: "Regular -ER" },
-  { value: "Regular -IR", label: "Regular -IR" },
-  { value: "Irregular", label: "Irregular" },
+const FAMILIES: { key: string; label: string; note: string; test: (g: string) => boolean }[] = [
+  { key: "ar", label: "Regulares em -ar", note: "falar → falo, falas, fala, falamos, falam", test: (g) => g.includes("-ar") && !g.startsWith("irregular") },
+  { key: "er", label: "Regulares em -er", note: "comer → como, comes, come, comemos, comem", test: (g) => g.includes("-er") && !g.startsWith("irregular") },
+  { key: "ir", label: "Regulares em -ir", note: "partir → parto, partes, parte, partimos, partem", test: (g) => g.includes("-ir") && !g.startsWith("irregular") },
+  { key: "irr", label: "Irregulares", note: "ser, estar, ter, ir, fazer… cada um tem as suas formas", test: (g) => g.startsWith("irregular") || g.includes("impersonal") },
 ];
 
-const groupExplainers: Record<string, { title: string; description: string }> = {
-  "Regular -AR": {
-    title: "Regular -AR verbs",
-    description:
-      "The largest verb group in Portuguese. Remove -ar and add: -o, -as, -a, -amos, -am (present tense). Examples: falar, morar, trabalhar. Once you learn the pattern, you can conjugate hundreds of verbs.",
-  },
-  "Regular -ER": {
-    title: "Regular -ER verbs",
-    description:
-      "The second conjugation group. Remove -er and add: -o, -es, -e, -emos, -em (present tense). Examples: comer, beber, viver. Fewer verbs than -AR but same predictable pattern.",
-  },
-  "Regular -IR": {
-    title: "Regular -IR verbs",
-    description:
-      "The third conjugation group. Remove -ir and add: -o, -es, -e, -imos, -em (present tense). Examples: partir, abrir, decidir. Very similar to -ER endings except for nós (-imos).",
-  },
-  Irregular: {
-    title: "Irregular verbs",
-    description:
-      "Verbs that don't follow standard conjugation patterns. Includes the most common Portuguese verbs: ser, estar, ter, ir, fazer, poder, dizer. Each has unique forms that must be memorised individually.",
-  },
-};
-
-// ─── Section Header ─────────────────────────────────────────────────────────
-
-function GroupHeader({ label, labelPt }: { label: string; labelPt?: string }) {
-  return (
-    <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-2">
-      {label}
-      {labelPt && (
-        <span className="ml-2 normal-case tracking-normal italic font-normal">
-          {labelPt}
-        </span>
-      )}
-    </div>
-  );
-}
-
-// ─── Verb Row (List View) ───────────────────────────────────────────────────
-
-function VerbRow({ verbKey, search }: { verbKey: string; search: string }) {
-  const meta = (verbData as any).verbs[verbKey].meta;
-  return (
-    <Link href={`/conjugations/${verbKey.toLowerCase()}`} className="block">
-      <ListRow>
-        <div className="grid grid-cols-[1fr_1fr_auto_auto_auto] items-center gap-3">
-          <span className="text-[14px] font-medium text-[#111111]">
-            {verbKey.toLowerCase()}
-          </span>
-          <span className="text-[13px] text-[#6C6B71]">{meta.english}</span>
-          <BadgePill label={simplifyGroup(meta.group)} variant="neutral" />
-          <BadgePill level={meta.cefr} />
-          <ChevronRight size={16} className="text-[#9B9DA3]" />
-        </div>
-        {search &&
-          (() => {
-            const q = search.toLowerCase();
-            const metaMatch =
-              verbKey.toLowerCase().includes(q) ||
-              meta.english.toLowerCase().includes(q);
-            if (metaMatch) return null;
-            const matchingConj = (
-              (verbData as any).verbs[verbKey].conjugations || []
-            ).find((c: any) => (c.Conjugation || "").toLowerCase().includes(q));
-            if (!matchingConj) return null;
-            return (
-              <div className="text-[11px] text-[#9B9DA3] mt-1">
-                &ldquo;{matchingConj.Conjugation}&rdquo; —{" "}
-                {matchingConj.Person}, {matchingConj.Tense}
-              </div>
-            );
-          })()}
-      </ListRow>
-    </Link>
-  );
-}
-
-// ─── Verb Card (Grid View) ──────────────────────────────────────────────────
-
-function VerbCard({ verbKey }: { verbKey: string }) {
-  const meta = (verbData as any).verbs[verbKey].meta;
-  return (
-    <Link href={`/conjugations/${verbKey.toLowerCase()}`} className="block">
-      <div className="group border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3 py-2.5 hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer">
-        <div className="flex items-center justify-between">
-          <span className="text-[13px] font-medium text-[#111111]">
-            {verbKey.toLowerCase()}
-          </span>
-          <BadgePill level={meta.cefr} />
-        </div>
-        <div className="text-[12px] text-[#9B9DA3] mt-0.5">{meta.english}</div>
-        <div className="text-[10px] text-[#9B9DA3] font-mono mt-0.5">
-          {simplifyGroup(meta.group)}
-        </div>
-      </div>
-    </Link>
-  );
-}
-
-// ─── Page ───────────────────────────────────────────────────────────────────
 
 export default function ConjugationsPage() {
-  const [cefr, setCefr] = useState("All");
-  const [groupFilter, setGroupFilter] = useState("All");
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState<"default" | "alpha">("default");
-  const [view, setView] = useState<"list" | "grid">(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem("conj-view") as "list" | "grid") || "list";
-    }
-    return "list";
-  });
+  const { map, signedIn } = useMastery("verb");
+  const [query, setQuery] = useState("");
+  const [level, setLevel] = useState("Todos");
+  const [filter, setFilter] = useState("Todos");
+  const [family, setFamily] = useState<string | null>(null);
 
-  useEffect(() => {
-    localStorage.setItem("conj-view", view);
-  }, [view]);
-
-  const activeFilterCount = groupFilter !== "All" ? 1 : 0;
-
-  // Filter by CEFR
-  const cefrFiltered = useMemo(() => {
-    return (verbData as any).order.filter((key: string) => {
-      const meta = (verbData as any).verbs[key].meta;
-      if (cefr !== "All" && meta.cefr !== cefr) return false;
-      return true;
+  const visible = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const want = FILTER_STATE[filter];
+    const fam = FAMILIES.find((f) => f.key === family);
+    return ORDER.filter((k) => {
+      const m = VERBS[k]?.meta;
+      if (!m) return false;
+      if (level !== "Todos" && m.cefr !== level) return false;
+      if (fam && !fam.test(m.group.toLowerCase())) return false;
+      if (want && stateOf(map.get(k)) !== want) return false;
+      if (!q) return true;
+      return k.toLowerCase().includes(q) || m.english.toLowerCase().includes(q) || VERBS[k].conjugations.some((c) => c.Conjugation?.toLowerCase().includes(q));
     });
-  }, [cefr]);
+  }, [query, level, filter, family, map]);
 
-  // Filter by conjugation group
-  const groupFiltered = useMemo(() => {
-    if (groupFilter === "All") return cefrFiltered;
-    return cefrFiltered.filter((key: string) => {
-      const group = (verbData as any).verbs[key].meta.group.toLowerCase();
-      if (groupFilter === "Regular -AR")
-        return group.includes("-ar");
-      if (groupFilter === "Regular -ER")
-        return group.includes("-er") && !group.includes("-ir");
-      if (groupFilter === "Regular -IR")
-        return group.includes("-ir");
-      if (groupFilter === "Irregular")
-        return group.startsWith("irregular") || group.includes("impersonal");
-      return true;
-    });
-  }, [cefrFiltered, groupFilter]);
+  const groups = useMemo(() => getGroupedVerbs(visible), [visible]);
+  const searching = query.trim().length > 0;
 
-  // Search (includes deep conjugation search)
-  const searchFiltered = useMemo(() => {
-    if (!search) return groupFiltered;
-    const q = search.toLowerCase();
-    return groupFiltered.filter((key: string) => {
-      const meta = (verbData as any).verbs[key].meta;
-      const metaMatch =
-        key.toLowerCase().includes(q) ||
-        meta.english.toLowerCase().includes(q);
-      const conjMatch = (
-        (verbData as any).verbs[key].conjugations || []
-      ).some((c: any) => (c.Conjugation || "").toLowerCase().includes(q));
-      return metaMatch || conjMatch;
-    });
-  }, [groupFiltered, search]);
+  const mastered = ORDER.filter((k) => stateOf(map.get(k)) === "mastered").length;
+  const overdue = ORDER.filter((k) => stateOf(map.get(k)) === "overdue").length;
+  const learning = ORDER.filter((k) => stateOf(map.get(k)) === "learning").length;
 
-  // Sort
-  const sortedVerbs = useMemo(() => {
-    const verbs = [...searchFiltered];
-    if (sortBy === "alpha") {
-      verbs.sort((a: string, b: string) => a.localeCompare(b, "pt"));
-    }
-    return verbs;
-  }, [searchFiltered, sortBy]);
-
-  // Group into sections (only when not searching and not sorting A-Z)
-  const groups = useMemo(() => {
-    if (sortBy === "alpha") return null;
-    if (search) return null;
-    const result = getGroupedVerbs(sortedVerbs);
-    return result.length > 0 ? result : null;
-  }, [sortedVerbs, sortBy, search]);
-
-  const hasGroups = groups && groups.length > 1;
-
-  return (
-    <PageShell>
-      <PageHeader
-        title="Conjugações"
-        subtitle={`${(verbData as any).order.length} verbs · 6 tenses`}
-      />
-
-      {/* ─── Filter bar (standard layout) ──────────────────────────────── */}
-      <div className="flex items-center gap-3 mb-3 flex-wrap">
-        <SegmentedFilter
-          options={cefrOptions}
-          value={cefr}
-          onChange={setCefr}
-        />
-
-        {/* Filter dropdown */}
-        <div className="relative">
+  const panel = (
+    <div className="flex flex-col gap-6">
+      {signedIn && (
+        <PanelCard title="Os teus verbos">
+          <KV k="Dominados" v={`${mastered} de ${ORDER.length}`} />
+          <KV k="A aprender" v={learning} />
+          <KV k="Em atraso" v={overdue} tone={overdue > 0 ? "overdue" : undefined} />
+          {overdue > 0 && (
+            <Link href="/learn?mode=review" className="mt-3 flex h-8 items-center justify-center rounded-lg bg-aula-accent text-[12px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
+              Rever {overdue}
+            </Link>
+          )}
+        </PanelCard>
+      )}
+      <div>
+        <Label className="mb-2">Famílias</Label>
+        <button
+          onClick={() => setFamily(null)}
+          className={`flex h-7 w-full items-center rounded-md px-2 text-[12.5px] ${!family ? "bg-aula-selected font-medium text-aula-text" : "text-aula-text-2 hover:bg-aula-sunken"}`}
+        >
+          Todas <span className="flex-1" />
+          <span className="text-[11px] text-aula-text-3">{ORDER.length}</span>
+        </button>
+        {FAMILIES.map((f) => (
           <button
-            onClick={() => setFilterOpen(!filterOpen)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] rounded-lg border-[0.5px] transition-colors ${
-              activeFilterCount > 0 || filterOpen
-                ? "border-[rgba(0,0,0,0.12)] text-[#111111]"
-                : "border-[rgba(0,0,0,0.06)] text-[#9B9DA3] hover:border-[rgba(0,0,0,0.12)] hover:text-[#6C6B71]"
-            }`}
+            key={f.key}
+            onClick={() => setFamily(family === f.key ? null : f.key)}
+            className={`flex h-7 w-full items-center rounded-md px-2 text-left text-[12.5px] ${family === f.key ? "bg-aula-selected font-medium text-aula-text" : "text-aula-text-2 hover:bg-aula-sunken"}`}
           >
-            <SlidersHorizontal size={13} />
-            <span>Filter</span>
-            {activeFilterCount > 0 && (
-              <span className="text-[10px] bg-[#111111] text-white rounded-full w-4 h-4 flex items-center justify-center">
-                {activeFilterCount}
-              </span>
-            )}
+            {f.label}
+            <span className="flex-1" />
+            <span className="text-[11px] text-aula-text-3">{ORDER.filter((k) => f.test(VERBS[k].meta.group.toLowerCase())).length}</span>
           </button>
+        ))}
+        {family && <p className="mt-2 px-2 text-[11.5px] leading-relaxed text-aula-text-3">{FAMILIES.find((f) => f.key === family)!.note}</p>}
+      </div>
+    </div>
+  );
 
-          {filterOpen && (
-            <>
-              <div className="fixed inset-0 z-10" onClick={() => setFilterOpen(false)} />
-              <div className="absolute top-full left-0 mt-1.5 z-20 bg-white border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg shadow-lg w-[260px] max-h-[400px] overflow-y-auto">
-                {/* Header with close */}
-                <div className="flex items-center justify-between px-3 pt-3 pb-2">
-                  <span className="text-[11px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em]">Filters</span>
-                  <button onClick={() => setFilterOpen(false)} className="text-[#9B9DA3] hover:text-[#6C6B71]">
-                    <X size={14} />
-                  </button>
-                </div>
-
-                {/* Sections — jump to group */}
-                {hasGroups && (
-                  <div className="px-3 pb-3">
-                    <div className="text-[10px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em] mb-1.5">Sections</div>
-                    <div className="space-y-0.5">
-                      {groups.map((g, i) => (
-                        <button
-                          key={i}
-                          onClick={() => {
-                            document.getElementById(`vgroup-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
-                            setFilterOpen(false);
-                          }}
-                          className="flex items-center justify-between w-full px-2 py-1.5 rounded text-[12px] text-[#6C6B71] hover:bg-[#F7F7F5] transition-colors text-left"
-                        >
-                          <span className="truncate">{shortLabel(g.label)}</span>
-                          <span className="text-[10px] text-[#9B9DA3] ml-2 flex-shrink-0">{g.verbs.length}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Divider */}
-                {hasGroups && (
-                  <div className="border-t-[0.5px] border-[rgba(0,0,0,0.06)] mx-3" />
-                )}
-
-                {/* Conjugation type filter */}
-                <div className="px-3 py-3">
-                  <div className="text-[10px] font-medium text-[#9B9DA3] uppercase tracking-[0.05em] mb-1.5">
-                    Conjugation type
-                  </div>
-                  <div className="space-y-0.5">
-                    {groupFilterOptions.map((opt) => (
-                      <button
-                        key={opt.value}
-                        onClick={() => setGroupFilter(opt.value)}
-                        className={`flex items-center w-full px-2 py-1.5 rounded text-[12px] transition-colors text-left ${
-                          groupFilter === opt.value
-                            ? "bg-[#F7F7F5] text-[#111111] font-medium"
-                            : "text-[#6C6B71] hover:bg-[#F7F7F5]"
-                        }`}
-                      >
-                        <span className={`w-3 h-3 rounded-full border mr-2 flex-shrink-0 flex items-center justify-center ${
-                          groupFilter === opt.value
-                            ? "border-[#111111] bg-[#111111]"
-                            : "border-[rgba(0,0,0,0.15)]"
-                        }`}>
-                          {groupFilter === opt.value && (
-                            <span className="block w-1.5 h-1.5 rounded-full bg-white" />
-                          )}
-                        </span>
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Clear all */}
-                {activeFilterCount > 0 && (
-                  <div className="border-t-[0.5px] border-[rgba(0,0,0,0.06)] px-3 py-2">
-                    <button
-                      onClick={() => { setGroupFilter("All"); setFilterOpen(false); }}
-                      className="text-[11px] text-[#9B9DA3] hover:text-[#6C6B71]"
-                    >
-                      Clear all filters
-                    </button>
-                  </div>
-                )}
-              </div>
-            </>
+  const Row = ({ k }: { k: string }) => {
+    const m = VERBS[k].meta;
+    const r = map.get(k);
+    const s = stateOf(r);
+    const q = query.trim().toLowerCase();
+    const formHit =
+      q && !k.toLowerCase().includes(q) && !m.english.toLowerCase().includes(q)
+        ? VERBS[k].conjugations.find((c) => c.Conjugation?.toLowerCase().includes(q))
+        : undefined;
+    return (
+      <Link href={`/conjugations/${k.toLowerCase()}`} className="flex min-h-[44px] items-center gap-4 rounded-[10px] px-3 py-1.5 transition-colors hover:bg-aula-sunken">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-baseline gap-2">
+            <span className="text-[12.5px] font-medium text-aula-text">{k.toLowerCase()}</span>
+            <span className="truncate text-[11.5px] text-aula-text-3">{m.english}</span>
+          </div>
+          {formHit && (
+            <div className="text-[11px] text-aula-text-3">
+              «{formHit.Conjugation}» · {formHit.Person.split(" (")[0]}
+            </div>
           )}
         </div>
+        <LevelTag level={m.cefr} />
+        {signedIn && (
+          <>
+            <Pips level={r?.mastery_level ?? 0} state={s} />
+            <span className={`w-[64px] text-right text-[11px] ${s === "overdue" ? "text-aula-overdue" : "text-aula-text-3"}`}>{dueLabel(r)}</span>
+          </>
+        )}
+      </Link>
+    );
+  };
 
-        <div className="flex-1" />
-
-        {/* Sort + View toggles */}
-        <div className="flex items-center gap-1">
-          <button
-            onClick={() =>
-              setSortBy((s) => (s === "default" ? "alpha" : "default"))
-            }
-            className={`flex items-center gap-1 px-2 py-1.5 rounded-md text-[12px] transition-colors ${
-              sortBy === "alpha"
-                ? "bg-[#F7F7F5] text-[#111111]"
-                : "text-[#9B9DA3] hover:text-[#6C6B71]"
-            }`}
-          >
-            <SortIcon />
-            A-Z
-          </button>
-          <button
-            onClick={() => setView("list")}
-            className={`p-1.5 rounded-md transition-colors ${
-              view === "list" ? "bg-[#F7F7F5] text-[#111111]" : "text-[#9B9DA3] hover:text-[#6C6B71]"
-            }`}
-            aria-label="List view"
-          >
-            <ListIcon active={view === "list"} />
-          </button>
-          <button
-            onClick={() => setView("grid")}
-            className={`p-1.5 rounded-md transition-colors ${
-              view === "grid" ? "bg-[#F7F7F5] text-[#111111]" : "text-[#9B9DA3] hover:text-[#6C6B71]"
-            }`}
-            aria-label="Grid view"
-          >
-            <GridIcon active={view === "grid"} />
-          </button>
-        </div>
-
-        <SearchInput
-          placeholder="Search verbs..."
-          value={search}
-          onChange={setSearch}
+  return (
+    <PageShell header={<Crumbs items={[{ label: "Conjugações" }]} />} panel={panel}>
+      <div className="mx-auto max-w-[680px]">
+        <ScreenTitle
+          title="Conjugações"
+          subtitle={signedIn ? `${ORDER.length} verbos · ${mastered} dominados · ${overdue} em atraso` : `${ORDER.length} verbos em 9 tempos, do A1 ao B1`}
         />
-      </div>
-
-      {/* ─── Group Explainer ─────────────────────────────────────────── */}
-      {groupFilter !== "All" && groupExplainers[groupFilter] && (
-        <div className="bg-[#F7F7F5] rounded-lg px-4 py-3 mb-3">
-          <div className="text-[13px] font-medium text-[#111111] mb-1">
-            {groupExplainers[groupFilter].title}
-          </div>
-          <div className="text-[12px] text-[#6C6B71] leading-relaxed">
-            {groupExplainers[groupFilter].description}
-          </div>
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <label className="flex h-8 min-w-[200px] flex-1 items-center gap-2 rounded-lg border border-aula-line bg-aula-sunken px-2.5 focus-within:border-aula-border focus-within:bg-white">
+            <Search size={14} strokeWidth={1.5} className="text-aula-text-3" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Procurar um verbo ou uma forma (ex.: fiz)…"
+              className="w-full bg-transparent text-[12px] text-aula-text outline-none placeholder:text-aula-text-3"
+            />
+          </label>
+          <SegmentedFilter options={LEVELS} value={level} onChange={setLevel} />
         </div>
-      )}
+        {signedIn && (
+          <div className="mb-7">
+            <SegmentedFilter options={STATE_FILTERS} value={filter} onChange={setFilter} />
+          </div>
+        )}
+        {!signedIn && <div className="mb-7" />}
 
-      {/* ─── List View with Sections ─────────────────────────────────── */}
-      {view === "list" && groups && (
-        <div className="space-y-6">
-          {groups.map((group, gi) => (
-            <div key={gi} id={`vgroup-${gi}`}>
-              <GroupHeader label={group.label} labelPt={group.labelPt} />
-              <ListContainer>
-                {group.verbs.map((key: string) => (
-                  <VerbRow key={key} verbKey={key} search={search} />
-                ))}
-              </ListContainer>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* ─── List View flat ──────────────────────────────────────────── */}
-      {view === "list" && !groups && (
-        <ListContainer>
-          {sortedVerbs.map((key: string) => (
-            <VerbRow key={key} verbKey={key} search={search} />
-          ))}
-        </ListContainer>
-      )}
-
-      {/* ─── Grid View with Sections ─────────────────────────────────── */}
-      {view === "grid" && groups && (
-        <div className="space-y-6">
-          {groups.map((group, gi) => (
-            <div key={gi} id={`vgroup-${gi}`}>
-              <GroupHeader label={group.label} labelPt={group.labelPt} />
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                {group.verbs.map((key: string) => (
-                  <VerbCard key={key} verbKey={key} />
-                ))}
+        {searching || groups.length === 0 ? (
+          <div>
+            {visible.map((k) => (
+              <Row key={k} k={k} />
+            ))}
+          </div>
+        ) : (
+          groups.map((g) => (
+            <section key={g.label} className="mb-7">
+              <div className="mb-1 flex items-center gap-2 px-3">
+                <Label>{(g.labelPt ?? g.label).replace(/^Regular (-[A-Z]{2}): /, "$1 · ").replace(/^Irregular (-[A-Z]{2}: )?/, "Irregulares · ")}</Label>
+                <span className="text-[11px] text-aula-text-4">{g.verbs.length}</span>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* ─── Grid View flat ──────────────────────────────────────────── */}
-      {view === "grid" && !groups && (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-          {sortedVerbs.map((key: string) => (
-            <VerbCard key={key} verbKey={key} />
-          ))}
-        </div>
-      )}
-
-      <CountLabel
-        showing={sortedVerbs.length}
-        total={(verbData as any).order.length}
-        noun="verbs"
-      />
+              {g.verbs.map((k: string) => (
+                <Row key={k} k={k} />
+              ))}
+            </section>
+          ))
+        )}
+        {visible.length === 0 && <p className="py-12 text-center text-[13px] text-aula-text-2">Nenhum verbo com estes filtros.</p>}
+      </div>
     </PageShell>
   );
 }

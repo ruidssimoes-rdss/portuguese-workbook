@@ -16,7 +16,7 @@ interface ListContainerProps {
 export function ListContainer({ children, className = "" }: ListContainerProps) {
   return (
     <div
-      className={`flex flex-col gap-px border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden ${className}`}
+      className={`flex flex-col divide-y divide-aula-line border border-aula-border rounded-xl overflow-hidden bg-white ${className}`}
     >
       {children}
     </div>

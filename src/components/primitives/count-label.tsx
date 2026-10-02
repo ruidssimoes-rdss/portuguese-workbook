@@ -12,8 +12,8 @@ interface CountLabelProps {
 
 export function CountLabel({ showing, total, noun }: CountLabelProps) {
   return (
-    <div className="text-[12px] text-[#9B9DA3] mt-3 px-1">
-      Showing {showing} of {total}{noun ? ` ${noun}` : ""}
+    <div className="text-[11.5px] text-aula-text-3 mt-3 px-1">
+      {showing} de {total}{noun ? ` ${noun}` : ""}
     </div>
   );
 }

@@ -1,212 +1,248 @@
 "use client";
 
-import { useState } from "react";
-import { useParams } from "next/navigation";
+/**
+ * Gramática / regra (Figma: Ecrãs / Gramática).
+ * Reading column: intro, numbered rules with examples, tips, and a quick
+ * self-check built from the topic's questions. Panel: your mastery + related.
+ */
+
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ChevronRight, ChevronDown } from "lucide-react";
-import { PageShell } from "@/components/layout/page-shell";
-import { PageHeader, BadgePill, TipBox, AudioButton } from "@/components/primitives";
-
-import grammarData from "@/data/grammar.json";
+import { useParams } from "next/navigation";
+import { Check } from "lucide-react";
 import type { ReactNode } from "react";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
+import { AudioButton } from "@/components/primitives";
+import { Pips, LevelTag, Label, PanelCard, KV } from "@/components/aula";
+import { useMastery, stateOf, dueLabel, STATE_LABEL } from "@/lib/use-mastery";
+import grammarData from "@/data/grammar.json";
+import { grammarGroups } from "@/data/grammar-groups";
 
-// ─── Intro Formatter ────────────────────────────────────────────────────────
-
-/** Highlight Portuguese text between single quotes */
-function formatInlineContent(text: string): ReactNode {
-  const parts = text.split(/('.*?')/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("'") && part.endsWith("'")) {
-      return (
-        <span key={i} className="font-medium text-[#111111]">
-          {part.slice(1, -1)}
-        </span>
-      );
-    }
-    return part;
-  });
+interface Rule {
+  rule: string;
+  rulePt?: string;
+  examples?: { pt: string; en: string }[];
+  exceptions?: string[];
+}
+interface Question {
+  questionText: string;
+  questionTextPt?: string;
+  options: string[];
+  correctAnswer: string;
+  correctIndex: number;
+  explanation?: string;
+}
+interface Topic {
+  id: string;
+  title: string;
+  titlePt?: string;
+  cefr: string;
+  summary?: string;
+  intro?: string;
+  rules?: Rule[];
+  tips?: string[];
+  tipsPt?: string[];
+  questions?: Question[];
 }
 
-function FormatIntro({ text }: { text: string }) {
-  if (!text) return null;
-  const paragraphs = text.includes("\n")
-    ? text.split("\n").filter((p) => p.trim())
-    : [text];
-  return (
-    <div className="space-y-3 text-[13px] text-[#6C6B71] leading-relaxed">
-      {paragraphs.map((p, i) => (
-        <p key={i}>{formatInlineContent(p.trim())}</p>
-      ))}
-    </div>
+const TOPICS = grammarData.topics as unknown as Record<string, Topic>;
+
+/** Bold Portuguese quoted with '…' or «…» inside running text. */
+function inline(text: string): ReactNode {
+  return text.split(/('.*?'|«.*?»)/g).map((part, i) =>
+    /^('.*'|«.*»)$/.test(part) ? (
+      <span key={i} className="font-medium text-aula-text">
+        {part.startsWith("'") ? part.slice(1, -1) : part}
+      </span>
+    ) : (
+      part
+    ),
   );
 }
 
-// ─── Page ───────────────────────────────────────────────────────────────────
-
-export default function GrammarDetailPage() {
+export default function GrammarTopicPage() {
   const params = useParams();
   const slug = params.topic as string;
-  const topic = (grammarData.topics as Record<string, any>)[slug];
+  const topic = TOPICS[slug];
+  const { map, signedIn } = useMastery("grammar");
 
-  const rules: any[] = topic?.rules || [];
+  const related = useMemo(() => {
+    const g = grammarGroups.find((x) => x.topics.includes(slug));
+    return (g?.topics ?? []).filter((id) => id !== slug && TOPICS[id]).slice(0, 5);
+  }, [slug]);
 
-  const [expandedRule, setExpandedRule] = useState<number | null>(
-    rules.length <= 3 ? -1 : 0
-  );
-
-  function isExpanded(index: number) {
-    if (expandedRule === -1) return true;
-    return expandedRule === index;
-  }
-
-  function toggleRule(index: number) {
-    if (expandedRule === -1) {
-      setExpandedRule(index);
-    } else if (expandedRule === index) {
-      setExpandedRule(null);
-    } else {
-      setExpandedRule(index);
-    }
-  }
+  const crumbs = <Crumbs items={[{ label: "Gramática", href: "/grammar" }, ...(topic ? [{ label: topic.cefr }, { label: topic.titlePt ?? topic.title }] : [])]} />;
 
   if (!topic) {
     return (
-      <PageShell>
-        <PageHeader title="Topic not found" />
+      <PageShell header={crumbs}>
+        <div className="mx-auto max-w-[620px]">
+          <h1 className="text-[22px] font-semibold text-aula-text">Tópico não encontrado</h1>
+          <Link href="/grammar" className="mt-2 inline-block text-[13px] text-aula-accent">
+            Voltar à gramática
+          </Link>
+        </div>
       </PageShell>
     );
   }
 
-  return (
-    <PageShell>
-      {/* Breadcrumb */}
-      <div className="text-[12px] text-[#9B9DA3] mb-5 flex items-center gap-1">
-        <Link
-          href="/grammar"
-          className="hover:text-[#6C6B71] transition-colors"
-        >
-          Grammar
-        </Link>
-        <ChevronRight size={12} />
-        <span className="text-[#6C6B71]">{topic.title}</span>
-      </div>
+  const rec = map.get(slug);
+  const state = stateOf(rec);
+  const accuracy = rec && rec.times_seen > 0 ? Math.round((rec.times_correct / rec.times_seen) * 100) : null;
+  const paragraphs = (topic.intro ?? "").split("\n").map((p) => p.trim()).filter(Boolean);
 
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
-          {topic.title}
-        </h1>
-        <div className="text-[13px] text-[#9B9DA3] mt-1 italic">
-          {topic.titlePt}
-        </div>
-        <div className="mt-2">
-          <BadgePill level={topic.cefr} />
-        </div>
-      </div>
-
-      {/* Introduction */}
-      {topic.intro && (
-        <div className="mb-8">
-          <FormatIntro text={topic.intro} />
-        </div>
+  const panel = (
+    <div className="flex flex-col gap-6">
+      {signedIn ? (
+        <PanelCard title="O teu domínio" aside={<span className={`text-[11px] ${state === "overdue" ? "text-aula-overdue" : "text-aula-text-3"}`}>{STATE_LABEL[state].toLowerCase()}</span>}>
+          <div className="mb-3">
+            <Pips level={rec?.mastery_level ?? 0} state={state} />
+          </div>
+          <KV k="Próxima revisão" v={dueLabel(rec)} tone={state === "overdue" ? "overdue" : undefined} />
+          <KV k="Precisão" v={accuracy === null ? "—" : `${accuracy}%`} />
+          <KV k="Tentativas" v={rec?.times_seen ?? 0} />
+          <Link href="/learn" className="mt-3 flex h-8 items-center justify-center rounded-lg bg-aula-accent text-[12px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
+            Praticar
+          </Link>
+        </PanelCard>
+      ) : (
+        <PanelCard title="Guarda o teu progresso">
+          <p className="text-[12px] leading-relaxed text-aula-text-2">Entra para acompanhar o teu domínio deste tópico.</p>
+        </PanelCard>
       )}
-
-      {/* Rules accordion */}
-      {rules.length > 0 && (
-        <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden mb-8">
-          {rules.map((rule: any, index: number) => (
-            <div
-              key={index}
-              className={
-                index > 0
-                  ? "border-t-[0.5px] border-[rgba(0,0,0,0.06)]"
-                  : ""
-              }
-            >
-              {/* Rule header */}
-              <div
-                onClick={() => toggleRule(index)}
-                className="flex items-center gap-3 px-4 py-3.5 cursor-pointer hover:bg-[#F7F7F5] transition-colors"
-              >
-                <span className="text-[11px] font-medium text-[#185FA5] bg-[#E6F1FB] w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0">
-                  {index + 1}
-                </span>
-                <span className="text-[13px] font-medium text-[#111111] flex-1">
-                  {rule.rule}
-                </span>
-                <ChevronDown
-                  size={16}
-                  className={`text-[#9B9DA3] transition-transform duration-150 ${
-                    isExpanded(index) ? "rotate-180" : ""
-                  }`}
-                />
-              </div>
-
-              {/* Expanded content */}
-              {isExpanded(index) && (
-                <div className="px-4 pb-4 border-t-[0.5px] border-[rgba(0,0,0,0.06)] mx-4 pt-3.5">
-                  {/* Rule in Portuguese */}
-                  {rule.rulePt && (
-                    <div className="text-[12px] text-[#9B9DA3] italic mb-3">
-                      {rule.rulePt}
-                    </div>
-                  )}
-
-                  {/* Examples */}
-                  {rule.examples && rule.examples.length > 0 && (
-                    <div className="space-y-2 mb-3">
-                      {rule.examples.map((ex: any, i: number) => (
-                        <div
-                          key={i}
-                          className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5 group"
-                        >
-                          <div className="flex items-center gap-1">
-                            <span className="text-[13px] text-[#111111]">
-                              {ex.pt}
-                            </span>
-                            <AudioButton text={ex.pt} />
-                          </div>
-                          <div className="text-[12px] text-[#9B9DA3] italic mt-0.5">
-                            {ex.en}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Exceptions */}
-                  {rule.exceptions && rule.exceptions.length > 0 && (
-                    <div className="space-y-1.5 mb-3">
-                      {rule.exceptions.map((exc: string, i: number) => (
-                        <div
-                          key={i}
-                          className="text-[12px] text-[#6C6B71] italic"
-                        >
-                          Note: {exc}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+      {related.length > 0 && (
+        <div>
+          <Label className="mb-2">Relacionado</Label>
+          {related.map((id) => (
+            <Link key={id} href={`/grammar/${id}`} className="flex h-7 items-center rounded-md px-2 text-[12.5px] text-aula-accent hover:bg-aula-sunken">
+              <span className="truncate">{TOPICS[id].titlePt ?? TOPICS[id].title}</span>
+              <span className="flex-1" />
+              <span className="text-[11px] text-aula-text-3">{TOPICS[id].cefr}</span>
+            </Link>
           ))}
         </div>
       )}
+    </div>
+  );
 
-      {/* Tips section */}
-      {topic.tips && topic.tips.length > 0 && (
-        <div>
-          <div className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-3">
-            Tips
-          </div>
-          <div className="space-y-2">
-            {topic.tips.map((tip: string, i: number) => (
-              <TipBox key={i}>{tip}</TipBox>
+  return (
+    <PageShell header={crumbs} panel={panel}>
+      <article className="mx-auto max-w-[620px]">
+        <Label className="mb-2">Gramática · {topic.cefr}</Label>
+        <h1 className="text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{topic.titlePt ?? topic.title}</h1>
+        <p className="mt-1.5 text-[13px] text-aula-text-2">{topic.title}</p>
+
+        {paragraphs.length > 0 && (
+          <div className="mt-6 space-y-3 text-[13px] leading-relaxed text-aula-text-2">
+            {paragraphs.map((p, i) => (
+              <p key={i}>{inline(p)}</p>
             ))}
           </div>
-        </div>
-      )}
+        )}
+
+        {(topic.rules ?? []).map((r, i) => (
+          <section key={i} className="mt-9">
+            <h2 className="text-[15px] font-semibold text-aula-text">
+              Regra {i + 1} · {r.rulePt ?? r.rule}
+            </h2>
+            {r.rulePt && <p className="mt-1.5 text-[13px] leading-relaxed text-aula-text-2">{inline(r.rule)}</p>}
+            {r.examples && r.examples.length > 0 && (
+              <div className="mt-3.5 flex flex-col gap-3">
+                {r.examples.map((ex, j) => (
+                  <div key={j} className="flex gap-2.5">
+                    <AudioButton text={ex.pt} />
+                    <div>
+                      <p className="text-[13px] font-medium text-aula-text">{ex.pt}</p>
+                      <p className="text-[11.5px] text-aula-text-3">{ex.en}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {r.exceptions?.map((e, j) => (
+              <p key={j} className="mt-2 text-[12px] text-aula-text-2">
+                Nota: {e}
+              </p>
+            ))}
+          </section>
+        ))}
+
+        {topic.tips && topic.tips.length > 0 && (
+          <div className="mt-10 rounded-[10px] border border-[#D3DAEB] bg-aula-accent-faint px-4 py-3.5">
+            <div className="mb-2 flex items-center gap-2">
+              <span className="rounded-[4px] bg-aula-accent px-1.5 py-[1px] text-[10px] font-semibold text-white">PT</span>
+              <span className="text-[12px] font-medium text-aula-accent">Dicas</span>
+            </div>
+            <ul className="flex flex-col gap-1.5">
+              {topic.tips.map((t, i) => (
+                <li key={i} className="text-[12.5px] leading-relaxed text-aula-text">
+                  {inline(t)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {topic.questions && topic.questions.length > 0 && <QuickCheck questions={topic.questions.slice(0, 3)} />}
+      </article>
     </PageShell>
+  );
+}
+
+function QuickCheck({ questions }: { questions: Question[] }) {
+  return (
+    <section className="mt-10">
+      <Label className="mb-3">Verifica · {questions.length} perguntas</Label>
+      <div className="flex flex-col gap-3">
+        {questions.map((q, i) => (
+          <CheckBlock key={i} q={q} n={i + 1} total={questions.length} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CheckBlock({ q, n, total }: { q: Question; n: number; total: number }) {
+  const [picked, setPicked] = useState<number | null>(null);
+  const done = picked !== null;
+  const right = picked === q.correctIndex;
+  return (
+    <div className="rounded-xl border border-aula-border bg-white p-4">
+      <div className="mb-2 flex items-center justify-between text-[11px] text-aula-text-3">
+        <span className="flex items-center gap-1.5 font-semibold uppercase tracking-[0.06em] text-[#1F7A68]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#1F7A68]" /> Verifica
+        </span>
+        <span>
+          {n} de {total}
+        </span>
+      </div>
+      <p className="mb-3 text-[13px] font-medium text-aula-text">{q.questionTextPt ?? q.questionText}</p>
+      <div className="flex flex-wrap gap-2">
+        {q.options.map((o, i) => {
+          const isRight = done && i === q.correctIndex;
+          const isWrong = done && i === picked && !right;
+          return (
+            <button
+              key={i}
+              disabled={done}
+              onClick={() => setPicked(i)}
+              className={`inline-flex h-8 items-center gap-1.5 rounded-lg border px-3 text-[12.5px] transition-colors ${
+                isRight
+                  ? "border-[#BFE3D8] bg-[#E1F2ED] text-[#1F7A68]"
+                  : isWrong
+                    ? "border-[#F0C9BE] bg-[#FBE9E4] text-aula-overdue"
+                    : done
+                      ? "border-aula-border text-aula-text-3"
+                      : "border-aula-border text-aula-text hover:border-aula-text-4"
+              }`}
+            >
+              {o}
+              {isRight && <Check size={13} strokeWidth={2} />}
+            </button>
+          );
+        })}
+      </div>
+      {done && q.explanation && <p className="mt-3 text-[12px] text-aula-text-2">{q.explanation}</p>}
+    </div>
   );
 }

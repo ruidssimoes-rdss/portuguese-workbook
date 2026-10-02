@@ -22,15 +22,15 @@ export function SegmentedFilter({
   onChange,
 }: SegmentedFilterProps) {
   return (
-    <div className="inline-flex gap-0.5 bg-[#F7F7F5] rounded-md p-0.5">
+    <div className="inline-flex gap-0.5 bg-aula-sunken rounded-lg p-[3px]">
       {options.map((option) => (
         <button
           key={option}
           onClick={() => onChange(option)}
-          className={`px-3 py-[5px] rounded-[5px] text-[12px] border-none cursor-pointer transition-all duration-100 ${
+          className={`px-3 h-[26px] rounded-md text-[12px] border cursor-pointer transition-all duration-100 ${
             value === option
-              ? "bg-white text-[#111111] font-medium shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
-              : "bg-transparent text-[#9B9DA3] hover:text-[#6C6B71]"
+              ? "bg-white text-aula-text font-medium border-aula-line shadow-[0_1px_2px_rgba(0,0,0,0.05)]"
+              : "bg-transparent border-transparent text-aula-text-2 hover:text-aula-text"
           }`}
         >
           {option}

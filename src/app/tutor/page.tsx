@@ -1,16 +1,12 @@
 "use client";
 
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/primitives";
 import { TutorTabV2 } from "@/components/lessons/tutor-tab";
 
 export default function TutorPage() {
   return (
-    <PageShell>
-      <PageHeader
-        title="Professor Elísio"
-        subtitle="Your AI Portuguese tutor — personalised lessons on any topic"
-      />
+    <PageShell header={<Crumbs items={[{ label: "Professor Elísio" }]} />}>
       <TutorTabV2 />
     </PageShell>
   );

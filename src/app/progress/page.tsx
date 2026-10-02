@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useAuth } from "@/components/auth-provider";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import {
   PageHeader,
   StatCard,
@@ -45,36 +45,36 @@ interface MasteryData {
 // ─── Helpers ────────────────────────────────────────────
 
 const LEVEL_LABELS: Record<string, string> = {
-  A1: "Beginner",
-  A2: "Elementary",
-  B1: "Intermediate",
+  A1: "Iniciação",
+  A2: "Dia a dia",
+  B1: "Conversar à vontade",
 };
 
 function eventDotColor(type: TimelineEvent["type"]): string {
   switch (type) {
-    case "lesson": return "bg-[#0F6E56]";
-    case "exam": return "bg-[#185FA5]";
-    case "level-complete": return "bg-[#854F0B]";
-    case "milestone": return "bg-[#185FA5]";
-    case "goal-complete": return "bg-[#0F6E56]";
-    case "streak": return "bg-[#854F0B]";
-    default: return "bg-[#9B9DA3]";
+    case "lesson": return "bg-[#1F7A68]";
+    case "exam": return "bg-[#1B2B61]";
+    case "level-complete": return "bg-[#5B45B8]";
+    case "milestone": return "bg-[#1B2B61]";
+    case "goal-complete": return "bg-[#1F7A68]";
+    case "streak": return "bg-[#5B45B8]";
+    default: return "bg-[#98988F]";
   }
 }
 
 function formatDate(iso: string): string {
   const d = new Date(iso.includes("T") ? iso : iso + "T12:00:00");
-  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  return d.toLocaleDateString("pt-PT", { day: "numeric", month: "short" });
 }
 
 function timeAgo(iso: string): string {
   const ms = Date.now() - new Date(iso).getTime();
   const hours = Math.floor(ms / (1000 * 60 * 60));
-  if (hours < 1) return "just now";
-  if (hours < 24) return `${hours}h ago`;
+  if (hours < 1) return "agora mesmo";
+  if (hours < 24) return `há ${hours} h`;
   const days = Math.floor(hours / 24);
-  if (days === 1) return "yesterday";
-  return `${days}d ago`;
+  if (days === 1) return "ontem";
+  return `há ${days} dias`;
 }
 
 // ─── Data Loading ───────────────────────────────────────
@@ -166,9 +166,9 @@ async function loadMasteryData(userId: string): Promise<MasteryData> {
 
 function ProgressBar({ value, className }: { value: number; className?: string }) {
   return (
-    <div className={`h-1.5 bg-[rgba(0,0,0,0.06)] rounded-full overflow-hidden ${className ?? ""}`}>
+    <div className={`h-1.5 bg-[#E6E6E4] rounded-full overflow-hidden ${className ?? ""}`}>
       <div
-        className="h-full bg-[#185FA5] rounded-full transition-all duration-500"
+        className="h-full bg-[#1B2B61] rounded-full transition-all duration-500"
         style={{ width: `${Math.min(Math.round(value * 100), 100)}%` }}
       />
     </div>
@@ -185,15 +185,15 @@ function CEFRProgressCard({
   const readiness = Math.round(progress.readiness * 100);
 
   return (
-    <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5">
+    <div className="border border-aula-border rounded-xl p-5">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-[14px] font-medium text-[#111111]">
+        <h3 className="text-[14px] font-medium text-[#1F1F1F]">
           {level}{" "}
-          <span className="text-[#9B9DA3] font-normal">
+          <span className="text-[#98988F] font-normal">
             {LEVEL_LABELS[level]}
           </span>
         </h3>
-        <span className="text-[16px] font-medium text-[#111111]">
+        <span className="text-[16px] font-medium text-[#1F1F1F]">
           {readiness}%
         </span>
       </div>
@@ -201,17 +201,17 @@ function CEFRProgressCard({
       <ProgressBar value={progress.readiness} className="mb-3" />
 
       <div className="flex gap-4 text-[11px]">
-        <span className="text-[#0F6E56]">{progress.mastered} mastered</span>
-        <span className="text-[#854F0B]">
-          {progress.familiar + progress.introduced} in progress
+        <span className="text-[#1F7A68]">{progress.mastered} dominados</span>
+        <span className="text-[#5B45B8]">
+          {progress.familiar + progress.introduced} a aprender
         </span>
-        <span className="text-[#9B9DA3]">{progress.unseen} unseen</span>
+        <span className="text-[#98988F]">{progress.unseen} por ver</span>
       </div>
 
       <div className="space-y-1 mt-3">
-        <SkillRow label="Vocab" value={progress.vocabProgress} />
-        <SkillRow label="Verbs" value={progress.verbProgress} />
-        <SkillRow label="Grammar" value={progress.grammarProgress} />
+        <SkillRow label="Vocabulário" value={progress.vocabProgress} />
+        <SkillRow label="Verbos" value={progress.verbProgress} />
+        <SkillRow label="Gramática" value={progress.grammarProgress} />
       </div>
     </div>
   );
@@ -221,14 +221,14 @@ function SkillRow({ label, value }: { label: string; value: number }) {
   const pct = Math.round(value * 100);
   return (
     <div className="flex items-center gap-3">
-      <span className="text-[11px] text-[#9B9DA3] w-14">{label}</span>
-      <div className="flex-1 h-1 bg-[rgba(0,0,0,0.06)] rounded-full">
+      <span className="text-[11px] text-[#98988F] w-[76px]">{label}</span>
+      <div className="flex-1 h-1 bg-[#E6E6E4] rounded-full">
         <div
-          className="h-1 bg-[#185FA5] rounded-full transition-all duration-500"
+          className="h-1 bg-[#1B2B61] rounded-full transition-all duration-500"
           style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="text-[11px] text-[#9B9DA3] w-8 text-right">
+      <span className="text-[11px] text-[#98988F] w-8 text-right">
         {pct}%
       </span>
     </div>
@@ -247,7 +247,7 @@ function CategoryBreakdown({
   return (
     <div className="mb-8">
       <SectionLabel>{title}</SectionLabel>
-      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg divide-y divide-[rgba(0,0,0,0.06)]">
+      <div className="border border-aula-border rounded-xl divide-y divide-[#E6E6E4]">
         {items.map((item) => {
           const pct =
             item.total > 0
@@ -255,16 +255,16 @@ function CategoryBreakdown({
               : 0;
           return (
             <div key={item.name} className="flex items-center gap-3 px-4 py-3">
-              <span className="text-[13px] text-[#111111] flex-1 min-w-0 truncate">
+              <span className="text-[13px] text-[#1F1F1F] flex-1 min-w-0 truncate">
                 {item.name}
               </span>
-              <div className="w-24 h-1 bg-[rgba(0,0,0,0.06)] rounded-full flex-shrink-0">
+              <div className="w-24 h-1 bg-[#E6E6E4] rounded-full flex-shrink-0">
                 <div
-                  className="h-1 bg-[#185FA5] rounded-full"
+                  className="h-1 bg-[#1B2B61] rounded-full"
                   style={{ width: `${pct}%` }}
                 />
               </div>
-              <span className="text-[11px] text-[#9B9DA3] w-12 text-right flex-shrink-0">
+              <span className="text-[11px] text-[#98988F] w-12 text-right flex-shrink-0">
                 {item.mastered}/{item.total}
               </span>
             </div>
@@ -287,12 +287,12 @@ function MasteryItemList({
   if (items.length === 0) return null;
 
   const dotColor =
-    variant === "success" ? "bg-[#0F6E56]" : "bg-[#dc2626]";
+    variant === "success" ? "bg-[#1F7A68]" : "bg-[#B94A32]";
   const icon = variant === "success" ? "✓" : "✗";
 
   return (
     <div className="mb-6">
-      <div className="text-[11px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-2">
+      <div className="text-[11px] text-[#98988F] uppercase tracking-[0.05em] mb-2">
         {title}
       </div>
       <div className="space-y-2">
@@ -301,13 +301,13 @@ function MasteryItemList({
             key={`${r.content_type}:${r.content_id}`}
             className="flex items-center gap-2 text-[13px]"
           >
-            <span className={`w-4 text-center ${variant === "success" ? "text-[#0F6E56]" : "text-[#dc2626]"}`}>
+            <span className={`w-4 text-center ${variant === "success" ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
               {icon}
             </span>
-            <span className="text-[#111111]">
+            <span className="text-[#1F1F1F]">
               {r.content_id}
             </span>
-            <span className="text-[11px] text-[#9B9DA3]">
+            <span className="text-[11px] text-[#98988F]">
               {r.content_type}
               {r.last_correct_at && variant === "success"
                 ? ` · ${timeAgo(r.last_correct_at)}`
@@ -357,10 +357,10 @@ export default function ProgressPage() {
 
   if (authLoading || loading) {
     return (
-      <PageShell>
-        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
-        <div className="text-[13px] text-[#9B9DA3] text-center py-16">
-          A carregar...
+      <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
+        <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
+        <div className="text-[13px] text-[#98988F] text-center py-16">
+          A carregar…
         </div>
       </PageShell>
     );
@@ -368,17 +368,17 @@ export default function ProgressPage() {
 
   if (!user) {
     return (
-      <PageShell>
-        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+      <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
+        <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
         <div className="text-center py-16">
-          <div className="text-[14px] text-[#6C6B71] mb-4">
-            Sign in to track your progress
+          <div className="text-[14px] text-[#6B6B69] mb-4">
+            Entra para acompanhares o teu progresso
           </div>
           <a
             href="/auth/login"
-            className="inline-flex px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
+            className="inline-flex px-4 py-2 text-[13px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors"
           >
-            Sign in
+            Entrar
           </a>
         </div>
       </PageShell>
@@ -387,10 +387,10 @@ export default function ProgressPage() {
 
   if (!mastery) {
     return (
-      <PageShell>
-        <PageHeader title="O teu progresso" subtitle="Your learning journey" />
-        <div className="text-[13px] text-[#9B9DA3] text-center py-16">
-          Start your first lesson to see progress here
+      <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
+        <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
+        <div className="text-[13px] text-[#98988F] text-center py-16">
+          Faz a tua primeira lição para veres aqui o progresso
         </div>
       </PageShell>
     );
@@ -408,39 +408,39 @@ export default function ProgressPage() {
   const overallPct = totalItems > 0 ? Math.round((totalMastered / totalItems) * 100) : 0;
 
   return (
-    <PageShell>
-      <PageHeader title="O teu progresso" subtitle="Your learning journey" />
+    <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
+      <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
 
       {/* Overall stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
         <StatCard
-          label="Items mastered"
+          label="Itens dominados"
           value={String(totalMastered)}
           total={String(totalItems)}
           progress={overallPct}
         />
         <StatCard
-          label="To review"
+          label="Para rever"
           value={String(mastery.reviewCount)}
-          subtitle={mastery.reviewCount > 0 ? "Items due" : "All caught up"}
+          subtitle={mastery.reviewCount > 0 ? "Em atraso" : "Tudo em dia"}
         />
         <StatCard
-          label="Streak"
+          label="Sequência"
           value={legacyStats ? `${legacyStats.currentStreak}d` : "0d"}
           subtitle={
             legacyStats && legacyStats.longestStreak > 0
-              ? `Best: ${legacyStats.longestStreak}d`
+              ? `Recorde: ${legacyStats.longestStreak}d`
               : undefined
           }
         />
         <StatCard
-          label="Notes"
+          label="Notas"
           value={String(legacyStats?.totalNotesWritten ?? 0)}
         />
       </div>
 
       {/* CEFR level progression */}
-      <SectionLabel>Level progression</SectionLabel>
+      <SectionLabel>Níveis</SectionLabel>
       <div className="space-y-3 mb-8">
         <CEFRProgressCard level="A1" progress={mastery.progression.a1.progress} />
         <CEFRProgressCard level="A2" progress={mastery.progression.a2.progress} />
@@ -449,32 +449,32 @@ export default function ProgressPage() {
 
       {/* Vocab by category */}
       <CategoryBreakdown
-        title="Vocabulary by category"
+        title="Vocabulário por categoria"
         items={mastery.vocabByCategory}
       />
 
       {/* Verbs by group */}
       <CategoryBreakdown
-        title="Verbs by group"
+        title="Verbos por grupo"
         items={mastery.verbsByGroup}
       />
 
       {/* Recently mastered + Needs attention */}
-      <SectionLabel>Status</SectionLabel>
-      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 mb-8">
+      <SectionLabel>Estado</SectionLabel>
+      <div className="border border-aula-border rounded-xl p-5 mb-8">
         <MasteryItemList
-          title="Recently mastered"
+          title="Dominados recentemente"
           items={mastery.recentlyMastered}
           variant="success"
         />
         <MasteryItemList
-          title="Needs attention"
+          title="Precisa de atenção"
           items={mastery.needsAttention}
           variant="warning"
         />
         {mastery.recentlyMastered.length === 0 && mastery.needsAttention.length === 0 && (
-          <p className="text-[13px] text-[#9B9DA3] text-center py-4">
-            Complete lessons to see your mastery status here
+          <p className="text-[13px] text-[#98988F] text-center py-4">
+            Faz algumas lições para veres aqui o teu domínio
           </p>
         )}
       </div>
@@ -482,20 +482,20 @@ export default function ProgressPage() {
       {/* Timeline */}
       {legacyStats && legacyStats.timeline.length > 0 && (
         <>
-          <SectionLabel>Recent activity</SectionLabel>
-          <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg divide-y divide-[rgba(0,0,0,0.06)]">
+          <SectionLabel>Atividade recente</SectionLabel>
+          <div className="border border-aula-border rounded-xl divide-y divide-[#E6E6E4]">
             {legacyStats.timeline.slice(0, 10).map((event, i) => (
               <div key={i} className="flex items-center gap-3 px-4 py-3">
                 <div
                   className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${eventDotColor(event.type)}`}
                 />
                 <div className="flex-1 min-w-0">
-                  <span className="text-[13px] text-[#111111]">{event.title}</span>
+                  <span className="text-[13px] text-[#1F1F1F]">{event.title}</span>
                   {event.subtitle && (
-                    <span className="text-[12px] text-[#9B9DA3] ml-2">{event.subtitle}</span>
+                    <span className="text-[12px] text-[#98988F] ml-2">{event.subtitle}</span>
                   )}
                 </div>
-                <span className="text-[11px] text-[#9B9DA3] flex-shrink-0">
+                <span className="text-[11px] text-[#98988F] flex-shrink-0">
                   {formatDate(event.date)}
                 </span>
               </div>

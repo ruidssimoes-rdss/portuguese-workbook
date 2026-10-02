@@ -10,27 +10,27 @@ interface VocabBlockProps {
 }
 
 const FAMILIARITY_LABEL: Record<FamiliarityState, { text: string; color: string }> = {
-  new: { text: "New", color: "text-[#9B9DA3]" },
-  learning: { text: "Learning", color: "text-[#185FA5]" },
-  known: { text: "Known", color: "text-[#0F6E56]" },
-  mastered: { text: "Mastered", color: "text-[#0F6E56]" },
+  new: { text: "New", color: "text-[#98988F]" },
+  learning: { text: "Learning", color: "text-[#1B2B61]" },
+  known: { text: "Known", color: "text-[#1F7A68]" },
+  mastered: { text: "Mastered", color: "text-[#1F7A68]" },
 };
 
 function CardVariant({ data, className }: { data: VocabBlockData; className?: string }) {
   return (
-    <div className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white ${className ?? ""}`}>
+    <div className={`border-[0.5px] border-[#E6E6E4] rounded-lg p-6 bg-white ${className ?? ""}`}>
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-baseline gap-1.5">
-          <p className="text-[18px] font-medium text-[#111111]">{data.word}</p>
+          <p className="text-[18px] font-medium text-[#1F1F1F]">{data.word}</p>
           {data.gender && (
-            <span className="text-[12px] text-[#9B9DA3]">
+            <span className="text-[12px] text-[#98988F]">
               ({data.gender === "masculine" ? "m." : "f."})
             </span>
           )}
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {data.category && (
-            <span className="text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap bg-[#F7F7F5] text-[#6C6B71]">
+            <span className="text-[12px] font-normal px-2.5 py-1 rounded-full whitespace-nowrap bg-[#F7F7F6] text-[#6B6B69]">
               {data.category}
             </span>
           )}
@@ -41,12 +41,12 @@ function CardVariant({ data, className }: { data: VocabBlockData; className?: st
           )}
         </div>
       </div>
-      <p className="text-[13px] text-[#6C6B71] mt-1">{data.translation}</p>
-      <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">{data.pronunciation}</p>
+      <p className="text-[13px] text-[#6B6B69] mt-1">{data.translation}</p>
+      <p className="text-[12px] text-[#98988F] italic mt-0.5">{data.pronunciation}</p>
       {data.example.pt && (
-        <div className="mt-3 pt-3 border-t border-[0.5px] border-[rgba(0,0,0,0.06)]">
-          <p className="text-[13px] text-[#111111]">{data.example.pt}</p>
-          <p className="text-[13px] text-[#6C6B71] italic mt-0.5">{data.example.en}</p>
+        <div className="mt-3 pt-3 border-t border-[0.5px] border-[#E6E6E4]">
+          <p className="text-[13px] text-[#1F1F1F]">{data.example.pt}</p>
+          <p className="text-[13px] text-[#6B6B69] italic mt-0.5">{data.example.en}</p>
         </div>
       )}
     </div>
@@ -55,15 +55,15 @@ function CardVariant({ data, className }: { data: VocabBlockData; className?: st
 
 function RowVariant({ data, className }: { data: VocabBlockData; className?: string }) {
   return (
-    <div className={`flex items-center justify-between py-3 px-1 border-b border-[0.5px] border-[rgba(0,0,0,0.06)] ${className ?? ""}`}>
+    <div className={`flex items-center justify-between py-3 px-1 border-b border-[0.5px] border-[#E6E6E4] ${className ?? ""}`}>
       <div className="flex items-baseline gap-2">
-        <span className="text-[14px] font-medium text-[#111111]">{data.word}</span>
+        <span className="text-[14px] font-medium text-[#1F1F1F]">{data.word}</span>
         {data.gender && (
-          <span className="text-[11px] text-[#9B9DA3]">({data.gender === "masculine" ? "m." : "f."})</span>
+          <span className="text-[11px] text-[#98988F]">({data.gender === "masculine" ? "m." : "f."})</span>
         )}
-        <span className="text-[13px] text-[#6C6B71]">{data.translation}</span>
+        <span className="text-[13px] text-[#6B6B69]">{data.translation}</span>
       </div>
-      <span className="text-[12px] text-[#9B9DA3] italic shrink-0 ml-3">{data.pronunciation}</span>
+      <span className="text-[12px] text-[#98988F] italic shrink-0 ml-3">{data.pronunciation}</span>
     </div>
   );
 }
@@ -73,7 +73,7 @@ function FlashcardVariant({ data, className }: { data: VocabBlockData; className
 
   return (
     <div
-      className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white hover:border-[rgba(0,0,0,0.12)] transition-all duration-150 ease-out cursor-pointer select-none ${className ?? ""}`}
+      className={`border-[0.5px] border-[#E6E6E4] rounded-lg p-6 bg-white hover:border-[#CFCFCB] transition-all duration-150 ease-out cursor-pointer select-none ${className ?? ""}`}
       style={{ perspective: "1000px", aspectRatio: "3/2" }}
       onClick={() => setFlipped(!flipped)}
       role="button"
@@ -92,19 +92,19 @@ function FlashcardVariant({ data, className }: { data: VocabBlockData; className
           className="absolute inset-0 flex flex-col items-center justify-center"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <p className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">{data.word}</p>
-          <p className="text-[13px] text-[#9B9DA3] italic mt-2">{data.pronunciation}</p>
+          <p className="text-[22px] font-medium text-[#1F1F1F] tracking-[-0.02em]">{data.word}</p>
+          <p className="text-[13px] text-[#98988F] italic mt-2">{data.pronunciation}</p>
         </div>
         {/* Back */}
         <div
           className="absolute inset-0 flex flex-col items-center justify-center"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <p className="text-[18px] font-medium text-[#111111]">{data.translation}</p>
+          <p className="text-[18px] font-medium text-[#1F1F1F]">{data.translation}</p>
           {data.example.pt && (
             <div className="mt-3 text-center max-w-[280px]">
-              <p className="text-[13px] text-[#111111]">{data.example.pt}</p>
-              <p className="text-[13px] text-[#6C6B71] italic mt-0.5">{data.example.en}</p>
+              <p className="text-[13px] text-[#1F1F1F]">{data.example.pt}</p>
+              <p className="text-[13px] text-[#6B6B69] italic mt-0.5">{data.example.en}</p>
             </div>
           )}
         </div>
@@ -116,8 +116,8 @@ function FlashcardVariant({ data, className }: { data: VocabBlockData; className
 function InlineVariant({ data, className }: { data: VocabBlockData; className?: string }) {
   return (
     <span className={`text-[14px] ${className ?? ""}`}>
-      <span className="font-medium text-[#111111]">{data.word}</span>
-      <span className="text-[#6C6B71]"> ({data.translation})</span>
+      <span className="font-medium text-[#1F1F1F]">{data.word}</span>
+      <span className="text-[#6B6B69]"> ({data.translation})</span>
     </span>
   );
 }

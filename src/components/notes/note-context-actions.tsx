@@ -44,7 +44,7 @@ export function NoteContextActions({ contextType, contextId, contextLabel }: Not
       <button
         type="button"
         onClick={handleAddNote}
-        className="flex items-center gap-1.5 text-[13px] font-medium text-[#6B7280] hover:text-[#003399] transition-colors duration-200"
+        className="flex items-center gap-1.5 text-[13px] font-medium text-[#6B6B69] hover:text-[#1B2B61] transition-colors duration-200"
       >
         <PencilIcon className="w-4 h-4" />
         Adicionar nota
@@ -53,7 +53,7 @@ export function NoteContextActions({ contextType, contextId, contextLabel }: Not
         <button
           type="button"
           onClick={handleViewNotes}
-          className="text-[12px] font-medium text-[#9CA3AF] hover:text-[#003399] transition-colors duration-200"
+          className="text-[12px] font-medium text-[#98988F] hover:text-[#1B2B61] transition-colors duration-200"
         >
           {count === 1 ? "1 nota" : `${count} notas`}
         </button>

@@ -215,11 +215,11 @@ export async function moveGoalEvent(
   return mapRowToEvent(row);
 }
 
-const LESSON_PASSED_COLOR = "#16A34A";
+const LESSON_PASSED_COLOR = "#1F7A68";
 const PRACTICE_COLOR = "#8B5CF6";
-const LESSON_FAILED_COLOR = "#F59E0B";
-const EXAM_PASSED_COLOR = "#003399";
-const EXAM_FAILED_COLOR = "#F59E0B";
+const LESSON_FAILED_COLOR = "#5B45B8";
+const EXAM_PASSED_COLOR = "#1B2B61";
+const EXAM_FAILED_COLOR = "#5B45B8";
 
 export async function logLessonCompletion(
   lessonId: string,

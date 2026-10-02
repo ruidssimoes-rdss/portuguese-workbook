@@ -160,13 +160,13 @@ export function PronunciationButton({
       : variant === "muted"
         ? `border-0 bg-surface text-text-muted shadow-none focus:ring-border ${baseTransition} ${
             playing
-              ? "bg-[#003399]/10 text-[#003399] [animation:glow-pulse_1.2s_ease-in-out_infinite]"
+              ? "bg-[#1B2B61]/10 text-[#1B2B61] [animation:glow-pulse_1.2s_ease-in-out_infinite]"
               : "hover:bg-border hover:text-text-secondary"
           }`
-        : `border-0 text-white shadow-none focus:ring-[#003399]/30 ${baseTransition} ${
+        : `border-0 text-white shadow-none focus:ring-[#1B2B61]/30 ${baseTransition} ${
             playing
-              ? "bg-[#003399] [animation:glow-pulse_1.2s_ease-in-out_infinite]"
-              : "bg-[#003399] hover:bg-[#002277] hover:shadow-[0_0_0_4px_rgba(0,51,153,0.12),_0_4px_16px_rgba(0,51,153,0.25)]"
+              ? "bg-[#1B2B61] [animation:glow-pulse_1.2s_ease-in-out_infinite]"
+              : "bg-[#1B2B61] hover:bg-[#002277] hover:shadow-[0_0_0_4px_rgba(0,51,153,0.12),_0_4px_16px_rgba(0,51,153,0.25)]"
           }`;
 
   return (

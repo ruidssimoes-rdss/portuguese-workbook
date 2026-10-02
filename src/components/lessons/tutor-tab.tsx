@@ -20,21 +20,21 @@ interface PastSession {
 }
 
 const LOADING_MESSAGES = [
-  "Analysing your progress...",
-  "Building your session...",
-  "Selecting content...",
-  "Almost ready...",
+  "A analisar o teu progresso…",
+  "A montar a sessão…",
+  "A escolher o conteúdo…",
+  "Quase pronto…",
 ];
 
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60_000);
-  if (mins < 60) return `${mins}m ago`;
+  if (mins < 60) return `há ${Math.max(mins, 1)} min`;
   const hours = Math.floor(mins / 60);
-  if (hours < 24) return `${hours}h ago`;
+  if (hours < 24) return `há ${hours} h`;
   const days = Math.floor(hours / 24);
-  if (days === 1) return "Yesterday";
-  return `${days}d ago`;
+  if (days === 1) return "ontem";
+  return `há ${days} dias`;
 }
 
 export function TutorTabV2() {
@@ -88,7 +88,7 @@ export function TutorTabV2() {
 
       if (!res.ok) {
         setStatus("error");
-        setError(data.error || "Failed to generate session.");
+        setError(data.error || "Não foi possível preparar a sessão.");
         return;
       }
 
@@ -97,7 +97,7 @@ export function TutorTabV2() {
       setStatus("ready");
     } catch {
       setStatus("error");
-      setError("Network error. Check your connection.");
+      setError("Sem ligação. Verifica a tua internet.");
     }
   }, []);
 
@@ -107,163 +107,102 @@ export function TutorTabV2() {
     router.push(`/lessons/${plan.meta.id}`);
   }, [plan, router]);
 
+  const btn = "inline-flex h-8 items-center gap-1.5 rounded-lg px-3.5 text-[12px] font-medium transition-colors";
+  const primary = `${btn} bg-aula-accent text-white hover:bg-aula-accent-hover`;
+  const secondary = `${btn} border border-aula-border bg-white text-aula-text hover:border-aula-text-4`;
+
   return (
-    <div className="max-w-[896px] mx-auto">
-      {/* Intro */}
-      <div className="mb-10">
-        <h2 className="text-[22px] font-medium text-[#111111]">Professor Elísio</h2>
-        <p className="text-[13px] font-medium text-[#9B9DA3] italic mt-0.5">
-          Sessões personalizadas baseadas no teu progresso
-        </p>
-        <p className="text-[14px] text-[#6C6B71] leading-relaxed mt-3 max-w-[640px]">
-          Each session adapts to your weak areas, overdue reviews, and current level.
-          Content comes from verified European Portuguese data — the AI only decides
-          what to practice and how to sequence it.
-        </p>
+    <div className="mx-auto max-w-[680px]">
+      <div className="mb-6 flex items-center gap-3">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-aula-accent text-[14px] font-semibold text-white">E</span>
+        <div>
+          <h1 className="text-[22px] font-semibold tracking-[-0.02em] text-aula-text">Professor Elísio</h1>
+          <p className="text-[13px] text-aula-text-2">Prepara uma sessão sobre o que te está a custar.</p>
+        </div>
       </div>
 
-      {/* Session card */}
-      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-6 bg-white">
-        {/* Idle state */}
+      <div className="rounded-xl border border-aula-border bg-white p-5">
         {status === "idle" && (
           <div>
-            <p className="text-[16px] font-medium text-[#111111]">
-              Ready for practice
+            <p className="text-[15px] font-semibold text-aula-text">Pronto para praticar?</p>
+            <p className="mt-1.5 max-w-[500px] text-[12.5px] leading-relaxed text-aula-text-2">
+              O Elísio olha para os teus pontos fracos, para as revisões em atraso e para o teu nível, e monta uma sessão só para ti. O conteúdo vem sempre do Aula, em português europeu verificado.
             </p>
-            <p className="text-[14px] text-[#6C6B71] mt-2 max-w-[500px]">
-              Professor Elísio will analyse your progress and create a personalized review session.
-            </p>
-            <button
-              onClick={handleGenerate}
-              className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors mt-5"
-            >
-              Generate Session
+            <button onClick={handleGenerate} className={`${primary} mt-4`}>
+              Preparar sessão
             </button>
-            <p className="text-[12px] text-[#9B9DA3] mt-3">
-              Powered by AI · Adapts to your weak areas
-            </p>
           </div>
         )}
 
-        {/* Generating state */}
         {status === "generating" && (
           <div>
-            <div className="space-y-3 animate-pulse">
-              <div className="h-5 bg-[#F7F7F5] rounded w-2/3" />
-              <div className="h-3 bg-[#F7F7F5] rounded w-1/3" />
-              <div className="h-16 bg-[#F7F7F5] rounded w-full mt-3" />
-              <div className="flex gap-8 mt-3">
-                <div className="h-8 bg-[#F7F7F5] rounded w-16" />
-                <div className="h-8 bg-[#F7F7F5] rounded w-16" />
-                <div className="h-8 bg-[#F7F7F5] rounded w-16" />
-              </div>
+            <div className="animate-pulse space-y-2.5">
+              <div className="h-4 w-2/3 rounded bg-aula-sunken" />
+              <div className="h-3 w-1/3 rounded bg-aula-sunken" />
+              <div className="mt-3 h-14 w-full rounded bg-aula-sunken" />
             </div>
-            <p className="text-[13px] text-[#9B9DA3] mt-5">{loadingMsg}</p>
+            <p className="mt-4 text-[12px] text-aula-text-3">{loadingMsg}</p>
           </div>
         )}
 
-        {/* Error state */}
         {status === "error" && (
           <div>
-            <p className="text-[14px] font-medium text-[#111111]">Something went wrong</p>
-            <p className="text-[13px] text-[#6C6B71] mt-1">{error}</p>
-            <button
-              onClick={handleGenerate}
-              className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors mt-4"
-            >
-              Try again
+            <p className="text-[13px] font-medium text-aula-text">Algo correu mal</p>
+            <p className="mt-1 text-[12px] text-aula-text-2">{error}</p>
+            <button onClick={handleGenerate} className={`${secondary} mt-4`}>
+              Tentar outra vez
             </button>
           </div>
         )}
 
-        {/* Ready state */}
         {status === "ready" && plan && (
           <div>
-            <h3 className="text-[18px] font-medium text-[#111111]">
-              {plan.meta.title}
-            </h3>
-            <p className="text-[13px] text-[#9B9DA3] italic mt-1">
-              {plan.meta.ptTitle}
-            </p>
-
-            <div className="flex gap-8 mt-5">
-              <div>
-                <p className="text-[20px] font-medium text-[#111111]">
-                  {plan.learnBlocks.length + plan.exerciseBlocks.length}
-                </p>
-                <p className="text-[11px] text-[#9B9DA3]">Items</p>
-              </div>
-              <div>
-                <p className="text-[20px] font-medium text-[#111111]">
-                  {plan.meta.estimatedMinutes}
-                </p>
-                <p className="text-[11px] text-[#9B9DA3]">Minutes</p>
-              </div>
-              <div>
-                <p className="text-[20px] font-medium text-[#111111]">{plan.meta.cefr}</p>
-                <p className="text-[11px] text-[#9B9DA3]">Level</p>
-              </div>
+            <p className="text-[15px] font-semibold text-aula-text">{plan.meta.ptTitle || plan.meta.title}</p>
+            {plan.meta.ptTitle && <p className="mt-0.5 text-[12px] text-aula-text-3">{plan.meta.title}</p>}
+            <div className="mt-4 flex gap-8">
+              {[
+                { v: plan.learnBlocks.length + plan.exerciseBlocks.length, k: "Itens" },
+                { v: `${plan.meta.estimatedMinutes} min`, k: "Duração" },
+                { v: plan.meta.cefr, k: "Nível" },
+              ].map((x) => (
+                <div key={x.k}>
+                  <p className="text-[18px] font-semibold text-aula-text">{x.v}</p>
+                  <p className="text-[11px] text-aula-text-3">{x.k}</p>
+                </div>
+              ))}
             </div>
-
-            {source === "fallback" && (
-              <p className="text-[12px] text-[#9B9DA3] mt-3">
-                Generated without AI (offline mode)
-              </p>
-            )}
-
-            <div className="flex items-center gap-3 mt-6">
-              <button
-                onClick={handleStart}
-                className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors"
-              >
-                Start Session
+            {source === "fallback" && <p className="mt-3 text-[11.5px] text-aula-text-3">Preparada sem IA, a partir das tuas revisões e do teu nível.</p>}
+            <div className="mt-5 flex items-center gap-2">
+              <button onClick={handleStart} className={primary}>
+                Começar
               </button>
-              <button
-                onClick={handleGenerate}
-                className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors"
-              >
-                Generate New
+              <button onClick={handleGenerate} className={secondary}>
+                Preparar outra
               </button>
             </div>
           </div>
         )}
       </div>
 
-      {/* Past sessions */}
       {pastSessions.length > 0 && (
-        <div className="mt-12">
-          <p className="text-[12px] font-medium uppercase tracking-wider text-[#9B9DA3] mb-4">
-            Past sessions · Sessões anteriores
-          </p>
-          <div>
-            {pastSessions.map((ps, i) => (
-              <div
-                key={ps.id}
-                className={`flex items-center justify-between py-3 ${
-                  i < pastSessions.length - 1 ? "border-b border-[rgba(0,0,0,0.06)]" : ""
-                }`}
-              >
-                <div>
-                  <p className="text-[14px] font-medium text-[#111111]">
-                    {ps.session_title}
-                  </p>
-                  <p className="text-[12px] text-[#9B9DA3]">
-                    {timeAgo(ps.created_at)}
-                    {ps.difficulty ? ` · ${ps.difficulty}` : ""}
-                    {ps.estimated_minutes ? ` · ${ps.estimated_minutes} min` : ""}
-                  </p>
-                </div>
-                {ps.completed && ps.accuracy_score != null && (
-                  <p className="text-[13px] font-medium text-[#0F6E56]">
-                    {Math.round(ps.accuracy_score * 100)}%
-                  </p>
-                )}
-                {!ps.completed && (
-                  <p className="text-[12px] text-[#9B9DA3]">Not completed</p>
-                )}
+        <div className="mt-10">
+          <p className="mb-2 px-3 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3">Sessões anteriores</p>
+          {pastSessions.map((ps) => (
+            <div key={ps.id} className="flex min-h-[48px] items-center gap-4 rounded-[10px] px-3 py-2">
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[12.5px] text-aula-text">{ps.session_title_pt || ps.session_title}</p>
+                <p className="text-[11px] text-aula-text-3">
+                  {timeAgo(ps.created_at)}
+                  {ps.estimated_minutes ? ` · ${ps.estimated_minutes} min` : ""}
+                </p>
               </div>
-            ))}
-          </div>
+              {ps.completed && ps.accuracy_score != null ? (
+                <span className="text-[12px] font-medium text-[#1F7A68]">{Math.round(ps.accuracy_score * 100)}%</span>
+              ) : (
+                <span className="text-[11px] text-aula-text-3">Por acabar</span>
+              )}
+            </div>
+          ))}
         </div>
       )}
     </div>

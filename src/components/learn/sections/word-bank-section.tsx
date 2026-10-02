@@ -61,8 +61,8 @@ export function WordBankSectionNew({ sectionIndex, totalSections, showEnglish, p
 
   return (
     <div>
-      <div className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-[12px_14px]">
-        <div className="text-[14px] text-[#111111] leading-[2]">
+      <div className="border-[0.5px] border-[#E6E6E4] rounded-lg p-[12px_14px]">
+        <div className="text-[14px] text-[#1F1F1F] leading-[2]">
           {parts.map((part, pi) => (
             <span key={pi}>
               {part}
@@ -70,13 +70,13 @@ export function WordBankSectionNew({ sectionIndex, totalSections, showEnglish, p
                 phase === "answering" ? (
                   <button type="button" onClick={() => { if (filled[pi]) removeFromBlank(pi); else setActiveBlank(pi); }}
                     className={`inline-block min-w-[50px] mx-0.5 px-1.5 py-px text-[13px] text-center rounded-[4px] border-[0.5px] ${
-                      filled[pi] ? "bg-[#111111] text-white border-[#111111] cursor-pointer"
-                        : activeBlank === pi ? "border-[#185FA5] bg-[#E6F1FB] border-dashed" : "border-dashed border-[rgba(0,0,0,0.15)]"
+                      filled[pi] ? "bg-[#1B2B61] text-white border-[#1F1F1F] cursor-pointer"
+                        : activeBlank === pi ? "border-[#1B2B61] bg-[#E8ECF6] border-dashed" : "border-dashed border-[rgba(0,0,0,0.15)]"
                     }`}
                   >{filled[pi] || "\u00A0"}</button>
                 ) : (
                   <span className={`inline-block mx-0.5 px-1.5 py-px rounded-[4px] text-[13px] font-medium ${
-                    results[pi] ? "text-[#0F6E56] border-b border-[#0F6E56]" : "text-[#dc2626] border-b border-[#dc2626]"
+                    results[pi] ? "text-[#1F7A68] border-b border-[#1F7A68]" : "text-[#B94A32] border-b border-[#B94A32]"
                   }`}>{results[pi] ? paragraph.blanks[pi].correctAnswer : (filled[pi] ?? "—")}</span>
                 )
               )}
@@ -85,16 +85,16 @@ export function WordBankSectionNew({ sectionIndex, totalSections, showEnglish, p
         </div>
 
         {showEnglish && paragraph.paragraphEnglish && (
-          <div className="text-[12px] text-[#6C6B71] italic mt-1">{paragraph.paragraphEnglish}</div>
+          <div className="text-[12px] text-[#6B6B69] italic mt-1">{paragraph.paragraphEnglish}</div>
         )}
 
         {/* Word bank */}
         {phase === "answering" && (
-          <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
+          <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t-[0.5px] border-[#E6E6E4]">
             {paragraph.wordBank.map((w, wi) => (
               <button key={wi} type="button" onClick={() => pickWord(wi)} disabled={bankUsed[wi]}
                 className={`px-[10px] py-1 text-[12px] rounded-[5px] ${
-                  bankUsed[wi] ? "bg-[rgba(0,0,0,0.04)] text-[#9B9DA3] cursor-not-allowed" : "bg-[#F7F7F5] text-[#111111] cursor-pointer hover:bg-[rgba(0,0,0,0.08)]"
+                  bankUsed[wi] ? "bg-[rgba(0,0,0,0.04)] text-[#98988F] cursor-not-allowed" : "bg-[#F7F7F6] text-[#1F1F1F] cursor-pointer hover:bg-[rgba(0,0,0,0.08)]"
                 }`}
               >{w}</button>
             ))}
@@ -104,7 +104,7 @@ export function WordBankSectionNew({ sectionIndex, totalSections, showEnglish, p
         {phase === "reviewed" && results.some((r) => !r) && (
           <div className="mt-1.5">
             {paragraph.blanks.map((b, i) => !results[i] && (
-              <div key={i} className="text-[11px] text-[#0F6E56]">Lacuna {i + 1}: {b.correctAnswer}</div>
+              <div key={i} className="text-[11px] text-[#1F7A68]">Lacuna {i + 1}: {b.correctAnswer}</div>
             ))}
           </div>
         )}
@@ -113,14 +113,14 @@ export function WordBankSectionNew({ sectionIndex, totalSections, showEnglish, p
       <div className="mt-[10px]">
         {phase === "answering" && (
           <button type="button" onClick={verify} disabled={!allFilled}
-            className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#111111] text-white cursor-pointer" : "bg-[#111111] text-white opacity-40 cursor-not-allowed"}`}
-          >{allFilled ? "Continue →" : "Answer all questions to continue"}</button>
+            className={`w-full py-[10px] text-[13px] font-medium rounded-[6px] ${allFilled ? "bg-[#1B2B61] text-white cursor-pointer" : "bg-[#1B2B61] text-white opacity-40 cursor-not-allowed"}`}
+          >{allFilled ? "Continuar →" : "Responde a todas para continuar"}</button>
         )}
         {phase === "reviewed" && (
           <div className="flex items-center justify-between">
-            <span className="text-[13px] font-medium text-[#111111]">{correctCount}/{paragraph.blanks.length}</span>
-            <button type="button" onClick={finish} className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#111111] rounded-[6px] cursor-pointer">
-              {sectionIndex < totalSections - 1 ? "Next section →" : "See results →"}
+            <span className="text-[13px] font-medium text-[#1F1F1F]">{correctCount}/{paragraph.blanks.length}</span>
+            <button type="button" onClick={finish} className="px-[14px] py-[7px] text-[12px] font-medium text-white bg-[#1B2B61] rounded-[6px] cursor-pointer">
+              {sectionIndex < totalSections - 1 ? "Secção seguinte →" : "Ver resultados →"}
             </button>
           </div>
         )}

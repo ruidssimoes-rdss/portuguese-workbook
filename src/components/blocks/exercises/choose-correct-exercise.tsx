@@ -30,16 +30,16 @@ export function ChooseCorrectExercise({
   function optionClass(index: number): string {
     const base = "w-full text-left text-[14px] py-3 px-4 rounded-lg cursor-pointer transition-all duration-200";
     if (selected === null) {
-      return `${base} border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white text-[#111111] hover:border-[rgba(0,0,0,0.12)] hover:bg-[#F7F7F5]`;
+      return `${base} border-[0.5px] border-[#E6E6E4] bg-white text-[#1F1F1F] hover:border-[#CFCFCB] hover:bg-[#F7F7F6]`;
     }
-    if (index === data.correctIndex) return `${base} border-[1px] border-[#0F6E56] bg-[#E1F5EE]`;
-    if (index === selected) return `${base} border-[1px] border-[#dc2626] bg-[#fef2f2]`;
-    return `${base} option-disabled border-[0.5px] border-[rgba(0,0,0,0.06)] bg-white`;
+    if (index === data.correctIndex) return `${base} border-[1px] border-[#1F7A68] bg-[#E1F2ED]`;
+    if (index === selected) return `${base} border-[1px] border-[#B94A32] bg-[#FBE9E4]`;
+    return `${base} option-disabled border-[0.5px] border-[#E6E6E4] bg-white`;
   }
 
   return (
     <div className={`py-6 fade-in ${className ?? ""}`}>
-      <p className="text-[16px] font-medium text-[#111111] mb-4">{data.question}</p>
+      <p className="text-[16px] font-medium text-[#1F1F1F] mb-4">{data.question}</p>
       <div className="space-y-3">
         {data.options.map((option, i) => (
           <button

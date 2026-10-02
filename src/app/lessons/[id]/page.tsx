@@ -205,16 +205,16 @@ function LessonIntro({
   return (
     <div className="max-w-md mx-auto text-center py-8">
       {/* Title */}
-      <h1 className="text-[22px] font-medium text-[#111111] tracking-[-0.02em]">
-        Your next lesson
+      <h1 className="text-[22px] font-medium text-[#1F1F1F] tracking-[-0.02em]">
+        A tua próxima lição
       </h1>
 
       {/* CEFR badge */}
       <div className="mt-3">
         <span className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full ${
-          lesson.cefr === "A1" ? "text-[#0F6E56] bg-[#E1F5EE]" :
-          lesson.cefr === "A2" ? "text-[#185FA5] bg-[#E6F1FB]" :
-          "text-[#854F0B] bg-[#FAEEDA]"
+          lesson.cefr === "A1" ? "text-[#1F7A68] bg-[#E1F2ED]" :
+          lesson.cefr === "A2" ? "text-[#1B2B61] bg-[#E8ECF6]" :
+          "text-[#5B45B8] bg-[#ECE8F8]"
         }`}>{lesson.cefr}</span>
       </div>
 
@@ -223,16 +223,16 @@ function LessonIntro({
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex-1 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg py-4 px-2 text-center"
+            className="flex-1 border-[0.5px] border-[#E6E6E4] rounded-lg py-4 px-2 text-center"
           >
-            <div className="text-[24px] font-medium text-[#111111]">{stat.value}</div>
-            <div className="text-[11px] text-[#9B9DA3] mt-0.5">{stat.label}</div>
+            <div className="text-[24px] font-medium text-[#1F1F1F]">{stat.value}</div>
+            <div className="text-[11px] text-[#98988F] mt-0.5">{stat.label}</div>
           </div>
         ))}
       </div>
 
       {/* Meta */}
-      <p className="text-[12px] text-[#9B9DA3] mt-4">
+      <p className="text-[12px] text-[#98988F] mt-4">
         {sectionCount} exercises · 80% to pass
       </p>
 
@@ -241,16 +241,16 @@ function LessonIntro({
         <button
           type="button"
           onClick={onStartExercises}
-          className="w-full py-3.5 text-[14px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
+          className="w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
         >
-          Start exercises →
+          Começar exercícios →
         </button>
         <button
           type="button"
           onClick={onReviewFirst}
-          className="w-full py-3.5 text-[14px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors cursor-pointer"
+          className="w-full py-3.5 text-[14px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors cursor-pointer"
         >
-          Review material first
+          Rever a matéria primeiro
         </button>
       </div>
 
@@ -259,9 +259,9 @@ function LessonIntro({
         <button
           type="button"
           onClick={onReset}
-          className="text-[12px] text-[#9B9DA3] hover:text-[#dc2626] transition-colors mt-6 cursor-pointer"
+          className="text-[12px] text-[#98988F] hover:text-[#B94A32] transition-colors mt-6 cursor-pointer"
         >
-          Reset lesson
+          Recomeçar lição
         </button>
       )}
     </div>
@@ -496,7 +496,7 @@ function LessonContent({ id }: { id: string }) {
   if (isDynamic && dynamicLoading) {
     return (
       <div className="py-16">
-        <p className="text-[13px] text-[#6C6B71]">A preparar a tua lição...</p>
+        <p className="text-[13px] text-[#6B6B69]">A preparar a tua lição...</p>
       </div>
     );
   }
@@ -505,8 +505,8 @@ function LessonContent({ id }: { id: string }) {
   if (!lesson) {
     return (
       <div className="py-16">
-        <p className="text-[13px] text-[#9B9DA3]">Lição não encontrada.</p>
-        <Link href="/lessons" className="text-[13px] font-medium text-[#185FA5] hover:underline mt-2 inline-block">Voltar às lições</Link>
+        <p className="text-[13px] text-[#98988F]">Lição não encontrada.</p>
+        <Link href="/lessons" className="text-[13px] font-medium text-[#1B2B61] hover:underline mt-2 inline-block">Voltar às lições</Link>
       </div>
     );
   }
@@ -514,7 +514,7 @@ function LessonContent({ id }: { id: string }) {
   if (!generatedLesson && !showRestorePrompt) {
     return (
       <div className="py-16">
-        <p className="text-[13px] text-[#6C6B71]">A preparar a lição...</p>
+        <p className="text-[13px] text-[#6B6B69]">A preparar a lição...</p>
       </div>
     );
   }
@@ -597,11 +597,11 @@ function LessonContent({ id }: { id: string }) {
   if (showRestorePrompt) {
     return (
       <LessonShell lessonId={lesson.id} lessonTitle={lesson.title} lessonTitlePt={lesson.ptTitle} cefr={lesson.cefr} currentState="intro">
-        <div className="p-6 rounded-lg border-[0.5px] border-[rgba(0,0,0,0.06)] bg-[#F7F7F5] text-center">
-          <p className="text-[14px] font-medium text-[#111111] mb-4">Tens progresso guardado nesta lição.</p>
+        <div className="p-6 rounded-lg border-[0.5px] border-[#E6E6E4] bg-[#F7F7F6] text-center">
+          <p className="text-[14px] font-medium text-[#1F1F1F] mb-4">Tens progresso guardado nesta lição.</p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            <button type="button" onClick={handleRestore} className="px-4 py-2 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors">Continuar de onde parei</button>
-            <button type="button" onClick={handleStartFresh} className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors">Começar de novo</button>
+            <button type="button" onClick={handleRestore} className="px-4 py-2 bg-[#1B2B61] text-white text-[13px] font-medium rounded-lg hover:bg-[#14214C] transition-colors">Continuar de onde parei</button>
+            <button type="button" onClick={handleStartFresh} className="px-4 py-2 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors">Começar de novo</button>
           </div>
         </div>
       </LessonShell>
@@ -647,12 +647,12 @@ function LessonContent({ id }: { id: string }) {
         {lessonState === "learn" && generatedLesson.learnItems[learnIndex] && (
           <>
             <LearnItemRenderer item={generatedLesson.learnItems[learnIndex]} />
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-[rgba(0,0,0,0.06)]">
+            <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#E6E6E4]">
               <button type="button" onClick={handleLearnPrev} disabled={learnIndex === 0}
-                className={`text-[13px] font-medium transition-colors ${learnIndex === 0 ? "text-[#9B9DA3] cursor-not-allowed" : "text-[#6C6B71] hover:text-[#111111] cursor-pointer"}`}
+                className={`text-[13px] font-medium transition-colors ${learnIndex === 0 ? "text-[#98988F] cursor-not-allowed" : "text-[#6B6B69] hover:text-[#1F1F1F] cursor-pointer"}`}
               >&larr; Anterior</button>
               <button type="button" onClick={handleLearnNext}
-                className="px-4 py-2 bg-[#111111] text-white text-[13px] font-medium rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
+                className="px-4 py-2 bg-[#1B2B61] text-white text-[13px] font-medium rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
               >{learnIndex < learnTotal - 1 ? "Próximo →" : "Começar exercícios →"}</button>
             </div>
           </>

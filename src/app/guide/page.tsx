@@ -1,789 +1,193 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
-import Link from "next/link";
-import { PageShell } from "@/components/layout/page-shell";
-import { PageHeader } from "@/components/primitives";
-import { ChevronDown } from "lucide-react";
+/**
+ * Como funciona o Aula (Figma: Ecrãs / O teu percurso).
+ * The journey A1 → A2 → B1, how a lesson is built, how reviews are spaced,
+ * and what each pip means. Static content; links into the library.
+ */
 
-const sections = [
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
+import { Pips, LevelTag, Label, ScreenTitle, PanelCard, KV } from "@/components/aula";
+import vocab from "@/data/vocab.json";
+import verbs from "@/data/verbs.json";
+import grammar from "@/data/grammar.json";
+
+const WORDS = (vocab as unknown as { categories: { words: unknown[] }[] }).categories.reduce((n, c) => n + c.words.length, 0);
+const VERBS = (verbs as unknown as { order: string[] }).order.length;
+const TOPICS = Object.keys((grammar as unknown as { topics: Record<string, unknown> }).topics).length;
+
+const LEVELS = [
   {
-    id: "how-aula-pt-works",
-    number: 1,
-    title: "How Aula PT Works",
-    portuguese: "Como Funciona o Aula PT",
-    teaser: "Everything the platform offers and how to use it.",
+    level: "A1",
+    name: "Iniciação",
+    hours: "60–100 h",
+    time: "2 a 3 meses",
+    can: "Apresentas-te, pedes um café, dizes as horas e os números. Sobrevives a uma conversa curta e lenta.",
+    learn: "Presente dos verbos regulares e de ser, estar, ter, ir. Artigos, género, plural. Cerca de 500 palavras.",
+    exam: null,
   },
   {
-    id: "cefr-levels",
-    number: 2,
-    title: "Understanding CEFR Levels",
-    portuguese: "Compreender os Níveis do QECR",
-    teaser: "What A1, A2, and B1 actually mean in practice.",
+    level: "A2",
+    name: "Sobreviver no dia a dia",
+    hours: "150–200 h",
+    time: "5 a 8 meses",
+    can: "Contas o que fizeste ontem e como era antes. Tratas de compras, médico, farmácia. Escreves uma mensagem simples.",
+    learn: "Pretérito perfeito e imperfeito, futuro, pronomes, preposições. Cerca de 1000 palavras.",
+    exam: "CIPLE",
   },
   {
-    id: "timelines",
-    number: 3,
-    title: "Realistic Timelines",
-    portuguese: "Prazos Realistas",
-    teaser: "How long it takes and what to expect.",
-  },
-  {
-    id: "daily-routine",
-    number: 4,
-    title: "Structuring Your Daily Routine",
-    portuguese: "Estruturar a Tua Rotina Diária",
-    teaser: "15, 30, and 60-minute daily plans.",
-  },
-  {
-    id: "science-of-learning",
-    number: 5,
-    title: "The Science of Learning",
-    portuguese: "A Ciência da Aprendizagem",
-    teaser: "Active recall, spaced repetition, and what to avoid.",
-  },
-  {
-    id: "portuguese-tips",
-    number: 6,
-    title: "Tips for Portuguese Specifically",
-    portuguese: "Dicas para o Português",
-    teaser: "Pronunciation, verbs, confusing pairs, immersion.",
+    level: "B1",
+    name: "Conversar à vontade",
+    hours: "300–400 h",
+    time: "12 a 18 meses",
+    can: "Dás a tua opinião e justificas. Contas uma história inteira. Tratas de assuntos nas Finanças, no banco, com o senhorio.",
+    learn: "Conjuntivo (presente, imperfeito e futuro), condicional, frases com «se». Cerca de 2000 palavras.",
+    exam: "DEPLE",
   },
 ];
 
-function GuideSectionContent({ id }: { id: string }) {
-  switch (id) {
-    case "how-aula-pt-works":
-      return (
-        <>
-          <h2 className="text-[14px] font-medium text-[#111111]">
-            How Aula PT Works
-          </h2>
-          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
-            Como Funciona o Aula PT
-          </p>
-          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
-            <p>
-              Aula PT is designed as a learning companion, not a game. There are
-              no streaks, no leaderboards, and no pressure to keep up with
-              anyone else. You learn at your own pace, and the platform is there
-              whenever you have time and energy to invest in your Portuguese.
-            </p>
+const LESSON_PARTS = [
+  { k: "Novo", v: "Algumas palavras, um verbo ou uma regra que ainda não viste, escolhidos pelo que precisas a seguir." },
+  { k: "Praticar", v: "Exercícios sobre o que acabaste de ver: escolher, escrever, ouvir, construir a frase." },
+  { k: "Rever", v: "O que está na hora de voltar a ver, antes de te esqueceres." },
+  { k: "Verificar", v: "Uma ou duas perguntas sobre o que já dominas, para confirmar que ficou." },
+];
 
-            <p className="text-[13px] font-medium text-[#111111]">
-              Your Daily Starting Point
-            </p>
-            <p>
-              The homepage greets you with three simple anchors for your day: a
-              Word of the Day, a Verb of the Day, and a Saying of the Day. These
-              rotate every 24 hours and exist for one purpose — to make it easy
-              to open Aula PT, learn something small, and keep your contact with
-              Portuguese alive even on busy days.
-            </p>
-
-            <p>
-              If you only have thirty seconds, reading those three items and
-              listening to their pronunciation is enough to keep the habit
-              going. On days when you have more time, they become a natural
-              jumping-off point into vocabulary, grammar, culture, or practice.
-            </p>
-
-            <p className="text-[13px] font-medium text-[#111111]">Learning Content</p>
-            <p>
-              Aula PT organises European Portuguese into four main areas, all
-              accessible from the Learn menu. Each one plays a different role in
-              your progress, and the magic comes from combining them rather than
-              living in just one.
-            </p>
-            <p>
-              In{" "}
-              <span className="font-medium text-[#111111]">Conjugations</span>{" "}
-              you will find every verb laid out clearly across six key tenses.
-              Each form is accompanied by a pronunciation guide and a natural
-              example sentence, so you are never looking at dry tables in
-              isolation. When verbs feel overwhelming, this is the calm,
-              structured place to come back to.
-            </p>
-            <p>
-              The{" "}
-              <span className="font-medium text-[#111111]">Vocabulary</span>{" "}
-              section contains 676 words and phrases organised into 13
-              real‑world categories such as Food &amp; Drink, Travel &amp;
-              Directions, Health &amp; Body, and Home &amp; Rooms. Every entry
-              has pronunciation, gender, an example sentence, and a CEFR level
-              so you know whether it is beginner, elementary, or intermediate
-              material.
-            </p>
-            <p>
-              In the{" "}
-              <span className="font-medium text-[#111111]">Grammar</span>{" "}
-              section you will find structured explanations of the rules that
-              hold Portuguese together: articles and gender, pronouns, verb
-              tenses, prepositions, and more. Each topic includes clear notes,
-              examples, and short test questions so you can immediately check
-              whether you have really understood the pattern.
-            </p>
-            <p>
-              The{" "}
-              <span className="font-medium text-[#111111]">Culture</span>{" "}
-              section focuses on what textbooks usually ignore: sayings and
-              proverbs, false friends, etiquette, and regional slang. This is
-              where you meet the language as it is actually used by Portuguese
-              people, with nuance and humour, rather than as a list of
-              artificially simple dialogues.
-            </p>
-
-            <p className="text-[13px] font-medium text-[#111111]">Lessons</p>
-            <p>
-              Lessons in Aula PT are structured, guided revision sessions. Each
-              lesson walks you through vocabulary, verb conjugation, grammar
-              rules, and cultural notes in stages. Along the way you flip cards,
-              complete fill-in-the-blank exercises, and work through verb drills
-              — all within a single focused session.
-            </p>
-            <p>
-              At the end of each lesson you see a completion summary showing
-              how many items you got right. Lessons are designed to be repeated
-              as often as you like, so you can revisit them whenever you want to
-              reinforce what you have learned.
-            </p>
-
-            <p className="text-[13px] font-medium text-[#111111]">
-              Progress, Tests, and Search
-            </p>
-            <p>
-              As you work through conjugations, vocabulary, and grammar topics,
-              progress tests help you see where you are on the A1–B1 scale. When
-              you complete a section, you do not see the word &quot;Failed&quot; — you see
-              &quot;Not yet&quot;. The difference is small on the screen but huge in your
-              mindset: you are not bad at Portuguese, you are just not there yet.
-            </p>
-            <p>
-              Whenever you are unsure where to go next, press{" "}
-              <span className="font-mono text-[12px] text-[#9B9DA3]">⌘K</span> (or{" "}
-              <span className="font-mono text-[12px] text-[#9B9DA3]">Ctrl+K</span>){" "}
-              to open the smart search. You can ask natural questions like &quot;How
-              do you say kitchen?&quot;, &quot;Conjugate ir&quot;, &quot;Past tense of fazer&quot;, or
-              &quot;What does saudade mean?&quot; and jump straight to the relevant entry
-              in vocabulary, conjugations, grammar, or culture.
-            </p>
-          </div>
-        </>
-      );
-    case "cefr-levels":
-      return (
-        <>
-          <h2 className="text-[14px] font-medium text-[#111111]">
-            Understanding CEFR Levels
-          </h2>
-          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
-            Compreender os Níveis do QECR
-          </p>
-          <p className="text-[13px] text-[#6C6B71] mt-4 leading-relaxed">
-            CEFR (Common European Framework of Reference) is the international
-            standard for describing language ability. Aula PT focuses on A1, A2,
-            and B1 — the range that takes you from zero Portuguese to being able
-            to live, work, and socialise in Portugal with real confidence.
-          </p>
-
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-              <p className="text-[13px] font-medium text-[#111111]">
-                A1 — Beginner / Iniciante
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                At A1 you can handle basic survival situations. You can
-                introduce yourself, ask very simple questions, order food and
-                drinks, ask for directions, recognise common words on signs and
-                menus, and take part in tiny exchanges as long as the other
-                person speaks slowly and helps you.
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2">
-                You need roughly five hundred words and the core grammar of the
-                present tense, articles, basic prepositions, and the essentials
-                of <span className="font-medium">ser</span> vs{" "}
-                <span className="font-medium">estar</span>.
-              </p>
-            </div>
-
-            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-              <p className="text-[13px] font-medium text-[#111111]">
-                A2 — Elementary / Elementar
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                At A2 you can navigate daily life with growing confidence. You
-                can describe your routine, family, and work, handle shopping and
-                simple transactions, understand the main point of short texts
-                and announcements, and talk about past events in straightforward
-                sentences.
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2">
-                You need around a thousand words and grammar such as the past
-                tenses (<span className="font-medium">pretérito perfeito</span>{" "}
-                and <span className="font-medium">imperfeito</span>), future
-                forms, object pronouns, and comparatives.
-              </p>
-            </div>
-
-            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-              <p className="text-[13px] font-medium text-[#111111]">
-                B1 — Intermediate / Intermédio
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                At B1 you can handle most situations that arise while travelling
-                or living in Portugal. You follow and participate in
-                conversations on familiar topics, understand the main points of
-                TV programmes and news, write messages and short texts with some
-                complexity, and express and justify your opinions.
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2">
-                You need roughly two thousand words and grammar such as basic
-                subjunctive, conditional, relative pronouns, and more complex
-                sentence patterns.
-              </p>
-            </div>
-          </div>
-
-          <p className="text-[13px] text-[#6C6B71] mt-4 leading-relaxed">
-            Aula PT currently covers A1 through B1 content. That is enough to
-            understand most everyday Portuguese, talk to neighbours and
-            colleagues, handle bureaucracy with some patience, and feel at home
-            in the language rather than lost in it.
-          </p>
-        </>
-      );
-    case "timelines":
-      return (
-        <>
-          <h2 className="text-[14px] font-medium text-[#111111]">Realistic Timelines</h2>
-          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
-            Prazos Realistas
-          </p>
-          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
-            <p>
-              Be honest with yourself about how long this takes. Language
-              learning is a marathon, not a sprint. Portuguese is classified as
-              a Category I language for English speakers — relatively close to
-              English — but that still means hundreds of hours of exposure and
-              practice.
-            </p>
-            <p>
-              The numbers below are based on a mix of FSI estimates and
-              experience from teachers and learners. They assume roughly thirty
-              minutes of focused study per day plus some light immersion through
-              listening and reading.
-            </p>
-          </div>
-
-          <div className="mt-6 overflow-x-auto border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg">
-            <table className="w-full text-[13px] border-collapse">
-              <thead className="bg-[#F7F7F5]">
-                <tr>
-                  <th className="text-left px-4 py-2 font-medium text-[#9B9DA3]">
-                    Level
-                  </th>
-                  <th className="text-left px-4 py-2 font-medium text-[#9B9DA3]">
-                    Hours of Study
-                  </th>
-                  <th className="text-left px-4 py-2 font-medium text-[#9B9DA3]">
-                    Realistic Calendar Time
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
-                  <td className="px-4 py-2 font-medium text-[#111111]">A1</td>
-                  <td className="px-4 py-2 text-[#6C6B71]">60–100 hours</td>
-                  <td className="px-4 py-2 text-[#6C6B71]">
-                    2–3 months (about 30 minutes per day)
-                  </td>
-                </tr>
-                <tr className="border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
-                  <td className="px-4 py-2 font-medium text-[#111111]">A2</td>
-                  <td className="px-4 py-2 text-[#6C6B71]">150–200 hours</td>
-                  <td className="px-4 py-2 text-[#6C6B71]">
-                    4–6 months (about 30 minutes per day)
-                  </td>
-                </tr>
-                <tr className="border-t-[0.5px] border-[rgba(0,0,0,0.06)]">
-                  <td className="px-4 py-2 font-medium text-[#111111]">B1</td>
-                  <td className="px-4 py-2 text-[#6C6B71]">300–400 hours</td>
-                  <td className="px-4 py-2 text-[#6C6B71]">
-                    8–14 months (about 30 minutes per day)
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
-            <p>
-              These estimates assume fairly consistent daily practice. They may
-              be shorter if you already speak another Romance language or have
-              experience learning foreign languages. They may be longer if
-              Portuguese is your first serious language or if your schedule is
-              chaotic.
-            </p>
-            <p>
-              The most important factor is not talent — it is consistency.
-              Fifteen minutes every single day beats two hours once a week.
-              Brains learn through regular, repeated exposure. Your job is not
-              to be perfect; your job is to keep showing up.
-            </p>
-            <p>
-              Do not compare yourself to other learners you see online. Some
-              have more free time, easier access to native speakers, or years of
-              prior language study. Your only benchmark is whether you know more
-              Portuguese this month than you did last month.
-            </p>
-          </div>
-        </>
-      );
-    case "daily-routine":
-      return (
-        <>
-          <h2 className="text-[14px] font-medium text-[#111111]">
-            Structuring Your Daily Routine
-          </h2>
-          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
-            Estruturar a Tua Rotina Diária
-          </p>
-          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
-            <p>
-              A good routine does not need to be complicated. The goal is to
-              attach Portuguese to things you already do — your morning coffee,
-              your commute, the moment before you go to sleep. Once the habit is
-              there, increasing the time is much easier.
-            </p>
-          </div>
-
-          <div className="mt-6 space-y-4">
-            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-              <p className="text-[13px] font-medium text-[#111111]">
-                The 15-Minute Day (Minimum Effective Dose)
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                For busy days when you are tempted to skip entirely. Fifteen
-                minutes is enough to keep the connection to Portuguese alive.
-              </p>
-              <div className="mt-3 space-y-1.5 text-[13px] text-[#6C6B71]">
-                <p>
-                  <span className="font-medium text-[#111111]">5 min</span>{" "}
-                  Open Aula PT and read the Word, Verb, and Saying of the Day.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">5 min</span> Do
-                  a short flashcard session (around 10 cards) focused on words
-                  you marked as &quot;still learning&quot;.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">5 min</span>{" "}
-                  Read one grammar topic or one culture entry and say the
-                  example sentences out loud.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-              <p className="text-[13px] font-medium text-[#111111]">
-                The 30-Minute Day (Sweet Spot)
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                This is the most sustainable routine for steady progress. It is
-                long enough to make real gains but short enough to fit around a
-                normal life.
-              </p>
-              <div className="mt-3 space-y-1.5 text-[13px] text-[#6C6B71]">
-                <p>
-                  <span className="font-medium text-[#111111]">5 min</span>{" "}
-                  Check the daily word, verb, and saying.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">10 min</span>{" "}
-                  Run a flashcard session with around 20 cards in mixed
-                  direction.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">5 min</span>{" "}
-                  Study one grammar topic and answer the test questions at the
-                  end.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">5 min</span>{" "}
-                  Read a few false friends or etiquette tips to deepen your
-                  cultural understanding.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">5 min</span>{" "}
-                  Listen to a short piece of Portuguese audio: a song, podcast
-                  clip, or news headline.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-              <p className="text-[13px] font-medium text-[#111111]">
-                The 60-Minute Day (Accelerated)
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                Use this when you are motivated or have more free time. It is a
-                powerful way to move through levels faster without burning out.
-              </p>
-              <div className="mt-3 space-y-1.5 text-[13px] text-[#6C6B71]">
-                <p>
-                  <span className="font-medium text-[#111111]">5 min</span>{" "}
-                  Daily words and saying.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">15 min</span>{" "}
-                  Flashcards (around 50 cards) focused on difficult items.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">10 min</span>{" "}
-                  Study a grammar topic in depth and redo the questions until
-                  you are confident.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">10 min</span>{" "}
-                  Explore a vocabulary category you have not studied yet.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">10 min</span>{" "}
-                  Write five original sentences using today&apos;s new words.
-                </p>
-                <p>
-                  <span className="font-medium text-[#111111]">10 min</span>{" "}
-                  Watch or listen to native content — a YouTube video, series
-                  episode, or podcast segment.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
-            <p>
-              Choose the routine that fits your current season of life. The
-              fifteen‑minute version is not a &quot;failure day&quot;; it is the
-              foundation that keeps your Portuguese alive until you can do
-              more. As the language becomes more familiar and rewarding, you
-              will naturally find yourself stretching into the longer versions.
-            </p>
-            <p>
-              Over a week, you can keep things simple: from Monday to Friday,
-              follow one of the daily plans above. On Saturday, spend a short
-              session going back over the words you marked as &quot;still
-              learning&quot;. On Sunday, give yourself an immersion day: watch a
-              Portuguese film, cook a Portuguese recipe, or walk around town
-              listening to Portuguese music.
-            </p>
-          </div>
-        </>
-      );
-    case "science-of-learning":
-      return (
-        <>
-          <h2 className="text-[14px] font-medium text-[#111111]">
-            Active Recall vs Passive Learning
-          </h2>
-          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
-            Recordação Ativa vs Aprendizagem Passiva
-          </p>
-          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
-            <p>
-              Understanding how your brain stores new information will make you
-              far more efficient. Most learners spend a lot of time on
-              activities that feel productive — reading lists, highlighting
-              texts, re‑watching videos — but do very little to build strong,
-              usable memories.
-            </p>
-            <p>
-              When you simply read a vocabulary list again and again, your brain
-              recognises the words. Recognition feels familiar and safe, so you
-              assume you are learning. But being able to recognise &quot;cozinha&quot;
-              on a page is very different from being able to answer &quot;How do
-              you say kitchen?&quot; in real time.
-            </p>
-          </div>
-
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-              <p className="text-[13px] font-medium text-[#111111]">
-                Active Recall
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                Active recall means deliberately trying to remember something
-                before you look at the answer. Each time you do this, you
-                strengthen the pathways in your brain that store that piece of
-                information. Even when you fail, the act of trying makes the
-                next exposure more effective.
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                Flashcards are powerful because of the moment of effort just
-                before you flip the card. The same is true when you pause a
-                video and try to repeat what you heard, or when you cover the
-                translation of the Word of the Day and see if you can recall it
-                first.
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                In Aula PT, lean into English → Portuguese flashcards, say the
-                answer out loud before revealing it, and take grammar tests
-                before you feel &quot;ready&quot;. Struggle is not a sign that you are
-                failing — it is the engine that drives learning.
-              </p>
-            </div>
-
-            <div className="bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-              <p className="text-[13px] font-medium text-[#111111]">
-                Spaced Repetition
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                Your memory follows a forgetting curve: new material fades
-                quickly at first, then more slowly over time. The most efficient
-                moment to review something is right before you would forget it,
-                not immediately afterwards and not months later.
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                In practice, this means revisiting new words the same day you
-                learn them, again the next day, then after a few days, then a
-                week, then a month. Each well‑timed review flattens the
-                forgetting curve.
-              </p>
-              <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-                Aula PT already nudges you in this direction: lessons are
-                designed to be repeated, and revisiting weak areas over time
-                gives you a simple, practical form of spaced repetition.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-6 bg-[#F7F7F5] rounded-lg px-3.5 py-2.5">
-            <p className="text-[13px] font-medium text-[#111111]">
-              What to Avoid
-            </p>
-            <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-              Purely passive activities feel comfortable but do not move you
-              forward very quickly. Reading vocabulary lists without ever
-              testing yourself, watching TV in Portuguese while scrolling on
-              your phone, or re‑reading grammar explanations without applying
-              them in sentences all create a pleasant illusion of progress.
-            </p>
-            <p className="text-[13px] text-[#6C6B71] mt-2 leading-relaxed">
-              A simple rule of thumb is this: if it feels completely easy, you
-              are probably not learning very much. Lean gently into tasks that
-              make you think and that you occasionally get wrong. That is where
-              the real growth happens.
-            </p>
-          </div>
-        </>
-      );
-    case "portuguese-tips":
-      return (
-        <>
-          <h2 className="text-[14px] font-medium text-[#111111]">
-            Tips for Portuguese Specifically
-          </h2>
-          <p className="text-[12px] text-[#9B9DA3] italic mt-0.5">
-            Dicas para o Português
-          </p>
-          <div className="mt-4 space-y-4 text-[13px] leading-relaxed text-[#6C6B71]">
-            <p className="text-[13px] font-medium text-[#111111]">
-              Pronunciation is Your Biggest Challenge
-            </p>
-            <p>
-              European Portuguese has a reputation for being &quot;the mumbled
-              cousin&quot; of the Romance languages. That reputation comes from its
-              pronunciation: reduced vowels, nasal sounds, and consonant clusters
-              that do not match how the words look on the page.
-            </p>
-            <p>
-              The good news is that this is a physical skill as much as a mental
-              one. Your mouth, tongue, and jaw need new movements, and those
-              are trained through repetition, not through reading rules.
-            </p>
-            <p>
-              Pay particular attention to unstressed vowels:{" "}
-              <span className="font-medium">o</span> often sounds like &quot;oo&quot;,
-              and <span className="font-medium">e</span> can almost disappear.
-              Word‑final <span className="font-medium">s</span> often sounds
-              like &quot;sh&quot; ({'"'}português{'"'} → poor‑too‑GESH),{" "}
-              <span className="font-medium">lh</span> sounds like the &quot;lli&quot;
-              in &quot;million&quot; ({'"'}trabalho{'"'} → truh‑BAH‑lyoo), and{" "}
-              <span className="font-medium">nh</span> is the &quot;ny&quot; sound
-              in &quot;canyon&quot; ({'"'}amanhã{'"'} → uh‑mah‑NYAH).
-            </p>
-            <p>
-              Use the pronunciation buttons throughout Aula PT. Say the word out
-              loud, not just in your head, and do not be afraid to exaggerate
-              the sounds at first. You are teaching your muscles a new pattern.
-            </p>
-
-            <p className="text-[13px] font-medium text-[#111111] mt-4">
-              The Verb Problem
-            </p>
-            <p>
-              Portuguese verbs can feel intimidating: six persons multiplied by
-              several tenses means dozens of forms per verb. The key is to
-              accept that you do not need all of them immediately.
-            </p>
-            <p>
-              Start by mastering{" "}
-              <span className="font-medium">Presente</span> and{" "}
-              <span className="font-medium">Pretérito Perfeito</span>. Those
-              two tenses let you talk about what you do and what you did — a
-              huge percentage of everyday conversation. Once they feel solid,
-              you can layer in the{" "}
-              <span className="font-medium">Pretérito Imperfeito</span> for
-              background descriptions, then future forms and conditionals, and
-              finally the subjunctive at B1.
-            </p>
-            <p>
-              When looking at conjugation tables in Aula PT, resist the urge to
-              memorise everything at once. Focus instead on accuracy with the
-              most common persons (eu, tu, ele/ela, nós) in the most common
-              tenses, and let the rest grow over time.
-            </p>
-
-            <p className="text-[13px] font-medium text-[#111111] mt-4">
-              Confusing Pairs to Watch
-            </p>
-            <p>
-              Every language has traps, and Portuguese is no exception. The
-              classic one is <span className="font-medium">ser</span> vs{" "}
-              <span className="font-medium">estar</span>. A simple rule:
-              things that define you or are unlikely to change soon use{" "}
-              <span className="font-medium">ser</span> (sou português, sou
-              engenheiro). Temporary states and locations use{" "}
-              <span className="font-medium">estar</span> (estou cansado, estou
-              em casa).
-            </p>
-            <p>
-              Other pairs to keep an eye on are{" "}
-              <span className="font-medium">saber</span> vs{" "}
-              <span className="font-medium">conhecer</span> (to know facts vs
-              to be familiar with people or places),{" "}
-              <span className="font-medium">por</span> vs{" "}
-              <span className="font-medium">para</span>, and{" "}
-              <span className="font-medium">ir</span> vs{" "}
-              <span className="font-medium">vir</span>. The grammar section in
-              Aula PT has dedicated topics for these — use them, then notice the
-              same patterns appearing in vocabulary examples and culture
-              entries.
-            </p>
-
-            <p className="text-[13px] font-medium text-[#111111] mt-4">
-              Building Immersion from Home
-            </p>
-            <p>
-              You do not need to live in Lisbon or Porto to surround yourself
-              with Portuguese. You can change your phone&apos;s language,
-              follow Portuguese creators on social media, listen to local radio
-              stations, and watch series with Portuguese subtitles.
-            </p>
-            <p>
-              The goal is not to understand every word from day one. The goal is
-              to make the sound and rhythm of Portuguese feel normal in your
-              brain. First you catch isolated words, then short phrases, then
-              whole sentences, and one day you realise you just understood a
-              full conversation without translating it in your head.
-            </p>
-          </div>
-        </>
-      );
-    default:
-      return null;
-  }
-}
+const PIPS = [
+  { level: 0, label: "Por ver", next: "—" },
+  { level: 1, label: "Visto uma vez", next: "amanhã" },
+  { level: 2, label: "A aprender", next: "daqui a 3 dias" },
+  { level: 3, label: "Familiar", next: "daqui a 1 semana" },
+  { level: 4, label: "Quase lá", next: "daqui a 2 semanas" },
+  { level: 5, label: "Dominado", next: "daqui a 1 mês" },
+];
 
 export default function GuidePage() {
-  const [openSectionId, setOpenSectionId] = useState<string | null>(null);
-
-  const toggle = useCallback((id: string) => {
-    setOpenSectionId((prev) => (prev === id ? null : id));
-  }, []);
-
-  useEffect(() => {
-    const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
-    if (hash && sections.some((s) => s.id === hash)) {
-      setOpenSectionId(hash);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!openSectionId) return;
-    const el = document.getElementById(openSectionId);
-    if (el) {
-      const t = setTimeout(() => {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 150);
-      return () => clearTimeout(t);
-    }
-  }, [openSectionId]);
+  const panel = (
+    <div className="flex flex-col gap-6">
+      <PanelCard title="O que há no Aula">
+        <KV k="Palavras" v={WORDS.toLocaleString("pt-PT")} />
+        <KV k="Verbos" v={`${VERBS} · 9 tempos`} />
+        <KV k="Regras de gramática" v={TOPICS} />
+        <KV k="Exames simulados" v="CIPLE A2" />
+      </PanelCard>
+      <div>
+        <Label className="mb-2">Só português europeu</Label>
+        <p className="text-[12px] leading-relaxed text-aula-text-2">
+          Tudo no Aula é português de Portugal: «autocarro», não «ônibus»; «estou a fazer», não «estou fazendo»; «tu» no dia a dia e «você» com cuidado.
+        </p>
+      </div>
+      <Link href="/lessons" className="flex h-8 items-center justify-center gap-1.5 rounded-lg bg-aula-accent text-[12px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
+        Ver as lições <ArrowRight size={13} strokeWidth={1.5} />
+      </Link>
+    </div>
+  );
 
   return (
-    <PageShell>
-      <div className="max-w-[896px] mx-auto py-5 px-4">
-        <PageHeader
-          title="Como aprender"
-          subtitle="Your guide to learning European Portuguese with Aula PT"
+    <PageShell header={<Crumbs items={[{ label: "Como funciona" }]} />} panel={panel}>
+      <article className="mx-auto max-w-[680px]">
+        <ScreenTitle
+          title="Como funciona o Aula"
+          subtitle="Três níveis, do primeiro «olá» a conversar sem pensar. Um pouco todos os dias chega."
         />
 
-        <div className="mt-6 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg overflow-hidden">
-          {sections.map((s, index) => {
-            const isOpen = openSectionId === s.id;
-            return (
-              <article
-                key={s.id}
-                id={s.id}
-                className={index > 0 ? "border-t-[0.5px] border-[rgba(0,0,0,0.06)]" : ""}
-              >
-                <button
-                  type="button"
-                  onClick={() => toggle(s.id)}
-                  className="w-full flex items-center justify-between px-4 py-3.5 cursor-pointer hover:bg-[#F7F7F5] transition-colors"
-                  aria-expanded={isOpen}
-                  aria-controls={`${s.id}-content`}
-                  id={`${s.id}-button`}
-                >
-                  <div className="flex-1 min-w-0 text-left">
-                    <p className="text-[14px] font-medium text-[#111111]">
-                      {s.title}
-                    </p>
-                    <p className="text-[12px] text-[#9B9DA3] mt-0.5">
-                      {s.portuguese}
-                    </p>
-                    {!isOpen && (
-                      <p className="text-[12px] text-[#6C6B71] mt-0.5">{s.teaser}</p>
-                    )}
+        <section>
+          <Label className="mb-3">O percurso</Label>
+          <div className="flex flex-col gap-2.5">
+            {LEVELS.map((L, i) => (
+              <div key={L.level} className="flex gap-4 rounded-xl border border-aula-border bg-white p-[18px]">
+                <div className="flex flex-col items-center">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[9px] bg-aula-accent-faint text-[12px] font-semibold text-aula-accent">{L.level}</span>
+                  {i < LEVELS.length - 1 && <span className="mt-2 w-px flex-1 bg-aula-border" />}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-[13px] font-medium text-aula-text">{L.name}</span>
+                    <span className="flex-1" />
+                    <span className="text-[11px] text-aula-text-3">
+                      {L.hours} · {L.time}
+                    </span>
                   </div>
-                  <ChevronDown
-                    size={16}
-                    className={`flex-shrink-0 text-[#9B9DA3] transition-transform duration-150 ${isOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {isOpen && (
-                  <div
-                    id={`${s.id}-content`}
-                    role="region"
-                    aria-labelledby={`${s.id}-button`}
-                    className="px-4 pb-4 border-t-[0.5px] border-[rgba(0,0,0,0.06)] mx-4 pt-3.5"
-                  >
-                    <GuideSectionContent id={s.id} />
-                  </div>
-                )}
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="text-center py-8 mt-8">
-          <div className="text-[14px] font-medium text-[#111111] mb-2">Estás pronto.</div>
-          <div className="text-[13px] text-[#6C6B71] mb-4">You have everything you need to start learning.</div>
-          <div className="flex gap-3 justify-center">
-            <Link href="/lessons" className="px-4 py-2 text-[13px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors">Start lessons</Link>
-            <Link href="/vocabulary" className="px-4 py-2 text-[13px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors">Browse vocabulary</Link>
+                  <p className="mt-2 text-[12.5px] leading-relaxed text-aula-text">{L.can}</p>
+                  <p className="mt-1.5 text-[12px] leading-relaxed text-aula-text-2">{L.learn}</p>
+                  {L.exam && (
+                    <p className="mt-2 text-[11px] text-aula-accent">
+                      Fim do nível: {L.exam}, o exame oficial de {L.level}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
+          <p className="mt-3 text-[11.5px] leading-relaxed text-aula-text-3">
+            Os prazos contam com cerca de 30 minutos por dia e alguma exposição fora do Aula (ouvir rádio, ler notícias). O nível seguinte abre quando estiveres 75% pronto no atual.
+          </p>
+        </section>
+
+        <section className="mt-10">
+          <Label className="mb-3">Uma lição</Label>
+          <p className="mb-4 text-[13px] leading-relaxed text-aula-text-2">
+            Não há uma lista fixa de lições. Cada uma é montada para ti a partir do que já sabes e do que te falta, por isso não há duas iguais. Leva 10 a 15 minutos e passas com 80%.
+          </p>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {LESSON_PARTS.map((p, i) => (
+              <div key={p.k} className="rounded-[10px] bg-aula-sunken px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-[11px] text-aula-text-4">{i + 1}</span>
+                  <span className="text-[12.5px] font-medium text-aula-text">{p.k}</span>
+                </div>
+                <p className="mt-1 text-[12px] leading-relaxed text-aula-text-2">{p.v}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-10">
+          <Label className="mb-3">Os pontos e as revisões</Label>
+          <p className="mb-4 text-[13px] leading-relaxed text-aula-text-2">
+            Cada palavra, verbo e regra tem cinco pontos. Acertas, sobe um ponto e a próxima revisão fica mais longe. Erras, desce e volta mais cedo. Quando uma revisão passa do prazo fica <span className="font-medium text-aula-overdue">em atraso</span>.
+          </p>
+          <div className="rounded-xl border border-aula-border">
+            {PIPS.map((p) => (
+              <div key={p.level} className="flex min-h-[40px] items-center gap-4 border-b border-aula-line px-4 py-1.5 last:border-0">
+                <Pips level={p.level} state={p.level === 0 ? "unseen" : p.level === 5 ? "mastered" : "learning"} />
+                <span className="flex-1 text-[12.5px] text-aula-text">{p.label}</span>
+                <span className="text-[11px] text-aula-text-3">próxima revisão {p.next}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-[11.5px] leading-relaxed text-aula-text-3">As 200 palavras mais usadas voltam mais depressa, porque são as que mais vais ouvir.</p>
+        </section>
+
+        <section className="mt-10">
+          <Label className="mb-3">Onde está cada coisa</Label>
+          <div className="flex flex-col">
+            {[
+              { href: "/", k: "Hoje", v: "O que fazer agora: a próxima lição e as revisões em atraso." },
+              { href: "/vocabulary", k: "Vocabulário", v: "Todas as palavras por tema, com pronúncia, exemplo e o teu domínio." },
+              { href: "/conjugations", k: "Conjugações", v: "Cada verbo em 9 tempos, do presente ao conjuntivo." },
+              { href: "/grammar", k: "Gramática", v: "As regras explicadas com exemplos e uma verificação rápida." },
+              { href: "/exams", k: "Exames", v: "Simulados do CIPLE com tempo e a nota calculada como no exame real." },
+              { href: "/tutor", k: "Elísio", v: "O teu professor: prepara uma sessão sobre o que te está a custar." },
+            ].map((r) => (
+              <Link key={r.href} href={r.href} className="flex min-h-[44px] items-center gap-4 rounded-[10px] px-3 py-2 transition-colors hover:bg-aula-sunken">
+                <span className="w-[100px] shrink-0 text-[12.5px] font-medium text-aula-text">{r.k}</span>
+                <span className="flex-1 text-[12px] text-aula-text-2">{r.v}</span>
+                <ArrowRight size={13} strokeWidth={1.5} className="text-aula-text-4" />
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <div className="mt-10 flex items-center gap-2 text-[11.5px] text-aula-text-3">
+          <LevelTag level="A1" />
+          <LevelTag level="A2" />
+          <LevelTag level="B1" />
+          <span>Os níveis seguem o Quadro Europeu Comum de Referência (QECR).</span>
         </div>
-      </div>
+      </article>
     </PageShell>
   );
 }

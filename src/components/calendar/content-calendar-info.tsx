@@ -45,7 +45,7 @@ export function ContentCalendarInfo({ contentType, contentId }: ContentCalendarI
 
   if (info.completedDate) {
     return (
-      <span className="flex items-center gap-1.5 text-[12px] font-medium text-[#16A34A]">
+      <span className="flex items-center gap-1.5 text-[12px] font-medium text-[#1F7A68]">
         <CheckIcon className="w-3.5 h-3.5 shrink-0" />
         Concluído a {formatPortugueseDate(info.completedDate)}
       </span>
@@ -64,7 +64,7 @@ export function ContentCalendarInfo({ contentType, contentId }: ContentCalendarI
 
   if (info.lastReviewDate) {
     return (
-      <span className="flex items-center gap-1.5 text-[12px] font-medium text-[#9CA3AF]">
+      <span className="flex items-center gap-1.5 text-[12px] font-medium text-[#98988F]">
         Última revisão: {formatPortugueseDate(info.lastReviewDate)}
       </span>
     );

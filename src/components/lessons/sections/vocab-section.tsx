@@ -89,12 +89,12 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
       score={score}
     >
       {questions.map((q, i) => (
-        <div key={q.id} className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-5 bg-white">
+        <div key={q.id} className="border-[0.5px] border-[#E6E6E4] rounded-lg p-5 bg-white">
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-[13px] font-medium text-[#9B9DA3]">{i + 1}.</span>
+            <span className="text-[13px] font-medium text-[#98988F]">{i + 1}.</span>
             <div>
-              <p className="text-[16px] font-medium text-[#111111]">&ldquo;{q.portugueseWord}&rdquo;</p>
-              {q.pronunciation && <p className="text-[12px] text-[#9B9DA3] font-mono">{q.pronunciation}</p>}
+              <p className="text-[16px] font-medium text-[#1F1F1F]">&ldquo;{q.portugueseWord}&rdquo;</p>
+              {q.pronunciation && <p className="text-[12px] text-[#98988F] font-mono">{q.pronunciation}</p>}
             </div>
           </div>
 
@@ -107,20 +107,20 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
                   value={answers[q.id] ?? ""}
                   onChange={(e) => setAnswers((prev) => ({ ...prev, [q.id]: e.target.value }))}
                   placeholder={showEnglish ? "Type the English translation..." : "Escreve a tradução..."}
-                  className="w-full text-[14px] text-[#111111] border-[0.5px] border-[rgba(0,0,0,0.06)] focus:border-[rgba(0,0,0,0.12)] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#9B9DA3]"
+                  className="w-full text-[14px] text-[#1F1F1F] border-[0.5px] border-[#E6E6E4] focus:border-[#CFCFCB] rounded-lg px-4 py-2.5 outline-none transition-colors placeholder:text-[#98988F]"
                   autoComplete="off"
                   spellCheck={false}
                 />
               ) : (
-                <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${results[q.id]?.correct ? "border-[#0F6E56] bg-[#E1F5EE]" : "border-[#dc2626] bg-[#fef2f2]"}`}>
-                  <p className={`text-[14px] font-medium ${results[q.id]?.correct ? "text-[#0F6E56]" : "text-[#dc2626]"}`}>
+                <div className={`px-4 py-2.5 rounded-lg border-[0.5px] ${results[q.id]?.correct ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"}`}>
+                  <p className={`text-[14px] font-medium ${results[q.id]?.correct ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
                     {answers[q.id]}
                   </p>
                   {!results[q.id]?.correct && (
-                    <p className="text-[13px] text-[#0F6E56] mt-1">{q.englishWord}</p>
+                    <p className="text-[13px] text-[#1F7A68] mt-1">{q.englishWord}</p>
                   )}
                   {results[q.id]?.accentHint && (
-                    <p className="text-[12px] text-[#854F0B] mt-2 bg-[#FAEEDA] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {results[q.id].accentHint}</p>
+                    <p className="text-[12px] text-[#5B45B8] mt-2 bg-[#ECE8F8] px-3 py-1.5 rounded-lg inline-block">Atenção ao acento: {results[q.id].accentHint}</p>
                   )}
                 </div>
               )}
@@ -130,13 +130,13 @@ export function VocabSection({ sectionIndex, totalSections, showEnglish, questio
               {q.options?.map((opt, oi) => {
                 const isSelected = mcSelections[q.id] === oi;
                 const isCorrect = oi === q.correctIndex;
-                let cls = "border-[rgba(0,0,0,0.06)] hover:border-[rgba(0,0,0,0.12)] hover:bg-[#F7F7F5] cursor-pointer";
+                let cls = "border-[#E6E6E4] hover:border-[#CFCFCB] hover:bg-[#F7F7F6] cursor-pointer";
                 if (state === "reviewed") {
-                  if (isCorrect) cls = "border-[#0F6E56] bg-[#E1F5EE]";
-                  else if (isSelected && !isCorrect) cls = "border-[#dc2626] bg-[#fef2f2]";
-                  else cls = "border-[rgba(0,0,0,0.06)] opacity-50";
+                  if (isCorrect) cls = "border-[#1F7A68] bg-[#E1F2ED]";
+                  else if (isSelected && !isCorrect) cls = "border-[#B94A32] bg-[#FBE9E4]";
+                  else cls = "border-[#E6E6E4] opacity-50";
                 } else if (isSelected) {
-                  cls = "border-[#185FA5] bg-[#E6F1FB]";
+                  cls = "border-[#1B2B61] bg-[#E8ECF6]";
                 }
                 return (
                   <button

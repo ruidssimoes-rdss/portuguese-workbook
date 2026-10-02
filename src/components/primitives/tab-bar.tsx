@@ -1,8 +1,7 @@
 "use client";
 
 /**
- * TabBar — underline-style tabs for category switching.
- * Used on the culture page.
+ * TabBar — segmented tabs (no underline-for-state; Figma: PanelTabs).
  *
  * <TabBar tabs={["All", "Traditions", "Food"]} value="All" onChange={setTab} />
  */
@@ -15,15 +14,15 @@ interface TabBarProps {
 
 export function TabBar({ tabs, value, onChange }: TabBarProps) {
   return (
-    <div className="flex gap-0 border-b-[0.5px] border-[rgba(0,0,0,0.06)] mb-5">
+    <div className="mb-5 inline-flex flex-wrap gap-0.5 rounded-lg bg-aula-sunken p-[3px]">
       {tabs.map((tab) => (
         <button
           key={tab}
           onClick={() => onChange(tab)}
-          className={`px-3.5 py-2 text-[12px] border-none cursor-pointer bg-transparent transition-colors duration-100 -mb-[0.5px] ${
+          className={`h-[26px] rounded-md border px-3 text-[12px] transition-colors duration-100 ${
             value === tab
-              ? "text-[#111111] font-medium border-b-[1.5px] border-b-[#111111]"
-              : "text-[#9B9DA3] border-b-[1.5px] border-b-transparent hover:text-[#6C6B71]"
+              ? "border-aula-line bg-white font-medium text-aula-text shadow-[0_1px_2px_rgba(0,0,0,0.05)]"
+              : "border-transparent text-aula-text-2 hover:text-aula-text"
           }`}
         >
           {tab}

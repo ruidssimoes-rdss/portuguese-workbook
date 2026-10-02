@@ -68,18 +68,18 @@ function typeToBadge(
 ): { label: string; className: string } {
   switch (type) {
     case "vocabulary":
-      return { label: "VOC", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
+      return { label: "VOC", className: "bg-[#F7F7F6] text-[#98988F]" };
     case "verb":
-      return { label: "VERB", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
+      return { label: "VERB", className: "bg-[#F7F7F6] text-[#98988F]" };
     case "conjugation":
-      return { label: "CONJ", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
+      return { label: "CONJ", className: "bg-[#F7F7F6] text-[#98988F]" };
     case "grammar":
-      return { label: "GRAM", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
+      return { label: "GRAM", className: "bg-[#F7F7F6] text-[#98988F]" };
     case "saying":
     case "false_friend":
     case "etiquette":
     case "regional":
-      return { label: "CULT", className: "bg-[#F7F7F5] text-[#9B9DA3]" };
+      return { label: "CULT", className: "bg-[#F7F7F6] text-[#98988F]" };
   }
 }
 
@@ -262,9 +262,9 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
         className="relative w-full h-full md:h-auto md:max-w-[520px] md:max-h-[85vh] md:rounded-lg md:shadow-lg flex flex-col overflow-hidden bg-white"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-2 border-b-[0.5px] border-[rgba(0,0,0,0.06)] px-4 py-3 shrink-0">
+        <div className="flex items-center gap-2 border-b-[0.5px] border-[#E6E6E4] px-4 py-3 shrink-0">
           <svg
-            className="h-4 w-4 shrink-0 text-[#9B9DA3]"
+            className="h-4 w-4 shrink-0 text-[#98988F]"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -280,13 +280,13 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder={placeholders[placeholderIndex]}
-            className={`flex-1 min-w-0 py-1 text-[14px] bg-transparent border-none outline-none placeholder:text-[#9B9DA3] text-[#111111] transition-opacity duration-200 ${
+            className={`flex-1 min-w-0 py-1 text-[14px] bg-transparent border-none outline-none placeholder:text-[#98988F] text-[#1F1F1F] transition-opacity duration-200 ${
               placeholderFading ? "placeholder:opacity-0" : "placeholder:opacity-100"
             }`}
             aria-label="Search"
             autoComplete="off"
           />
-          <kbd className="hidden sm:inline text-[10px] px-1.5 py-0.5 bg-[rgba(0,0,0,0.04)] rounded text-[#9B9DA3]">
+          <kbd className="hidden sm:inline text-[10px] px-1.5 py-0.5 bg-[rgba(0,0,0,0.04)] rounded text-[#98988F]">
             Esc
           </kbd>
         </div>
@@ -296,12 +296,12 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
           className="overflow-y-auto max-h-[60vh] md:max-h-[calc(85vh-56px)] min-h-0"
         >
           {debouncedQuery.length > 0 && debouncedQuery.length < MIN_QUERY_LENGTH && (
-            <p className="px-4 py-3 text-[12px] text-[#9B9DA3]">Type at least 2 characters to search.</p>
+            <p className="px-4 py-3 text-[12px] text-[#98988F]">Type at least 2 characters to search.</p>
           )}
 
           {debouncedQuery.length === 0 && query.length === 0 && (
             <div className="px-4 py-6">
-              <p className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] mb-3">
+              <p className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#98988F] mb-3">
                 Ask me anything
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -310,7 +310,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                     key={s.label}
                     type="button"
                     onClick={() => handleSuggestionClick(s.fill)}
-                    className="border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg px-3.5 py-2 text-[12px] text-[#6C6B71] hover:border-[rgba(0,0,0,0.12)] hover:bg-[#F7F7F5] transition-colors cursor-pointer text-left"
+                    className="border-[0.5px] border-[#E6E6E4] rounded-lg px-3.5 py-2 text-[12px] text-[#6B6B69] hover:border-[#CFCFCB] hover:bg-[#F7F7F6] transition-colors cursor-pointer text-left"
                   >
                     {s.label}
                   </button>
@@ -320,7 +320,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
           )}
 
           {debouncedQuery.length >= MIN_QUERY_LENGTH && results.length === 0 && !smartCard && (
-            <p className="px-4 py-3 text-[12px] text-[#9B9DA3]">No results found.</p>
+            <p className="px-4 py-3 text-[12px] text-[#98988F]">No results found.</p>
           )}
 
           {smartCard && (
@@ -330,8 +330,8 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 data-index={0}
                 onClick={() => handleSelectHref(getSmartCardHref(smartCard))}
                 onMouseEnter={() => setHighlightedIndex(0)}
-                className={`w-full text-left rounded-lg p-4 mb-4 border-[0.5px] border-[rgba(0,0,0,0.06)] hover:border-[rgba(0,0,0,0.12)] transition-all duration-200 ${
-                  highlightedIndex === 0 ? "border-[#185FA5] bg-[#E6F1FB]" : ""
+                className={`w-full text-left rounded-lg p-4 mb-4 border-[0.5px] border-[#E6E6E4] hover:border-[#CFCFCB] transition-all duration-200 ${
+                  highlightedIndex === 0 ? "border-[#1B2B61] bg-[#E8ECF6]" : ""
                 }`}
               >
                 <SmartCardContent card={smartCard} onSelectHref={handleSelectHref} />
@@ -341,13 +341,13 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
 
           {results.length > 0 && (
             <>
-              <p className="px-4 pt-2 pb-1 text-[11px] text-[#9B9DA3]">
+              <p className="px-4 pt-2 pb-1 text-[11px] text-[#98988F]">
                 {results.length} result{results.length !== 1 ? "s" : ""}
               </p>
               <div className="pb-2">
                 {Array.from(grouped.entries()).map(([groupKey, list]) => (
                   <div key={groupKey} className="mb-2">
-                    <div className="px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.05em] text-[#9B9DA3] flex items-center gap-2">
+                    <div className="px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.05em] text-[#98988F] flex items-center gap-2">
                       <span>{groupLabel(groupKey)}</span>
                       <span>({list.length})</span>
                     </div>
@@ -363,7 +363,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                           onClick={() => handleSelectResult(r)}
                           onMouseEnter={() => setHighlightedIndex(globalIdx)}
                           className={`w-full flex items-center gap-2 px-4 py-2.5 text-left transition-colors cursor-pointer ${
-                            isHighlighted ? "bg-[#F7F7F5]" : "hover:bg-[#F7F7F5]"
+                            isHighlighted ? "bg-[#F7F7F6]" : "hover:bg-[#F7F7F6]"
                           }`}
                         >
                           <span
@@ -372,8 +372,8 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                             {typeToBadge(r.type).label}
                           </span>
                           <span className="flex-1 min-w-0">
-                            <span className="font-medium text-[13px] text-[#111111]">{r.title}</span>
-                            <span className="text-[12px] text-[#9B9DA3] ml-1.5">{r.subtitle}</span>
+                            <span className="font-medium text-[13px] text-[#1F1F1F]">{r.title}</span>
+                            <span className="text-[12px] text-[#98988F] ml-1.5">{r.subtitle}</span>
                           </span>
                                           {r.type === "vocabulary" && (
                             <span className="shrink-0" onClick={(e) => e.stopPropagation()}>
@@ -381,7 +381,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                             </span>
                           )}
                           <svg
-                            className="h-4 w-4 shrink-0 text-[#9B9DA3]"
+                            className="h-4 w-4 shrink-0 text-[#98988F]"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
@@ -430,72 +430,72 @@ function SmartCardContent({
 
   return (
     <>
-      <p className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#185FA5] mb-2">
+      <p className="text-[10px] font-medium uppercase tracking-[0.05em] text-[#1B2B61] mb-2">
         {intentLabel}
       </p>
       {card.type === "translation" && (
         <>
-          <p className="text-[13px] text-[#111111]">
+          <p className="text-[13px] text-[#1F1F1F]">
             &quot;{card.query}&quot; → {card.primary.title}
           </p>
           {card.primary.pronunciation && (
-            <p className="text-[12px] text-[#9B9DA3] mt-0.5">{card.primary.pronunciation}</p>
+            <p className="text-[12px] text-[#98988F] mt-0.5">{card.primary.pronunciation}</p>
           )}
           {card.primary.meta?.categoryTitlePt && card.primary.meta?.categoryTitle && (
-            <p className="text-[12px] text-[#9B9DA3] mt-0.5">
+            <p className="text-[12px] text-[#98988F] mt-0.5">
               {card.primary.meta.categoryTitlePt} · {card.primary.meta.categoryTitle}
             </p>
           )}
-          <p className="text-[11px] text-[#185FA5] mt-2">Click to see full entry</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Click to see full entry</p>
         </>
       )}
       {card.type === "definition" && (
         <>
-          <p className="text-[13px] text-[#111111]">
+          <p className="text-[13px] text-[#1F1F1F]">
             {card.primary.title} — {card.primary.subtitle}
           </p>
           {card.primary.pronunciation && (
-            <p className="text-[12px] text-[#9B9DA3] mt-0.5">{card.primary.pronunciation}</p>
+            <p className="text-[12px] text-[#98988F] mt-0.5">{card.primary.pronunciation}</p>
           )}
           {card.primary.meta?.categoryTitlePt && card.primary.meta?.categoryTitle && (
-            <p className="text-[12px] text-[#9B9DA3] mt-0.5">
+            <p className="text-[12px] text-[#98988F] mt-0.5">
               {card.primary.meta.categoryTitlePt} · {card.primary.meta.categoryTitle}
             </p>
           )}
           {card.primary.meta?.example && (
-            <p className="text-[12px] text-[#9B9DA3] mt-1">
+            <p className="text-[12px] text-[#98988F] mt-1">
               Example: {card.primary.meta.example} — {card.primary.meta.exampleTranslation}
             </p>
           )}
-          <p className="text-[11px] text-[#185FA5] mt-2">Click to see full entry</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Click to see full entry</p>
         </>
       )}
       {card.type === "conjugation" && (
         <>
-          <p className="font-medium text-[13px] text-[#111111]">
+          <p className="font-medium text-[13px] text-[#1F1F1F]">
             {card.infinitive} — {card.english}
           </p>
-          <p className="text-[12px] text-[#9B9DA3] mt-0.5">
+          <p className="text-[12px] text-[#98988F] mt-0.5">
             {card.group} · {card.cefr}
           </p>
-          <p className="text-[12px] text-[#9B9DA3] mt-1">{card.presentPreview}</p>
-          <p className="text-[11px] text-[#185FA5] mt-2">View all conjugations</p>
+          <p className="text-[12px] text-[#98988F] mt-1">{card.presentPreview}</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">View all conjugations</p>
         </>
       )}
       {card.type === "tense" && (
         <>
-          <p className="font-medium text-[13px] text-[#111111]">
+          <p className="font-medium text-[13px] text-[#1F1F1F]">
             {card.infinitive} — {card.tenseLabel}
           </p>
-          <p className="text-[12px] text-[#9B9DA3] mt-1">
+          <p className="text-[12px] text-[#98988F] mt-1">
             {(card.conjugations ?? []).join(" · ")}
           </p>
-          <p className="text-[11px] text-[#185FA5] mt-2">View full conjugation table</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">View full conjugation table</p>
         </>
       )}
       {card.type === "conjugation_multi" && (
         <>
-          <p className="text-[13px] text-[#111111] mb-2">&quot;{card.query}&quot; — more than one verb:</p>
+          <p className="text-[13px] text-[#1F1F1F] mb-2">&quot;{card.query}&quot; — more than one verb:</p>
           <ul className="space-y-2">
             {card.verbs.map((v) => (
               <li key={v.infinitive}>
@@ -505,21 +505,21 @@ function SmartCardContent({
                     e.stopPropagation();
                     onSelectHref(v.href);
                   }}
-                  className="block w-full text-left rounded-md px-2 py-1.5 hover:bg-[#F7F7F5] font-medium text-[13px] text-[#111111]"
+                  className="block w-full text-left rounded-md px-2 py-1.5 hover:bg-[#F7F7F6] font-medium text-[13px] text-[#1F1F1F]"
                 >
                   {v.infinitive} — {v.english}
                 </button>
-                <p className="text-[12px] text-[#9B9DA3] ml-2">{v.group} · {v.cefr}</p>
-                <p className="text-[12px] text-[#9B9DA3] ml-2">{v.presentPreview}</p>
+                <p className="text-[12px] text-[#98988F] ml-2">{v.group} · {v.cefr}</p>
+                <p className="text-[12px] text-[#98988F] ml-2">{v.presentPreview}</p>
               </li>
             ))}
           </ul>
-          <p className="text-[11px] text-[#185FA5] mt-2">Click a verb to view conjugations</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Click a verb to view conjugations</p>
         </>
       )}
       {card.type === "tense_multi" && (
         <>
-          <p className="text-[13px] text-[#111111] mb-2">&quot;{card.query}&quot; — {card.tenseLabel}:</p>
+          <p className="text-[13px] text-[#1F1F1F] mb-2">&quot;{card.query}&quot; — {card.tenseLabel}:</p>
           <ul className="space-y-2">
             {card.verbs.map((v) => (
               <li key={v.infinitive}>
@@ -529,24 +529,24 @@ function SmartCardContent({
                     e.stopPropagation();
                     onSelectHref(v.href);
                   }}
-                  className="block w-full text-left rounded-md px-2 py-1.5 hover:bg-[#F7F7F5] font-medium text-[13px] text-[#111111]"
+                  className="block w-full text-left rounded-md px-2 py-1.5 hover:bg-[#F7F7F6] font-medium text-[13px] text-[#1F1F1F]"
                 >
                   {v.infinitive}
                 </button>
-                <p className="text-[12px] text-[#9B9DA3] ml-2">{(v.conjugations ?? []).join(" · ")}</p>
+                <p className="text-[12px] text-[#98988F] ml-2">{(v.conjugations ?? []).join(" · ")}</p>
               </li>
             ))}
           </ul>
-          <p className="text-[11px] text-[#185FA5] mt-2">Click a verb to view full table</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Click a verb to view full table</p>
         </>
       )}
       {(card.type === "comparison" || card.type === "grammar") && (
         <>
-          <p className="font-medium text-[13px] text-[#111111]">{card.topic.title}</p>
+          <p className="font-medium text-[13px] text-[#1F1F1F]">{card.topic.title}</p>
           {card.topic.meta?.summary && (
-            <p className="text-[12px] text-[#9B9DA3] mt-0.5 line-clamp-2">{card.topic.meta.summary}</p>
+            <p className="text-[12px] text-[#98988F] mt-0.5 line-clamp-2">{card.topic.meta.summary}</p>
           )}
-          <p className="text-[11px] text-[#185FA5] mt-2">Read full explanation</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Read full explanation</p>
         </>
       )}
     </>

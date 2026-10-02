@@ -26,20 +26,20 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
   return (
     <div className="max-w-md mx-auto text-center py-12">
       {/* Score */}
-      <div className="text-[48px] font-medium text-[#111111] tracking-[-0.02em]">
+      <div className="text-[48px] font-medium text-[#1F1F1F] tracking-[-0.02em]">
         {displayAccuracy}%
       </div>
 
       {/* Pass / fail */}
       {passed ? (
         <div className="mt-2">
-          <p className="text-[16px] font-medium text-[#0F6E56]">Lesson complete!</p>
-          <p className="text-[13px] text-[#9B9DA3] italic mt-1">Lição completa</p>
+          <p className="text-[16px] font-medium text-[#1F7A68]">Lesson complete!</p>
+          <p className="text-[13px] text-[#98988F] italic mt-1">Lição completa</p>
         </div>
       ) : (
         <div className="mt-2">
-          <p className="text-[16px] font-medium text-[#854F0B]">Not quite yet</p>
-          <p className="text-[13px] text-[#9B9DA3] italic mt-1">Ainda não — tenta outra vez</p>
+          <p className="text-[16px] font-medium text-[#5B45B8]">Not quite yet</p>
+          <p className="text-[13px] text-[#98988F] italic mt-1">Ainda não — tenta outra vez</p>
         </div>
       )}
 
@@ -50,11 +50,11 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
           return (
             <div
               key={i}
-              className="flex items-center justify-between px-4 py-2.5 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg"
+              className="flex items-center justify-between px-4 py-2.5 border-[0.5px] border-[#E6E6E4] rounded-lg"
             >
-              <span className="text-[13px] text-[#111111]">{sr.sectionName}</span>
+              <span className="text-[13px] text-[#1F1F1F]">{sr.sectionName}</span>
               <span
-                className={`text-[13px] font-medium ${pct >= 0.8 ? "text-[#0F6E56]" : "text-[#854F0B]"}`}
+                className={`text-[13px] font-medium ${pct >= 0.8 ? "text-[#1F7A68]" : "text-[#5B45B8]"}`}
               >
                 {sr.totalCorrect}/{sr.totalQuestions}
               </span>
@@ -64,10 +64,10 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
       </div>
 
       {/* Summary */}
-      <div className="mt-4 border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-4">
+      <div className="mt-4 border-[0.5px] border-[#E6E6E4] rounded-lg p-4">
         <div className="flex items-center justify-between">
-          <span className="text-[13px] text-[#6C6B71]">Total correct</span>
-          <span className={`text-[14px] font-medium ${passed ? "text-[#0F6E56]" : "text-[#854F0B]"}`}>
+          <span className="text-[13px] text-[#6B6B69]">Respostas certas</span>
+          <span className={`text-[14px] font-medium ${passed ? "text-[#1F7A68]" : "text-[#5B45B8]"}`}>
             {totalCorrect} / {totalQuestions}
           </span>
         </div>
@@ -76,16 +76,16 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
       {/* Wrong answers */}
       {wrongAnswers.length > 0 && (
         <div className="mt-4 text-left">
-          <p className="text-[10px] text-[#9B9DA3] uppercase tracking-[0.05em] mb-2">
-            Needs practice
+          <p className="text-[10px] text-[#98988F] uppercase tracking-[0.05em] mb-2">
+            Precisa de prática
           </p>
           <div className="space-y-1.5">
             {wrongAnswers.slice(0, 8).map((w, i) => (
-              <div key={i} className="flex items-center justify-between px-3 py-2 bg-[#fef2f2] rounded-lg">
-                <span className="text-[13px] text-[#dc2626] truncate mr-2">
+              <div key={i} className="flex items-center justify-between px-3 py-2 bg-[#FBE9E4] rounded-lg">
+                <span className="text-[13px] text-[#B94A32] truncate mr-2">
                   {w.correctAnswer}
                 </span>
-                <span className="text-[12px] text-[#9B9DA3] shrink-0">
+                <span className="text-[12px] text-[#98988F] shrink-0">
                   {w.section}
                 </span>
               </div>
@@ -99,24 +99,24 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry }: Lear
         {passed ? (
           <Link
             href="/lessons"
-            className="block w-full py-3.5 text-[14px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors text-center"
+            className="block w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors text-center"
           >
-            Continue learning →
+            Continuar a aprender →
           </Link>
         ) : (
           <button
             type="button"
             onClick={onRetry}
-            className="w-full py-3.5 text-[14px] font-medium text-white bg-[#111111] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
+            className="w-full py-3.5 text-[14px] font-medium text-white bg-[#1B2B61] rounded-lg hover:bg-[#14214C] transition-colors cursor-pointer"
           >
-            Try again
+            Tentar outra vez
           </button>
         )}
         <Link
           href="/lessons"
-          className="block w-full py-3.5 text-[14px] font-medium text-[#6C6B71] border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg hover:border-[rgba(0,0,0,0.12)] transition-colors text-center"
+          className="block w-full py-3.5 text-[14px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors text-center"
         >
-          Back to lessons
+          Voltar às lições
         </Link>
       </div>
     </div>

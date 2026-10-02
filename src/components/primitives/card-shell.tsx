@@ -22,9 +22,9 @@ export function CardShell({
   return (
     <div
       onClick={onClick}
-      className={`border-[0.5px] border-[rgba(0,0,0,0.06)] rounded-lg p-4 transition-colors duration-100 ${
+      className={`border border-aula-border rounded-xl p-4 bg-white transition-colors duration-100 ${
         interactive || onClick
-          ? "cursor-pointer hover:border-[rgba(0,0,0,0.12)]"
+          ? "cursor-pointer hover:border-aula-text-4"
           : ""
       } ${className}`}
     >
