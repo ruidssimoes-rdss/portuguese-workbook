@@ -1,0 +1,2234 @@
+[
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "a devolução",
+      "english": "return (of a purchase)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "duh-voo-loo-SOWNG",
+      "example": "Tenho trinta dias para fazer a devolução das calças.",
+      "exampleTranslation": "I have thirty days to return the trousers.",
+      "relatedWords": [
+        {
+          "word": "devolver",
+          "meaning": "to return / give back"
+        },
+        {
+          "word": "o talão de troca",
+          "meaning": "gift receipt / exchange slip"
+        }
+      ],
+      "proTip": "Most Portuguese chains accept returns within 15–30 days, but by law shops only have to accept them if the item is faulty — always check the policy."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o reembolso",
+      "english": "refund",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "rrih-ayng-BOHL-soo",
+      "example": "Pedi o reembolso porque o produto chegou estragado.",
+      "exampleTranslation": "I asked for a refund because the product arrived damaged.",
+      "relatedWords": [
+        {
+          "word": "pedir o reembolso",
+          "meaning": "to ask for a refund"
+        },
+        {
+          "word": "reembolsar",
+          "meaning": "to refund"
+        }
+      ],
+      "proTip": "You'll also see reembolso do IRS — the income tax refund Finanças pays out each summer."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o crédito à habitação",
+      "english": "mortgage",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "KREH-dee-too ah ah-bee-tah-SOWNG",
+      "example": "Com o crédito à habitação, pagamos ao banco durante trinta anos.",
+      "exampleTranslation": "With the mortgage, we pay the bank for thirty years.",
+      "relatedWords": [
+        {
+          "word": "a taxa de juro",
+          "meaning": "interest rate"
+        },
+        {
+          "word": "a Euribor",
+          "meaning": "Euribor (the reference rate)"
+        }
+      ],
+      "proTip": "Most Portuguese mortgages are variable-rate, tied to the Euribor, so people follow it closely in the news."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "a prestação",
+      "english": "instalment, monthly payment",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "prush-tah-SOWNG",
+      "example": "A prestação da casa subiu outra vez este mês.",
+      "exampleTranslation": "The mortgage payment went up again this month.",
+      "relatedWords": [
+        {
+          "word": "pagar em prestações",
+          "meaning": "to pay in instalments"
+        },
+        {
+          "word": "mensal",
+          "meaning": "monthly"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o orçamento",
+      "english": "budget; quote (for a job)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "or-sah-MAYN-too",
+      "example": "Pedi um orçamento ao canalizador antes de ele começar.",
+      "exampleTranslation": "I asked the plumber for a quote before he started.",
+      "relatedWords": [
+        {
+          "word": "o Orçamento do Estado",
+          "meaning": "the state budget"
+        },
+        {
+          "word": "pedir um orçamento",
+          "meaning": "to ask for a quote"
+        }
+      ],
+      "proTip": "In Portugal orçamento means both 'budget' and a tradesman's 'quote' — always ask for one in writing before work starts."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "desperdiçar",
+      "english": "to waste",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dush-pur-dee-SAR",
+      "example": "Não gosto de desperdiçar comida nem dinheiro.",
+      "exampleTranslation": "I don't like wasting food or money.",
+      "relatedWords": [
+        {
+          "word": "o desperdício",
+          "meaning": "waste"
+        },
+        {
+          "word": "gastar",
+          "meaning": "to spend"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "em conta",
+      "english": "reasonably priced, good value",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng KOHN-tuh",
+      "example": "Este restaurante é muito em conta para o centro de Lisboa.",
+      "exampleTranslation": "This restaurant is very reasonably priced for central Lisbon.",
+      "relatedWords": [
+        {
+          "word": "barato",
+          "meaning": "cheap"
+        },
+        {
+          "word": "caro",
+          "meaning": "expensive"
+        }
+      ],
+      "proTip": "Em conta sounds more positive than barato, which can hint at low quality."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "a pechincha",
+      "english": "bargain, steal",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "puh-SHEEN-shuh",
+      "example": "Comprei este casaco por dez euros, foi uma pechincha!",
+      "exampleTranslation": "I bought this coat for ten euros, it was a steal!",
+      "relatedWords": [
+        {
+          "word": "os saldos",
+          "meaning": "the sales"
+        },
+        {
+          "word": "em conta",
+          "meaning": "good value"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "pagar a pronto",
+      "english": "to pay in full upfront",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "pah-GAR ah PROHN-too",
+      "example": "Se pagar a pronto, fazem-lhe um desconto de cinco por cento.",
+      "exampleTranslation": "If you pay in full upfront, they give you a five percent discount.",
+      "relatedWords": [
+        {
+          "word": "pagar em prestações",
+          "meaning": "to pay in instalments"
+        },
+        {
+          "word": "o pronto pagamento",
+          "meaning": "upfront payment"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "pagar em prestações",
+      "english": "to pay in instalments",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "pah-GAR ayng prush-tah-SOYNGSH",
+      "example": "Comprámos o frigorífico e estamos a pagar em prestações.",
+      "exampleTranslation": "We bought the fridge and we're paying in instalments.",
+      "relatedWords": [
+        {
+          "word": "a prestação",
+          "meaning": "instalment"
+        },
+        {
+          "word": "sem juros",
+          "meaning": "interest-free"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o MB WAY",
+      "english": "MB WAY (Portuguese mobile payment app)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "oo eh-mee-BAY WAY",
+      "example": "Mando-te o dinheiro por MB WAY, dá-me o teu número.",
+      "exampleTranslation": "I'll send you the money via MB WAY, give me your number.",
+      "relatedWords": [
+        {
+          "word": "o Multibanco",
+          "meaning": "Portuguese ATM network"
+        },
+        {
+          "word": "a transferência",
+          "meaning": "transfer"
+        }
+      ],
+      "proTip": "MB WAY is how almost everyone in Portugal splits bills and pays friends — you send money to a phone number."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "a conta conjunta",
+      "english": "joint account",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KOHN-tuh kohn-ZHOON-tuh",
+      "example": "Abrimos uma conta conjunta para as despesas da casa.",
+      "exampleTranslation": "We opened a joint account for the household expenses.",
+      "relatedWords": [
+        {
+          "word": "o titular",
+          "meaning": "account holder"
+        },
+        {
+          "word": "a conta à ordem",
+          "meaning": "current account"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o talão de troca",
+      "english": "gift receipt, exchange slip",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "tuh-LOWNG duh TROH-kuh",
+      "example": "Pede um talão de troca, caso não lhe sirva.",
+      "exampleTranslation": "Ask for an exchange slip, in case it doesn't fit him.",
+      "relatedWords": [
+        {
+          "word": "trocar",
+          "meaning": "to exchange"
+        },
+        {
+          "word": "a devolução",
+          "meaning": "return"
+        }
+      ],
+      "proTip": "Shops in Portugal routinely offer a talão de troca for gifts — the price isn't shown on it."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "esgotado",
+      "english": "sold out, out of stock",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ush-goo-TAH-doo",
+      "example": "Os bilhetes para o concerto já estão esgotados.",
+      "exampleTranslation": "The concert tickets are already sold out.",
+      "relatedWords": [
+        {
+          "word": "o stock",
+          "meaning": "stock"
+        },
+        {
+          "word": "repor",
+          "meaning": "to restock"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "a montra",
+      "english": "shop window",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "MOHN-truh",
+      "example": "Vi umas botas na montra e entrei para experimentar.",
+      "exampleTranslation": "I saw some boots in the window and went in to try them.",
+      "relatedWords": [
+        {
+          "word": "ver montras",
+          "meaning": "to window-shop"
+        },
+        {
+          "word": "a loja",
+          "meaning": "shop"
+        }
+      ],
+      "proTip": "In Brazil it's vitrine; in Portugal it's always montra."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o porta-moedas",
+      "english": "coin purse",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "POR-tuh MWEH-dush",
+      "example": "Guardo os cêntimos no porta-moedas.",
+      "exampleTranslation": "I keep the cents in my coin purse.",
+      "relatedWords": [
+        {
+          "word": "a carteira",
+          "meaning": "wallet"
+        },
+        {
+          "word": "as moedas",
+          "meaning": "coins"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "a comissão",
+      "english": "fee, commission (bank)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "koo-mee-SOWNG",
+      "example": "O banco cobra uma comissão de manutenção todos os meses.",
+      "exampleTranslation": "The bank charges a maintenance fee every month.",
+      "relatedWords": [
+        {
+          "word": "cobrar",
+          "meaning": "to charge"
+        },
+        {
+          "word": "a conta à ordem",
+          "meaning": "current account"
+        }
+      ],
+      "proTip": "Portuguese banks are notorious for comissões de manutenção — online banks and some 'contas base' avoid them."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "a despesa",
+      "english": "expense",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "dush-PAY-zuh",
+      "example": "Este mês tivemos muitas despesas com o carro.",
+      "exampleTranslation": "This month we had a lot of expenses with the car.",
+      "relatedWords": [
+        {
+          "word": "as despesas da casa",
+          "meaning": "household expenses"
+        },
+        {
+          "word": "dividir as despesas",
+          "meaning": "to split the expenses"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o custo de vida",
+      "english": "cost of living",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "KOOSH-too duh VEE-duh",
+      "example": "O custo de vida em Lisboa subiu imenso nos últimos anos.",
+      "exampleTranslation": "The cost of living in Lisbon has gone up massively in recent years.",
+      "relatedWords": [
+        {
+          "word": "a renda",
+          "meaning": "rent"
+        },
+        {
+          "word": "o ordenado",
+          "meaning": "salary"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "forreta",
+      "english": "stingy, tight-fisted",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "foo-RRAY-tuh",
+      "example": "Não sejas forreta, paga-me um café!",
+      "exampleTranslation": "Don't be stingy, buy me a coffee!",
+      "relatedWords": [
+        {
+          "word": "poupado",
+          "meaning": "thrifty"
+        },
+        {
+          "word": "generoso",
+          "meaning": "generous"
+        }
+      ],
+      "proTip": "Forreta is informal and very Portuguese; poupado is the positive version (careful with money)."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "levantar dinheiro",
+      "english": "to withdraw cash",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "luh-vahn-TAR dee-NYAY-roo",
+      "example": "Tenho de levantar dinheiro, aqui só aceitam numerário.",
+      "exampleTranslation": "I have to withdraw cash, they only take cash here.",
+      "relatedWords": [
+        {
+          "word": "o Multibanco",
+          "meaning": "ATM"
+        },
+        {
+          "word": "depositar",
+          "meaning": "to deposit"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "a dívida",
+      "english": "debt",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "DEE-vee-duh",
+      "example": "Finalmente paguei a dívida do cartão de crédito.",
+      "exampleTranslation": "I finally paid off the credit card debt.",
+      "relatedWords": [
+        {
+          "word": "dever",
+          "meaning": "to owe"
+        },
+        {
+          "word": "endividado",
+          "meaning": "in debt"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o IBAN",
+      "english": "IBAN (bank account number)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ee-BAHN",
+      "example": "Manda-me o teu IBAN para eu fazer a transferência.",
+      "exampleTranslation": "Send me your IBAN so I can make the transfer.",
+      "relatedWords": [
+        {
+          "word": "a transferência",
+          "meaning": "transfer"
+        },
+        {
+          "word": "o NIB",
+          "meaning": "old Portuguese account number"
+        }
+      ],
+      "proTip": "Portuguese IBANs start with PT50; older people may still say NIB for the same thing."
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "o pagamento",
+      "english": "payment",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "pah-guh-MAYN-too",
+      "example": "O pagamento da renda é feito até ao dia oito.",
+      "exampleTranslation": "The rent payment is due by the eighth.",
+      "relatedWords": [
+        {
+          "word": "a referência Multibanco",
+          "meaning": "Multibanco payment reference"
+        },
+        {
+          "word": "pagar",
+          "meaning": "to pay"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "shopping-money",
+    "word": {
+      "portuguese": "depositar",
+      "english": "to deposit",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-poo-zee-TAR",
+      "example": "Fui ao banco depositar um cheque da minha avó.",
+      "exampleTranslation": "I went to the bank to deposit a cheque from my grandmother.",
+      "relatedWords": [
+        {
+          "word": "o depósito",
+          "meaning": "deposit"
+        },
+        {
+          "word": "levantar",
+          "meaning": "to withdraw"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "desiludido",
+      "english": "disappointed",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-zee-loo-DEE-doo",
+      "example": "Fiquei desiludido com o filme, esperava muito mais.",
+      "exampleTranslation": "I was disappointed with the film, I expected much more.",
+      "relatedWords": [
+        {
+          "word": "a desilusão",
+          "meaning": "disappointment"
+        },
+        {
+          "word": "desiludir",
+          "meaning": "to disappoint"
+        }
+      ],
+      "proTip": "For 'disappointed', desiludido is the everyday word; decepcionado is more common in Brazil."
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "envergonhado",
+      "english": "embarrassed, ashamed",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng-vur-goo-NYAH-doo",
+      "example": "Fiquei tão envergonhado quando me enganei no nome dela.",
+      "exampleTranslation": "I was so embarrassed when I got her name wrong.",
+      "relatedWords": [
+        {
+          "word": "a vergonha",
+          "meaning": "shame"
+        },
+        {
+          "word": "tímido",
+          "meaning": "shy"
+        }
+      ],
+      "proTip": "Embaraçada doesn't mean 'embarrassed' in the usual sense — use envergonhado."
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "ciumento",
+      "english": "jealous (in a relationship)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "syoo-MAYN-too",
+      "example": "O namorado dela é muito ciumento, não a deixa sair sozinha.",
+      "exampleTranslation": "Her boyfriend is very jealous, he won't let her go out alone.",
+      "relatedWords": [
+        {
+          "word": "os ciúmes",
+          "meaning": "jealousy"
+        },
+        {
+          "word": "ter ciúmes de",
+          "meaning": "to be jealous of"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "invejoso",
+      "english": "envious",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "eeng-vuh-ZHOH-zoo",
+      "example": "Não sejas invejoso, ela trabalhou muito para ter aquilo.",
+      "exampleTranslation": "Don't be envious, she worked hard to get that.",
+      "relatedWords": [
+        {
+          "word": "a inveja",
+          "meaning": "envy"
+        },
+        {
+          "word": "ter inveja de",
+          "meaning": "to envy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "egoísta",
+      "english": "selfish",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-goo-EESH-tuh",
+      "example": "Foi muito egoísta da tua parte não ajudar ninguém.",
+      "exampleTranslation": "It was very selfish of you not to help anyone.",
+      "relatedWords": [
+        {
+          "word": "o egoísmo",
+          "meaning": "selfishness"
+        },
+        {
+          "word": "generoso",
+          "meaning": "generous"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "sensível",
+      "english": "sensitive",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "sayng-SEE-vel",
+      "example": "Ele é muito sensível, não lhe digas isso assim.",
+      "exampleTranslation": "He's very sensitive, don't say it to him like that.",
+      "relatedWords": [
+        {
+          "word": "sensato",
+          "meaning": "sensible (false friend)"
+        },
+        {
+          "word": "a sensibilidade",
+          "meaning": "sensitivity"
+        }
+      ],
+      "proTip": "False friend: sensível = sensitive; 'sensible' is sensato."
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "desconfiado",
+      "english": "suspicious, wary",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dush-kohn-FYAH-doo",
+      "example": "O meu avô é desconfiado de tudo o que vem da internet.",
+      "exampleTranslation": "My grandad is suspicious of everything from the internet.",
+      "relatedWords": [
+        {
+          "word": "desconfiar de",
+          "meaning": "to distrust"
+        },
+        {
+          "word": "confiar em",
+          "meaning": "to trust"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "chateado",
+      "english": "annoyed, upset",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shuh-tee-AH-doo",
+      "example": "Ela ficou chateada porque não lhe liguei.",
+      "exampleTranslation": "She got upset because I didn't call her.",
+      "relatedWords": [
+        {
+          "word": "chatear",
+          "meaning": "to annoy"
+        },
+        {
+          "word": "chato",
+          "meaning": "annoying, boring"
+        }
+      ],
+      "proTip": "Chateado is the go-to everyday word for 'upset' or 'annoyed' in Portugal — much more common than zangado in casual speech."
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "ter vontade de",
+      "english": "to feel like (doing something)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "tayr vohn-TAH-duh duh",
+      "example": "Hoje não tenho vontade nenhuma de sair de casa.",
+      "exampleTranslation": "Today I don't feel like leaving the house at all.",
+      "relatedWords": [
+        {
+          "word": "a vontade",
+          "meaning": "will, desire"
+        },
+        {
+          "word": "apetecer",
+          "meaning": "to fancy"
+        }
+      ],
+      "proTip": "In Portugal, apetecer is even more common: «Apetece-me um gelado» = I fancy an ice cream."
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "sentir falta de",
+      "english": "to miss (something/someone)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "sayng-TEER FAHL-tuh duh",
+      "example": "Sinto falta do sol quando estou fora de Portugal.",
+      "exampleTranslation": "I miss the sun when I'm away from Portugal.",
+      "relatedWords": [
+        {
+          "word": "as saudades",
+          "meaning": "longing, missing"
+        },
+        {
+          "word": "ter saudades de",
+          "meaning": "to miss"
+        }
+      ],
+      "proTip": "Ter saudades de is warmer and more emotional; sentir falta de can be more practical — you sentir falta of your car, too."
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "desabafar",
+      "english": "to vent, get something off your chest",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-zuh-buh-FAR",
+      "example": "Precisava de desabafar com alguém depois daquele dia horrível.",
+      "exampleTranslation": "I needed to vent to someone after that horrible day.",
+      "relatedWords": [
+        {
+          "word": "o desabafo",
+          "meaning": "outburst, venting"
+        },
+        {
+          "word": "contar",
+          "meaning": "to tell"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "preocupar-se",
+      "english": "to worry",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "pree-oh-koo-PAR-suh",
+      "example": "Não te preocupes, eu trato disso amanhã.",
+      "exampleTranslation": "Don't worry, I'll deal with it tomorrow.",
+      "relatedWords": [
+        {
+          "word": "a preocupação",
+          "meaning": "worry"
+        },
+        {
+          "word": "preocupado",
+          "meaning": "worried"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "arrepender-se",
+      "english": "to regret",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-rruh-payng-DAIR-suh",
+      "example": "Arrependo-me de não ter aprendido português mais cedo.",
+      "exampleTranslation": "I regret not learning Portuguese sooner.",
+      "relatedWords": [
+        {
+          "word": "o arrependimento",
+          "meaning": "regret"
+        },
+        {
+          "word": "arrependido",
+          "meaning": "sorry, regretful"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "magoado",
+      "english": "hurt (emotionally or physically)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "muh-GWAH-doo",
+      "example": "Fiquei magoado com o que ele disse no jantar.",
+      "exampleTranslation": "I was hurt by what he said at dinner.",
+      "relatedWords": [
+        {
+          "word": "magoar",
+          "meaning": "to hurt"
+        },
+        {
+          "word": "ofendido",
+          "meaning": "offended"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "irritado",
+      "english": "irritated",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-rree-TAH-doo",
+      "example": "Fico irritado quando as pessoas não respeitam a fila.",
+      "exampleTranslation": "I get irritated when people don't respect the queue.",
+      "relatedWords": [
+        {
+          "word": "irritar",
+          "meaning": "to irritate"
+        },
+        {
+          "word": "irritante",
+          "meaning": "irritating"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "comovido",
+      "english": "moved, touched",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "koo-moo-VEE-doo",
+      "example": "Fiquei muito comovido com o discurso da minha irmã.",
+      "exampleTranslation": "I was very moved by my sister's speech.",
+      "relatedWords": [
+        {
+          "word": "comover",
+          "meaning": "to move, touch"
+        },
+        {
+          "word": "emocionado",
+          "meaning": "emotional"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "grato",
+      "english": "grateful",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "GRAH-too",
+      "example": "Estou muito grato por tudo o que fizeste por mim.",
+      "exampleTranslation": "I'm very grateful for everything you did for me.",
+      "relatedWords": [
+        {
+          "word": "agradecido",
+          "meaning": "thankful"
+        },
+        {
+          "word": "a gratidão",
+          "meaning": "gratitude"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "bem-disposto",
+      "english": "in a good mood, cheerful",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "bayng-dish-POHSH-too",
+      "example": "O meu colega está sempre bem-disposto, mesmo à segunda-feira.",
+      "exampleTranslation": "My colleague is always cheerful, even on Mondays.",
+      "relatedWords": [
+        {
+          "word": "mal-disposto",
+          "meaning": "feeling sick / unwell"
+        },
+        {
+          "word": "a boa disposição",
+          "meaning": "good mood"
+        }
+      ],
+      "proTip": "Careful: mal-disposto usually means feeling physically queasy, not just grumpy."
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "convencido",
+      "english": "conceited, full of yourself",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kohn-vayng-SEE-doo",
+      "example": "Ele é tão convencido, acha que sabe tudo.",
+      "exampleTranslation": "He's so full of himself, he thinks he knows everything.",
+      "relatedWords": [
+        {
+          "word": "vaidoso",
+          "meaning": "vain"
+        },
+        {
+          "word": "humilde",
+          "meaning": "humble"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "assustado",
+      "english": "scared, frightened",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-soosh-TAH-doo",
+      "example": "O cão ficou assustado com o fogo de artifício.",
+      "exampleTranslation": "The dog got scared by the fireworks.",
+      "relatedWords": [
+        {
+          "word": "assustar",
+          "meaning": "to scare"
+        },
+        {
+          "word": "o medo",
+          "meaning": "fear"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "esquisito",
+      "english": "strange, weird; fussy",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ush-kee-ZEE-too",
+      "example": "Este iogurte tem um sabor esquisito, acho que está estragado.",
+      "exampleTranslation": "This yoghurt tastes strange, I think it's gone off.",
+      "relatedWords": [
+        {
+          "word": "estranho",
+          "meaning": "strange"
+        },
+        {
+          "word": "picuinhas",
+          "meaning": "picky, fussy"
+        }
+      ],
+      "proTip": "False friend: esquisito never means 'exquisite'. Said of a person, it means fussy or picky — «ele é muito esquisito com a comida»."
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "agradável",
+      "english": "pleasant, nice",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-gruh-DAH-vel",
+      "example": "Está uma tarde muito agradável para uma esplanada.",
+      "exampleTranslation": "It's a very pleasant afternoon for a café terrace.",
+      "relatedWords": [
+        {
+          "word": "agradar",
+          "meaning": "to please"
+        },
+        {
+          "word": "simpático",
+          "meaning": "nice (person)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "desagradável",
+      "english": "unpleasant",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-zuh-gruh-DAH-vel",
+      "example": "Havia um cheiro muito desagradável no metro hoje.",
+      "exampleTranslation": "There was a very unpleasant smell on the metro today.",
+      "relatedWords": [
+        {
+          "word": "agradável",
+          "meaning": "pleasant"
+        },
+        {
+          "word": "incómodo",
+          "meaning": "uncomfortable, bothersome"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "confortável",
+      "english": "comfortable",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kohn-for-TAH-vel",
+      "example": "Estes ténis são muito confortáveis para andar na calçada.",
+      "exampleTranslation": "These trainers are very comfortable for walking on the cobbles.",
+      "relatedWords": [
+        {
+          "word": "o conforto",
+          "meaning": "comfort"
+        },
+        {
+          "word": "cómodo",
+          "meaning": "comfortable, convenient"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "desconfortável",
+      "english": "uncomfortable",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dush-kohn-for-TAH-vel",
+      "example": "A cadeira do escritório é tão desconfortável que me doem as costas.",
+      "exampleTranslation": "The office chair is so uncomfortable that my back hurts.",
+      "relatedWords": [
+        {
+          "word": "confortável",
+          "meaning": "comfortable"
+        },
+        {
+          "word": "incómodo",
+          "meaning": "awkward, uncomfortable"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "eficaz",
+      "english": "effective",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-fee-KAHSH",
+      "example": "Este remédio para a tosse é muito eficaz.",
+      "exampleTranslation": "This cough remedy is very effective.",
+      "relatedWords": [
+        {
+          "word": "eficiente",
+          "meaning": "efficient"
+        },
+        {
+          "word": "a eficácia",
+          "meaning": "effectiveness"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "eficiente",
+      "english": "efficient",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-fee-SYAYN-tuh",
+      "example": "Os serviços online das Finanças são bastante eficientes.",
+      "exampleTranslation": "The Finanças online services are quite efficient.",
+      "relatedWords": [
+        {
+          "word": "eficaz",
+          "meaning": "effective"
+        },
+        {
+          "word": "a eficiência",
+          "meaning": "efficiency"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "útil",
+      "english": "useful",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "OO-teel",
+      "example": "Esta aplicação é muito útil para ver os horários do comboio.",
+      "exampleTranslation": "This app is very useful for checking train times.",
+      "relatedWords": [
+        {
+          "word": "a utilidade",
+          "meaning": "usefulness"
+        },
+        {
+          "word": "inútil",
+          "meaning": "useless"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "inútil",
+      "english": "useless, pointless",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-NOO-teel",
+      "example": "É inútil ligar agora, a loja já fechou.",
+      "exampleTranslation": "It's pointless calling now, the shop's already closed.",
+      "relatedWords": [
+        {
+          "word": "útil",
+          "meaning": "useful"
+        },
+        {
+          "word": "não vale a pena",
+          "meaning": "it's not worth it"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "grave",
+      "english": "serious (problem, injury)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "GRAHV",
+      "example": "Felizmente o acidente não foi grave.",
+      "exampleTranslation": "Luckily the accident wasn't serious.",
+      "relatedWords": [
+        {
+          "word": "sério",
+          "meaning": "serious (person / matter)"
+        },
+        {
+          "word": "a gravidade",
+          "meaning": "seriousness"
+        }
+      ],
+      "proTip": "Use grave for situations and injuries; for a serious person use sério."
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "ligeiro",
+      "english": "slight, light",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "lee-ZHAY-roo",
+      "example": "Tenho uma ligeira dor de cabeça desde manhã.",
+      "exampleTranslation": "I've had a slight headache since this morning.",
+      "relatedWords": [
+        {
+          "word": "leve",
+          "meaning": "light (weight)"
+        },
+        {
+          "word": "o veículo ligeiro",
+          "meaning": "car (light vehicle)"
+        }
+      ],
+      "proTip": "On Portuguese road signs and documents, ligeiros means cars and pesados means lorries."
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "enorme",
+      "english": "huge",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-NOR-muh",
+      "example": "Havia uma fila enorme à porta da Loja do Cidadão.",
+      "exampleTranslation": "There was a huge queue at the door of the Loja do Cidadão.",
+      "relatedWords": [
+        {
+          "word": "gigante",
+          "meaning": "giant"
+        },
+        {
+          "word": "imenso",
+          "meaning": "immense, loads"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "minúsculo",
+      "english": "tiny",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "mee-NOOSH-koo-loo",
+      "example": "O apartamento é bonito, mas a cozinha é minúscula.",
+      "exampleTranslation": "The flat is nice, but the kitchen is tiny.",
+      "relatedWords": [
+        {
+          "word": "pequenino",
+          "meaning": "little"
+        },
+        {
+          "word": "enorme",
+          "meaning": "huge"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "sossegado",
+      "english": "quiet, peaceful",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "soo-suh-GAH-doo",
+      "example": "Prefiro viver num bairro sossegado, longe da confusão.",
+      "exampleTranslation": "I prefer living in a quiet neighbourhood, away from the hustle.",
+      "relatedWords": [
+        {
+          "word": "calmo",
+          "meaning": "calm"
+        },
+        {
+          "word": "barulhento",
+          "meaning": "noisy"
+        }
+      ],
+      "proTip": "Fica sossegado is also what you say to calm someone down: 'don't worry, relax'."
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "raro",
+      "english": "rare",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "RRAH-roo",
+      "example": "É raro chover tanto em Lisboa em setembro.",
+      "exampleTranslation": "It's rare for it to rain so much in Lisbon in September.",
+      "relatedWords": [
+        {
+          "word": "raramente",
+          "meaning": "rarely"
+        },
+        {
+          "word": "comum",
+          "meaning": "common"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "comum",
+      "english": "common, ordinary",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "koo-MOONG",
+      "example": "Simões é um apelido bastante comum em Portugal.",
+      "exampleTranslation": "Simões is quite a common surname in Portugal.",
+      "relatedWords": [
+        {
+          "word": "normal",
+          "meaning": "normal"
+        },
+        {
+          "word": "em comum",
+          "meaning": "in common"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "essencial",
+      "english": "essential",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-sayng-SYAL",
+      "example": "Um guarda-chuva é essencial no inverno em Lisboa.",
+      "exampleTranslation": "An umbrella is essential in winter in Lisbon.",
+      "relatedWords": [
+        {
+          "word": "indispensável",
+          "meaning": "indispensable"
+        },
+        {
+          "word": "necessário",
+          "meaning": "necessary"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "óbvio",
+      "english": "obvious",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "OH-byoo",
+      "example": "É óbvio que ele não quer vir à festa.",
+      "exampleTranslation": "It's obvious he doesn't want to come to the party.",
+      "relatedWords": [
+        {
+          "word": "claro",
+          "meaning": "clear, of course"
+        },
+        {
+          "word": "evidente",
+          "meaning": "evident"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "necessário",
+      "english": "necessary",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nuh-suh-SAH-ryoo",
+      "example": "Não é necessário marcar, podes aparecer quando quiseres.",
+      "exampleTranslation": "There's no need to book, you can come whenever you want.",
+      "relatedWords": [
+        {
+          "word": "precisar de",
+          "meaning": "to need"
+        },
+        {
+          "word": "a necessidade",
+          "meaning": "need"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "semelhante",
+      "english": "similar",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "suh-muh-LYAHN-tuh",
+      "example": "O galego é muito semelhante ao português.",
+      "exampleTranslation": "Galician is very similar to Portuguese.",
+      "relatedWords": [
+        {
+          "word": "parecido",
+          "meaning": "alike"
+        },
+        {
+          "word": "igual",
+          "meaning": "the same"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "estranho",
+      "english": "strange; stranger (noun)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ush-TRAH-nyoo",
+      "example": "Ouvi um barulho estranho no carro esta manhã.",
+      "exampleTranslation": "I heard a strange noise in the car this morning.",
+      "relatedWords": [
+        {
+          "word": "esquisito",
+          "meaning": "weird"
+        },
+        {
+          "word": "o estranho",
+          "meaning": "the stranger"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "profundo",
+      "english": "deep",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "proo-FOON-doo",
+      "example": "Cuidado, a água aqui é muito profunda.",
+      "exampleTranslation": "Careful, the water here is very deep.",
+      "relatedWords": [
+        {
+          "word": "fundo",
+          "meaning": "deep (informal)"
+        },
+        {
+          "word": "a profundidade",
+          "meaning": "depth"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "impossível",
+      "english": "impossible",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "eeng-poo-SEE-vel",
+      "example": "É impossível estacionar no Bairro Alto à noite.",
+      "exampleTranslation": "It's impossible to park in Bairro Alto at night.",
+      "relatedWords": [
+        {
+          "word": "possível",
+          "meaning": "possible"
+        },
+        {
+          "word": "não dá",
+          "meaning": "it's not possible (informal)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "prático",
+      "english": "practical, handy",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "PRAH-tee-koo",
+      "example": "Viver perto do metro é muito prático.",
+      "exampleTranslation": "Living near the metro is very handy.",
+      "relatedWords": [
+        {
+          "word": "a prática",
+          "meaning": "practice"
+        },
+        {
+          "word": "cómodo",
+          "meaning": "convenient"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "adjectives-descriptions",
+    "word": {
+      "portuguese": "parecido",
+      "english": "alike, similar",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puh-ruh-SEE-doo",
+      "example": "Tu és muito parecido com o teu pai.",
+      "exampleTranslation": "You look a lot like your father.",
+      "relatedWords": [
+        {
+          "word": "parecer-se com",
+          "meaning": "to look like"
+        },
+        {
+          "word": "semelhante",
+          "meaning": "similar"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "aumentar",
+      "english": "to increase, raise",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ow-mayng-TAR",
+      "example": "A renda vai aumentar outra vez no próximo ano.",
+      "exampleTranslation": "The rent is going to go up again next year.",
+      "relatedWords": [
+        {
+          "word": "diminuir",
+          "meaning": "to decrease (opposite)"
+        },
+        {
+          "word": "o aumento",
+          "meaning": "increase, pay rise"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "diminuir",
+      "english": "to decrease, reduce",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dee-mee-NWEER",
+      "example": "O médico disse-me para diminuir o sal.",
+      "exampleTranslation": "The doctor told me to cut down on salt.",
+      "relatedWords": [
+        {
+          "word": "aumentar",
+          "meaning": "to increase (opposite)"
+        },
+        {
+          "word": "reduzir",
+          "meaning": "to reduce"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "aceitar",
+      "english": "to accept",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-say-TAR",
+      "example": "Desculpe, aqui aceitam cartão ou só dinheiro?",
+      "exampleTranslation": "Excuse me, do you take card here or only cash?",
+      "relatedWords": [
+        {
+          "word": "recusar",
+          "meaning": "to refuse (opposite)"
+        },
+        {
+          "word": "aceitar uma proposta",
+          "meaning": "to accept an offer"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "recusar",
+      "english": "to refuse, turn down",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "rruh-koo-ZAR",
+      "example": "Ela recusou a proposta de emprego no Porto.",
+      "exampleTranslation": "She turned down the job offer in Porto.",
+      "relatedWords": [
+        {
+          "word": "aceitar",
+          "meaning": "to accept (opposite)"
+        },
+        {
+          "word": "recusar-se a",
+          "meaning": "to refuse to"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "emprestar",
+      "english": "to lend",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng-prush-TAR",
+      "example": "Podes emprestar-me o teu carregador por cinco minutos?",
+      "exampleTranslation": "Can you lend me your charger for five minutes?",
+      "relatedWords": [
+        {
+          "word": "pedir emprestado",
+          "meaning": "to borrow (opposite)"
+        },
+        {
+          "word": "o empréstimo",
+          "meaning": "loan"
+        }
+      ],
+      "proTip": "Portuguese has no single verb for 'borrow': you emprestar (lend) or pedir emprestado (ask to be lent)."
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "pedir emprestado",
+      "english": "to borrow",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puh-DEER ayng-prush-TAH-doo",
+      "example": "Pedi emprestado o berbequim ao vizinho de cima.",
+      "exampleTranslation": "I borrowed the drill from the upstairs neighbour.",
+      "relatedWords": [
+        {
+          "word": "emprestar",
+          "meaning": "to lend (opposite)"
+        },
+        {
+          "word": "devolver",
+          "meaning": "to give back"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "permitir",
+      "english": "to allow",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "pur-mee-TEER",
+      "example": "O senhorio não permite animais no apartamento.",
+      "exampleTranslation": "The landlord doesn't allow pets in the flat.",
+      "relatedWords": [
+        {
+          "word": "proibir",
+          "meaning": "to forbid (opposite)"
+        },
+        {
+          "word": "deixar",
+          "meaning": "to let"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "proibir",
+      "english": "to forbid, ban",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "proo-ee-BEER",
+      "example": "A câmara proibiu o trânsito na Baixa ao domingo.",
+      "exampleTranslation": "The council banned traffic in the Baixa on Sundays.",
+      "relatedWords": [
+        {
+          "word": "permitir",
+          "meaning": "to allow (opposite)"
+        },
+        {
+          "word": "proibido",
+          "meaning": "forbidden"
+        }
+      ],
+      "proTip": "You'll see «É proibido fumar» and «Proibido estacionar» everywhere — proibido is the sign word."
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "o sucesso",
+      "english": "success",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "soo-SEH-soo",
+      "example": "O novo restaurante da esquina é um sucesso.",
+      "exampleTranslation": "The new restaurant on the corner is a success.",
+      "relatedWords": [
+        {
+          "word": "o fracasso",
+          "meaning": "failure (opposite)"
+        },
+        {
+          "word": "ter sucesso",
+          "meaning": "to be successful"
+        }
+      ],
+      "proTip": "For 'success' Portuguese also uses o êxito — but êxito is not 'exit' (that's a saída)."
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "o fracasso",
+      "english": "failure, flop",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "fruh-KAH-soo",
+      "example": "A festa foi um fracasso, quase ninguém apareceu.",
+      "exampleTranslation": "The party was a flop, hardly anyone showed up.",
+      "relatedWords": [
+        {
+          "word": "o sucesso",
+          "meaning": "success (opposite)"
+        },
+        {
+          "word": "fracassar",
+          "meaning": "to fail"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "a vantagem",
+      "english": "advantage",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "vahn-TAH-zhayng",
+      "example": "Uma das vantagens de Lisboa é o clima.",
+      "exampleTranslation": "One of the advantages of Lisbon is the weather.",
+      "relatedWords": [
+        {
+          "word": "a desvantagem",
+          "meaning": "disadvantage (opposite)"
+        },
+        {
+          "word": "tirar vantagem de",
+          "meaning": "to take advantage of"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "a desvantagem",
+      "english": "disadvantage",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "dush-vahn-TAH-zhayng",
+      "example": "A grande desvantagem desta casa é não ter elevador.",
+      "exampleTranslation": "The big disadvantage of this house is having no lift.",
+      "relatedWords": [
+        {
+          "word": "a vantagem",
+          "meaning": "advantage (opposite)"
+        },
+        {
+          "word": "o inconveniente",
+          "meaning": "drawback"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "encher",
+      "english": "to fill",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ayng-SHAIR",
+      "example": "Enche a garrafa de água antes de sairmos.",
+      "exampleTranslation": "Fill the water bottle before we leave.",
+      "relatedWords": [
+        {
+          "word": "esvaziar",
+          "meaning": "to empty (opposite)"
+        },
+        {
+          "word": "cheio",
+          "meaning": "full"
+        }
+      ],
+      "proTip": "Encher o depósito = fill up the tank; «Estou cheio» after a meal means 'I'm full'."
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "esvaziar",
+      "english": "to empty",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ush-vuh-ZYAR",
+      "example": "Tenho de esvaziar a máquina da loiça.",
+      "exampleTranslation": "I have to empty the dishwasher.",
+      "relatedWords": [
+        {
+          "word": "encher",
+          "meaning": "to fill (opposite)"
+        },
+        {
+          "word": "vazio",
+          "meaning": "empty"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "opposites",
+    "word": {
+      "portuguese": "acender",
+      "english": "to light, switch on",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-sayng-DAIR",
+      "example": "Acende a luz, não vejo nada aqui.",
+      "exampleTranslation": "Switch on the light, I can't see anything here.",
+      "relatedWords": [
+        {
+          "word": "apagar",
+          "meaning": "to switch off, put out (opposite)"
+        },
+        {
+          "word": "ligar",
+          "meaning": "to turn on (device)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "o metro quadrado",
+      "english": "square metre",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "MEH-troo kwuh-DRAH-doo",
+      "example": "Em Lisboa, o metro quadrado está caríssimo.",
+      "exampleTranslation": "In Lisbon, the price per square metre is sky-high.",
+      "relatedWords": [
+        {
+          "word": "a área",
+          "meaning": "area"
+        },
+        {
+          "word": "o T2",
+          "meaning": "two-bedroom flat"
+        }
+      ],
+      "proTip": "Flat ads always give the size in m² — say «metros quadrados» out loud."
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "o grama",
+      "english": "gram",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "GRAH-muh",
+      "example": "Queria duzentos gramas de fiambre, por favor.",
+      "exampleTranslation": "I'd like two hundred grams of ham, please.",
+      "relatedWords": [
+        {
+          "word": "o quilo",
+          "meaning": "kilo"
+        },
+        {
+          "word": "a grama",
+          "meaning": "grass (different word)"
+        }
+      ],
+      "proTip": "Strictly, the unit is masculine (duzentos gramas), but you'll often hear «duzentas gramas» at the deli counter; a grama is also grass."
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "a dúzia",
+      "english": "dozen",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "DOO-zyuh",
+      "example": "Comprei uma dúzia de ovos no mercado.",
+      "exampleTranslation": "I bought a dozen eggs at the market.",
+      "relatedWords": [
+        {
+          "word": "meia dúzia",
+          "meaning": "half a dozen"
+        },
+        {
+          "word": "a dezena",
+          "meaning": "about ten"
+        }
+      ],
+      "proTip": "Eggs in Portugal are often sold by the dúzia or meia dúzia."
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "a medida",
+      "english": "measurement, size; measure",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "muh-DEE-duh",
+      "example": "Fizeram-me um armário à medida para o quarto.",
+      "exampleTranslation": "They made me a made-to-measure wardrobe for the bedroom.",
+      "relatedWords": [
+        {
+          "word": "à medida",
+          "meaning": "made to measure"
+        },
+        {
+          "word": "na medida do possível",
+          "meaning": "as far as possible"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "medir",
+      "english": "to measure",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "muh-DEER",
+      "example": "Mede a parede antes de comprarmos o sofá.",
+      "exampleTranslation": "Measure the wall before we buy the sofa.",
+      "relatedWords": [
+        {
+          "word": "a fita métrica",
+          "meaning": "tape measure"
+        },
+        {
+          "word": "a medida",
+          "meaning": "measurement"
+        }
+      ],
+      "proTip": "Medir is irregular: eu meço, tu medes. «Quanto medes?» = How tall are you?"
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "pesar",
+      "english": "to weigh",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "puh-ZAR",
+      "example": "Pode pesar-me esta fruta, por favor?",
+      "exampleTranslation": "Could you weigh this fruit for me, please?",
+      "relatedWords": [
+        {
+          "word": "o peso",
+          "meaning": "weight"
+        },
+        {
+          "word": "a balança",
+          "meaning": "scales"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "a balança",
+      "english": "scales",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "buh-LAHN-suh",
+      "example": "Subi à balança e assustei-me depois das férias.",
+      "exampleTranslation": "I got on the scales and got a fright after the holidays.",
+      "relatedWords": [
+        {
+          "word": "pesar",
+          "meaning": "to weigh"
+        },
+        {
+          "word": "o peso",
+          "meaning": "weight"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "a profundidade",
+      "english": "depth",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "proo-foon-dee-DAH-duh",
+      "example": "A piscina tem dois metros de profundidade.",
+      "exampleTranslation": "The pool is two metres deep.",
+      "relatedWords": [
+        {
+          "word": "profundo",
+          "meaning": "deep"
+        },
+        {
+          "word": "a altura",
+          "meaning": "height"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "o aço",
+      "english": "steel",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "AH-soo",
+      "example": "Os talheres são de aço inoxidável.",
+      "exampleTranslation": "The cutlery is stainless steel.",
+      "relatedWords": [
+        {
+          "word": "o inox",
+          "meaning": "stainless steel (short)"
+        },
+        {
+          "word": "o ferro",
+          "meaning": "iron"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "o ferro",
+      "english": "iron",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "FEH-rroo",
+      "example": "O portão é de ferro e está todo enferrujado.",
+      "exampleTranslation": "The gate is iron and it's completely rusty.",
+      "relatedWords": [
+        {
+          "word": "o ferro de engomar",
+          "meaning": "clothes iron"
+        },
+        {
+          "word": "enferrujado",
+          "meaning": "rusty"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "o ouro",
+      "english": "gold",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "OH-roo",
+      "example": "Ela herdou um fio de ouro da avó.",
+      "exampleTranslation": "She inherited a gold chain from her grandmother.",
+      "relatedWords": [
+        {
+          "word": "dourado",
+          "meaning": "golden"
+        },
+        {
+          "word": "a ourivesaria",
+          "meaning": "jeweller's"
+        }
+      ],
+      "proTip": "Portuguese gold filigree (filigrana) from the north is a classic gift."
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "a prata",
+      "english": "silver",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "PRAH-tuh",
+      "example": "Comprei uns brincos de prata na Feira da Ladra.",
+      "exampleTranslation": "I bought some silver earrings at the Feira da Ladra.",
+      "relatedWords": [
+        {
+          "word": "prateado",
+          "meaning": "silver-coloured"
+        },
+        {
+          "word": "o ouro",
+          "meaning": "gold"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "a seda",
+      "english": "silk",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "SAY-duh",
+      "example": "Esta camisa é de seda, tem de ser lavada à mão.",
+      "exampleTranslation": "This shirt is silk, it has to be hand-washed.",
+      "relatedWords": [
+        {
+          "word": "o algodão",
+          "meaning": "cotton"
+        },
+        {
+          "word": "lavar à mão",
+          "meaning": "to hand-wash"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "a cortiça",
+      "english": "cork",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "koor-TEE-suh",
+      "example": "Portugal é o maior produtor de cortiça do mundo.",
+      "exampleTranslation": "Portugal is the world's biggest cork producer.",
+      "relatedWords": [
+        {
+          "word": "o sobreiro",
+          "meaning": "cork oak"
+        },
+        {
+          "word": "a rolha",
+          "meaning": "bottle cork"
+        }
+      ],
+      "proTip": "A wine cork is a rolha; cortiça is the material."
+    }
+  },
+  {
+    "categoryId": "materials-measurements",
+    "word": {
+      "portuguese": "o linho",
+      "english": "linen",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "LEE-nyoo",
+      "example": "No verão, prefiro calças de linho por causa do calor.",
+      "exampleTranslation": "In summer, I prefer linen trousers because of the heat.",
+      "relatedWords": [
+        {
+          "word": "o algodão",
+          "meaning": "cotton"
+        },
+        {
+          "word": "amarrotar",
+          "meaning": "to crease"
+        }
+      ]
+    }
+  }
+]

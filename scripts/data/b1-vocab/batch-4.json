@@ -1,0 +1,2042 @@
+[
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o telejornal",
+      "english": "the TV news (bulletin)",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "tuh-luh-zhoor-NAHL",
+      "example": "Os meus pais jantam sempre a ver o telejornal.",
+      "exampleTranslation": "My parents always have dinner watching the TV news.",
+      "relatedWords": [
+        {
+          "word": "as notícias",
+          "meaning": "the news"
+        },
+        {
+          "word": "o pivô",
+          "meaning": "the news anchor"
+        }
+      ],
+      "proTip": "\"Telejornal\" is also the name of RTP1's main evening news at 8 p.m., a dinner-time ritual in many Portuguese homes."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o governo",
+      "english": "the government",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "goo-VAYR-noo",
+      "example": "O governo vai apresentar novas medidas esta semana.",
+      "exampleTranslation": "The government is going to present new measures this week.",
+      "relatedWords": [
+        {
+          "word": "o ministro",
+          "meaning": "the minister"
+        },
+        {
+          "word": "governar",
+          "meaning": "to govern"
+        },
+        {
+          "word": "o Conselho de Ministros",
+          "meaning": "the Council of Ministers"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o primeiro-ministro",
+      "english": "the prime minister",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "pree-MAY-roo mee-NEESH-troo",
+      "example": "O primeiro-ministro falou aos jornalistas depois da reunião.",
+      "exampleTranslation": "The prime minister spoke to journalists after the meeting.",
+      "relatedWords": [
+        {
+          "word": "o governo",
+          "meaning": "the government"
+        },
+        {
+          "word": "a primeira-ministra",
+          "meaning": "the (female) prime minister"
+        }
+      ],
+      "proTip": "In Portugal the prime minister runs the government; the President is head of state and has a more limited role."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o Presidente da República",
+      "english": "the President (of Portugal)",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "pruh-zee-DAYN-tuh duh ruh-POO-blee-kuh",
+      "example": "O Presidente da República promulgou a lei ontem.",
+      "exampleTranslation": "The President signed the law into force yesterday.",
+      "relatedWords": [
+        {
+          "word": "promulgar",
+          "meaning": "to sign into law"
+        },
+        {
+          "word": "vetar",
+          "meaning": "to veto"
+        },
+        {
+          "word": "Belém",
+          "meaning": "the presidential palace (by metonymy)"
+        }
+      ],
+      "proTip": "The President is elected directly for five years. News often just says \"Belém\" for the presidency, the way \"São Bento\" means parliament and the PM's residence."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "as eleições",
+      "english": "the elections",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "as ee-lay-SOYNGSH",
+      "example": "As eleições são no domingo e as escolas servem de mesa de voto.",
+      "exampleTranslation": "The elections are on Sunday and schools are used as polling stations.",
+      "relatedWords": [
+        {
+          "word": "eleger",
+          "meaning": "to elect"
+        },
+        {
+          "word": "o eleitor",
+          "meaning": "the voter"
+        },
+        {
+          "word": "a mesa de voto",
+          "meaning": "the polling station"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "votar",
+      "english": "to vote",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "voo-TAR",
+      "example": "Ainda não decidi em quem vou votar.",
+      "exampleTranslation": "I still haven't decided who I'm going to vote for.",
+      "relatedWords": [
+        {
+          "word": "o voto",
+          "meaning": "the vote"
+        },
+        {
+          "word": "votar em branco",
+          "meaning": "to cast a blank vote"
+        },
+        {
+          "word": "o eleitor",
+          "meaning": "the voter"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o voto",
+      "english": "the vote",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "VOH-too",
+      "example": "O voto é secreto e ninguém te pode perguntar em quem votaste.",
+      "exampleTranslation": "The vote is secret and nobody can ask you who you voted for.",
+      "relatedWords": [
+        {
+          "word": "o boletim de voto",
+          "meaning": "the ballot paper"
+        },
+        {
+          "word": "o voto antecipado",
+          "meaning": "early voting"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o partido",
+      "english": "the (political) party",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "par-TEE-doo",
+      "example": "Há muitos partidos com deputados no parlamento.",
+      "exampleTranslation": "There are many parties with MPs in parliament.",
+      "relatedWords": [
+        {
+          "word": "o líder do partido",
+          "meaning": "the party leader"
+        },
+        {
+          "word": "o militante",
+          "meaning": "the party member"
+        }
+      ],
+      "proTip": "Careful: \"partido\" is also the past participle of \"partir\" — \"o copo está partido\" means the glass is broken."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a lei",
+      "english": "the law",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "LAY",
+      "example": "A nova lei entra em vigor no próximo mês.",
+      "exampleTranslation": "The new law comes into force next month.",
+      "relatedWords": [
+        {
+          "word": "entrar em vigor",
+          "meaning": "to come into force"
+        },
+        {
+          "word": "o decreto-lei",
+          "meaning": "decree-law"
+        },
+        {
+          "word": "cumprir a lei",
+          "meaning": "to obey the law"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a greve",
+      "english": "the strike",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "GREH-vuh",
+      "example": "Amanhã há greve dos comboios, por isso vou de autocarro.",
+      "exampleTranslation": "There's a train strike tomorrow, so I'm taking the bus.",
+      "relatedWords": [
+        {
+          "word": "fazer greve",
+          "meaning": "to go on strike"
+        },
+        {
+          "word": "os serviços mínimos",
+          "meaning": "minimum services"
+        },
+        {
+          "word": "a greve geral",
+          "meaning": "the general strike"
+        }
+      ],
+      "proTip": "Strikes are announced in advance with \"serviços mínimos\"; check the CP or Metro site the day before."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o emprego",
+      "english": "the job / employment",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "aym-PRAY-goo",
+      "example": "Ela arranjou emprego numa empresa de tecnologia em Lisboa.",
+      "exampleTranslation": "She got a job at a tech company in Lisbon.",
+      "relatedWords": [
+        {
+          "word": "arranjar emprego",
+          "meaning": "to find a job"
+        },
+        {
+          "word": "o centro de emprego",
+          "meaning": "the job centre"
+        },
+        {
+          "word": "o posto de trabalho",
+          "meaning": "the job, position"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o desemprego",
+      "english": "unemployment",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "duh-zaym-PRAY-goo",
+      "example": "O desemprego entre os jovens continua a preocupar muita gente.",
+      "exampleTranslation": "Youth unemployment continues to worry a lot of people.",
+      "relatedWords": [
+        {
+          "word": "desempregado",
+          "meaning": "unemployed"
+        },
+        {
+          "word": "estar no desemprego",
+          "meaning": "to be out of work"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a crise",
+      "english": "the crisis",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "KREE-zuh",
+      "example": "Durante a crise, muitos jovens foram trabalhar para o estrangeiro.",
+      "exampleTranslation": "During the crisis, many young people went to work abroad.",
+      "relatedWords": [
+        {
+          "word": "a crise económica",
+          "meaning": "the economic crisis"
+        },
+        {
+          "word": "a crise da habitação",
+          "meaning": "the housing crisis"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o turismo",
+      "english": "tourism",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "too-REEZH-moo",
+      "example": "O turismo é muito importante para a economia do Algarve.",
+      "exampleTranslation": "Tourism is very important for the Algarve's economy.",
+      "relatedWords": [
+        {
+          "word": "o turismo de massa",
+          "meaning": "mass tourism"
+        },
+        {
+          "word": "o posto de turismo",
+          "meaning": "the tourist office"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o/a turista",
+      "english": "the tourist",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "too-REESH-tuh",
+      "example": "No verão, a Baixa está cheia de turistas.",
+      "exampleTranslation": "In summer, the Baixa is full of tourists.",
+      "relatedWords": [
+        {
+          "word": "turístico",
+          "meaning": "touristy, tourist (adj.)"
+        },
+        {
+          "word": "a zona turística",
+          "meaning": "the tourist area"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o/a imigrante",
+      "english": "the immigrant",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "ee-mee-GRAHN-tuh",
+      "example": "Muitos imigrantes trabalham na restauração e na construção.",
+      "exampleTranslation": "Many immigrants work in restaurants and construction.",
+      "relatedWords": [
+        {
+          "word": "a imigração",
+          "meaning": "immigration"
+        },
+        {
+          "word": "o emigrante",
+          "meaning": "the emigrant"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "aumentar",
+      "english": "to increase / to raise",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "ow-mayn-TAR",
+      "example": "Os preços da comida aumentaram muito este ano.",
+      "exampleTranslation": "Food prices went up a lot this year.",
+      "relatedWords": [
+        {
+          "word": "o aumento",
+          "meaning": "the rise, the raise"
+        },
+        {
+          "word": "aumentar os salários",
+          "meaning": "to raise wages"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a política",
+      "english": "politics / policy",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "poo-LEE-tee-kuh",
+      "example": "Lá em casa não falamos de política ao jantar.",
+      "exampleTranslation": "At home we don't talk about politics at dinner.",
+      "relatedWords": [
+        {
+          "word": "o político",
+          "meaning": "the politician"
+        },
+        {
+          "word": "político",
+          "meaning": "political"
+        }
+      ],
+      "proTip": "\"A política\" covers both politics and a specific policy: \"a política de habitação\" is housing policy."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o debate",
+      "english": "the debate",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "duh-BAH-tuh",
+      "example": "Viste o debate entre os candidatos ontem à noite?",
+      "exampleTranslation": "Did you watch the debate between the candidates last night?",
+      "relatedWords": [
+        {
+          "word": "debater",
+          "meaning": "to debate"
+        },
+        {
+          "word": "o debate televisivo",
+          "meaning": "the TV debate"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o preço das casas",
+      "english": "house prices",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "PRAY-soo dush KAH-zush",
+      "example": "O preço das casas em Lisboa não para de subir.",
+      "exampleTranslation": "House prices in Lisbon keep going up.",
+      "relatedWords": [
+        {
+          "word": "o metro quadrado",
+          "meaning": "the square metre"
+        },
+        {
+          "word": "a casa",
+          "meaning": "the house, home"
+        }
+      ],
+      "proTip": "Prices are usually quoted per metro quadrado (m²) in the news."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a manchete",
+      "english": "the headline",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "mahn-SHEH-tuh",
+      "example": "A greve dos professores fez a manchete de todos os jornais.",
+      "exampleTranslation": "The teachers' strike was the headline in every newspaper.",
+      "relatedWords": [
+        {
+          "word": "o título",
+          "meaning": "the title"
+        },
+        {
+          "word": "a primeira página",
+          "meaning": "the front page"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a reportagem",
+      "english": "the report / news feature",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ruh-poor-TAH-zhaym",
+      "example": "Vi uma reportagem sobre a falta de médicos no interior.",
+      "exampleTranslation": "I saw a report on the shortage of doctors inland.",
+      "relatedWords": [
+        {
+          "word": "o repórter",
+          "meaning": "the reporter"
+        },
+        {
+          "word": "fazer uma reportagem",
+          "meaning": "to do a report"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "em direto",
+      "english": "live (broadcast)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "aym dee-REH-too",
+      "example": "O jogo e o discurso do Presidente vão ser transmitidos em direto.",
+      "exampleTranslation": "The match and the President's speech will be broadcast live.",
+      "relatedWords": [
+        {
+          "word": "transmitir",
+          "meaning": "to broadcast"
+        },
+        {
+          "word": "em diferido",
+          "meaning": "pre-recorded"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a imprensa",
+      "english": "the press",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "eem-PRAYN-suh",
+      "example": "A imprensa estrangeira também falou do caso.",
+      "exampleTranslation": "The foreign press also covered the story.",
+      "relatedWords": [
+        {
+          "word": "a liberdade de imprensa",
+          "meaning": "press freedom"
+        },
+        {
+          "word": "a comunicação social",
+          "meaning": "the media"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a conferência de imprensa",
+      "english": "the press conference",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kohn-fuh-RAYN-see-uh duh eem-PRAYN-suh",
+      "example": "O ministro deu uma conferência de imprensa ao fim da tarde.",
+      "exampleTranslation": "The minister gave a press conference in the late afternoon.",
+      "relatedWords": [
+        {
+          "word": "o comunicado",
+          "meaning": "the official statement"
+        },
+        {
+          "word": "a pergunta",
+          "meaning": "the question"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o comentador",
+      "english": "the (TV) commentator / pundit",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "koo-mayn-tuh-DOR",
+      "example": "Os comentadores passaram a noite a analisar os resultados.",
+      "exampleTranslation": "The pundits spent the night analysing the results.",
+      "relatedWords": [
+        {
+          "word": "comentar",
+          "meaning": "to comment"
+        },
+        {
+          "word": "o comentário",
+          "meaning": "the comment"
+        }
+      ],
+      "proTip": "Political commentary is a huge genre on Portuguese TV; Sunday-night commentators are household names."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a Assembleia da República",
+      "english": "Parliament (Portugal)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-sayng-BLAY-uh duh ruh-POO-blee-kuh",
+      "example": "A proposta vai ser votada na Assembleia da República.",
+      "exampleTranslation": "The proposal will be voted on in Parliament.",
+      "relatedWords": [
+        {
+          "word": "o parlamento",
+          "meaning": "the parliament"
+        },
+        {
+          "word": "São Bento",
+          "meaning": "the parliament building (by metonymy)"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o deputado",
+      "english": "the MP / member of parliament",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "duh-poo-TAH-doo",
+      "example": "Os deputados discutiram o tema durante horas.",
+      "exampleTranslation": "The MPs discussed the issue for hours.",
+      "relatedWords": [
+        {
+          "word": "a deputada",
+          "meaning": "the (female) MP"
+        },
+        {
+          "word": "a bancada",
+          "meaning": "the parliamentary group"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o presidente da câmara",
+      "english": "the mayor",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "pruh-zee-DAYN-tuh duh KUH-muh-ruh",
+      "example": "O presidente da câmara prometeu mais ciclovias na cidade.",
+      "exampleTranslation": "The mayor promised more cycle lanes in the city.",
+      "relatedWords": [
+        {
+          "word": "a câmara municipal",
+          "meaning": "the city council"
+        },
+        {
+          "word": "o vereador",
+          "meaning": "the councillor"
+        }
+      ],
+      "proTip": "Portugal has no word \"mayor\" in everyday use — people say \"o presidente da câmara\"."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a junta de freguesia",
+      "english": "the parish council",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ZHOON-tuh duh fruh-guh-ZEE-uh",
+      "example": "Fui à junta de freguesia pedir um atestado de residência.",
+      "exampleTranslation": "I went to the parish council to ask for a certificate of residence.",
+      "relatedWords": [
+        {
+          "word": "a freguesia",
+          "meaning": "the parish (local district)"
+        },
+        {
+          "word": "o atestado de residência",
+          "meaning": "the certificate of residence"
+        }
+      ],
+      "proTip": "The junta is the most local level of government and the place to get an atestado de residência, often needed for bureaucracy."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "as autárquicas",
+      "english": "the local elections",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "as ow-TAR-kee-kush",
+      "example": "Nas autárquicas, escolhemos a câmara e a junta de freguesia.",
+      "exampleTranslation": "In local elections, we choose the city council and the parish council.",
+      "relatedWords": [
+        {
+          "word": "a autarquia",
+          "meaning": "the local authority"
+        },
+        {
+          "word": "o autarca",
+          "meaning": "the local mayor/official"
+        }
+      ],
+      "proTip": "Foreign residents from some countries, including EU citizens, can vote in autárquicas if registered."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "as legislativas",
+      "english": "the general (parliamentary) elections",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "as luh-zheezh-luh-TEE-vush",
+      "example": "As legislativas decidem quem forma o próximo governo.",
+      "exampleTranslation": "The general elections decide who forms the next government.",
+      "relatedWords": [
+        {
+          "word": "as presidenciais",
+          "meaning": "the presidential elections"
+        },
+        {
+          "word": "as europeias",
+          "meaning": "the European elections"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a campanha eleitoral",
+      "english": "the election campaign",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kahm-PUH-nyuh ee-lay-too-RAHL",
+      "example": "Durante a campanha eleitoral, há cartazes por todo o lado.",
+      "exampleTranslation": "During the election campaign, there are posters everywhere.",
+      "relatedWords": [
+        {
+          "word": "o cartaz",
+          "meaning": "the poster"
+        },
+        {
+          "word": "a arruada",
+          "meaning": "the street campaign walk"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o candidato",
+      "english": "the candidate",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kahn-dee-DAH-too",
+      "example": "Cada candidato teve dez minutos para apresentar as suas ideias.",
+      "exampleTranslation": "Each candidate had ten minutes to present their ideas.",
+      "relatedWords": [
+        {
+          "word": "a candidata",
+          "meaning": "the (female) candidate"
+        },
+        {
+          "word": "candidatar-se",
+          "meaning": "to run, to apply"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a sondagem",
+      "english": "the opinion poll",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "sohn-DAH-zhaym",
+      "example": "Segundo a última sondagem, a abstenção pode ser alta.",
+      "exampleTranslation": "According to the latest poll, abstention could be high.",
+      "relatedWords": [
+        {
+          "word": "a margem de erro",
+          "meaning": "the margin of error"
+        },
+        {
+          "word": "a intenção de voto",
+          "meaning": "voting intention"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o inquérito",
+      "english": "the survey / inquiry",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "eeng-KEH-ree-too",
+      "example": "Responderam ao inquérito mais de mil pessoas.",
+      "exampleTranslation": "More than a thousand people answered the survey.",
+      "relatedWords": [
+        {
+          "word": "a comissão de inquérito",
+          "meaning": "the parliamentary inquiry"
+        },
+        {
+          "word": "o questionário",
+          "meaning": "the questionnaire"
+        }
+      ],
+      "proTip": "\"Inquérito\" is both a survey and an official investigation — context tells you which."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a abstenção",
+      "english": "abstention (not voting)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ahb-shtayn-SOWNG",
+      "example": "A abstenção foi mais baixa do que nas últimas eleições.",
+      "exampleTranslation": "Abstention was lower than in the last elections.",
+      "relatedWords": [
+        {
+          "word": "abster-se",
+          "meaning": "to abstain"
+        },
+        {
+          "word": "a participação",
+          "meaning": "the turnout"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a maioria absoluta",
+      "english": "the absolute majority",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "my-oo-REE-uh ahb-soo-LOO-tuh",
+      "example": "Nenhum partido conseguiu a maioria absoluta.",
+      "exampleTranslation": "No party managed to get an absolute majority.",
+      "relatedWords": [
+        {
+          "word": "a maioria relativa",
+          "meaning": "a plurality"
+        },
+        {
+          "word": "a minoria",
+          "meaning": "the minority"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a oposição",
+      "english": "the opposition",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "oh-poo-zee-SOWNG",
+      "example": "A oposição votou contra o orçamento.",
+      "exampleTranslation": "The opposition voted against the budget.",
+      "relatedWords": [
+        {
+          "word": "opor-se a",
+          "meaning": "to oppose"
+        },
+        {
+          "word": "o líder da oposição",
+          "meaning": "the leader of the opposition"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a coligação",
+      "english": "the coalition",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "koo-lee-guh-SOWNG",
+      "example": "Os dois partidos formaram uma coligação para governar.",
+      "exampleTranslation": "The two parties formed a coalition to govern.",
+      "relatedWords": [
+        {
+          "word": "o acordo de governo",
+          "meaning": "the government agreement"
+        },
+        {
+          "word": "aliar-se",
+          "meaning": "to ally"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o sindicato",
+      "english": "the (trade) union",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "seen-dee-KAH-too",
+      "example": "O sindicato convocou uma greve para sexta-feira.",
+      "exampleTranslation": "The union called a strike for Friday.",
+      "relatedWords": [
+        {
+          "word": "convocar uma greve",
+          "meaning": "to call a strike"
+        },
+        {
+          "word": "o/a sindicalista",
+          "meaning": "the union rep"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a manifestação",
+      "english": "the demonstration / protest march",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "muh-nee-fush-tuh-SOWNG",
+      "example": "Houve uma manifestação na Avenida da Liberdade no sábado.",
+      "exampleTranslation": "There was a demonstration on Avenida da Liberdade on Saturday.",
+      "relatedWords": [
+        {
+          "word": "o/a manifestante",
+          "meaning": "the protester"
+        },
+        {
+          "word": "a marcha",
+          "meaning": "the march"
+        }
+      ],
+      "proTip": "People shorten it to \"a manif\" in conversation."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "protestar",
+      "english": "to protest",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "proo-tush-TAR",
+      "example": "Os moradores estão a protestar contra o barulho do aeroporto.",
+      "exampleTranslation": "Residents are protesting against the airport noise.",
+      "relatedWords": [
+        {
+          "word": "o protesto",
+          "meaning": "the protest"
+        },
+        {
+          "word": "em protesto",
+          "meaning": "in protest"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "exigir",
+      "english": "to demand",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "ee-zee-ZHEER",
+      "example": "Os enfermeiros exigem melhores salários e mais pessoal.",
+      "exampleTranslation": "Nurses are demanding better pay and more staff.",
+      "relatedWords": [
+        {
+          "word": "a exigência",
+          "meaning": "the demand"
+        },
+        {
+          "word": "exigente",
+          "meaning": "demanding"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "defender",
+      "english": "to defend / to argue for",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-fayn-DAYR",
+      "example": "A ministra defendeu a medida no parlamento.",
+      "exampleTranslation": "The minister defended the measure in parliament.",
+      "relatedWords": [
+        {
+          "word": "a defesa",
+          "meaning": "the defence"
+        },
+        {
+          "word": "defender que",
+          "meaning": "to argue that"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "criticar",
+      "english": "to criticise",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kree-tee-KAR",
+      "example": "Muitos especialistas criticaram a decisão do governo.",
+      "exampleTranslation": "Many experts criticised the government's decision.",
+      "relatedWords": [
+        {
+          "word": "a crítica",
+          "meaning": "the criticism"
+        },
+        {
+          "word": "crítico",
+          "meaning": "critical"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "aprovar",
+      "english": "to approve / to pass (a law)",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-proo-VAR",
+      "example": "O parlamento aprovou a lei por larga maioria.",
+      "exampleTranslation": "Parliament passed the law by a large majority.",
+      "relatedWords": [
+        {
+          "word": "a aprovação",
+          "meaning": "the approval"
+        },
+        {
+          "word": "chumbar",
+          "meaning": "to reject, vote down (informal)"
+        }
+      ],
+      "proTip": "The opposite in Portuguese news is \"chumbar\": \"o orçamento foi chumbado\" — the budget was voted down. Students also \"chumbam\" exams."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "anunciar",
+      "english": "to announce",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "uh-noon-see-AR",
+      "example": "A câmara anunciou obras na estrada a partir de segunda.",
+      "exampleTranslation": "The council announced roadworks starting on Monday.",
+      "relatedWords": [
+        {
+          "word": "o anúncio",
+          "meaning": "the announcement, ad"
+        },
+        {
+          "word": "comunicar",
+          "meaning": "to communicate"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o orçamento do Estado",
+      "english": "the state budget",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "or-suh-MAYN-too doo ush-TAH-doo",
+      "example": "O orçamento do Estado é discutido todos os anos no outono.",
+      "exampleTranslation": "The state budget is debated every year in the autumn.",
+      "relatedWords": [
+        {
+          "word": "o OE",
+          "meaning": "the state budget (abbr.)"
+        },
+        {
+          "word": "a despesa pública",
+          "meaning": "public spending"
+        }
+      ],
+      "proTip": "News constantly uses the abbreviation \"OE\" (plus the year, e.g. OE2027)."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o IRS",
+      "english": "personal income tax",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ee-EH-ruh EH-suh",
+      "example": "Já entregaste a declaração de IRS deste ano?",
+      "exampleTranslation": "Have you filed this year's income tax return yet?",
+      "relatedWords": [
+        {
+          "word": "a declaração de IRS",
+          "meaning": "the tax return"
+        },
+        {
+          "word": "o reembolso",
+          "meaning": "the refund"
+        },
+        {
+          "word": "as Finanças",
+          "meaning": "the tax office"
+        }
+      ],
+      "proTip": "Most people file their IRS online on the Portal das Finanças between April and June; many get a reembolso in summer."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o IVA",
+      "english": "VAT (sales tax)",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "EE-vuh",
+      "example": "O preço já inclui o IVA.",
+      "exampleTranslation": "The price already includes VAT.",
+      "relatedWords": [
+        {
+          "word": "a taxa",
+          "meaning": "the rate"
+        },
+        {
+          "word": "o NIF",
+          "meaning": "the tax number"
+        }
+      ],
+      "proTip": "Say \"com contribuinte?\" at the till and give your NIF so the IVA you pay counts towards IRS deductions."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a inflação",
+      "english": "inflation",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "een-fluh-SOWNG",
+      "example": "Com a inflação, o dinheiro chega para menos coisas.",
+      "exampleTranslation": "With inflation, money goes less far.",
+      "relatedWords": [
+        {
+          "word": "a taxa de inflação",
+          "meaning": "the inflation rate"
+        },
+        {
+          "word": "os preços",
+          "meaning": "prices"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o custo de vida",
+      "english": "the cost of living",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "KOOSH-too duh VEE-duh",
+      "example": "O custo de vida em Lisboa subiu muito nos últimos anos.",
+      "exampleTranslation": "The cost of living in Lisbon has gone up a lot in recent years.",
+      "relatedWords": [
+        {
+          "word": "o cabaz",
+          "meaning": "the basket of goods"
+        },
+        {
+          "word": "caro",
+          "meaning": "expensive"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o salário mínimo",
+      "english": "the minimum wage",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "suh-LAH-ree-oo MEE-nee-moo",
+      "example": "O governo e os parceiros sociais negociaram o novo salário mínimo.",
+      "exampleTranslation": "The government and social partners negotiated the new minimum wage.",
+      "relatedWords": [
+        {
+          "word": "o salário médio",
+          "meaning": "the average wage"
+        },
+        {
+          "word": "os parceiros sociais",
+          "meaning": "employers and unions"
+        }
+      ],
+      "proTip": "In Portugal salaries are usually paid in 14 instalments a year — the extra two are the subsídio de férias and subsídio de Natal."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o poder de compra",
+      "english": "purchasing power",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "poo-DAYR duh KOHM-pruh",
+      "example": "As famílias perderam poder de compra com a subida dos preços.",
+      "exampleTranslation": "Families lost purchasing power as prices rose.",
+      "relatedWords": [
+        {
+          "word": "o rendimento",
+          "meaning": "income"
+        },
+        {
+          "word": "a carteira",
+          "meaning": "the wallet"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o subsídio de desemprego",
+      "english": "unemployment benefit",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "soob-SEE-dee-oo duh duh-zaym-PRAY-goo",
+      "example": "Depois de ser despedido, pediu o subsídio de desemprego.",
+      "exampleTranslation": "After being laid off, he applied for unemployment benefit.",
+      "relatedWords": [
+        {
+          "word": "a Segurança Social",
+          "meaning": "social security"
+        },
+        {
+          "word": "ser despedido",
+          "meaning": "to be fired, laid off"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a taxa de desemprego",
+      "english": "the unemployment rate",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "TAH-shuh duh duh-zaym-PRAY-goo",
+      "example": "A taxa de desemprego desceu ligeiramente este trimestre.",
+      "exampleTranslation": "The unemployment rate fell slightly this quarter.",
+      "relatedWords": [
+        {
+          "word": "o INE",
+          "meaning": "the national statistics institute"
+        },
+        {
+          "word": "o trimestre",
+          "meaning": "the quarter"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a pensão",
+      "english": "the pension",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "payn-SOWNG",
+      "example": "A minha avó vive só com a pensão.",
+      "exampleTranslation": "My grandmother lives on her pension alone.",
+      "relatedWords": [
+        {
+          "word": "o/a pensionista",
+          "meaning": "the pensioner"
+        },
+        {
+          "word": "a reforma",
+          "meaning": "retirement, pension"
+        }
+      ],
+      "proTip": "In conversation people say \"a reforma\" for the pension too; \"pensão\" also means a cheap guesthouse."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a saúde pública",
+      "english": "public health",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "suh-OO-duh POO-blee-kuh",
+      "example": "A vacinação é uma questão de saúde pública.",
+      "exampleTranslation": "Vaccination is a matter of public health.",
+      "relatedWords": [
+        {
+          "word": "a DGS",
+          "meaning": "the Directorate-General of Health"
+        },
+        {
+          "word": "a campanha de vacinação",
+          "meaning": "the vaccination campaign"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o SNS",
+      "english": "the National Health Service",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "EH-suh EH-nuh EH-suh",
+      "example": "O SNS garante cuidados de saúde a todos os residentes.",
+      "exampleTranslation": "The SNS guarantees healthcare to all residents.",
+      "relatedWords": [
+        {
+          "word": "o Serviço Nacional de Saúde",
+          "meaning": "the National Health Service"
+        },
+        {
+          "word": "o número de utente",
+          "meaning": "the patient number"
+        }
+      ],
+      "proTip": "To use the SNS you need a número de utente, which you request at your local centro de saúde."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o médico de família",
+      "english": "the family doctor / GP",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "MEH-dee-koo duh fuh-MEE-lee-uh",
+      "example": "Ainda não tenho médico de família no centro de saúde.",
+      "exampleTranslation": "I still don't have a family doctor at the health centre.",
+      "relatedWords": [
+        {
+          "word": "o centro de saúde",
+          "meaning": "the health centre"
+        },
+        {
+          "word": "a consulta",
+          "meaning": "the appointment"
+        }
+      ],
+      "proTip": "Hundreds of thousands of people have no assigned médico de família; it's a constant news topic."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a lista de espera",
+      "english": "the waiting list",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "LEESH-tuh duh ush-PEH-ruh",
+      "example": "Está há meses na lista de espera para uma cirurgia.",
+      "exampleTranslation": "She's been on the waiting list for surgery for months.",
+      "relatedWords": [
+        {
+          "word": "o tempo de espera",
+          "meaning": "the waiting time"
+        },
+        {
+          "word": "a cirurgia",
+          "meaning": "the surgery"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o ensino público",
+      "english": "public (state) education",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "ayn-SEE-noo POO-blee-koo",
+      "example": "Os meus filhos andam no ensino público e estão contentes.",
+      "exampleTranslation": "My kids are in state schools and they're happy.",
+      "relatedWords": [
+        {
+          "word": "o ensino privado",
+          "meaning": "private education"
+        },
+        {
+          "word": "a escola pública",
+          "meaning": "the state school"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "as propinas",
+      "english": "university tuition fees",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "as proo-PEE-nush",
+      "example": "As propinas nas universidades públicas são relativamente baixas.",
+      "exampleTranslation": "Tuition fees at public universities are relatively low.",
+      "relatedWords": [
+        {
+          "word": "o/a estudante",
+          "meaning": "the student"
+        },
+        {
+          "word": "a bolsa",
+          "meaning": "the grant, scholarship"
+        }
+      ],
+      "proTip": "\"Propina\" is a false friend — it means tuition fee, not a tip (a tip is \"a gorjeta\")."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a imigração",
+      "english": "immigration",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-mee-gruh-SOWNG",
+      "example": "A imigração ajudou a aumentar a população ativa.",
+      "exampleTranslation": "Immigration has helped increase the working population.",
+      "relatedWords": [
+        {
+          "word": "a AIMA",
+          "meaning": "the immigration and asylum agency"
+        },
+        {
+          "word": "a autorização de residência",
+          "meaning": "the residence permit"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a emigração",
+      "english": "emigration",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-mee-gruh-SOWNG",
+      "example": "A emigração de jovens qualificados é uma preocupação antiga.",
+      "exampleTranslation": "The emigration of skilled young people is a long-standing concern.",
+      "relatedWords": [
+        {
+          "word": "o/a emigrante",
+          "meaning": "the emigrant"
+        },
+        {
+          "word": "emigrar",
+          "meaning": "to emigrate"
+        }
+      ],
+      "proTip": "Portugal has a huge diaspora; in August you'll hear about \"os emigrantes\" coming home for the summer."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a habitação",
+      "english": "housing",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-bee-tuh-SOWNG",
+      "example": "A habitação é hoje o maior problema para os jovens.",
+      "exampleTranslation": "Housing is today the biggest problem for young people.",
+      "relatedWords": [
+        {
+          "word": "a habitação acessível",
+          "meaning": "affordable housing"
+        },
+        {
+          "word": "a crise da habitação",
+          "meaning": "the housing crisis"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o crédito à habitação",
+      "english": "the mortgage",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "KREH-dee-too ah uh-bee-tuh-SOWNG",
+      "example": "Com os juros a subir, a prestação do crédito à habitação ficou mais cara.",
+      "exampleTranslation": "With interest rates rising, the mortgage payment got more expensive.",
+      "relatedWords": [
+        {
+          "word": "a prestação",
+          "meaning": "the monthly instalment"
+        },
+        {
+          "word": "a Euribor",
+          "meaning": "Euribor (reference rate)"
+        }
+      ],
+      "proTip": "Most Portuguese mortgages are variable-rate and tied to Euribor, so rate changes hit families quickly."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o alojamento local",
+      "english": "short-term holiday rentals",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "uh-loo-zhuh-MAYN-too loo-KAHL",
+      "example": "No meu prédio, metade dos apartamentos são alojamento local.",
+      "exampleTranslation": "In my building, half the flats are short-term holiday rentals.",
+      "relatedWords": [
+        {
+          "word": "o AL",
+          "meaning": "short-term rental (abbr.)"
+        },
+        {
+          "word": "o arrendamento",
+          "meaning": "long-term renting"
+        }
+      ],
+      "proTip": "Often shortened to \"AL\"; it's the legal category for Airbnb-style rentals and a hot topic in housing debates."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a opinião pública",
+      "english": "public opinion",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "oh-pee-nee-OWNG POO-blee-kuh",
+      "example": "A opinião pública está dividida sobre o novo aeroporto.",
+      "exampleTranslation": "Public opinion is divided over the new airport.",
+      "relatedWords": [
+        {
+          "word": "a perceção",
+          "meaning": "the perception"
+        },
+        {
+          "word": "dividido",
+          "meaning": "divided"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a polémica",
+      "english": "the controversy",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "poo-LEH-mee-kuh",
+      "example": "A decisão causou polémica nas redes sociais.",
+      "exampleTranslation": "The decision caused controversy on social media.",
+      "relatedWords": [
+        {
+          "word": "polémico",
+          "meaning": "controversial"
+        },
+        {
+          "word": "gerar polémica",
+          "meaning": "to spark controversy"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o acordo",
+      "english": "the agreement / deal",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "uh-KOR-doo",
+      "example": "Os sindicatos e o governo chegaram a acordo.",
+      "exampleTranslation": "The unions and the government reached an agreement.",
+      "relatedWords": [
+        {
+          "word": "chegar a acordo",
+          "meaning": "to reach an agreement"
+        },
+        {
+          "word": "estar de acordo",
+          "meaning": "to agree"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "de acordo com",
+      "english": "according to",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh uh-KOR-doo kohng",
+      "example": "De acordo com o INE, a população voltou a crescer.",
+      "exampleTranslation": "According to the national statistics office, the population grew again.",
+      "relatedWords": [
+        {
+          "word": "segundo",
+          "meaning": "according to"
+        },
+        {
+          "word": "conforme",
+          "meaning": "according to, as per"
+        }
+      ],
+      "proTip": "\"Segundo\" means the same and is even more common in news: \"segundo a polícia...\""
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "baixar",
+      "english": "to lower / to go down",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "by-SHAR",
+      "example": "O governo prometeu baixar o IVA da eletricidade.",
+      "exampleTranslation": "The government promised to lower VAT on electricity.",
+      "relatedWords": [
+        {
+          "word": "a baixa",
+          "meaning": "the drop, the fall"
+        },
+        {
+          "word": "descer",
+          "meaning": "to go down"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a subida",
+      "english": "the rise / increase",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "soo-BEE-duh",
+      "example": "A subida das rendas está a afastar as pessoas do centro.",
+      "exampleTranslation": "The rise in rents is pushing people out of the centre.",
+      "relatedWords": [
+        {
+          "word": "subir",
+          "meaning": "to go up"
+        },
+        {
+          "word": "em subida",
+          "meaning": "rising"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a descida",
+      "english": "the fall / decrease",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "dush-SEE-duh",
+      "example": "Houve uma ligeira descida no preço dos combustíveis.",
+      "exampleTranslation": "There was a slight fall in fuel prices.",
+      "relatedWords": [
+        {
+          "word": "descer",
+          "meaning": "to go down"
+        },
+        {
+          "word": "ligeiro",
+          "meaning": "slight"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o crescimento económico",
+      "english": "economic growth",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "krush-see-MAYN-too ee-koo-NOH-mee-koo",
+      "example": "O crescimento económico foi acima da média europeia.",
+      "exampleTranslation": "Economic growth was above the European average.",
+      "relatedWords": [
+        {
+          "word": "crescer",
+          "meaning": "to grow"
+        },
+        {
+          "word": "o PIB",
+          "meaning": "GDP"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a desigualdade",
+      "english": "inequality",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "duh-zee-gwahl-DAH-duh",
+      "example": "A desigualdade entre o litoral e o interior continua grande.",
+      "exampleTranslation": "The inequality between the coast and the interior is still big.",
+      "relatedWords": [
+        {
+          "word": "igual",
+          "meaning": "equal"
+        },
+        {
+          "word": "a igualdade",
+          "meaning": "equality"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a pobreza",
+      "english": "poverty",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "poo-BRAY-zuh",
+      "example": "Muitas famílias vivem no limiar da pobreza.",
+      "exampleTranslation": "Many families live on the poverty line.",
+      "relatedWords": [
+        {
+          "word": "pobre",
+          "meaning": "poor"
+        },
+        {
+          "word": "o limiar da pobreza",
+          "meaning": "the poverty line"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o cidadão",
+      "english": "the citizen",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "see-duh-DOWNG",
+      "example": "Todos os cidadãos têm o direito de apresentar uma queixa.",
+      "exampleTranslation": "All citizens have the right to make a complaint.",
+      "relatedWords": [
+        {
+          "word": "a cidadã",
+          "meaning": "the (female) citizen"
+        },
+        {
+          "word": "a cidadania",
+          "meaning": "citizenship"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a sociedade",
+      "english": "society",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "soo-see-eh-DAH-duh",
+      "example": "A sociedade portuguesa mudou muito desde o 25 de Abril.",
+      "exampleTranslation": "Portuguese society has changed a lot since 25 April 1974.",
+      "relatedWords": [
+        {
+          "word": "social",
+          "meaning": "social"
+        },
+        {
+          "word": "a sociedade civil",
+          "meaning": "civil society"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o direito",
+      "english": "the right",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "dee-RAY-too",
+      "example": "Todos os trabalhadores têm direito a férias pagas.",
+      "exampleTranslation": "All workers are entitled to paid holidays.",
+      "relatedWords": [
+        {
+          "word": "ter direito a",
+          "meaning": "to be entitled to"
+        },
+        {
+          "word": "os direitos humanos",
+          "meaning": "human rights"
+        }
+      ],
+      "proTip": "\"Ter direito a\" (to be entitled to) is extremely common: \"tens direito a subsídio?\". Also \"o Direito\" = law as a subject."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a medida",
+      "english": "the measure",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "muh-DEE-duh",
+      "example": "A nova medida ajuda os jovens a comprar a primeira casa.",
+      "exampleTranslation": "The new measure helps young people buy their first home.",
+      "relatedWords": [
+        {
+          "word": "tomar medidas",
+          "meaning": "to take measures"
+        },
+        {
+          "word": "o pacote de medidas",
+          "meaning": "the package of measures"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o apoio",
+      "english": "the support / aid",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "uh-POY-oo",
+      "example": "As famílias com filhos vão receber um apoio extra.",
+      "exampleTranslation": "Families with children will receive extra financial support.",
+      "relatedWords": [
+        {
+          "word": "apoiar",
+          "meaning": "to support"
+        },
+        {
+          "word": "o apoio social",
+          "meaning": "social support"
+        }
+      ],
+      "proTip": "In the news \"um apoio\" usually means a one-off payment or subsidy from the state."
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o ministério",
+      "english": "the ministry",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "mee-neesh-TEH-ree-oo",
+      "example": "O Ministério da Saúde publicou os novos números.",
+      "exampleTranslation": "The Ministry of Health published the new figures.",
+      "relatedWords": [
+        {
+          "word": "o ministro",
+          "meaning": "the minister"
+        },
+        {
+          "word": "a tutela",
+          "meaning": "the ministry in charge"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "a função pública",
+      "english": "the civil service",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "foon-SOWNG POO-blee-kuh",
+      "example": "Os trabalhadores da função pública vão ter aumentos.",
+      "exampleTranslation": "Civil servants are going to get pay rises.",
+      "relatedWords": [
+        {
+          "word": "o funcionário público",
+          "meaning": "the civil servant"
+        },
+        {
+          "word": "o Estado",
+          "meaning": "the State"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "demitir-se",
+      "english": "to resign",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-mee-TEER-suh",
+      "example": "O ministro demitiu-se depois da polémica.",
+      "exampleTranslation": "The minister resigned after the controversy.",
+      "relatedWords": [
+        {
+          "word": "a demissão",
+          "meaning": "the resignation"
+        },
+        {
+          "word": "despedir",
+          "meaning": "to fire, dismiss"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "negociar",
+      "english": "to negotiate",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "nuh-goo-see-AR",
+      "example": "Os sindicatos querem negociar antes de marcar nova greve.",
+      "exampleTranslation": "The unions want to negotiate before calling another strike.",
+      "relatedWords": [
+        {
+          "word": "a negociação",
+          "meaning": "the negotiation"
+        },
+        {
+          "word": "as negociações",
+          "meaning": "the talks"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o/a porta-voz",
+      "english": "the spokesperson",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "POR-tuh VOSH",
+      "example": "O porta-voz do governo não quis comentar o assunto.",
+      "exampleTranslation": "The government spokesperson declined to comment on the matter.",
+      "relatedWords": [
+        {
+          "word": "o comunicado",
+          "meaning": "the statement"
+        },
+        {
+          "word": "declarar",
+          "meaning": "to declare"
+        }
+      ]
+    }
+  },
+  {
+    "categoryId": "news-society",
+    "word": {
+      "portuguese": "o/a sem-abrigo",
+      "english": "the homeless person",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "sayng uh-BREE-goo",
+      "example": "A câmara abriu um novo centro de acolhimento para sem-abrigo.",
+      "exampleTranslation": "The council opened a new shelter for homeless people.",
+      "relatedWords": [
+        {
+          "word": "o centro de acolhimento",
+          "meaning": "the shelter"
+        },
+        {
+          "word": "a pessoa em situação de sem-abrigo",
+          "meaning": "person experiencing homelessness"
+        }
+      ]
+    }
+  }
+]
