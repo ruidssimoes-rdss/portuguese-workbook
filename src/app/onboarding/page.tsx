@@ -1,5 +1,6 @@
 "use client";
 
+import { AuthLogo } from "@/components/auth-ui";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
@@ -143,50 +144,51 @@ export default function OnboardingPage() {
 
   if (!pageReady || authLoading || !user) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-[15px] text-[#98988F]">A carregar...</p>
+      <div className="flex min-h-dvh items-center justify-center bg-aula-canvas">
+        <p className="text-[12.5px] text-aula-text-3">A carregar…</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6 py-12">
-      <div className="flex gap-2 mb-12">
-        {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-          <div
-            key={i}
-            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-              i <= currentStep ? "bg-[#1B2B61]" : "bg-[#E6E6E4]"
-            }`}
-            aria-hidden
-          />
-        ))}
+    <div className="flex min-h-dvh flex-col items-center justify-center bg-aula-canvas px-4 py-12">
+      <AuthLogo />
+      <div className="w-full max-w-[520px] rounded-2xl border border-aula-line bg-white px-7 pb-6 pt-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+      <div className="mb-8 flex items-center gap-3">
+        <div className="flex flex-1 gap-1">
+          {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+            <div key={i} className={`h-1 flex-1 rounded-full transition-colors duration-300 ${i <= currentStep ? "bg-aula-accent" : "bg-aula-line"}`} aria-hidden />
+          ))}
+        </div>
+        <span className="text-[11px] text-aula-text-3">
+          {currentStep + 1} de {TOTAL_STEPS}
+        </span>
       </div>
 
       {currentStep === 0 && (
-        <div className="w-full max-w-lg animate-fade-in">
-          <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
+        <div className="w-full animate-fade-in">
+          <div className="mb-6">
+            <h1 className="mb-1 text-[20px] font-semibold leading-tight tracking-[-0.02em] text-aula-text">
               Porque queres aprender português?
             </h1>
-            <p className="text-[15px] text-[#98988F]">Why are you learning Portuguese?</p>
+            <p className="text-[12.5px] text-aula-text-3">Why are you learning Portuguese?</p>
           </div>
-          <div className="space-y-3 mb-12">
+          <div className="mb-6 space-y-2">
             {MOTIVATION_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
                 type="button"
                 onClick={() => setMotivation(opt.value)}
-                className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
+                className={`w-full rounded-[10px] border px-4 py-3 text-left transition-colors ${
                   motivation === opt.value
-                    ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
-                    : "border-[#E6E6E4] hover:border-[#B5B5AE] hover:bg-[#F7F7F6]"
+                    ? "border-aula-accent bg-aula-accent-faint"
+                    : "border-aula-border hover:border-aula-text-4"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${motivation === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>
+                <p className={`text-[13.5px] font-medium ${motivation === opt.value ? "text-aula-accent" : "text-aula-text"}`}>
                   {opt.labelPt}
                 </p>
-                <p className="text-[13px] text-[#98988F] mt-0.5">{opt.labelEn}</p>
+                <p className="mt-0.5 text-[12px] text-aula-text-3">{opt.labelEn}</p>
               </button>
             ))}
           </div>
@@ -194,29 +196,29 @@ export default function OnboardingPage() {
       )}
 
       {currentStep === 1 && (
-        <div className="w-full max-w-lg animate-fade-in">
-          <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
+        <div className="w-full animate-fade-in">
+          <div className="mb-6">
+            <h1 className="mb-1 text-[20px] font-semibold leading-tight tracking-[-0.02em] text-aula-text">
               Como descreverias o teu nível atual?
             </h1>
-            <p className="text-[15px] text-[#98988F]">How would you describe your current level?</p>
+            <p className="text-[12.5px] text-aula-text-3">How would you describe your current level?</p>
           </div>
-          <div className="space-y-3 mb-12">
+          <div className="mb-6 space-y-2">
             {LEVEL_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
                 type="button"
                 onClick={() => setLevel(opt.value)}
-                className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
+                className={`w-full rounded-[10px] border px-4 py-3 text-left transition-colors ${
                   level === opt.value
-                    ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
-                    : "border-[#E6E6E4] hover:border-[#B5B5AE] hover:bg-[#F7F7F6]"
+                    ? "border-aula-accent bg-aula-accent-faint"
+                    : "border-aula-border hover:border-aula-text-4"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${level === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>
+                <p className={`text-[13.5px] font-medium ${level === opt.value ? "text-aula-accent" : "text-aula-text"}`}>
                   {opt.labelPt}
                 </p>
-                <p className="text-[13px] text-[#98988F] mt-0.5">{opt.labelEn}</p>
+                <p className="mt-0.5 text-[12px] text-aula-text-3">{opt.labelEn}</p>
               </button>
             ))}
           </div>
@@ -224,29 +226,29 @@ export default function OnboardingPage() {
       )}
 
       {currentStep === 2 && (
-        <div className="w-full max-w-lg animate-fade-in">
-          <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
+        <div className="w-full animate-fade-in">
+          <div className="mb-6">
+            <h1 className="mb-1 text-[20px] font-semibold leading-tight tracking-[-0.02em] text-aula-text">
               Quantos dias por semana podes estudar?
             </h1>
-            <p className="text-[15px] text-[#98988F]">How many days per week can you study?</p>
+            <p className="text-[12.5px] text-aula-text-3">How many days per week can you study?</p>
           </div>
-          <div className="grid grid-cols-2 gap-3 mb-12">
+          <div className="mb-6 grid grid-cols-2 gap-2">
             {FREQUENCY_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
                 type="button"
                 onClick={() => setStudyDays(opt.value)}
-                className={`text-center px-4 py-6 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
+                className={`rounded-[10px] border px-4 py-4 text-center transition-colors ${
                   studyDays === opt.value
-                    ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
-                    : "border-[#E6E6E4] hover:border-[#B5B5AE]"
+                    ? "border-aula-accent bg-aula-accent-faint"
+                    : "border-aula-border hover:border-aula-text-4"
                 }`}
               >
-                <p className={`text-[20px] font-bold mb-1 ${studyDays === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>
+                <p className={`mb-0.5 text-[20px] font-semibold ${studyDays === opt.value ? "text-aula-accent" : "text-aula-text"}`}>
                   {opt.days}
                 </p>
-                <p className="text-[13px] text-[#98988F]">{opt.labelPt}</p>
+                <p className="text-[12px] text-aula-text-3">{opt.labelPt}</p>
               </button>
             ))}
           </div>
@@ -254,35 +256,35 @@ export default function OnboardingPage() {
       )}
 
       {currentStep === 3 && (
-        <div className="w-full max-w-lg animate-fade-in">
-          <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
+        <div className="w-full animate-fade-in">
+          <div className="mb-6">
+            <h1 className="mb-1 text-[20px] font-semibold leading-tight tracking-[-0.02em] text-aula-text">
               Qual é o teu objetivo?
             </h1>
-            <p className="text-[15px] text-[#98988F]">What&apos;s your target?</p>
+            <p className="text-[12.5px] text-aula-text-3">What&apos;s your target?</p>
           </div>
-          <div className="space-y-3 mb-6">
+          <div className="mb-4 space-y-2">
             {GOAL_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
                 type="button"
                 onClick={() => setTargetGoal(opt.value)}
-                className={`w-full text-left px-5 py-4 rounded-[12px] border transition-all duration-200 min-h-[48px] ${
+                className={`w-full rounded-[10px] border px-4 py-3 text-left transition-colors ${
                   targetGoal === opt.value
-                    ? "border-[#1B2B61] bg-[#1B2B61]/5 shadow-sm"
-                    : "border-[#E6E6E4] hover:border-[#B5B5AE] hover:bg-[#F7F7F6]"
+                    ? "border-aula-accent bg-aula-accent-faint"
+                    : "border-aula-border hover:border-aula-text-4"
                 }`}
               >
-                <p className={`text-[15px] font-medium ${targetGoal === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>
+                <p className={`text-[13.5px] font-medium ${targetGoal === opt.value ? "text-aula-accent" : "text-aula-text"}`}>
                   {opt.labelPt}
                 </p>
-                <p className="text-[13px] text-[#98988F] mt-0.5">{opt.labelEn}</p>
+                <p className="mt-0.5 text-[12px] text-aula-text-3">{opt.labelEn}</p>
               </button>
             ))}
           </div>
           {showDatePicker && (
-            <div className="mb-12">
-              <label htmlFor="target-date" className="block text-center text-[14px] font-medium text-[#6B6B69] mb-2">
+            <div className="mb-6">
+              <label htmlFor="target-date" className="mb-1.5 block text-[12px] font-medium text-aula-text-2">
                 Até quando? / By when?
               </label>
               <input
@@ -290,40 +292,40 @@ export default function OnboardingPage() {
                 type="date"
                 value={targetDate}
                 onChange={(e) => setTargetDate(e.target.value)}
-                className="w-full max-w-[240px] mx-auto block rounded-[12px] border border-[#E6E6E4] px-4 py-3 text-[15px] text-[#1F1F1F] focus:border-[#1B2B61] focus:ring-1 focus:ring-[#1B2B61] outline-none"
+                className="h-10 w-full max-w-[240px] rounded-lg border border-aula-border px-3 text-[13.5px] text-aula-text outline-none focus:border-aula-accent"
               />
             </div>
           )}
-          {!showDatePicker && <div className="mb-12" />}
+          {!showDatePicker && <div className="mb-2" />}
         </div>
       )}
 
       {currentStep === 4 && (
-        <div className="w-full max-w-lg animate-fade-in">
-          <div className="text-center mb-8">
-            <h1 className="text-[24px] font-bold text-[#1F1F1F] mb-2 leading-tight">
+        <div className="w-full animate-fade-in">
+          <div className="mb-6">
+            <h1 className="mb-1 text-[20px] font-semibold leading-tight tracking-[-0.02em] text-aula-text">
               Como te chamas?
             </h1>
-            <p className="text-[15px] text-[#98988F]">What should we call you?</p>
+            <p className="text-[12.5px] text-aula-text-3">What should we call you?</p>
           </div>
-          <div className="mb-12">
+          <div className="mb-6">
             <input
               type="text"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="O teu nome"
-              className="w-full h-12 rounded-xl text-center text-[20px] font-semibold text-[#1F1F1F] border border-[#E6E6E4] bg-[#F7F7F6] focus:border-[#1B2B61] focus:bg-white outline-none transition-colors duration-200"
+              className="h-11 w-full rounded-lg border border-aula-border bg-white px-3.5 text-[15px] font-medium text-aula-text outline-none transition-colors placeholder:font-normal placeholder:text-aula-text-4 focus:border-aula-accent"
             />
           </div>
         </div>
       )}
 
-      <div className="max-w-lg w-full flex items-center justify-between">
+      <div className="flex w-full items-center justify-between border-t border-aula-line pt-4">
         {currentStep > 0 ? (
           <button
             type="button"
             onClick={goBack}
-            className="text-[14px] font-medium text-[#6B6B69] hover:text-[#1F1F1F] transition-colors"
+            className="inline-flex h-9 items-center rounded-lg px-3 text-[13px] font-medium text-aula-text-2 transition-colors hover:bg-aula-sunken hover:text-aula-text"
           >
             ← Anterior
           </button>
@@ -335,26 +337,25 @@ export default function OnboardingPage() {
           type="button"
           onClick={goNext}
           disabled={!canProceed || saving}
-          className="inline-flex items-center justify-center px-8 py-3 bg-[#1B2B61] text-white text-[14px] font-medium rounded-[12px] hover:bg-[#002277] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
+          className="inline-flex h-9 items-center justify-center rounded-lg bg-aula-accent px-5 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover disabled:cursor-not-allowed disabled:opacity-35"
         >
           {saving ? (
             <>
               <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" aria-hidden />
-              A guardar...
+              A guardar…
             </>
           ) : currentStep === TOTAL_STEPS - 1 ? "Começar" : "Próximo →"}
         </button>
       </div>
 
-      {saveError && (
-        <p className="mt-4 text-[13px] text-[#B94A32]">{saveError}</p>
-      )}
+      {saveError && <p className="mt-3 text-[12.5px] text-aula-overdue">{saveError}</p>}
+      </div>
 
       <button
         type="button"
         onClick={handleSkip}
         disabled={saving}
-        className="mt-8 text-[13px] text-[#98988F] hover:text-[#6B6B69] transition-colors disabled:opacity-50 min-h-[44px]"
+        className="mt-4 min-h-[36px] text-[12px] text-aula-text-3 transition-colors hover:text-aula-text-2 disabled:opacity-50"
       >
         Saltar configuração
       </button>

@@ -24,18 +24,18 @@ export function GoogleSignInButton() {
         type="button"
         onClick={handleClick}
         disabled={loading}
-        className="w-full bg-white border-[0.5px] border-[#E6E6E4] rounded-lg px-4 py-2.5 text-[13px] font-medium text-[#1F1F1F] hover:border-[#CFCFCB] hover:bg-[#F7F7F6] transition-colors flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="flex h-10 w-full items-center justify-center gap-2.5 rounded-lg border border-aula-border bg-white px-4 text-[13px] font-medium text-aula-text hover:border-aula-text-4 transition-colors flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {loading ? (
-          <span className="inline-block w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+          <span className="inline-block w-5 h-5 border-2 border-aula-text-3 border-t-transparent rounded-full animate-spin" />
         ) : (
           <GoogleLogo />
         )}
-        <span>{loading ? "A redirecionar..." : "Continuar com Google"}</span>
+        <span>{loading ? "A redirecionar…" : "Continuar com Google"}</span>
       </button>
       {error && (
         <div
-          className="mt-3 rounded-lg border-[0.5px] border-[rgba(220,38,38,0.2)] bg-[#FBE9E4] p-3 text-[#B94A32] text-[12px]"
+          className="mt-3 rounded-[10px] border border-[#F0C9BE] bg-[#FBE9E4] px-3.5 py-2.5 text-[12.5px] text-aula-overdue"
           role="alert"
         >
           {error}
@@ -47,7 +47,7 @@ export function GoogleSignInButton() {
 
 function GoogleLogo() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" className="shrink-0" aria-hidden>
+    <svg width="17" height="17" viewBox="0 0 24 24" className="shrink-0" aria-hidden>
       <path
         fill="#4285F4"
         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
