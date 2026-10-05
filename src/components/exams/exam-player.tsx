@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { PronunciationButton } from "@/components/pronunciation-button";
+import { speakPt } from "@/lib/audio/speak";
 import {
   countWords,
   countKeyPhraseMatches,
@@ -29,39 +30,6 @@ type Answers = Record<string, unknown>;
 interface SectionState {
   answers: Answers;
   completed: boolean;
-}
-
-/* ═══════════════════════════════════════════════════
-   TTS Helper
-   ═══════════════════════════════════════════════════ */
-
-function useTTS() {
-  const speak = useCallback(
-    (text: string, speed: "slow" | "normal" = "normal") => {
-      if (typeof window === "undefined" || !window.speechSynthesis) return false;
-      const syn = window.speechSynthesis;
-      syn.cancel();
-      const voices = syn.getVoices();
-      const voice =
-        voices.find((v) => v.lang.startsWith("pt-PT")) ??
-        voices.find((v) => v.lang.startsWith("pt")) ??
-        null;
-      if (!voice) return false;
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "pt-PT";
-      u.rate = speed === "slow" ? 0.85 : 1.0;
-      u.pitch = 1;
-      u.voice = voice;
-      syn.speak(u);
-      return true;
-    },
-    []
-  );
-
-  const isAvailable =
-    typeof window !== "undefined" && !!window.speechSynthesis;
-
-  return { speak, isAvailable };
 }
 
 /* ═══════════════════════════════════════════════════
@@ -402,15 +370,11 @@ function ListeningQuestionUI({
 }) {
   const submitted = answer !== undefined;
   const canPlay = playCount < q.playLimit;
-  const tts = useTTS();
   const [ttsUnavailable, setTtsUnavailable] = useState(false);
 
   const handlePlay = () => {
     if (!canPlay) return;
-    const success = tts.speak(q.audioText, q.audioSpeed ?? "normal");
-    if (!success) {
-      setTtsUnavailable(true);
-    }
+    speakPt(q.audioText).catch(() => setTtsUnavailable(true));
     onPlay();
   };
 

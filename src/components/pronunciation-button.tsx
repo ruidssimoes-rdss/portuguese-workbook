@@ -1,17 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { speakPt } from "@/lib/audio/speak";
 
 export interface PronunciationButtonProps {
   text: string;
-  speed?: number;
   className?: string;
   size?: "sm" | "md";
   /** Dark style for use on homepage cards (dark circle, white icon) */
   variant?: "default" | "dark" | "muted";
 }
-
-const RATE = { default: 0.85, slow: 0.6 };
 
 const GLOW_STYLES = `
   @keyframes glow-pulse {
@@ -58,80 +56,22 @@ function SpeakerIcon({ playing, size }: { playing: boolean; size: "sm" | "md" })
 
 export function PronunciationButton({
   text,
-  speed = RATE.default,
   className = "",
   size = "sm",
   variant = "default",
 }: PronunciationButtonProps) {
   const [playing, setPlaying] = useState(false);
   const [voiceUnavailable, setVoiceUnavailable] = useState(false);
-  const [voicesReady, setVoicesReady] = useState(false);
-  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
-
-  const getVoices = useCallback((): SpeechSynthesisVoice[] => {
-    if (typeof window === "undefined" || !window.speechSynthesis) return [];
-    return window.speechSynthesis.getVoices();
-  }, []);
-
-  const selectVoice = useCallback((): SpeechSynthesisVoice | null => {
-    const voices = getVoices();
-    const ptPT = voices.find((v) => v.lang.startsWith("pt-PT"));
-    const pt = voices.find((v) => v.lang.startsWith("pt"));
-    return ptPT ?? pt ?? null;
-  }, [getVoices]);
-
-  const speak = useCallback(() => {
-    if (typeof window === "undefined" || !window.speechSynthesis || !text.trim()) return;
-    const syn = window.speechSynthesis;
-    syn.cancel();
-    const voice = selectVoice();
-    if (!voice) {
-      setVoiceUnavailable(true);
-      setTimeout(() => setVoiceUnavailable(false), 3000);
-      return;
-    }
-    const u = new SpeechSynthesisUtterance(text.trim());
-    u.lang = "pt-PT";
-    u.rate = speed;
-    u.pitch = 1;
-    u.voice = voice;
-    u.onstart = () => setPlaying(true);
-    u.onend = () => setPlaying(false);
-    u.onerror = () => setPlaying(false);
-    utteranceRef.current = u;
-    syn.speak(u);
-  }, [text, speed, selectVoice]);
 
   const handleClick = useCallback(() => {
-    if (typeof window === "undefined" || !window.speechSynthesis) return;
-    if (playing) {
-      window.speechSynthesis.cancel();
-      setPlaying(false);
-      setTimeout(speak, 100);
-    } else {
-      speak();
-    }
-  }, [playing, speak]);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.speechSynthesis) return;
-    const syn = window.speechSynthesis;
-    const onVoicesChanged = () => setVoicesReady(true);
-    if (syn.getVoices().length > 0) setVoicesReady(true);
-    syn.addEventListener("voiceschanged", onVoicesChanged);
-    return () => {
-      syn.removeEventListener("voiceschanged", onVoicesChanged);
-      syn.cancel();
-    };
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (typeof window !== "undefined" && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, []);
+    setPlaying(true);
+    speakPt(text)
+      .catch(() => {
+        setVoiceUnavailable(true);
+        setTimeout(() => setVoiceUnavailable(false), 3000);
+      })
+      .finally(() => setPlaying(false));
+  }, [text]);
 
   useEffect(() => {
     if (document.getElementById("pronunciation-glow-styles")) return;
@@ -140,8 +80,6 @@ export function PronunciationButton({
     style.textContent = GLOW_STYLES;
     document.head.appendChild(style);
   }, []);
-
-  if (typeof window !== "undefined" && !window.speechSynthesis) return null;
 
   const sizeClasses =
     size === "sm"
@@ -174,7 +112,6 @@ export function PronunciationButton({
       <button
         type="button"
         onClick={handleClick}
-        disabled={!voicesReady}
         title={
           voiceUnavailable
             ? "Portuguese voice not available on this device"
