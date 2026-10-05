@@ -7,6 +7,7 @@ import { Choice, choiceResult } from "@/components/learn/kit";
 import { LevelTag, Track } from "@/components/aula";
 import { ProtectedRoute } from "@/components/protected-route";
 import { PronunciationButton } from "@/components/pronunciation-button";
+import { speakPt } from "@/lib/audio/speak";
 import {
   getExam,
   countWords,
@@ -44,31 +45,14 @@ const SHORT_TITLE: Record<string, string> = {
   speaking: "Produção oral",
 };
 
+// WIRE: audio goes through src/lib/audio/speak.ts — the pre-generated pt-PT clip first,
+// then a browser voice only if its lang is exactly "pt-PT". The returned promise rejects
+// only when nothing could play. `speed` is kept for the call sites; clips play at their
+// recorded pace and the fallback voice uses the rate set in speak.ts.
 function useTTS() {
-  const speak = useCallback(
-    (text: string, speed: "slow" | "normal" = "normal") => {
-      if (typeof window === "undefined" || !window.speechSynthesis) return false;
-      const syn = window.speechSynthesis;
-      syn.cancel();
-      const voices = syn.getVoices();
-      const voice =
-        voices.find((v) => v.lang.startsWith("pt-PT")) ??
-        voices.find((v) => v.lang.startsWith("pt")) ??
-        null;
-      if (!voice) return false;
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "pt-PT";
-      u.rate = speed === "slow" ? 0.85 : 1.0;
-      u.pitch = 1;
-      u.voice = voice;
-      syn.speak(u);
-      return true;
-    },
-    []
-  );
+  const speak = useCallback((text: string, _speed: "slow" | "normal" = "normal") => speakPt(text), []);
 
-  const isAvailable =
-    typeof window !== "undefined" && !!window.speechSynthesis;
+  const isAvailable = typeof window !== "undefined";
 
   return { speak, isAvailable };
 }
@@ -381,10 +365,8 @@ function ListeningQuestionUI({
 
   const handlePlay = () => {
     if (!canPlay) return;
-    const success = tts.speak(q.audioText, q.audioSpeed ?? "normal");
-    if (!success) {
-      setTtsUnavailable(true);
-    }
+    // WIRE: speakPt rejects only when neither the clip nor a pt-PT voice could play.
+    tts.speak(q.audioText, q.audioSpeed ?? "normal").catch(() => setTtsUnavailable(true));
     onPlay();
   };
 

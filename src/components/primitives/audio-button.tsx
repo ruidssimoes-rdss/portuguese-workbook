@@ -1,65 +1,44 @@
 "use client";
 
 /**
- * AudioButton — small speaker icon that triggers TTS for Portuguese text.
- * Uses the Web Speech API with pt-PT voice selection.
+ * AudioButton — small speaker icon that plays Portuguese text.
+ * Plays the pre-generated pt-PT clip first; falls back to a browser voice only when
+ * its lang is exactly "pt-PT". With neither, the button is disabled («Áudio indisponível»).
  *
  * <AudioButton text="Bom dia" />
  */
 
 import { Volume2 } from "lucide-react";
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { canPlayPt, speakPt } from "@/lib/audio/speak";
 
 interface AudioButtonProps {
   text: string;
   className?: string;
 }
 
+const UNAVAILABLE = "Áudio indisponível";
+
 export function AudioButton({ text, className = "" }: AudioButtonProps) {
   const [speaking, setSpeaking] = useState(false);
-  const [voicesReady, setVoicesReady] = useState(false);
-  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const [unavailable, setUnavailable] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !window.speechSynthesis) return;
-    const syn = window.speechSynthesis;
-    const onVoicesChanged = () => setVoicesReady(true);
-    if (syn.getVoices().length > 0) setVoicesReady(true);
-    syn.addEventListener("voiceschanged", onVoicesChanged);
+    let cancelled = false;
+    canPlayPt(text).then((ok) => {
+      if (!cancelled) setUnavailable(!ok);
+    });
     return () => {
-      syn.removeEventListener("voiceschanged", onVoicesChanged);
-      syn.cancel();
+      cancelled = true;
     };
-  }, []);
-
-  const speak = useCallback(() => {
-    if (typeof window === "undefined" || !window.speechSynthesis || !text.trim())
-      return;
-
-    const syn = window.speechSynthesis;
-    syn.cancel();
-
-    const voices = syn.getVoices();
-    const voice =
-      voices.find((v) => v.lang.startsWith("pt-PT")) ||
-      voices.find((v) => v.lang.startsWith("pt")) ||
-      null;
-
-    const u = new SpeechSynthesisUtterance(text.trim());
-    u.lang = "pt-PT";
-    u.rate = 0.9;
-    u.pitch = 1;
-    if (voice) u.voice = voice;
-
-    u.onstart = () => setSpeaking(true);
-    u.onend = () => setSpeaking(false);
-    u.onerror = () => setSpeaking(false);
-
-    utteranceRef.current = u;
-    syn.speak(u);
   }, [text]);
 
-  if (typeof window !== "undefined" && !window.speechSynthesis) return null;
+  const speak = useCallback(() => {
+    setSpeaking(true);
+    speakPt(text)
+      .catch(() => setUnavailable(true))
+      .finally(() => setSpeaking(false));
+  }, [text]);
 
   return (
     <button
@@ -68,14 +47,14 @@ export function AudioButton({ text, className = "" }: AudioButtonProps) {
         e.preventDefault();
         speak();
       }}
-      disabled={!voicesReady}
-      className={`inline-flex items-center justify-center w-7 h-7 rounded-md transition-colors disabled:opacity-30 ${
+      disabled={unavailable}
+      className={`inline-flex items-center justify-center w-7 h-7 rounded-md transition-colors disabled:opacity-30 disabled:cursor-not-allowed ${
         speaking
           ? "text-[#1B2B61] bg-[#E8ECF6]"
           : "text-[#98988F] hover:text-[#6B6B69] hover:bg-[#F7F7F6]"
       } ${className}`}
-      aria-label={`Listen to "${text}"`}
-      title="Listen"
+      aria-label={unavailable ? UNAVAILABLE : `Ouvir "${text}"`}
+      title={unavailable ? UNAVAILABLE : "Ouvir"}
     >
       <Volume2 size={14} strokeWidth={1.5} className={speaking ? "animate-pulse" : ""} />
     </button>
