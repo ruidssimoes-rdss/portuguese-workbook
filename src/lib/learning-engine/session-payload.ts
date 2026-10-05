@@ -33,4 +33,12 @@ export interface SessionRequest {
   level?: CEFRLevel;
   /** Play a fixed curriculum lesson by id (e.g. "a1-01") */
   lesson?: string;
+  /** Review only: restrict to vocabulary, optionally one category and/or overdue items */
+  scope?: VocabReviewScope;
+}
+
+export interface VocabReviewScope {
+  /** Vocabulary category id; omit for all vocabulary */
+  category?: string;
+  overdueOnly?: boolean;
 }

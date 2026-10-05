@@ -9,6 +9,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { generateLesson } from "@/lib/learning-engine/lesson-generator";
 import { generateReviewSession } from "@/lib/learning-engine/review-generator";
+import { resolveVocabScope } from "@/lib/library";
 import { adaptGeneratedLesson, adaptReviewSession, type AdaptedLesson } from "@/lib/learning-engine/lesson-adapter";
 import { getCurrentStudyLevel } from "@/lib/learning-engine/cefr-readiness";
 import type { CEFRLevel } from "@/lib/learning-engine/mastery-tracker";
@@ -71,7 +72,8 @@ export async function POST(request: Request) {
     const order = (count ?? 0) + 1;
 
     if (body.mode === "review") {
-      const review = await generateReviewSession(user.id, undefined, supabase);
+      const scope = body.scope ? resolveVocabScope(body.scope) : undefined;
+      const review = await generateReviewSession(user.id, undefined, supabase, scope);
       return NextResponse.json(toPayload(adaptReviewSession(review, { order }), true));
     }
 

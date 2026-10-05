@@ -31,18 +31,18 @@ export function SlideDrawer({
         aria-hidden
       />
       <div
-        className="relative w-full max-w-[420px] bg-[var(--bg-card)] shadow-xl flex flex-col max-h-full animate-slide-in-right"
+        className="relative w-full max-w-[420px] bg-surface-raised shadow-xl flex flex-col max-h-full animate-slide-in-right"
         role="dialog"
         aria-label={ariaLabel}
       >
-        <div className="flex items-center justify-between p-4 border-b border-[var(--border-primary)] shrink-0">
-          <h2 className="text-lg font-semibold text-[var(--text-primary)]">{title}</h2>
+        <div className="flex items-center justify-between p-4 border-b border-border-default shrink-0">
+          <h2 className="text-lg font-semibold text-text-primary">{title}</h2>
           <div className="flex items-center gap-2">
             {headerExtra}
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1.5 rounded-[12px] text-[13px] font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] border border-[var(--border-primary)] transition-colors"
+              className="px-3 py-1.5 rounded-[12px] text-[13px] font-medium text-text-secondary hover:bg-surface-hover border border-border-default transition-colors"
               aria-label="Fechar"
             >
               Fechar

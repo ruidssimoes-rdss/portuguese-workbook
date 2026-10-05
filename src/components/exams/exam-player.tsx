@@ -2,8 +2,6 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { Topbar } from "@/components/layout/topbar";
-import type { ContentCounts } from "@/lib/content-counts";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import {
   countWords,
@@ -85,40 +83,40 @@ function MCQuestion({
     <div className="space-y-4">
       {/* Context label */}
       {q.stimulusContext && (
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary">
           {q.stimulusContext}
         </p>
       )}
 
       {/* Stimulus card */}
-      <div className="border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA]">
-        <p className="text-[15px] text-[#111827] leading-relaxed whitespace-pre-line">
+      <div className="border border-border-default rounded-xl p-5 bg-neutral-50">
+        <p className="text-[15px] text-text-primary leading-relaxed whitespace-pre-line">
           {q.stimulus}
         </p>
       </div>
 
       {/* Instruction */}
-      <p className="text-[13px] text-[#9CA3AF] italic">{q.instructionEn}</p>
+      <p className="text-[13px] text-text-quaternary italic">{q.instructionEn}</p>
 
       {/* Question */}
-      <p className="text-[15px] font-semibold text-[#111827]">{q.question}</p>
+      <p className="text-[15px] font-semibold text-text-primary">{q.question}</p>
       {q.questionEn && (
-        <p className="text-[13px] text-[#6B7280] -mt-2">{q.questionEn}</p>
+        <p className="text-[13px] text-text-secondary -mt-2">{q.questionEn}</p>
       )}
 
       {/* Options */}
       <div className="space-y-2">
         {q.options.map((opt, i) => {
           let optClass =
-            "border border-[#E5E7EB] bg-white hover:border-[#D1D5DB] hover:shadow-sm cursor-pointer";
+            "border border-border-default bg-white hover:border-border-strong hover:shadow-sm cursor-pointer";
 
           if (submitted) {
             if (i === q.correctIndex) {
-              optClass = "border-2 border-[#059669] bg-[#F0FDF4]";
+              optClass = "border-2 border-state-fresh bg-state-fresh-bg";
             } else if (i === answer && i !== q.correctIndex) {
-              optClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
+              optClass = "border-2 border-state-overdue bg-state-overdue-bg";
             } else {
-              optClass = "border border-[#F3F4F6] bg-[#FAFAFA] opacity-50";
+              optClass = "border border-border-subtle bg-neutral-50 opacity-50";
             }
           }
 
@@ -132,16 +130,16 @@ function MCQuestion({
               <span
                 className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 text-[12px] font-semibold ${
                   submitted && i === q.correctIndex
-                    ? "border-[#059669] bg-[#059669] text-white"
+                    ? "border-state-fresh bg-state-fresh text-white"
                     : submitted && i === answer
-                      ? "border-[#DC2626] bg-[#DC2626] text-white"
-                      : "border-[#D1D5DB] text-[#9CA3AF]"
+                      ? "border-state-overdue bg-state-overdue text-white"
+                      : "border-border-strong text-text-quaternary"
                 }`}
               >
                 {String.fromCharCode(65 + i)}
               </span>
               <span
-                className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#059669]" : submitted && i === answer ? "font-semibold text-[#DC2626]" : "text-[#374151]"}`}
+                className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-state-fresh" : submitted && i === answer ? "font-semibold text-state-overdue" : "text-text-strong"}`}
               >
                 {opt}
               </span>
@@ -153,15 +151,15 @@ function MCQuestion({
       {/* Explanation after answering */}
       {submitted && (
         <div
-          className={`p-4 rounded-xl border ${answer === q.correctIndex ? "bg-[#F0FDF4] border-[#D1FAE5]" : "bg-[#FEF2F2] border-[#FEE2E2]"}`}
+          className={`p-4 rounded-xl border ${answer === q.correctIndex ? "bg-state-fresh-bg border-state-fresh-bg" : "bg-state-overdue-bg border-state-overdue-bg"}`}
         >
           <p
-            className={`text-[13px] font-semibold mb-1 ${answer === q.correctIndex ? "text-[#059669]" : "text-[#DC2626]"}`}
+            className={`text-[13px] font-semibold mb-1 ${answer === q.correctIndex ? "text-state-fresh" : "text-state-overdue"}`}
           >
             {answer === q.correctIndex ? "Correto!" : "Incorreto"}
           </p>
-          <p className="text-[13px] text-[#374151]">{q.explanation}</p>
-          <p className="text-[12px] text-[#9CA3AF] mt-1 italic">
+          <p className="text-[13px] text-text-strong">{q.explanation}</p>
+          <p className="text-[12px] text-text-quaternary mt-1 italic">
             {q.explanationEn}
           </p>
         </div>
@@ -188,8 +186,8 @@ function MatchingQuestionUI({
 
   return (
     <div className="space-y-4">
-      <p className="text-[13px] text-[#9CA3AF] italic">{q.instructionEn}</p>
-      <p className="text-[15px] font-semibold text-[#111827]">
+      <p className="text-[13px] text-text-quaternary italic">{q.instructionEn}</p>
+      <p className="text-[15px] font-semibold text-text-primary">
         {q.instruction}
       </p>
 
@@ -204,20 +202,20 @@ function MatchingQuestionUI({
               key={i}
               className={`flex items-center gap-4 border rounded-xl p-4 transition-all ${
                 isCorrect
-                  ? "border-[#059669] bg-[#F0FDF4]"
+                  ? "border-state-fresh bg-state-fresh-bg"
                   : isWrong
-                    ? "border-[#DC2626] bg-[#FEF2F2]"
-                    : "border-[#E5E7EB] bg-white"
+                    ? "border-state-overdue bg-state-overdue-bg"
+                    : "border-border-default bg-white"
               }`}
             >
-              <p className="text-[14px] font-medium text-[#111827] flex-1 min-w-0">
+              <p className="text-[14px] font-medium text-text-primary flex-1 min-w-0">
                 {pair.left}
               </p>
               <select
                 value={selected}
                 onChange={(e) => onAnswer(i, e.target.value)}
                 disabled={submitted}
-                className="border border-[#E5E7EB] rounded-lg px-3 py-2 text-[13px] text-[#374151] bg-white min-w-[180px] focus:outline-none focus:ring-2 focus:ring-[#111827] focus:ring-offset-1 disabled:opacity-60"
+                className="border border-border-default rounded-lg px-3 py-2 text-[13px] text-text-strong bg-white min-w-[180px] focus:outline-none focus:ring-2 focus:ring-text-primary focus:ring-offset-1 disabled:opacity-60"
               >
                 <option value="">Selecione...</option>
                 {rightOptions.map((opt, j) => (
@@ -227,7 +225,7 @@ function MatchingQuestionUI({
                 ))}
               </select>
               {submitted && isWrong && (
-                <span className="text-[12px] text-[#059669] font-medium shrink-0">
+                <span className="text-[12px] text-state-fresh font-medium shrink-0">
                   {pair.right}
                 </span>
               )}
@@ -239,15 +237,15 @@ function MatchingQuestionUI({
       {allAnswered && !submitted && (
         <button
           onClick={() => setSubmitted(true)}
-          className="w-full py-2.5 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+          className="w-full py-2.5 bg-text-primary text-white text-[13px] font-semibold rounded-lg hover:bg-text-strong transition-colors cursor-pointer"
         >
           Verificar respostas
         </button>
       )}
 
       {submitted && (
-        <div className="p-4 rounded-xl bg-[#F9FAFB] border border-[#F3F4F6]">
-          <p className="text-[13px] font-semibold text-[#111827]">
+        <div className="p-4 rounded-xl bg-surface-sunken border border-border-subtle">
+          <p className="text-[13px] font-semibold text-text-primary">
             {q.pairs.filter((p, i) => answers[`match-${i}`] === p.right).length}{" "}
             / {q.pairs.length} corretas
           </p>
@@ -275,30 +273,30 @@ function WritingTaskUI({
 
   return (
     <div className="space-y-4">
-      <p className="text-[13px] text-[#9CA3AF] italic">{task.instructionEn}</p>
+      <p className="text-[13px] text-text-quaternary italic">{task.instructionEn}</p>
 
       {/* Scenario card */}
-      <div className="border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA]">
-        <p className="text-[15px] font-semibold text-[#111827]">
+      <div className="border border-border-default rounded-xl p-5 bg-neutral-50">
+        <p className="text-[15px] font-semibold text-text-primary">
           {task.scenario}
         </p>
-        <p className="text-[13px] text-[#6B7280] mt-1">{task.scenarioEn}</p>
+        <p className="text-[13px] text-text-secondary mt-1">{task.scenarioEn}</p>
       </div>
 
       {/* Hints */}
       {task.hints && task.hints.length > 0 && (
         <div className="space-y-1">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary">
             Indicações
           </p>
           <ul className="space-y-1">
             {task.hints.map((hint, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="text-[#D1D5DB] mt-0.5">·</span>
-                <span className="text-[13px] text-[#6B7280]">
+                <span className="text-text-quaternary mt-0.5">·</span>
+                <span className="text-[13px] text-text-secondary">
                   {hint}
                   {task.hintsEn?.[i] && (
-                    <span className="text-[#9CA3AF]">
+                    <span className="text-text-quaternary">
                       {" "}
                       — {task.hintsEn[i]}
                     </span>
@@ -317,22 +315,22 @@ function WritingTaskUI({
           onChange={(e) => onResponse(e.target.value)}
           disabled={submitted}
           rows={6}
-          className="w-full border border-[#E5E7EB] rounded-xl p-4 text-[14px] text-[#111827] bg-white focus:outline-none focus:ring-2 focus:ring-[#111827] focus:ring-offset-1 resize-y disabled:opacity-60 disabled:bg-[#FAFAFA]"
+          className="w-full border border-border-default rounded-xl p-4 text-[14px] text-text-primary bg-white focus:outline-none focus:ring-2 focus:ring-text-primary focus:ring-offset-1 resize-y disabled:opacity-60 disabled:bg-neutral-50"
           placeholder="Escreva a sua resposta aqui..."
         />
         <div className="flex items-center justify-between mt-1">
           <p
             className={`text-[12px] font-medium ${
               wc === 0
-                ? "text-[#9CA3AF]"
+                ? "text-text-quaternary"
                 : meetsMin
-                  ? "text-[#059669]"
-                  : "text-[#DC2626]"
+                  ? "text-state-fresh"
+                  : "text-state-overdue"
             }`}
           >
             {wc} {wc === 1 ? "palavra" : "palavras"}
           </p>
-          <p className="text-[12px] text-[#9CA3AF]">
+          <p className="text-[12px] text-text-quaternary">
             {task.minWords}–{task.maxWords} palavras
           </p>
         </div>
@@ -344,8 +342,8 @@ function WritingTaskUI({
           disabled={!meetsMin}
           className={`w-full py-2.5 text-[13px] font-semibold rounded-lg transition-colors cursor-pointer ${
             meetsMin
-              ? "bg-[#111827] text-white hover:bg-[#374151]"
-              : "bg-[#F3F4F6] text-[#D1D5DB] cursor-not-allowed"
+              ? "bg-text-primary text-white hover:bg-text-strong"
+              : "bg-surface-sunken text-text-quaternary cursor-not-allowed"
           }`}
         >
           Submeter resposta
@@ -355,19 +353,19 @@ function WritingTaskUI({
       {/* After submission: show sample response */}
       {submitted && (
         <div className="space-y-3">
-          <div className="p-4 rounded-xl bg-[#F9FAFB] border border-[#F3F4F6]">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+          <div className="p-4 rounded-xl bg-surface-sunken border border-border-subtle">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary mb-2">
               Resposta modelo
             </p>
-            <p className="text-[13px] text-[#374151] leading-relaxed">
+            <p className="text-[13px] text-text-strong leading-relaxed">
               {task.sampleResponse}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-2 italic">
+            <p className="text-[12px] text-text-quaternary mt-2 italic">
               {task.sampleResponseEn}
             </p>
           </div>
-          <div className="p-3 rounded-lg bg-[#F0FDF4] border border-[#D1FAE5]">
-            <p className="text-[13px] text-[#059669] font-medium">
+          <div className="p-3 rounded-lg bg-state-fresh-bg border border-state-fresh-bg">
+            <p className="text-[13px] text-state-fresh font-medium">
               {countKeyPhraseMatches(response, task.keyPhrases)} /{" "}
               {task.keyPhrases.length} key elements found ·{" "}
               {scoreWrittenResponse(
@@ -418,18 +416,18 @@ function ListeningQuestionUI({
 
   return (
     <div className="space-y-4">
-      <p className="text-[13px] text-[#9CA3AF] italic">{q.instructionEn}</p>
+      <p className="text-[13px] text-text-quaternary italic">{q.instructionEn}</p>
 
       {/* Audio player */}
       {!ttsUnavailable ? (
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA] flex items-center justify-between">
+        <div className="border border-border-default rounded-xl p-5 bg-neutral-50 flex items-center justify-between">
           <button
             onClick={handlePlay}
             disabled={!canPlay}
             className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold transition-colors cursor-pointer ${
               canPlay
-                ? "bg-[#111827] text-white hover:bg-[#374151]"
-                : "bg-[#F3F4F6] text-[#D1D5DB] cursor-not-allowed"
+                ? "bg-text-primary text-white hover:bg-text-strong"
+                : "bg-surface-sunken text-text-quaternary cursor-not-allowed"
             }`}
           >
             <svg
@@ -448,16 +446,16 @@ function ListeningQuestionUI({
             </svg>
             {playCount === 0 ? "Ouvir áudio" : "Ouvir novamente"}
           </button>
-          <span className="text-[12px] font-medium text-[#9CA3AF]">
+          <span className="text-[12px] font-medium text-text-quaternary">
             {playCount} / {q.playLimit} reproduções
           </span>
         </div>
       ) : (
-        <div className="border border-[#FEE2E2] rounded-xl p-5 bg-[#FEF2F2]">
-          <p className="text-[13px] font-medium text-[#DC2626] mb-2">
+        <div className="border border-state-overdue-bg rounded-xl p-5 bg-state-overdue-bg">
+          <p className="text-[13px] font-medium text-state-overdue mb-2">
             Audio not available on this device. Transcript shown instead:
           </p>
-          <p className="text-[14px] text-[#374151] italic leading-relaxed">
+          <p className="text-[14px] text-text-strong italic leading-relaxed">
             &ldquo;{q.audioText}&rdquo;
           </p>
         </div>
@@ -466,26 +464,26 @@ function ListeningQuestionUI({
       {/* Question + options (always visible after at least 1 play, or if TTS unavailable) */}
       {(playCount > 0 || ttsUnavailable) && (
         <>
-          <p className="text-[15px] font-semibold text-[#111827]">
+          <p className="text-[15px] font-semibold text-text-primary">
             {q.question}
           </p>
           {q.questionEn && (
-            <p className="text-[13px] text-[#6B7280] -mt-2">{q.questionEn}</p>
+            <p className="text-[13px] text-text-secondary -mt-2">{q.questionEn}</p>
           )}
 
           <div className="space-y-2">
             {q.options.map((opt, i) => {
               let optClass =
-                "border border-[#E5E7EB] bg-white hover:border-[#D1D5DB] hover:shadow-sm cursor-pointer";
+                "border border-border-default bg-white hover:border-border-strong hover:shadow-sm cursor-pointer";
 
               if (submitted) {
                 if (i === q.correctIndex) {
-                  optClass = "border-2 border-[#059669] bg-[#F0FDF4]";
+                  optClass = "border-2 border-state-fresh bg-state-fresh-bg";
                 } else if (i === answer && i !== q.correctIndex) {
-                  optClass = "border-2 border-[#DC2626] bg-[#FEF2F2]";
+                  optClass = "border-2 border-state-overdue bg-state-overdue-bg";
                 } else {
                   optClass =
-                    "border border-[#F3F4F6] bg-[#FAFAFA] opacity-50";
+                    "border border-border-subtle bg-neutral-50 opacity-50";
                 }
               }
 
@@ -499,16 +497,16 @@ function ListeningQuestionUI({
                   <span
                     className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 text-[12px] font-semibold ${
                       submitted && i === q.correctIndex
-                        ? "border-[#059669] bg-[#059669] text-white"
+                        ? "border-state-fresh bg-state-fresh text-white"
                         : submitted && i === answer
-                          ? "border-[#DC2626] bg-[#DC2626] text-white"
-                          : "border-[#D1D5DB] text-[#9CA3AF]"
+                          ? "border-state-overdue bg-state-overdue text-white"
+                          : "border-border-strong text-text-quaternary"
                     }`}
                   >
                     {String.fromCharCode(65 + i)}
                   </span>
                   <span
-                    className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-[#059669]" : submitted && i === answer ? "font-semibold text-[#DC2626]" : "text-[#374151]"}`}
+                    className={`text-[14px] ${submitted && i === q.correctIndex ? "font-semibold text-state-fresh" : submitted && i === answer ? "font-semibold text-state-overdue" : "text-text-strong"}`}
                   >
                     {opt}
                   </span>
@@ -519,23 +517,23 @@ function ListeningQuestionUI({
 
           {submitted && (
             <div
-              className={`p-4 rounded-xl border ${answer === q.correctIndex ? "bg-[#F0FDF4] border-[#D1FAE5]" : "bg-[#FEF2F2] border-[#FEE2E2]"}`}
+              className={`p-4 rounded-xl border ${answer === q.correctIndex ? "bg-state-fresh-bg border-state-fresh-bg" : "bg-state-overdue-bg border-state-overdue-bg"}`}
             >
               <p
-                className={`text-[13px] font-semibold mb-1 ${answer === q.correctIndex ? "text-[#059669]" : "text-[#DC2626]"}`}
+                className={`text-[13px] font-semibold mb-1 ${answer === q.correctIndex ? "text-state-fresh" : "text-state-overdue"}`}
               >
                 {answer === q.correctIndex ? "Correto!" : "Incorreto"}
               </p>
-              <p className="text-[13px] text-[#374151]">{q.explanation}</p>
-              <p className="text-[12px] text-[#9CA3AF] mt-1 italic">
+              <p className="text-[13px] text-text-strong">{q.explanation}</p>
+              <p className="text-[12px] text-text-quaternary mt-1 italic">
                 {q.explanationEn}
               </p>
               {/* Show transcript after answering */}
-              <div className="mt-3 pt-3 border-t border-[#E5E7EB]">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-1">
+              <div className="mt-3 pt-3 border-t border-border-default">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary mb-1">
                   Transcrição
                 </p>
-                <p className="text-[13px] text-[#374151] italic">
+                <p className="text-[13px] text-text-strong italic">
                   &ldquo;{q.audioText}&rdquo;
                 </p>
               </div>
@@ -575,22 +573,22 @@ function SpeakingPromptUI({
 
   return (
     <div className="space-y-4">
-      <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary">
         {partLabels[sp.part] ?? `Parte ${sp.part}`}
       </p>
 
       {/* Instruction */}
-      <p className="text-[13px] text-[#6B7280] italic">{sp.instructionEn}</p>
+      <p className="text-[13px] text-text-secondary italic">{sp.instructionEn}</p>
 
       {/* Examiner prompt — speech bubble */}
-      <div className="relative border border-[#E5E7EB] rounded-xl p-5 bg-[#FAFAFA]">
+      <div className="relative border border-border-default rounded-xl p-5 bg-neutral-50">
         <div className="flex items-start gap-3">
           <PronunciationButton text={sp.prompt} size="sm" variant="muted" className="shrink-0 mt-0.5" />
           <div>
-            <p className="text-[15px] font-semibold text-[#111827] leading-relaxed">
+            <p className="text-[15px] font-semibold text-text-primary leading-relaxed">
               &ldquo;{sp.prompt}&rdquo;
             </p>
-            <p className="text-[13px] text-[#9CA3AF] mt-1 italic">
+            <p className="text-[13px] text-text-quaternary mt-1 italic">
               {sp.promptEn}
             </p>
           </div>
@@ -599,17 +597,17 @@ function SpeakingPromptUI({
 
       {/* Guidance checklist */}
       <div className="space-y-1">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary">
           Orientação
         </p>
         <ul className="space-y-1">
           {sp.guidance.map((g, i) => (
             <li key={i} className="flex items-start gap-2">
-              <span className="text-[#D1D5DB] mt-0.5">·</span>
-              <span className="text-[13px] text-[#9CA3AF]">
+              <span className="text-text-quaternary mt-0.5">·</span>
+              <span className="text-[13px] text-text-quaternary">
                 {g}
                 {sp.guidanceEn[i] && (
-                  <span className="text-[#D1D5DB]">
+                  <span className="text-text-quaternary">
                     {" "}
                     — {sp.guidanceEn[i]}
                   </span>
@@ -627,22 +625,22 @@ function SpeakingPromptUI({
           onChange={(e) => onResponse(e.target.value)}
           disabled={submitted}
           rows={5}
-          className="w-full border border-[#E5E7EB] rounded-xl p-4 text-[14px] text-[#111827] bg-white focus:outline-none focus:ring-2 focus:ring-[#111827] focus:ring-offset-1 resize-y disabled:opacity-60 disabled:bg-[#FAFAFA]"
+          className="w-full border border-border-default rounded-xl p-4 text-[14px] text-text-primary bg-white focus:outline-none focus:ring-2 focus:ring-text-primary focus:ring-offset-1 resize-y disabled:opacity-60 disabled:bg-neutral-50"
           placeholder="Escreva a sua resposta aqui..."
         />
         <div className="flex items-center justify-between mt-1">
           <p
             className={`text-[12px] font-medium ${
               wc === 0
-                ? "text-[#9CA3AF]"
+                ? "text-text-quaternary"
                 : meetsMin
-                  ? "text-[#059669]"
-                  : "text-[#DC2626]"
+                  ? "text-state-fresh"
+                  : "text-state-overdue"
             }`}
           >
             {wc} {wc === 1 ? "palavra" : "palavras"}
           </p>
-          <p className="text-[12px] text-[#9CA3AF]">
+          <p className="text-[12px] text-text-quaternary">
             min. {sp.minWords} palavras
           </p>
         </div>
@@ -654,8 +652,8 @@ function SpeakingPromptUI({
           disabled={!meetsMin}
           className={`w-full py-2.5 text-[13px] font-semibold rounded-lg transition-colors cursor-pointer ${
             meetsMin
-              ? "bg-[#111827] text-white hover:bg-[#374151]"
-              : "bg-[#F3F4F6] text-[#D1D5DB] cursor-not-allowed"
+              ? "bg-text-primary text-white hover:bg-text-strong"
+              : "bg-surface-sunken text-text-quaternary cursor-not-allowed"
           }`}
         >
           Submeter resposta
@@ -665,21 +663,21 @@ function SpeakingPromptUI({
       {/* After submission: show comparison */}
       {submitted && (
         <div className="space-y-3">
-          <div className="p-4 rounded-xl bg-[#F9FAFB] border border-[#F3F4F6]">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+          <div className="p-4 rounded-xl bg-surface-sunken border border-border-subtle">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary mb-2">
               Resposta modelo
             </p>
-            <p className="text-[13px] text-[#374151] leading-relaxed">
+            <p className="text-[13px] text-text-strong leading-relaxed">
               {sp.sampleResponse}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-2 italic">
+            <p className="text-[12px] text-text-quaternary mt-2 italic">
               {sp.sampleResponseEn}
             </p>
           </div>
 
           {/* Key elements check */}
-          <div className="p-3 rounded-lg bg-[#F9FAFB] border border-[#F3F4F6]">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+          <div className="p-3 rounded-lg bg-surface-sunken border border-border-subtle">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary mb-2">
               Elementos-chave
             </p>
             <div className="flex flex-wrap gap-2">
@@ -701,8 +699,8 @@ function SpeakingPromptUI({
                     key={i}
                     className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-medium ${
                       found
-                        ? "bg-[#F0FDF4] text-[#059669] border border-[#D1FAE5]"
-                        : "bg-[#F3F4F6] text-[#9CA3AF] border border-[#E5E7EB]"
+                        ? "bg-state-fresh-bg text-state-fresh border border-state-fresh-bg"
+                        : "bg-surface-sunken text-text-quaternary border border-border-default"
                     }`}
                   >
                     {found ? (
@@ -721,8 +719,8 @@ function SpeakingPromptUI({
             </div>
           </div>
 
-          <div className="p-3 rounded-lg bg-[#F0FDF4] border border-[#D1FAE5]">
-            <p className="text-[13px] text-[#059669] font-medium">
+          <div className="p-3 rounded-lg bg-state-fresh-bg border border-state-fresh-bg">
+            <p className="text-[13px] text-state-fresh font-medium">
               {countKeyPhraseMatches(response, sp.keyElements)} /{" "}
               {sp.keyElements.length} key elements found ·{" "}
               {scoreWrittenResponse(
@@ -828,7 +826,7 @@ function SummaryScreen({
     "muito-bom": "text-amber-700",
     bom: "text-blue-700",
     suficiente: "text-emerald-700",
-    "not-yet": "text-[#6B7280]",
+    "not-yet": "text-text-secondary",
   };
 
   return (
@@ -837,17 +835,17 @@ function SummaryScreen({
       <div
         className={`border-2 rounded-2xl p-8 bg-gradient-to-br text-center mb-8 ${tierStyles[classification.tier]}`}
       >
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary mb-3">
           Resultado Final
         </p>
-        <p className="text-[48px] font-bold text-[#111827]">
+        <p className="text-[48px] font-bold text-text-primary">
           {Math.round(finalPct)}%
         </p>
         <p className={`text-[24px] font-bold mt-1 ${tierText[classification.tier]}`}>
           {classification.labelPt}
         </p>
         {classification.tier === "not-yet" && (
-          <p className="text-[13px] text-[#6B7280] mt-3 max-w-md mx-auto">
+          <p className="text-[13px] text-text-secondary mt-3 max-w-md mx-auto">
             Keep practising — you&apos;re building a strong foundation. Review the areas below and try again when you&apos;re ready.
           </p>
         )}
@@ -855,44 +853,44 @@ function SummaryScreen({
 
       {/* Per-section breakdown */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+        <div className="border border-border-default rounded-xl p-5 bg-white">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary mb-2">
             Leitura e Escrita
           </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
+          <p className="text-[18px] font-semibold text-text-primary">
             {Math.round(rwPoints)} / {rwTotal} pts
           </p>
-          <p className="text-[13px] text-[#6B7280] mt-1">
+          <p className="text-[13px] text-text-secondary mt-1">
             {Math.round(rwPct)}% · peso {Math.round(rwSection.weight * 100)}%
           </p>
         </div>
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+        <div className="border border-border-default rounded-xl p-5 bg-white">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary mb-2">
             Compreensão Oral
           </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
+          <p className="text-[18px] font-semibold text-text-primary">
             {Math.round(liPoints)} / {liTotal} pts
           </p>
-          <p className="text-[13px] text-[#6B7280] mt-1">
+          <p className="text-[13px] text-text-secondary mt-1">
             {Math.round(liPct)}% · peso {Math.round(liSection.weight * 100)}%
           </p>
         </div>
-        <div className="border border-[#E5E7EB] rounded-xl p-5 bg-white">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-2">
+        <div className="border border-border-default rounded-xl p-5 bg-white">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary mb-2">
             Produção Oral
           </p>
-          <p className="text-[18px] font-semibold text-[#111827]">
+          <p className="text-[18px] font-semibold text-text-primary">
             {Math.round(spPoints)} / {spTotal} pts
           </p>
-          <p className="text-[13px] text-[#6B7280] mt-1">
+          <p className="text-[13px] text-text-secondary mt-1">
             {Math.round(spPct)}% · peso {Math.round(spSection.weight * 100)}%
           </p>
         </div>
       </div>
 
       {/* Scoring formula */}
-      <div className="border border-[#E5E7EB] rounded-xl p-4 bg-[#FAFAFA] mb-8">
-        <p className="text-[12px] text-[#9CA3AF] text-center font-mono">
+      <div className="border border-border-default rounded-xl p-4 bg-neutral-50 mb-8">
+        <p className="text-[12px] text-text-quaternary text-center font-mono">
           ({Math.round(rwPct)}% x 0.45) + ({Math.round(liPct)}% x 0.30) + (
           {Math.round(spPct)}% x 0.25) = {Math.round(finalPct)}%
         </p>
@@ -904,18 +902,18 @@ function SummaryScreen({
           <button
             onClick={onSave}
             disabled={saving}
-            className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors cursor-pointer disabled:opacity-50"
+            className="px-8 py-3 bg-text-primary text-white text-[15px] font-semibold rounded-xl hover:bg-text-strong transition-colors cursor-pointer disabled:opacity-50"
           >
             {saving ? "A guardar..." : "Concluir Exame"}
           </button>
         ) : (
-          <p className="text-[15px] font-semibold text-[#059669]">
+          <p className="text-[15px] font-semibold text-state-fresh">
             Resultado guardado!
           </p>
         )}
         <Link
           href="/exams"
-          className="text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors"
+          className="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors"
         >
           Voltar aos exames
         </Link>
@@ -928,7 +926,7 @@ function SummaryScreen({
    Main Exam Flow
    ═══════════════════════════════════════════════════ */
 
-export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; counts: ContentCounts }) {
+export function ExamPlayer({ exam }: { exam: MockExam | undefined }) {
   const [started, setStarted] = useState(false);
   const [currentSection, setCurrentSection] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -947,12 +945,11 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
   if (!exam) {
     return (
       <>
-        <Topbar counts={counts} />
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16">
-          <p className="text-[13px] text-[#9CA3AF]">Exam not found.</p>
+          <p className="text-[13px] text-text-quaternary">Exam not found.</p>
           <Link
             href="/exams"
-            className="text-[13px] font-medium text-[#003399] hover:underline mt-2 inline-block"
+            className="text-[13px] font-medium text-accent hover:underline mt-2 inline-block"
           >
             Back to Exams
           </Link>
@@ -964,17 +961,16 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
   if (!exam.available) {
     return (
       <>
-        <Topbar counts={counts} />
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 py-16 text-center">
-          <p className="text-[18px] font-semibold text-[#111827]">
+          <p className="text-[18px] font-semibold text-text-primary">
             Em breve
           </p>
-          <p className="text-[13px] text-[#9CA3AF] mt-1">
+          <p className="text-[13px] text-text-quaternary mt-1">
             This exam is not available yet.
           </p>
           <Link
             href="/exams"
-            className="text-[13px] font-medium text-[#003399] hover:underline mt-4 inline-block"
+            className="text-[13px] font-medium text-accent hover:underline mt-4 inline-block"
           >
             Back to Exams
           </Link>
@@ -1092,27 +1088,26 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
   if (!started) {
     return (
       <>
-        <Topbar counts={counts} />
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
           <div className="py-5">
             <Link
               href="/exams"
-              className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors mb-3"
+              className="inline-flex items-center gap-1 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors mb-3"
             >
               <span>←</span> Exames
             </Link>
-            <h1 className="text-2xl font-bold text-[#111827]">
+            <h1 className="text-2xl font-bold text-text-primary">
               {exam.titlePt}
             </h1>
-            <p className="text-[13px] font-medium text-[#6B7280] italic">
+            <p className="text-[13px] font-medium text-text-secondary italic">
               {exam.title}
             </p>
-            <p className="text-[12px] text-[#9CA3AF] mt-1">{exam.monthPt}</p>
+            <p className="text-[12px] text-text-quaternary mt-1">{exam.monthPt}</p>
           </div>
 
-          <div className="border-t border-[#F3F4F6] mb-6" />
+          <div className="border-t border-border-subtle mb-6" />
 
-          <p className="text-[13px] text-[#6B7280] mb-6 leading-relaxed">
+          <p className="text-[13px] text-text-secondary mb-6 leading-relaxed">
             {exam.descriptionPt}
           </p>
 
@@ -1121,24 +1116,24 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
             {exam.sections.map((sec, i) => (
               <div
                 key={sec.id}
-                className="border border-[#E5E7EB] rounded-xl p-4 bg-white flex items-center justify-between"
+                className="border border-border-default rounded-xl p-4 bg-white flex items-center justify-between"
               >
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary">
                     Secção {i + 1}
                   </p>
-                  <p className="text-[15px] font-semibold text-[#111827] mt-1">
+                  <p className="text-[15px] font-semibold text-text-primary mt-1">
                     {sec.title}
                   </p>
-                  <p className="text-[13px] text-[#6B7280] italic">
+                  <p className="text-[13px] text-text-secondary italic">
                     {sec.titleEn}
                   </p>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="text-[13px] font-semibold text-[#111827]">
+                  <p className="text-[13px] font-semibold text-text-primary">
                     {Math.round(sec.weight * 100)}%
                   </p>
-                  <p className="text-[12px] text-[#9CA3AF]">
+                  <p className="text-[12px] text-text-quaternary">
                     {sec.timeMinutes} min
                   </p>
                 </div>
@@ -1146,14 +1141,14 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
             ))}
           </div>
 
-          <p className="text-[12px] text-[#9CA3AF] mb-6">
+          <p className="text-[12px] text-text-quaternary mb-6">
             You can pause and return to this exam at any time. Your progress
             will be saved when you complete the exam.
           </p>
 
           <button
             onClick={() => setStarted(true)}
-            className="px-8 py-3 bg-[#111827] text-white text-[15px] font-semibold rounded-xl hover:bg-[#374151] transition-colors cursor-pointer"
+            className="px-8 py-3 bg-text-primary text-white text-[15px] font-semibold rounded-xl hover:bg-text-strong transition-colors cursor-pointer"
           >
             Iniciar Exame
           </button>
@@ -1168,17 +1163,16 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
   if (showSummary) {
     return (
       <>
-        <Topbar counts={counts} />
         <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
           <div className="py-5">
-            <h1 className="text-2xl font-bold text-[#111827]">
+            <h1 className="text-2xl font-bold text-text-primary">
               {exam.titlePt}
             </h1>
-            <p className="text-[13px] font-medium text-[#6B7280] italic">
+            <p className="text-[13px] font-medium text-text-secondary italic">
               Resultado
             </p>
           </div>
-          <div className="border-t border-[#F3F4F6] mb-6" />
+          <div className="border-t border-border-subtle mb-6" />
           <SummaryScreen
             exam={exam}
             sectionStates={sectionStates}
@@ -1288,18 +1282,17 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
 
   return (
     <>
-      <Topbar counts={counts} />
       <main className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10">
         {/* Header */}
         <div className="py-5">
           <Link
             href="/exams"
-            className="inline-flex items-center gap-1 text-[13px] font-medium text-[#6B7280] hover:text-[#111827] transition-colors mb-3"
+            className="inline-flex items-center gap-1 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors mb-3"
           >
             <span>←</span> Exames
           </Link>
 
-          <h1 className="text-2xl font-bold text-[#111827]">
+          <h1 className="text-2xl font-bold text-text-primary">
             {exam.titlePt}
           </h1>
 
@@ -1322,12 +1315,12 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
                   disabled={isLocked}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12px] font-semibold transition-all ${
                     isActive
-                      ? "bg-[#111827] text-white"
+                      ? "bg-text-primary text-white"
                       : isCompleted
-                        ? "bg-[#F0FDF4] text-[#059669] border border-[#D1FAE5]"
+                        ? "bg-state-fresh-bg text-state-fresh border border-state-fresh-bg"
                         : isLocked
-                          ? "bg-[#F9FAFB] text-[#D1D5DB] cursor-not-allowed"
-                          : "bg-[#F9FAFB] text-[#6B7280] hover:bg-[#F3F4F6] cursor-pointer"
+                          ? "bg-surface-sunken text-text-quaternary cursor-not-allowed"
+                          : "bg-surface-sunken text-text-secondary hover:bg-surface-sunken cursor-pointer"
                   }`}
                 >
                   {isCompleted && (
@@ -1350,19 +1343,19 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
 
           {/* Progress within section */}
           <div className="flex items-center gap-3 mt-3">
-            <div className="flex-1 h-1 bg-[#F3F4F6] rounded-full overflow-hidden">
+            <div className="flex-1 h-1 bg-surface-sunken rounded-full overflow-hidden">
               <div
-                className="h-full bg-[#111827] rounded-full transition-all duration-500"
+                className="h-full bg-text-primary rounded-full transition-all duration-500"
                 style={{ width: `${progressPct}%` }}
               />
             </div>
-            <span className="text-[12px] font-medium text-[#9CA3AF] shrink-0">
+            <span className="text-[12px] font-medium text-text-quaternary shrink-0">
               {currentQuestion + 1} / {itemCount}
             </span>
           </div>
         </div>
 
-        <div className="border-t border-[#F3F4F6] mb-6" />
+        <div className="border-t border-border-subtle mb-6" />
 
         {/* Current item */}
         <div className="pb-8">
@@ -1370,7 +1363,7 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
         </div>
 
         {/* Navigation footer */}
-        <div className="flex items-center justify-between py-6 border-t border-[#F3F4F6] mb-8">
+        <div className="flex items-center justify-between py-6 border-t border-border-subtle mb-8">
           <button
             onClick={() => {
               if (currentQuestion > 0) {
@@ -1381,8 +1374,8 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
             disabled={currentQuestion === 0}
             className={`text-[13px] font-medium transition-colors cursor-pointer ${
               currentQuestion === 0
-                ? "text-[#D1D5DB] cursor-not-allowed"
-                : "text-[#6B7280] hover:text-[#111827]"
+                ? "text-text-quaternary cursor-not-allowed"
+                : "text-text-secondary hover:text-text-primary"
             }`}
           >
             ← Anterior
@@ -1394,14 +1387,14 @@ export function ExamPlayer({ exam, counts }: { exam: MockExam | undefined; count
                 setCurrentQuestion((prev) => prev + 1);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="px-5 py-2 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+              className="px-5 py-2 bg-text-primary text-white text-[13px] font-semibold rounded-lg hover:bg-text-strong transition-colors cursor-pointer"
             >
               Seguinte →
             </button>
           ) : (
             <button
               onClick={completeSection}
-              className="px-5 py-2 bg-[#111827] text-white text-[13px] font-semibold rounded-lg hover:bg-[#374151] transition-colors cursor-pointer"
+              className="px-5 py-2 bg-text-primary text-white text-[13px] font-semibold rounded-lg hover:bg-text-strong transition-colors cursor-pointer"
             >
               {currentSection < 2
                 ? "Secção seguinte →"

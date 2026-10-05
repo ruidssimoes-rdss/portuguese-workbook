@@ -1,106 +1,5 @@
 @import "tailwindcss";
-
-@theme {
-  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
-  --font-content: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "Menlo", ui-monospace, monospace;
-
-  --color-bg: #ffffff;
-  --color-bg-s: #fafafa;
-  --color-bg-h: #f5f5f5;
-  --color-border: #e5e5e5;
-  --color-border-l: #f0f0f0;
-  --color-text: #0a0a0a;
-  --color-text-2: #737373;
-  --color-text-3: #a3a3a3;
-
-  /* === Accent & Brand === */
-  --color-accent: #185FA5;
-  --color-accent-light: #E6F1FB;
-  --color-accent-border: rgba(24, 95, 165, 0.15);
-  --color-accent-hover: #144d87;
-  --color-accent-muted: rgba(24, 95, 165, 0.6);
-
-  /* === Text Hierarchy === */
-  --color-text-secondary: #6C6B71;
-  --color-text-muted: #9B9DA3;
-
-  /* === Surfaces === */
-  --color-surface: #F7F7F5;
-  --color-surface-hover: #F7F7F5;
-
-  /* === Borders === */
-  --color-border-light: rgba(0, 0, 0, 0.06);
-
-  /* === CEFR Level Colors === */
-  --color-cefr-a1: #0F6E56;
-  --color-cefr-a2: #185FA5;
-  --color-cefr-b1: #854F0B;
-
-  /* === Monochrome UI === */
-  --color-btn-primary: #111111;
-  --color-btn-primary-hover: #333333;
-  --color-btn-primary-text: #ffffff;
-
-  /* === smartBlocos Design Tokens === */
-
-  /* Semantic colors */
-  --color-bloco-primary: #185FA5;
-  --color-bloco-cefr-a1: #0F6E56;
-  --color-bloco-cefr-a2: #185FA5;
-  --color-bloco-tip: #854F0B;
-  --color-bloco-warning: #dc2626;
-  --color-bloco-success: #0F6E56;
-  --color-bloco-progress: #185FA5;
-
-  /* Text */
-  --color-bloco-text: #111111;
-  --color-bloco-text-body: #6C6B71;
-  --color-bloco-text-secondary: #6C6B71;
-  --color-bloco-text-muted: #9B9DA3;
-
-  /* Surfaces */
-  --color-bloco-surface: #FFFFFF;
-  --color-bloco-surface-recessed: #F7F7F5;
-  --color-bloco-surface-page: #FFFFFF;
-
-  /* Borders */
-  --color-bloco-border-content: rgba(0, 0, 0, 0.06);
-  --color-bloco-border-divider: rgba(0, 0, 0, 0.12);
-  --color-bloco-border-track: rgba(0, 0, 0, 0.06);
-
-  /* Spacing (as custom properties for non-Tailwind contexts) */
-  --bloco-padding: 16px;
-  --bloco-expanded-padding: 20px;
-  --bloco-section-gap: 12px;
-  --bloco-badge-gap: 8px;
-  --bloco-example-padding: 12px;
-  --bloco-example-gap: 8px;
-
-  /* Radii */
-  --bloco-radius: 12px;
-  --bloco-radius-badge: 8px;
-  --bloco-radius-tag: 12px;
-  --bloco-radius-example: 8px;
-  --bloco-radius-pill: 9999px;
-}
-
-:root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #F7F7F5;
-  --bg-card: #ffffff;
-  --bg-hover: #F7F7F5;
-  --bg-active: #E6F1FB;
-  --text-primary: #111111;
-  --text-secondary: #6C6B71;
-  --text-muted: #9B9DA3;
-  --border-primary: rgba(0, 0, 0, 0.06);
-  --border-light: rgba(0, 0, 0, 0.06);
-  --brand: #185FA5;
-  --brand-light: #E6F1FB;
-  --shadow-sm: none;
-}
-
+@import "./aula-tokens.css";
 
 @layer base {
   html {
@@ -108,12 +7,30 @@
   }
   body {
     font-family: var(--font-sans);
+    background: var(--color-surface-page);
+    color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   ::selection {
-    background: #0a0a0a;
-    color: #fff;
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -290,9 +207,9 @@
 }
 
 @keyframes input-focus-glow {
-  0% { box-shadow: 0 0 0 0 rgba(24, 95, 165, 0.2); }
-  50% { box-shadow: 0 0 0 4px rgba(24, 95, 165, 0.1); }
-  100% { box-shadow: 0 0 0 0 rgba(24, 95, 165, 0); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 20%, transparent); }
+  50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 10%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 /* ── Utility Classes ────────────────────────────────────────── */
@@ -309,30 +226,30 @@
 /* ── Exercise States ────────────────────────────────────────── */
 
 .exercise-correct {
-  background-color: #E1F5EE;
-  border-color: #0F6E56;
+  background-color: var(--color-state-fresh-bg);
+  border-color: var(--color-state-fresh);
   transition: all 200ms ease-out;
 }
 
 .exercise-incorrect {
-  background-color: #fef2f2;
-  border-color: #dc2626;
+  background-color: var(--color-state-overdue-bg);
+  border-color: var(--color-state-overdue);
   transition: all 200ms ease-out;
 }
 
 /* ── Option States (for ChooseCorrect) ──────────────────────── */
 
 .option-correct {
-  background-color: #E1F5EE;
-  border-color: #0F6E56;
-  color: #0F6E56;
+  background-color: var(--color-state-fresh-bg);
+  border-color: var(--color-state-fresh);
+  color: var(--color-state-fresh);
   transition: all 200ms ease-out;
 }
 
 .option-incorrect {
-  background-color: #fef2f2;
-  border-color: #dc2626;
-  color: #dc2626;
+  background-color: var(--color-state-overdue-bg);
+  border-color: var(--color-state-overdue);
+  color: var(--color-state-overdue);
   transition: all 200ms ease-out;
 }
 
@@ -350,14 +267,14 @@
 /* ── Match Pair States ──────────────────────────────────────── */
 
 .pair-selected {
-  border-color: #185FA5;
-  background-color: #E6F1FB;
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-subtle);
   transition: all 150ms ease-out;
 }
 
 .pair-matched {
-  background-color: #E1F5EE;
-  border-color: #0F6E56;
+  background-color: var(--color-state-fresh-bg);
+  border-color: var(--color-state-fresh);
   opacity: 0.7;
   transition: all 200ms ease-out;
 }
@@ -381,9 +298,9 @@
 /* ── URL Highlight ────────────────────────────────────────── */
 
 @keyframes url-highlight-ring {
-  0% { box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.3); }
-  70% { box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.3); }
-  100% { box-shadow: 0 0 0 0 rgba(17, 17, 17, 0); }
+  0% { box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-text-primary) 30%, transparent); }
+  70% { box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-text-primary) 30%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 .url-highlight {
   animation: url-highlight-ring 2s ease-out forwards;

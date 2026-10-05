@@ -15,12 +15,12 @@ const RATE = { default: 0.85, slow: 0.6 };
 
 const GLOW_STYLES = `
   @keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 6px 2px rgba(0,51,153,0.25), 0 0 0 0 rgba(0,51,153,0.15); }
-    50% { box-shadow: 0 0 18px 6px rgba(0,51,153,0.45), 0 0 32px 8px rgba(0,51,153,0.15); }
+    0%, 100% { box-shadow: 0 0 6px 2px color-mix(in srgb, var(--color-accent) 25%, transparent), 0 0 0 0 color-mix(in srgb, var(--color-accent) 15%, transparent); }
+    50% { box-shadow: 0 0 18px 6px color-mix(in srgb, var(--color-accent) 45%, transparent), 0 0 32px 8px color-mix(in srgb, var(--color-accent) 15%, transparent); }
   }
   @keyframes glow-pulse-dark {
-    0%, 100% { box-shadow: 0 0 6px 2px rgba(255,255,255,0.1); }
-    50% { box-shadow: 0 0 18px 6px rgba(255,255,255,0.25); }
+    0%, 100% { box-shadow: 0 0 6px 2px color-mix(in srgb, var(--color-surface-raised) 10%, transparent); }
+    50% { box-shadow: 0 0 18px 6px color-mix(in srgb, var(--color-surface-raised) 25%, transparent); }
   }
 `;
 
@@ -152,21 +152,21 @@ export function PronunciationButton({
 
   const variantClasses =
     variant === "dark"
-      ? `border-0 bg-text text-bg shadow-none focus:ring-border ${baseTransition} ${
+      ? `border-0 bg-text-primary text-text-on-accent shadow-none focus:ring-border-default ${baseTransition} ${
           playing
             ? "[animation:glow-pulse-dark_1.2s_ease-in-out_infinite]"
-            : "hover:opacity-90 hover:shadow-[0_0_12px_4px_rgba(255,255,255,0.12)]"
+            : "hover:opacity-90 hover:shadow-[0_0_12px_4px_color-mix(in_srgb,var(--color-surface-raised)_12%,transparent)]"
         }`
       : variant === "muted"
-        ? `border-0 bg-surface text-text-muted shadow-none focus:ring-border ${baseTransition} ${
+        ? `border-0 bg-surface-sunken text-text-quaternary shadow-none focus:ring-border-default ${baseTransition} ${
             playing
-              ? "bg-[#003399]/10 text-[#003399] [animation:glow-pulse_1.2s_ease-in-out_infinite]"
-              : "hover:bg-border hover:text-text-secondary"
+              ? "bg-accent/10 text-accent [animation:glow-pulse_1.2s_ease-in-out_infinite]"
+              : "hover:bg-border-default hover:text-text-secondary"
           }`
-        : `border-0 text-white shadow-none focus:ring-[#003399]/30 ${baseTransition} ${
+        : `border-0 text-white shadow-none focus:ring-accent/30 ${baseTransition} ${
             playing
-              ? "bg-[#003399] [animation:glow-pulse_1.2s_ease-in-out_infinite]"
-              : "bg-[#003399] hover:bg-[#002277] hover:shadow-[0_0_0_4px_rgba(0,51,153,0.12),_0_4px_16px_rgba(0,51,153,0.25)]"
+              ? "bg-accent [animation:glow-pulse_1.2s_ease-in-out_infinite]"
+              : "bg-accent hover:bg-accent-hover hover:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-accent)_12%,transparent),_0_4px_16px_color-mix(in_srgb,var(--color-accent)_25%,transparent)]"
           }`;
 
   return (
@@ -187,7 +187,7 @@ export function PronunciationButton({
       </button>
       {voiceUnavailable && (
         <span
-          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 rounded text-[11px] whitespace-nowrap bg-text text-bg z-10"
+          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 rounded text-[11px] whitespace-nowrap bg-text-primary text-text-on-accent z-10"
           role="tooltip"
         >
           Portuguese voice not available

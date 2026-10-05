@@ -14,10 +14,10 @@ interface CardProps {
 }
 
 const variantClasses: Record<CardVariant, string> = {
-  outline: "border border-[var(--border-primary)] bg-[var(--bg-card)]",
-  surface: "bg-[var(--bg-secondary)] border border-[var(--border-primary)]",
+  outline: "border border-border-default bg-surface-raised",
+  surface: "bg-surface-sunken border border-border-default",
   ghost: "bg-transparent",
-  featured: "border border-[var(--border-primary)] bg-[var(--bg-card)] border-l-[3px] border-l-[var(--brand)]",
+  featured: "border border-border-default bg-surface-raised ring-1 ring-accent/20",
 };
 
 const paddingClasses = {
@@ -40,7 +40,7 @@ export function Card({
   const v = variantClasses[variant];
   const p = paddingClasses[padding];
   const hover = interactive
-    ? "hover:border-[#003399]/20 hover:shadow-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003399]/30 focus-visible:ring-offset-2"
+    ? "hover:border-accent/20 hover:shadow-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 focus-visible:ring-offset-2"
     : "";
   const active = interactive && pressed ? "scale-[0.995]" : "";
   const clickable = onClick ? "cursor-pointer" : "";

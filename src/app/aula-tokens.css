@@ -1,0 +1,117 @@
+/*
+ * Aula — design tokens.
+ * Mirrors the Figma variables (file "Aula", frame "Aula — Design tokens").
+ * Primitives are the only place a colour value is written; everything else
+ * aliases them. Change a primitive and every screen follows.
+ * Light only.
+ */
+
+@theme {
+  /* ── Typeface ─────────────────────────────────────────────── */
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* ── Primitives: navy (accent) ────────────────────────────── */
+  --color-navy-900: #101a3c;
+  --color-navy-800: #14214c;
+  --color-navy-700: #1b2b61;
+  --color-navy-600: #2a3f80;
+  --color-navy-500: #3f589f;
+  --color-navy-200: #d3daeb;
+  --color-navy-100: #e8ecf6;
+  --color-navy-50: #f3f5fa;
+
+  /* ── Primitives: neutral ──────────────────────────────────── */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f6f6f6;
+  --color-neutral-150: #ececec;
+  --color-neutral-200: #e3e3e3;
+  --color-neutral-300: #cfcfcf;
+  --color-neutral-400: #9a9a9a;
+  --color-neutral-500: #7a7a7a;
+  --color-neutral-600: #6e6e6e;
+  --color-neutral-700: #444444;
+  --color-neutral-900: #222222;
+
+  /* ── Primitives: state hues ───────────────────────────────── */
+  --color-violet-600: #5b45b8;
+  --color-violet-100: #ece8f8;
+  --color-teal-700: #1f7a68;
+  --color-teal-100: #e1f2ed;
+  --color-coral-600: #b94a32;
+  --color-coral-100: #fbe9e4;
+
+  /* ── Semantic: text ───────────────────────────────────────── */
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-strong: var(--color-neutral-700);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-tertiary: var(--color-neutral-500);
+  --color-text-quaternary: var(--color-neutral-400);
+  --color-text-on-accent: var(--color-neutral-0);
+
+  /* ── Semantic: surfaces ───────────────────────────────────── */
+  --color-surface-raised: var(--color-neutral-0);
+  --color-surface-page: var(--color-neutral-0);
+  --color-surface-side: var(--color-neutral-100);
+  --color-surface-sunken: var(--color-neutral-100);
+  --color-surface-hover: var(--color-neutral-150);
+
+  /* ── Semantic: borders & tracks ───────────────────────────── */
+  --color-border-subtle: var(--color-neutral-150);
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
+  --color-track-empty: var(--color-neutral-200);
+
+  /* ── Semantic: accent (navy/700 — the single accent) ──────── */
+  --color-accent: var(--color-navy-700);
+  --color-accent-hover: var(--color-navy-800);
+  --color-accent-subtle: var(--color-navy-100);
+  --color-accent-faint: var(--color-navy-50);
+
+  /* ── Semantic: learning state ─────────────────────────────── */
+  /* Coral is the only warm colour in the system. It means one thing: overdue. */
+  --color-state-mastered: var(--color-navy-700);
+  --color-state-mastered-bg: var(--color-navy-100);
+  --color-state-learning: var(--color-violet-600);
+  --color-state-learning-bg: var(--color-violet-100);
+  --color-state-fresh: var(--color-teal-700);
+  --color-state-fresh-bg: var(--color-teal-100);
+  --color-state-overdue: var(--color-coral-600);
+  --color-state-overdue-bg: var(--color-coral-100);
+  --color-state-unseen: var(--color-neutral-300);
+  --color-state-unseen-bg: var(--color-neutral-100);
+
+  /* ── Type scale ───────────────────────────────────────────── */
+  --text-title: 22px;
+  --text-title--line-height: 28px;
+  --text-title--letter-spacing: -0.02em;
+  --text-headline: 17px;
+  --text-headline--line-height: 24px;
+  --text-body: 13.5px;
+  --text-body--line-height: 21px;
+  --text-ui: 12.5px;
+  --text-ui--line-height: 18px;
+  --text-small: 12px;
+  --text-small--line-height: 17px;
+  --text-caption: 11px;
+  --text-caption--line-height: 15px;
+  --text-label: 10.5px;
+  --text-label--line-height: 14px;
+  --text-label--letter-spacing: 0.06em;
+
+  /* ── Radius ───────────────────────────────────────────────── */
+  --radius-row: 5px;
+  --radius-control: 6px;
+  --radius-card: 8px;
+  --radius-pill: 999px;
+
+  /* ── Motion ───────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --default-transition-duration: 140ms;
+  --default-transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ── Shell dimensions ─────────────────────────────────────── */
+  --spacing-explorer: 280px;
+  --spacing-panel: 340px;
+  --spacing-header: 48px;
+}

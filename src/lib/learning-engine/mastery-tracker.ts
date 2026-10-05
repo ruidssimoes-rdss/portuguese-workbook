@@ -287,6 +287,16 @@ export async function getCEFRProgress(
   client?: SupabaseClient
 ): Promise<CEFRProgress> {
   const records = await getUserMastery(userId, { cefr }, client);
+  return summarizeCEFRProgress(records, cefr, contentTotals);
+}
+
+/** Pure: CEFR readiness from mastery records already in hand (filtered to any levels). */
+export function summarizeCEFRProgress(
+  allRecords: MasteryRecord[],
+  cefr: CEFRLevel,
+  contentTotals: { vocab: number; verbs: number; grammar: number }
+): CEFRProgress {
+  const records = allRecords.filter((r) => r.content_cefr === cefr);
 
   const vocabRecords = records.filter((r) => r.content_type === "vocab");
   const verbRecords = records.filter((r) => r.content_type === "verb");

@@ -12,6 +12,38 @@ export type ReviewReason = "overdue" | "low_accuracy" | "broken_streak";
 
 export const REVIEW_SESSION_MAX = 20;
 
+/**
+ * Narrows the records a review draws from. Used by the vocabulary folder
+ * panels, which promise a session and must start exactly that session.
+ */
+export interface ReviewScope {
+  contentType?: MasteryRecord["content_type"];
+  /** Restrict to these content ids (e.g. the words of one category). */
+  contentIds?: string[];
+  /** Only items at least one full day past their review date. */
+  overdueOnly?: boolean;
+}
+
+const DAY = 86_400_000;
+
+export function scopeRecords(
+  records: MasteryRecord[],
+  scope: ReviewScope | undefined,
+  now: Date = new Date()
+): MasteryRecord[] {
+  if (!scope) return records;
+  const ids = scope.contentIds ? new Set(scope.contentIds) : null;
+  return records.filter((r) => {
+    if (scope.contentType && r.content_type !== scope.contentType) return false;
+    if (ids && !ids.has(r.content_id)) return false;
+    if (scope.overdueOnly) {
+      if (!r.next_review_at) return false;
+      if (now.getTime() - new Date(r.next_review_at).getTime() < DAY) return false;
+    }
+    return true;
+  });
+}
+
 export interface ReviewCandidate {
   record: MasteryRecord;
   reason: ReviewReason;

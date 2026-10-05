@@ -124,6 +124,9 @@ export interface WrongItem {
   correctAnswer: string;
   sentencePt?: string;
   sentenceEn?: string;
+  /** The item the question tested — recorded since the shell redesign; older rows lack it */
+  contentType?: "vocab" | "verb" | "grammar";
+  contentId?: string;
 }
 
 export async function getLessonProgressMap(): Promise<

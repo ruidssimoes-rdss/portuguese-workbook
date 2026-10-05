@@ -27,8 +27,8 @@ const cefrOptions = ["All", "A1", "A2", "B1"];
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 
-export function CultureBrowser({ items: allItems }: { items: CultureItem[] }) {
-  const [tab, setTab] = useState("All");
+export function CultureBrowser({ items: allItems, initialTab = "All" }: { items: CultureItem[]; initialTab?: string }) {
+  const [tab, setTab] = useState(tabs.includes(initialTab) ? initialTab : "All");
   const [cefr, setCefr] = useState("All");
   const [search, setSearch] = useState("");
 
@@ -86,12 +86,12 @@ export function CultureBrowser({ items: allItems }: { items: CultureItem[] }) {
             <div className="flex items-start justify-between mb-2">
               <div>
                 <div className="flex items-center gap-1">
-                  <span className="text-[14px] font-medium text-[#111111]">
+                  <span className="text-[14px] font-medium text-text-primary">
                     {item.title}
                   </span>
                   <AudioButton text={item.title} />
                 </div>
-                <div className="text-[12px] text-[#9B9DA3] mt-0.5">
+                <div className="text-[12px] text-text-quaternary mt-0.5">
                   {item.subtitle}
                 </div>
               </div>
@@ -100,7 +100,7 @@ export function CultureBrowser({ items: allItems }: { items: CultureItem[] }) {
                 <BadgePill label={item.category} variant="neutral" />
               </div>
             </div>
-            <div className="text-[12px] text-[#6C6B71] leading-relaxed">
+            <div className="text-[12px] text-text-secondary leading-relaxed">
               {item.description}
             </div>
           </CardShell>

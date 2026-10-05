@@ -13,9 +13,11 @@ import {
   type ContentType,
 } from "./mastery-tracker";
 import {
+  scopeRecords,
   selectReviewCandidates,
   REVIEW_SESSION_MAX,
   type ReviewReason,
+  type ReviewScope,
 } from "./review-selector";
 import {
   getVocabPool,
@@ -56,10 +58,12 @@ export interface ReviewItem {
 export async function generateReviewSession(
   userId: string,
   maxItems: number = REVIEW_SESSION_MAX,
-  client?: SupabaseClient
+  client?: SupabaseClient,
+  scope?: ReviewScope
 ): Promise<ReviewSession> {
+  const now = new Date();
   const allRecords = await getUserMastery(userId, undefined, client);
-  const selected = selectReviewCandidates(allRecords, new Date(), maxItems);
+  const selected = selectReviewCandidates(scopeRecords(allRecords, scope, now), now, maxItems);
 
   const items: ReviewItem[] = selected.map(({ record, reason }) => ({
     contentType: record.content_type as ContentType,

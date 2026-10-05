@@ -30,7 +30,7 @@ function DifficultyDots({ level }: { level: 1 | 2 | 3 }) {
         <div
           key={i}
           className={`w-1.5 h-1.5 rounded-full ${
-            i <= level ? "bg-text" : "bg-border"
+            i <= level ? "bg-text-primary" : "bg-border-default"
           }`}
         />
       ))}
@@ -49,7 +49,7 @@ function ClassificationBadge({
     "Muito Bom": "text-amber-700 bg-amber-50 border-amber-200",
     Bom: "text-blue-700 bg-blue-50 border-blue-200",
     Suficiente: "text-emerald-700 bg-emerald-50 border-emerald-200",
-    "Not yet": "text-text-secondary bg-surface border-border",
+    "Not yet": "text-text-secondary bg-surface-sunken border-border-default",
   };
 
   return (
@@ -116,11 +116,11 @@ export function ExamsList({ exams }: { exams: ExamSummary[] }) {
             Each mock exam simulates the full CIPLE A2 format with 3 sections:
             Reading & Writing (45%), Listening (30%), and Speaking (25%).
             Scores are classified as{" "}
-            <span className="font-semibold text-text">Suficiente</span>{" "}
+            <span className="font-semibold text-text-primary">Suficiente</span>{" "}
             (55%),{" "}
-            <span className="font-semibold text-text">Bom</span>{" "}
+            <span className="font-semibold text-text-primary">Bom</span>{" "}
             (70%), or{" "}
-            <span className="font-semibold text-text">Muito Bom</span>{" "}
+            <span className="font-semibold text-text-primary">Muito Bom</span>{" "}
             (85%).
           </p>
         </Card>
@@ -142,15 +142,15 @@ export function ExamsList({ exams }: { exams: ExamSummary[] }) {
               return (
                 <div
                   key={exam.id}
-                  className="border border-[#F3F4F6] rounded-xl p-5 bg-[#FAFAFA] opacity-60 h-full flex flex-col"
+                  className="border border-border-subtle rounded-xl p-5 bg-neutral-50 opacity-60 h-full flex flex-col"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-[11px] font-semibold uppercase tracking-widest text-[#D1D5DB]">
+                    <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary">
                       {exam.monthPt}
                     </p>
                     <DifficultyDots level={exam.difficulty} />
                   </div>
-                  <h3 className="text-[15px] font-semibold text-[#D1D5DB] mt-2">
+                  <h3 className="text-[15px] font-semibold text-text-quaternary mt-2">
                     {exam.titlePt}
                   </h3>
                   <div className="flex items-center gap-2 mt-auto pt-4">
@@ -159,7 +159,7 @@ export function ExamsList({ exams }: { exams: ExamSummary[] }) {
                       height="14"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#D1D5DB"
+                      stroke="var(--color-border-strong)"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -167,7 +167,7 @@ export function ExamsList({ exams }: { exams: ExamSummary[] }) {
                       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                     </svg>
-                    <span className="text-[12px] font-medium text-[#D1D5DB]">
+                    <span className="text-[12px] font-medium text-text-quaternary">
                       Em breve
                     </span>
                   </div>
@@ -183,29 +183,29 @@ export function ExamsList({ exams }: { exams: ExamSummary[] }) {
               return (
                 <div
                   key={exam.id}
-                  className="border border-[#F3F4F6] rounded-xl p-5 bg-[#FAFAFA] opacity-90 h-full flex flex-col"
+                  className="border border-border-subtle rounded-xl p-5 bg-neutral-50 opacity-90 h-full flex flex-col"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+                    <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary">
                       {exam.monthPt}
                     </p>
                     <DifficultyDots level={exam.difficulty} />
                   </div>
-                  <h3 className="text-[15px] font-semibold text-[#6B7280] mt-2">
+                  <h3 className="text-[15px] font-semibold text-text-secondary mt-2">
                     {exam.titlePt}
                   </h3>
-                  <p className="text-[12px] text-[#9CA3AF] mt-2">
+                  <p className="text-[12px] text-text-quaternary mt-2">
                     Complete {moreNeeded} more A1 lesson
                     {moreNeeded !== 1 ? "s" : ""} to unlock
                   </p>
                   <div className="mt-auto pt-4">
-                    <div className="h-1.5 rounded-full bg-[#E5E7EB] overflow-hidden">
+                    <div className="h-1.5 rounded-full bg-border-default overflow-hidden">
                       <div
                         className="h-full bg-[var(--color-primary)] rounded-full transition-all"
                         style={{ width: `${pct}%` }}
                       />
                     </div>
-                    <p className="text-[11px] text-[#9CA3AF] mt-1">
+                    <p className="text-[11px] text-text-quaternary mt-1">
                       {totalCompleted} / {lessonsRequired} lições
                     </p>
                   </div>
@@ -221,22 +221,22 @@ export function ExamsList({ exams }: { exams: ExamSummary[] }) {
               >
                 <Card interactive className="h-full flex flex-col">
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">
+                    <p className="text-[11px] font-semibold uppercase tracking-widest text-text-quaternary">
                       {exam.monthPt}
                     </p>
                     <DifficultyDots level={exam.difficulty} />
                   </div>
-                  <h3 className="text-[15px] font-semibold tracking-tight text-[#111827] mt-2">
+                  <h3 className="text-[15px] font-semibold tracking-tight text-text-primary mt-2">
                     {exam.titlePt}
                   </h3>
-                  <p className="text-[13px] text-[#6B7280] italic mt-0.5">
+                  <p className="text-[13px] text-text-secondary italic mt-0.5">
                     {exam.title}
                   </p>
-                  <p className="text-[12px] text-[#9CA3AF] mt-2 line-clamp-2">
+                  <p className="text-[12px] text-text-quaternary mt-2 line-clamp-2">
                     {exam.descriptionPt}
                   </p>
                   <div className="mt-auto pt-3">
-                    <p className="text-[12px] text-[#9CA3AF]">
+                    <p className="text-[12px] text-text-quaternary">
                       3 secções · ~{exam.totalMinutes} min
                     </p>
                     {result ? (
@@ -248,7 +248,7 @@ export function ExamsList({ exams }: { exams: ExamSummary[] }) {
                       </div>
                     ) : (
                       <div className="mt-2">
-                        <span className="text-[12px] font-medium text-[#003399]">
+                        <span className="text-[12px] font-medium text-accent">
                           Iniciar exame →
                         </span>
                       </div>

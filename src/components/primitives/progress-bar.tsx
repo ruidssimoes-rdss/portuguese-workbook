@@ -19,15 +19,15 @@ export function ProgressBar({
   return (
     <div className={`flex items-center gap-3${className ? ` ${className}` : ""}`}>
       <div
-        className={`flex-1 ${barHeight} bg-border-light rounded-full overflow-hidden`}
+        className={`flex-1 ${barHeight} bg-border-subtle rounded-full overflow-hidden`}
       >
         <div
-          className="h-full bg-text rounded-full transition-all duration-300"
+          className="h-full bg-text-primary rounded-full transition-all duration-300"
           style={{ width: `${pct}%` }}
         />
       </div>
       {showLabel && (
-        <span className="text-[13px] font-medium text-text-muted shrink-0">
+        <span className="text-[13px] font-medium text-text-quaternary shrink-0">
           {completed}/{total}
         </span>
       )}

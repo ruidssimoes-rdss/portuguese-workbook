@@ -1,21 +1,16 @@
 import Link from "next/link";
-import { patterns, spacing } from "@/lib/design-tokens";
 
 export default function NotFound() {
   return (
-    <div className={`${spacing.pageNarrow} py-24 text-center`}>
-      <p className="text-[48px] font-bold text-[#111827]">404</p>
-      <p className="text-[16px] font-semibold text-[#111827] mt-2">
-        Page not found
-      </p>
-      <p className="text-[13px] text-[#6B7280] mt-1">
-        The page you are looking for does not exist.
-      </p>
+    <div className="mx-auto max-w-[800px] px-6 py-24 text-center">
+      <p className="text-[48px] font-semibold text-text-primary tabular-nums">404</p>
+      <p className="mt-2 text-headline font-semibold text-text-primary">Página não encontrada</p>
+      <p className="mt-1 text-ui text-text-secondary">A página que procuras não existe.</p>
       <Link
         href="/"
-        className={`${patterns.button.primary} inline-flex items-center h-10 px-6 mt-6`}
+        className="mt-6 inline-flex h-9 items-center rounded-card bg-accent px-5 text-ui font-medium text-text-on-accent transition-colors hover:bg-accent-hover"
       >
-        Back to home
+        Voltar a Hoje
       </Link>
     </div>
   );
