@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { planSession } from "@/lib/ai-v2/session-planner";
-import { planToBlocks } from "@/lib/ai-v2/plan-to-blocks";
+import { planToLesson } from "@/lib/ai-v2/plan-to-lesson";
 
 export async function POST() {
   try {
@@ -13,11 +13,11 @@ export async function POST() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // 2. Plan session (AI or fallback)
+    // 2. Plan session (Claude → Ollama → rule-based; never throws for lack of a model)
     const { plan, source } = await planSession(user.id);
 
-    // 3. Convert plan to blocks
-    const blockPlan = planToBlocks(plan);
+    // 3. Resolve content keys into a Lesson for the player
+    const lesson = planToLesson(plan);
 
     // 4. Save session to Supabase
     const { error: saveError } = await supabase
@@ -37,12 +37,12 @@ export async function POST() {
       console.error("Failed to save tutor session:", saveError);
     }
 
-    // 5. Return the block plan
+    // 5. Return the lesson
     return NextResponse.json({
       success: true,
-      plan: blockPlan,
+      lesson,
       source,
-      sessionId: blockPlan.meta.id,
+      sessionId: lesson.id,
     });
   } catch (error) {
     console.error("AI session error:", error);

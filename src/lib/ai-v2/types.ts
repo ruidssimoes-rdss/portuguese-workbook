@@ -20,6 +20,8 @@ export interface AIFocusArea {
 
   // For vocabulary
   vocabCategories?: string[];
+  /** Exact words (vocab.json `portuguese`), used by the rule-based planner for due/new items. */
+  vocabWords?: string[];
   vocabCefr?: "A1" | "A2" | "B1";
   vocabCount?: number;
 
