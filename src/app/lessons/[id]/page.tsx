@@ -18,7 +18,7 @@ const EXAM_LESSON_THRESHOLDS: Record<number, string> = {
   24: "exam-04", 30: "exam-05", 34: "exam-06",
   38: "exam-07", 42: "exam-08", 44: "exam-09",
 };
-import type { Lesson } from "@/data/lessons";
+import type { Lesson } from "@/data/curriculum-types";
 import {
   saveLessonAttempt,
   getLessonProgressMap,

@@ -2,10 +2,10 @@
  * Block Type System — Single source of truth for the composable block architecture.
  *
  * Every block component imports its types from this file.
- * Content data types reference (not duplicate) existing types from src/data/lessons.ts.
+ * Content data types reference (not duplicate) existing types from src/data/curriculum-types.ts.
  */
 
-import type { VocabItem, VerbItem, GrammarItem, CultureItem, PracticeItem, Lesson, LessonStage } from "@/data/lessons";
+import type { VocabItem, VerbItem, GrammarItem, CultureItem, PracticeItem, Lesson, LessonStage } from "@/data/curriculum-types";
 
 // ─── Block Type Registry ───────────────────────────────────
 
@@ -318,4 +318,4 @@ export type {
   PracticeItem,
   Lesson,
   LessonStage,
-} from "@/data/lessons";
+} from "@/data/curriculum-types";

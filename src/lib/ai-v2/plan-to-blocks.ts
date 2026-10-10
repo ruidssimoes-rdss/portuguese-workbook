@@ -24,7 +24,7 @@ import type {
   MatchPairsExerciseData,
   SessionShellProps,
 } from "@/types/blocks";
-import type { VocabItem, VerbItem, GrammarItem, CultureItem } from "@/data/lessons";
+import type { VocabItem, VerbItem, GrammarItem, CultureItem } from "@/data/curriculum-types";
 import { getVocabItems, getVerbItems, getGrammarItems, getCultureItems, getGrammarTopicData } from "./content-index";
 
 const TENSE_LABELS: Record<string, string> = {

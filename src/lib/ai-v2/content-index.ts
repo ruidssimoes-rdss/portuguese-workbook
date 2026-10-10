@@ -11,7 +11,7 @@ import sayingsData from "@/data/sayings.json";
 import etiquetteData from "@/data/etiquette.json";
 import falseFriendsData from "@/data/false-friends.json";
 
-import type { VocabItem, VerbItem, GrammarItem, CultureItem } from "@/data/lessons";
+import type { VocabItem, VerbItem, GrammarItem, CultureItem } from "@/data/curriculum-types";
 
 // ── Typed casts ────────────────────────────────────────────
 
