@@ -1,0 +1,32 @@
+{
+  "_comment": "Portuguese entry -> exact pronunciation. Applied last by scripts/retune-pronunciation.js. Use it where a rule misfires (keep the original) or where a hand fix is clearer. Keys starting with _ are ignored.",
+
+  "aeroporto": "uh-eh-roo-POHR-too",
+  "o teletrabalho": "oo teh-leh-truh-BAH-lyoo",
+  "o ecoponto": "oo eh-koh-POHN-too",
+  "o MB WAY": "oo eh-mee-BAY WAY",
+  "os CTT": "seh-teh-TEH",
+  "a injeção": "uh eeng-zheh-SOWNG",
+  "o aviso de receção": "uh-VEE-zoo duh ruh-seh-SOWNG",
+  "a Proteção Civil": "proo-teh-SOWNG see-VEEL",
+
+  "exercício": "uh-zuhr-SEE-see-oo",
+  "cervejaria": "suhr-vuh-zhuh-REE-uh",
+  "emergência": "uh-muhr-ZHEN-see-uh",
+  "ementa": "uh-MEN-tuh",
+  "divorciado": "dee-voor-see-AH-doo",
+  "borboleta": "boor-boo-LEH-tuh",
+  "o estágio": "oo shTAH-zhee-oo",
+
+  "receber": "rruh-suh-BEHR",
+  "relógio": "rruh-LOH-zhee-oo",
+  "rede social": "RREH-duh soo-see-AHL",
+  "roupa": "RROH-puh",
+  "roupa interior": "RROH-puh in-tuh-ree-OHR",
+
+  "poupar": "poh-PAHR",
+  "poupar água": "poh-PAR AH-gwuh",
+  "a conta poupança": "KOHN-tuh poh-PAHN-suh",
+  "dourado": "doh-RAH-doo",
+  "o roupeiro": "roh-PAY-roo"
+}
