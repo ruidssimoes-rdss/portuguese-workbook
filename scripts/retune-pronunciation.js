@@ -6,28 +6,15 @@
  *   node scripts/retune-pronunciation.js --dry   # write scripts/pronunciation-sample.md, change nothing
  *   node scripts/retune-pronunciation.js         # apply
  *
- * The respelling marks the stressed syllable in capitals. These rules only
- * touch UNSTRESSED syllables (no capital letter) and never a capitalised one:
- *
- *   A. unstressed «a» is reduced: ...ah -> ...uh, also before a coda
- *      r/l/sh/s/z/d/b/p/t/k (falar -> fuh-LAHR, casa -> KAH-zuh).
- *      Nasals (ahn, ahm, ahng) are left as they are. A lone «ah» word is the
- *      article «a» (-> uh) unless the Portuguese word is «à» / «às».
- *   B. unstressed «e» before a consonant or at the start of a word: ...eh /
- *      ...ehr -> ...uh / ...uhr (pequeno -> puh-KAY-noo). Final syllables
- *      (-vehl) are left alone.
- *   C. unstressed «o» after a consonant: ...oh -> ...oo (noventa -> noo-VEN-tuh).
- *      A word-initial «oh» (olá, obrigado, hotel) is left alone.
- *   D. final plural/verb -s after a reduced vowel: ...uhs -> ...uhsh.
- *
- * Rules work per word (never across a space) and per whole syllable, so a
- * second run changes nothing. A word of two or more syllables with no capital
- * has no marked stress and is skipped. scripts/pronunciation-overrides.json
- * (Portuguese entry -> exact pronunciation) is applied last for the words the
- * rules get wrong. Entries whose pronunciation is empty stay empty.
+ * The rules (a/e -> uh, o -> oo, final -s -> -sh, initial oh -> oo, no
+ * Brazilian h for r) live in scripts/pronunciation-rules.js and are shared with
+ * scripts/retune-pronunciation-extra.js. scripts/pronunciation-overrides.json
+ * (Portuguese entry -> exact pronunciation) is applied last. Entries whose
+ * pronunciation is empty stay empty (scripts/fill-vocab-pronunciation.js fills them).
  */
 const fs = require("node:fs");
 const path = require("node:path");
+const { createRetuner } = require("./pronunciation-rules");
 
 const FILE = path.resolve(__dirname, "../src/data/vocab.json");
 const OVERRIDES = path.resolve(__dirname, "pronunciation-overrides.json");
@@ -39,78 +26,7 @@ const vocab = JSON.parse(raw);
 const overrides = Object.fromEntries(
   Object.entries(JSON.parse(fs.readFileSync(OVERRIDES, "utf8"))).filter(([k]) => !k.startsWith("_")),
 );
-
-const stressed = (syl) => /[A-Z]/.test(syl);
-const stats = { A: 0, B: 0, C: 0, D: 0, override: 0 };
-const noStress = new Set();
-
-// Rule patterns, matched against a whole syllable. Onsets may contain y (lyah, yah).
-const RE_A = /^([^aeiou]*)ah(sh|r|l|s|z|d|b|p|t|k)?$/;
-const RE_B = /^([^aeiou]*)eh(r)?$/;
-const RE_C = /^([^aeiou]+)oh$/;
-
-function retuneWord(word, orthWord, entry) {
-  const tail = word.match(/[?!,.…]+$/)?.[0] ?? "";
-  const core = tail ? word.slice(0, -tail.length) : word;
-  const syl = core.split("-");
-
-  // A lone «ah» is the article a (-> uh) or à (stays ah).
-  if (syl.length === 1) {
-    if (core === "ah" && orthWord && orthWord.toLowerCase() === "a") {
-      stats.A++;
-      return "uh" + tail;
-    }
-    return word;
-  }
-  if (!syl.some(stressed)) {
-    noStress.add(`${entry}  →  ${word}`);
-    return word;
-  }
-
-  const last = syl.length - 1;
-  const out = syl.map((s, i) => {
-    if (stressed(s)) return s;
-    let m = s.match(RE_A);
-    if (m) {
-      stats.A++;
-      return `${m[1]}uh${m[2] ?? ""}`;
-    }
-    if (i < last && (m = s.match(RE_B))) {
-      stats.B++;
-      return `${m[1]}uh${m[2] ?? ""}`;
-    }
-    if (i < last && (m = s.match(RE_C))) {
-      stats.C++;
-      return `${m[1]}oo`;
-    }
-    return s;
-  });
-
-  // D: calças -> KAHL-suhsh
-  const lastSyl = out[last];
-  if (!stressed(lastSyl) && /uhs$/.test(lastSyl) && !/sh$/.test(lastSyl)) {
-    out[last] = lastSyl.replace(/uhs$/, "uhsh");
-    stats.D++;
-  }
-  return out.join("-") + tail;
-}
-
-function retune(portuguese, pronunciation) {
-  if (Object.hasOwn(overrides, portuguese)) {
-    if (overrides[portuguese] !== pronunciation) stats.override++;
-    return overrides[portuguese];
-  }
-  const orthParts = portuguese.split(" / ");
-  return pronunciation
-    .split(" / ")
-    .map((part, pi) => {
-      const orthWords = (orthParts[pi] ?? "").split(" ");
-      const words = part.split(" ");
-      const aligned = orthWords.length === words.length;
-      return words.map((w, wi) => retuneWord(w, aligned ? orthWords[wi] : null, portuguese)).join(" ");
-    })
-    .join(" / ");
-}
+const { retune, stats, noStress } = createRetuner(overrides);
 
 /* Walk the file, apply, and collect before/after pairs. */
 const pairs = [];
@@ -155,7 +71,9 @@ function sample() {
 
 console.log(`${entries} entries, ${empty} with no pronunciation (left empty), ${pairs.length} retuned candidates`);
 console.log(`${changed} ${dry ? "would change" : "changed"}`);
-console.log(`rules fired: A(a→uh) ${stats.A}, B(e→uh) ${stats.B}, C(o→oo) ${stats.C}, D(-s→-sh) ${stats.D}, overrides ${stats.override}`);
+console.log(
+  `rules fired: A(a→uh) ${stats.A}, B(e→uh) ${stats.B}, C(o→oo) ${stats.C}, D(-s→-sh) ${stats.D}, O(initial o→oo) ${stats.O}, H(h→rr) ${stats.H}, R(r→rr) ${stats.R}, E(ER→EHR) ${stats.E}, overrides ${stats.override}`,
+);
 if (noStress.size) console.log(`${noStress.size} multi-syllable word(s) with no marked stress were skipped:\n  ${[...noStress].join("\n  ")}`);
 
 if (dry) {

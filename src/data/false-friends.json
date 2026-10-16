@@ -3,7 +3,7 @@
     {
       "id": "constipacao",
       "portuguese": "constipação",
-      "pronunciation": "kon-stee-puh-SOWNG",
+      "pronunciation": "konsh-tee-puh-SOWNG",
       "looksLike": "constipation",
       "actualMeaning": "a cold (illness)",
       "correctWord": "prisão de ventre / obstipação",
@@ -16,7 +16,7 @@
     {
       "id": "exquisito",
       "portuguese": "esquisito",
-      "pronunciation": "shki-ZEE-too",
+      "pronunciation": "ush-kee-ZEE-too",
       "looksLike": "exquisite",
       "actualMeaning": "strange / weird",
       "correctWord": "requintado / refinado",
@@ -81,7 +81,7 @@
     {
       "id": "sensivel",
       "portuguese": "sensível",
-      "pronunciation": "sen-SEE-vel",
+      "pronunciation": "sayng-SEE-vel",
       "looksLike": "sensible",
       "actualMeaning": "sensitive",
       "correctWord": "sensato",
@@ -120,7 +120,7 @@
     {
       "id": "realizar",
       "portuguese": "realizar",
-      "pronunciation": "rreh-uh-lee-ZAR",
+      "pronunciation": "rruh-uh-lee-ZAR",
       "looksLike": "to realize",
       "actualMeaning": "to carry out / to achieve / to accomplish",
       "correctWord": "aperceber-se",
@@ -159,7 +159,7 @@
     {
       "id": "recordar",
       "portuguese": "recordar",
-      "pronunciation": "rreh-kor-DAR",
+      "pronunciation": "rruh-kor-DAR",
       "looksLike": "to record",
       "actualMeaning": "to remember / to recall",
       "correctWord": "gravar",
@@ -172,7 +172,7 @@
     {
       "id": "educado",
       "portuguese": "educado",
-      "pronunciation": "eh-doo-KAH-doo",
+      "pronunciation": "uh-doo-KAH-doo",
       "looksLike": "educated",
       "actualMeaning": "polite / well-mannered",
       "correctWord": "instruído / culto",
@@ -185,7 +185,7 @@
     {
       "id": "eventual",
       "portuguese": "eventual",
-      "pronunciation": "eh-ven-too-AL",
+      "pronunciation": "uh-ven-too-AL",
       "looksLike": "eventual (certain to happen)",
       "actualMeaning": "possible / potential",
       "correctWord": "final / definitivo",
@@ -224,7 +224,7 @@
     {
       "id": "actually",
       "portuguese": "atualmente",
-      "pronunciation": "ah-too-al-MEN-tuh",
+      "pronunciation": "uh-too-al-MEN-tuh",
       "looksLike": "actually",
       "actualMeaning": "currently / nowadays",
       "correctWord": "na verdade / realmente",
@@ -302,7 +302,7 @@
     {
       "id": "largo",
       "portuguese": "largo",
-      "pronunciation": "LAR-goo",
+      "pronunciation": "LAHR-goo",
       "looksLike": "large",
       "actualMeaning": "wide / a small square (plaza)",
       "correctWord": "grande",
