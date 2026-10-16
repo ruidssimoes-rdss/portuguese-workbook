@@ -11,7 +11,7 @@ import {
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
 import {
   getUserMastery,
-  getReviewCount,
+  getReviewSummary,
   type MasteryRecord,
   type CEFRProgress,
 } from "@/lib/learning-engine/mastery-tracker";
@@ -26,6 +26,7 @@ import {
   type TimelineEvent,
 } from "@/lib/progress-stats-service";
 import { createClient } from "@/lib/supabase/client";
+import { isOverdue as isReviewOverdue } from "@/lib/review-status";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -40,6 +41,7 @@ interface MasteryData {
   recentlyMastered: MasteryRecord[];
   needsAttention: MasteryRecord[];
   reviewCount: number;
+  reviewOverdue: number;
 }
 
 // ─── Helpers ────────────────────────────────────────────
@@ -83,7 +85,7 @@ async function loadMasteryData(userId: string): Promise<MasteryData> {
   const [progression, allMastery, reviews] = await Promise.all([
     getFullProgression(userId),
     getUserMastery(userId),
-    getReviewCount(userId),
+    getReviewSummary(userId),
   ]);
 
   // Build mastery lookup
@@ -144,11 +146,10 @@ async function loadMasteryData(userId: string): Promise<MasteryData> {
       if (r.mastery_level === 0) return false;
       const accuracy =
         r.times_seen > 0 ? r.times_correct / r.times_seen : 1;
-      const isOverdue =
-        r.next_review_at && new Date(r.next_review_at) < now;
+      const overdue = isReviewOverdue(r, now.getTime());
       const lowAccuracy = r.times_seen >= 3 && accuracy < 0.5;
       const brokenStreak = r.streak === 0 && r.mastery_level >= 2;
-      return isOverdue || lowAccuracy || brokenStreak;
+      return overdue || lowAccuracy || brokenStreak;
     })
     .slice(0, 5);
 
@@ -158,7 +159,8 @@ async function loadMasteryData(userId: string): Promise<MasteryData> {
     verbsByGroup,
     recentlyMastered,
     needsAttention,
-    reviewCount: reviews,
+    reviewCount: reviews.due,
+    reviewOverdue: reviews.overdue,
   };
 }
 
@@ -422,7 +424,7 @@ export default function ProgressPage() {
         <StatCard
           label="Para rever"
           value={String(mastery.reviewCount)}
-          subtitle={mastery.reviewCount > 0 ? "Em atraso" : "Tudo em dia"}
+          subtitle={mastery.reviewOverdue > 0 ? `${mastery.reviewOverdue} em atraso` : mastery.reviewCount > 0 ? "Para hoje" : "Tudo em dia"}
         />
         <StatCard
           label="Sequência"
