@@ -14,7 +14,7 @@
     {
       "id": "electrico",
       "expression": "eléctrico",
-      "pronunciation": "eh-LEH-tree-koo",
+      "pronunciation": "uh-LEH-tree-koo",
       "meaning": "tram",
       "region": "lisbon",
       "standardAlternative": "eléctrico (standard, but iconic in Lisbon)",
@@ -124,7 +124,7 @@
     {
       "id": "taberna",
       "expression": "tasca / taberna",
-      "pronunciation": "TASH-kuh / tah-BEHR-nuh",
+      "pronunciation": "TASH-kuh / tuh-BEHR-nuh",
       "meaning": "traditional cheap restaurant/bar (more common term in the north)",
       "region": "north",
       "standardAlternative": "restaurante simples",
@@ -223,7 +223,7 @@
     {
       "id": "semilha",
       "expression": "semilha",
-      "pronunciation": "seh-MEE-lyuh",
+      "pronunciation": "suh-MEE-lyuh",
       "meaning": "potato (Madeira word)",
       "region": "madeira",
       "standardAlternative": "batata",
@@ -322,7 +322,7 @@
     {
       "id": "desenrascar",
       "expression": "desenrascar",
-      "pronunciation": "deh-zen-rrush-KAR",
+      "pronunciation": "duh-zen-rrush-KAR",
       "meaning": "to improvise a solution / to manage / to get by (a core Portuguese cultural concept)",
       "region": "lisbon",
       "standardAlternative": "(uniquely Portuguese — no true equivalent)",
