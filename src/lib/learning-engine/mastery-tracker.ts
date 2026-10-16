@@ -7,6 +7,7 @@
  */
 
 import { createClient } from "@/lib/supabase/client";
+import { isOverdue } from "@/lib/review-status";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -365,7 +366,26 @@ export async function getDueForReview(
 }
 
 /**
- * Count items due for review (for showing badge/prompt)
+ * How many seen items can be reviewed now (`due`: review time reached, includes
+ * items due earlier today) and how many of those are genuinely `overdue`
+ * (review date before the start of today, not seen since). The counts mix
+ * vocab, verbs and grammar topics, never unseen items.
+ */
+export async function getReviewSummary(userId: string): Promise<{ due: number; overdue: number }> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("user_content_mastery")
+    .select("mastery_level, next_review_at, last_seen_at")
+    .eq("user_id", userId)
+    .lte("next_review_at", new Date().toISOString())
+    .gte("mastery_level", 1);
+  if (error || !data) return { due: 0, overdue: 0 };
+  const now = Date.now();
+  return { due: data.length, overdue: data.filter((r) => isOverdue(r, now)).length };
+}
+
+/**
+ * Count items due for review (seen items whose review time has come).
  */
 export async function getReviewCount(userId: string): Promise<number> {
   const supabase = createClient();

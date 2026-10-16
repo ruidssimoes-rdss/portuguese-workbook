@@ -127,7 +127,7 @@ export default function VerbPage() {
         </div>
 
         <p className="mt-3 text-[12px] leading-relaxed text-aula-text-3">
-          In Portugal, use tu with friends and family. For polite address, use the third person with the person&apos;s name or o senhor / a senhora («A Ana quer café?»). Você exists, but can sound blunt or distant.
+          In Portugal, use tu with friends and family. For polite address, use the third person with the person&apos;s name or o senhor / a senhora («A Ana quer café?»). Você exists, but can sound blunt or distant. Vocês (plural) is neutral and common.
         </p>
 
         <div className="mt-2">
