@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { signInWithGoogle } from "@/lib/auth-utils";
+import { NEXT_COOKIE, safeNextPath } from "@/lib/safe-next";
 
 export function GoogleSignInButton() {
   const [loading, setLoading] = useState(false);
@@ -10,6 +11,9 @@ export function GoogleSignInButton() {
   const handleClick = async () => {
     setError(null);
     setLoading(true);
+    // The OAuth redirect URL is allow-listed in Supabase, so carry `next` in a short-lived cookie instead.
+    const next = safeNextPath(new URLSearchParams(window.location.search).get("next"), "");
+    if (next) document.cookie = `${NEXT_COOKIE}=${encodeURIComponent(next)}; path=/; max-age=600; samesite=lax`;
     const { error: err } = await signInWithGoogle();
     if (err) {
       setError(err.message);

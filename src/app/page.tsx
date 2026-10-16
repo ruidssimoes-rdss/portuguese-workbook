@@ -8,14 +8,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { CalendarDays, RotateCcw, Sparkles, Search, ChevronRight, LogIn, BookA, Baseline, Type } from "lucide-react";
+import { CalendarDays, RotateCcw, Sparkles, Search, ChevronRight } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 import { PageShell } from "@/components/layout/page-shell";
 import { SearchModal } from "@/components/search-modal";
 import { getProgressStats } from "@/lib/progress-stats-service";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
 import { getCurrentStudyLevel, getReviewCount } from "@/lib/learning-engine";
-import { getAllContentTotals } from "@/lib/learning-engine/content-pool";
 import { createClient } from "@/lib/supabase/client";
 
 function getGreeting(): string {
@@ -33,6 +32,8 @@ interface HomeStats {
   streak: number;
   accuracy: number | null;
   firstName: string | null;
+  /** Signed in but has not studied anything yet. Unknown (stats failed) counts as not fresh. */
+  fresh: boolean;
 }
 
 export default function HomePage() {
@@ -69,6 +70,7 @@ export default function HomePage() {
         streak: ps?.currentStreak ?? 0,
         accuracy: ps && ps.averageAccuracy > 0 ? Math.round(ps.averageAccuracy) : null,
         firstName: fullName ? fullName.split(" ")[0] : null,
+        fresh: !!ps && ps.totalLessonsCompleted === 0 && ps.totalWordsEncountered === 0 && mastered === 0,
       });
       setLoading(false);
     }
@@ -76,36 +78,27 @@ export default function HomePage() {
   }, [user, authLoading]);
 
   const greeting = getGreeting();
-  const totals = getAllContentTotals();
-  const totalVocab = totals.A1.vocab + totals.A2.vocab + totals.B1.vocab;
-  const totalVerbs = totals.A1.verbs + totals.A2.verbs + totals.B1.verbs;
-  const totalGrammar = totals.A1.grammar + totals.A2.grammar + totals.B1.grammar;
 
   const nextLevel = stats?.level === "A1" ? "A2" : stats?.level === "A2" ? "B1" : null;
-  const subtitle = !user
-    ? "Português europeu, do A1 ao B1."
-    : !stats
-      ? " "
-      : [
+  const subtitle = !stats
+    ? " "
+    : [
           stats.reviewCount > 0 ? `${stats.reviewCount} revisões à espera` : "Tudo em dia",
           stats.streak > 0 ? `sequência de ${stats.streak} ${stats.streak === 1 ? "dia" : "dias"}` : null,
         ]
           .filter(Boolean)
           .join(" · ");
 
-  const suggestions: { href: string; icon: typeof CalendarDays; label: string; meta: string }[] = user
-    ? [
-        { href: "/learn", icon: CalendarDays, label: "Começar a sessão de hoje", meta: stats ? `${stats.level}` : "" },
-        ...(stats && stats.reviewCount > 0
-          ? [{ href: "/learn?mode=review", icon: RotateCcw, label: `Rever ${stats.reviewCount} ${stats.reviewCount === 1 ? "palavra" : "palavras"}`, meta: "Em atraso" }]
-          : []),
-        { href: "/tutor", icon: Sparkles, label: "Pedir uma sessão ao Professor Elísio", meta: "Personalizada" },
-      ]
-    : [
-        { href: "/vocabulary", icon: BookA, label: "Explorar o vocabulário", meta: `${totalVocab.toLocaleString("pt-PT")} palavras` },
-        { href: "/grammar", icon: Baseline, label: "Ver a gramática", meta: `${totalGrammar} tópicos` },
-        { href: "/conjugations", icon: Type, label: "Conjugar verbos", meta: `${totalVerbs} verbos` },
-      ];
+  const suggestions: { href: string; icon: typeof CalendarDays; label: string; meta: string }[] = [
+    { href: "/learn", icon: CalendarDays, label: "Começar a sessão de hoje", meta: stats ? `${stats.level}` : "" },
+    ...(stats && stats.reviewCount > 0
+      ? [{ href: "/learn?mode=review", icon: RotateCcw, label: `Rever ${stats.reviewCount} ${stats.reviewCount === 1 ? "palavra" : "palavras"}`, meta: "Em atraso" }]
+      : []),
+    { href: "/tutor", icon: Sparkles, label: "Pedir uma sessão ao Professor Elísio", meta: "Personalizada" },
+  ];
+
+  const showGuest = !authLoading && !user;
+  const showStart = !authLoading && !!user && !loading && !!stats?.fresh;
 
   return (
     <PageShell>
@@ -114,62 +107,80 @@ export default function HomePage() {
 
         {/* Centre column */}
         <div className="mx-auto w-full max-w-[640px]">
-          <h1 className="text-center text-[17px] font-semibold tracking-[-0.01em] text-aula-text">
-            {user && stats?.firstName ? `${greeting}, ${stats.firstName}` : greeting}
-          </h1>
-          <p className="mt-1 min-h-[18px] text-center text-[11.5px] text-aula-text-3">
-            {authLoading || (user && loading) ? "" : subtitle}
-          </p>
+          {showGuest ? (
+            <EmptyPanel
+              title="Bem-vindo à Aula"
+              copy="Learn European Portuguese from A1 to B1. Pick a place to start."
+              cta={{ href: "/auth/login", label: "Entrar para começar" }}
+              links={[
+                { href: "/vocabulary", label: "Vocabulário" },
+                { href: "/grammar", label: "Gramática" },
+              ]}
+            />
+          ) : showStart ? (
+            <EmptyPanel
+              title="Vamos começar"
+              copy="Your first lesson takes about 10 minutes."
+              cta={{ href: "/learn", label: "Começar Lição 1" }}
+              links={[
+                { href: "/vocabulary", label: "Vocabulário" },
+                { href: "/grammar", label: "Gramática" },
+                { href: "/conjugations", label: "Conjugações" },
+              ]}
+            />
+          ) : (
+            <>
+              <h1 className="text-center text-[17px] font-semibold tracking-[-0.01em] text-aula-text">
+                {user && stats?.firstName ? `${greeting}, ${stats.firstName}` : greeting}
+              </h1>
+              <p className="mt-1 min-h-[18px] text-center text-[11.5px] text-aula-text-3">
+                {authLoading || (user && loading) ? "" : subtitle}
+              </p>
 
-          {/* Composer → search */}
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="mt-5 flex w-full flex-col gap-7 rounded-[14px] border border-aula-border bg-aula-panel px-4 pb-3 pt-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-colors hover:border-aula-text-4"
-          >
-            <span className="text-[12.5px] text-aula-text-3">Procura uma palavra, um verbo ou uma regra…</span>
-            <span className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-aula-border text-aula-text-2">
-                <Search size={14} strokeWidth={1.5} />
-              </span>
-              <span className="flex-1" />
-              <kbd className="rounded bg-aula-sunken px-1.5 py-0.5 text-[10.5px] text-aula-text-3">⌘K</kbd>
-            </span>
-          </button>
-
-          {/* Suggestions */}
-          <div className="mt-4 flex flex-col gap-1.5">
-            {suggestions.map((s) => {
-              const Icon = s.icon;
-              return (
-                <Link
-                  key={s.href + s.label}
-                  href={s.href}
-                  className="group flex h-11 items-center gap-3 rounded-[10px] bg-aula-sunken px-3.5 transition-colors hover:bg-aula-selected"
-                >
-                  <Icon size={16} strokeWidth={1.5} className="text-aula-text-2" />
-                  <span className="text-[12.5px] text-aula-text">{s.label}</span>
-                  <span className="flex-1" />
-                  <span className="text-[11px] text-aula-text-3">{s.meta}</span>
-                  <ChevronRight size={14} strokeWidth={1.5} className="text-aula-text-4 transition-colors group-hover:text-aula-text-3" />
-                </Link>
-              );
-            })}
-            {!authLoading && !user && (
-              <Link
-                href="/auth/login"
-                className="mt-2 flex h-9 items-center justify-center gap-2 rounded-[10px] bg-aula-accent text-[12.5px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+              {/* Composer → search */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="mt-5 flex w-full flex-col gap-7 rounded-[14px] border border-aula-border bg-aula-panel px-4 pb-3 pt-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-colors hover:border-aula-text-4"
               >
-                <LogIn size={14} strokeWidth={1.5} />
-                Entrar para guardar o progresso
-              </Link>
-            )}
-          </div>
+                <span className="text-[12.5px] text-aula-text-3">Procura uma palavra, um verbo ou uma regra…</span>
+                <span className="flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full border border-aula-border text-aula-text-2">
+                    <Search size={14} strokeWidth={1.5} />
+                  </span>
+                  <span className="flex-1" />
+                  <kbd className="rounded bg-aula-sunken px-1.5 py-0.5 text-[10.5px] text-aula-text-3">⌘K</kbd>
+                </span>
+              </button>
+
+              {/* Suggestions */}
+              {user && (
+                <div className="mt-4 flex flex-col gap-1.5">
+                  {suggestions.map((s) => {
+                    const Icon = s.icon;
+                    return (
+                      <Link
+                        key={s.href + s.label}
+                        href={s.href}
+                        className="group flex h-11 items-center gap-3 rounded-[10px] bg-aula-sunken px-3.5 transition-colors hover:bg-aula-selected"
+                      >
+                        <Icon size={16} strokeWidth={1.5} className="text-aula-text-2" />
+                        <span className="text-[12.5px] text-aula-text">{s.label}</span>
+                        <span className="flex-1" />
+                        <span className="text-[11px] text-aula-text-3">{s.meta}</span>
+                        <ChevronRight size={14} strokeWidth={1.5} className="text-aula-text-4 transition-colors group-hover:text-aula-text-3" />
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </>
+          )}
         </div>
 
         <div className="flex-1" />
 
         {/* Esta semana */}
-        {user && stats && (
+        {user && stats && !stats.fresh && (
           <div className="mx-auto mt-10 w-full max-w-[640px]">
             <div className="mb-2.5 text-[11px] text-aula-text-3">O teu estado</div>
             <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
@@ -186,6 +197,38 @@ export default function HomePage() {
       </div>
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </PageShell>
+  );
+}
+
+function EmptyPanel({
+  title,
+  copy,
+  cta,
+  links,
+}: {
+  title: string;
+  copy: string;
+  cta: { href: string; label: string };
+  links: { href: string; label: string }[];
+}) {
+  return (
+    <div className="mx-auto w-full max-w-[420px] rounded-[14px] border border-aula-border bg-aula-panel px-8 py-10 text-center shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+      <h1 className="text-[17px] font-semibold tracking-[-0.01em] text-aula-text">{title}</h1>
+      <p className="mt-1.5 text-[13px] leading-relaxed text-aula-text-2">{copy}</p>
+      <Link
+        href={cta.href}
+        className="mt-6 inline-flex h-9 items-center justify-center rounded-lg bg-aula-accent px-5 text-[12.5px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+      >
+        {cta.label}
+      </Link>
+      <div className="mt-4 flex items-center justify-center gap-4">
+        {links.map((l) => (
+          <Link key={l.href} href={l.href} className="text-[12.5px] text-aula-text-2 transition-colors hover:text-aula-text">
+            {l.label}
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
 

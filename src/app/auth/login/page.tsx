@@ -6,6 +6,7 @@ import { AuthLogo } from "@/components/auth-ui";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { GoogleSignInButton } from "@/components/google-sign-in-button";
+import { safeNextPath } from "@/lib/safe-next";
 
 const inputClass =
   "h-10 w-full rounded-lg border border-aula-border bg-white px-3 text-[13.5px] text-aula-text outline-none transition-colors placeholder:text-aula-text-4 focus:border-aula-accent";
@@ -47,7 +48,7 @@ function LoginForm() {
         setLoading(false);
         return;
       }
-      router.push("/");
+      router.push(safeNextPath(searchParams.get("next")));
       router.refresh();
     } catch {
       setError("Ocorreu um erro. Tenta novamente.");
