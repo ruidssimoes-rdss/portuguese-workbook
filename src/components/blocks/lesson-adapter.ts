@@ -3,7 +3,7 @@
  * Uses the existing exercise generator (Option A) to produce exercises.
  */
 
-import type { Lesson, VocabItem, VerbItem, GrammarItem, CultureItem } from "@/data/lessons";
+import type { Lesson, VocabItem, VerbItem, GrammarItem, CultureItem } from "@/data/curriculum-types";
 import type {
   LessonBlockPlan,
   BlockDescriptor,

@@ -7,7 +7,7 @@
  */
 
 import { createClient } from "@/lib/supabase/server";
-import type { StudentContext } from "./prompts";
+import type { StudentContext, ContextItem } from "./prompts";
 import { getContentInventory } from "./content-index";
 
 export async function assembleStudentContext(userId: string): Promise<StudentContext> {
@@ -79,7 +79,12 @@ export async function assembleStudentContext(userId: string): Promise<StudentCon
     ? getOverdueFromMastery(masteryRows)
     : getOverdueItems(vocabRes.data ?? [], verbsRes.data ?? []);
 
+  const structured = masteryRows.length > 0
+    ? structuredFromMastery(masteryRows)
+    : structuredFromLegacy(vocabRes.data ?? [], verbsRes.data ?? []);
+
   return {
+    ...structured,
     currentLevel,
     lessonsCompleted: completedCount,
     totalLessons: 54,
@@ -166,6 +171,69 @@ function getOverdueFromMastery(rows: MasteryRow[]): string[] {
     .sort((a, b) => new Date(a.next_review_at!).getTime() - new Date(b.next_review_at!).getTime())
     .slice(0, 10)
     .map(r => `${r.content_type}:${r.content_id}`);
+}
+
+// ─── Structured items for the rule-based planner ────────
+
+type CEFR = "A1" | "A2" | "B1";
+const asCefr = (c: string): CEFR => (c === "A2" || c === "B1" ? c : "A1");
+const toId = (type: string, id: string) => (type === "verb" ? id.toLowerCase() : id);
+const asType = (t: string): ContextItem["type"] | null =>
+  t === "vocab" || t === "verb" || t === "grammar" ? t : null;
+
+function structuredFromMastery(rows: MasteryRow[]): Pick<StudentContext, "dueItems" | "weakItems" | "seenIds"> {
+  const now = Date.now();
+  const due: Array<ContextItem & { overdueMs: number }> = [];
+  const weak: ContextItem[] = [];
+  const seenIds: string[] = [];
+
+  for (const r of rows) {
+    const type = asType(r.content_type);
+    if (!type || r.mastery_level === 0) continue;
+    const item: ContextItem = {
+      type,
+      id: toId(type, r.content_id),
+      cefr: asCefr(r.content_cefr),
+      accuracy: r.times_seen > 0 ? r.times_correct / r.times_seen : undefined,
+    };
+    seenIds.push(`${type}:${item.id}`);
+    if (r.next_review_at && new Date(r.next_review_at).getTime() < now) {
+      due.push({ ...item, overdueMs: now - new Date(r.next_review_at).getTime() });
+    }
+    const brokenStreak = r.streak === 0 && r.mastery_level >= 2 && r.times_seen >= 3;
+    if ((r.times_seen >= 3 && (item.accuracy ?? 1) < 0.6) || brokenStreak) weak.push(item);
+  }
+
+  due.sort((a, b) => b.overdueMs - a.overdueMs);
+  weak.sort((a, b) => (a.accuracy ?? 0) - (b.accuracy ?? 0));
+  return {
+    dueItems: due.map((d) => ({ type: d.type, id: d.id, cefr: d.cefr, accuracy: d.accuracy })),
+    weakItems: weak,
+    seenIds,
+  };
+}
+
+function structuredFromLegacy(
+  vocabRows: Array<{ word_portuguese: string; category: string; familiarity: number; next_review: string | null }>,
+  verbRows: Array<{ verb: string; familiarity: number; next_review: string | null }>,
+): Pick<StudentContext, "dueItems" | "weakItems" | "seenIds"> {
+  const now = Date.now();
+  const due: ContextItem[] = [];
+  const weak: ContextItem[] = [];
+  const seenIds: string[] = [];
+  for (const v of vocabRows) {
+    const item: ContextItem = { type: "vocab", id: v.word_portuguese, cefr: "A1" };
+    seenIds.push(`vocab:${item.id}`);
+    if (v.next_review && new Date(v.next_review).getTime() < now) due.push(item);
+    if (v.familiarity < 2) weak.push(item);
+  }
+  for (const v of verbRows) {
+    const item: ContextItem = { type: "verb", id: v.verb.toLowerCase(), cefr: "A1" };
+    seenIds.push(`verb:${item.id}`);
+    if (v.next_review && new Date(v.next_review).getTime() < now) due.push(item);
+    if (v.familiarity < 2) weak.push(item);
+  }
+  return { dueItems: due, weakItems: weak, seenIds };
 }
 
 // ─── Legacy Fallbacks ───────────────────────────────────
