@@ -2795,8 +2795,9 @@
             "Subject + Verb + Object",
             "Subject + Object + Verb"
           ],
-          "correct": 2,
-          "explanation": "Portuguese follows SVO (Subject + Verb + Object), the same basic order as English."
+          "explanation": "Portuguese follows SVO (Subject + Verb + Object), the same basic order as English.",
+          "correctIndex": 2,
+          "correctAnswer": "Subject + Verb + Object"
         },
         {
           "question": "Where does the adjective usually go in Portuguese?",
@@ -2806,8 +2807,9 @@
             "It doesn't matter",
             "Before the verb"
           ],
-          "correct": 1,
-          "explanation": "Most adjectives follow the noun: 'casa grande' (big house), not *'grande casa'*."
+          "explanation": "Most adjectives follow the noun: 'casa grande' (big house), not *'grande casa'*.",
+          "correctIndex": 1,
+          "correctAnswer": "After the noun"
         },
         {
           "question": "Which is correct? 'I don't speak Portuguese.'",
@@ -2817,8 +2819,9 @@
             "Não eu falo português.",
             "Eu falo português não."
           ],
-          "correct": 1,
-          "explanation": "'Não' always goes directly before the verb: 'Eu não falo português.'"
+          "explanation": "'Não' always goes directly before the verb: 'Eu não falo português.'",
+          "correctIndex": 1,
+          "correctAnswer": "Eu não falo português."
         },
         {
           "question": "How do you form a yes/no question in Portuguese?",
@@ -2828,8 +2831,9 @@
             "Just raise your intonation",
             "Add 'será que' always"
           ],
-          "correct": 2,
-          "explanation": "Simply raise your voice at the end: 'Falas português?' — no word order change needed."
+          "explanation": "Simply raise your voice at the end: 'Falas português?' — no word order change needed.",
+          "correctIndex": 2,
+          "correctAnswer": "Just raise your intonation"
         },
         {
           "question": "Where does 'ontem' (yesterday) typically go in the sentence 'I went to the supermarket yesterday'?",
@@ -2839,8 +2843,9 @@
             "At the beginning or end of the sentence",
             "Between the verb and object"
           ],
-          "correct": 2,
-          "explanation": "Time expressions go at the start or end: 'Ontem fui ao supermercado' or 'Fui ao supermercado ontem.'"
+          "explanation": "Time expressions go at the start or end: 'Ontem fui ao supermercado' or 'Fui ao supermercado ontem.'",
+          "correctIndex": 2,
+          "correctAnswer": "At the beginning or end of the sentence"
         },
         {
           "question": "Which is the correct EP pronoun placement? 'Give me the book.'",
@@ -2850,8 +2855,9 @@
             "Dá o livro me.",
             "O livro dá-me."
           ],
-          "correct": 1,
-          "explanation": "In European Portuguese, object pronouns go AFTER the verb with a hyphen: 'Dá-me o livro.'"
+          "explanation": "In European Portuguese, object pronouns go AFTER the verb with a hyphen: 'Dá-me o livro.'",
+          "correctIndex": 1,
+          "correctAnswer": "Dá-me o livro."
         },
         {
           "question": "What happens to pronoun placement after 'não'?",
@@ -2861,8 +2867,9 @@
             "Pronoun is dropped",
             "Nothing changes"
           ],
-          "correct": 1,
-          "explanation": "'Não' triggers proclisis: 'Não me digas!' (Don't tell me!) — pronoun goes before the verb."
+          "explanation": "'Não' triggers proclisis: 'Não me digas!' (Don't tell me!) — pronoun goes before the verb.",
+          "correctIndex": 1,
+          "correctAnswer": "Pronoun moves before the verb"
         },
         {
           "question": "Which is correct? 'A big man' vs 'A great man.'",
@@ -2872,8 +2879,9 @@
             "Both mean the same thing",
             "Neither is correct"
           ],
-          "correct": 1,
-          "explanation": "Before the noun = figurative (um grande homem = a great man). After = literal (um homem grande = a big/tall man)."
+          "explanation": "Before the noun = figurative (um grande homem = a great man). After = literal (um homem grande = a big/tall man).",
+          "correctIndex": 1,
+          "correctAnswer": "um grande homem = great / um homem grande = big"
         },
         {
           "question": "Complete: 'Eu dei um presente ___ Maria.'",
@@ -2883,8 +2891,9 @@
             "para",
             "da"
           ],
-          "correct": 1,
-          "explanation": "'À' (a + a) is the contraction needed for the indirect object with feminine names: 'à Maria'."
+          "explanation": "'À' (a + a) is the contraction needed for the indirect object with feminine names: 'à Maria'.",
+          "correctIndex": 1,
+          "correctAnswer": "à"
         },
         {
           "question": "In spoken EP, how is the future tense usually expressed?",
@@ -2894,8 +2903,9 @@
             "Present tense only",
             "Conditional: falaria"
           ],
-          "correct": 1,
-          "explanation": "Spoken EP almost always uses 'ir + infinitive': 'Vou falar' instead of 'Falarei'. The simple future sounds formal."
+          "explanation": "Spoken EP almost always uses 'ir + infinitive': 'Vou falar' instead of 'Falarei'. The simple future sounds formal.",
+          "correctIndex": 1,
+          "correctAnswer": "Ir + infinitive: vou falar"
         },
         {
           "question": "Why is subject pronoun dropping common in Portuguese?",
@@ -2905,8 +2915,9 @@
             "Subject pronouns don't exist",
             "Only in informal speech"
           ],
-          "correct": 1,
-          "explanation": "Portuguese verb endings are distinctive enough to identify the subject: 'Falo' can only be 'eu', 'Falas' can only be 'tu'."
+          "explanation": "Portuguese verb endings are distinctive enough to identify the subject: 'Falo' can only be 'eu', 'Falas' can only be 'tu'.",
+          "correctIndex": 1,
+          "correctAnswer": "The verb form already shows who is acting"
         },
         {
           "question": "Which question uses the common EP 'é que' construction correctly?",
@@ -2916,8 +2927,9 @@
             "Onde moras é que?",
             "É que tu moras onde?"
           ],
-          "correct": 1,
-          "explanation": "'É que' goes right after the question word: 'Onde é que moras?' — very natural in EP."
+          "explanation": "'É que' goes right after the question word: 'Onde é que moras?' — very natural in EP.",
+          "correctIndex": 1,
+          "correctAnswer": "Onde é que moras?"
         },
         {
           "question": "'Não vi ninguém.' What does this mean?",
@@ -2927,8 +2939,9 @@
             "I saw nobody",
             "I never saw anyone"
           ],
-          "correct": 1,
-          "explanation": "Double negatives are standard in Portuguese. 'Não vi ninguém' = I didn't see anyone."
+          "explanation": "Double negatives are standard in Portuguese. 'Não vi ninguém' = I didn't see anyone.",
+          "correctIndex": 1,
+          "correctAnswer": "I didn't see anyone (correct)"
         },
         {
           "question": "Where does 'que' go when connecting a relative clause?",
@@ -2938,8 +2951,9 @@
             "Right after the noun it describes",
             "Before the verb of the main clause"
           ],
-          "correct": 2,
-          "explanation": "Relative clauses follow the noun: 'O homem que mora ali' (The man who lives there)."
+          "explanation": "Relative clauses follow the noun: 'O homem que mora ali' (The man who lives there).",
+          "correctIndex": 2,
+          "correctAnswer": "Right after the noun it describes"
         },
         {
           "question": "'Ela chama-se Ana.' Why is the pronoun after the verb here?",
@@ -2949,8 +2963,9 @@
             "The pronoun refers to Ana",
             "It's an exception"
           ],
-          "correct": 0,
-          "explanation": "In a simple affirmative statement with no proclisis trigger, EP puts the reflexive pronoun after the verb: 'chama-se'."
+          "explanation": "In a simple affirmative statement with no proclisis trigger, EP puts the reflexive pronoun after the verb: 'chama-se'.",
+          "correctIndex": 0,
+          "correctAnswer": "It's a reflexive verb in a simple statement (default = enclisis)"
         },
         {
           "question": "Reorder: 'always / Portuguese / I / study' → Portuguese sentence.",
@@ -2960,8 +2975,9 @@
             "Português estudo eu sempre.",
             "Eu português estudo sempre."
           ],
-          "correct": 0,
-          "explanation": "SVO order is maintained: Eu (S) estudo (V) português (O). 'Sempre' can go before or after the verb."
+          "explanation": "SVO order is maintained: Eu (S) estudo (V) português (O). 'Sempre' can go before or after the verb.",
+          "correctIndex": 0,
+          "correctAnswer": "Eu estudo sempre português."
         },
         {
           "question": "Which conjunction introduces a reason?",
@@ -2971,8 +2987,9 @@
             "ou (or)",
             "se (if)"
           ],
-          "correct": 1,
-          "explanation": "'Porque' introduces a reason: 'Ela estuda porque quer aprender.'"
+          "explanation": "'Porque' introduces a reason: 'Ela estuda porque quer aprender.'",
+          "correctIndex": 1,
+          "correctAnswer": "porque (because)"
         },
         {
           "question": "'Quando cheguei, ele já tinha saído.' Which clause is subordinate?",
@@ -2982,8 +2999,9 @@
             "Both",
             "Neither"
           ],
-          "correct": 1,
-          "explanation": "'Quando cheguei' is the subordinate clause (starts with a conjunction). The main clause is 'ele já tinha saído'."
+          "explanation": "'Quando cheguei' is the subordinate clause (starts with a conjunction). The main clause is 'ele já tinha saído'.",
+          "correctIndex": 1,
+          "correctAnswer": "Quando cheguei"
         },
         {
           "question": "Does changing the tense change the sentence structure?",
@@ -2993,8 +3011,9 @@
             "Only in past tense",
             "Only with irregular verbs"
           ],
-          "correct": 1,
-          "explanation": "Tense changes the verb form, not the structure. SVO order stays: 'Eu falo' → 'Eu falei' → 'Eu falava'."
+          "explanation": "Tense changes the verb form, not the structure. SVO order stays: 'Eu falo' → 'Eu falei' → 'Eu falava'.",
+          "correctIndex": 1,
+          "correctAnswer": "No, only the verb form changes"
         },
         {
           "question": "What does the definite article before a name signal in EP? 'O João foi ao café.'",
@@ -3004,8 +3023,9 @@
             "It's standard European Portuguese usage",
             "It means 'that João'"
           ],
-          "correct": 2,
-          "explanation": "Using 'O/A' before names is standard in EP: 'O João', 'A Maria'. Dropping it sounds foreign or overly formal."
+          "explanation": "Using 'O/A' before names is standard in EP: 'O João', 'A Maria'. Dropping it sounds foreign or overly formal.",
+          "correctIndex": 2,
+          "correctAnswer": "It's standard European Portuguese usage"
         }
       ]
     },
