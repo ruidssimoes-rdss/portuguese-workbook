@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, use } from "react";
+import { useState, useCallback, use, useMemo } from "react";
 import Link from "next/link";
 import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { Choice, choiceResult } from "@/components/learn/kit";
@@ -8,6 +8,7 @@ import { LevelTag, Track } from "@/components/aula";
 import { ProtectedRoute } from "@/components/protected-route";
 import { PronunciationButton } from "@/components/pronunciation-button";
 import { speakPt } from "@/lib/audio/speak";
+import { shuffleOptions } from "@/lib/shuffle-options";
 import {
   getExam,
   countWords,
@@ -65,10 +66,14 @@ function MCQuestion({
   q,
   answer,
   onAnswer,
+  shuffledOptions,
+  shuffledCorrectIndex,
 }: {
   q: MultipleChoiceQuestion;
   answer: number | undefined;
   onAnswer: (idx: number) => void;
+  shuffledOptions: string[];
+  shuffledCorrectIndex: number;
 }) {
   const submitted = answer !== undefined;
 
@@ -99,13 +104,13 @@ function MCQuestion({
 
       {/* Options */}
       <div className="grid grid-cols-1 gap-1.5">
-            {q.options.map((opt, i) => (
+            {shuffledOptions.map((opt, i) => (
               <Choice
                 key={i}
                 n={i + 1}
                 label={opt}
                 selected={answer === i}
-                result={choiceResult(i, answer, q.correctIndex, submitted)}
+                result={choiceResult(i, answer, shuffledCorrectIndex, submitted)}
                 disabled={submitted}
                 onClick={() => !submitted && onAnswer(i)}
               />
@@ -114,9 +119,9 @@ function MCQuestion({
 
       {/* Explanation after answering */}
       {submitted && (
-        <div className={`rounded-[10px] border px-3.5 py-2.5 ${answer === q.correctIndex ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"}`}>
-          <p className={`text-[12px] font-semibold ${answer === q.correctIndex ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
-            {answer === q.correctIndex ? "Certo" : "Quase"}
+        <div className={`rounded-[10px] border px-3.5 py-2.5 ${answer === shuffledCorrectIndex ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"}`}>
+          <p className={`text-[12px] font-semibold ${answer === shuffledCorrectIndex ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
+            {answer === shuffledCorrectIndex ? "Certo" : "Quase"}
           </p>
           <p className="mt-0.5 text-[12.5px] leading-relaxed text-aula-text">{q.explanation}</p>
           {q.explanationEn && <p className="mt-0.5 text-[11.5px] text-aula-text-3">{q.explanationEn}</p>}
@@ -351,12 +356,16 @@ function ListeningQuestionUI({
   onAnswer,
   playCount,
   onPlay,
+  shuffledOptions,
+  shuffledCorrectIndex,
 }: {
   q: ListeningQuestion;
   answer: number | undefined;
   onAnswer: (idx: number) => void;
   playCount: number;
   onPlay: () => void;
+  shuffledOptions: string[];
+  shuffledCorrectIndex: number;
 }) {
   const submitted = answer !== undefined;
   const canPlay = playCount < q.playLimit;
@@ -428,13 +437,13 @@ function ListeningQuestionUI({
           )}
 
           <div className="grid grid-cols-1 gap-1.5">
-            {q.options.map((opt, i) => (
+            {shuffledOptions.map((opt, i) => (
               <Choice
                 key={i}
                 n={i + 1}
                 label={opt}
                 selected={answer === i}
-                result={choiceResult(i, answer, q.correctIndex, submitted)}
+                result={choiceResult(i, answer, shuffledCorrectIndex, submitted)}
                 disabled={submitted}
                 onClick={() => !submitted && onAnswer(i)}
               />
@@ -442,9 +451,9 @@ function ListeningQuestionUI({
           </div>
 
           {submitted && (
-            <div className={`rounded-[10px] border px-3.5 py-2.5 ${answer === q.correctIndex ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"}`}>
-          <p className={`text-[12px] font-semibold ${answer === q.correctIndex ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
-            {answer === q.correctIndex ? "Certo" : "Quase"}
+            <div className={`rounded-[10px] border px-3.5 py-2.5 ${answer === shuffledCorrectIndex ? "border-[#1F7A68] bg-[#E1F2ED]" : "border-[#B94A32] bg-[#FBE9E4]"}`}>
+          <p className={`text-[12px] font-semibold ${answer === shuffledCorrectIndex ? "text-[#1F7A68]" : "text-[#B94A32]"}`}>
+            {answer === shuffledCorrectIndex ? "Certo" : "Quase"}
           </p>
           <p className="mt-0.5 text-[12.5px] leading-relaxed text-aula-text">{q.explanation}</p>
           {q.explanationEn && <p className="mt-0.5 text-[11.5px] text-aula-text-3">{q.explanationEn}</p>}
@@ -690,7 +699,9 @@ function SummaryScreen({
     rwTotal += q.points;
     if (q.type === "multiple-choice") {
       const a = rwAnswers[q.id] as number | undefined;
-      if (a === q.correctIndex) rwPoints += q.points;
+      const shuffled = mcShuffleMap[q.id];
+      const correctIdx = shuffled ? shuffled.correctIndex : q.correctIndex;
+      if (a === correctIdx) rwPoints += q.points;
     } else if (q.type === "matching") {
       const perPair = q.points / q.pairs.length;
       q.pairs.forEach((pair, i) => {
@@ -712,7 +723,9 @@ function SummaryScreen({
   liSection.questions.forEach((q) => {
     liTotal += q.points;
     const a = liAnswers[q.id] as number | undefined;
-    if (a === q.correctIndex) liPoints += q.points;
+    const shuffled = mcShuffleMap[q.id];
+    const correctIdx = shuffled ? shuffled.correctIndex : q.correctIndex;
+    if (a === correctIdx) liPoints += q.points;
   });
 
   // Speaking score
@@ -829,6 +842,30 @@ function ExamContent({ id }: { id: string }) {
   // Listening play counts
   const [playCounts, setPlayCounts] = useState<Record<string, number>>({});
 
+  // Compute shuffled options for all MC questions once
+  const mcShuffleMap = useMemo(() => {
+    if (!exam) return {};
+    const map: Record<string, { options: string[]; correctIndex: number }> = {};
+    
+    exam.sections.forEach(sec => {
+      if (sec.type === "reading-writing") {
+        sec.parts.reading.forEach(q => {
+          if (q.type === "multiple-choice") {
+            map[q.id] = shuffleOptions(q.options, q.correctIndex, `exam-mc-${q.id}`);
+          }
+        });
+      } else if (sec.type === "listening") {
+        sec.questions.forEach(q => {
+          if (q.type === "multiple-choice") {
+            map[q.id] = shuffleOptions(q.options, q.correctIndex, `exam-mc-${q.id}`);
+          }
+        });
+      }
+    });
+    
+    return map;
+  }, [exam]);
+
   if (!exam) {
     return (
       <PageShell header={<Crumbs items={[{ label: "Exames", href: "/exams" }, { label: "Exame" }]} />}>
@@ -917,7 +954,9 @@ function ExamContent({ id }: { id: string }) {
     rwSection.parts.reading.forEach((q) => {
       rwTotal += q.points;
       if (q.type === "multiple-choice") {
-        if (sectionStates[0].answers[q.id] === q.correctIndex) rwPoints += q.points;
+        const shuffled = mcShuffleMap[q.id];
+        const correctIdx = shuffled ? shuffled.correctIndex : q.correctIndex;
+        if (sectionStates[0].answers[q.id] === correctIdx) rwPoints += q.points;
       } else if (q.type === "matching") {
         const perPair = q.points / q.pairs.length;
         q.pairs.forEach((pair, i) => {
@@ -933,7 +972,9 @@ function ExamContent({ id }: { id: string }) {
     let liPoints = 0, liTotal = 0;
     liSection.questions.forEach((q) => {
       liTotal += q.points;
-      if (sectionStates[1].answers[q.id] === q.correctIndex) liPoints += q.points;
+      const shuffled = mcShuffleMap[q.id];
+      const correctIdx = shuffled ? shuffled.correctIndex : q.correctIndex;
+      if (sectionStates[1].answers[q.id] === correctIdx) liPoints += q.points;
     });
 
     let spPoints = 0, spTotal = 0;
@@ -1065,12 +1106,15 @@ function ExamContent({ id }: { id: string }) {
 
       if (item.type === "multiple-choice") {
         const q = item as MultipleChoiceQuestion;
+        const shuffled = mcShuffleMap[q.id] || { options: q.options, correctIndex: q.correctIndex };
         return (
           <MCQuestion
             key={q.id}
             q={q}
             answer={sectionStates[0].answers[q.id] as number | undefined}
             onAnswer={(idx) => setAnswer(0, q.id, idx)}
+            shuffledOptions={shuffled.options}
+            shuffledCorrectIndex={shuffled.correctIndex}
           />
         );
       } else if (item.type === "matching") {
@@ -1108,6 +1152,7 @@ function ExamContent({ id }: { id: string }) {
     } else if (sec.type === "listening") {
       const q = sec.questions[currentQuestion];
       if (!q) return null;
+      const shuffled = mcShuffleMap[q.id] || { options: q.options, correctIndex: q.correctIndex };
       return (
         <ListeningQuestionUI
           key={q.id}
@@ -1121,6 +1166,8 @@ function ExamContent({ id }: { id: string }) {
               [q.id]: (prev[q.id] ?? 0) + 1,
             }))
           }
+          shuffledOptions={shuffled.options}
+          shuffledCorrectIndex={shuffled.correctIndex}
         />
       );
     } else if (sec.type === "speaking") {
