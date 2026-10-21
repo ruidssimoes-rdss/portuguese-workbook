@@ -11,7 +11,7 @@ import sayingsData from "@/data/sayings.json";
 import etiquetteData from "@/data/etiquette.json";
 import falseFriendsData from "@/data/false-friends.json";
 
-import type { VocabItem, VerbItem, GrammarItem, CultureItem } from "@/data/lessons";
+import type { VocabItem, VerbItem, GrammarItem, CultureItem } from "@/data/curriculum-types";
 
 // ── Typed casts ────────────────────────────────────────────
 
@@ -218,6 +218,57 @@ export function getVocabItems(
   }
 
   return shuffle(items).slice(0, count);
+}
+
+/** Get vocab items for exact words (vocab.json `portuguese`), in the given order. */
+export function getVocabItemsByWords(words: string[]): VocabItem[] {
+  const items: VocabItem[] = [];
+  for (const word of words) {
+    for (const cat of vocab.categories) {
+      const w = cat.words.find((x) => x.portuguese === word);
+      if (!w) continue;
+      items.push({
+        id: `vocab-${cat.id}-${w.portuguese.replace(/\s/g, "-")}`,
+        word: w.portuguese,
+        translation: w.english,
+        pronunciation: `/${w.pronunciation}/`,
+        example: { pt: w.example, en: w.exampleTranslation },
+      });
+      break;
+    }
+  }
+  return items;
+}
+
+/** Random words at a CEFR level the student has not met yet, at most 3 per category. */
+export function pickNewVocabWords(cefr: string, seenIds: Set<string>, count: number): string[] {
+  const candidates: Array<{ word: string; category: string }> = [];
+  for (const cat of vocab.categories) {
+    for (const w of cat.words) {
+      if (w.cefr === cefr && !seenIds.has(`vocab:${w.portuguese}`)) candidates.push({ word: w.portuguese, category: cat.id });
+    }
+  }
+  const picked: string[] = [];
+  const perCategory: Record<string, number> = {};
+  for (const c of shuffle(candidates)) {
+    if (picked.length >= count) break;
+    if ((perCategory[c.category] ?? 0) >= 3) continue;
+    perCategory[c.category] = (perCategory[c.category] ?? 0) + 1;
+    picked.push(c.word);
+  }
+  return picked;
+}
+
+/** Verb slugs at a CEFR level the student has not met yet, in curriculum order. */
+export function pickNewVerbSlugs(cefr: string, seenIds: Set<string>, count: number): string[] {
+  const slugs = getContentInventory().verbs.slugsByCefr[cefr] ?? [];
+  return slugs.filter((s) => !seenIds.has(`verb:${s}`)).slice(0, count);
+}
+
+/** Grammar topics at a CEFR level the student has not met yet, in curriculum order. */
+export function pickNewGrammarTopics(cefr: string, seenIds: Set<string>, count: number): string[] {
+  const topics = getContentInventory().grammar.topicsByCefr[cefr] ?? [];
+  return topics.filter((t) => !seenIds.has(`grammar:${t}`)).slice(0, count);
 }
 
 /** Get verb data by slug and tenses */

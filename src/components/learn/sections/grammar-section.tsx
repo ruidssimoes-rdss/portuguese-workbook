@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import type { SectionResult } from "@/lib/exercise-types";
 import { Item, Prompt, Choice, choiceResult, Feedback, SectionFooter, type Mark } from "../kit";
+import { shuffleOptions } from "@/lib/shuffle-options";
 
 interface GrammarQuestion {
   id: string;
@@ -32,8 +33,29 @@ export function GrammarSectionNew({ sectionIndex, totalSections, showEnglish, qu
   const [picks, setPicks] = useState<Record<string, number>>({});
   const [results, setResults] = useState<Record<string, boolean> | null>(null);
 
-  const rightIndex = (q: GrammarQuestion) => (q.type === "true-false" ? (q.isTrue ? 0 : 1) : q.correctIndex);
-  const optionsOf = (q: GrammarQuestion) => (q.type === "true-false" ? TF : (q.options ?? []));
+  // Compute shuffled options for MC questions (but not true/false)
+  const shuffleMap = useMemo(() => {
+    const map: Record<string, { options: string[]; correctIndex: number }> = {};
+    questions.forEach(q => {
+      if (q.type === "mc" && q.options && q.correctIndex !== undefined) {
+        map[q.id] = shuffleOptions(q.options, q.correctIndex, q.id);
+      }
+    });
+    return map;
+  }, [questions]);
+
+  const rightIndex = (q: GrammarQuestion) => {
+    if (q.type === "true-false") return q.isTrue ? 0 : 1;
+    if (q.type === "mc") return shuffleMap[q.id]?.correctIndex ?? q.correctIndex;
+    return q.correctIndex;
+  };
+  
+  const optionsOf = (q: GrammarQuestion) => {
+    if (q.type === "true-false") return TF;
+    if (q.type === "mc" && shuffleMap[q.id]) return shuffleMap[q.id].options;
+    return q.options ?? [];
+  };
+  
   const remaining = questions.filter((q) => picks[q.id] === undefined).length;
 
   function verify() {

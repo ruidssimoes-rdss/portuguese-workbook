@@ -1,13 +1,19 @@
 /**
- * Session Planner — orchestrates context → AI prompt → Ollama → validated plan.
- * Always falls back gracefully if Ollama is unavailable.
+ * Session Planner — student context → session plan.
+ *
+ * The rule-based planner always works and needs no key. When
+ * ANTHROPIC_API_KEY is set Claude is tried first; when Ollama is reachable
+ * it is tried next. Any AI failure falls back to the rule-based plan, so
+ * this never throws for lack of a model.
  */
 
-import { generateJSON, isOllamaAvailable, OllamaError } from "./ollama-client";
+import { generateJSON, isOllamaAvailable } from "./ollama-client";
+import { generateWithClaude, isClaudeAvailable } from "./claude-client";
 import { sessionPlanSchema } from "./schemas";
 import { buildSessionSystemPrompt, buildSessionUserPrompt, type StudentContext } from "./prompts";
 import { assembleStudentContext } from "./context-assembler";
 import { getContentInventory } from "./content-index";
+import { buildRuleBasedPlan } from "./rule-based-planner";
 import type { AISessionPlan } from "./types";
 
 export interface PlanSessionResult {
@@ -17,76 +23,35 @@ export interface PlanSessionResult {
 
 export async function planSession(userId: string): Promise<PlanSessionResult> {
   let context: StudentContext;
-
   try {
     context = await assembleStudentContext(userId);
   } catch (err) {
     console.error("Failed to assemble student context:", err);
-    // Use minimal context for fallback
     context = getMinimalContext();
   }
 
-  try {
-    const available = await isOllamaAvailable();
-    if (!available) {
-      console.warn("Ollama unavailable, using fallback session plan");
-      return { plan: generateFallbackPlan(context), source: "fallback" };
-    }
+  const systemPrompt = buildSessionSystemPrompt();
+  const userPrompt = buildSessionUserPrompt(context);
 
-    const systemPrompt = buildSessionSystemPrompt();
-    const userPrompt = buildSessionUserPrompt(context);
-
-    const plan = await generateJSON<AISessionPlan>(systemPrompt, userPrompt, sessionPlanSchema);
-    return { plan, source: "ai" };
-  } catch (error) {
-    if (error instanceof OllamaError) {
-      console.error(`Ollama error (${error.code}): ${error.message}`);
-    } else {
-      console.error("Session planning error:", error);
+  if (isClaudeAvailable()) {
+    try {
+      const plan = await generateWithClaude<AISessionPlan>(systemPrompt, userPrompt, sessionPlanSchema);
+      return { plan, source: "ai" };
+    } catch (error) {
+      console.warn("Claude session planning failed, trying Ollama:", error);
     }
-    return { plan: generateFallbackPlan(context), source: "fallback" };
   }
-}
 
-function generateFallbackPlan(context: StudentContext): AISessionPlan {
-  const inventory = getContentInventory();
-  const level = context.currentLevel;
+  if (await isOllamaAvailable().catch(() => false)) {
+    try {
+      const plan = await generateJSON<AISessionPlan>(systemPrompt, userPrompt, sessionPlanSchema);
+      return { plan, source: "ai" };
+    } catch (error) {
+      console.warn("Ollama session planning failed, using rule-based plan:", error);
+    }
+  }
 
-  // Pick content based on level
-  const vocabCats = inventory.vocab.categoriesByCefr[level] ?? inventory.vocab.categories;
-  const verbSlugs = inventory.verbs.slugsByCefr[level] ?? inventory.verbs.slugs;
-  const grammarTopics = inventory.grammar.topicsByCefr[level] ?? inventory.grammar.topicSlugs;
-
-  // Select 1-2 vocab categories, 2-3 verbs, 1 grammar topic
-  const selectedVocab = vocabCats.slice(0, 2);
-  const selectedVerbs = verbSlugs.slice(0, 3);
-  const selectedGrammar = grammarTopics.slice(0, 1);
-
-  return {
-    sessionTitle: "Practice Session",
-    sessionTitlePt: "Sessão de Prática",
-    difficulty: level === "A1" ? "foundation" : level === "A2" ? "developing" : "confident",
-    estimatedMinutes: 15,
-    focusAreas: [
-      {
-        type: "vocabulary",
-        vocabCategories: selectedVocab,
-        vocabCefr: level,
-        vocabCount: 6,
-      },
-      {
-        type: "verbs",
-        verbSlugs: selectedVerbs,
-        verbTenses: ["Present"],
-        verbCount: 3,
-      },
-      {
-        type: "grammar",
-        grammarTopicSlugs: selectedGrammar,
-      },
-    ],
-    reviewPriority: context.overdueReviewItems.length > 0 ? "weak" : "mixed",
-  };
+  return { plan: buildRuleBasedPlan(context), source: "fallback" };
 }
 
 function getMinimalContext(): StudentContext {
@@ -102,5 +67,8 @@ function getMinimalContext(): StudentContext {
     availableGrammarTopics: inventory.grammar.topicsByCefr["A1"] ?? inventory.grammar.topicSlugs,
     cultureItemCount: inventory.culture.totalItems,
     overdueReviewItems: [],
+    dueItems: [],
+    weakItems: [],
+    seenIds: [],
   };
 }

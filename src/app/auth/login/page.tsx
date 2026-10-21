@@ -22,8 +22,32 @@ function LoginForm() {
 
   useEffect(() => {
     const err = searchParams.get("error");
-    if (err === "auth_callback_error") {
-      setError("Ocorreu um erro ao iniciar sessão. Tenta novamente.");
+    const errorCode = searchParams.get("error_code");
+    const errorDescription = searchParams.get("error_description");
+    
+    // Handle Supabase OAuth errors
+    if (err || errorCode) {
+      let errorMsg = "Ocorreu um erro ao iniciar sessão. Tenta novamente.";
+      
+      if (errorCode === "bad_oauth_state" || errorDescription?.includes("OAuth state")) {
+        errorMsg = "A sessão de início de sessão expirou. Por favor, tenta novamente.";
+      } else if (err === "auth_callback_error") {
+        errorMsg = "Ocorreu um erro ao iniciar sessão. Tenta novamente.";
+      } else if (errorDescription) {
+        errorMsg = `Erro de autenticação: ${errorDescription}`;
+      }
+      
+      setError(errorMsg);
+      
+      // Clean up URL by removing error params
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+      newSearchParams.delete("error");
+      newSearchParams.delete("error_code");
+      newSearchParams.delete("error_description");
+      const newUrl = newSearchParams.toString() 
+        ? `${window.location.pathname}?${newSearchParams.toString()}` 
+        : window.location.pathname;
+      window.history.replaceState({}, "", newUrl);
     }
   }, [searchParams]);
 

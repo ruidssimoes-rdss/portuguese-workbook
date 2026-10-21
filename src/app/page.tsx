@@ -6,16 +6,17 @@
  * and an «Esta semana» strip pinned to the bottom of the panel.
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { CalendarDays, RotateCcw, Sparkles, Search, ChevronRight } from "lucide-react";
+import { CalendarDays, RotateCcw, Sparkles, Search, ChevronRight, X } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 import { PageShell } from "@/components/layout/page-shell";
 import { SearchModal } from "@/components/search-modal";
 import { getProgressStats } from "@/lib/progress-stats-service";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
-import { getCurrentStudyLevel, getReviewCount } from "@/lib/learning-engine";
+import { getCurrentStudyLevel, getReviewSummary } from "@/lib/learning-engine";
 import { createClient } from "@/lib/supabase/client";
+import { useRouter, useSearchParams } from "next/navigation";
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -28,7 +29,10 @@ interface HomeStats {
   level: string;
   readinessPct: number;
   mastered: number;
-  reviewCount: number;
+  /** Seen items that can be reviewed now. */
+  reviewDue: number;
+  /** Of those, how many are genuinely overdue. */
+  reviewOverdue: number;
   streak: number;
   accuracy: number | null;
   firstName: string | null;
@@ -37,10 +41,56 @@ interface HomeStats {
 }
 
 export default function HomePage() {
+  return (
+    <Suspense fallback={
+      <PageShell>
+        <div className="flex min-h-[calc(100dvh-140px)] items-center justify-center">
+          <div className="text-aula-text-3">A carregar…</div>
+        </div>
+      </PageShell>
+    }>
+      <HomeContent />
+    </Suspense>
+  );
+}
+
+function HomeContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, loading: authLoading } = useAuth();
   const [stats, setStats] = useState<HomeStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [oauthError, setOauthError] = useState<string | null>(null);
+
+  // Check for OAuth errors in URL params
+  useEffect(() => {
+    const err = searchParams.get("error");
+    const errorCode = searchParams.get("error_code");
+    const errorDescription = searchParams.get("error_description");
+    
+    if (err || errorCode) {
+      let errorMsg = "Ocorreu um erro ao iniciar sessão.";
+      
+      if (errorCode === "bad_oauth_state" || errorDescription?.includes("OAuth state")) {
+        errorMsg = "A sessão de início de sessão expirou.";
+      } else if (errorDescription) {
+        errorMsg = `Erro de autenticação: ${errorDescription}`;
+      }
+      
+      setOauthError(errorMsg);
+      
+      // Clean up URL by removing error params
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+      newSearchParams.delete("error");
+      newSearchParams.delete("error_code");
+      newSearchParams.delete("error_description");
+      const newUrl = newSearchParams.toString() 
+        ? `${window.location.pathname}?${newSearchParams.toString()}` 
+        : window.location.pathname;
+      window.history.replaceState({}, "", newUrl);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (authLoading || !user) return;
@@ -52,7 +102,7 @@ export default function HomePage() {
       const [progression, level, reviews, ps, profileRes] = await Promise.all([
         getFullProgression(currentUser.id),
         getCurrentStudyLevel(currentUser.id),
-        getReviewCount(currentUser.id),
+        getReviewSummary(currentUser.id),
         getProgressStats().catch(() => null),
         supabase.from("profiles").select("google_display_name").eq("id", currentUser.id).single(),
       ]);
@@ -66,7 +116,8 @@ export default function HomePage() {
         level,
         readinessPct: Math.round(active.progress.readiness * 100),
         mastered,
-        reviewCount: reviews,
+        reviewDue: reviews.due,
+        reviewOverdue: reviews.overdue,
         streak: ps?.currentStreak ?? 0,
         accuracy: ps && ps.averageAccuracy > 0 ? Math.round(ps.averageAccuracy) : null,
         firstName: fullName ? fullName.split(" ")[0] : null,
@@ -83,7 +134,7 @@ export default function HomePage() {
   const subtitle = !stats
     ? " "
     : [
-          stats.reviewCount > 0 ? `${stats.reviewCount} revisões à espera` : "Tudo em dia",
+          stats.reviewDue > 0 ? `${stats.reviewDue} ${stats.reviewDue === 1 ? "revisão" : "revisões"} à espera` : "Tudo em dia",
           stats.streak > 0 ? `sequência de ${stats.streak} ${stats.streak === 1 ? "dia" : "dias"}` : null,
         ]
           .filter(Boolean)
@@ -91,8 +142,16 @@ export default function HomePage() {
 
   const suggestions: { href: string; icon: typeof CalendarDays; label: string; meta: string }[] = [
     { href: "/learn", icon: CalendarDays, label: "Começar a sessão de hoje", meta: stats ? `${stats.level}` : "" },
-    ...(stats && stats.reviewCount > 0
-      ? [{ href: "/learn?mode=review", icon: RotateCcw, label: `Rever ${stats.reviewCount} ${stats.reviewCount === 1 ? "palavra" : "palavras"}`, meta: "Em atraso" }]
+    ...(stats && stats.reviewDue > 0
+      ? [
+          {
+            href: "/learn?mode=review",
+            icon: RotateCcw,
+            // Items, not words: the count mixes vocabulary, verbs and grammar topics.
+            label: `Rever ${stats.reviewDue} ${stats.reviewDue === 1 ? "item" : "itens"}`,
+            meta: stats.reviewOverdue > 0 ? "Em atraso" : "Hoje",
+          },
+        ]
       : []),
     { href: "/tutor", icon: Sparkles, label: "Pedir uma sessão ao Professor Elísio", meta: "Personalizada" },
   ];
@@ -102,6 +161,30 @@ export default function HomePage() {
 
   return (
     <PageShell>
+      {/* OAuth error banner */}
+      {oauthError && (
+        <div className="mx-auto w-full max-w-[640px] mb-6">
+          <div className="flex items-start gap-3 rounded-[10px] border border-[#F0C9BE] bg-[#FBE9E4] px-4 py-3">
+            <div className="flex-1">
+              <p className="text-[13px] font-medium text-[#B94A32]">{oauthError}</p>
+              <Link
+                href="/auth/login"
+                className="mt-2 inline-flex h-8 items-center justify-center rounded-lg bg-[#1B2B61] px-4 text-[12.5px] font-medium text-white transition-colors hover:bg-[#151F4A]"
+              >
+                Tentar novamente
+              </Link>
+            </div>
+            <button
+              onClick={() => setOauthError(null)}
+              className="flex h-5 w-5 items-center justify-center rounded text-[#B94A32] transition-colors hover:bg-[#F0C9BE]"
+              aria-label="Fechar"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        </div>
+      )}
+      
       <div className="flex min-h-[calc(100dvh-140px)] flex-col">
         <div className="flex-1" />
 
@@ -184,7 +267,7 @@ export default function HomePage() {
           <div className="mx-auto mt-10 w-full max-w-[640px]">
             <div className="mb-2.5 text-[11px] text-aula-text-3">O teu estado</div>
             <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-              <Stat label="Revisões em atraso" value={String(stats.reviewCount)} tone={stats.reviewCount > 0 ? "overdue" : "default"} />
+              <Stat label="Revisões em atraso" value={String(stats.reviewOverdue)} tone={stats.reviewOverdue > 0 ? "overdue" : "default"} />
               <Stat label="Sequência" value={`${stats.streak} ${stats.streak === 1 ? "dia" : "dias"}`} />
               <Stat label="Itens dominados" value={stats.mastered.toLocaleString("pt-PT")} />
               <Stat

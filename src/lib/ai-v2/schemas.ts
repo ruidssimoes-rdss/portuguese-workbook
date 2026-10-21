@@ -9,6 +9,7 @@ import { z } from "zod";
 const focusAreaSchema = z.object({
   type: z.enum(["vocabulary", "verbs", "grammar", "culture"]),
   vocabCategories: z.array(z.string()).optional(),
+  vocabWords: z.array(z.string()).optional(),
   vocabCefr: z.enum(["A1", "A2", "B1"]).optional(),
   vocabCount: z.number().min(1).max(15).optional(),
   verbSlugs: z.array(z.string()).optional(),

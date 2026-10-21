@@ -8,6 +8,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useShuffledOptions } from "@/lib/shuffle-options";
 import { useParams } from "next/navigation";
 import { Check } from "lucide-react";
 import type { ReactNode } from "react";
@@ -204,8 +205,13 @@ function QuickCheck({ questions }: { questions: Question[] }) {
 
 function CheckBlock({ q, n, total }: { q: Question; n: number; total: number }) {
   const [picked, setPicked] = useState<number | null>(null);
+  const { options: shuffledOptions, correctIndex: shuffledCorrectIndex } = useShuffledOptions(
+    q.options,
+    q.correctIndex,
+    `grammar-quick-check-${q.questionText.slice(0, 30)}`
+  );
   const done = picked !== null;
-  const right = picked === q.correctIndex;
+  const right = picked === shuffledCorrectIndex;
   return (
     <div className="rounded-xl border border-aula-border bg-white p-4">
       <div className="mb-2 flex items-center justify-between text-[11px] text-aula-text-3">
@@ -218,8 +224,8 @@ function CheckBlock({ q, n, total }: { q: Question; n: number; total: number }) 
       </div>
       <p className="mb-3 text-[13px] font-medium text-aula-text">{q.questionTextPt ?? q.questionText}</p>
       <div className="flex flex-wrap gap-2">
-        {q.options.map((o, i) => {
-          const isRight = done && i === q.correctIndex;
+        {shuffledOptions.map((o, i) => {
+          const isRight = done && i === shuffledCorrectIndex;
           const isWrong = done && i === picked && !right;
           return (
             <button

@@ -13,7 +13,7 @@ import type {
   GrammarItem,
   CultureItem,
   PracticeItem,
-} from "./lessons";
+} from "./curriculum-types";
 
 import vocabData from "./vocab.json";
 import verbsData from "./verbs.json";
@@ -248,7 +248,7 @@ export function resolveCurriculumLesson(cl: CurriculumLesson): Lesson {
   for (let i = 0; i < cl.stages.verbs.verbs.length; i++) {
     const vRef = cl.stages.verbs.verbs[i];
     const tensesToUse = vRef.tenses?.length ? vRef.tenses : ["Present"];
-    const verbItems: import("./lessons").VerbItem[] = [];
+    const verbItems: VerbItem[] = [];
     for (const tense of tensesToUse) {
       const item = getVerbConjugations(vRef.verbKey, tense);
       if (item) {

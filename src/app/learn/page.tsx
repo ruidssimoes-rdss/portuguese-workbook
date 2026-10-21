@@ -16,7 +16,7 @@ import {
   generateLessonExercises,
   type GeneratedLesson,
 } from "@/lib/exercise-generator";
-import type { Lesson } from "@/data/lessons";
+import type { Lesson } from "@/data/curriculum-types";
 import type { SectionResult } from "@/lib/exercise-types";
 import { saveLessonAttempt, type WrongItem } from "@/lib/lesson-progress";
 import { logLessonCompletion } from "@/lib/calendar-service";

@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
-import type { Lesson, VocabItem } from "@/data/lessons";
+import type { Lesson, VocabItem } from "@/data/curriculum-types";
 import type {
   GeneratedLesson,
   LearnItem,

@@ -706,12 +706,12 @@
       "title": "Subject Pronouns",
       "titlePt": "Pronomes Pessoais Sujeitos",
       "cefr": "A1",
-      "summary": "eu, tu, ele/ela/você, nós, eles/elas/vocês. In European Portuguese 'tu' is standard informal; 'você' is formal.",
-      "intro": "Subject pronouns are: eu (I), tu (you singular informal), ele/ela/você (he/she/you formal), nós (we), eles/elas/vocês (they/you plural).\n\nIn European Portuguese, 'tu' is the standard informal 'you' and 'você' is formal or respectful — the opposite of Brazilian Portuguese.\n\nThe form 'vós' exists but is archaic and rarely used. Portuguese often omits the subject because the verb conjugation already shows who: 'Falo português' (I speak Portuguese) is clear without 'eu'.",
+      "summary": "eu, tu, ele/ela, nós, eles/elas, vocês and a gente. Use «tu» with friends; for polite address use «o senhor» / «a senhora» or the name of the person, not «você». «Vocês» is the normal plural.",
+      "intro": "Subject pronouns say who does the action: eu (I), tu (you, one person you are close to), ele / ela (he / she), nós (we), eles / elas (they) and vocês (you, several people). In everyday speech there is also «a gente», an informal «nós».\n\nPortuguese often drops the subject because the verb ending already shows who: «Falo português» is the normal way to say «I speak Portuguese». Add «eu» only to contrast or to stress: «Eu falo, ele não.»\n\nHow to say «you» in Portugal: use «tu» with friends, family and people your age. For polite address, avoid singular «você», which can sound blunt or distant. Use «o senhor» / «a senhora», the name of the person, or just the third person: «A Ana quer café?». «Vocês» is the normal, neutral plural for several people, friends or strangers. «Vós» is archaic or regional: recognise it, but do not use it.",
       "rules": [
         {
-          "rule": "eu = I, tu = you (informal), ele/ela = he/she.",
-          "rulePt": "eu, tu, ele/ela.",
+          "rule": "Singular: eu (I), tu (you, informal), ele (he), ela (she).",
+          "rulePt": "Uma pessoa: eu, tu, ele, ela.",
           "examples": [
             {
               "pt": "Eu falo.",
@@ -720,26 +720,112 @@
             {
               "pt": "Tu falas.",
               "en": "You speak."
+            },
+            {
+              "pt": "Ele fala.",
+              "en": "He speaks."
+            },
+            {
+              "pt": "Ela fala.",
+              "en": "She speaks."
             }
           ]
         },
         {
-          "rule": "In EP, 'tu' is informal and 'você' is formal.",
-          "rulePt": "Em PE, 'tu' é informal e 'você' é formal.",
+          "rule": "Plural: nós (we), eles (they, masculine or mixed), elas (they, all feminine).",
+          "rulePt": "Várias pessoas: nós, eles, elas.",
           "examples": [
             {
-              "pt": "Tu comes bem.",
-              "en": "You eat well (informal)."
+              "pt": "Nós falamos.",
+              "en": "We speak."
+            },
+            {
+              "pt": "Eles falam.",
+              "en": "They speak. (masculine or mixed)"
+            },
+            {
+              "pt": "Elas moram em Lisboa.",
+              "en": "They live in Lisbon. (all feminine)"
+            }
+          ]
+        },
+        {
+          "rule": "«A gente» means «we» in informal speech. It takes the third-person singular verb: «A gente vai», not «a gente vamos». «Nós vamos» is the neutral choice.",
+          "rulePt": "«A gente» é um «nós» informal e leva o verbo na terceira pessoa do singular.",
+          "examples": [
+            {
+              "pt": "A gente vai ao cinema.",
+              "en": "We are going to the cinema. (informal)"
+            },
+            {
+              "pt": "Nós vamos ao cinema.",
+              "en": "We are going to the cinema. (neutral)"
+            }
+          ]
+        },
+        {
+          "rule": "In Portugal, use «tu» with friends, family and people your age. For polite address, use «o senhor» / «a senhora», the name of the person, or the bare third person. All of these take the third-person singular verb.",
+          "rulePt": "Com amigos e família, «tu». Para ser educado, «o senhor», «a senhora», o nome da pessoa ou a terceira pessoa.",
+          "examples": [
+            {
+              "pt": "Tu queres café?",
+              "en": "Do you want coffee? (to a friend)"
             },
             {
               "pt": "O senhor quer café?",
-              "en": "Would you like coffee? (formal)"
+              "en": "Would you like coffee? (polite, to a man)"
+            },
+            {
+              "pt": "A Ana quer café?",
+              "en": "Would you like coffee, Ana? (polite, by name)"
+            },
+            {
+              "pt": "Quer café?",
+              "en": "Would you like coffee? (polite, subject dropped)"
             }
           ]
         },
         {
-          "rule": "Subject pronouns are often omitted when the verb form is clear.",
-          "rulePt": "Os pronomes sujeito são muitas vezes omitidos.",
+          "rule": "«Você» exists and takes the third-person singular verb, but in Portugal it can sound blunt or distant, so avoid it with someone you do not know well. It is not the polite form: that is «o senhor» / «a senhora» or the name of the person. In Brazilian Portuguese «você» is the everyday «you», which is one more reason not to carry it over.",
+          "rulePt": "Em Portugal, «você» no singular pode soar seco ou distante. Evita-o; não é a forma de cortesia.",
+          "examples": [
+            {
+              "pt": "A Ana quer café?",
+              "en": "Would you like coffee, Ana? (instead of «você»)"
+            },
+            {
+              "pt": "O senhor já almoçou?",
+              "en": "Have you had lunch? (polite, to a man)"
+            }
+          ]
+        },
+        {
+          "rule": "«Vocês» is the normal, neutral plural for several people you are talking to: friends, family or strangers. In practice it is the plural of «tu». It takes the third-person plural verb.",
+          "rulePt": "«Vocês» é o plural normal, com amigos e com desconhecidos, e leva o verbo na terceira pessoa do plural.",
+          "examples": [
+            {
+              "pt": "Vocês querem café?",
+              "en": "Do you (all) want coffee?"
+            },
+            {
+              "pt": "Vocês moram em Lisboa?",
+              "en": "Do you (all) live in Lisbon?"
+            }
+          ]
+        },
+        {
+          "rule": "«Vós» (you, plural, with its own verb forms) is archaic or regional. Recognise it in old texts, songs and prayers, but say «vocês» yourself.",
+          "rulePt": "«Vós» é antigo ou regional. Reconhece-o, mas diz «vocês».",
+          "examples": [
+            {
+              "pt": "Vós sois amigos.",
+              "en": "You are friends. (archaic)"
+            }
+          ]
+        },
+        {
+          "rule": "Subject pronouns are usually dropped when the verb form is clear: «Falo português», not «Eu falo português» by default. Use them to contrast or to stress: «Eu falo, ele não.»",
+          "rulePt": "Os pronomes sujeito costumam omitir-se. Usam-se para contrastar ou dar ênfase.",
           "examples": [
             {
               "pt": "Falo português.",
@@ -747,18 +833,26 @@
             },
             {
               "pt": "Comeu o bolo?",
-              "en": "Did you/he/she eat the cake?"
+              "en": "Did you / he / she eat the cake?"
+            },
+            {
+              "pt": "Eu falo, ele não.",
+              "en": "I speak, he does not."
             }
           ]
         }
       ],
       "tips": [
-        "In European Portuguese use 'tu' with friends and family; use 'você' or 'o senhor/a senhora' to be polite.",
-        "Vós is rarely used in modern EP — use 'vocês' for 'you plural'."
+        "Use «tu» with friends, family and people your age. To be polite, use «o senhor» / «a senhora» or the name of the person, and avoid singular «você».",
+        "«A gente vai», with the third-person singular verb. Never «a gente vamos».",
+        "«Vocês» is the normal plural for friends and strangers alike. Skip «vós».",
+        "Drop the subject by default: «Falo português», not «Eu falo português»."
       ],
       "tipsPt": [
-        "Em português europeu usa 'tu' com amigos; 'você' ou 'o senhor' para ser formal.",
-        "Vós raramente se usa — usa 'vocês' para vocês."
+        "Usa «tu» com amigos, família e pessoas da tua idade. Para ser educado, usa «o senhor», «a senhora» ou o nome da pessoa, e evita «você» no singular.",
+        "«A gente vai», com o verbo na terceira pessoa do singular. Nunca «a gente vamos».",
+        "«Vocês» é o plural normal, com amigos e com desconhecidos. Não uses «vós».",
+        "Em regra, omite o sujeito: «Falo português», não «Eu falo português»."
       ],
       "questions": [
         {
@@ -788,17 +882,17 @@
           "explanation": "Falo is the eu form of falar."
         },
         {
-          "questionText": "Which pronoun is formal in European Portuguese?",
-          "questionTextPt": "Qual pronome é formal em PE?",
+          "questionText": "Which is the safest way to address one person you do not know well, politely, in Portugal?",
+          "questionTextPt": "Qual é a forma mais segura de tratar com respeito uma pessoa que não conheces bem?",
           "options": [
             "tu",
             "você",
-            "vós",
-            "nós"
+            "o senhor / a senhora",
+            "vós"
           ],
-          "correctAnswer": "você",
-          "correctIndex": 1,
-          "explanation": "Você is used for formal address in EP."
+          "correctAnswer": "o senhor / a senhora",
+          "correctIndex": 2,
+          "explanation": "Use o senhor / a senhora, or the name of the person. Singular você can sound blunt or distant."
         },
         {
           "questionText": "How do you say 'we speak'?",
@@ -840,8 +934,8 @@
           "explanation": "Eles = they (masculine or mixed)."
         },
         {
-          "questionText": "Complete: ___ comeu o bolo? (Did you eat the cake?)",
-          "questionTextPt": "Completa: ___ comeu o bolo?",
+          "questionText": "Complete: ___ comeste o bolo? (Did you eat the cake?)",
+          "questionTextPt": "Completa: ___ comeste o bolo?",
           "options": [
             "Eu",
             "Tu",
@@ -850,7 +944,7 @@
           ],
           "correctAnswer": "Tu",
           "correctIndex": 1,
-          "explanation": "Comeu is the tu form of comer in the preterite."
+          "explanation": "Comeste is the tu form of comer in the preterite."
         },
         {
           "questionText": "In EP, with a friend you would use:",
@@ -866,17 +960,17 @@
           "explanation": "Tu is the standard informal you in EP."
         },
         {
-          "questionText": "Which is correct for 'they (feminine)'?",
-          "questionTextPt": "Qual é correto para 'they (feminine)'?",
+          "questionText": "How do you ask a group of friends: Do you (all) want coffee?",
+          "questionTextPt": "Como perguntas a um grupo de amigos: querem café?",
           "options": [
-            "eles",
-            "elas",
-            "vocês",
-            "nós"
+            "Tu queres café?",
+            "Vocês querem café?",
+            "Vocês quer café?",
+            "Vós quer café?"
           ],
-          "correctAnswer": "elas",
+          "correctAnswer": "Vocês querem café?",
           "correctIndex": 1,
-          "explanation": "Elas = they (feminine)."
+          "explanation": "Vocês is the normal plural and takes the third-person plural verb: querem."
         },
         {
           "questionText": "Complete: ___ estamos em Lisboa.",
@@ -918,17 +1012,17 @@
           "explanation": "Subject is often omitted when the verb form is clear."
         },
         {
-          "questionText": "How do you say 'she' in Portuguese?",
-          "questionTextPt": "Como se diz 'she'?",
+          "questionText": "Complete: A gente ___ ao cinema. (ir)",
+          "questionTextPt": "Completa: A gente ___ ao cinema.",
           "options": [
-            "ele",
-            "ela",
-            "tu",
-            "você"
+            "vamos",
+            "vai",
+            "vais",
+            "vão"
           ],
-          "correctAnswer": "ela",
+          "correctAnswer": "vai",
           "correctIndex": 1,
-          "explanation": "Ela = she."
+          "explanation": "A gente is an informal nós, but it takes the third-person singular verb: vai."
         },
         {
           "questionText": "Complete: ___ partem amanhã.",
@@ -944,17 +1038,17 @@
           "explanation": "Partem is the eles/elas/vocês form of partir."
         },
         {
-          "questionText": "Which is the formal way to say 'you' in EP?",
-          "questionTextPt": "Qual é a forma formal de 'you' em PE?",
+          "questionText": "Which sentence is the natural polite way to ask a woman you do not know: Would you like coffee?",
+          "questionTextPt": "Qual é a forma natural e educada de perguntar a uma senhora que não conheces: quer café?",
           "options": [
-            "tu",
-            "você",
-            "vós",
-            "ele"
+            "A senhora quer café?",
+            "Tu queres café?",
+            "Você quer café?",
+            "Vós quereis café?"
           ],
-          "correctAnswer": "você",
-          "correctIndex": 1,
-          "explanation": "Você (or o senhor/a senhora) is formal in EP."
+          "correctAnswer": "A senhora quer café?",
+          "correctIndex": 0,
+          "explanation": "A senhora, or the name of the person, is the polite choice. Você can sound blunt and tu is for friends."
         }
       ]
     },
@@ -2795,8 +2889,9 @@
             "Subject + Verb + Object",
             "Subject + Object + Verb"
           ],
-          "correct": 2,
-          "explanation": "Portuguese follows SVO (Subject + Verb + Object), the same basic order as English."
+          "explanation": "Portuguese follows SVO (Subject + Verb + Object), the same basic order as English.",
+          "correctIndex": 2,
+          "correctAnswer": "Subject + Verb + Object"
         },
         {
           "question": "Where does the adjective usually go in Portuguese?",
@@ -2806,8 +2901,9 @@
             "It doesn't matter",
             "Before the verb"
           ],
-          "correct": 1,
-          "explanation": "Most adjectives follow the noun: 'casa grande' (big house), not *'grande casa'*."
+          "explanation": "Most adjectives follow the noun: 'casa grande' (big house), not *'grande casa'*.",
+          "correctIndex": 1,
+          "correctAnswer": "After the noun"
         },
         {
           "question": "Which is correct? 'I don't speak Portuguese.'",
@@ -2817,8 +2913,9 @@
             "Não eu falo português.",
             "Eu falo português não."
           ],
-          "correct": 1,
-          "explanation": "'Não' always goes directly before the verb: 'Eu não falo português.'"
+          "explanation": "'Não' always goes directly before the verb: 'Eu não falo português.'",
+          "correctIndex": 1,
+          "correctAnswer": "Eu não falo português."
         },
         {
           "question": "How do you form a yes/no question in Portuguese?",
@@ -2828,8 +2925,9 @@
             "Just raise your intonation",
             "Add 'será que' always"
           ],
-          "correct": 2,
-          "explanation": "Simply raise your voice at the end: 'Falas português?' — no word order change needed."
+          "explanation": "Simply raise your voice at the end: 'Falas português?' — no word order change needed.",
+          "correctIndex": 2,
+          "correctAnswer": "Just raise your intonation"
         },
         {
           "question": "Where does 'ontem' (yesterday) typically go in the sentence 'I went to the supermarket yesterday'?",
@@ -2839,8 +2937,9 @@
             "At the beginning or end of the sentence",
             "Between the verb and object"
           ],
-          "correct": 2,
-          "explanation": "Time expressions go at the start or end: 'Ontem fui ao supermercado' or 'Fui ao supermercado ontem.'"
+          "explanation": "Time expressions go at the start or end: 'Ontem fui ao supermercado' or 'Fui ao supermercado ontem.'",
+          "correctIndex": 2,
+          "correctAnswer": "At the beginning or end of the sentence"
         },
         {
           "question": "Which is the correct EP pronoun placement? 'Give me the book.'",
@@ -2850,8 +2949,9 @@
             "Dá o livro me.",
             "O livro dá-me."
           ],
-          "correct": 1,
-          "explanation": "In European Portuguese, object pronouns go AFTER the verb with a hyphen: 'Dá-me o livro.'"
+          "explanation": "In European Portuguese, object pronouns go AFTER the verb with a hyphen: 'Dá-me o livro.'",
+          "correctIndex": 1,
+          "correctAnswer": "Dá-me o livro."
         },
         {
           "question": "What happens to pronoun placement after 'não'?",
@@ -2861,8 +2961,9 @@
             "Pronoun is dropped",
             "Nothing changes"
           ],
-          "correct": 1,
-          "explanation": "'Não' triggers proclisis: 'Não me digas!' (Don't tell me!) — pronoun goes before the verb."
+          "explanation": "'Não' triggers proclisis: 'Não me digas!' (Don't tell me!) — pronoun goes before the verb.",
+          "correctIndex": 1,
+          "correctAnswer": "Pronoun moves before the verb"
         },
         {
           "question": "Which is correct? 'A big man' vs 'A great man.'",
@@ -2872,8 +2973,9 @@
             "Both mean the same thing",
             "Neither is correct"
           ],
-          "correct": 1,
-          "explanation": "Before the noun = figurative (um grande homem = a great man). After = literal (um homem grande = a big/tall man)."
+          "explanation": "Before the noun = figurative (um grande homem = a great man). After = literal (um homem grande = a big/tall man).",
+          "correctIndex": 1,
+          "correctAnswer": "um grande homem = great / um homem grande = big"
         },
         {
           "question": "Complete: 'Eu dei um presente ___ Maria.'",
@@ -2883,8 +2985,9 @@
             "para",
             "da"
           ],
-          "correct": 1,
-          "explanation": "'À' (a + a) is the contraction needed for the indirect object with feminine names: 'à Maria'."
+          "explanation": "'À' (a + a) is the contraction needed for the indirect object with feminine names: 'à Maria'.",
+          "correctIndex": 1,
+          "correctAnswer": "à"
         },
         {
           "question": "In spoken EP, how is the future tense usually expressed?",
@@ -2894,8 +2997,9 @@
             "Present tense only",
             "Conditional: falaria"
           ],
-          "correct": 1,
-          "explanation": "Spoken EP almost always uses 'ir + infinitive': 'Vou falar' instead of 'Falarei'. The simple future sounds formal."
+          "explanation": "Spoken EP almost always uses 'ir + infinitive': 'Vou falar' instead of 'Falarei'. The simple future sounds formal.",
+          "correctIndex": 1,
+          "correctAnswer": "Ir + infinitive: vou falar"
         },
         {
           "question": "Why is subject pronoun dropping common in Portuguese?",
@@ -2905,8 +3009,9 @@
             "Subject pronouns don't exist",
             "Only in informal speech"
           ],
-          "correct": 1,
-          "explanation": "Portuguese verb endings are distinctive enough to identify the subject: 'Falo' can only be 'eu', 'Falas' can only be 'tu'."
+          "explanation": "Portuguese verb endings are distinctive enough to identify the subject: 'Falo' can only be 'eu', 'Falas' can only be 'tu'.",
+          "correctIndex": 1,
+          "correctAnswer": "The verb form already shows who is acting"
         },
         {
           "question": "Which question uses the common EP 'é que' construction correctly?",
@@ -2916,8 +3021,9 @@
             "Onde moras é que?",
             "É que tu moras onde?"
           ],
-          "correct": 1,
-          "explanation": "'É que' goes right after the question word: 'Onde é que moras?' — very natural in EP."
+          "explanation": "'É que' goes right after the question word: 'Onde é que moras?' — very natural in EP.",
+          "correctIndex": 1,
+          "correctAnswer": "Onde é que moras?"
         },
         {
           "question": "'Não vi ninguém.' What does this mean?",
@@ -2927,8 +3033,9 @@
             "I saw nobody",
             "I never saw anyone"
           ],
-          "correct": 1,
-          "explanation": "Double negatives are standard in Portuguese. 'Não vi ninguém' = I didn't see anyone."
+          "explanation": "Double negatives are standard in Portuguese. 'Não vi ninguém' = I didn't see anyone.",
+          "correctIndex": 1,
+          "correctAnswer": "I didn't see anyone (correct)"
         },
         {
           "question": "Where does 'que' go when connecting a relative clause?",
@@ -2938,8 +3045,9 @@
             "Right after the noun it describes",
             "Before the verb of the main clause"
           ],
-          "correct": 2,
-          "explanation": "Relative clauses follow the noun: 'O homem que mora ali' (The man who lives there)."
+          "explanation": "Relative clauses follow the noun: 'O homem que mora ali' (The man who lives there).",
+          "correctIndex": 2,
+          "correctAnswer": "Right after the noun it describes"
         },
         {
           "question": "'Ela chama-se Ana.' Why is the pronoun after the verb here?",
@@ -2949,8 +3057,9 @@
             "The pronoun refers to Ana",
             "It's an exception"
           ],
-          "correct": 0,
-          "explanation": "In a simple affirmative statement with no proclisis trigger, EP puts the reflexive pronoun after the verb: 'chama-se'."
+          "explanation": "In a simple affirmative statement with no proclisis trigger, EP puts the reflexive pronoun after the verb: 'chama-se'.",
+          "correctIndex": 0,
+          "correctAnswer": "It's a reflexive verb in a simple statement (default = enclisis)"
         },
         {
           "question": "Reorder: 'always / Portuguese / I / study' → Portuguese sentence.",
@@ -2960,8 +3069,9 @@
             "Português estudo eu sempre.",
             "Eu português estudo sempre."
           ],
-          "correct": 0,
-          "explanation": "SVO order is maintained: Eu (S) estudo (V) português (O). 'Sempre' can go before or after the verb."
+          "explanation": "SVO order is maintained: Eu (S) estudo (V) português (O). 'Sempre' can go before or after the verb.",
+          "correctIndex": 0,
+          "correctAnswer": "Eu estudo sempre português."
         },
         {
           "question": "Which conjunction introduces a reason?",
@@ -2971,8 +3081,9 @@
             "ou (or)",
             "se (if)"
           ],
-          "correct": 1,
-          "explanation": "'Porque' introduces a reason: 'Ela estuda porque quer aprender.'"
+          "explanation": "'Porque' introduces a reason: 'Ela estuda porque quer aprender.'",
+          "correctIndex": 1,
+          "correctAnswer": "porque (because)"
         },
         {
           "question": "'Quando cheguei, ele já tinha saído.' Which clause is subordinate?",
@@ -2982,8 +3093,9 @@
             "Both",
             "Neither"
           ],
-          "correct": 1,
-          "explanation": "'Quando cheguei' is the subordinate clause (starts with a conjunction). The main clause is 'ele já tinha saído'."
+          "explanation": "'Quando cheguei' is the subordinate clause (starts with a conjunction). The main clause is 'ele já tinha saído'.",
+          "correctIndex": 1,
+          "correctAnswer": "Quando cheguei"
         },
         {
           "question": "Does changing the tense change the sentence structure?",
@@ -2993,8 +3105,9 @@
             "Only in past tense",
             "Only with irregular verbs"
           ],
-          "correct": 1,
-          "explanation": "Tense changes the verb form, not the structure. SVO order stays: 'Eu falo' → 'Eu falei' → 'Eu falava'."
+          "explanation": "Tense changes the verb form, not the structure. SVO order stays: 'Eu falo' → 'Eu falei' → 'Eu falava'.",
+          "correctIndex": 1,
+          "correctAnswer": "No, only the verb form changes"
         },
         {
           "question": "What does the definite article before a name signal in EP? 'O João foi ao café.'",
@@ -3004,8 +3117,9 @@
             "It's standard European Portuguese usage",
             "It means 'that João'"
           ],
-          "correct": 2,
-          "explanation": "Using 'O/A' before names is standard in EP: 'O João', 'A Maria'. Dropping it sounds foreign or overly formal."
+          "explanation": "Using 'O/A' before names is standard in EP: 'O João', 'A Maria'. Dropping it sounds foreign or overly formal.",
+          "correctIndex": 2,
+          "correctAnswer": "It's standard European Portuguese usage"
         }
       ]
     },
@@ -11354,8 +11468,8 @@
           ]
         },
         {
-          "rule": "Você form (formal, affirmative): use the present subjunctive.",
-          "rulePt": "Forma você (formal, afirmativo): usar o presente do conjuntivo.",
+          "rule": "Polite form (o senhor / a senhora, also used with você): use the present subjunctive.",
+          "rulePt": "Forma de cortesia (o senhor / a senhora, também com «você»): usar o presente do conjuntivo.",
           "examples": [
             {
               "pt": "Fale mais devagar, por favor.",
@@ -11618,7 +11732,7 @@
           "questionText": "'Não fales tão alto!' — who is this addressed to?",
           "questionTextPt": "'Não fales tão alto!' — a quem se dirige?",
           "options": [
-            "você (formal)",
+            "o senhor / a senhora (polite)",
             "tu (informal)",
             "nós (we)",
             "vocês (you plural)"
