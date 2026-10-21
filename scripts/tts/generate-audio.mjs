@@ -26,6 +26,8 @@ const MODEL = path.join(HERE, "voices/pt_PT-tugao-medium.onnx");
 const BUCKET = "audio";
 const LENGTH_SCALE = 1.1;
 const SENTENCE_SILENCE = 0.2;
+const UPLOAD_CONCURRENCY = 3;
+const UPLOAD_RETRIES = 6;
 
 const args = process.argv.slice(2);
 const forceIdx = args.indexOf("--force");
@@ -262,22 +264,35 @@ async function main() {
   });
 
   // 3. Upload what the bucket doesn't have yet (and forced overwrites).
+  //    Resumable: a rerun only sends what the bucket is missing. The free plan
+  //    rate-limits the Storage API, so keep concurrency low and retry with backoff.
   let uploadedCount = 0;
   let uploadedBytes = 0;
+  const uploadFailures = [];
   if (supabase) {
     const toUpload = onDisk.filter((k) => forced.has(k) || !uploaded.has(k));
-    await pool(toUpload, 8, async (k) => {
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    await pool(toUpload, UPLOAD_CONCURRENCY, async (k) => {
       const file = path.join(OUT, `${k}.mp3`);
       const body = readFileSync(file);
-      const { error } = await supabase.storage.from(BUCKET).upload(`${VOICE_ID}/${k}.mp3`, body, {
-        contentType: "audio/mpeg",
-        cacheControl: "31536000",
-        upsert: forced.has(k),
-      });
-      if (error) throw new Error(`upload ${k} failed: ${error.message}`);
+      for (let attempt = 0; ; attempt++) {
+        const { error } = await supabase.storage.from(BUCKET).upload(`${VOICE_ID}/${k}.mp3`, body, {
+          contentType: "audio/mpeg",
+          cacheControl: "31536000",
+          upsert: forced.has(k),
+        });
+        if (!error || /already exists|duplicate/i.test(error.message)) break;
+        if (attempt >= UPLOAD_RETRIES) {
+          uploadFailures.push(`${k}  ${error.message}`);
+          return;
+        }
+        await sleep(1000 * 2 ** attempt);
+      }
       uploadedCount++;
       uploadedBytes += body.length;
+      if (uploadedCount % 500 === 0) process.stdout.write(`\r  uploaded ${uploadedCount}/${toUpload.length}`);
     });
+    if (toUpload.length) process.stdout.write(`\r  uploaded ${uploadedCount}/${toUpload.length}\n`);
   }
 
   const sampleCount = await writeSamples(sources);
@@ -302,6 +317,11 @@ async function main() {
     process.exitCode = 1;
   } else {
     console.log("QA:               all clips 0.3–20s, mean_volume > -45 dB");
+  }
+  if (uploadFailures.length) {
+    console.log(`\nUpload failures (${uploadFailures.length}) — rerun to resume:`);
+    for (const f of uploadFailures) console.log(`  ${f}`);
+    process.exitCode = 1;
   }
   writeFileSync(path.join(OUT, "manifest.json"), JSON.stringify(Object.fromEntries(byKey), null, 0));
 }

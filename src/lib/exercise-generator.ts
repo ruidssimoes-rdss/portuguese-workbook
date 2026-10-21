@@ -17,7 +17,7 @@ import type {
   GrammarItem,
   CultureItem,
   PracticeItem,
-} from "@/data/lessons";
+} from "@/data/curriculum-types";
 import type { GrammarData, GrammarQuestion } from "@/types/grammar";
 import grammarData from "@/data/grammar.json";
 import type { Difficulty } from "./exercise-types";

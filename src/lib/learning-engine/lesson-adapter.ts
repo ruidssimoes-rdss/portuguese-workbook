@@ -8,7 +8,7 @@
  * ONE conjugation drill stage. Never flatten into individual rows.
  */
 
-import type { Lesson, LessonStage, VocabItem, VerbItem, GrammarItem, PracticeItem as LessonPracticeItem } from "@/data/lessons";
+import type { Lesson, LessonStage, VocabItem, VerbItem, GrammarItem, PracticeItem as LessonPracticeItem } from "@/data/curriculum-types";
 import type { GeneratedLesson, PracticeItem } from "./lesson-generator";
 import type { ReviewSession } from "./review-generator";
 import type { PoolVocabItem, PoolVerbItem, PoolGrammarItem } from "./content-pool";

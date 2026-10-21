@@ -4,7 +4,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
 import { createClient } from "@/lib/supabase/client";
-import type { LessonBlockPlan } from "@/types/blocks";
+import type { Lesson } from "@/data/curriculum-types";
+import { generateLessonExercises } from "@/lib/exercise-generator";
 
 type Status = "idle" | "generating" | "ready" | "error";
 
@@ -41,7 +42,7 @@ export function TutorTabV2() {
   const router = useRouter();
   const { user } = useAuth();
   const [status, setStatus] = useState<Status>("idle");
-  const [plan, setPlan] = useState<LessonBlockPlan | null>(null);
+  const [lesson, setLesson] = useState<Lesson | null>(null);
   const [source, setSource] = useState<"ai" | "fallback" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pastSessions, setPastSessions] = useState<PastSession[]>([]);
@@ -92,7 +93,7 @@ export function TutorTabV2() {
         return;
       }
 
-      setPlan(data.plan);
+      setLesson(data.lesson);
       setSource(data.source);
       setStatus("ready");
     } catch {
@@ -102,10 +103,19 @@ export function TutorTabV2() {
   }, []);
 
   const handleStart = useCallback(() => {
-    if (!plan) return;
-    sessionStorage.setItem(`ai-session-${plan.meta.id}`, JSON.stringify(plan));
-    router.push(`/lessons/${plan.meta.id}`);
-  }, [plan, router]);
+    if (!lesson) return;
+    // /lessons/[id] reads `aula-pt-ai-lesson-<id>` and expects the exercises pre-generated.
+    const exercises = generateLessonExercises(lesson);
+    sessionStorage.setItem(`aula-pt-ai-lesson-${lesson.id}`, JSON.stringify({ lesson, exercises }));
+    router.push(`/lessons/${lesson.id}`);
+  }, [lesson, router]);
+
+  const itemCount = lesson
+    ? lesson.stages.reduce(
+        (n, s) => n + (s.items?.length ?? 0) + (s.verbs?.length ?? 0) + (s.grammarItems?.length ?? 0) + (s.cultureItems?.length ?? 0),
+        0,
+      )
+    : 0;
 
   const btn = "inline-flex h-8 items-center gap-1.5 rounded-lg px-3.5 text-[12px] font-medium transition-colors";
   const primary = `${btn} bg-aula-accent text-white hover:bg-aula-accent-hover`;
@@ -155,15 +165,15 @@ export function TutorTabV2() {
           </div>
         )}
 
-        {status === "ready" && plan && (
+        {status === "ready" && lesson && (
           <div>
-            <p className="text-[15px] font-semibold text-aula-text">{plan.meta.ptTitle || plan.meta.title}</p>
-            {plan.meta.ptTitle && <p className="mt-0.5 text-[12px] text-aula-text-3">{plan.meta.title}</p>}
+            <p className="text-[15px] font-semibold text-aula-text">{lesson.ptTitle || lesson.title}</p>
+            {lesson.ptTitle && <p className="mt-0.5 text-[12px] text-aula-text-3">{lesson.title}</p>}
             <div className="mt-4 flex gap-8">
               {[
-                { v: plan.learnBlocks.length + plan.exerciseBlocks.length, k: "Itens" },
-                { v: `${plan.meta.estimatedMinutes} min`, k: "Duração" },
-                { v: plan.meta.cefr, k: "Nível" },
+                { v: itemCount, k: "Itens" },
+                { v: `${lesson.estimatedMinutes} min`, k: "Duração" },
+                { v: lesson.cefr, k: "Nível" },
               ].map((x) => (
                 <div key={x.k}>
                   <p className="text-[18px] font-semibold text-aula-text">{x.v}</p>
