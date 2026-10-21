@@ -93,15 +93,6 @@ export default function PrivacyPage() {
               </a>
               .
             </p>
-            <p className="mt-3 rounded-lg bg-aula-sunken px-4 py-3 text-[13px] text-aula-text-2">
-              <strong className="font-semibold text-aula-text">Note:</strong> The support mailbox referenced above has
-              not been verified and may not be actively monitored. If you do not receive a response within 7 days,
-              please check the{" "}
-              <Link href="/welcome" className="text-aula-accent hover:underline">
-                main website
-              </Link>{" "}
-              for updated contact information.
-            </p>
           </section>
 
           <section>
