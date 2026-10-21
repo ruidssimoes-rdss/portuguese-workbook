@@ -58,6 +58,13 @@ function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user, loading: authLoading } = useAuth();
+
+  // Redirect logged-out visitors to the landing page
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.replace("/welcome");
+    }
+  }, [user, authLoading, router]);
   const [stats, setStats] = useState<HomeStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);

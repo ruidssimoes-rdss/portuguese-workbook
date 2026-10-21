@@ -3,8 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookOpen, GraduationCap, Globe, Library, Sparkles, Check } from "lucide-react";
 import { getContentStats } from "@/lib/content-stats";
-import { WaitlistForm } from "./waitlist-form";
-import { ScrollToTopLink } from "./scroll-link";
 
 export const metadata: Metadata = {
   title: "Aula PT — Learn European Portuguese from A1 to CIPLE/DEPLE",
@@ -45,12 +43,15 @@ export default function WelcomePage() {
               materials, and a structured learning path that respects how the language is truly spoken in Portugal.
             </p>
             <div className="mt-10">
-              <div className="inline-block rounded-[14px] border border-aula-border bg-white px-8 py-8 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:px-12">
-                <WaitlistForm />
-              </div>
+              <Link
+                href="/auth/login"
+                className="inline-flex h-12 items-center justify-center rounded-lg bg-aula-accent px-8 text-[14px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+              >
+                Start learning
+              </Link>
             </div>
-            <p className="mt-6 text-[12px] text-aula-text-3">
-              Join the waitlist to be notified when new features launch
+            <p className="mt-6 text-[13px] text-aula-text-2">
+              Free to browse the reference library · Sign in to track your progress
             </p>
           </div>
         </div>
@@ -157,7 +158,7 @@ export default function WelcomePage() {
             />
             <FAQ
               question="How much does it cost?"
-              answer="Aula is currently in active development. Pricing will be announced closer to the full launch. Early users who join the waitlist will hear first."
+              answer="Aula is currently in active development. Pricing details will be announced as the platform evolves."
             />
           </div>
         </div>
@@ -170,10 +171,15 @@ export default function WelcomePage() {
             Ready to learn European Portuguese?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed opacity-90 md:text-[17px]">
-            Join the waitlist to get early access to new features, lessons, and exam prep materials.
+            Start your journey from A1 to B1 with structured lessons, real pt-PT audio, and comprehensive reference materials.
           </p>
           <div className="mt-10">
-            <ScrollToTopLink />
+            <Link
+              href="/auth/login"
+              className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-8 text-[14px] font-medium text-aula-accent transition-opacity hover:opacity-90"
+            >
+              Começar
+            </Link>
           </div>
         </div>
       </section>
@@ -202,9 +208,6 @@ export default function WelcomePage() {
             <div className="flex items-center gap-6">
               <Link href="/privacy" className="text-[13px] text-aula-text-2 transition-colors hover:text-aula-text">
                 Privacy
-              </Link>
-              <Link href="/auth/login" className="text-[13px] text-aula-text-2 transition-colors hover:text-aula-text">
-                Sign In
               </Link>
             </div>
           </div>

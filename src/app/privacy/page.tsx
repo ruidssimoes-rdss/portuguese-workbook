@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Aula PT",
-  description: "Privacy policy for Aula PT, explaining how we collect and use your information.",
+  description: "Privacy policy for Aula PT, explaining how we handle your information.",
 };
 
 export default function PrivacyPage() {
@@ -36,32 +36,34 @@ export default function PrivacyPage() {
         <div className="space-y-8 text-[14px] leading-relaxed text-aula-text-2">
           <section>
             <h2 className="mb-3 text-[18px] font-semibold text-aula-text">What we collect</h2>
-            <p className="mb-3">When you sign up for the Aula PT waitlist, we collect:</p>
+            <p className="mb-3">When you create an account on Aula PT, we collect:</p>
             <ul className="ml-6 list-disc space-y-1.5">
-              <li>Your email address</li>
-              <li>Your self-reported Portuguese level (if provided)</li>
-              <li>The date and time you joined the waitlist</li>
-              <li>The source page where you signed up</li>
+              <li>Your email address (for authentication)</li>
+              <li>Your name (if you sign in with Google)</li>
+              <li>Your learning progress and activity data</li>
+              <li>Your language level and study preferences</li>
             </ul>
           </section>
 
           <section>
             <h2 className="mb-3 text-[18px] font-semibold text-aula-text">How we use your information</h2>
-            <p className="mb-3">We use your email address to:</p>
+            <p className="mb-3">We use your information to:</p>
             <ul className="ml-6 list-disc space-y-1.5">
-              <li>Send you updates about new features, lessons, and product launches</li>
-              <li>Notify you when Aula PT is ready for early access or public launch</li>
+              <li>Provide access to your account and learning materials</li>
+              <li>Track your progress through lessons and exercises</li>
+              <li>Save your vocabulary mastery and review schedule</li>
+              <li>Personalize your learning experience based on your level</li>
             </ul>
             <p className="mt-3">
-              We will never sell, rent, or share your email address with third parties for marketing purposes.
+              We will never sell, rent, or share your personal information with third parties for marketing purposes.
             </p>
           </section>
 
           <section>
             <h2 className="mb-3 text-[18px] font-semibold text-aula-text">Data storage</h2>
             <p>
-              Your information is stored securely in our database hosted by Supabase (a secure, privacy-focused backend
-              provider). We retain your information until you request removal or until the waitlist program concludes.
+              Your account and learning data are stored securely in our database hosted by Supabase (a secure,
+              privacy-focused backend provider). All data is encrypted in transit and at rest.
             </p>
           </section>
 
@@ -78,20 +80,18 @@ export default function PrivacyPage() {
             <h2 className="mb-3 text-[18px] font-semibold text-aula-text">Your rights</h2>
             <p className="mb-3">You have the right to:</p>
             <ul className="ml-6 list-disc space-y-1.5">
-              <li>Request a copy of the information we hold about you</li>
-              <li>Request that we delete your information</li>
-              <li>Unsubscribe from future updates at any time</li>
+              <li>Access a copy of the information we hold about you</li>
+              <li>Request that we delete your account and associated data</li>
+              <li>Update or correct your personal information</li>
+              <li>Export your learning data at any time</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="mb-3 text-[18px] font-semibold text-aula-text">How to be removed</h2>
+            <h2 className="mb-3 text-[18px] font-semibold text-aula-text">Account deletion</h2>
             <p>
-              To remove your email from the waitlist or request deletion of your data, please contact us at{" "}
-              <a href="mailto:support@aula-pt.com" className="text-aula-accent hover:underline">
-                support@aula-pt.com
-              </a>
-              .
+              You can request account deletion from your account settings page. This will permanently remove your
+              account, progress data, and personal information from our systems.
             </p>
           </section>
 
@@ -107,10 +107,11 @@ export default function PrivacyPage() {
           <section>
             <h2 className="mb-3 text-[18px] font-semibold text-aula-text">Questions</h2>
             <p>
-              If you have questions about this privacy policy or how we handle your data, please contact us at{" "}
-              <a href="mailto:support@aula-pt.com" className="text-aula-accent hover:underline">
-                support@aula-pt.com
-              </a>
+              If you have questions about this privacy policy or how we handle your data, you can manage your
+              preferences and data through your{" "}
+              <Link href="/settings" className="text-aula-accent hover:underline">
+                account settings
+              </Link>
               .
             </p>
           </section>
