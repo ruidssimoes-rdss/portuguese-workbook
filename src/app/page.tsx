@@ -14,7 +14,7 @@ import { PageShell } from "@/components/layout/page-shell";
 import { SearchModal } from "@/components/search-modal";
 import { getProgressStats } from "@/lib/progress-stats-service";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
-import { getCurrentStudyLevel, getReviewCount } from "@/lib/learning-engine";
+import { getCurrentStudyLevel, getReviewSummary } from "@/lib/learning-engine";
 import { createClient } from "@/lib/supabase/client";
 
 function getGreeting(): string {
@@ -28,7 +28,10 @@ interface HomeStats {
   level: string;
   readinessPct: number;
   mastered: number;
-  reviewCount: number;
+  /** Seen items that can be reviewed now. */
+  reviewDue: number;
+  /** Of those, how many are genuinely overdue. */
+  reviewOverdue: number;
   streak: number;
   accuracy: number | null;
   firstName: string | null;
@@ -52,7 +55,7 @@ export default function HomePage() {
       const [progression, level, reviews, ps, profileRes] = await Promise.all([
         getFullProgression(currentUser.id),
         getCurrentStudyLevel(currentUser.id),
-        getReviewCount(currentUser.id),
+        getReviewSummary(currentUser.id),
         getProgressStats().catch(() => null),
         supabase.from("profiles").select("google_display_name").eq("id", currentUser.id).single(),
       ]);
@@ -66,7 +69,8 @@ export default function HomePage() {
         level,
         readinessPct: Math.round(active.progress.readiness * 100),
         mastered,
-        reviewCount: reviews,
+        reviewDue: reviews.due,
+        reviewOverdue: reviews.overdue,
         streak: ps?.currentStreak ?? 0,
         accuracy: ps && ps.averageAccuracy > 0 ? Math.round(ps.averageAccuracy) : null,
         firstName: fullName ? fullName.split(" ")[0] : null,
@@ -83,7 +87,7 @@ export default function HomePage() {
   const subtitle = !stats
     ? " "
     : [
-          stats.reviewCount > 0 ? `${stats.reviewCount} revisões à espera` : "Tudo em dia",
+          stats.reviewDue > 0 ? `${stats.reviewDue} ${stats.reviewDue === 1 ? "revisão" : "revisões"} à espera` : "Tudo em dia",
           stats.streak > 0 ? `sequência de ${stats.streak} ${stats.streak === 1 ? "dia" : "dias"}` : null,
         ]
           .filter(Boolean)
@@ -91,8 +95,16 @@ export default function HomePage() {
 
   const suggestions: { href: string; icon: typeof CalendarDays; label: string; meta: string }[] = [
     { href: "/learn", icon: CalendarDays, label: "Começar a sessão de hoje", meta: stats ? `${stats.level}` : "" },
-    ...(stats && stats.reviewCount > 0
-      ? [{ href: "/learn?mode=review", icon: RotateCcw, label: `Rever ${stats.reviewCount} ${stats.reviewCount === 1 ? "palavra" : "palavras"}`, meta: "Em atraso" }]
+    ...(stats && stats.reviewDue > 0
+      ? [
+          {
+            href: "/learn?mode=review",
+            icon: RotateCcw,
+            // Items, not words: the count mixes vocabulary, verbs and grammar topics.
+            label: `Rever ${stats.reviewDue} ${stats.reviewDue === 1 ? "item" : "itens"}`,
+            meta: stats.reviewOverdue > 0 ? "Em atraso" : "Hoje",
+          },
+        ]
       : []),
     { href: "/tutor", icon: Sparkles, label: "Pedir uma sessão ao Professor Elísio", meta: "Personalizada" },
   ];
@@ -184,7 +196,7 @@ export default function HomePage() {
           <div className="mx-auto mt-10 w-full max-w-[640px]">
             <div className="mb-2.5 text-[11px] text-aula-text-3">O teu estado</div>
             <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-              <Stat label="Revisões em atraso" value={String(stats.reviewCount)} tone={stats.reviewCount > 0 ? "overdue" : "default"} />
+              <Stat label="Revisões em atraso" value={String(stats.reviewOverdue)} tone={stats.reviewOverdue > 0 ? "overdue" : "default"} />
               <Stat label="Sequência" value={`${stats.streak} ${stats.streak === 1 ? "dia" : "dias"}`} />
               <Stat label="Itens dominados" value={stats.mastered.toLocaleString("pt-PT")} />
               <Stat

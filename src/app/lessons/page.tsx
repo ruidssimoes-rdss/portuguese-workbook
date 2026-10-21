@@ -2,17 +2,23 @@
 
 /**
  * Lições — the level path (Figma: Lições — índice + O teu percurso).
- * Aula's lessons are generated for you from what you need next, so the index
- * is the A1 → A2 → B1 path: readiness per level, skills, and the next action.
+ * "Próxima lição" is an adaptive /learn session generated from what you need
+ * next, titled by its focus. Below the level cards, every curriculum lesson is
+ * listed by level (read-only, from src/data/curriculum*.ts) and links to
+ * /lessons/[id]; completion comes from user_lesson_progress.
  */
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Lock, ArrowRight, RotateCcw, Check } from "lucide-react";
+import { Lock, ArrowRight, Check } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
-import { getReviewCount, type CEFRProgress } from "@/lib/learning-engine/mastery-tracker";
+import { getReviewSummary, getUserMastery, type CEFRProgress } from "@/lib/learning-engine/mastery-tracker";
+import { getGrammarPool } from "@/lib/learning-engine/content-pool";
+import { getLessonProgressMap } from "@/lib/lesson-progress";
 import { createClient } from "@/lib/supabase/client";
+import type { CurriculumLesson } from "@/data/curriculum-types";
+import { NextLessonCard, LessonList } from "@/components/lessons/lessons-index";
 import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { Label, ScreenTitle, PanelCard, Track, KV } from "@/components/aula";
 
@@ -48,7 +54,12 @@ const LEVELS = [
 export default function LessonsPage() {
   const { user, loading: authLoading } = useAuth();
   const [progression, setProgression] = useState<Record<"a1" | "a2" | "b1", LevelProgression> | null>(null);
-  const [reviewCount, setReviewCount] = useState(0);
+  /** Seen items that can be reviewed now, and how many of those are genuinely overdue. */
+  const [reviews, setReviews] = useState({ due: 0, overdue: 0 });
+  /** grammar topics the learner has already met: the next session starts with the first one they have not. */
+  const [seenGrammar, setSeenGrammar] = useState<Set<string>>(new Set());
+  const [completed, setCompleted] = useState<Set<string>>(new Set());
+  const [curriculum, setCurriculum] = useState<CurriculumLesson[] | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -59,12 +70,24 @@ export default function LessonsPage() {
         setLoading(false);
         return;
       }
-      const [prog, count] = await Promise.all([getFullProgression(currentUser.id), getReviewCount(currentUser.id)]);
+      const [prog, summary, mastery, lessonProgress] = await Promise.all([
+        getFullProgression(currentUser.id),
+        getReviewSummary(currentUser.id),
+        getUserMastery(currentUser.id, { contentType: "grammar" }),
+        getLessonProgressMap().catch(() => ({})),
+      ]);
       setProgression(prog);
-      setReviewCount(count);
+      setReviews(summary);
+      setSeenGrammar(new Set(mastery.filter((r) => r.mastery_level >= 1).map((r) => r.content_id)));
+      setCompleted(new Set(Object.entries(lessonProgress).filter(([, p]) => p.completed).map(([id]) => id)));
       setLoading(false);
     }
     load();
+  }, []);
+
+  // The curriculum is only needed for the list, so keep it out of the first bundle.
+  useEffect(() => {
+    import("@/data/curriculum").then((m) => setCurriculum([...m.A1_LESSONS, ...m.A2_LESSONS, ...m.B1_LESSONS, ...m.EXTRA_LESSONS]));
   }, []);
 
   // Current level = highest unlocked level that isn't finished.
@@ -76,6 +99,11 @@ export default function LessonsPage() {
   const cur = current && progression ? progression[current] : null;
   const curMeta = LEVELS.find((l) => l.key === current);
 
+  // The next session's focus. generateLesson() takes new grammar in pool order,
+  // so the first topic the learner has not met is the one it will teach. With
+  // none left, the level itself is the focus.
+  const focusTopic = curMeta ? getGrammarPool(curMeta.level).find((t) => !seenGrammar.has(t.id)) : undefined;
+
   const panel = (
     <div className="flex flex-col gap-6">
       {cur && curMeta && (
@@ -85,7 +113,8 @@ export default function LessonsPage() {
           </div>
           <KV k="Itens dominados" v={`${cur.progress.mastered} de ${cur.progress.totalItems}`} />
           <KV k="A aprender" v={cur.progress.familiar + cur.progress.introduced} />
-          <KV k="Revisões em atraso" v={reviewCount} tone={reviewCount > 0 ? "overdue" : undefined} />
+          <KV k="Para rever" v={reviews.due} />
+          <KV k="Em atraso" v={reviews.overdue} tone={reviews.overdue > 0 ? "overdue" : undefined} />
           <Link href="/learn" className="mt-3 flex h-8 items-center justify-center gap-1.5 rounded-lg bg-aula-accent text-[12px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
             Próxima lição <ArrowRight size={13} strokeWidth={1.5} />
           </Link>
@@ -124,6 +153,14 @@ export default function LessonsPage() {
           </div>
         ) : (
           <div className="flex flex-col gap-2.5">
+            {curMeta && (
+              <NextLessonCard
+                level={curMeta.level}
+                levelName={curMeta.name}
+                topic={focusTopic ? { titlePt: focusTopic.titlePt, title: focusTopic.title } : null}
+                reviews={reviews}
+              />
+            )}
             {LEVELS.map((L) => {
               const p = progression[L.key];
               const pct = Math.round(p.progress.readiness * 100);
@@ -176,22 +213,11 @@ export default function LessonsPage() {
                       </div>
                     )}
                     {L.exam && <p className="mt-2.5 text-[11px] text-aula-accent">{L.exam}</p>}
-                    {isCur && (
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        <Link href="/learn" className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-aula-accent px-3.5 text-[12px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
-                          Próxima lição <ArrowRight size={13} strokeWidth={1.5} />
-                        </Link>
-                        {reviewCount > 0 && (
-                          <Link href="/learn?mode=review" className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-aula-border bg-white px-3.5 text-[12px] font-medium text-aula-text transition-colors hover:border-aula-text-4">
-                            <RotateCcw size={13} strokeWidth={1.5} /> Rever {reviewCount}
-                          </Link>
-                        )}
-                      </div>
-                    )}
                   </div>
                 </div>
               );
             })}
+            {curriculum && current && <LessonList lessons={curriculum} completed={completed} currentLevel={LEVELS.find((l) => l.key === current)!.level} />}
           </div>
         )}
       </div>

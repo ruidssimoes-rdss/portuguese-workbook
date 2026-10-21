@@ -8,6 +8,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/components/auth-provider";
 import { getUserMastery, type ContentType, type MasteryRecord } from "@/lib/learning-engine/mastery-tracker";
+import { isDue, isOverdue, daysUntilReview } from "@/lib/review-status";
 
 export type WordState = "unseen" | "learning" | "overdue" | "mastered";
 
@@ -18,21 +19,24 @@ export const STATE_LABEL: Record<WordState, string> = {
   mastered: "Dominada",
 };
 
+/** «Em atraso» only for a genuinely overdue review (see src/lib/review-status.ts). */
 export function stateOf(r: MasteryRecord | undefined, now = Date.now()): WordState {
   if (!r || r.mastery_level === 0) return "unseen";
-  if (r.next_review_at && new Date(r.next_review_at).getTime() <= now) return "overdue";
+  if (isOverdue(r, now)) return "overdue";
   if (r.mastery_level >= 4) return "mastered";
   return "learning";
 }
 
-/** «amanhã», «3 dias», «em atraso», «dominada», «por ver» */
+/** «hoje», «amanhã», «3 dias», «em atraso», «dominada», «por ver» */
 export function dueLabel(r: MasteryRecord | undefined, now = Date.now()): string {
   const s = stateOf(r, now);
   if (s === "unseen") return "por ver";
   if (s === "overdue") return "em atraso";
   if (!r?.next_review_at) return s === "mastered" ? "dominada" : "—";
-  const days = Math.ceil((new Date(r.next_review_at).getTime() - now) / 86_400_000);
-  if (days <= 1) return "amanhã";
+  if (isDue(r, now)) return "hoje";
+  const days = daysUntilReview(r, now);
+  if (days <= 0) return "hoje";
+  if (days === 1) return "amanhã";
   if (days > 60) return "dominada";
   return `${days} dias`;
 }

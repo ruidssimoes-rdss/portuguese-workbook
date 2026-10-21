@@ -22,6 +22,7 @@ export {
   getCEFRProgress,
   getDueForReview,
   getReviewCount,
+  getReviewSummary,
 } from "./mastery-tracker";
 
 export {
