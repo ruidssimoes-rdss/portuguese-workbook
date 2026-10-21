@@ -677,12 +677,14 @@ function SummaryScreen({
   onSave,
   saving,
   saved,
+  mcShuffleMap,
 }: {
   exam: MockExam;
   sectionStates: SectionState[];
   onSave: () => void;
   saving: boolean;
   saved: boolean;
+  mcShuffleMap: Record<string, { options: string[]; correctIndex: number }>;
 }) {
   // Calculate scores
   const rwSection = exam.sections[0];
@@ -855,10 +857,9 @@ function ExamContent({ id }: { id: string }) {
           }
         });
       } else if (sec.type === "listening") {
+        // All listening questions are MC questions with options
         sec.questions.forEach(q => {
-          if (q.type === "multiple-choice") {
-            map[q.id] = shuffleOptions(q.options, q.correctIndex, `exam-mc-${q.id}`);
-          }
+          map[q.id] = shuffleOptions(q.options, q.correctIndex, `exam-mc-${q.id}`);
         });
       }
     });
@@ -1085,6 +1086,7 @@ function ExamContent({ id }: { id: string }) {
             onSave={handleSave}
             saving={saving}
             saved={saved}
+            mcShuffleMap={mcShuffleMap}
           />
           <div className="mb-16" />
         </div>
