@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { checkAnswer } from "@/lib/accent-utils";
 import type { SectionResult } from "@/lib/exercise-types";
 import { AudioButton } from "@/components/primitives";
 import { Item, AnswerInput, Choice, choiceResult, AccentNote, SectionFooter, type Mark } from "../kit";
+import { shuffleOptions } from "@/lib/shuffle-options";
 
 interface VocabQuestion {
   id: string;
@@ -31,6 +32,19 @@ export function VocabSectionNew({ sectionIndex, totalSections, questions, onComp
   const [results, setResults] = useState<Record<string, { correct: boolean; accentHint?: string }> | null>(null);
   const refs = useRef<Record<string, HTMLInputElement | null>>({});
 
+  // Compute shuffled options for all MC questions once
+  const shuffleMap = useMemo(() => {
+    const map: Record<string, { options: string[]; correctIndex: number }> = {};
+    questions.forEach(q => {
+      if (q.type === "mc" && q.options && q.correctIndex !== undefined) {
+        map[q.id] = shuffleOptions(q.options, q.correctIndex, q.id);
+      }
+    });
+    return map;
+  }, [questions]);
+
+  const getShuffled = (q: VocabQuestion) => shuffleMap[q.id] ?? { options: q.options ?? [], correctIndex: q.correctIndex ?? 0 };
+
   useEffect(() => {
     const first = questions.find((q) => q.type === "type-answer");
     const t = setTimeout(() => first && refs.current[first.id]?.focus(), 100);
@@ -44,7 +58,10 @@ export function VocabSectionNew({ sectionIndex, totalSections, questions, onComp
     if (remaining > 0) return;
     const r: NonNullable<typeof results> = {};
     for (const q of questions) {
-      if (q.type === "mc") r[q.id] = { correct: picks[q.id] === q.correctIndex };
+      if (q.type === "mc") {
+        const shuffled = getShuffled(q);
+        r[q.id] = { correct: picks[q.id] === shuffled.correctIndex };
+      }
       else {
         const chk = checkAnswer((typed[q.id] ?? "").trim(), q.englishWord, q.acceptedAnswers);
         r[q.id] = { correct: chk.correct, accentHint: chk.accentHint };
@@ -54,13 +71,24 @@ export function VocabSectionNew({ sectionIndex, totalSections, questions, onComp
   }
 
   function finish() {
-    const answers = questions.map((q) => ({
-      questionId: q.id,
-      correct: results?.[q.id]?.correct ?? false,
-      userAnswer: q.type === "mc" ? (q.options?.[picks[q.id] ?? 0] ?? "") : (typed[q.id] ?? "").trim(),
-      correctAnswer: q.type === "mc" ? (q.options?.[q.correctIndex ?? 0] ?? "") : q.englishWord,
-      accentHint: results?.[q.id]?.accentHint,
-    }));
+    const answers = questions.map((q) => {
+      if (q.type === "mc") {
+        const shuffled = getShuffled(q);
+        return {
+          questionId: q.id,
+          correct: results?.[q.id]?.correct ?? false,
+          userAnswer: shuffled.options[picks[q.id] ?? 0] ?? "",
+          correctAnswer: shuffled.options[shuffled.correctIndex] ?? "",
+        };
+      }
+      return {
+        questionId: q.id,
+        correct: results?.[q.id]?.correct ?? false,
+        userAnswer: (typed[q.id] ?? "").trim(),
+        correctAnswer: q.englishWord,
+        accentHint: results?.[q.id]?.accentHint,
+      };
+    });
     onComplete({ sectionKey: "vocab", sectionName: "Vocabulário", answers, totalCorrect: answers.filter((a) => a.correct).length, totalQuestions: answers.length });
   }
 
@@ -76,6 +104,7 @@ export function VocabSectionNew({ sectionIndex, totalSections, questions, onComp
         {questions.map((q, i) => {
           const r = results?.[q.id];
           const mark: Mark = !r ? "idle" : r.correct ? "correct" : "wrong";
+          const shuffled = q.type === "mc" ? getShuffled(q) : null;
           return (
             <Item key={q.id} n={i + 1} mark={mark}>
               <div className="mb-2.5 flex items-center gap-1.5">
@@ -83,15 +112,15 @@ export function VocabSectionNew({ sectionIndex, totalSections, questions, onComp
                 <AudioButton text={q.portugueseWord} />
                 {q.pronunciation && <span className="text-[12px] text-[#98988F]">/{q.pronunciation.replace(/^\/|\/$/g, "")}/</span>}
               </div>
-              {q.type === "mc" && q.options ? (
+              {q.type === "mc" && shuffled ? (
                 <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                  {q.options.map((opt, oi) => (
+                  {shuffled.options.map((opt, oi) => (
                     <Choice
                       key={oi}
                       n={oi + 1}
                       label={opt}
                       selected={picks[q.id] === oi}
-                      result={choiceResult(oi, picks[q.id], q.correctIndex, !!results)}
+                      result={choiceResult(oi, picks[q.id], shuffled.correctIndex, !!results)}
                       disabled={!!results}
                       onClick={() => setPicks((p) => ({ ...p, [q.id]: oi }))}
                     />

@@ -12,12 +12,26 @@ export async function GET(request: Request) {
   const code = searchParams.get("code");
   const type = searchParams.get("type");
   const next = safeNextPath(searchParams.get("next") ?? readCookie(request.headers.get("cookie"), NEXT_COOKIE));
+  
+  // Check for Supabase OAuth errors
+  const error = searchParams.get("error");
+  const errorCode = searchParams.get("error_code");
+  const errorDescription = searchParams.get("error_description");
 
   const redirectTo = (url: string) => {
     const res = NextResponse.redirect(url);
     res.cookies.set(NEXT_COOKIE, "", { path: "/", maxAge: 0 });
     return res;
   };
+  
+  // If Supabase sent OAuth errors, redirect to login with those params
+  if (error || errorCode) {
+    const params = new URLSearchParams();
+    if (error) params.set("error", error);
+    if (errorCode) params.set("error_code", errorCode);
+    if (errorDescription) params.set("error_description", errorDescription);
+    return redirectTo(`${origin}/auth/login?${params.toString()}`);
+  }
 
   if (code) {
     try {
