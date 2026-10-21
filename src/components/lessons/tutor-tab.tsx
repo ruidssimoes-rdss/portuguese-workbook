@@ -57,9 +57,19 @@ export function TutorTabV2() {
       .select("id, session_title, session_title_pt, estimated_minutes, accuracy_score, completed, difficulty, created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
-      .limit(5)
+      .limit(10) // Fetch more to handle potential duplicates
       .then(({ data }) => {
-        if (data) setPastSessions(data);
+        if (!data) return;
+        // Dedupe: keep first occurrence of sessions with identical title + time (to nearest 10 minutes)
+        const seen = new Set<string>();
+        const deduped = data.filter((s) => {
+          const roundedTime = Math.floor(new Date(s.created_at).getTime() / (10 * 60 * 1000));
+          const key = `${s.session_title}:${roundedTime}:${s.estimated_minutes ?? 0}:${s.completed}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+        setPastSessions(deduped.slice(0, 5));
       });
   }, [user]);
 

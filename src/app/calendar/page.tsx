@@ -841,6 +841,15 @@ export default function CalendarPage() {
           const stats = await getMonthlyStats(monthStart, monthEnd);
           setReflectionStats(stats);
         }
+      } catch (err) {
+        console.error("[CALENDAR] Stats loading failed:", err);
+        setReflectionStats({
+          studyDays: 0,
+          notesCount: 0,
+          lessonsCompleted: 0,
+          practiceSessions: 0,
+          examsTaken: 0,
+        });
       } finally {
         setReflectionLoading(false);
       }

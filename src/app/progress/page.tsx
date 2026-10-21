@@ -385,7 +385,15 @@ export default function ProgressPage() {
     );
   }
 
-  if (!mastery) {
+  // Show empty state only if there's truly no progress in either system
+  const hasAnyProgress = mastery && (
+    mastery.progression.a1.progress.mastered > 0 ||
+    mastery.progression.a2.progress.mastered > 0 ||
+    mastery.progression.b1.progress.mastered > 0 ||
+    mastery.recentlyMastered.length > 0
+  ) || (legacyStats && legacyStats.totalLessonsCompleted > 0);
+
+  if (!hasAnyProgress) {
     return (
       <PageShell header={<Crumbs items={[{ label: "Progresso" }]} />}>
         <PageHeader title="Progresso" subtitle="O teu percurso até agora" />
@@ -396,15 +404,29 @@ export default function ProgressPage() {
     );
   }
 
+  // If we have progress but no mastery data (legacy only), create a minimal mastery structure
+  const masteryData = mastery ?? {
+    progression: {
+      a1: { progress: { level: "A1" as const, totalItems: 0, readiness: 0, mastered: 0, familiar: 0, introduced: 0, unseen: 0, vocabProgress: 0, verbProgress: 0, grammarProgress: 0 }, unlocked: true },
+      a2: { progress: { level: "A2" as const, totalItems: 0, readiness: 0, mastered: 0, familiar: 0, introduced: 0, unseen: 0, vocabProgress: 0, verbProgress: 0, grammarProgress: 0 }, unlocked: false },
+      b1: { progress: { level: "B1" as const, totalItems: 0, readiness: 0, mastered: 0, familiar: 0, introduced: 0, unseen: 0, vocabProgress: 0, verbProgress: 0, grammarProgress: 0 }, unlocked: false },
+    },
+    vocabByCategory: [],
+    verbsByGroup: [],
+    recentlyMastered: [],
+    needsAttention: [],
+    reviewCount: 0,
+  };
+
   const totals = getAllContentTotals();
   const totalItems =
     totals.A1.vocab + totals.A1.verbs + totals.A1.grammar +
     totals.A2.vocab + totals.A2.verbs + totals.A2.grammar +
     totals.B1.vocab + totals.B1.verbs + totals.B1.grammar;
   const totalMastered =
-    mastery.progression.a1.progress.mastered +
-    mastery.progression.a2.progress.mastered +
-    mastery.progression.b1.progress.mastered;
+    masteryData.progression.a1.progress.mastered +
+    masteryData.progression.a2.progress.mastered +
+    masteryData.progression.b1.progress.mastered;
   const overallPct = totalItems > 0 ? Math.round((totalMastered / totalItems) * 100) : 0;
 
   return (
@@ -421,8 +443,8 @@ export default function ProgressPage() {
         />
         <StatCard
           label="Para rever"
-          value={String(mastery.reviewCount)}
-          subtitle={mastery.reviewCount > 0 ? "Em atraso" : "Tudo em dia"}
+          value={String(masteryData.reviewCount)}
+          subtitle={masteryData.reviewCount > 0 ? "Em atraso" : "Tudo em dia"}
         />
         <StatCard
           label="Sequência"
@@ -442,21 +464,21 @@ export default function ProgressPage() {
       {/* CEFR level progression */}
       <SectionLabel>Níveis</SectionLabel>
       <div className="space-y-3 mb-8">
-        <CEFRProgressCard level="A1" progress={mastery.progression.a1.progress} />
-        <CEFRProgressCard level="A2" progress={mastery.progression.a2.progress} />
-        <CEFRProgressCard level="B1" progress={mastery.progression.b1.progress} />
+        <CEFRProgressCard level="A1" progress={masteryData.progression.a1.progress} />
+        <CEFRProgressCard level="A2" progress={masteryData.progression.a2.progress} />
+        <CEFRProgressCard level="B1" progress={masteryData.progression.b1.progress} />
       </div>
 
       {/* Vocab by category */}
       <CategoryBreakdown
         title="Vocabulário por categoria"
-        items={mastery.vocabByCategory}
+        items={masteryData.vocabByCategory}
       />
 
       {/* Verbs by group */}
       <CategoryBreakdown
         title="Verbos por grupo"
-        items={mastery.verbsByGroup}
+        items={masteryData.verbsByGroup}
       />
 
       {/* Recently mastered + Needs attention */}
@@ -464,15 +486,15 @@ export default function ProgressPage() {
       <div className="border border-aula-border rounded-xl p-5 mb-8">
         <MasteryItemList
           title="Dominados recentemente"
-          items={mastery.recentlyMastered}
+          items={masteryData.recentlyMastered}
           variant="success"
         />
         <MasteryItemList
           title="Precisa de atenção"
-          items={mastery.needsAttention}
+          items={masteryData.needsAttention}
           variant="warning"
         />
-        {mastery.recentlyMastered.length === 0 && mastery.needsAttention.length === 0 && (
+        {masteryData.recentlyMastered.length === 0 && masteryData.needsAttention.length === 0 && (
           <p className="text-[13px] text-[#98988F] text-center py-4">
             Faz algumas lições para veres aqui o teu domínio
           </p>

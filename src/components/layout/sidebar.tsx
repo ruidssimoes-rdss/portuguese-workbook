@@ -229,9 +229,9 @@ export function Sidebar({
             <Link
               href="/tutor"
               onClick={onNavigate}
-              className="flex h-8 flex-1 items-center gap-2 rounded-lg border border-aula-border bg-aula-panel px-2.5 text-[12.5px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
+              className="flex h-8 flex-1 items-center gap-2 rounded-lg border border-aula-border bg-aula-panel px-2 text-[12px] font-medium text-aula-text transition-colors hover:border-aula-text-4 whitespace-nowrap"
             >
-              <Send size={14} strokeWidth={1.5} className="text-aula-text-2" />
+              <Send size={13} strokeWidth={1.5} className="shrink-0 text-aula-text-2" />
               Perguntar ao Elísio
             </Link>
           ) : !loading ? (

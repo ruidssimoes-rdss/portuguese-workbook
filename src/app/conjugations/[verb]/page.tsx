@@ -132,8 +132,8 @@ export default function VerbPage() {
 
         <div className="mt-2">
           {rows.map((r, i) => (
-            <div key={i} className="grid min-h-[40px] grid-cols-[110px_1fr] items-center gap-3 border-b border-aula-line py-1.5 last:border-0 md:grid-cols-[140px_140px_1fr]">
-              <span className="text-[12px] text-aula-text-3">{r.Person.split(" (")[0]}</span>
+            <div key={i} className="grid min-h-[40px] grid-cols-[120px_1fr] items-center gap-3 border-b border-aula-line py-1.5 last:border-0 md:grid-cols-[150px_150px_1fr]">
+              <span className="text-[12px] text-aula-text-3 pl-1">{r.Person.split(" (")[0]}</span>
               <span className="flex items-center gap-1 text-[13px] font-medium text-aula-text">
                 {r.Conjugation}
                 <AudioButton text={r.Conjugation} />
