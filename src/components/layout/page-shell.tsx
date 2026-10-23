@@ -80,9 +80,9 @@ export function PageShell({
           {header && (
             <div className="flex h-12 shrink-0 items-center gap-1.5 px-5 text-[12px]">{header}</div>
           )}
-          <div id="aula-scroll" className="min-h-0 flex-1 overflow-y-auto">
+          <div id="aula-scroll" className="min-h-0 min-w-0 flex-1 overflow-y-auto">
             <div
-              className={`mx-auto px-10 pb-16 max-md:px-4 ${header ? "pt-6" : "pt-10 max-md:pt-6"} ${
+              className={`mx-auto min-w-0 px-10 pb-16 max-md:px-4 ${header ? "pt-6" : "pt-10 max-md:pt-6"} ${
                 wide ? "max-w-none" : "max-w-[960px]"
               }`}
             >

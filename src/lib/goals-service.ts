@@ -1,5 +1,16 @@
 import { createClient } from "@/lib/supabase/client";
 
+async function resolveUserId(userId?: string): Promise<string | null> {
+  if (userId) return userId;
+  try {
+    const { data, error } = await createClient().auth.getUser();
+    if (error || !data?.user) return null;
+    return data.user.id;
+  } catch {
+    return null;
+  }
+}
+
 export type GoalHealth = "ahead" | "on-track" | "behind";
 
 export interface UserGoal {
@@ -124,17 +135,15 @@ export async function getActiveGoals(): Promise<UserGoal[]> {
 }
 
 /** Active goals plus recently completed (for display on calendar page). */
-export async function getGoalsForDisplay(): Promise<UserGoal[]> {
+export async function getGoalsForDisplay(userId?: string): Promise<UserGoal[]> {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return [];
+  const id = await resolveUserId(userId);
+  if (!id) return [];
 
   const { data, error } = await supabase
     .from("user_goals")
     .select("*")
-    .eq("user_id", user.id)
+    .eq("user_id", id)
     .order("updated_at", { ascending: false })
     .limit(10);
 

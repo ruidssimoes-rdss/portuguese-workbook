@@ -180,8 +180,8 @@ export const ConjRow = forwardRef<
   { person: string; value: string; onChange: (v: string) => void; mark: Mark; correct: string; onEnter?: () => void }
 >(function ConjRow({ person, value, onChange, mark, correct, onEnter }, ref) {
   return (
-    <div className="grid grid-cols-[96px_1fr] items-center gap-3 py-1">
-      <span className="text-[12.5px] text-[#98988F]">{person}</span>
+    <div className="grid min-w-0 grid-cols-[max-content_minmax(0,1fr)] items-center gap-3 py-1">
+      <span className="whitespace-nowrap text-[12.5px] text-[#6B6B69]">{person}</span>
       {mark === "idle" ? (
         <input
           ref={ref}
@@ -196,14 +196,14 @@ export const ConjRow = forwardRef<
           placeholder="—"
           autoComplete="off"
           spellCheck={false}
-          className="h-9 rounded-lg border border-[#E6E6E4] bg-white px-3 text-[13.5px] text-[#1F1F1F] outline-none transition-colors placeholder:text-[#B5B5AE] focus:border-[#1B2B61]"
+          className="h-9 w-full min-w-0 rounded-lg border border-[#E6E6E4] bg-white px-3 text-[13.5px] text-[#1F1F1F] outline-none transition-colors placeholder:text-[#B5B5AE] focus:border-[#1B2B61]"
         />
       ) : mark === "correct" ? (
-        <span className={`flex h-9 items-center rounded-lg border px-3 text-[13.5px] text-[#1F1F1F] ${TEAL}`}>{correct}</span>
+        <span className={`flex h-9 min-w-0 items-center break-words rounded-lg border px-3 text-[13.5px] text-[#1F1F1F] ${TEAL}`}>{correct}</span>
       ) : (
-        <span className={`flex h-9 items-center gap-2.5 rounded-lg border px-3 text-[13.5px] ${CORAL}`}>
+        <span className={`flex h-9 min-w-0 flex-wrap items-center gap-x-2.5 gap-y-0.5 rounded-lg border px-3 text-[13.5px] ${CORAL}`}>
           {value && <span className="text-[#B94A32] line-through decoration-[#B94A32]/60">{value}</span>}
-          <span className="text-[#1F1F1F]">{correct}</span>
+          <span className="min-w-0 break-words text-[#1F1F1F]">{correct}</span>
         </span>
       )}
     </div>

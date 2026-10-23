@@ -1,5 +1,16 @@
 import { createClient } from "@/lib/supabase/client";
 
+async function resolveUserId(userId?: string): Promise<string | null> {
+  if (userId) return userId;
+  try {
+    const { data, error } = await createClient().auth.getUser();
+    if (error || !data?.user) return null;
+    return data.user.id;
+  } catch {
+    return null;
+  }
+}
+
 export type NoteContextType = "grammar" | "vocabulary" | "verb" | "lesson" | null;
 
 export interface Note {
@@ -214,25 +225,25 @@ export async function getNoteCountForContext(
 /** Returns date keys (YYYY-MM-DD) that have note activity in the given month range. */
 export async function getNoteActivityDatesForMonth(
   startDate: string,
-  endDate: string
+  endDate: string,
+  userId?: string
 ): Promise<string[]> {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return [];
+  const id = await resolveUserId(userId);
+  if (!id) return [];
 
   const { data, error } = await supabase
     .from("user_notes")
     .select("updated_at")
-    .eq("user_id", user.id)
+    .eq("user_id", id)
     .gte("updated_at", startDate + "T00:00:00")
     .lte("updated_at", endDate + "T23:59:59");
 
   if (error || !data) return [];
   const dates = new Set<string>();
   data.forEach((row) => {
-    const d = (row.updated_at as string).slice(0, 10);
+    if (typeof row.updated_at !== "string" || row.updated_at.length < 10) return;
+    const d = row.updated_at.slice(0, 10);
     if (d >= startDate && d <= endDate) dates.add(d);
   });
   return Array.from(dates);
@@ -240,13 +251,12 @@ export async function getNoteActivityDatesForMonth(
 
 /** Returns count of notes updated per date key in the range (for Day view). */
 export async function getNoteActivityCountForDate(
-  dateKey: string
+  dateKey: string,
+  userId?: string
 ): Promise<number> {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return 0;
+  const id = await resolveUserId(userId);
+  if (!id) return 0;
 
   const start = dateKey + "T00:00:00";
   const end = dateKey + "T23:59:59";
@@ -254,7 +264,7 @@ export async function getNoteActivityCountForDate(
   const { count, error } = await supabase
     .from("user_notes")
     .select("id", { count: "exact", head: true })
-    .eq("user_id", user.id)
+    .eq("user_id", id)
     .gte("updated_at", start)
     .lte("updated_at", end);
 
