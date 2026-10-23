@@ -6,7 +6,7 @@ Aula is a European Portuguese course for A1, A2, and B1. The language in it is f
 
 **Today.** The home screen greets you, starts the day's session, and shows reviews that are due plus the current streak.
 
-**Lessons.** There are 44 curriculum lessons: 18 at A1, 16 at A2, and 10 at B1. The next session is assembled from words, verbs, and grammar you still need to practise.
+**Lessons.** There are 50 curriculum lessons: 20 at A1, 20 at A2, and 10 at B1. The next session is assembled from words, verbs, and grammar you still need to practise.
 
 **Practice.** A session mixes new material with exercises: vocabulary, grammar, conjugations, multiple choice, typed answers, true or false, fill-in-the-blank, translation, sentence building, a word bank, and error correction.
 
