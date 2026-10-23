@@ -4,6 +4,8 @@ import { useState, useSyncExternalStore } from "react";
 import { Check } from "lucide-react";
 import { useShuffledOptions } from "@/lib/shuffle-options";
 import { getGrammar, type GrammarEntry } from "@/lib/book/catalog";
+import { grammarParagraphs } from "@/lib/book/elisio";
+import { AskChapter, AskPassage } from "./ask";
 import { Callout, Examples, Kicker } from "./ui";
 import { LinkedText } from "./linked-text";
 
@@ -32,10 +34,9 @@ function isEp(text: string) {
 export function GrammarChapter({ id }: { id: string }) {
   const topic = getGrammar(id);
   if (!topic) return null;
-  const paragraphs = topic.intro.split("\n").map((p) => p.trim()).filter(Boolean);
+  const paragraphs = grammarParagraphs(topic.intro);
   const epRules = topic.rules.filter((rule) => isEp(`${rule.rule} ${rule.rulePt ?? ""}`));
   const pullEp = topic.rules.length > 2 && epRules.length > 0 && epRules.length < topic.rules.length;
-  const bodyRules = pullEp ? topic.rules.filter((rule) => !epRules.includes(rule)) : topic.rules;
   const tips = topic.tips.filter((tip) => !isEp(tip));
   const epTips = topic.tips.filter((tip) => isEp(tip));
 
@@ -47,36 +48,47 @@ export function GrammarChapter({ id }: { id: string }) {
       </Kicker>
       <h1 className="mt-1.5 text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{topic.titlePt}</h1>
       {topic.summary && <p className="mt-2 text-[13px] leading-relaxed text-[#5A5A57]">{topic.summary}</p>}
+      <div className="mt-4">
+        <AskChapter about={{ about: "grammar", id: topic.id }} />
+      </div>
 
       {paragraphs.length > 0 && (
         <div className="mt-5 space-y-3 text-[13px] leading-relaxed text-aula-text">
           {paragraphs.map((p, i) => (
-            <p key={i}>
-              <LinkedText text={p} skip={topic.ref} />
-            </p>
+            <AskPassage key={i} about={{ about: "grammar", id: topic.id, part: `p/${i}` }}>
+              <p>
+                <LinkedText text={p} skip={topic.ref} />
+              </p>
+            </AskPassage>
           ))}
         </div>
       )}
 
-      {bodyRules.map((rule, i) => (
-        <section key={i}>
-          <SectionTitle n={i + 1}>{rule.rulePt || rule.rule}</SectionTitle>
-          {rule.rulePt && (
-            <p className="mt-2 text-[13px] leading-relaxed text-aula-text">
-              <LinkedText text={rule.rule} skip={topic.ref} />
-            </p>
-          )}
-          <Examples rows={rule.examples.slice(0, 4)} skip={topic.ref} />
-          {rule.exceptions?.map((exception, j) => (
-            <p key={j} className="mt-2 text-[12.5px] leading-relaxed text-[#5A5A57]">
-              Nota: <LinkedText text={exception} skip={topic.ref} />
-            </p>
-          ))}
-        </section>
-      ))}
+      {topic.rules
+        .map((rule, index) => ({ rule, index }))
+        .filter(({ rule }) => !(pullEp && epRules.includes(rule)))
+        .map(({ rule, index }, i) => (
+          <AskPassage key={index} about={{ about: "grammar", id: topic.id, part: `rule/${index}` }}>
+            <section>
+              <SectionTitle n={i + 1}>{rule.rulePt || rule.rule}</SectionTitle>
+              {rule.rulePt && (
+                <p className="mt-2 text-[13px] leading-relaxed text-aula-text">
+                  <LinkedText text={rule.rule} skip={topic.ref} />
+                </p>
+              )}
+              <Examples rows={rule.examples.slice(0, 4)} skip={topic.ref} />
+              {rule.exceptions?.map((exception, j) => (
+                <p key={j} className="mt-2 text-[12.5px] leading-relaxed text-[#5A5A57]">
+                  Nota: <LinkedText text={exception} skip={topic.ref} />
+                </p>
+              ))}
+            </section>
+          </AskPassage>
+        ))}
 
       {(pullEp || epTips.length > 0) && (epRules.length > 0 || epTips.length > 0) && (
         <div className="mt-6">
+          <AskPassage about={{ about: "grammar", id: topic.id, part: "ep" }}>
           <Callout
             label={
               <>
@@ -106,11 +118,13 @@ export function GrammarChapter({ id }: { id: string }) {
                 ))}
             </div>
           </Callout>
+          </AskPassage>
         </div>
       )}
 
       {tips.length > 0 && (
         <div className="mt-3">
+          <AskPassage about={{ about: "grammar", id: topic.id, part: "tips" }}>
           <Callout tone="plain" label="Dica">
             <ul className="flex flex-col gap-1.5">
               {tips.map((tip, i) => (
@@ -120,6 +134,7 @@ export function GrammarChapter({ id }: { id: string }) {
               ))}
             </ul>
           </Callout>
+          </AskPassage>
         </div>
       )}
 

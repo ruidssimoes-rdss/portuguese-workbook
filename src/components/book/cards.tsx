@@ -20,6 +20,10 @@ import {
 import { encodeCard } from "@/lib/book/types";
 import { useMastery, stateOf, dueLabel } from "@/lib/use-mastery";
 import { cardDrill } from "@/lib/book/practice";
+import { passageFor } from "@/lib/book/elisio";
+import type { ElisioAbout } from "@/lib/book/types";
+import { AskCardButton } from "./ask";
+import { ElisioCard } from "./elisio-card";
 import { useBook } from "./book-context";
 import { Backlinks, Callout, Examples, Kicker, LevelChip, PropList } from "./ui";
 import { CardChip, LinkedText } from "./linked-text";
@@ -56,17 +60,24 @@ function ReviewValue({ contentId, type }: { contentId: string; type: "verb" | "v
 
 function PracticeButton({ card }: { card: CardRef }) {
   const book = useBook();
-  if (card.kind === "culture") return null;
+  if (card.kind !== "verb" && card.kind !== "word" && card.kind !== "grammar") return null;
   if (!cardDrill(card)) return null;
   return (
-    <div className="mt-4">
-      <button
-        type="button"
-        onClick={() => book.openPractice(card)}
-        className="inline-flex h-8 items-center rounded-lg bg-aula-accent px-3 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
-      >
-        Praticar
-      </button>
+    <button
+      type="button"
+      onClick={() => book.openPractice(card)}
+      className="inline-flex h-8 items-center rounded-lg bg-aula-accent px-3 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+    >
+      Praticar
+    </button>
+  );
+}
+
+function CardActions({ card, about }: { card: CardRef; about: ElisioAbout }) {
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-2">
+      <PracticeButton card={card} />
+      <AskCardButton about={about} />
     </div>
   );
 }
@@ -162,7 +173,7 @@ export function VerbCard({ id }: { id: string }) {
           { k: "Revisão", v: <ReviewValue type="verb" contentId={verb.id.toUpperCase()} /> },
         ]}
       />
-      <PracticeButton card={ref} />
+      <CardActions card={ref} about={{ about: "verb", id: verb.id }} />
 
       <div className="mt-5 flex items-center gap-3">
         <h3 className="shrink-0 text-[13px] font-semibold text-aula-text">Conjugação</h3>
@@ -291,7 +302,7 @@ export function WordCard({ category, word }: { category: string; word: string })
           { k: "Revisão", v: <ReviewValue type="vocab" contentId={entry.portuguese} /> },
         ]}
       />
-      <PracticeButton card={entry.ref} />
+      <CardActions card={entry.ref} about={{ about: "word", category: entry.category, word: entry.portuguese }} />
 
       {entry.example && <Examples rows={[{ pt: entry.example, en: entry.exampleTranslation }]} skip={entry.ref} />}
 
@@ -368,7 +379,7 @@ export function GrammarCard({ id }: { id: string }) {
           { k: "Revisão", v: <ReviewValue type="grammar" contentId={topic.id} /> },
         ]}
       />
-      <PracticeButton card={topic.ref} />
+      <CardActions card={topic.ref} about={{ about: "grammar", id: topic.id }} />
       {rule && (
         <>
           <h3 className="mt-5 text-[13px] font-semibold text-aula-text">{rule.rulePt || "Formação"}</h3>
@@ -442,6 +453,8 @@ export function CardBody({ card }: { card: CardRef }) {
       return <GrammarCard id={card.id} />;
     case "culture":
       return <CultureCard cultureType={card.cultureType} id={card.id} />;
+    case "elisio":
+      return <ElisioCard about={card.about} />;
   }
 }
 
@@ -455,6 +468,8 @@ export function cardTabLabel(card: CardRef): string {
       return getGrammar(card.id)?.titlePt ?? card.id;
     case "culture":
       return cultureOf(card.cultureType, card.id)?.title ?? card.id;
+    case "elisio":
+      return `Elísio · ${passageFor(card.about)?.label ?? "nota"}`;
   }
 }
 
@@ -474,6 +489,8 @@ export function cardCrumb(card: CardRef): { group: string; name: string } {
       const note = cultureOf(card.cultureType, card.id);
       return { group: note?.kicker ?? "Cultura", name: note?.title ?? card.id };
     }
+    case "elisio":
+      return { group: "Elísio", name: passageFor(card.about)?.label ?? "Nota" };
   }
 }
 

@@ -38,6 +38,12 @@ export const explanationSchema = z.object({
   relatedRule: z.string().optional(),
 });
 
+/** A short margin note about a passage the learner is reading. */
+export const passageNoteSchema = z.object({
+  note: z.string().min(20).max(700),
+});
+
 // Export inferred types
 export type ValidatedSessionPlan = z.infer<typeof sessionPlanSchema>;
 export type ValidatedExplanation = z.infer<typeof explanationSchema>;
+export type ValidatedPassageNote = z.infer<typeof passageNoteSchema>;

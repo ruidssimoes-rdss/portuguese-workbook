@@ -124,3 +124,38 @@ Student level: ${request.studentLevel}
 
 Explain why their answer was wrong. Respond with ONLY the JSON.`;
 }
+
+// ── Passage note (Elísio in the book dock) ────────────────
+
+export function buildPassageSystemPrompt(): string {
+  return `You are Professor Elísio, a European Portuguese teacher writing a short margin note for a student reading a chapter.
+
+RULES:
+- European Portuguese (PT-PT) only. Never Brazilian Portuguese. Use "tu" and "estar a + infinitivo", not the Brazilian gerund.
+- Write the note in European Portuguese, in 2 to 4 short sentences.
+- Use only the passage and examples given. Do not invent forms, words, or rules.
+- Answer the student's question. If the passage does not say, say what it does show.
+- No markdown, no preamble. JSON only.
+
+OUTPUT SCHEMA:
+{ "note": "string (40-600 chars)" }`;
+}
+
+export function buildPassageUserPrompt(
+  passage: { place: string; label: string; text: string; examples: { pt: string; en?: string }[] },
+  question: string,
+): string {
+  const examples = passage.examples
+    .map((example) => `- ${example.pt}${example.en ? ` (${example.en})` : ""}`)
+    .join("\n");
+  return `PASSAGE (${passage.place} · ${passage.label}):
+${passage.text}
+
+EXAMPLES:
+${examples || "(none)"}
+
+QUESTION:
+${question}
+
+Respond with ONLY the JSON.`;
+}
