@@ -244,8 +244,13 @@ export function OnboardingDesk({
     <div className="hidden h-dvh bg-[#F7F7F6] min-[744px]:flex">
       <Sidebar collapsed={collapsed} onToggle={toggle} className="hidden h-dvh min-[1100px]:flex" />
       <div className="flex min-w-0 flex-1 gap-2 p-2">
-        <section className="hidden min-w-0 flex-1 overflow-y-auto rounded-xl border border-[#EFEFED] bg-white px-8 py-8 min-[1100px]:block">
-          <GuideExcerpt step={step} goal={goal} />
+        <section className="hidden min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-[#EFEFED] bg-white min-[1100px]:flex">
+          <header className="flex h-12 shrink-0 items-center px-5">
+            <p className="text-[12px] font-medium text-[#1F1F1F]">Como funciona</p>
+          </header>
+          <div className="min-h-0 flex-1 overflow-y-auto px-8 py-6">
+            <GuideExcerpt step={step} goal={goal} />
+          </div>
         </section>
         <section className="mx-auto flex w-full max-w-[440px] min-w-0 flex-col overflow-hidden rounded-xl border border-[#EFEFED] bg-white min-[1100px]:mx-0 min-[1100px]:w-[420px] min-[1100px]:max-w-none">
           <header className="flex h-12 shrink-0 items-center gap-2 px-4">
