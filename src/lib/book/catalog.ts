@@ -128,6 +128,10 @@ const STOP = new Set([
 
 const LESSONS: CurriculumLesson[] = [...A1_LESSONS, ...A2_LESSONS, ...B1_LESSONS, ...EXTRA_LESSONS];
 
+export function getBookLesson(id: string): CurriculumLesson | undefined {
+  return LESSONS.find((lesson) => lesson.id === id);
+}
+
 const TENSE_ORDER = [
   "Present",
   "Preterite",

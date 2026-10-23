@@ -113,7 +113,10 @@ export function BookProvider({ children }: { children: React.ReactNode }) {
       canBack: state.index > 0,
       canForward: state.index < state.tabs.length - 1,
       practice,
-      openCard: (ref) => dispatch({ type: "open", ref }),
+      openCard: (ref) => {
+        dispatch({ type: "open", ref });
+        if (ref.kind === "elisio") setPractice(null);
+      },
       back: () => dispatch({ type: "back" }),
       forward: () => dispatch({ type: "forward" }),
       close: (index) => dispatch({ type: "close", index }),

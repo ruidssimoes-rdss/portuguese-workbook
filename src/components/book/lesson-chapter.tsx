@@ -1,7 +1,8 @@
 "use client";
 
 import type { CurriculumLesson } from "@/data/curriculum-types";
-import { cultureOf, findWord, getGrammar, getVerb, type WordEntry } from "@/lib/book/catalog";
+import { lessonBundle } from "@/lib/book/elisio";
+import { AskChapter, AskPassage } from "./ask";
 import { useBook } from "./book-context";
 import { Callout, Examples, Kicker } from "./ui";
 import { CardChip, LinkedText } from "./linked-text";
@@ -25,18 +26,8 @@ export function lessonListenLines(lesson: CurriculumLesson): string[] {
 export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
   const book = useBook();
   const practicing = book.practice?.kind === "lesson";
-  const words = lesson.stages.vocabulary.words
-    .map((ref) => findWord(ref.categoryId, ref.portuguese))
-    .filter((word): word is WordEntry => Boolean(word));
-  const verbs = lesson.stages.verbs.verbs
-    .map((ref) => getVerb(ref.verbKey.toLowerCase()))
-    .filter((verb): verb is NonNullable<ReturnType<typeof getVerb>> => Boolean(verb));
-  const topics = lesson.stages.grammar.topics
-    .map((id) => getGrammar(id))
-    .filter((topic): topic is NonNullable<ReturnType<typeof getGrammar>> => Boolean(topic));
-  const notes = lesson.stages.culture.items
-    .map((item) => (item.type === "slang" ? null : cultureOf(item.type, item.id)))
-    .filter((note): note is NonNullable<ReturnType<typeof cultureOf>> => Boolean(note));
+  const { words, verbs, topics, notes } = lessonBundle(lesson);
+  const aboutLesson = { about: "lesson" as const, id: lesson.id };
 
   let n = 0;
 
@@ -46,12 +37,16 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
         Lição {lesson.number} · {lesson.cefrLevel} · 20 min
       </Kicker>
       <h1 className="mt-1.5 text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{lesson.titlePt}</h1>
-      <p className="mt-2 text-[13px] leading-relaxed text-[#5A5A57]">{lesson.description}</p>
-      {lesson.descriptionPt && (
-        <p className="mt-1.5 text-[13px] leading-relaxed text-aula-text">
-          <LinkedText text={lesson.descriptionPt} />
-        </p>
-      )}
+      <AskPassage about={{ ...aboutLesson, part: "intro" }}>
+        <div>
+          <p className="mt-2 text-[13px] leading-relaxed text-[#5A5A57]">{lesson.description}</p>
+          {lesson.descriptionPt && (
+            <p className="mt-1.5 text-[13px] leading-relaxed text-aula-text">
+              <LinkedText text={lesson.descriptionPt} />
+            </p>
+          )}
+        </div>
+      </AskPassage>
 
       {words.length > 0 && (
         <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[12.5px]">
@@ -65,6 +60,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
       )}
 
       {words.length > 0 && (
+        <AskPassage about={{ ...aboutLesson, part: "vocab" }}>
         <section>
           <SectionTitle n={++n}>Vocabulário</SectionTitle>
           <p className="mt-2 text-[13px] leading-relaxed text-[#5A5A57]">
@@ -74,6 +70,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
             rows={words.filter((word) => word.example).map((word) => ({ pt: word.example!, en: word.exampleTranslation || word.english }))}
           />
         </section>
+        </AskPassage>
       )}
 
       {verbs.length > 0 && (
@@ -84,13 +81,15 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
               const rows = verb.rows("Present");
               const sample = [rows[0], rows[2]].filter(Boolean);
               return (
-                <div key={verb.id}>
+                <AskPassage key={verb.id} about={{ ...aboutLesson, part: `verb/${verb.id}` }}>
+                <div>
                   <p className="text-[13px] leading-relaxed text-aula-text">
                     <CardChip refCard={{ kind: "verb", id: verb.id }}>{verb.id}</CardChip>
                     <span className="text-[#5A5A57]"> · {verb.english}</span>
                   </p>
                   <Examples rows={sample.map((row) => ({ pt: row.example, en: row.english }))} />
                 </div>
+                </AskPassage>
               );
             })}
           </div>
@@ -100,7 +99,8 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
       {topics.map((topic) => {
         const rule = topic.rules[0];
         return (
-          <section key={topic.id}>
+          <AskPassage key={topic.id} about={{ ...aboutLesson, part: `topic/${topic.id}` }}>
+          <section>
             <SectionTitle n={++n}>
               <CardChip refCard={topic.ref}>{topic.titlePt}</CardChip>
             </SectionTitle>
@@ -111,6 +111,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
             )}
             {rule && <Examples rows={rule.examples.slice(0, 2)} />}
           </section>
+          </AskPassage>
         );
       })}
 
@@ -118,9 +119,9 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
         <section>
           <SectionTitle n={++n}>Cultura</SectionTitle>
           <div className="mt-3 flex flex-col gap-3">
-            {notes.map((note) => (
+            {notes.map((note, i) => (
+              <AskPassage key={`${note.title}-${i}`} about={{ ...aboutLesson, part: `culture/${i}` }}>
               <Callout
-                key={note.title}
                 label={<CardChip refCard={note.ref}>{note.title}</CardChip>}
               >
                 {note.subtitle && <p className="mb-1.5 text-[#5A5A57]">{note.subtitle}</p>}
@@ -136,6 +137,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
                   </p>
                 )}
               </Callout>
+              </AskPassage>
             ))}
           </div>
         </section>
@@ -150,6 +152,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
         >
           Praticar esta lição
         </button>
+        <AskChapter tall about={aboutLesson} />
         <span className="text-[12.5px] text-[#5A5A57]">Os exercícios abrem neste capítulo.</span>
       </div>
     </article>
