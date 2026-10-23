@@ -38,7 +38,7 @@ function SignInPrompt() {
       </p>
       <Link
         href={href}
-        className="mt-card inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+        className="tablet-target mt-card inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
       >
         Entrar
       </Link>
@@ -139,8 +139,8 @@ export function PracticePane({
   if (!target) return null;
 
   return (
-    <div className="flex h-full min-h-0 flex-1 flex-col">
-      <div className="flex h-10 shrink-0 items-center gap-item px-pad text-[12px]">
+    <div className="flex h-full min-h-0 min-w-0 flex-1 flex-col">
+      <div className="flex h-10 shrink-0 items-center gap-item px-pad text-[12px] min-[744px]:max-[1439px]:h-12">
         <span className="text-[#5A5A57]">Prática</span>
         <span className="text-[#B5B5AE]">/</span>
         <span className="min-w-0 truncate font-medium text-aula-text">{practiceLabel(target, lessonTitle)}</span>
@@ -148,12 +148,12 @@ export function PracticePane({
         <button
           type="button"
           onClick={book.closePractice}
-          className="inline-flex h-7 items-center rounded-md px-2 text-[12px] text-[#5A5A57] hover:bg-aula-sunken hover:text-aula-text"
+          className="tablet-target inline-flex h-7 items-center rounded-md px-2 text-[12px] font-medium text-[#5A5A57] hover:bg-aula-sunken hover:text-aula-text"
         >
           Fechar
         </button>
       </div>
-      <div data-book-scroll className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-pad pb-pad pt-heading">
+      <div data-book-scroll className="aula-pane min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-pad pb-pad pt-heading">
         <PracticeBody target={target} renderLesson={renderLesson} />
       </div>
     </div>

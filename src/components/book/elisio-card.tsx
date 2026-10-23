@@ -32,7 +32,7 @@ function SignInPrompt() {
       </p>
       <Link
         href={href}
-        className="mt-card inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+        className="tablet-target mt-card inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
       >
         Entrar
       </Link>
@@ -86,7 +86,7 @@ function Note({ passage }: { passage: ElisioPassage }) {
               key={item}
               type="button"
               onClick={() => ask(item)}
-              className={`text-left text-[13px] leading-snug ${on ? "font-medium text-aula-accent" : "text-[#5A5A57] hover:text-aula-text"}`}
+              className={`tablet-target text-left text-[13px] leading-snug ${on ? "font-medium text-aula-accent" : "text-[#5A5A57] hover:text-aula-text"}`}
             >
               {item}
             </button>
@@ -110,7 +110,7 @@ function Note({ passage }: { passage: ElisioPassage }) {
         <label htmlFor="elisio-question" className="text-[12px] text-[#5A5A57]">
           Outra pergunta
         </label>
-        <div className="mt-heading flex gap-item">
+        <div className="mt-heading flex min-w-0 gap-item">
           <input
             id="elisio-question"
             value={draft}
@@ -119,12 +119,12 @@ function Note({ passage }: { passage: ElisioPassage }) {
             lang="pt-PT"
             autoComplete="off"
             placeholder="Sobre este passo"
-            className="h-9 min-w-0 flex-1 rounded-lg border border-aula-border bg-white px-3 text-[13px] text-aula-text outline-none placeholder:text-[#5A5A57] focus:border-aula-accent"
+            className="tablet-target h-9 w-full min-w-0 flex-1 rounded-lg border border-aula-border bg-white px-3 text-[13px] text-aula-text outline-none placeholder:text-[#5A5A57] focus:border-aula-accent"
           />
           <button
             type="submit"
             disabled={draft.trim().length < 2}
-            className="inline-flex h-9 shrink-0 items-center rounded-lg bg-aula-accent px-3 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover disabled:opacity-40"
+            className="tablet-target inline-flex h-9 shrink-0 items-center rounded-lg bg-aula-accent px-3 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover disabled:opacity-40"
           >
             Perguntar
           </button>

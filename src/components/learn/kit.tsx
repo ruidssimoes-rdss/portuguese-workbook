@@ -166,7 +166,7 @@ export function Chip({ children, state = "available", onClick, disabled }: { chi
       type="button"
       disabled={disabled || state === "used"}
       onClick={onClick}
-      className={`inline-flex h-[30px] items-center rounded-lg border px-3 text-[13px] transition-colors ${tone}`}
+      className={`tablet-target inline-flex h-[30px] items-center rounded-lg border px-3 text-[13px] transition-colors ${tone}`}
     >
       {children}
     </button>
@@ -180,8 +180,8 @@ export const ConjRow = forwardRef<
   { person: string; value: string; onChange: (v: string) => void; mark: Mark; correct: string; onEnter?: () => void }
 >(function ConjRow({ person, value, onChange, mark, correct, onEnter }, ref) {
   return (
-    <div className="grid min-w-0 grid-cols-[max-content_minmax(0,1fr)] items-center gap-3 py-1">
-      <span className="whitespace-nowrap text-[12.5px] text-[#6B6B69]">{person}</span>
+    <div className="grid min-w-0 grid-cols-[minmax(0,max-content)_minmax(0,1fr)] items-center gap-3 py-1">
+      <span className="min-w-0 break-words text-[12.5px] text-[#6B6B69]">{person}</span>
       {mark === "idle" ? (
         <input
           ref={ref}
@@ -196,7 +196,7 @@ export const ConjRow = forwardRef<
           placeholder="—"
           autoComplete="off"
           spellCheck={false}
-          className="h-9 w-full min-w-0 rounded-lg border border-[#E6E6E4] bg-white px-3 text-[13.5px] text-[#1F1F1F] outline-none transition-colors placeholder:text-[#B5B5AE] focus:border-[#1B2B61]"
+          className="tablet-target h-9 w-full min-w-0 rounded-lg border border-[#E6E6E4] bg-white px-3 text-[13.5px] text-[#1F1F1F] outline-none transition-colors placeholder:text-[#B5B5AE] focus:border-[#1B2B61]"
         />
       ) : mark === "correct" ? (
         <span className={`flex h-9 min-w-0 items-center break-words rounded-lg border px-3 text-[13.5px] text-[#1F1F1F] ${TEAL}`}>{correct}</span>
@@ -272,7 +272,7 @@ export function SectionFooter({
       )}
       <span className="flex-1" />
       {checked ? (
-        <button type="button" onClick={onNext} className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-[#1B2B61] px-4 text-[13px] font-medium text-white transition-colors hover:bg-[#14214C]">
+        <button type="button" onClick={onNext} className="tablet-target inline-flex h-9 items-center gap-1.5 rounded-lg bg-[#1B2B61] px-4 text-[13px] font-medium text-white transition-colors hover:bg-[#14214C]">
           {isLast ? "Ver resultados" : "Continuar"} →
         </button>
       ) : (
@@ -280,7 +280,7 @@ export function SectionFooter({
           type="button"
           onClick={onCheck}
           disabled={!ready}
-          className="inline-flex h-9 items-center rounded-lg bg-[#1B2B61] px-4 text-[13px] font-medium text-white transition-colors hover:bg-[#14214C] disabled:cursor-not-allowed disabled:opacity-35"
+          className="tablet-target inline-flex h-9 items-center rounded-lg bg-[#1B2B61] px-4 text-[13px] font-medium text-white transition-colors hover:bg-[#14214C] disabled:cursor-not-allowed disabled:opacity-35"
         >
           Verificar
         </button>

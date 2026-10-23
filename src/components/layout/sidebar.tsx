@@ -122,11 +122,14 @@ export function Sidebar({
   collapsed,
   onToggle,
   onNavigate,
+  lockRail = false,
   className = "",
 }: {
   collapsed: boolean;
   onToggle: () => void;
   onNavigate?: () => void;
+  /** Rail is required for the current width, so the expand control stays hidden. */
+  lockRail?: boolean;
   className?: string;
 }) {
   const isActive = useActive();
@@ -136,11 +139,11 @@ export function Sidebar({
   if (collapsed) {
     return (
       <>
-        <aside className={`flex w-[60px] shrink-0 flex-col items-center pt-5 pb-3 ${className}`}>
-          <Link href="/" aria-label="Aula" className="mb-[18px]">
+        <aside className={`flex min-h-0 w-[60px] shrink-0 flex-col items-center overflow-hidden pt-5 pb-3 ${className}`}>
+          <Link href="/" aria-label="Aula" className="mb-[18px] shrink-0">
             <AppLogo />
           </Link>
-          <nav className="flex flex-col items-center gap-0.5">
+          <nav className="aula-pane flex min-h-0 w-full flex-1 flex-col items-center gap-0.5 overflow-y-auto">
             {NAV.map((group, gi) => (
               <div key={gi} className="flex flex-col items-center gap-0.5">
                 {gi > 0 && <div className="my-2 h-px w-5 bg-aula-line" />}
@@ -150,21 +153,23 @@ export function Sidebar({
               </div>
             ))}
           </nav>
-          <div className="flex-1" />
-          <div className="flex flex-col items-center gap-0.5">
+          <div className="flex shrink-0 flex-col items-center gap-0.5">
             <RailButton
+              caption={user ? "Elísio" : undefined}
               item={{ href: user ? "/tutor" : "/auth/login", icon: user ? Send : LogIn, label: user ? "Perguntar ao Elísio" : "Entrar" }}
               active={false}
               onClick={onNavigate}
             />
             <RailButton item={{ href: "/settings", icon: Settings, label: "Definições" }} active={isActive("/settings")} onClick={onNavigate} />
-            <button
-              onClick={onToggle}
-              aria-label="Expandir barra lateral"
-              className="flex h-8 w-9 items-center justify-center rounded-lg text-aula-text-3 transition-colors hover:bg-aula-selected hover:text-aula-text-2"
-            >
-              <ChevronsRight size={16} strokeWidth={1.5} />
-            </button>
+            {!lockRail && (
+              <button
+                onClick={onToggle}
+                aria-label="Expandir barra lateral"
+                className="tap-44 flex h-8 w-9 items-center justify-center rounded-lg text-aula-text-3 transition-colors hover:bg-aula-selected hover:text-aula-text-2"
+              >
+                <ChevronsRight size={16} strokeWidth={1.5} />
+              </button>
+            )}
           </div>
         </aside>
         <SearchModal open={search.open} onClose={() => search.setOpen(false)} />
@@ -174,7 +179,7 @@ export function Sidebar({
 
   return (
     <>
-      <aside className={`flex w-[244px] shrink-0 flex-col px-3 pt-3.5 pb-3 ${className}`}>
+      <aside className={`flex min-h-0 w-[244px] shrink-0 flex-col overflow-hidden px-3 pt-3.5 pb-3 ${className}`}>
         {/* Workspace header */}
         <div className="flex h-8 items-center gap-2 pl-2 pr-1">
           <Link href="/" className="flex items-center gap-2" onClick={onNavigate}>
@@ -186,14 +191,14 @@ export function Sidebar({
             onClick={() => search.setOpen(true)}
             aria-label="Procurar (⌘K)"
             title="Procurar  ⌘K"
-            className="flex h-7 w-7 items-center justify-center rounded-md text-aula-text-3 transition-colors hover:bg-aula-selected hover:text-aula-text-2"
+            className="tap-44 flex h-7 w-7 items-center justify-center rounded-md text-aula-text-3 transition-colors hover:bg-aula-selected hover:text-aula-text-2"
           >
             <Search size={15} strokeWidth={1.5} />
           </button>
         </div>
 
         {/* Nav */}
-        <nav className="mt-3.5 flex flex-1 flex-col">
+        <nav className="aula-pane mt-3.5 flex min-h-0 flex-1 flex-col overflow-y-auto">
           {NAV.map((group, gi) => (
             <div key={gi} className={gi > 0 ? "mt-3.5" : ""}>
               {group.label && (
@@ -209,7 +214,7 @@ export function Sidebar({
                       href={item.href}
                       onClick={onNavigate}
                       aria-current={active ? "page" : undefined}
-                      className={`flex h-[30px] items-center gap-2.5 rounded-lg px-2.5 text-[12.5px] transition-colors duration-100 ${
+                      className={`tablet-target flex h-[30px] items-center gap-2.5 rounded-lg px-2.5 text-[12.5px] transition-colors duration-100 ${
                         active
                           ? "bg-aula-selected font-medium text-aula-text"
                           : "text-aula-text-2 hover:bg-aula-selected/60 hover:text-aula-text"
@@ -231,7 +236,7 @@ export function Sidebar({
             <Link
               href="/tutor"
               onClick={onNavigate}
-              className="flex h-8 flex-1 items-center gap-2 rounded-lg border border-aula-border bg-aula-panel px-2.5 text-[12.5px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
+              className="tablet-target flex h-8 flex-1 items-center gap-2 rounded-lg border border-aula-border bg-aula-panel px-2.5 text-[12.5px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
             >
               <Send size={14} strokeWidth={1.5} className="text-aula-text-2" />
               Perguntar ao Elísio
@@ -252,19 +257,21 @@ export function Sidebar({
             href="/settings"
             onClick={onNavigate}
             aria-label="Definições"
-            className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-aula-selected ${
+            className={`tablet-target-sq flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-aula-selected ${
               isActive("/settings") ? "bg-aula-selected text-aula-text" : "text-aula-text-3"
             }`}
           >
             <Settings size={15} strokeWidth={1.5} />
           </Link>
-          <button
-            onClick={onToggle}
-            aria-label="Recolher barra lateral"
-            className="hidden h-8 w-8 items-center justify-center rounded-lg text-aula-text-3 transition-colors hover:bg-aula-selected md:flex"
-          >
-            <ChevronsLeft size={15} strokeWidth={1.5} />
-          </button>
+          {!lockRail && (
+            <button
+              onClick={onToggle}
+              aria-label="Recolher barra lateral"
+              className="tablet-target-sq tap-44 hidden h-8 w-8 items-center justify-center rounded-lg text-aula-text-3 transition-colors hover:bg-aula-selected md:flex"
+            >
+              <ChevronsLeft size={15} strokeWidth={1.5} />
+            </button>
+          )}
         </div>
       </aside>
       <SearchModal open={search.open} onClose={() => search.setOpen(false)} />
@@ -272,20 +279,21 @@ export function Sidebar({
   );
 }
 
-function RailButton({ item, active, onClick }: { item: NavItem; active: boolean; onClick?: () => void }) {
+function RailButton({ item, active, onClick, caption }: { item: NavItem; active: boolean; onClick?: () => void; caption?: string }) {
   const Icon = item.icon;
   return (
     <Link
       href={item.href}
       onClick={onClick}
       aria-label={item.label}
-      title={item.label}
+      title={caption ? undefined : item.label}
       aria-current={active ? "page" : undefined}
-      className={`flex h-8 w-9 items-center justify-center rounded-lg transition-colors ${
-        active ? "bg-aula-selected text-aula-text" : "text-aula-text-2 hover:bg-aula-selected/60 hover:text-aula-text"
-      }`}
+      className={`tablet-target-sq tap-44 flex items-center justify-center rounded-lg transition-colors ${
+        caption ? "h-auto min-h-11 w-11 flex-col gap-0.5 py-1" : "h-8 w-9"
+      } ${active ? "bg-aula-selected text-aula-text" : "text-aula-text-2 hover:bg-aula-selected/60 hover:text-aula-text"}`}
     >
       <Icon size={16} strokeWidth={1.5} />
+      {caption && <span className="max-w-[52px] truncate text-[9px] font-medium leading-none">{caption}</span>}
     </Link>
   );
 }

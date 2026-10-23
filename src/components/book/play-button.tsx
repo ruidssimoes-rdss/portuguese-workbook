@@ -42,7 +42,7 @@ export function PlayButton({ text, size = "sm" }: { text: string; size?: "sm" | 
       disabled={unavailable}
       aria-label={unavailable ? "Áudio indisponível" : `Ouvir ${text}`}
       title={unavailable ? "Áudio indisponível" : "Ouvir"}
-      className={`inline-flex ${dim} shrink-0 items-center justify-center rounded-full border border-[#D3DAEB] bg-white text-aula-accent transition-colors hover:bg-[#E8ECF6] disabled:cursor-not-allowed disabled:opacity-30 ${
+      className={`tablet-target-sq inline-flex ${dim} shrink-0 items-center justify-center rounded-full border border-[#D3DAEB] bg-white text-aula-accent transition-colors hover:bg-[#E8ECF6] disabled:cursor-not-allowed disabled:opacity-30 ${
         speaking ? "bg-[#E8ECF6]" : ""
       }`}
     >
@@ -69,7 +69,7 @@ export function ListenButton({ lines, label }: { lines: string[]; label: string 
           .catch(() => {})
           .finally(() => setOn(false));
       }}
-      className="inline-flex h-7 items-center gap-1.5 rounded-lg border border-aula-border bg-white px-2 text-[12px] font-medium text-aula-text transition-colors hover:bg-aula-sunken disabled:opacity-40"
+      className="tablet-target inline-flex h-7 items-center gap-1.5 rounded-lg border border-aula-border bg-white px-2 text-[12px] font-medium text-aula-text transition-colors hover:bg-aula-sunken disabled:opacity-40"
     >
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
         <path d="M4 9h4l5-4v14l-5-4H4z" />

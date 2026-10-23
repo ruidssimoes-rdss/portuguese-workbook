@@ -441,18 +441,97 @@
   animation: page-enter 200ms ease-out;
 }
 
-/* Quiet paragraph ask. On a wide screen the control stays out of flow until
+/* Book dock widths. Below 1280 the sidebar is on its rail, and the dock
+   gives the chapter a reading column instead of taking a third of the screen. */
+.book-dock {
+  width: clamp(320px, 34vw, 460px);
+  min-width: 0;
+  max-width: 100%;
+}
+.book-dock.book-dock-wide {
+  width: clamp(360px, 38vw, 520px);
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .book-dock {
+    width: clamp(340px, 36vw, 420px);
+  }
+  .book-dock.book-dock-wide {
+    width: clamp(360px, 40vw, 460px);
+  }
+}
+
+/* Tablet and iPad. Phone widths stay on the styles above this block.
+   dvh and safe areas apply from 744px up, including desktop, where the
+   insets are zero. Touch targets stop at 1439px so 1440 stays as drawn. */
+@media (min-width: 744px) {
+  html:has(.aula-shell),
+  body:has(.aula-shell) {
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  .aula-shell {
+    overflow: hidden;
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+  }
+  .aula-pane {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1439px) {
+  .tablet-target {
+    min-height: 44px;
+  }
+  .tablet-target-sq {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .tap-44 {
+    position: relative;
+  }
+  .tap-44::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+  .book-link:not([aria-current="true"]) {
+    background-color: #f3f5fa;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .book-link:not([aria-current="true"]):hover,
+  .book-link:not([aria-current="true"]):active {
+    background-color: #e8ecf6;
+  }
+  .aula-shell button,
+  .aula-shell a {
+    touch-action: manipulation;
+  }
+}
+
+/* Quiet paragraph ask. On a desktop the control stays out of flow until
    the pointer is over that passage, or the control itself is focused.
    A collapsed inline-flex button still generates a line box, which is what
    opened the holes between paragraphs and before a section heading. The slot
    is a 0fr grid row. The clip, not the button, is the grid item: a button with
    a fixed height will not let the row shrink. Plain :hover, not Tailwind's
    hover variant, which only applies when the browser reports a hover-capable
-   pointer. Below 1024px the control stays visible. */
+   pointer. Below 1440px — including iPad landscape, which still reports hover —
+   the control stays visible. */
 .ask-clip > .ask-passage {
   margin-top: var(--spacing-heading);
 }
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .ask-slot {
     display: grid;
     grid-template-rows: 0fr;

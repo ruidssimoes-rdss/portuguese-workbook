@@ -7,16 +7,42 @@ import { BookProvider, useBook } from "./book-context";
 import { CardPane } from "./card-pane";
 import { PracticePane } from "./practice-pane";
 
-function useWideDock() {
-  const [wide, setWide] = useState(true);
+type BookMode = "cover" | "sheet" | "dock";
+
+function useBookFrame() {
+  const [frame, setFrame] = useState<{ mode: BookMode; tight: boolean }>({ mode: "dock", tight: false });
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 1024px)");
-    const apply = () => setWide(query.matches);
+    const cover = window.matchMedia("(max-width: 743px)");
+    const dock = window.matchMedia("(min-width: 1024px)");
+    const tight = window.matchMedia("(max-width: 1279px)");
+    const apply = () => {
+      const mode: BookMode = cover.matches ? "cover" : dock.matches ? "dock" : "sheet";
+      setFrame({ mode, tight: tight.matches });
+    };
     apply();
-    query.addEventListener("change", apply);
-    return () => query.removeEventListener("change", apply);
+    cover.addEventListener("change", apply);
+    dock.addEventListener("change", apply);
+    tight.addEventListener("change", apply);
+    return () => {
+      cover.removeEventListener("change", apply);
+      dock.removeEventListener("change", apply);
+      tight.removeEventListener("change", apply);
+    };
   }, []);
-  return wide;
+  return frame;
+}
+
+/** Right-hand sheet over the chapter. The chapter stays underneath and in the URL. */
+function DockSheet({ onClose, children }: { onClose: () => void; children: React.ReactNode }) {
+  return createPortal(
+    <div className="fixed inset-y-0 right-0 left-0 z-[60] flex justify-end p-2 pt-[max(0.5rem,env(safe-area-inset-top))] pr-[max(0.5rem,env(safe-area-inset-right))] pb-[max(0.5rem,env(safe-area-inset-bottom))] min-[768px]:left-[calc(60px+env(safe-area-inset-left))]">
+      <button type="button" aria-label="Fechar" onClick={onClose} className="absolute inset-0 bg-[#1B2B61]/10" />
+      <div className="animate-slide-in-right relative flex h-full min-h-0 w-[min(440px,100%)] min-w-0 flex-col overflow-hidden rounded-xl border border-aula-line bg-white shadow-[0_16px_40px_rgba(27,43,97,0.14)]">
+        {children}
+      </div>
+    </div>,
+    document.body,
+  );
 }
 
 function Shell({
@@ -33,8 +59,10 @@ function Shell({
   renderLesson?: (args: { onDismiss: () => void }) => React.ReactNode;
 }) {
   const book = useBook();
-  const wide = useWideDock();
+  const frame = useBookFrame();
+  const wide = frame.mode === "dock";
   const practicing = Boolean(book.practice);
+  const open = Boolean(book.current || practicing);
   const dock = practicing && wide ? (
     <div className="flex min-h-0 flex-1 flex-col">
       <PracticePane lessonTitle={lessonTitle} renderLesson={renderLesson} />
@@ -44,15 +72,26 @@ function Shell({
       <CardPane />
     </div>
   ) : !book.current && !practicing && fallback ? (
-    <div className="min-h-0 flex-1 overflow-y-auto p-4">{fallback}</div>
+    <div className="aula-pane min-h-0 flex-1 overflow-y-auto p-4">{fallback}</div>
   ) : null;
 
   const cover = "fixed inset-0 z-[60] flex min-h-0 flex-col bg-white lg:hidden";
+  const forceRail = frame.tight && frame.mode !== "cover" && (frame.mode === "sheet" ? open : Boolean(dock));
+  const closeOverlay = () => {
+    if (practicing) book.closePractice();
+    else if (book.current) book.close(book.index);
+  };
 
   return (
-    <PageShell header={header} dock={dock} wideDock={practicing && wide}>
+    <PageShell
+      header={header}
+      dock={wide ? dock : null}
+      wideDock={practicing && wide}
+      forceRail={forceRail}
+      snug={wide && frame.tight && Boolean(dock)}
+    >
       {children}
-      {!wide &&
+      {frame.mode === "cover" &&
         practicing &&
         createPortal(
           <div className={cover}>
@@ -60,7 +99,7 @@ function Shell({
           </div>,
           document.body,
         )}
-      {!wide &&
+      {frame.mode === "cover" &&
         !practicing &&
         book.current &&
         createPortal(
@@ -69,13 +108,23 @@ function Shell({
           </div>,
           document.body,
         )}
+      {frame.mode === "sheet" && open && (
+        <DockSheet onClose={closeOverlay}>
+          {practicing ? (
+            <PracticePane lessonTitle={lessonTitle} renderLesson={renderLesson} />
+          ) : (
+            <CardPane />
+          )}
+        </DockSheet>
+      )}
     </PageShell>
   );
 }
 
 /**
- * Chapter on the left, card or practice on the right. Below 1024px an open
- * card or practice session covers the screen; Fechar returns to the chapter.
+ * Chapter on the left, card or practice on the right.
+ * Below 744px an open card covers the screen. From 744px to 1023px it opens
+ * as a sheet over the chapter. From 1024px the two panes sit side by side.
  */
 export function BookShell({
   header,
