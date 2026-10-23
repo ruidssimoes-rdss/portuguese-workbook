@@ -20,7 +20,7 @@ interface Question {
 
 function SectionTitle({ n, children }: { n: number; children: React.ReactNode }) {
   return (
-    <h2 className="mt-9 font-sans text-[13px] font-medium leading-relaxed tracking-[-0.011em] text-aula-text">
+    <h2 className="mt-section font-sans text-[13px] font-medium leading-relaxed tracking-[-0.011em] text-aula-text">
       <span className="mr-2 tabular-nums text-[#5A5A57]">{n}</span>
       {children}
     </h2>
@@ -46,14 +46,14 @@ export function GrammarChapter({ id }: { id: string }) {
         Gramática · {topic.cefr}
         {topic.chapter > 0 ? ` · Capítulo ${topic.chapter}` : ""}
       </Kicker>
-      <h1 className="mt-1.5 text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{topic.titlePt}</h1>
-      {topic.summary && <p className="mt-2 text-[13px] leading-relaxed text-[#5A5A57]">{topic.summary}</p>}
-      <div className="mt-4">
+      <h1 className="mt-heading text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{topic.titlePt}</h1>
+      {topic.summary && <p className="mt-heading text-[13px] leading-relaxed text-[#5A5A57]">{topic.summary}</p>}
+      <div className="mt-paragraph">
         <AskChapter about={{ about: "grammar", id: topic.id }} />
       </div>
 
       {paragraphs.length > 0 && (
-        <div className="mt-5 space-y-3 text-[13px] leading-relaxed text-aula-text">
+        <div className="mt-paragraph flex flex-col gap-paragraph text-[13px] leading-relaxed text-aula-text">
           {paragraphs.map((p, i) => (
             <AskPassage key={i} about={{ about: "grammar", id: topic.id, part: `p/${i}` }}>
               <p>
@@ -72,13 +72,13 @@ export function GrammarChapter({ id }: { id: string }) {
             <section>
               <SectionTitle n={i + 1}>{rule.rulePt || rule.rule}</SectionTitle>
               {rule.rulePt && (
-                <p className="mt-2 text-[13px] leading-relaxed text-aula-text">
+                <p className="mt-heading text-[13px] leading-relaxed text-aula-text">
                   <LinkedText text={rule.rule} skip={topic.ref} />
                 </p>
               )}
-              <Examples rows={rule.examples.slice(0, 4)} skip={topic.ref} />
+              <Examples className="mt-heading" rows={rule.examples.slice(0, 4)} skip={topic.ref} />
               {rule.exceptions?.map((exception, j) => (
-                <p key={j} className="mt-2 text-[12.5px] leading-relaxed text-[#5A5A57]">
+                <p key={j} className="mt-heading text-[12.5px] leading-relaxed text-[#5A5A57]">
                   Nota: <LinkedText text={exception} skip={topic.ref} />
                 </p>
               ))}
@@ -87,7 +87,7 @@ export function GrammarChapter({ id }: { id: string }) {
         ))}
 
       {(pullEp || epTips.length > 0) && (epRules.length > 0 || epTips.length > 0) && (
-        <div className="mt-6">
+        <div className="mt-section">
           <AskPassage about={{ about: "grammar", id: topic.id, part: "ep" }}>
           <Callout
             label={
@@ -97,7 +97,7 @@ export function GrammarChapter({ id }: { id: string }) {
               </>
             }
           >
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-item">
               {pullEp &&
                 epRules.map((rule, i) => (
                   <p key={`r${i}`}>
@@ -123,10 +123,10 @@ export function GrammarChapter({ id }: { id: string }) {
       )}
 
       {tips.length > 0 && (
-        <div className="mt-3">
+        <div className="mt-section">
           <AskPassage about={{ about: "grammar", id: topic.id, part: "tips" }}>
           <Callout tone="plain" label="Dica">
-            <ul className="flex flex-col gap-1.5">
+            <ul className="flex flex-col gap-item">
               {tips.map((tip, i) => (
                 <li key={i}>
                   <LinkedText text={tip} skip={topic.ref} />
@@ -153,9 +153,9 @@ export function grammarListenLines(topic: GrammarEntry): string[] {
 
 function QuickCheck({ questions }: { questions: Question[] }) {
   return (
-    <section className="mt-10">
+    <section className="mt-section">
       <Kicker>Verifica · {questions.length} perguntas</Kicker>
-      <div className="mt-3 flex flex-col gap-3">
+      <div className="mt-heading flex flex-col gap-paragraph">
         {questions.map((q, i) => (
           <CheckBlock key={i} q={q} n={i + 1} total={questions.length} />
         ))}
@@ -188,7 +188,7 @@ function CheckBlock({ q, n, total }: { q: Question; n: number; total: number }) 
   const right = picked === correctIndex;
   return (
     <div className="rounded-xl border border-aula-border bg-white p-4">
-      <div className="mb-2 flex items-center justify-between text-[11px] text-[#5A5A57]">
+      <div className="mb-heading flex items-center justify-between text-[11px] text-[#5A5A57]">
         <span className="flex items-center gap-1.5 font-semibold uppercase tracking-[0.06em] text-[#1F7A68]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#1F7A68]" /> Verifica
         </span>
@@ -196,8 +196,8 @@ function CheckBlock({ q, n, total }: { q: Question; n: number; total: number }) 
           {n} de {total}
         </span>
       </div>
-      <p className="mb-3 text-[13px] font-medium text-aula-text">{q.questionTextPt ?? q.questionText}</p>
-      <div className="flex flex-wrap gap-2">
+      <p className="mb-paragraph text-[13px] font-medium text-aula-text">{q.questionTextPt ?? q.questionText}</p>
+      <div className="flex flex-wrap gap-item">
         {options.map((o, i) => {
           const isRight = done && i === correctIndex;
           const isWrong = done && i === picked && !right;
@@ -223,7 +223,7 @@ function CheckBlock({ q, n, total }: { q: Question; n: number; total: number }) 
           );
         })}
       </div>
-      {done && q.explanation && <p className="mt-3 text-[12px] leading-relaxed text-[#5A5A57]">{q.explanation}</p>}
+      {done && q.explanation && <p className="mt-paragraph text-[12px] leading-relaxed text-[#5A5A57]">{q.explanation}</p>}
     </div>
   );
 }

@@ -85,6 +85,14 @@
   --color-bloco-border-divider: #CFCFCB;
   --color-bloco-border-track: #E6E6E4;
 
+  /* Chapter and dock rhythm. One 4px scale, used as Tailwind spacing utilities. */
+  --spacing-paragraph: 12px; /* between body paragraphs */
+  --spacing-section: 24px;   /* between chapter sections */
+  --spacing-heading: 8px;    /* a heading to the first line under it */
+  --spacing-item: 8px;       /* rows in a list */
+  --spacing-card: 16px;      /* between blocks inside a dock card */
+  --spacing-pad: 20px;       /* padding inside a dock card */
+
   /* Spacing (as custom properties for non-Tailwind contexts) */
   --bloco-padding: 16px;
   --bloco-expanded-padding: 20px;
@@ -433,25 +441,44 @@
   animation: page-enter 200ms ease-out;
 }
 
-/* Quiet paragraph ask. On a wide screen it stays collapsed until the pointer
-   is over that passage, or the control itself is focused. This is plain :hover,
-   not Tailwind's hover variant, which only applies when the browser reports
-   a hover-capable pointer. Below 1024px the control stays visible. */
+/* Quiet paragraph ask. On a wide screen the control stays out of flow until
+   the pointer is over that passage, or the control itself is focused.
+   A collapsed inline-flex button still generates a line box, which is what
+   opened the holes between paragraphs and before a section heading. The slot
+   is a 0fr grid row. The clip, not the button, is the grid item: a button with
+   a fixed height will not let the row shrink. Plain :hover, not Tailwind's
+   hover variant, which only applies when the browser reports a hover-capable
+   pointer. Below 1024px the control stays visible. */
+.ask-clip > .ask-passage {
+  margin-top: var(--spacing-heading);
+}
 @media (min-width: 1024px) {
-  .ask-passage {
-    margin-top: 0;
-    height: 0;
+  .ask-slot {
+    display: grid;
+    grid-template-rows: 0fr;
+  }
+  .group\/ask:hover > .ask-slot,
+  .group\/ask:focus-within > .ask-slot {
+    grid-template-rows: 1fr;
+  }
+  .ask-slot > .ask-clip {
+    min-height: 0;
     overflow: hidden;
+  }
+  .ask-clip > .ask-passage {
+    margin-top: 0;
     opacity: 0;
   }
-  .group\/ask:hover .ask-passage,
-  .ask-passage:focus-visible {
-    margin-top: 0.25rem;
-    height: 1.5rem;
+  .group\/ask:hover > .ask-slot > .ask-clip,
+  .group\/ask:focus-within > .ask-slot > .ask-clip {
     overflow: visible;
+  }
+  .group\/ask:hover > .ask-slot > .ask-clip > .ask-passage,
+  .group\/ask:focus-within > .ask-slot > .ask-clip > .ask-passage {
+    margin-top: var(--spacing-heading);
     opacity: 1;
   }
-  .group\/ask:hover .ask-passage,
+  .group\/ask:hover > .ask-slot > .ask-clip > .ask-passage,
   .ask-passage:hover,
   .ask-passage:focus-visible {
     color: #1b2b61;

@@ -25,14 +25,14 @@ function useLoginHref(): string {
 function SignInPrompt() {
   const href = useLoginHref();
   return (
-    <div className="pt-2">
+    <div>
       <h2 className="font-sans text-[22px] font-semibold tracking-[-0.02em] text-aula-text">Entra para perguntar</h2>
-      <p className="mt-2 max-w-[36ch] text-[13px] leading-relaxed text-[#5A5A57]">
+      <p className="mt-heading max-w-[36ch] text-[13px] leading-relaxed text-[#5A5A57]">
         O capítulo continua aberto. Entra para perguntar ao Elísio.
       </p>
       <Link
         href={href}
-        className="mt-4 inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+        className="mt-card inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
       >
         Entrar
       </Link>
@@ -74,11 +74,11 @@ function Note({ passage }: { passage: ElisioPassage }) {
         </div>
       </div>
 
-      <blockquote className="mt-4 max-h-32 overflow-y-auto rounded-[10px] border border-aula-line bg-aula-sunken px-3 py-2.5 text-[13px] leading-relaxed text-aula-text">
+      <blockquote className="mt-card max-h-32 overflow-y-auto rounded-[10px] border border-aula-line bg-aula-sunken px-3 py-paragraph text-[13px] leading-relaxed text-aula-text">
         {preview(passage.text)}
       </blockquote>
 
-      <div className="mt-4 flex flex-col items-start gap-1">
+      <div className="mt-card flex flex-col items-start gap-item">
         {passage.questions.map((item) => {
           const on = item === question;
           return (
@@ -94,14 +94,14 @@ function Note({ passage }: { passage: ElisioPassage }) {
         })}
       </div>
 
-      {!suggested && <p className="mt-3 text-[13px] font-medium leading-snug text-aula-text">{question}</p>}
+      {!suggested && <p className="mt-heading text-[13px] font-medium leading-snug text-aula-text">{question}</p>}
 
-      <div className="mt-3 rounded-[10px] border border-[#D3DAEB] bg-aula-accent-faint px-3 py-2.5">
+      <div className="mt-card rounded-[10px] border border-[#D3DAEB] bg-aula-accent-faint px-3 py-paragraph">
         <p className="text-[13px] leading-relaxed text-aula-text">{note}</p>
       </div>
 
       <form
-        className="mt-4"
+        className="mt-card"
         onSubmit={(event) => {
           event.preventDefault();
           ask(draft);
@@ -110,7 +110,7 @@ function Note({ passage }: { passage: ElisioPassage }) {
         <label htmlFor="elisio-question" className="text-[12px] text-[#5A5A57]">
           Outra pergunta
         </label>
-        <div className="mt-1.5 flex gap-2">
+        <div className="mt-heading flex gap-item">
           <input
             id="elisio-question"
             value={draft}
@@ -138,8 +138,8 @@ function Note({ passage }: { passage: ElisioPassage }) {
 export function ElisioCard({ about }: { about: ElisioAbout }) {
   const { user, loading } = useAuth();
   const passage = passageFor(about);
-  if (loading) return <p className="pt-2 text-[13px] text-[#5A5A57]">A preparar…</p>;
+  if (loading) return <p className="text-[13px] text-[#5A5A57]">A preparar…</p>;
   if (!user) return <SignInPrompt />;
-  if (!passage) return <p className="pt-2 text-[13px] text-[#5A5A57]">Não encontrei este passo.</p>;
+  if (!passage) return <p className="text-[13px] text-[#5A5A57]">Não encontrei este passo.</p>;
   return <Note key={encodeCard({ kind: "elisio", about })} passage={passage} />;
 }

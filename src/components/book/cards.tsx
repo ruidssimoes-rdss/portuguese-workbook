@@ -75,7 +75,7 @@ function PracticeButton({ card }: { card: CardRef }) {
 
 function CardActions({ card, about }: { card: CardRef; about: ElisioAbout }) {
   return (
-    <div className="mt-4 flex flex-wrap items-center gap-2">
+    <div className="mt-card flex flex-wrap items-center gap-item">
       <PracticeButton card={card} />
       <AskCardButton about={about} />
     </div>
@@ -98,11 +98,11 @@ function Head({
   return (
     <div>
       <Kicker>{kicker}</Kicker>
-      <div className="mt-2 flex items-center gap-3">
+      <div className="mt-heading flex items-center gap-paragraph">
         {speak && <PlayButton text={speak} size="lg" />}
         <div className="min-w-0 flex-1">
           <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.03em] text-aula-text">{title}</h2>
-          {meta && <div className="mt-1 text-[12.5px] leading-snug text-[#5A5A57]">{meta}</div>}
+          {meta && <div className="mt-heading text-[12.5px] leading-snug text-[#5A5A57]">{meta}</div>}
         </div>
         {aside}
       </div>
@@ -175,7 +175,7 @@ export function VerbCard({ id }: { id: string }) {
       />
       <CardActions card={ref} about={{ about: "verb", id: verb.id }} />
 
-      <div className="mt-5 flex items-center gap-3">
+      <div className="mt-card flex items-center gap-paragraph">
         <h3 className="shrink-0 text-[13px] font-semibold text-aula-text">Conjugação</h3>
         <div className="ml-auto flex min-w-0 max-w-full gap-0.5 overflow-x-auto rounded-lg bg-aula-sunken p-[3px] [scrollbar-width:none]">
           {verb.tenses.map((item) => (
@@ -195,25 +195,25 @@ export function VerbCard({ id }: { id: string }) {
         </div>
       </div>
 
-      <div className="mt-2 overflow-hidden rounded-[10px] border border-aula-line">
+      <div className="mt-heading overflow-hidden rounded-[10px] border border-aula-line">
         {rows.map((row) => (
           <ConjugationRow key={row.person + row.form} row={row} stem={stem} />
         ))}
       </div>
 
       {note && (
-        <div className="mt-3">
+        <div className="mt-card">
           <Callout tone="plain" label="Repara">
             <LinkedText text={note} skip={ref} />
           </Callout>
         </div>
       )}
-      {verb.participleNote && <p className="mt-3 text-[12.5px] leading-relaxed text-[#5A5A57]">{verb.participleNote}</p>}
+      {verb.participleNote && <p className="mt-card text-[12.5px] leading-relaxed text-[#5A5A57]">{verb.participleNote}</p>}
 
       {siblings.length > 0 && (
-        <div className="mt-5">
+        <div className="mt-card">
           <Kicker>Mesmo padrão</Kicker>
-          <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[12.5px]">
+          <div className="mt-heading flex flex-wrap gap-x-paragraph gap-y-item text-[12.5px]">
             {siblings.map((item) => (
               <CardChip key={item.id} refCard={{ kind: "verb", id: item.id }}>
                 {item.id}
@@ -304,10 +304,10 @@ export function WordCard({ category, word }: { category: string; word: string })
       />
       <CardActions card={entry.ref} about={{ about: "word", category: entry.category, word: entry.portuguese }} />
 
-      {entry.example && <Examples rows={[{ pt: entry.example, en: entry.exampleTranslation }]} skip={entry.ref} />}
+      {entry.example && <Examples className="mt-card" rows={[{ pt: entry.example, en: entry.exampleTranslation }]} skip={entry.ref} />}
 
       {entry.proTip && (
-        <div className="mt-3">
+        <div className="mt-card">
           <Callout label={<><span className="rounded-[4px] bg-aula-accent px-1.5 py-[1px] text-[10px] font-semibold text-white">PT</span> Português europeu</>}>
             <LinkedText text={entry.proTip} skip={entry.ref} />
           </Callout>
@@ -315,8 +315,8 @@ export function WordCard({ category, word }: { category: string; word: string })
       )}
 
       {cultureNote && (
-        <div className="mt-3 rounded-[10px] border border-aula-line px-3 py-2.5">
-          <div className="mb-1 text-[12px] text-[#5A5A57]">
+        <div className="mt-card rounded-[10px] border border-aula-line px-3 py-paragraph">
+          <div className="mb-heading text-[12px] text-[#5A5A57]">
             Da nota <span className="font-medium text-aula-text">{cultureNote.title}</span>
           </div>
           <p className="text-[12.5px] leading-relaxed text-aula-text">
@@ -325,7 +325,7 @@ export function WordCard({ category, word }: { category: string; word: string })
           <button
             type="button"
             onClick={() => book.openCard(cultureNote.ref)}
-            className="mt-2 text-[12px] font-medium text-aula-accent"
+            className="mt-heading text-[12px] font-medium text-aula-accent"
           >
             Abrir {cultureNote.title}
           </button>
@@ -334,7 +334,7 @@ export function WordCard({ category, word }: { category: string; word: string })
 
       <Backlinks target={entry.ref} />
 
-      <div className="mt-4">
+      <div className="mt-card">
         <Link
           href={wordHref(entry.category, entry.portuguese)}
           className="inline-flex h-8 items-center rounded-lg border border-aula-border px-3 text-[12.5px] font-medium text-aula-text transition-colors hover:bg-aula-sunken"
@@ -356,7 +356,7 @@ export function GrammarCard({ id }: { id: string }) {
   return (
     <div>
       <Head kicker={`Gramática · ${topic.cefr}`} title={topic.titlePt} meta={topic.title !== topic.titlePt ? topic.title : undefined} />
-      {topic.summary && <p className="mt-3 text-[13px] leading-relaxed text-[#5A5A57]">{topic.summary}</p>}
+      {topic.summary && <p className="mt-card text-[13px] leading-relaxed text-[#5A5A57]">{topic.summary}</p>}
       <PropList
         rows={[
           { k: "Nível", v: <LevelChip level={topic.cefr} /> },
@@ -364,7 +364,7 @@ export function GrammarCard({ id }: { id: string }) {
             ? [{
                 k: "Usa",
                 v: (
-                  <span className="inline-flex flex-wrap gap-x-2">
+                  <span className="inline-flex flex-wrap gap-x-item">
                     {uses.map((ref) =>
                       ref.kind === "verb" ? (
                         <CardChip key={ref.id} refCard={ref}>
@@ -382,21 +382,21 @@ export function GrammarCard({ id }: { id: string }) {
       <CardActions card={topic.ref} about={{ about: "grammar", id: topic.id }} />
       {rule && (
         <>
-          <h3 className="mt-5 text-[13px] font-semibold text-aula-text">{rule.rulePt || "Formação"}</h3>
-          <p className="mt-1.5 text-[13px] leading-relaxed text-aula-text">
+          <h3 className="mt-card text-[13px] font-semibold text-aula-text">{rule.rulePt || "Formação"}</h3>
+          <p className="mt-heading text-[13px] leading-relaxed text-aula-text">
             <LinkedText text={rule.rule} skip={topic.ref} />
           </p>
-          <Examples rows={rule.examples.slice(0, 3)} skip={topic.ref} />
+          <Examples className="mt-heading" rows={rule.examples.slice(0, 3)} skip={topic.ref} />
         </>
       )}
       {epTip && (
-        <div className="mt-3">
+        <div className="mt-card">
           <Callout label={<><span className="rounded-[4px] bg-aula-accent px-1.5 py-[1px] text-[10px] font-semibold text-white">PT</span> Português europeu</>}>
             <LinkedText text={epTip} skip={topic.ref} />
           </Callout>
         </div>
       )}
-      <div className="mt-4">
+      <div className="mt-card">
         <Link href={`/grammar/${topic.id}`} className="text-[12.5px] font-medium text-aula-accent">
           Abrir o capítulo
         </Link>
@@ -427,17 +427,17 @@ export function CultureCard({ cultureType, id }: { cultureType: "saying" | "etiq
           </>
         }
       />
-      <div className="mt-4 flex flex-col gap-3">
+      <div className="mt-card flex flex-col gap-paragraph">
         {note.blocks.map((block, i) => (
           <div key={i}>
-            {block.label && <div className="mb-0.5 text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#5A5A57]">{block.label}</div>}
+            {block.label && <div className="mb-heading text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#5A5A57]">{block.label}</div>}
             <p className="text-[13px] leading-relaxed text-aula-text">
               <LinkedText text={block.text} skip={note.ref} />
             </p>
           </div>
         ))}
       </div>
-      {note.example && <Examples rows={[note.example]} skip={note.ref} />}
+      {note.example && <Examples className="mt-card" rows={[note.example]} skip={note.ref} />}
       <Backlinks target={note.ref} />
     </div>
   );

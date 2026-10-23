@@ -25,14 +25,18 @@ export function AskPassage({ about, children }: { about: ElisioAbout; children: 
   return (
     <div className="group/ask">
       {children}
-      <button
-        type="button"
-        onClick={open}
-        className="ask-passage mt-1 inline-flex h-6 items-center text-[12px] font-medium text-[#5A5A57]"
-      >
-        <span className="lg:hidden">Perguntar</span>
-        <span className="hidden lg:inline">Perguntar ao Elísio</span>
-      </button>
+      <div className="ask-slot">
+        <div className="ask-clip">
+          <button
+            type="button"
+            onClick={open}
+            className="ask-passage inline-flex h-6 items-center text-[12px] font-medium text-[#5A5A57]"
+          >
+            <span className="lg:hidden">Perguntar</span>
+            <span className="hidden lg:inline">Perguntar ao Elísio</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ import { CardChip, LinkedText } from "./linked-text";
 
 function SectionTitle({ n, children }: { n: number; children: React.ReactNode }) {
   return (
-    <h2 className="mt-9 font-sans text-[13px] font-medium leading-relaxed tracking-[-0.011em] text-aula-text">
+    <h2 className="mt-section font-sans text-[13px] font-medium leading-relaxed tracking-[-0.011em] text-aula-text">
       <span className="mr-2 tabular-nums text-[#5A5A57]">{n}</span>
       {children}
     </h2>
@@ -36,12 +36,12 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
       <Kicker>
         Lição {lesson.number} · {lesson.cefrLevel} · 20 min
       </Kicker>
-      <h1 className="mt-1.5 text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{lesson.titlePt}</h1>
+      <h1 className="mt-heading text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{lesson.titlePt}</h1>
       <AskPassage about={{ ...aboutLesson, part: "intro" }}>
         <div>
-          <p className="mt-2 text-[13px] leading-relaxed text-[#5A5A57]">{lesson.description}</p>
+          <p className="mt-heading text-[13px] leading-relaxed text-[#5A5A57]">{lesson.description}</p>
           {lesson.descriptionPt && (
-            <p className="mt-1.5 text-[13px] leading-relaxed text-aula-text">
+            <p className="mt-paragraph text-[13px] leading-relaxed text-aula-text">
               <LinkedText text={lesson.descriptionPt} />
             </p>
           )}
@@ -49,7 +49,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
       </AskPassage>
 
       {words.length > 0 && (
-        <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[12.5px]">
+        <div className="mt-paragraph flex flex-wrap items-baseline gap-x-paragraph gap-y-item text-[12.5px]">
           <span className="text-[#5A5A57]">Palavras</span>
           {words.map((word) => (
             <CardChip key={word.category + word.portuguese} refCard={word.ref}>
@@ -63,10 +63,11 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
         <AskPassage about={{ ...aboutLesson, part: "vocab" }}>
         <section>
           <SectionTitle n={++n}>Vocabulário</SectionTitle>
-          <p className="mt-2 text-[13px] leading-relaxed text-[#5A5A57]">
+          <p className="mt-heading text-[13px] leading-relaxed text-[#5A5A57]">
             As palavras desta lição. Abre uma para ver o significado, o áudio e onde mais aparece.
           </p>
           <Examples
+            className="mt-heading"
             rows={words.filter((word) => word.example).map((word) => ({ pt: word.example!, en: word.exampleTranslation || word.english }))}
           />
         </section>
@@ -76,7 +77,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
       {verbs.length > 0 && (
         <section>
           <SectionTitle n={++n}>Verbos</SectionTitle>
-          <div className="mt-3 flex flex-col gap-5">
+          <div className="mt-heading flex flex-col gap-paragraph">
             {verbs.map((verb) => {
               const rows = verb.rows("Present");
               const sample = [rows[0], rows[2]].filter(Boolean);
@@ -105,11 +106,11 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
               <CardChip refCard={topic.ref}>{topic.titlePt}</CardChip>
             </SectionTitle>
             {topic.summary && (
-              <p className="mt-2 text-[13px] leading-relaxed text-aula-text">
+              <p className="mt-heading text-[13px] leading-relaxed text-aula-text">
                 <LinkedText text={topic.summary} />
               </p>
             )}
-            {rule && <Examples rows={rule.examples.slice(0, 2)} />}
+            {rule && <Examples className="mt-heading" rows={rule.examples.slice(0, 2)} />}
           </section>
           </AskPassage>
         );
@@ -118,21 +119,21 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
       {notes.length > 0 && (
         <section>
           <SectionTitle n={++n}>Cultura</SectionTitle>
-          <div className="mt-3 flex flex-col gap-3">
+          <div className="mt-heading flex flex-col gap-paragraph">
             {notes.map((note, i) => (
               <AskPassage key={`${note.title}-${i}`} about={{ ...aboutLesson, part: `culture/${i}` }}>
               <Callout
                 label={<CardChip refCard={note.ref}>{note.title}</CardChip>}
               >
-                {note.subtitle && <p className="mb-1.5 text-[#5A5A57]">{note.subtitle}</p>}
+                {note.subtitle && <p className="mb-heading text-[#5A5A57]">{note.subtitle}</p>}
                 {note.blocks.slice(0, 2).map((block, i) => (
-                  <p key={i} className={i > 0 ? "mt-1.5" : ""}>
+                  <p key={i} className={i > 0 ? "mt-heading" : ""}>
                     {block.label && <span className="font-medium">{block.label}. </span>}
                     <LinkedText text={block.text} />
                   </p>
                 ))}
                 {note.example && (
-                  <p className="mt-1.5 font-medium">
+                  <p className="mt-heading font-medium">
                     <LinkedText text={note.example.pt} />
                   </p>
                 )}
@@ -143,7 +144,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
         </section>
       )}
 
-      <div className="mt-10 flex flex-wrap items-center gap-3">
+      <div className="mt-section flex flex-wrap items-center gap-paragraph">
         <button
           type="button"
           aria-pressed={practicing}

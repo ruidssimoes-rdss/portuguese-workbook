@@ -32,16 +32,24 @@ export function Callout({
   const navy = tone === "navy";
   return (
     <div className={`rounded-[10px] border px-3.5 py-3 ${navy ? "border-[#D3DAEB] bg-aula-accent-faint" : "border-aula-border bg-aula-sunken"}`}>
-      <div className={`mb-1.5 flex items-center gap-2 text-[12px] font-medium ${navy ? "text-aula-accent" : "text-aula-text"}`}>{label}</div>
+      <div className={`mb-heading flex items-center gap-item text-[12px] font-medium ${navy ? "text-aula-accent" : "text-aula-text"}`}>{label}</div>
       <div className="text-[12.5px] leading-relaxed text-aula-text">{children}</div>
     </div>
   );
 }
 
-export function Examples({ rows, skip }: { rows: { pt: string; en?: string }[]; skip?: CardRef }) {
+export function Examples({
+  rows,
+  skip,
+  className = "mt-paragraph",
+}: {
+  rows: { pt: string; en?: string }[];
+  skip?: CardRef;
+  className?: string;
+}) {
   if (rows.length === 0) return null;
   return (
-    <div className="mt-3 flex flex-col gap-2">
+    <div className={`${className} flex flex-col gap-item`}>
       {rows.map((row, i) => (
         <div key={i} className="flex items-center gap-2.5 rounded-[10px] border border-aula-line bg-white px-2.5 py-2">
           <PlayButton text={row.pt} />
@@ -59,7 +67,7 @@ export function Examples({ rows, skip }: { rows: { pt: string; en?: string }[]; 
 
 export function PropList({ rows }: { rows: { k: ReactNode; v: ReactNode }[] }) {
   return (
-    <dl className="mt-4 grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-4 gap-y-1.5 text-[12.5px]">
+    <dl className="mt-card grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-card gap-y-item text-[12.5px]">
       {rows.map((row, i) => (
         <div key={i} className="contents">
           <dt className="text-[#5A5A57]">{row.k}</dt>
@@ -114,14 +122,14 @@ export function Backlinks({ target }: { target: CardRef }) {
   }
 
   return (
-    <section className="mt-6">
-      <div className="mb-2 flex items-baseline justify-between gap-3">
+    <section className="mt-card">
+      <div className="mb-heading flex items-baseline justify-between gap-paragraph">
         <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#5A5A57]">Aparece em</h3>
         <span className="text-[12px] text-[#5A5A57]">
           {total} {total === 1 ? "nota" : "notas"}
         </span>
       </div>
-      <ul className="flex flex-col gap-1.5">
+      <ul className="flex flex-col gap-item">
         {shown.map((item) => (
           <li key={item.sourceKey}>
             <button
@@ -129,7 +137,7 @@ export function Backlinks({ target }: { target: CardRef }) {
               onClick={() => open(item)}
               className="w-full rounded-[10px] border border-aula-line px-3 py-2 text-left transition-colors hover:bg-aula-sunken"
             >
-              <span className="flex items-baseline gap-2">
+              <span className="flex items-baseline gap-item">
                 <span className="min-w-0 truncate text-[13px] font-medium text-aula-text">{item.title}</span>
                 <span className="ml-auto shrink-0 text-[11px] text-[#5A5A57]">{item.kicker}</span>
               </span>
@@ -140,7 +148,7 @@ export function Backlinks({ target }: { target: CardRef }) {
           </li>
         ))}
       </ul>
-      {total > shown.length && <p className="mt-2 text-[12px] text-[#5A5A57]">e mais {total - shown.length}</p>}
+      {total > shown.length && <p className="mt-heading text-[12px] text-[#5A5A57]">e mais {total - shown.length}</p>}
     </section>
   );
 }
