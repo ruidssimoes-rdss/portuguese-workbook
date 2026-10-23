@@ -759,7 +759,6 @@ export default function CalendarPage() {
   const [dayEvents, setDayEvents] = useState<CalendarEvent[]>([]);
   const [noteActivityDates, setNoteActivityDates] = useState<Set<string>>(new Set());
   const [dayNoteCount, setDayNoteCount] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState<"create" | "goal" | null>(null);
   const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null);
   const [detailEvent, setDetailEvent] = useState<CalendarEvent | null>(null);
@@ -772,50 +771,117 @@ export default function CalendarPage() {
   const isLoggedIn = !authLoading && !!user;
 
   const loadGoals = useCallback(async () => {
-    const list = await getGoalsForDisplay();
-    setGoals(list);
-  }, []);
+    if (!user) return;
+    try {
+      setGoals(await getGoalsForDisplay(user.id));
+    } catch {
+      setGoals([]);
+    }
+  }, [user]);
 
   const cursor = useMemo(() => new Date(cursorDate + "T12:00:00"), [cursorDate]);
   const year = cursor.getFullYear();
   const month = cursor.getMonth() + 1;
 
   const loadMonth = useCallback(async () => {
-    const list = await getEventsForMonth(year, month);
-    setMonthEvents(list);
-  }, [year, month]);
+    if (!user) return;
+    try {
+      setMonthEvents(await getEventsForMonth(year, month, user.id));
+    } catch {
+      setMonthEvents([]);
+    }
+  }, [user, year, month]);
 
   const loadDay = useCallback(async (dateKey: string) => {
-    const list = await getEventsForDate(dateKey);
-    setDayEvents(list);
-  }, []);
+    if (!user) return;
+    try {
+      setDayEvents(await getEventsForDate(dateKey, user.id));
+    } catch {
+      setDayEvents([]);
+    }
+  }, [user]);
 
   const loadNoteActivity = useCallback(async () => {
+    if (!user) return;
     const { getNoteActivityDatesForMonth } = await import("@/lib/notes-service");
     const start = `${year}-${String(month).padStart(2, "0")}-01`;
     const lastDay = new Date(year, month, 0).getDate();
     const end = `${year}-${String(month).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
-    const dates = await getNoteActivityDatesForMonth(start, end);
-    setNoteActivityDates(new Set(dates));
-  }, [year, month]);
+    try {
+      const dates = await getNoteActivityDatesForMonth(start, end, user.id);
+      setNoteActivityDates(new Set(dates));
+    } catch {
+      setNoteActivityDates(new Set());
+    }
+  }, [user, year, month]);
+
+  // Paint the month grid immediately. Events, notes, and goals fill in on
+  // their own; one rejected read must not keep the grid unmounted.
+  useEffect(() => {
+    if (!isLoggedIn || !user) return;
+    let cancelled = false;
+    const userId = user.id;
+    const start = `${year}-${String(month).padStart(2, "0")}-01`;
+    const lastDay = new Date(year, month, 0).getDate();
+    const end = `${year}-${String(month).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
+
+    void Promise.allSettled([
+      getEventsForMonth(year, month, userId)
+        .then((list) => {
+          if (!cancelled) setMonthEvents(list);
+        })
+        .catch(() => {
+          if (!cancelled) setMonthEvents([]);
+        }),
+      import("@/lib/notes-service")
+        .then(({ getNoteActivityDatesForMonth }) => getNoteActivityDatesForMonth(start, end, userId))
+        .then((dates) => {
+          if (!cancelled) setNoteActivityDates(new Set(dates));
+        })
+        .catch(() => {
+          if (!cancelled) setNoteActivityDates(new Set());
+        }),
+      getGoalsForDisplay(userId)
+        .then((list) => {
+          if (!cancelled) setGoals(list);
+        })
+        .catch(() => {
+          if (!cancelled) setGoals([]);
+        }),
+    ]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoggedIn, user, year, month]);
 
   useEffect(() => {
-    if (!isLoggedIn) return;
-    setLoading(true);
-    const run = async () => {
-      await loadMonth();
-      await loadNoteActivity();
-      await loadGoals();
-      if (viewMode === "day") {
-        await loadDay(cursorDate);
-        const { getNoteActivityCountForDate } = await import("@/lib/notes-service");
-        const count = await getNoteActivityCountForDate(cursorDate);
-        setDayNoteCount(count);
-      }
-      setLoading(false);
+    if (!isLoggedIn || !user || viewMode !== "day") return;
+    let cancelled = false;
+    const userId = user.id;
+
+    void Promise.allSettled([
+      getEventsForDate(cursorDate, userId)
+        .then((list) => {
+          if (!cancelled) setDayEvents(list);
+        })
+        .catch(() => {
+          if (!cancelled) setDayEvents([]);
+        }),
+      import("@/lib/notes-service")
+        .then(({ getNoteActivityCountForDate }) => getNoteActivityCountForDate(cursorDate, userId))
+        .then((count) => {
+          if (!cancelled) setDayNoteCount(count);
+        })
+        .catch(() => {
+          if (!cancelled) setDayNoteCount(0);
+        }),
+    ]);
+
+    return () => {
+      cancelled = true;
     };
-    run();
-  }, [isLoggedIn, viewMode, year, month, cursorDate, loadMonth, loadDay, loadNoteActivity, loadGoals]);
+  }, [isLoggedIn, user, viewMode, cursorDate]);
 
   const isCurrentMonth = useMemo(() => {
     const now = new Date();
@@ -823,35 +889,43 @@ export default function CalendarPage() {
   }, [year, month]);
 
   useEffect(() => {
-    if (!isLoggedIn || viewMode !== "month") {
+    if (!isLoggedIn || !user || viewMode !== "month") {
       setReflectionStats(null);
+      setReflectionLoading(false);
       return;
     }
+    let cancelled = false;
     setReflectionLoading(true);
     const run = async () => {
       try {
+        let stats: WeeklyStats;
         if (isCurrentMonth) {
           const { weekStart, weekEnd } = getWeekRange(new Date());
-          const stats = await getWeeklyStats(weekStart, weekEnd);
-          setReflectionStats(stats);
+          stats = await getWeeklyStats(weekStart, weekEnd, user.id);
         } else {
           const monthStart = `${year}-${String(month).padStart(2, "0")}-01`;
           const lastDay = new Date(year, month, 0).getDate();
           const monthEnd = `${year}-${String(month).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
-          const stats = await getMonthlyStats(monthStart, monthEnd);
-          setReflectionStats(stats);
+          stats = await getMonthlyStats(monthStart, monthEnd, user.id);
         }
+        if (!cancelled) setReflectionStats(stats);
+      } catch {
+        if (!cancelled) setReflectionStats(null);
       } finally {
-        setReflectionLoading(false);
+        if (!cancelled) setReflectionLoading(false);
       }
     };
     run();
-  }, [isLoggedIn, viewMode, isCurrentMonth, year, month]);
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoggedIn, user, viewMode, isCurrentMonth, year, month]);
 
   const eventsByDate = useMemo(() => {
     const list = viewMode === "month" ? monthEvents : dayEvents;
     const byDate: Record<string, CalendarEvent[]> = {};
     list.forEach((e) => {
+      if (!e.event_date) return;
       if (!byDate[e.event_date]) byDate[e.event_date] = [];
       byDate[e.event_date].push(e);
     });
@@ -922,7 +996,13 @@ export default function CalendarPage() {
       <div className="rounded-xl border border-aula-border bg-white p-4">
         <p className="mb-1.5 text-[12px] font-semibold text-aula-text">{isCurrentMonth ? "Esta semana" : `${MESES[month - 1]} ${year}`}</p>
         <p className="text-[12px] leading-relaxed text-aula-text-2">
-          {reflectionLoading || !reflectionStats ? "A carregar…" : isCurrentMonth ? generateWeeklySummary(reflectionStats) : generateMonthlySummary(reflectionStats)}
+          {reflectionLoading
+            ? "A carregar…"
+            : reflectionStats
+              ? isCurrentMonth
+                ? generateWeeklySummary(reflectionStats)
+                : generateMonthlySummary(reflectionStats)
+              : "Sem resumo para este período."}
         </p>
         {isCurrentMonth && reflectionStats && reflectionStats.notesCount > 0 && (
           <Link
@@ -973,6 +1053,10 @@ export default function CalendarPage() {
               const health = !isComplete ? getGoalHealth(goal) : null;
               const healthLabel = health ? { ahead: "Adiantado", "on-track": "No caminho certo", behind: "Um pouco atrasado" }[health] : null;
               const targetD = new Date(goal.target_date + "T12:00:00");
+              const monthName = MESES[targetD.getMonth()];
+              const dueLabel = monthName
+                ? `até ${targetD.getDate()} ${monthName.slice(0, 3).toLowerCase()}`
+                : "sem data";
               return (
                 <div key={goal.id} className="rounded-[10px] border border-aula-border bg-white p-3">
                   <div className="mb-2 flex items-start gap-2">
@@ -997,7 +1081,7 @@ export default function CalendarPage() {
                       {goal.completed_items} de {goal.total_items} {itemLabel}
                     </span>
                     <span className={health === "behind" ? "text-[#5B45B8]" : "text-aula-text-3"}>
-                      {isComplete ? "Concluído" : healthLabel ?? `até ${targetD.getDate()} ${MESES[targetD.getMonth()].slice(0, 3).toLowerCase()}`}
+                      {isComplete ? "Concluído" : healthLabel ?? dueLabel}
                     </span>
                   </div>
                 </div>
@@ -1070,9 +1154,7 @@ export default function CalendarPage() {
               </button>
             </div>
 
-            {loading ? (
-              <p className="py-16 text-center text-[13px] text-aula-text-3">A carregar…</p>
-            ) : viewMode === "month" ? (
+            {viewMode === "month" ? (
               <MonthGridView
                 year={year}
                 month={month}

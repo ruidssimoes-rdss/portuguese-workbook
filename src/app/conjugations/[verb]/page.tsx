@@ -98,7 +98,7 @@ export default function VerbPage() {
 
   return (
     <PageShell header={crumbs} panel={panel}>
-      <article className="mx-auto max-w-[680px]">
+      <article className="mx-auto min-w-0 max-w-[680px]">
         <h1 className="text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{name}</h1>
         <div className="mt-2 flex flex-wrap items-center gap-2 text-[12px] text-aula-text-3">
           {verb.meta.pronunciation && (
@@ -130,17 +130,20 @@ export default function VerbPage() {
           In Portugal, use tu with friends and family. For polite address, use the third person with the person&apos;s name or o senhor / a senhora («A Ana quer café?»). Você exists, but can sound blunt or distant. Vocês (plural) is neutral and common.
         </p>
 
-        <div className="mt-2">
+        <div className="mt-2 min-w-0">
           {rows.map((r, i) => (
-            <div key={i} className="grid min-h-[40px] grid-cols-[110px_1fr] items-center gap-3 border-b border-aula-line py-1.5 last:border-0 md:grid-cols-[140px_140px_1fr]">
-              <span className="text-[12px] text-aula-text-3">{r.Person.split(" (")[0]}</span>
-              <span className="flex items-center gap-1 text-[13px] font-medium text-aula-text">
-                {r.Conjugation}
-                <AudioButton text={r.Conjugation} />
+            <div
+              key={i}
+              className="grid min-h-[40px] min-w-0 grid-cols-[max-content_minmax(0,1fr)] items-center gap-x-3 border-b border-aula-line px-1 py-1.5 last:border-0 md:grid-cols-[max-content_minmax(0,max-content)_minmax(0,1fr)]"
+            >
+              <span className="whitespace-nowrap text-[12px] text-aula-text-2">{r.Person.split(" (")[0]}</span>
+              <span className="flex min-w-0 items-center gap-1 text-[13px] font-medium text-aula-text">
+                <span className="min-w-0 break-words">{r.Conjugation}</span>
+                <AudioButton text={r.Conjugation} className="shrink-0" />
               </span>
-              <span className="hidden text-[12px] md:block">
-                <span className="text-aula-text-2">{r["Example Sentence"]}</span>
-                <span className="block text-[11px] text-aula-text-3">{r["English Translation"]}</span>
+              <span className="hidden min-w-0 text-[12px] md:block">
+                <span className="block break-words text-aula-text-2">{r["Example Sentence"]}</span>
+                <span className="block break-words text-[11px] text-aula-text-2">{r["English Translation"]}</span>
               </span>
             </div>
           ))}

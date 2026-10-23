@@ -1,6 +1,22 @@
 import { createClient } from "@/lib/supabase/client";
 import { updateStreak } from "@/lib/streak-service";
 
+/**
+ * Prefer the id already known from AuthProvider. Falling back to getUser()
+ * must not throw: a lock timeout or a null session rejects the whole caller,
+ * and the calendar page used to leave its month grid on “A carregar…”.
+ */
+async function resolveUserId(userId?: string): Promise<string | null> {
+  if (userId) return userId;
+  try {
+    const { data, error } = await createClient().auth.getUser();
+    if (error || !data?.user) return null;
+    return data.user.id;
+  } catch {
+    return null;
+  }
+}
+
 export type CalendarEventType = "planned" | "auto_lesson" | "auto_exam" | "auto_practice" | "goal";
 export type LinkedType = "lesson" | "exam" | "practice" | "verb" | "grammar" | null;
 
@@ -27,13 +43,12 @@ export interface CalendarEvent {
 
 export async function getEventsForMonth(
   year: number,
-  month: number
+  month: number,
+  userId?: string
 ): Promise<CalendarEvent[]> {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return [];
+  const id = await resolveUserId(userId);
+  if (!id) return [];
 
   const start = `${year}-${String(month).padStart(2, "0")}-01`;
   const lastDay = new Date(year, month, 0).getDate();
@@ -42,7 +57,7 @@ export async function getEventsForMonth(
   const { data, error } = await supabase
     .from("user_calendar_events")
     .select("*")
-    .eq("user_id", user.id)
+    .eq("user_id", id)
     .gte("event_date", start)
     .lte("event_date", end)
     .order("event_date", { ascending: true })
@@ -53,18 +68,17 @@ export async function getEventsForMonth(
 }
 
 export async function getEventsForDate(
-  date: string
+  date: string,
+  userId?: string
 ): Promise<CalendarEvent[]> {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return [];
+  const id = await resolveUserId(userId);
+  if (!id) return [];
 
   const { data, error } = await supabase
     .from("user_calendar_events")
     .select("*")
-    .eq("user_id", user.id)
+    .eq("user_id", id)
     .eq("event_date", date)
     .order("start_time", { ascending: true, nullsFirst: false });
 
@@ -74,18 +88,17 @@ export async function getEventsForDate(
 
 export async function getEventsInRange(
   startDate: string,
-  endDate: string
+  endDate: string,
+  userId?: string
 ): Promise<CalendarEvent[]> {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return [];
+  const id = await resolveUserId(userId);
+  if (!id) return [];
 
   const { data, error } = await supabase
     .from("user_calendar_events")
     .select("*")
-    .eq("user_id", user.id)
+    .eq("user_id", id)
     .gte("event_date", startDate)
     .lte("event_date", endDate)
     .order("event_date", { ascending: true })
@@ -473,25 +486,24 @@ const EMPTY_STATS: WeeklyStats = {
 
 export async function getWeeklyStats(
   weekStart: string,
-  weekEnd: string
+  weekEnd: string,
+  userId?: string
 ): Promise<WeeklyStats> {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return EMPTY_STATS;
+  const id = await resolveUserId(userId);
+  if (!id) return EMPTY_STATS;
 
   const [eventsRes, notesRes] = await Promise.all([
     supabase
       .from("user_calendar_events")
       .select("event_type, event_date, linked_passed")
-      .eq("user_id", user.id)
+      .eq("user_id", id)
       .gte("event_date", weekStart)
       .lte("event_date", weekEnd),
     supabase
       .from("user_notes")
       .select("id", { count: "exact", head: true })
-      .eq("user_id", user.id)
+      .eq("user_id", id)
       .gte("updated_at", weekStart + "T00:00:00")
       .lte("updated_at", weekEnd + "T23:59:59"),
   ]);
@@ -515,25 +527,24 @@ export async function getWeeklyStats(
 
 export async function getMonthlyStats(
   monthStart: string,
-  monthEnd: string
+  monthEnd: string,
+  userId?: string
 ): Promise<WeeklyStats> {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return EMPTY_STATS;
+  const id = await resolveUserId(userId);
+  if (!id) return EMPTY_STATS;
 
   const [eventsRes, notesRes] = await Promise.all([
     supabase
       .from("user_calendar_events")
       .select("event_type, event_date, linked_passed")
-      .eq("user_id", user.id)
+      .eq("user_id", id)
       .gte("event_date", monthStart)
       .lte("event_date", monthEnd),
     supabase
       .from("user_notes")
       .select("id", { count: "exact", head: true })
-      .eq("user_id", user.id)
+      .eq("user_id", id)
       .gte("updated_at", monthStart + "T00:00:00")
       .lte("updated_at", monthEnd + "T23:59:59"),
   ]);
@@ -561,7 +572,7 @@ function mapRowToEvent(row: Record<string, unknown>): CalendarEvent {
     user_id: row.user_id as string,
     title: row.title as string,
     description: (row.description as string | null) ?? null,
-    event_date: row.event_date as string,
+    event_date: String(row.event_date ?? "").slice(0, 10),
     start_time: (row.start_time as string | null) ?? null,
     end_time: (row.end_time as string | null) ?? null,
     is_all_day: Boolean(row.is_all_day),

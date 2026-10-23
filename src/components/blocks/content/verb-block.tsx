@@ -34,12 +34,12 @@ function ExpandedVariant({ data, className }: { data: VerbBlockData; className?:
         {(data.conjugations ?? []).map((c, i) => (
           <div
             key={i}
-            className={`flex items-center py-2.5 px-3 ${
+            className={`flex min-w-0 items-center gap-3 py-2.5 px-3 ${
               i > 0 ? "border-t border-[0.5px] border-[#E6E6E4]" : ""
             }`}
           >
-            <span className="text-[13px] text-[#6B6B69] w-24 shrink-0">{c.pronoun}</span>
-            <span className="text-[13px] font-medium text-[#1F1F1F]">{c.form}</span>
+            <span className="shrink-0 whitespace-nowrap text-[13px] text-[#6B6B69]">{c.pronoun}</span>
+            <span className="min-w-0 break-words text-[13px] font-medium text-[#1F1F1F]">{c.form}</span>
           </div>
         ))}
       </div>
