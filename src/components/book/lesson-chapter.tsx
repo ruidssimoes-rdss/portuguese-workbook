@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import type { CurriculumLesson } from "@/data/curriculum-types";
 import { cultureOf, findWord, getGrammar, getVerb, type WordEntry } from "@/lib/book/catalog";
+import { useBook } from "./book-context";
 import { Callout, Examples, Kicker } from "./ui";
 import { CardChip, LinkedText } from "./linked-text";
 
@@ -20,10 +20,11 @@ export function lessonListenLines(lesson: CurriculumLesson): string[] {
 }
 
 /**
- * A curriculum lesson read as a chapter. The prose is the lesson's own
- * description, examples and notes — practice stays a separate step.
+ * A curriculum lesson read as a chapter. Practice opens in the dock.
  */
-export function LessonChapter({ lesson, signedIn }: { lesson: CurriculumLesson; signedIn: boolean }) {
+export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
+  const book = useBook();
+  const practicing = book.practice?.kind === "lesson";
   const words = lesson.stages.vocabulary.words
     .map((ref) => findWord(ref.categoryId, ref.portuguese))
     .filter((word): word is WordEntry => Boolean(word));
@@ -141,22 +142,15 @@ export function LessonChapter({ lesson, signedIn }: { lesson: CurriculumLesson; 
       )}
 
       <div className="mt-10 flex flex-wrap items-center gap-3">
-        {signedIn ? (
-          <Link
-            href={`/lessons/${lesson.id}?praticar=1`}
-            className="inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
-          >
-            Praticar esta lição
-          </Link>
-        ) : (
-          <Link
-            href={`/auth/login?next=${encodeURIComponent(`/lessons/${lesson.id}?praticar=1`)}`}
-            className="inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
-          >
-            Entra para praticar
-          </Link>
-        )}
-        <span className="text-[12.5px] text-[#5A5A57]">A prática é a mesma lição de sempre, com exercícios.</span>
+        <button
+          type="button"
+          aria-pressed={practicing}
+          onClick={() => book.openPractice({ kind: "lesson" })}
+          className="inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+        >
+          Praticar esta lição
+        </button>
+        <span className="text-[12.5px] text-[#5A5A57]">Os exercícios abrem neste capítulo.</span>
       </div>
     </article>
   );

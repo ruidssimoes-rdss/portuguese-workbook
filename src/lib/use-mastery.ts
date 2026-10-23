@@ -53,6 +53,8 @@ export function useMastery(type: ContentType) {
       if (cancelled) return;
       setMap(new Map(rows.map((r) => [r.content_id, r])));
       setLoaded(true);
+    }).catch(() => {
+      if (!cancelled) setLoaded(true);
     });
     return () => {
       cancelled = true;

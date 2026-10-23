@@ -20,6 +20,7 @@ export function PageShell({
   children,
   panel,
   dock,
+  wideDock = false,
   header,
   wide = false,
 }: {
@@ -28,6 +29,8 @@ export function PageShell({
   panel?: React.ReactNode;
   /** Wider right dock for a book card. Replaces `panel` when both are set. */
   dock?: React.ReactNode;
+  /** A bit wider, used while a practice session is open in the dock. */
+  wideDock?: boolean;
   /** Optional sticky header row inside the main panel (breadcrumb + actions). */
   header?: React.ReactNode;
   /** Let the content use the full panel width instead of the 960px column. */
@@ -96,7 +99,7 @@ export function PageShell({
 
         {/* Book card dock, or the narrower info panel */}
         {dock ? (
-          <aside className="hidden min-h-0 w-[clamp(320px,34vw,460px)] shrink-0 flex-col overflow-hidden rounded-xl border border-aula-line bg-aula-panel lg:flex">
+          <aside className={`hidden min-h-0 shrink-0 flex-col overflow-hidden rounded-xl border border-aula-line bg-aula-panel lg:flex ${wideDock ? "w-[clamp(360px,38vw,520px)]" : "w-[clamp(320px,34vw,460px)]"}`}>
             {dock}
           </aside>
         ) : (

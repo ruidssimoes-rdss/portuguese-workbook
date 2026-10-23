@@ -9,7 +9,6 @@ import { Suspense, useState, use, useEffect, useRef, useCallback } from "react";
 
 import { ProtectedRoute } from "@/components/protected-route";
 import { PageShell, Crumbs } from "@/components/layout/page-shell";
-import { useAuth } from "@/components/auth-provider";
 import { BookShell } from "@/components/book/book-shell";
 import { LessonChapter, lessonListenLines } from "@/components/book/lesson-chapter";
 import { ListenButton } from "@/components/book/play-button";
@@ -52,7 +51,6 @@ import { LearnPlayer, type PlayerSnapshot } from "@/components/learn/learn-playe
 
 
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
 
 /* ─── Session persistence ─── */
 
@@ -98,7 +96,7 @@ function loadAILesson(id: string): { lesson: Lesson; exercises: GeneratedLesson 
   } catch { return null; }
 }
 
-function LessonContent({ id }: { id: string }) {
+function LessonContent({ id, dock = false, onDismiss }: { id: string; dock?: boolean; onDismiss?: () => void }) {
   const isDynamic = id === "next" || id === "review";
   const isAISession = id.startsWith("ai-session-");
   const aiData = isAISession ? loadAILesson(id) : null;
@@ -177,7 +175,7 @@ function LessonContent({ id }: { id: string }) {
       } else if (session && map[id]?.completed) {
         clearSession(id);
       }
-    });
+    }).catch(() => {});
   }, [id]);
 
   // Generate on first render (skip for AI sessions — exercises are pre-generated)
@@ -306,7 +304,7 @@ function LessonContent({ id }: { id: string }) {
   }, [lessonState, doSave]);
 
   const msg = (text: string) => (
-    <div className="mx-auto max-w-[620px] py-16 text-center text-[13px] text-aula-text-3">{text}</div>
+    <div className={`mx-auto max-w-[620px] text-center text-[13px] text-aula-text-3 ${dock ? "py-6" : "py-16"}`}>{text}</div>
   );
 
   if (isDynamic && dynamicLoading) return msg("A preparar a tua lição…");
@@ -324,7 +322,7 @@ function LessonContent({ id }: { id: string }) {
 
   if (showRestorePrompt) {
     return (
-      <div className="mx-auto max-w-[620px] pt-10">
+      <div className={`mx-auto max-w-[620px] ${dock ? "pt-2" : "pt-10"}`}>
         <div className="rounded-xl border border-aula-border bg-white p-6">
           <p className="text-[15px] font-semibold text-aula-text">Tens esta lição a meio</p>
           <p className="mt-1 text-[12.5px] text-aula-text-2">Podes continuar onde ficaste ou começar de novo.</p>
@@ -348,7 +346,7 @@ function LessonContent({ id }: { id: string }) {
   return (
     <>
       {lessonState === "results" && (saveError || unlockedExamId) && (
-        <div className="mx-auto mb-[-8px] max-w-[620px] pt-6">
+        <div className={`mx-auto mb-[-8px] max-w-[620px] ${dock ? "pt-2" : "pt-6"}`}>
           {saveError ? (
             <div className="flex items-center gap-3 rounded-[10px] border border-[#B94A32] bg-[#FBE9E4] px-4 py-2.5 text-[12.5px] text-aula-text">
               <span className="flex-1">Não foi possível guardar o resultado.</span>
@@ -366,11 +364,13 @@ function LessonContent({ id }: { id: string }) {
       )}
       <LearnPlayer
         key={resume ? "resumed" : "fresh"}
+        dock={dock}
         lesson={lesson}
         generated={generatedLesson}
         isReview={id === "review"}
         initial={resume}
         onProgress={persist}
+        onDismiss={onDismiss}
         onComplete={(results) => {
           setSectionResults(results);
           hasSaved.current = false;
@@ -382,14 +382,10 @@ function LessonContent({ id }: { id: string }) {
   );
 }
 
-/* ─── Curriculum chapter, with the existing player behind ?praticar=1 ─── */
+/* ─── Curriculum chapter. ?praticar=1 opens the player in the dock. ─── */
 
 function CurriculumLesson({ id }: { id: string }) {
-  const params = useSearchParams();
-  const router = useRouter();
   const lesson = getCurriculumLesson(id);
-  const { user, loading } = useAuth();
-  const practicing = params.get("praticar") === "1";
 
   if (!lesson) {
     return (
@@ -406,37 +402,11 @@ function CurriculumLesson({ id }: { id: string }) {
 
   const number = String(lesson.number).padStart(2, "0");
 
-  if (practicing) {
-    return (
-      <ProtectedRoute>
-        <PageShell
-          header={
-            <>
-              <Crumbs items={[{ label: "Lições", href: "/lessons" }, { label: lesson.cefrLevel }, { label: `${number} · ${lesson.titlePt}` }]} />
-              <span className="flex-1" />
-              <button
-                type="button"
-                onClick={() => {
-                  const next = new URLSearchParams(params.toString());
-                  next.delete("praticar");
-                  const q = next.toString();
-                  router.replace(q ? `/lessons/${id}?${q}` : `/lessons/${id}`, { scroll: false });
-                }}
-                className="text-[12.5px] font-medium text-aula-accent"
-              >
-                Voltar ao capítulo
-              </button>
-            </>
-          }
-        >
-          <LessonContent id={id} />
-        </PageShell>
-      </ProtectedRoute>
-    );
-  }
-
   return (
     <BookShell
+      key={lesson.id}
+      lessonTitle={lesson.titlePt}
+      renderLesson={({ onDismiss }) => <LessonContent id={id} dock onDismiss={onDismiss} />}
       header={
         <>
           <Crumbs items={[{ label: "Lições", href: "/lessons" }, { label: lesson.cefrLevel }, { label: `${number} · ${lesson.titlePt}` }]} />
@@ -445,7 +415,7 @@ function CurriculumLesson({ id }: { id: string }) {
         </>
       }
     >
-      <LessonChapter lesson={lesson} signedIn={!loading && !!user} />
+      <LessonChapter lesson={lesson} />
     </BookShell>
   );
 }
