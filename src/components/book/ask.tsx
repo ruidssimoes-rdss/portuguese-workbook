@@ -15,23 +15,24 @@ function useAsking(about: ElisioAbout): { open: () => void; on: boolean } {
   return { open: () => book.openCard({ kind: "elisio", about }), on };
 }
 
-/** A quiet control on a paragraph. Visible on hover, focus, and touch. */
+/**
+ * A quiet control on a paragraph.
+ * On a wide screen it appears on hover or keyboard focus.
+ * Below 1024px it stays, shortened, because there is no hover.
+ */
 export function AskPassage({ about, children }: { about: ElisioAbout; children: React.ReactNode }) {
   const { open } = useAsking(about);
   return (
     <div className="group/ask">
       {children}
-      <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-150 group-focus-within/ask:grid-rows-[1fr] group-hover/ask:grid-rows-[1fr] [@media(hover:none)]:grid-rows-[1fr]">
-        <div className="overflow-hidden">
-          <button
-            type="button"
-            onClick={open}
-            className="mt-1 inline-flex h-6 items-center text-[12px] font-medium text-[#5A5A57] hover:text-aula-accent"
-          >
-            Perguntar ao Elísio
-          </button>
-        </div>
-      </div>
+      <button
+        type="button"
+        onClick={open}
+        className="ask-passage mt-1 inline-flex h-6 items-center text-[12px] font-medium text-[#5A5A57]"
+      >
+        <span className="lg:hidden">Perguntar</span>
+        <span className="hidden lg:inline">Perguntar ao Elísio</span>
+      </button>
     </div>
   );
 }

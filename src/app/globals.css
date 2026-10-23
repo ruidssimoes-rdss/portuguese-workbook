@@ -432,3 +432,28 @@
 .page-enter {
   animation: page-enter 200ms ease-out;
 }
+
+/* Quiet paragraph ask. On a wide screen it stays collapsed until the pointer
+   is over that passage, or the control itself is focused. This is plain :hover,
+   not Tailwind's hover variant, which only applies when the browser reports
+   a hover-capable pointer. Below 1024px the control stays visible. */
+@media (min-width: 1024px) {
+  .ask-passage {
+    margin-top: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+  .group\/ask:hover .ask-passage,
+  .ask-passage:focus-visible {
+    margin-top: 0.25rem;
+    height: 1.5rem;
+    overflow: visible;
+    opacity: 1;
+  }
+  .group\/ask:hover .ask-passage,
+  .ask-passage:hover,
+  .ask-passage:focus-visible {
+    color: #1b2b61;
+  }
+}
