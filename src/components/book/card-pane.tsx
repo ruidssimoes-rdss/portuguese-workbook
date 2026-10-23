@@ -64,7 +64,7 @@ export function CardPane() {
         })}
       </div>
 
-      <div className="flex h-10 shrink-0 items-center gap-1 px-2 text-[12px]">
+      <div className="flex h-10 shrink-0 items-center gap-1 px-pad text-[12px]">
         <IconButton label="Ficha anterior" disabled={!book.canBack} onClick={book.back}>
           <ChevronLeft size={16} strokeWidth={1.7} />
         </IconButton>
@@ -84,7 +84,7 @@ export function CardPane() {
         </button>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-8 pt-1">
+      <div className="min-h-0 flex-1 overflow-y-auto px-pad pb-pad pt-heading">
         <CardBody key={encodeCard(current)} card={current} />
       </div>
     </div>

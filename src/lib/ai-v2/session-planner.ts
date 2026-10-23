@@ -1,27 +1,15 @@
 /**
- * Session Planner — student context → session plan.
- *
- * The rule-based planner always works and needs no key. When
- * ANTHROPIC_API_KEY is set Claude is tried first; when Ollama is reachable
- * it is tried next. Any AI failure falls back to the rule-based plan, so
- * this never throws for lack of a model.
+ * Session planner. Builds the practice session from the student's reviews
+ * and level, inside the app. No model, no outbound call.
  */
 
-import { generateJSON, isOllamaAvailable } from "./ollama-client";
-import { generateWithClaude, isClaudeAvailable } from "./claude-client";
-import { sessionPlanSchema } from "./schemas";
-import { buildSessionSystemPrompt, buildSessionUserPrompt, type StudentContext } from "./prompts";
 import { assembleStudentContext } from "./context-assembler";
 import { getContentInventory } from "./content-index";
 import { buildRuleBasedPlan } from "./rule-based-planner";
+import type { StudentContext } from "./prompts";
 import type { AISessionPlan } from "./types";
 
-export interface PlanSessionResult {
-  plan: AISessionPlan;
-  source: "ai" | "fallback";
-}
-
-export async function planSession(userId: string): Promise<PlanSessionResult> {
+export async function planSession(userId: string): Promise<AISessionPlan> {
   let context: StudentContext;
   try {
     context = await assembleStudentContext(userId);
@@ -30,28 +18,7 @@ export async function planSession(userId: string): Promise<PlanSessionResult> {
     context = getMinimalContext();
   }
 
-  const systemPrompt = buildSessionSystemPrompt();
-  const userPrompt = buildSessionUserPrompt(context);
-
-  if (isClaudeAvailable()) {
-    try {
-      const plan = await generateWithClaude<AISessionPlan>(systemPrompt, userPrompt, sessionPlanSchema);
-      return { plan, source: "ai" };
-    } catch (error) {
-      console.warn("Claude session planning failed, trying Ollama:", error);
-    }
-  }
-
-  if (await isOllamaAvailable().catch(() => false)) {
-    try {
-      const plan = await generateJSON<AISessionPlan>(systemPrompt, userPrompt, sessionPlanSchema);
-      return { plan, source: "ai" };
-    } catch (error) {
-      console.warn("Ollama session planning failed, using rule-based plan:", error);
-    }
-  }
-
-  return { plan: buildRuleBasedPlan(context), source: "fallback" };
+  return buildRuleBasedPlan(context);
 }
 
 function getMinimalContext(): StudentContext {

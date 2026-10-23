@@ -43,7 +43,6 @@ export function TutorTabV2() {
   const { user } = useAuth();
   const [status, setStatus] = useState<Status>("idle");
   const [lesson, setLesson] = useState<Lesson | null>(null);
-  const [source, setSource] = useState<"ai" | "fallback" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pastSessions, setPastSessions] = useState<PastSession[]>([]);
   const [loadingMsg, setLoadingMsg] = useState(LOADING_MESSAGES[0]);
@@ -94,7 +93,6 @@ export function TutorTabV2() {
       }
 
       setLesson(data.lesson);
-      setSource(data.source);
       setStatus("ready");
     } catch {
       setStatus("error");
@@ -181,7 +179,6 @@ export function TutorTabV2() {
                 </div>
               ))}
             </div>
-            {source === "fallback" && <p className="mt-3 text-[11.5px] text-aula-text-3">Preparada sem IA, a partir das tuas revisões e do teu nível.</p>}
             <div className="mt-5 flex items-center gap-2">
               <button onClick={handleStart} className={primary}>
                 Começar

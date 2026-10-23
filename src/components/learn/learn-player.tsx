@@ -192,7 +192,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
 
   return (
     <div className={dock ? "min-w-0" : "mx-auto max-w-[680px]"}>
-      <div className="mb-4 flex items-center gap-2 text-[12px]">
+      <div className={`${dock ? "mb-card" : "mb-4"} flex items-center gap-item text-[12px]`}>
         {!dock && (
           <>
             <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
@@ -209,7 +209,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
       </div>
 
       {/* One segment per section; the learn phase fills the first track. */}
-      <div className="mb-7 flex gap-1">
+      <div className={`${dock ? "mb-card" : "mb-7"} flex gap-1`}>
         {learnItem ? (
           <div className="h-1 flex-1 overflow-hidden rounded-full bg-aula-line">
             <div className="h-full rounded-full bg-aula-accent transition-all duration-300" style={{ width: `${((learnIndex + 1) / learnTotal) * 100}%` }} />
@@ -234,7 +234,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
       {learnItem ? (
         <>
           <LearnItemRenderer item={learnItem} />
-          <div className="mt-8 flex items-center justify-between">
+          <div className={`${dock ? "mt-card" : "mt-8"} flex items-center justify-between`}>
             <button
               type="button"
               onClick={handleLearnPrev}
@@ -256,7 +256,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
         section &&
         Component && (
           <>
-            <div className="mb-3 flex items-baseline gap-2.5">
+            <div className={`${dock ? "mb-heading" : "mb-3"} flex items-baseline gap-paragraph`}>
               {dock ? (
                 <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{section.namePt}</h2>
               ) : (

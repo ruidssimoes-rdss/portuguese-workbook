@@ -34,7 +34,7 @@ export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartEx
   const minutes = Math.max(5, Math.round(questions * 0.5));
 
   return (
-    <div className={dock ? "min-w-0 pt-2" : "mx-auto max-w-[620px] pt-6"}>
+    <div className={dock ? "min-w-0" : "mx-auto max-w-[620px] pt-6"}>
       {!dock && (
         <div className="mb-4 flex items-center gap-2 text-[12px]">
           <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
@@ -59,7 +59,7 @@ export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartEx
           )
         )}
       </div>
-      <p className={`mt-1.5 text-[13px] ${dock ? "leading-relaxed text-[#5A5A57]" : "text-aula-text-2"}`}>
+      <p className={`text-[13px] ${dock ? "mt-heading leading-relaxed text-[#5A5A57]" : "mt-1.5 text-aula-text-2"}`}>
         {dock
           ? "Os exercícios desta lição. Passas com 80%."
           : isReview
@@ -67,7 +67,7 @@ export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartEx
             : "Feita para ti a partir do que já sabes e do que te falta."}
       </p>
 
-      <div className="mt-7 rounded-xl border border-aula-border bg-white">
+      <div className={`${dock ? "mt-card" : "mt-7"} rounded-xl border border-aula-border bg-white`}>
         {news.length > 0 && (
           <div className="border-b border-aula-line px-5 py-4">
             <p className="mb-2 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3">Novo nesta lição</p>
@@ -101,7 +101,7 @@ export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartEx
         </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className={`${dock ? "mt-card" : "mt-5"} flex flex-wrap gap-item`}>
         <button
           type="button"
           onClick={onStartExercises}

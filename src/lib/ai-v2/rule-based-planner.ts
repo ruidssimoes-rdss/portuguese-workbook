@@ -1,7 +1,6 @@
 /**
- * Rule-based session planner — builds an AISessionPlan from mastery state
- * with no AI at all. This is the default path; Claude/Ollama are optional
- * upgrades (see session-planner.ts).
+ * Session planner. Builds a practice session from mastery state.
+ * This is how Professor Elísio plans a session. Nothing leaves the app.
  *
  * Order of priority:
  *   1. items due for spaced-repetition review (most overdue first)

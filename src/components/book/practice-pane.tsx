@@ -31,14 +31,14 @@ function useLoginHref(): string {
 function SignInPrompt() {
   const href = useLoginHref();
   return (
-    <div className="px-2 pt-3">
+    <div>
       <h2 className="font-sans text-[22px] font-semibold tracking-[-0.02em] text-aula-text">Entra para praticar</h2>
-      <p className="mt-2 max-w-[36ch] text-[13px] leading-relaxed text-[#5A5A57]">
+      <p className="mt-heading max-w-[36ch] text-[13px] leading-relaxed text-[#5A5A57]">
         O capítulo continua aberto. A prática fica guardada na tua conta.
       </p>
       <Link
         href={href}
-        className="mt-4 inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+        className="mt-card inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
       >
         Entrar
       </Link>
@@ -72,7 +72,7 @@ function CardSession({ target }: { target: Exclude<PracticeTarget, { kind: "less
   const book = useBook();
   const drill = useMemo(() => cardDrill(target), [target]);
   if (!drill) {
-    return <p className="px-2 py-6 text-[13px] text-[#5A5A57]">Não há exercícios para isto.</p>;
+    return <p className="text-[13px] text-[#5A5A57]">Não há exercícios para isto.</p>;
   }
   const total = drill.sections.reduce((sum, section) => sum + section.totalQuestions, 0);
   const generated: GeneratedLesson = {
@@ -115,11 +115,11 @@ function PracticeBody({
 }) {
   const book = useBook();
   const { user, loading } = useAuth();
-  if (loading) return <p className="px-2 py-6 text-[13px] text-[#5A5A57]">A preparar…</p>;
+  if (loading) return <p className="text-[13px] text-[#5A5A57]">A preparar…</p>;
   if (!user) return <SignInPrompt />;
   if (target.kind === "lesson") {
     if (!renderLesson) {
-      return <p className="px-2 py-6 text-[13px] text-[#5A5A57]">Esta prática é de uma lição.</p>;
+      return <p className="text-[13px] text-[#5A5A57]">Esta prática é de uma lição.</p>;
     }
     return <>{renderLesson({ onDismiss: book.closePractice })}</>;
   }
@@ -140,7 +140,7 @@ export function PracticePane({
 
   return (
     <div className="flex h-full min-h-0 flex-1 flex-col">
-      <div className="flex h-10 shrink-0 items-center gap-1.5 px-3 text-[12px]">
+      <div className="flex h-10 shrink-0 items-center gap-item px-pad text-[12px]">
         <span className="text-[#5A5A57]">Prática</span>
         <span className="text-[#B5B5AE]">/</span>
         <span className="min-w-0 truncate font-medium text-aula-text">{practiceLabel(target, lessonTitle)}</span>
@@ -153,7 +153,7 @@ export function PracticePane({
           Fechar
         </button>
       </div>
-      <div data-book-scroll className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-3 pb-8">
+      <div data-book-scroll className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-pad pb-pad pt-heading">
         <PracticeBody target={target} renderLesson={renderLesson} />
       </div>
     </div>

@@ -1,21 +1,24 @@
 /**
- * What Professor Elísio is looking at, and the note he can write with no model.
+ * What Professor Elísio is looking at, and the note he writes from it.
  * The passage is resolved from the chapter already in the app. Nothing here is
- * new course content.
+ * new course content, and nothing leaves the app.
  */
 
 import type { CurriculumLesson } from "@/data/curriculum-types";
 import {
   cultureOf,
   findWord,
+  getBacklinks,
   getBookLesson,
   getGrammar,
   getVerb,
   getWord,
+  pronounLabel,
+  sameGroupVerbs,
+  type CardRef,
   type CultureEntry,
   type GrammarEntry,
   type VerbEntry,
-  type VerbRow,
   type WordEntry,
 } from "@/lib/book/catalog";
 import type { ElisioAbout } from "@/lib/book/types";
@@ -86,15 +89,20 @@ export function passageFor(about: ElisioAbout): ElisioPassage | null {
   }
 }
 
-/** A margin note from the passage itself. Used when no model answers. */
+/** A margin note from the passage, the examples, and where else it shows up. */
 export function composeNote(passage: ElisioPassage, question: string): string {
   const q = question.toLowerCase();
-  const wantsForm = /presente|conjug|como fica|\bforma/.test(q);
+  const wantsParticiple = /particíp/.test(q);
+  const wantsForm = wantsParticiple || /presente|conjug|como fica|\bforma/.test(q);
   const wantsExample = /frase|exemplo|guardo|guardar/.test(q);
   const wantsPlace = /portugal|brasil|lisboa|porto|europeu|gerúnd/.test(q);
-  const formLine = passage.lines.find((line) => /presente|eu |tu /.test(line));
+  const formLine = wantsParticiple
+    ? passage.lines.find((line) => line.startsWith("O particípio"))
+    : passage.lines.find((line) => line.startsWith("No presente") || line.startsWith("No pretérito"));
   const placeLine = passage.lines.find((line) => /portugal|infinitivo|gerúndio|lisboa|porto|europeu/i.test(line));
-  const example = exampleLine(passage.examples[0]);
+  const related = passage.lines.find((line) => line.startsWith("Também aparece"));
+  const teaching = passage.lines.filter((line) => line !== formLine && line !== related);
+  const examples = passage.examples.map((example) => exampleLine(example)).filter(Boolean);
   const picked: string[] = [];
 
   const push = (line?: string) => {
@@ -108,26 +116,45 @@ export function composeNote(passage: ElisioPassage, question: string): string {
 
   if (wantsForm) {
     push(formLine);
-    push(example);
-    push(passage.lines[0]);
+    push(examples[0]);
+    push(teaching[0]);
   } else if (wantsExample) {
-    push(example);
-    push(passage.lines[0]);
-    push(passage.lines[1]);
+    push(examples[0]);
+    push(examples[1]);
+    push(teaching[0]);
   } else if (wantsPlace) {
     push(placeLine);
-    push(passage.lines[0]);
-    push(example);
+    push(teaching[0]);
+    push(examples[0]);
   } else {
-    push(passage.lines[0]);
-    push(passage.lines.find((line) => line !== passage.lines[0] && line !== formLine));
-    push(example);
+    push(teaching[0]);
+    push(teaching[1]);
+    push(examples[0]);
   }
+  push(related);
 
-  let note = picked.slice(0, 3).join(" ");
-  if (note.length < 40) note = [note, clip(passage.text, 220)].filter(Boolean).join(" ");
-  if (note.length > 520) note = `${note.slice(0, 517).replace(/\s+\S*$/, "").trim()}…`;
+  let note = picked.slice(0, 4).join(" ");
+  if (note.length > 640) note = `${note.slice(0, 637).replace(/\s+\S*$/, "").trim()}…`;
   return note.trim();
+}
+
+function relatedLine(ref: CardRef, skip: string): string {
+  const titled = getBacklinks(ref).items
+    .map((item) => ({
+      title: item.title.replace(/^Lição \d+ · /, "").trim(),
+      grammar: /gramática/i.test(item.kicker),
+    }))
+    .filter((item) => item.title && item.title.toLowerCase() !== skip.toLowerCase());
+  const pool = titled.some((item) => item.grammar) ? titled.filter((item) => item.grammar) : titled;
+  const titles: string[] = [];
+  for (const item of pool) {
+    if (titles.includes(item.title)) continue;
+    titles.push(item.title);
+    if (titles.length === 2) break;
+  }
+  if (titles.length === 0) return "";
+  if (titles.length === 1) return `Também aparece em ${titles[0]}.`;
+  return `Também aparece em ${titles[0]} e ${titles[1]}.`;
 }
 
 function exampleLine(example?: { pt: string; en?: string }): string {
@@ -153,33 +180,34 @@ function groupPt(group: string): string {
   return `regular em ${ending}`;
 }
 
-function rowStarts(rows: VerbRow[], person: string): VerbRow | undefined {
-  return rows.find((row) => row.person.toLowerCase().startsWith(person));
-}
-
 function verbPassage(id: string, place: string): ElisioPassage | null {
   const verb = getVerb(id);
   if (!verb) return null;
   const tense = verb.tenses.includes("Present") ? "Present" : verb.tenses[0];
   const rows = tense ? verb.rows(tense) : [];
-  const eu = rowStarts(rows, "eu");
-  const tu = rowStarts(rows, "tu");
   const tenseName = (tense && TENSE_PT[tense]) || "neste tempo";
-  const forms = [eu && `eu ${eu.form}`, tu && `tu ${tu.form}`].filter(Boolean).join(", ");
+  const forms = rows
+    .slice(0, 4)
+    .map((row) => `${pronounLabel(row.person)} ${row.form}`)
+    .join(", ");
+  const siblings = verb.id === "ser" || verb.id === "estar" ? [] : sameGroupVerbs(verb.id).slice(0, 3);
   const lines = [
     `O verbo ${verb.id} significa «${verb.english}». É um verbo ${groupPt(verb.group)}.`,
-    forms ? `No ${tenseName}: ${forms}.` : "",
     verb.id === "estar"
       ? "Estar marca um estado, um lugar ou uma condição. Ser marca o que a coisa é."
       : verb.id === "ser"
         ? "Ser marca identidade, profissão e origem. Para um estado ou um lugar, o verbo é estar."
         : "",
+    forms ? `No ${tenseName}: ${forms}.` : "",
+    verb.participle ? `O particípio é ${verb.participle}.` : "",
+    siblings.length ? `No mesmo grupo: ${siblings.map((item) => item.id).join(", ")}.` : "",
+    relatedLine({ kind: "verb", id: verb.id }, verb.id),
   ].filter(Boolean);
   const examples = rows.filter((row) => row.example).slice(0, 2).map((row) => ({ pt: row.example, en: row.english }));
   return {
     label: verb.id,
     place,
-    text: [lines[0], examples[0]?.pt].filter(Boolean).join(" "),
+    text: [lines[0], lines[1], examples[0]?.pt].filter(Boolean).join(" "),
     questions: ["Quando uso este verbo?", forms ? "Como fica no presente?" : "Dá-me uma frase."],
     lines,
     examples,
@@ -194,6 +222,7 @@ function wordPassage(category: string, word: string, place: string): ElisioPassa
     `«${entry.portuguese}» quer dizer ${entry.english}.`,
     entry.proTip ? clip(entry.proTip, 220) : "",
     related ? `Ao lado: ${related}.` : "",
+    relatedLine(entry.ref, entry.portuguese),
   ].filter(Boolean);
   const examples = entry.example ? [{ pt: entry.example, en: entry.exampleTranslation }] : [];
   return {
@@ -306,6 +335,7 @@ function grammarTopic(topic: GrammarEntry, place: string, fromLesson: boolean): 
     topic.summary ? clip(topic.summary, 240) : "",
     ...rules.map((rule) => rule.rulePt || rule.rule),
     continuousLine(topic),
+    relatedLine(topic.ref, topic.titlePt),
   ].filter(Boolean);
   const examples = rules.flatMap((rule) => rule.examples).slice(0, 2);
   return {
@@ -320,26 +350,55 @@ function grammarTopic(topic: GrammarEntry, place: string, fromLesson: boolean): 
   };
 }
 
+function rulesForParagraph(topic: GrammarEntry, paragraph: string): GrammarEntry["rules"] {
+  if (CONTINUOUS.test(paragraph)) {
+    const hit = topic.rules.filter((rule) => CONTINUOUS.test(`${rule.rule} ${rule.rulePt ?? ""}`));
+    if (hit.length > 0) return hit;
+  }
+  const lower = paragraph.toLowerCase();
+  const estar = /\bestar\b/.test(lower);
+  const ser = /\bser\b/.test(lower);
+  return topic.rules.filter((rule) => {
+    const blob = `${rule.rule} ${rule.rulePt ?? ""}`.toLowerCase();
+    const ruleEstar = /\bestar\b/.test(blob);
+    const ruleSer = /\bser\b/.test(blob);
+    if (estar && !ser) return ruleEstar && !ruleSer;
+    if (ser && !estar) return ruleSer && !ruleEstar;
+    if (ser && estar) return ruleSer || ruleEstar;
+    return false;
+  });
+}
+
 function paragraphPassage(topic: GrammarEntry, paragraph: string, place: string): ElisioPassage {
+  const rule = rulesForParagraph(topic, paragraph)[0];
   const snippets = parentheticals(paragraph);
   const steer = steerParagraph(paragraph);
+  const ruleLine = rule?.rulePt || rule?.rule || "";
   const lines = [
     steer,
-    snippets.length ? `Frases deste passo: ${snippets.slice(0, 3).map((s) => `«${s}»`).join(", ")}.` : clip(paragraph, 240),
+    ruleLine && ruleLine !== steer ? clip(ruleLine, 240) : "",
+    snippets.length ? `Frases deste passo: ${snippets.slice(0, 3).map((s) => `«${s}»`).join(", ")}.` : "",
+    relatedLine(topic.ref, topic.titlePt),
   ].filter(Boolean);
+  const fromRule = (rule?.examples ?? []).slice(0, 2);
   return {
     label: topic.titlePt,
     place,
     text: clip(paragraph, 700),
     questions: ["O que é que este parágrafo está a dizer?", "Que frase guardo daqui?"],
     lines,
-    examples: snippets.slice(0, 2).map((pt) => ({ pt })),
+    examples: fromRule.length > 0 ? fromRule : snippets.slice(0, 2).map((pt) => ({ pt })),
   };
 }
 
 function rulePassage(topic: GrammarEntry, rule: GrammarEntry["rules"][number], place: string): ElisioPassage {
   const blob = `${rule.rule} ${rule.rulePt ?? ""}`;
-  const lines = [rule.rulePt || rule.rule, CONTINUOUS.test(blob) ? PORTUGAL_CONTINUOUS : ""].filter(Boolean);
+  const lines = [
+    rule.rulePt || rule.rule,
+    CONTINUOUS.test(blob) ? PORTUGAL_CONTINUOUS : "",
+    rule.exceptions?.[0] ? `Nota: ${clip(rule.exceptions[0], 180)}` : "",
+    relatedLine(topic.ref, topic.titlePt),
+  ].filter(Boolean);
   return {
     label: topic.titlePt,
     place,

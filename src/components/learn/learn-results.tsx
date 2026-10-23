@@ -26,7 +26,7 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry, dock =
   const wrong = sectionResults.flatMap((sr) => sr.answers.filter((a) => !a.correct).map((a) => ({ section: sr.sectionName, ...a })));
 
   return (
-    <div className={dock ? "min-w-0 pt-2" : "mx-auto max-w-[620px] pt-6"}>
+    <div className={dock ? "min-w-0" : "mx-auto max-w-[620px] pt-6"}>
       {!dock && (
         <div className="mb-4 flex items-center gap-2 text-[12px]">
           <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
@@ -49,13 +49,13 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry, dock =
             </p>
           </div>
         </div>
-        <div className="relative mt-5">
+        <div className={`relative ${dock ? "mt-card" : "mt-5"}`}>
           <Track value={accuracy / 100} tone={passed ? "accent" : dock ? "accent" : "learning"} />
           <span className="absolute top-[-3px] h-[10px] w-px bg-aula-text-3" style={{ left: "80%" }} title="80%" />
         </div>
 
-        <div className="mt-6">
-          <p className="mb-1.5 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3">Por secção</p>
+        <div className={dock ? "mt-card" : "mt-6"}>
+          <p className={`${dock ? "mb-heading" : "mb-1.5"} text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3`}>Por secção</p>
           {sectionResults.map((sr, i) => {
             const p = sr.totalQuestions ? sr.totalCorrect / sr.totalQuestions : 0;
             return (
@@ -74,8 +74,8 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry, dock =
       </div>
 
       {wrong.length > 0 && (
-        <div className="mt-6">
-          <p className="mb-2 px-1 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3">
+        <div className={dock ? "mt-card" : "mt-6"}>
+          <p className={`${dock ? "mb-heading" : "mb-2"} px-1 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-aula-text-3`}>
             Para rever · {wrong.length} {wrong.length === 1 ? "resposta" : "respostas"}
           </p>
           <div className="divide-y divide-aula-line rounded-xl border border-aula-border bg-white">
@@ -90,11 +90,11 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry, dock =
               </div>
             ))}
           </div>
-          <p className="mt-2 px-1 text-[11.5px] text-aula-text-3">Voltam nas próximas revisões, mais cedo do que o resto.</p>
+          <p className={`${dock ? "mt-heading" : "mt-2"} px-1 text-[11.5px] text-aula-text-3`}>Voltam nas próximas revisões, mais cedo do que o resto.</p>
         </div>
       )}
 
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className={`${dock ? "mt-card gap-item" : "mt-6 gap-2"} flex flex-wrap`}>
         {dock ? (
           <>
             {!passed && (
