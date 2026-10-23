@@ -1,11 +1,14 @@
-import { AppLogo } from "@/components/layout/sidebar";
-
-/** Logo + wordmark at the top of the auth cards. */
+/** Official lockup: navy mark plus the outlined Geist Semibold wordmark. */
 export function AuthLogo() {
   return (
-    <div className="mb-6 flex items-center justify-center gap-2">
-      <AppLogo size={28} />
-      <span className="text-[17px] font-semibold tracking-[-0.02em] text-aula-text">Aula</span>
-    </div>
+    // eslint-disable-next-line @next/next/no-img-element -- official lockup SVG, not redrawn
+    <img
+      src="/brand/aula-lockup-transparent-navy.svg"
+      alt="Aula"
+      width={117}
+      height={56}
+      draggable={false}
+      className="mx-auto mb-2 block h-14 w-auto"
+    />
   );
 }

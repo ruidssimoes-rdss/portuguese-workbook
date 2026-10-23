@@ -2,6 +2,10 @@
 
 Aula is a European Portuguese course for A1, A2, and B1. The language in it is from Portugal: vocabulary, conjugations, and grammar follow European usage (*autocarro*, *estou a fazer*, *tu* in everyday speech). Lessons and reference material live in the app, and progress is saved to the signed-in account. The interface is in European Portuguese.
 
+## Brand
+
+The mark is a guitarra portuguesa. The vectors are in `public/brand/`. `aula-mark-master.svg` is navy `#1B2B61` on a transparent 24×24 grid; `aula-mark-white.svg` is the same mark in white. The default app icon is the dark tile, `aula-app-icon-dark.svg`, also used for `src/app/icon.png`, `src/app/apple-icon.png`, and `src/app/favicon.ico`. Lockups are that mark plus the outlined Geist Semibold wordmark. Keep 3 units of clear space (one eighth of the mark height) and do not draw the solid mark smaller than 24px. Do not redraw, stretch, rotate, or add effects. Recolour only with navy, canvas `#F7F7F6`, white, or black.
+
 ## Features
 
 **Today.** The home screen greets you, starts the day's session, and shows reviews that are due plus the current streak.
