@@ -105,7 +105,7 @@ export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartEx
         <button
           type="button"
           onClick={onStartExercises}
-          className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-aula-accent px-5 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+          className="tablet-target inline-flex h-10 items-center gap-1.5 rounded-lg bg-aula-accent px-5 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
         >
           {isReview ? "Começar revisão" : "Começar"} <ArrowRight size={14} strokeWidth={1.5} />
         </button>
@@ -113,7 +113,7 @@ export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartEx
           <button
             type="button"
             onClick={onReviewFirst}
-            className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-aula-border bg-white px-4 text-[13px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
+            className="tablet-target inline-flex h-10 items-center gap-1.5 rounded-lg border border-aula-border bg-white px-4 text-[13px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
           >
             <BookOpen size={14} strokeWidth={1.5} /> Ver a matéria primeiro
           </button>

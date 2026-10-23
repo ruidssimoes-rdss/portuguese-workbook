@@ -17,8 +17,8 @@ function useAsking(about: ElisioAbout): { open: () => void; on: boolean } {
 
 /**
  * A quiet control on a paragraph.
- * On a wide screen it appears on hover or keyboard focus.
- * Below 1024px it stays, shortened, because there is no hover.
+ * From 1440px it appears on hover or keyboard focus.
+ * Below that, including iPad landscape, it stays visible.
  */
 export function AskPassage({ about, children }: { about: ElisioAbout; children: React.ReactNode }) {
   const { open } = useAsking(about);
@@ -30,7 +30,7 @@ export function AskPassage({ about, children }: { about: ElisioAbout; children: 
           <button
             type="button"
             onClick={open}
-            className="ask-passage inline-flex h-6 items-center text-[12px] font-medium text-[#5A5A57]"
+            className="ask-passage tap-44 inline-flex h-6 items-center text-[12px] font-medium text-[#5A5A57]"
           >
             <span className="lg:hidden">Perguntar</span>
             <span className="hidden lg:inline">Perguntar ao Elísio</span>
@@ -49,7 +49,7 @@ export function AskChapter({ about, tall = false }: { about: ElisioAbout; tall?:
       type="button"
       aria-pressed={on}
       onClick={open}
-      className={`inline-flex items-center rounded-lg border text-[13px] font-medium transition-colors ${tall ? "h-9 px-4" : "h-8 px-3"} ${openClass(on)}`}
+      className={`tablet-target inline-flex items-center rounded-lg border text-[13px] font-medium transition-colors ${tall ? "h-9 px-4" : "h-8 px-3"} ${openClass(on)}`}
     >
       Perguntar ao Elísio
     </button>
@@ -64,7 +64,7 @@ export function AskCardButton({ about }: { about: ElisioAbout }) {
       type="button"
       aria-pressed={on}
       onClick={open}
-      className={`inline-flex h-8 items-center rounded-lg border px-3 text-[13px] font-medium transition-colors ${openClass(on)}`}
+      className={`tablet-target inline-flex h-8 items-center rounded-lg border px-3 text-[13px] font-medium transition-colors ${openClass(on)}`}
     >
       Perguntar ao Elísio
     </button>

@@ -66,7 +66,7 @@ function PracticeButton({ card }: { card: CardRef }) {
     <button
       type="button"
       onClick={() => book.openPractice(card)}
-      className="inline-flex h-8 items-center rounded-lg bg-aula-accent px-3 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+        className="tablet-target inline-flex h-8 items-center rounded-lg bg-aula-accent px-3 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
     >
       Praticar
     </button>
@@ -175,15 +175,15 @@ export function VerbCard({ id }: { id: string }) {
       />
       <CardActions card={ref} about={{ about: "verb", id: verb.id }} />
 
-      <div className="mt-card flex items-center gap-paragraph">
+      <div className="mt-card flex flex-wrap items-center gap-x-paragraph gap-y-item">
         <h3 className="shrink-0 text-[13px] font-semibold text-aula-text">Conjugação</h3>
-        <div className="ml-auto flex min-w-0 max-w-full gap-0.5 overflow-x-auto rounded-lg bg-aula-sunken p-[3px] [scrollbar-width:none]">
+        <div className="ml-auto flex min-w-0 max-w-full flex-nowrap gap-0.5 overflow-x-auto overscroll-x-contain rounded-lg bg-aula-sunken p-[3px] [scrollbar-width:none] max-[1279px]:flex-wrap max-[1279px]:overflow-visible">
           {verb.tenses.map((item) => (
             <button
               key={item}
               type="button"
               onClick={() => setTense(item)}
-              className={`h-[26px] shrink-0 rounded-md border px-2 text-[12px] transition-colors ${
+              className={`tablet-target h-[26px] shrink-0 rounded-md border px-2 text-[12px] transition-colors ${
                 tense === item
                   ? "border-aula-line bg-white font-medium text-aula-text"
                   : "border-transparent text-[#5A5A57] hover:text-aula-text"
@@ -195,7 +195,7 @@ export function VerbCard({ id }: { id: string }) {
         </div>
       </div>
 
-      <div className="mt-heading overflow-hidden rounded-[10px] border border-aula-line">
+      <div className="mt-heading min-w-0 overflow-hidden rounded-[10px] border border-aula-line">
         {rows.map((row) => (
           <ConjugationRow key={row.person + row.form} row={row} stem={stem} />
         ))}
@@ -230,14 +230,14 @@ export function VerbCard({ id }: { id: string }) {
 
 function ConjugationRow({ row, stem }: { row: VerbRow; stem: string }) {
   return (
-    <div className="grid grid-cols-[88px_minmax(52px,auto)_minmax(0,1fr)_28px] items-center gap-x-3 px-3 py-2 odd:bg-[#F7F7F6]">
-      <span className="text-[12px] text-[#5A5A57]">{pronounLabel(row.person)}</span>
-      <span className="text-[13.5px] font-medium text-aula-accent">
+    <div className="grid min-w-0 grid-cols-[minmax(0,5.5rem)_minmax(0,max-content)_minmax(0,1fr)_auto] items-center gap-x-3 px-3 py-2 odd:bg-[#F7F7F6]">
+      <span className="min-w-0 break-words text-[12px] leading-snug text-[#5A5A57]">{pronounLabel(row.person)}</span>
+      <span className="min-w-0 break-words text-[13.5px] font-medium text-aula-accent">
         <FormCell form={row.form} stem={stem} />
       </span>
       <span className="min-w-0">
-        <span className="block text-[12.5px] leading-snug text-aula-text">{row.example}</span>
-        <span className="block text-[11.5px] leading-snug text-[#5A5A57]">{row.english}</span>
+        <span className="block break-words text-[12.5px] leading-snug text-aula-text">{row.example}</span>
+        <span className="block break-words text-[11.5px] leading-snug text-[#5A5A57]">{row.english}</span>
       </span>
       <PlayButton text={row.example || row.form} />
     </div>

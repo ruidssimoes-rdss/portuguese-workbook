@@ -149,7 +149,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
           type="button"
           aria-pressed={practicing}
           onClick={() => book.openPractice({ kind: "lesson" })}
-          className="inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+          className="tablet-target inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
         >
           Praticar esta lição
         </button>

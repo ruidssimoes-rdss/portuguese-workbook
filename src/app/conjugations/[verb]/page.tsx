@@ -134,9 +134,9 @@ export default function VerbPage() {
           {rows.map((r, i) => (
             <div
               key={i}
-              className="grid min-h-[40px] min-w-0 grid-cols-[max-content_minmax(0,1fr)] items-center gap-x-3 border-b border-aula-line px-1 py-1.5 last:border-0 md:grid-cols-[max-content_minmax(0,max-content)_minmax(0,1fr)]"
+              className="grid min-h-[40px] min-w-0 grid-cols-[minmax(0,max-content)_minmax(0,1fr)] items-center gap-x-3 border-b border-aula-line px-1 py-1.5 last:border-0 md:grid-cols-[minmax(0,max-content)_minmax(0,max-content)_minmax(0,1fr)]"
             >
-              <span className="whitespace-nowrap text-[12px] text-aula-text-2">{r.Person.split(" (")[0]}</span>
+              <span className="min-w-0 break-words text-[12px] text-aula-text-2">{r.Person.split(" (")[0]}</span>
               <span className="flex min-w-0 items-center gap-1 text-[13px] font-medium text-aula-text">
                 <span className="min-w-0 break-words">{r.Conjugation}</span>
                 <AudioButton text={r.Conjugation} className="shrink-0" />

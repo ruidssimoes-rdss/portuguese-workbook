@@ -23,6 +23,8 @@ export function PageShell({
   wideDock = false,
   header,
   wide = false,
+  forceRail = false,
+  snug = false,
 }: {
   children: React.ReactNode;
   /** Optional right-hand panel content (Estado / Notas / Hoje). */
@@ -35,14 +37,19 @@ export function PageShell({
   header?: React.ReactNode;
   /** Let the content use the full panel width instead of the 960px column. */
   wide?: boolean;
+  /** Collapse the sidebar to its rail without writing that choice. */
+  forceRail?: boolean;
+  /** Use the 20px pad in the reading column when a dock is open on a tight width. */
+  snug?: boolean;
 }) {
   const { collapsed, toggle } = useSidebarCollapsed();
+  const rail = forceRail || collapsed;
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="flex h-dvh bg-aula-canvas">
+    <div className="aula-shell flex h-dvh min-h-0 bg-aula-canvas">
       {/* Desktop sidebar */}
-      <Sidebar collapsed={collapsed} onToggle={toggle} className="hidden h-dvh md:flex" />
+      <Sidebar collapsed={rail} lockRail={forceRail} onToggle={toggle} className="hidden h-full min-h-0 md:flex" />
 
       {/* Mobile overlay sidebar */}
       {mobileOpen && (
@@ -86,9 +93,9 @@ export function PageShell({
           {header && (
             <div className="flex h-12 shrink-0 items-center gap-1.5 px-5 text-[12px]">{header}</div>
           )}
-          <div id="aula-scroll" className="min-h-0 min-w-0 flex-1 overflow-y-auto">
+          <div id="aula-scroll" className="aula-pane min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto">
             <div
-              className={`mx-auto min-w-0 px-10 pb-16 max-md:px-4 ${header ? "pt-6" : "pt-10 max-md:pt-6"} ${
+              className={`mx-auto min-w-0 pb-16 ${snug ? "px-pad" : "px-10 max-md:px-4"} ${header ? "pt-6" : "pt-10 max-md:pt-6"} ${
                 wide ? "max-w-none" : "max-w-[960px]"
               }`}
             >
@@ -99,12 +106,12 @@ export function PageShell({
 
         {/* Book card dock, or the narrower info panel */}
         {dock ? (
-          <aside className={`hidden min-h-0 shrink-0 flex-col overflow-hidden rounded-xl border border-aula-line bg-aula-panel lg:flex ${wideDock ? "w-[clamp(360px,38vw,520px)]" : "w-[clamp(320px,34vw,460px)]"}`}>
+          <aside className={`book-dock hidden min-h-0 shrink-0 flex-col overflow-hidden rounded-xl border border-aula-line bg-aula-panel lg:flex ${wideDock ? "book-dock-wide" : ""}`}>
             {dock}
           </aside>
         ) : (
           panel && (
-            <aside className="hidden w-[340px] shrink-0 overflow-y-auto rounded-xl border border-aula-line bg-aula-panel p-4 xl:block">
+            <aside className="aula-pane hidden min-h-0 w-[340px] shrink-0 overflow-y-auto rounded-xl border border-aula-line bg-aula-panel p-4 xl:block">
               {panel}
             </aside>
           )

@@ -5,7 +5,7 @@ import { encodeCard } from "@/lib/book/types";
 import { useBook } from "./book-context";
 
 const linkClass =
-  "inline rounded-[3px] p-0 font-sans font-medium leading-[inherit] tracking-[inherit] text-aula-accent transition-colors hover:bg-[#E8ECF6]";
+  "book-link tap-44 inline rounded-[3px] p-0 font-sans font-medium leading-[inherit] tracking-[inherit] text-aula-accent transition-colors hover:bg-[#E8ECF6]";
 
 /** Running text with the words, verbs, grammar topics and culture notes linked. */
 export function LinkedText({ text, skip, className = "" }: { text: string; skip?: CardRef; className?: string }) {

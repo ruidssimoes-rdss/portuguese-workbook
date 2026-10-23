@@ -239,14 +239,14 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
               type="button"
               onClick={handleLearnPrev}
               disabled={learnIndex === 0}
-              className="inline-flex h-9 items-center rounded-lg px-3 text-[13px] font-medium text-aula-text-2 transition-colors hover:bg-aula-sunken disabled:cursor-not-allowed disabled:opacity-40"
+              className="tablet-target inline-flex h-9 items-center rounded-lg px-3 text-[13px] font-medium text-aula-text-2 transition-colors hover:bg-aula-sunken disabled:cursor-not-allowed disabled:opacity-40"
             >
               ← Anterior
             </button>
             <button
               type="button"
               onClick={handleLearnNext}
-              className="inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+              className="tablet-target inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
             >
               {learnIndex < learnTotal - 1 ? "Seguinte →" : "Começar exercícios →"}
             </button>

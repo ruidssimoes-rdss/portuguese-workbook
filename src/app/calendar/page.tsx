@@ -1510,7 +1510,7 @@ function MonthGridView({
   const todayKey = toDateKey(new Date());
   return (
     <div className="overflow-hidden rounded-xl border border-aula-border bg-white">
-      <div className="grid grid-cols-7 border-b border-aula-line bg-aula-sunken">
+      <div className="grid min-w-0 grid-cols-[repeat(7,minmax(0,1fr))] border-b border-aula-line bg-aula-sunken">
         {DIAS_CURTOS.map((d) => (
           <div key={d} className="py-2 text-center text-[11px] font-medium text-aula-text-3">
             {d}
@@ -1519,7 +1519,7 @@ function MonthGridView({
       </div>
       <div className="divide-y divide-aula-line">
         {grid.map((row, ri) => (
-          <div key={ri} className="grid grid-cols-7 divide-x divide-aula-line">
+          <div key={ri} className="grid min-w-0 grid-cols-[repeat(7,minmax(0,1fr))] divide-x divide-aula-line">
             {row.map((day, di) => {
               const dateKey = day != null ? `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` : null;
               const events = dateKey ? (eventsByDate[dateKey] ?? []) : [];
@@ -1533,7 +1533,7 @@ function MonthGridView({
                   tabIndex={0}
                   onClick={() => onSelectDay(dateKey)}
                   onKeyDown={(e) => e.key === "Enter" && onSelectDay(dateKey)}
-                  className={`group relative min-h-[104px] cursor-pointer p-1.5 text-left transition-colors ${isToday ? "bg-aula-accent-faint" : "hover:bg-aula-sunken"} ${dateKey === cursorDate && !isToday ? "bg-aula-sunken" : ""}`}
+                  className={`group relative min-h-[104px] min-w-0 cursor-pointer overflow-hidden p-1.5 text-left transition-colors ${isToday ? "bg-aula-accent-faint" : "hover:bg-aula-sunken"} ${dateKey === cursorDate && !isToday ? "bg-aula-sunken" : ""}`}
                 >
                   <div className="mb-1 flex items-center justify-between px-0.5">
                     <span
