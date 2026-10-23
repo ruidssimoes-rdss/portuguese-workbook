@@ -32,10 +32,10 @@ Aula is a European Portuguese course for A1, A2, and B1. The language in it is f
 
 ## Local setup
 
-You need Node.js and a Supabase project.
+You need Node.js, pnpm, and a Supabase project. Install from `pnpm-lock.yaml`. `npm install` currently stops on a Storybook peer conflict (`@storybook/addon-essentials` 8 against `storybook` 10).
 
 ```bash
-npm install
+pnpm install
 cp .env.local.example .env.local
 ```
 
@@ -56,7 +56,7 @@ Apply the SQL in `supabase/migrations/` to that project, in filename order: `001
 In the Supabase dashboard, enable email sign-up. Google sign-in also needs the Google provider configured on that project.
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -65,16 +65,16 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Command | What it does |
 | --- | --- |
-| `npm run dev` | Development server |
-| `npm run build` | Production build |
-| `npm run start` | Serve the production build |
-| `npm run lint` | ESLint |
-| `npm run audio:generate` | Generate missing pt-PT clips with Piper and upload them to the `audio` bucket |
+| `pnpm dev` | Development server |
+| `pnpm build` | Production build |
+| `pnpm start` | Serve the production build |
+| `pnpm lint` | ESLint |
+| `pnpm audio:generate` | Generate missing pt-PT clips with Piper and upload them to the `audio` bucket |
 
 `audio:generate` is a local tool. It expects a Piper virtualenv at `scripts/tts/.venv`, a voice model in `scripts/tts/voices/`, ffmpeg on your PATH, and `SUPABASE_SERVICE_ROLE_KEY` in `.env.local` alongside the public Supabase URL. The app runs without it; buttons simply have no clip until audio is uploaded.
 
 Playwright lives in `e2e/`. Its config boots the app with `pnpm dev` and signs in with `TEST_USER_EMAIL` and `TEST_USER_PASSWORD`.
 
 ```bash
-npx playwright test
+pnpm exec playwright test
 ```
