@@ -17,9 +17,11 @@ interface LearnIntroProps {
   generated: GeneratedLesson;
   onStartExercises: () => void;
   onReviewFirst: () => void;
+  /** Book dock: chapter title, no lesson breadcrumb, navy level chip. */
+  dock?: boolean;
 }
 
-export function LearnIntro({ cefr, isReview, generated, onStartExercises, onReviewFirst }: LearnIntroProps) {
+export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartExercises, onReviewFirst, dock = false }: LearnIntroProps) {
   const learnItems = generated.learnItems ?? [];
   const count = (t: string) => learnItems.filter((i) => i.type === t).length;
   const news = [
@@ -32,23 +34,37 @@ export function LearnIntro({ cefr, isReview, generated, onStartExercises, onRevi
   const minutes = Math.max(5, Math.round(questions * 0.5));
 
   return (
-    <div className="mx-auto max-w-[620px] pt-6">
-      <div className="mb-4 flex items-center gap-2 text-[12px]">
-        <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
-          Lições
-        </Link>
-        <span className="text-aula-text-4">/</span>
-        <span className="text-aula-text-2">{isReview ? "Revisão" : `Lição ${cefr}`}</span>
-      </div>
+    <div className={dock ? "min-w-0 pt-2" : "mx-auto max-w-[620px] pt-6"}>
+      {!dock && (
+        <div className="mb-4 flex items-center gap-2 text-[12px]">
+          <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
+            Lições
+          </Link>
+          <span className="text-aula-text-4">/</span>
+          <span className="text-aula-text-2">{isReview ? "Revisão" : `Lição ${cefr}`}</span>
+        </div>
+      )}
 
       <div className="flex items-center gap-2">
-        <h1 className="text-[24px] font-semibold tracking-[-0.02em] text-aula-text">{isReview ? "Hora de rever" : "A tua próxima lição"}</h1>
-        {cefr && cefr !== "mixed" && <LevelTag level={cefr} />}
+        {dock ? (
+          <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{lessonTitlePt || "Praticar"}</h2>
+        ) : (
+          <h1 className="text-[24px] font-semibold tracking-[-0.02em] text-aula-text">{isReview ? "Hora de rever" : "A tua próxima lição"}</h1>
+        )}
+        {cefr && cefr !== "mixed" && (
+          dock ? (
+            <span className="inline-flex h-[18px] shrink-0 items-center rounded-[5px] bg-[#E8ECF6] px-1.5 text-[10.5px] font-semibold text-[#1B2B61]">{cefr}</span>
+          ) : (
+            <LevelTag level={cefr} />
+          )
+        )}
       </div>
-      <p className="mt-1.5 text-[13px] text-aula-text-2">
-        {isReview
-          ? "O que estava quase a fugir-te. Acertas e volta mais tarde; erras e volta mais cedo."
-          : "Feita para ti a partir do que já sabes e do que te falta."}
+      <p className={`mt-1.5 text-[13px] ${dock ? "leading-relaxed text-[#5A5A57]" : "text-aula-text-2"}`}>
+        {dock
+          ? "Os exercícios desta lição. Passas com 80%."
+          : isReview
+            ? "O que estava quase a fugir-te. Acertas e volta mais tarde; erras e volta mais cedo."
+            : "Feita para ti a partir do que já sabes e do que te falta."}
       </p>
 
       <div className="mt-7 rounded-xl border border-aula-border bg-white">

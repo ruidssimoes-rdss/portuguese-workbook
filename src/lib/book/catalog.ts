@@ -642,6 +642,15 @@ export function getWord(ref: CardRef & { kind: "word" }): WordEntry | null {
   return wordByKey.get(`${ref.category}\n${ref.word}`) ?? null;
 }
 
+export function wordsInCategory(category: string): WordEntry[] {
+  ensure();
+  const out: WordEntry[] = [];
+  for (const entry of wordByKey.values()) {
+    if (entry.category === category) out.push(entry);
+  }
+  return out;
+}
+
 export function getVerb(id: string): VerbEntry | null {
   const key = id.toUpperCase();
   const verb = verbFile.verbs[key];

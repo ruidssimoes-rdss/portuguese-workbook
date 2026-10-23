@@ -64,11 +64,21 @@ interface LearnPlayerProps {
   initial?: PlayerSnapshot;
   /** Called whenever the position changes, so the caller can persist it. */
   onProgress?: (snap: PlayerSnapshot) => void;
+  /** Compact chrome for the book dock. The full-page player is unchanged. */
+  dock?: boolean;
+  /** Leave the dock session (back to the card or the chapter). */
+  onDismiss?: () => void;
 }
 
 // ─── Player ─────────────────────────────────────────────
 
-export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, onProgress }: LearnPlayerProps) {
+export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, onProgress, dock = false, onDismiss }: LearnPlayerProps) {
+  function scrollTop() {
+    const el = dock
+      ? document.querySelector<HTMLElement>("[data-book-scroll]")
+      : document.getElementById("aula-scroll");
+    (el ?? window).scrollTo({ top: 0, behavior: "smooth" });
+  }
   const [state, setState] = useState<PlayerState>(initial?.state ?? "intro");
   const [currentSection, setCurrentSection] = useState(initial?.currentSection ?? 0);
   const [sectionResults, setSectionResults] = useState<SectionResult[]>(initial?.sectionResults ?? []);
@@ -93,13 +103,13 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
   function handleStartExercises() {
     setState("sections");
     setCurrentSection(0);
-    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
+    scrollTop();
   }
 
   function handleReviewFirst() {
     setState("learn");
     setLearnIndex(0);
-    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
+    scrollTop();
   }
 
   function handleLearnNext() {
@@ -109,12 +119,12 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
       setState("sections");
       setCurrentSection(0);
     }
-    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
+    scrollTop();
   }
 
   function handleLearnPrev() {
     if (learnIndex > 0) setLearnIndex((i) => i - 1);
-    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
+    scrollTop();
   }
 
   const handleSectionComplete = useCallback(
@@ -129,9 +139,9 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
       } else {
         setCurrentSection(next);
       }
-      (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
+      scrollTop();
     },
-    [sectionResults, currentSection, totalSections, onComplete]
+    [sectionResults, currentSection, totalSections, onComplete, dock]
   );
 
   function handleRetry() {
@@ -139,7 +149,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
     setSectionResults([]);
     setCurrentSection(0);
     setState("sections");
-    (document.getElementById("aula-scroll") ?? window).scrollTo({ top: 0, behavior: "smooth" });
+    scrollTop();
   }
 
   // ─── Render ─────────────────────────────────────────
@@ -153,6 +163,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
         cefr={lesson.cefr}
         isReview={isReview}
         generated={generated}
+        dock={dock}
         onStartExercises={handleStartExercises}
         onReviewFirst={handleReviewFirst}
       />
@@ -167,6 +178,8 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
         accuracy={accuracy}
         sectionResults={sectionResults}
         onRetry={handleRetry}
+        dock={dock}
+        onDismiss={onDismiss}
       />
     );
   }
@@ -178,15 +191,19 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
   if (!learnItem && !(section && Component)) return null;
 
   return (
-    <div className="mx-auto max-w-[680px]">
+    <div className={dock ? "min-w-0" : "mx-auto max-w-[680px]"}>
       <div className="mb-4 flex items-center gap-2 text-[12px]">
-        <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
-          Lições
-        </Link>
-        <span className="text-aula-text-4">/</span>
-        <span className="text-aula-text-2">{isReview ? "Revisão" : `Lição ${lesson.cefr}`}</span>
+        {!dock && (
+          <>
+            <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
+              Lições
+            </Link>
+            <span className="text-aula-text-4">/</span>
+            <span className="text-aula-text-2">{isReview ? "Revisão" : `Lição ${lesson.cefr}`}</span>
+          </>
+        )}
         <span className="flex-1" />
-        <span className="text-aula-text-3">
+        <span className="text-[#5A5A57]">
           {learnItem ? `Matéria · ${learnIndex + 1} de ${learnTotal}` : `Secção ${currentSection + 1} de ${totalSections}`}
         </span>
       </div>
@@ -206,7 +223,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
                 key={i}
                 title={s.namePt}
                 className={`h-1 flex-1 rounded-full ${
-                  done ? (pct >= 0.8 ? "bg-[#1F7A68]" : "bg-[#5B45B8]") : i === currentSection ? "bg-aula-accent" : "bg-aula-line"
+                  done ? (pct >= 0.8 ? "bg-[#1F7A68]" : dock ? "bg-[#B94A32]" : "bg-[#5B45B8]") : i === currentSection ? "bg-aula-accent" : "bg-aula-line"
                 }`}
               />
             );
@@ -240,7 +257,11 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
         Component && (
           <>
             <div className="mb-3 flex items-baseline gap-2.5">
-              <h1 className="text-[20px] font-semibold tracking-[-0.02em] text-aula-text">{section.namePt}</h1>
+              {dock ? (
+                <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{section.namePt}</h2>
+              ) : (
+                <h1 className="text-[20px] font-semibold tracking-[-0.02em] text-aula-text">{section.namePt}</h1>
+              )}
               <span className="text-[12px] text-aula-text-3">
                 {section.totalQuestions} {section.totalQuestions === 1 ? "pergunta" : "perguntas"}
               </span>

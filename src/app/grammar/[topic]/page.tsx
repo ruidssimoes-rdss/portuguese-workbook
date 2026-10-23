@@ -103,6 +103,7 @@ function GrammarTopic() {
 
   return (
     <BookShell
+      key={slug}
       fallback={panel}
       header={
         <>

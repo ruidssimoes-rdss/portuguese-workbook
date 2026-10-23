@@ -13,6 +13,32 @@ export type CardRef =
 
 export const FICHA_PARAM = "ficha";
 
+/**
+ * What is open in the dock instead of a card.
+ * `1` is the lesson's own exercise flow. A card encoding is a short drill
+ * for that word, verb or grammar topic. Culture notes have no exercise data.
+ */
+export type PracticeTarget =
+  | { kind: "lesson" }
+  | { kind: "verb"; id: string }
+  | { kind: "word"; category: string; word: string }
+  | { kind: "grammar"; id: string };
+
+export const PRATICAR_PARAM = "praticar";
+
+export function encodePractice(target: PracticeTarget): string {
+  if (target.kind === "lesson") return "1";
+  return encodeCard(target);
+}
+
+export function decodePractice(raw: string | null | undefined): PracticeTarget | null {
+  if (!raw) return null;
+  if (raw === "1") return { kind: "lesson" };
+  const card = decodeCard(raw);
+  if (!card || card.kind === "culture") return null;
+  return card;
+}
+
 const CULTURE_TYPES = new Set<CultureType>(["saying", "etiquette", "false-friend", "regional"]);
 
 export function encodeCard(ref: CardRef): string {

@@ -19,6 +19,7 @@ import {
 } from "@/lib/book/catalog";
 import { encodeCard } from "@/lib/book/types";
 import { useMastery, stateOf, dueLabel } from "@/lib/use-mastery";
+import { cardDrill } from "@/lib/book/practice";
 import { useBook } from "./book-context";
 import { Backlinks, Callout, Examples, Kicker, LevelChip, PropList } from "./ui";
 import { CardChip, LinkedText } from "./linked-text";
@@ -50,6 +51,23 @@ function ReviewValue({ contentId, type }: { contentId: string; type: "verb" | "v
       {dueLabel(rec)}
       {seen > 0 ? ` · ${correct} de ${seen} certas` : ""}
     </span>
+  );
+}
+
+function PracticeButton({ card }: { card: CardRef }) {
+  const book = useBook();
+  if (card.kind === "culture") return null;
+  if (!cardDrill(card)) return null;
+  return (
+    <div className="mt-4">
+      <button
+        type="button"
+        onClick={() => book.openPractice(card)}
+        className="inline-flex h-8 items-center rounded-lg bg-aula-accent px-3 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover"
+      >
+        Praticar
+      </button>
+    </div>
   );
 }
 
@@ -144,6 +162,7 @@ export function VerbCard({ id }: { id: string }) {
           { k: "Revisão", v: <ReviewValue type="verb" contentId={verb.id.toUpperCase()} /> },
         ]}
       />
+      <PracticeButton card={ref} />
 
       <div className="mt-5 flex items-center gap-3">
         <h3 className="shrink-0 text-[13px] font-semibold text-aula-text">Conjugação</h3>
@@ -272,6 +291,7 @@ export function WordCard({ category, word }: { category: string; word: string })
           { k: "Revisão", v: <ReviewValue type="vocab" contentId={entry.portuguese} /> },
         ]}
       />
+      <PracticeButton card={entry.ref} />
 
       {entry.example && <Examples rows={[{ pt: entry.example, en: entry.exampleTranslation }]} skip={entry.ref} />}
 
@@ -348,6 +368,7 @@ export function GrammarCard({ id }: { id: string }) {
           { k: "Revisão", v: <ReviewValue type="grammar" contentId={topic.id} /> },
         ]}
       />
+      <PracticeButton card={topic.ref} />
       {rule && (
         <>
           <h3 className="mt-5 text-[13px] font-semibold text-aula-text">{rule.rulePt || "Formação"}</h3>

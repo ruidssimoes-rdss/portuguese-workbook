@@ -1,8 +1,18 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+import { createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { decodeCard, encodeCard, FICHA_PARAM, sameCard, type CardRef } from "@/lib/book/types";
+import {
+  decodeCard,
+  decodePractice,
+  encodeCard,
+  encodePractice,
+  FICHA_PARAM,
+  PRATICAR_PARAM,
+  sameCard,
+  type CardRef,
+  type PracticeTarget,
+} from "@/lib/book/types";
 
 type State = { tabs: CardRef[]; index: number };
 
@@ -41,44 +51,59 @@ export interface BookApi {
   current: CardRef | null;
   canBack: boolean;
   canForward: boolean;
+  practice: PracticeTarget | null;
   openCard: (ref: CardRef) => void;
   back: () => void;
   forward: () => void;
   close: (index: number) => void;
+  openPractice: (target: PracticeTarget) => void;
+  closePractice: () => void;
 }
 
 const BookContext = createContext<BookApi | null>(null);
 
 export function BookProvider({ children }: { children: React.ReactNode }) {
   const params = useSearchParams();
-  const initial = decodeCard(params.get(FICHA_PARAM));
+  const initialCard = decodeCard(params.get(FICHA_PARAM));
+  const initialPractice = decodePractice(params.get(PRATICAR_PARAM));
+  const seedCard = initialCard ?? (initialPractice && initialPractice.kind !== "lesson" ? initialPractice : null);
   const [state, dispatch] = useReducer(reducer, {
-    tabs: initial ? [initial] : [],
+    tabs: seedCard ? [seedCard] : [],
     index: 0,
   });
+  const [practice, setPractice] = useState<PracticeTarget | null>(initialPractice);
   const current = state.tabs[state.index] ?? null;
 
   useEffect(() => {
     const url = new URL(window.location.href);
-    const next = current ? encodeCard(current) : null;
-    const cur = url.searchParams.get(FICHA_PARAM);
-    if ((next ?? null) === cur) return;
-    if (next) url.searchParams.set(FICHA_PARAM, next);
+    const ficha = current ? encodeCard(current) : null;
+    const pratica = practice ? encodePractice(practice) : null;
+    const curFicha = url.searchParams.get(FICHA_PARAM);
+    const curPratica = url.searchParams.get(PRATICAR_PARAM);
+    if ((ficha ?? null) === curFicha && (pratica ?? null) === curPratica) return;
+    if (ficha) url.searchParams.set(FICHA_PARAM, ficha);
     else url.searchParams.delete(FICHA_PARAM);
+    if (pratica) url.searchParams.set(PRATICAR_PARAM, pratica);
+    else url.searchParams.delete(PRATICAR_PARAM);
     const search = url.searchParams.toString();
     window.history.replaceState(window.history.state, "", `${url.pathname}${search ? `?${search}` : ""}${url.hash}`);
-  }, [current]);
+  }, [current, practice]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key !== "Escape" || !current) return;
+      if (e.key !== "Escape") return;
       const target = e.target as HTMLElement | null;
-      if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA")) return;
+      if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)) return;
+      if (practice) {
+        setPractice(null);
+        return;
+      }
+      if (!current) return;
       dispatch({ type: "close", index: state.index });
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current, state.index]);
+  }, [practice, current, state.index]);
 
   const api = useMemo<BookApi>(
     () => ({
@@ -87,12 +112,18 @@ export function BookProvider({ children }: { children: React.ReactNode }) {
       current,
       canBack: state.index > 0,
       canForward: state.index < state.tabs.length - 1,
+      practice,
       openCard: (ref) => dispatch({ type: "open", ref }),
       back: () => dispatch({ type: "back" }),
       forward: () => dispatch({ type: "forward" }),
       close: (index) => dispatch({ type: "close", index }),
+      openPractice: (target) => {
+        setPractice((cur) => (cur && encodePractice(cur) === encodePractice(target) ? cur : target));
+        if (target.kind !== "lesson") dispatch({ type: "open", ref: target });
+      },
+      closePractice: () => setPractice(null),
     }),
-    [state.tabs, state.index, current],
+    [state.tabs, state.index, current, practice],
   );
 
   return <BookContext.Provider value={api}>{children}</BookContext.Provider>;
