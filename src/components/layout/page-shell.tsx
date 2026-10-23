@@ -5,10 +5,10 @@
  *
  *   grey canvas ─┬─ sidebar (244px, collapses to a 60px rail)
  *                ├─ main panel  (floating white, rounded, scrolls)
- *                └─ right panel (optional, 340px floating — pass `panel`)
+ *                └─ right panel (optional, 340px — pass `panel`)
+ *                   or a wider card dock (pass `dock`, from the book)
  *
  * On mobile the sidebar becomes an overlay opened from a slim top bar.
- * The lesson player (/lessons/[id]) does NOT use this — it's full-screen.
  */
 
 import { useState } from "react";
@@ -19,12 +19,15 @@ import { Sidebar, AppLogo, useSidebarCollapsed } from "./sidebar";
 export function PageShell({
   children,
   panel,
+  dock,
   header,
   wide = false,
 }: {
   children: React.ReactNode;
   /** Optional right-hand panel content (Estado / Notas / Hoje). */
   panel?: React.ReactNode;
+  /** Wider right dock for a book card. Replaces `panel` when both are set. */
+  dock?: React.ReactNode;
   /** Optional sticky header row inside the main panel (breadcrumb + actions). */
   header?: React.ReactNode;
   /** Let the content use the full panel width instead of the 960px column. */
@@ -91,11 +94,17 @@ export function PageShell({
           </div>
         </main>
 
-        {/* Right panel */}
-        {panel && (
-          <aside className="hidden w-[340px] shrink-0 overflow-y-auto rounded-xl border border-aula-line bg-aula-panel p-4 xl:block">
-            {panel}
+        {/* Book card dock, or the narrower info panel */}
+        {dock ? (
+          <aside className="hidden min-h-0 w-[clamp(320px,34vw,460px)] shrink-0 flex-col overflow-hidden rounded-xl border border-aula-line bg-aula-panel lg:flex">
+            {dock}
           </aside>
+        ) : (
+          panel && (
+            <aside className="hidden w-[340px] shrink-0 overflow-y-auto rounded-xl border border-aula-line bg-aula-panel p-4 xl:block">
+              {panel}
+            </aside>
+          )
         )}
       </div>
     </div>

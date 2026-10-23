@@ -10,7 +10,8 @@
 
 export const VOICE_ID = "piper-pt_PT-tugao-medium";
 
-const AUDIO_BASE = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/audio/${VOICE_ID}`;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const AUDIO_BASE = SUPABASE_URL ? `${SUPABASE_URL}/storage/v1/object/public/audio/${VOICE_ID}` : null;
 const CACHE_LIMIT = 50;
 const FALLBACK_RATE = 0.95;
 /** Tiny silent WAV, played synchronously inside the click to unlock the element on iOS Safari. */
@@ -108,6 +109,7 @@ const existence = new Map<string, Promise<boolean>>();
 
 /** True when a pre-generated clip exists for this text (one HEAD request per text, cached). */
 export function clipExists(text: string): Promise<boolean> {
+  if (!AUDIO_BASE) return Promise.resolve(false);
   const t = normalize(text);
   let p = existence.get(t);
   if (!p) {
@@ -151,7 +153,7 @@ export async function speakPt(text: string): Promise<void> {
   keys.set(text, key);
   if (gen !== generation) return; // superseded by another call
 
-  if (audio && !failed.has(key)) {
+  if (AUDIO_BASE && audio && !failed.has(key)) {
     if (!clips.has(key)) {
       audio.pause();
       audio.src = `${AUDIO_BASE}/${key}.mp3`;

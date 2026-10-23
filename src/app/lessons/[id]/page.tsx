@@ -5,12 +5,17 @@
  */
 "use client";
 
-import { useState, use, useEffect, useRef, useCallback } from "react";
+import { Suspense, useState, use, useEffect, useRef, useCallback } from "react";
 
 import { ProtectedRoute } from "@/components/protected-route";
-import { PageShell } from "@/components/layout/page-shell";
+import { PageShell, Crumbs } from "@/components/layout/page-shell";
+import { useAuth } from "@/components/auth-provider";
+import { BookShell } from "@/components/book/book-shell";
+import { LessonChapter, lessonListenLines } from "@/components/book/lesson-chapter";
+import { ListenButton } from "@/components/book/play-button";
 import {
   getResolvedLesson,
+  getCurriculumLesson,
 } from "@/data/resolve-lessons";
 // Exam unlock config (was MOCK_EXAM_UNLOCKS from old curriculum — simplified inline)
 const EXAM_LESSON_THRESHOLDS: Record<number, string> = {
@@ -47,6 +52,7 @@ import { LearnPlayer, type PlayerSnapshot } from "@/components/learn/learn-playe
 
 
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 /* ─── Session persistence ─── */
 
@@ -376,15 +382,93 @@ function LessonContent({ id }: { id: string }) {
   );
 }
 
+/* ─── Curriculum chapter, with the existing player behind ?praticar=1 ─── */
+
+function CurriculumLesson({ id }: { id: string }) {
+  const params = useSearchParams();
+  const router = useRouter();
+  const lesson = getCurriculumLesson(id);
+  const { user, loading } = useAuth();
+  const practicing = params.get("praticar") === "1";
+
+  if (!lesson) {
+    return (
+      <PageShell header={<Crumbs items={[{ label: "Lições", href: "/lessons" }]} />}>
+        <div className="mx-auto max-w-[620px] py-16 text-center">
+          <p className="text-[13px] text-[#5A5A57]">Lição não encontrada.</p>
+          <Link href="/lessons" className="mt-2 inline-block text-[13px] font-medium text-aula-accent">
+            Voltar às lições
+          </Link>
+        </div>
+      </PageShell>
+    );
+  }
+
+  const number = String(lesson.number).padStart(2, "0");
+
+  if (practicing) {
+    return (
+      <ProtectedRoute>
+        <PageShell
+          header={
+            <>
+              <Crumbs items={[{ label: "Lições", href: "/lessons" }, { label: lesson.cefrLevel }, { label: `${number} · ${lesson.titlePt}` }]} />
+              <span className="flex-1" />
+              <button
+                type="button"
+                onClick={() => {
+                  const next = new URLSearchParams(params.toString());
+                  next.delete("praticar");
+                  const q = next.toString();
+                  router.replace(q ? `/lessons/${id}?${q}` : `/lessons/${id}`, { scroll: false });
+                }}
+                className="text-[12.5px] font-medium text-aula-accent"
+              >
+                Voltar ao capítulo
+              </button>
+            </>
+          }
+        >
+          <LessonContent id={id} />
+        </PageShell>
+      </ProtectedRoute>
+    );
+  }
+
+  return (
+    <BookShell
+      header={
+        <>
+          <Crumbs items={[{ label: "Lições", href: "/lessons" }, { label: lesson.cefrLevel }, { label: `${number} · ${lesson.titlePt}` }]} />
+          <span className="flex-1" />
+          <ListenButton lines={lessonListenLines(lesson)} label="Ouvir lição" />
+        </>
+      }
+    >
+      <LessonChapter lesson={lesson} signedIn={!loading && !!user} />
+    </BookShell>
+  );
+}
+
 /* ─── Page wrapper ─── */
 
 export default function LessonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
+  const special = id === "next" || id === "review" || id.startsWith("ai-session-");
+
+  if (special) {
+    return (
+      <ProtectedRoute>
+        <PageShell>
+          <LessonContent id={id} />
+        </PageShell>
+      </ProtectedRoute>
+    );
+  }
+
   return (
-    <ProtectedRoute>
-      <PageShell>
-        <LessonContent id={id} />
-      </PageShell>
-    </ProtectedRoute>
+    <Suspense fallback={<PageShell header={<Crumbs items={[{ label: "Lições", href: "/lessons" }]} />}><div className="py-16 text-[13px] text-[#5A5A57]">A abrir o capítulo…</div></PageShell>}>
+      <CurriculumLesson id={id} />
+    </Suspense>
   );
 }
