@@ -16,7 +16,8 @@ import { getProgressStats } from "@/lib/progress-stats-service";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
 import { getCurrentStudyLevel, getReviewSummary } from "@/lib/learning-engine";
 import { createClient } from "@/lib/supabase/client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { mapAuthError } from "@/lib/auth-errors";
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -55,41 +56,35 @@ export default function HomePage() {
 }
 
 function HomeContent() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const { user, loading: authLoading } = useAuth();
   const [stats, setStats] = useState<HomeStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [oauthError, setOauthError] = useState<string | null>(null);
+  const [dismissedOauth, setDismissedOauth] = useState(false);
 
-  // Check for OAuth errors in URL params
-  useEffect(() => {
+  const oauthError = (() => {
+    if (dismissedOauth) return null;
     const err = searchParams.get("error");
     const errorCode = searchParams.get("error_code");
     const errorDescription = searchParams.get("error_description");
-    
-    if (err || errorCode) {
-      let errorMsg = "Ocorreu um erro ao iniciar sessão.";
-      
-      if (errorCode === "bad_oauth_state" || errorDescription?.includes("OAuth state")) {
-        errorMsg = "A sessão de início de sessão expirou.";
-      } else if (errorDescription) {
-        errorMsg = `Erro de autenticação: ${errorDescription}`;
-      }
-      
-      setOauthError(errorMsg);
-      
-      // Clean up URL by removing error params
-      const newSearchParams = new URLSearchParams(searchParams.toString());
-      newSearchParams.delete("error");
-      newSearchParams.delete("error_code");
-      newSearchParams.delete("error_description");
-      const newUrl = newSearchParams.toString() 
-        ? `${window.location.pathname}?${newSearchParams.toString()}` 
-        : window.location.pathname;
-      window.history.replaceState({}, "", newUrl);
-    }
+    if (!err && !errorCode) return null;
+    return mapAuthError({
+      message: errorDescription || err || "",
+      code: errorCode || err || "",
+    });
+  })();
+
+  useEffect(() => {
+    if (!searchParams.get("error") && !searchParams.get("error_code")) return;
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.delete("error");
+    newSearchParams.delete("error_code");
+    newSearchParams.delete("error_description");
+    const newUrl = newSearchParams.toString()
+      ? `${window.location.pathname}?${newSearchParams.toString()}`
+      : window.location.pathname;
+    window.history.replaceState({}, "", newUrl);
   }, [searchParams]);
 
   useEffect(() => {
@@ -175,7 +170,7 @@ function HomeContent() {
               </Link>
             </div>
             <button
-              onClick={() => setOauthError(null)}
+              onClick={() => setDismissedOauth(true)}
               className="flex h-5 w-5 items-center justify-center rounded text-[#B94A32] transition-colors hover:bg-[#F0C9BE]"
               aria-label="Fechar"
             >
@@ -194,8 +189,9 @@ function HomeContent() {
             <EmptyPanel
               title="Bem-vindo à Aula"
               copy="Learn European Portuguese from A1 to B1. Pick a place to start."
-              cta={{ href: "/auth/login", label: "Entrar para começar" }}
+              cta={{ href: "/welcome", label: "Começar" }}
               links={[
+                { href: "/auth/login", label: "Entrar" },
                 { href: "/vocabulary", label: "Vocabulário" },
                 { href: "/grammar", label: "Gramática" },
               ]}

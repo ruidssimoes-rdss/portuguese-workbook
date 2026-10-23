@@ -9,18 +9,35 @@ export interface OnboardingData {
   displayName?: string;
 }
 
+function metadataSaysDone(user: { user_metadata?: Record<string, unknown> } | null): boolean {
+  return user?.user_metadata?.onboarding_completed === true;
+}
+
 export async function hasCompletedOnboarding(): Promise<boolean> {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return true;
+  if (metadataSaysDone(user)) return true;
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("profiles")
     .select("onboarding_completed")
     .eq("id", user.id)
-    .single();
+    .maybeSingle();
 
-  return data?.onboarding_completed ?? false;
+  // A failed read must not trap someone who already finished. A missing row
+  // means the account has not been through onboarding yet.
+  if (error) return true;
+  if (!data) return false;
+  return data.onboarding_completed === true;
+}
+
+async function rememberOnboardingDone(): Promise<boolean> {
+  const supabase = createClient();
+  const { error } = await supabase.auth.updateUser({
+    data: { onboarding_completed: true },
+  });
+  return !error;
 }
 
 export async function saveOnboardingData(data: OnboardingData): Promise<boolean> {
@@ -50,7 +67,8 @@ export async function saveOnboardingData(data: OnboardingData): Promise<boolean>
     .update(updates)
     .eq("id", user.id);
 
-  return !error;
+  const remembered = await rememberOnboardingDone();
+  return !error || remembered;
 }
 
 export async function skipOnboarding(): Promise<boolean> {
@@ -67,7 +85,8 @@ export async function skipOnboarding(): Promise<boolean> {
     })
     .eq("id", user.id);
 
-  return !error;
+  const remembered = await rememberOnboardingDone();
+  return !error || remembered;
 }
 
 export async function getOnboardingData(): Promise<OnboardingData | null> {

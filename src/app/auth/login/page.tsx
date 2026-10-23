@@ -2,58 +2,58 @@
 
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { AuthLogo } from "@/components/auth-ui";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { GoogleSignInButton } from "@/components/google-sign-in-button";
-import { safeNextPath } from "@/lib/safe-next";
-
-const inputClass =
-  "h-10 w-full rounded-lg border border-aula-border bg-white px-3 text-[13.5px] text-aula-text outline-none transition-colors placeholder:text-aula-text-4 focus:border-aula-accent";
-const labelClass = "mb-1.5 block text-[12px] font-medium text-aula-text-2";
+import { isInvalidCredentials, mapAuthError } from "@/lib/auth-errors";
+import { pathAfterAuth } from "@/lib/post-auth";
+import {
+  AuthError,
+  AuthMobileLogo,
+  AuthScreen,
+  AuthSubmit,
+  AuthTitle,
+  PasswordField,
+  authInputClass,
+  authLabelClass,
+} from "@/components/auth/auth-screen";
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [dismissedUrlError, setDismissedUrlError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const urlError = (() => {
     const err = searchParams.get("error");
     const errorCode = searchParams.get("error_code");
     const errorDescription = searchParams.get("error_description");
-    
-    // Handle Supabase OAuth errors
-    if (err || errorCode) {
-      let errorMsg = "Ocorreu um erro ao iniciar sessão. Tenta novamente.";
-      
-      if (errorCode === "bad_oauth_state" || errorDescription?.includes("OAuth state")) {
-        errorMsg = "A sessão de início de sessão expirou. Por favor, tenta novamente.";
-      } else if (err === "auth_callback_error") {
-        errorMsg = "Ocorreu um erro ao iniciar sessão. Tenta novamente.";
-      } else if (errorDescription) {
-        errorMsg = `Erro de autenticação: ${errorDescription}`;
-      }
-      
-      setError(errorMsg);
-      
-      // Clean up URL by removing error params
-      const newSearchParams = new URLSearchParams(searchParams.toString());
-      newSearchParams.delete("error");
-      newSearchParams.delete("error_code");
-      newSearchParams.delete("error_description");
-      const newUrl = newSearchParams.toString() 
-        ? `${window.location.pathname}?${newSearchParams.toString()}` 
-        : window.location.pathname;
-      window.history.replaceState({}, "", newUrl);
-    }
+    if (!err && !errorCode) return "";
+    return mapAuthError({
+      message: errorDescription || err || "",
+      code: errorCode || err || "",
+    });
+  })();
+  const error = formError || (dismissedUrlError ? "" : urlError);
+
+  useEffect(() => {
+    if (!searchParams.get("error") && !searchParams.get("error_code")) return;
+    const next = new URLSearchParams(searchParams.toString());
+    next.delete("error");
+    next.delete("error_code");
+    next.delete("error_description");
+    const query = next.toString();
+    window.history.replaceState({}, "", query ? `${window.location.pathname}?${query}` : window.location.pathname);
   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setFormError("");
+    setDismissedUrlError(true);
     setLoading(true);
     try {
       const supabase = createClient();
@@ -62,117 +62,92 @@ function LoginForm() {
         password,
       });
       if (signInError) {
-        if (signInError.message.includes("Invalid login")) {
-          setError("Email ou palavra-passe incorretos.");
-        } else if (signInError.message.toLowerCase().includes("confirm")) {
-          setError("Confirma o teu email antes de entrar. Verifica a tua caixa de entrada.");
-        } else {
-          setError(signInError.message);
-        }
+        setFormError(mapAuthError(signInError));
         setLoading(false);
         return;
       }
-      router.push(safeNextPath(searchParams.get("next")));
+      const dest = await pathAfterAuth(searchParams.get("next"));
+      router.push(dest);
       router.refresh();
-    } catch {
-      setError("Ocorreu um erro. Tenta novamente.");
+    } catch (err) {
+      setFormError(mapAuthError(err instanceof Error ? { message: err.message } : undefined));
       setLoading(false);
     }
   };
 
+  const credentialsError = isInvalidCredentials(error);
+
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center bg-aula-canvas px-4 py-12">
-      <div className="w-full max-w-[380px] mx-auto">
-        <div className="rounded-2xl border border-aula-line bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-          <AuthLogo />
-          <h1 className="mb-6 text-center text-[18px] font-semibold tracking-[-0.01em] text-aula-text">Olá outra vez</h1>
+    <AuthScreen>
+      <AuthMobileLogo />
+      <AuthTitle>Olá outra vez</AuthTitle>
 
-          {error && (
-            <div
-              className="mb-4 rounded-[10px] border border-[#F0C9BE] bg-[#FBE9E4] px-3.5 py-2.5 text-[12.5px] text-aula-overdue"
-              role="alert"
-            >
-              {error}
-            </div>
-          )}
+      {error && <AuthError>{error}</AuthError>}
 
-          <GoogleSignInButton />
+      <GoogleSignInButton />
 
-          <div className="my-5 flex items-center gap-3">
-            <div className="h-px flex-1 bg-aula-line" />
-            <span className="text-[11.5px] text-aula-text-3">ou</span>
-            <div className="h-px flex-1 bg-aula-line" />
-          </div>
+      <div className="my-5 flex items-center gap-3">
+        <div className="h-px flex-1 bg-aula-line" />
+        <span className="text-[11.5px] text-aula-text-3 min-[744px]:text-[12px] min-[744px]:text-[#5A5A57]">ou</span>
+        <div className="h-px flex-1 bg-aula-line" />
+      </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="login-email" className={labelClass}>
-                Email
-              </label>
-              <input
-                id="login-email"
-                type="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setError("");
-                }}
-                className={inputClass}
-                required
-                autoFocus
-                autoComplete="email"
-              />
-            </div>
-            <div>
-              <label htmlFor="login-password" className={labelClass}>
-                Palavra-passe
-              </label>
-              <input
-                id="login-password"
-                type="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setError("");
-                }}
-                className={inputClass}
-                required
-                autoComplete="current-password"
-              />
-              <p className="mt-1.5 text-[13px]">
-                <Link
-                  href="/auth/reset-password"
-                  className="text-aula-text-3 hover:text-aula-accent"
-                >
-                  Esqueceste a palavra-passe?
-                </Link>
-              </p>
-            </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="h-10 w-full rounded-lg bg-aula-accent text-[13.5px] font-medium text-white hover:bg-aula-accent-hover disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
-            >
-              {loading ? (
-                <>
-                  <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  A carregar…
-                </>
-              ) : (
-                "Entrar"
-              )}
-            </button>
-          </form>
-
-          <p className="mt-6 text-center text-[13px] text-aula-text-3">
-            Ainda não tens conta?{" "}
-            <Link href="/auth/signup" className="font-medium text-aula-accent">
-              Criar conta
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="login-email" className={`mb-1.5 block ${authLabelClass}`}>
+            Email
+          </label>
+          <input
+            id="login-email"
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setFormError("");
+              setDismissedUrlError(true);
+            }}
+            className={authInputClass(false)}
+            required
+            autoFocus
+            autoComplete="email"
+          />
+        </div>
+        <div>
+          <PasswordField
+            id="login-password"
+            label="Palavra-passe"
+            value={password}
+            onChange={(value) => {
+            setPassword(value);
+            setFormError("");
+            setDismissedUrlError(true);
+            }}
+            autoComplete="current-password"
+            invalid={credentialsError}
+            revealed={showPassword}
+            onToggleReveal={() => setShowPassword((v) => !v)}
+            labelExtra={
+              <Link href="/auth/reset-password" className="hidden text-[12px] font-medium text-[#1B2B61] min-[744px]:inline">
+                Esqueceste a palavra-passe?
+              </Link>
+            }
+          />
+          <p className="mt-1.5 text-[13px] min-[744px]:hidden">
+            <Link href="/auth/reset-password" className="text-aula-text-3 hover:text-aula-accent">
+              Esqueceste a palavra-passe?
             </Link>
           </p>
         </div>
-      </div>
-    </div>
+        <AuthSubmit loading={loading} idle="Entrar" busy="A carregar…" />
+      </form>
+
+      <p className="mt-6 text-center text-[13px] text-aula-text-3 min-[744px]:text-[13px] min-[744px]:text-[#5A5A57]">
+        Ainda não tens conta?{" "}
+        <Link href="/auth/signup" className="font-medium text-aula-accent">
+          Criar conta
+        </Link>
+      </p>
+    </AuthScreen>
   );
 }
 

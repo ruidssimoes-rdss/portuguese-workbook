@@ -1,8 +1,8 @@
 "use client";
 
 import { AuthLogo } from "@/components/auth-ui";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -10,6 +10,7 @@ import {
   saveOnboardingData,
   skipOnboarding,
 } from "@/lib/onboarding-service";
+import { DeskOption, NamePreview, OnboardingDesk } from "@/components/onboarding/desk";
 
 const TOTAL_STEPS = 5;
 
@@ -48,11 +49,16 @@ const GOAL_OPTIONS = [
 
 const GOALS_WITH_DATE = ["reach-a2", "reach-b1", "pass-ciple-a2", "pass-ciple-b1", "conversational"];
 
-export default function OnboardingPage() {
+function OnboardingPageInner() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState(0);
-  const [pageReady, setPageReady] = useState(false);
+  const searchParams = useSearchParams();
+  const preview = process.env.NODE_ENV !== "production" && searchParams.get("preview") === "1";
+  const previewStep = Number(searchParams.get("step") ?? "0");
+  const [currentStep, setCurrentStep] = useState(
+    preview && Number.isFinite(previewStep) ? Math.max(0, Math.min(4, previewStep)) : 0,
+  );
+  const [pageReady, setPageReady] = useState(preview);
 
   const [motivation, setMotivation] = useState("");
   const [level, setLevel] = useState("");
@@ -65,6 +71,7 @@ export default function OnboardingPage() {
   const [saveError, setSaveError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (preview) return;
     if (authLoading) return;
     if (!user) {
       router.push("/auth/login");
@@ -77,7 +84,7 @@ export default function OnboardingPage() {
       }
       setPageReady(true);
     });
-  }, [user, authLoading, router]);
+  }, [user, authLoading, router, preview]);
 
   useEffect(() => {
     if (!user?.id || currentStep !== 4) return;
@@ -115,7 +122,11 @@ export default function OnboardingPage() {
     }
   };
 
-  const handleComplete = async () => {
+  const handleComplete = async (dest: "/" | "/learn" = "/") => {
+    if (preview) {
+      router.push(dest);
+      return;
+    }
     setSaving(true);
     setSaveError(null);
     const ok = await saveOnboardingData({
@@ -128,7 +139,7 @@ export default function OnboardingPage() {
     });
     setSaving(false);
     if (ok) {
-      router.push("/");
+      router.push(dest);
     } else {
       setSaveError("Algo correu mal. Tenta novamente.");
     }
@@ -142,7 +153,7 @@ export default function OnboardingPage() {
     else setSaveError("Algo correu mal. Tenta novamente.");
   };
 
-  if (!pageReady || authLoading || !user) {
+  if (!pageReady || (!preview && (authLoading || !user))) {
     return (
       <div className="flex min-h-dvh items-center justify-center bg-aula-canvas">
         <p className="text-[12.5px] text-aula-text-3">A carregar…</p>
@@ -150,8 +161,110 @@ export default function OnboardingPage() {
     );
   }
 
+  const deskTitle =
+    currentStep === 0 ? "Porque queres aprender português?" :
+    currentStep === 1 ? "Como descreverias o teu nível atual?" :
+    currentStep === 2 ? "Quantos dias por semana podes estudar?" :
+    currentStep === 3 ? "Qual é o teu objetivo?" :
+    "Como te chamas?";
+  const deskHint =
+    currentStep === 0 ? "Why are you learning Portuguese?" :
+    currentStep === 1 ? "How would you describe your current level?" :
+    currentStep === 2 ? "How many days per week can you study?" :
+    currentStep === 3 ? "What's your target?" :
+    "What should we call you?";
+
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center bg-aula-canvas px-4 py-12">
+    <>
+    <OnboardingDesk
+      step={currentStep}
+      total={TOTAL_STEPS}
+      title={deskTitle}
+      hint={deskHint}
+      goal={targetGoal}
+      canProceed={canProceed}
+      saving={saving}
+      saveError={saveError}
+      nextLabel={currentStep === TOTAL_STEPS - 1 ? "Começar" : "Próximo"}
+      onBack={() => {
+        if (currentStep === 0) router.push("/welcome");
+        else goBack();
+      }}
+      onNext={() => {
+        if (currentStep === TOTAL_STEPS - 1) handleComplete("/");
+        else goNext();
+      }}
+      onSkip={handleSkip}
+      onClose={() => router.push("/")}
+    >
+      {currentStep === 0 && (
+        <div className="flex flex-col gap-2">
+          {MOTIVATION_OPTIONS.map((opt) => (
+            <DeskOption key={opt.value} selected={motivation === opt.value} title={opt.labelPt} hint={opt.labelEn} onClick={() => setMotivation(opt.value)} />
+          ))}
+        </div>
+      )}
+      {currentStep === 1 && (
+        <div className="flex flex-col gap-2">
+          {LEVEL_OPTIONS.map((opt) => (
+            <DeskOption key={opt.value} selected={level === opt.value} title={opt.labelPt} hint={opt.labelEn} onClick={() => setLevel(opt.value)} />
+          ))}
+        </div>
+      )}
+      {currentStep === 2 && (
+        <div className="grid grid-cols-2 gap-2">
+          {FREQUENCY_OPTIONS.map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              onClick={() => setStudyDays(opt.value)}
+              className={`rounded-xl border px-4 py-4 text-left transition-colors ${
+                studyDays === opt.value ? "border-[#1B2B61] bg-[#F3F5FA]" : "border-[#E6E6E4] bg-white hover:border-[#C5CDE0]"
+              }`}
+            >
+              <p className={`text-[16px] font-semibold ${studyDays === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>{opt.days}</p>
+              <p className="mt-1 text-[12px] text-[#5A5A57]">{opt.labelPt}</p>
+            </button>
+          ))}
+        </div>
+      )}
+      {currentStep === 3 && (
+        <div>
+          <div className="flex flex-col gap-2">
+            {GOAL_OPTIONS.map((opt) => (
+              <DeskOption key={opt.value} selected={targetGoal === opt.value} title={opt.labelPt} hint={opt.labelEn} onClick={() => setTargetGoal(opt.value)} />
+            ))}
+          </div>
+          {showDatePicker && (
+            <div className="mt-4">
+              <label htmlFor="desk-target-date" className="mb-2 block text-[12px] font-medium text-[#6B6B69]">
+                Até quando? / By when?
+              </label>
+              <input
+                id="desk-target-date"
+                type="date"
+                value={targetDate}
+                onChange={(e) => setTargetDate(e.target.value)}
+                className="h-10 w-full max-w-[240px] rounded-lg border border-[#E6E6E4] px-3 text-[14px] text-[#1F1F1F] outline-none focus:border-[#1B2B61]"
+              />
+            </div>
+          )}
+        </div>
+      )}
+      {currentStep === 4 && (
+        <div>
+          <input
+            type="text"
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+            placeholder="O teu nome"
+            className="h-11 w-full rounded-xl border border-[#E6E6E4] bg-white px-4 text-[16px] font-medium text-[#1F1F1F] outline-none placeholder:font-normal placeholder:text-[#6B6B69] focus:border-[#1B2B61]"
+          />
+          <NamePreview name={displayName} onStart={() => handleComplete("/learn")} />
+        </div>
+      )}
+    </OnboardingDesk>
+    <div className="flex min-h-dvh flex-col items-center justify-center bg-aula-canvas px-4 py-12 min-[744px]:hidden">
       <AuthLogo />
       <div className="w-full max-w-[520px] rounded-2xl border border-aula-line bg-white px-7 pb-6 pt-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
       <div className="mb-8 flex items-center gap-3">
@@ -360,5 +473,18 @@ export default function OnboardingPage() {
         Saltar configuração
       </button>
     </div>
+    </>
+  );
+}
+
+export default function OnboardingPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-dvh items-center justify-center bg-aula-canvas">
+        <p className="text-[12.5px] text-aula-text-3">A carregar…</p>
+      </div>
+    }>
+      <OnboardingPageInner />
+    </Suspense>
   );
 }
