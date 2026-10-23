@@ -1,10 +1,9 @@
 /**
- * AI-specific TypeScript types for the v2 AI integration.
- * These define the contract between the AI and the content resolver.
+ * The shape of a practice session Elísio plans from the student's progress.
+ * The planner names what to practise; the resolver loads it from the course.
  */
 
-// ── AI Session Plan ────────────────────────────────────────
-// The AI says WHAT to practice; the resolver fetches the actual content.
+// ── Session plan ───────────────────────────────────────────
 
 export interface AISessionPlan {
   sessionTitle: string;

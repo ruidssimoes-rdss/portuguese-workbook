@@ -1,16 +1,12 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { answerPassage } from "@/lib/ai-v2/passage-answer";
+import { composeNote, passageFor } from "@/lib/book/elisio";
 import type { ElisioAbout } from "@/lib/book/types";
 
 /**
  * A question about a passage or a card.
- *
- * The session route plans a personal lesson and needs an account.
- * This one only needs the passage, which is already in the book, so it
- * follows `/api/ai-v2/explain`: no session, nothing written.
- * The dock still asks a signed-out reader to enter, because Professor
- * Elísio's page does.
+ * The note is written from the chapter already in the app. Nothing is stored
+ * and nothing is sent out.
  */
 
 const aboutSchema = z.discriminatedUnion("about", [
@@ -53,10 +49,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Pedido inválido." }, { status: 400 });
   }
 
-  const about = parsed.data.about as ElisioAbout;
-  const result = await answerPassage(about, parsed.data.question);
-  if (!result) {
+  const passage = passageFor(parsed.data.about as ElisioAbout);
+  if (!passage) {
     return NextResponse.json({ error: "Não encontrei este passo." }, { status: 404 });
   }
-  return NextResponse.json(result);
+  return NextResponse.json({ note: composeNote(passage, parsed.data.question) });
 }

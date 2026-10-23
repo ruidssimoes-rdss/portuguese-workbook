@@ -16,7 +16,7 @@ Aula is a European Portuguese course for A1, A2, and B1. The language in it is f
 
 **Progress.** Each word, verb, and grammar topic has a mastery level and a spaced-repetition review date. There is also a study calendar, goals, personal notes, and a progress page. Search opens from the sidebar or with ⌘K.
 
-**Professor Elísio.** The tutor plans a practice session from your recent work. With `ANTHROPIC_API_KEY` set, planning goes to the Claude API. Otherwise it tries a local Ollama model. If neither responds, a rule-based planner builds the session from the same content. Answer explanations follow the same order (Claude, then Ollama). When no model is available, the explanation is left out.
+**Professor Elísio.** The tutor plans a practice session from your recent work, and a margin note in a chapter answers from the passage you are reading. Both are built inside the app from the course content and your progress. There is no model and no paid API.
 
 **Audio.** Pronunciation buttons play pre-generated European Portuguese clips from Supabase Storage. When a clip is missing, playback falls back to a browser voice whose language is exactly `pt-PT`.
 
@@ -27,7 +27,7 @@ Aula is a European Portuguese course for A1, A2, and B1. The language in it is f
 - Next.js 16 (App Router), React 19, TypeScript
 - Tailwind CSS 4
 - Supabase Auth, Postgres, and Storage (`src/lib/supabase`)
-- Zod, for tutor responses
+- Zod, for the shape of a question sent to Elísio
 - Playwright, for the tests in `e2e/`
 
 ## Local setup
@@ -45,9 +45,6 @@ Fill in `.env.local`:
 | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
-| `OLLAMA_BASE_URL` | Local Ollama server. The app defaults to `http://localhost:11434` |
-| `OLLAMA_MODEL` | Ollama model. The app defaults to `qwen2.5:7b-instruct` |
-| `ANTHROPIC_API_KEY` | Optional. Enables Claude for session planning and explanations |
 | `TEST_USER_EMAIL` | Used by the Playwright tests |
 | `TEST_USER_PASSWORD` | Used by the Playwright tests |
 

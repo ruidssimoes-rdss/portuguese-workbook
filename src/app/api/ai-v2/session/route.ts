@@ -13,8 +13,8 @@ export async function POST() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // 2. Plan session (Claude → Ollama → rule-based; never throws for lack of a model)
-    const { plan, source } = await planSession(user.id);
+    // 2. Plan the session from reviews and level. Nothing leaves the app.
+    const plan = await planSession(user.id);
 
     // 3. Resolve content keys into a Lesson for the player
     const lesson = planToLesson(plan);
@@ -28,7 +28,7 @@ export async function POST() {
         session_title_pt: plan.sessionTitlePt,
         description: `${plan.difficulty} session with ${plan.focusAreas.length} focus areas`,
         stages: plan.focusAreas,
-        rationale: `Source: ${source}. Review priority: ${plan.reviewPriority}.`,
+        rationale: `Built from reviews and level. Review priority: ${plan.reviewPriority}.`,
         estimated_minutes: plan.estimatedMinutes,
         difficulty: plan.difficulty,
       });
@@ -41,7 +41,6 @@ export async function POST() {
     return NextResponse.json({
       success: true,
       lesson,
-      source,
       sessionId: lesson.id,
     });
   } catch (error) {

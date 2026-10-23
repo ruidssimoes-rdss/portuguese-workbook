@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
 import { composeNote, passageFor, type ElisioPassage } from "@/lib/book/elisio";
 import { encodeCard, encodePractice, FICHA_PARAM, PRATICAR_PARAM, type ElisioAbout } from "@/lib/book/types";
 import { useBook } from "./book-context";
-
-const FALLBACK = "Preparada sem modelo, a partir deste texto.";
 
 function useLoginHref(): string {
   const book = useBook();
@@ -48,55 +46,17 @@ function preview(text: string): string {
   return `${clean.slice(0, 319).replace(/\s+\S*$/, "").trim()}…`;
 }
 
-function Note({ about, passage }: { about: ElisioAbout; passage: ElisioPassage }) {
+function Note({ passage }: { passage: ElisioPassage }) {
   const first = passage.questions[0];
   const [question, setQuestion] = useState(first);
   const [draft, setDraft] = useState("");
-  const [note, setNote] = useState(() => composeNote(passage, first));
-  const [caption, setCaption] = useState<string | null>(null);
-  const [pending, setPending] = useState(true);
   const suggested = passage.questions.some((item) => item === question);
-  const aboutKey = encodeCard({ kind: "elisio", about });
-
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch("/api/ai-v2/ask", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ about, question }),
-      signal: controller.signal,
-    })
-      .then(async (res) => {
-        if (!res.ok) throw new Error("ask failed");
-        return res.json() as Promise<{ note?: string; source?: string }>;
-      })
-      .then((data) => {
-        if (controller.signal.aborted) return;
-        if (data.source === "claude" || data.source === "ollama") {
-          if (data.note) setNote(data.note);
-          setCaption(null);
-        } else {
-          if (data.note) setNote(data.note);
-          setCaption(FALLBACK);
-        }
-        setPending(false);
-      })
-      .catch((error: unknown) => {
-        if (error instanceof DOMException && error.name === "AbortError") return;
-        if (controller.signal.aborted) return;
-        setCaption(FALLBACK);
-        setPending(false);
-      });
-    return () => controller.abort();
-  }, [about, aboutKey, question]);
+  const note = composeNote(passage, question);
 
   function ask(next: string) {
     const q = next.trim();
     if (q.length < 2 || q === question) return;
     setQuestion(q);
-    setNote(composeNote(passage, q));
-    setCaption(null);
-    setPending(true);
     setDraft("");
   }
 
@@ -139,11 +99,6 @@ function Note({ about, passage }: { about: ElisioAbout; passage: ElisioPassage }
       <div className="mt-3 rounded-[10px] border border-[#D3DAEB] bg-aula-accent-faint px-3 py-2.5">
         <p className="text-[13px] leading-relaxed text-aula-text">{note}</p>
       </div>
-      {pending ? (
-        <p className="mt-2 text-[12px] leading-relaxed text-[#5A5A57]">A ler este passo…</p>
-      ) : caption ? (
-        <p className="mt-2 text-[12px] leading-relaxed text-[#5A5A57]">{caption}</p>
-      ) : null}
 
       <form
         className="mt-4"
@@ -186,5 +141,5 @@ export function ElisioCard({ about }: { about: ElisioAbout }) {
   if (loading) return <p className="pt-2 text-[13px] text-[#5A5A57]">A preparar…</p>;
   if (!user) return <SignInPrompt />;
   if (!passage) return <p className="pt-2 text-[13px] text-[#5A5A57]">Não encontrei este passo.</p>;
-  return <Note key={encodeCard({ kind: "elisio", about })} about={about} passage={passage} />;
+  return <Note key={encodeCard({ kind: "elisio", about })} passage={passage} />;
 }
