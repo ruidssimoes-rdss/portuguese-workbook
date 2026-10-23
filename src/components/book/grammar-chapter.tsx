@@ -18,9 +18,9 @@ interface Question {
 
 function SectionTitle({ n, children }: { n: number; children: React.ReactNode }) {
   return (
-    <h2 className="mt-9 flex items-baseline gap-2.5 text-[15px] font-semibold tracking-[-0.01em] text-aula-text">
-      <span className="text-[13px] font-medium tabular-nums text-[#5A5A57]">{n}</span>
-      <span>{children}</span>
+    <h2 className="mt-9 font-sans text-[13px] font-medium leading-relaxed tracking-[-0.011em] text-aula-text">
+      <span className="mr-2 tabular-nums text-[#5A5A57]">{n}</span>
+      {children}
     </h2>
   );
 }
