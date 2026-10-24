@@ -563,3 +563,11 @@
     color: #1b2b61;
   }
 }
+
+/* Tall marketing hero: keep the title and the course line one cluster. */
+@media (min-width: 744px) and (min-height: 1000px) {
+  .landing-hero {
+    justify-content: center;
+    gap: 80px;
+  }
+}
