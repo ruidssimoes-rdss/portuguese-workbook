@@ -49,6 +49,7 @@ export function AskChapter({ about, tall = false }: { about: ElisioAbout; tall?:
       type="button"
       aria-pressed={on}
       onClick={open}
+      title="Ask Elísio about this chapter"
       className={`tablet-target inline-flex items-center rounded-lg border text-[13px] font-medium transition-colors ${tall ? "h-9 px-4" : "h-8 px-3"} ${openClass(on)}`}
     >
       Perguntar ao Elísio

@@ -8,12 +8,14 @@
  * The key spec must match scripts/tts/key.mjs exactly.
  */
 
+import { getAudioSpeed, subscribeAudioSpeed } from "@/lib/audio/speed";
+
 export const VOICE_ID = "piper-pt_PT-tugao-medium";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+
 const AUDIO_BASE = SUPABASE_URL ? `${SUPABASE_URL}/storage/v1/object/public/audio/${VOICE_ID}` : null;
 const CACHE_LIMIT = 50;
-const FALLBACK_RATE = 0.95;
 /** Tiny silent WAV, played synchronously inside the click to unlock the element on iOS Safari. */
 const SILENCE = "data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQIAAACAgA==";
 
@@ -33,6 +35,20 @@ const failed = new Set<string>();
 let current: HTMLAudioElement | null = null;
 let speechPrimed = false;
 let generation = 0;
+
+function applyRate(audio: HTMLAudioElement) {
+  const rate = getAudioSpeed();
+  audio.playbackRate = rate;
+  audio.preservesPitch = true;
+  const webkit = audio as HTMLAudioElement & { webkitPreservesPitch?: boolean };
+  webkit.webkitPreservesPitch = true;
+}
+
+if (typeof window !== "undefined") {
+  subscribeAudioSpeed(() => {
+    if (current) applyRate(current);
+  });
+}
 
 function stopAll() {
   if (current) {
@@ -63,6 +79,7 @@ function playClip(audio: HTMLAudioElement): Promise<void> {
     audio.addEventListener("ended", onEnd);
     audio.addEventListener("error", onError);
     current = audio;
+    applyRate(audio);
     audio.play().then(() => audio.addEventListener("pause", onEnd), onError);
   });
 }
@@ -89,7 +106,7 @@ async function speakFallback(text: string): Promise<void> {
   syn.cancel();
   const u = new SpeechSynthesisUtterance(normalize(text));
   u.lang = "pt-PT";
-  u.rate = FALLBACK_RATE;
+  u.rate = getAudioSpeed();
   if (voice) u.voice = voice;
   await new Promise<void>((resolve, reject) => {
     u.onend = () => resolve();

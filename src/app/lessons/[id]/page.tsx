@@ -11,7 +11,8 @@ import { ProtectedRoute } from "@/components/protected-route";
 import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { BookShell } from "@/components/book/book-shell";
 import { LessonChapter, lessonListenLines } from "@/components/book/lesson-chapter";
-import { ListenButton } from "@/components/book/play-button";
+import { ListenControls } from "@/components/book/play-button";
+import { setViewingId } from "@/lib/course-path";
 import {
   getResolvedLesson,
   getCurriculumLesson,
@@ -69,17 +70,18 @@ interface LessonSessionData {
 
 function getSessionKey(id: string): string { return `${SESSION_KEY_PREFIX}${id}`; }
 function saveSession(id: string, data: LessonSessionData): void {
-  try { sessionStorage.setItem(getSessionKey(id), JSON.stringify(data)); } catch { /* */ }
+  try { localStorage.setItem(getSessionKey(id), JSON.stringify(data)); } catch { /* */ }
 }
 function restoreSession(id: string): LessonSessionData | null {
   try {
-    const raw = sessionStorage.getItem(getSessionKey(id));
+    const raw = localStorage.getItem(getSessionKey(id)) ?? sessionStorage.getItem(getSessionKey(id));
     if (raw) return JSON.parse(raw) as LessonSessionData;
   } catch { /* */ }
   return null;
 }
 function clearSession(id: string): void {
   try {
+    localStorage.removeItem(getSessionKey(id));
     sessionStorage.removeItem(getSessionKey(id));
     sessionStorage.removeItem(`aula-pt-lesson-v2-${id}`);
     sessionStorage.removeItem(`aula-pt-lesson-${id}`);
@@ -242,6 +244,10 @@ function LessonContent({ id, dock = false, onDismiss }: { id: string; dock?: boo
     try {
       const ok = await saveLessonAttempt(lesson.id, accuracy, passed, wrongItems);
       if (!ok) { setSaveError(true); return; }
+      if (passed && !isDynamic && !isAISession) {
+        const { notePracticeSaved } = await import("@/lib/course-path");
+        await notePracticeSaved(lesson.id);
+      }
 
       clearSession(id);
       logLessonCompletion(lesson.id, title, accuracy, passed).catch(() => {});
@@ -295,7 +301,7 @@ function LessonContent({ id, dock = false, onDismiss }: { id: string; dock?: boo
       setSaveError(true);
     } finally {
     }
-  }, [lesson, generatedLesson, sectionResults, accuracy, passed, id, isDynamic, dynamicPracticeItems]);
+  }, [lesson, generatedLesson, sectionResults, accuracy, passed, id, isDynamic, isAISession, dynamicPracticeItems]);
 
   useEffect(() => {
     if (lessonState !== "results" || hasSaved.current) return;
@@ -325,7 +331,7 @@ function LessonContent({ id, dock = false, onDismiss }: { id: string; dock?: boo
       <div className={`mx-auto max-w-[620px] ${dock ? "pt-2" : "pt-10"}`}>
         <div className="rounded-xl border border-aula-border bg-white p-6">
           <p className="text-[15px] font-semibold text-aula-text">Tens esta lição a meio</p>
-          <p className="mt-1 text-[12.5px] text-aula-text-2">Podes continuar onde ficaste ou começar de novo.</p>
+          <p className="mt-1 text-[12.5px] leading-relaxed text-[#5A5A57]">You left this chapter’s exercises unfinished. Continue, or start them again. Your place in the course stays on this chapter until you pass.</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <button type="button" onClick={handleRestore} className="inline-flex h-9 items-center rounded-lg bg-aula-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
               Continuar onde parei
@@ -387,6 +393,10 @@ function LessonContent({ id, dock = false, onDismiss }: { id: string; dock?: boo
 function CurriculumLesson({ id }: { id: string }) {
   const lesson = getCurriculumLesson(id);
 
+  useEffect(() => {
+    setViewingId(id);
+  }, [id]);
+
   if (!lesson) {
     return (
       <PageShell header={<Crumbs items={[{ label: "Lições", href: "/lessons" }]} />}>
@@ -411,7 +421,7 @@ function CurriculumLesson({ id }: { id: string }) {
         <>
           <Crumbs items={[{ label: "Lições", href: "/lessons" }, { label: lesson.cefrLevel }, { label: `${number} · ${lesson.titlePt}` }]} />
           <span className="flex-1" />
-          <ListenButton lines={lessonListenLines(lesson)} label="Ouvir lição" />
+          <ListenControls lines={lessonListenLines(lesson)} label="Ouvir lição" />
         </>
       }
     >

@@ -22,6 +22,7 @@ import { useMastery, stateOf, dueLabel } from "@/lib/use-mastery";
 import { cardDrill } from "@/lib/book/practice";
 import { passageFor } from "@/lib/book/elisio";
 import type { ElisioAbout } from "@/lib/book/types";
+import { MarkReviewed } from "./mark-reviewed";
 import { AskCardButton } from "./ask";
 import { ElisioCard } from "./elisio-card";
 import { useBook } from "./book-context";
@@ -75,9 +76,15 @@ function PracticeButton({ card }: { card: CardRef }) {
 
 function CardActions({ card, about }: { card: CardRef; about: ElisioAbout }) {
   return (
-    <div className="mt-card flex flex-wrap items-center gap-item">
-      <PracticeButton card={card} />
-      <AskCardButton about={about} />
+    <div className="mt-card flex flex-col gap-paragraph">
+      <div className="flex flex-wrap items-center gap-item">
+        <PracticeButton card={card} />
+        <AskCardButton about={about} />
+      </div>
+      <p className="text-[12.5px] leading-relaxed text-[#5A5A57]">
+        Practise this card, or ask Elísio. Neither one moves your place in the course.
+      </p>
+      <MarkReviewed card={card} />
     </div>
   );
 }
@@ -174,6 +181,7 @@ export function VerbCard({ id }: { id: string }) {
         ]}
       />
       <CardActions card={ref} about={{ about: "verb", id: verb.id }} />
+      <Backlinks target={ref} />
 
       <div className="mt-card flex flex-wrap items-center gap-x-paragraph gap-y-item">
         <h3 className="shrink-0 text-[13px] font-semibold text-aula-text">Conjugação</h3>
@@ -223,7 +231,6 @@ export function VerbCard({ id }: { id: string }) {
         </div>
       )}
 
-      <Backlinks target={ref} />
     </div>
   );
 }
@@ -303,6 +310,7 @@ export function WordCard({ category, word }: { category: string; word: string })
         ]}
       />
       <CardActions card={entry.ref} about={{ about: "word", category: entry.category, word: entry.portuguese }} />
+      <Backlinks target={entry.ref} />
 
       {entry.example && <Examples className="mt-card" rows={[{ pt: entry.example, en: entry.exampleTranslation }]} skip={entry.ref} />}
 
@@ -331,8 +339,6 @@ export function WordCard({ category, word }: { category: string; word: string })
           </button>
         </div>
       )}
-
-      <Backlinks target={entry.ref} />
 
       <div className="mt-card">
         <Link
@@ -380,6 +386,7 @@ export function GrammarCard({ id }: { id: string }) {
         ]}
       />
       <CardActions card={topic.ref} about={{ about: "grammar", id: topic.id }} />
+      <Backlinks target={topic.ref} />
       {rule && (
         <>
           <h3 className="mt-card text-[13px] font-semibold text-aula-text">{rule.rulePt || "Formação"}</h3>
@@ -400,8 +407,8 @@ export function GrammarCard({ id }: { id: string }) {
         <Link href={`/grammar/${topic.id}`} className="text-[12.5px] font-medium text-aula-accent">
           Abrir o capítulo
         </Link>
+        <p className="mt-heading text-[12.5px] leading-relaxed text-[#5A5A57]">Open the full grammar chapter. Your course place stays put.</p>
       </div>
-      <Backlinks target={topic.ref} />
     </div>
   );
 }

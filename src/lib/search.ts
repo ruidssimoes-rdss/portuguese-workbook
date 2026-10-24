@@ -10,6 +10,8 @@ import type { VerbDataSet, VerbData, Conjugation } from "@/types";
 import type { GrammarData } from "@/types/grammar";
 import type { SayingsData } from "@/types/saying";
 import type { FalseFriendsData, EtiquetteData, RegionalData } from "@/types/culture";
+import { cardInLessonHref } from "@/lib/book/catalog";
+import { encodeCard } from "@/lib/book/types";
 
 export interface SearchResult {
   type: "vocabulary" | "verb" | "conjugation" | "grammar" | "saying" | "false_friend" | "etiquette" | "regional";
@@ -314,8 +316,10 @@ function runTextSearch(
   }
 
   function scoreVerbInfinitive(q: string, infNorm: string, enNorm: string): number {
-    if (infNorm === q) return 500;
-    if (infNorm.startsWith(q)) return 480;
+    // Exact infinitive outranks phrases that merely start with the verb
+    // ("estar" → ESTAR, then "estar um frio…"). Exact vocabulary still wins at 1000.
+    if (infNorm === q) return 950;
+    if (infNorm.startsWith(q)) return 850;
     if (enNorm.includes(q)) return 300;
     return 0;
   }
@@ -363,7 +367,8 @@ function runTextSearch(
         if (vocabOnlyEnglish) score = enNorm.includes(queryNorm) || enNorm.startsWith(queryNorm) ? (enNorm === queryNorm ? 600 : 550) : 0;
         if (vocabOnlyPortuguese) score = ptNorm.includes(queryNorm) || ptNorm.startsWith(queryNorm) ? (ptNorm === queryNorm ? 1000 : 800) : 0;
         if (score === 0) continue;
-        const href = `/vocabulary/${cat.id}?highlight=${encodeURIComponent(w.portuguese)}`;
+        const href = cardInLessonHref({ kind: "word", category: cat.id, word: w.portuguese })
+          ?? `/vocabulary/${cat.id}?highlight=${encodeURIComponent(w.portuguese)}`;
         const key = dedupeKey("vocabulary", href, w.portuguese);
         if (seen.has(key)) continue;
         seen.add(key);
@@ -398,7 +403,8 @@ function runTextSearch(
       const enNorm = normalizeForSearch(v.meta.english);
       const score = scoreVerbInfinitive(queryNorm, infNorm, enNorm);
       if (score > 0) {
-        const href = `/conjugations/${infinitive.toLowerCase()}`;
+        const href = cardInLessonHref({ kind: "verb", id: infinitive.toLowerCase() })
+          ?? `/conjugations/${infinitive.toLowerCase()}`;
         const key = dedupeKey("verb", href, infinitive);
         if (!seen.has(key)) {
           seen.add(key);
@@ -449,7 +455,7 @@ function runTextSearch(
       const titlePtNorm = normalizeForSearch(t.titlePt);
       const score = scoreGrammar(queryNorm, titleNorm, titlePtNorm);
       if (score === 0) continue;
-      const href = `/grammar/${id}`;
+      const href = `/grammar/${id}?ficha=${encodeURIComponent(encodeCard({ kind: "grammar", id }))}`;
       const key = dedupeKey("grammar", href, t.title);
       if (seen.has(key)) continue;
       seen.add(key);
@@ -656,7 +662,7 @@ function buildSmartCard(
         english: data.meta.english,
         group: data.meta.group,
         cefr: data.meta.cefr,
-        href: `/conjugations/${infinitive.toLowerCase()}`,
+        href: cardInLessonHref({ kind: "verb", id: infinitive.toLowerCase() }) ?? `/conjugations/${infinitive.toLowerCase()}`,
         presentPreview,
       };
     }
@@ -668,7 +674,7 @@ function buildSmartCard(
         english: data.meta.english,
         group: data.meta.group,
         cefr: data.meta.cefr,
-        href: `/conjugations/${infinitive.toLowerCase()}`,
+        href: cardInLessonHref({ kind: "verb", id: infinitive.toLowerCase() }) ?? `/conjugations/${infinitive.toLowerCase()}`,
         presentPreview: getPresentConjugations(data.conjugations ?? []),
       })),
     };

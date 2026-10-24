@@ -66,6 +66,11 @@ export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartEx
             ? "O que estava quase a fugir-te. Acertas e volta mais tarde; erras e volta mais cedo."
             : "Feita para ti a partir do que já sabes e do que te falta."}
       </p>
+      <p className={`text-[12.5px] leading-relaxed text-[#5A5A57] ${dock ? "mt-heading" : "mt-1"}`}>
+        {isReview
+          ? "Review what is due. Correct answers come back later. This is not the course path."
+          : "Do these exercises. You need 80% to finish the practice step."}
+      </p>
 
       <div className={`${dock ? "mt-card" : "mt-7"} rounded-xl border border-aula-border bg-white`}>
         {news.length > 0 && (

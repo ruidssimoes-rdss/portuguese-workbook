@@ -47,6 +47,9 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry, dock =
             <p className="text-[12px] text-aula-text-2">
               {totalCorrect} de {totalQuestions} certas{passed ? "" : " · precisas de 80% para passar"}
             </p>
+            <p className="text-[12.5px] leading-relaxed text-[#5A5A57]">
+              {passed ? "Practice step done. Mark the chapter as read if you have not yet." : "80% finishes this step. Try again when you are ready."}
+            </p>
           </div>
         </div>
         <div className={`relative ${dock ? "mt-card" : "mt-5"}`}>

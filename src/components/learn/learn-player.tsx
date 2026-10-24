@@ -266,6 +266,9 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
                 {section.totalQuestions} {section.totalQuestions === 1 ? "pergunta" : "perguntas"}
               </span>
             </div>
+            {section.nameEn && (
+              <p className={`${dock ? "mb-heading" : "mb-3"} text-[12.5px] leading-relaxed text-[#5A5A57]`}>{section.nameEn}</p>
+            )}
             <div className="rounded-xl border border-aula-border bg-white px-6 pt-3">
               <Component
                 key={`section-${currentSection}-${attempt}`}

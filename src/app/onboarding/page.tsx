@@ -32,10 +32,10 @@ const LEVEL_OPTIONS = [
 ];
 
 const FREQUENCY_OPTIONS = [
-  { value: 2, days: "1–2 dias", labelPt: "Casual" },
-  { value: 4, days: "3–4 dias", labelPt: "Constante" },
-  { value: 6, days: "5–6 dias", labelPt: "Dedicado" },
-  { value: 7, days: "Todos os dias", labelPt: "Intensivo" },
+  { value: 2, days: "1–2 dias", labelPt: "Casual", labelEn: "1–2 days a week" },
+  { value: 4, days: "3–4 dias", labelPt: "Constante", labelEn: "3–4 days a week" },
+  { value: 6, days: "5–6 dias", labelPt: "Dedicado", labelEn: "5–6 days a week" },
+  { value: 7, days: "Todos os dias", labelPt: "Intensivo", labelEn: "Every day" },
 ];
 
 const GOAL_OPTIONS = [
@@ -122,7 +122,7 @@ function OnboardingPageInner() {
     }
   };
 
-  const handleComplete = async (dest: "/" | "/learn" = "/") => {
+  const handleComplete = async (dest: "/" | "/learn" | "/lessons/a1-01" = "/") => {
     if (preview) {
       router.push(dest);
       return;
@@ -224,6 +224,7 @@ function OnboardingPageInner() {
             >
               <p className={`text-[16px] font-semibold ${studyDays === opt.value ? "text-[#1B2B61]" : "text-[#1F1F1F]"}`}>{opt.days}</p>
               <p className="mt-1 text-[12px] text-[#5A5A57]">{opt.labelPt}</p>
+              <p className="mt-1 text-[12px] leading-relaxed text-[#5A5A57]">{opt.labelEn}</p>
             </button>
           ))}
         </div>
@@ -260,7 +261,7 @@ function OnboardingPageInner() {
             placeholder="O teu nome"
             className="h-11 w-full rounded-xl border border-[#E6E6E4] bg-white px-4 text-[16px] font-medium text-[#1F1F1F] outline-none placeholder:font-normal placeholder:text-[#6B6B69] focus:border-[#1B2B61]"
           />
-          <NamePreview name={displayName} onStart={() => handleComplete("/learn")} />
+          <NamePreview name={displayName} onStart={() => handleComplete("/lessons/a1-01")} />
         </div>
       )}
     </OnboardingDesk>

@@ -2,6 +2,7 @@
 
 import type { CurriculumLesson } from "@/data/curriculum-types";
 import { lessonBundle } from "@/lib/book/elisio";
+import { ChapterStatus } from "@/components/course/chapter-status";
 import { AskChapter, AskPassage } from "./ask";
 import { useBook } from "./book-context";
 import { Callout, Examples, Kicker } from "./ui";
@@ -37,6 +38,10 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
         Lição {lesson.number} · {lesson.cefrLevel} · 20 min
       </Kicker>
       <h1 className="mt-heading text-[22px] font-semibold tracking-[-0.02em] text-aula-text">{lesson.titlePt}</h1>
+      <p className="mt-heading text-[12.5px] leading-relaxed text-[#5A5A57]">
+        Read this chapter, then practise. Both steps mark it done and move the course on.
+      </p>
+      <ChapterStatus lesson={lesson} />
       <AskPassage about={{ ...aboutLesson, part: "intro" }}>
         <div>
           <p className="mt-heading text-[13px] leading-relaxed text-[#5A5A57]">{lesson.description}</p>
@@ -66,6 +71,9 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
           <p className="mt-heading text-[13px] leading-relaxed text-[#5A5A57]">
             As palavras desta lição. Abre uma para ver o significado, o áudio e onde mais aparece.
           </p>
+          <p className="mt-heading text-[12.5px] leading-relaxed text-[#5A5A57]">
+            Open a word to see what it means and hear it.
+          </p>
           <Examples
             className="mt-heading"
             rows={words.filter((word) => word.example).map((word) => ({ pt: word.example!, en: word.exampleTranslation || word.english }))}
@@ -77,6 +85,9 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
       {verbs.length > 0 && (
         <section>
           <SectionTitle n={++n}>Verbos</SectionTitle>
+          <p className="mt-heading text-[12.5px] leading-relaxed text-[#5A5A57]">
+            Open a verb to read the card, then follow Aparece em if you want the chapter that teaches it.
+          </p>
           <div className="mt-heading flex flex-col gap-paragraph">
             {verbs.map((verb) => {
               const rows = verb.rows("Present");
@@ -154,7 +165,7 @@ export function LessonChapter({ lesson }: { lesson: CurriculumLesson }) {
           Praticar esta lição
         </button>
         <AskChapter tall about={aboutLesson} />
-        <span className="text-[12.5px] text-[#5A5A57]">Os exercícios abrem neste capítulo.</span>
+        <span className="text-[12.5px] leading-relaxed text-[#5A5A57]">Exercises open here. Pass them at 80% to finish this step. Ask Elísio if a line is unclear.</span>
       </div>
     </article>
   );

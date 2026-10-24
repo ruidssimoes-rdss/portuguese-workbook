@@ -261,14 +261,18 @@ export function SectionFooter({
   return (
     <div className="sticky bottom-0 -mx-6 mt-2 flex items-center gap-3 rounded-b-xl border-t border-[#EFEFED] bg-white/95 px-6 py-3.5 backdrop-blur">
       {checked ? (
-        <span className="text-[12.5px] text-[#6B6B69]">
+        <span className="text-[12.5px] leading-snug text-[#5A5A57]">
           <span className={`font-semibold ${correct === total ? "text-[#1F7A68]" : "text-[#1F1F1F]"}`}>
             {correct} de {total}
           </span>{" "}
           certas
+          <span className="mt-0.5 block text-[11.5px]">{correct === total ? "All correct." : "Review the ones you missed, then continue."}</span>
         </span>
       ) : (
-        <span className="text-[12px] text-[#98988F]">{ready ? "Pronto para verificar" : `Faltam ${remaining}`}</span>
+        <span className="text-[12px] leading-snug text-[#5A5A57]">
+          {ready ? "Pronto para verificar" : `Faltam ${remaining}`}
+          <span className="mt-0.5 block text-[11.5px]">{ready ? "Check your answers." : "Fill every gap, then check."}</span>
+        </span>
       )}
       <span className="flex-1" />
       {checked ? (
@@ -280,6 +284,7 @@ export function SectionFooter({
           type="button"
           onClick={onCheck}
           disabled={!ready}
+          aria-label="Verificar. Check your answers."
           className="tablet-target inline-flex h-9 items-center rounded-lg bg-[#1B2B61] px-4 text-[13px] font-medium text-white transition-colors hover:bg-[#14214C] disabled:cursor-not-allowed disabled:opacity-35"
         >
           Verificar
