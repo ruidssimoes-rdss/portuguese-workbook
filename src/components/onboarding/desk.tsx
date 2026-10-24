@@ -350,7 +350,7 @@ export function NamePreview({ name, onStart }: { name: string; onStart: () => vo
         onClick={onStart}
         className="mt-3 flex h-10 w-full items-center justify-center gap-2 rounded-full bg-[#1B2B61] text-[13px] font-medium text-white hover:bg-[#14214C]"
       >
-        Começar a sessão de hoje
+        Começar o curso
         <ArrowRight size={14} strokeWidth={1.75} aria-hidden />
       </button>
     </div>

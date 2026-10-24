@@ -8,11 +8,12 @@
 
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { CalendarDays, RotateCcw, Sparkles, Search, ChevronRight, X } from "lucide-react";
+import { RotateCcw, Sparkles, Search, ChevronRight, X } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 import { PageShell } from "@/components/layout/page-shell";
 import { SearchModal } from "@/components/search-modal";
 import { getProgressStats } from "@/lib/progress-stats-service";
+import { ContinuarCard } from "@/components/course/continuar-card";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
 import { getCurrentStudyLevel, getReviewSummary } from "@/lib/learning-engine";
 import { createClient } from "@/lib/supabase/client";
@@ -135,8 +136,7 @@ function HomeContent() {
           .filter(Boolean)
           .join(" · ");
 
-  const suggestions: { href: string; icon: typeof CalendarDays; label: string; meta: string }[] = [
-    { href: "/learn", icon: CalendarDays, label: "Começar a sessão de hoje", meta: stats ? `${stats.level}` : "" },
+  const suggestions: { href: string; icon: typeof RotateCcw; label: string; meta: string }[] = [
     ...(stats && stats.reviewDue > 0
       ? [
           {
@@ -148,7 +148,7 @@ function HomeContent() {
           },
         ]
       : []),
-    { href: "/tutor", icon: Sparkles, label: "Pedir uma sessão ao Professor Elísio", meta: "Personalizada" },
+    { href: "/tutor", icon: Sparkles, label: "Pedir uma sessão ao Professor Elísio", meta: "Ask Elísio" },
   ];
 
   const showGuest = !authLoading && !user;
@@ -188,8 +188,8 @@ function HomeContent() {
           {showGuest ? (
             <EmptyPanel
               title="Bem-vindo à Aula"
-              copy="Learn European Portuguese from A1 to B1. Pick a place to start."
-              cta={{ href: "/welcome", label: "Começar" }}
+              copy="Start at chapter 1. The course runs A1, then A2, then B1. Search can wait."
+              cta={{ href: "/lessons", label: "Começar o curso" }}
               links={[
                 { href: "/auth/login", label: "Entrar" },
                 { href: "/vocabulary", label: "Vocabulário" },
@@ -199,8 +199,8 @@ function HomeContent() {
           ) : showStart ? (
             <EmptyPanel
               title="Vamos começar"
-              copy="Your first lesson takes about 10 minutes."
-              cta={{ href: "/learn", label: "Começar Lição 1" }}
+              copy="Chapter 1 takes a few minutes to read, then a short practice. Your place is saved on this device."
+              cta={{ href: "/lessons/a1-01", label: "Começar o curso" }}
               links={[
                 { href: "/vocabulary", label: "Vocabulário" },
                 { href: "/grammar", label: "Gramática" },
@@ -230,6 +230,12 @@ function HomeContent() {
                   <kbd className="rounded bg-aula-sunken px-1.5 py-0.5 text-[10.5px] text-aula-text-3">⌘K</kbd>
                 </span>
               </button>
+
+              {user && (
+                <div className="mt-4">
+                  <ContinuarCard />
+                </div>
+              )}
 
               {/* Suggestions */}
               {user && (

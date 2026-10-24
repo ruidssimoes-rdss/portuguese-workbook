@@ -14,6 +14,7 @@ import { AudioButton } from "@/components/primitives";
 import { Pips, LevelTag, Label, PanelCard, KV, TENSE_PT } from "@/components/aula";
 import { useMastery, stateOf, dueLabel, STATE_LABEL } from "@/lib/use-mastery";
 import verbData from "@/data/verbs.json";
+import { TaughtIn } from "@/components/course/taught-in";
 
 interface Row {
   Person: string;
@@ -111,6 +112,10 @@ export default function VerbPage() {
           <span className="text-aula-accent">{verb.meta.group}</span>
           <LevelTag level={verb.meta.cefr} />
         </div>
+        <p className="mt-heading text-[12.5px] leading-relaxed text-[#5A5A57]">
+          This is the verb card. Follow Aparece em to the chapter that teaches it. That does not move your course.
+        </p>
+        <TaughtIn target={{ kind: "verb", id: name }} />
 
         <div className="mt-6 inline-flex max-w-full flex-wrap gap-0.5 rounded-lg bg-aula-sunken p-[3px]">
           {tenses.map((t) => (

@@ -14,7 +14,7 @@ import regionalData from "@/data/regional.json";
 import { A1_LESSONS, A2_LESSONS, B1_LESSONS, EXTRA_LESSONS } from "@/data/curriculum";
 import type { CurriculumLesson } from "@/data/curriculum-types";
 import { CATEGORY_PT } from "@/components/aula";
-import { encodeCard, type CardRef, type CultureType } from "./types";
+import { encodeCard, FICHA_PARAM, type CardRef, type CultureType } from "./types";
 
 export type { CardRef, CultureType } from "./types";
 export { decodeCard, encodeCard, sameCard, FICHA_PARAM } from "./types";
@@ -606,6 +606,24 @@ export function linkPlain(text: string, skip?: CardRef): Segment[] {
 export function getBacklinks(ref: CardRef): { total: number; items: Backlink[] } {
   ensure();
   return backlinks.get(encodeCard(ref)) ?? { total: 0, items: [] };
+}
+
+/** Lesson chapters that mention this card, earliest in the course first. */
+export function lessonBacklinks(ref: CardRef): Backlink[] {
+  return getBacklinks(ref)
+    .items.filter((item) => item.href?.startsWith("/lessons/"))
+    .sort((a, b) => {
+      const an = getBookLesson(a.href!.slice("/lessons/".length))?.number ?? 9999;
+      const bn = getBookLesson(b.href!.slice("/lessons/".length))?.number ?? 9999;
+      return an - bn;
+    });
+}
+
+/** Open the earliest teaching chapter with this card already in the dock. */
+export function cardInLessonHref(ref: CardRef): string | null {
+  const first = lessonBacklinks(ref)[0];
+  if (!first?.href) return null;
+  return `${first.href}?${FICHA_PARAM}=${encodeURIComponent(encodeCard(ref))}`;
 }
 
 export function linksFrom(sourceKey: string, kind?: CardRef["kind"]): CardRef[] {

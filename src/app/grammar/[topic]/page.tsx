@@ -13,7 +13,7 @@ import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { Label, PanelCard, Pips, KV } from "@/components/aula";
 import { BookShell } from "@/components/book/book-shell";
 import { GrammarChapter, grammarListenLines } from "@/components/book/grammar-chapter";
-import { ListenButton } from "@/components/book/play-button";
+import { ListenControls } from "@/components/book/play-button";
 import { getGrammar } from "@/lib/book/catalog";
 import { useMastery, stateOf, dueLabel, STATE_LABEL } from "@/lib/use-mastery";
 import { grammarGroups } from "@/data/grammar-groups";
@@ -109,7 +109,7 @@ function GrammarTopic() {
         <>
           {crumbs}
           <span className="flex-1" />
-          <ListenButton lines={grammarListenLines(topic)} label="Ouvir capítulo" />
+          <ListenControls lines={grammarListenLines(topic)} label="Ouvir capítulo" />
         </>
       }
     >

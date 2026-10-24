@@ -62,6 +62,9 @@ export function LessonList({ lessons, completed, currentLevel }: { lessons: Curr
   return (
     <div className="mt-6">
       <Label className="mb-2 px-2">Todas as lições</Label>
+      <p className="mb-heading px-2 text-[12.5px] leading-relaxed text-[#5A5A57]">
+        Every chapter, in order. Seguinte is where Continuar takes you. Opening another chapter does not change that.
+      </p>
       {(["A1", "A2", "B1"] as const).map((lv) => {
         const list = ordered.filter((l) => l.cefrLevel === lv);
         if (list.length === 0) return null;

@@ -14,6 +14,7 @@ import { AudioButton } from "@/components/primitives";
 import { Pips, LevelTag, Label, PanelCard, KV, CATEGORY_PT, wordHref } from "@/components/aula";
 import { useMastery, stateOf, dueLabel, STATE_LABEL } from "@/lib/use-mastery";
 import vocabData from "@/data/vocab.json";
+import { TaughtIn } from "@/components/course/taught-in";
 
 type Word = (typeof vocabData.categories)[number]["words"][number] & {
   relatedWords?: { word: string; meaning: string }[];
@@ -128,7 +129,11 @@ export default function WordPage() {
           {signedIn && <span className={toneColor}>· {STATE_LABEL[state].toLowerCase()}</span>}
         </div>
 
-        <h2 className="mt-7 text-[15px] font-semibold text-aula-text">{word.english}</h2>
+        <h2 className="mt-heading text-[15px] font-semibold text-aula-text">{word.english}</h2>
+        <p className="mt-heading text-[12.5px] leading-relaxed text-[#5A5A57]">
+          Open Taught in to reach the chapter. Your place in the course stays where you left it.
+        </p>
+        <TaughtIn target={{ kind: "word", category: category.id, word: word.portuguese }} />
 
         <div className="my-7 h-px bg-aula-line" />
 

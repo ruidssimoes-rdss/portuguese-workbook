@@ -17,11 +17,12 @@ import {
 import { getActiveGoals } from "@/lib/goals-service";
 import { exportUserData } from "@/lib/export-user-data";
 import type { Profile, UserSettings } from "@/types/database";
+import { getAudioSpeed, hasLocalAudioSpeed, setAudioSpeed, snapAudioSpeed } from "@/lib/audio/speed";
 
 const SPEED_OPTIONS = [
-  { value: 0.6, label: "Lento" },
-  { value: 0.85, label: "Normal" },
-  { value: 1, label: "Rápido" },
+  { value: 0.75, label: "0.75 · mais lento" },
+  { value: 0.85, label: "0.85 · normal" },
+  { value: 1, label: "1.0" },
 ];
 
 const DAILY_GOAL_OPTIONS = [5, 10, 15, 20];
@@ -166,13 +167,17 @@ export default function SettingsPage() {
     if (settingsRes.data) {
       const s = settingsRes.data as UserSettings;
       setSettings(s);
-      setPronunciationSpeed(s.pronunciation_speed ?? 0.85);
+      const speed = hasLocalAudioSpeed() ? getAudioSpeed() : snapAudioSpeed(s.pronunciation_speed ?? 0.85);
+      setPronunciationSpeed(speed);
+      setAudioSpeed(speed, { mirror: false });
       setShowPhonetics(s.show_phonetics ?? true);
       setDailyGoal(s.daily_goal ?? 10);
       setShowTranslations(s.show_translations ?? true);
       setPreferredStudyTime(s.preferred_study_time ?? "evening");
     } else {
-      setPronunciationSpeed(0.85);
+      const speed = hasLocalAudioSpeed() ? getAudioSpeed() : 0.85;
+      setPronunciationSpeed(speed);
+      setAudioSpeed(speed, { mirror: false });
       setShowPhonetics(true);
       setDailyGoal(10);
       setShowTranslations(true);
@@ -278,6 +283,7 @@ export default function SettingsPage() {
     if (error) {
       setMessage({ type: "error", text: error.message });
     } else {
+      setAudioSpeed(pronunciationSpeed, { mirror: false });
       setMessage({ type: "ok", text: "Definições guardadas." });
     }
   };
@@ -426,7 +432,7 @@ export default function SettingsPage() {
             </Section>
 
             <Section id="preferencias" title="Preferências">
-              <SettingsRow label="Velocidade da pronúncia" description="Lento, normal ou rápido">
+              <SettingsRow label="Velocidade da pronúncia" description="Same voice. 0.85 is the default — slower, still clear.">
                 <select value={pronunciationSpeed} onChange={(e) => setPronunciationSpeed(Number(e.target.value))} className={FIELD}>
                   {SPEED_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>

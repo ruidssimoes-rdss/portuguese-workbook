@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { AudioSpeedControl } from "@/components/audio-speed-control";
 import { encodeCard } from "@/lib/book/types";
 import { useBook } from "./book-context";
 import { CardBody, cardCrumb, cardTabLabel } from "./cards";
@@ -64,7 +65,7 @@ export function CardPane() {
         })}
       </div>
 
-      <div className="flex h-10 shrink-0 items-center gap-1 px-pad text-[12px] min-[744px]:max-[1439px]:h-12">
+      <div className="flex min-h-10 shrink-0 flex-wrap items-center gap-1 px-pad py-1 text-[12px]">
         <IconButton label="Ficha anterior" disabled={!book.canBack} onClick={book.back}>
           <ChevronLeft size={16} strokeWidth={1.7} />
         </IconButton>
@@ -75,6 +76,7 @@ export function CardPane() {
         <span className="text-[#B5B5AE]">/</span>
         <span className="min-w-0 truncate font-medium text-aula-text">{crumb.name}</span>
         <span className="flex-1" />
+        <AudioSpeedControl />
         <button
           type="button"
           onClick={() => book.close(book.index)}

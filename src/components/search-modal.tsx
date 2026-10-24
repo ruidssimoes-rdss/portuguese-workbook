@@ -446,7 +446,7 @@ function SmartCardContent({
               {card.primary.meta.categoryTitlePt} · {card.primary.meta.categoryTitle}
             </p>
           )}
-          <p className="text-[11px] text-[#1B2B61] mt-2">Click to see full entry</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Open the card. Taught in links the chapter.</p>
         </>
       )}
       {card.type === "definition" && (
@@ -467,7 +467,7 @@ function SmartCardContent({
               Example: {card.primary.meta.example} — {card.primary.meta.exampleTranslation}
             </p>
           )}
-          <p className="text-[11px] text-[#1B2B61] mt-2">Click to see full entry</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Open the card. Taught in links the chapter.</p>
         </>
       )}
       {card.type === "conjugation" && (
@@ -479,7 +479,7 @@ function SmartCardContent({
             {card.group} · {card.cefr}
           </p>
           <p className="text-[12px] text-[#98988F] mt-1">{card.presentPreview}</p>
-          <p className="text-[11px] text-[#1B2B61] mt-2">View all conjugations</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Open the card, then the chapter that teaches it</p>
         </>
       )}
       {card.type === "tense" && (
@@ -514,7 +514,7 @@ function SmartCardContent({
               </li>
             ))}
           </ul>
-          <p className="text-[11px] text-[#1B2B61] mt-2">Click a verb to view conjugations</p>
+          <p className="text-[11px] text-[#1B2B61] mt-2">Open a card. Taught in links the chapter and does not move your course.</p>
         </>
       )}
       {card.type === "tense_multi" && (

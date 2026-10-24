@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { getBacklinks, type Backlink } from "@/lib/book/catalog";
 import { encodeCard, FICHA_PARAM, type CardRef } from "@/lib/book/types";
+import { TaughtIn } from "@/components/course/taught-in";
 import { useBook } from "./book-context";
 import { LinkedText } from "./linked-text";
 import { PlayButton } from "./play-button";
@@ -109,7 +110,9 @@ export function Backlinks({ target }: { target: CardRef }) {
   const book = useBook();
   const router = useRouter();
   const { total, items } = getBacklinks(target);
-  const shown = mixBacklinks(items, 6);
+  const others = items.filter((item) => !item.href?.startsWith("/lessons/"));
+  const shown = mixBacklinks(others, 4);
+  const lessonCount = items.length - others.length;
   if (total === 0) return null;
 
   function open(item: Backlink) {
@@ -122,11 +125,16 @@ export function Backlinks({ target }: { target: CardRef }) {
   }
 
   return (
+    <div>
+      {lessonCount > 0 && <TaughtIn target={target} />}
+      {shown.length > 0 && (
     <section className="mt-card">
       <div className="mb-heading flex items-baseline justify-between gap-paragraph">
-        <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#5A5A57]">Aparece em</h3>
+        <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#5A5A57]">
+          {lessonCount > 0 ? "Também" : "Aparece em"}
+        </h3>
         <span className="text-[12px] text-[#5A5A57]">
-          {total} {total === 1 ? "nota" : "notas"}
+          {others.length} {others.length === 1 ? "nota" : "notas"}
         </span>
       </div>
       <ul className="flex flex-col gap-item">
@@ -148,7 +156,9 @@ export function Backlinks({ target }: { target: CardRef }) {
           </li>
         ))}
       </ul>
-      {total > shown.length && <p className="mt-heading text-[12px] text-[#5A5A57]">e mais {total - shown.length}</p>}
+      {others.length > shown.length && <p className="mt-heading text-[12px] text-[#5A5A57]">e mais {others.length - shown.length}</p>}
     </section>
+      )}
+    </div>
   );
 }

@@ -34,7 +34,7 @@ function SignInPrompt() {
     <div>
       <h2 className="font-sans text-[22px] font-semibold tracking-[-0.02em] text-aula-text">Entra para praticar</h2>
       <p className="mt-heading max-w-[36ch] text-[13px] leading-relaxed text-[#5A5A57]">
-        O capítulo continua aberto. A prática fica guardada na tua conta.
+        Sign in to save these exercises. The chapter stays open, and your place in the course does not move until you pass.
       </p>
       <Link
         href={href}
@@ -72,7 +72,7 @@ function CardSession({ target }: { target: Exclude<PracticeTarget, { kind: "less
   const book = useBook();
   const drill = useMemo(() => cardDrill(target), [target]);
   if (!drill) {
-    return <p className="text-[13px] text-[#5A5A57]">Não há exercícios para isto.</p>;
+    return <p className="text-[13px] leading-relaxed text-[#5A5A57]">No exercises for this card. You can still read it and open the chapter that teaches it.</p>;
   }
   const total = drill.sections.reduce((sum, section) => sum + section.totalQuestions, 0);
   const generated: GeneratedLesson = {
@@ -140,10 +140,15 @@ export function PracticePane({
 
   return (
     <div className="flex h-full min-h-0 min-w-0 flex-1 flex-col">
-      <div className="flex h-10 shrink-0 items-center gap-item px-pad text-[12px] min-[744px]:max-[1439px]:h-12">
-        <span className="text-[#5A5A57]">Prática</span>
-        <span className="text-[#B5B5AE]">/</span>
-        <span className="min-w-0 truncate font-medium text-aula-text">{practiceLabel(target, lessonTitle)}</span>
+      <div className="flex shrink-0 items-center gap-item px-pad py-heading text-[12px]">
+        <span className="min-w-0">
+          <span className="block truncate">
+            <span className="text-[#5A5A57]">Prática</span>
+            <span className="text-[#B5B5AE]"> / </span>
+            <span className="font-medium text-aula-text">{practiceLabel(target, lessonTitle)}</span>
+          </span>
+          <span className="block truncate text-[11.5px] text-[#5A5A57]">Answer the exercises. 80% finishes this step.</span>
+        </span>
         <span className="flex-1" />
         <button
           type="button"

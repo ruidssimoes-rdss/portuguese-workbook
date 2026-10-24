@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { AudioSpeedControl } from "@/components/audio-speed-control";
 import { canPlayPt, speakPt } from "@/lib/audio/speak";
 
 /**
@@ -50,6 +51,16 @@ export function PlayButton({ text, size = "sm" }: { text: string; size?: "sm" | 
         <path d="M1 0.5 9 5 1 9.5Z" fill="currentColor" />
       </svg>
     </button>
+  );
+}
+
+/** Speed plus listen. The clips and the pt-PT fallback voice are unchanged. */
+export function ListenControls({ lines, label }: { lines: string[]; label: string }) {
+  return (
+    <div className="flex flex-wrap items-center justify-end gap-item">
+      <AudioSpeedControl />
+      <ListenButton lines={lines} label={label} />
+    </div>
   );
 }
 

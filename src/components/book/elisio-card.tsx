@@ -28,7 +28,7 @@ function SignInPrompt() {
     <div>
       <h2 className="font-sans text-[22px] font-semibold tracking-[-0.02em] text-aula-text">Entra para perguntar</h2>
       <p className="mt-heading max-w-[36ch] text-[13px] leading-relaxed text-[#5A5A57]">
-        O capítulo continua aberto. Entra para perguntar ao Elísio.
+        Sign in to ask Elísio. The chapter stays open. Asking does not move your place in the course.
       </p>
       <Link
         href={href}
@@ -70,6 +70,9 @@ function Note({ passage }: { passage: ElisioPassage }) {
           <h2 className="font-sans text-[22px] font-semibold leading-tight tracking-[-0.02em] text-aula-text">Professor Elísio</h2>
           <p className="truncate text-[12px] text-[#5A5A57]">
             {passage.place} · {passage.label}
+          </p>
+          <p className="text-[12.5px] leading-relaxed text-[#5A5A57]">
+            Ask about this passage. He answers from the page you are on.
           </p>
         </div>
       </div>
@@ -118,7 +121,7 @@ function Note({ passage }: { passage: ElisioPassage }) {
             maxLength={400}
             lang="pt-PT"
             autoComplete="off"
-            placeholder="Sobre este passo"
+            placeholder="Ask about this step"
             className="tablet-target h-9 w-full min-w-0 flex-1 rounded-lg border border-aula-border bg-white px-3 text-[13px] text-aula-text outline-none placeholder:text-[#5A5A57] focus:border-aula-accent"
           />
           <button

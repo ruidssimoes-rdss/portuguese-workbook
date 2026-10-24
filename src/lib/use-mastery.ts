@@ -48,16 +48,23 @@ export function useMastery(type: ContentType) {
 
   useEffect(() => {
     if (authLoading || !user) return;
+    const userId = user.id;
     let cancelled = false;
-    getUserMastery(user.id, { contentType: type }).then((rows) => {
-      if (cancelled) return;
-      setMap(new Map(rows.map((r) => [r.content_id, r])));
-      setLoaded(true);
-    }).catch(() => {
-      if (!cancelled) setLoaded(true);
-    });
+    function load() {
+      getUserMastery(userId, { contentType: type }).then((rows) => {
+        if (cancelled) return;
+        setMap(new Map(rows.map((r) => [r.content_id, r])));
+        setLoaded(true);
+      }).catch(() => {
+        if (!cancelled) setLoaded(true);
+      });
+    }
+    load();
+    const onRefresh = () => load();
+    window.addEventListener("aula-mastery", onRefresh);
     return () => {
       cancelled = true;
+      window.removeEventListener("aula-mastery", onRefresh);
     };
   }, [user, authLoading, type]);
 
