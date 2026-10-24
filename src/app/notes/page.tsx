@@ -26,7 +26,7 @@ const FILTERS: { id: string; label: string; contextType?: NoteContextType; isPin
   { id: "grammar", label: "Gramática", contextType: "grammar" },
   { id: "vocabulary", label: "Vocabulário", contextType: "vocabulary" },
   { id: "verbs", label: "Verbos", contextType: "verb" },
-  { id: "lessons", label: "Lições", contextType: "lesson" },
+  { id: "lessons", label: "Curso", contextType: "lesson" },
   { id: "archived", label: "Arquivo", isArchived: true },
 ];
 
@@ -34,7 +34,7 @@ const CONTEXT_LABELS: Record<string, string> = {
   grammar: "Gramática",
   vocabulary: "Vocabulário",
   verb: "Verbos",
-  lesson: "Lições",
+  lesson: "Curso",
 };
 
 const MESES: string[] = [

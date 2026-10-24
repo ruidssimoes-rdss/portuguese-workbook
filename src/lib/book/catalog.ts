@@ -539,7 +539,7 @@ function ensure() {
     const source: Source = {
       key: `lesson:${lesson.id}`,
       title: `Lição ${lesson.number} · ${lesson.titlePt}`,
-      kicker: `Lições · ${lesson.cefrLevel}`,
+      kicker: `Curso · ${lesson.cefrLevel}`,
       href: `/lessons/${lesson.id}`,
       rank: 0,
     };

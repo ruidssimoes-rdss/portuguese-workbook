@@ -38,7 +38,7 @@ export function LearnIntro({ lessonTitlePt, cefr, isReview, generated, onStartEx
       {!dock && (
         <div className="mb-4 flex items-center gap-2 text-[12px]">
           <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
-            Lições
+            Curso
           </Link>
           <span className="text-aula-text-4">/</span>
           <span className="text-aula-text-2">{isReview ? "Revisão" : `Lição ${cefr}`}</span>

@@ -196,7 +196,7 @@ export function LearnPlayer({ lesson, generated, isReview, onComplete, initial, 
         {!dock && (
           <>
             <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
-              Lições
+              Curso
             </Link>
             <span className="text-aula-text-4">/</span>
             <span className="text-aula-text-2">{isReview ? "Revisão" : `Lição ${lesson.cefr}`}</span>

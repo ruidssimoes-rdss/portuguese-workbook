@@ -320,7 +320,7 @@ function LessonContent({ id, dock = false, onDismiss }: { id: string; dock?: boo
       <div className="mx-auto max-w-[620px] py-16 text-center">
         <p className="text-[13px] text-aula-text-2">Lição não encontrada.</p>
         <Link href="/lessons" className="mt-2 inline-block text-[13px] font-medium text-aula-accent">
-          Voltar às lições
+          Voltar ao curso
         </Link>
       </div>
     );
@@ -399,11 +399,11 @@ function CurriculumLesson({ id }: { id: string }) {
 
   if (!lesson) {
     return (
-      <PageShell header={<Crumbs items={[{ label: "Lições", href: "/lessons" }]} />}>
+      <PageShell header={<Crumbs items={[{ label: "Curso", href: "/lessons" }]} />}>
         <div className="mx-auto max-w-[620px] py-16 text-center">
           <p className="text-[13px] text-[#5A5A57]">Lição não encontrada.</p>
           <Link href="/lessons" className="mt-2 inline-block text-[13px] font-medium text-aula-accent">
-            Voltar às lições
+            Voltar ao curso
           </Link>
         </div>
       </PageShell>
@@ -419,7 +419,7 @@ function CurriculumLesson({ id }: { id: string }) {
       renderLesson={({ onDismiss }) => <LessonContent id={id} dock onDismiss={onDismiss} />}
       header={
         <>
-          <Crumbs items={[{ label: "Lições", href: "/lessons" }, { label: lesson.cefrLevel }, { label: `${number} · ${lesson.titlePt}` }]} />
+          <Crumbs items={[{ label: "Curso", href: "/lessons" }, { label: lesson.cefrLevel }, { label: `${number} · ${lesson.titlePt}` }]} />
           <span className="flex-1" />
           <ListenControls lines={lessonListenLines(lesson)} label="Ouvir lição" />
         </>
@@ -447,7 +447,7 @@ export default function LessonDetailPage({ params }: { params: Promise<{ id: str
   }
 
   return (
-    <Suspense fallback={<PageShell header={<Crumbs items={[{ label: "Lições", href: "/lessons" }]} />}><div className="py-16 text-[13px] text-[#5A5A57]">A abrir o capítulo…</div></PageShell>}>
+    <Suspense fallback={<PageShell header={<Crumbs items={[{ label: "Curso", href: "/lessons" }]} />}><div className="py-16 text-[13px] text-[#5A5A57]">A abrir o capítulo…</div></PageShell>}>
       <CurriculumLesson id={id} />
     </Suspense>
   );
