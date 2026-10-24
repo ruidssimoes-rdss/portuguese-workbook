@@ -2,18 +2,25 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { AuthLogo } from "@/components/auth-ui";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-
-const inputClass =
-  "h-10 w-full rounded-lg border border-aula-border bg-white px-3 text-[13.5px] text-aula-text outline-none transition-colors placeholder:text-aula-text-4 focus:border-aula-accent";
-const labelClass = "mb-1.5 block text-[12px] font-medium text-aula-text-2";
+import { mapAuthError } from "@/lib/auth-errors";
+import { pathAfterAuth } from "@/lib/post-auth";
+import {
+  AuthError,
+  AuthMobileLogo,
+  AuthScreen,
+  AuthSubmit,
+  AuthTitle,
+  PasswordField,
+} from "@/components/auth/auth-screen";
 
 export default function UpdatePasswordPage() {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +32,7 @@ export default function UpdatePasswordPage() {
       return;
     }
     if (password.length < 6) {
-      setError("Mínimo 6 caracteres.");
+      setError("A palavra-passe é demasiado fraca. Usa pelo menos 6 caracteres.");
       return;
     }
     setLoading(true);
@@ -33,96 +40,61 @@ export default function UpdatePasswordPage() {
       const supabase = createClient();
       const { error: updateError } = await supabase.auth.updateUser({ password });
       if (updateError) {
-        setError(updateError.message);
+        setError(mapAuthError(updateError));
         setLoading(false);
         return;
       }
-      router.push("/");
+      const dest = await pathAfterAuth("/");
+      router.push(dest);
       router.refresh();
-    } catch {
-      setError("Ocorreu um erro. Tenta novamente.");
+    } catch (err) {
+      setError(mapAuthError(err instanceof Error ? { message: err.message } : undefined));
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center bg-aula-canvas px-4 py-12">
-      <div className="w-full max-w-[380px] mx-auto">
-        <div className="rounded-2xl border border-aula-line bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-          <AuthLogo />
-          <h1 className="mb-6 text-center text-[18px] font-semibold tracking-[-0.01em] text-aula-text">Nova palavra-passe</h1>
+    <AuthScreen>
+      <AuthMobileLogo />
+      <AuthTitle>Nova palavra-passe</AuthTitle>
 
-          {error && (
-            <div
-              className="mb-4 rounded-[10px] border border-[#F0C9BE] bg-[#FBE9E4] px-3.5 py-2.5 text-[12.5px] text-aula-overdue"
-              role="alert"
-            >
-              {error}
-            </div>
-          )}
+      {error && <AuthError>{error}</AuthError>}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="update-password" className={labelClass}>
-                Nova palavra-passe
-              </label>
-              <input
-                id="update-password"
-                type="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setError("");
-                }}
-                className={inputClass}
-                required
-                minLength={6}
-                autoFocus
-                autoComplete="new-password"
-              />
-              <p className="mt-1 text-[11px] text-aula-text-3">Mínimo 6 caracteres</p>
-            </div>
-            <div>
-              <label htmlFor="update-confirm" className={labelClass}>
-                Confirmar palavra-passe
-              </label>
-              <input
-                id="update-confirm"
-                type="password"
-                value={confirm}
-                onChange={(e) => {
-                  setConfirm(e.target.value);
-                  setError("");
-                }}
-                className={inputClass}
-                required
-                minLength={6}
-                autoComplete="new-password"
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="h-10 w-full rounded-lg bg-aula-accent text-[13.5px] font-medium text-white hover:bg-aula-accent-hover disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
-            >
-              {loading ? (
-                <>
-                  <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  A carregar…
-                </>
-              ) : (
-                "Guardar palavra-passe"
-              )}
-            </button>
-          </form>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <PasswordField
+          id="update-password"
+          label="Nova palavra-passe"
+          value={password}
+          onChange={(value) => {
+            setPassword(value);
+            setError("");
+          }}
+          autoComplete="new-password"
+          hint="Mínimo 6 caracteres"
+          autoFocus
+          revealed={showPassword}
+          onToggleReveal={() => setShowPassword((v) => !v)}
+        />
+        <PasswordField
+          id="update-confirm"
+          label="Confirmar palavra-passe"
+          value={confirm}
+          onChange={(value) => {
+            setConfirm(value);
+            setError("");
+          }}
+          autoComplete="new-password"
+          revealed={showConfirm}
+          onToggleReveal={() => setShowConfirm((v) => !v)}
+        />
+        <AuthSubmit loading={loading} idle="Guardar palavra-passe" busy="A carregar…" />
+      </form>
 
-          <p className="mt-6 text-center text-[13px] text-aula-text-3">
-            <Link href="/auth/login" className="font-medium text-aula-accent">
-              Voltar ao login
-            </Link>
-          </p>
-        </div>
-      </div>
-    </div>
+      <p className="mt-6 text-center text-[13px]">
+        <Link href="/auth/login" className="font-medium text-aula-accent">
+          Voltar ao login
+        </Link>
+      </p>
+    </AuthScreen>
   );
 }

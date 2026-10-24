@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signInWithGoogle } from "@/lib/auth-utils";
 import { NEXT_COOKIE, safeNextPath } from "@/lib/safe-next";
+import { mapAuthError } from "@/lib/auth-errors";
 
 export function GoogleSignInButton() {
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ export function GoogleSignInButton() {
     if (next) document.cookie = `${NEXT_COOKIE}=${encodeURIComponent(next)}; path=/; max-age=600; samesite=lax`;
     const { error: err } = await signInWithGoogle();
     if (err) {
-      setError(err.message);
+      setError(mapAuthError(err));
       setLoading(false);
     }
     // On success, Supabase redirects; no need to set loading false
@@ -28,7 +29,7 @@ export function GoogleSignInButton() {
         type="button"
         onClick={handleClick}
         disabled={loading}
-        className="flex h-10 w-full items-center justify-center gap-2.5 rounded-lg border border-aula-border bg-white px-4 text-[13px] font-medium text-aula-text hover:border-aula-text-4 transition-colors flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="flex h-10 w-full items-center justify-center gap-2.5 rounded-lg border border-aula-border bg-white px-4 text-[13px] font-medium text-aula-text transition-colors hover:border-aula-text-4 disabled:cursor-not-allowed disabled:opacity-60 min-[744px]:h-11 min-[744px]:rounded-full min-[744px]:text-[14px]"
       >
         {loading ? (
           <span className="inline-block w-5 h-5 border-2 border-aula-text-3 border-t-transparent rounded-full animate-spin" />
