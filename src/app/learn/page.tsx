@@ -163,7 +163,7 @@ function LearnPageContent() {
           onClick={() => router.push("/lessons")}
           className="px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
         >
-          Voltar às lições
+          Voltar ao curso
         </button>
       </div>
     );
@@ -177,7 +177,7 @@ function LearnPageContent() {
           onClick={() => router.push("/lessons")}
           className="px-4 py-2.5 text-[13px] font-medium text-[#6B6B69] border-[0.5px] border-[#E6E6E4] rounded-lg hover:border-[#CFCFCB] transition-colors"
         >
-          Voltar às lições
+          Voltar ao curso
         </button>
       </div>
     );

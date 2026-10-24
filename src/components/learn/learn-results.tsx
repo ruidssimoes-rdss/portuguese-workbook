@@ -30,7 +30,7 @@ export function LearnResults({ passed, accuracy, sectionResults, onRetry, dock =
       {!dock && (
         <div className="mb-4 flex items-center gap-2 text-[12px]">
           <Link href="/lessons" className="text-aula-text-3 transition-colors hover:text-aula-text">
-            Lições
+            Curso
           </Link>
           <span className="text-aula-text-4">/</span>
           <span className="text-aula-text-2">Resultado</span>

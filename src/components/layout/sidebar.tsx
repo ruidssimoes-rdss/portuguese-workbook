@@ -14,7 +14,6 @@ import {
   Award,
   Compass,
   PenLine,
-  Clock,
   Search,
   Send,
   Settings,
@@ -26,7 +25,7 @@ import {
 import { useAuth } from "@/components/auth-provider";
 import { SearchModal } from "@/components/search-modal";
 
-type NavItem = { href: string; icon: LucideIcon; label: string };
+type NavItem = { href: string; icon: LucideIcon; label: string; cue?: string };
 type NavGroup = { label?: string; items: NavItem[] };
 
 const NAV: NavGroup[] = [
@@ -39,7 +38,7 @@ const NAV: NavGroup[] = [
   {
     label: "Biblioteca",
     items: [
-      { href: "/lessons", icon: BookOpen, label: "Lições" },
+      { href: "/lessons", icon: BookOpen, label: "Curso", cue: "Course" },
       { href: "/vocabulary", icon: BookA, label: "Vocabulário" },
       { href: "/grammar", icon: Baseline, label: "Gramática" },
       { href: "/conjugations", icon: Type, label: "Conjugações" },
@@ -51,7 +50,6 @@ const NAV: NavGroup[] = [
     items: [
       { href: "/exams", icon: Award, label: "Exames" },
       { href: "/notes", icon: PenLine, label: "Notas" },
-      { href: "/calendar", icon: Clock, label: "Calendário" },
       { href: "/guide", icon: Compass, label: "Como funciona" },
     ],
   },
@@ -214,14 +212,23 @@ export function Sidebar({
                       href={item.href}
                       onClick={onNavigate}
                       aria-current={active ? "page" : undefined}
-                      className={`tablet-target flex h-[30px] items-center gap-2.5 rounded-lg px-2.5 text-[12.5px] transition-colors duration-100 ${
+                      className={`tablet-target flex items-center gap-2.5 rounded-lg px-2.5 text-[12.5px] transition-colors duration-100 ${
+                        item.cue ? "h-[30px] min-[744px]:h-auto min-[744px]:min-h-[40px] min-[744px]:py-1" : "h-[30px]"
+                      } ${
                         active
                           ? "bg-aula-selected font-medium text-aula-text"
                           : "text-aula-text-2 hover:bg-aula-selected/60 hover:text-aula-text"
                       }`}
                     >
-                      <Icon size={16} strokeWidth={1.5} />
-                      {item.label}
+                      <Icon size={16} strokeWidth={1.5} className="shrink-0" />
+                      {item.cue ? (
+                        <span className="flex min-w-0 flex-col gap-1">
+                          <span className="leading-[16px]">{item.label}</span>
+                          <span className="hidden text-[11px] font-normal leading-[14px] text-aula-text-3 min-[744px]:block">{item.cue}</span>
+                        </span>
+                      ) : (
+                        item.label
+                      )}
                     </Link>
                   );
                 })}
@@ -285,8 +292,8 @@ function RailButton({ item, active, onClick, caption }: { item: NavItem; active:
     <Link
       href={item.href}
       onClick={onClick}
-      aria-label={item.label}
-      title={caption ? undefined : item.label}
+      aria-label={item.cue ? `${item.label}, ${item.cue}` : item.label}
+      title={caption ? undefined : item.cue ? `${item.label} · ${item.cue}` : item.label}
       aria-current={active ? "page" : undefined}
       className={`tablet-target-sq tap-44 flex items-center justify-center rounded-lg transition-colors ${
         caption ? "h-auto min-h-11 w-11 flex-col gap-0.5 py-1" : "h-8 w-9"

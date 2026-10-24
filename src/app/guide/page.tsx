@@ -80,7 +80,7 @@ export default function GuidePage() {
         </p>
       </div>
       <Link href="/lessons" className="flex h-8 items-center justify-center gap-1.5 rounded-lg bg-aula-accent text-[12px] font-medium text-white transition-colors hover:bg-aula-accent-hover">
-        Ver as lições <ArrowRight size={13} strokeWidth={1.5} />
+        Ver o curso <ArrowRight size={13} strokeWidth={1.5} />
       </Link>
     </div>
   );

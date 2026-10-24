@@ -14,6 +14,7 @@ import { PageShell } from "@/components/layout/page-shell";
 import { SearchModal } from "@/components/search-modal";
 import { getProgressStats } from "@/lib/progress-stats-service";
 import { ContinuarCard } from "@/components/course/continuar-card";
+import { useCourseSnapshot } from "@/components/course/use-course";
 import { getFullProgression } from "@/lib/learning-engine/cefr-readiness";
 import { getCurrentStudyLevel, getReviewSummary } from "@/lib/learning-engine";
 import { createClient } from "@/lib/supabase/client";
@@ -59,6 +60,7 @@ export default function HomePage() {
 function HomeContent() {
   const searchParams = useSearchParams();
   const { user, loading: authLoading } = useAuth();
+  const course = useCourseSnapshot();
   const [stats, setStats] = useState<HomeStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -125,16 +127,27 @@ function HomeContent() {
   }, [user, authLoading]);
 
   const greeting = getGreeting();
+  const placeKnown = !authLoading && course.ready;
+  const startedOnDevice = course.read.size > 0 || course.practiced.size > 0;
+  const showGuest = placeKnown && !user && !startedOnDevice;
+  const showStart = placeKnown && !!user && !loading && !!stats?.fresh && !startedOnDevice;
+
+  const resumeIndex = course.resume ? course.lessons.findIndex((item) => item.id === course.resume!.id) + 1 : 0;
+  const chapterBit =
+    course.ready && course.resume && resumeIndex > 0
+      ? `capítulo ${resumeIndex} de ${course.lessons.length}`
+      : course.ready && course.finished
+        ? "curso concluído"
+        : null;
 
   const nextLevel = stats?.level === "A1" ? "A2" : stats?.level === "A2" ? "B1" : null;
-  const subtitle = !stats
-    ? " "
-    : [
-          stats.reviewDue > 0 ? `${stats.reviewDue} ${stats.reviewDue === 1 ? "revisão" : "revisões"} à espera` : "Tudo em dia",
-          stats.streak > 0 ? `sequência de ${stats.streak} ${stats.streak === 1 ? "dia" : "dias"}` : null,
-        ]
-          .filter(Boolean)
-          .join(" · ");
+  const subtitle = [
+    stats ? (stats.reviewDue > 0 ? `${stats.reviewDue} para rever` : "Tudo em dia") : null,
+    chapterBit,
+    stats && stats.streak > 0 ? `sequência de ${stats.streak} ${stats.streak === 1 ? "dia" : "dias"}` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
 
   const suggestions: { href: string; icon: typeof RotateCcw; label: string; meta: string }[] = [
     ...(stats && stats.reviewDue > 0
@@ -150,9 +163,6 @@ function HomeContent() {
       : []),
     { href: "/tutor", icon: Sparkles, label: "Pedir uma sessão ao Professor Elísio", meta: "Ask Elísio" },
   ];
-
-  const showGuest = !authLoading && !user;
-  const showStart = !authLoading && !!user && !loading && !!stats?.fresh;
 
   return (
     <PageShell>
@@ -185,7 +195,12 @@ function HomeContent() {
 
         {/* Centre column */}
         <div className="mx-auto w-full max-w-[640px]">
-          {showGuest ? (
+          {!placeKnown ? (
+            <>
+              <h1 className="text-center text-[17px] font-semibold tracking-[-0.01em] text-aula-text">{greeting}</h1>
+              <p className="mt-1 min-h-[18px] text-center text-[11.5px] text-aula-text-3" />
+            </>
+          ) : showGuest ? (
             <EmptyPanel
               title="Bem-vindo à Aula"
               copy="Start at chapter 1. The course runs A1, then A2, then B1. Search can wait."
@@ -213,10 +228,14 @@ function HomeContent() {
                 {user && stats?.firstName ? `${greeting}, ${stats.firstName}` : greeting}
               </h1>
               <p className="mt-1 min-h-[18px] text-center text-[11.5px] text-aula-text-3">
-                {authLoading || (user && loading) ? "" : subtitle}
+                {user && loading ? "" : subtitle}
               </p>
 
-              {/* Composer → search */}
+              <div className="mt-6 hidden min-[744px]:block">
+                <ContinuarCard />
+              </div>
+
+              {/* Composer → search. On a phone it stays above Continuar. */}
               <button
                 onClick={() => setSearchOpen(true)}
                 className="mt-5 flex w-full flex-col gap-7 rounded-[14px] border border-aula-border bg-aula-panel px-4 pb-3 pt-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-colors hover:border-aula-text-4"
@@ -231,11 +250,9 @@ function HomeContent() {
                 </span>
               </button>
 
-              {user && (
-                <div className="mt-4">
-                  <ContinuarCard />
-                </div>
-              )}
+              <div className="mt-4 min-[744px]:hidden">
+                <ContinuarCard />
+              </div>
 
               {/* Suggestions */}
               {user && (
