@@ -16359,25 +16359,6 @@
           "proTip": "Urgências = A&E / ER. 'Fui às urgências' = I went to A&E. For emergencies, go to hospital."
         },
         {
-          "portuguese": "o penso",
-          "english": "plaster / bandage",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "oo PEN-soo",
-          "example": "Pus um penso no dedo.",
-          "exampleTranslation": "I put a plaster on my finger.",
-          "relatedWords": [
-            {
-              "word": "o dedo",
-              "meaning": "the finger"
-            },
-            {
-              "word": "a farmácia",
-              "meaning": "the pharmacy"
-            }
-          ]
-        },
-        {
           "portuguese": "penso",
           "english": "bandage / plaster",
           "cefr": "A2",
@@ -19963,15 +19944,6 @@
               "meaning": "confidence"
             }
           ]
-        },
-        {
-          "portuguese": "otimista",
-          "english": "optimistic",
-          "cefr": "B1",
-          "gender": null,
-          "pronunciation": "oo-tee-MEESH-tuh",
-          "example": "Sou otimista em relação ao futuro.",
-          "exampleTranslation": "I'm optimistic about the future."
         },
         {
           "portuguese": "pessimista",

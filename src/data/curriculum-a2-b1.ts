@@ -310,7 +310,7 @@ export const A2_LESSONS: CurriculumLesson[] = [
           { categoryId: "health-body", portuguese: "efeito secundário" },
           { categoryId: "health-body", portuguese: "tomar" },
           { categoryId: "health-body", portuguese: "injeção" },
-          { categoryId: "health-body", portuguese: "o penso" },
+          { categoryId: "health-body", portuguese: "penso" },
           { categoryId: "health-body", portuguese: "dor de garganta" },
           { categoryId: "health-body", portuguese: "tosse" },
           { categoryId: "health-body", portuguese: "espirrar" },
