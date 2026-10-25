@@ -106,22 +106,21 @@ const PERSON_TO_PRONOUN: Record<string, string> = {
   "eles/elas/vocês (they/you plural formal)": "eles/elas",
 };
 
+export function vocabKey(s: string): string {
+  return s
+    .toLowerCase()
+    .trim()
+    .replace(/\.\.\./g, "…")
+    .replace(/^(o|a|os|as|um|uma)\s+/, "");
+}
+
 function findVocabWord(
   categoryId: string,
   portuguese: string
 ): VocabItem | null {
   const cat = vocab.categories.find((c) => c.id === categoryId);
   if (!cat) return null;
-  const norm = (s: string) => s.toLowerCase().trim();
-  const refNorm = norm(portuguese);
-  const w = cat.words.find((word) => {
-    const p = norm(word.portuguese);
-    if (p === refNorm) return true;
-    if (p.startsWith(refNorm) || refNorm.startsWith(p)) return true;
-    const refFirst = refNorm.split(/\s*\/\s*/)[0];
-    const wordFirst = p.split(/\s*\/\s*/)[0];
-    return refFirst === wordFirst || p.includes(refFirst) || refNorm.includes(wordFirst);
-  });
+  const w = cat.words.find((word) => vocabKey(word.portuguese) === vocabKey(portuguese));
   if (!w) return null;
   return {
     id: `vocab-${categoryId}-${w.portuguese.replace(/\s/g, "-")}`,

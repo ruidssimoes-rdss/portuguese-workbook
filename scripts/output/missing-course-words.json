@@ -1,0 +1,1066 @@
+[
+  {
+    "portuguese": "cor",
+    "lessons": [
+      "a1-06"
+    ],
+    "level": "A1",
+    "categoryId": "colours-weather"
+  },
+  {
+    "portuguese": "dia",
+    "lessons": [
+      "a2-02"
+    ],
+    "level": "A2",
+    "categoryId": "numbers-time"
+  },
+  {
+    "portuguese": "médico",
+    "lessons": [
+      "a2-03"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "tratamento",
+    "lessons": [
+      "a2-03"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "garganta",
+    "lessons": [
+      "a2-04"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "bem",
+    "lessons": [
+      "a2-04",
+      "a2-16",
+      "b1-10"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "mal",
+    "lessons": [
+      "a2-04"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "cansado",
+    "lessons": [
+      "a2-04"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "doença",
+    "lessons": [
+      "a2-04"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "urgente",
+    "lessons": [
+      "a2-05"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "enfermeiro",
+    "lessons": [
+      "a2-05"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "dosagem",
+    "lessons": [
+      "a2-05"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "tomar",
+    "lessons": [
+      "a2-05"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "curativo",
+    "lessons": [
+      "a2-05"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "espirrar",
+    "lessons": [
+      "a2-05"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "vómito",
+    "lessons": [
+      "a2-05"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "diarreia",
+    "lessons": [
+      "a2-05"
+    ],
+    "level": "A2",
+    "categoryId": "health-body"
+  },
+  {
+    "portuguese": "tarefa",
+    "lessons": [
+      "a2-06"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "projeto",
+    "lessons": [
+      "a2-06"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "disciplina",
+    "lessons": [
+      "a2-07"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "aprovado",
+    "lessons": [
+      "a2-07"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "reprovado",
+    "lessons": [
+      "a2-07"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "estudar",
+    "lessons": [
+      "a2-07"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "aprender",
+    "lessons": [
+      "a2-07"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "ensinar",
+    "lessons": [
+      "a2-07"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "arquiteto / arquiteta",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "músico / música",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "artista",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "cientista",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "carreira",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "objetivo",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "falha",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "experiência",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "candidato / candidata",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "despedida",
+    "lessons": [
+      "a2-08"
+    ],
+    "level": "A2",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "relva",
+    "lessons": [
+      "a2-10"
+    ],
+    "level": "A2",
+    "categoryId": "nature-animals"
+  },
+  {
+    "portuguese": "nevar",
+    "lessons": [
+      "a2-10"
+    ],
+    "level": "A2",
+    "categoryId": "nature-animals"
+  },
+  {
+    "portuguese": "chover",
+    "lessons": [
+      "a2-10"
+    ],
+    "level": "A2",
+    "categoryId": "nature-animals"
+  },
+  {
+    "portuguese": "ódio",
+    "lessons": [
+      "a2-11"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "personalidade",
+    "lessons": [
+      "a2-11",
+      "b1-09"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "organizado",
+    "lessons": [
+      "a2-12"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "desorganizado",
+    "lessons": [
+      "a2-12"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "optimista",
+    "lessons": [
+      "a2-12"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "sincero",
+    "lessons": [
+      "a2-12"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "amável",
+    "lessons": [
+      "a2-12"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "independente",
+    "lessons": [
+      "a2-12"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "carácter",
+    "lessons": [
+      "a2-12"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "comportamento",
+    "lessons": [
+      "a2-12",
+      "b1-09"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "atitude",
+    "lessons": [
+      "a2-12",
+      "b1-09"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "humor",
+    "lessons": [
+      "a2-12"
+    ],
+    "level": "A2",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "sala de jantar",
+    "lessons": [
+      "a2-13"
+    ],
+    "level": "A2",
+    "categoryId": "home-rooms"
+  },
+  {
+    "portuguese": "terraço",
+    "lessons": [
+      "a2-13"
+    ],
+    "level": "A2",
+    "categoryId": "home-rooms"
+  },
+  {
+    "portuguese": "família",
+    "lessons": [
+      "a2-16",
+      "b1-10"
+    ],
+    "level": "A2",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "infância",
+    "lessons": [
+      "b1-01"
+    ],
+    "level": "B1",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "brincar",
+    "lessons": [
+      "b1-01"
+    ],
+    "level": "B1",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "amigo",
+    "lessons": [
+      "b1-01"
+    ],
+    "level": "B1",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "memória",
+    "lessons": [
+      "b1-01"
+    ],
+    "level": "B1",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "passado",
+    "lessons": [
+      "b1-01"
+    ],
+    "level": "B1",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "crescer",
+    "lessons": [
+      "b1-01"
+    ],
+    "level": "B1",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "mudar",
+    "lessons": [
+      "b1-01"
+    ],
+    "level": "B1",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "recordar",
+    "lessons": [
+      "b1-01"
+    ],
+    "level": "B1",
+    "categoryId": "family-daily-routine"
+  },
+  {
+    "portuguese": "então",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "bue",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "raparigo",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "miúdo",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "gajo",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "bocada",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "à toa",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "estar a ver",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "desenrascar",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "despachar",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "engolir",
+    "lessons": [
+      "b1-02"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "password",
+    "lessons": [
+      "b1-03"
+    ],
+    "level": "B1",
+    "categoryId": "technology-internet"
+  },
+  {
+    "portuguese": "provavelmente",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "possivelmente",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "colloquial-slang"
+  },
+  {
+    "portuguese": "dúvida",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "certeza",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "possibilidade",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "condição",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "hipótese",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "realidade",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "imaginação",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "receio",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "vontade",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "preferência",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "escolha",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "decisão",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "consequência",
+    "lessons": [
+      "b1-04"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "espécie",
+    "lessons": [
+      "b1-05"
+    ],
+    "level": "B1",
+    "categoryId": "nature-animals"
+  },
+  {
+    "portuguese": "conservar",
+    "lessons": [
+      "b1-05"
+    ],
+    "level": "B1",
+    "categoryId": "nature-animals"
+  },
+  {
+    "portuguese": "alteração climática",
+    "lessons": [
+      "b1-05"
+    ],
+    "level": "B1",
+    "categoryId": "nature-animals"
+  },
+  {
+    "portuguese": "renovável",
+    "lessons": [
+      "b1-05"
+    ],
+    "level": "B1",
+    "categoryId": "nature-animals"
+  },
+  {
+    "portuguese": "recursos",
+    "lessons": [
+      "b1-05"
+    ],
+    "level": "B1",
+    "categoryId": "nature-animals"
+  },
+  {
+    "portuguese": "fado",
+    "lessons": [
+      "b1-06"
+    ],
+    "level": "B1",
+    "categoryId": "food-drink"
+  },
+  {
+    "portuguese": "pastelaria",
+    "lessons": [
+      "b1-06"
+    ],
+    "level": "B1",
+    "categoryId": "food-drink"
+  },
+  {
+    "portuguese": "convívio",
+    "lessons": [
+      "b1-06"
+    ],
+    "level": "B1",
+    "categoryId": "food-drink"
+  },
+  {
+    "portuguese": "refeição",
+    "lessons": [
+      "b1-06"
+    ],
+    "level": "B1",
+    "categoryId": "food-drink"
+  },
+  {
+    "portuguese": "especialidade",
+    "lessons": [
+      "b1-06"
+    ],
+    "level": "B1",
+    "categoryId": "food-drink"
+  },
+  {
+    "portuguese": "facto",
+    "lessons": [
+      "b1-07"
+    ],
+    "level": "B1",
+    "categoryId": "home-rooms"
+  },
+  {
+    "portuguese": "ficção",
+    "lessons": [
+      "b1-07"
+    ],
+    "level": "B1",
+    "categoryId": "home-rooms"
+  },
+  {
+    "portuguese": "autor",
+    "lessons": [
+      "b1-07"
+    ],
+    "level": "B1",
+    "categoryId": "home-rooms"
+  },
+  {
+    "portuguese": "leitor",
+    "lessons": [
+      "b1-07"
+    ],
+    "level": "B1",
+    "categoryId": "home-rooms"
+  },
+  {
+    "portuguese": "crítica",
+    "lessons": [
+      "b1-07"
+    ],
+    "level": "B1",
+    "categoryId": "home-rooms"
+  },
+  {
+    "portuguese": "bestseller",
+    "lessons": [
+      "b1-07"
+    ],
+    "level": "B1",
+    "categoryId": "home-rooms"
+  },
+  {
+    "portuguese": "comunidade",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "direitos",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "deveres",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "liberdade",
+    "lessons": [
+      "b1-08",
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "igualdade",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "justiça",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "solidariedade",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "respeito",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "tolerância",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "cooperação",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "voluntário",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "participação",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "eleição",
+    "lessons": [
+      "b1-08"
+    ],
+    "level": "B1",
+    "categoryId": "emotions-personality"
+  },
+  {
+    "portuguese": "estilo",
+    "lessons": [
+      "b1-09",
+      "b1-10"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "imagem",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "aparência",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "identidade",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "expressão",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "valores",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "crenças",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "cultura",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "modernidade",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "criatividade",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "originalidade",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "autenticidade",
+    "lessons": [
+      "b1-09"
+    ],
+    "level": "B1",
+    "categoryId": "clothing-appearance"
+  },
+  {
+    "portuguese": "obrigado",
+    "lessons": [
+      "b1-10"
+    ],
+    "level": "B1",
+    "categoryId": "greetings-expressions"
+  },
+  {
+    "portuguese": "aprendizagem",
+    "lessons": [
+      "b1-10"
+    ],
+    "level": "B1",
+    "categoryId": "work-education"
+  },
+  {
+    "portuguese": "mundo",
+    "lessons": [
+      "b1-10"
+    ],
+    "level": "B1",
+    "categoryId": "nature-animals"
+  }
+]

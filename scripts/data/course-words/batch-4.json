@@ -1,0 +1,488 @@
+[
+  {
+    "ref": "comunidade",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "comunidade",
+      "english": "community",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "koo-moo-nee-DAH-duh",
+      "example": "A comunidade organizou a festa.",
+      "exampleTranslation": "The community organised the party.",
+      "relatedWords": [
+        { "word": "bairro", "meaning": "neighbourhood" },
+        { "word": "vizinho", "meaning": "neighbour" },
+        { "word": "grupo", "meaning": "group" }
+      ]
+    }
+  },
+  {
+    "ref": "direitos",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "direitos",
+      "english": "rights",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "dee-RAY-toosh",
+      "example": "Todos temos direitos e deveres.",
+      "exampleTranslation": "We all have rights and duties.",
+      "relatedWords": [
+        { "word": "deveres", "meaning": "duties" },
+        { "word": "lei", "meaning": "law" },
+        { "word": "liberdade", "meaning": "freedom" }
+      ]
+    }
+  },
+  {
+    "ref": "deveres",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "deveres",
+      "english": "duties / homework",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "duh-VEH-rush",
+      "example": "Os deveres da escola são para sexta-feira.",
+      "exampleTranslation": "The homework is for Friday.",
+      "relatedWords": [
+        { "word": "direitos", "meaning": "rights" },
+        { "word": "escola", "meaning": "school" },
+        { "word": "tarefa", "meaning": "task" }
+      ]
+    }
+  },
+  {
+    "ref": "liberdade",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "liberdade",
+      "english": "freedom",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "lee-bur-DAH-duh",
+      "example": "A liberdade de escolher é importante.",
+      "exampleTranslation": "The freedom to choose matters.",
+      "relatedWords": [
+        { "word": "direitos", "meaning": "rights" },
+        { "word": "livre", "meaning": "free" },
+        { "word": "escolha", "meaning": "choice" }
+      ]
+    }
+  },
+  {
+    "ref": "igualdade",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "igualdade",
+      "english": "equality",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-gwal-DAH-duh",
+      "example": "A igualdade trata toda a gente da mesma forma.",
+      "exampleTranslation": "Equality treats everyone the same way.",
+      "relatedWords": [
+        { "word": "justiça", "meaning": "justice" },
+        { "word": "respeito", "meaning": "respect" },
+        { "word": "direitos", "meaning": "rights" }
+      ]
+    }
+  },
+  {
+    "ref": "justiça",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "justiça",
+      "english": "justice",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "zhoosh-TEE-suh",
+      "example": "A justiça demora, mas chega.",
+      "exampleTranslation": "Justice takes time, but it arrives.",
+      "relatedWords": [
+        { "word": "lei", "meaning": "law" },
+        { "word": "tribunal", "meaning": "court" },
+        { "word": "direito", "meaning": "right / law" }
+      ]
+    }
+  },
+  {
+    "ref": "solidariedade",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "solidariedade",
+      "english": "solidarity",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "soo-lee-duh-ree-DAH-duh",
+      "example": "A solidariedade vê-se nos vizinhos.",
+      "exampleTranslation": "Solidarity shows up in the neighbours.",
+      "relatedWords": [
+        { "word": "ajuda", "meaning": "help" },
+        { "word": "apoio", "meaning": "support" },
+        { "word": "comunidade", "meaning": "community" }
+      ]
+    }
+  },
+  {
+    "ref": "respeito",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "respeito",
+      "english": "respect",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "rruhsh-PAY-too",
+      "example": "O respeito começa em casa.",
+      "exampleTranslation": "Respect starts at home.",
+      "relatedWords": [
+        { "word": "educação", "meaning": "manners" },
+        { "word": "tolerância", "meaning": "tolerance" },
+        { "word": "igualdade", "meaning": "equality" }
+      ]
+    }
+  },
+  {
+    "ref": "tolerância",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "tolerância",
+      "english": "tolerance",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "too-luh-RAN-see-uh",
+      "example": "A tolerância ajuda a viver juntos.",
+      "exampleTranslation": "Tolerance helps people live together.",
+      "relatedWords": [
+        { "word": "respeito", "meaning": "respect" },
+        { "word": "paciência", "meaning": "patience" },
+        { "word": "diferença", "meaning": "difference" }
+      ]
+    }
+  },
+  {
+    "ref": "cooperação",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "cooperação",
+      "english": "cooperation",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "koo-puh-ruh-SOWNG",
+      "example": "A cooperação entre os dois correu bem.",
+      "exampleTranslation": "The cooperation between the two went well.",
+      "relatedWords": [
+        { "word": "ajuda", "meaning": "help" },
+        { "word": "equipa", "meaning": "team" },
+        { "word": "acordo", "meaning": "agreement" }
+      ]
+    }
+  },
+  {
+    "ref": "voluntário",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "voluntário / voluntária",
+      "english": "volunteer",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "voo-loon-TAH-ree-oo / voo-loon-TAH-ree-uh",
+      "example": "Ela é voluntária no hospital.",
+      "exampleTranslation": "She is a volunteer at the hospital.",
+      "relatedWords": [
+        { "word": "ajuda", "meaning": "help" },
+        { "word": "hospital", "meaning": "hospital" },
+        { "word": "comunidade", "meaning": "community" }
+      ]
+    }
+  },
+  {
+    "ref": "participação",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "participação",
+      "english": "participation",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "pur-tee-see-puh-SOWNG",
+      "example": "A tua participação conta.",
+      "exampleTranslation": "Your participation counts.",
+      "relatedWords": [
+        { "word": "voto", "meaning": "vote" },
+        { "word": "grupo", "meaning": "group" },
+        { "word": "presença", "meaning": "presence" }
+      ]
+    }
+  },
+  {
+    "ref": "eleição",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "eleição",
+      "english": "election",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-lay-SOWNG",
+      "example": "A eleição é no domingo.",
+      "exampleTranslation": "The election is on Sunday.",
+      "relatedWords": [
+        { "word": "voto", "meaning": "vote" },
+        { "word": "candidato", "meaning": "candidate" },
+        { "word": "política", "meaning": "politics" }
+      ]
+    }
+  },
+  {
+    "ref": "estilo",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "estilo",
+      "english": "style",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "shTEE-loo",
+      "example": "O estilo dela é simples.",
+      "exampleTranslation": "Her style is simple.",
+      "relatedWords": [
+        { "word": "roupa", "meaning": "clothes" },
+        { "word": "moda", "meaning": "fashion" },
+        { "word": "imagem", "meaning": "image" }
+      ]
+    }
+  },
+  {
+    "ref": "imagem",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "imagem",
+      "english": "image",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-MAH-zhayng",
+      "example": "A imagem no ecrã está desfocada.",
+      "exampleTranslation": "The image on the screen is out of focus.",
+      "relatedWords": [
+        { "word": "ecrã", "meaning": "screen" },
+        { "word": "foto", "meaning": "photo" },
+        { "word": "aparência", "meaning": "appearance" }
+      ]
+    }
+  },
+  {
+    "ref": "aparência",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "aparência",
+      "english": "appearance",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-puh-REN-see-uh",
+      "example": "A aparência não diz tudo.",
+      "exampleTranslation": "Appearance does not tell you everything.",
+      "relatedWords": [
+        { "word": "imagem", "meaning": "image" },
+        { "word": "roupa", "meaning": "clothes" },
+        { "word": "estilo", "meaning": "style" }
+      ]
+    }
+  },
+  {
+    "ref": "identidade",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "identidade",
+      "english": "identity",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-den-tee-DAH-duh",
+      "example": "A identidade portuguesa vê-se na língua.",
+      "exampleTranslation": "Portuguese identity shows in the language.",
+      "relatedWords": [
+        { "word": "cultura", "meaning": "culture" },
+        { "word": "nome", "meaning": "name" },
+        { "word": "país", "meaning": "country" }
+      ]
+    }
+  },
+  {
+    "ref": "expressão",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "expressão",
+      "english": "expression",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "shpreh-SOWNG",
+      "example": "Gosto dessa expressão.",
+      "exampleTranslation": "I like that expression.",
+      "relatedWords": [
+        { "word": "frase", "meaning": "sentence" },
+        { "word": "cara", "meaning": "face" },
+        { "word": "palavra", "meaning": "word" }
+      ]
+    }
+  },
+  {
+    "ref": "valores",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "valores",
+      "english": "values",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "vuh-LOH-rush",
+      "example": "Os valores da família são claros.",
+      "exampleTranslation": "The family's values are clear.",
+      "relatedWords": [
+        { "word": "família", "meaning": "family" },
+        { "word": "respeito", "meaning": "respect" },
+        { "word": "crenças", "meaning": "beliefs" }
+      ]
+    }
+  },
+  {
+    "ref": "crenças",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "crenças",
+      "english": "beliefs",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KREN-sush",
+      "example": "As crenças de cada um merecem respeito.",
+      "exampleTranslation": "Each person's beliefs deserve respect.",
+      "relatedWords": [
+        { "word": "valores", "meaning": "values" },
+        { "word": "fé", "meaning": "faith" },
+        { "word": "opinião", "meaning": "opinion" }
+      ]
+    }
+  },
+  {
+    "ref": "cultura",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "cultura",
+      "english": "culture",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kool-TOO-ruh",
+      "example": "A cultura portuguesa passa pela mesa.",
+      "exampleTranslation": "Portuguese culture comes through at the table.",
+      "relatedWords": [
+        { "word": "tradição", "meaning": "tradition" },
+        { "word": "língua", "meaning": "language" },
+        { "word": "fado", "meaning": "fado" }
+      ]
+    }
+  },
+  {
+    "ref": "modernidade",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "modernidade",
+      "english": "modernity",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "moo-dur-nee-DAH-duh",
+      "example": "A modernidade não apaga a tradição.",
+      "exampleTranslation": "Modernity does not erase tradition.",
+      "relatedWords": [
+        { "word": "tradição", "meaning": "tradition" },
+        { "word": "novo", "meaning": "new" },
+        { "word": "cidade", "meaning": "city" }
+      ]
+    }
+  },
+  {
+    "ref": "criatividade",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "criatividade",
+      "english": "creativity",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kree-uh-tee-vee-DAH-duh",
+      "example": "A criatividade dela surpreende.",
+      "exampleTranslation": "Her creativity is surprising.",
+      "relatedWords": [
+        { "word": "ideia", "meaning": "idea" },
+        { "word": "arte", "meaning": "art" },
+        { "word": "imaginação", "meaning": "imagination" }
+      ]
+    }
+  },
+  {
+    "ref": "originalidade",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "originalidade",
+      "english": "originality",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "oo-ree-zhee-nuh-lee-DAH-duh",
+      "example": "A originalidade do texto é evidente.",
+      "exampleTranslation": "The originality of the text is obvious.",
+      "relatedWords": [
+        { "word": "criatividade", "meaning": "creativity" },
+        { "word": "novo", "meaning": "new" },
+        { "word": "estilo", "meaning": "style" }
+      ]
+    }
+  },
+  {
+    "ref": "autenticidade",
+    "categoryId": "clothing-appearance",
+    "word": {
+      "portuguese": "autenticidade",
+      "english": "authenticity",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ow-ten-tee-see-DAH-duh",
+      "example": "A autenticidade importa mais do que a moda.",
+      "exampleTranslation": "Authenticity matters more than fashion.",
+      "relatedWords": [
+        { "word": "verdade", "meaning": "truth" },
+        { "word": "estilo", "meaning": "style" },
+        { "word": "identidade", "meaning": "identity" }
+      ]
+    }
+  },
+  {
+    "ref": "aprendizagem",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "aprendizagem",
+      "english": "learning",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "uh-pren-dee-ZAH-zhayng",
+      "example": "A aprendizagem leva tempo.",
+      "exampleTranslation": "Learning takes time.",
+      "relatedWords": [
+        { "word": "aprender", "meaning": "to learn" },
+        { "word": "estudo", "meaning": "study" },
+        { "word": "escola", "meaning": "school" }
+      ]
+    }
+  },
+  {
+    "ref": "mundo",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "mundo",
+      "english": "world",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "MOON-doo",
+      "example": "O mundo é grande, mas Lisboa é casa.",
+      "exampleTranslation": "The world is big, but Lisbon is home.",
+      "relatedWords": [
+        { "word": "país", "meaning": "country" },
+        { "word": "terra", "meaning": "earth" },
+        { "word": "cidade", "meaning": "city" }
+      ]
+    }
+  }
+]

@@ -1,0 +1,560 @@
+[
+  {
+    "ref": "provavelmente",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "provavelmente",
+      "english": "probably",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "proo-vuh-vel-MEN-tuh",
+      "example": "Provavelmente chego às sete.",
+      "exampleTranslation": "I will probably arrive at seven.",
+      "relatedWords": [
+        { "word": "talvez", "meaning": "maybe" },
+        { "word": "certeza", "meaning": "certainty" },
+        { "word": "possível", "meaning": "possible" }
+      ]
+    }
+  },
+  {
+    "ref": "possivelmente",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "possivelmente",
+      "english": "possibly",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "poo-see-vel-MEN-tuh",
+      "example": "Possivelmente fica para amanhã.",
+      "exampleTranslation": "It might be left for tomorrow.",
+      "relatedWords": [
+        { "word": "talvez", "meaning": "maybe" },
+        { "word": "provavelmente", "meaning": "probably" },
+        { "word": "possível", "meaning": "possible" }
+      ]
+    }
+  },
+  {
+    "ref": "dúvida",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "dúvida",
+      "english": "doubt",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "DOO-vee-duh",
+      "example": "Tenho uma dúvida sobre este exercício.",
+      "exampleTranslation": "I have a question about this exercise.",
+      "relatedWords": [
+        { "word": "certeza", "meaning": "certainty" },
+        { "word": "pergunta", "meaning": "question" },
+        { "word": "questão", "meaning": "issue" }
+      ]
+    }
+  },
+  {
+    "ref": "certeza",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "certeza",
+      "english": "certainty",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "sur-TEH-zuh",
+      "example": "Tenho a certeza de que ele vem.",
+      "exampleTranslation": "I am sure that he is coming.",
+      "relatedWords": [
+        { "word": "dúvida", "meaning": "doubt" },
+        { "word": "verdade", "meaning": "truth" },
+        { "word": "facto", "meaning": "fact" }
+      ]
+    }
+  },
+  {
+    "ref": "possibilidade",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "possibilidade",
+      "english": "possibility",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "poo-see-bee-lee-DAH-duh",
+      "example": "Há a possibilidade de chuva.",
+      "exampleTranslation": "There is a chance of rain.",
+      "relatedWords": [
+        { "word": "hipótese", "meaning": "hypothesis" },
+        { "word": "oportunidade", "meaning": "opportunity" },
+        { "word": "talvez", "meaning": "maybe" }
+      ]
+    }
+  },
+  {
+    "ref": "condição",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "condição",
+      "english": "condition",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kon-dee-SOWNG",
+      "example": "A condição é chegares a horas.",
+      "exampleTranslation": "The condition is that you arrive on time.",
+      "relatedWords": [
+        { "word": "regra", "meaning": "rule" },
+        { "word": "acordo", "meaning": "agreement" },
+        { "word": "se", "meaning": "if" }
+      ]
+    }
+  },
+  {
+    "ref": "hipótese",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "hipótese",
+      "english": "hypothesis",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-POH-tuh-zuh",
+      "example": "Essa hipótese faz sentido.",
+      "exampleTranslation": "That hypothesis makes sense.",
+      "relatedWords": [
+        { "word": "ideia", "meaning": "idea" },
+        { "word": "teoria", "meaning": "theory" },
+        { "word": "dúvida", "meaning": "doubt" }
+      ]
+    }
+  },
+  {
+    "ref": "realidade",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "realidade",
+      "english": "reality",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "rree-uh-lee-DAH-duh",
+      "example": "A realidade é outra.",
+      "exampleTranslation": "The reality is different.",
+      "relatedWords": [
+        { "word": "facto", "meaning": "fact" },
+        { "word": "verdade", "meaning": "truth" },
+        { "word": "ficção", "meaning": "fiction" }
+      ]
+    }
+  },
+  {
+    "ref": "imaginação",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "imaginação",
+      "english": "imagination",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "ee-muh-zhee-nuh-SOWNG",
+      "example": "Ela tem muita imaginação.",
+      "exampleTranslation": "She has a lot of imagination.",
+      "relatedWords": [
+        { "word": "ideia", "meaning": "idea" },
+        { "word": "criatividade", "meaning": "creativity" },
+        { "word": "sonho", "meaning": "dream" }
+      ]
+    }
+  },
+  {
+    "ref": "receio",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "receio",
+      "english": "fear / misgiving",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "rruh-SAY-oo",
+      "example": "Tenho receio de chegar tarde.",
+      "exampleTranslation": "I am afraid of arriving late.",
+      "relatedWords": [
+        { "word": "medo", "meaning": "fear" },
+        { "word": "preocupação", "meaning": "worry" },
+        { "word": "dúvida", "meaning": "doubt" }
+      ]
+    }
+  },
+  {
+    "ref": "vontade",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "vontade",
+      "english": "wish / desire",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "von-TAH-duh",
+      "example": "Tenho vontade de um café.",
+      "exampleTranslation": "I feel like a coffee.",
+      "relatedWords": [
+        { "word": "desejo", "meaning": "desire" },
+        { "word": "fome", "meaning": "hunger" },
+        { "word": "preferência", "meaning": "preference" }
+      ]
+    }
+  },
+  {
+    "ref": "preferência",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "preferência",
+      "english": "preference",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "pruh-fuh-REN-see-uh",
+      "example": "A minha preferência é o comboio.",
+      "exampleTranslation": "My preference is the train.",
+      "relatedWords": [
+        { "word": "escolha", "meaning": "choice" },
+        { "word": "gosto", "meaning": "taste" },
+        { "word": "comboio", "meaning": "train" }
+      ]
+    }
+  },
+  {
+    "ref": "escolha",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "escolha",
+      "english": "choice",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "shKOH-lyuh",
+      "example": "A escolha é tua.",
+      "exampleTranslation": "The choice is yours.",
+      "relatedWords": [
+        { "word": "decisão", "meaning": "decision" },
+        { "word": "opção", "meaning": "option" },
+        { "word": "preferência", "meaning": "preference" }
+      ]
+    }
+  },
+  {
+    "ref": "decisão",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "decisão",
+      "english": "decision",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "duh-see-ZOWNG",
+      "example": "A decisão fica para segunda-feira.",
+      "exampleTranslation": "The decision waits until Monday.",
+      "relatedWords": [
+        { "word": "escolha", "meaning": "choice" },
+        { "word": "escolher", "meaning": "to choose" },
+        { "word": "consequência", "meaning": "consequence" }
+      ]
+    }
+  },
+  {
+    "ref": "consequência",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "consequência",
+      "english": "consequence",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "kon-suh-KWEN-see-uh",
+      "example": "Cada escolha tem uma consequência.",
+      "exampleTranslation": "Every choice has a consequence.",
+      "relatedWords": [
+        { "word": "resultado", "meaning": "result" },
+        { "word": "efeito", "meaning": "effect" },
+        { "word": "decisão", "meaning": "decision" }
+      ]
+    }
+  },
+  {
+    "ref": "espécie",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "espécie",
+      "english": "species",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "shPEH-see-uh",
+      "example": "Esta espécie vive no Tejo.",
+      "exampleTranslation": "This species lives in the Tagus.",
+      "relatedWords": [
+        { "word": "animal", "meaning": "animal" },
+        { "word": "planta", "meaning": "plant" },
+        { "word": "natureza", "meaning": "nature" }
+      ]
+    }
+  },
+  {
+    "ref": "conservar",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "conservar",
+      "english": "to conserve / to keep",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "kon-sur-VAR",
+      "example": "Queremos conservar a floresta.",
+      "exampleTranslation": "We want to conserve the forest.",
+      "relatedWords": [
+        { "word": "proteger", "meaning": "to protect" },
+        { "word": "floresta", "meaning": "forest" },
+        { "word": "natureza", "meaning": "nature" }
+      ]
+    }
+  },
+  {
+    "ref": "alteração climática",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "alteração climática",
+      "english": "climate change",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "al-tuh-ruh-SOWNG klee-MAH-tee-kuh",
+      "example": "A alteração climática sente-se no verão.",
+      "exampleTranslation": "Climate change is felt in the summer.",
+      "relatedWords": [
+        { "word": "clima", "meaning": "climate" },
+        { "word": "calor", "meaning": "heat" },
+        { "word": "ambiente", "meaning": "environment" }
+      ]
+    }
+  },
+  {
+    "ref": "renovável",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "renovável",
+      "english": "renewable",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "rruh-noo-VAH-vel",
+      "example": "A energia renovável cresce em Portugal.",
+      "exampleTranslation": "Renewable energy is growing in Portugal.",
+      "relatedWords": [
+        { "word": "energia", "meaning": "energy" },
+        { "word": "sol", "meaning": "sun" },
+        { "word": "ambiente", "meaning": "environment" }
+      ]
+    }
+  },
+  {
+    "ref": "recursos",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "recursos",
+      "english": "resources",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "rruh-KOOR-soosh",
+      "example": "Os recursos naturais não são infinitos.",
+      "exampleTranslation": "Natural resources are not endless.",
+      "relatedWords": [
+        { "word": "natureza", "meaning": "nature" },
+        { "word": "água", "meaning": "water" },
+        { "word": "energia", "meaning": "energy" }
+      ]
+    }
+  },
+  {
+    "ref": "fado",
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "fado",
+      "english": "fado",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "FAH-doo",
+      "example": "O fado ouve-se em Alfama.",
+      "exampleTranslation": "Fado is heard in Alfama.",
+      "relatedWords": [
+        { "word": "música", "meaning": "music" },
+        { "word": "saudade", "meaning": "longing" },
+        { "word": "guitarra", "meaning": "Portuguese guitar" }
+      ]
+    }
+  },
+  {
+    "ref": "pastelaria",
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "pastelaria",
+      "english": "pastry shop",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "push-tuh-luh-REE-uh",
+      "example": "Vamos à pastelaria comer um pastel de nata.",
+      "exampleTranslation": "Let us go to the pastry shop for a custard tart.",
+      "relatedWords": [
+        { "word": "pastel de nata", "meaning": "custard tart" },
+        { "word": "café", "meaning": "coffee" },
+        { "word": "bolo", "meaning": "cake" }
+      ]
+    }
+  },
+  {
+    "ref": "convívio",
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "convívio",
+      "english": "get-together",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "kon-VEE-vee-oo",
+      "example": "O convívio foi depois do jantar.",
+      "exampleTranslation": "The get-together was after dinner.",
+      "relatedWords": [
+        { "word": "jantar", "meaning": "dinner" },
+        { "word": "amigos", "meaning": "friends" },
+        { "word": "festa", "meaning": "party" }
+      ]
+    }
+  },
+  {
+    "ref": "refeição",
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "refeição",
+      "english": "meal",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "rruh-fay-SOWNG",
+      "example": "A refeição principal é o almoço.",
+      "exampleTranslation": "The main meal is lunch.",
+      "relatedWords": [
+        { "word": "almoço", "meaning": "lunch" },
+        { "word": "jantar", "meaning": "dinner" },
+        { "word": "pequeno-almoço", "meaning": "breakfast" }
+      ]
+    }
+  },
+  {
+    "ref": "especialidade",
+    "categoryId": "food-drink",
+    "word": {
+      "portuguese": "especialidade",
+      "english": "speciality",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "shpeh-see-uh-lee-DAH-duh",
+      "example": "A especialidade da casa é o bacalhau.",
+      "exampleTranslation": "The house speciality is salt cod.",
+      "relatedWords": [
+        { "word": "prato", "meaning": "dish" },
+        { "word": "bacalhau", "meaning": "salt cod" },
+        { "word": "ementa", "meaning": "menu" }
+      ]
+    }
+  },
+  {
+    "ref": "facto",
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "facto",
+      "english": "fact",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "FAK-too",
+      "example": "O facto é que ele tinha razão.",
+      "exampleTranslation": "The fact is that he was right.",
+      "relatedWords": [
+        { "word": "verdade", "meaning": "truth" },
+        { "word": "realidade", "meaning": "reality" },
+        { "word": "ficção", "meaning": "fiction" }
+      ]
+    }
+  },
+  {
+    "ref": "ficção",
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "ficção",
+      "english": "fiction",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "fee-SOWNG",
+      "example": "Este livro é ficção.",
+      "exampleTranslation": "This book is fiction.",
+      "relatedWords": [
+        { "word": "romance", "meaning": "novel" },
+        { "word": "autor", "meaning": "author" },
+        { "word": "facto", "meaning": "fact" }
+      ]
+    }
+  },
+  {
+    "ref": "autor",
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "autor / autora",
+      "english": "author",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "ow-TOR / ow-TOH-ruh",
+      "example": "A autora vive em Lisboa.",
+      "exampleTranslation": "The author lives in Lisbon.",
+      "relatedWords": [
+        { "word": "livro", "meaning": "book" },
+        { "word": "romance", "meaning": "novel" },
+        { "word": "leitor", "meaning": "reader" }
+      ]
+    }
+  },
+  {
+    "ref": "leitor",
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "leitor / leitora",
+      "english": "reader",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "lay-TOR / lay-TOH-ruh",
+      "example": "A leitora acabou o livro ontem.",
+      "exampleTranslation": "The reader finished the book yesterday.",
+      "relatedWords": [
+        { "word": "livro", "meaning": "book" },
+        { "word": "autor", "meaning": "author" },
+        { "word": "leitura", "meaning": "reading" }
+      ]
+    }
+  },
+  {
+    "ref": "crítica",
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "crítica",
+      "english": "review / criticism",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "KREE-tee-kuh",
+      "example": "A crítica do filme saiu ontem.",
+      "exampleTranslation": "The film review came out yesterday.",
+      "relatedWords": [
+        { "word": "filme", "meaning": "film" },
+        { "word": "opinião", "meaning": "opinion" },
+        { "word": "jornal", "meaning": "newspaper" }
+      ]
+    }
+  },
+  {
+    "ref": "bestseller",
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "bestseller",
+      "english": "bestseller",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "bes-SEH-ler",
+      "example": "O livro foi um bestseller.",
+      "exampleTranslation": "The book was a bestseller.",
+      "relatedWords": [
+        { "word": "livro", "meaning": "book" },
+        { "word": "sucesso", "meaning": "success" },
+        { "word": "autor", "meaning": "author" }
+      ]
+    }
+  }
+]

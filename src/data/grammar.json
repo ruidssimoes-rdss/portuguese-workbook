@@ -4959,7 +4959,7 @@
       "id": "possessives",
       "title": "Possessive Adjectives & Pronouns",
       "titlePt": "Possessivos",
-      "cefr": "A2",
+      "cefr": "A1",
       "summary": "meu/minha, teu/tua, seu/sua, nosso/nossa. In EP always use the article (o meu carro). Use dele/dela to avoid ambiguity. Possessive agrees with the thing possessed.",
       "intro": "Possessive determiners: o meu / a minha (my), o teu / a tua (your informal), o seu / a sua (his/her/your formal/their), o nosso / a nossa (our). Critical EP rule: possessives almost always take the definite article — O meu carro é azul. (My car is blue.) NOT *Meu carro é azul. Exception: with close family (mãe, pai) the article is sometimes dropped: Minha mãe, but A minha mãe is also correct and common.\n\nThe possessive agrees with the THING POSSESSED, not the possessor: O João tem a minha caneta (João has my pen — minha is feminine because caneta is feminine).\n\nAmbiguity: seu/sua can mean his, her, your, their. EP uses dele/dela/deles/delas after the noun for clarity: O carro dele (his car), A casa dela (her house). Possessive pronouns (standalone): Este livro é meu. O meu é melhor. De quem é isto? É teu.",
       "rules": [
@@ -5249,7 +5249,7 @@
       "id": "demonstratives",
       "title": "Demonstratives",
       "titlePt": "Demonstrativos",
-      "cefr": "A2",
+      "cefr": "A1",
       "summary": "Three levels: este (near me), esse (near you), aquele (over there). Invariable isto/isso/aquilo. Contract with de, em, a.",
       "intro": "Portuguese has three levels of distance (English only has two). ESTE/ESTA/ESTES/ESTAS = this/these — near the speaker. ESSE/ESSA/ESSES/ESSAS = that/those — near the listener. AQUELE/AQUELA/AQUELES/AQUELAS = that/those over there — far from both. For abstract or unspecified things we use the invariable pronouns: ISTO (this thing/matter, near me), ISSO (that thing/matter, near you or just said), AQUILO (that thing over there).\n\nIn practice many speakers use 'esse' where formally 'este' would apply; ESSE is also used for something just mentioned (e.g. Foste ao Porto? Essa cidade é linda.). Demonstratives contract with prepositions: de+este=deste, desta; de+esse=desse, dessa; de+aquele=daquele, daquela; em+este=neste, nesta; em+esse=nesse, nessa; em+aquele=naquele, naquela; a+aquele=àquele, a+aquela=àquela, a+aquilo=àquilo (grave accent).",
       "rules": [
@@ -6319,7 +6319,7 @@
       "id": "reflexive-verbs",
       "title": "Reflexive Verbs",
       "titlePt": "Verbos Reflexos",
-      "cefr": "A2",
+      "cefr": "A1",
       "summary": "Verbs with -se: levantar-se, vestir-se. Pronouns: me, te, se, nos, se. In EP pronoun goes AFTER the verb by default; BEFORE with não, question words, conjunctions, adverbs.",
       "intro": "Reflexive verbs: the action reflects back on the subject (subject does the action to themselves). Identified by -se on the infinitive: lavar-se (to wash oneself), vestir-se (to get dressed). Reflexive pronouns: eu→me, tu→te, ele/ela/você→se, nós→nos, eles/elas/vocês→se.\n\nIn European Portuguese the pronoun normally goes AFTER the verb (enclisis): Levanto-me cedo. Ela chama-se Ana. The pronoun goes BEFORE the verb (proclisis) when preceded by: negation (Não me levanto.), question words (Como te chamas?), subordinating conjunctions (que, quando, se, porque: Sei que se chama Maria.), or certain adverbs (já, ainda, também, sempre: Já me vesti.).\n\nIn Brazilian Portuguese the pronoun is always before the verb — that is wrong in EP. Common reflexive verbs: levantar-se, deitar-se, sentar-se, lavar-se, vestir-se, chamar-se (to be called), lembrar-se de, esquecer-se de, encontrar-se com, mudar-se, sentir-se, queixar-se de, divertir-se, preocupar-se com. Meaning changes: lavar (wash something) vs lavar-se (wash oneself); chamar (call) vs chamar-se (be called); encontrar (find) vs encontrar-se (meet up); lembrar (remind) vs lembrar-se de (remember). Mesoclisis: in formal EP, future/conditional can have the pronoun in the middle — Levantar-me-ei cedo.\n\nIn spoken EP people often say Vou levantar-me cedo instead.",
       "rules": [
@@ -11747,7 +11747,7 @@
       "id": "estar-a-infinitive",
       "title": "Estar a + Infinitive (Progressive)",
       "titlePt": "Estar a + Infinitivo",
-      "cefr": "A2",
+      "cefr": "A1",
       "summary": "The Portuguese equivalent of English '-ing' — how to say what's happening right now.",
       "intro": "When you want to say what's happening right now — 'I'm eating', 'She's reading', 'They're working' — European Portuguese uses estar a + infinitive. This is one of the key differences between EP and Brazilian Portuguese, which uses the gerund (-ando/-endo/-indo) instead.\n\nThe construction is simple: conjugate estar in any tense, add 'a', then the infinitive of the main verb. It works with every tense of estar to express ongoing actions at different times.",
       "rules": [
