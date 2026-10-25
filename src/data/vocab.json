@@ -244,7 +244,7 @@
         {
           "portuguese": "com certeza",
           "english": "certainly / for sure",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "kong suhr-TAY-zuh",
           "example": "Com certeza, eu ajudo.",
@@ -572,7 +572,7 @@
         {
           "portuguese": "igualmente",
           "english": "likewise",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "ee-gwahl-MEN-tuh",
           "example": "Bom fim de semana! Igualmente!",
@@ -1690,6 +1690,52 @@
             {
               "word": "fique bem",
               "meaning": "take care (formal)"
+            }
+          ]
+        },
+        {
+          "portuguese": "bem",
+          "english": "well",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "BAYNG",
+          "example": "Hoje sinto-me bem.",
+          "exampleTranslation": "I feel well today.",
+          "relatedWords": [
+            {
+              "word": "mal",
+              "meaning": "badly / unwell"
+            },
+            {
+              "word": "saúde",
+              "meaning": "health"
+            },
+            {
+              "word": "melhor",
+              "meaning": "better"
+            }
+          ]
+        },
+        {
+          "portuguese": "mal",
+          "english": "badly / unwell",
+          "cefr": "A1",
+          "gender": null,
+          "pronunciation": "MAHL",
+          "example": "Dormi mal esta noite.",
+          "exampleTranslation": "I slept badly last night.",
+          "relatedWords": [
+            {
+              "word": "bem",
+              "meaning": "well"
+            },
+            {
+              "word": "doente",
+              "meaning": "ill"
+            },
+            {
+              "word": "cansado",
+              "meaning": "tired"
             }
           ]
         }
@@ -2979,7 +3025,7 @@
         {
           "portuguese": "segundo",
           "english": "second (ordinal / time unit)",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "m",
           "pronunciation": "suh-GOON-doo",
           "example": "Espera um segundo, por favor.",
@@ -3395,7 +3441,7 @@
         {
           "portuguese": "dia",
           "english": "day",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "m",
           "pronunciation": "DEE-uh",
           "example": "Que dia é hoje?",
@@ -4263,7 +4309,7 @@
         {
           "portuguese": "nublado",
           "english": "cloudy",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "noo-BLAH-doo",
           "example": "Hoje está nublado.",
@@ -4281,7 +4327,7 @@
         {
           "portuguese": "fresco",
           "english": "fresh / cool (weather)",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "FRESH-koo",
           "example": "De manhã está fresco.",
@@ -5382,7 +5428,7 @@
         {
           "portuguese": "pastel de nata",
           "english": "custard tart",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "m",
           "pronunciation": "puhsh-TEHL duh NAH-tuh",
           "example": "Os pastéis de nata de Belém.",
@@ -5530,7 +5576,7 @@
         {
           "portuguese": "ementa",
           "english": "menu",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "f",
           "pronunciation": "uh-MEN-tuh",
           "example": "Posso ver a ementa?",
@@ -7222,29 +7268,6 @@
           ]
         },
         {
-          "portuguese": "fado",
-          "english": "fado",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "FAH-doo",
-          "example": "O fado ouve-se em Alfama.",
-          "exampleTranslation": "Fado is heard in Alfama.",
-          "relatedWords": [
-            {
-              "word": "música",
-              "meaning": "music"
-            },
-            {
-              "word": "saudade",
-              "meaning": "longing"
-            },
-            {
-              "word": "guitarra",
-              "meaning": "Portuguese guitar"
-            }
-          ]
-        },
-        {
           "portuguese": "pastelaria",
           "english": "pastry shop",
           "cefr": "B1",
@@ -7264,29 +7287,6 @@
             {
               "word": "bolo",
               "meaning": "cake"
-            }
-          ]
-        },
-        {
-          "portuguese": "convívio",
-          "english": "get-together",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "kon-VEE-vee-oo",
-          "example": "O convívio foi depois do jantar.",
-          "exampleTranslation": "The get-together was after dinner.",
-          "relatedWords": [
-            {
-              "word": "jantar",
-              "meaning": "dinner"
-            },
-            {
-              "word": "amigos",
-              "meaning": "friends"
-            },
-            {
-              "word": "festa",
-              "meaning": "party"
             }
           ]
         },
@@ -9012,7 +9012,7 @@
         {
           "portuguese": "bairro",
           "english": "neighbourhood / district",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "m",
           "pronunciation": "BAI-rroo",
           "example": "Alfama é o bairro mais antigo.",
@@ -9021,7 +9021,7 @@
         {
           "portuguese": "teatro",
           "english": "theatre",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "m",
           "pronunciation": "tee-AH-troo",
           "example": "O Teatro Nacional é muito bonito.",
@@ -12094,144 +12094,6 @@
               "meaning": "house"
             }
           ]
-        },
-        {
-          "portuguese": "facto",
-          "english": "fact",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "FAK-too",
-          "example": "O facto é que ele tinha razão.",
-          "exampleTranslation": "The fact is that he was right.",
-          "relatedWords": [
-            {
-              "word": "verdade",
-              "meaning": "truth"
-            },
-            {
-              "word": "realidade",
-              "meaning": "reality"
-            },
-            {
-              "word": "ficção",
-              "meaning": "fiction"
-            }
-          ]
-        },
-        {
-          "portuguese": "ficção",
-          "english": "fiction",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "fee-SOWNG",
-          "example": "Este livro é ficção.",
-          "exampleTranslation": "This book is fiction.",
-          "relatedWords": [
-            {
-              "word": "romance",
-              "meaning": "novel"
-            },
-            {
-              "word": "autor",
-              "meaning": "author"
-            },
-            {
-              "word": "facto",
-              "meaning": "fact"
-            }
-          ]
-        },
-        {
-          "portuguese": "autor / autora",
-          "english": "author",
-          "cefr": "B1",
-          "gender": "m/f",
-          "pronunciation": "ow-TOR / ow-TOH-ruh",
-          "example": "A autora vive em Lisboa.",
-          "exampleTranslation": "The author lives in Lisbon.",
-          "relatedWords": [
-            {
-              "word": "livro",
-              "meaning": "book"
-            },
-            {
-              "word": "romance",
-              "meaning": "novel"
-            },
-            {
-              "word": "leitor",
-              "meaning": "reader"
-            }
-          ]
-        },
-        {
-          "portuguese": "leitor / leitora",
-          "english": "reader",
-          "cefr": "B1",
-          "gender": "m/f",
-          "pronunciation": "lay-TOR / lay-TOH-ruh",
-          "example": "A leitora acabou o livro ontem.",
-          "exampleTranslation": "The reader finished the book yesterday.",
-          "relatedWords": [
-            {
-              "word": "livro",
-              "meaning": "book"
-            },
-            {
-              "word": "autor",
-              "meaning": "author"
-            },
-            {
-              "word": "leitura",
-              "meaning": "reading"
-            }
-          ]
-        },
-        {
-          "portuguese": "crítica",
-          "english": "review / criticism",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "KREE-tee-kuh",
-          "example": "A crítica do filme saiu ontem.",
-          "exampleTranslation": "The film review came out yesterday.",
-          "relatedWords": [
-            {
-              "word": "filme",
-              "meaning": "film"
-            },
-            {
-              "word": "opinião",
-              "meaning": "opinion"
-            },
-            {
-              "word": "jornal",
-              "meaning": "newspaper"
-            }
-          ]
-        },
-        {
-          "portuguese": "bestseller",
-          "english": "bestseller",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "bes-SEH-ler",
-          "example": "O livro foi um bestseller.",
-          "exampleTranslation": "The book was a bestseller.",
-          "relatedWords": [
-            {
-              "word": "livro",
-              "meaning": "book"
-            },
-            {
-              "word": "sucesso",
-              "meaning": "success"
-            },
-            {
-              "word": "autor",
-              "meaning": "author"
-            }
-          ]
         }
       ]
     },
@@ -13214,7 +13076,7 @@
         {
           "portuguese": "casamento",
           "english": "wedding / marriage",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "m",
           "pronunciation": "kuh-zuh-MEN-too",
           "example": "O casamento é em junho.",
@@ -13766,7 +13628,7 @@
         {
           "portuguese": "família",
           "english": "family",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "f",
           "pronunciation": "fuh-MEE-lee-uh",
           "example": "A minha família mora no Porto.",
@@ -13812,7 +13674,7 @@
         {
           "portuguese": "brincar",
           "english": "to play",
-          "cefr": "B1",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "breen-KAHR",
           "example": "As crianças gostam de brincar no jardim.",
@@ -13921,6 +13783,29 @@
             {
               "word": "lembrar",
               "meaning": "to remember"
+            }
+          ]
+        },
+        {
+          "portuguese": "rapariga",
+          "english": "girl",
+          "cefr": "A1",
+          "gender": "f",
+          "pronunciation": "rruh-puh-REE-guh",
+          "example": "A rapariga chegou de comboio.",
+          "exampleTranslation": "The girl arrived by train.",
+          "relatedWords": [
+            {
+              "word": "rapaz",
+              "meaning": "boy"
+            },
+            {
+              "word": "miúda",
+              "meaning": "girl (informal)"
+            },
+            {
+              "word": "mulher",
+              "meaning": "woman"
             }
           ]
         }
@@ -15540,7 +15425,7 @@
         {
           "portuguese": "estudar",
           "english": "to study",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "shtoo-DAHR",
           "example": "Vou estudar para o exame.",
@@ -15563,7 +15448,7 @@
         {
           "portuguese": "aprender",
           "english": "to learn",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "uh-pren-DEHR",
           "example": "Quero aprender português.",
@@ -15586,7 +15471,7 @@
         {
           "portuguese": "ensinar",
           "english": "to teach",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "en-see-NAHR",
           "example": "A professora ensina-nos a ler.",
@@ -16474,6 +16359,25 @@
           "proTip": "Urgências = A&E / ER. 'Fui às urgências' = I went to A&E. For emergencies, go to hospital."
         },
         {
+          "portuguese": "o penso",
+          "english": "plaster / bandage",
+          "cefr": "A2",
+          "gender": "m",
+          "pronunciation": "oo PEN-soo",
+          "example": "Pus um penso no dedo.",
+          "exampleTranslation": "I put a plaster on my finger.",
+          "relatedWords": [
+            {
+              "word": "o dedo",
+              "meaning": "the finger"
+            },
+            {
+              "word": "a farmácia",
+              "meaning": "the pharmacy"
+            }
+          ]
+        },
+        {
           "portuguese": "penso",
           "english": "bandage / plaster",
           "cefr": "A2",
@@ -17155,52 +17059,6 @@
           ]
         },
         {
-          "portuguese": "bem",
-          "english": "well",
-          "cefr": "A2",
-          "gender": null,
-          "pronunciation": "BAYNG",
-          "example": "Hoje sinto-me bem.",
-          "exampleTranslation": "I feel well today.",
-          "relatedWords": [
-            {
-              "word": "mal",
-              "meaning": "badly / unwell"
-            },
-            {
-              "word": "saúde",
-              "meaning": "health"
-            },
-            {
-              "word": "melhor",
-              "meaning": "better"
-            }
-          ]
-        },
-        {
-          "portuguese": "mal",
-          "english": "badly / unwell",
-          "cefr": "A2",
-          "gender": null,
-          "pronunciation": "MAHL",
-          "example": "Dormi mal esta noite.",
-          "exampleTranslation": "I slept badly last night.",
-          "relatedWords": [
-            {
-              "word": "bem",
-              "meaning": "well"
-            },
-            {
-              "word": "doente",
-              "meaning": "ill"
-            },
-            {
-              "word": "cansado",
-              "meaning": "tired"
-            }
-          ]
-        },
-        {
           "portuguese": "doença",
           "english": "illness",
           "cefr": "A2",
@@ -17272,7 +17130,7 @@
         {
           "portuguese": "tomar",
           "english": "to take",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "too-MAHR",
           "example": "Tomo o comprimido depois do almoço.",
@@ -17293,36 +17151,13 @@
           ]
         },
         {
-          "portuguese": "curativo",
-          "english": "plaster / dressing",
-          "cefr": "A2",
-          "gender": "m",
-          "pronunciation": "koo-ruh-TEE-voo",
-          "example": "Pus um curativo no dedo.",
-          "exampleTranslation": "I put a plaster on my finger.",
-          "relatedWords": [
-            {
-              "word": "farmácia",
-              "meaning": "pharmacy"
-            },
-            {
-              "word": "dedo",
-              "meaning": "finger"
-            },
-            {
-              "word": "sangue",
-              "meaning": "blood"
-            }
-          ]
-        },
-        {
           "portuguese": "espirrar",
           "english": "to sneeze",
           "cefr": "A2",
           "gender": null,
           "pronunciation": "shpee-RRAR",
-          "example": "Não pares de espirrar. Estás constipado?",
-          "exampleTranslation": "You keep sneezing. Have you got a cold?",
+          "example": "Não paras de espirrar. Estás constipado?",
+          "exampleTranslation": "You can't stop sneezing. Do you have a cold?",
           "relatedWords": [
             {
               "word": "tosse",
@@ -17381,6 +17216,29 @@
             {
               "word": "vómito",
               "meaning": "vomit"
+            }
+          ]
+        },
+        {
+          "portuguese": "engolir",
+          "english": "to swallow",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "en-goo-LEER",
+          "example": "Engoli o comprimido com água.",
+          "exampleTranslation": "I swallowed the tablet with water.",
+          "relatedWords": [
+            {
+              "word": "beber",
+              "meaning": "to drink"
+            },
+            {
+              "word": "comprimido",
+              "meaning": "tablet"
+            },
+            {
+              "word": "boca",
+              "meaning": "mouth"
             }
           ]
         }
@@ -19374,7 +19232,7 @@
         {
           "portuguese": "nevar",
           "english": "to snow",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "nuh-VAR",
           "example": "No inverno pode nevar na serra.",
@@ -19397,7 +19255,7 @@
         {
           "portuguese": "chover",
           "english": "to rain",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": null,
           "pronunciation": "shoo-VEHR",
           "example": "Vai chover esta tarde.",
@@ -20086,6 +19944,29 @@
         {
           "portuguese": "otimista",
           "english": "optimistic",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "oh-tee-MEESH-tuh",
+          "example": "Sou otimista quanto ao exame.",
+          "exampleTranslation": "I am optimistic about the exam.",
+          "relatedWords": [
+            {
+              "word": "esperança",
+              "meaning": "hope"
+            },
+            {
+              "word": "positivo",
+              "meaning": "positive"
+            },
+            {
+              "word": "confiança",
+              "meaning": "confidence"
+            }
+          ]
+        },
+        {
+          "portuguese": "otimista",
+          "english": "optimistic",
           "cefr": "B1",
           "gender": null,
           "pronunciation": "oo-tee-MEESH-tuh",
@@ -20590,29 +20471,6 @@
           ]
         },
         {
-          "portuguese": "optimista",
-          "english": "optimistic",
-          "cefr": "A2",
-          "gender": null,
-          "pronunciation": "op-tee-MEESH-tuh",
-          "example": "Sou optimista quanto ao exame.",
-          "exampleTranslation": "I am optimistic about the exam.",
-          "relatedWords": [
-            {
-              "word": "esperança",
-              "meaning": "hope"
-            },
-            {
-              "word": "positivo",
-              "meaning": "positive"
-            },
-            {
-              "word": "confiança",
-              "meaning": "confidence"
-            }
-          ]
-        },
-        {
           "portuguese": "sincero",
           "english": "sincere",
           "cefr": "A2",
@@ -20774,144 +20632,6 @@
           ]
         },
         {
-          "portuguese": "dúvida",
-          "english": "doubt",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "DOO-vee-duh",
-          "example": "Tenho uma dúvida sobre este exercício.",
-          "exampleTranslation": "I have a question about this exercise.",
-          "relatedWords": [
-            {
-              "word": "certeza",
-              "meaning": "certainty"
-            },
-            {
-              "word": "pergunta",
-              "meaning": "question"
-            },
-            {
-              "word": "questão",
-              "meaning": "issue"
-            }
-          ]
-        },
-        {
-          "portuguese": "certeza",
-          "english": "certainty",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "sur-TEH-zuh",
-          "example": "Tenho a certeza de que ele vem.",
-          "exampleTranslation": "I am sure that he is coming.",
-          "relatedWords": [
-            {
-              "word": "dúvida",
-              "meaning": "doubt"
-            },
-            {
-              "word": "verdade",
-              "meaning": "truth"
-            },
-            {
-              "word": "facto",
-              "meaning": "fact"
-            }
-          ]
-        },
-        {
-          "portuguese": "possibilidade",
-          "english": "possibility",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "poo-see-bee-lee-DAH-duh",
-          "example": "Há a possibilidade de chuva.",
-          "exampleTranslation": "There is a chance of rain.",
-          "relatedWords": [
-            {
-              "word": "hipótese",
-              "meaning": "hypothesis"
-            },
-            {
-              "word": "oportunidade",
-              "meaning": "opportunity"
-            },
-            {
-              "word": "talvez",
-              "meaning": "maybe"
-            }
-          ]
-        },
-        {
-          "portuguese": "condição",
-          "english": "condition",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "kon-dee-SOWNG",
-          "example": "A condição é chegares a horas.",
-          "exampleTranslation": "The condition is that you arrive on time.",
-          "relatedWords": [
-            {
-              "word": "regra",
-              "meaning": "rule"
-            },
-            {
-              "word": "acordo",
-              "meaning": "agreement"
-            },
-            {
-              "word": "se",
-              "meaning": "if"
-            }
-          ]
-        },
-        {
-          "portuguese": "hipótese",
-          "english": "hypothesis",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "ee-POH-tuh-zuh",
-          "example": "Essa hipótese faz sentido.",
-          "exampleTranslation": "That hypothesis makes sense.",
-          "relatedWords": [
-            {
-              "word": "ideia",
-              "meaning": "idea"
-            },
-            {
-              "word": "teoria",
-              "meaning": "theory"
-            },
-            {
-              "word": "dúvida",
-              "meaning": "doubt"
-            }
-          ]
-        },
-        {
-          "portuguese": "realidade",
-          "english": "reality",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "rree-uh-lee-DAH-duh",
-          "example": "A realidade é outra.",
-          "exampleTranslation": "The reality is different.",
-          "relatedWords": [
-            {
-              "word": "facto",
-              "meaning": "fact"
-            },
-            {
-              "word": "verdade",
-              "meaning": "truth"
-            },
-            {
-              "word": "ficção",
-              "meaning": "fiction"
-            }
-          ]
-        },
-        {
           "portuguese": "imaginação",
           "english": "imagination",
           "cefr": "B1",
@@ -20981,393 +20701,71 @@
           ]
         },
         {
-          "portuguese": "preferência",
-          "english": "preference",
+          "portuguese": "criatividade",
+          "english": "creativity",
           "cefr": "B1",
           "gender": "f",
-          "pronunciation": "pruh-fuh-REN-see-uh",
-          "example": "A minha preferência é o comboio.",
-          "exampleTranslation": "My preference is the train.",
+          "pronunciation": "kree-uh-tee-vee-DAH-duh",
+          "example": "A criatividade dela surpreende.",
+          "exampleTranslation": "Her creativity is surprising.",
           "relatedWords": [
             {
-              "word": "escolha",
-              "meaning": "choice"
+              "word": "ideia",
+              "meaning": "idea"
             },
             {
-              "word": "gosto",
-              "meaning": "taste"
+              "word": "arte",
+              "meaning": "art"
             },
             {
-              "word": "comboio",
-              "meaning": "train"
+              "word": "imaginação",
+              "meaning": "imagination"
             }
           ]
         },
         {
-          "portuguese": "escolha",
-          "english": "choice",
+          "portuguese": "originalidade",
+          "english": "originality",
           "cefr": "B1",
           "gender": "f",
-          "pronunciation": "shKOH-lyuh",
-          "example": "A escolha é tua.",
-          "exampleTranslation": "The choice is yours.",
+          "pronunciation": "oo-ree-zhee-nuh-lee-DAH-duh",
+          "example": "A originalidade do texto é evidente.",
+          "exampleTranslation": "The originality of the text is obvious.",
           "relatedWords": [
             {
-              "word": "decisão",
-              "meaning": "decision"
+              "word": "criatividade",
+              "meaning": "creativity"
             },
             {
-              "word": "opção",
-              "meaning": "option"
+              "word": "novo",
+              "meaning": "new"
             },
             {
-              "word": "preferência",
-              "meaning": "preference"
+              "word": "estilo",
+              "meaning": "style"
             }
           ]
         },
         {
-          "portuguese": "decisão",
-          "english": "decision",
+          "portuguese": "autenticidade",
+          "english": "authenticity",
           "cefr": "B1",
           "gender": "f",
-          "pronunciation": "duh-see-ZOWNG",
-          "example": "A decisão fica para segunda-feira.",
-          "exampleTranslation": "The decision waits until Monday.",
+          "pronunciation": "ow-ten-tee-see-DAH-duh",
+          "example": "A autenticidade importa mais do que a moda.",
+          "exampleTranslation": "Authenticity matters more than fashion.",
           "relatedWords": [
             {
-              "word": "escolha",
-              "meaning": "choice"
+              "word": "verdade",
+              "meaning": "truth"
             },
             {
-              "word": "escolher",
-              "meaning": "to choose"
+              "word": "estilo",
+              "meaning": "style"
             },
             {
-              "word": "consequência",
-              "meaning": "consequence"
-            }
-          ]
-        },
-        {
-          "portuguese": "consequência",
-          "english": "consequence",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "kon-suh-KWEN-see-uh",
-          "example": "Cada escolha tem uma consequência.",
-          "exampleTranslation": "Every choice has a consequence.",
-          "relatedWords": [
-            {
-              "word": "resultado",
-              "meaning": "result"
-            },
-            {
-              "word": "efeito",
-              "meaning": "effect"
-            },
-            {
-              "word": "decisão",
-              "meaning": "decision"
-            }
-          ]
-        },
-        {
-          "portuguese": "comunidade",
-          "english": "community",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "koo-moo-nee-DAH-duh",
-          "example": "A comunidade organizou a festa.",
-          "exampleTranslation": "The community organised the party.",
-          "relatedWords": [
-            {
-              "word": "bairro",
-              "meaning": "neighbourhood"
-            },
-            {
-              "word": "vizinho",
-              "meaning": "neighbour"
-            },
-            {
-              "word": "grupo",
-              "meaning": "group"
-            }
-          ]
-        },
-        {
-          "portuguese": "direitos",
-          "english": "rights",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "dee-RAY-toosh",
-          "example": "Todos temos direitos e deveres.",
-          "exampleTranslation": "We all have rights and duties.",
-          "relatedWords": [
-            {
-              "word": "deveres",
-              "meaning": "duties"
-            },
-            {
-              "word": "lei",
-              "meaning": "law"
-            },
-            {
-              "word": "liberdade",
-              "meaning": "freedom"
-            }
-          ]
-        },
-        {
-          "portuguese": "deveres",
-          "english": "duties / homework",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "duh-VEH-rush",
-          "example": "Os deveres da escola são para sexta-feira.",
-          "exampleTranslation": "The homework is for Friday.",
-          "relatedWords": [
-            {
-              "word": "direitos",
-              "meaning": "rights"
-            },
-            {
-              "word": "escola",
-              "meaning": "school"
-            },
-            {
-              "word": "tarefa",
-              "meaning": "task"
-            }
-          ]
-        },
-        {
-          "portuguese": "liberdade",
-          "english": "freedom",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "lee-bur-DAH-duh",
-          "example": "A liberdade de escolher é importante.",
-          "exampleTranslation": "The freedom to choose matters.",
-          "relatedWords": [
-            {
-              "word": "direitos",
-              "meaning": "rights"
-            },
-            {
-              "word": "livre",
-              "meaning": "free"
-            },
-            {
-              "word": "escolha",
-              "meaning": "choice"
-            }
-          ]
-        },
-        {
-          "portuguese": "igualdade",
-          "english": "equality",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "ee-gwal-DAH-duh",
-          "example": "A igualdade trata toda a gente da mesma forma.",
-          "exampleTranslation": "Equality treats everyone the same way.",
-          "relatedWords": [
-            {
-              "word": "justiça",
-              "meaning": "justice"
-            },
-            {
-              "word": "respeito",
-              "meaning": "respect"
-            },
-            {
-              "word": "direitos",
-              "meaning": "rights"
-            }
-          ]
-        },
-        {
-          "portuguese": "justiça",
-          "english": "justice",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "zhoosh-TEE-suh",
-          "example": "A justiça demora, mas chega.",
-          "exampleTranslation": "Justice takes time, but it arrives.",
-          "relatedWords": [
-            {
-              "word": "lei",
-              "meaning": "law"
-            },
-            {
-              "word": "tribunal",
-              "meaning": "court"
-            },
-            {
-              "word": "direito",
-              "meaning": "right / law"
-            }
-          ]
-        },
-        {
-          "portuguese": "solidariedade",
-          "english": "solidarity",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "soo-lee-duh-ree-DAH-duh",
-          "example": "A solidariedade vê-se nos vizinhos.",
-          "exampleTranslation": "Solidarity shows up in the neighbours.",
-          "relatedWords": [
-            {
-              "word": "ajuda",
-              "meaning": "help"
-            },
-            {
-              "word": "apoio",
-              "meaning": "support"
-            },
-            {
-              "word": "comunidade",
-              "meaning": "community"
-            }
-          ]
-        },
-        {
-          "portuguese": "respeito",
-          "english": "respect",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "rruhsh-PAY-too",
-          "example": "O respeito começa em casa.",
-          "exampleTranslation": "Respect starts at home.",
-          "relatedWords": [
-            {
-              "word": "educação",
-              "meaning": "manners"
-            },
-            {
-              "word": "tolerância",
-              "meaning": "tolerance"
-            },
-            {
-              "word": "igualdade",
-              "meaning": "equality"
-            }
-          ]
-        },
-        {
-          "portuguese": "tolerância",
-          "english": "tolerance",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "too-luh-RAN-see-uh",
-          "example": "A tolerância ajuda a viver juntos.",
-          "exampleTranslation": "Tolerance helps people live together.",
-          "relatedWords": [
-            {
-              "word": "respeito",
-              "meaning": "respect"
-            },
-            {
-              "word": "paciência",
-              "meaning": "patience"
-            },
-            {
-              "word": "diferença",
-              "meaning": "difference"
-            }
-          ]
-        },
-        {
-          "portuguese": "cooperação",
-          "english": "cooperation",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "koo-puh-ruh-SOWNG",
-          "example": "A cooperação entre os dois correu bem.",
-          "exampleTranslation": "The cooperation between the two went well.",
-          "relatedWords": [
-            {
-              "word": "ajuda",
-              "meaning": "help"
-            },
-            {
-              "word": "equipa",
-              "meaning": "team"
-            },
-            {
-              "word": "acordo",
-              "meaning": "agreement"
-            }
-          ]
-        },
-        {
-          "portuguese": "voluntário / voluntária",
-          "english": "volunteer",
-          "cefr": "B1",
-          "gender": "m/f",
-          "pronunciation": "voo-loon-TAH-ree-oo / voo-loon-TAH-ree-uh",
-          "example": "Ela é voluntária no hospital.",
-          "exampleTranslation": "She is a volunteer at the hospital.",
-          "relatedWords": [
-            {
-              "word": "ajuda",
-              "meaning": "help"
-            },
-            {
-              "word": "hospital",
-              "meaning": "hospital"
-            },
-            {
-              "word": "comunidade",
-              "meaning": "community"
-            }
-          ]
-        },
-        {
-          "portuguese": "participação",
-          "english": "participation",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "pur-tee-see-puh-SOWNG",
-          "example": "A tua participação conta.",
-          "exampleTranslation": "Your participation counts.",
-          "relatedWords": [
-            {
-              "word": "voto",
-              "meaning": "vote"
-            },
-            {
-              "word": "grupo",
-              "meaning": "group"
-            },
-            {
-              "word": "presença",
-              "meaning": "presence"
-            }
-          ]
-        },
-        {
-          "portuguese": "eleição",
-          "english": "election",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "uh-lay-SOWNG",
-          "example": "A eleição é no domingo.",
-          "exampleTranslation": "The election is on Sunday.",
-          "relatedWords": [
-            {
-              "word": "voto",
-              "meaning": "vote"
-            },
-            {
-              "word": "candidato",
-              "meaning": "candidate"
-            },
-            {
-              "word": "política",
-              "meaning": "politics"
+              "word": "identidade",
+              "meaning": "identity"
             }
           ]
         }
@@ -22182,55 +21580,9 @@
           "proTip": "Perfectly normal for «kid» in Portugal, but the feminine is a swear word and in Brazil «puto» means «furious». Use «miúda» for a girl."
         },
         {
-          "portuguese": "então",
-          "english": "so / then",
-          "cefr": "B1",
-          "gender": null,
-          "pronunciation": "en-TOWNG",
-          "example": "Então, o que aconteceu a seguir?",
-          "exampleTranslation": "So, what happened next?",
-          "relatedWords": [
-            {
-              "word": "depois",
-              "meaning": "afterwards"
-            },
-            {
-              "word": "pois",
-              "meaning": "well / since"
-            },
-            {
-              "word": "aí",
-              "meaning": "then"
-            }
-          ]
-        },
-        {
-          "portuguese": "rapariga",
-          "english": "girl",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "rruh-puh-REE-guh",
-          "example": "A rapariga chegou de comboio.",
-          "exampleTranslation": "The girl arrived by train.",
-          "relatedWords": [
-            {
-              "word": "rapaz",
-              "meaning": "boy"
-            },
-            {
-              "word": "miúda",
-              "meaning": "girl (informal)"
-            },
-            {
-              "word": "mulher",
-              "meaning": "woman"
-            }
-          ]
-        },
-        {
           "portuguese": "miúdo / miúda",
           "english": "kid",
-          "cefr": "B1",
+          "cefr": "A2",
           "gender": "m/f",
           "pronunciation": "mee-OO-doo / mee-OO-duh",
           "example": "O miúdo foi à escola a pé.",
@@ -22247,29 +21599,6 @@
             {
               "word": "rapariga",
               "meaning": "girl"
-            }
-          ]
-        },
-        {
-          "portuguese": "bocada",
-          "english": "a bargain / a good catch (slang)",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "boo-KAH-duh",
-          "example": "Este telemóvel foi uma bocada.",
-          "exampleTranslation": "This mobile was a bargain.",
-          "relatedWords": [
-            {
-              "word": "barato",
-              "meaning": "cheap"
-            },
-            {
-              "word": "negócio",
-              "meaning": "deal"
-            },
-            {
-              "word": "fixe",
-              "meaning": "cool"
             }
           ]
         },
@@ -22362,75 +21691,6 @@
             {
               "word": "acabar",
               "meaning": "to finish"
-            }
-          ]
-        },
-        {
-          "portuguese": "engolir",
-          "english": "to swallow",
-          "cefr": "B1",
-          "gender": null,
-          "pronunciation": "en-goo-LEER",
-          "example": "Engoli o comprimido com água.",
-          "exampleTranslation": "I swallowed the tablet with water.",
-          "relatedWords": [
-            {
-              "word": "beber",
-              "meaning": "to drink"
-            },
-            {
-              "word": "comprimido",
-              "meaning": "tablet"
-            },
-            {
-              "word": "boca",
-              "meaning": "mouth"
-            }
-          ]
-        },
-        {
-          "portuguese": "provavelmente",
-          "english": "probably",
-          "cefr": "B1",
-          "gender": null,
-          "pronunciation": "proo-vuh-vel-MEN-tuh",
-          "example": "Provavelmente chego às sete.",
-          "exampleTranslation": "I will probably arrive at seven.",
-          "relatedWords": [
-            {
-              "word": "talvez",
-              "meaning": "maybe"
-            },
-            {
-              "word": "certeza",
-              "meaning": "certainty"
-            },
-            {
-              "word": "possível",
-              "meaning": "possible"
-            }
-          ]
-        },
-        {
-          "portuguese": "possivelmente",
-          "english": "possibly",
-          "cefr": "B1",
-          "gender": null,
-          "pronunciation": "poo-see-vel-MEN-tuh",
-          "example": "Possivelmente fica para amanhã.",
-          "exampleTranslation": "It might be left for tomorrow.",
-          "relatedWords": [
-            {
-              "word": "talvez",
-              "meaning": "maybe"
-            },
-            {
-              "word": "provavelmente",
-              "meaning": "probably"
-            },
-            {
-              "word": "possível",
-              "meaning": "possible"
             }
           ]
         }
@@ -23259,7 +22519,7 @@
         {
           "portuguese": "podcast",
           "english": "podcast",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "m",
           "pronunciation": "POD-kast",
           "example": "Ouço um podcast sobre Portugal.",
@@ -24649,213 +23909,6 @@
             {
               "word": "estilo",
               "meaning": "style"
-            }
-          ]
-        },
-        {
-          "portuguese": "identidade",
-          "english": "identity",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "ee-den-tee-DAH-duh",
-          "example": "A identidade portuguesa vê-se na língua.",
-          "exampleTranslation": "Portuguese identity shows in the language.",
-          "relatedWords": [
-            {
-              "word": "cultura",
-              "meaning": "culture"
-            },
-            {
-              "word": "nome",
-              "meaning": "name"
-            },
-            {
-              "word": "país",
-              "meaning": "country"
-            }
-          ]
-        },
-        {
-          "portuguese": "expressão",
-          "english": "expression",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "shpreh-SOWNG",
-          "example": "Gosto dessa expressão.",
-          "exampleTranslation": "I like that expression.",
-          "relatedWords": [
-            {
-              "word": "frase",
-              "meaning": "sentence"
-            },
-            {
-              "word": "cara",
-              "meaning": "face"
-            },
-            {
-              "word": "palavra",
-              "meaning": "word"
-            }
-          ]
-        },
-        {
-          "portuguese": "valores",
-          "english": "values",
-          "cefr": "B1",
-          "gender": "m",
-          "pronunciation": "vuh-LOH-rush",
-          "example": "Os valores da família são claros.",
-          "exampleTranslation": "The family's values are clear.",
-          "relatedWords": [
-            {
-              "word": "família",
-              "meaning": "family"
-            },
-            {
-              "word": "respeito",
-              "meaning": "respect"
-            },
-            {
-              "word": "crenças",
-              "meaning": "beliefs"
-            }
-          ]
-        },
-        {
-          "portuguese": "crenças",
-          "english": "beliefs",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "KREN-sush",
-          "example": "As crenças de cada um merecem respeito.",
-          "exampleTranslation": "Each person's beliefs deserve respect.",
-          "relatedWords": [
-            {
-              "word": "valores",
-              "meaning": "values"
-            },
-            {
-              "word": "fé",
-              "meaning": "faith"
-            },
-            {
-              "word": "opinião",
-              "meaning": "opinion"
-            }
-          ]
-        },
-        {
-          "portuguese": "cultura",
-          "english": "culture",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "kool-TOO-ruh",
-          "example": "A cultura portuguesa passa pela mesa.",
-          "exampleTranslation": "Portuguese culture comes through at the table.",
-          "relatedWords": [
-            {
-              "word": "tradição",
-              "meaning": "tradition"
-            },
-            {
-              "word": "língua",
-              "meaning": "language"
-            },
-            {
-              "word": "fado",
-              "meaning": "fado"
-            }
-          ]
-        },
-        {
-          "portuguese": "modernidade",
-          "english": "modernity",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "moo-dur-nee-DAH-duh",
-          "example": "A modernidade não apaga a tradição.",
-          "exampleTranslation": "Modernity does not erase tradition.",
-          "relatedWords": [
-            {
-              "word": "tradição",
-              "meaning": "tradition"
-            },
-            {
-              "word": "novo",
-              "meaning": "new"
-            },
-            {
-              "word": "cidade",
-              "meaning": "city"
-            }
-          ]
-        },
-        {
-          "portuguese": "criatividade",
-          "english": "creativity",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "kree-uh-tee-vee-DAH-duh",
-          "example": "A criatividade dela surpreende.",
-          "exampleTranslation": "Her creativity is surprising.",
-          "relatedWords": [
-            {
-              "word": "ideia",
-              "meaning": "idea"
-            },
-            {
-              "word": "arte",
-              "meaning": "art"
-            },
-            {
-              "word": "imaginação",
-              "meaning": "imagination"
-            }
-          ]
-        },
-        {
-          "portuguese": "originalidade",
-          "english": "originality",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "oo-ree-zhee-nuh-lee-DAH-duh",
-          "example": "A originalidade do texto é evidente.",
-          "exampleTranslation": "The originality of the text is obvious.",
-          "relatedWords": [
-            {
-              "word": "criatividade",
-              "meaning": "creativity"
-            },
-            {
-              "word": "novo",
-              "meaning": "new"
-            },
-            {
-              "word": "estilo",
-              "meaning": "style"
-            }
-          ]
-        },
-        {
-          "portuguese": "autenticidade",
-          "english": "authenticity",
-          "cefr": "B1",
-          "gender": "f",
-          "pronunciation": "ow-ten-tee-see-DAH-duh",
-          "example": "A autenticidade importa mais do que a moda.",
-          "exampleTranslation": "Authenticity matters more than fashion.",
-          "relatedWords": [
-            {
-              "word": "verdade",
-              "meaning": "truth"
-            },
-            {
-              "word": "estilo",
-              "meaning": "style"
-            },
-            {
-              "word": "identidade",
-              "meaning": "identity"
             }
           ]
         }
@@ -26917,7 +25970,7 @@
         {
           "portuguese": "revista",
           "english": "magazine",
-          "cefr": "A2",
+          "cefr": "A1",
           "gender": "f",
           "pronunciation": "rruh-VEESH-tuh",
           "example": "Comprei uma revista de culinária.",
@@ -27363,6 +26416,167 @@
             }
           ],
           "proTip": "Films in Portugal are subtitled, not dubbed, except children's films («versão portuguesa»)."
+        },
+        {
+          "portuguese": "fado",
+          "english": "fado",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "FAH-doo",
+          "example": "O fado ouve-se em Alfama.",
+          "exampleTranslation": "Fado is heard in Alfama.",
+          "relatedWords": [
+            {
+              "word": "música",
+              "meaning": "music"
+            },
+            {
+              "word": "saudade",
+              "meaning": "longing"
+            },
+            {
+              "word": "guitarra",
+              "meaning": "Portuguese guitar"
+            }
+          ]
+        },
+        {
+          "portuguese": "convívio",
+          "english": "get-together",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "kon-VEE-vee-oo",
+          "example": "O convívio foi depois do jantar.",
+          "exampleTranslation": "The get-together was after dinner.",
+          "relatedWords": [
+            {
+              "word": "jantar",
+              "meaning": "dinner"
+            },
+            {
+              "word": "amigos",
+              "meaning": "friends"
+            },
+            {
+              "word": "festa",
+              "meaning": "party"
+            }
+          ]
+        },
+        {
+          "portuguese": "ficção",
+          "english": "fiction",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "fee-SOWNG",
+          "example": "Este livro é ficção.",
+          "exampleTranslation": "This book is fiction.",
+          "relatedWords": [
+            {
+              "word": "romance",
+              "meaning": "novel"
+            },
+            {
+              "word": "autor",
+              "meaning": "author"
+            },
+            {
+              "word": "facto",
+              "meaning": "fact"
+            }
+          ]
+        },
+        {
+          "portuguese": "autor / autora",
+          "english": "author",
+          "cefr": "B1",
+          "gender": "m/f",
+          "pronunciation": "ow-TOR / ow-TOH-ruh",
+          "example": "A autora vive em Lisboa.",
+          "exampleTranslation": "The author lives in Lisbon.",
+          "relatedWords": [
+            {
+              "word": "livro",
+              "meaning": "book"
+            },
+            {
+              "word": "romance",
+              "meaning": "novel"
+            },
+            {
+              "word": "leitor",
+              "meaning": "reader"
+            }
+          ]
+        },
+        {
+          "portuguese": "leitor / leitora",
+          "english": "reader",
+          "cefr": "B1",
+          "gender": "m/f",
+          "pronunciation": "lay-TOR / lay-TOH-ruh",
+          "example": "A leitora acabou o livro ontem.",
+          "exampleTranslation": "The reader finished the book yesterday.",
+          "relatedWords": [
+            {
+              "word": "livro",
+              "meaning": "book"
+            },
+            {
+              "word": "autor",
+              "meaning": "author"
+            },
+            {
+              "word": "leitura",
+              "meaning": "reading"
+            }
+          ]
+        },
+        {
+          "portuguese": "crítica",
+          "english": "review / criticism",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "KREE-tee-kuh",
+          "example": "A crítica do filme saiu ontem.",
+          "exampleTranslation": "The film review came out yesterday.",
+          "relatedWords": [
+            {
+              "word": "filme",
+              "meaning": "film"
+            },
+            {
+              "word": "opinião",
+              "meaning": "opinion"
+            },
+            {
+              "word": "jornal",
+              "meaning": "newspaper"
+            }
+          ]
+        },
+        {
+          "portuguese": "bestseller",
+          "english": "bestseller",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "bes-SEH-ler",
+          "example": "O livro foi um bestseller.",
+          "exampleTranslation": "The book was a bestseller.",
+          "relatedWords": [
+            {
+              "word": "livro",
+              "meaning": "book"
+            },
+            {
+              "word": "sucesso",
+              "meaning": "success"
+            },
+            {
+              "word": "autor",
+              "meaning": "author"
+            }
+          ]
         }
       ]
     },
@@ -34645,6 +33859,420 @@
               "meaning": "person experiencing homelessness"
             }
           ]
+        },
+        {
+          "portuguese": "comunidade",
+          "english": "community",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "koo-moo-nee-DAH-duh",
+          "example": "A comunidade organizou a festa.",
+          "exampleTranslation": "The community organised the party.",
+          "relatedWords": [
+            {
+              "word": "bairro",
+              "meaning": "neighbourhood"
+            },
+            {
+              "word": "vizinho",
+              "meaning": "neighbour"
+            },
+            {
+              "word": "grupo",
+              "meaning": "group"
+            }
+          ]
+        },
+        {
+          "portuguese": "direitos",
+          "english": "rights",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "dee-RAY-toosh",
+          "example": "Todos temos direitos e deveres.",
+          "exampleTranslation": "We all have rights and duties.",
+          "relatedWords": [
+            {
+              "word": "deveres",
+              "meaning": "duties"
+            },
+            {
+              "word": "lei",
+              "meaning": "law"
+            },
+            {
+              "word": "liberdade",
+              "meaning": "freedom"
+            }
+          ]
+        },
+        {
+          "portuguese": "deveres",
+          "english": "duties / homework",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "duh-VEH-rush",
+          "example": "Os deveres da escola são para sexta-feira.",
+          "exampleTranslation": "The homework is for Friday.",
+          "relatedWords": [
+            {
+              "word": "direitos",
+              "meaning": "rights"
+            },
+            {
+              "word": "escola",
+              "meaning": "school"
+            },
+            {
+              "word": "tarefa",
+              "meaning": "task"
+            }
+          ]
+        },
+        {
+          "portuguese": "liberdade",
+          "english": "freedom",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "lee-bur-DAH-duh",
+          "example": "A liberdade de escolher é importante.",
+          "exampleTranslation": "The freedom to choose matters.",
+          "relatedWords": [
+            {
+              "word": "direitos",
+              "meaning": "rights"
+            },
+            {
+              "word": "livre",
+              "meaning": "free"
+            },
+            {
+              "word": "escolha",
+              "meaning": "choice"
+            }
+          ]
+        },
+        {
+          "portuguese": "igualdade",
+          "english": "equality",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "ee-gwal-DAH-duh",
+          "example": "A igualdade trata toda a gente da mesma forma.",
+          "exampleTranslation": "Equality treats everyone the same way.",
+          "relatedWords": [
+            {
+              "word": "justiça",
+              "meaning": "justice"
+            },
+            {
+              "word": "respeito",
+              "meaning": "respect"
+            },
+            {
+              "word": "direitos",
+              "meaning": "rights"
+            }
+          ]
+        },
+        {
+          "portuguese": "justiça",
+          "english": "justice",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "zhoosh-TEE-suh",
+          "example": "A justiça demora, mas chega.",
+          "exampleTranslation": "Justice takes time, but it arrives.",
+          "relatedWords": [
+            {
+              "word": "lei",
+              "meaning": "law"
+            },
+            {
+              "word": "tribunal",
+              "meaning": "court"
+            },
+            {
+              "word": "direito",
+              "meaning": "right / law"
+            }
+          ]
+        },
+        {
+          "portuguese": "solidariedade",
+          "english": "solidarity",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "soo-lee-duh-ree-DAH-duh",
+          "example": "A solidariedade vê-se nos vizinhos.",
+          "exampleTranslation": "Solidarity shows up in the neighbours.",
+          "relatedWords": [
+            {
+              "word": "ajuda",
+              "meaning": "help"
+            },
+            {
+              "word": "apoio",
+              "meaning": "support"
+            },
+            {
+              "word": "comunidade",
+              "meaning": "community"
+            }
+          ]
+        },
+        {
+          "portuguese": "respeito",
+          "english": "respect",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "rruhsh-PAY-too",
+          "example": "O respeito começa em casa.",
+          "exampleTranslation": "Respect starts at home.",
+          "relatedWords": [
+            {
+              "word": "educação",
+              "meaning": "manners"
+            },
+            {
+              "word": "tolerância",
+              "meaning": "tolerance"
+            },
+            {
+              "word": "igualdade",
+              "meaning": "equality"
+            }
+          ]
+        },
+        {
+          "portuguese": "tolerância",
+          "english": "tolerance",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "too-luh-RAN-see-uh",
+          "example": "A tolerância ajuda a viver juntos.",
+          "exampleTranslation": "Tolerance helps people live together.",
+          "relatedWords": [
+            {
+              "word": "respeito",
+              "meaning": "respect"
+            },
+            {
+              "word": "paciência",
+              "meaning": "patience"
+            },
+            {
+              "word": "diferença",
+              "meaning": "difference"
+            }
+          ]
+        },
+        {
+          "portuguese": "cooperação",
+          "english": "cooperation",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "koo-puh-ruh-SOWNG",
+          "example": "A cooperação entre os dois correu bem.",
+          "exampleTranslation": "The cooperation between the two went well.",
+          "relatedWords": [
+            {
+              "word": "ajuda",
+              "meaning": "help"
+            },
+            {
+              "word": "equipa",
+              "meaning": "team"
+            },
+            {
+              "word": "acordo",
+              "meaning": "agreement"
+            }
+          ]
+        },
+        {
+          "portuguese": "voluntário / voluntária",
+          "english": "volunteer",
+          "cefr": "B1",
+          "gender": "m/f",
+          "pronunciation": "voo-loon-TAH-ree-oo / voo-loon-TAH-ree-uh",
+          "example": "Ela é voluntária no hospital.",
+          "exampleTranslation": "She is a volunteer at the hospital.",
+          "relatedWords": [
+            {
+              "word": "ajuda",
+              "meaning": "help"
+            },
+            {
+              "word": "hospital",
+              "meaning": "hospital"
+            },
+            {
+              "word": "comunidade",
+              "meaning": "community"
+            }
+          ]
+        },
+        {
+          "portuguese": "participação",
+          "english": "participation",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "pur-tee-see-puh-SOWNG",
+          "example": "A tua participação conta.",
+          "exampleTranslation": "Your participation counts.",
+          "relatedWords": [
+            {
+              "word": "voto",
+              "meaning": "vote"
+            },
+            {
+              "word": "grupo",
+              "meaning": "group"
+            },
+            {
+              "word": "presença",
+              "meaning": "presence"
+            }
+          ]
+        },
+        {
+          "portuguese": "eleição",
+          "english": "election",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "uh-lay-SOWNG",
+          "example": "A eleição é no domingo.",
+          "exampleTranslation": "The election is on Sunday.",
+          "relatedWords": [
+            {
+              "word": "voto",
+              "meaning": "vote"
+            },
+            {
+              "word": "candidato",
+              "meaning": "candidate"
+            },
+            {
+              "word": "política",
+              "meaning": "politics"
+            }
+          ]
+        },
+        {
+          "portuguese": "identidade",
+          "english": "identity",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "ee-den-tee-DAH-duh",
+          "example": "A identidade portuguesa vê-se na língua.",
+          "exampleTranslation": "Portuguese identity shows in the language.",
+          "relatedWords": [
+            {
+              "word": "cultura",
+              "meaning": "culture"
+            },
+            {
+              "word": "nome",
+              "meaning": "name"
+            },
+            {
+              "word": "país",
+              "meaning": "country"
+            }
+          ]
+        },
+        {
+          "portuguese": "valores",
+          "english": "values",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "vuh-LOH-rush",
+          "example": "Os valores da família são claros.",
+          "exampleTranslation": "The family's values are clear.",
+          "relatedWords": [
+            {
+              "word": "família",
+              "meaning": "family"
+            },
+            {
+              "word": "respeito",
+              "meaning": "respect"
+            },
+            {
+              "word": "crenças",
+              "meaning": "beliefs"
+            }
+          ]
+        },
+        {
+          "portuguese": "crenças",
+          "english": "beliefs",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "KREN-sush",
+          "example": "As crenças de cada um merecem respeito.",
+          "exampleTranslation": "Each person's beliefs deserve respect.",
+          "relatedWords": [
+            {
+              "word": "valores",
+              "meaning": "values"
+            },
+            {
+              "word": "fé",
+              "meaning": "faith"
+            },
+            {
+              "word": "opinião",
+              "meaning": "opinion"
+            }
+          ]
+        },
+        {
+          "portuguese": "cultura",
+          "english": "culture",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "kool-TOO-ruh",
+          "example": "A cultura portuguesa passa pela mesa.",
+          "exampleTranslation": "Portuguese culture comes through at the table.",
+          "relatedWords": [
+            {
+              "word": "tradição",
+              "meaning": "tradition"
+            },
+            {
+              "word": "língua",
+              "meaning": "language"
+            },
+            {
+              "word": "fado",
+              "meaning": "fado"
+            }
+          ]
+        },
+        {
+          "portuguese": "modernidade",
+          "english": "modernity",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "moo-dur-nee-DAH-duh",
+          "example": "A modernidade não apaga a tradição.",
+          "exampleTranslation": "Modernity does not erase tradition.",
+          "relatedWords": [
+            {
+              "word": "tradição",
+              "meaning": "tradition"
+            },
+            {
+              "word": "novo",
+              "meaning": "new"
+            },
+            {
+              "word": "cidade",
+              "meaning": "city"
+            }
+          ]
         }
       ]
     },
@@ -37193,6 +36821,351 @@
             }
           ],
           "proTip": "Also a mild «actually»: «Por acaso até gostei do filme» = «Actually, I quite liked the film»."
+        },
+        {
+          "portuguese": "facto",
+          "english": "fact",
+          "cefr": "B1",
+          "gender": "m",
+          "pronunciation": "FAK-too",
+          "example": "O facto é que ele tinha razão.",
+          "exampleTranslation": "The fact is that he was right.",
+          "relatedWords": [
+            {
+              "word": "verdade",
+              "meaning": "truth"
+            },
+            {
+              "word": "realidade",
+              "meaning": "reality"
+            },
+            {
+              "word": "ficção",
+              "meaning": "fiction"
+            }
+          ]
+        },
+        {
+          "portuguese": "dúvida",
+          "english": "doubt",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "DOO-vee-duh",
+          "example": "Tenho uma dúvida sobre este exercício.",
+          "exampleTranslation": "I have a question about this exercise.",
+          "relatedWords": [
+            {
+              "word": "certeza",
+              "meaning": "certainty"
+            },
+            {
+              "word": "pergunta",
+              "meaning": "question"
+            },
+            {
+              "word": "questão",
+              "meaning": "issue"
+            }
+          ]
+        },
+        {
+          "portuguese": "certeza",
+          "english": "certainty",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "sur-TEH-zuh",
+          "example": "Tenho a certeza de que ele vem.",
+          "exampleTranslation": "I am sure that he is coming.",
+          "relatedWords": [
+            {
+              "word": "dúvida",
+              "meaning": "doubt"
+            },
+            {
+              "word": "verdade",
+              "meaning": "truth"
+            },
+            {
+              "word": "facto",
+              "meaning": "fact"
+            }
+          ]
+        },
+        {
+          "portuguese": "possibilidade",
+          "english": "possibility",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "poo-see-bee-lee-DAH-duh",
+          "example": "Há a possibilidade de chuva.",
+          "exampleTranslation": "There is a chance of rain.",
+          "relatedWords": [
+            {
+              "word": "hipótese",
+              "meaning": "hypothesis"
+            },
+            {
+              "word": "oportunidade",
+              "meaning": "opportunity"
+            },
+            {
+              "word": "talvez",
+              "meaning": "maybe"
+            }
+          ]
+        },
+        {
+          "portuguese": "condição",
+          "english": "condition",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "kon-dee-SOWNG",
+          "example": "A condição é chegares a horas.",
+          "exampleTranslation": "The condition is that you arrive on time.",
+          "relatedWords": [
+            {
+              "word": "regra",
+              "meaning": "rule"
+            },
+            {
+              "word": "acordo",
+              "meaning": "agreement"
+            },
+            {
+              "word": "se",
+              "meaning": "if"
+            }
+          ]
+        },
+        {
+          "portuguese": "hipótese",
+          "english": "hypothesis",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "ee-POH-tuh-zuh",
+          "example": "Essa hipótese faz sentido.",
+          "exampleTranslation": "That hypothesis makes sense.",
+          "relatedWords": [
+            {
+              "word": "ideia",
+              "meaning": "idea"
+            },
+            {
+              "word": "teoria",
+              "meaning": "theory"
+            },
+            {
+              "word": "dúvida",
+              "meaning": "doubt"
+            }
+          ]
+        },
+        {
+          "portuguese": "realidade",
+          "english": "reality",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "rree-uh-lee-DAH-duh",
+          "example": "A realidade é outra.",
+          "exampleTranslation": "The reality is different.",
+          "relatedWords": [
+            {
+              "word": "facto",
+              "meaning": "fact"
+            },
+            {
+              "word": "verdade",
+              "meaning": "truth"
+            },
+            {
+              "word": "ficção",
+              "meaning": "fiction"
+            }
+          ]
+        },
+        {
+          "portuguese": "preferência",
+          "english": "preference",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "pruh-fuh-REN-see-uh",
+          "example": "A minha preferência é o comboio.",
+          "exampleTranslation": "My preference is the train.",
+          "relatedWords": [
+            {
+              "word": "escolha",
+              "meaning": "choice"
+            },
+            {
+              "word": "gosto",
+              "meaning": "taste"
+            },
+            {
+              "word": "comboio",
+              "meaning": "train"
+            }
+          ]
+        },
+        {
+          "portuguese": "escolha",
+          "english": "choice",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "shKOH-lyuh",
+          "example": "A escolha é tua.",
+          "exampleTranslation": "The choice is yours.",
+          "relatedWords": [
+            {
+              "word": "decisão",
+              "meaning": "decision"
+            },
+            {
+              "word": "opção",
+              "meaning": "option"
+            },
+            {
+              "word": "preferência",
+              "meaning": "preference"
+            }
+          ]
+        },
+        {
+          "portuguese": "decisão",
+          "english": "decision",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "duh-see-ZOWNG",
+          "example": "A decisão fica para segunda-feira.",
+          "exampleTranslation": "The decision waits until Monday.",
+          "relatedWords": [
+            {
+              "word": "escolha",
+              "meaning": "choice"
+            },
+            {
+              "word": "escolher",
+              "meaning": "to choose"
+            },
+            {
+              "word": "consequência",
+              "meaning": "consequence"
+            }
+          ]
+        },
+        {
+          "portuguese": "consequência",
+          "english": "consequence",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "kon-suh-KWEN-see-uh",
+          "example": "Cada escolha tem uma consequência.",
+          "exampleTranslation": "Every choice has a consequence.",
+          "relatedWords": [
+            {
+              "word": "resultado",
+              "meaning": "result"
+            },
+            {
+              "word": "efeito",
+              "meaning": "effect"
+            },
+            {
+              "word": "decisão",
+              "meaning": "decision"
+            }
+          ]
+        },
+        {
+          "portuguese": "expressão",
+          "english": "expression",
+          "cefr": "B1",
+          "gender": "f",
+          "pronunciation": "shpreh-SOWNG",
+          "example": "Gosto dessa expressão.",
+          "exampleTranslation": "I like that expression.",
+          "relatedWords": [
+            {
+              "word": "frase",
+              "meaning": "sentence"
+            },
+            {
+              "word": "cara",
+              "meaning": "face"
+            },
+            {
+              "word": "palavra",
+              "meaning": "word"
+            }
+          ]
+        },
+        {
+          "portuguese": "então",
+          "english": "so / then",
+          "cefr": "A2",
+          "gender": null,
+          "pronunciation": "en-TOWNG",
+          "example": "Então, o que aconteceu a seguir?",
+          "exampleTranslation": "So, what happened next?",
+          "relatedWords": [
+            {
+              "word": "depois",
+              "meaning": "afterwards"
+            },
+            {
+              "word": "pois",
+              "meaning": "well / since"
+            },
+            {
+              "word": "aí",
+              "meaning": "then"
+            }
+          ]
+        },
+        {
+          "portuguese": "provavelmente",
+          "english": "probably",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "proo-vuh-vel-MEN-tuh",
+          "example": "Provavelmente chego às sete.",
+          "exampleTranslation": "I will probably arrive at seven.",
+          "relatedWords": [
+            {
+              "word": "talvez",
+              "meaning": "maybe"
+            },
+            {
+              "word": "certeza",
+              "meaning": "certainty"
+            },
+            {
+              "word": "possível",
+              "meaning": "possible"
+            }
+          ]
+        },
+        {
+          "portuguese": "possivelmente",
+          "english": "possibly",
+          "cefr": "B1",
+          "gender": null,
+          "pronunciation": "poo-see-vel-MEN-tuh",
+          "example": "Possivelmente fica para amanhã.",
+          "exampleTranslation": "It might be left for tomorrow.",
+          "relatedWords": [
+            {
+              "word": "talvez",
+              "meaning": "maybe"
+            },
+            {
+              "word": "provavelmente",
+              "meaning": "probably"
+            },
+            {
+              "word": "possível",
+              "meaning": "possible"
+            }
+          ]
         }
       ]
     }
