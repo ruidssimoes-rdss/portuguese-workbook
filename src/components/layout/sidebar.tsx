@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   CalendarDays,
+  Calendar,
   LineChart,
   BookOpen,
   BookA,
@@ -32,13 +33,13 @@ const NAV: NavGroup[] = [
   {
     items: [
       { href: "/", icon: CalendarDays, label: "Hoje" },
+      { href: "/lessons", icon: BookOpen, label: "Curso", cue: "Course" },
       { href: "/progress", icon: LineChart, label: "Progresso" },
     ],
   },
   {
     label: "Biblioteca",
     items: [
-      { href: "/lessons", icon: BookOpen, label: "Curso", cue: "Course" },
       { href: "/vocabulary", icon: BookA, label: "Vocabulário" },
       { href: "/grammar", icon: Baseline, label: "Gramática" },
       { href: "/conjugations", icon: Type, label: "Conjugações" },
@@ -50,6 +51,7 @@ const NAV: NavGroup[] = [
     items: [
       { href: "/exams", icon: Award, label: "Exames" },
       { href: "/notes", icon: PenLine, label: "Notas" },
+      { href: "/calendar", icon: Calendar, label: "Calendário" },
       { href: "/guide", icon: Compass, label: "Como funciona" },
     ],
   },

@@ -5,7 +5,7 @@
  *
  *   grey canvas ─┬─ sidebar (244px, collapses to a 60px rail)
  *                ├─ main panel  (floating white, rounded, scrolls)
- *                └─ right panel (optional, 340px — pass `panel`)
+ *                └─ right rail (optional, 460 at 1920, same width as the book dock — pass `panel`)
  *                   or a wider card dock (pass `dock`, from the book)
  *
  * On mobile the sidebar becomes an overlay opened from a slim top bar.
@@ -111,7 +111,7 @@ export function PageShell({
           </aside>
         ) : (
           panel && (
-            <aside className="aula-pane hidden min-h-0 w-[340px] shrink-0 overflow-y-auto rounded-xl border border-aula-line bg-aula-panel p-4 xl:block">
+            <aside className="aula-pane hidden min-h-0 aula-rail shrink-0 overflow-y-auto rounded-xl border border-aula-line bg-aula-panel p-4 xl:block">
               {panel}
             </aside>
           )
