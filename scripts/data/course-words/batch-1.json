@@ -1,0 +1,578 @@
+[
+  {
+    "ref": "cor",
+    "categoryId": "colours-weather",
+    "word": {
+      "portuguese": "cor",
+      "english": "colour",
+      "cefr": "A1",
+      "gender": "f",
+      "pronunciation": "KOR",
+      "example": "A minha cor preferida é o azul.",
+      "exampleTranslation": "My favourite colour is blue.",
+      "relatedWords": [
+        { "word": "azul", "meaning": "blue" },
+        { "word": "vermelho", "meaning": "red" },
+        { "word": "amarelo", "meaning": "yellow" }
+      ]
+    }
+  },
+  {
+    "ref": "dia",
+    "categoryId": "numbers-time",
+    "word": {
+      "portuguese": "dia",
+      "english": "day",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "DEE-uh",
+      "example": "Que dia é hoje?",
+      "exampleTranslation": "What day is it today?",
+      "relatedWords": [
+        { "word": "hoje", "meaning": "today" },
+        { "word": "semana", "meaning": "week" },
+        { "word": "amanhã", "meaning": "tomorrow" }
+      ]
+    }
+  },
+  {
+    "ref": "tratamento",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "tratamento",
+      "english": "treatment",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "truh-tuh-MEN-too",
+      "example": "O médico recomendou um tratamento curto.",
+      "exampleTranslation": "The doctor recommended a short treatment.",
+      "relatedWords": [
+        { "word": "consulta", "meaning": "appointment" },
+        { "word": "medicamento", "meaning": "medicine" },
+        { "word": "receita", "meaning": "prescription" }
+      ]
+    }
+  },
+  {
+    "ref": "garganta",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "garganta",
+      "english": "throat",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "gur-GAN-tuh",
+      "example": "Tenho a garganta inflamada.",
+      "exampleTranslation": "I have a sore throat.",
+      "relatedWords": [
+        { "word": "dor de garganta", "meaning": "sore throat" },
+        { "word": "tosse", "meaning": "cough" },
+        { "word": "constipação", "meaning": "a cold" }
+      ]
+    }
+  },
+  {
+    "ref": "bem",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "bem",
+      "english": "well",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "BAYNG",
+      "example": "Hoje sinto-me bem.",
+      "exampleTranslation": "I feel well today.",
+      "relatedWords": [
+        { "word": "mal", "meaning": "badly / unwell" },
+        { "word": "saúde", "meaning": "health" },
+        { "word": "melhor", "meaning": "better" }
+      ]
+    }
+  },
+  {
+    "ref": "mal",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "mal",
+      "english": "badly / unwell",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "MAHL",
+      "example": "Dormi mal esta noite.",
+      "exampleTranslation": "I slept badly last night.",
+      "relatedWords": [
+        { "word": "bem", "meaning": "well" },
+        { "word": "doente", "meaning": "ill" },
+        { "word": "cansado", "meaning": "tired" }
+      ]
+    }
+  },
+  {
+    "ref": "doença",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "doença",
+      "english": "illness",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "doo-EN-suh",
+      "example": "Esta doença passa em poucos dias.",
+      "exampleTranslation": "This illness goes away in a few days.",
+      "relatedWords": [
+        { "word": "doente", "meaning": "ill" },
+        { "word": "sintoma", "meaning": "symptom" },
+        { "word": "saúde", "meaning": "health" }
+      ]
+    }
+  },
+  {
+    "ref": "urgente",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "urgente",
+      "english": "urgent",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "oor-ZHEN-tuh",
+      "example": "É urgente. Preciso de um médico.",
+      "exampleTranslation": "It is urgent. I need a doctor.",
+      "relatedWords": [
+        { "word": "urgência", "meaning": "emergency department" },
+        { "word": "hospital", "meaning": "hospital" },
+        { "word": "emergência", "meaning": "emergency" }
+      ]
+    }
+  },
+  {
+    "ref": "dosagem",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "dosagem",
+      "english": "dosage",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "doo-ZAH-zhayng",
+      "example": "Qual é a dosagem deste comprimido?",
+      "exampleTranslation": "What is the dosage of this tablet?",
+      "relatedWords": [
+        { "word": "comprimido", "meaning": "tablet" },
+        { "word": "receita", "meaning": "prescription" },
+        { "word": "medicamento", "meaning": "medicine" }
+      ]
+    }
+  },
+  {
+    "ref": "tomar",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "tomar",
+      "english": "to take",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "too-MAHR",
+      "example": "Tomo o comprimido depois do almoço.",
+      "exampleTranslation": "I take the tablet after lunch.",
+      "relatedWords": [
+        { "word": "comprimido", "meaning": "tablet" },
+        { "word": "medicamento", "meaning": "medicine" },
+        { "word": "dosagem", "meaning": "dosage" }
+      ]
+    }
+  },
+  {
+    "ref": "curativo",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "curativo",
+      "english": "plaster / dressing",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "koo-ruh-TEE-voo",
+      "example": "Pus um curativo no dedo.",
+      "exampleTranslation": "I put a plaster on my finger.",
+      "relatedWords": [
+        { "word": "farmácia", "meaning": "pharmacy" },
+        { "word": "dedo", "meaning": "finger" },
+        { "word": "sangue", "meaning": "blood" }
+      ]
+    }
+  },
+  {
+    "ref": "espirrar",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "espirrar",
+      "english": "to sneeze",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "shpee-RRAR",
+      "example": "Não pares de espirrar. Estás constipado?",
+      "exampleTranslation": "You keep sneezing. Have you got a cold?",
+      "relatedWords": [
+        { "word": "tosse", "meaning": "cough" },
+        { "word": "constipação", "meaning": "a cold" },
+        { "word": "nariz", "meaning": "nose" }
+      ]
+    }
+  },
+  {
+    "ref": "vómito",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "vómito",
+      "english": "vomit",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "VOH-mee-too",
+      "example": "O vómito passou depois do chá.",
+      "exampleTranslation": "The vomiting stopped after the tea.",
+      "relatedWords": [
+        { "word": "estômago", "meaning": "stomach" },
+        { "word": "náusea", "meaning": "nausea" },
+        { "word": "doente", "meaning": "ill" }
+      ]
+    }
+  },
+  {
+    "ref": "diarreia",
+    "categoryId": "health-body",
+    "word": {
+      "portuguese": "diarreia",
+      "english": "diarrhoea",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "dee-uh-RRAY-uh",
+      "example": "Tenho diarreia desde ontem.",
+      "exampleTranslation": "I have had diarrhoea since yesterday.",
+      "relatedWords": [
+        { "word": "farmácia", "meaning": "pharmacy" },
+        { "word": "estômago", "meaning": "stomach" },
+        { "word": "vómito", "meaning": "vomit" }
+      ]
+    }
+  },
+  {
+    "ref": "tarefa",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "tarefa",
+      "english": "task",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "tuh-REH-fuh",
+      "example": "Esta tarefa é para amanhã.",
+      "exampleTranslation": "This task is for tomorrow.",
+      "relatedWords": [
+        { "word": "trabalho", "meaning": "work" },
+        { "word": "prazo", "meaning": "deadline" },
+        { "word": "projeto", "meaning": "project" }
+      ]
+    }
+  },
+  {
+    "ref": "projeto",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "projeto",
+      "english": "project",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "proo-ZHEH-too",
+      "example": "O projeto começa na segunda-feira.",
+      "exampleTranslation": "The project starts on Monday.",
+      "relatedWords": [
+        { "word": "tarefa", "meaning": "task" },
+        { "word": "equipa", "meaning": "team" },
+        { "word": "prazo", "meaning": "deadline" }
+      ]
+    }
+  },
+  {
+    "ref": "disciplina",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "disciplina",
+      "english": "school subject",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "dee-see-PLEE-nuh",
+      "example": "A minha disciplina preferida é História.",
+      "exampleTranslation": "My favourite subject is History.",
+      "relatedWords": [
+        { "word": "aula", "meaning": "class" },
+        { "word": "professor", "meaning": "teacher" },
+        { "word": "exame", "meaning": "exam" }
+      ]
+    }
+  },
+  {
+    "ref": "aprovado",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "aprovado",
+      "english": "passed (an exam)",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-proo-VAH-doo",
+      "example": "Fui aprovado no exame.",
+      "exampleTranslation": "I passed the exam.",
+      "relatedWords": [
+        { "word": "exame", "meaning": "exam" },
+        { "word": "nota", "meaning": "mark" },
+        { "word": "reprovado", "meaning": "failed" }
+      ]
+    }
+  },
+  {
+    "ref": "reprovado",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "reprovado",
+      "english": "failed (an exam)",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "rruh-proo-VAH-doo",
+      "example": "Fui reprovado a Matemática.",
+      "exampleTranslation": "I failed Mathematics.",
+      "relatedWords": [
+        { "word": "exame", "meaning": "exam" },
+        { "word": "nota", "meaning": "mark" },
+        { "word": "aprovado", "meaning": "passed" }
+      ]
+    }
+  },
+  {
+    "ref": "estudar",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "estudar",
+      "english": "to study",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "shtoo-DAHR",
+      "example": "Vou estudar para o exame.",
+      "exampleTranslation": "I am going to study for the exam.",
+      "relatedWords": [
+        { "word": "exame", "meaning": "exam" },
+        { "word": "aula", "meaning": "class" },
+        { "word": "aprender", "meaning": "to learn" }
+      ]
+    }
+  },
+  {
+    "ref": "aprender",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "aprender",
+      "english": "to learn",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-pren-DEHR",
+      "example": "Quero aprender português.",
+      "exampleTranslation": "I want to learn Portuguese.",
+      "relatedWords": [
+        { "word": "estudar", "meaning": "to study" },
+        { "word": "ensinar", "meaning": "to teach" },
+        { "word": "aula", "meaning": "class" }
+      ]
+    }
+  },
+  {
+    "ref": "ensinar",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "ensinar",
+      "english": "to teach",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "en-see-NAHR",
+      "example": "A professora ensina-nos a ler.",
+      "exampleTranslation": "The teacher teaches us to read.",
+      "relatedWords": [
+        { "word": "aprender", "meaning": "to learn" },
+        { "word": "professor", "meaning": "teacher" },
+        { "word": "aula", "meaning": "class" }
+      ]
+    }
+  },
+  {
+    "ref": "arquiteto / arquiteta",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "arquiteto / arquiteta",
+      "english": "architect",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "ar-kee-TEH-too / ar-kee-TEH-tuh",
+      "example": "A minha tia é arquiteta.",
+      "exampleTranslation": "My aunt is an architect.",
+      "relatedWords": [
+        { "word": "engenheiro", "meaning": "engineer" },
+        { "word": "projeto", "meaning": "project" },
+        { "word": "escritório", "meaning": "office" }
+      ]
+    }
+  },
+  {
+    "ref": "músico / música",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "músico / música",
+      "english": "musician",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "MOO-zee-koo / MOO-zee-kuh",
+      "example": "O meu primo é músico.",
+      "exampleTranslation": "My cousin is a musician.",
+      "relatedWords": [
+        { "word": "música", "meaning": "music" },
+        { "word": "concerto", "meaning": "concert" },
+        { "word": "artista", "meaning": "artist" }
+      ]
+    }
+  },
+  {
+    "ref": "artista",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "artista",
+      "english": "artist",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "ar-TEESH-tuh",
+      "example": "Ela é uma artista conhecida em Lisboa.",
+      "exampleTranslation": "She is a well-known artist in Lisbon.",
+      "relatedWords": [
+        { "word": "músico", "meaning": "musician" },
+        { "word": "museu", "meaning": "museum" },
+        { "word": "quadro", "meaning": "painting" }
+      ]
+    }
+  },
+  {
+    "ref": "cientista",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "cientista",
+      "english": "scientist",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "see-en-TEESH-tuh",
+      "example": "A cientista publicou um artigo novo.",
+      "exampleTranslation": "The scientist published a new article.",
+      "relatedWords": [
+        { "word": "universidade", "meaning": "university" },
+        { "word": "investigação", "meaning": "research" },
+        { "word": "laboratório", "meaning": "laboratory" }
+      ]
+    }
+  },
+  {
+    "ref": "carreira",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "carreira",
+      "english": "career",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "kuh-RRAY-ruh",
+      "example": "Quero uma carreira em Lisboa.",
+      "exampleTranslation": "I want a career in Lisbon.",
+      "relatedWords": [
+        { "word": "emprego", "meaning": "job" },
+        { "word": "profissão", "meaning": "profession" },
+        { "word": "objetivo", "meaning": "goal" }
+      ]
+    }
+  },
+  {
+    "ref": "objetivo",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "objetivo",
+      "english": "goal / aim",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "ob-zheh-TEE-voo",
+      "example": "O meu objetivo é falar melhor.",
+      "exampleTranslation": "My goal is to speak better.",
+      "relatedWords": [
+        { "word": "carreira", "meaning": "career" },
+        { "word": "plano", "meaning": "plan" },
+        { "word": "sucesso", "meaning": "success" }
+      ]
+    }
+  },
+  {
+    "ref": "falha",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "falha",
+      "english": "fault / failure",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "FAH-lyuh",
+      "example": "Houve uma falha no sistema.",
+      "exampleTranslation": "There was a fault in the system.",
+      "relatedWords": [
+        { "word": "erro", "meaning": "mistake" },
+        { "word": "problema", "meaning": "problem" },
+        { "word": "solução", "meaning": "solution" }
+      ]
+    }
+  },
+  {
+    "ref": "experiência",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "experiência",
+      "english": "experience",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "shpeh-ree-EN-see-uh",
+      "example": "Tenho experiência nesta área.",
+      "exampleTranslation": "I have experience in this field.",
+      "relatedWords": [
+        { "word": "trabalho", "meaning": "work" },
+        { "word": "carreira", "meaning": "career" },
+        { "word": "currículo", "meaning": "CV" }
+      ]
+    }
+  },
+  {
+    "ref": "candidato / candidata",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "candidato / candidata",
+      "english": "candidate",
+      "cefr": "A2",
+      "gender": "m/f",
+      "pronunciation": "kun-dee-DAH-too / kun-dee-DAH-tuh",
+      "example": "A candidata chegou cedo à entrevista.",
+      "exampleTranslation": "The candidate arrived early for the interview.",
+      "relatedWords": [
+        { "word": "entrevista", "meaning": "interview" },
+        { "word": "emprego", "meaning": "job" },
+        { "word": "currículo", "meaning": "CV" }
+      ]
+    }
+  },
+  {
+    "ref": "despedida",
+    "categoryId": "work-education",
+    "word": {
+      "portuguese": "despedida",
+      "english": "farewell",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "dush-puh-DEE-duh",
+      "example": "A despedida do colega foi na sexta-feira.",
+      "exampleTranslation": "The colleague's farewell was on Friday.",
+      "relatedWords": [
+        { "word": "colega", "meaning": "colleague" },
+        { "word": "adeus", "meaning": "goodbye" },
+        { "word": "emprego", "meaning": "job" }
+      ]
+    }
+  }
+]

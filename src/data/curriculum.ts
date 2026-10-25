@@ -10,11 +10,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-01",
     number: 1,
     cefrLevel: "A1",
-    title: "First Words",
-    titlePt: "Primeiras Palavras",
+    title: "Greetings and pronouns",
+    titlePt: "Cumprimentar e pronomes",
     theme: "meeting-people",
-    description: "Meet and greet: essential greetings, ser and estar, subject pronouns, and polite expressions.",
-    descriptionPt: "Cumprimentos essenciais, ser e estar, pronomes e expressões de cortesia.",
+    description: "Greet and close a conversation, subject pronouns, present of ser, estar, chamar, ter and encontrar, light agreement, tu versus polite forms.",
+    descriptionPt: "Cumprimentar e despedir-se, pronomes pessoais, presente de ser, estar, chamar, ter e encontrar, concordância simples, tu e formas de cortesia.",
     stages: {
       vocabulary: {
         words: [
@@ -63,7 +63,7 @@ export const A1_LESSONS: CurriculumLesson[] = [
           { sentencePt: "Eu ___ português.", sentenceEn: "I am Portuguese.", correctAnswer: "sou", acceptedAnswers: ["sou"] },
           { sentencePt: "O João ___ em Lisboa.", sentenceEn: "João lives in Lisbon.", correctAnswer: "mora", acceptedAnswers: ["mora"] },
           { sentencePt: "Um café, ___ favor.", sentenceEn: "A coffee, please.", correctAnswer: "por", acceptedAnswers: ["por"] },
-          { sentencePt: "___ me chamo Maria.", sentenceEn: "My name is Maria.", correctAnswer: "Eu", acceptedAnswers: ["Eu", "eu"] },
+          { sentencePt: "___-me Maria.", sentenceEn: "My name is Maria.", correctAnswer: "Chamo", acceptedAnswers: ["Chamo", "chamo"] },
         ],
       },
     },
@@ -74,11 +74,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-02",
     number: 2,
     cefrLevel: "A1",
-    title: "Please & Thank You",
-    titlePt: "Por Favor e Obrigado",
+    title: "Articles and requests",
+    titlePt: "Artigos e pedidos",
     theme: "being-polite",
-    description: "Politeness: modal verbs querer, precisar, poder and polite expressions. Definite and indefinite articles.",
-    descriptionPt: "Ser cortês: verbos modais e expressões. Artigos definidos e indefinidos.",
+    description: "Definite and indefinite articles, polite requests with querer, precisar, poder, ficar, oferecer and concordar.",
+    descriptionPt: "Artigos definidos e indefinidos, pedidos com querer, precisar, poder, ficar, oferecer e concordar.",
     stages: {
       vocabulary: {
         words: [
@@ -130,11 +130,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-03",
     number: 3,
     cefrLevel: "A1",
-    title: "Numbers & Basics",
-    titlePt: "Números e Básicos",
+    title: "Numbers and gender",
+    titlePt: "Números e género",
     theme: "counting",
-    description: "Numbers and basic quantities. Verbs ir, fazer, haver, saber. Noun gender.",
-    descriptionPt: "Números e quantidades. Verbos ir, fazer, haver, saber. Género dos nomes.",
+    description: "Count to 20 and use time words, noun gender and plurals, present of ir, fazer, haver and saber.",
+    descriptionPt: "Contar até 20 e palavras de tempo, género e plural dos nomes, presente de ir, fazer, haver e saber.",
     stages: {
       vocabulary: {
         words: [
@@ -193,11 +193,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-04",
     number: 4,
     cefrLevel: "A1",
-    title: "Clocks & Days",
-    titlePt: "Horas e Dias",
+    title: "Ser and estar",
+    titlePt: "Ser e estar",
     theme: "telling-time",
-    description: "Telling the time and days of the week. Verbs falar, dizer, ver, dar. Ser vs estar.",
-    descriptionPt: "As horas e os dias da semana. Verbos falar, dizer, ver, dar. Ser vs estar.",
+    description: "Tell the time and name the weekdays, ser versus estar, present of falar, dizer, ver and dar.",
+    descriptionPt: "Dizer as horas e os dias da semana, ser e estar, presente de falar, dizer, ver e dar.",
     stages: {
       vocabulary: {
         words: [
@@ -215,7 +215,7 @@ export const A1_LESSONS: CurriculumLesson[] = [
           { categoryId: "numbers-time", portuguese: "sábado" },
           { categoryId: "numbers-time", portuguese: "domingo" },
           { categoryId: "numbers-time", portuguese: "fim de semana" },
-          { categoryId: "numbers-time", portuguese: "relógio" },
+          { categoryId: "clothing-appearance", portuguese: "relógio" },
           { categoryId: "numbers-time", portuguese: "segundo" },
         ],
       },
@@ -252,11 +252,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-05",
     number: 5,
     cefrLevel: "A1",
-    title: "Months, Seasons & Age",
-    titlePt: "Meses, Estações e Idade",
+    title: "Prepositions and contractions",
+    titlePt: "Preposições e contrações",
     theme: "calendar",
-    description: "Calendar vocabulary. Verbs vir, ficar, deixar, tratar. Prepositions and contractions.",
-    descriptionPt: "O calendário. Verbos vir, ficar, deixar, tratar. Preposições e contrações.",
+    description: "Months and clock phrases, core prepositions and contractions (ao, do, da, no, na), present of vir, ficar, deixar and tratar.",
+    descriptionPt: "Meses e expressões de horas, preposições e contrações (ao, do, da, no, na), presente de vir, ficar, deixar e tratar.",
     stages: {
       vocabulary: {
         words: [
@@ -315,11 +315,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-06",
     number: 6,
     cefrLevel: "A1",
-    title: "The Rainbow",
-    titlePt: "O Arco-íris",
+    title: "Present tense: -ar verbs",
+    titlePt: "Presente em -ar",
     theme: "colours",
-    description: "Colours and basic -AR verb conjugation. Verbs gostar, morar, trabalhar, estudar.",
-    descriptionPt: "As cores e a conjugação dos verbos em -AR. Gostar, morar, trabalhar, estudar.",
+    description: "The regular -ar present, gostar de, morar, trabalhar and estudar, colours with agreement.",
+    descriptionPt: "O presente dos verbos em -ar, gostar de, morar, trabalhar e estudar, cores e concordância.",
     stages: {
       vocabulary: {
         words: [
@@ -375,11 +375,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-07",
     number: 7,
     cefrLevel: "A1",
-    title: "Sun, Rain & Wind",
-    titlePt: "Sol, Chuva e Vento",
+    title: "Present tense: -er verbs",
+    titlePt: "Presente em -er",
     theme: "weather",
-    description: "Weather vocabulary. -ER verbs: comer, beber, correr, ler.",
-    descriptionPt: "O tempo atmosférico. Verbos em -ER: comer, beber, correr, ler.",
+    description: "The regular -er present, comer, beber, correr and ler, the weather with estar.",
+    descriptionPt: "O presente dos verbos em -er, comer, beber, correr e ler, o tempo com estar.",
     stages: {
       vocabulary: {
         words: [
@@ -433,11 +433,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-08",
     number: 8,
     cefrLevel: "A1",
-    title: "Ordering Coffee",
-    titlePt: "Pedir um Café",
+    title: "Present tense: -ir verbs",
+    titlePt: "Presente em -ir",
     theme: "at-the-cafe",
-    description: "At the café: food and drink. -IR verbs tomar, pagar, comprar, abrir.",
-    descriptionPt: "No café: comida e bebida. Verbos em -IR e -AR: tomar, pagar, comprar, abrir.",
+    description: "The regular -ir present with abrir, plus tomar, pagar, comprar and experimentar.",
+    descriptionPt: "O presente dos verbos em -ir com abrir, e ainda tomar, pagar, comprar e experimentar.",
     stages: {
       vocabulary: {
         words: [
@@ -497,11 +497,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-09",
     number: 9,
     cefrLevel: "A1",
-    title: "Meals & Flavours",
-    titlePt: "Refeições e Sabores",
+    title: "Demonstratives",
+    titlePt: "Demonstrativos",
     theme: "food",
-    description: "Meals and flavours. Verbs chegar, esperar, voltar, fechar. Contractions (do, da, no, na).",
-    descriptionPt: "Refeições e sabores. Verbos chegar, esperar, voltar, fechar. Contrações.",
+    description: "Point things out with este, esse and aquele, contractions inside real sentences, present of chegar, esperar, voltar and fechar.",
+    descriptionPt: "Este, esse e aquele, contrações em frases reais, presente de chegar, esperar, voltar e fechar.",
     stages: {
       vocabulary: {
         words: [
@@ -537,7 +537,7 @@ export const A1_LESSONS: CurriculumLesson[] = [
           { verbKey: "FERVER", tenses: ["Present"] },
         ],
       },
-      grammar: { topics: ["contractions"] },
+      grammar: { topics: ["demonstratives", "contractions"] },
       culture: {
         items: [
           { type: "etiquette", id: "dining-meal-times" },
@@ -562,11 +562,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-10",
     number: 10,
     cefrLevel: "A1",
-    title: "At the Restaurant",
-    titlePt: "No Restaurante",
+    title: "Three conjugations together",
+    titlePt: "Três conjugações juntas",
     theme: "eating-out",
-    description: "Restaurant vocabulary. Verbs começar, acabar, contar, mostrar. Verb types (-AR, -ER, -IR).",
-    descriptionPt: "No restaurante. Verbos começar, acabar, contar, mostrar. Tipos de verbos.",
+    description: "Regular and irregular verbs side by side across -ar, -er and -ir, present of começar, acabar, contar and mostrar.",
+    descriptionPt: "Verbos regulares e irregulares nas três conjugações, presente de começar, acabar, contar e mostrar.",
     stages: {
       vocabulary: {
         words: [
@@ -626,11 +626,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-11",
     number: 11,
     cefrLevel: "A1",
-    title: "Getting Around",
-    titlePt: "Andar por Aí",
+    title: "Word order",
+    titlePt: "Ordem da frase",
     theme: "transport",
-    description: "Transport and travel. Verbs levar, entrar, sair, passar. Sentence structure.",
-    descriptionPt: "Transportes e viagens. Verbos levar, entrar, sair, passar. Estrutura da frase.",
+    description: "Basic word order and place phrases, present of levar, entrar, sair and passar.",
+    descriptionPt: "Ordem básica da frase e expressões de lugar, presente de levar, entrar, sair e passar.",
     stages: {
       vocabulary: {
         words: [
@@ -690,11 +690,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-12",
     number: 12,
     cefrLevel: "A1",
-    title: "Finding Your Way",
-    titlePt: "Encontrar o Caminho",
+    title: "Negation",
+    titlePt: "Negação",
     theme: "directions",
-    description: "Directions and getting around. Verbs perguntar, responder, olhar, criar. Negation.",
-    descriptionPt: "Direções. Verbos perguntar, responder, olhar, criar. Negação.",
+    description: "Negation with não, recognising nada and nunca, present of perguntar, responder, olhar and criar.",
+    descriptionPt: "A negação com não, nada e nunca, presente de perguntar, responder, olhar e criar.",
     stages: {
       vocabulary: {
         words: [
@@ -756,11 +756,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-13",
     number: 13,
     cefrLevel: "A1",
-    title: "Around Town",
-    titlePt: "Pela Cidade",
+    title: "Questions",
+    titlePt: "Perguntas",
     theme: "exploring",
-    description: "City and places. Verbs viajar, deixar, tratar, achar. Forming questions.",
-    descriptionPt: "A cidade e os lugares. Verbos viajar, deixar, tratar, achar. Perguntas.",
+    description: "Question words and question order, present of viajar, achar, passear and visitar.",
+    descriptionPt: "Palavras interrogativas e ordem das perguntas, presente de viajar, achar, passear e visitar.",
     stages: {
       vocabulary: {
         words: [
@@ -773,7 +773,7 @@ export const A1_LESSONS: CurriculumLesson[] = [
           { categoryId: "travel-directions", portuguese: "o bilhete" },
           { categoryId: "travel-directions", portuguese: "a paragem" },
           { categoryId: "travel-directions", portuguese: "é longe?" },
-          { categoryId: "travel-directions", portuguese: "cinema" },
+          { categoryId: "hobbies-leisure", portuguese: "cinema" },
           { categoryId: "travel-directions", portuguese: "teatro" },
           { categoryId: "travel-directions", portuguese: "parque" },
           { categoryId: "travel-directions", portuguese: "miradouro" },
@@ -816,11 +816,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-14",
     number: 14,
     cefrLevel: "A1",
-    title: "House & Rooms",
-    titlePt: "Casa e Quartos",
+    title: "Prepositions of place",
+    titlePt: "Preposições no espaço",
     theme: "at-home",
-    description: "Home and rooms. Verbs dormir, acordar, ajudar, pensar. Consolidation.",
-    descriptionPt: "Casa e divisões. Verbos dormir, acordar, ajudar, pensar.",
+    description: "Say where things are with em cima de, debaixo de and ao lado de, present of dormir, acordar, ajudar, pensar and arranjar.",
+    descriptionPt: "Dizer onde estão as coisas com em cima de, debaixo de e ao lado de, presente de dormir, acordar, ajudar, pensar e arranjar.",
     stages: {
       vocabulary: {
         words: [
@@ -884,11 +884,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-15",
     number: 15,
     cefrLevel: "A1",
-    title: "My Family",
-    titlePt: "A Minha Família",
+    title: "Possessives",
+    titlePt: "Possessivos",
     theme: "family",
-    description: "Family vocabulary. Verbs amar, brincar, chorar, rir. Consolidation.",
-    descriptionPt: "A família. Verbos amar, brincar, chorar, rir.",
+    description: "Possessives with family words (o meu pai, a minha mãe), present of amar, brincar, chorar, rir, crescer and namorar.",
+    descriptionPt: "Possessivos com a família (o meu pai, a minha mãe), presente de amar, brincar, chorar, rir, crescer e namorar.",
     stages: {
       vocabulary: {
         words: [
@@ -918,7 +918,7 @@ export const A1_LESSONS: CurriculumLesson[] = [
           { verbKey: "NAMORAR", tenses: ["Present"] },
         ],
       },
-      grammar: { topics: [] },
+      grammar: { topics: ["possessives"] },
       culture: {
         items: [
           { type: "etiquette", id: "social-personal-questions" },
@@ -943,11 +943,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-16",
     number: 16,
     cefrLevel: "A1",
-    title: "Morning to Night",
-    titlePt: "De Manhã à Noite",
+    title: "Adverbs and routine",
+    titlePt: "Advérbios e rotina",
     theme: "daily-routines",
-    description: "Daily routines. Verbs levantar, sentar, lavar, vestir. Time expressions.",
-    descriptionPt: "Rotina diária. Verbos levantar, sentar, lavar, vestir.",
+    description: "Daily routine with reflexive verbs (levanto-me) and time adverbs, present of levantar, sentar, lavar, vestir, deitar and calçar.",
+    descriptionPt: "A rotina com verbos reflexos (levanto-me) e advérbios de tempo, presente de levantar, sentar, lavar, vestir, deitar e calçar.",
     stages: {
       vocabulary: {
         words: [
@@ -977,7 +977,7 @@ export const A1_LESSONS: CurriculumLesson[] = [
           { verbKey: "CALÇAR", tenses: ["Present"] },
         ],
       },
-      grammar: { topics: ["adverbs"] },
+      grammar: { topics: ["adverbs", "reflexive-verbs"] },
       culture: {
         items: [
           { type: "etiquette", id: "daily-siesta" },
@@ -1004,11 +1004,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-17",
     number: 17,
     cefrLevel: "A1",
-    title: "Going Online",
-    titlePt: "Ir à Internet",
+    title: "Estar a + infinitive",
+    titlePt: "Estar a + infinitivo",
     theme: "devices-internet",
-    description: "Technology and internet. Verbs ligar, perceber, ensinar, ouvir.",
-    descriptionPt: "Tecnologia e internet. Verbos ligar, perceber, ensinar, ouvir.",
+    description: "Say what you are doing right now with estar a + infinitive, present of ligar, perceber, ensinar, ouvir and funcionar.",
+    descriptionPt: "O que estás a fazer agora com estar a + infinitivo, presente de ligar, perceber, ensinar, ouvir e funcionar.",
     stages: {
       vocabulary: {
         words: [
@@ -1019,8 +1019,8 @@ export const A1_LESSONS: CurriculumLesson[] = [
           { categoryId: "technology-internet", portuguese: "fotografia" },
           { categoryId: "technology-internet", portuguese: "vídeo" },
           { categoryId: "technology-internet", portuguese: "ligar" },
-          { categoryId: "technology-internet", portuguese: "jornal" },
-          { categoryId: "technology-internet", portuguese: "revista" },
+          { categoryId: "hobbies-leisure", portuguese: "jornal" },
+          { categoryId: "hobbies-leisure", portuguese: "revista" },
           { categoryId: "technology-internet", portuguese: "notícia" },
           { categoryId: "technology-internet", portuguese: "programa" },
           { categoryId: "technology-internet", portuguese: "rádio" },
@@ -1036,7 +1036,7 @@ export const A1_LESSONS: CurriculumLesson[] = [
           { verbKey: "FUNCIONAR", tenses: ["Present"] },
         ],
       },
-      grammar: { topics: [] },
+      grammar: { topics: ["estar-a-infinitive"] },
       culture: {
         items: [
           { type: "etiquette", id: "social-personal-questions" },
@@ -1061,11 +1061,11 @@ export const A1_LESSONS: CurriculumLesson[] = [
     id: "a1-18",
     number: 18,
     cefrLevel: "A1",
-    title: "Everything So Far",
-    titlePt: "Tudo Até Agora",
+    title: "A1 review",
+    titlePt: "Revisão A1",
     theme: "a1-review",
-    description: "Full A1 review: remaining vocabulary and verbs, all grammar in practice.",
-    descriptionPt: "Revisão completa de A1: vocabulário e verbos restantes.",
+    description: "Consolidate the A1 must-knows and get ready for the A1 exam.",
+    descriptionPt: "Consolidar o essencial do A1 e preparar o exame A1.",
     stages: {
       vocabulary: {
         words: [

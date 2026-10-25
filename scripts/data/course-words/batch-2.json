@@ -1,0 +1,596 @@
+[
+  {
+    "ref": "relva",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "relva",
+      "english": "grass / lawn",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "REL-vuh",
+      "example": "Os miúdos brincam na relva.",
+      "exampleTranslation": "The kids play on the grass.",
+      "relatedWords": [
+        { "word": "jardim", "meaning": "garden" },
+        { "word": "árvore", "meaning": "tree" },
+        { "word": "parque", "meaning": "park" }
+      ]
+    }
+  },
+  {
+    "ref": "nevar",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "nevar",
+      "english": "to snow",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "nuh-VAR",
+      "example": "No inverno pode nevar na serra.",
+      "exampleTranslation": "In winter it can snow in the mountains.",
+      "relatedWords": [
+        { "word": "neve", "meaning": "snow" },
+        { "word": "inverno", "meaning": "winter" },
+        { "word": "frio", "meaning": "cold" }
+      ]
+    }
+  },
+  {
+    "ref": "chover",
+    "categoryId": "nature-animals",
+    "word": {
+      "portuguese": "chover",
+      "english": "to rain",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "shoo-VEHR",
+      "example": "Vai chover esta tarde.",
+      "exampleTranslation": "It is going to rain this afternoon.",
+      "relatedWords": [
+        { "word": "chuva", "meaning": "rain" },
+        { "word": "guarda-chuva", "meaning": "umbrella" },
+        { "word": "nublado", "meaning": "cloudy" }
+      ]
+    }
+  },
+  {
+    "ref": "ódio",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "ódio",
+      "english": "hatred",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "OH-dee-oo",
+      "example": "Não guardes ódio. Fala com ele.",
+      "exampleTranslation": "Do not hold on to hatred. Talk to him.",
+      "relatedWords": [
+        { "word": "raiva", "meaning": "anger" },
+        { "word": "amor", "meaning": "love" },
+        { "word": "medo", "meaning": "fear" }
+      ]
+    }
+  },
+  {
+    "ref": "personalidade",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "personalidade",
+      "english": "personality",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "pur-soo-nuh-lee-DAH-duh",
+      "example": "Ela tem uma personalidade calma.",
+      "exampleTranslation": "She has a calm personality.",
+      "relatedWords": [
+        { "word": "carácter", "meaning": "character" },
+        { "word": "humor", "meaning": "mood" },
+        { "word": "atitude", "meaning": "attitude" }
+      ]
+    }
+  },
+  {
+    "ref": "organizado",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "organizado",
+      "english": "organised",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "or-guh-nee-ZAH-doo",
+      "example": "Ele é muito organizado no trabalho.",
+      "exampleTranslation": "He is very organised at work.",
+      "relatedWords": [
+        { "word": "ordem", "meaning": "order" },
+        { "word": "plano", "meaning": "plan" },
+        { "word": "desorganizado", "meaning": "disorganised" }
+      ]
+    }
+  },
+  {
+    "ref": "desorganizado",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "desorganizado",
+      "english": "disorganised",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "dush-zor-guh-nee-ZAH-doo",
+      "example": "O quarto está desorganizado.",
+      "exampleTranslation": "The bedroom is in a mess.",
+      "relatedWords": [
+        { "word": "organizado", "meaning": "organised" },
+        { "word": "confusão", "meaning": "mess" },
+        { "word": "quarto", "meaning": "bedroom" }
+      ]
+    }
+  },
+  {
+    "ref": "optimista",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "optimista",
+      "english": "optimistic",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "op-tee-MEESH-tuh",
+      "example": "Sou optimista quanto ao exame.",
+      "exampleTranslation": "I am optimistic about the exam.",
+      "relatedWords": [
+        { "word": "esperança", "meaning": "hope" },
+        { "word": "positivo", "meaning": "positive" },
+        { "word": "confiança", "meaning": "confidence" }
+      ]
+    }
+  },
+  {
+    "ref": "sincero",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "sincero",
+      "english": "sincere",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "seen-SEH-roo",
+      "example": "Sê sincero comigo.",
+      "exampleTranslation": "Be sincere with me.",
+      "relatedWords": [
+        { "word": "honesto", "meaning": "honest" },
+        { "word": "verdade", "meaning": "truth" },
+        { "word": "confiança", "meaning": "trust" }
+      ]
+    }
+  },
+  {
+    "ref": "amável",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "amável",
+      "english": "kind / amiable",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "uh-MAH-vel",
+      "example": "A senhora foi muito amável.",
+      "exampleTranslation": "The lady was very kind.",
+      "relatedWords": [
+        { "word": "simpático", "meaning": "friendly" },
+        { "word": "gentil", "meaning": "kind" },
+        { "word": "educado", "meaning": "polite" }
+      ]
+    }
+  },
+  {
+    "ref": "independente",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "independente",
+      "english": "independent",
+      "cefr": "A2",
+      "gender": null,
+      "pronunciation": "een-deh-pen-DEN-tuh",
+      "example": "Ela é independente desde os vinte anos.",
+      "exampleTranslation": "She has been independent since she was twenty.",
+      "relatedWords": [
+        { "word": "livre", "meaning": "free" },
+        { "word": "sozinho", "meaning": "alone" },
+        { "word": "autonomia", "meaning": "autonomy" }
+      ]
+    }
+  },
+  {
+    "ref": "carácter",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "carácter",
+      "english": "character",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "kuh-RAK-ter",
+      "example": "Ele tem bom carácter.",
+      "exampleTranslation": "He has a good character.",
+      "relatedWords": [
+        { "word": "personalidade", "meaning": "personality" },
+        { "word": "honestidade", "meaning": "honesty" },
+        { "word": "atitude", "meaning": "attitude" }
+      ]
+    }
+  },
+  {
+    "ref": "comportamento",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "comportamento",
+      "english": "behaviour",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "kom-poor-tuh-MEN-too",
+      "example": "O comportamento dele mudou.",
+      "exampleTranslation": "His behaviour changed.",
+      "relatedWords": [
+        { "word": "atitude", "meaning": "attitude" },
+        { "word": "educação", "meaning": "manners" },
+        { "word": "respeito", "meaning": "respect" }
+      ]
+    }
+  },
+  {
+    "ref": "atitude",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "atitude",
+      "english": "attitude",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "uh-tee-TOO-duh",
+      "example": "Gosto da tua atitude.",
+      "exampleTranslation": "I like your attitude.",
+      "relatedWords": [
+        { "word": "comportamento", "meaning": "behaviour" },
+        { "word": "opinião", "meaning": "opinion" },
+        { "word": "postura", "meaning": "stance" }
+      ]
+    }
+  },
+  {
+    "ref": "humor",
+    "categoryId": "emotions-personality",
+    "word": {
+      "portuguese": "humor",
+      "english": "mood / humour",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "oo-MOR",
+      "example": "Hoje estou de bom humor.",
+      "exampleTranslation": "I am in a good mood today.",
+      "relatedWords": [
+        { "word": "alegre", "meaning": "cheerful" },
+        { "word": "triste", "meaning": "sad" },
+        { "word": "piada", "meaning": "joke" }
+      ]
+    }
+  },
+  {
+    "ref": "sala de jantar",
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "sala de jantar",
+      "english": "dining room",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "SAH-luh duh zhan-TAR",
+      "example": "Jantamos na sala de jantar.",
+      "exampleTranslation": "We have dinner in the dining room.",
+      "relatedWords": [
+        { "word": "sala", "meaning": "living room" },
+        { "word": "cozinha", "meaning": "kitchen" },
+        { "word": "mesa", "meaning": "table" }
+      ]
+    }
+  },
+  {
+    "ref": "terraço",
+    "categoryId": "home-rooms",
+    "word": {
+      "portuguese": "terraço",
+      "english": "terrace",
+      "cefr": "A2",
+      "gender": "m",
+      "pronunciation": "tuh-RRAH-soo",
+      "example": "No verão comemos no terraço.",
+      "exampleTranslation": "In summer we eat on the terrace.",
+      "relatedWords": [
+        { "word": "varanda", "meaning": "balcony" },
+        { "word": "jardim", "meaning": "garden" },
+        { "word": "casa", "meaning": "house" }
+      ]
+    }
+  },
+  {
+    "ref": "família",
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "família",
+      "english": "family",
+      "cefr": "A2",
+      "gender": "f",
+      "pronunciation": "fuh-MEE-lee-uh",
+      "example": "A minha família mora no Porto.",
+      "exampleTranslation": "My family lives in Porto.",
+      "relatedWords": [
+        { "word": "pais", "meaning": "parents" },
+        { "word": "filho", "meaning": "son" },
+        { "word": "casa", "meaning": "home" }
+      ]
+    }
+  },
+  {
+    "ref": "infância",
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "infância",
+      "english": "childhood",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "een-FAN-see-uh",
+      "example": "A minha infância foi em Coimbra.",
+      "exampleTranslation": "My childhood was in Coimbra.",
+      "relatedWords": [
+        { "word": "criança", "meaning": "child" },
+        { "word": "memória", "meaning": "memory" },
+        { "word": "pais", "meaning": "parents" }
+      ]
+    }
+  },
+  {
+    "ref": "brincar",
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "brincar",
+      "english": "to play",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "breen-KAHR",
+      "example": "As crianças gostam de brincar no jardim.",
+      "exampleTranslation": "Children like to play in the garden.",
+      "relatedWords": [
+        { "word": "criança", "meaning": "child" },
+        { "word": "jogo", "meaning": "game" },
+        { "word": "jardim", "meaning": "garden" }
+      ]
+    }
+  },
+  {
+    "ref": "memória",
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "memória",
+      "english": "memory",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "muh-MOH-ree-uh",
+      "example": "Tenho uma boa memória daquela casa.",
+      "exampleTranslation": "I have a good memory of that house.",
+      "relatedWords": [
+        { "word": "passado", "meaning": "the past" },
+        { "word": "infância", "meaning": "childhood" },
+        { "word": "recordar", "meaning": "to recall" }
+      ]
+    }
+  },
+  {
+    "ref": "passado",
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "passado",
+      "english": "the past",
+      "cefr": "B1",
+      "gender": "m",
+      "pronunciation": "puh-SAH-doo",
+      "example": "No passado vivíamos no campo.",
+      "exampleTranslation": "In the past we lived in the country.",
+      "relatedWords": [
+        { "word": "memória", "meaning": "memory" },
+        { "word": "presente", "meaning": "the present" },
+        { "word": "futuro", "meaning": "the future" }
+      ]
+    }
+  },
+  {
+    "ref": "mudar",
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "mudar",
+      "english": "to change",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "moo-DAHR",
+      "example": "A cidade mudou muito.",
+      "exampleTranslation": "The city has changed a lot.",
+      "relatedWords": [
+        { "word": "mudança", "meaning": "change" },
+        { "word": "diferente", "meaning": "different" },
+        { "word": "novo", "meaning": "new" }
+      ]
+    }
+  },
+  {
+    "ref": "recordar",
+    "categoryId": "family-daily-routine",
+    "word": {
+      "portuguese": "recordar",
+      "english": "to recall",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "rruh-koor-DAHR",
+      "example": "Recordo-me do verão na praia.",
+      "exampleTranslation": "I remember the summer at the beach.",
+      "relatedWords": [
+        { "word": "memória", "meaning": "memory" },
+        { "word": "passado", "meaning": "the past" },
+        { "word": "lembrar", "meaning": "to remember" }
+      ]
+    }
+  },
+  {
+    "ref": "então",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "então",
+      "english": "so / then",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "en-TOWNG",
+      "example": "Então, o que aconteceu a seguir?",
+      "exampleTranslation": "So, what happened next?",
+      "relatedWords": [
+        { "word": "depois", "meaning": "afterwards" },
+        { "word": "pois", "meaning": "well / since" },
+        { "word": "aí", "meaning": "then" }
+      ]
+    }
+  },
+  {
+    "ref": "raparigo",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "rapariga",
+      "english": "girl",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "rruh-puh-REE-guh",
+      "example": "A rapariga chegou de comboio.",
+      "exampleTranslation": "The girl arrived by train.",
+      "relatedWords": [
+        { "word": "rapaz", "meaning": "boy" },
+        { "word": "miúda", "meaning": "girl (informal)" },
+        { "word": "mulher", "meaning": "woman" }
+      ]
+    }
+  },
+  {
+    "ref": "miúdo",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "miúdo / miúda",
+      "english": "kid",
+      "cefr": "B1",
+      "gender": "m/f",
+      "pronunciation": "mee-OO-doo / mee-OO-duh",
+      "example": "O miúdo foi à escola a pé.",
+      "exampleTranslation": "The kid walked to school.",
+      "relatedWords": [
+        { "word": "criança", "meaning": "child" },
+        { "word": "rapaz", "meaning": "boy" },
+        { "word": "rapariga", "meaning": "girl" }
+      ]
+    }
+  },
+  {
+    "ref": "bocada",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "bocada",
+      "english": "a bargain / a good catch (slang)",
+      "cefr": "B1",
+      "gender": "f",
+      "pronunciation": "boo-KAH-duh",
+      "example": "Este telemóvel foi uma bocada.",
+      "exampleTranslation": "This mobile was a bargain.",
+      "relatedWords": [
+        { "word": "barato", "meaning": "cheap" },
+        { "word": "negócio", "meaning": "deal" },
+        { "word": "fixe", "meaning": "cool" }
+      ]
+    }
+  },
+  {
+    "ref": "à toa",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "à toa",
+      "english": "aimlessly / for no reason",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "AH TOH-uh",
+      "example": "Andei à toa a tarde toda.",
+      "exampleTranslation": "I wandered about all afternoon.",
+      "relatedWords": [
+        { "word": "sem rumo", "meaning": "without a direction" },
+        { "word": "tarde", "meaning": "afternoon" },
+        { "word": "passear", "meaning": "to stroll" }
+      ]
+    }
+  },
+  {
+    "ref": "estar a ver",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "estar a ver",
+      "english": "you know / see what I mean",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "shTAHR uh VEHR",
+      "example": "Estás a ver? Foi mesmo assim.",
+      "exampleTranslation": "You see? That is exactly how it was.",
+      "relatedWords": [
+        { "word": "tipo", "meaning": "like (filler)" },
+        { "word": "perceber", "meaning": "to understand" },
+        { "word": "então", "meaning": "so" }
+      ]
+    }
+  },
+  {
+    "ref": "desenrascar",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "desenrascar",
+      "english": "to sort out / to get by",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "duh-zen-rush-KAHR",
+      "example": "Desenrasquei o jantar com o que tinha no frigorífico.",
+      "exampleTranslation": "I threw dinner together with what I had in the fridge.",
+      "relatedWords": [
+        { "word": "desenrascanço", "meaning": "a makeshift fix" },
+        { "word": "resolver", "meaning": "to solve" },
+        { "word": "frigorífico", "meaning": "fridge" }
+      ]
+    }
+  },
+  {
+    "ref": "despachar",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "despachar",
+      "english": "to hurry up / to get something done",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "dush-puh-SHAHR",
+      "example": "Despacha-te, que o comboio parte às oito.",
+      "exampleTranslation": "Hurry up, the train leaves at eight.",
+      "relatedWords": [
+        { "word": "rápido", "meaning": "quick" },
+        { "word": "pressa", "meaning": "a hurry" },
+        { "word": "acabar", "meaning": "to finish" }
+      ]
+    }
+  },
+  {
+    "ref": "engolir",
+    "categoryId": "colloquial-slang",
+    "word": {
+      "portuguese": "engolir",
+      "english": "to swallow",
+      "cefr": "B1",
+      "gender": null,
+      "pronunciation": "en-goo-LEER",
+      "example": "Engoli o comprimido com água.",
+      "exampleTranslation": "I swallowed the tablet with water.",
+      "relatedWords": [
+        { "word": "beber", "meaning": "to drink" },
+        { "word": "comprimido", "meaning": "tablet" },
+        { "word": "boca", "meaning": "mouth" }
+      ]
+    }
+  }
+]
