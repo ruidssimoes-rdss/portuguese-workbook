@@ -17,6 +17,34 @@ import regionalData from "../src/data/regional.json";
 
 const CEFR_RANK: Record<string, number> = { A1: 0, A2: 1, B1: 2 };
 
+const BANDS = ["A1", "A2", "B1", "EXTRA"] as const;
+type Band = (typeof BANDS)[number];
+
+function emptyBands(): Record<Band, number> {
+  return { A1: 0, A2: 0, B1: 0, EXTRA: 0 };
+}
+
+function bandOf(id: string): Band {
+  if (id.startsWith("a1-")) return "A1";
+  if (id.startsWith("a2-")) return "A2";
+  if (id.startsWith("b1-")) return "B1";
+  if (id.startsWith("extra-")) return "EXTRA";
+  throw new Error(`unknown lesson id ${id}`);
+}
+
+function bandTotal(counts: Record<Band, number>): number {
+  return BANDS.reduce((sum, band) => sum + counts[band], 0);
+}
+
+function formatBands(counts: Record<Band, number>): string {
+  return BANDS.map((band) => `${band} ${counts[band]}`).join(", ");
+}
+
+/** Review chapters are exempt from repeat and budget checks. */
+function isReview(lesson: CurriculumLesson): boolean {
+  return lesson.id.endsWith("-18") || lesson.title.includes("Revisão") || lesson.titlePt.includes("Revisão");
+}
+
 const lessons: CurriculumLesson[] = [
   ...A1_LESSONS,
   ...A2_LESSONS,
@@ -50,14 +78,29 @@ function findWord(categoryId: string, portuguese: string) {
 }
 
 const errors = { vocab: 0, verb: 0, grammar: 0, culture: 0 };
-let warnings = 0;
+const aboveLevel = emptyBands();
+const repeats = emptyBands();
+const budget = emptyBands();
 let totalRefs = 0;
 let resolved = 0;
+const introduced = new Map<string, string>();
 
 for (const lesson of lessons) {
   const lines: string[] = [];
+  const review = isReview(lesson);
 
   for (const ref of lesson.stages.vocabulary.words) {
+    if (!review) {
+      const key = vocabKey(ref.portuguese);
+      const first = introduced.get(key);
+      if (!first) {
+        introduced.set(key, lesson.id);
+      } else if (first !== lesson.id) {
+        repeats[bandOf(lesson.id)]++;
+        lines.push(`  WARN repeat: ${ref.portuguese} also in ${first}`);
+      }
+    }
+
     totalRefs++;
     const word = findWord(ref.categoryId, ref.portuguese);
     if (!word) {
@@ -69,7 +112,7 @@ for (const lesson of lessons) {
     const wordRank = CEFR_RANK[word.cefr ?? ""];
     const lessonRank = CEFR_RANK[lesson.cefrLevel];
     if (wordRank !== undefined && lessonRank !== undefined && wordRank > lessonRank) {
-      warnings++;
+      aboveLevel[bandOf(lesson.id)]++;
       lines.push(`  WARN above-level: ${ref.portuguese} is ${word.cefr}, lesson is ${lesson.cefrLevel}`);
     }
   }
@@ -117,6 +160,19 @@ for (const lesson of lessons) {
     }
   }
 
+  if (lesson.id.startsWith("a1-") && !review) {
+    const wordCount = lesson.stages.vocabulary.words.length;
+    const grammarCount = lesson.stages.grammar.topics.length;
+    if (wordCount < 15 || wordCount > 25) {
+      budget[bandOf(lesson.id)]++;
+      lines.push(`  WARN budget: ${wordCount} words (expected 15 to 25)`);
+    }
+    if (grammarCount < 1 || grammarCount > 3) {
+      budget[bandOf(lesson.id)]++;
+      lines.push(`  WARN budget: ${grammarCount} grammar topics (expected 1 to 3)`);
+    }
+  }
+
   if (lines.length > 0) {
     console.log(lesson.id);
     for (const line of lines) console.log(line);
@@ -133,6 +189,8 @@ console.log(`resolved: ${resolved}`);
 console.log(
   `errors: ${errorTotal} (vocab ${errors.vocab}, verb ${errors.verb}, grammar ${errors.grammar}, culture ${errors.culture})`,
 );
-console.log(`warnings: ${warnings} above-level`);
+console.log(`warnings: ${bandTotal(aboveLevel)} above-level (${formatBands(aboveLevel)})`);
+console.log(`repeats: ${bandTotal(repeats)} (${formatBands(repeats)})`);
+console.log(`budget: ${bandTotal(budget)} (${formatBands(budget)})`);
 
 if (errorTotal > 0) process.exit(1);
