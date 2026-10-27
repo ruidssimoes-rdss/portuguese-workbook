@@ -1,8 +1,8 @@
 "use client";
 
 import { Send } from "lucide-react";
+import { useElisio } from "@/components/elisio/elisio-provider";
 import { encodeCard, type ElisioAbout } from "@/lib/book/types";
-import { useBook } from "./book-context";
 
 function openClass(on: boolean): string {
   return on
@@ -11,9 +11,10 @@ function openClass(on: boolean): string {
 }
 
 function useAsking(about: ElisioAbout): { open: () => void; on: boolean } {
-  const book = useBook();
-  const on = book.current?.kind === "elisio" && encodeCard(book.current) === encodeCard({ kind: "elisio", about });
-  return { open: () => book.openCard({ kind: "elisio", about }), on };
+  const elisio = useElisio();
+  const asked = elisio.open ? elisio.context?.about : undefined;
+  const on = Boolean(asked) && encodeCard({ kind: "elisio", about: asked as ElisioAbout }) === encodeCard({ kind: "elisio", about });
+  return { open: () => elisio.openElisio(about), on };
 }
 
 /**

@@ -1,13 +1,6 @@
-"use client";
+import { redirect } from "next/navigation";
 
-import { PageShell, Crumbs } from "@/components/layout/page-shell";
-import { PageHeader } from "@/components/primitives";
-import { TutorTabV2 } from "@/components/lessons/tutor-tab";
-
+/** Elísio lives in the rail now. Old /tutor links land on Hoje with Elísio open. */
 export default function TutorPage() {
-  return (
-    <PageShell header={<Crumbs items={[{ label: "Professor Elísio" }]} />}>
-      <TutorTabV2 />
-    </PageShell>
-  );
+  redirect("/?elisio=1");
 }

@@ -20,11 +20,9 @@ import {
 import { encodeCard } from "@/lib/book/types";
 import { useMastery, stateOf, dueLabel } from "@/lib/use-mastery";
 import { cardDrill } from "@/lib/book/practice";
-import { passageFor } from "@/lib/book/elisio";
 import type { ElisioAbout } from "@/lib/book/types";
 import { MarkReviewed } from "./mark-reviewed";
 import { AskCardButton } from "./ask";
-import { ElisioCard } from "./elisio-card";
 import { useBook } from "./book-context";
 import { Backlinks, Callout, Examples, Kicker, LevelChip, PropList } from "./ui";
 import { CardChip, LinkedText } from "./linked-text";
@@ -460,8 +458,8 @@ export function CardBody({ card }: { card: CardRef }) {
       return <GrammarCard id={card.id} />;
     case "culture":
       return <CultureCard cultureType={card.cultureType} id={card.id} />;
-    case "elisio":
-      return <ElisioCard about={card.about} />;
+    default:
+      return null; // Elísio lives in the rail now; old elisio refs never become tabs.
   }
 }
 
@@ -475,8 +473,8 @@ export function cardTabLabel(card: CardRef): string {
       return getGrammar(card.id)?.titlePt ?? card.id;
     case "culture":
       return cultureOf(card.cultureType, card.id)?.title ?? card.id;
-    case "elisio":
-      return `Elísio · ${passageFor(card.about)?.label ?? "nota"}`;
+    default:
+      return "Ficha";
   }
 }
 
@@ -496,8 +494,8 @@ export function cardCrumb(card: CardRef): { group: string; name: string } {
       const note = cultureOf(card.cultureType, card.id);
       return { group: note?.kicker ?? "Cultura", name: note?.title ?? card.id };
     }
-    case "elisio":
-      return { group: "Elísio", name: passageFor(card.about)?.label ?? "Nota" };
+    default:
+      return { group: "Ficha", name: "" };
   }
 }
 

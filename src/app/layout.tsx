@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/auth-provider";
+import { ElisioProvider } from "@/components/elisio/elisio-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -31,7 +32,7 @@ export default function RootLayout({
     <html lang="pt-PT" className={geist.variable}>
       <body className="min-h-screen bg-white text-aula-text">
         <AuthProvider>
-          {children}
+          <ElisioProvider>{children}</ElisioProvider>
         </AuthProvider>
         <Analytics />
         <SpeedInsights />

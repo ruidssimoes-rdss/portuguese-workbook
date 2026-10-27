@@ -80,7 +80,7 @@ export function CardPane() {
         <button
           type="button"
           onClick={() => book.close(book.index)}
-          className={`tablet-target inline-flex h-7 items-center rounded-md px-2 text-[12px] font-medium text-[#5A5A57] hover:bg-aula-sunken hover:text-aula-text ${current.kind === "elisio" ? "" : "lg:hidden"}`}
+          className={`tablet-target inline-flex h-7 items-center rounded-md px-2 text-[12px] font-medium text-[#5A5A57] hover:bg-aula-sunken hover:text-aula-text lg:hidden`}
         >
           Fechar
         </button>
