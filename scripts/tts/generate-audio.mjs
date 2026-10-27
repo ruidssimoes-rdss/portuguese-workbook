@@ -98,6 +98,18 @@ function collect() {
     add(`exams.${field}`, JSON.parse(raw));
   }
 
+  // Chapter files, read the same way: the spoken fields, plus every string inside accept: [...].
+  const chapterDir = path.join(DATA, "chapters");
+  for (const file of readdirSync(chapterDir).filter((name) => name.endsWith(".ts") && name !== "index.ts").sort()) {
+    const source = readFileSync(path.join(chapterDir, file), "utf8");
+    for (const [, field, raw] of source.matchAll(/\b(pt|answer|example|line|text):\s*("(?:[^"\\]|\\.)*")/g)) {
+      add(`chapters.${field}`, JSON.parse(raw));
+    }
+    for (const [, list] of source.matchAll(/\baccept:\s*\[([^\]]*)\]/g)) {
+      for (const [raw] of list.matchAll(/"(?:[^"\\]|\\.)*"/g)) add("chapters.accept", JSON.parse(raw));
+    }
+  }
+
   for (const k of Object.keys(sources)) sources[k] = [...new Set(sources[k])];
   return sources;
 }

@@ -36,8 +36,7 @@ let current: HTMLAudioElement | null = null;
 let speechPrimed = false;
 let generation = 0;
 
-function applyRate(audio: HTMLAudioElement) {
-  const rate = getAudioSpeed();
+function applyRate(audio: HTMLAudioElement, rate: number = getAudioSpeed()) {
   audio.playbackRate = rate;
   audio.preservesPitch = true;
   const webkit = audio as HTMLAudioElement & { webkitPreservesPitch?: boolean };
@@ -66,7 +65,7 @@ function remember(key: string, audio: HTMLAudioElement) {
 }
 
 /** Resolves when the clip ends; rejects if it can't load or play. */
-function playClip(audio: HTMLAudioElement): Promise<void> {
+function playClip(audio: HTMLAudioElement, rate?: number): Promise<void> {
   return new Promise((resolve, reject) => {
     const done = (fn: () => void) => () => {
       audio.removeEventListener("ended", onEnd);
@@ -79,7 +78,7 @@ function playClip(audio: HTMLAudioElement): Promise<void> {
     audio.addEventListener("ended", onEnd);
     audio.addEventListener("error", onError);
     current = audio;
-    applyRate(audio);
+    applyRate(audio, rate);
     audio.play().then(() => audio.addEventListener("pause", onEnd), onError);
   });
 }
@@ -148,8 +147,9 @@ export async function canPlayPt(text: string): Promise<boolean> {
 /**
  * Speak European Portuguese text. Call from a click handler.
  * Resolves when playback finishes (or is interrupted by another call); rejects only if nothing could play.
+ * `rate` plays this clip at a one-off speed (the stored speed is untouched); `clipOnly` never uses the browser voice.
  */
-export async function speakPt(text: string): Promise<void> {
+export async function speakPt(text: string, options?: { rate?: number; clipOnly?: boolean }): Promise<void> {
   if (typeof window === "undefined" || !text.trim()) return;
   stopAll();
   const gen = ++generation;
@@ -178,7 +178,7 @@ export async function speakPt(text: string): Promise<void> {
       audio.currentTime = 0;
     }
     try {
-      await playClip(audio);
+      await playClip(audio, options?.rate);
       remember(key, audio);
       return;
     } catch {
@@ -189,5 +189,6 @@ export async function speakPt(text: string): Promise<void> {
     }
   }
 
+  if (options?.clipOnly) throw new Error("clip unavailable");
   if (gen === generation) await speakFallback(text);
 }
