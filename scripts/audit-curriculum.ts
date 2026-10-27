@@ -6,6 +6,7 @@
  */
 import { A1_LESSONS, A2_LESSONS, B1_LESSONS, EXTRA_LESSONS } from "../src/data/curriculum";
 import { vocabKey } from "../src/data/resolve-lessons";
+import { getChapterContent } from "../src/data/chapters";
 import type { CurriculumLesson } from "../src/data/curriculum-types";
 import vocabData from "../src/data/vocab.json";
 import grammarData from "../src/data/grammar.json";
@@ -179,7 +180,78 @@ for (const lesson of lessons) {
   }
 }
 
-const errorTotal = errors.vocab + errors.verb + errors.grammar + errors.culture;
+// ─── Chapter files (src/data/chapters/<lesson-id>.ts) ───
+const chapterErrors: string[] = [];
+let chapterFiles = 0;
+
+function dashStrings(value: unknown, path: string, out: string[]) {
+  if (typeof value === "string") {
+    if (/[—–]/.test(value)) out.push(`${path}: contains an em or en dash`);
+  } else if (Array.isArray(value)) {
+    value.forEach((item, i) => dashStrings(item, `${path}[${i}]`, out));
+  } else if (value && typeof value === "object") {
+    for (const [k, v] of Object.entries(value)) dashStrings(v, `${path}.${k}`, out);
+  }
+}
+
+for (const lesson of lessons) {
+  const chapter = getChapterContent(lesson.id);
+  if (!chapter) continue;
+  chapterFiles++;
+  const fail = (msg: string) => chapterErrors.push(`${lesson.id}: ${msg}`);
+
+  const refs = lesson.stages.vocabulary.words;
+  const used = new Map<string, number>();
+  for (const section of chapter.sections) {
+    if (section.grammarTopic && !(grammar.topics as Record<string, unknown>)[section.grammarTopic]) {
+      fail(`grammarTopic missing from grammar.json: ${section.grammarTopic}`);
+    }
+    for (const block of section.blocks) {
+      if (block.type === "vocab") {
+        for (const row of block.rows) {
+          if (row.kind === "word") {
+            const key = `${row.categoryId}\n${vocabKey(row.portuguese)}`;
+            used.set(key, (used.get(key) ?? 0) + 1);
+            if (!refs.some((ref) => ref.categoryId === row.categoryId && vocabKey(ref.portuguese) === vocabKey(row.portuguese))) {
+              fail(`word row is not a lesson vocabulary ref: ${row.portuguese}`);
+            }
+          } else if (!row.phonetics.trim()) {
+            fail(`row has empty phonetics: ${row.pt}`);
+          }
+        }
+      } else if (block.type === "dialogue") {
+        for (const line of block.lines) if (!line.phonetics.trim()) fail(`dialogue line ${line.n} has empty phonetics`);
+      } else if (block.type === "conjugation") {
+        for (const item of block.items) {
+          const ref = lesson.stages.verbs.verbs.find((v) => v.verbKey === item.verbKey);
+          if (!ref || !ref.tenses.includes(item.tense)) {
+            fail(`conjugation ${item.verbKey} ${item.tense} is not in the lesson's verbs stage`);
+            continue;
+          }
+          const rows = ((verbs.verbs as Record<string, { conjugations: { Tense: string; Pronunciation?: string }[] }>)[item.verbKey]?.conjugations ?? []).filter(
+            (row) => row.Tense === item.tense,
+          );
+          if (rows.length === 0) fail(`conjugation ${item.verbKey} ${item.tense} has no rows`);
+          if (rows.some((row) => !row.Pronunciation?.trim())) fail(`conjugation ${item.verbKey} ${item.tense} has rows without Pronunciation`);
+        }
+      }
+    }
+  }
+  for (const ref of refs) {
+    const key = `${ref.categoryId}\n${vocabKey(ref.portuguese)}`;
+    if (used.get(key) !== 1) fail(`vocabulary ref appears in ${used.get(key) ?? 0} word rows (need exactly 1): ${ref.portuguese}`);
+  }
+  const dashes: string[] = [];
+  dashStrings(chapter, "chapter", dashes);
+  dashes.forEach(fail);
+}
+
+if (chapterErrors.length > 0) {
+  console.log("");
+  for (const line of chapterErrors) console.log(`  ERROR chapter ${line}`);
+}
+
+const errorTotal = errors.vocab + errors.verb + errors.grammar + errors.culture + chapterErrors.length;
 
 console.log("");
 console.log("SUMMARY");
@@ -189,6 +261,7 @@ console.log(`resolved: ${resolved}`);
 console.log(
   `errors: ${errorTotal} (vocab ${errors.vocab}, verb ${errors.verb}, grammar ${errors.grammar}, culture ${errors.culture})`,
 );
+console.log(`chapter files: ${chapterFiles} checked, ${chapterErrors.length} errors`);
 console.log(`warnings: ${bandTotal(aboveLevel)} above-level (${formatBands(aboveLevel)})`);
 console.log(`repeats: ${bandTotal(repeats)} (${formatBands(repeats)})`);
 console.log(`budget: ${bandTotal(budget)} (${formatBands(budget)})`);

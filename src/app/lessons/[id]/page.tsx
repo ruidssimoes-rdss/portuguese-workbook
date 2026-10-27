@@ -10,8 +10,10 @@ import { Suspense, useState, use, useEffect, useRef, useCallback } from "react";
 import { ProtectedRoute } from "@/components/protected-route";
 import { PageShell, Crumbs } from "@/components/layout/page-shell";
 import { BookShell } from "@/components/book/book-shell";
-import { LessonChapter, lessonListenLines } from "@/components/book/lesson-chapter";
-import { ListenControls } from "@/components/book/play-button";
+import { LessonChapter } from "@/components/book/lesson-chapter";
+import { AudioSpeedControl } from "@/components/audio-speed-control";
+import { ChapterRail } from "@/components/chapter/chapter-rail";
+import { getChapterContent } from "@/data/chapters";
 import { setViewingId } from "@/lib/course-path";
 import {
   getResolvedLesson,
@@ -410,18 +412,18 @@ function CurriculumLesson({ id }: { id: string }) {
     );
   }
 
-  const number = String(lesson.number).padStart(2, "0");
-
   return (
     <BookShell
       key={lesson.id}
       lessonTitle={lesson.titlePt}
       renderLesson={({ onDismiss }) => <LessonContent id={id} dock onDismiss={onDismiss} />}
+      fallback={<ChapterRail lesson={lesson} content={getChapterContent(lesson.id)} />}
       header={
         <>
-          <Crumbs items={[{ label: "Curso", href: "/lessons" }, { label: lesson.cefrLevel }, { label: `${number} · ${lesson.titlePt}` }]} />
+          <Crumbs items={[{ label: lesson.cefrLevel, href: "/lessons" }, { label: lesson.titlePt }]} />
           <span className="flex-1" />
-          <ListenControls lines={lessonListenLines(lesson)} label="Ouvir lição" />
+          <AudioSpeedControl />
+          <span className="inline-flex h-[18px] items-center rounded-[5px] bg-[#E7F2EF] px-1.5 text-[10.5px] font-semibold text-[#1F7A68]">{lesson.cefrLevel}</span>
         </>
       }
     >
