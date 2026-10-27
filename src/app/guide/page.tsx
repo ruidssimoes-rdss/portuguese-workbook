@@ -9,6 +9,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageShell, Crumbs } from "@/components/layout/page-shell";
+import { useElisio } from "@/components/elisio/elisio-provider";
 import { Pips, LevelTag, Label, ScreenTitle, PanelCard, KV } from "@/components/aula";
 import vocab from "@/data/vocab.json";
 import verbs from "@/data/verbs.json";
@@ -65,6 +66,7 @@ const PIPS = [
 ];
 
 export default function GuidePage() {
+  const elisio = useElisio();
   const panel = (
     <div className="flex flex-col gap-6">
       <PanelCard title="O que há no Aula">
@@ -170,14 +172,26 @@ export default function GuidePage() {
               { href: "/conjugations", k: "Conjugações", v: "Cada verbo em 9 tempos, do presente ao conjuntivo." },
               { href: "/grammar", k: "Gramática", v: "As regras explicadas com exemplos e uma verificação rápida." },
               { href: "/exams", k: "Exames", v: "Simulados do CIPLE com tempo e a nota calculada como no exame real." },
-              { href: "/tutor", k: "Elísio", v: "O teu professor: prepara uma sessão sobre o que te está a custar." },
-            ].map((r) => (
-              <Link key={r.href} href={r.href} className="flex min-h-[44px] items-center gap-4 rounded-[10px] px-3 py-2 transition-colors hover:bg-aula-sunken">
-                <span className="w-[100px] shrink-0 text-[12.5px] font-medium text-aula-text">{r.k}</span>
-                <span className="flex-1 text-[12px] text-aula-text-2">{r.v}</span>
-                <ArrowRight size={13} strokeWidth={1.5} className="text-aula-text-4" />
-              </Link>
-            ))}
+              { href: "", k: "Elísio", v: "O teu professor: responde a partir dos capítulos e da biblioteca." },
+            ].map((r) => {
+              const cls = "flex min-h-[44px] w-full items-center gap-4 rounded-[10px] px-3 py-2 text-left transition-colors hover:bg-aula-sunken";
+              const body = (
+                <>
+                  <span className="w-[100px] shrink-0 text-[12.5px] font-medium text-aula-text">{r.k}</span>
+                  <span className="flex-1 text-[12px] text-aula-text-2">{r.v}</span>
+                  <ArrowRight size={13} strokeWidth={1.5} className="text-aula-text-4" />
+                </>
+              );
+              return r.href ? (
+                <Link key={r.k} href={r.href} className={cls}>
+                  {body}
+                </Link>
+              ) : (
+                <button key={r.k} type="button" onClick={() => elisio.openElisio()} className={cls}>
+                  {body}
+                </button>
+              );
+            })}
           </div>
         </section>
 

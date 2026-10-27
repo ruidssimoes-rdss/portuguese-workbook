@@ -10,6 +10,10 @@ import { getChapterContent } from "../src/data/chapters";
 import { grammarTexts, testPools } from "../src/lib/chapter-test";
 import { chapterPool, libraryStrings, practicePools } from "../src/lib/practice";
 import { checkPractice, normalizeAnswer } from "../src/lib/practice-check";
+import { ANSWER_MIN, CLOSEST_MIN, askElisio } from "../src/lib/elisio/match";
+import { buildIndex as elisioIndex, STOPWORDS as ELISIO_STOP, tokens as elisioTokens } from "../src/lib/elisio/index";
+import { suggestionsFor } from "../src/lib/elisio/suggest";
+import type { ElisioContext, ElisioResult } from "../src/lib/elisio/types";
 import type { CurriculumLesson } from "../src/data/curriculum-types";
 import vocabData from "../src/data/vocab.json";
 import grammarData from "../src/data/grammar.json";
@@ -350,6 +354,87 @@ for (const lesson of lessons) {
   else if (size < 20) practiceWarnings.push(`${lesson.id}: small practice pool (${size})`);
 }
 
+// ─── Elísio: fixed questions with the A1.1 context, and every A1 suggestion ───
+const elisioErrors: string[] = [];
+const elisioOrder = [...lessons].sort((a, b) => a.number - b.number || a.id.localeCompare(b.id)).map((lesson) => lesson.id);
+const elisioCtx = (id: string): ElisioContext => ({ currentId: id, frontierId: id, order: elisioOrder });
+type Expect = { q: string; type: "answer" | "none"; ids?: string[]; tone?: "in" | "later" | "library"; note?: boolean; noClosest?: boolean; tense?: string; ctx?: string };
+const ELISIO_FIXTURES: Expect[] = [
+  { q: "when do I use ser or estar", type: "answer", ids: ["section:a1-01:3"], tone: "in" },
+  { q: "ser vs estar", type: "answer", ids: ["section:a1-01:3"] },
+  { q: "quando uso o ser", type: "answer", ids: ["section:a1-01:3", "grammar:ser-vs-estar", "verb:ser"] },
+  { q: "tu or você", type: "answer", ids: ["section:a1-01:2", "grammar:subject-pronouns"], tone: "in" },
+  { q: "how do you say thank you", type: "answer", ids: ["word:greetings-expressions:obrigado / obrigada"] },
+  { q: "como se diz obrigado", type: "answer", ids: ["word:greetings-expressions:obrigado / obrigada"] },
+  { q: "como se diz bom dia", type: "answer", ids: ["word:greetings-expressions:bom dia"] },
+  { q: "what does saudade mean", type: "answer", ids: ["word:*:saudade"], note: true },
+  { q: "o que significa bica", type: "answer", ids: ["word:food-drink:a bica"], note: true },
+  { q: "conjugate ter", type: "answer", ids: ["verb:ter"], tense: "Present" },
+  { q: "past tense of ir", type: "answer", ids: ["verb:ir"], tense: "Preterite" },
+  { q: "possessives", type: "answer", ids: ["grammar:possessives"], tone: "later" },
+  { q: "subjunctive", type: "answer", ids: ["grammar:subjunctive-triggers", "grammar:present-subjunctive-formation"], note: true },
+  { q: "what is the conditional", type: "answer", ids: ["grammar:conditional-tense"] },
+  { q: "estou a falar", type: "answer", ids: ["grammar:estar-a-infinitive"] },
+  { q: "plural", type: "answer", ids: ["grammar:plural-formation"] },
+  { q: "artigos", type: "answer", ids: ["grammar:articles"] },
+  { q: "asdfgh", type: "none", noClosest: true },
+  { q: "banana bread recipe", type: "none" },
+  { q: "who won the world cup", type: "none" },
+  { q: "what is the capital of France", type: "none" },
+  { q: "bitcoin price today", type: "none" },
+  { q: "how do I say goodbye", type: "answer", ids: ["word:greetings-expressions:adeus"] },
+  { q: "hello", type: "answer", ids: ["word:greetings-expressions:olá"] },
+  { q: "how are you", type: "answer", ids: ["word:greetings-expressions:como estás?"] },
+  { q: "what time is it", type: "answer", ids: ["word:numbers-time:que horas são?"] },
+  { q: "numbers", type: "none" },
+  { q: "lisbon", type: "none" },
+  { q: "when is boa tarde used", type: "answer", ids: ["word:greetings-expressions:boa tarde", "section:a1-01:1"] },
+  { q: "teach me the subjunctive", type: "answer", ids: ["grammar:subjunctive-triggers", "grammar:present-subjunctive-formation"] },
+  { q: "is it estás or estas", type: "answer", ids: ["word:greetings-expressions:como estás?", "section:a1-01:3"] },
+  { q: "is it estás or estas", type: "answer", ids: ["word:greetings-expressions:como estás?", "section:a1-01:3"], ctx: "a1-06" },
+  { q: "how do I say goodbye", type: "answer", ids: ["word:greetings-expressions:adeus"], tone: "in", ctx: "a1-06" },
+  { q: "hi, what does tchau mean", type: "answer", ids: ["word:greetings-expressions:tchau"] },
+];
+// When the question's content words are exactly a word's key, a verb may not win (spot rule from review).
+const elisioWordKeys = new Set(elisioIndex().filter((item) => item.kind === "word").flatMap((item) => [...item.fullKeys]));
+function elisioLine(result: ElisioResult): string {
+  if (result.type === "none") return `none (closest: ${result.closest.map((c) => `${c.kind}:${c.id}`).join(", ") || "none"})`;
+  const a = result.answer;
+  return `answer ${a.kind}:${a.id} [${a.tag.text}${a.tag.note ? " + note" : ""}] ${a.link.label} (${a.link.href})`;
+}
+let elisioPassed = 0;
+const elisioLines: string[] = [];
+ELISIO_FIXTURES.forEach((fx, i) => {
+  const result = askElisio(fx.q, elisioCtx(fx.ctx ?? "a1-01"));
+  const problems: string[] = [];
+  const contentWords = elisioTokens(fx.q).filter((t) => !ELISIO_STOP.has(t)).join(" ");
+  if (result.type === "answer" && result.answer.kind === "verb" && contentWords && elisioWordKeys.has(contentWords)) problems.push(`a verb won although «${contentWords}» is a word key`);
+  if (result.type !== fx.type) problems.push(`expected ${fx.type}`);
+  if (result.type === "answer") {
+    const a = result.answer;
+    const id = `${a.kind}:${a.id}`;
+    if (fx.ids && !fx.ids.some((want) => (want.includes("*") ? new RegExp(`^${want.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace("*", "[^:]+")}$`).test(id) : want === id))) problems.push(`expected ${fx.ids.join(" or ")}`);
+    if (fx.tone && a.tag.tone !== fx.tone) problems.push(`expected tone ${fx.tone}`);
+    if (fx.note && !a.tag.note) problems.push("expected the later note");
+    if (fx.tense && !a.explanation.includes(`${fx.tense}:`)) problems.push(`expected ${fx.tense} forms`);
+  } else if (fx.noClosest && result.closest.length > 0) problems.push("expected no closest");
+  if (problems.length === 0) elisioPassed++;
+  else elisioErrors.push(`fixture ${i + 1} «${fx.q}»: ${problems.join(", ")}; got ${elisioLine(result)}`);
+  elisioLines.push(`  ${String(i + 1).padStart(2)} ${problems.length === 0 ? "ok " : "BAD"} ${fx.q}${fx.ctx ? ` [${fx.ctx}]` : ""} → ${elisioLine(result)}`);
+});
+let suggestionChecks = 0;
+for (const lesson of lessons.filter((l) => l.cefrLevel === "A1")) {
+  for (const q of suggestionsFor(elisioCtx(lesson.id))) {
+    suggestionChecks++;
+    const result = askElisio(q, elisioCtx(lesson.id));
+    if (result.type !== "answer") elisioErrors.push(`${lesson.id}: suggestion «${q}» does not resolve to an answer`);
+  }
+}
+console.log("");
+console.log("ELISIO FIXTURES");
+for (const line of elisioLines) console.log(line);
+for (const line of elisioErrors) console.log(`  ERROR elisio ${line}`);
+
 if (practiceErrors.length > 0 || practiceWarnings.length > 0) {
   console.log("");
   for (const line of practiceErrors) console.log(`  ERROR practice ${line}`);
@@ -361,7 +446,7 @@ if (chapterErrors.length > 0) {
   for (const line of chapterErrors) console.log(`  ERROR chapter ${line}`);
 }
 
-const errorTotal = errors.vocab + errors.verb + errors.grammar + errors.culture + chapterErrors.length + practiceErrors.length;
+const errorTotal = errors.vocab + errors.verb + errors.grammar + errors.culture + chapterErrors.length + practiceErrors.length + elisioErrors.length;
 
 console.log("");
 console.log("SUMMARY");
@@ -375,6 +460,9 @@ console.log(`chapter tests: ${chapterFiles} chapter files, ${generatedChecked} g
 console.log(`chapter files: ${chapterFiles} checked, ${chapterErrors.length} errors`);
 console.log(
   `chapter practice: ${practiceFiles} files checked, ${practiceGenerated} generated lessons checked, smallest generated pool ${smallest ? `${smallest.id} (${smallest.size})` : "none"}, ${practiceWarnings.length} warnings, ${practiceErrors.length} errors`,
+);
+console.log(
+  `elisio: ${elisioPassed} of ${ELISIO_FIXTURES.length} fixtures passed, ANSWER_MIN ${ANSWER_MIN}, CLOSEST_MIN ${CLOSEST_MIN}, ${suggestionChecks} A1 suggestions checked, ${elisioErrors.length} errors`,
 );
 console.log(`warnings: ${bandTotal(aboveLevel)} above-level (${formatBands(aboveLevel)})`);
 console.log(`repeats: ${bandTotal(repeats)} (${formatBands(repeats)})`);

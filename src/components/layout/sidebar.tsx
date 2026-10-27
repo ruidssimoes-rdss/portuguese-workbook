@@ -24,6 +24,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
+import { useElisio } from "@/components/elisio/elisio-provider";
 import { SearchModal } from "@/components/search-modal";
 
 type NavItem = { href: string; icon: LucideIcon; label: string; cue?: string };
@@ -135,6 +136,23 @@ export function Sidebar({
   const isActive = useActive();
   const { user, loading } = useAuth();
   const search = useSearch();
+  const elisio = useElisio();
+  const askElisio = () => {
+    onNavigate?.();
+    elisio.openElisio();
+  };
+  const signedOut = !loading && !user;
+  const elisioButton = (
+    <button
+      type="button"
+      onClick={askElisio}
+      aria-pressed={elisio.open}
+      className="tablet-target flex h-8 min-w-0 flex-1 items-center gap-2 rounded-lg border border-aula-border bg-aula-panel px-2.5 text-left text-[12.5px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
+    >
+      <Send size={14} strokeWidth={1.5} className="shrink-0 text-aula-text-2" />
+      <span className="truncate">Perguntar ao Elísio</span>
+    </button>
+  );
 
   if (collapsed) {
     return (
@@ -154,12 +172,10 @@ export function Sidebar({
             ))}
           </nav>
           <div className="flex shrink-0 flex-col items-center gap-0.5">
-            <RailButton
-              caption={user ? "Elísio" : undefined}
-              item={{ href: user ? "/tutor" : "/auth/login", icon: user ? Send : LogIn, label: user ? "Perguntar ao Elísio" : "Entrar" }}
-              active={false}
-              onClick={onNavigate}
-            />
+            <RailButton caption="Elísio" item={{ href: "", icon: Send, label: "Perguntar ao Elísio" }} active={elisio.open} onAction={askElisio} />
+            {!loading && !user && (
+              <RailButton item={{ href: "/auth/login", icon: LogIn, label: "Entrar" }} active={false} onClick={onNavigate} />
+            )}
             <RailButton item={{ href: "/settings", icon: Settings, label: "Definições" }} active={isActive("/settings")} onClick={onNavigate} />
             {!lockRail && (
               <button
@@ -239,28 +255,19 @@ export function Sidebar({
           ))}
         </nav>
 
-        {/* Footer */}
+        {/* Footer: Elísio for everyone; signed out, Entrar sits beside settings on the row below so neither label is squeezed. */}
+        {signedOut && <div className="mb-1 flex">{elisioButton}</div>}
         <div className="flex items-center gap-1">
-          {!loading && user ? (
-            <Link
-              href="/tutor"
-              onClick={onNavigate}
-              className="tablet-target flex h-8 flex-1 items-center gap-2 rounded-lg border border-aula-border bg-aula-panel px-2.5 text-[12.5px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
-            >
-              <Send size={14} strokeWidth={1.5} className="text-aula-text-2" />
-              Perguntar ao Elísio
-            </Link>
-          ) : !loading ? (
+          {!signedOut && elisioButton}
+          {signedOut && (
             <Link
               href="/auth/login"
               onClick={onNavigate}
-              className="flex h-8 flex-1 items-center gap-2 rounded-lg border border-aula-border bg-aula-panel px-2.5 text-[12.5px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
+              className="flex h-8 min-w-0 flex-1 items-center gap-2 rounded-lg border border-aula-border bg-aula-panel px-2.5 text-[12.5px] font-medium text-aula-text transition-colors hover:border-aula-text-4"
             >
               <LogIn size={14} strokeWidth={1.5} className="text-aula-text-2" />
               Entrar
             </Link>
-          ) : (
-            <div className="h-8 flex-1" />
           )}
           <Link
             href="/settings"
@@ -288,8 +295,37 @@ export function Sidebar({
   );
 }
 
-function RailButton({ item, active, onClick, caption }: { item: NavItem; active: boolean; onClick?: () => void; caption?: string }) {
+function RailButton({
+  item,
+  active,
+  onClick,
+  onAction,
+  caption,
+}: {
+  item: NavItem;
+  active: boolean;
+  onClick?: () => void;
+  /** Renders a button (no navigation) that calls this. */
+  onAction?: () => void;
+  caption?: string;
+}) {
   const Icon = item.icon;
+  const className = `tablet-target-sq tap-44 flex items-center justify-center rounded-lg transition-colors ${
+    caption ? "h-auto min-h-11 w-11 flex-col gap-0.5 py-1" : "h-8 w-9"
+  } ${active ? "bg-aula-selected text-aula-text" : "text-aula-text-2 hover:bg-aula-selected/60 hover:text-aula-text"}`;
+  const body = (
+    <>
+      <Icon size={16} strokeWidth={1.5} />
+      {caption && <span className="max-w-[52px] truncate text-[9px] font-medium leading-none">{caption}</span>}
+    </>
+  );
+  if (onAction) {
+    return (
+      <button type="button" onClick={onAction} aria-label={item.label} aria-pressed={active} className={className}>
+        {body}
+      </button>
+    );
+  }
   return (
     <Link
       href={item.href}
@@ -297,12 +333,9 @@ function RailButton({ item, active, onClick, caption }: { item: NavItem; active:
       aria-label={item.cue ? `${item.label}, ${item.cue}` : item.label}
       title={caption ? undefined : item.cue ? `${item.label} · ${item.cue}` : item.label}
       aria-current={active ? "page" : undefined}
-      className={`tablet-target-sq tap-44 flex items-center justify-center rounded-lg transition-colors ${
-        caption ? "h-auto min-h-11 w-11 flex-col gap-0.5 py-1" : "h-8 w-9"
-      } ${active ? "bg-aula-selected text-aula-text" : "text-aula-text-2 hover:bg-aula-selected/60 hover:text-aula-text"}`}
+      className={className}
     >
-      <Icon size={16} strokeWidth={1.5} />
-      {caption && <span className="max-w-[52px] truncate text-[9px] font-medium leading-none">{caption}</span>}
+      {body}
     </Link>
   );
 }

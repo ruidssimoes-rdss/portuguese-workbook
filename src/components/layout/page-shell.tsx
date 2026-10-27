@@ -15,6 +15,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Sidebar, AppLogo, useSidebarCollapsed } from "./sidebar";
+import { useElisio } from "@/components/elisio/elisio-provider";
+import { ElisioAside, ElisioOverlay, useElisioFrame } from "@/components/elisio/elisio-slot";
 
 export function PageShell({
   children,
@@ -43,13 +45,19 @@ export function PageShell({
   snug?: boolean;
 }) {
   const { collapsed, toggle } = useSidebarCollapsed();
-  const rail = forceRail || collapsed;
+  const elisio = useElisio();
+  const frame = useElisioFrame();
+  // Elísio replaces the dock or panel while open; at 1024 to 1279 the sidebar folds to its rail, as for the book dock.
+  const elisioDocked = elisio.open && frame.mode === "dock";
+  const rail = forceRail || (elisioDocked && frame.tight) || collapsed;
+  const lockRail = forceRail || (elisioDocked && frame.tight);
+  const padSnug = snug || (elisioDocked && frame.tight);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div className="aula-shell flex h-dvh min-h-0 bg-aula-canvas">
       {/* Desktop sidebar */}
-      <Sidebar collapsed={rail} lockRail={forceRail} onToggle={toggle} className="hidden h-full min-h-0 md:flex" />
+      <Sidebar collapsed={rail} lockRail={lockRail} onToggle={toggle} className="hidden h-full min-h-0 md:flex" />
 
       {/* Mobile overlay sidebar */}
       {mobileOpen && (
@@ -95,7 +103,7 @@ export function PageShell({
           )}
           <div id="aula-scroll" className="aula-pane min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto">
             <div
-              className={`mx-auto min-w-0 pb-16 ${snug ? "px-pad" : "px-10 max-md:px-4"} ${header ? "pt-6" : "pt-10 max-md:pt-6"} ${
+              className={`mx-auto min-w-0 pb-16 ${padSnug ? "px-pad" : "px-10 max-md:px-4"} ${header ? "pt-6" : "pt-10 max-md:pt-6"} ${
                 wide ? "max-w-none" : "max-w-[960px]"
               }`}
             >
@@ -104,8 +112,10 @@ export function PageShell({
           </div>
         </main>
 
-        {/* Book card dock, or the narrower info panel */}
-        {dock ? (
+        {/* Elísio while open, else the book card dock, else the narrower info panel */}
+        {elisio.open ? (
+          <ElisioAside />
+        ) : dock ? (
           <aside className={`book-dock hidden min-h-0 shrink-0 flex-col overflow-hidden rounded-xl border border-aula-line bg-aula-panel lg:flex ${wideDock ? "book-dock-wide" : ""}`}>
             {dock}
           </aside>
@@ -117,6 +127,7 @@ export function PageShell({
           )
         )}
       </div>
+      <ElisioOverlay frame={frame} />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { type NextRequest, NextResponse } from "next/server";
  * grammar, conjugations, culture, guide, the lessons and exams indexes, auth
  * and onboarding screens) stays public. API routes answer 401 themselves.
  */
-const PROTECTED_EXACT = new Set(["/progress", "/notes", "/calendar", "/settings", "/tutor", "/learn"]);
+const PROTECTED_EXACT = new Set(["/progress", "/notes", "/calendar", "/settings", "/learn"]);
 const PROTECTED_PREFIXES = ["/lessons/", "/exams/"];
 
 function isProtected(pathname: string): boolean {

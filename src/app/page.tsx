@@ -10,6 +10,7 @@ import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { RotateCcw, Sparkles, Search, ChevronRight, X } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
+import { useElisio } from "@/components/elisio/elisio-provider";
 import { PageShell } from "@/components/layout/page-shell";
 import { SearchModal } from "@/components/search-modal";
 import { getProgressStats } from "@/lib/progress-stats-service";
@@ -60,6 +61,7 @@ export default function HomePage() {
 function HomeContent() {
   const searchParams = useSearchParams();
   const { user, loading: authLoading } = useAuth();
+  const elisio = useElisio();
   const course = useCourseSnapshot();
   const [stats, setStats] = useState<HomeStats | null>(null);
   const [loading, setLoading] = useState(true);
@@ -149,7 +151,7 @@ function HomeContent() {
     .filter(Boolean)
     .join(" · ");
 
-  const suggestions: { href: string; icon: typeof RotateCcw; label: string; meta: string }[] = [
+  const suggestions: { href: string; icon: typeof RotateCcw; label: string; meta: string; onClick?: () => void }[] = [
     ...(stats && stats.reviewDue > 0
       ? [
           {
@@ -161,7 +163,7 @@ function HomeContent() {
           },
         ]
       : []),
-    { href: "/tutor", icon: Sparkles, label: "Pedir uma sessão ao Professor Elísio", meta: "Ask Elísio" },
+    { href: "", icon: Sparkles, label: "Perguntar ao Elísio", meta: "Ask Elísio", onClick: () => elisio.openElisio() },
   ];
 
   return (
@@ -259,17 +261,23 @@ function HomeContent() {
                 <div className="mt-4 flex flex-col gap-1.5">
                   {suggestions.map((s) => {
                     const Icon = s.icon;
-                    return (
-                      <Link
-                        key={s.href + s.label}
-                        href={s.href}
-                        className="group flex h-11 items-center gap-3 rounded-[10px] bg-aula-sunken px-3.5 transition-colors hover:bg-aula-selected"
-                      >
+                    const row = "group flex h-11 w-full items-center gap-3 rounded-[10px] bg-aula-sunken px-3.5 text-left transition-colors hover:bg-aula-selected";
+                    const body = (
+                      <>
                         <Icon size={16} strokeWidth={1.5} className="text-aula-text-2" />
                         <span className="text-[12.5px] text-aula-text">{s.label}</span>
                         <span className="flex-1" />
                         <span className="text-[11px] text-aula-text-3">{s.meta}</span>
                         <ChevronRight size={14} strokeWidth={1.5} className="text-aula-text-4 transition-colors group-hover:text-aula-text-3" />
+                      </>
+                    );
+                    return s.onClick ? (
+                      <button key={s.label} type="button" onClick={s.onClick} className={row}>
+                        {body}
+                      </button>
+                    ) : (
+                      <Link key={s.href + s.label} href={s.href} className={row}>
+                        {body}
                       </Link>
                     );
                   })}

@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useElisio } from "@/components/elisio/elisio-provider";
 import {
   decodeCard,
   decodePractice,
@@ -64,8 +65,12 @@ const BookContext = createContext<BookApi | null>(null);
 
 export function BookProvider({ children }: { children: React.ReactNode }) {
   const params = useSearchParams();
-  const initialCard = decodeCard(params.get(FICHA_PARAM));
+  const decoded = decodeCard(params.get(FICHA_PARAM));
+  // Old ficha=elisio:… links open Elísio in the rail instead of a card tab.
+  const [askAbout] = useState(() => (decoded?.kind === "elisio" ? decoded.about : null));
+  const initialCard = decoded?.kind === "elisio" ? null : decoded;
   const initialPractice = decodePractice(params.get(PRATICAR_PARAM));
+  const { openElisio } = useElisio();
   const seedCard = initialCard ?? (initialPractice && initialPractice.kind !== "lesson" ? initialPractice : null);
   const [state, dispatch] = useReducer(reducer, {
     tabs: seedCard ? [seedCard] : [],
@@ -73,6 +78,10 @@ export function BookProvider({ children }: { children: React.ReactNode }) {
   });
   const [practice, setPractice] = useState<PracticeTarget | null>(initialPractice);
   const current = state.tabs[state.index] ?? null;
+
+  useEffect(() => {
+    if (askAbout) openElisio(askAbout);
+  }, [askAbout, openElisio]);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -113,10 +122,7 @@ export function BookProvider({ children }: { children: React.ReactNode }) {
       canBack: state.index > 0,
       canForward: state.index < state.tabs.length - 1,
       practice,
-      openCard: (ref) => {
-        dispatch({ type: "open", ref });
-        if (ref.kind === "elisio") setPractice(null);
-      },
+      openCard: (ref) => dispatch({ type: "open", ref }),
       back: () => dispatch({ type: "back" }),
       forward: () => dispatch({ type: "forward" }),
       close: (index) => dispatch({ type: "close", index }),
