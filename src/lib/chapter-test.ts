@@ -36,10 +36,19 @@ function ellipsis(text: string): string {
   return text.replace(/\.\.\./g, "…");
 }
 
-/** The prompt, with the Portuguese line's trailing "(gloss)" added when the English text lacks it. */
-export function grammarPrompt(questionText: string, questionTextPt?: string): string {
+/** " — " and " – " become ": ", any other long dash becomes a hyphen. Test text never shows em or en dashes. */
+export function plainDashes(text: string): string {
+  return text.replace(/\s[—–]\s/g, ": ").replace(/[—–]/g, "-");
+}
+
+/**
+ * The prompt, with the Portuguese line's trailing "(gloss)" added when the English text
+ * has no parenthesis of its own and the gloss does not give the answer away.
+ */
+export function grammarPrompt(questionText: string, questionTextPt?: string, correctAnswer = ""): string {
   const gloss = questionTextPt?.trim().match(/\(([^()]+)\)\s*$/)?.[1];
-  if (!gloss || questionText.includes(gloss)) return questionText;
+  if (!gloss || questionText.includes("(")) return questionText;
+  if (correctAnswer && gloss.toLowerCase().includes(correctAnswer.trim().toLowerCase())) return questionText;
   return `${questionText} (${gloss})`;
 }
 
@@ -107,12 +116,17 @@ function candidates(lesson: CurriculumLesson, content: ChapterContent | null, ra
   for (const topic of bundle.topics) {
     const list: Candidate[] = [];
     for (const question of topic.questions) {
-      const options = question.options;
-      if (!question.correctAnswer || !options.includes(question.correctAnswer) || options.length < 4 || !distinct(options)) continue;
+      // sentence-structure keeps its question text under `question`
+      const text = question.questionText ?? (question as unknown as { question?: string }).question;
+      if (typeof text !== "string" || !text.trim()) continue;
+      if (!Array.isArray(question.options) || question.options.some((option) => typeof option !== "string")) continue;
+      const options = question.options.map(plainDashes);
+      const correct = plainDashes(question.correctAnswer ?? "");
+      if (!correct || !options.includes(correct) || options.length < 4 || !distinct(options)) continue;
       list.push({
-        prompt: grammarPrompt(question.questionText, question.questionTextPt),
-        correct: question.correctAnswer,
-        wrong: options.filter((option) => option !== question.correctAnswer),
+        prompt: plainDashes(grammarPrompt(text, question.questionTextPt, question.correctAnswer)),
+        correct,
+        wrong: options.filter((option) => option !== correct),
         hint: topic.summary || topic.titlePt,
         section: sectionOf(topic.titlePt),
       });
@@ -180,6 +194,12 @@ export function buildChapterTest(lesson: CurriculumLesson, content: ChapterConte
 
   const ordered = chosen.map((candidate, seq) => ({ candidate, seq })).sort((a, b) => a.candidate.section - b.candidate.section || a.seq - b.seq);
   return ordered.map(({ candidate }, i) => toQuestion(candidate, `${lesson.id}-${i}`, rand));
+}
+
+/** Every grammar prompt and option a generated test could show, for the audit. */
+export function grammarTexts(lesson: CurriculumLesson): string[] {
+  const pools = candidates(lesson, null, () => 0.5);
+  return [...pools.grammar.values()].flat().flatMap((item) => [item.prompt, item.correct, ...item.wrong]);
 }
 
 /** Candidate counts per pool, for the audit. A generated test needs 12 in total. */

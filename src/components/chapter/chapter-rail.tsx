@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ArrowRight, Check, Lock } from "lucide-react";
 import type { CurriculumLesson } from "@/data/curriculum-types";
 import type { ChapterContent } from "@/data/chapter-types";
@@ -138,17 +138,6 @@ export function ChapterRail({ lesson, content }: { lesson: CurriculumLesson; con
     : read && best != null
       ? `Best ${best} of 12 · pass with 10`
       : "12 questions · pass with 10";
-
-  const handedOff = useRef(false);
-  useEffect(() => {
-    if (handedOff.current) return;
-    const url = new URL(window.location.href);
-    if (url.searchParams.get("praticar") !== "1") return;
-    handedOff.current = true;
-    book.openPractice({ kind: "lesson" });
-    url.searchParams.delete("praticar");
-    window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
-  }, [book]);
 
   const left = total > 0 ? Math.max(1, Math.round((25 * (total - reached)) / total)) : 25;
   const readSub = read ? `Done · ${total} sections` : `§${Math.max(reached, 1)} of ${total} · about ${left} min left`;

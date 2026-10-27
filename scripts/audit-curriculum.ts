@@ -7,7 +7,7 @@
 import { A1_LESSONS, A2_LESSONS, B1_LESSONS, EXTRA_LESSONS } from "../src/data/curriculum";
 import { vocabKey } from "../src/data/resolve-lessons";
 import { getChapterContent } from "../src/data/chapters";
-import { testPools } from "../src/lib/chapter-test";
+import { grammarTexts, testPools } from "../src/lib/chapter-test";
 import type { CurriculumLesson } from "../src/data/curriculum-types";
 import vocabData from "../src/data/vocab.json";
 import grammarData from "../src/data/grammar.json";
@@ -278,6 +278,9 @@ let generatedChecked = 0;
 for (const lesson of lessons) {
   if (getChapterContent(lesson.id)) continue;
   generatedChecked++;
+  for (const text of grammarTexts(lesson)) {
+    if (/[—–]/.test(text)) chapterErrors.push(`${lesson.id}: generated grammar text contains an em or en dash: ${text}`);
+  }
   const pools = testPools(lesson);
   if (pools.vocab + pools.verbs + pools.grammar < 12) {
     chapterErrors.push(`${lesson.id}: cannot build a 12-question test (vocab ${pools.vocab}, verbs ${pools.verbs}, grammar ${pools.grammar})`);
