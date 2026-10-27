@@ -36,6 +36,13 @@ function ellipsis(text: string): string {
   return text.replace(/\.\.\./g, "…");
 }
 
+/** The prompt, with the Portuguese line's trailing "(gloss)" added when the English text lacks it. */
+export function grammarPrompt(questionText: string, questionTextPt?: string): string {
+  const gloss = questionTextPt?.trim().match(/\(([^()]+)\)\s*$/)?.[1];
+  if (!gloss || questionText.includes(gloss)) return questionText;
+  return `${questionText} (${gloss})`;
+}
+
 function firstPronoun(person: string): string {
   return person.replace(/\s*\([^)]*\)/g, "").split("/")[0].trim();
 }
@@ -103,7 +110,7 @@ function candidates(lesson: CurriculumLesson, content: ChapterContent | null, ra
       const options = question.options;
       if (!question.correctAnswer || !options.includes(question.correctAnswer) || options.length < 4 || !distinct(options)) continue;
       list.push({
-        prompt: question.questionText,
+        prompt: grammarPrompt(question.questionText, question.questionTextPt),
         correct: question.correctAnswer,
         wrong: options.filter((option) => option !== question.correctAnswer),
         hint: topic.summary || topic.titlePt,
