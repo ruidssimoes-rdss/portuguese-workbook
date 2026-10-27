@@ -14,6 +14,8 @@ export interface Conjugation {
   Tense: string;
   Person: string;
   Conjugation: string;
+  /** Respelling of the form, e.g. SHAH-moo. Filled chapter by chapter. */
+  Pronunciation?: string;
   "Example Sentence": string;
   "English Translation": string;
   Notes: string;

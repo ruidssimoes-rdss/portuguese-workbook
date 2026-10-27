@@ -43,6 +43,7 @@ export interface Backlink {
 export interface VerbRow {
   person: string;
   form: string;
+  pronunciation?: string;
   example: string;
   english: string;
   note?: string;
@@ -148,6 +149,7 @@ interface VerbFileRow {
   Person: string;
   Tense: string;
   Conjugation: string;
+  Pronunciation?: string;
   "Example Sentence": string;
   "English Translation": string;
   Notes?: string;
@@ -697,6 +699,7 @@ export function getVerb(id: string): VerbEntry | null {
         .map((row) => ({
           person: row.Person,
           form: row.Conjugation,
+          pronunciation: row.Pronunciation,
           example: row["Example Sentence"],
           english: row["English Translation"],
           note: row.Notes,
