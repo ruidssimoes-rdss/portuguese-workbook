@@ -16,11 +16,9 @@ export interface ChapterSection {
 }
 
 export interface ChapterRailContent {
-  leaveWith: string;
-  howToUse: string[];
-  whyHowWhen: string[];
-  etiquette: string[];
-  sayItOutLoud: string[];
+  canDo: { text: string; section: number }[]; // section = the rendered § number (content sections come first, so §n = sections[n-1])
+  drills: { prompt: string; answer: string; phonetics: string }[]; // phonetics without slashes; the UI adds them
+  etiquette: { label: string; text: string }[];
   elisioTip: string;
 }
 

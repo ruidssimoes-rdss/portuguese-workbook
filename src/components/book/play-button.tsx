@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { Volume2 } from "lucide-react";
 import { AudioSpeedControl } from "@/components/audio-speed-control";
 import { canPlayPt, speakPt } from "@/lib/audio/speak";
 
@@ -8,7 +9,7 @@ import { canPlayPt, speakPt } from "@/lib/audio/speak";
  * Round play control from the book mockups. Plays the pt-PT clip,
  * and falls back to a pt-PT voice the same way AudioButton does.
  */
-export function PlayButton({ text, size = "sm" }: { text: string; size?: "sm" | "lg" }) {
+export function PlayButton({ text, size = "sm", variant = "round" }: { text: string; size?: "sm" | "lg"; variant?: "round" | "plain" }) {
   const [speaking, setSpeaking] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
 
@@ -28,6 +29,27 @@ export function PlayButton({ text, size = "sm" }: { text: string; size?: "sm" | 
       .catch(() => setUnavailable(true))
       .finally(() => setSpeaking(false));
   }, [text]);
+
+  if (variant === "plain") {
+    return (
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          speak();
+        }}
+        disabled={unavailable}
+        aria-label={unavailable ? "Áudio indisponível" : `Ouvir ${text}`}
+        title={unavailable ? "Áudio indisponível" : "Ouvir"}
+        className={`tablet-target-sq inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-transparent text-aula-text-2 transition-colors hover:bg-aula-line disabled:cursor-not-allowed disabled:opacity-30 ${
+          speaking ? "bg-aula-line" : ""
+        }`}
+      >
+        <Volume2 size={14} strokeWidth={1.5} aria-hidden="true" />
+      </button>
+    );
+  }
 
   const dim = size === "lg" ? "h-10 w-10" : "h-7 w-7";
   const icon = size === "lg" ? 11 : 8;

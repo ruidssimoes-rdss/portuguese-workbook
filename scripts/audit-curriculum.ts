@@ -212,6 +212,8 @@ for (const lesson of lessons) {
           if (row.kind === "word") {
             const key = `${row.categoryId}\n${vocabKey(row.portuguese)}`;
             used.set(key, (used.get(key) ?? 0) + 1);
+            const libWord = findWord(row.categoryId, row.portuguese) as { pronunciation?: string } | null;
+            if (libWord?.pronunciation?.includes("?")) fail(`word pronunciation contains "?": ${row.portuguese}`);
             if (!refs.some((ref) => ref.categoryId === row.categoryId && vocabKey(ref.portuguese) === vocabKey(row.portuguese))) {
               fail(`word row is not a lesson vocabulary ref: ${row.portuguese}`);
             }
@@ -237,6 +239,21 @@ for (const lesson of lessons) {
       }
     }
   }
+  const rail = chapter.rail;
+  if (rail.canDo.length < 4 || rail.canDo.length > 5) fail(`rail.canDo has ${rail.canDo.length} items (need 4 or 5)`);
+  for (const item of rail.canDo) {
+    if (!item.text.trim()) fail("rail.canDo item has empty text");
+    if (!Number.isInteger(item.section) || item.section < 1 || item.section > chapter.sections.length) fail(`rail.canDo section out of range: ${item.section}`);
+  }
+  if (rail.drills.length < 3 || rail.drills.length > 5) fail(`rail.drills has ${rail.drills.length} items (need 3 to 5)`);
+  for (const drill of rail.drills) {
+    if (!drill.prompt.trim() || !drill.answer.trim() || !drill.phonetics.trim()) fail(`rail.drills item has an empty field: ${drill.prompt}`);
+    if (drill.phonetics.includes("/")) fail(`rail.drills phonetics contains "/": ${drill.answer}`);
+  }
+  if (rail.etiquette.length < 2 || rail.etiquette.length > 3) fail(`rail.etiquette has ${rail.etiquette.length} items (need 2 or 3)`);
+  for (const row of rail.etiquette) if (!row.label.trim() || !row.text.trim()) fail("rail.etiquette item has an empty field");
+  if (!rail.elisioTip.trim()) fail("rail.elisioTip is empty");
+
   for (const ref of refs) {
     const key = `${ref.categoryId}\n${vocabKey(ref.portuguese)}`;
     if (used.get(key) !== 1) fail(`vocabulary ref appears in ${used.get(key) ?? 0} word rows (need exactly 1): ${ref.portuguese}`);

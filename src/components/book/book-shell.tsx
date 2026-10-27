@@ -51,12 +51,16 @@ function Shell({
   fallback,
   lessonTitle,
   renderLesson,
+  wide: fullWidth = false,
+  bareFallback = false,
 }: {
   header?: React.ReactNode;
   children: React.ReactNode;
   fallback?: React.ReactNode;
   lessonTitle?: string;
   renderLesson?: (args: { onDismiss: () => void }) => React.ReactNode;
+  wide?: boolean;
+  bareFallback?: boolean;
 }) {
   const book = useBook();
   const frame = useBookFrame();
@@ -72,7 +76,7 @@ function Shell({
       <CardPane />
     </div>
   ) : !book.current && !practicing && fallback ? (
-    <div className="aula-pane min-h-0 flex-1 overflow-y-auto p-4">{fallback}</div>
+    <div className={bareFallback ? "aula-pane flex min-h-0 flex-1 flex-col" : "aula-pane min-h-0 flex-1 overflow-y-auto p-4"}>{fallback}</div>
   ) : null;
 
   const cover = "fixed inset-0 z-[60] flex min-h-0 flex-col bg-white lg:hidden";
@@ -86,6 +90,7 @@ function Shell({
     <PageShell
       header={header}
       dock={wide ? dock : null}
+      wide={fullWidth}
       wideDock={practicing && wide}
       forceRail={forceRail}
       snug={wide && frame.tight && Boolean(dock)}
@@ -132,6 +137,8 @@ export function BookShell({
   fallback,
   lessonTitle,
   renderLesson,
+  wide,
+  bareFallback,
 }: {
   header?: React.ReactNode;
   children: React.ReactNode;
@@ -141,11 +148,15 @@ export function BookShell({
   lessonTitle?: string;
   /** Full lesson player, mounted only while `praticar=1` and the reader is signed in. */
   renderLesson?: (args: { onDismiss: () => void }) => React.ReactNode;
+  /** Let the chapter use the full content card instead of the 960px column. */
+  wide?: boolean;
+  /** The fallback owns its padding and scrolling (the chapter rail). */
+  bareFallback?: boolean;
 }) {
   return (
     <Suspense fallback={<PageShell header={header}><div className="py-16 text-[13px] text-[#5A5A57]">A abrir o capítulo…</div></PageShell>}>
       <BookProvider>
-        <Shell header={header} fallback={fallback} lessonTitle={lessonTitle} renderLesson={renderLesson}>
+        <Shell header={header} fallback={fallback} lessonTitle={lessonTitle} renderLesson={renderLesson} wide={wide} bareFallback={bareFallback}>
           {children}
         </Shell>
       </BookProvider>

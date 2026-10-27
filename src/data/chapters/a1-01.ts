@@ -141,26 +141,24 @@ export const A1_01: ChapterContent = {
     "light agreement",
   ],
   rail: {
-    leaveWith: "Greet and close a chat, say your name, use the subject pronouns, the present of ser, estar, chamar, ter and encontrar, light adjective agreement, and tu versus polite address. Then a short chapter test.",
-    howToUse: [
-      "Play the audio at the start of each row, then read the example aloud before you scroll on.",
-      "Treat the tables as drills, not a word list to memorise: listen, echo, then use the sentence.",
-      "When a word feels opaque, open it for a snapshot. Come back here for the why, how and when of the chapter.",
+    canDo: [
+      { text: "Greet for the time of day", section: 1 },
+      { text: "Choose tu or polite", section: 2 },
+      { text: "Tell ser from estar", section: 3 },
+      { text: "Say your name with chamo-me", section: 4 },
+      { text: "Hold a first conversation", section: 6 },
     ],
-    whyHowWhen: [
-      "Why: every conversation in Portugal starts with a greeting that matches the clock and a clear choice of you, tu or polite.",
-      "How: lock in the six subject pronouns and two machines: ser for who or what something is, estar for how or where it is right now.",
-      "When: bom dia until about noon, boa tarde into early evening, boa noite from early evening, for hello and goodbye. Drop the pronoun when the verb ending already shows the person.",
+    drills: [
+      { prompt: "You walk into a café at 3 in the afternoon.", answer: "Boa tarde.", phonetics: "BOH-uh TAHR-duh" },
+      { prompt: "Ask a new classmate their name.", answer: "Como te chamas?", phonetics: "KOH-moo tuh SHAH-mush" },
+      { prompt: "Ask an older stranger their name, politely.", answer: "Desculpe, como se chama?", phonetics: "dish-KOOL-puh, KOH-moo suh SHAH-muh" },
+      { prompt: "You're a woman. Say you're well, thank them, and ask back.", answer: "Estou bem, obrigada. E tu?", phonetics: "shtoh bayng, oo-bree-GAH-duh. ee TOO" },
     ],
     etiquette: [
-      "Dois beijinhos: often two cheek kisses, right side first. Follow their lead.",
-      "Shop or café: say bom dia or boa tarde when you walk in. Silence feels rude.",
-      "Tu with friends and peers. Polite: o senhor, a senhora or the person's name with the third person. Bare você with strangers can sound blunt.",
+      { label: "Beijinhos", text: "Two cheek kisses, right side first. Follow their lead." },
+      { label: "Shops", text: "Say bom dia or boa tarde when you walk in." },
+      { label: "Strangers", text: "o senhor / a senhora, not bare você." },
     ],
-    sayItOutLoud: [
-      "Without looking: greet for the time of day, ask Como te chamas?, answer with Chamo-me…, say Muito prazer, then close with Até logo.",
-      "Then swap tu for a polite line once: Desculpe, como se chama?",
-    ],
-    elisioTip: "Ser and estar are not interchangeable. Ask yourself: am I saying what something is, or how or where it is right now? If \"right now\" fits, you probably want estar.",
+    elisioTip: "Stuck on ser and estar? Ask: is this what something is, or how and where it is right now? If \"right now\" fits, it's estar.",
   },
 };

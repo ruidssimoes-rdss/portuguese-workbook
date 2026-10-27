@@ -31,27 +31,27 @@
       "id": "dining-tipping",
       "title": "Tipping Culture",
       "titlePt": "Gorjetas",
-      "description": "Tipping is appreciated but not expected in Portugal. Service charge is not usually included. In restaurants, locals typically round up or leave 5–10% for good service. In cafés, people leave small change.",
-      "doThis": "Leave 5–10% in sit-down restaurants if the service was good. Round up at cafés. Tip in cash when possible.",
-      "avoidThis": "Don't feel obligated to tip 20% like in the US — that would seem excessive. Don't skip tipping entirely at a nice restaurant though.",
+      "description": "Tipping is appreciated but not expected in Portugal. Service charge is not usually included. In restaurants, locals typically round up or leave 5-10% for good service. In cafés, people leave small change.",
+      "doThis": "Leave 5-10% in sit-down restaurants if the service was good. Round up at cafés. Tip in cash when possible.",
+      "avoidThis": "Don't feel obligated to tip 20% like in the US: that would seem excessive. Don't skip tipping entirely at a nice restaurant though.",
       "category": "dining"
     },
     {
       "id": "dining-bread-olives",
       "title": "The Bread and Olives Trap",
       "titlePt": "Pão, Azeitonas e Couvert",
-      "description": "When you sit down at a restaurant, bread, butter, olives, and sometimes cheese or pâté appear on your table. This is called the couvert — and it's NOT free. It will be added to your bill (usually €2–5). You can send it back if you don't want it.",
+      "description": "When you sit down at a restaurant, bread, butter, olives, and sometimes cheese or pâté appear on your table. This is called the couvert, and it's NOT free. It will be added to your bill (usually €2-5). You can send it back if you don't want it.",
       "doThis": "If you don't want the couvert, politely say 'Não, obrigado' when it arrives, or ask 'O couvert é incluído?' if unsure.",
-      "avoidThis": "Don't assume it's a complimentary starter — check your bill at the end.",
+      "avoidThis": "Don't assume it's a complimentary starter: check your bill at the end.",
       "category": "dining"
     },
     {
       "id": "dining-meal-times",
       "title": "Meal Times",
       "titlePt": "Horários das Refeições",
-      "description": "Lunch is typically 12:30–14:00 and dinner is 19:30–21:00. Portuguese eat later than Northern Europeans but earlier than Spaniards. Sunday lunch is a big family affair and can last hours.",
+      "description": "Lunch is typically 12:30-14:00 and dinner is 19:30-21:00. Portuguese eat later than Northern Europeans but earlier than Spaniards. Sunday lunch is a big family affair and can last hours.",
       "doThis": "Eat during normal Portuguese hours if you want the best food and atmosphere. Sunday almoco with family is sacred.",
-      "avoidThis": "Don't try to eat dinner at 17:00 — most restaurants won't be open. Don't rush through a meal — lingering is part of the experience.",
+      "avoidThis": "Don't try to eat dinner at 17:00: most restaurants won't be open. Don't rush through a meal: lingering is part of the experience.",
       "category": "dining"
     },
     {
@@ -67,18 +67,18 @@
       "id": "social-punctuality",
       "title": "Punctuality",
       "titlePt": "Pontualidade",
-      "description": "Portugal has a relaxed attitude to time in social settings. Being 15–30 minutes late to a dinner party or social event is perfectly normal. However, for business meetings and medical appointments, punctuality is expected.",
+      "description": "Portugal has a relaxed attitude to time in social settings. Being 15-30 minutes late to a dinner party or social event is perfectly normal. However, for business meetings and medical appointments, punctuality is expected.",
       "doThis": "Arrive on time for professional commitments. For social events, arriving 15 minutes late is the sweet spot.",
-      "avoidThis": "Don't arrive at a house party right on time — the host probably isn't ready. But don't be late for a work meeting.",
+      "avoidThis": "Don't arrive at a house party right on time: the host probably isn't ready. But don't be late for a work meeting.",
       "category": "social"
     },
     {
       "id": "social-name-day",
       "title": "Name Days (Dia do Santo)",
       "titlePt": "Dia do Santo",
-      "description": "Many Portuguese celebrate their name day — the feast day of the saint they're named after. Santo António (13 June) is huge in Lisbon, and São João (24 June) is Porto's biggest party. People named António or João celebrate like a second birthday.",
+      "description": "Many Portuguese celebrate their name day, the feast day of the saint they're named after. Santo António (13 June) is huge in Lisbon, and São João (24 June) is Porto's biggest party. People named António or João celebrate like a second birthday.",
       "doThis": "Wish someone 'Parabéns!' or 'Feliz dia do teu santo!' on their name day. Join the festivities on Santo António or São João if you're in town.",
-      "avoidThis": "Don't ignore someone's name day — it can be as important as their birthday to some people.",
+      "avoidThis": "Don't ignore someone's name day: it can be as important as their birthday to some people.",
       "category": "social"
     },
     {
@@ -87,16 +87,16 @@
       "titlePt": "Perguntas Pessoais",
       "description": "Portuguese people are warm and direct. Don't be surprised if someone you just met asks about your salary, rent, age, or relationship status. It comes from genuine curiosity and warmth, not nosiness.",
       "doThis": "Take it as a sign of interest. Answer as much as you're comfortable with, or laugh it off.",
-      "avoidThis": "Don't be offended — it's cultural, not intrusive. But you don't have to answer anything you don't want to.",
+      "avoidThis": "Don't be offended: it's cultural, not intrusive. But you don't have to answer anything you don't want to.",
       "category": "social"
     },
     {
       "id": "shopping-queues",
       "title": "The Invisible Queue",
       "titlePt": "A Fila Invisível",
-      "description": "In bakeries, delis, and some shops, there's no visible queue — you just need to know who arrived before you. When you walk in, ask 'Quem é o último?' (Who's last?) or take a numbered ticket (senha) if there's a machine.",
+      "description": "In bakeries, delis, and some shops, there's no visible queue: you just need to know who arrived before you. When you walk in, ask 'Quem é o último?' (Who's last?) or take a numbered ticket (senha) if there's a machine.",
       "doThis": "Ask 'Quem é o último?' when entering a busy shop. Keep track of who's before you.",
-      "avoidThis": "Don't just walk up to the counter — you will get corrected by everyone in the shop.",
+      "avoidThis": "Don't just walk up to the counter: you will get corrected by everyone in the shop.",
       "category": "shopping"
     },
     {
@@ -105,7 +105,7 @@
       "titlePt": "Cumprimentar os Lojistas",
       "description": "Always greet shopkeepers when entering and leaving a small shop. A simple 'bom dia' when entering and 'obrigado, até logo' when leaving is expected.",
       "doThis": "Say 'bom dia/boa tarde' when entering any small shop, café, or bakery.",
-      "avoidThis": "Don't walk in silently and browse — it feels rude in Portuguese culture.",
+      "avoidThis": "Don't walk in silently and browse: it feels rude in Portuguese culture.",
       "category": "shopping"
     },
     {
@@ -114,7 +114,7 @@
       "titlePt": "Horas de Descanso",
       "description": "While Portugal doesn't do the Spanish siesta, many small shops and businesses close from around 13:00 to 14:30 or 15:00 for lunch. Government offices (Finanças, Câmara Municipal) often have limited afternoon hours.",
       "doThis": "Plan errands for the morning or after 15:00. Check opening hours before going.",
-      "avoidThis": "Don't expect all shops to be open at 14:00 — especially outside Lisbon and Porto.",
+      "avoidThis": "Don't expect all shops to be open at 14:00: especially outside Lisbon and Porto.",
       "category": "daily"
     },
     {
@@ -123,7 +123,7 @@
       "titlePt": "Sapatos em Casa",
       "description": "Unlike in Nordic countries or Japan, Portuguese people generally keep their shoes on indoors. Taking your shoes off when visiting someone's home might seem odd unless they specifically ask.",
       "doThis": "Keep your shoes on when visiting a Portuguese home unless the host suggests otherwise.",
-      "avoidThis": "Don't take your shoes off at the door unprompted — the host might think something is wrong.",
+      "avoidThis": "Don't take your shoes off at the door unprompted: the host might think something is wrong.",
       "category": "daily"
     },
     {
@@ -132,7 +132,7 @@
       "titlePt": "Água no Restaurante",
       "description": "When you order water at a Portuguese restaurant, you'll be asked 'Com gás ou sem gás?' (with gas or without). Tap water (água da torneira) is safe to drink and you can request it, but some restaurants may look puzzled or bring bottled water anyway.",
       "doThis": "If you want tap water, ask 'Pode trazer água da torneira, por favor?' Specify 'sem gás' if you want still bottled water.",
-      "avoidThis": "Don't assume you'll automatically get free tap water like in the UK — it's not standard practice.",
+      "avoidThis": "Don't assume you'll automatically get free tap water like in the UK: it's not standard practice.",
       "category": "dining"
     }
   ]

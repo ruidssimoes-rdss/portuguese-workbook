@@ -113,7 +113,7 @@ export function ChapterTable({
           } ${r % 2 === 1 ? "bg-aula-canvas" : "bg-white"}`}
         >
           <div className={`flex items-center gap-[6px] @min-[560px]:contents`}>
-            <PlayButton text={row.audio} />
+            <PlayButton text={row.audio} variant="plain" />
             {top.map((i) => cell(row, i))}
           </div>
           <div className={`flex flex-col gap-[2px] pl-[34px] @min-[560px]:contents`}>
