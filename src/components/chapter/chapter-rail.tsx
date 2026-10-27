@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ArrowRight, Check, Lock } from "lucide-react";
 import type { CurriculumLesson } from "@/data/curriculum-types";
 import type { ChapterContent } from "@/data/chapter-types";
 import { chapterPlace } from "@/lib/chapter-nav";
 import { useChapterProgress } from "@/lib/chapter-progress";
-import { markChapterRead, reconcileResume } from "@/lib/course-path";
 import { AskChapter } from "@/components/book/ask";
 import { useBook } from "@/components/book/book-context";
 import { PlayButton } from "@/components/book/play-button";
@@ -120,14 +119,6 @@ export function ChapterRail({ lesson, content }: { lesson: CurriculumLesson; con
   const { total } = progress;
   const reached = read ? total : progress.reached;
   const rail = content?.rail;
-
-  const marked = useRef(false);
-  useEffect(() => {
-    if (marked.current || read || !course.ready || total === 0 || progress.liveReached < total) return;
-    marked.current = true;
-    markChapterRead(lesson.id);
-    reconcileResume(course.lessons, course.practiced);
-  }, [read, course.ready, course.lessons, course.practiced, total, progress.liveReached, lesson.id]);
 
   const left = total > 0 ? Math.max(1, Math.round((25 * (total - reached)) / total)) : 25;
   const readSub = read ? `Done · ${total} sections` : `§${Math.max(reached, 1)} of ${total} · about ${left} min left`;

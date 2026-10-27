@@ -9,6 +9,7 @@ import { lessonBundle } from "@/lib/book/elisio";
 import { chapterPlace } from "@/lib/chapter-nav";
 import { useBook } from "@/components/book/book-context";
 import { ChapterCallout } from "./chapter-callout";
+import { ChapterReadTracker } from "./chapter-read-tracker";
 import { ChapterTable, type TableRow } from "./chapter-table";
 
 type Bundle = ReturnType<typeof lessonBundle>;
@@ -151,6 +152,7 @@ export function ChapterBody({ lesson, content }: { lesson: CurriculumLesson; con
   let n = 0;
   return (
     <article className="flex flex-col gap-[18px] pt-2 pb-10">
+      <ChapterReadTracker lesson={lesson} />
       <div className="flex flex-col gap-1">
         <h1 className="text-[24px] font-semibold tracking-[-0.02em] text-aula-text">{lesson.titlePt}</h1>
         <p className="text-[13px] text-aula-text-2">

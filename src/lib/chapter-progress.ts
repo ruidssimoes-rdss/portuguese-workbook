@@ -8,6 +8,12 @@ export interface ChapterProgress {
   titles: string[];
 }
 
+/** The visible chapter scroller. The page can briefly hold a hidden twin, so take the one that has size. */
+function findScroller(): HTMLElement | null {
+  const all = Array.from(document.querySelectorAll<HTMLElement>("#aula-scroll"));
+  return all.find((el) => el.getBoundingClientRect().width > 0 && el.querySelector("[data-chapter-section]")) ?? null;
+}
+
 const KEY = (lessonId: string) => `aula:chapter-reached:${lessonId}`;
 
 function readStored(lessonId: string): number {
@@ -37,14 +43,19 @@ export function useChapterProgress(lessonId: string): ChapterProgress & { live: 
   const [state, setState] = useState<ChapterProgress & { live: boolean; liveReached: number }>({ total: 0, reached: 0, titles: [], live: false, liveReached: 0 });
 
   useEffect(() => {
-    const scroller = document.getElementById("aula-scroll");
-    if (!scroller) return;
     let frame = 0;
+    let observed: HTMLElement | null = null;
     let best = readStored(lessonId);
 
     function measure() {
       frame = 0;
+      const scroller = findScroller();
       if (!scroller) return;
+      if (scroller !== observed) {
+        observer.disconnect();
+        observer.observe(scroller, { childList: true, subtree: true });
+        observed = scroller;
+      }
       const sections = Array.from(scroller.querySelectorAll<HTMLElement>("[data-chapter-section]"));
       const total = sections.length;
       if (total === 0) return;
@@ -72,14 +83,16 @@ export function useChapterProgress(lessonId: string): ChapterProgress & { live: 
       if (!frame) frame = requestAnimationFrame(measure);
     };
 
-    scroller.addEventListener("scroll", schedule, { passive: true });
+    // scroll does not bubble, so listen in the capture phase and measure whichever scroller moved
+    document.addEventListener("scroll", schedule, { passive: true, capture: true });
     window.addEventListener("resize", schedule);
     const observer = new MutationObserver(schedule);
-    observer.observe(scroller, { childList: true, subtree: true });
+    // until a scroller with sections exists, watch the body for it to appear
+    observer.observe(document.body, { childList: true, subtree: true });
     schedule();
 
     return () => {
-      scroller.removeEventListener("scroll", schedule);
+      document.removeEventListener("scroll", schedule, true);
       window.removeEventListener("resize", schedule);
       observer.disconnect();
       if (frame) cancelAnimationFrame(frame);
