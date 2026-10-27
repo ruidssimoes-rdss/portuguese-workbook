@@ -20,7 +20,7 @@ import type { ElisioAnswer, ElisioContext, ElisioResult, ElisioTag } from "@/lib
 import { useElisio, type ElisioEntry } from "./elisio-provider";
 
 const EYEBROW = "text-[11px] font-medium text-aula-text-3";
-const CARD = "flex w-full flex-col gap-2 rounded-[10px] border border-aula-line bg-white p-3";
+const CARD = "flex w-full flex-col gap-2 rounded-[10px] bg-aula-canvas p-3";
 
 function aboutTitle(about: ElisioAbout): string {
   switch (about.about) {
@@ -44,14 +44,14 @@ function useCloseOnNavigate(): () => void {
 }
 
 function TagPill({ tag }: { tag: ElisioTag }) {
-  const tone = tag.tone === "in" ? "bg-[#E1F2ED] text-[#1F7A68]" : "bg-aula-sunken text-aula-text-2";
+  const tone = tag.tone === "in" ? "bg-[#E1F2ED] text-[#1F7A68]" : "bg-aula-selected text-aula-text-2";
   return <span className={`inline-flex h-[18px] shrink-0 items-center rounded-[5px] px-2 text-[10px] font-medium whitespace-nowrap ${tone}`}>{tag.text}</span>;
 }
 
 function AbrirLink({ link }: { link: ElisioAnswer["link"] }) {
   const onNavigate = useCloseOnNavigate();
   return (
-    <Link href={link.href} onClick={onNavigate} className="inline-flex h-7 w-fit items-center rounded-lg px-2 text-[12px] font-medium text-aula-text transition-colors hover:bg-aula-sunken">
+    <Link href={link.href} onClick={onNavigate} className="inline-flex h-7 w-fit items-center rounded-lg px-2 text-[12px] font-medium text-aula-text transition-colors hover:bg-aula-selected">
       {link.label}
     </Link>
   );
@@ -60,7 +60,7 @@ function AbrirLink({ link }: { link: ElisioAnswer["link"] }) {
 function Question({ text }: { text: string }) {
   return (
     <div className="flex w-full justify-end">
-      <p className="max-w-[85%] rounded-xl bg-aula-sunken px-3 py-2 text-[13px] text-aula-text [overflow-wrap:anywhere]">{text}</p>
+      <p className="max-w-[85%] rounded-[10px] bg-aula-selected px-3 py-2 text-[13px] text-aula-text [overflow-wrap:anywhere]">{text}</p>
     </div>
   );
 }

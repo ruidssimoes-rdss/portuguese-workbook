@@ -20,13 +20,19 @@ const PHRASE_SCORE = 80;
 const LATER_NOTE = "This comes later in the course. Here is the short version.";
 const LEVEL_RANK: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3, C1: 4 };
 
+/** 3: the question is one of the item's keys. 2: a key that loses a stopword, a translation prefix, an alias phrase. 1: token overlap. */
+type Tier = 1 | 2 | 3;
+
 interface Scored {
   item: IndexItem;
   score: number;
   keyCov: number;
   boosted: number;
-  intent?: boolean;
+  tier: Tier;
 }
+
+const KIND_ORDER: Record<IndexItem["kind"], number> = { section: 0, grammar: 1, word: 2, verb: 3, culture: 4 };
+const LEAD_INS = ["how do i say ", "how can i say ", "how would i say ", "how do you say ", "how to say ", "whats the portuguese for ", "what is the portuguese for "];
 
 function position(ctx: ElisioContext, id: string): number {
   const at = ctx.order.indexOf(id);
@@ -57,10 +63,12 @@ function boost(item: IndexItem, ctx: ElisioContext): number {
   return extra;
 }
 
-/** Best first: boosted score, then items with a chapter, then earlier in the course. */
+/** Best first: tier, boosted score, kind, items with a chapter, earlier in the course. Alphabetical only as a last resort. */
 function rank(ctx: ElisioContext) {
   return (a: Scored, b: Scored) =>
+    b.tier - a.tier ||
     b.boosted - a.boosted ||
+    KIND_ORDER[a.item.kind] - KIND_ORDER[b.item.kind] ||
     Number(Boolean(b.item.source)) - Number(Boolean(a.item.source)) ||
     position(ctx, a.item.source?.lessonId ?? "") - position(ctx, b.item.source?.lessonId ?? "") ||
     a.item.id.localeCompare(b.item.id);
@@ -126,13 +134,43 @@ function toAnswer(scored: Scored, ctx: ElisioContext, tense?: string): ElisioAns
 
 // ─── Passes ───
 
+function best(pool: IndexItem[], score: number, tier: Tier, ctx: ElisioContext): Scored | null {
+  const scored = pool.map((item) => ({ item, score, keyCov: 1, boosted: score + boost(item, ctx), tier }));
+  return scored.sort(rank(ctx))[0] ?? null;
+}
+
+function questionText(question: string): string {
+  return norm(question).replace(/ in portuguese$/, "").trim();
+}
+
+/** The whole question is one of an item's keys, before any stopword is removed ("how are you", "what time is it"). */
+function wholeQuestionPass(question: string, items: IndexItem[], ctx: ElisioContext): Scored | null {
+  const q = questionText(question);
+  return q ? best(items.filter((item) => item.fullKeys.has(q)), 100, 3, ctx) : null;
+}
+
+/** "how do I say …", "what's the portuguese for …": the rest is an English term to find among the words. */
+function leadInPass(question: string, items: IndexItem[], ctx: ElisioContext): Scored | null {
+  const q = questionText(question);
+  const lead = LEAD_INS.find((prefix) => q.startsWith(prefix));
+  if (!lead) return null;
+  const term = q.slice(lead.length).trim();
+  if (!term) return null;
+  const words = items.filter((item) => item.kind === "word");
+  return best(words.filter((item) => item.fullKeys.has(term)), 100, 3, ctx) ?? best(words.filter((item) => [...item.fullKeys].some((key) => key.startsWith(`${term} `))), 90, 2, ctx);
+}
+
+/** Share of the item's best single key found in the question. */
+function keyFit(item: IndexItem, question: Set<string>): number {
+  let fit = 0;
+  for (const list of item.keyLists) fit = Math.max(fit, list.filter((t) => question.has(t)).length / list.length);
+  return fit;
+}
+
 function intentPass(question: string, items: IndexItem[], ctx: ElisioContext): { scored: Scored; tense?: string } | null {
   const intent = detectIntent(question);
   const term = norm(intent.extractedQuery).replace(/\s+in portuguese$/, "").trim();
-  const hit = (pool: IndexItem[]): Scored | null => {
-    const scored = pool.map((item) => ({ item, score: 100, keyCov: 1, boosted: 100 + boost(item, ctx), intent: true }));
-    return scored.sort(rank(ctx))[0] ?? null;
-  };
+  const hit = (pool: IndexItem[]): Scored | null => best(pool, 100, 3, ctx);
   switch (intent.type) {
     case "translation": {
       if (!term) return null;
@@ -185,8 +223,9 @@ function tokenPass(question: string, items: IndexItem[], ctx: ElisioContext) {
 
   const scored: Scored[] = [];
   if (content.length === 0) return { scored, contentCount: 0, coreCount: 0 };
+  const coreSet = new Set(coreTokens);
+  const has = (set: Set<string>) => set.has(contentStr) || set.has(contentCoreStr) || (coreStr !== "" && set.has(coreStr));
   for (const item of items) {
-    const exact = item.exact.has(contentStr) || item.exact.has(contentCoreStr) || (coreStr !== "" && item.exact.has(coreStr));
     let keyHits = 0;
     let secHits = 0;
     for (const t of coreTokens) {
@@ -195,14 +234,30 @@ function tokenPass(question: string, items: IndexItem[], ctx: ElisioContext) {
     }
     const n = coreTokens.length;
     let keyCov = n > 0 ? keyHits / n : 0;
-    let score = exact ? 100 : n > 0 ? 70 * keyCov + 30 * (secHits / n) : 0;
-    if (exact) keyCov = 1;
-    if (n < LONG_QUERY && item.phrases.some((phrase) => padded.includes(` ${phrase} `))) {
-      score = Math.max(score, PHRASE_SCORE);
+    let score: number;
+    let tier: Tier;
+    if (has(item.exact)) {
+      score = 100;
+      tier = 3;
+      keyCov = 1;
+    } else if (has(item.reducedKeys)) {
+      score = 85;
+      tier = 2;
+      keyCov = 1;
+    } else if (n < LONG_QUERY && item.phrases.some((phrase) => padded.includes(` ${phrase} `))) {
+      score = PHRASE_SCORE;
+      tier = 2;
       keyCov = Math.max(keyCov, 0.5);
+    } else {
+      score = n > 0 ? 70 * keyCov + 30 * (secHits / n) : 0;
+      tier = 1;
+      // Key fit: a partial hit answers only when it covers more than half of one of the item's own keys
+      // (half is enough for a grammar topic name such as "Subjunctive Triggers").
+      const fit = keyFit(item, coreSet);
+      if (!(fit > 0.5 || (item.kind === "grammar" && fit >= 0.5))) score = Math.min(score, ANSWER_MIN - 1);
     }
     if (score <= 0) continue;
-    scored.push({ item, score, keyCov, boosted: score + boost(item, ctx) });
+    scored.push({ item, score, keyCov, boosted: score + boost(item, ctx), tier });
   }
   scored.sort(rank(ctx));
   return { scored, contentCount: content.length, coreCount: coreTokens.length };
@@ -212,25 +267,30 @@ export function askElisio(question: string, ctx: ElisioContext): ElisioResult {
   const items = buildIndex();
   if (tokens(question).length === 0) return { type: "none", closest: [] };
 
-  const intent = intentPass(question, items, ctx);
-  if (intent) return { type: "answer", answer: toAnswer(intent.scored, ctx, intent.tense) };
-
   const { scored, contentCount, coreCount } = tokenPass(question, items, ctx);
-  if (contentCount === 0) return { type: "none", closest: [] };
-
   const passes = (s: Scored) => s.score >= ANSWER_MIN && (coreCount < LONG_QUERY || s.keyCov >= 0.5);
-  const top = scored[0];
-  if (top && passes(top)) {
-    // The learner's own chapter first: a section that fully covers the question and is reached by now wins over the library.
-    let pick = top;
-    if (top.item.kind !== "section") {
-      const section = scored.find(
-        (s) => s.item.kind === "section" && s.keyCov === 1 && passes(s) && position(ctx, s.item.source?.lessonId ?? "") <= position(ctx, ctx.frontierId),
-      );
-      if (section) pick = section;
-    }
-    return { type: "answer", answer: toAnswer(pick, ctx) };
+  // The learner's own chapter first, for every kind of answer: a section reached by now that fully covers the question wins.
+  const chapterFirst = (pick: Scored): Scored => {
+    if (pick.item.kind === "section") return pick;
+    const section = scored.find(
+      (s) => s.item.kind === "section" && s.keyCov === 1 && passes(s) && position(ctx, s.item.source?.lessonId ?? "") <= position(ctx, ctx.frontierId),
+    );
+    return section ?? pick;
+  };
+
+  const whole = wholeQuestionPass(question, items, ctx);
+  if (whole) return { type: "answer", answer: toAnswer(chapterFirst(whole), ctx) };
+  const lead = leadInPass(question, items, ctx);
+  if (lead) return { type: "answer", answer: toAnswer(chapterFirst(lead), ctx) };
+  const intent = intentPass(question, items, ctx);
+  if (intent) {
+    const pick = chapterFirst(intent.scored);
+    return { type: "answer", answer: toAnswer(pick, ctx, pick === intent.scored ? intent.tense : undefined) };
   }
+
+  if (contentCount === 0) return { type: "none", closest: [] };
+  const top = scored[0];
+  if (top && passes(top)) return { type: "answer", answer: toAnswer(chapterFirst(top), ctx) };
 
   const closest: ElisioAnswer[] = [];
   const titles = new Set<string>();

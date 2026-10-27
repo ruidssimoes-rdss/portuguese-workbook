@@ -27,7 +27,7 @@ import type { ElisioKind, ElisioSource } from "./types";
 // ─── Text ───
 
 const STOP_EN =
-  "i me do does did how what whats when where why which who is are am be the a an to of in on for or and with say said saying mean means meaning use using word words phrase portuguese english please can could should would you it its this that there";
+  "i me do does did how what whats when where why which who is are am be the a an to of in on for or and with say said saying mean means meaning use using word words phrase portuguese english please can could should would you it its this that there used usage teach explain tell show give example examples vs versus";
 const STOP_PT = "o a os as um uma de do da dos das que como e em no na se quando uso usar diz dizer significa quer";
 export const STOPWORDS = new Set([...STOP_EN.split(" "), ...STOP_PT.split(" ")]);
 
@@ -100,8 +100,14 @@ export interface IndexItem {
   kind: ElisioKind;
   id: string;
   title: string;
-  /** Normalised key strings: whole-string matches score 100. Both the raw form and the content-token form. */
+  /** Every key and alias, normalised, nothing removed. A whole question equal to one of these is a match. */
+  fullKeys: Set<string>;
+  /** Keys that lose no word to stopwords, raw and stemmed: a question equal to one scores 100. */
   exact: Set<string>;
+  /** Keys that lose a word to stopwords (say goodbye, in time), stemmed content form: a weaker match. */
+  reducedKeys: Set<string>;
+  /** Each key's stemmed content tokens, for the key-fit check. */
+  keyLists: string[][];
   /** Stemmed content tokens of the keys and aliases. */
   keyTokens: Set<string>;
   /** Stemmed content tokens of the secondary text. */
@@ -121,18 +127,35 @@ export interface IndexItem {
   verb?: VerbEntry;
 }
 
+const PAREN = /\(([^()]*)\)/g;
+
+/** Parentheticals are never part of a key; their text moves to the secondary text. */
+function stripParens(key: string, secondary: string[]): string {
+  for (const m of key.matchAll(PAREN)) secondary.push(m[1]);
+  return key.replace(PAREN, " ").replace(/\s+/g, " ").trim();
+}
+
 function keySets(keys: string[]) {
+  const fullKeys = new Set<string>();
   const exact = new Set<string>();
+  const reducedKeys = new Set<string>();
   const keyTokens = new Set<string>();
+  const keyLists: string[][] = [];
   for (const key of keys) {
     const raw = tokens(key);
     if (raw.length === 0) continue;
-    exact.add(raw.join(" "));
+    fullKeys.add(raw.join(" "));
     const c = core(raw);
-    if (c.length > 0) exact.add(c.join(" "));
+    if (c.length === raw.length) {
+      exact.add(raw.join(" "));
+      exact.add(c.join(" "));
+    } else if (c.length > 0) {
+      reducedKeys.add(c.join(" "));
+    }
+    if (c.length > 0) keyLists.push(c);
     for (const t of c) keyTokens.add(t);
   }
-  return { exact, keyTokens };
+  return { fullKeys, exact, reducedKeys, keyTokens, keyLists };
 }
 
 function secSet(texts: (string | undefined)[]): Set<string> {
@@ -142,7 +165,7 @@ function secSet(texts: (string | undefined)[]): Set<string> {
 }
 
 function item(
-  base: Omit<IndexItem, "exact" | "keyTokens" | "secTokens" | "phrases" | "aliases" | "ptKeys" | "enKeys"> & {
+  base: Omit<IndexItem, "fullKeys" | "exact" | "reducedKeys" | "keyLists" | "keyTokens" | "secTokens" | "phrases" | "aliases" | "ptKeys" | "enKeys"> & {
     keys: string[];
     secondary: (string | undefined)[];
     aliases?: string[];
@@ -151,17 +174,22 @@ function item(
   },
 ): IndexItem {
   const { keys, secondary, aliases = [], ptKeys = [], enKeys = [], ...rest } = base;
-  const { exact, keyTokens } = keySets([...keys, ...aliases]);
-  const normAliases = aliases.map(norm).filter(Boolean);
+  const extra: string[] = [];
+  const clean = (list: string[]) => list.map((key) => stripParens(key, extra)).filter(Boolean);
+  const { fullKeys, exact, reducedKeys, keyTokens, keyLists } = keySets(clean([...keys, ...aliases]));
+  const normAliases = clean(aliases).map(norm).filter(Boolean);
   return {
     ...rest,
+    fullKeys,
     exact,
+    reducedKeys,
+    keyLists,
     keyTokens,
-    secTokens: secSet(secondary),
+    secTokens: secSet([...secondary, ...extra]),
     phrases: normAliases.filter((alias) => alias.includes(" ")),
     aliases: normAliases,
-    ptKeys: ptKeys.map(norm).filter(Boolean),
-    enKeys: enKeys.map(norm).filter(Boolean),
+    ptKeys: clean(ptKeys).map(norm).filter(Boolean),
+    enKeys: clean(enKeys).map(norm).filter(Boolean),
   };
 }
 
@@ -271,11 +299,21 @@ function splitPt(portuguese: string): string[] {
   return [...out];
 }
 
+/** Split a gloss on "/" and "," outside parentheses; the parentheticals stay for item() to move. */
 function splitEn(english: string): string[] {
-  return english
-    .split(/\s*\/\s*|,/)
-    .map((part) => part.replace(/\([^)]*\)/g, "").trim())
-    .filter(Boolean);
+  const parts: string[] = [];
+  let depth = 0;
+  let cur = "";
+  for (const ch of english) {
+    if (ch === "(") depth++;
+    if (ch === ")") depth = Math.max(0, depth - 1);
+    if (depth === 0 && (ch === "/" || ch === ",")) {
+      parts.push(cur);
+      cur = "";
+    } else cur += ch;
+  }
+  parts.push(cur);
+  return parts.map((part) => part.trim()).filter(Boolean);
 }
 
 type VocabFile = { categories: { id: string; words: { portuguese: string; english: string; cefr?: string; example?: string; exampleTranslation?: string }[] }[] };

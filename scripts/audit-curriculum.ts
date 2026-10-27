@@ -11,6 +11,7 @@ import { grammarTexts, testPools } from "../src/lib/chapter-test";
 import { chapterPool, libraryStrings, practicePools } from "../src/lib/practice";
 import { checkPractice, normalizeAnswer } from "../src/lib/practice-check";
 import { ANSWER_MIN, CLOSEST_MIN, askElisio } from "../src/lib/elisio/match";
+import { buildIndex as elisioIndex, STOPWORDS as ELISIO_STOP, tokens as elisioTokens } from "../src/lib/elisio/index";
 import { suggestionsFor } from "../src/lib/elisio/suggest";
 import type { ElisioContext, ElisioResult } from "../src/lib/elisio/types";
 import type { CurriculumLesson } from "../src/data/curriculum-types";
@@ -357,10 +358,10 @@ for (const lesson of lessons) {
 const elisioErrors: string[] = [];
 const elisioOrder = [...lessons].sort((a, b) => a.number - b.number || a.id.localeCompare(b.id)).map((lesson) => lesson.id);
 const elisioCtx = (id: string): ElisioContext => ({ currentId: id, frontierId: id, order: elisioOrder });
-type Expect = { q: string; type: "answer" | "none"; ids?: string[]; tone?: "in" | "later" | "library"; note?: boolean; noClosest?: boolean; tense?: string };
+type Expect = { q: string; type: "answer" | "none"; ids?: string[]; tone?: "in" | "later" | "library"; note?: boolean; noClosest?: boolean; tense?: string; ctx?: string };
 const ELISIO_FIXTURES: Expect[] = [
   { q: "when do I use ser or estar", type: "answer", ids: ["section:a1-01:3"], tone: "in" },
-  { q: "ser vs estar", type: "answer", ids: ["section:a1-01:3", "grammar:ser-vs-estar"] },
+  { q: "ser vs estar", type: "answer", ids: ["section:a1-01:3"] },
   { q: "quando uso o ser", type: "answer", ids: ["section:a1-01:3", "grammar:ser-vs-estar", "verb:ser"] },
   { q: "tu or você", type: "answer", ids: ["section:a1-01:2", "grammar:subject-pronouns"], tone: "in" },
   { q: "how do you say thank you", type: "answer", ids: ["word:greetings-expressions:obrigado / obrigada"] },
@@ -381,7 +382,21 @@ const ELISIO_FIXTURES: Expect[] = [
   { q: "who won the world cup", type: "none" },
   { q: "what is the capital of France", type: "none" },
   { q: "bitcoin price today", type: "none" },
+  { q: "how do I say goodbye", type: "answer", ids: ["word:greetings-expressions:adeus"] },
+  { q: "hello", type: "answer", ids: ["word:greetings-expressions:olá"] },
+  { q: "how are you", type: "answer", ids: ["word:greetings-expressions:como estás?"] },
+  { q: "what time is it", type: "answer", ids: ["word:numbers-time:que horas são?"] },
+  { q: "numbers", type: "none" },
+  { q: "lisbon", type: "none" },
+  { q: "when is boa tarde used", type: "answer", ids: ["word:greetings-expressions:boa tarde", "section:a1-01:1"] },
+  { q: "teach me the subjunctive", type: "answer", ids: ["grammar:subjunctive-triggers", "grammar:present-subjunctive-formation"] },
+  { q: "is it estás or estas", type: "answer", ids: ["word:greetings-expressions:como estás?", "section:a1-01:3"] },
+  { q: "is it estás or estas", type: "answer", ids: ["word:greetings-expressions:como estás?", "section:a1-01:3"], ctx: "a1-06" },
+  { q: "how do I say goodbye", type: "answer", ids: ["word:greetings-expressions:adeus"], tone: "in", ctx: "a1-06" },
+  { q: "hi, what does tchau mean", type: "answer", ids: ["word:greetings-expressions:tchau"] },
 ];
+// When the question's content words are exactly a word's key, a verb may not win (spot rule from review).
+const elisioWordKeys = new Set(elisioIndex().filter((item) => item.kind === "word").flatMap((item) => [...item.fullKeys]));
 function elisioLine(result: ElisioResult): string {
   if (result.type === "none") return `none (closest: ${result.closest.map((c) => `${c.kind}:${c.id}`).join(", ") || "none"})`;
   const a = result.answer;
@@ -390,8 +405,10 @@ function elisioLine(result: ElisioResult): string {
 let elisioPassed = 0;
 const elisioLines: string[] = [];
 ELISIO_FIXTURES.forEach((fx, i) => {
-  const result = askElisio(fx.q, elisioCtx("a1-01"));
+  const result = askElisio(fx.q, elisioCtx(fx.ctx ?? "a1-01"));
   const problems: string[] = [];
+  const contentWords = elisioTokens(fx.q).filter((t) => !ELISIO_STOP.has(t)).join(" ");
+  if (result.type === "answer" && result.answer.kind === "verb" && contentWords && elisioWordKeys.has(contentWords)) problems.push(`a verb won although «${contentWords}» is a word key`);
   if (result.type !== fx.type) problems.push(`expected ${fx.type}`);
   if (result.type === "answer") {
     const a = result.answer;
@@ -403,7 +420,7 @@ ELISIO_FIXTURES.forEach((fx, i) => {
   } else if (fx.noClosest && result.closest.length > 0) problems.push("expected no closest");
   if (problems.length === 0) elisioPassed++;
   else elisioErrors.push(`fixture ${i + 1} «${fx.q}»: ${problems.join(", ")}; got ${elisioLine(result)}`);
-  elisioLines.push(`  ${String(i + 1).padStart(2)} ${problems.length === 0 ? "ok " : "BAD"} ${fx.q} → ${elisioLine(result)}`);
+  elisioLines.push(`  ${String(i + 1).padStart(2)} ${problems.length === 0 ? "ok " : "BAD"} ${fx.q}${fx.ctx ? ` [${fx.ctx}]` : ""} → ${elisioLine(result)}`);
 });
 let suggestionChecks = 0;
 for (const lesson of lessons.filter((l) => l.cefrLevel === "A1")) {
