@@ -9,6 +9,7 @@ import { lessonBundle } from "@/lib/book/elisio";
 import { chapterPlace } from "@/lib/chapter-nav";
 import { useBook } from "@/components/book/book-context";
 import { ChapterCallout } from "./chapter-callout";
+import { ChapterReadTracker } from "./chapter-read-tracker";
 import { ChapterTable, type TableRow } from "./chapter-table";
 
 type Bundle = ReturnType<typeof lessonBundle>;
@@ -151,6 +152,7 @@ export function ChapterBody({ lesson, content }: { lesson: CurriculumLesson; con
   let n = 0;
   return (
     <article className="flex flex-col gap-[18px] pt-2 pb-10">
+      <ChapterReadTracker lesson={lesson} />
       <div className="flex flex-col gap-1">
         <h1 className="text-[24px] font-semibold tracking-[-0.02em] text-aula-text">{lesson.titlePt}</h1>
         <p className="text-[13px] text-aula-text-2">
@@ -158,17 +160,20 @@ export function ChapterBody({ lesson, content }: { lesson: CurriculumLesson; con
         </p>
       </div>
 
-      {sections.map((section) => (
-        <section key={section.title} className="flex flex-col gap-[18px]">
-          <SectionHeading n={++n} title={section.title} grammarTopic={section.grammarTopic} />
+      {sections.map((section) => {
+        const num = ++n;
+        return (
+        <section key={section.title} id={`section-${num}`} data-chapter-section={num} data-title={section.title} className="flex scroll-mt-4 flex-col gap-[18px]">
+          <SectionHeading n={num} title={section.title} grammarTopic={section.grammarTopic} />
           {section.blocks.map((block, i) => (
             <Block key={i} block={block} bundle={bundle} />
           ))}
         </section>
-      ))}
+        );
+      })}
 
       {bundle.notes.length > 0 && (
-        <section className="flex flex-col gap-[18px]">
+        <section id={`section-${n + 1}`} data-chapter-section={n + 1} data-title="Cultura" className="flex scroll-mt-4 flex-col gap-[18px]">
           <SectionHeading n={++n} title="Cultura" />
           <p className="text-[13px] text-aula-text-2">{culturaIntro}</p>
           {bundle.notes.map((note, i) => (
@@ -177,7 +182,7 @@ export function ChapterBody({ lesson, content }: { lesson: CurriculumLesson; con
         </section>
       )}
 
-      <section className="flex flex-col gap-[18px]">
+      <section id={`section-${n + 1}`} data-chapter-section={n + 1} data-title="Antes do teste" className="flex scroll-mt-4 flex-col gap-[18px]">
         <SectionHeading n={++n} title="Antes do teste" />
         <p className="text-[13px] text-aula-text-2">Must-know: {mustKnow}</p>
         <p className="text-[13px] text-aula-text-2">

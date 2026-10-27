@@ -1,5 +1,6 @@
 "use client";
 
+import { Send } from "lucide-react";
 import { encodeCard, type ElisioAbout } from "@/lib/book/types";
 import { useBook } from "./book-context";
 
@@ -41,9 +42,24 @@ export function AskPassage({ about, children }: { about: ElisioAbout; children: 
   );
 }
 
-/** The chapter's own entry point. Always visible. */
-export function AskChapter({ about, tall = false }: { about: ElisioAbout; tall?: boolean }) {
+/** The chapter's own entry point. Always visible. `field` is the full-width ask field in the rail. */
+export function AskChapter({ about, tall = false, variant = "button" }: { about: ElisioAbout; tall?: boolean; variant?: "button" | "field" }) {
   const { open, on } = useAsking(about);
+  if (variant === "field") {
+    return (
+      <button
+        type="button"
+        aria-pressed={on}
+        onClick={open}
+        className={`flex h-8 w-full items-center gap-2 rounded-lg border px-2.5 text-left text-[13px] transition-colors ${
+          on ? openClass(true) : "border-aula-border bg-white text-aula-text-3 hover:bg-aula-sunken"
+        }`}
+      >
+        <Send size={13} strokeWidth={1.5} aria-hidden="true" />
+        Ask Elísio about this chapter
+      </button>
+    );
+  }
   return (
     <button
       type="button"

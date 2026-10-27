@@ -129,7 +129,8 @@ export function orderLessons(lessons: CurriculumLesson[]): CurriculumLesson[] {
 }
 
 export function isChapterDone(id: string, practiced: Set<string>, read: Set<string>): boolean {
-  return practiced.has(id) && read.has(id);
+  // Practice never gates (locked 25 Oct). Brief 4 adds the chapter test.
+  return read.has(id);
 }
 
 export function nextIncomplete(

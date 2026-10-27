@@ -417,13 +417,16 @@ function CurriculumLesson({ id }: { id: string }) {
       key={lesson.id}
       lessonTitle={lesson.titlePt}
       renderLesson={({ onDismiss }) => <LessonContent id={id} dock onDismiss={onDismiss} />}
+      wide
+      bareFallback
       fallback={<ChapterRail lesson={lesson} content={getChapterContent(lesson.id)} />}
       header={
         <>
-          <Crumbs items={[{ label: lesson.cefrLevel, href: "/lessons" }, { label: lesson.titlePt }]} />
-          <span className="flex-1" />
+          <div className="min-w-0 flex-1 [&_nav>span:first-child]:shrink-0 [&_nav>span:first-child>*]:shrink-0">
+            <Crumbs items={[{ label: lesson.cefrLevel, href: "/lessons" }, { label: lesson.titlePt }]} />
+          </div>
           <AudioSpeedControl />
-          <span className="inline-flex h-[18px] items-center rounded-[5px] bg-[#E7F2EF] px-1.5 text-[10.5px] font-semibold text-[#1F7A68]">{lesson.cefrLevel}</span>
+          <span className="inline-flex h-[18px] max-sm:hidden items-center rounded-[5px] bg-[#E7F2EF] px-1.5 text-[10.5px] font-semibold text-[#1F7A68]">{lesson.cefrLevel}</span>
         </>
       }
     >
