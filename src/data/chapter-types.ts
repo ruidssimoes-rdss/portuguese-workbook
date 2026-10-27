@@ -22,10 +22,19 @@ export interface ChapterRailContent {
   elisioTip: string;
 }
 
+export interface ChapterTestItem {
+  prompt: string; // English instruction or question
+  promptPt?: string; // optional Portuguese line shown large under the prompt, e.g. "Eu ___ português."
+  options: [string, string, string, string]; // options[0] is correct; the runner shuffles
+  hint: string;
+  section: number; // rendered § number the item tests (content sections only)
+}
+
 export interface ChapterContent {
   lessonId: string;
   sections: ChapterSection[];
   culturaIntro: string;
   mustKnow: string[];
   rail: ChapterRailContent;
+  test: ChapterTestItem[];
 }

@@ -65,8 +65,8 @@ export function courseBands(lessons: CurriculumLesson[]): Band[] {
   return bands.filter((band) => band.lessons.length > 0);
 }
 
-function doneCount(lessons: CurriculumLesson[], read: Set<string>, practiced: Set<string>) {
-  return lessons.filter((lesson) => isChapterDone(lesson.id, practiced, read)).length;
+function doneCount(lessons: CurriculumLesson[], read: Set<string>, practiced: Set<string>, passed: Set<string>) {
+  return lessons.filter((lesson) => isChapterDone(lesson.id, practiced, read, passed)).length;
 }
 
 function summary(lessons: CurriculumLesson[]) {
@@ -89,11 +89,13 @@ function CourseSpine({
   resume,
   read,
   practiced,
+  passed,
 }: {
   lessons: CurriculumLesson[];
   resume: CurriculumLesson | null;
   read: Set<string>;
   practiced: Set<string>;
+  passed: Set<string>;
 }) {
   const bands = courseBands(lessons);
   const resumeBandId = bands.find((band) => band.lessons.some((lesson) => lesson.id === resume?.id))?.id ?? null;
@@ -116,7 +118,7 @@ function CourseSpine({
     <div className="flex flex-col gap-6">
       {bands.map((band) => {
         const total = band.lessons.length;
-        const done = doneCount(band.lessons, read, practiced);
+        const done = doneCount(band.lessons, read, practiced, passed);
         const isCurrent = Boolean(resume && band.lessons.some((lesson) => lesson.id === resume.id));
         const isOpen = open.has(band.id);
         const later = Boolean(resume && band.lessons[0] && band.lessons[0].number > resume.number && !isCurrent);
@@ -167,7 +169,7 @@ function CourseSpine({
             {isOpen && (
               <div className="mt-heading flex flex-col gap-item">
                 {band.lessons.map((lesson) => {
-                  const complete = isChapterDone(lesson.id, practiced, read);
+                  const complete = isChapterDone(lesson.id, practiced, read, passed);
                   const isResume = lesson.id === resume?.id;
                   const readDone = read.has(lesson.id);
                   return (
@@ -222,12 +224,14 @@ function LevelOverview({
   resume,
   read,
   practiced,
+  passed,
   levels,
 }: {
   lessons: CurriculumLesson[];
   resume: CurriculumLesson | null;
   read: Set<string>;
   practiced: Set<string>;
+  passed: Set<string>;
   levels: CourseLevelStat[] | null;
 }) {
   const bands = courseBands(lessons);
@@ -241,11 +245,11 @@ function LevelOverview({
         {COURSE_LEVELS.map((level, index) => {
           const band = bands.find((item) => item.id === level.level);
           const list = band?.lessons ?? [];
-          const finished = list.length > 0 && doneCount(list, read, practiced) === list.length;
+          const finished = list.length > 0 && doneCount(list, read, practiced, passed) === list.length;
           const here = Boolean(resume && list.some((lesson) => lesson.id === resume.id));
           const stat = levels?.find((item) => item.key === level.key) ?? null;
           const locked = Boolean(stat && !stat.unlocked && !here && !finished);
-          const pct = stat ? Math.round(stat.readiness * 100) : list.length ? Math.round((doneCount(list, read, practiced) / list.length) * 100) : 0;
+          const pct = stat ? Math.round(stat.readiness * 100) : list.length ? Math.round((doneCount(list, read, practiced, passed) / list.length) * 100) : 0;
           const counts = curriculumCounts(list);
           const prev = COURSE_LEVELS[index - 1]?.level;
           const status = finished
@@ -344,6 +348,7 @@ export function CourseDesktop({
   resume,
   read,
   practiced,
+  passed,
   finished,
   signedIn,
   levels,
@@ -352,11 +357,12 @@ export function CourseDesktop({
   resume: CurriculumLesson | null;
   read: Set<string>;
   practiced: Set<string>;
+  passed: Set<string>;
   finished: boolean;
   signedIn: boolean;
   levels: CourseLevelStat[] | null;
 }) {
-  const done = doneCount(lessons, read, practiced);
+  const done = doneCount(lessons, read, practiced, passed);
 
   return (
     <div className="mx-auto max-w-[680px]">
@@ -368,7 +374,7 @@ export function CourseDesktop({
         </p>
         {finished && <p className="mt-heading text-[12.5px] font-medium text-[#1F7A68]">Curso concluído</p>}
       </header>
-      <CourseSpine lessons={lessons} resume={resume} read={read} practiced={practiced} />
+      <CourseSpine lessons={lessons} resume={resume} read={read} practiced={practiced} passed={passed} />
       {!signedIn && (
         <div className="mt-section">
           <p className="text-[12.5px] leading-relaxed text-aula-text">
@@ -382,7 +388,7 @@ export function CourseDesktop({
           </p>
         </div>
       )}
-      <LevelOverview lessons={lessons} resume={resume} read={read} practiced={practiced} levels={levels} />
+      <LevelOverview lessons={lessons} resume={resume} read={read} practiced={practiced} passed={passed} levels={levels} />
     </div>
   );
 }

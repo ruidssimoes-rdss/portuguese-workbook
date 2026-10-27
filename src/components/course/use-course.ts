@@ -6,9 +6,11 @@ import { useAuth } from "@/components/auth-provider";
 import {
   COURSE_EVENT,
   ensureReadSeed,
+  ensureTestSeed,
   getViewingId,
   isChapterDone,
   loadCourseLessons,
+  passedIds,
   practicedIds,
   readIds,
   reconcileResume,
@@ -19,6 +21,7 @@ export interface CourseSnapshot {
   ready: boolean;
   lessons: CurriculumLesson[];
   practiced: Set<string>;
+  passed: Set<string>;
   read: Set<string>;
   resume: CurriculumLesson | null;
   viewingId: string | null;
@@ -29,6 +32,7 @@ const EMPTY: CourseSnapshot = {
   ready: false,
   lessons: [],
   practiced: new Set(),
+  passed: new Set(),
   read: new Set(),
   resume: null,
   viewingId: null,
@@ -74,12 +78,15 @@ export function useCourseSnapshot(): CourseSnapshot {
         ensureReadSeed([]);
       }
       if (cancelled) return;
+      ensureTestSeed(readIds());
       const read = readIds();
+      const passed = passedIds();
       const resume = reconcileResume(lessons, practiced);
       setSnap({
         ready: true,
         lessons,
         practiced,
+        passed,
         read,
         resume,
         viewingId: getViewingId(),
@@ -99,5 +106,5 @@ export function useCourseSnapshot(): CourseSnapshot {
 }
 
 export function chapterDone(id: string, snap: CourseSnapshot): boolean {
-  return isChapterDone(id, snap.practiced, snap.read);
+  return isChapterDone(id, snap.practiced, snap.read, snap.passed);
 }

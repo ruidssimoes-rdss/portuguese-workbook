@@ -161,4 +161,18 @@ export const A1_01: ChapterContent = {
     ],
     elisioTip: "Stuck on ser and estar? Ask: is this what something is, or how and where it is right now? If \"right now\" fits, it's estar.",
   },
+  test: [
+    { prompt: "You walk into a café at 10 in the morning. What do you say?", options: ["Bom dia.", "Boa tarde.", "Boa noite.", "Adeus."], hint: "Bom dia runs until about noon.", section: 1 },
+    { prompt: "A man thanks you. What does he say?", options: ["Obrigado.", "Obrigada.", "Por favor.", "Desculpe."], hint: "Obrigado or obrigada agrees with the person speaking, not the person thanked.", section: 1 },
+    { prompt: "Which pronoun do you use with a close friend?", options: ["tu", "o senhor", "eles", "nós"], hint: "One person, informal.", section: 2 },
+    { prompt: "Ask an older stranger their name, politely.", options: ["Como se chama?", "Como te chamas?", "Como se chamam?", "Como me chamo?"], hint: "Polite address uses the third person, as with o senhor and a senhora.", section: 2 },
+    { prompt: "Choose the right verb: «I am Portuguese.»", promptPt: "Eu ___ português.", options: ["sou", "estou", "é", "está"], hint: "Identity and nationality take ser.", section: 3 },
+    { prompt: "Choose the right verb: «I am tired today.»", promptPt: "Hoje ___ cansada.", options: ["estou", "sou", "está", "és"], hint: "How you are right now takes estar.", section: 3 },
+    { prompt: "Choose the right verb: «Are you at home?»", promptPt: "Tu ___ em casa?", options: ["estás", "és", "está", "é"], hint: "Where someone is right now takes estar.", section: 3 },
+    { prompt: "Say «My name is Ana.» the way people say it in Portugal.", options: ["Chamo-me Ana.", "Me chamo Ana.", "Eu chama Ana.", "Chamo Ana."], hint: "In Portugal the pronoun goes after the verb, joined by a hyphen.", section: 4 },
+    { prompt: "Choose the right form of encontrar: «I meet Ana at the café.»", promptPt: "Eu ___ a Ana no café.", options: ["encontro", "encontra", "encontras", "encontramos"], hint: "Eu forms of -ar verbs end in -o.", section: 4 },
+    { prompt: "Choose the right form of ter: «We have two children.»", promptPt: "Nós ___ dois filhos.", options: ["temos", "tem", "tens", "têm"], hint: "Nós forms end in -mos.", section: 4 },
+    { prompt: "Choose the right form: «Maria is Portuguese.»", promptPt: "A Maria é ___.", options: ["portuguesa", "português", "portugueses", "portuguesas"], hint: "One woman: feminine singular.", section: 5 },
+    { prompt: "Someone says «Muito prazer.» What do you answer?", options: ["Muito prazer.", "Até amanhã.", "Por favor.", "Desculpe."], hint: "You can simply say it back.", section: 6 },
+  ],
 };

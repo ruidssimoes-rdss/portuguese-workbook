@@ -7,6 +7,7 @@
 import { A1_LESSONS, A2_LESSONS, B1_LESSONS, EXTRA_LESSONS } from "../src/data/curriculum";
 import { vocabKey } from "../src/data/resolve-lessons";
 import { getChapterContent } from "../src/data/chapters";
+import { testPools } from "../src/lib/chapter-test";
 import type { CurriculumLesson } from "../src/data/curriculum-types";
 import vocabData from "../src/data/vocab.json";
 import grammarData from "../src/data/grammar.json";
@@ -239,6 +240,16 @@ for (const lesson of lessons) {
       }
     }
   }
+  if (chapter.test.length !== 12) fail(`test has ${chapter.test.length} items (need exactly 12)`);
+  chapter.test.forEach((item, i) => {
+    const label = `test item ${i + 1}`;
+    if (!item.prompt.trim()) fail(`${label} has an empty prompt`);
+    if (!item.hint.trim()) fail(`${label} has an empty hint`);
+    const keys = item.options.map((option) => option.trim().toLowerCase());
+    if (item.options.length !== 4 || keys.some((key) => !key) || new Set(keys).size !== 4) fail(`${label} needs 4 distinct non-empty options`);
+    if (!Number.isInteger(item.section) || item.section < 1 || item.section > chapter.sections.length) fail(`${label} section out of range: ${item.section}`);
+  });
+
   const rail = chapter.rail;
   if (rail.canDo.length < 4 || rail.canDo.length > 5) fail(`rail.canDo has ${rail.canDo.length} items (need 4 or 5)`);
   for (const item of rail.canDo) {
@@ -263,6 +274,16 @@ for (const lesson of lessons) {
   dashes.forEach(fail);
 }
 
+let generatedChecked = 0;
+for (const lesson of lessons) {
+  if (getChapterContent(lesson.id)) continue;
+  generatedChecked++;
+  const pools = testPools(lesson);
+  if (pools.vocab + pools.verbs + pools.grammar < 12) {
+    chapterErrors.push(`${lesson.id}: cannot build a 12-question test (vocab ${pools.vocab}, verbs ${pools.verbs}, grammar ${pools.grammar})`);
+  }
+}
+
 if (chapterErrors.length > 0) {
   console.log("");
   for (const line of chapterErrors) console.log(`  ERROR chapter ${line}`);
@@ -278,6 +299,7 @@ console.log(`resolved: ${resolved}`);
 console.log(
   `errors: ${errorTotal} (vocab ${errors.vocab}, verb ${errors.verb}, grammar ${errors.grammar}, culture ${errors.culture})`,
 );
+console.log(`chapter tests: ${chapterFiles} chapter files, ${generatedChecked} generated lessons checked, ${chapterErrors.length} errors`);
 console.log(`chapter files: ${chapterFiles} checked, ${chapterErrors.length} errors`);
 console.log(`warnings: ${bandTotal(aboveLevel)} above-level (${formatBands(aboveLevel)})`);
 console.log(`repeats: ${bandTotal(repeats)} (${formatBands(repeats)})`);
