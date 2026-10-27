@@ -51,8 +51,12 @@ export function useChapterProgress(lessonId: string): ChapterProgress & { live: 
       const titles = sections.map((el) => el.dataset.title ?? "");
       const line = scroller.getBoundingClientRect().top + scroller.clientHeight * 0.35;
       let reached = sections.filter((el) => el.getBoundingClientRect().top <= line).length;
-      const scrollable = scroller.scrollHeight > scroller.clientHeight;
-      if (scrollable && scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4) reached = total;
+      if (scroller.scrollHeight <= scroller.clientHeight + 4) {
+        // The chapter fits on screen: nothing to scroll, so it has been seen.
+        reached = total;
+      } else if (scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4) {
+        reached = total;
+      }
       if (reached > best) {
         best = Math.min(reached, total);
         writeStored(lessonId, best);
