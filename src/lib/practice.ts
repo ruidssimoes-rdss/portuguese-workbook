@@ -15,7 +15,7 @@ import vocabData from "@/data/vocab.json";
 import verbsData from "@/data/verbs.json";
 import { lessonBundle } from "@/lib/book/elisio";
 import { chapterSectionTitles } from "@/lib/chapter-sections";
-import { normalizeAnswer } from "@/lib/practice-check";
+import { checkPractice, normalizeAnswer } from "@/lib/practice-check";
 
 export interface PracticeItem {
   id: string;
@@ -164,7 +164,8 @@ function generatedPool(lesson: CurriculumLesson): PracticeItem[] {
       section: vocabSection,
       prompt: word.english,
       answer: word.portuguese,
-      accept: [...forms],
+      // The old lists were accent-tolerant; practice is strict, so accent-only variants are slips, not alternatives.
+      accept: [...forms].filter((form) => checkPractice(form, word.portuguese).verdict === "wrong"),
       why: word.example ? `Example: ${word.example}` : `${word.portuguese}: ${word.english}.`,
     });
   }
@@ -198,7 +199,8 @@ function generatedPool(lesson: CurriculumLesson): PracticeItem[] {
       section: gapSection,
       prompt: `${sentence.sentenceEn} · ${sentence.sentencePt}`,
       answer: sentence.correctAnswer,
-      accept: (sentence.acceptedAnswers ?? []).filter((form) => form !== sentence.correctAnswer),
+      // The old lists were accent-tolerant; practice is strict, so accent-only variants are slips, not alternatives.
+      accept: (sentence.acceptedAnswers ?? []).filter((form) => checkPractice(form, sentence.correctAnswer).verdict === "wrong"),
       why: sentence.sentencePt.replace(/___/g, sentence.correctAnswer),
     });
   }

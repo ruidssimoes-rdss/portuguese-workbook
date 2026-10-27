@@ -8,8 +8,8 @@ import { A1_LESSONS, A2_LESSONS, B1_LESSONS, EXTRA_LESSONS } from "../src/data/c
 import { vocabKey } from "../src/data/resolve-lessons";
 import { getChapterContent } from "../src/data/chapters";
 import { grammarTexts, testPools } from "../src/lib/chapter-test";
-import { libraryStrings, practicePools } from "../src/lib/practice";
-import { normalizeAnswer } from "../src/lib/practice-check";
+import { chapterPool, libraryStrings, practicePools } from "../src/lib/practice";
+import { checkPractice, normalizeAnswer } from "../src/lib/practice-check";
 import type { CurriculumLesson } from "../src/data/curriculum-types";
 import vocabData from "../src/data/vocab.json";
 import grammarData from "../src/data/grammar.json";
@@ -316,9 +316,6 @@ for (const lesson of lessons) {
     if (seen.has(key)) fail(`${label} repeats an answer within its type: ${answer}`);
     seen.add(key);
     answers.set(item.type, seen);
-    if (item.type !== "ouvir") {
-      for (const form of item.accept ?? []) if (normalizeAnswer(form) === key) fail(`${label} accept entry equals the answer: ${form}`);
-    }
     if (item.type === "ouvir" && !lib.has(item.text)) fail(`${label} ouvir text is not a library string: ${item.text}`);
     if (item.type === "construir") {
       const joined = normalizeAnswer(item.tiles.join(" "));
@@ -329,6 +326,17 @@ for (const lesson of lessons) {
   });
   for (const type of Object.keys(PRACTICE_MIN) as (keyof typeof PRACTICE_MIN)[]) {
     if (counts[type] < PRACTICE_MIN[type]) fail(`practice has ${counts[type]} ${type} items (need at least ${PRACTICE_MIN[type]})`);
+  }
+}
+
+// Every pool, written or generated: an accept entry must be a different answer, never a slip or duplicate of it.
+for (const lesson of lessons) {
+  for (const item of chapterPool(lesson, getChapterContent(lesson.id))) {
+    for (const form of item.accept) {
+      if (checkPractice(form, item.answer).verdict !== "wrong") {
+        practiceErrors.push(`${item.id}: accept entry is an accent variant or duplicate of the answer: ${form}`);
+      }
+    }
   }
 }
 
