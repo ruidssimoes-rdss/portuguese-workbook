@@ -8,6 +8,8 @@ import { A1_LESSONS, A2_LESSONS, B1_LESSONS, EXTRA_LESSONS } from "../src/data/c
 import { vocabKey } from "../src/data/resolve-lessons";
 import { getChapterContent } from "../src/data/chapters";
 import { grammarTexts, testPools } from "../src/lib/chapter-test";
+import { libraryStrings, practicePools } from "../src/lib/practice";
+import { normalizeAnswer } from "../src/lib/practice-check";
 import type { CurriculumLesson } from "../src/data/curriculum-types";
 import vocabData from "../src/data/vocab.json";
 import grammarData from "../src/data/grammar.json";
@@ -287,12 +289,71 @@ for (const lesson of lessons) {
   }
 }
 
+// ─── Chapter practice ───
+const practiceErrors: string[] = [];
+const practiceWarnings: string[] = [];
+let practiceFiles = 0;
+let practiceGenerated = 0;
+let smallest: { id: string; size: number } | null = null;
+const PRACTICE_MIN = { escrever: 16, ouvir: 10, construir: 6, traduzir: 8 } as const;
+
+for (const lesson of lessons) {
+  const chapter = getChapterContent(lesson.id);
+  if (!chapter?.practice) continue;
+  practiceFiles++;
+  const fail = (msg: string) => practiceErrors.push(`${lesson.id}: ${msg}`);
+  const lib = libraryStrings();
+  const counts = { escrever: 0, ouvir: 0, construir: 0, traduzir: 0 };
+  const answers = new Map<string, Set<string>>();
+  chapter.practice.forEach((item, i) => {
+    const label = `practice item ${i + 1} (${item.type})`;
+    counts[item.type]++;
+    if (!item.why.trim()) fail(`${label} has an empty why`);
+    if (!Number.isInteger(item.section) || item.section < 1 || item.section > chapter.sections.length) fail(`${label} section out of range: ${item.section}`);
+    const answer = item.type === "ouvir" ? item.text : item.answer;
+    const key = normalizeAnswer(answer);
+    const seen = answers.get(item.type) ?? new Set<string>();
+    if (seen.has(key)) fail(`${label} repeats an answer within its type: ${answer}`);
+    seen.add(key);
+    answers.set(item.type, seen);
+    if (item.type !== "ouvir") {
+      for (const form of item.accept ?? []) if (normalizeAnswer(form) === key) fail(`${label} accept entry equals the answer: ${form}`);
+    }
+    if (item.type === "ouvir" && !lib.has(item.text)) fail(`${label} ouvir text is not a library string: ${item.text}`);
+    if (item.type === "construir") {
+      const joined = normalizeAnswer(item.tiles.join(" "));
+      if (![item.answer, ...(item.accept ?? [])].some((form) => normalizeAnswer(form) === joined)) fail(`${label} answer does not match its tiles: ${item.answer}`);
+      const tiles = new Set(item.tiles.map(normalizeAnswer));
+      for (const d of item.distractors) if (tiles.has(normalizeAnswer(d))) fail(`${label} distractor is also a tile: ${d}`);
+    }
+  });
+  for (const type of Object.keys(PRACTICE_MIN) as (keyof typeof PRACTICE_MIN)[]) {
+    if (counts[type] < PRACTICE_MIN[type]) fail(`practice has ${counts[type]} ${type} items (need at least ${PRACTICE_MIN[type]})`);
+  }
+}
+
+for (const lesson of lessons) {
+  if (getChapterContent(lesson.id)) continue;
+  practiceGenerated++;
+  const pools = practicePools(lesson);
+  const size = pools.escrever + pools.ouvir + pools.construir + pools.traduzir;
+  if (!smallest || size < smallest.size) smallest = { id: lesson.id, size };
+  if (size < 12) practiceErrors.push(`${lesson.id}: cannot build a practice set (pool ${size})`);
+  else if (size < 20) practiceWarnings.push(`${lesson.id}: small practice pool (${size})`);
+}
+
+if (practiceErrors.length > 0 || practiceWarnings.length > 0) {
+  console.log("");
+  for (const line of practiceErrors) console.log(`  ERROR practice ${line}`);
+  for (const line of practiceWarnings) console.log(`  WARN practice ${line}`);
+}
+
 if (chapterErrors.length > 0) {
   console.log("");
   for (const line of chapterErrors) console.log(`  ERROR chapter ${line}`);
 }
 
-const errorTotal = errors.vocab + errors.verb + errors.grammar + errors.culture + chapterErrors.length;
+const errorTotal = errors.vocab + errors.verb + errors.grammar + errors.culture + chapterErrors.length + practiceErrors.length;
 
 console.log("");
 console.log("SUMMARY");
@@ -304,6 +365,9 @@ console.log(
 );
 console.log(`chapter tests: ${chapterFiles} chapter files, ${generatedChecked} generated lessons checked, ${chapterErrors.length} errors`);
 console.log(`chapter files: ${chapterFiles} checked, ${chapterErrors.length} errors`);
+console.log(
+  `chapter practice: ${practiceFiles} files checked, ${practiceGenerated} generated lessons checked, smallest generated pool ${smallest ? `${smallest.id} (${smallest.size})` : "none"}, ${practiceWarnings.length} warnings, ${practiceErrors.length} errors`,
+);
 console.log(`warnings: ${bandTotal(aboveLevel)} above-level (${formatBands(aboveLevel)})`);
 console.log(`repeats: ${bandTotal(repeats)} (${formatBands(repeats)})`);
 console.log(`budget: ${bandTotal(budget)} (${formatBands(budget)})`);

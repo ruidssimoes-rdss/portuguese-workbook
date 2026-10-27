@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { ArrowRight, Check, Lock } from "lucide-react";
 import type { CurriculumLesson } from "@/data/curriculum-types";
 import type { ChapterContent } from "@/data/chapter-types";
 import { chapterPlace } from "@/lib/chapter-nav";
 import { testResults } from "@/lib/course-path";
+import { loadSession } from "@/lib/practice-store";
 import { useChapterProgress } from "@/lib/chapter-progress";
 import { AskChapter } from "@/components/book/ask";
 import { useBook } from "@/components/book/book-context";
@@ -118,6 +119,8 @@ function Drill({ drills }: { drills: { prompt: string; answer: string; phonetics
   );
 }
 
+const noSubscribe = () => () => {};
+
 /** The dock's default state: where you are in the chapter, what you can do, and the way on. */
 export function ChapterRail({ lesson, content }: { lesson: CurriculumLesson; content: ChapterContent | null }) {
   const book = useBook();
@@ -128,6 +131,11 @@ export function ChapterRail({ lesson, content }: { lesson: CurriculumLesson; con
   const { total } = progress;
   const reached = read ? total : progress.reached;
   const rail = content?.rail;
+  const resumable = useSyncExternalStore(
+    noSubscribe,
+    () => Boolean(loadSession(lesson.id)),
+    () => false,
+  );
 
   const passed = course.passed.has(lesson.id);
   const best = course.ready ? (testResults()[lesson.id]?.best ?? null) : null;
@@ -203,7 +211,7 @@ export function ChapterRail({ lesson, content }: { lesson: CurriculumLesson; con
       <div className="flex shrink-0 items-center gap-2 px-4 py-3">
         <p className="min-w-0 flex-1 truncate text-[11.5px] text-aula-text-3">{hint}</p>
         <button type="button" onClick={() => book.openPractice({ kind: "lesson" })} className={SECONDARY}>
-          Praticar
+          {resumable ? "Retomar prática" : "Praticar"}
         </button>
         <Link
           href={place.next ? `/lessons/${place.next.id}` : "/lessons"}

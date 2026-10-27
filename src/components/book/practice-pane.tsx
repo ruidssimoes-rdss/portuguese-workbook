@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
@@ -12,6 +13,8 @@ import { cardDrill, practiceLabel, type CardDrill } from "@/lib/book/practice";
 import { createClient } from "@/lib/supabase/client";
 import { updateItemMastery } from "@/lib/learning-engine/mastery-tracker";
 import { encodeCard, encodePractice, FICHA_PARAM, PRATICAR_PARAM, type PracticeTarget } from "@/lib/book/types";
+import { getCurriculumLesson } from "@/data/resolve-lessons";
+import { chapterPlace } from "@/lib/chapter-nav";
 import { useBook } from "./book-context";
 
 function useLoginHref(): string {
@@ -126,6 +129,41 @@ function PracticeBody({
   return <CardSession key={encodePractice(target)} target={target} />;
 }
 
+/** Lesson practice body: the session owns its scrolling and footer; loading and sign-in keep the old prompts. */
+function LessonPracticeBody({ renderLesson }: { renderLesson?: (args: { onDismiss: () => void }) => React.ReactNode }) {
+  const book = useBook();
+  const { user, loading } = useAuth();
+  if (loading || !user || !renderLesson) {
+    return (
+      <div data-book-scroll className="aula-pane min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-4 pb-4 pt-3">
+        <PracticeBody target={{ kind: "lesson" }} renderLesson={renderLesson} />
+      </div>
+    );
+  }
+  return <div className="flex min-h-0 flex-1 flex-col">{renderLesson({ onDismiss: book.closePractice })}</div>;
+}
+
+/** Lesson practice header (Figma: Ajudante · Rail, Practice states): place label and the close button. */
+function LessonPracticeHeader({ onClose }: { onClose: () => void }) {
+  const pathname = usePathname();
+  const id = pathname.match(/^\/lessons\/([^/]+)/)?.[1];
+  const lesson = id ? getCurriculumLesson(decodeURIComponent(id)) : undefined;
+  const label = lesson ? chapterPlace(lesson).label : null;
+  return (
+    <div className="flex shrink-0 items-center px-4 pt-4">
+      <p className="min-w-0 flex-1 truncate text-[11px] font-medium text-aula-text-3">{label ? `Praticar · ${label}` : "Praticar"}</p>
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Fechar"
+        className="tablet-target-sq inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-aula-selected text-aula-text-2 transition-colors hover:bg-aula-border hover:text-aula-text"
+      >
+        <X size={16} strokeWidth={1.5} aria-hidden />
+      </button>
+    </div>
+  );
+}
+
 /** Exercise flow in the dock. Fechar returns to the card or the mastery panel. */
 export function PracticePane({
   lessonTitle,
@@ -138,6 +176,15 @@ export function PracticePane({
   const target = book.practice;
   if (!target) return null;
 
+  if (target.kind === "lesson") {
+    return (
+      <div className="flex h-full min-h-0 min-w-0 flex-1 flex-col">
+        <LessonPracticeHeader onClose={book.closePractice} />
+        <LessonPracticeBody renderLesson={renderLesson} />
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-full min-h-0 min-w-0 flex-1 flex-col">
       <div className="flex shrink-0 items-center gap-item px-pad py-heading text-[12px]">
@@ -147,7 +194,6 @@ export function PracticePane({
             <span className="text-[#B5B5AE]"> / </span>
             <span className="font-medium text-aula-text">{practiceLabel(target, lessonTitle)}</span>
           </span>
-          <span className="block truncate text-[11.5px] text-[#5A5A57]">Answer the exercises. 80% finishes this step.</span>
         </span>
         <span className="flex-1" />
         <button

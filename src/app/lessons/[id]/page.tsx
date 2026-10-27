@@ -13,6 +13,7 @@ import { BookShell } from "@/components/book/book-shell";
 import { LessonChapter } from "@/components/book/lesson-chapter";
 import { AudioSpeedControl } from "@/components/audio-speed-control";
 import { ChapterRail } from "@/components/chapter/chapter-rail";
+import { ChapterPractice } from "@/components/practice/chapter-practice";
 import { getChapterContent } from "@/data/chapters";
 import { setViewingId } from "@/lib/course-path";
 import {
@@ -416,7 +417,7 @@ function CurriculumLesson({ id }: { id: string }) {
     <BookShell
       key={lesson.id}
       lessonTitle={lesson.titlePt}
-      renderLesson={({ onDismiss }) => <LessonContent id={id} dock onDismiss={onDismiss} />}
+      renderLesson={({ onDismiss }) => <ChapterPractice lessonId={id} onClose={onDismiss} />}
       wide
       bareFallback
       fallback={<ChapterRail lesson={lesson} content={getChapterContent(lesson.id)} />}

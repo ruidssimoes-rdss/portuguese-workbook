@@ -30,6 +30,14 @@ export interface ChapterTestItem {
   section: number; // rendered § number the item tests (content sections only)
 }
 
+export type PracticeItemType = "escrever" | "ouvir" | "construir" | "traduzir";
+
+export type ChapterPracticeItem =
+  | { type: "escrever"; prompt: string; answer: string; accept?: string[]; why: string; section: number } // English in, Portuguese out
+  | { type: "ouvir"; text: string; why: string; section: number } // text must be a library string; translation comes from the library
+  | { type: "construir"; prompt: string; tiles: string[]; distractors: string[]; answer: string; accept?: string[]; why: string; section: number } // tiles in the correct order
+  | { type: "traduzir"; context: string; line: string; answer: string; accept?: string[]; why: string; section: number }; // reply to `line`
+
 export interface ChapterContent {
   lessonId: string;
   sections: ChapterSection[];
@@ -37,4 +45,5 @@ export interface ChapterContent {
   mustKnow: string[];
   rail: ChapterRailContent;
   test: ChapterTestItem[];
+  practice?: ChapterPracticeItem[];
 }
