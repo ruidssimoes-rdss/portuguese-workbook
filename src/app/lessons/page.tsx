@@ -250,6 +250,7 @@ export default function LessonsPage() {
             resume={course.resume}
             read={course.read}
             practiced={course.practiced}
+            passed={course.passed}
             finished={course.finished}
             signedIn={Boolean(user)}
             levels={levelStats}

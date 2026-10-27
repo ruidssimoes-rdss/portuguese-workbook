@@ -5,8 +5,8 @@
  * Viewing (aula-course-viewing) is whichever chapter is open.
  * Opening a chapter from search writes viewing only.
  *
- * A chapter is finished when its reading is marked and its practice has passed.
- * Both live on this device. Practice also stays in user_lesson_progress.
+ * A chapter is finished when it is read and its test is passed. Both live on this
+ * device. Practice never gates (it still saves to user_lesson_progress).
  * Marking a card reviewed does not call into this module.
  */
 
@@ -19,6 +19,8 @@ const RESUME_KEY = "aula-course-resume";
 const VIEW_KEY = "aula-course-viewing";
 const PRACTICE_KEY = "aula-course-practiced";
 const SEEDED_KEY = "aula-course-read-seeded";
+const TESTS_KEY = "aula-course-tests";
+const TESTS_SEEDED_KEY = "aula-course-tests-seeded";
 
 function canStore(): boolean {
   return typeof window !== "undefined";
@@ -124,27 +126,92 @@ export function rememberPractice(id: string) {
   writeList(PRACTICE_KEY, ids);
 }
 
+export interface TestResult {
+  best: number | null;
+  passed: boolean;
+  at: string;
+}
+
+export function testResults(): Record<string, TestResult> {
+  if (!canStore()) return {};
+  try {
+    const raw = localStorage.getItem(TESTS_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as unknown;
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? (parsed as Record<string, TestResult>) : {};
+  } catch {
+    return {};
+  }
+}
+
+function writeTests(results: Record<string, TestResult>) {
+  if (!canStore()) return;
+  try {
+    localStorage.setItem(TESTS_KEY, JSON.stringify(results));
+  } catch {
+    /* ignore */
+  }
+}
+
+export function passedIds(): Set<string> {
+  return new Set(
+    Object.entries(testResults())
+      .filter(([, result]) => result.passed)
+      .map(([id]) => id),
+  );
+}
+
+/** Keeps the higher best score. Once passed, a chapter stays passed. */
+export function saveTestResult(id: string, score: number, passMark = 10) {
+  const results = testResults();
+  const prev = results[id];
+  const best = prev?.best == null ? score : Math.max(prev.best, score);
+  results[id] = { best, passed: Boolean(prev?.passed) || score >= passMark, at: new Date().toISOString() };
+  writeTests(results);
+  emit();
+}
+
+/**
+ * The first time this device runs the test gate, every chapter already read
+ * counts as passed, so nobody is sent back to a chapter they finished.
+ */
+export function ensureTestSeed(read: Iterable<string>) {
+  if (!canStore()) return;
+  try {
+    if (localStorage.getItem(TESTS_SEEDED_KEY)) return;
+    const results = testResults();
+    const at = new Date().toISOString();
+    for (const id of read) if (!results[id]) results[id] = { best: null, passed: true, at };
+    writeTests(results);
+    localStorage.setItem(TESTS_SEEDED_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+}
+
 export function orderLessons(lessons: CurriculumLesson[]): CurriculumLesson[] {
   return [...lessons].sort((a, b) => a.number - b.number || a.id.localeCompare(b.id));
 }
 
-export function isChapterDone(id: string, practiced: Set<string>, read: Set<string>): boolean {
-  // Practice never gates (locked 25 Oct). Brief 4 adds the chapter test.
-  return read.has(id);
+export function isChapterDone(id: string, practiced: Set<string>, read: Set<string>, passed: Set<string>): boolean {
+  // Read and test passed. Practice never gates (locked 25 Oct).
+  void practiced;
+  return read.has(id) && passed.has(id);
 }
 
 export function nextIncomplete(
   lessons: CurriculumLesson[],
   practiced: Set<string>,
   read: Set<string>,
+  passed: Set<string>,
 ): CurriculumLesson | null {
-  return orderLessons(lessons).find((lesson) => !isChapterDone(lesson.id, practiced, read)) ?? null;
+  return orderLessons(lessons).find((lesson) => !isChapterDone(lesson.id, practiced, read, passed)) ?? null;
 }
 
 /** Writes resume only from completion, never from the chapter being viewed. */
 export function reconcileResume(lessons: CurriculumLesson[], practiced: Set<string>): CurriculumLesson | null {
   const ordered = orderLessons(lessons);
-  const next = nextIncomplete(ordered, practiced, readIds());
+  const next = nextIncomplete(ordered, practiced, readIds(), passedIds());
   const id = next?.id ?? ordered.at(-1)?.id ?? null;
   if (id && canStore()) {
     try {

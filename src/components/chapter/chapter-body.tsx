@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import type { CurriculumLesson } from "@/data/curriculum-types";
-import type { ChapterBlock, ChapterContent, ChapterSection } from "@/data/chapter-types";
+import type { ChapterBlock, ChapterContent } from "@/data/chapter-types";
 import { vocabKey } from "@/data/resolve-lessons";
 import { lessonBundle } from "@/lib/book/elisio";
 import { chapterPlace } from "@/lib/chapter-nav";
 import { useBook } from "@/components/book/book-context";
+import { genericSections } from "@/lib/chapter-sections";
 import { ChapterCallout } from "./chapter-callout";
+import { ChapterHashScroll } from "./chapter-hash-scroll";
 import { ChapterReadTracker } from "./chapter-read-tracker";
 import { ChapterTable, type TableRow } from "./chapter-table";
 
@@ -21,49 +23,6 @@ function personLabel(person: string): string {
 
 function ellipsis(text: string): string {
   return text.replace(/\.\.\./g, "…");
-}
-
-function capital(text: string): string {
-  return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
-/** Sections for a chapter that has no file of its own yet, built from its library references. */
-function genericSections(lesson: CurriculumLesson, bundle: Bundle): ChapterSection[] {
-  const sections: ChapterSection[] = [];
-  if (bundle.words.length > 0) {
-    sections.push({
-      title: "Vocabulário",
-      blocks: [
-        {
-          type: "vocab",
-          rows: bundle.words.map((word) => ({ kind: "word" as const, categoryId: word.category, portuguese: word.portuguese })),
-        },
-      ],
-    });
-  }
-  const refs = lesson.stages.verbs.verbs;
-  if (bundle.verbs.length > 0) {
-    sections.push({
-      title: "Verbos (presente)",
-      blocks: bundle.verbs.map((verb) => {
-        const ref = refs.find((item) => item.verbKey.toLowerCase() === verb.id);
-        return {
-          type: "conjugation" as const,
-          items: [{ label: `${capital(verb.id)}: ${verb.english}`, verbKey: verb.id.toUpperCase(), tense: ref?.tenses[0] ?? "Present" }],
-        };
-      }),
-    });
-  }
-  for (const topic of bundle.topics) {
-    const blocks: ChapterBlock[] = [];
-    if (topic.summary) blocks.push({ type: "text", body: topic.summary });
-    const examples = topic.rules[0]?.examples ?? [];
-    if (examples.length > 0) {
-      blocks.push({ type: "dialogue", lines: examples.map((ex, i) => ({ n: String(i + 1), pt: ex.pt, phonetics: "", en: ex.en })) });
-    }
-    sections.push({ title: topic.titlePt, grammarTopic: topic.id, blocks });
-  }
-  return sections;
 }
 
 function ConjugationTable({ bundle, verbKey, tense }: { bundle: Bundle; verbKey: string; tense: string }) {
@@ -153,6 +112,7 @@ export function ChapterBody({ lesson, content }: { lesson: CurriculumLesson; con
   return (
     <article className="flex flex-col gap-[18px] pt-2 pb-10">
       <ChapterReadTracker lesson={lesson} />
+      <ChapterHashScroll />
       <div className="flex flex-col gap-1">
         <h1 className="text-[24px] font-semibold tracking-[-0.02em] text-aula-text">{lesson.titlePt}</h1>
         <p className="text-[13px] text-aula-text-2">
@@ -185,6 +145,12 @@ export function ChapterBody({ lesson, content }: { lesson: CurriculumLesson; con
       <section id={`section-${n + 1}`} data-chapter-section={n + 1} data-title="Antes do teste" className="flex scroll-mt-4 flex-col gap-[18px]">
         <SectionHeading n={++n} title="Antes do teste" />
         <p className="text-[13px] text-aula-text-2">Must-know: {mustKnow}</p>
+        <p className="text-[13px] text-aula-text-2">
+          Teste: 12 questions, pass with 10.{" "}
+          <Link href={`/lessons/${lesson.id}/teste`} className="font-medium text-aula-accent">
+            Fazer o teste
+          </Link>
+        </p>
         <p className="text-[13px] text-aula-text-2">
           Then →{" "}
           {place.nextInLevel ? (

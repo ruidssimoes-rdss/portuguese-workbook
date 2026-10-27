@@ -6,6 +6,7 @@ import { ArrowRight, Check, Lock } from "lucide-react";
 import type { CurriculumLesson } from "@/data/curriculum-types";
 import type { ChapterContent } from "@/data/chapter-types";
 import { chapterPlace } from "@/lib/chapter-nav";
+import { testResults } from "@/lib/course-path";
 import { useChapterProgress } from "@/lib/chapter-progress";
 import { AskChapter } from "@/components/book/ask";
 import { useBook } from "@/components/book/book-context";
@@ -17,9 +18,9 @@ const EYEBROW = "text-[11px] font-medium text-aula-text-3";
 const SECONDARY =
   "inline-flex h-7 items-center justify-center gap-1.5 rounded-lg border border-aula-border bg-white px-3 text-[12.5px] font-medium text-aula-text transition-colors hover:bg-aula-sunken";
 
-function StepCard({ label, locked, done, fill, sub, disabledTitle }: { label: string; locked?: boolean; done?: boolean; fill: number; sub: string; disabledTitle?: string }) {
-  return (
-    <div className="flex flex-col gap-1.5 rounded-[10px] border border-aula-line px-3 py-2.5" aria-disabled={disabledTitle ? true : undefined} title={disabledTitle}>
+function StepCard({ label, locked, done, fill, sub, href }: { label: string; locked?: boolean; done?: boolean; fill: number; sub: string; href?: string }) {
+  const body = (
+    <>
       <p className="flex items-center gap-1.5 text-[13px] font-medium text-aula-text">
         {done && <Check size={12} strokeWidth={2} className="text-[#1F7A68]" aria-hidden />}
         {locked && <Lock size={12} strokeWidth={1.5} className="text-aula-text-3" aria-hidden />}
@@ -29,7 +30,15 @@ function StepCard({ label, locked, done, fill, sub, disabledTitle }: { label: st
         <div className="h-full rounded-[3px] bg-aula-accent" style={{ width: `${Math.round(Math.max(0, Math.min(1, fill)) * 100)}%` }} />
       </div>
       <p className="text-[12px] text-aula-text-2">{sub}</p>
-    </div>
+    </>
+  );
+  const box = "flex flex-col gap-1.5 rounded-[10px] border border-aula-line px-3 py-2.5";
+  return href ? (
+    <Link href={href} className={`${box} transition-colors hover:bg-aula-canvas`}>
+      {body}
+    </Link>
+  ) : (
+    <div className={box}>{body}</div>
   );
 }
 
@@ -120,10 +129,25 @@ export function ChapterRail({ lesson, content }: { lesson: CurriculumLesson; con
   const reached = read ? total : progress.reached;
   const rail = content?.rail;
 
+  const passed = course.passed.has(lesson.id);
+  const best = course.ready ? (testResults()[lesson.id]?.best ?? null) : null;
+  const testSub = passed
+    ? best == null
+      ? "Passed"
+      : `Passed · ${best} of 12`
+    : read && best != null
+      ? `Best ${best} of 12 · pass with 10`
+      : "12 questions · pass with 10";
+
   const left = total > 0 ? Math.max(1, Math.round((25 * (total - reached)) / total)) : 25;
   const readSub = read ? `Done · ${total} sections` : `§${Math.max(reached, 1)} of ${total} · about ${left} min left`;
   const nextChapter = place.nextInLevel ? `${place.level}.${place.index + 1} ${place.nextInLevel.titlePt}` : "Curso";
-  const hint = !read && reached < total ? `Next: §${reached + 1} ${progress.titles[reached] ?? ""}` : `Next: ${nextChapter}`;
+  const hint =
+    !read && reached < total
+      ? `Next: §${reached + 1} ${progress.titles[reached] ?? ""}`
+      : read && !passed
+        ? "Next: Teste do capítulo"
+        : `Next: ${nextChapter}`;
 
   return (
     <div className="flex h-full min-h-0 flex-col">
@@ -143,9 +167,10 @@ export function ChapterRail({ lesson, content }: { lesson: CurriculumLesson; con
           <StepCard
             label="Teste"
             locked={!read}
-            fill={0}
-            sub="12 questions · pass with 10"
-            disabledTitle={read ? "The chapter test arrives soon" : undefined}
+            done={passed}
+            fill={passed ? 1 : 0}
+            sub={testSub}
+            href={read && !passed ? `/lessons/${lesson.id}/teste` : undefined}
           />
         </div>
 

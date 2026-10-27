@@ -5645,8 +5645,8 @@
           "explanation": "Him (direct) = o."
         },
         {
-          "questionText": "Complete: Eu ___ vejo.",
-          "questionTextPt": "Completa: Eu ___ vejo. (I see you)",
+          "questionText": "Complete: Vejo-___. (I see you)",
+          "questionTextPt": "Completa: Vejo-___. (I see you)",
           "options": [
             "te",
             "me",
@@ -5655,7 +5655,7 @@
           ],
           "correctAnswer": "te",
           "correctIndex": 0,
-          "explanation": "You (direct) = te. But in EP we'd say Vejo-te."
+          "explanation": "You as a direct object is te, placed after the verb: vejo-te."
         },
         {
           "questionText": "What does 'lhe' mean?",
@@ -6422,8 +6422,8 @@
           "explanation": "She is called = chama-se."
         },
         {
-          "questionText": "Complete: Nós ___ às oito. (We get up)",
-          "questionTextPt": "Completa: Nós ___ às oito.",
+          "questionText": "Complete: Levantamo-___ às oito. (We get up at eight.)",
+          "questionTextPt": "Completa: Levantamo-___ às oito.",
           "options": [
             "me",
             "te",
@@ -6432,7 +6432,7 @@
           ],
           "correctAnswer": "nos",
           "correctIndex": 3,
-          "explanation": "Reflexive pronoun for nós = nos. Levantamo-nos."
+          "explanation": "The reflexive pronoun for nós is nos, and the verb drops its final -s: levantamo-nos."
         },
         {
           "questionText": "What is 'I don't get up' in EP?",
@@ -7189,7 +7189,7 @@
             "foi",
             "era",
             "é",
-            "estava"
+            "será"
           ],
           "correctAnswer": "era",
           "correctIndex": 1,
